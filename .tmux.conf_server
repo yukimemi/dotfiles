@@ -1,0 +1,176 @@
+# prefixキーをctrl+tへ変更
+set -g prefix C-t
+unbind-key C-t
+bind-key C-t send-prefix
+
+# Macでクリップボード活用 http://d.hatena.ne.jp/koseki2/20110816/TmuxCopy
+set -g default-command "reattach-to-user-namespace -l zsh"
+# C-q で最新のバッファをクリップボードに
+bind C-q run-shell 'reattach-to-user-namespace tmux-pbcopy'
+
+# reload .tmux.conf
+# https://github.com/glidenote/learning-tmux
+unbind r
+bind   r source-file ~/.tmux.conf \; display-message 'source-file ~/.tmux.conf'
+
+# terminal
+set -g default-terminal screen-256color
+
+# prefixキー連打で直前のウィンドウと切り替え
+unbind C-t
+bind-key C-t last-window
+
+# copyモードのキーバインドをvi風に
+setw -g mode-keys vi
+
+# 縦画面分割、横画面分割をviライクに割当
+bind s split-window -v
+bind v split-window -h
+
+# 分割画面への移動をviライクに割当
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# ペインのサイズ変更をviライクに
+bind -r C-h resize-pane -L 5
+bind -r C-l resize-pane -R 5
+bind -r C-j resize-pane -D 5
+bind -r C-k resize-pane -U 5
+
+# prefix + spaceでウィンドウの一覧表示
+#bind Space choose-window
+
+# ctrl + 左右矢印でウィンドウ切替
+unbind-key C-Left
+bind-key -n C-Left prev
+unbind-key C-Right
+bind-key -n C-Right next
+
+## 後方スクロール行数(既定値は2000) http://d.hatena.ne.jp/kakurasan/20100311/p1
+set -g history-limit 999999
+
+
+# http://d.hatena.ne.jp/kakurasan/20100331/p1
+## UTF-8を用いるかどうかはロケールから自動検出される(必要のある場合のみ指定)
+#setw -g utf8 on
+#set -g status-utf8 on
+
+
+## メッセージ表示時間(既定値は1000?)
+set -g display-time 10000
+
+## バッファ上限数(既定値は9で0番-8番)
+set -g buffer-limit 32
+
+# screen-like hardcopy
+# http://pastebin.com/GHCykGs9
+#bind H capture-pane ; save-buffer -b 0 ~/tmux.hardcopy ; delete-buffer -b 0
+
+# cmatrix http://qiita.com/yuyuchu3333/items/77889084a1d19223f2b1
+#set -g lock-after-time 600
+#set -g lock-command "cmatrix -s -b"
+
+# ペイン終了
+bind x kill-pane
+# ウィンドウ終了
+bind X kill-window
+# ペイン番号表示
+bind i display-panes
+# コピーモード突入
+bind y copy-mode
+# ペースト
+#bind p paste-buffer
+
+# vでマーク開始
+bind -t vi-copy v begin-selection
+# yでヤンク
+bind -t vi-copy y copy-selection
+
+
+# tmux-powerline
+set -g status on
+set -g status-interval 2
+set -g status-utf8 on
+#set -g status-justify "centre"
+set -g status-left-length 60
+set -g status-right-length 90
+set -g status-left "#(~/.tmux-powerline/powerline.sh left)"
+set -g status-right "#(~/.tmux-powerline/powerline.sh right)"
+
+setw -g window-status-current-format "#[fg=colour235, bg=colour27]⮀#[fg=colour255, bg=colour27] #I ⮁ #W #[fg=colour27, bg=colour235]⮀"
+
+bind C-[ run '~/.tmux-powerline/mute_powerline.sh left'      # Mute left statusbar.
+bind C-] run '~/.tmux-powerline/mute_powerline.sh right'     # Mute right statusbar.
+
+set -g status-left-length 100
+set -g status-right-length 120
+
+
+## 既定の属性
+# 「xxx-fg」「xxx-bg」は色、「xxx-attr」は属性
+# 透明にしたい場合、端末によっては
+# status-bgを「default」にすると256色パレット色の表示が部分的におかしくなる?
+# 背景色は端末エミュレータの背景色に近いものを設定すると良いかも
+set -g status-fg   default
+set -g status-bg   default
+set -g status-attr default
+
+# status-left-* と status-right-* の設定はおすすめしない
+# status-leftやstatus-rightの中で記述したほうが良い
+set -g status-left-fg   default
+set -g status-left-bg   default
+set -g status-left-attr default
+
+set -g status-right-fg   default
+set -g status-right-bg   default
+set -g status-right-attr default
+
+## ウィンドウ一覧部における現在非アクティブなウィンドウの項目の表示
+setw -g window-status-fg   colour115
+setw -g window-status-bg   default
+setw -g window-status-attr bold
+
+## ウィンドウ一覧部における現在アクティブなウィンドウの項目の表示
+## 端末によっては256色の色を用いると正常に表示されない?
+setw -g window-status-current-fg   colour253
+setw -g window-status-current-bg   colour125
+setw -g window-status-current-attr bold
+
+# pane-active-border
+set -g pane-active-border-fg magenta
+#set -g pane-active-border-bg magenta
+
+## メッセージ/プロンプト
+set -g message-fg   colour115
+set -g message-bg   colour24
+set -g message-attr bright
+
+## スクロールの右上やコピーモード選択範囲のスタイル
+setw -g mode-fg   colour218
+# 256色パレットの色を付けると表示が変になる?(reverseすると回避可能?)
+setw -g mode-bg   colour125
+setw -g mode-attr reverse,bold
+
+
+# メモ用コメント
+# [一部]ファイル名: ~/.tmux.conf
+## ステータス行の書式
+  #(コマンド行)     コマンド出力の最初の行
+  #[属性]           色/属性の変更(例:#[fg=cyan,bright])
+  #H                ホスト名
+  #I                ウィンドウ番号
+  #P                ペイン番号
+  #S                セッション名
+  #T                ウィンドウタイトル
+  #W                ウィンドウ名
+  ##                「#」の文字
+# コマンドは繰り返し実行される (更新頻度はstatus-intervalによる・既定値は15秒)
+# 指定可能な色は
+# black red green yellow blue magenta cyan white
+# の他、256色パレット上のcolour0,colour1, ... colour255が利用可能
+# 指定可能な属性は
+#   bright(bold)[明るい(太字)], dim[暗い], underscore[下線], blink[点滅],
+#   reverse[反転], hidden[非表示], italics[イタリック], default[書式のクリア]
+#   (端末によっては効果がないものもある)

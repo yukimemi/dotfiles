@@ -1,0 +1,16 @@
+# ~/.tmuxinator/node.yml
+
+name: node
+root: ~/Documents/git/node-webkit
+
+# Optional tmux socket
+# socket_name: foo
+
+windows:
+  - vim:
+      layout: ab9a,226x57,0,0{160x57,0,0,29,65x57,161,0[65x28,161,0,31,65x28,161,29,32]}
+      panes:
+        - vim
+        - grunt
+        - pwd
+  - shell: cd

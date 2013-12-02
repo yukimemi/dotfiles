@@ -1,0 +1,14 @@
+# vim
+*.~
+*~
+.vimpos
+vim/.vim/back
+
+# zsh history
+.zsh_hist*
+
+# winmerge
+*.bak
+
+# tag
+tags

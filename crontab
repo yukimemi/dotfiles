@@ -1,0 +1,6 @@
+*/10 * * * * echo `date` >> ~/Dropbox/log/rsync_iPhone_media.log 2>&1 && rsync -av8 --progress mobile@192.168.1.5:~/Media/DCIM ~/Pictures/iPhone/ >> ~/Dropbox/log/rsync_iPhone_media.log 2>&1
+*/10 * * * * echo `date` >> ~/Dropbox/log/rsync_iPad_media.log 2>&1 && rsync -av8 --progress mobile@192.168.1.7:~/Media/DCIM ~/Pictures/iPad/ >> ~/Dropbox/log/rsync_iPad_media.log 2>&1
+#*/15 * * * * chmod -R 777 ~/Pictures/iPhone > /dev/null
+#*/15 * * * * chmod -R 777 ~/Pictures/iPad > /dev/null
+0 * * * * cd ~/Dropbox/Documents/git/MyGit/dotfiles; git pull > /dev/null
+0 * * * * /bin/rm -rf ~/Dropbox/.dropbox.cache/* > /dev/null

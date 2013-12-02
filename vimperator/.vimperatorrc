@@ -1,0 +1,787 @@
+" vim: ft=vim
+
+" 読み込んだ事を出力
+echo ".vimperatorrc source start"
+
+" ブラウザタイトルの変更
+" Firefox デフォルトは 「Mozilla - Firefox」、vimperatorを入れると「vimperator」
+set titlestring="Mozilla Firefox"
+
+" 詳細表示レベル
+" →「:javascript! 」で表示される内容レベル
+set verbose=9
+"set messages=500
+
+" encode
+"set encoding=UTF-8
+
+"" GUIメニュー
+set gui=none
+set gui=tabs
+"set gui=addons
+
+" animations
+"set animations=true
+
+" スクロールの端などの際に出るbeepをoff
+"set visualbell
+"set nobeep
+
+" 補完動作設定
+"set wildoptions=auto
+
+" hintchars
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+
+" 選択文字列ののコピーを <C-c> に割り当て
+"map <C-c> :echo Yank!<CR>Y
+
+" for US KBD
+"noremap ; :
+"noremap : ;
+
+" j/k でのスクロール幅を 1行 から 5行 に変更
+"nnoremap j 5<C-e>
+"nnoremap k 5<C-y>
+"nnoremap j 8<Down>
+"nnoremap k 8<Up>
+
+" ブックマークとGoogle Suggest自動補完とURL補完
+set complete=tbsl
+
+" 検索での大文字小文字を無視
+set ignorecase
+set smartcase
+" Backspace に戻るを割り当て
+"nnoremap <BS> <A-Left>
+
+" h/l に戻るや進むを割り当て
+"map h <A-Left>
+"map l <A-Right>
+
+" H/L や ← → でタブ移動
+"nnoremap J gT
+"nnoremap K gt
+"nnoremap <C-j> gT
+"nnoremap <C-k> gt
+nnoremap <C-l> gt
+nnoremap <C-h> gT
+
+" タブを閉じたら左に
+nnoremap d D
+nnoremap D d
+
+" ウィンドウサイズ簡易変更
+nmap [WIN] <NOP>
+nnoremap <C-w> [WIN]
+noremap [WIN]s :js window.outerWidth=800; window.outerHeight=600;<CR>
+noremap [WIN]m :js window.outerWidth=1024; window.outerHeight=768;<CR>
+noremap [WIN]l :js window.outerWidth=1280; window.outerHeight=960;<CR>
+
+nnoremap w :winopen<Space>
+
+" encode
+nnoremap ee :setlocal encoding=EUC-JP<CR>
+nnoremap ej :setlocal encoding=ISO-2022-JP<CR>
+nnoremap es :setlocal encoding=Shift_JIS<CR>
+nnoremap eu :setlocal encoding=UTF-8<CR>
+
+nnoremap <S-u> :undo<space>
+
+set! browser.tabs.tabMinWidth=50
+set! browser.tabs.tabClipWidth=70
+
+"highlight! Bell display:none
+"highlight! Hint <<EOS
+    "color:black;
+    "font:normal bold normal 11px/11px monospace;
+    "text-transform: uppercase;
+    "letter-spacing:3px;
+    "background-color:gold;
+    "padding:2px;
+    "border:1px solid gray;
+    "z-index:4294967295 !important;
+"EOS
+"highlight! HintElem outline: dashed rgba(255,255,0,0.25) 3px;
+
+" HintでIME OFF
+style! -name=commandline-ime chrome://* #liberator-commandline-command input { ime-mode: inactive; }
+style! -name=textarea-ime * textarea,input { ime-mode: inactive; }
+style! -name=disabled_fxlinkpopup chrome://* #statusbar-display[type="overLink"] { display: none !important; }
+
+" Shift + ← → で現在のタブの位置変更
+"nnoremap <S-Right> :tabmove! +1<CR>
+"nnoremap <S-Left>  :tabmove! -1<CR>
+
+" テキストエリアにフォーカスしないように
+set focuscontent
+
+" 出力結果を新しいタブに開く
+set newtab=all
+
+" テキストエリアでもVim操作
+"set noinsertmode
+
+" <Leader>r で .vimperatorrc をリロード
+nnoremap <Leader>r :source ~/.vimperatorrc<CR>
+
+" Googleでサイト内検索 {{{
+" http://blog.feelmy.net/2012/12/22/useful-tips-for-vimperator/
+nnoremap ,/ :sitesearch<Space>
+
+javascript <<EOM
+commands.addUserCommand(
+  ['sitesearch'],
+  'Search in this site',
+  function (args) {
+    let url = window.content.location.hostname;
+    [
+      /d\.hatena\.ne\.jp/,
+      /www\d+\.atwiki\.jp/,
+    ].forEach(function(r){
+      url += r.test(url) ? '/' + window.content.location.pathname.split('/')[1] : '';
+    });
+    liberator.open(
+      'http://www.google.com/search?q=' +
+        encodeURIComponent(args.literalArg) +
+        '+site%3A' +
+        url,
+      liberator.NEW_TAB
+    );
+  },
+  {
+    completer: function (context) completion.url(context, 'S'),
+    literal: 0,
+  },
+  true
+);
+EOM
+"}}}
+
+" .r で firefox restart
+nnoremap .r :restart<CR>
+
+" URL デコードしないようにする
+"nnoremap <silent> y :<C-u>js util.copyToClipboard(buffer.URL)<CR>
+"nnoremap y :<C-u>js util.copyToClipboard(buffer.URL)<CR>
+" URIをpercent-encodeしてyank (via: http://vimperator.g.hatena.ne.jp/janus_wel/20101127/1290867337 )
+nnoremap <silent> y :javascript util.copyToClipboard(buffer.URL);<CR>:echo "Yanked " + util.readFromClipboard();<CR>
+
+" コマンドモードでの履歴たぐり
+cnoremap <C-p> <S-Tab>
+cnoremap <C-n> <Tab>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-k> <Up>
+cnoremap <C-l> <Down>
+
+" インサートモードでの下補完選択をC-n,C-pで
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+
+" VISUAL MODEで選択文字列をグーグル検索
+vnoremap <silent> <C-g> y<Esc><Esc>P
+
+" コピーする
+"vnoremap y :<C-u>copy %SEL%<CR>
+
+" マウスカーソルを邪魔じゃないとこに飛ばす
+"nnoremap <A-z> :mouse move 1800 10000<CR>
+
+js<<EOM
+if (liberator.has("MacUnix")) {
+    // Mac 固有の処理
+    liberator.execute("set editor='/Users/yuki/bin/scripts/mvim -f'");
+    } else {
+    // その他の場合
+    liberator.execute("set editor='gvim -f'");
+    }
+EOM
+
+" カラースキーム {{{
+
+colorscheme theme
+"colorscheme persona
+"colorscheme tab-numbers
+
+"colorscheme fix-addon
+"colorscheme fix-sites
+colorscheme fix-firefox
+
+"" anekosさんのカラースキーマから変更点少し
+"hi Hint <<EOM
+  "font-size  : 1em;
+  "border     : black solid 1px;
+  "color      : white;
+  "background : red;
+  "opacity : 0.7;
+"EOM
+"" http://blog.ruedap.com/entry/20110327/vimperator3_hint_mode_alphabet_uppercase
+hi Hint z-index:5000; font-size:14px; color:white; background-color:red; border-color:ButtonShadow; border-width:0px; border-style:solid; padding:0px 2px 0px 2px; position:absolute; font-family: Menlo, Consolas, Monaco, monospace; text-transform: uppercase;
+"
+hi Normal <<EOM
+  color      : LightYellow;
+  background : #333;
+  font-size  : 12pt;
+  opacity : 0.9;
+EOM
+" }}}
+
+
+" {{{ quickmark
+qmark 2 http://is.2ch.net/
+qmark a https://affiliate.amazon.co.jp/gp/associates/network/main.html
+qmark b https://bitbucket.org/yuyunko
+qmark c https://www.google.com/calendar/render?hl=ja
+qmark d http://192.168.1.1/
+qmark e https://www.evernote.com/Home.action
+qmark f http://www.facebook.com/
+qmark g https://www.google.com/adsense/v3/app#home
+qmark h http://yuyunko.hatenablog.com/
+qmark k http://yuyunko.bitbucket.org/
+qmark l https://www.toggl.com/track
+qmark m http://mixi.jp/home.pl
+qmark o http://yuyunko.github.com
+qmark p https://plus.google.com/
+qmark r http://cloud.feedly.com/
+qmark t https://mail.google.com/tasks/canvas
+qmark u http://uhloop.com/
+qmark v http://tv.yahoo.co.jp/listings/realtime/
+qmark y http://www.youtube.com/?gl=JP&hl=ja
+" }}}
+
+" {{{ firefox about:config
+" don't show download-manager
+set! browser.download.manager.showWhenStarting=false
+
+" フルスクリーンでもタブを隠さない
+"set! browser.fullscreen.autoHide=false
+
+" liberator.log
+set! extensions.liberator.loglevel=666
+
+" 拡張機能のバージョンチェックを回避
+set! extensions.checkCompatibility.18.0.2=false
+
+" キャッシュサイズ
+"set! browser.cache.memory.capacity=32768
+
+" タブバーを自動で隠さない
+"set! browser.tabs.autoHide=false
+
+" 起動時に前回のセッションを復元
+"set! browser.startup.page=3
+
+" Firefoxのタブを開く位置をデフォで現在のタブの右隣にする（※ gBrowser.addTabの改造）
+"" cf.http://d.hatena.ne.jp/wlt/20110112/1294859530
+"js <<EOM
+"gBrowser.addTab = liberator.eval(
+"    '(' +
+"    gBrowser.addTab.toSource()
+"            .replace(/var aRelatedToCurrent;/, 'var aRelatedToCurrent = true;')
+"            .replace(/aRelatedToCurrent = params\.relatedToCurrent;/, 'aRelatedToCurrent = params.relatedToCurrent === undefined ? true : params.relatedToCurrent;') +
+"    ')',
+"    gBrowser.addTab);
+"EOM
+"
+"
+" }}}
+
+" {{{ plugins
+" plugin_loader.js
+js <<EOM
+if (liberator.has("Win32")) {
+   liberator.execute('let g:plugin_loader_roots = "~/vimperator/vimperator-plugins/ ~/vimperator/377348/ ~/vimperator/caisui/plugin/"');
+} else {
+   liberator.execute('let g:plugin_loader_roots = "~/.vimperator/vimperator-plugins/ ~/.vimperator/377348/ ~/.vimperator/caisui/plugin/"');
+}
+EOM
+
+" 利用するプラグインたち
+"js <<EOF
+"liberator.globalVariables.plugin_loader_plugins = <>
+   "_libly
+   "_smooziee
+   "//account_switcher
+   "auto-focus-frame
+   "//auto_reload
+   "//auto_source
+   "//caret-hint
+   "commandBookmarklet
+   "copy
+   "//direct_bookmark
+   "//escape-from-iframe
+   "feedSomeKeys_3
+   "//feeder
+   "//ime_controller
+   "//maine_coon
+   "//menu-mode-sucks
+   "migemized_find
+   "//nextlink
+   "opener-ex
+   "//pluginManager
+   "stella
+   "//tab-history
+   "twittperator
+   "slideshare
+   "x-hint
+   "xpath_hint
+   "hints-ext
+   "//chaika
+"</>.toString().split(/\s+/).filter(function(n) n);
+"EOF
+let g:plugin_loader_plugins = "_libly,_smooziee,auto-focus-frame,commandBookmarklet,copy,feedSomeKeys_3,migemized_find,opener-ex,stella,twittperator,slideshare,x-hint,xpath-hint"
+
+" hints-ext
+let use_hints_ext_hinttags=1
+let use_hints_ext_extendedhinttags=1
+"hints.addSimpleMap("<C-l>", function () {this.relocation(); });
+let use_hintchars_ex=2
+let use_hints_ext_caret="c"
+let use_hints_ext_visual="v"
+
+" tab-history.js
+"nnoremap < :tabh back<CR>
+"nnoremap > :tabh forward<CR>
+
+" maine_coon.js
+"noremap <silent> ,f :fullscreen<CR>
+"let g:maine_coon_default = "amu"
+
+" _smooziee.js
+let g:smooziee_scroll_amount="150"
+let g:smooziee_scroll_interval="50"
+
+" account_switcher
+"js <<EOM
+"liberator.globalVariables.accountSwitcherLoginServices = [
+"    'yuyunko@hatena',
+"    'i.xxxxxxxxxxxxx.13@gmail.com@google',
+"    'Elfen_Lied@twitter',
+"];
+"EOM
+
+
+
+" for feedSomeKeys_3.js plugin {{{
+command! -nargs=+ auve autocmd VimperatorEnter .* <args>
+
+" for Amazon.co.jp (LDRize)
+"auve :fmaps -urls='www\.amazon\.co\.jp/(s|gp)/' j k l p v o
+
+" for Bing
+auve :fmaps -urls='www\.bing\.com/search' q,f j k l o p v
+
+" for Github
+auve :fmaps -urls='github\.com/' s ?
+auve :fmaps -urls='github\.com/[^/]+/[^/]+/network\b' <Left> <Right> <Up> <Down> <S-Left> <S-Right> <S-Up> <S-Down> t
+auve :fmaps -urls='github\.com/[^/]+/[^/]+/pulls\b' j k o <Enter>
+auve :fmaps -urls='github\.com/[^/]+/[^/]+/issues\b' j k x o <Enter> I U e y c l i u /
+auve :fmaps -urls='github\.com/[^/]+/[^/]+/commits/' j k c o <Enter> y
+
+" for Google (+ LDRize)
+"auve :fmaps -urls='www\.google\.(com|co\.jp)/(search|cse)' q,f j k p o v l
+"auve :fmaps -urls='google\.(com|co\.jp)/images' q,f j k p o v l
+"auve :fmaps -urls='www\.google\.(com|co\.jp)/codesearch' q,f j k p o v l
+"auve :fmaps -urls='blogsearch\.google\.(com|co\.jp)/blogsearch' q,f j k p o v l
+" for Gmail
+auve :fmaps -urls='mail\.google\.com/mail' c q,/ k j n p o <Enter> u e m x s + - ! r <S-r> a <S-a> <S-f>,f <Esc> <C-s> # l v <S-i> <S-u> [ ] z <S-n> y . <C-Down> <Tab> ? <Tab><Enter> yo ga gs gc gd gl gi gt *a *n *r *u *s *t <S-Space>
+" ↑ <S-f>, q は割り当てていない。 <Tab> は<C-Down>からの操作で使用。 <S-Space>はスクロールの為
+auve :fmapc 'mail\.google\.com/mail/#settings'
+nnoremap -urls=mail\.google\.com/mail <F3> n
+nnoremap -urls=mail\.google\.com/mail <S-F3> N
+
+" for Google Calendar
+auve :fmaps -urls='www\.google\.com/calendar/' -events=vkeydown <C-?> c / <C-z> z k p j n t 1 2 w 3 m 4 x 5 a q r s ?
+" ↑ d は割り当てていない。
+auve :fmaps -urls='www\.google\.com/calendar/' -events=vkeydown <Enter> <BS> <DEL> <TAB> <A-s> gy gn gm
+" for Google Group
+auve :fmaps -urls='groups\.google\.com/' gl gm gs o <Enter> j <S-j> k <S-k> n <S-n> p <S-p> u z,f h <S-a> a c s q,/ <Esc> ?
+
+" for Grooveshark
+auve :fmaps -urls='https?://grooveshark\.com/' <Space> <C-Left> <C-Right> <C-Up> <C-Down>
+
+" for livedoor Reader (+ ldr_relative_rate.user.js)
+auve :fmaps -urls='reader\.livedoor\.com/reader' j k s a p o v c <Space> <S-Space> z b < > <Del> q w
+
+" for Pixiv
+auve :fmaps -urls='www\.pixiv\.net/member_illust.php\?mode=manga' j k o z
+
+" for reblog machine
+auve :fmaps -urls='^http://reblog\.machine\.mamemomonga\.com/dashboard' j k t l
+
+" for Sprintpad
+auve fmaps -urls='springpadit\.com/' ? h gh gm gf nn nt nl <S-Tab> j k / c
+
+" for Tumblr
+auve :fmaps -urls='www\.tumblr\.com/dashboard' -events=vkeydown j k l n <S-t>,r t,<S-r> <S-e> <Space> <Left> <S-h>,<Left> <Right> <S-l>,<Right>
+
+" for Twitter
+auve :fmaps -urls='^https?://twitter\.com/' j k . ? q,/
+auve :fmaps -urls='^https?://twitter\.com/' -events=vkeyup <Enter> <Space>
+auve :fmaps -urls='^https?://twitter\.com/' -events=vkeydown a,f r t l m n gh gd gc gr gp gf gm gu ga gl gs
+
+" for remember the milk
+auve :fmaps -urls='^https?://www\.rememberthemilk\.com/home/\w+/' <C-S-6> <C-S-7> <C-S-8> <C-S-9> <C-S-0> <C-S-/> c p j k i z m +,t h r ^,d *,f g s l u p y a n 1 2 3 <Del>
+
+delcommand auve
+" }}}
+" feedSomeKeys_3.js
+command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+"lazy fmaps -u='mail\.google\.com/mail' -frame=4 -events=vkeydown,keypress,vkeyup j k
+"lazy fmaps -u='mail\.google\.com/mail' -frame=4 c n p o u x s r a ? gi gs gt gd ga gc gl I
+"lazy fmaps -u='mail\.google\.com/mail' -frame=4 -p=<Leader> d,# s,! e
+"lazy fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' -frame=4 c j,n k,p n,j p,k o u x s r a ? gi gs gt gd ga gc
+"lazy fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' -frame=4 -p=<Leader> d,# s,! e
+"lazy fmaps -u='mail\.google\.com/mail' c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc
+"lazy fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' c / j,n k,p n,j p,k o u e x s r a # [ ] ? gi gs gt gd ga gc
+lazy fmaps -u='www\.google\.co\.jp/reader/.*' -events=vkeypress j,<Down> k,<Up> n p m s v A r S N P X O gh ga gs gt gu u / ?
+lazy fmaps -u='(fastladder|livedoor)\.com/reader' j k s a p o v c i,p <Space> <S-Space> z b < > q w e,g
+"lazy fmaps -u='https?://www\.rememberthemilk\.com/home/' j k m i c t ? d F,f G,g S,s L,l Y,y H,h M,m <Del> <C-S-Left> <C-S-Right>
+"lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/list' o j k
+"lazy fmaps -u='http://code.google.com/p/vimperator-labs/issues/detail' u
+"lazy fmaps -u='^http://twitter\.com/' j k ?
+"lazy fmaps -u='^http://twitter\.com/' -events=vkeydown n m t r gh gr gp gf gm
+"lazy fmaps -u='^https://twitter\.com/' j k ?
+"lazy fmaps -u='^https://twitter\.com/' -events=vkeydown n m t r gh gr gp gf gm
+" feedly
+"lazy fmaps -u='cloud\.feedly\.com' g h m a e t c d p l s n b n p o v V m s S D e t d c / r ? 1 2 3 4 5 6 7 8 9 <Enter>
+" C-nで下，C-pで上，補完
+lazy fmap -modes=i -events=keydown,keypress <C-p> <Up>
+lazy fmap -modes=i -events=keydown,keypress <C-n> <Down>
+
+" direct_bookmark
+"let g:direct_sbm_use_services_by_tag = "hgp"
+"let g:direct_sbm_use_services_by_post = "hgp"
+"let g:direct_sbm_echo_type = "multiline"
+
+" google plus commado
+"let g:gplus_commando_map_next            = "j"
+"let g:gplus_commando_map_prev            = "k"
+"let g:gplus_commando_map_share           = "s"
+"let g:gplus_commando_map_plusone         = "p"
+"let g:gplus_commando_map_comment         = "c"
+"let g:gplus_commando_map_post            = "C"
+"let g:gplus_commando_map_yank            = "y"
+"let g:gplus_commando_map_notification    = "n"
+"let g:gplus_commando_map_submit          = "<S-CR>"
+"let g:gplus_commando_map_cancel          = "<Esc>"
+"let g:gplus_commando_map_unfold          = "e"
+"let g:gplus_commando_map_menu            = "m"
+"nnoremap gs :<C-u>gp -setup<CR>
+"nnoremap gp :<C-u>gp<Space>
+"nnoremap gl :<C-u>gp -link<Space>
+
+" for slideshare.js
+nnoremap -urls=^http://www\.slideshare\.net/ <S-J> :slideshare next<CR>
+nnoremap -urls=^http://www\.slideshare\.net/ <S-K> :slideshare prev<CR>
+
+" for xpath_hint.js
+let g:xpath_hint_map = 'X'
+
+"" copy.js
+"javascript <<EOM
+"liberator.globalVariables.copy_templates = [
+"{ label: 'titleAndURL',    value: '%TITLE%\n%URL%', map: ',y' },
+"{ label: 'title',          value: '%TITLE%', map: '.y' },
+"{ label: 'anchor',         value: '<a href="%URL%">%TITLE%</a>' },
+"{ label: 'selanchor',      value: '<a href="%URL%" title="%TITLE%">%SEL%</a>' },
+"{ label: 'htmlblockquote', value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' },
+"{ label: 'ASIN',   value: 'copy ASIN code from Amazon', custom: function(){return content.document.getElementById('ASIN').value;} },
+"];
+"EOM
+
+" for copy.js {{{
+js <<EOM
+    // util functions {{{
+    function getDocTitle() { return buffer.title; }
+    function getDocUrl() { return buffer.URL; }
+    function getDocSelection() {
+        var selection = content.window.getSelection();
+        var res = '';
+        for(var i = 0; i < selection.rangeCount; ++i) {
+            res += selection.getRangeAt(i).toString();
+        }
+        return res;
+    }
+    function getDocSelectionHtml() {
+        var selection = content.window.getSelection();
+        var res = '';
+        var serializer = new XMLSerializer();
+        var hasInlines = false;
+        for(var i = 0; i < selection.rangeCount; ++i) {
+            var contents = selection.getRangeAt(i).cloneContents();
+            Array.prototype.forEach.call(contents.childNodes, function(node) {
+                switch(node.nodeType) {
+                case Node.ELEMENT_NODE:
+                    var displayStyle = node.style.display;
+                    hasInlines &= (displayStyle != 'block');
+
+                    // Delete INTERRUPTION attributes.
+                    node.removeAttribute('class');
+                    node.removeAttribute('id');
+                    node.removeAttribute('target');
+                    //node.removeAttribute('name');
+                    node.removeAttribute('style');
+                    node.removeAttribute('tabstop');
+                    break;
+                case Node.TEXT_NODE:
+                    hasInlines &= 0;
+                    break;
+                }
+            });
+            res += serializer.serializeToString(contents);
+        }
+        return res
+            .replace(/<(\/)?(\w+)([\s\S]*?)>/g, function(all, close, tag, attr) {
+                return "<" + close + tag.toLowerCase() + attr + ">";
+                })
+            // Delete a INTERRUPTION XML-namespace attribute.
+            // XML-namespace attribute can not remove by DOM method (maybe, I not know).
+            .replace(/(?!<\w+(\s*[^= ]+="[^"]*")*)\s+xmlns="[^"]*"/, '');
+    }
+    function escape4Html(str) {
+        // SPACE character convert to "m"-width space,
+        // because "&nbsp;" meaning "Non-Breaking".
+        // I not want to inhibit breaking.
+        return str
+            .replace('&','&amp;')
+            .replace('<','&lt;')
+            .replace('>','&gt;')
+            .replace('  ', '&emsp;&emsp;'); // [FIXME] Ignore ONE space.
+        // Ah... Are their enough escape handling?
+    }
+    // }}}
+
+    liberator.globalVariables.copy_templates = [
+        // HTML/XHTML
+        { label: 'title',       value: '%TITLE%' },
+        { label: 'url',         value: '%URL%' },
+        { label: 'tu',          value: '%TITLE% %URL%' },
+        { label: 'anchor',      value: '<a href="%URL%">%TITLE%</a>',
+            custom: function() {
+                return '<a href="' + getDocUrl() + '">'
+                    + escape4Html(getDocTitle()) + '</a>';
+            }
+        },
+        { label: 'selanchor',   value: '<a href="%URL%" title="%TITLE%">%SEL%</a>',
+            custom: function() {
+                return '<a href="' + getDocUrl()
+                    + '" title="' + escape4Html(getDocTitle()) + '">'
+                    + escape4Html(getDocSelection()) + '</a>';
+            }
+        },
+        { label: 'bq',          value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>',
+            custom: function() {
+                /* [FIXME]
+                 * If getDocSelectionHtml() returned value has inline-elements at the outermost, must rapped block-element.
+                 * If inlines & blocks mixed, rapped <div>, else if inlines only, rapped <p>.
+                 */
+                return '<blockquote cite="' + getDocUrl()
+                    + '" title="' + getDocTitle() + '">'
+                    + getDocSelectionHtml() + '</blockquote>';
+            }
+        },
+        { label: 'bq1',         value: '<blockquote> with <a>.',
+            custom: function() {
+                return plugins.exCopy.get('bp').custom()
+                    + '\n<p>以上、<cite>'
+                    + plugins.exCopy.get('anchor').custom()
+                    + '</cite>より。</p>';
+            }
+        },
+        { label: 'q',           value: '<q cite="%URL%" title="%TITLE%">%HTMLSEL%</q>',
+            custom: function() {
+                return '<q cite="' + getDocUrl()
+                    + '" title="' + getDocTitle() + '">'
+                    + escape4Html(getDocSelection()) + '</q>';
+            }
+        },
+
+        // Markdown
+        { label: 'mdanchor',    value: '[%TITLE%](%URL%)' },
+        { label: 'mdselanchor', value: '[%SEL%](%URL% %TITLE%)' },
+        { label: 'mkbq',        value: 'Markdown style QUOTE',
+            custom: function() {
+                return getDocSelection().split("\n").map(function(line) {
+                    return '> ' + line;
+                }).join("\n");
+            }
+        },
+
+        // reST
+        { label: 'rest', value: 'reST style',
+            custom: function() {
+                return '`' + getDocTitle() + ' <' +
+                    getDocUrl() + '>`_'
+            }
+        },
+
+        // Textile
+        { label: 'tanchor',     value: '"%TITLE%":%URL%' },
+        { label: 'tbq',         value: 'Textile style QUOTE',
+            custom: function() {
+                const mark = "bq. ";
+                const space = (function() {
+                    var res = "", len = mark.length, i;
+                    for(i = 0; i < len; ++i) { res += " "; }
+                })();
+                var lines = getDocSelection().split("\n"), i;
+                lines[0] = mark + lines[0];
+                for(i = 1; i < lines.length; ++i) {
+                    lines[i] = space + lines[i];
+                }
+                return lines.join("\n");
+            }
+        },
+
+        // Hatena
+        { label: 'hanchor',     value: '[%URL%:title=]' },
+        { label: 'hselanchor',  value: '[%URL%:title=%SEL%]' },
+        { label: 'hbq',         value: '>>\n%SEL%\n<<' },
+        { label: 'hbq1',        value: '>>\n%SEL%\n<<\n[%URL%:title=]' },
+
+        // tinyurl
+        { label: 'tinyurl',     value: 'Get Tiny URL',
+            custom: function() {
+                return util.httpGet('http://tinyurl.com/api-create.php?url=' + encodeURIComponent(buffer.URL))
+                    .responseText;
+            }
+        },
+
+        // 自blog用Twitterログ記述HTML
+        // <table class="twitter-log"> ～ </table>で囲む事
+        // using Twitter Images ( http://twitterimag.es )
+        { label: 'twlog',       value: 'Twitter log',
+            custom: function() {
+                if(buffer.URL.search(/^https?:\/\/twitter\.com\//) == -1) {
+                    liberator.echoerr('This site is not Twitter.');
+                    return;
+                }
+                const tweetId = buffer.URL.match(/status\/(\d+)/)[1];
+                return io.system('ruby ~/gettweet.rb ' + tweetId);
+            }
+        },
+
+        // NeoBundle.vim syntax
+        { label: 'neobunble',      value: "NeoBundle '%TITLE%'",
+            custom: function() {
+                if(!getDocUrl().match('^https?://github\.com/')) {
+                    throw "This page is not GitHub!!!";
+                }
+                return getDocTitle();
+            }
+        },
+    ];
+EOM
+nnoremap C :copy<space>
+vnoremap C :copy<space>
+" }}}
+
+" nextlink.js
+"let g:nextlink_followlink = "true"
+"let g:nextlink_nositeinfo_act = "f"
+
+
+" asdfghkl.js
+"let g:asdfghjkl_default = "true"
+
+" ime_controller.js
+"let g:hint_ime_mode = "inactive"
+"let g:ex_ime_mode = "inactive"
+"let g:textarea_ime_mode = "inactive"
+"
+" stella.js
+js <<EOM
+function addLocalMappings(buffer, maps) {
+  maps.forEach(
+    function (map) {
+      let [cmd, action, extra] = map;
+      let actionFunc = action;
+      extra || (extra = {});
+
+      if (typeof action == "string") {
+        if (action.charAt(0) == ':')
+          actionFunc = extra.open ? function () commandline.open("", action, modes.EX)
+                                  : function () liberator.execute(action);
+        else
+          actionFunc = function () events.feedkeys(action, extra.noremap, true);
+      }
+      extra.matchingUrls = buffer;
+      mappings.addUserMap(
+        [modes.NORMAL],
+        [cmd],
+        "Local mapping for " + buffer,
+        actionFunc,
+        extra
+      );
+    }
+  );
+}
+addLocalMappings(
+  /^(http:\/\/(es|www).nicovideo.jp\/(watch|playlist\/mylist)|http:\/\/(jp|www)\.youtube\.com\/watch|http:\/\/(www\.)?vimeo\.com\/(channels\/(hd)?#)?\d+)/,
+  [
+    ['<C-g>', ':pageinfo S',      ],
+    ['p',     ':stplay',          ],
+    ['m',     ':stmute',          ],
+    [',c',    ':stcomment',       ],
+    ['zz',    ':stlarge',         ],
+    ['r',     ':strepeat',        ],
+    ['+',     ':stvolume! 10',    ],
+    ['-',     ':stvolume! -10',   ],
+    ['<',     ':stseek! -10',     ],
+    ['>',     ':stseek! 10',      ],
+    ['v',     ':stvolume ',       {open: true}],
+    ['V',     ':stvolume! ',      {open: true}],
+    ['o',     ':strelations ',    {open: true}],
+    ['O',     ':strelations! ',   {open: true}],
+  ]
+);
+EOM
+
+
+" twittperator.js
+nmap ,tp :<C-u>tw<Space>
+nmap ,tt :<C-u>tw!<CR>
+nmap ,t@ :<C-u>tw!@<CR>
+nmap ,tu :<C-u>twuri<CR><C-a><Right><Right><Right>
+js <<EOM
+userContext.ggl = function getGoogleShortenURL (url, callback) {
+  let uri = "https://www.googleapis.com/urlshortener/v1/url";
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", uri, !!callback);
+  if (callback) {
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        callback(JSON.parse(xhr.responseText));
+      }
+    }
+  }
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send(JSON.stringify({ longUrl: url || buffer.URL }));
+  if (!callback) {
+    return JSON.parse(xhr.responseText).id;
+  }
+};
+EOM
+cabbrev -javascript ggl userContenxt.ggl(buffer.URI)
+
+
+
+js <<EOM
+commands.addUserCommand(
+["twuri"],
+"Twittperator tweet with URI",
+function(){
+   let uri = 'https://www.googleapis.com/urlshortener/v1/url';
+   let xhr = new XMLHttpRequest();
+   xhr.open("POST", uri, false);
+   xhr.setRequestHeader("Content-Type", "application/json");
+   xhr.send(JSON.stringify({ longUrl: buffer.URI }));
+   let result = JSON.parse(xhr.responseText).id;
+   commandline.open(":",["tw"," /",buffer.title,result].join(" "),modes.EX);
+   }
+   );
+EOM

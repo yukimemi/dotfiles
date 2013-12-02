@@ -1,0 +1,10 @@
+BoldAsFont=no
+Rows=51
+Term=xterm-256color
+Transparency=high
+Font=Ricty for Powerline
+Columns=78
+FontHeight=10
+Locale=ja_JP
+Charset=UTF-8
+FontSmoothing=partial
