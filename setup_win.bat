@@ -42,36 +42,6 @@ if exist "%USERPROFILE%\vimperator\plugin\plugin_loader.js" del "%USERPROFILE%\v
 if exist "%USERPROFILE%\vimperator\colors" %RDCMD% "%USERPROFILE%\vimperator\colors"
 %LINKCMD_D% "%USERPROFILE%\vimperator\colors" "%USERPROFILE%\vimperator\vimperator-rc\anekos\colors"
 
-REM cfiler
-if not exist "%APPDATA%\CraftFiler" (
-    mkdir "%APPDATA%\CraftFiler"
-) else (
-    if exist "%APPDATA%\CraftFiler\config.py" rename "%APPDATA%\CraftFiler\config.py" "config.py.bak_%TODAY%"
-    %LINKCMD_F% "%APPDATA%\CraftFiler\config.py" "%THIS_FILE_PASS%win\CraftFiler\config.py"
-    if exist "%APPDATA%\CraftFiler\cfiler.ini" rename "%APPDATA%\CraftFiler\cfiler.ini" "cfiler.ini_%TODAY%"
-    %LINKCMD_F% "%APPDATA%\CraftFiler\cfiler.ini" "%THIS_FILE_PASS%win\CraftFiler\cfiler.ini"
-)
-
-REM clnch
-if not exist "%APPDATA%\CraftLaunch" (
-    mkdir "%APPDATA%\CraftLaunch"
-) else (
-    if exist "%APPDATA%\CraftLaunch\config.py" rename "%APPDATA%\CraftLaunch\config.py" "config.py.bak_%TODAY%"
-    %LINKCMD_F% "%APPDATA%\CraftLaunch\config.py" "%THIS_FILE_PASS%win\CraftLaunch\config.py"
-    if exist "%APPDATA%\CraftLaunch\clnch.ini" rename "%APPDATA%\CraftLaunch\clnch.ini" "clnch.ini.bak_%TODAY%"
-    %LINKCMD_F% "%APPDATA%\CraftLaunch\clnch.ini" "%THIS_FILE_PASS%win\CraftLaunch\clnch.ini"
-    git clone git@github.com:yuyunko/clnch3_extensions.git "%APPDATA%\CraftLaunch\clnch3_extensions"
-)
-
-REM AutoHotkey
-if exist "%USERPROFILE%\My Documents\AutoHotkey.ahk" (
-    rename "%USERPROFILE%\My Documents\AutoHotkey.ahk" "AutoHotkey.ahk.bak_%TODAY%"
-    %LINKCMD_F% "%USERPROFILE%\My Documents\AutoHotkey.ahk" "%THIS_FILE_PASS%win\AutoHotkey\AutoHotkey.ahk"
-) else (
-    rename "%USERPROFILE%\Documents\AutoHotkey.ahk" "AutoHotkey.ahk.bak_%TODAY%"
-    %LINKCMD_F% "%USERPROFILE%\Documents\AutoHotkey.ahk" "%THIS_FILE_PASS%win\AutoHotkey\AutoHotkey.ahk"
-)
-
 REM vim
 if exist "%USERPROFILE%\.vimrc" rename "%USERPROFILE%\.vimrc" ".vimrc.bak_%TODAY%"
 %LINKCMD_F% "%USERPROFILE%\.vimrc" "%THIS_FILE_PASS%vim\.vimrc"
