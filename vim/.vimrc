@@ -27,12 +27,14 @@ augroup END
 set nocompatible
 
 " clone neobundle"{{{
-if !isdirectory("~/.bundle/neobundle.vim)
-    if !isdirectory("~/.bundle")
-        call s:mkdir("~/.bundle")
+function! s:clone_neobundle()
+    let s:bundle_dir=$HOME . "/.bundle"
+    let s:neobundle_dir=s:bundle_dir . "/neobundle.vim"
+    call s:mkdir(s:bundle_dir)
+    if !isdirectory(s:neobundle_dir)
+        system("git clone git://github.com/Shougo/neobundle.vim ~/.bundle/neobundle.vim")
     endif
-    system("git clone git://github.com/Shougo/neobundle.vim ~/.bundle/neobundle.vim")
-endif
+endfunction
 "}}}
 
 if has('vim_starting')
@@ -207,6 +209,7 @@ filetype plugin indent on
 if ! has('gui_running')
     NeoBundleCheck
 endif
+call s:clone_neobundle()
 "}}}
 "===================================================================================}}}
 
