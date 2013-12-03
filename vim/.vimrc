@@ -26,6 +26,15 @@ augroup END
 " neobundle.vim
 set nocompatible
 
+" clone neobundle"{{{
+if !isdirectory("~/.bundle/neobundle.vim)
+    if !isdirectory("~/.bundle")
+        call s:mkdir("~/.bundle")
+    endif
+    system("git clone git://github.com/Shougo/neobundle.vim ~/.bundle/neobundle.vim")
+endif
+"}}}
+
 if has('vim_starting')
   set runtimepath+=~/.bundle/neobundle.vim
   call neobundle#rc(expand('~/.bundle'))
