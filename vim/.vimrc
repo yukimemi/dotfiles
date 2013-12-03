@@ -3,11 +3,11 @@ set nocompatible
 scriptencoding utf-8
 
 if isdirectory($HOME . '/.vim')
-  let $MY_VIMRUNTIME = $HOME . '/.vim'
+    let $MY_VIMRUNTIME = $HOME . '/.vim'
 elseif isdirectory($HOME . '\vimfiles')
-  let $MY_VIMRUNTIME = $HOME . '\vimfiles'
+    let $MY_VIMRUNTIME = $HOME . '\vimfiles'
 elseif isdirectory($VIM . '\vimfiles')
-  let $MY_VIMRUNTIME = $VIM . '\vimfiles'
+    let $MY_VIMRUNTIME = $VIM . '\vimfiles'
 endif
 
 " judge os type
@@ -18,13 +18,12 @@ let s:is_linux = !s:is_windows && !s:is_cygwin && !s:is_darwin
 
 " release autogroup in MyAutoCmd
 augroup MyAutoCmd
-  autocmd!
+    autocmd!
 augroup END
 "===================================================================================}}}
 
 "{{{ ========== Plugins ===============================================================
 " neobundle.vim
-set nocompatible
 
 " clone neobundle"{{{
 function! s:clone_neobundle()
