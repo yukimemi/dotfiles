@@ -209,7 +209,6 @@ filetype plugin indent on
 if ! has('gui_running')
     NeoBundleCheck
 endif
-call s:clone_neobundle()
 "}}}
 "===================================================================================}}}
 
@@ -332,6 +331,7 @@ com! Wsu w !sudo tee > /dev/null %
 " backup directory
 let $MY_BACKUP_DIR = $MY_VIMRUNTIME . '/back'
 call s:mkdir($MY_BACKUP_DIR)
+call s:clone_neobundle()
 
 if version >= 703
     set undofile
