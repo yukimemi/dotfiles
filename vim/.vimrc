@@ -32,7 +32,8 @@ function! s:clone_neobundle()
     let s:neobundle_dir=s:bundle_dir . "/neobundle.vim"
     call s:mkdir(s:bundle_dir)
     if !isdirectory(s:neobundle_dir)
-        system("git clone git://github.com/Shougo/neobundle.vim ~/.bundle/neobundle.vim")
+        echo "cloning neobundle ..."
+        call system("git clone git://github.com/Shougo/neobundle.vim ~/.bundle/neobundle.vim")
     endif
 endfunction
 "}}}
