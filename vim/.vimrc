@@ -49,7 +49,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " plugin list {{{
 NeoBundle 'Shougo/vimproc.vim', {
             \ 'build': {
-            \   'windows' : 'mingw32-make -f make_mingw32.mak',
+            \   'windows' : 'c:\MinGW\bin\mingw32-make -f make_mingw32.mak',
             \   'cygwin'  : 'make -f make_cygwin.mak',
             \   'mac'     : 'make -f make_mac.mak',
             \   'unix'    : 'make -f make_unix.mak',
@@ -267,14 +267,14 @@ endfunction
 "au MyAutoCmd BufWritePre * call Rtrim()
 "}}}
 
-function! s:format()"{{{
+function! Format()"{{{
     " auto indent format
     let save_view = winsaveview()
     normal gg=G
     call winrestview(save_view)
 endfunction
-nnoremap [Space]f :call s:format()<CR>
-"au MyAutoCmd BufWrite * call s:format()
+nnoremap [Space]f :call Format()<CR>
+"au MyAutoCmd BufWrite * call Format()
 "}}}
 
 function! s:open_in_browser()"{{{
@@ -352,7 +352,7 @@ set whichwrap=b,s,[,],<,>
 set backspace=indent,eol,start
 set ambiwidth=double
 set wildmenu
-set wildmode=list,full
+set wildmode=longest:full,full
 if has('mouse')
     set mouse=a
 endif
@@ -908,8 +908,8 @@ if neobundle#tap('unite.vim')"{{{
             let g:unite_source_history_yank_enable = 1
             " grep source setting
             if s:is_windows
-                let g:unite_source_grep_command = 'grep'
-                let g:unite_source_grep_default_opts = '--color'
+                "let g:unite_source_grep_command = 'grep'
+                "let g:unite_source_grep_default_opts = '--color'
                 let g:unite_source_grep_max_candidates = 200
             else
                 let g:unite_source_grep_command = 'ag'
@@ -983,7 +983,7 @@ if neobundle#tap('vim-quickrun')"{{{
                 \   'commands': [{'complete': 'customlist,quickrun#complete', 'name': 'QuickRun'}]
                 \ }
                 \ })
-    nnoremap [Space]r <Plug>(quickrun)
+    nnoremap <Leader>r <Plug>(quickrun)
     function! neobundle#tapped.hooks.on_source(bundle)"{{{
         " echo quickrun command output {{{
         " http://d.hatena.ne.jp/osyo-manga/searchdiary?word=quickrun
@@ -1114,7 +1114,7 @@ if neobundle#tap('vim-quickrun')"{{{
         let g:quickrun_config = {}
         let g:quickrun_config = {
                     \   "_": {
-                    \       "hook/output_command/enable": 0,
+                    \       "hook/output_command/enable": 1,
                     \       "hook/output_command/log": 1,
                     \       "hook/close_unite_quickfix/enable_hook_loaded": 1,
                     \       "hook/unite_quickfix/enable_failure": 1,
@@ -1626,6 +1626,16 @@ if neobundle#tap('junkfile.vim')"{{{
                 \ }
                 \ })
 
+    call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('plantuml-syntax')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'filetypes': 'plantuml'
+                \ }
+                \ })
     call neobundle#untap()
 endif
 "}}}
