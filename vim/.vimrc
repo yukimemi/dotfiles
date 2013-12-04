@@ -27,12 +27,13 @@ augroup END
 
 " clone neobundle"{{{
 function! s:clone_neobundle()
-    let s:bundle_dir=$HOME . "/.bundle"
-    let s:neobundle_dir=s:bundle_dir . "/neobundle.vim"
+    let s:bundle_dir = $HOME . "/.bundle"
+    let s:neobundle_dir = s:bundle_dir . "/neobundle.vim"
     call s:mkdir(s:bundle_dir)
     if !isdirectory(s:neobundle_dir)
-        echo "cloning neobundle ..."
-        call system("git clone git://github.com/Shougo/neobundle.vim ~/.bundle/neobundle.vim")
+        echom "cloning neobundle ..."
+        let s:com = "git clone git://github.com/Shougo/neobundle.vim " . s:neobundle_dir
+        call system(s:com)
     endif
 endfunction
 "}}}
@@ -257,13 +258,13 @@ function! s:Byte2hex(bytes)"{{{
   return join(map(copy(a:bytes), 'printf("%02X", v:val)'), '')
 endfunction"}}}
 
-function! s:r_trim()"{{{
+function! Rtrim()"{{{
     " delete space at the end of line
     let save_cursor = getpos(".")
     %s/\s\+$//e
     call setpos(".", save_cursor)
 endfunction
-"au MyAutoCmd BufWritePre * call s:r_trim()
+"au MyAutoCmd BufWritePre * call Rtrim()
 "}}}
 
 function! s:format()"{{{
@@ -538,8 +539,8 @@ if neobundle#tap('lightline.vim')"{{{
                     \   'fileencoding': 'MyFileencoding',
                     \   'mode': 'MyMode',
                     \ },
-                    \ 'separator': { 'left': '⮀', 'right': '⮂' },
-                    \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+                    \ 'separator': { 'left': '⮀', 'right': '⮁E },
+                    \ 'subseparator': { 'left': '⮁E, 'right': '⮁E }
                     \ }
     endif
     function! MyModified()
@@ -596,9 +597,9 @@ endif
 "}}}
 
 if neobundle#tap('vim-gitgutter')"{{{
-    let g:gitgutter_sign_added = '✚'
-    let g:gitgutter_sign_modified = '➜'
-    let g:gitgutter_sign_removed = '✘'
+    let g:gitgutter_sign_added = '✁E
+    let g:gitgutter_sign_modified = '➁E
+    let g:gitgutter_sign_removed = '✁E
 
     call neobundle#untap()
 endif
@@ -1612,6 +1613,18 @@ if neobundle#tap('foldCC')"{{{
     "}}}
     nnoremap <silent>z<C-_>    zMzvzc
     nnoremap <silent>z0    :<C-u>set foldlevel=<C-r>=foldlevel('.')<CR><CR>
+
+    call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('junkfile.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'unite_sources': ['junkfile'],
+                \   'commands': ['JunkfileOpen']
+                \ }
+                \ })
 
     call neobundle#untap()
 endif
