@@ -539,8 +539,8 @@ if neobundle#tap('lightline.vim')"{{{
                     \   'fileencoding': 'MyFileencoding',
                     \   'mode': 'MyMode',
                     \ },
-                    \ 'separator': { 'left': '⮀', 'right': '⮁E },
-                    \ 'subseparator': { 'left': '⮁E, 'right': '⮁E }
+                    \ 'separator': { 'left': '⮀', 'right': '⮂' },
+                    \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
                     \ }
     endif
     function! MyModified()
@@ -597,9 +597,9 @@ endif
 "}}}
 
 if neobundle#tap('vim-gitgutter')"{{{
-    let g:gitgutter_sign_added = '✁E
-    let g:gitgutter_sign_modified = '➁E
-    let g:gitgutter_sign_removed = '✁E
+    let g:gitgutter_sign_added = '✚'
+    let g:gitgutter_sign_modified = '➜'
+    let g:gitgutter_sign_removed = '✘'
 
     call neobundle#untap()
 endif
