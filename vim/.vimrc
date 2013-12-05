@@ -1661,6 +1661,16 @@ if neobundle#tap('vim-endwise')"{{{
 endif
 "}}}
 
+if neobundle#tap('chalice')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': 'Chalice'
+                \ }
+                \ })
+    call neobundle#untap()
+endif
+"}}}
+
 " disable plugin
 let plugin_dicwin_disable = 1
 "===================================================================================}}}
