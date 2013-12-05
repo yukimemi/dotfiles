@@ -177,7 +177,7 @@ if shell_is_osx ; then
     brew cask install google-chrome
     brew cask install firefox
     brew cask install right-zoom
-    brew cask install app-cleaner
+    brew cask install appcleaner
     brew cask install keyremap4macbook
     brew cask install caffeine
     brew cask install bettertouchtool

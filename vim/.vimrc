@@ -90,6 +90,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
+NeoBundle 'scrooloose/syntastic'
 NeoBundleLazy 'Dotnet-Dictionaries'
 NeoBundleLazy 'DrawIt'
 NeoBundleLazy 'JavaScript-syntax', {'depends': 'pangloss/vim-javascript'}
@@ -414,11 +415,12 @@ set t_Co=256
 if &t_Co > 2 || has('gui_running')
   syntax on
 endif
-highlight Search ctermbg=1
 
 " color
 set background=dark
 colorscheme hybrid
+
+highlight Search ctermbg=88
 
 " hilight cursorline, cursorcolumn {{{
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
@@ -528,7 +530,7 @@ if neobundle#tap('lightline.vim')"{{{
                     \ 'colorscheme': 'hybrid',
                     \ 'mode_map': { 'c': 'NORMAL' },
                     \ 'active': {
-                    \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+                    \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'anzu' ] ]
                     \ },
                     \ 'component_function': {
                     \   'modified': 'MyModified',
@@ -539,6 +541,7 @@ if neobundle#tap('lightline.vim')"{{{
                     \   'filetype': 'MyFiletype',
                     \   'fileencoding': 'MyFileencoding',
                     \   'mode': 'MyMode',
+                    \   'anzu': 'anzu#search_status'
                     \ },
                     \ 'separator': { 'left': '⮀', 'right': '⮂' },
                     \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
@@ -1667,6 +1670,20 @@ if neobundle#tap('chalice')"{{{
                 \   'commands': 'Chalice'
                 \ }
                 \ })
+    call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('syntastic')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': [{'complete': 'custom,s:CompleteCheckerName', 'name': 'SyntasticCheck'},
+                \                'SyntasticInfo', 'Errors', 'SyntasticSetLoclist', 'SyntasticReset',
+                \                'SyntasticToggleMode']
+                \ }
+                \ })
+    let g:syntastic_go_checkers = ['go', 'golint']
+
     call neobundle#untap()
 endif
 "}}}

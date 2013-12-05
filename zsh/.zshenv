@@ -245,5 +245,10 @@ fpath=(/usr/local/share/zsh-completions(N-/) $fpath)
 # go
 export GOPATH=$HOME/.go
 [ ! -d $HOME/.go ] && mkdir $HOME/.go
+if which go > /dev/null; then
+    export GOROOT=$(go env | grep GOROOT | cut -d = -f 2 | sed 's/"//g')
+    [ ! -d $GOPATH/src/github.com/nsf ] && go get github.com/nsf/gocode
+    [ ! -d $GOPATH/src/github.com/golang ] && go get github.com/golang/lint
+fi
 #}}}
 #######################################################################################################
