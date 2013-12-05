@@ -89,6 +89,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundleLazy 'Dotnet-Dictionaries'
 NeoBundleLazy 'DrawIt'
 NeoBundleLazy 'JavaScript-syntax', {'depends': 'pangloss/vim-javascript'}
@@ -621,7 +622,7 @@ endif
 "}}}
 
 if neobundle#tap('vim-anzu')"{{{
-    au MyAutoCmd BufEnter,BufWinEnter * nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><Plug>(anzu-clear-search-status)
+    au MyAutoCmd BufEnter,BufWinEnter,WinEnter * nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><Plug>(anzu-clear-search-status)
     nmap n <Plug>(anzu-mode-n)
     nmap N <Plug>(anzu-mode-N)
     nnoremap <expr> n anzu#mode#mapexpr("n", "", "zzzv")
@@ -980,182 +981,192 @@ if neobundle#tap('vim-quickrun')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'mappings': ['sxn', '<Plug>(quickrun'],
-                \   'commands': [{'complete': 'customlist,quickrun#complete', 'name': 'QuickRun'}]
+                \   'commands': {'complete': 'customlist,quickrun#complete', 'name': 'QuickRun'}
                 \ }
                 \ })
-    nnoremap <Leader>r <Plug>(quickrun)
-    function! neobundle#tapped.hooks.on_source(bundle)"{{{
-        " echo quickrun command output {{{
-        " http://d.hatena.ne.jp/osyo-manga/searchdiary?word=quickrun
-        let s:hook = {
-                    \   "name": "output_command",
-                    \   "kind": "hook",
-                    \   "config": {
-                    \       "enable": 0,
-                    \       "log": 0
-                    \   }
-                    \ }
+    "nnoremap <Leader>r <Plug>(quickrun)
+    " echo quickrun command output {{{
+    " http://d.hatena.ne.jp/osyo-manga/searchdiary?word=quickrun
+    let s:hook = {
+                \   "name": "output_command",
+                \   "kind": "hook",
+                \   "config": {
+                \       "enable": 0,
+                \       "log": 0
+                \   }
+                \ }
 
-        function! s:hook.on_ready(session, context)
-            HierClear
-            for command in a:session.commands
-                execute self.config.log ? "echom command" : "echo command"
-            endfor
-        endfunction
+    function! s:hook.on_ready(session, context)
+        HierClear
+        for command in a:session.commands
+            execute self.config.log ? "echom command" : "echo command"
+        endfor
+    endfunction
 
-        call quickrun#module#register(s:hook, 1)
-        unlet s:hook"}}}
+    call quickrun#module#register(s:hook, 1)
+    unlet s:hook"}}}
 
-        " TypeScript compile according to the reference path {{{
-        let s:hook = {
-                    \ "name": "typescript_compile",
-                    \ "kind": "hook",
-                    \ "config": {
-                    \       "enable": 0
-                    \  }
-                    \ }
-        function! s:hook.on_module_loaded(session, context)
-            let references = []
-            for line in readfile(a:session.config.srcfile, '', 15)
-                if line =~ '^///<reference path='
-                    "echom 'reference : ' . line[stridx(line, '"') + 1 : -4]
-                    if line[stridx(line, '"') + 1 : -4] !~ 'lib.d.ts'
-                        call add(references, line[stridx(line, '"') + 1 : -4])
-                    endif
+    " TypeScript compile according to the reference path {{{
+    let s:hook = {
+                \ "name": "typescript_compile",
+                \ "kind": "hook",
+                \ "config": {
+                \       "enable": 0
+                \  }
+                \ }
+    function! s:hook.on_module_loaded(session, context)
+        let references = []
+        for line in readfile(a:session.config.srcfile, '', 15)
+            if line =~ '^///<reference path='
+                "echom 'reference : ' . line[stridx(line, '"') + 1 : -4]
+                if line[stridx(line, '"') + 1 : -4] !~ 'lib.d.ts'
+                    call add(references, line[stridx(line, '"') + 1 : -4])
                 endif
-            endfor
-            "echom 'exec : %c --nolib %s ' . join(references, ' ') . ' --out %s:p:r.js'
-            let a:session.config.exec = '%c --nolib %s ' . join(references, ' ') . ' --out %s:p:r.js'
-        endfunction
-        call quickrun#module#register(s:hook, 1)
-        unlet s:hook"}}}
-
-        " coffeescript compile {{{
-        let s:hook = {
-                    \ "name": "coffeescript_compile",
-                    \ "kind": "hook",
-                    \ "config": {
-                    \       "enable": 0
-                    \  }
-                    \ }
-        function! s:hook.on_module_loaded(session, context)
-            let imports = []
-            for line in readfile(a:session.config.srcfile, '', 15)
-                if line =~ '^# import'
-                    "echom 'import : ' . line[10 : -2]
-                    call add(imports, line[10 : -2])
-                endif
-            endfor
-            "echom 'exec : %c -j %s:p:r.js -cb ' . join(imports, ' ') . ' %s'
-            let a:session.config.exec = '%c -j %s:p:r.js -cb ' . join(imports, ' ') . ' %s'
-        endfunction
-        call quickrun#module#register(s:hook, 1)
-        unlet s:hook"}}}
-
-        " add wsh header {{{
-        let s:hook = {
-                    \ "name": "js2cmd",
-                    \ "kind": "hook",
-                    \ "config": {
-                    \       "enable": 0
-                    \  }
-                    \ }
-        function! s:hook.on_success(session, context)
-            let list = []
-            call add(list, "@if(0)==(0) ECHO OFF")
-            for line in readfile(a:session.config.srcfile, '', 10)
-                if line =~ '^//' || line =~ '^#'
-                    if line[3 : 4] =~ 'OP' || line[2 : 3] =~ 'OP'
-                        "echom 'option : ' . line[stridx(line, '"') + 1 : -2]
-                        if line[stridx(line, '"') + 1 : -2] =~ '^pushd'
-                            call add(list, "    pushd \"%~dp0\" > nul")
-                            call add(list, "    CScript.exe //NoLogo //E:JScript \"%~f0\" %*")
-                            call add(list, "    popd > nul")
-                            break
-                        else
-                            call add(list, "    CScript.exe //NoLogo //E:JScript \"%~f0\" %*")
-                            break
-                        endif
-                    endif
-                endif
-            endfor
-            call add(list, "pause")
-            call add(list, "GOTO :EOF")
-            call add(list, "@end")
-            call add(list, "")
-            let inJs = fnamemodify(a:session.config.srcfile, ":p:r") . '.js'
-            let outCmd = fnamemodify(a:session.config.srcfile, ":p:h") . '/_cmd/'
-                        \ . fnamemodify(a:session.config.srcfile, ":t:r") .'.cmd'
-            "echom inJs
-            "echom outCmd
-            let utf8List = list + readfile(inJs, 'b')
-            let cp932List = []
-            for line in utf8List
-                "call add(cp932List, iconv(line, "UTF-8", "CP932"))
-                call add(cp932List, iconv(substitute(line, "\n", "\r\n", "",), "UTF-8", "CP932"))
-            endfor
-            if isdirectory(fnamemodify(a:session.config.srcfile, ":p:h") . '/_cmd')
-                call writefile(cp932List, outCmd, 'b')
-                if has('win32') || has('win64')
-                    "call {s:system}('del ' . inJs)
-                    call {s:system}('unix2dos ' . outCmd)
-                else
-                    "call {s:system}('rm ' . inJs)
-                    call {s:system}('nkf --windows --overwrite ' . outCmd)
-                endif
-            else
-                echom fnamemodify(a:session.config.srcfile, ":p:h") . '/_cmd' . 'is not found !'
             endif
-        endfunction
+        endfor
+        "echom 'exec : %c --nolib %s ' . join(references, ' ') . ' --out %s:p:r.js'
+        let a:session.config.exec = '%c --nolib %s ' . join(references, ' ') . ' --out %s:p:r.js'
+    endfunction
+    call quickrun#module#register(s:hook, 1)
+    unlet s:hook"}}}
 
-        call quickrun#module#register(s:hook, 1)
-        unlet s:hook"}}}
+    " coffeescript compile {{{
+    let s:hook = {
+                \ "name": "coffeescript_compile",
+                \ "kind": "hook",
+                \ "config": {
+                \       "enable": 0
+                \  }
+                \ }
+    function! s:hook.on_module_loaded(session, context)
+        let imports = []
+        for line in readfile(a:session.config.srcfile, '', 15)
+            if line =~ '^# import'
+                "echom 'import : ' . line[10 : -2]
+                call add(imports, line[10 : -2])
+            endif
+        endfor
+        "echom 'exec : %c -j %s:p:r.js -cb ' . join(imports, ' ') . ' %s'
+        let a:session.config.exec = '%c -j %s:p:r.js -cb ' . join(imports, ' ') . ' %s'
+    endfunction
+    call quickrun#module#register(s:hook, 1)
+    unlet s:hook"}}}
 
-        let g:quickrun_config = {}
-        let g:quickrun_config = {
-                    \   "_": {
-                    \       "hook/output_command/enable": 1,
-                    \       "hook/output_command/log": 1,
-                    \       "hook/close_unite_quickfix/enable_hook_loaded": 1,
-                    \       "hook/unite_quickfix/enable_failure": 1,
-                    \       "hook/close_quickfix/enable_exit": 1,
-                    \       "hook/close_buffer/enable_failure": 1,
-                    \       "hook/close_buffer/enable_empty_data": 1,
-                    \       "hook/echo/enable": 1,
-                    \       "hook/echo/output_success": "success!!!",
-                    \       "hook/echo/output_failure": "failure...",
-                    \       "outputter": "multi:buffer:quickfix",
-                    \       "outputter/buffer/split": ":botright 18sp",
-                    \       "runner": "vimproc",
-                    \       "runner/vimproc/updatetime": 40
-                    \   },
-                    \ "typescript": {
-                    \       "commad": "tsc",
-                    \       "cmdopt": "--nolib --out",
-                    \       "exec"  : "%c %s _lib.ts %o %s:p:r.js",
-                    \       "hook/typescript_compile/enable": 1,
-                    \       "hook/js2cmd/enable": 1,
-                    \       "hook/output_command/log": 1
-                    \   },
-                    \ "plantuml": {
-                    \       "command": "java",
-                    \       "cmdopt": "-jar plantuml.jar -tpng",
-                    \       "exec": "%c %o %s"
-                    \   },
-                    \ "blockdiag": {
-                    \       "command": "blockdiag",
-                    \       "cmdopt": "-Tsvg",
-                    \       "exec": "%c %o %s"
-                    \   },
-                    \ "rst": {
-                    \       "command": "make",
-                    \       "cmdopt": "html",
-                    \       "exec": "%c %o"
-                    \ }
-                    \ }
-    endfunction"}}}
+    " add wsh header {{{
+    let s:hook = {
+                \ "name": "js2cmd",
+                \ "kind": "hook",
+                \ "config": {
+                \       "enable": 0
+                \  }
+                \ }
+    function! s:hook.on_success(session, context)
+        let list = []
+        call add(list, "@if(0)==(0) ECHO OFF")
+        for line in readfile(a:session.config.srcfile, '', 10)
+            if line =~ '^//' || line =~ '^#'
+                if line[3 : 4] =~ 'OP' || line[2 : 3] =~ 'OP'
+                    "echom 'option : ' . line[stridx(line, '"') + 1 : -2]
+                    if line[stridx(line, '"') + 1 : -2] =~ '^pushd'
+                        call add(list, "    pushd \"%~dp0\" > nul")
+                        call add(list, "    CScript.exe //NoLogo //E:JScript \"%~f0\" %*")
+                        call add(list, "    popd > nul")
+                        break
+                    else
+                        call add(list, "    CScript.exe //NoLogo //E:JScript \"%~f0\" %*")
+                        break
+                    endif
+                endif
+            endif
+        endfor
+        call add(list, "pause")
+        call add(list, "GOTO :EOF")
+        call add(list, "@end")
+        call add(list, "")
+        let inJs = fnamemodify(a:session.config.srcfile, ":p:r") . '.js'
+        let outCmd = fnamemodify(a:session.config.srcfile, ":p:h") . '/_cmd/'
+                    \ . fnamemodify(a:session.config.srcfile, ":t:r") .'.cmd'
+        "echom inJs
+        "echom outCmd
+        let utf8List = list + readfile(inJs, 'b')
+        let cp932List = []
+        for line in utf8List
+            "call add(cp932List, iconv(line, "UTF-8", "CP932"))
+            call add(cp932List, iconv(substitute(line, "\n", "\r\n", "",), "UTF-8", "CP932"))
+        endfor
+        if isdirectory(fnamemodify(a:session.config.srcfile, ":p:h") . '/_cmd')
+            call writefile(cp932List, outCmd, 'b')
+            if has('win32') || has('win64')
+                "call {s:system}('del ' . inJs)
+                call {s:system}('unix2dos ' . outCmd)
+            else
+                "call {s:system}('rm ' . inJs)
+                call {s:system}('nkf --windows --overwrite ' . outCmd)
+            endif
+        else
+            echom fnamemodify(a:session.config.srcfile, ":p:h") . '/_cmd' . 'is not found !'
+        endif
+    endfunction
+
+    call quickrun#module#register(s:hook, 1)
+    unlet s:hook"}}}
+
+    let g:quickrun_config = {}
+    let g:quickrun_config = {
+                \   "_": {
+                \       "hook/output_command/enable": 1,
+                \       "hook/output_command/log": 1,
+                \       "hook/close_unite_quickfix/enable_hook_loaded": 1,
+                \       "hook/unite_quickfix/enable_failure": 1,
+                \       "hook/close_quickfix/enable_exit": 1,
+                \       "hook/close_buffer/enable_failure": 1,
+                \       "hook/close_buffer/enable_empty_data": 1,
+                \       "hook/echo/enable": 1,
+                \       "hook/echo/output_success": "success!!!",
+                \       "hook/echo/output_failure": "failure...",
+                \       "outputter": "multi:buffer:quickfix",
+                \       "outputter/buffer/split": ":botright 18sp",
+                \       "runner": "vimproc",
+                \       "runner/vimproc/updatetime": 40
+                \   },
+                \ "typescript": {
+                \       "commad": "tsc",
+                \       "cmdopt": "--nolib --out",
+                \       "exec"  : "%c %s _lib.ts %o %s:p:r.js",
+                \       "hook/typescript_compile/enable": 1,
+                \       "hook/js2cmd/enable": 1,
+                \       "hook/output_command/log": 1
+                \   },
+                \ "plantuml": {
+                \       "command": "java",
+                \       "cmdopt": "-jar plantuml.jar -tpng",
+                \       "exec": "%c %o %s"
+                \   },
+                \ "blockdiag": {
+                \       "command": "blockdiag",
+                \       "cmdopt": "-Tsvg",
+                \       "exec": "%c %o %s"
+                \   },
+                \ "rst": {
+                \       "command": "make",
+                \       "cmdopt": "html",
+                \       "exec": "%c %o"
+                \ }
+                \ }
     call neobundle#untap()
 endif"}}}
+
+if neobundle#tap('shabadou.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'on_source': ['vim-quickrun'],
+                \   'mappings': ['sxn', '<Plug>(quickrun'],
+                \   'commands': {'complete': 'customlist,quickrun#complete', 'name': 'QuickRun'}
+                \ }
+                \ })
+    call neobundle#untap()
+endif
+"}}}
 
 if neobundle#tap('vim-coffee-script')"{{{
     call neobundle#config({
@@ -1634,6 +1645,16 @@ if neobundle#tap('plantuml-syntax')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'filetypes': 'plantuml'
+                \ }
+                \ })
+    call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-endwise')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': [['i', '<Plug>DiscretionaryEnd'], ['i', '<Plug>AlwaysEnd']]
                 \ }
                 \ })
     call neobundle#untap()
