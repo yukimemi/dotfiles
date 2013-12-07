@@ -166,7 +166,7 @@ if shell_is_osx ; then
     brew install the_silver_searcher
     #brew install rbenv ruby-build rbenv-gemset rbenv-binstubs
     brew install macvim --with-cscope --with-lua --HEAD
-    brew install go
+    brew install go --cross-compile-common
     ln -s /usr/local/Cellar/macvim/HEAD/MacVim.app /Applications
 
     brew tap homebrew/dupes

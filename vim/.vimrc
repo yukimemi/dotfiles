@@ -2,6 +2,7 @@
 set nocompatible
 scriptencoding utf-8
 
+" vim config path"{{{
 if isdirectory($HOME . '/.vim')
     let $MY_VIMRUNTIME = $HOME . '/.vim'
 elseif isdirectory($HOME . '\vimfiles')
@@ -9,17 +10,30 @@ elseif isdirectory($HOME . '\vimfiles')
 elseif isdirectory($VIM . '\vimfiles')
     let $MY_VIMRUNTIME = $VIM . '\vimfiles'
 endif
+"}}}
 
-" judge os type
+" judge os type"{{{
 let s:is_windows = has('win16') || has('win32') || has('win64')
 let s:is_cygwin = has('win32unix')
 let s:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
 let s:is_linux = !s:is_windows && !s:is_cygwin && !s:is_darwin
+"}}}
 
-" release autogroup in MyAutoCmd
+" release autogroup in MyAutoCmd"{{{
 augroup MyAutoCmd
     autocmd!
 augroup END
+"}}}
+
+" Echo startup time on start"{{{
+if has('vim_starting') && has('reltime')
+    let g:startuptime = reltime()
+    augroup MyAutoCmd
+        autocmd! VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
+                    \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
+    augroup END
+endif
+"}}}
 "===================================================================================}}}
 
 "{{{ ========== Plugins ===============================================================
@@ -397,13 +411,15 @@ set softtabstop=0
 set expandtab
 set list
 if s:is_windows
-  set listchars=tab:>_,trail:-,extends:>,precedes:<
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<
 else
-  set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
+  set listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%
 endif
 set backupdir=$MY_BACKUP_DIR
 set directory=$MY_BACKUP_DIR
 set autoindent
+set smartindent
+set smarttab
 set cinoptions+=:0
 set title
 set cmdheight=2
@@ -411,6 +427,7 @@ set laststatus=2
 set showcmd
 set display=lastline
 set foldmethod=marker
+set foldclose=all
 set t_Co=256
 if &t_Co > 2 || has('gui_running')
   syntax on
@@ -494,6 +511,9 @@ nnoremap [Space]bi :<C-u>NeoBundleInstall!<CR>
 " Vim-users.jp - Hack #74: http://vim-users.jp/2009/09/hack74/
 nnoremap <silent> [Space]ev  :<C-u>tabedit $MYVIMRC<CR>
 nnoremap <silent> [Space]eg  :<C-u>tabedit $MYGVIMRC<CR>
+
+" cmdwin
+nnoremap : q:i
 
 " hilight over 100 column {{{
 " http://blog.remora.cx/2013/06/source-in-80-columns-2.html
