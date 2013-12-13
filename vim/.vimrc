@@ -53,30 +53,30 @@ if has('vim_starting')
 endif
 
 " Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle'
 
 " plugin list {{{
-NeoBundle 'Shougo/vimproc.vim', {
+NeoBundle 'Shougo/vimproc', {
             \ 'build': {
             \   'windows' : 'c:\MinGW\bin\mingw32-make -f make_mingw32.mak',
             \   'cygwin'  : 'make -f make_cygwin.mak',
             \   'mac'     : 'make -f make_mac.mak',
             \   'unix'    : 'make -f make_unix.mak',
             \ }}
-NeoBundle 'CmdlineCompl.vim'
+NeoBundle 'CmdlineCompl'
 NeoBundle 'LeafCage/foldCC'
-NeoBundle 'LeafCage/yankround.vim', {'depends': 'kien/ctrlp.vim'}
+NeoBundle 'LeafCage/yankround', {'depends': 'kien/ctrlp'}
 NeoBundle 'The-NERD-Commenter'
 "NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'banyan/recognize_charcode.vim'
-NeoBundle 'cocopon/lightline-hybrid.vim', {'depends': 'itchyny/lightline.vim'}
+NeoBundle 'banyan/recognize_charcode'
+NeoBundle 'cocopon/lightline-hybrid', {'depends': 'itchyny/lightline'}
 NeoBundle 'fuenor/qfixgrep'
 NeoBundle 'fuenor/qfixhowm'
 NeoBundle 'goldfeld/vim-seek'
 NeoBundle 'gregsexton/gitv', {'depends': 'tpope/vim-fugitive'}
-NeoBundle 'itchyny/landscape.vim'
-NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'itchyny/landscape'
+NeoBundle 'itchyny/lightline'
 NeoBundle 'jceb/vim-hier'
 NeoBundle 'kana/vim-textobj-entire', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'kana/vim-textobj-function', {'depends': 'kana/vim-textobj-user'}
@@ -99,46 +99,46 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
+NeoBundle 'osyo-manga/shabadou', {'depends': 'thinca/vim-quickrun'}
 NeoBundle 'scrooloose/syntastic'
 NeoBundleLazy 'Dotnet-Dictionaries'
 NeoBundleLazy 'DrawIt'
 NeoBundleLazy 'JavaScript-syntax', {'depends': 'pangloss/vim-javascript'}
-NeoBundleLazy 'LeafCage/nebula.vim'
+NeoBundleLazy 'LeafCage/nebula'
 NeoBundleLazy 'PProvost/vim-ps1'
 NeoBundleLazy 'SQLUtilities'
 NeoBundleLazy 'Shougo/echodoc'
-NeoBundleLazy 'Shougo/junkfile.vim'
-NeoBundleLazy 'Shougo/neosnippet.vim'
-NeoBundleLazy 'Shougo/unite.vim', {'depends': 'Shougo/vimproc'}
+NeoBundleLazy 'Shougo/junkfile'
+NeoBundleLazy 'Shougo/neosnippet'
+NeoBundleLazy 'Shougo/unite', {'depends': 'Shougo/vimproc'}
 NeoBundleLazy 'Shougo/vim-vcs'
-NeoBundleLazy 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'}
-NeoBundleLazy 'Shougo/vimshell.vim', {'depends': 'Shougo/vimproc'}
+NeoBundleLazy 'Shougo/vimfiler', {'depends': 'Shougo/unite'}
+NeoBundleLazy 'Shougo/vimshell', {'depends': 'Shougo/vimproc'}
 NeoBundleLazy 'Shougo/vinarise'
 NeoBundleLazy 'VB.NET-Indent'
 NeoBundleLazy 'VB.NET-Syntax'
 NeoBundleLazy 'adogear/vim-blockdiag-series'
 NeoBundleLazy 'aklt/plantuml-syntax'
 NeoBundleLazy 'alpaca-tc/alpaca_tags', {'depends': 'Shougo/vimproc'}
-NeoBundleLazy 'basyura/J6uil.vim', {'depends': ['Shougo/vimproc.vim', 'mattn/webapi-vim']}
-NeoBundleLazy 'basyura/unite-firefox-bookmarks', {'depends': ['tyru/open-browser.vim', 'mattn/webapi-vim']}
-NeoBundleLazy 'basyura/unite-rails', {'depends': 'Shougo/unite.vim'}
+NeoBundleLazy 'basyura/J6uil', {'depends': ['Shougo/vimproc', 'mattn/webapi-vim']}
+NeoBundleLazy 'basyura/unite-firefox-bookmarks', {'depends': ['tyru/open-browser', 'mattn/webapi-vim']}
+NeoBundleLazy 'basyura/unite-rails', {'depends': 'Shougo/unite'}
 NeoBundleLazy 'choplin/unite-vim_hacks'
-NeoBundleLazy 'cocopon/colorswatch.vim'
+NeoBundleLazy 'cocopon/colorswatch'
 NeoBundleLazy 'dag/vim2hs'
 NeoBundleLazy 'derekwyatt/vim-scala', {'build': {'mac': 'brew install scala sbt'}}
 NeoBundleLazy 'digitaltoad/vim-jade'
-NeoBundleLazy 'drakontia/sphinx.vim'
+NeoBundleLazy 'drakontia/sphinx'
 NeoBundleLazy 'eagletmt/ghcmod-vim'
 NeoBundleLazy 'eagletmt/unite-haddock'
 NeoBundleLazy 'edsono/vim-matchit'
-NeoBundleLazy 'h1mesuke/unite-outline', {'depends': 'Shougo/unite.vim'}
+NeoBundleLazy 'h1mesuke/unite-outline', {'depends': 'Shougo/unite'}
 NeoBundleLazy 'h1mesuke/vim-alignta'
-NeoBundleLazy 'itchyny/dictionary.vim'
+NeoBundleLazy 'itchyny/dictionary'
 NeoBundleLazy 'jmcantrell/vim-virtualenv'
 NeoBundleLazy 'jpo/vim-railscasts-theme'
 NeoBundleLazy 'kchmck/vim-coffee-script'
-NeoBundleLazy 'kien/ctrlp.vim'
+NeoBundleLazy 'kien/ctrlp'
 NeoBundleLazy 'koron/chalice'
 NeoBundleLazy 'lambdalisue/vim-django-support'
 NeoBundleLazy 'leafgarland/typescript-vim'
@@ -151,15 +151,15 @@ NeoBundleLazy 'mattn/unite-advent_calendar'
 NeoBundleLazy 'mattn/vimplenote-vim'
 NeoBundleLazy 'mitechie/pyflakes-pathogen'
 NeoBundleLazy 'modsound/macdict-vim'
-NeoBundleLazy 'nanotech/jellybeans.vim'
+NeoBundleLazy 'nanotech/jellybeans'
 NeoBundleLazy 'osyo-manga/checking-global-variables'
 NeoBundleLazy 'osyo-manga/unite-toggle-options'
 NeoBundleLazy 'osyo-manga/vim-over'
 NeoBundleLazy 'osyo-manga/vim-watchdogs'
 NeoBundleLazy 'pasela/unite-webcolorname'
-NeoBundleLazy 'rking/ag.vim'
-NeoBundleLazy 'sjl/gundo.vim'
-NeoBundleLazy 'supermomonga/vimshell-pure.vim', {'depends' : 'Shougo/vimshell.vim'}
+NeoBundleLazy 'rking/ag'
+NeoBundleLazy 'sjl/gundo'
+NeoBundleLazy 'supermomonga/vimshell-pure', {'depends' : 'Shougo/vimshell'}
 NeoBundleLazy 't9md/vim-quickhl'
 NeoBundleLazy 'tacroe/unite-mark'
 NeoBundleLazy 'thinca/vim-qfreplace'
@@ -171,20 +171,20 @@ NeoBundleLazy 'thinca/vim-template'
 NeoBundleLazy 'tpope/vim-endwise'
 NeoBundleLazy 'tpope/vim-fireplace', {'depends': ['tpope/vim-classpath', 'guns/vim-clojure-static']}
 NeoBundleLazy 'tpope/vim-rails'
-NeoBundleLazy 'tsukkee/unite-help', {'depends': 'Shougo/unite.vim'}
-NeoBundleLazy 'tsukkee/unite-tag', {'depends': 'Shougo/unite.vim'}
-NeoBundleLazy 'tyru/open-browser.vim'
+NeoBundleLazy 'tsukkee/unite-help', {'depends': 'Shougo/unite'}
+NeoBundleLazy 'tsukkee/unite-tag', {'depends': 'Shougo/unite'}
+NeoBundleLazy 'tyru/open-browser'
 NeoBundleLazy 'ujihisa/neco-ghc'
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'ujihisa/unite-font'
-NeoBundleLazy 'vbnet.vim'
+NeoBundleLazy 'vbnet'
 NeoBundleLazy 'vim-ruby/vim-ruby'
 NeoBundleLazy 'vim-scripts/Wombat'
-NeoBundleLazy 'vim-scripts/copypath.vim'
+NeoBundleLazy 'vim-scripts/copypath'
 NeoBundleLazy 'wavded/vim-stylus'
 NeoBundleLazy 'wesleyche/SrcExpl'
 NeoBundleLazy 'yuyunko/dosbatch-indent', {'depends': 'taku-o/vim-batch-source'}
-NeoBundleLazy 'zhisheng/visualmark.vim'
+NeoBundleLazy 'zhisheng/visualmark'
 
 NeoBundleLazy 'davidhalter/jedi-vim', {
             \ 'depends': 'mitechie/pyflakes-pathogen',
@@ -194,12 +194,12 @@ NeoBundleLazy 'davidhalter/jedi-vim', {
             \ }}
 NeoBundleLazy 'basyura/TweetVim', 'dev', {
             \ 'depends': [
-            \   'tyru/open-browser.vim',
-            \   'basyura/twibill.vim',
-            \   'basyura/bitly.vim',
-            \   'Shougo/unite.vim',
+            \   'tyru/open-browser',
+            \   'basyura/twibill',
+            \   'basyura/bitly',
+            \   'Shougo/unite',
             \   'Shougo/unite-outline',
-            \   'Shougo/vimproc.vim',
+            \   'Shougo/vimproc',
             \   'mattn/favstar-vim',
             \   'mattn/webapi-vim'
             \ ]}
@@ -211,9 +211,9 @@ NeoBundleLazy 'jnwhiteh/vim-golang', {
             \   'unix'   : ['go get github.com/nsf/gocode', 'go get github.com/golang/lint']
             \ }}
 if has('lua') && ((v:version >= 703 && has('patch885')) || v:version >= 704)
-  NeoBundleLazy 'Shougo/neocomplete.vim'
+  NeoBundleLazy 'Shougo/neocomplete'
 else
-  NeoBundleLazy 'Shougo/neocomplcache.vim'
+  NeoBundleLazy 'Shougo/neocomplcache'
 endif
 
 filetype plugin indent on
@@ -388,6 +388,9 @@ au MyAutoCmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) != 0 | copen 
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 " Hack #62: http://vim-users.jp/2009/08/hack62/
 nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
+" use verymagic
+nnoremap / /\v
+inoremap %s/ %s/\v
 "===================================================================================}}}
 
 "{{{ ========== Appearance ============================================================
@@ -516,7 +519,7 @@ nmap cc <Plug>(ToggleColorColumn)"}}}
 "===================================================================================}}}
 
 "{{{ ========== Plugin Settings =======================================================
-if neobundle#tap('lightline.vim')"{{{
+if neobundle#tap('lightline')"{{{
     if s:is_windows
         let g:lightline = {
                     \ 'colorscheme': 'landscape',
@@ -731,7 +734,7 @@ if neobundle#tap('vimfiler')"{{{
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('vimshell.vim')"{{{
+if neobundle#tap('vimshell')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'mappings': ['n', '<Plug>(vimshell_'],
@@ -797,16 +800,16 @@ if neobundle#tap('vimshell.vim')"{{{
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('vimshell-pure.vim')"{{{
+if neobundle#tap('vimshell-pure')"{{{
     call neobundle#config({
                 \ 'autoload': {
-                \   'on_source': ['vimshell.vim']
+                \   'on_source': ['vimshell']
                 \ }
                 \ })
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('neocomplete.vim')"{{{
+if neobundle#tap('neocomplete')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'insert': 1
@@ -832,7 +835,7 @@ if neobundle#tap('neocomplete.vim')"{{{
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('neosnippet.vim')"{{{
+if neobundle#tap('neosnippet')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'insert': 1,
@@ -861,7 +864,7 @@ if neobundle#tap('neosnippet.vim')"{{{
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('unite.vim')"{{{
+if neobundle#tap('unite')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'commands': {'name': 'Unite', 'complete': 'customlist,unite#complete_source'}
@@ -944,7 +947,7 @@ if neobundle#tap('unite-help')"{{{
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('open-browser.vim')"{{{
+if neobundle#tap('open-browser')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'mappings': ['sxn', '<Plug>(openbrowser-'],
@@ -1167,7 +1170,7 @@ if neobundle#tap('vim-quickrun')"{{{
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('shabadou.vim')"{{{
+if neobundle#tap('shabadou')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'on_source': ['vim-quickrun'],
@@ -1213,7 +1216,7 @@ if neobundle#tap('jedi-vim')"{{{
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('ag.vim')"{{{
+if neobundle#tap('ag')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'commands': [{'complete': 'file', 'name': 'AgFromSearch'},
@@ -1422,7 +1425,7 @@ if neobundle#tap('qfixhowm')"{{{
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('ctrlp.vim')"{{{
+if neobundle#tap('ctrlp')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'commands': ['CtrlPMixed', 'CtrlPClearAllCaches', 'CtrlPCurWD', 'CtrlP',
@@ -1549,7 +1552,7 @@ if neobundle#tap('ghcmod-vim')"{{{
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('yankround.vim')"{{{
+if neobundle#tap('yankround')"{{{
     nmap p <Plug>(yankround-p)
     nmap P <Plug>(yankround-P)
     nmap <C-p> <Plug>(yankround-prev)
@@ -1570,7 +1573,7 @@ if neobundle#tap('vim-over')"{{{
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('nebula.vim')"{{{
+if neobundle#tap('nebula')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'commands': ['NebulaPutLazy', 'NebulaPutFromClipboard', 'NebulaYankOptions',
@@ -1626,7 +1629,7 @@ if neobundle#tap('foldCC')"{{{
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('junkfile.vim')"{{{
+if neobundle#tap('junkfile')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'unite_sources': ['junkfile'],

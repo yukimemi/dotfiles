@@ -30,7 +30,7 @@ endif
 
 " font
 if s:is_windows
-    set guifont=MS_Gothic:h9:cSHIFTJIS
+    set gfn=MS_Gothic:h9:cSHIFTJIS
     set guifontwide=MS_Gothic:h9:cSHIFTJIS
 else
     set gfn=Ricty\ Regular\ for\ Powerline:h12
@@ -79,7 +79,7 @@ unlet s:infofile
 if s:is_windows
     set lines=130
     set columns=120
-    " Alt + ～ 
+    " Alt + ｡�
     nnoremap [Space]r :<C-u>simalt ~r<CR>
     nnoremap [Space]x :<C-u>simalt ~x<CR>
 endif
