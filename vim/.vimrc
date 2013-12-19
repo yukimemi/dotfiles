@@ -504,6 +504,7 @@ nnoremap <silent> [Space]eg  :<C-u>tabedit $MYGVIMRC<CR>
 
 " cmdwin
 nnoremap : q:i
+vnoremap : q:i
 
 " hilight over 100 column {{{
 " http://blog.remora.cx/2013/06/source-in-80-columns-2.html
@@ -632,15 +633,15 @@ if neobundle#tap('vim-submode')"{{{
 endif"}}}
 
 if neobundle#tap('vim-anzu')"{{{
-    au MyAutoCmd BufEnter,BufWinEnter,WinEnter * nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><Plug>(anzu-clear-search-status)
-    "nmap n <Plug>(anzu-mode-n)
-    "nmap N <Plug>(anzu-mode-N)
-    "nnoremap <expr> n anzu#mode#mapexpr("n", "", "zzzv")
-    "nnoremap <expr> N anzu#mode#mapexpr("N", "", "zzzv")
-    nmap n <Plug>(anzu-n)
-    nmap N <Plug>(anzu-N)
-    nmap * <Plug>(anzu-star)
-    nmap # <Plug>(anzu-sharp)
+    au MyAutoCmd BufEnter,BufWinEnter,WinEnter * nnoremap <ESC><ESC> :<C-u>nohlsearch<CR>
+    nmap n <Plug>(anzu-mode-n)
+    nmap N <Plug>(anzu-mode-N)
+    nnoremap <expr> n anzu#mode#mapexpr("n", "", "zzzv")
+    nnoremap <expr> N anzu#mode#mapexpr("N", "", "zzzv")
+    "nmap n <Plug>(anzu-n)
+    "nmap N <Plug>(anzu-N)
+    "nmap * <Plug>(anzu-star)
+    "nmap # <Plug>(anzu-sharp)
 
     call neobundle#untap()
 endif"}}}
@@ -667,14 +668,16 @@ if neobundle#tap('TweetVim')"{{{
     au MyAutoCmd FileType tweetvim call s:my_tweetvim_mappings()
 
     function! s:my_tweetvim_mappings()
+        setl nowrap
         nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
         nnoremap <buffer> <leader>s :<C-u>TweetVimSearch<Space>
-        nnoremap <buffer> [Space]us :<C-u>TweetVimUserStream<CR>   let g:tweetvim_tweet_per_page = 200
+        nnoremap <buffer> [Space]us :<C-u>TweetVimUserStream<CR>
         nnoremap <buffer> [Space]tl :<C-u>Unite tweetvim<CR>
         nnoremap <buffer> [Space]ta :<C-u>Unite tweetvim/account<CR>
     endfunction
 
     let g:tweetvim_default_account = "r_y_y_k_m"
+    let g:tweetvim_tweet_per_page = 200
     let g:tweetvim_cache_size = 50
     let g:tweetvim_display_source = 1
     let g:tweetvim_display_time = 1
@@ -1161,6 +1164,12 @@ if neobundle#tap('vim-quickrun')"{{{
                 \       "command": "make",
                 \       "cmdopt": "html",
                 \       "exec": "%c %o"
+                \ },
+                \ "ps1": {
+                \       'command': 'powershell.exe',
+                \       'cmdopt': '-executionPolicy RemoteSigned',
+                \       'tempfile': '%{tempname()}.ps1',
+                \       'exec': '%c %o -F %s:p'
                 \ }
                 \ }
     call neobundle#untap()
@@ -1672,6 +1681,27 @@ if neobundle#tap('syntastic')"{{{
                 \ }
                 \ })
     let g:syntastic_go_checkers = ['go', 'golint']
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-ps1')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'filetypes': 'ps1'
+                \ }
+                \ })
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-alignta')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'unite_sources': ['alignta'],
+                \   'commands': [{'complete': 'customlist,s:complete_command_option', 'name': 'Alignta'},
+                \                {'complete': 'customlist,s:complete_command_option', 'name': 'Align'}]
+                \ }
+                \ })
 
     call neobundle#untap()
 endif"}}}

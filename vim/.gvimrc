@@ -7,10 +7,6 @@ let s:is_cygwin = has('win32unix')
 let s:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
 let s:is_linux = !s:is_windows && !s:is_cygwin && !s:is_darwin
 
-" release autogroup in MyAutoCmd
-augroup MyAutoCmd
-    autocmd!
-augroup END
 "===================================================================================}}}
 
 "{{{ ========== Appearance ============================================================
