@@ -95,7 +95,6 @@ NeoBundle 'pekepeke/titanium-vim'
 NeoBundle 'rhysd/vim-textobj-ruby', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'szw/vim-tags', {'build': {'mac': 'brew install ctags'}}
 NeoBundle 'thinca/vim-submode'
-NeoBundle 'thinca/vim-splash'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
@@ -103,6 +102,8 @@ NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundle 'scrooloose/syntastic'
+NeoBundleLazy 'AndrewRadev/splitjoin.vim'
+NeoBundleLazy 'AndrewRadev/linediff.vim'
 NeoBundleLazy 'DrawIt'
 NeoBundleLazy 'JavaScript-syntax', {'depends': 'pangloss/vim-javascript'}
 NeoBundleLazy 'LeafCage/nebula.vim'
@@ -164,6 +165,7 @@ NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundleLazy 'thinca/vim-ref'
 NeoBundleLazy 'thinca/vim-singleton'
 NeoBundleLazy 'thinca/vim-template'
+NeoBundleLazy 'thinca/vim-splash'
 NeoBundleLazy 'tpope/vim-endwise'
 NeoBundleLazy 'tpope/vim-fireplace', {'depends': ['tpope/vim-classpath', 'guns/vim-clojure-static']}
 NeoBundleLazy 'tpope/vim-rails'
@@ -666,6 +668,7 @@ if neobundle#tap('TweetVim')"{{{
                 \ })
 
     au MyAutoCmd FileType tweetvim call s:my_tweetvim_mappings()
+    nnoremap [Space]ut :<C-u>Unite tweetvim<CR>
 
     function! s:my_tweetvim_mappings()
         setl nowrap
@@ -866,7 +869,22 @@ endif"}}}
 if neobundle#tap('unite.vim')"{{{
     call neobundle#config({
                 \ 'autoload': {
-                \   'commands': {'name': 'Unite', 'complete': 'customlist,unite#complete_source'}
+                \   'unite_sources': ['action', 'alias', 'bookmark', 'buffer', 'change', 'command',
+                \                     'directory', 'file', 'file_point', 'find', 'function', 'grep',
+                \                     'history_input', 'history_yank', 'jump', 'jump_point',
+                \                     'launcher', 'line', 'mapping', 'menu', 'mru', 'output',
+                \                     'process', 'rec', 'register', 'resume', 'runtimepath',
+                \                     'source', 'tab', 'undo', 'vimgrep', 'window'],
+                \   'commands': [{'complete': 'customlist,unite#complete#source', 'name': 'UniteWithCurrentDir'},
+                \                {'complete': 'customlist,unite#complete#source', 'name': 'Unite'},
+                \                {'complete': 'customlist,unite#complete#source', 'name': 'UniteWithInputDirectory'},
+                \                {'complete': 'customlist,unite#complete#buffer_name', 'name': 'UniteClose'},
+                \                {'complete': 'file', 'name': 'UniteBookmarkAdd'},
+                \                {'complete': 'customlist,unite#complete#buffer_name', 'name': 'UniteResume'},
+                \                {'complete': 'customlist,unite#complete#source', 'name': 'UniteWithBufferDir'},
+                \                {'complete': 'customlist,unite#complete#source', 'name': 'UniteWithCursorWord'},
+                \                {'complete': 'customlist,unite#complete#source', 'name': 'UniteWithInput'},
+                \                'UniteStartup']
                 \ }
                 \ })
     nnoremap <silent> [Space]uc :<C-u>Unite colorscheme -auto-preview<CR>
@@ -892,6 +910,44 @@ if neobundle#tap('unite.vim')"{{{
     " grep ~/.vim_junk
     nnoremap [Space]ujg :<C-u>Unite -no-split -buffer-name=Grep_JunkFile grep:~/.vim_junk/
 
+    " http://d.hatena.ne.jp/osyo-manga/20131217/1387292034"{{{
+    let g:unite_source_alias_aliases = {
+                \ "startup_file_mru": {
+                \   "source": "file_mru"
+                \ },
+                \ "startup_directory_mru": {
+                \   "source": "directory_mru"
+                \ }
+                \}
+
+    call unite#custom_max_candidates("startup_file_mru", 10)
+    call unite#custom_max_candidates("startup_directory_mru", 10)
+
+    if !exists("g:unite_source_menu_menus")
+        let g:unite_source_menu_menus = {}
+    endif
+    let g:unite_source_menu_menus.startup = {
+                \ "description": "startup menu",
+                \   "command_candidates": [
+                \       ["vimrc",  "edit " . $MYVIMRC],
+                \       ["gvimrc", "edit " . $MYGVIMRC],
+                \       ["unite-file_mru", "Unite file_mru"],
+                \       ["unite-directory_mru", "Unite directory_mru"],
+                \   ]
+                \ }
+    command! UniteStartup
+                \ Unite
+                \ output:echo:"===:file:mru:===":! startup_file_mru
+                \ output:echo:":":!
+                \ output:echo:"===:directory:mru:===":! startup_directory_mru
+                \ output:echo:":":!
+                \ output:echo:"===:menu:===":! menu:startup
+                \ -hide-source-names
+                \ -no-split
+                \ -quick-match
+    autocmd MyAutoCmd VimEnter * :UniteStartup
+"}}}
+
     function! neobundle#tapped.hooks.on_source(bundle)
         " start unite in insert mode
         let g:unite_enable_start_insert = 1
@@ -906,18 +962,6 @@ if neobundle#tap('unite.vim')"{{{
             nmap <buffer> <Esc> <Plug>(unite_exit)
             nmap <buffer> <C-n> <Plug>(unite_select_next_line)
             nmap <buffer> <C-p> <Plug>(unite_select_previous_line)
-            let g:unite_source_menu_menus = {
-                        \   "shortcut": {
-                        \       "description": "sample unite-menu",
-                        \       "command_candidates": [
-                        \           ["edit vimrc", "edit $MYVIMRC"],
-                        \           ["edit gvimrc", "edit $MYGVIMRC"],
-                        \           ["unite-file_mru", "Unite file_mru"],
-                        \           ["Unite Beautiful Attack", "Unite -auto-preview colorscheme"],
-                        \           ["unite-output:message", "Unite output:message"]
-                        \       ]
-                        \   }
-                        \ }
             "let g:unite_enable_split_vertically = 1
             let g:unite_source_file_mru_limit = 1000
             let g:unite_source_history_yank_enable = 1
@@ -1706,7 +1750,7 @@ if neobundle#tap('vim-alignta')"{{{
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('vim-splash')
+if neobundle#tap('vim-splash')"{{{
     call neobundle#config({
                 \ 'augroup': 'plugin',
                 \   'autoload': {
@@ -1728,7 +1772,28 @@ if neobundle#tap('vim-splash')
     let g:splash#path = s:splash_dir . '/vim_intro.txt'
 
     call neobundle#untap()
-endif
+endif"}}}
+
+if neobundle#tap('splitjoin.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': ['n', '<Plug>Splitjoin'],
+                \   'commands': ['SplitjoinSplit', 'SplitjoinJoin']
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('linediff.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': ['LinediffReset', 'Linediff']
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
 
 " disable plugin
 let plugin_dicwin_disable = 1
