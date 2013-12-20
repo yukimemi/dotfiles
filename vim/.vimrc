@@ -95,6 +95,7 @@ NeoBundle 'pekepeke/titanium-vim'
 NeoBundle 'rhysd/vim-textobj-ruby', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'szw/vim-tags', {'build': {'mac': 'brew install ctags'}}
 NeoBundle 'thinca/vim-submode'
+NeoBundle 'thinca/vim-splash'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
@@ -162,7 +163,6 @@ NeoBundleLazy 'thinca/vim-qfreplace'
 NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundleLazy 'thinca/vim-ref'
 NeoBundleLazy 'thinca/vim-singleton'
-NeoBundleLazy 'thinca/vim-splash'
 NeoBundleLazy 'thinca/vim-template'
 NeoBundleLazy 'tpope/vim-endwise'
 NeoBundleLazy 'tpope/vim-fireplace', {'depends': ['tpope/vim-classpath', 'guns/vim-clojure-static']}
@@ -1705,6 +1705,30 @@ if neobundle#tap('vim-alignta')"{{{
 
     call neobundle#untap()
 endif"}}}
+
+if neobundle#tap('vim-splash')
+    call neobundle#config({
+                \ 'augroup': 'plugin',
+                \   'autoload': {
+                \   'commands': {'complete': 'file', 'name': 'Splash'}
+                \ }
+                \ })
+    " clone splash gist "{{{
+    function! s:clone_splash()
+        let s:splash_dir = $HOME . "/.vim-splash"
+        if !isdirectory(s:splash_dir)
+            echom "cloning vim splash ..."
+            let s:com = "git clone https://gist.github.com/7630711.git " . s:splash_dir
+            echom s:com
+            call system(s:com)
+        endif
+    endfunction"}}}
+    call s:clone_splash()
+
+    let g:splash#path = s:splash_dir . '/vim_intro.txt'
+
+    call neobundle#untap()
+endif
 
 " disable plugin
 let plugin_dicwin_disable = 1
