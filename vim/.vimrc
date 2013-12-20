@@ -872,8 +872,8 @@ if neobundle#tap('unite.vim')"{{{
     nnoremap <silent> [Space]uc :<C-u>Unite colorscheme -auto-preview<CR>
     nnoremap <silent> [Space]uy :<C-u>Unite -no-split history/yank -buffer-name=history/yank<CR>
     nnoremap <silent> [Space]ub :<C-u>Unite -no-split buffer -auto-preview -buffer-name=buffer<CR>
-    "nnoremap <silent> [Space]uf :<C-u>Unite -no-split -buffer-name=files file<CR>
-    nnoremap <silent> [Space]uf :<C-u>Unite -no-split -buffer-name=file_rec/async file_rec/async<CR>
+    nnoremap <silent> [Space]uf :<C-u>Unite -no-split -buffer-name=files file_rec<CR>
+    "nnoremap <silent> [Space]uf :<C-u>Unite -no-split -buffer-name=file_rec/async file_rec/async<CR>
     nnoremap <silent> ,ub :<C-u>Unite -no-split -buffer-name=bookmark -default-action=cd bookmark<CR>
     nnoremap <silent> [Space]ug :<C-u>Unite -buffer-name=grep -no-quit -auto-preview grep<CR>
     nnoremap <silent> [Space]uo :<C-u>Unite -buffer-name=outline outline<CR>

@@ -207,6 +207,10 @@ export LEIN_JVM_OPTS="-Djline.terminal=jline.UnixTerminal"
 # tmuxinator
 [ -s $HOME/.tmuxinator/scripts/tmuxinator ] && source $HOME/.tmuxinator/scripts/tmuxinator
 
+# hub
+if which hub > /dev/null; then
+    eval "$(hub alias -s)"
+fi
 
 # autojump
 # http://blog.glidenote.com/blog/2012/02/29/autojump-zsh/
