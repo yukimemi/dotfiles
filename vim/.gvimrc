@@ -15,7 +15,7 @@ set guioptions=none
 
 " color
 if s:is_darwin
-    colorscheme molokai
+    colorscheme hybrid
     set background=dark
 else
     colorscheme solarized

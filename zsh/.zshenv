@@ -8,7 +8,6 @@ export SHELL=zsh
 
 # path setting
 typeset -U path
-path=(/usr/local/bin(N-/))
 path=(
     # windows python
     /cygdrive/c/Python27(N-/)
@@ -20,7 +19,7 @@ path=(
     # coreutils
     /usr/local/opt/coreutils/libexec/gnubin(N-/)
     /opt/boxen/homebrew/opt/coreutils/libexec/gnubin(N-/)
-    # システム用
+    # system
     /bin(N-/)
     /sbin(N-/)
     /usr/sbin(N-/)
@@ -30,22 +29,18 @@ path=(
     # nodebrew
     $HOME/.nodebrew/current/bin(N-/)
     /cygdrive/c/Program\ Files/nodejs(N-/) # for Cygwin
-    # 自分用（--prefix=$HOME/localでインストールしたもの）
     $HOME/local/bin(N-/)
-    # 自分用（gem install --user-installでインストールしたもの）
-    ## 2012-01-07
     $HOME/.gem/ruby/*/bin(N-/)
-    # Debian GNU/Linux用
+    # Debian GNU/Linux
     /var/lib/gems/*/bin(N-/)
-    # MacPorts用
+    # MacPorts
     /opt/local/bin(N-/)
-    # Solaris用
+    # Solaris
     /opt/csw/bin(N-/)
     /usr/sfw/bin(N-/)
     /usr/ccs/bin(N-/)
-    # Cygwin用
+    # Cygwin
     /cygdrive/c/meadow/bin(N-/)
-    # システム用
     /usr/local/bin(N-/)
     /usr/bin(N-/)
     /usr/games(N-/)
@@ -63,68 +58,44 @@ path=(
 if which cygpath > /dev/null; then
     export PATH=$PATH:$(/bin/cygpath $APPDATA)/npm/
 fi
-# sudo時のパスの設定
-## -x: export SUDO_PATHも一緒に行う。
-## -T: SUDO_PATHとsudo_pathを連動する。
 typeset -xT SUDO_PATH sudo_path
-## 重複したパスを登録しない。
 typeset -U sudo_path
-## (N-/): 存在しないディレクトリは登録しない。
-## パス(...): ...という条件にマッチするパスのみ残す。
-## N: NULL_GLOBオプションを設定。
-## globがマッチしなかったり存在しないパスを無視する。
-## -: シンボリックリンク先のパスを評価。
-## /: ディレクトリのみ残す。
 sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
 
-# man用パスの設定
-## 重複したパスを登録しない。
+# man
 typeset -U manpath
-## (N-/) 存在しないディレクトリは登録しない。
-## パス(...): ...という条件にマッチするパスのみ残す。
-## N: NULL_GLOBオプションを設定。
-## globがマッチしなかったり存在しないパスを無視する。
-## -: シンボリックリンク先のパスを評価。
-## /: ディレクトリのみ残す。
 manpath=(
-    # 自分用
+    # user
     $HOME/local/share/man(N-/)
-    # MacPorts用
+    # MacPorts
     /opt/local/share/man(N-/)
-    # Homebrewy用
+    # Homebrewy
     /usr/local/opt/coreutils/libexec/gnuman(N-/)
     /opt/boxen/homebrew/opt/coreutils/libexec/gnuman(N-/)
-    # Solaris用
+    # Solaris
     /opt/csw/share/man(N-/)
     /usr/sfw/share/man(N-/)
-    # システム用
+    # system
     /usr/local/share/man(N-/)
     /usr/share/man(N-/)
 )
 
-# ページャの設定
+# PAGER
 if type lv > /dev/null 2>&1; then
-    ## lvを優先する。
+    ## use lv if exist
     export PAGER="lv"
 else
-    ## lvがなかったらlessを使う。
     export PAGER="less"
 fi
 
-# lvの設定
-## -c: ANSIエスケープシーケンスの色付けなどを有効にする。
-## -l: 1行が長くと折り返されていても1行として扱う。
-## （コピーしたときに余計な改行を入れない。）
+# lv setting
 export LV="-c -l"
 
 if [ "$PAGER" != "lv" ]; then
-    ## lvがなくてもlvでページャーを起動する。
     alias lv="$PAGER"
 fi
 
-# lessの設定
-## -R: ANSIエスケープシーケンスのみ素通しする。
-## 2012-09-04
+# less setting
 export LESS="-R"
 
 # EDITOR
@@ -181,12 +152,6 @@ if [ -s $HOME/.pythonz/etc/bashrc ]; then
         source $HOME/.pythonz/pythons/CPython-3.3.0/bin/virtualenvwrapper.sh
     fi
 fi
-#if [ $OSTYPE = cygwin ]; then
-#    export VIRTUALENVWRAPPER_PYTHON=/bin/python
-#    export VIRTUALENVWRAPPER_VIRTUALENV=/bin/virtualenv
-#    export WORKON_HOME=$HOME/.virtualenvs
-#    source /bin/virtualenvwrapper.sh
-#fi
 
 # pyenv
 [ ! -d $HOME/.pyenv ] && git clone git://github.com/yyuu/pyenv.git ~/.pyenv
@@ -212,26 +177,22 @@ if which hub > /dev/null; then
     eval "$(hub alias -s)"
 fi
 
-# autojump
-# http://blog.glidenote.com/blog/2012/02/29/autojump-zsh/
-#[ -s `brew --prefix`/etc/autojump.sh ] && . `brew --prefix`/etc/autojump.sh
-
-# CLASSPATHの中で重複するものを削除
+# CLASSPATH
 typeset -U CLASSPATH
-# mac環境
+# mac
 if [ `uname` = "Darwin" ]; then
     # JAVA_HOME
     export JAVA_HOME=$(/usr/libexec/java_home)
     # CATALINA_HOME
     export CATALINA_HOME="/usr/local/Cellar/tomcat/7.0.14/libexec"
-    # Java クラスパス
+    # Java
     #export CLASSPATH="$CLASSPATH:$JAVA_HOME:$JAVA_HOME/lib:$JAVA_HOME/lib/ext"
 fi
 
-# Javaの文字化け対策
+# Java encoding
 export JAVA_OPTS='-Dfile.encoding=UTF-8'
 
-# fpathの中で重複するものを削除
+# fpath
 typeset -U fpath
 fpath=(/usr/local/share/zsh-completions(N-/) $fpath)
 

@@ -102,6 +102,7 @@ NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundle 'scrooloose/syntastic'
+NeoBundleLazy 'kana/vim-filetype-haskell'
 NeoBundleLazy 'AndrewRadev/splitjoin.vim'
 NeoBundleLazy 'AndrewRadev/linediff.vim'
 NeoBundleLazy 'DrawIt'
@@ -129,7 +130,7 @@ NeoBundleLazy 'dag/vim2hs'
 NeoBundleLazy 'derekwyatt/vim-scala', {'build': {'mac': 'brew install scala sbt'}}
 NeoBundleLazy 'digitaltoad/vim-jade'
 NeoBundleLazy 'drakontia/sphinx.vim'
-NeoBundleLazy 'eagletmt/ghcmod-vim'
+NeoBundleLazy 'eagletmt/ghcmod-vim', {'build': {'mac': 'cabal install ghc-mod'}}
 NeoBundleLazy 'eagletmt/unite-haddock'
 NeoBundleLazy 'edsono/vim-matchit'
 NeoBundleLazy 'h1mesuke/unite-outline', {'depends': 'Shougo/unite.vim'}
@@ -945,7 +946,7 @@ if neobundle#tap('unite.vim')"{{{
                 \ -hide-source-names
                 \ -no-split
                 \ -quick-match
-    autocmd MyAutoCmd VimEnter * :UniteStartup
+    "autocmd MyAutoCmd VimEnter * :UniteStartup
 "}}}
 
     function! neobundle#tapped.hooks.on_source(bundle)
@@ -1595,7 +1596,7 @@ if neobundle#tap('ghcmod-vim')"{{{
                 \ }
                 \ })
     function! neobundle#tapped.hooks.on_source(bundle)
-        au MyAutoCmd BufWritePost <buffer> GhcModCheckAsync
+        "au MyAutoCmd BufWritePost <buffer> GhcModCheckAsync
     endfunction
 
     call neobundle#untap()
