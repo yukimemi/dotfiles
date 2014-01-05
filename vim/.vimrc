@@ -75,7 +75,6 @@ NeoBundle 'cocopon/lightline-hybrid.vim', {'depends': 'itchyny/lightline.vim'}
 NeoBundle 'fuenor/qfixgrep'
 NeoBundle 'fuenor/qfixhowm'
 NeoBundle 'goldfeld/vim-seek'
-NeoBundle 'gregsexton/gitv', {'depends': 'tpope/vim-fugitive'}
 NeoBundle 'itchyny/landscape.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'jceb/vim-hier'
@@ -89,24 +88,37 @@ NeoBundle 'mattn/webapi-vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'osyo-manga/vim-anzu'
 NeoBundle 'osyo-manga/vim-automatic', {'depends': ['osyo-manga/vim-gift', 'osyo-manga/vim-reunions']}
-NeoBundle 'osyo-manga/vim-textobj-multiblock', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'osyo-manga/vim-textobj-multitextobj', {'depends': 'kana/vim-textobj-user'}
-NeoBundle 'pekepeke/titanium-vim'
-NeoBundle 'rhysd/vim-textobj-ruby', {'depends': 'kana/vim-textobj-user'}
+NeoBundle 'kana/vim-operator-replace', {'depends': 'kana/vim-operator-user'}
+NeoBundle 'tyru/operator-star.vim', {'depends': ['kana/vim-operator-user', 'thinca/vim-visualstar']}
 NeoBundle 'szw/vim-tags', {'build': {'mac': 'brew install ctags'}}
 NeoBundle 'thinca/vim-submode'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-surround'
+"NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'osyo-manga/vim-precious', {'depends': 'Shougo/context_filetype.vim'}
+NeoBundleLazy 'superbrothers/vim-vimperator'
+NeoBundleLazy 'gregsexton/gitv', {'depends': 'tpope/vim-fugitive'}
+NeoBundleLazy 'pekepeke/titanium-vim'
+NeoBundleLazy 'rhysd/vim-textobj-ruby', {'depends': 'kana/vim-textobj-user'}
+NeoBundleLazy 'osyo-manga/vim-textobj-multiblock', {'depends': 'kana/vim-textobj-user'}
+NeoBundleLazy 'osyo-manga/vim-operator-search', {'depends': 'kana/vim-operator-user'}
+NeoBundleLazy 'thinca/vim-visualstar'
+NeoBundleLazy 'osyo-manga/unite-qfixhowm', {'depends': 'fuenor/qfixhowm'}
+NeoBundleLazy 'tyru/restart.vim'
+NeoBundleLazy 'tyru/capture.vim'
+NeoBundleLazy 'thinca/vim-ft-clojure'
 NeoBundleLazy 'kana/vim-filetype-haskell'
 NeoBundleLazy 'AndrewRadev/splitjoin.vim'
 NeoBundleLazy 'AndrewRadev/linediff.vim'
 NeoBundleLazy 'DrawIt'
-NeoBundleLazy 'JavaScript-syntax', {'depends': 'pangloss/vim-javascript'}
+NeoBundleLazy 'pangloss/vim-javascript'
+"NeoBundleLazy 'jelera/vim-javascript-syntax'
+"NeoBundleLazy 'jiangmiao/simple-javascript-indenter'
 NeoBundleLazy 'LeafCage/nebula.vim'
 NeoBundleLazy 'PProvost/vim-ps1'
 NeoBundleLazy 'SQLUtilities'
@@ -167,6 +179,7 @@ NeoBundleLazy 'thinca/vim-ref'
 NeoBundleLazy 'thinca/vim-singleton'
 NeoBundleLazy 'thinca/vim-template'
 NeoBundleLazy 'thinca/vim-splash'
+NeoBundleLazy 'thinca/vim-prettyprint'
 NeoBundleLazy 'tpope/vim-endwise'
 NeoBundleLazy 'tpope/vim-fireplace', {'depends': ['tpope/vim-classpath', 'guns/vim-clojure-static']}
 NeoBundleLazy 'tpope/vim-rails'
@@ -305,27 +318,6 @@ endfunction
 au MyAutoCmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
 "}}}
 
-" Capture {{{
-" https://gist.github.com/369112#file-vimrc
-command!
-            \ -nargs=+ -bang
-            \ -complete=command
-            \ Capture
-            \ call s:cmd_capture([<f-args>], <bang>0)
-
-function! C(cmd)
-    redir => result
-    silent execute a:cmd
-    redir END
-    return result
-endfunction
-
-function! s:cmd_capture(args, banged)
-    new
-    silent put =C(join(a:args))
-    1,2delete _
-endfunction"}}}
-
 " diff original"{{{
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 "}}}
@@ -384,9 +376,9 @@ set grepprg=grep\ -nH
 " https://sites.google.com/site/hymd3a/vim/vimgrep
 au MyAutoCmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) != 0 | copen | endif
 " Hack #104: http://vim-users.jp/2009/11/hack104/
-vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
+"vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 " Hack #62: http://vim-users.jp/2009/08/hack62/
-nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
+"nnoremap <expr> s* ':%substitute/\<' . expand('<cword>') . '\>/'
 " use verymagic
 nnoremap / /\v
 inoremap %s/ %s/\v
@@ -429,7 +421,7 @@ endif
 
 " color
 set background=dark
-colorscheme hybrid
+colorscheme molokai
 
 highlight Search ctermbg=88
 
@@ -541,7 +533,7 @@ if neobundle#tap('lightline.vim')"{{{
                     \ }
     else
         let g:lightline = {
-                    \ 'colorscheme': 'hybrid',
+                    \ 'colorscheme': 'solarized',
                     \ 'mode_map': { 'c': 'NORMAL' },
                     \ 'active': {
                     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'anzu' ] ]
@@ -670,12 +662,12 @@ if neobundle#tap('TweetVim')"{{{
 
     au MyAutoCmd FileType tweetvim call s:my_tweetvim_mappings()
     nnoremap [Space]ut :<C-u>Unite tweetvim<CR>
+    nnoremap [Space]us :<C-u>TweetVimUserStream<CR>
 
     function! s:my_tweetvim_mappings()
         setl nowrap
         nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
         nnoremap <buffer> <leader>s :<C-u>TweetVimSearch<Space>
-        nnoremap <buffer> [Space]us :<C-u>TweetVimUserStream<CR>
         nnoremap <buffer> [Space]tl :<C-u>Unite tweetvim<CR>
         nnoremap <buffer> [Space]ta :<C-u>Unite tweetvim/account<CR>
     endfunction
@@ -902,7 +894,7 @@ if neobundle#tap('unite.vim')"{{{
     nnoremap <silent> [Space]uu :<C-u>Unite -no-split buffer file_mru<CR>
     nnoremap <silent> [Space]ua :<C-u>Unite -no-split -buffer-name=files buffer
                 \                              file_mru bookmark file file_rec/async<CR>
-    nnoremap <silent> [Space]/ :<C-u>Unite -buffer-name=search line/fast -no-quit<CR>
+    "nnoremap <silent> [Space]/ :<C-u>Unite -buffer-name=search line/fast -no-quit<CR>
     nnoremap <silent> [Space]uh :<C-u>Unite -no-split -buffer-name=help help<CR>
 
     " NeoBundle
@@ -988,6 +980,16 @@ if neobundle#tap('unite-help')"{{{
                 \   'unite_sources': ['help']
                 \ }
                 \ })
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('unite-colorscheme')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'unite_sources': ['colorscheme']
+                \ }
+                \ })
+
     call neobundle#untap()
 endif"}}}
 
@@ -1782,6 +1784,8 @@ if neobundle#tap('splitjoin.vim')"{{{
                 \   'commands': ['SplitjoinSplit', 'SplitjoinJoin']
                 \ }
                 \ })
+    nmap sj :SplitjoinSplit<cr>
+    nmap sk :SplitjoinJoin<cr>
 
     call neobundle#untap()
 endif"}}}
@@ -1790,6 +1794,217 @@ if neobundle#tap('linediff.vim')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'commands': ['LinediffReset', 'Linediff']
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('emmet-vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': ['Emmet', 'EmmetInstall'],
+                \   'filetypes': ['html']
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-fireplace')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': ['cxin', '<Plug>Fireplace'],
+                \   'commands': [{'complete': 'customlist,fireplace#eval_complete', 'name': 'Eval'},
+                \                'Last',
+                \                {'complete': 'customlist,s:connect_complete', 'name': 'FireplaceConnect'},
+                \                {'complete': 'customlist,fireplace#ns_complete', 'name': 'Require'}],
+                \   'filetypes': 'clojure'
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-ft-clojure')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'filetypes': 'clojure'
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('capture.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': [{'complete': 'command', 'name': 'Capture'}]
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('restart.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': 'Restart'
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('unite-qfixhowm')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'unite_sources': 'qfixhowm'
+                \ }
+                \ })
+
+    nnoremap <silent> [Space]uq :<C-u>Unite -no-split -buffer-name=qfixhowm qfixhowm<CR>
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-prettyprint')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': [{'complete': 'expression', 'name': 'PP'},
+                \                {'complete': 'expression', 'name': 'PrettyPrint'}]
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-quickhl')"{{{
+    call neobundle#config({
+                \ 'augroup': 'QuickhlManual', 'autoload': {
+                \   'mappings': ['sxn', '<Plug>(quickhl-'],
+                \   'commands': ['QuickhlManualUnlockWindow', 'QuickhlManualDelete',
+                \                'QuickhlTagToggle', 'QuickhlManualDisable', 'QuickhlTagDisable',
+                \                'QuickhlManualAdd', 'QuickhlManualColors', 'QuickhlManualReset',
+                \                'QuickhlManualLockToggle', 'QuickhlManualLock',
+                \                'QuickhlManualEnable', 'QuickhlManualList', 'QuickhlCwordEnable',
+                \                'QuickhlManualUnlock', 'QuickhlCwordDisable', 'QuickhlTagEnable',
+                \                'QuickhlManualLockWindowToggle', 'QuickhlManualLockWindow',
+                \                'QuickhlCwordToggle']
+                \ }
+                \ })
+
+    nmap [Space]m <Plug>(quickhl-manual-this)
+    xmap [Space]m <Plug>(quickhl-manual-this)
+    "nmap <F9>     <Plug>(quickhl-manual-toggle)
+    "xmap <F9>     <Plug>(quickhl-manual-toggle)
+
+    nmap [Space]M <Plug>(quickhl-manual-reset)
+    xmap [Space]M <Plug>(quickhl-manual-reset)
+
+    nmap [Space]j <Plug>(quickhl-cword-toggle)
+
+    nmap [Space]] <Plug>(quickhl-tag-toggle)
+
+    map H <Plug>(operator-quickhl-manual-this-motion)
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-visualstar')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': '<Plug>(visualstar-'
+                \ }
+                \ })
+
+    noremap <Plug>N N
+    map * <Plug>(visualstar-*)<Plug>N
+    map # <Plug>(visualstar-#)<Plug>N
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-operator-search')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': '<Plug>(operator-search'
+                \ }
+                \ })
+    nmap [Space]/ <Plug>(operator-search)
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-textobj-multiblock')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': '<Plug>(textobj-multiblock'
+                \ }
+                \ })
+
+    omap ab <Plug>(textobj-multiblock-a)
+    omap ib <Plug>(textobj-multiblock-i)
+    xmap ab <Plug>(textobj-multiblock-a)
+    xmap ib <Plug>(textobj-multiblock-i)
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-textobj-ruby')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': '<Plug>(textobj-ruby',
+                \   'filetypes': 'ruby'
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('gitv')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': ['Gitv']
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('simple-javascript-indenter')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'filetypes': 'javascript'
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-javascript-syntax')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'filetypes': 'javascript'
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-javascript')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'filetypes': 'javascript'
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-vimperator')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'filetypes': 'vimperator'
                 \ }
                 \ })
 
@@ -1814,6 +2029,7 @@ au MyAutoCmd BufNewFile,BufRead *.coffee setl ft=coffee fenc=utf8 ff=unix
       \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.js setl ft=javascript fenc=utf8 ff=unix
       \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
+au MyAutoCmd BufNewFile,BufRead *.html setl ts=4 sw=2 st=2 et
 au MyAutoCmd BufNewFile,BufRead *.uml setl fenc=cp932 ff=dos ft=plantuml
 au MyAutoCmd BufNewFile,BufRead *.diag setl fenc=utf8 ff=unix ft=blockdiag
 au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown
@@ -1821,9 +2037,9 @@ au MyAutoCmd BufNewFile,BufRead *.rst setl tabstop=8 shiftwidth=3 softtabstop=3 
 au MyAutoCmd BufNewFile,BufRead *.jade setl ft=jade
 au MyAutoCmd BufNewFile,BufRead *.styl setl ft=stylus tabstop=8 shiftwidth=2
       \ softtabstop=2 expandtab
-au MyAutoCmd bufnewfile,bufread *.scpt,*.applescript setl filetype=applescript
-au MyAutoCmd bufnewfile,bufread *.scala setl ft=scala
-au MyAutoCmd bufnewfile,bufread *.rb setl ft=ruby fenc=utf8 ff=unix
+au MyAutoCmd BufNewFile,BufRead *.scpt,*.applescript setl filetype=applescript
+au MyAutoCmd BufNewFile,BufRead *.scala setl ft=scala
+au MyAutoCmd BufNewFile,BufRead *.rb setl ft=ruby fenc=utf8 ff=unix
 
 " Scala {{{
 " http://vim-users.jp/2013/02/vim-advent-calendar-2012-ujihisa-4/

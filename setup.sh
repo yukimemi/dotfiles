@@ -191,6 +191,7 @@ if shell_is_osx ; then
     [ ! -d ${HOME}/.iterm2-colorscheme ] && mkdir -p ${HOME}/.iterm2-colorscheme
     git clone https://github.com/altercation/solarized.git ~/.iterm2-colorscheme/solarized
     git clone https://github.com/larssmit/iterm2-getafe.git ~/.iterm2-colorscheme/getafe
+    git clone https://github.com/baskerville/iTerm-2-Color-Themes.git ~/.iterm2-colorscheme/iTerm-2-Color-Themes
 
     # KeyRemap4MacBook
     cd mac

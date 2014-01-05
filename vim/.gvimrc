@@ -15,7 +15,9 @@ set guioptions=none
 
 " color
 if s:is_darwin
-    colorscheme hybrid
+    colorscheme solarized
+    let g:solarized_visibility = "high"
+    let g:solarized_contrast = "high"
     set background=dark
 else
     colorscheme solarized
