@@ -101,6 +101,7 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'osyo-manga/vim-precious', {'depends': 'Shougo/context_filetype.vim'}
+NeoBundleLazy 'itchyny/calendar.vim'
 NeoBundleLazy 'superbrothers/vim-vimperator'
 NeoBundleLazy 'gregsexton/gitv', {'depends': 'tpope/vim-fugitive'}
 NeoBundleLazy 'pekepeke/titanium-vim'
@@ -2005,6 +2006,16 @@ if neobundle#tap('vim-vimperator')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'filetypes': 'vimperator'
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('calendar.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': [{'complete': 'customlist,calendar#argument#complete', 'name': 'Calendar'}]
                 \ }
                 \ })
 
