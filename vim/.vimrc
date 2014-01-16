@@ -85,7 +85,8 @@ NeoBundle 'kana/vim-textobj-fold', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'mattn/sonictemplate-vim'
 NeoBundle 'mattn/webapi-vim'
-NeoBundle 'nathanaelkane/vim-indent-guides'
+"NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'osyo-manga/vim-anzu'
 NeoBundle 'osyo-manga/vim-automatic', {'depends': ['osyo-manga/vim-gift', 'osyo-manga/vim-reunions']}
 NeoBundle 'osyo-manga/vim-textobj-multitextobj', {'depends': 'kana/vim-textobj-user'}
@@ -100,6 +101,7 @@ NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'osyo-manga/vim-precious', {'depends': 'Shougo/context_filetype.vim'}
 NeoBundleLazy 'itchyny/thumbnail.vim'
 NeoBundleLazy 'itchyny/calendar.vim'
@@ -126,7 +128,7 @@ NeoBundleLazy 'PProvost/vim-ps1'
 NeoBundleLazy 'SQLUtilities'
 NeoBundleLazy 'Shougo/echodoc.vim'
 NeoBundleLazy 'Shougo/junkfile.vim'
-NeoBundleLazy 'Shougo/neosnippet.vim'
+NeoBundleLazy 'Shougo/neosnippet.vim', {'depends': 'Shougo/neosnippet-snippets'}
 NeoBundleLazy 'Shougo/unite.vim', {'depends': 'Shougo/vimproc.vim'}
 NeoBundleLazy 'Shougo/vim-vcs'
 NeoBundleLazy 'Shougo/vimfiler.vim', {'depends': 'Shougo/unite.vim'}
@@ -401,7 +403,8 @@ set list
 if s:is_windows
     set listchars=tab:>\ ,trail:-,extends:>,precedes:<
 else
-    set listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%
+    "set listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%
+    set listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
 endif
 set backupdir=$MY_BACKUP_DIR
 set directory=$MY_BACKUP_DIR
@@ -2066,6 +2069,14 @@ if neobundle#tap('vim-choosewin')"{{{
 
     call neobundle#untap()
 
+endif"}}}
+
+if neobundle#tap('indentLine')"{{{
+    call neobundle#config({})
+
+    let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail']
+
+    call neobundle#untap()
 endif"}}}
 
 " disable plugin
