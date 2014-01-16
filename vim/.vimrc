@@ -73,7 +73,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'banyan/recognize_charcode.vim'
 NeoBundle 'cocopon/lightline-hybrid.vim', {'depends': 'itchyny/lightline.vim'}
 NeoBundle 'fuenor/qfixgrep'
-NeoBundle 'fuenor/qfixhowm'
+"NeoBundle 'fuenor/qfixhowm'
 NeoBundle 'goldfeld/vim-seek'
 NeoBundle 'itchyny/landscape.vim'
 NeoBundle 'itchyny/lightline.vim'
@@ -101,10 +101,11 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'osyo-manga/vim-precious', {'depends': 'Shougo/context_filetype.vim'}
+NeoBundleLazy 'itchyny/thumbnail.vim'
 NeoBundleLazy 'itchyny/calendar.vim'
 NeoBundleLazy 'superbrothers/vim-vimperator'
 NeoBundleLazy 'gregsexton/gitv', {'depends': 'tpope/vim-fugitive'}
-NeoBundleLazy 'pekepeke/titanium-vim'
+"NeoBundleLazy 'pekepeke/titanium-vim'
 NeoBundleLazy 'rhysd/vim-textobj-ruby', {'depends': 'kana/vim-textobj-user'}
 NeoBundleLazy 'osyo-manga/vim-textobj-multiblock', {'depends': 'kana/vim-textobj-user'}
 NeoBundleLazy 'osyo-manga/vim-operator-search', {'depends': 'kana/vim-operator-user'}
@@ -112,7 +113,7 @@ NeoBundleLazy 'thinca/vim-visualstar'
 NeoBundleLazy 'osyo-manga/unite-qfixhowm', {'depends': 'fuenor/qfixhowm'}
 NeoBundleLazy 'tyru/restart.vim'
 NeoBundleLazy 'tyru/capture.vim'
-NeoBundleLazy 'thinca/vim-ft-clojure'
+"NeoBundleLazy 'thinca/vim-ft-clojure'
 NeoBundleLazy 'kana/vim-filetype-haskell'
 NeoBundleLazy 'AndrewRadev/splitjoin.vim'
 NeoBundleLazy 'AndrewRadev/linediff.vim'
@@ -131,7 +132,7 @@ NeoBundleLazy 'Shougo/vim-vcs'
 NeoBundleLazy 'Shougo/vimfiler.vim', {'depends': 'Shougo/unite.vim'}
 NeoBundleLazy 'Shougo/vimshell.vim', {'depends': 'Shougo/vimproc.vim'}
 NeoBundleLazy 'Shougo/vinarise.vim'
-NeoBundleLazy 'adogear/vim-blockdiag-series'
+"NeoBundleLazy 'adogear/vim-blockdiag-series'
 NeoBundleLazy 'aklt/plantuml-syntax'
 NeoBundleLazy 'alpaca-tc/alpaca_tags', {'depends': 'Shougo/vimproc.vim'}
 NeoBundleLazy 'basyura/J6uil.vim', {'depends': ['Shougo/vimproc.vim', 'mattn/webapi-vim']}
@@ -198,7 +199,7 @@ NeoBundleLazy 'wavded/vim-stylus'
 NeoBundleLazy 'wesleyche/SrcExpl'
 NeoBundleLazy 'yuyunko/dosbatch-indent', {'depends': 'taku-o/vim-batch-source'}
 NeoBundleLazy 'zhisheng/visualmark.vim'
-
+NeoBundleLazy 't9md/vim-choosewin'
 NeoBundleLazy 'davidhalter/jedi-vim', {
             \ 'depends': 'mitechie/pyflakes-pathogen',
             \ 'build': {
@@ -630,14 +631,14 @@ endif"}}}
 
 if neobundle#tap('vim-anzu')"{{{
     au MyAutoCmd BufEnter,BufWinEnter,WinEnter * nnoremap <ESC><ESC> :<C-u>nohlsearch<CR>
-    nmap n <Plug>(anzu-mode-n)
-    nmap N <Plug>(anzu-mode-N)
-    nnoremap <expr> n anzu#mode#mapexpr("n", "", "zzzv")
-    nnoremap <expr> N anzu#mode#mapexpr("N", "", "zzzv")
-    "nmap n <Plug>(anzu-n)
-    "nmap N <Plug>(anzu-N)
-    "nmap * <Plug>(anzu-star)
-    "nmap # <Plug>(anzu-sharp)
+    "nmap n <Plug>(anzu-mode-n)
+    "nmap N <Plug>(anzu-mode-N)
+    "nnoremap <expr> n anzu#mode#mapexpr("n", "", "zzzv")
+    "nnoremap <expr> N anzu#mode#mapexpr("N", "", "zzzv")
+    nmap n <Plug>(anzu-n)zzzv
+    nmap N <Plug>(anzu-N)zzzv
+    nmap * <Plug>(anzu-star)zzzv
+    nmap # <Plug>(anzu-sharp)zzzv
 
     call neobundle#untap()
 endif"}}}
@@ -687,6 +688,7 @@ if neobundle#tap('vim-indent-guides')"{{{
     let g:indent_guides_guide_size = 1
     let g:indent_guides_auto_colors = 1
     let g:indent_guides_start_level = 2
+    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'calendar', 'thumbnail']
 
     call neobundle#untap()
 endif"}}}
@@ -2019,7 +2021,51 @@ if neobundle#tap('calendar.vim')"{{{
                 \ }
                 \ })
 
+    let g:calendar_google_calendar = 1
+    let g:calendar_google_task = 1
+
     call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('thumbnail.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': [{'complete': 'customlist,thumbnail#complete', 'name': 'Thumbnail'}]
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-choosewin')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': ['<Plug>(choosewin)'],
+                \   'commands': ['FontReview', 'FontPerfSmall', 'ChooseWin', 'FontPerfLarge']
+                \ }
+                \ })
+
+    nmap  -  <Plug>(choosewin)
+
+    let g:choosewin_overlay_enable = 1
+    let g:choosewin_overlay_clear_multibyte = 1
+
+    " color like tmux
+    let g:choosewin_color_overlay = {
+                \ 'gui': ['DodgerBlue3', 'DodgerBlue3' ],
+                \ 'cterm': [ 25, 25 ]
+                \ }
+    let g:choosewin_color_overlay_current = {
+                \ 'gui': ['firebrick1', 'firebrick1' ],
+                \ 'cterm': [ 124, 124 ]
+                \ }
+
+    let g:choosewin_blink_on_land      = 0
+    let g:choosewin_statusline_replace = 0
+    let g:choosewin_tabline_replace    = 0
+
+    call neobundle#untap()
+
 endif"}}}
 
 " disable plugin
