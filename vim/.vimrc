@@ -103,6 +103,8 @@ NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'osyo-manga/vim-precious', {'depends': 'Shougo/context_filetype.vim'}
+NeoBundleLazy 'mattn/unite-vim_advent-calendar', {'depends': ['Shougo/unite.vim', 'mattn/webapi-vim']}
+NeoBundleLazy 'mattn/unite-advent_calendar', {'depends': ['Shougo/unite.vim', 'mattn/webapi-vim']}
 NeoBundleLazy 'itchyny/thumbnail.vim'
 NeoBundleLazy 'itchyny/calendar.vim'
 NeoBundleLazy 'superbrothers/vim-vimperator'
@@ -639,7 +641,7 @@ if neobundle#tap('vim-submode')"{{{
 endif"}}}
 
 if neobundle#tap('vim-anzu')"{{{
-    au MyAutoCmd BufEnter,BufWinEnter,WinEnter * nnoremap <ESC><ESC> :<C-u>nohlsearch<CR>
+    au MyAutoCmd BufEnter,BufLeave,BufWinEnter,BufWinLeave,WinEnter,CmdwinLeave * nnoremap <ESC><ESC> :<C-u>nohlsearch<CR>
     "nmap n <Plug>(anzu-mode-n)
     "nmap N <Plug>(anzu-mode-N)
     "nnoremap <expr> n anzu#mode#mapexpr("n", "", "zzzv")
@@ -2092,8 +2094,30 @@ if neobundle#tap('vimplenote-vim')"{{{
                 \ }
                 \ })
 
-    call neobundle#untap()
+    nnoremap <Leader>vl :<C-u>VimpleNote -l<CR>
+    nnoremap <Leader>vn :<C-u>VimpleNote -n<CR>
 
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('unite-vim_advent-calendar')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'unite_sources': ['vim_advent_calendar']
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('unite-advent_calendar')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'unite_sources': ['advent_calendar']
+                \ }
+                \ })
+
+    call neobundle#untap()
 endif"}}}
 
 " disable plugin

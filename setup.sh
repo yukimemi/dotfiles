@@ -137,7 +137,11 @@ git config --global alias.br branch
 git config --global alias.di diff
 git config --global alias.k 'log --graph --pretty'
 # editor
-git config --global core.editor vim
+if shell_is_osx ; then
+    git config --global core.editor /Applications/MacVim.app/Contents/MacOS/Vim
+else
+    git config --global core.editor vim
+fi
 
 # scripts git clone
 [ ! -d ${HOME}/bin ] && mkdir ${HOME}/bin

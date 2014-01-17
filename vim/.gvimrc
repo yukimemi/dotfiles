@@ -16,12 +16,12 @@ set guioptions=none
 " color
 if s:is_darwin
     colorscheme solarized
-    let g:solarized_visibility = "high"
+    "let g:solarized_visibility = "high"
     let g:solarized_contrast = "high"
     set background=dark
 else
     colorscheme solarized
-    let g:solarized_visibility = "high"
+    "let g:solarized_visibility = "high"
     let g:solarized_contrast = "high"
     set background=dark
 endif
@@ -29,9 +29,10 @@ endif
 " font
 if s:is_windows
     set gfn=MS_Gothic:h9:cSHIFTJIS
-    set guifontwide=MS_Gothic:h9:cSHIFTJIS
+    set gfw=MS_Gothic:h9:cSHIFTJIS
 else
     set gfn=Ricty\ Regular\ for\ Powerline:h12
+    set gfw=Ricty\ Regular\ for\ Powerline:h12
 endif
 
 " only mac
@@ -45,7 +46,7 @@ elseif s:is_windows
     au MyAutoCmd GUIEnter * set lines=130 | set columns=120
 endif
 
-" save window position and restore
+" save window position and restore"{{{
 let s:infofile = '~/.vim/.vimpos'
 
 function! s:SaveWindowParam(filename)
@@ -72,27 +73,22 @@ if filereadable(expand(s:infofile))
     execute 'source '.s:infofile
 endif
 unlet s:infofile
-
-" initiallize size
-if s:is_windows
-    set lines=130
-    set columns=120
-    " Alt + ï½¡¦
-    nnoremap [Space]r :<C-u>simalt ~r<CR>
-    nnoremap [Space]x :<C-u>simalt ~x<CR>
-endif
-
-" Maximize
-"au MyAutoCmd GUIEnter * simalt ~x
-"au MyAutoCmd BufEnter * macaction performZoom:
+"}}}
 
 if s:is_darwin
     if has("gui_running")
         set fuoptions=maxvert,maxhorz
         "au MyAutoCmd GUIEnter * set fullscreen
+        nnoremap [Space]r :<C-u>set nofullscreen<CR>
+        nnoremap [Space]x :<C-u>set fullscreen<CR>
     endif
 elseif s:is_windows
     if has("gui_running")
+        " initiallize size
+        set lines=130
+        set columns=120
+        nnoremap [Space]r :<C-u>simalt ~r<CR>
+        nnoremap [Space]x :<C-u>simalt ~x<CR>
         "au MyAutoCmd GUIEnter * simalt ~x
         "au MyAutoCmd FileType vimfiler simalt ~x
         "au MyAutoCmd BufLeave,BufHidden,BufDelete,VimLeave vimfiler simalt ~r<CR>

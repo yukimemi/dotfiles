@@ -1,0 +1,13 @@
+# ~/.tmuxinator/bitbucket.yml
+
+name: bitbucket
+root: ~/Documents/git/yuyunko.bitbucket.org
+
+windows:
+  - bitbucket:
+      layout: 5cf1,226x57,0,0{170x57,0,0,23,55x57,171,0[55x43,171,0,25,55x13,171,44,26]}
+      panes:
+        - git co drafts
+        - git co drafts; bundle exec guard
+        - python -m SimpleHTTPServer
+  - shell: open http://localhost:8000
