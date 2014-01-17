@@ -365,6 +365,12 @@ au MyAutoCmd WinEnter * checktime
 au MyAutoCmd BufNewFile,BufRead *.csv,*.log setl nowrap
 " no insert comment
 au MyAutoCmd FileType * set formatoptions-=ro
+" windows cygwin
+if s:is_windows
+    if isdirectory("C:/cygwin/bin")
+        let $PATH = 'C:/cygwin/bin;' . $PATH
+    endif
+endif
 "===================================================================================}}}
 
 "{{{ ========== Search ================================================================
@@ -2096,6 +2102,8 @@ au MyAutoCmd BufNewFile,BufRead *.ts setl ft=typescript fenc=utf8 ff=unix
 au MyAutoCmd BufNewFile,BufRead *.coffee setl ft=coffee fenc=utf8 ff=unix
       \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.js setl ft=javascript fenc=utf8 ff=unix
+      \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
+au MyAutoCmd BufNewFile,BufRead *.wsf setl fenc=utf8 ff=unix
       \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.html setl ts=4 sw=2 st=2 et
 au MyAutoCmd BufNewFile,BufRead *.uml setl fenc=cp932 ff=dos ft=plantuml
