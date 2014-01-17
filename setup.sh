@@ -186,6 +186,7 @@ if shell_is_osx ; then
     brew cask install quicksilver
     brew cask install dropbox
     brew cask install mplayerx
+    brew cask install f-lux
 
     # iterm2 solalized colorscheme
     [ ! -d ${HOME}/.iterm2-colorscheme ] && mkdir -p ${HOME}/.iterm2-colorscheme

@@ -2085,6 +2085,17 @@ if neobundle#tap('indentLine')"{{{
     call neobundle#untap()
 endif"}}}
 
+if neobundle#tap('vimplenote-vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': ['VimpleNote']
+                \ }
+                \ })
+
+    call neobundle#untap()
+
+endif"}}}
+
 " disable plugin
 let plugin_dicwin_disable = 1
 "===================================================================================}}}
@@ -2108,7 +2119,8 @@ au MyAutoCmd BufNewFile,BufRead *.wsf setl fenc=utf8 ff=unix
 au MyAutoCmd BufNewFile,BufRead *.html setl ts=4 sw=2 st=2 et
 au MyAutoCmd BufNewFile,BufRead *.uml setl fenc=cp932 ff=dos ft=plantuml
 au MyAutoCmd BufNewFile,BufRead *.diag setl fenc=utf8 ff=unix ft=blockdiag
-au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown
+au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown fenc=utf8 ff=unix
+      \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.rst setl tabstop=8 shiftwidth=3 softtabstop=3 expandtab
 au MyAutoCmd BufNewFile,BufRead *.jade setl ft=jade
 au MyAutoCmd BufNewFile,BufRead *.styl setl ft=stylus tabstop=8 shiftwidth=2

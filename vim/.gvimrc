@@ -89,7 +89,7 @@ endif
 if s:is_darwin
     if has("gui_running")
         set fuoptions=maxvert,maxhorz
-        au MyAutoCmd GUIEnter * set fullscreen
+        "au MyAutoCmd GUIEnter * set fullscreen
     endif
 elseif s:is_windows
     if has("gui_running")
