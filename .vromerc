@@ -33,11 +33,11 @@ set previouspattern+=^PrevPage|‹‹$
 set editor=mvim
 
 " Disable Vrome in those sites, Multiple URLs can be separated with ‘,’
-set disablesites=mail.google.com, reader.google.com 
+set disablesites=mail.google.com, reader.google.com
 
 " Define search engines. the value should be valid json looks like below.
 " Please remember the first searchengine is the default one. in the below one, it is google
-set searchengines={"google":“http://www.google.com/search?q={{keyword}}”, “yahoo”:“http://search.yahoo.com/search?p={{keyword}}”,“wikipedia”:“http://en.wikipedia.org/wiki/{{keyword}}”,“answers”:“http://www.answers.com/main/ntquery?s={{keyword}}”,“yubnub”:“http://yubnub.org/parser/parse?command={{keyword}}”}
+set searchengines={"google":“http://www.googleco.jpcom/search?q={{keyword}}”, “yahoo”:“http://search.yahoo.com/search?p={{keyword}}”,“wikipedia”:“http://en.wikipedia.org/wiki/{{keyword}}”,“answers”:“http://www.answers.com/main/ntquery?s={{keyword}}”,“yubnub”:“http://yubnub.org/parser/parse?command={{keyword}}”}
 
 " You could also add some new searchengines without overwrite build in.
 set searchengines+={"baidu":“http://www.baidu.com/s?wd={{keyword}}”}
@@ -48,7 +48,7 @@ set searchengines+={"baidu":“http://www.baidu.com/s?wd={{keyword}}”}
 " Disable autocomplete
 "set noautocomplete
 
-" Change enable vrome keybinding, default is 
+" Change enable vrome keybinding, default is
 "set enable_vrome_key=
 
 " The server port is what external server running on
