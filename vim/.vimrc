@@ -525,7 +525,7 @@ nmap cc <Plug>(ToggleColorColumn)"}}}
 
 "{{{ ========== Plugin Settings =======================================================
 if neobundle#tap('lightline.vim')"{{{
-    if s:is_windows
+    if s:is_windows || s:is_cygwin
         let g:lightline = {
                     \ 'colorscheme': 'landscape',
                     \ 'mode_map': { 'c': 'NORMAL' },

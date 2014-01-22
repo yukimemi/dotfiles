@@ -9,10 +9,6 @@ export SHELL=zsh
 # path setting
 typeset -U path
 path=(
-    # windows python
-    /cygdrive/c/Python27(N-/)
-    /cygdrive/c/Python27/Scripts(N-/)
-    /cygdrive/c/work/winscripts/sh(N-/)
     # homebrew
     /usr/local/bin(N-/)
     /opt/boxen/homebrew(N-/)
@@ -41,7 +37,6 @@ path=(
     /usr/ccs/bin(N-/)
     # Cygwin
     /cygdrive/c/meadow/bin(N-/)
-    /usr/local/bin(N-/)
     /usr/bin(N-/)
     /usr/games(N-/)
     # pip

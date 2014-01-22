@@ -8,13 +8,15 @@ ostype() { echo $OSTYPE | tr '[A-Z]' '[a-z]'; }
 SHELL_PLATFORM='unknown'
 case "$(ostype)" in
     *'linux'*   ) SHELL_PLATFORM='linux';;
+*'cygwin'*  ) SHELL_PLATFORM='cygwin';;
     *'darwin'*  ) SHELL_PLATFORM='osx';;
-    *'bsd'*     ) SHELL_PLATFORM='bsd';;
+*'bsd'*     ) SHELL_PLATFORM='bsd';;
 esac
 
 shell_is_linux() { [[ $SHELL_PLATFORM == 'linux' || $SHELL_PLATFORM == 'bsd' ]]; }
 shell_is_osx()   { [[ $SHELL_PLATFORM == 'osx' ]]; }
 shell_is_bsd()   { [[ $SHELL_PLATFORM == 'bsd' || $SHELL_PLATFORM == 'osx' ]]; }
+shell_is_cygwin() { [[ $SHELL_PLATFORM == 'cygwin' ]]; }
 
 ############################## for Linux ##############################
 if shell_is_linux ; then
@@ -29,7 +31,6 @@ if shell_is_linux ; then
     eval sudo $apget install tmux
 fi
 #######################################################################
-
 
 # tmux or screen
 echo "local? , server? , linux?, or windows?"
@@ -74,7 +75,7 @@ do
 done
 cd ../
 
-[ ! -d "${HOME}/.oh-my-zsh" ] && git clone git@github.com:yuyunko/oh-my-zsh.git ~/.oh-my-zsh
+[ ! -d "${HOME}/.oh-my-zsh" ] && git clone git@github.com:yukimemi/oh-my-zsh.git ~/.oh-my-zsh
 rm ${HOME}/.zshrc
 ln -s ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 
@@ -88,29 +89,30 @@ do
 done
 cd ../
 
-if [ ! -d vim/.vim/back ]; then
-    mkdir -p vim/.vim/back
-fi
-
 # vimperator
+if shell_is_cygwin ; then
+    VIMPERATOR_DIR="vimperator"
+else
+    VIMPERATOR_DIR=".vimperator"
+fi
 cd vimperator
-[ ! -d ${HOME}/.vimperator/plugin ] && mkdir -p ${HOME}/.vimperator/plugin
-git clone git://github.com/caisui/vimperator.git ${HOME}/.vimperator/caisui
-git clone git://gist.github.com/377348.git ${HOME}/.vimperator/377348
-git clone git://github.com/vimpr/vimperator-plugins.git ${HOME}/.vimperator/vimperator-plugins
-git clone git://github.com/vimpr/vimperator-rc.git ${HOME}/.vimperator/vimperator-rc
+[ ! -d ${HOME}/${VIMPERATOR_DIR}/plugin ] && mkdir -p ${HOME}/${VIMPERATOR_DIR}/plugin
+git clone git://github.com/caisui/vimperator.git ${HOME}/${VIMPERATOR_DIR}/caisui
+git clone git://gist.github.com/377348.git ${HOME}/${VIMPERATOR_DIR}/377348
+git clone git://github.com/vimpr/vimperator-plugins.git ${HOME}/${VIMPERATOR_DIR}/vimperator-plugins
+git clone git://github.com/vimpr/vimperator-rc.git ${HOME}/${VIMPERATOR_DIR}/vimperator-rc
 
 rm ${HOME}/.vimperatorrc
 ln -s ${PWD}/.vimperatorrc ${HOME}/
 
-rm ${HOME}/.vimperator/plugin/plugin_loader.js
-ln -s ${HOME}/.vimperator/vimperator-plugins/plugin_loader.js ${HOME}/.vimperator/plugin/
-rm ${HOME}/.vimperator/colors
-ln -s ${HOME}/.vimperator/vimperator-rc/anekos/colors ${HOME}/.vimperator/
+rm ${HOME}/${VIMPERATOR_DIR}/plugin/plugin_loader.js
+ln -s ${HOME}/${VIMPERATOR_DIR}/vimperator-plugins/plugin_loader.js ${HOME}/${VIMPERATOR_DIR}/plugin/
+rm ${HOME}/${VIMPERATOR_DIR}/colors
+ln -s ${HOME}/${VIMPERATOR_DIR}/vimperator-rc/anekos/colors ${HOME}/${VIMPERATOR_DIR}/
 cd ../
 
 # dotfiles
-DOT_FILES=( .vrapperrc .gemrc)
+DOT_FILES=( .vrapperrc .gemrc .bashrc .inputrc)
 for file in ${DOT_FILES[@]}
 do
     rm ${HOME}/${file}
@@ -123,10 +125,12 @@ ln -s ${PWD}/global-gitignore ${HOME}/.gitignore
 git config --global core.excludesfile ~/.gitignore
 
 # git
-git config --global user.name 'yuyunko'
-git config --global user.email 'i.xxxxxxxxxxxxx.13@gmail.com'
-git config --global github.user 'yuyunko'
-git config --global push.default simple
+git config --global user.name 'yukimemi'
+git config --global user.email 'yukimemi@gmail.com'
+git config --global github.user 'yukimemi'
+if ! shell_is_cygwin ; then
+    git config --global push.default simple
+fi
 git config --global color.diff auto
 # alias
 git config --global alias.ci commit
@@ -146,7 +150,7 @@ fi
 # scripts git clone
 [ ! -d ${HOME}/bin ] && mkdir ${HOME}/bin
 cd ${HOME}/bin
-git clone git@bitbucket.org:yuyunko/scripts.git
+git clone git@bitbucket.org:yukimemi/scripts.git
 cd -
 
 ############################## for OS X ##############################

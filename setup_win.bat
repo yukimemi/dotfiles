@@ -71,9 +71,9 @@ if exist "%CYGWIN_HOME%\.minttyrc" rename "%CYGWIN_HOME%\.minttyrc" ".minttyrc.b
 %LINKCMD_F% "%CYGWIN_HOME%\.minttyrc" "%THIS_FILE_PASS%.minttyrc"
 
 REM git
-git config --global user.name 'yuyunko'
-git config --global user.email 'i.xxxxxxxxxxxxx.13@gmail.com'
-git config --global github.user 'yuyunko'
+git config --global user.name 'yukimemi'
+git config --global user.email 'yukimemi@gmail.com'
+git config --global github.user 'yukimemi'
 REM git config --global push.default simple
 git config --global color.diff auto
 REM alias
