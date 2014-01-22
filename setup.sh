@@ -112,7 +112,7 @@ ln -s ${HOME}/${VIMPERATOR_DIR}/vimperator-rc/anekos/colors ${HOME}/${VIMPERATOR
 cd ../
 
 # dotfiles
-DOT_FILES=( .vrapperrc .gemrc .bashrc .inputrc)
+DOT_FILES=( .vrapperrc .gemrc .bashrc .inputrc .tmuxinator)
 for file in ${DOT_FILES[@]}
 do
     rm ${HOME}/${file}
