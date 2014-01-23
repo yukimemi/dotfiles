@@ -75,9 +75,9 @@ do
 done
 cd ../
 
-[ ! -d "${HOME}/.oh-my-zsh" ] && git clone git@github.com:yukimemi/oh-my-zsh.git ~/.oh-my-zsh
+[ ! -d "${HOME}/.oh-my-zsh" ] && git clone git@github.com:yukimemi/oh-my-zsh.git ${HOME}/.oh-my-zsh
 rm ${HOME}/.zshrc
-ln -s ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+ln -s ${HOME}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME}/.zshrc
 
 # vim
 cd vim
@@ -122,7 +122,7 @@ done
 # global gitignore
 rm ${HOME}/.gitignore
 ln -s ${PWD}/global-gitignore ${HOME}/.gitignore
-git config --global core.excludesfile ~/.gitignore
+git config --global core.excludesfile ${HOME}/.gitignore
 
 # git
 git config --global user.name 'yukimemi'
@@ -198,9 +198,9 @@ if shell_is_osx ; then
 
     # iterm2 solalized colorscheme
     [ ! -d ${HOME}/.iterm2-colorscheme ] && mkdir -p ${HOME}/.iterm2-colorscheme
-    git clone https://github.com/altercation/solarized.git ~/.iterm2-colorscheme/solarized
-    git clone https://github.com/larssmit/iterm2-getafe.git ~/.iterm2-colorscheme/getafe
-    git clone https://github.com/baskerville/iTerm-2-Color-Themes.git ~/.iterm2-colorscheme/iTerm-2-Color-Themes
+    git clone https://github.com/altercation/solarized.git ${HOME}/.iterm2-colorscheme/solarized
+    git clone https://github.com/larssmit/iterm2-getafe.git ${HOME}/.iterm2-colorscheme/getafe
+    git clone https://github.com/baskerville/iTerm-2-Color-Themes.git ${HOME}/.iterm2-colorscheme/iTerm-2-Color-Themes
 
     # KeyRemap4MacBook
     cd mac
