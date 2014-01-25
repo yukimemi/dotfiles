@@ -114,6 +114,11 @@ qmark v http://tv.yahoo.co.jp/listings/realtime/
 qmark y http://www.youtube.com/?gl=JP&hl=ja
 " }}}
 
+" ignorekeys"{{{
+ignorekeys add mail\\.google\\.com
+ignorekeys add plus\\.google\\.com
+"}}}
+
 " javascript {{{
 " Google search in the site {{{
 " http://blog.feelmy.net/2012/12/22/useful-tips-for-vimperator/

@@ -8,9 +8,9 @@ ostype() { echo $OSTYPE | tr '[A-Z]' '[a-z]'; }
 SHELL_PLATFORM='unknown'
 case "$(ostype)" in
     *'linux'*   ) SHELL_PLATFORM='linux';;
-*'cygwin'*  ) SHELL_PLATFORM='cygwin';;
+    *'cygwin'*  ) SHELL_PLATFORM='cygwin';;
     *'darwin'*  ) SHELL_PLATFORM='osx';;
-*'bsd'*     ) SHELL_PLATFORM='bsd';;
+    *'bsd'*     ) SHELL_PLATFORM='bsd';;
 esac
 
 shell_is_linux() { [[ $SHELL_PLATFORM == 'linux' || $SHELL_PLATFORM == 'bsd' ]]; }
@@ -92,8 +92,10 @@ cd ../
 # vimperator
 if shell_is_cygwin ; then
     VIMPERATOR_DIR="vimperator"
+    VIMPERATOR_FILE="_vimperatorrc"
 else
     VIMPERATOR_DIR=".vimperator"
+    VIMPERATOR_FILE=".vimperatorrc"
 fi
 cd vimperator
 [ ! -d ${HOME}/${VIMPERATOR_DIR}/plugin ] && mkdir -p ${HOME}/${VIMPERATOR_DIR}/plugin
@@ -102,8 +104,8 @@ git clone git://gist.github.com/377348.git ${HOME}/${VIMPERATOR_DIR}/377348
 git clone git://github.com/vimpr/vimperator-plugins.git ${HOME}/${VIMPERATOR_DIR}/vimperator-plugins
 git clone git://github.com/vimpr/vimperator-rc.git ${HOME}/${VIMPERATOR_DIR}/vimperator-rc
 
-rm ${HOME}/.vimperatorrc
-ln -s ${PWD}/.vimperatorrc ${HOME}/
+rm ${HOME}/${VIMPERATOR_FILE}
+ln -s ${PWD}/.vimperatorrc ${HOME}/${VIMPERATOR_FILE}
 
 rm ${HOME}/${VIMPERATOR_DIR}/plugin/plugin_loader.js
 ln -s ${HOME}/${VIMPERATOR_DIR}/vimperator-plugins/plugin_loader.js ${HOME}/${VIMPERATOR_DIR}/plugin/
