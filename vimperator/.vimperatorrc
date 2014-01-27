@@ -27,8 +27,8 @@ EOM
 "}}}
 
 " mappings {{{
-nnoremap <C-l> gt
-nnoremap <C-h> gT
+nnoremap <C-l> <C-n>
+nnoremap <C-h> <C-p>
 nnoremap d D
 nnoremap D d
 
@@ -115,8 +115,8 @@ qmark y http://www.youtube.com/?gl=JP&hl=ja
 " }}}
 
 " ignorekeys"{{{
-ignorekeys add mail\\.google\\.com
-ignorekeys add plus\\.google\\.com
+ignorekeys add mail\\.google\\.com -except :,F,t,O,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,d,D
+ignorekeys add plus\\.google\\.com -except :,t,f,F,d,D,g,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,gg,G,<C-[>
 "}}}
 
 " javascript {{{

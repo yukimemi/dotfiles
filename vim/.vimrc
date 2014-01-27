@@ -650,6 +650,7 @@ if neobundle#tap('vim-anzu')"{{{
     nmap N <Plug>(anzu-N)zzzv
     nmap * <Plug>(anzu-star)zzzv
     nmap # <Plug>(anzu-sharp)zzzv
+    "set statusline=%{anzu#search_status()}
 
     call neobundle#untap()
 endif"}}}
@@ -1193,7 +1194,7 @@ if neobundle#tap('vim-quickrun')"{{{
                 \       "hook/close_unite_quickfix/enable_hook_loaded": 1,
                 \       "hook/unite_quickfix/enable_failure": 1,
                 \       "hook/close_quickfix/enable_exit": 1,
-                \       "hook/close_buffer/enable_failure": 1,
+                \       "hook/close_buffer/enable_failure": 0,
                 \       "hook/close_buffer/enable_empty_data": 1,
                 \       "hook/echo/enable": 1,
                 \       "hook/echo/output_success": "success!!!",
@@ -1932,9 +1933,8 @@ if neobundle#tap('vim-visualstar')"{{{
                 \ }
                 \ })
 
-    noremap <Plug>N N
-    map * <Plug>(visualstar-*)<Plug>N
-    map # <Plug>(visualstar-#)<Plug>N
+    map * <Plug>(visualstar-*)
+    map # <Plug>(visualstar-#)
     call neobundle#untap()
 endif"}}}
 
