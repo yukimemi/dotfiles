@@ -1,5 +1,3 @@
-echo ".vimperatorrc source start"
-
 " basic {{{
 set titlestring="Mozilla Firefox"
 set verbose=9
@@ -53,6 +51,9 @@ inoremap <C-n> <Down>
 inoremap <C-p> <Up>
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
+
+" nohlsearch
+nnoremap <ESC><ESC> :nohlsearch<CR>
 
 " command mode emacs keybindings
 cnoremap <C-p> <S-Tab>
@@ -186,7 +187,7 @@ if (liberator.has("Win32")) {
 }
 EOM
 
-let g:plugin_loader_plugins = "_libly,_smooziee,auto-focus-frame,commandBookmarklet,multi_requester,copy,migemized_find,opener-ex,stella,twittperator,slideshare,hints-ext,x-hint,smooth-scroll,xpath-hint,statusline-toolbar"
+let g:plugin_loader_plugins = "_libly,_smooziee,auto-focus-frame,commandBookmarklet,multi_requester,copy,opener-ex,stella,twittperator,slideshare,hints-ext,x-hint,smooth-scroll,xpath-hint,statusline-toolbar"
 
 " hints-ext"{{{
 let use_hintchars_ex=2
@@ -491,7 +492,5 @@ EOM
 "}}}
 
 " }}}
-
-echo ".vimperatorrc source end"
 
 " vim: ft=vim sw=2 sts=2 fdm=marker

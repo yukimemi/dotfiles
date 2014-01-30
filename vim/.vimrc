@@ -103,6 +103,9 @@ NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'osyo-manga/vim-precious', {'depends': 'Shougo/context_filetype.vim'}
+NeoBundle 'hunner/vim-plist'
+NeoBundleLazy 'koron/codic-vim'
+NeoBundleLazy 'rhysd/unite-codic.vim', {'depends': ['Shougo/unite.vim', 'koron/codic-vim']}
 NeoBundleLazy 'mattn/unite-vim_advent-calendar', {'depends': ['Shougo/unite.vim', 'mattn/webapi-vim']}
 NeoBundleLazy 'mattn/unite-advent_calendar', {'depends': ['Shougo/unite.vim', 'mattn/webapi-vim']}
 NeoBundleLazy 'itchyny/thumbnail.vim'
@@ -370,7 +373,7 @@ au MyAutoCmd FileType * set formatoptions-=ro
 " windows cygwin
 if s:is_windows
     if isdirectory("C:/cygwin/bin")
-        let $PATH = 'C:/cygwin/bin;' . $PATH
+        "let $PATH = 'C:/cygwin/bin;' . $PATH
     endif
 endif
 "===================================================================================}}}
@@ -434,7 +437,7 @@ endif
 
 " color
 set background=dark
-colorscheme molokai
+colorscheme hybrid
 
 highlight Search ctermbg=88
 
@@ -546,7 +549,7 @@ if neobundle#tap('lightline.vim')"{{{
                     \ }
     else
         let g:lightline = {
-                    \ 'colorscheme': 'solarized',
+                    \ 'colorscheme': 'hybrid',
                     \ 'mode_map': { 'c': 'NORMAL' },
                     \ 'active': {
                     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'anzu' ] ]
@@ -1228,6 +1231,8 @@ if neobundle#tap('vim-quickrun')"{{{
                 \       "exec": "%c %o"
                 \ },
                 \ "ps1": {
+                \       'hook/output_encode/enable': 1,
+                \       'hook/output_encode/encoding': "cp932",
                 \       'command': 'powershell.exe',
                 \       'cmdopt': '-executionPolicy RemoteSigned',
                 \       'tempfile': '%{tempname()}.ps1',
@@ -2120,6 +2125,26 @@ if neobundle#tap('unite-advent_calendar')"{{{
     call neobundle#untap()
 endif"}}}
 
+if neobundle#tap('codic-vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': [{'complete': 'customlist,codic#complete', 'name': 'Codic'}]
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('unite-codic.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'unite_sources': ['codic']
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
 " disable plugin
 let plugin_dicwin_disable = 1
 "===================================================================================}}}
@@ -2130,6 +2155,7 @@ au MyAutoCmd FileType python setl autoindent smartindent
       \ tabstop=8 expandtab shiftwidth=4 softtabstop=4
       \ foldmethod=indent foldlevel=99
 au MyAutoCmd BufNewFile,BufRead *.cmd setl ft=ps1 fenc=cp932 ff=dos
+au MyAutoCmd FileType ps1 setl fenc=cp932 ff=dos ts=4 sw=2 sts=2
 au MyAutoCmd BufNewFile,BufRead *.hta setl ft=html fenc=cp932 ff=dos
 au MyAutoCmd BufNewFile,BufRead *.sql setl fenc=cp932 ff=dos
 au MyAutoCmd BufNewFile,BufRead *.bat setl fenc=cp932 ff=dos
@@ -2143,7 +2169,9 @@ au MyAutoCmd BufNewFile,BufRead *.wsf setl fenc=utf8 ff=unix
 au MyAutoCmd BufNewFile,BufRead *.html setl ts=4 sw=2 st=2 et
 au MyAutoCmd BufNewFile,BufRead *.uml setl fenc=cp932 ff=dos ft=plantuml
 au MyAutoCmd BufNewFile,BufRead *.diag setl fenc=utf8 ff=unix ft=blockdiag
-au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown fenc=utf8 ff=unix
+"au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown fenc=utf8 ff=unix
+      "\ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
+au MyAutoCmd FileType markdown setl fenc=utf8 ff=unix
       \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.rst setl tabstop=8 shiftwidth=3 softtabstop=3 expandtab
 au MyAutoCmd BufNewFile,BufRead *.jade setl ft=jade
