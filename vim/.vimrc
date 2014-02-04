@@ -1606,7 +1606,7 @@ if neobundle#tap('vim-golang')"{{{
         setl completeopt=menu,preview
         " golint
         exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
-        au BufWritePre *.go Fmt
+        au MyAutoCmd BufWritePre *.go Fmt
     endfunction
     call neobundle#untap()
 endif"}}}
@@ -1758,6 +1758,16 @@ if neobundle#tap('vim-ps1')"{{{
                 \   'filetypes': 'ps1'
                 \ }
                 \ })
+
+    function! neobundle#tapped.hooks.on_source(bundle)
+        function! s:make_ps12cmd()
+            let s:com = "copy /b header.cmd + " . expand("%:p:t") . " " . expand("%:p:t:r") . ".cmd"
+            echom(s:com)
+            call {s:system}(s:com)
+        endfunction
+        au MyAutoCmd BufWritePost *.ps1 call s:make_ps12cmd()
+    endfunction
+
     call neobundle#untap()
 endif"}}}
 
