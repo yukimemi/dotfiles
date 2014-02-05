@@ -1757,7 +1757,11 @@ if neobundle#tap('vim-ps1')"{{{
 
     function! neobundle#tapped.hooks.on_source(bundle)
         function! s:make_ps12cmd()
-            let s:com = "copy /b header.cmd + " . expand("%:p:t") . " " . expand("%:p:t:r") . ".cmd"
+            if s:is_windows
+                let s:com = "copy /b header.cmd + " . expand("%:p:t") . " " . expand("%:p:t:r") . ".cmd"
+            else
+                let s:com = "cat header.cmd " . expand("%:p:t") . " > " . expand("%:p:t:r") . ".cmd"
+            endif
             echom(s:com)
             call {s:system}(s:com)
         endfunction
@@ -2185,8 +2189,8 @@ au MyAutoCmd BufNewFile,BufRead *.wsf setl fenc=utf8 ff=unix
 au MyAutoCmd BufNewFile,BufRead *.html setl ts=4 sw=2 st=2 et
 au MyAutoCmd BufNewFile,BufRead *.uml setl fenc=cp932 ff=dos ft=plantuml
 au MyAutoCmd BufNewFile,BufRead *.diag setl fenc=utf8 ff=unix ft=blockdiag
-"au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown fenc=utf8 ff=unix
-      "\ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
+au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown fenc=utf8 ff=unix
+      \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd FileType markdown setl fenc=utf8 ff=unix
       \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.rst setl tabstop=8 shiftwidth=3 softtabstop=3 expandtab
