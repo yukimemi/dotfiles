@@ -56,7 +56,6 @@ endif
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" plugin list {{{
 NeoBundle 'Shougo/vimproc.vim', {
             \ 'build': {
             \   'windows' : 'c:\MinGW\bin\mingw32-make -f make_mingw32.mak',
@@ -130,6 +129,7 @@ NeoBundleLazy 'pangloss/vim-javascript'
 "NeoBundleLazy 'jiangmiao/simple-javascript-indenter'
 NeoBundleLazy 'LeafCage/nebula.vim'
 NeoBundleLazy 'PProvost/vim-ps1'
+NeoBundleLazy 'cd01/poshcomplete-vim'
 NeoBundleLazy 'SQLUtilities'
 NeoBundleLazy 'Shougo/echodoc.vim'
 NeoBundleLazy 'Shougo/junkfile.vim'
@@ -1232,11 +1232,7 @@ if neobundle#tap('vim-quickrun')"{{{
                 \ },
                 \ "ps1": {
                 \       'hook/output_encode/enable': 1,
-                \       'hook/output_encode/encoding': "cp932",
-                \       'command': 'powershell.exe',
-                \       'cmdopt': '-executionPolicy RemoteSigned',
-                \       'tempfile': '%{tempname()}.ps1',
-                \       'exec': '%c %o -F %s:p'
+                \       'hook/output_encode/encoding': "cp932"
                 \ }
                 \ }
     call neobundle#untap()
@@ -1768,6 +1764,16 @@ if neobundle#tap('vim-ps1')"{{{
         au MyAutoCmd BufWritePost *.ps1 call s:make_ps12cmd()
     endfunction
 
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('poshcomplete-vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'filetypes': 'ps1'
+                \ }
+                \ })
+    au MyAutoCmd FileType ps1 setl omnifunc=poshcomplete#CompleteCommand
     call neobundle#untap()
 endif"}}}
 
