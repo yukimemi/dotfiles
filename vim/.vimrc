@@ -103,6 +103,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'osyo-manga/vim-precious', {'depends': 'Shougo/context_filetype.vim'}
 NeoBundle 'hunner/vim-plist'
+NeoBundleLazy 'thinca/vim-ft-help_fold'
 NeoBundleLazy 'koron/codic-vim'
 NeoBundleLazy 'rhysd/unite-codic.vim', {'depends': ['Shougo/unite.vim', 'koron/codic-vim']}
 NeoBundleLazy 'mattn/unite-vim_advent-calendar', {'depends': ['Shougo/unite.vim', 'mattn/webapi-vim']}
@@ -361,9 +362,11 @@ set backspace=indent,eol,start
 set ambiwidth=double
 set wildmenu
 set wildmode=longest:full,full
+set scrolloff=3
 if has('mouse')
     set mouse=a
 endif
+set keywordprg=:help " Open vim internal help by K key
 set autoread
 au MyAutoCmd WinEnter * checktime
 " for log files
@@ -1777,6 +1780,7 @@ if neobundle#tap('poshcomplete-vim')"{{{
                 \   'filetypes': 'ps1'
                 \ }
                 \ })
+
     au MyAutoCmd FileType ps1 setl omnifunc=poshcomplete#CompleteCommand
     call neobundle#untap()
 endif"}}}
@@ -2159,6 +2163,16 @@ if neobundle#tap('unite-codic.vim')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'unite_sources': ['codic']
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-ft-help_fold')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'filetypes': 'help'
                 \ }
                 \ })
 

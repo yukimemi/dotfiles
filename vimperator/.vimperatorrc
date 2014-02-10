@@ -53,7 +53,7 @@ inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 
 " nohlsearch
-nnoremap <ESC><ESC> :nohlsearch<CR>
+"nnoremap <ESC><ESC> :nohlsearch<CR>
 
 " command mode emacs keybindings
 cnoremap <C-p> <S-Tab>
