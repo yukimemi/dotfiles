@@ -9,4 +9,20 @@ $commandBaseName = (gci $myInvocation.MyCommand.path).BaseName
 
 Set-Location $commandPath
 
+function main() {#{{{
+
+  try {
+
+  } catch [Exception] {
+
+    Write-Host "Error Occured ! $($error[0])"
+
+  } finally {
+
+  }
+
+}#}}}
+
+# call main
+Measure-Command { main }
 
