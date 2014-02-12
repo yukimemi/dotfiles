@@ -379,6 +379,8 @@ if s:is_windows
         "let $PATH = 'C:/cygwin/bin;' . $PATH
     endif
 endif
+" http://d.hatena.ne.jp/osyo-manga/20140210/1392036881
+au MyAutoCmd CmdwinEnter * :silent! 1,$-20 delete _ | call cursor("$", 1)
 "===================================================================================}}}
 
 "{{{ ========== Search ================================================================
@@ -1602,7 +1604,7 @@ if neobundle#tap('vim-golang')"{{{
     function! neobundle#tapped.hooks.on_source(bundle)
         set rtp+=$GOROOT/misc/vim
         exe "set rtp+=" . globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-        setl completeopt=menu,preview
+        setl completeopt=menu
         " golint
         exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
         au MyAutoCmd BufWritePre *.go Fmt
