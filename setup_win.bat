@@ -73,19 +73,3 @@ if exist "%CYGWIN_HOME%\.inputrc" rename "%CYGWIN_HOME%\.inputrc" ".inputrc.bak_
 if exist "%CYGWIN_HOME%\.bashrc" rename "%CYGWIN_HOME%\.bashrc" ".bashrc.bak_%TODAY%"
 %LINKCMD_F% "%CYGWIN_HOME%\.bashrc" "%THIS_FILE_PASS%.bashrc"
 
-# git
-git config --global user.name 'yukimemi'
-git config --global user.email 'yukimemi@gmail.com'
-git config --global github.user 'yukimemi'
-git config --global color.diff auto
-# alias
-git config --global alias.ci commit
-git config --global alias.co checkout
-git config --global alias.st status
-git config --global alias.a add
-git config --global alias.br branch
-git config --global alias.di diff
-git config --global alias.k 'log --graph --pretty'
-# editor
-git config --global core.editor vim
-
