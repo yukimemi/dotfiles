@@ -125,6 +125,10 @@ done
 rm ${HOME}/.gitignore
 ln -s ${PWD}/global-gitignore ${HOME}/.gitignore
 git config --global core.excludesfile ${HOME}/.gitignore
+# global gitattributes
+rm ${HOME}/.gitattributes
+ln -s ${PWD}/global-gitattributes ${HOME}/.gitattributes
+git config --global core.attributesfile ${HOME}/.gitattributes
 
 # git
 git config --global user.name 'yukimemi'
@@ -143,11 +147,7 @@ git config --global alias.br branch
 git config --global alias.di diff
 git config --global alias.k 'log --graph --pretty'
 # editor
-if shell_is_osx ; then
-    git config --global core.editor /Applications/MacVim.app/Contents/MacOS/Vim
-else
-    git config --global core.editor vim
-fi
+git config --global core.editor vim
 
 # scripts git clone
 [ ! -d ${HOME}/bin ] && mkdir ${HOME}/bin
@@ -175,9 +175,9 @@ if shell_is_osx ; then
     brew install nkf
     brew install the_silver_searcher
     #brew install rbenv ruby-build rbenv-gemset rbenv-binstubs
-    brew install macvim --with-cscope --with-lua --HEAD
+    brew install macvim --with-cscope --with-lua --HEAD --override-system-vim
     brew install go --cross-compile-common
-    ln -s /usr/local/Cellar/macvim/HEAD/MacVim.app /Applications
+    brew linkapps
 
     brew tap homebrew/dupes
     brew install grep    # GNU grep necessary for tmux-powerline

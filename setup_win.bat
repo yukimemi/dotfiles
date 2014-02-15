@@ -1,20 +1,20 @@
 @echo off
-REM {{{ 環境設定 ===========================================
+REM {{{ env settings ===========================================
 set THIS_FILE_PASS=%~dp0
 set THIS_FILE_NAME=%~nx0
 set tm=%time: =0%
 set TODAY=%date:~-10,4%%date:~-5,2%%date:~-2,2%_%tm:~0,2%%tm:~3,2%%tm:~6,2%%tm:~9,2%
 
-REM cygwinのパス
+REM cygwin path
 REM set CYGWIN_PATH=%USERPROFILE%\cygwin
 set CYGWIN_PATH=C:\cygwin
-set CYGWIN_HOME=%CYGWIN_PATH%\home\%USERNAME%
+REM set CYGWIN_HOME=%CYGWIN_PATH%\home\%USERNAME%
+set CYGWIN_HOME=%USERPROFILE%
 
 echo THIS_FILE_PASS=[%THIS_FILE_PASS%]
 echo THIS_FILE_NAME=[%THIS_FILE_NAME%]
 
-REM コマンド
-REM OS判定
+REM judge OS
 for /f "tokens=1-3" %%i in ('ver') do set os=%%k
 if "%os%"=="XP" (
     set LINKCMD_F=fsutil hardlink create
@@ -27,7 +27,6 @@ if "%os%"=="XP" (
 )
 
 REM =====================================================}}}
-
 
 REM vimperator
 if exist "%USERPROFILE%\_vimperatorrc" rename "%USERPROFILE%\_vimperatorrc" "_vimperatorrc.bak_%TODAY%"
@@ -69,14 +68,24 @@ if exist "%CYGWIN_HOME%\.screenrc" rename "%CYGWIN_HOME%\.screenrc" ".screenrc.b
 REM mintty
 if exist "%CYGWIN_HOME%\.minttyrc" rename "%CYGWIN_HOME%\.minttyrc" ".minttyrc.bak_%TODAY%"
 %LINKCMD_F% "%CYGWIN_HOME%\.minttyrc" "%THIS_FILE_PASS%.minttyrc"
+if exist "%CYGWIN_HOME%\.inputrc" rename "%CYGWIN_HOME%\.inputrc" ".inputrc.bak_%TODAY%"
+%LINKCMD_F% "%CYGWIN_HOME%\.inputrc" "%THIS_FILE_PASS%.inputrc"
+if exist "%CYGWIN_HOME%\.bashrc" rename "%CYGWIN_HOME%\.bashrc" ".bashrc.bak_%TODAY%"
+%LINKCMD_F% "%CYGWIN_HOME%\.bashrc" "%THIS_FILE_PASS%.bashrc"
 
-REM git
+# git
 git config --global user.name 'yukimemi'
 git config --global user.email 'yukimemi@gmail.com'
 git config --global github.user 'yukimemi'
-REM git config --global push.default simple
 git config --global color.diff auto
-REM alias
+# alias
 git config --global alias.ci commit
 git config --global alias.co checkout
 git config --global alias.st status
+git config --global alias.a add
+git config --global alias.br branch
+git config --global alias.di diff
+git config --global alias.k 'log --graph --pretty'
+# editor
+git config --global core.editor vim
+

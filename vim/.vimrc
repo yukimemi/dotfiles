@@ -520,7 +520,7 @@ nnoremap <silent> [Space]eg  :<C-u>tabedit $MYGVIMRC<CR>
 
 " cmdwin
 nnoremap : q:i
-vnoremap : q:i
+vnoremap : q:A
 
 " hilight over 100 column {{{
 " http://blog.remora.cx/2013/06/source-in-80-columns-2.html
