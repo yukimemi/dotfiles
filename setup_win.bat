@@ -32,10 +32,6 @@ REM vimperator
 if exist "%USERPROFILE%\_vimperatorrc" rename "%USERPROFILE%\_vimperatorrc" "_vimperatorrc.bak_%TODAY%"
 %LINKCMD_F% "%USERPROFILE%\_vimperatorrc" "%THIS_FILE_PASS%vimperator\.vimperatorrc"
 if not exist "%USERPROFILE%\vimperator\plugin" mkdir "%USERPROFILE%\vimperator\plugin"
-git clone git://github.com/caisui/vimperator.git "%USERPROFILE%\vimperator\caisui"
-git clone git://gist.github.com/377348.git "%USERPROFILE%\vimperator\377348"
-git clone git://github.com/vimpr/vimperator-plugins.git "%USERPROFILE%\vimperator\vimperator-plugins"
-git clone git://github.com/vimpr/vimperator-rc.git "%USERPROFILE%\vimperator\vimperator-rc"
 if exist "%USERPROFILE%\vimperator\plugin\plugin_loader.js" del "%USERPROFILE%\vimperator\plugin\plugin_loader.js"
 %LINKCMD_F% "%USERPROFILE%\vimperator\plugin\plugin_loader.js" "%USERPROFILE%\vimperator\vimperator-plugins\plugin_loader.js"
 if exist "%USERPROFILE%\vimperator\colors" %RDCMD% "%USERPROFILE%\vimperator\colors"
@@ -49,12 +45,6 @@ if exist "%USERPROFILE%\.gvimrc" rename "%USERPROFILE%\.gvimrc" ".gvimrc.bak_%TO
 if exist "%USERPROFILE%\.vim" %RDCMD% "%USERPROFILE%\.vim"
 %LINKCMD_D% "%USERPROFILE%\.vim" "%THIS_FILE_PASS%vim\.vim"
 
-REM for cygwin
-if exist "%CYGWIN_HOME%\.vimrc" rename "%CYGWIN_HOME%\.vimrc" ".vimrc.bak_%TODAY%"
-%LINKCMD_F% "%CYGWIN_HOME%\.vimrc" "%THIS_FILE_PASS%vim\.vimrc"
-if exist  "%CYGWIN_HOME%\.vim" %RDCMD% "%CYGWIN_HOME%\.vim"
-%LINKCMD_D% "%CYGWIN_HOME%\.vim" "%THIS_FILE_PASS%vim\.vim"
-
 REM zsh
 if exist "%CYGWIN_HOME%\.zshrc" rename "%CYGWIN_HOME%\.zshrc" ".zshrc.bak_%TODAY%"
 %LINKCMD_F% "%CYGWIN_HOME%\.zshrc" "%CYGWIN_HOME%\.oh-my-zsh\templates\zshrc.zsh-template"
@@ -63,7 +53,7 @@ if exist "%CYGWIN_HOME%\.zshenv" rename "%CYGWIN_HOME%\.zshenv" ".zshenv.bak_%TO
 
 REM screenrc
 if exist "%CYGWIN_HOME%\.screenrc" rename "%CYGWIN_HOME%\.screenrc" ".screenrc.bak_%TODAY%"
-%LINKCMD_F% "%CYGWIN_HOME%\.screenrc" "%THIS_FILE_PASS%.screenrc_win"
+%LINKCMD_F% "%CYGWIN_HOME%\.screenrc" "%THIS_FILE_PASS%.screenrc"
 
 REM mintty
 if exist "%CYGWIN_HOME%\.minttyrc" rename "%CYGWIN_HOME%\.minttyrc" ".minttyrc.bak_%TODAY%"
@@ -73,3 +63,4 @@ if exist "%CYGWIN_HOME%\.inputrc" rename "%CYGWIN_HOME%\.inputrc" ".inputrc.bak_
 if exist "%CYGWIN_HOME%\.bashrc" rename "%CYGWIN_HOME%\.bashrc" ".bashrc.bak_%TODAY%"
 %LINKCMD_F% "%CYGWIN_HOME%\.bashrc" "%THIS_FILE_PASS%.bashrc"
 
+pause
