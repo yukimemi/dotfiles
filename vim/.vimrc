@@ -909,10 +909,11 @@ if neobundle#tap('unite.vim')"{{{
     nnoremap <silent> [Space]uf :<C-u>Unite -no-split -buffer-name=files file_rec<CR>
     "nnoremap <silent> [Space]uf :<C-u>Unite -no-split -buffer-name=file_rec/async file_rec/async<CR>
     nnoremap <silent> ,ub :<C-u>Unite -no-split -buffer-name=bookmark -default-action=cd bookmark<CR>
-    nnoremap <silent> [Space]ug :<C-u>Unite -buffer-name=grep -no-quit -auto-preview grep<CR>
+    nnoremap <silent> [Space]ug :<C-u>Unite -buffer-name=grep grep<CR>
+    nnoremap <silent> [Space]ur :<C-u>UniteResume grep<CR>
     nnoremap <silent> [Space]uo :<C-u>Unite -buffer-name=outline outline<CR>
     nnoremap <silent> [Space]uq :<C-u>Unite -buffer-name=QuickFix -no-quit qf<CR>
-    nnoremap <silent> [Space]ur :<C-u>Unite -buffer-name=register register<CR>
+    "nnoremap <silent> [Space]ur :<C-u>Unite -buffer-name=register register<CR>
     nnoremap <silent> [Space]um :<C-u>Unite -no-split file_mru -buffer-name=file_mru -auto-preview<CR>
     nnoremap <silent> [Space]uu :<C-u>Unite -no-split buffer file_mru<CR>
     nnoremap <silent> [Space]ua :<C-u>Unite -no-split -buffer-name=files buffer
@@ -962,7 +963,18 @@ if neobundle#tap('unite.vim')"{{{
                 \ -no-split
                 \ -quick-match
     "autocmd MyAutoCmd VimEnter * :UniteStartup
-"}}}
+    "}}}
+
+    " grep source setting
+    if executable('pt')
+        let g:unite_source_grep_command = 'pt'
+        let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+        let g:unite_source_grep_recursive_opt = ''
+    elseif executable('ag')
+        let g:unite_source_grep_command = 'ag'
+        let g:unite_source_grep_default_opts = '--nocolor --nogroup --column'
+        let g:unite_source_grep_recursive_opt = ''
+    endif
 
     function! neobundle#tapped.hooks.on_source(bundle)
         " start unite in insert mode
@@ -981,17 +993,6 @@ if neobundle#tap('unite.vim')"{{{
             "let g:unite_enable_split_vertically = 1
             let g:unite_source_file_mru_limit = 1000
             let g:unite_source_history_yank_enable = 1
-            " grep source setting
-            if s:is_windows
-                "let g:unite_source_grep_command = 'grep'
-                "let g:unite_source_grep_default_opts = '--color'
-                let g:unite_source_grep_max_candidates = 200
-            else
-                let g:unite_source_grep_command = 'ag'
-                let g:unite_source_grep_default_opts = '--nocolor --nogroup'
-                let g:unite_source_grep_recursive_opt = ''
-                let g:unite_source_grep_max_candidates = 200
-            endif
         endfunction
     endfunction
     call neobundle#untap()
@@ -2175,6 +2176,16 @@ if neobundle#tap('vim-ft-help_fold')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'filetypes': 'help'
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-qfreplace')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': ['Unite']
                 \ }
                 \ })
 
