@@ -2227,7 +2227,7 @@ au MyAutoCmd BufNewFile,BufRead *.styl setl ft=stylus tabstop=8 shiftwidth=2
 au MyAutoCmd BufNewFile,BufRead *.scpt,*.applescript setl filetype=applescript
 au MyAutoCmd BufNewFile,BufRead *.scala setl ft=scala
 au MyAutoCmd BufNewFile,BufRead *.rb setl ft=ruby fenc=utf8 ff=unix
-
+      \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 " Scala {{{
 " http://vim-users.jp/2013/02/vim-advent-calendar-2012-ujihisa-4/
 function! s:ujihisa_start_sbt()"{{{
