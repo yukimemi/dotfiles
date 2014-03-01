@@ -349,6 +349,7 @@ if version >= 703
 endif
 set encoding=utf-8 " encoding
 set clipboard+=unnamed
+set pastetoggle=
 set switchbuf=useopen
 set nrformats-=octal " disable octal
 set timeoutlen=3500
