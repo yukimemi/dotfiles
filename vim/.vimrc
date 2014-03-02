@@ -136,6 +136,7 @@ NeoBundleLazy 'SQLUtilities'
 NeoBundleLazy 'Shougo/echodoc.vim'
 NeoBundleLazy 'Shougo/junkfile.vim'
 NeoBundleLazy 'Shougo/neosnippet.vim', {'depends': 'Shougo/neosnippet-snippets'}
+NeoBundleLazy 'Shougo/neomru.vim', {'depends': 'Shougo/unite.vim'}
 NeoBundleLazy 'Shougo/unite.vim', {'depends': 'Shougo/vimproc.vim'}
 NeoBundleLazy 'Shougo/vim-vcs'
 NeoBundleLazy 'Shougo/vimfiler.vim', {'depends': 'Shougo/unite.vim'}
@@ -916,10 +917,10 @@ if neobundle#tap('unite.vim')"{{{
     nnoremap <silent> [Space]uo :<C-u>Unite -buffer-name=outline outline<CR>
     nnoremap <silent> [Space]uq :<C-u>Unite -buffer-name=QuickFix -no-quit qf<CR>
     "nnoremap <silent> [Space]ur :<C-u>Unite -buffer-name=register register<CR>
-    nnoremap <silent> [Space]um :<C-u>Unite -no-split file_mru -buffer-name=file_mru -auto-preview<CR>
-    nnoremap <silent> [Space]uu :<C-u>Unite -no-split buffer file_mru<CR>
+    nnoremap <silent> [Space]um :<C-u>Unite -no-split neomru/file -buffer-name=neomru_file -auto-preview<CR>
+    nnoremap <silent> [Space]uu :<C-u>Unite -no-split buffer neomru/file<CR>
     nnoremap <silent> [Space]ua :<C-u>Unite -no-split -buffer-name=files buffer
-                \                              file_mru bookmark file file_rec/async<CR>
+                \                              neomru/file bookmark file file_rec/async<CR>
     "nnoremap <silent> [Space]/ :<C-u>Unite -buffer-name=search line/fast -no-quit<CR>
     nnoremap <silent> [Space]uh :<C-u>Unite -no-split -buffer-name=help help<CR>
 
@@ -931,15 +932,15 @@ if neobundle#tap('unite.vim')"{{{
 
     " http://d.hatena.ne.jp/osyo-manga/20131217/1387292034"{{{
     let g:unite_source_alias_aliases = {
-                \ "startup_file_mru": {
-                \   "source": "file_mru"
+                \ "startup_neomru": {
+                \   "source": "neomru/file"
                 \ },
                 \ "startup_directory_mru": {
                 \   "source": "directory_mru"
                 \ }
                 \}
 
-    call unite#custom_max_candidates("startup_file_mru", 10)
+    call unite#custom_max_candidates("startup_neomru", 10)
     call unite#custom_max_candidates("startup_directory_mru", 10)
 
     if !exists("g:unite_source_menu_menus")
@@ -950,13 +951,13 @@ if neobundle#tap('unite.vim')"{{{
                 \   "command_candidates": [
                 \       ["vimrc",  "edit " . $MYVIMRC],
                 \       ["gvimrc", "edit " . $MYGVIMRC],
-                \       ["unite-file_mru", "Unite file_mru"],
+                \       ["unite-neomru", "Unite neomru/file"],
                 \       ["unite-directory_mru", "Unite directory_mru"],
                 \   ]
                 \ }
     command! UniteStartup
                 \ Unite
-                \ output:echo:"===:file:mru:===":! startup_file_mru
+                \ output:echo:"===:file:mru:===":! startup_neomru
                 \ output:echo:":":!
                 \ output:echo:"===:directory:mru:===":! startup_directory_mru
                 \ output:echo:":":!
@@ -993,7 +994,6 @@ if neobundle#tap('unite.vim')"{{{
             nmap <buffer> <C-n> <Plug>(unite_select_next_line)
             nmap <buffer> <C-p> <Plug>(unite_select_previous_line)
             "let g:unite_enable_split_vertically = 1
-            let g:unite_source_file_mru_limit = 1000
             let g:unite_source_history_yank_enable = 1
         endfunction
     endfunction
@@ -2190,6 +2190,22 @@ if neobundle#tap('vim-qfreplace')"{{{
                 \   'commands': ['Unite']
                 \ }
                 \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('neomru.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \     'unite_sources': ['mru', 'neomru', 'neomru/file'],
+                \     'commands': [{'complete': 'file', 'name': 'NeoMRUImportFile'},
+                \                  'NeoMRUSave',
+                \                  {'complete': 'file', 'name': 'NeoMRUImportDirectory'},
+                \                  'NeoMRUReload']
+                \ }
+                \ })
+
+    let g:neomru#file_mru_limit = 5000
 
     call neobundle#untap()
 endif"}}}
