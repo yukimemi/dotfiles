@@ -56,6 +56,7 @@ endif
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+" plugin list {{{
 NeoBundle 'Shougo/vimproc.vim', {
             \ 'build': {
             \   'windows' : 'c:\MinGW\bin\mingw32-make -f make_mingw32.mak',
