@@ -122,6 +122,8 @@ NeoBundleLazy 'osyo-manga/unite-qfixhowm', {'depends': 'fuenor/qfixhowm'}
 NeoBundleLazy 'tyru/restart.vim'
 NeoBundleLazy 'tyru/capture.vim'
 "NeoBundleLazy 'thinca/vim-ft-clojure'
+NeoBundleLazy 'guns/vim-clojure-static'
+NeoBundleLazy 'kien/rainbow_parentheses.vim'
 NeoBundleLazy 'kana/vim-filetype-haskell'
 NeoBundleLazy 'AndrewRadev/splitjoin.vim'
 NeoBundleLazy 'AndrewRadev/linediff.vim'
@@ -1863,7 +1865,7 @@ endif"}}}
 if neobundle#tap('vim-fireplace')"{{{
     call neobundle#config({
                 \ 'autoload': {
-                \   'mappings': ['cxin', '<Plug>Fireplace'],
+                \   'mappings': ['<Plug>Fireplace'],
                 \   'commands': [{'complete': 'customlist,fireplace#eval_complete', 'name': 'Eval'},
                 \                'Last',
                 \                {'complete': 'customlist,s:connect_complete', 'name': 'FireplaceConnect'},
@@ -2206,6 +2208,54 @@ if neobundle#tap('neomru.vim')"{{{
                 \ })
 
     let g:neomru#file_mru_limit = 5000
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-clojure-static')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'filetypes': 'clojure'
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('rainbow_parentheses.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': ['RainbowParenthesesLoadChevrons', 'RainbowParenthesesActivate',
+                \                'RainbowParenthesesToggleAll', 'RainbowParenthesesLoadRound',
+                \                'RainbowParenthesesLoadSquare', 'RainbowParenthesesLoadBraces',
+                \                'RainbowParenthesesToggle'],
+                \   'filetypes': 'clojure'
+                \ }
+                \ })
+
+    let g:rbpt_colorpairs = [
+                \ ['brown',       'RoyalBlue3'],
+                \ ['Darkblue',    'SeaGreen3'],
+                \ ['darkgray',    'DarkOrchid3'],
+                \ ['darkgreen',   'firebrick3'],
+                \ ['darkcyan',    'RoyalBlue3'],
+                \ ['darkred',     'SeaGreen3'],
+                \ ['darkmagenta', 'DarkOrchid3'],
+                \ ['brown',       'firebrick3'],
+                \ ['gray',        'RoyalBlue3'],
+                \ ['black',       'SeaGreen3'],
+                \ ['darkmagenta', 'DarkOrchid3'],
+                \ ['Darkblue',    'firebrick3'],
+                \ ['darkgreen',   'RoyalBlue3'],
+                \ ['darkcyan',    'SeaGreen3'],
+                \ ['darkred',     'DarkOrchid3'],
+                \ ['red',         'firebrick3']
+                \ ]
+
+    au MyAutoCmd VimEnter * RainbowParenthesesToggle
+    au MyAutoCmd Syntax * RainbowParenthesesLoadRound
+    au MyAutoCmd Syntax * RainbowParenthesesLoadSquare
+    au MyAutoCmd Syntax * RainbowParenthesesLoadBraces
 
     call neobundle#untap()
 endif"}}}
