@@ -162,8 +162,12 @@ export GOPATH=$HOME/.go
 [ ! -d $HOME/.go ] && mkdir $HOME/.go
 if which go > /dev/null; then
     export GOROOT=$(go env | grep GOROOT | cut -d = -f 2 | sed 's/"//g')
-    [ ! -d $GOPATH/src/github.com/nsf ] && go get github.com/nsf/gocode
-    [ ! -d $GOPATH/src/github.com/golang ] && go get github.com/golang/lint
+    go get github.com/nsf/gocode
+    go get github.com/golang/lint
+    go get code.google.com/p/go.tools/cmd/goimports
+    go get code.google.com/p/go.tools/cmd/godoc
+    go get code.google.com/p/go.tools/cmd/vet
+    go get code.google.com/p/go.tools/cmd/cover
 fi
 #}}}
 #######################################################################################################

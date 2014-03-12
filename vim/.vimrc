@@ -125,7 +125,7 @@ NeoBundleLazy 'tyru/capture.vim'
 NeoBundleLazy 'guns/vim-clojure-static'
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
 NeoBundleLazy 'kana/vim-filetype-haskell'
-NeoBundleLazy 'AndrewRadev/splitjoin.vim'
+"NeoBundleLazy 'AndrewRadev/splitjoin.vim'
 NeoBundleLazy 'AndrewRadev/linediff.vim'
 NeoBundleLazy 'DrawIt'
 NeoBundleLazy 'pangloss/vim-javascript'
@@ -641,14 +641,43 @@ endif"}}}
 
 if neobundle#tap('vim-submode')"{{{
     let g:submode_leave_with_key = 1
-    call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
-    call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
-    call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>-')
-    call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>+')
-    call submode#map('winsize', 'n', '', '>', '<C-w>>')
-    call submode#map('winsize', 'n', '', '<', '<C-w><')
-    call submode#map('winsize', 'n', '', '+', '<C-w>-')
-    call submode#map('winsize', 'n', '', '-', '<C-w>+')
+
+    " user prefix 's' http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
+    nnoremap s <Nop>
+    nnoremap sj <C-w>j
+    nnoremap sk <C-w>k
+    nnoremap sl <C-w>l
+    nnoremap sh <C-w>h
+    nnoremap sJ <C-w>J
+    nnoremap sK <C-w>K
+    nnoremap sL <C-w>L
+    nnoremap sH <C-w>H
+    nnoremap sn gt
+    nnoremap sp gT
+    nnoremap sr <C-w>r
+    nnoremap s= <C-w>=
+    nnoremap sw <C-w>w
+    nnoremap so <C-w>_<C-w>|
+    nnoremap sO <C-w>=
+    nnoremap sN :<C-u>bn<CR>
+    nnoremap sP :<C-u>bp<CR>
+    nnoremap st :<C-u>tabnew<CR>
+    nnoremap sT :<C-u>Unite tab<CR>
+    nnoremap ss :<C-u>sp<CR>
+    nnoremap sv :<C-u>vs<CR>
+    nnoremap sq :<C-u>q<CR>
+    nnoremap sQ :<C-u>bd<CR>
+    nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+    nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+
+    call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+    call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+    call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+    call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+    call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+    call submode#map('bufmove', 'n', '', '<', '<C-w><')
+    call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+    call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
     call neobundle#untap()
 endif"}}}
@@ -1601,18 +1630,22 @@ endif"}}}
 if neobundle#tap('vim-golang')"{{{
     call neobundle#config({
                 \ 'autoload': {
-                \   'mappings': ['n', '<Plug>(godoc-keyword)'],
+                \   'mappings': ['<Plug>(godoc-keyword)'],
                 \   'commands': [{'complete': 'customlist,go#complete#Package', 'name': 'Godoc'}],
                 \   'filetypes': 'go'
                 \ }
                 \ })
     function! neobundle#tapped.hooks.on_source(bundle)
-        set rtp+=$GOROOT/misc/vim
-        exe "set rtp+=" . globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+        " user goimports
+        let g:gofmt_command = 'goimports'
+        set rtp^=$GOROOT/misc/vim
+        exe "set rtp^=" . globpath($GOPATH, "src/github.com/nsf/gocode/vim")
         setl completeopt=menu
         " golint
         exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
         au MyAutoCmd BufWritePre *.go Fmt
+        au MyAutoCmd FileType go compiler go
+        nnoremap <buffer> K :<C-u>Godoc<Space><C-R><C-W><CR>
     endfunction
     call neobundle#untap()
 endif"}}}
