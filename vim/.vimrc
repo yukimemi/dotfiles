@@ -527,6 +527,15 @@ nnoremap <silent> [Space]eg  :<C-u>tabedit $MYGVIMRC<CR>
 nnoremap : q:i
 vnoremap : q:A
 
+"  for git mergetool
+if &diff
+    nnoremap <Leader>1 :diffget LOCAL<CR>
+    nnoremap <Leader>2 :diffget BASE<CR>
+    nnoremap <Leader>3 :diffget REMOTE<CR>
+    nnoremap <Leader>u :<C-u>diffupdate<CR>
+    nnoremap u u:<C-u>diffupdate<CR>
+endif
+
 " hilight over 100 column {{{
 " http://blog.remora.cx/2013/06/source-in-80-columns-2.html
 noremap <Plug>(ToggleColorColumn)

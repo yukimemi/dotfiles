@@ -148,6 +148,8 @@ git config --global alias.di diff
 git config --global alias.k 'log --graph --pretty'
 # editor
 git config --global core.editor vim
+# mergetool
+git config --global merge.tool mvimdiff
 
 # scripts git clone
 [ ! -d ${HOME}/bin ] && mkdir ${HOME}/bin
