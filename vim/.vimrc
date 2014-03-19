@@ -82,6 +82,7 @@ NeoBundle 'kana/vim-textobj-entire', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'kana/vim-textobj-function', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'kana/vim-textobj-indent', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'kana/vim-textobj-fold', {'depends': 'kana/vim-textobj-user'}
+NeoBundle 'osyo-manga/vim-textobj-blockwise'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'mattn/sonictemplate-vim'
 NeoBundle 'mattn/webapi-vim'
