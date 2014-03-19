@@ -737,7 +737,7 @@ if neobundle#tap('TweetVim')"{{{
         nnoremap <buffer> [Space]ta :<C-u>Unite tweetvim/account<CR>
     endfunction
 
-    let g:tweetvim_default_account = "r_y_y_k_m"
+    let g:tweetvim_default_account = "yukimemi"
     let g:tweetvim_tweet_per_page = 200
     let g:tweetvim_cache_size = 50
     let g:tweetvim_display_source = 1
