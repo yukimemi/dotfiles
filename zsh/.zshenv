@@ -164,10 +164,19 @@ if which go > /dev/null; then
     export GOROOT=$(go env | grep GOROOT | cut -d = -f 2 | sed 's/"//g')
     go get github.com/nsf/gocode
     go get github.com/golang/lint
+    go get github.com/jstemmer/gotags
     go get code.google.com/p/go.tools/cmd/goimports
     go get code.google.com/p/go.tools/cmd/godoc
     go get code.google.com/p/go.tools/cmd/vet
     go get code.google.com/p/go.tools/cmd/cover
+
+    # vim-godef
+    go get -v code.google.com/p/rog-go/exp/cmd/godef
+    go install -v code.google.com/p/rog-go/exp/cmd/godef
+
+    # goquery
+    go get github.com/PuerkitoBio/goquery
+
 fi
 #}}}
 #######################################################################################################

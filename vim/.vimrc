@@ -93,7 +93,7 @@ NeoBundle 'osyo-manga/vim-automatic', {'depends': ['osyo-manga/vim-gift', 'osyo-
 NeoBundle 'osyo-manga/vim-textobj-multitextobj', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'kana/vim-operator-replace', {'depends': 'kana/vim-operator-user'}
 NeoBundle 'tyru/operator-star.vim', {'depends': ['kana/vim-operator-user', 'thinca/vim-visualstar']}
-NeoBundle 'szw/vim-tags', {'build': {'mac': 'brew install ctags'}}
+"NeoBundle 'szw/vim-tags', {'build': {'mac': 'brew install ctags'}}
 NeoBundle 'thinca/vim-submode'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'tpope/vim-fugitive'
@@ -105,6 +105,7 @@ NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'osyo-manga/vim-precious', {'depends': 'Shougo/context_filetype.vim'}
 NeoBundle 'hunner/vim-plist'
+NeoBundle 'hokorobi/vim-tagsgen', {'other': 'go get github.com/jstemmer/gotags'}
 NeoBundleLazy 'thinca/vim-ft-help_fold'
 NeoBundleLazy 'koron/codic-vim'
 NeoBundleLazy 'rhysd/unite-codic.vim', {'depends': ['Shougo/unite.vim', 'koron/codic-vim']}
@@ -2299,6 +2300,30 @@ if neobundle#tap('rainbow_parentheses.vim')"{{{
     au MyAutoCmd Syntax * RainbowParenthesesLoadRound
     au MyAutoCmd Syntax * RainbowParenthesesLoadSquare
     au MyAutoCmd Syntax * RainbowParenthesesLoadBraces
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-tagsgen')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': ['TagsgenSetDir', 'Tagsgen']
+                \ }
+                \ })
+
+    let g:tagsgen_tags_command = {
+                \ '_': 'ctags',
+                \ 'go': 'gotags'
+                \ }
+    let g:tagsgen_option = {
+                \ '_' : '-R',
+                \ 'vim': '-R --languages=Vim',
+                \ 'python': '-R --languages=Python',
+                \ 'go': '{CURFILES} > tags'
+                \ }
+
+    au MyAutoCmd BufWinEnter *.{vim,go,python} TagsgenSetDir
+    au MyAutoCmd BufWritePost *.{vim,go,python} Tagsgen
 
     call neobundle#untap()
 endif"}}}
