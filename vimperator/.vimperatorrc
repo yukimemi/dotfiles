@@ -27,6 +27,8 @@ EOM
 " mappings {{{
 nnoremap <C-l> <C-n>
 nnoremap <C-h> <C-p>
+nnoremap sn gt
+nnoremap sp gT
 nnoremap d D
 nnoremap D d
 
