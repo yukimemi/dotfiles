@@ -74,7 +74,7 @@ NeoBundle 'banyan/recognize_charcode.vim'
 NeoBundle 'cocopon/lightline-hybrid.vim', {'depends': 'itchyny/lightline.vim'}
 NeoBundle 'fuenor/qfixgrep'
 "NeoBundle 'fuenor/qfixhowm'
-NeoBundle 'goldfeld/vim-seek'
+"NeoBundle 'goldfeld/vim-seek'
 NeoBundle 'itchyny/landscape.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'jceb/vim-hier'
@@ -106,6 +106,10 @@ NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'osyo-manga/vim-precious', {'depends': 'Shougo/context_filetype.vim'}
 NeoBundle 'hunner/vim-plist'
 NeoBundle 'hokorobi/vim-tagsgen', {'other': 'go get github.com/jstemmer/gotags'}
+NeoBundle 'mhinz/vim-hugefile'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'tpope/vim-repeat'
+NeoBundleLazy 'triglav/vim-visual-increment'
 NeoBundleLazy 'thinca/vim-ft-help_fold'
 NeoBundleLazy 'koron/codic-vim'
 NeoBundleLazy 'rhysd/unite-codic.vim', {'depends': ['Shougo/unite.vim', 'koron/codic-vim']}
@@ -508,8 +512,8 @@ nmap <C-h> <SID>[tab-left]
 nmap <Space> [Space]
 nnoremap [Space] <Nop>
 
-nnoremap [Space]s :<C-u>split<CR>
-nnoremap [Space]v :<C-u>vsplit<CR>
+"nnoremap [Space]s :<C-u>split<CR>
+"nnoremap [Space]v :<C-u>vsplit<CR>
 
 " like emacs
 cnoremap <C-b> <Left>
@@ -763,7 +767,7 @@ if neobundle#tap('vimfiler.vim')"{{{
                 \ 'autoload': {
                 \   'unite_sources': ['vimfiler_drive', 'vimfiler_execute', 'vimfiler_history',
                 \                     'vimfiler_mask', 'vimfiler_popd', 'vimfiler_sort'],
-                \   'mappings': ['n', '<Plug>(vimfiler_'],
+                \   'mappings': [['n', '<Plug>(vimfiler_']],
                 \   'commands': [{'complete': 'customlist,vimfiler#complete', 'name': 'Read'},
                 \                {'complete': 'customlist,vimfiler#complete', 'name': 'VimFiler'},
                 \                {'complete': 'customlist,vimfiler#complete', 'name': 'Edit'},
@@ -800,7 +804,7 @@ endif"}}}
 if neobundle#tap('vimshell.vim')"{{{
     call neobundle#config({
                 \ 'autoload': {
-                \   'mappings': ['n', '<Plug>(vimshell_'],
+                \   'mappings': [['n', '<Plug>(vimshell_']],
                 \   'commands': ['VimShell', 'VimShellPop']
                 \ }
                 \ })
@@ -903,7 +907,7 @@ if neobundle#tap('neosnippet.vim')"{{{
                 \ 'autoload': {
                 \   'insert': 1,
                 \   'unite_sources': ['neosnippet_file', 'snippet', 'snippet_target'],
-                \   'mappings': ['sxi', '<Plug>(neosnippet_'],
+                \   'mappings': [['sxi', '<Plug>(neosnippet_']],
                 \   'commands': ['NeoSnippetEdit', 'NeoSnippetSource']
                 \ }
                 \ })
@@ -1064,7 +1068,7 @@ endif"}}}
 if neobundle#tap('open-browser.vim')"{{{
     call neobundle#config({
                 \ 'autoload': {
-                \   'mappings': ['sxn', '<Plug>(openbrowser-'],
+                \   'mappings': [['sxn', '<Plug>(openbrowser-']],
                 \   'commands': ['OpenBrowser', 'OpenBrowserSearch', 'OpenBrowserSmartSearch']
                 \ }
                 \ })
@@ -1108,7 +1112,7 @@ endif"}}}
 if neobundle#tap('vim-quickrun')"{{{
     call neobundle#config({
                 \ 'autoload': {
-                \   'mappings': ['sxn', '<Plug>(quickrun'],
+                \   'mappings': [['sxn', '<Plug>(quickrun']],
                 \   'commands': {'complete': 'customlist,quickrun#complete', 'name': 'QuickRun'}
                 \ }
                 \ })
@@ -1292,7 +1296,7 @@ if neobundle#tap('shabadou.vim')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'on_source': ['vim-quickrun'],
-                \   'mappings': ['sxn', '<Plug>(quickrun'],
+                \   'mappings': [['sxn', '<Plug>(quickrun']],
                 \   'commands': {'complete': 'customlist,quickrun#complete', 'name': 'QuickRun'}
                 \ }
                 \ })
@@ -1356,7 +1360,7 @@ if neobundle#tap('vim-ref')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'unite_sources': ['ref'],
-                \   'mappings': ['sxn', '<Plug>(ref-keyword)'],
+                \   'mappings': [['sxn', '<Plug>(ref-keyword)']],
                 \   'commands': [{'complete': 'customlist,ref#complete', 'name': 'Ref'},
                 \                'RefHistory']
                 \ }
@@ -1875,7 +1879,7 @@ endif"}}}
 if neobundle#tap('splitjoin.vim')"{{{
     call neobundle#config({
                 \ 'autoload': {
-                \   'mappings': ['n', '<Plug>Splitjoin'],
+                \   'mappings': [['n', '<Plug>Splitjoin']],
                 \   'commands': ['SplitjoinSplit', 'SplitjoinJoin']
                 \ }
                 \ })
@@ -1909,7 +1913,7 @@ endif"}}}
 if neobundle#tap('vim-fireplace')"{{{
     call neobundle#config({
                 \ 'autoload': {
-                \   'mappings': ['<Plug>Fireplace'],
+                \   'mappings': [['<Plug>Fireplace']],
                 \   'commands': [{'complete': 'customlist,fireplace#eval_complete', 'name': 'Eval'},
                 \                'Last',
                 \                {'complete': 'customlist,s:connect_complete', 'name': 'FireplaceConnect'},
@@ -1977,7 +1981,7 @@ endif"}}}
 if neobundle#tap('vim-quickhl')"{{{
     call neobundle#config({
                 \ 'augroup': 'QuickhlManual', 'autoload': {
-                \   'mappings': ['sxn', '<Plug>(quickhl-'],
+                \   'mappings': [['sxn', '<Plug>(quickhl-']],
                 \   'commands': ['QuickhlManualUnlockWindow', 'QuickhlManualDelete',
                 \                'QuickhlTagToggle', 'QuickhlManualDisable', 'QuickhlTagDisable',
                 \                'QuickhlManualAdd', 'QuickhlManualColors', 'QuickhlManualReset',
@@ -2131,7 +2135,7 @@ endif"}}}
 if neobundle#tap('vim-choosewin')"{{{
     call neobundle#config({
                 \ 'autoload': {
-                \   'mappings': ['<Plug>(choosewin)'],
+                \   'mappings': '<Plug>(choosewin)',
                 \   'commands': ['FontReview', 'FontPerfSmall', 'ChooseWin', 'FontPerfLarge']
                 \ }
                 \ })
@@ -2327,6 +2331,56 @@ if neobundle#tap('vim-tagsgen')"{{{
 
     call neobundle#untap()
 endif"}}}
+
+if neobundle#tap('vim-visual-increment')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': [['sx', '<Plug>Visual']]
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-easymotion')
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': [['sxno', '<Plug>(easymotion-']],
+                \   'commands': ['EMCommandLineNoreMap', 'EMCommandLineMap', 'EMCommandLineUnMap']
+                \ }
+                \ })
+
+    " Disable default mappings
+    let g:EasyMotion_do_mapping = 0
+    let g:EasyMotion_use_migemo = 1
+
+    " `JK` Motions: Extend line motions
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
+    " keep cursor column with `JK` motions
+    let g:EasyMotion_startofline = 0
+    " Turn on case sensitive feature
+    let g:EasyMotion_smartcase = 1
+
+
+    "let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTASDGZXCVBJF'
+
+    " Show target key with upper case to improve readability
+    let g:EasyMotion_use_upper = 1
+    " Jump to first match with enter & space
+    let g:EasyMotion_enter_jump_first = 1
+    let g:EasyMotion_space_jump_first = 1
+
+    nmap [Space]s <Plug>(easymotion-s2)
+
+    map f <Plug>(easymotion-fl)
+    map t <Plug>(easymotion-tl)
+    map F <Plug>(easymotion-Fl)
+    map T <Plug>(easymotion-Tl)
+
+    call neobundle#untap()
+endif
+
 
 " disable plugin
 let plugin_dicwin_disable = 1
