@@ -319,6 +319,14 @@ nnoremap [Space]f :call Format()<CR>
 "au MyAutoCmd BufWrite * call Format()
 "}}}
 
+function! AddQuote()"{{{
+    normal gg2dd
+    17,$s/^/> /
+    normal gg
+endfunction
+au MyAutoCmd FileType mail nnoremap <buffer> [Space]q :<C-u>silent! call AddQuote()<CR>
+"}}}
+
 function! s:open_in_browser()"{{{
     " open html in browser
     if s:is_windows
