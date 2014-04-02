@@ -59,7 +59,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " plugin list {{{
 NeoBundle 'Shougo/vimproc.vim', {
             \ 'build': {
-            \   'windows' : 'c:\MinGW\bin\mingw32-make -f make_mingw32.mak',
+            \   'windows' : 'C:\\MinGW\\bin\\mingw32-make -f make_mingw32.mak',
             \   'cygwin'  : 'make -f make_cygwin.mak',
             \   'mac'     : 'make -f make_mac.mak',
             \   'unix'    : 'make -f make_unix.mak',
@@ -109,6 +109,8 @@ NeoBundle 'hokorobi/vim-tagsgen', {'other': 'go get github.com/jstemmer/gotags'}
 NeoBundle 'mhinz/vim-hugefile'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-repeat'
+NeoBundleLazy 'kannokanno/previm.git', {'depends': 'tyru/open-browser.vim'}
+NeoBundleLazy 'rcmdnk/vim-markdown'
 NeoBundleLazy 'triglav/vim-visual-increment'
 NeoBundleLazy 'thinca/vim-ft-help_fold'
 NeoBundleLazy 'koron/codic-vim'
@@ -235,13 +237,14 @@ NeoBundleLazy 'basyura/TweetVim', 'dev', {
             \   'mattn/favstar-vim',
             \   'mattn/webapi-vim'
             \ ]}
-NeoBundleLazy 'jnwhiteh/vim-golang', {
-            \ 'build': {
-            \   'windows': ['go get github.com/nsf/gocode', 'go get github.com/golang/lint'],
-            \   'cygwin' : ['go get github.com/nsf/gocode', 'go get github.com/golang/lint'],
-            \   'mac'    : ['go get github.com/nsf/gocode', 'go get github.com/golang/lint'],
-            \   'unix'   : ['go get github.com/nsf/gocode', 'go get github.com/golang/lint']
-            \ }}
+"NeoBundleLazy 'jnwhiteh/vim-golang', {
+            "\ 'build': {
+            "\   'windows': ['go get github.com/nsf/gocode', 'go get github.com/golang/lint'],
+            "\   'cygwin' : ['go get github.com/nsf/gocode', 'go get github.com/golang/lint'],
+            "\   'mac'    : ['go get github.com/nsf/gocode', 'go get github.com/golang/lint'],
+            "\   'unix'   : ['go get github.com/nsf/gocode', 'go get github.com/golang/lint']
+            "\ }}
+NeoBundleLazy 'fatih/vim-go'
 if has('lua') && ((v:version >= 703 && has('patch885')) || v:version >= 704)
   NeoBundleLazy 'Shougo/neocomplete.vim'
 else
@@ -366,6 +369,8 @@ if version >= 703
     set undodir=$MY_BACKUP_DIR
 endif
 set encoding=utf-8 " encoding
+set fileformat=unix
+set fileformats=unix,dos,mac
 set clipboard+=unnamed
 set pastetoggle=
 set switchbuf=useopen
@@ -1673,6 +1678,29 @@ if neobundle#tap('vim-golang')"{{{
     call neobundle#untap()
 endif"}}}
 
+if neobundle#tap('vim-go')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': [['n', '<Plug>(godoc-keyword)']],
+                \   'commands': ['GoErrCheck', 'GoOracleCallgraph', 'GoRun', 'GoDeps', 'GoDef',
+                \                'GoOracleDescribe', 'GoOracleCallers', 'GoUpdateBinaries',
+                \                'GoTest', 'GoOracleChannelPeers', 'GoOracleCallees',
+                \                'GoOracleImplements',
+                \                {'complete': 'customlist,go#package#Package', 'name': 'GoDoc'},
+                \                'GoFiles', 'GoBuild'],
+                \   'filetypes': 'go'
+                \ }
+                \ })
+
+    au MyAutoCmd Filetype go nnoremap <buffer> <leader>i :exe 'GoImport ' . expand('<cword>')<CR>
+    au MyAutoCmd Filetype go nnoremap <buffer> <leader>v :vsp <CR>:exe "GoDef" <CR>
+    au MyAutoCmd Filetype go nnoremap <buffer> <leader>s :sp <CR>:exe "GoDef"<CR>
+    au MyAutoCmd Filetype go nnoremap <buffer> <leader>t :tab split <CR>:exe "GoDef"<CR>
+
+    let g:go_snippet_engine = "neosnippet"
+    call neobundle#untap()
+endif"}}}
+
 if neobundle#tap('ghcmod-vim')"{{{
     call neobundle#config({
                 \ 'autoload': {
@@ -2350,7 +2378,7 @@ if neobundle#tap('vim-visual-increment')"{{{
     call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('vim-easymotion')
+if neobundle#tap('vim-easymotion')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'mappings': [['sxno', '<Plug>(easymotion-']],
@@ -2387,8 +2415,27 @@ if neobundle#tap('vim-easymotion')
     map T <Plug>(easymotion-Tl)
 
     call neobundle#untap()
-endif
+endif"}}}
 
+if neobundle#tap('vim-markdown')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'filetypes': 'markdown'
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('previm')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': ['PrevimOpen']
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
 
 " disable plugin
 let plugin_dicwin_disable = 1
