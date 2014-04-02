@@ -11,15 +11,8 @@ Set-Location $commandPath
 
 function main() {#{{{
 
-  try {
+  trap { Write-Host "[main]: Error $($_)"; break }
 
-  } catch [Exception] {
-
-    Write-Host "Error Occured ! $($error[0])"
-
-  } finally {
-
-  }
 
 }#}}}
 
