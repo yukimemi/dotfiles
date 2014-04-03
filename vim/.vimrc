@@ -1850,16 +1850,26 @@ if neobundle#tap('vim-ps1')"{{{
                 \ })
 
     function! neobundle#tapped.hooks.on_source(bundle)
-        function! s:make_ps12cmd()
-            if s:is_windows
-                let s:com = "copy /b header.cmd + " . expand("%:p:t") . " " . expand("%:p:t:r") . ".cmd"
-            else
-                let s:com = "cat header.cmd " . expand("%:p:t") . " > " . expand("%:p:t:r") . ".cmd"
+        function! s:addHeader(flg)
+            let list = []
+            call add(list, "@echo off")
+            call add(list, "pushd \"%~dp0\" > nul")
+            call add(list, "set tm=%time: =0%")
+            call add(list, "set ps1file=%~n0___%date:~-10,4%%date:~-5,2%%date:~-2,2%_%tm:~0,2%%tm:~3,2%%tm:~6,2%%tm:~9,2%.ps1")
+            call add(list, "for /f \"usebackq skip=10 delims=\" %%i in (\"%~f0\") do @echo %%i >> \"%ps1file%\"")
+            call add(list, "powershell -NoProfile -ExecutionPolicy unrestricted -File \"%ps1file%\" %*")
+            call add(list, "del \"%ps1file%\"")
+            call add(list, "popd > nul")
+            if ! a:flg
+                call add(list, "pause")
             endif
-            echom(s:com)
-            call {s:system}(s:com)
+            call add(list, "exit /b %ERRORLEVEL%")
+            call add(list, "\# ========== do ps1 file as a dosbatch ==========")
+            call extend(list, getline("1", "$"))
+            call writefile(list, expand("%:p:r") . ".cmd", 'b')
         endfunction
-        au MyAutoCmd BufWritePost *.ps1 call s:make_ps12cmd()
+        au MyAutoCmd BufWritePost *.ps1 call s:addHeader(0)
+        au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeader(1)
     endfunction
 
     call neobundle#untap()
