@@ -188,17 +188,19 @@ if shell_is_osx ; then
     brew install brew-cask
     brew cask install google-chrome
     brew cask install firefox
-    brew cask install right-zoom
+    #brew cask install right-zoom
     brew cask install appcleaner
     brew cask install keyremap4macbook
     brew cask install caffeine
     brew cask install bettertouchtool
-    brew cask install xld
+    #brew cask install xld
     brew cask install iterm2
     brew cask install quicksilver
     brew cask install dropbox
-    brew cask install mplayerx
+    #brew cask install mplayerx
     brew cask install f-lux
+    #brew cask install alfred
+    #brew cask alfred link
 
     # iterm2 solalized colorscheme
     [ ! -d ${HOME}/.iterm2-colorscheme ] && mkdir -p ${HOME}/.iterm2-colorscheme
