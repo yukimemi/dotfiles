@@ -93,7 +93,7 @@ NeoBundle 'osyo-manga/vim-automatic', {'depends': ['osyo-manga/vim-gift', 'osyo-
 NeoBundle 'osyo-manga/vim-textobj-multitextobj', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'kana/vim-operator-replace', {'depends': 'kana/vim-operator-user'}
 NeoBundle 'tyru/operator-star.vim', {'depends': ['kana/vim-operator-user', 'thinca/vim-visualstar']}
-"NeoBundle 'szw/vim-tags', {'build': {'mac': 'brew install ctags'}}
+NeoBundle 'szw/vim-tags', {'build': {'mac': 'brew install ctags'}}
 NeoBundle 'thinca/vim-submode'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'tpope/vim-fugitive'
@@ -102,10 +102,10 @@ NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 "NeoBundle 'scrooloose/syntastic'
-NeoBundle 'jiangmiao/auto-pairs'
+"NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'osyo-manga/vim-precious', {'depends': 'Shougo/context_filetype.vim'}
 NeoBundle 'hunner/vim-plist'
-NeoBundle 'hokorobi/vim-tagsgen', {'other': 'go get github.com/jstemmer/gotags'}
+"NeoBundle 'hokorobi/vim-tagsgen', {'other': 'go get github.com/jstemmer/gotags'}
 NeoBundle 'mhinz/vim-hugefile'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-repeat'
@@ -2481,7 +2481,7 @@ au MyAutoCmd BufNewFile,BufRead *.styl setl ft=stylus tabstop=8 shiftwidth=2
       \ softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.scpt,*.applescript setl filetype=applescript
 au MyAutoCmd BufNewFile,BufRead *.scala setl ft=scala
-au MyAutoCmd BufNewFile,BufRead *.rb setl ft=ruby fenc=utf8 ff=unix
+au MyAutoCmd FileType ruby setl fenc=utf8 ff=unix
       \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 " Scala {{{
 " http://vim-users.jp/2013/02/vim-advent-calendar-2012-ujihisa-4/
