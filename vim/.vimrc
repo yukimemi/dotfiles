@@ -697,6 +697,8 @@ if neobundle#tap('vim-submode')"{{{
     nnoremap sq :<C-u>q<CR>
     nnoremap sQ :<C-u>bd<CR>
     nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+    nnoremap sf :<C-u>Unite file -buffer-name=file<CR>
+    nnoremap sF :<C-u>Unite file_rec/async -buffer-name=file_rec<CR>
     nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
     call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
@@ -1303,6 +1305,9 @@ if neobundle#tap('vim-quickrun')"{{{
                 \       'hook/output_encode/encoding': "cp932"
                 \ }
                 \ }
+
+    " stop quickrun
+    nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
     call neobundle#untap()
 endif"}}}
 

@@ -2,6 +2,7 @@
 param($hoge = $(Read-Host "{{_cursor_}}"))
 
 $ErrorActionPreference = "stop"
+$DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
 
 $commandPath = Split-Path -parent $myInvocation.MyCommand.path
 $commandName = Split-Path -leaf $myInvocation.MyCommand.path
