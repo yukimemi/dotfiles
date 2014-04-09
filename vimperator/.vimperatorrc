@@ -181,6 +181,11 @@ EOS
 set! browser.download.manager.showWhenStarting=false
 
 set! extensions.checkCompatibility.18.0.2=false
+
+" feedly
+set! browser.contentHandlers.types.6.title=feedly
+set! browser.contentHandlers.types.6.type=application/vnd.mozilla.maybe.feed
+set! browser.contentHandlers.types.6.uri=http://cloud.feedly.com/#subscription/feed/%s
 " }}}
 
 " plugins {{{

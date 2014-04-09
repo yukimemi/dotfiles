@@ -762,8 +762,11 @@ if neobundle#tap('TweetVim')"{{{
     let g:tweetvim_default_account = "yukimemi"
     let g:tweetvim_tweet_per_page = 200
     let g:tweetvim_cache_size = 50
+    let g:tweetvim_display_username = 1
     let g:tweetvim_display_source = 1
     let g:tweetvim_display_time = 1
+    let g:tweetvim_async_post = 1
+    let g:tweetvim_display_icon = 1
 
     call neobundle#untap()
 endif"}}}
@@ -1872,7 +1875,11 @@ if neobundle#tap('vim-ps1')"{{{
             call add(list, "exit /b %ERRORLEVEL%")
             call add(list, "\# ========== do ps1 file as a dosbatch ==========")
             call extend(list, getline("1", "$"))
-            call writefile(list, expand("%:p:r") . ".cmd", 'b')
+            let cp932List = []
+            for line in list
+                call add(cp932List, iconv(line . "\r", "UTF-8", "CP932"))
+            endfor
+            call writefile(cp932List, expand("%:p:r") . ".cmd", 'b')
         endfunction
         au MyAutoCmd BufWritePost *.ps1 call s:addHeader(0)
         au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeader(1)
