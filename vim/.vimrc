@@ -466,7 +466,7 @@ endif
 
 " color
 set background=dark
-colorscheme hybrid
+colorscheme molokai
 
 highlight Search ctermbg=88
 
@@ -765,8 +765,8 @@ if neobundle#tap('TweetVim')"{{{
     let g:tweetvim_display_username = 1
     let g:tweetvim_display_source = 1
     let g:tweetvim_display_time = 1
-    let g:tweetvim_async_post = 1
     let g:tweetvim_display_icon = 1
+    let g:tweetvim_async_post = 1
 
     call neobundle#untap()
 endif"}}}
@@ -1690,12 +1690,11 @@ endif"}}}
 if neobundle#tap('vim-go')"{{{
     call neobundle#config({
                 \ 'autoload': {
-                \   'mappings': [['n', '<Plug>(godoc-keyword)']],
-                \   'commands': ['GoErrCheck', 'GoOracleCallgraph', 'GoRun', 'GoDeps', 'GoDef',
-                \                'GoOracleDescribe', 'GoOracleCallers', 'GoUpdateBinaries',
-                \                'GoTest', 'GoOracleChannelPeers', 'GoOracleCallees',
-                \                'GoOracleImplements',
-                \                {'complete': 'customlist,go#package#Package', 'name': 'GoDoc'},
+                \   'mappings': [['n', '<Plug>(go-']],
+                \   'commands': ['GoErrCheck', 'GoOracleCallgraph', 'GoRun', 'GoDeps', 'GoInstall',
+                \                'GoDef', 'GoOracleDescribe', 'GoUpdateBinaries', 'GoVet', 'GoTest',
+                \                'GoOracleCallers', 'GoOracleChannelPeers', 'GoOracleCallees', 'GoOracleImplements',
+                \                {'complete': 'customlist,go#package#Complete', 'name': 'GoDoc'},
                 \                'GoFiles', 'GoBuild'],
                 \   'filetypes': 'go'
                 \ }
