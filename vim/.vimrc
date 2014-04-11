@@ -1088,9 +1088,12 @@ if neobundle#tap('open-browser.vim')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'mappings': [['sxn', '<Plug>(openbrowser-']],
-                \   'commands': ['OpenBrowser', 'OpenBrowserSearch', 'OpenBrowserSmartSearch']
+                \   'commands': [{'complete': 'customlist,openbrowser#_cmd_complete', 'name': 'OpenBrowserSearch'},
+                \                {'complete': 'customlist,openbrowser#_cmd_complete', 'name': 'OpenBrowserSmartSearch'},
+                \                'OpenBrowser']
                 \ }
                 \ })
+
     function! neobundle#tapped.hooks.on_source(bundle)
         " http://vim-users.jp/2011/08/hack225/
         nmap gx <Plug>(openbrowser-smart-search)
@@ -1306,6 +1309,10 @@ if neobundle#tap('vim-quickrun')"{{{
                 \ "ps1": {
                 \       'hook/output_encode/enable': 1,
                 \       'hook/output_encode/encoding': "cp932"
+                \ },
+                \ "markdown": {
+                \       "type": "markdown/pandoc",
+                \       "outputter": "browser"
                 \ }
                 \ }
 
