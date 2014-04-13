@@ -74,7 +74,7 @@ pushd ${HOME}/.zprezto/runcoms
 PREZTO_FILES=( zlogin zlogout zpreztorc zprofile zshenv zshrc )
 for file in ${PREZTO_FILES[@]}
 do
-    ln -sf "$file" "${ZDOTDIR:-$HOME}/.${file}"
+    ln -sf "${PWD}/${file}" "${ZDOTDIR:-$HOME}/.${file}"
 done
 popd
 
