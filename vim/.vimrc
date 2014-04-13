@@ -109,6 +109,7 @@ NeoBundle 'hunner/vim-plist'
 NeoBundle 'mhinz/vim-hugefile'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-repeat'
+NeoBundle 'thinca/vim-singleton'
 NeoBundleLazy 'kannokanno/previm.git', {'depends': 'tyru/open-browser.vim'}
 NeoBundleLazy 'rcmdnk/vim-markdown'
 NeoBundleLazy 'triglav/vim-visual-increment'
@@ -198,7 +199,6 @@ NeoBundleLazy 'tacroe/unite-mark'
 NeoBundleLazy 'thinca/vim-qfreplace'
 NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundleLazy 'thinca/vim-ref'
-NeoBundleLazy 'thinca/vim-singleton'
 NeoBundleLazy 'thinca/vim-template'
 NeoBundleLazy 'thinca/vim-splash'
 NeoBundleLazy 'thinca/vim-prettyprint'
@@ -565,6 +565,14 @@ nmap cc <Plug>(ToggleColorColumn)"}}}
 "===================================================================================}}}
 
 "{{{ ========== Plugin Settings =======================================================
+if neobundle#tap('vim-singleton')"{{{
+    if has('clientserver')
+        call singleton#enable()
+    endif
+
+    call neobundle#untap()
+endif"}}}
+
 if neobundle#tap('lightline.vim')"{{{
     if s:is_windows || s:is_cygwin
         let g:lightline = {
@@ -2460,6 +2468,16 @@ if neobundle#tap('previm')"{{{
     call neobundle#config({
                 \ 'autoload': {
                 \   'commands': ['PrevimOpen']
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-filetype-haskell')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'filetypes': 'haskell'
                 \ }
                 \ })
 
