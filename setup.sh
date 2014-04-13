@@ -65,19 +65,17 @@ else
     ln -s ${PWD}/${screen} ${HOME}/.screenrc
 fi
 
-# zsh
-cd zsh
-ZSH_FILE=( .zshenv )
-for file in ${ZSH_FILE[@]}
+#[ ! -d "${HOME}/.oh-my-zsh" ] && git clone git@github.com:yukimemi/oh-my-zsh.git ${HOME}/.oh-my-zsh
+#rm ${HOME}/.zshrc
+#ln -s ${HOME}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME}/.zshrc
+# prezto
+[ ! -d "${HOME}/.zprezto" ] && git clone --recursive git@github.com:yukimemi/prezto.git ${HOME}/.zprezto
+pushd ${HOME}/.zprezto/runcoms
+PREZTO_FILES=( zlogin zlogout zpreztorc zprofile zshenv zshrc )
+for file in ${PREZTO_FILES[@]}
 do
-    rm ${HOME}/${file}
-    ln -s ${PWD}/${file} ${HOME}/${file}
+    ln -sf "$file" "${ZDOTDIR:-$HOME}/.${file}"
 done
-cd ../
-
-[ ! -d "${HOME}/.oh-my-zsh" ] && git clone git@github.com:yukimemi/oh-my-zsh.git ${HOME}/.oh-my-zsh
-rm ${HOME}/.zshrc
-ln -s ${HOME}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME}/.zshrc
 
 # vim
 cd vim
@@ -169,6 +167,7 @@ if shell_is_osx ; then
     brew install tmux
     brew install readline
     brew install openssl
+    brew install ssh-copy-id
     brew install coreutils
     brew install rmtrash
     brew install cmatrix
