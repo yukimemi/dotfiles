@@ -76,6 +76,7 @@ for file in ${PREZTO_FILES[@]}
 do
     ln -sf "$file" "${ZDOTDIR:-$HOME}/.${file}"
 done
+popd
 
 # vim
 cd vim
