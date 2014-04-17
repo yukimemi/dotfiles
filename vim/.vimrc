@@ -103,7 +103,7 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 "NeoBundle 'scrooloose/syntastic'
 "NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'osyo-manga/vim-precious', {'depends': 'Shougo/context_filetype.vim'}
+"NeoBundle 'osyo-manga/vim-precious', {'depends': 'Shougo/context_filetype.vim'}
 NeoBundle 'hunner/vim-plist'
 "NeoBundle 'hokorobi/vim-tagsgen', {'other': 'go get github.com/jstemmer/gotags'}
 NeoBundle 'mhinz/vim-hugefile'
