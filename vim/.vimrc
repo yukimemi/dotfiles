@@ -570,6 +570,10 @@ if neobundle#tap('vim-singleton')"{{{
         call singleton#enable()
     endif
 
+    let g:singleton#ignore_pattern = {
+                \ 'eml': ['\.eml$']
+                \ }
+
     call neobundle#untap()
 endif"}}}
 
@@ -2460,6 +2464,25 @@ if neobundle#tap('vim-markdown')"{{{
                 \   'filetypes': 'markdown'
                 \ }
                 \ })
+
+    function! s:md2docx()
+        let s:com = 'powershell -NoProfile -ExecutionPolicy unrestricted -File C:/work/git/win/ps1/md2docx.ps1 ' . expand("%:p")
+        echom s:com
+        call {s:system}(s:com)
+        echo "md2docx exit !"
+    endfunction
+
+    function! s:automd2docx()
+        let s:compath = expand("%:p:h") . "/md2docx.bat"
+        if filereadable(s:compath)
+            let s:com = s:compath . " " . expand("%:p")
+            echo s:com
+            call {s:system}(s:com)
+        endif
+    endfunction
+
+    au MyAutoCmd FileType markdown nnoremap <expr><buffer> <Leader>m <SID>md2docx()
+    au MyAutoCmd BufWritePost *.md call s:automd2docx()
 
     call neobundle#untap()
 endif"}}}
