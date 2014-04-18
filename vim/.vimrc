@@ -110,6 +110,7 @@ NeoBundle 'mhinz/vim-hugefile'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'thinca/vim-singleton'
+NeoBundleLazy 'supermomonga/jazzradio.vim', {'depends': ['Shougo/unite.vim']}
 NeoBundleLazy 'kannokanno/previm.git', {'depends': 'tyru/open-browser.vim'}
 NeoBundleLazy 'rcmdnk/vim-markdown'
 NeoBundleLazy 'triglav/vim-visual-increment'
@@ -2505,6 +2506,20 @@ if neobundle#tap('vim-filetype-haskell')"{{{
                 \ })
 
     call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('jazzradio.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'unite_sources': ['jazzradio'],
+                \   'commands': ['JazzradioUpdateChannels', 'JazzradioStop',
+                \                {'complete': 'customlist,jazzradio#channel_key_complete', 'name': 'JazzradioPlay'}],
+                \   'function_prefix': 'jazzradio'
+                \ }
+                \ })
+
+    call neobundle#untap()
+
 endif"}}}
 
 " disable plugin
