@@ -1891,7 +1891,7 @@ if neobundle#tap('vim-ps1')"{{{
             if ! a:flg
                 call add(list, "pause")
             endif
-            call add(list, "exit /b %ERRORLEVEL%")
+            call add(list, "exit %ERRORLEVEL%")
             call add(list, "\# ========== do ps1 file as a dosbatch ==========")
             call extend(list, getline("1", "$"))
             let cp932List = []
@@ -2083,7 +2083,7 @@ if neobundle#tap('vim-quickhl')"{{{
 
     nmap [Space]] <Plug>(quickhl-tag-toggle)
 
-    map H <Plug>(operator-quickhl-manual-this-motion)
+    "map H <Plug>(operator-quickhl-manual-this-motion)
 
     call neobundle#untap()
 endif"}}}
