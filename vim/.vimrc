@@ -357,6 +357,13 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 " save as root"{{{
 com! Wsu w !sudo tee > /dev/null %
 "}}}
+
+function! s:dash(...)"{{{
+    "https://gist.github.com/mattn/4975267
+    let word = len(a:000) == 0 ? input('Dash search: ') : a:1
+    call system(printf("open dash://'%s'", word))
+endfunction
+command! -nargs=? Dash call <SID>dash(<f-args>)"}}}
 "===================================================================================}}}
 
 "{{{ ========== System ================================================================
@@ -773,12 +780,12 @@ if neobundle#tap('TweetVim')"{{{
     endfunction
 
     let g:tweetvim_default_account = "yukimemi"
-    let g:tweetvim_tweet_per_page = 200
+    let g:tweetvim_tweet_per_page = 100
     let g:tweetvim_cache_size = 50
-    let g:tweetvim_display_username = 1
+    "let g:tweetvim_display_username = 1
     let g:tweetvim_display_source = 1
     let g:tweetvim_display_time = 1
-    let g:tweetvim_display_icon = 1
+    "let g:tweetvim_display_icon = 1
     let g:tweetvim_async_post = 1
 
     call neobundle#untap()
