@@ -209,7 +209,7 @@ NeoBundleLazy 'tpope/vim-rails'
 NeoBundleLazy 'tsukkee/unite-help', {'depends': 'Shougo/unite.vim'}
 NeoBundleLazy 'tsukkee/unite-tag', {'depends': 'Shougo/unite.vim'}
 NeoBundleLazy 'tyru/open-browser.vim'
-NeoBundleLazy 'ujihisa/neco-ghc'
+NeoBundleLazy 'eagletmt/neco-ghc', {'build': {'mac': 'cabal install ghc-mod'}}
 NeoBundleLazy 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'ujihisa/unite-font'
 NeoBundleLazy 'hachibeeDI/vim-vbnet'
@@ -238,13 +238,6 @@ NeoBundleLazy 'basyura/TweetVim', 'dev', {
             \   'mattn/favstar-vim',
             \   'mattn/webapi-vim'
             \ ]}
-"NeoBundleLazy 'jnwhiteh/vim-golang', {
-            "\ 'build': {
-            "\   'windows': ['go get github.com/nsf/gocode', 'go get github.com/golang/lint'],
-            "\   'cygwin' : ['go get github.com/nsf/gocode', 'go get github.com/golang/lint'],
-            "\   'mac'    : ['go get github.com/nsf/gocode', 'go get github.com/golang/lint'],
-            "\   'unix'   : ['go get github.com/nsf/gocode', 'go get github.com/golang/lint']
-            "\ }}
 NeoBundleLazy 'fatih/vim-go'
 if has('lua') && ((v:version >= 703 && has('patch885')) || v:version >= 704)
   NeoBundleLazy 'Shougo/neocomplete.vim'
@@ -1745,6 +1738,17 @@ if neobundle#tap('ghcmod-vim')"{{{
     function! neobundle#tapped.hooks.on_source(bundle)
         "au MyAutoCmd BufWritePost <buffer> GhcModCheckAsync
     endfunction
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('neco-ghc')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': ['NecoGhcDiagnostics'],
+                \   'filetypes': 'haskell'
+                \ }
+                \ })
 
     call neobundle#untap()
 endif"}}}
