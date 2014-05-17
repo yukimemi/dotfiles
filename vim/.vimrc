@@ -168,6 +168,7 @@ NeoBundleLazy 'digitaltoad/vim-jade'
 NeoBundleLazy 'drakontia/sphinx.vim'
 NeoBundleLazy 'eagletmt/ghcmod-vim', {'build': {'mac': 'cabal install ghc-mod'}}
 NeoBundleLazy 'eagletmt/unite-haddock'
+NeoBundleLazy 'ujihisa/ref-hoogle', {'build': {'mac': 'cabal install hoogle'}, 'depends': 'thinca/vim-ref'}
 NeoBundleLazy 'edsono/vim-matchit'
 NeoBundleLazy 'h1mesuke/unite-outline', {'depends': 'Shougo/unite.vim'}
 NeoBundleLazy 'h1mesuke/vim-alignta'
@@ -1749,6 +1750,8 @@ if neobundle#tap('neco-ghc')"{{{
                 \   'filetypes': 'haskell'
                 \ }
                 \ })
+
+    let g:necoghc_enable_detailed_browse = 1
 
     call neobundle#untap()
 endif"}}}
