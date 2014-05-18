@@ -2,7 +2,6 @@
 git submodule init
 git submodule update
 
-
 # check ostype
 ostype() { echo $OSTYPE | tr '[A-Z]' '[a-z]'; }
 SHELL_PLATFORM='unknown'
@@ -160,47 +159,6 @@ cd -
 if shell_is_osx ; then
     # install homebrew
     ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
-    brew install reattach-to-user-namespace
-    brew install --disable-etcdir zsh
-    brew install lv
-    brew install git
-    brew install git-now
-    brew install tmux
-    brew install readline
-    brew install openssl
-    brew install ssh-copy-id
-    brew install coreutils
-    brew install rmtrash
-    brew install cmatrix
-    brew install zsh-completions
-    brew install mosh
-    brew install nkf
-    brew install the_silver_searcher
-    #brew install rbenv ruby-build rbenv-gemset rbenv-binstubs
-    brew install macvim --with-cscope --with-lua --HEAD --override-system-vim
-    brew install go --cross-compile-common
-    brew linkapps
-
-    brew tap homebrew/dupes
-    brew install grep    # GNU grep necessary for tmux-powerline
-
-    brew tap phinze/homebrew-cask
-    brew install brew-cask
-    brew cask install google-chrome
-    brew cask install firefox
-    #brew cask install right-zoom
-    brew cask install appcleaner
-    brew cask install keyremap4macbook
-    brew cask install caffeine
-    brew cask install bettertouchtool
-    #brew cask install xld
-    brew cask install iterm2
-    brew cask install quicksilver
-    brew cask install dropbox
-    #brew cask install mplayerx
-    brew cask install f-lux
-    #brew cask install alfred
-    #brew cask alfred link
 
     # iterm2 solalized colorscheme
     [ ! -d ${HOME}/.iterm2-colorscheme ] && mkdir -p ${HOME}/.iterm2-colorscheme

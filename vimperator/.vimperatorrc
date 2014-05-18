@@ -198,7 +198,7 @@ if (liberator.has("Win32")) {
 }
 EOM
 
-let g:plugin_loader_plugins = "_libly,_smooziee,auto-focus-frame,commandBookmarklet,multi_requester,copy,opener-ex,stella,twittperator,slideshare,hints-ext,x-hint,smooth-scroll,xpath-hint,statusline-toolbar,graphical-position"
+let g:plugin_loader_plugins = "_libly,_smooziee,auto-focus-frame,commandBookmarklet,multi_requester,copy,opener-ex,stella,twittperator,slideshare,hints-ext,x-hint,smooth-scroll,xpath-hint,graphical-position"
 
 " hints-ext"{{{
 let use_hintchars_ex=2
