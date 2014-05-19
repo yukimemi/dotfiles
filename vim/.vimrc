@@ -1353,10 +1353,10 @@ if neobundle#tap('vim-coffee-script')"{{{
                 \   'commands': ['CoffeeCompile', 'CoffeeWatch', 'CoffeeRun', 'CoffeeLint']
                 \ }
                 \ })
-    function! neobundle#tapped.hooks.on_source(bundle)
-        let coffee_compile_vert = 1
-        let coffee_make_options = '--bare'
-    endfunction
+
+    let coffee_compile_vert = 1
+    let coffee_make_options = '--bare'
+
     call neobundle#untap()
 endif"}}}
 
