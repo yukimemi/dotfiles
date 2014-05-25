@@ -75,7 +75,7 @@ NeoBundle 'cocopon/lightline-hybrid.vim', {'depends': 'itchyny/lightline.vim'}
 NeoBundle 'fuenor/qfixgrep'
 "NeoBundle 'fuenor/qfixhowm'
 "NeoBundle 'goldfeld/vim-seek'
-NeoBundle 'itchyny/landscape.vim'
+"NeoBundle 'itchyny/landscape.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'jceb/vim-hier'
 NeoBundle 'kana/vim-textobj-entire', {'depends': 'kana/vim-textobj-user'}
@@ -141,6 +141,7 @@ NeoBundleLazy 'DrawIt'
 NeoBundleLazy 'pangloss/vim-javascript'
 "NeoBundleLazy 'jelera/vim-javascript-syntax'
 "NeoBundleLazy 'jiangmiao/simple-javascript-indenter'
+NeoBundleLazy 'marijnh/tern_for_vim', {'build': {'others': 'npm install'}}
 NeoBundleLazy 'LeafCage/nebula.vim'
 NeoBundleLazy 'PProvost/vim-ps1'
 NeoBundleLazy 'cd01/poshcomplete-vim'
@@ -468,7 +469,7 @@ endif
 
 " color
 set background=dark
-colorscheme molokai
+colorscheme solarized
 
 highlight Search ctermbg=88
 
@@ -582,7 +583,7 @@ endif"}}}
 if neobundle#tap('lightline.vim')"{{{
     if s:is_windows || s:is_cygwin
         let g:lightline = {
-                    \ 'colorscheme': 'landscape',
+                    \ 'colorscheme': 'solarized',
                     \ 'mode_map': { 'c': 'NORMAL' },
                     \ 'active': {
                     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'anzu' ] ]
@@ -601,7 +602,7 @@ if neobundle#tap('lightline.vim')"{{{
                     \ }
     else
         let g:lightline = {
-                    \ 'colorscheme': 'hybrid',
+                    \ 'colorscheme': 'solarized',
                     \ 'mode_map': { 'c': 'NORMAL' },
                     \ 'active': {
                     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'anzu' ] ]
@@ -915,23 +916,28 @@ if neobundle#tap('neocomplete.vim')"{{{
                 \   'insert': 1
                 \ }
                 \ })
-    function! neobundle#tapped.hooks.on_source(bundle)
-        let g:neocomplete#enable_at_startup = 1
-        let g:neocomplete#enable_smart_case = 1
-        let g:neocomplete#sources#syntax#min_keyword_length = 3
-        " Define dictionary.
-        let g:neocomplete#sources#dictionary#dictionaries = {
-                    \ 'default': '',
-                    \ 'vimshell': $HOME . '/.vimshell_hist',
-                    \ 'scheme': $HOME . '/.gosh_completions',
-                    \ 'coffee': $MY_VIMRUNTIME . '/dict/coffee.dict',
-                    \ 'vbs': $MY_VIMRUNTIME . '/dict/vbs.dict',
-                    \ 'dosbatch': $MY_VIMRUNTIME . '/dict/dosbatch.dict',
-                    \ 'scala': $MY_VIMRUNTIME . '/dict/scala.dict',
-                    \ 'ps1': $MY_VIMRUNTIME . '/dict/ps1.dict',
-                    \ 'javascript': $MY_VIMRUNTIME . '/dict/wsh.dict'
-                    \ }
-    endfunction
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#enable_smart_case = 1
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
+    " Define dictionary.
+    let g:neocomplete#sources#dictionary#dictionaries = {
+                \ 'default': '',
+                \ 'vimshell': $HOME . '/.vimshell_hist',
+                \ 'scheme': $HOME . '/.gosh_completions',
+                \ 'coffee': $MY_VIMRUNTIME . '/dict/coffee.dict',
+                \ 'vbs': $MY_VIMRUNTIME . '/dict/vbs.dict',
+                \ 'dosbatch': $MY_VIMRUNTIME . '/dict/dosbatch.dict',
+                \ 'scala': $MY_VIMRUNTIME . '/dict/scala.dict',
+                \ 'ps1': $MY_VIMRUNTIME . '/dict/ps1.dict',
+                \ 'javascript': $MY_VIMRUNTIME . '/dict/wsh.dict'
+                \ }
+
+    " SQL
+    if !exists('g:neocomplete#sources#omni#functions')
+        let g:neocomplete#sources#omni#functions = {}
+    endif
+    let g:neocomplete#sources#omni#functions.sql = 'sqlcomplete#Complete'
+
     call neobundle#untap()
 endif"}}}
 
@@ -2536,6 +2542,21 @@ if neobundle#tap('jazzradio.vim')"{{{
 
 endif"}}}
 
+if neobundle#tap('tern_for_vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': ['TernDocBrowse', 'TernType', 'TernRename', 'TernDefPreview',
+                \                'TernDoc', 'TernDef', 'TernDefTab', 'TernDefSplit', 'TernRefs'],
+                \   'filetypes': ['javascript', 'typescript', 'coffee']
+                \ }
+                \ })
+
+    au MyAutoCmd FileType coffee,typescript call tern#Enable()
+    au MyAutoCmd FileType coffee,typescript setlocal omnifunc=tern#Complete
+
+    call neobundle#untap()
+endif"}}}
+
 " disable plugin
 let plugin_dicwin_disable = 1
 "===================================================================================}}}
@@ -2609,6 +2630,8 @@ augroup vimrc_scala"{{{
     au FileType scala nnoremap <buffer> [Space]st :<C-u>StartSBT<Cr>
 augroup END"}}}
 "}}}
+" html
+let g:html_indent_inctags = "html,body,head,tbody"
 "===================================================================================}}}
 
 "{{{ ========== Temp Settings =========================================================
