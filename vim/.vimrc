@@ -2341,7 +2341,7 @@ endif"}}}
 if neobundle#tap('vim-qfreplace')"{{{
     call neobundle#config({
                 \ 'autoload': {
-                \   'commands': ['Unite']
+                \   'commands': ['Unite', 'Qfreplace']
                 \ }
                 \ })
 
