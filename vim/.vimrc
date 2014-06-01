@@ -112,6 +112,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'thinca/vim-singleton'
 "NeoBundleLazy 'vim-scripts/ZoomWin'
+NeoBundleLazy 'mopp/googlesuggest-source.vim', {'depends': 'mattn/googlesuggest-complete-vim'}
 NeoBundleLazy 'glidenote/memolist.vim', {'depends': 'Shougo/unite.vim'}
 NeoBundleLazy 'supermomonga/jazzradio.vim', {'depends': ['Shougo/unite.vim']}
 NeoBundleLazy 'kannokanno/previm.git', {'depends': 'tyru/open-browser.vim'}
@@ -226,6 +227,7 @@ NeoBundleLazy 'wesleyche/SrcExpl'
 NeoBundleLazy 'yuyunko/dosbatch-indent', {'depends': 'taku-o/vim-batch-source'}
 NeoBundleLazy 'zhisheng/visualmark.vim'
 NeoBundleLazy 't9md/vim-choosewin'
+NeoBundleLazy 'tsukkee/lingr-vim'
 NeoBundleLazy 'davidhalter/jedi-vim', {
             \ 'depends': 'mitechie/pyflakes-pathogen',
             \ 'build': {
@@ -2596,6 +2598,27 @@ if neobundle#tap('ZoomWin')"{{{
                 \ })
 
     nmap so <Plug>ZoomWin
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('lingr-vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': [['sxno', '<Plug>(lingr-messages-quote)']],
+                \   'commands': ['LingrLaunch', 'LingrExit']
+                \ }
+                \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('googlesuggest-source.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'insert': 1
+                \ }
+                \ })
 
     call neobundle#untap()
 endif"}}}
