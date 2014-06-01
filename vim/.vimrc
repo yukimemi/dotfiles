@@ -112,6 +112,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'thinca/vim-singleton'
 "NeoBundleLazy 'vim-scripts/ZoomWin'
+NeoBundleLazy 'osyo-manga/vim-operator-blockwise', {'depends': 'kana/vim-operator-user'}
 NeoBundleLazy 'mopp/googlesuggest-source.vim', {'depends': 'mattn/googlesuggest-complete-vim'}
 NeoBundleLazy 'glidenote/memolist.vim', {'depends': 'Shougo/unite.vim'}
 NeoBundleLazy 'supermomonga/jazzradio.vim', {'depends': ['Shougo/unite.vim']}
@@ -2619,6 +2620,23 @@ if neobundle#tap('googlesuggest-source.vim')"{{{
                 \   'insert': 1
                 \ }
                 \ })
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-operator-blockwise')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': [['n', '<Plug>(operator-blockwise-']]
+                \ }
+                \ })
+
+	" yank
+	nmap YY <Plug>(operator-blockwise-yank-head)
+	" delete
+	nmap DD <Plug>(operator-blockwise-delete-head)
+	" change
+	nmap CC <Plug>(operator-blockwise-change-head)
 
     call neobundle#untap()
 endif"}}}
