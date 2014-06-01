@@ -77,6 +77,7 @@ NeoBundle 'fuenor/qfixgrep'
 "NeoBundle 'goldfeld/vim-seek'
 "NeoBundle 'itchyny/landscape.vim'
 NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'sickill/vim-monokai'
 NeoBundle 'jceb/vim-hier'
 NeoBundle 'kana/vim-textobj-entire', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'kana/vim-textobj-function', {'depends': 'kana/vim-textobj-user'}
@@ -110,9 +111,11 @@ NeoBundle 'mhinz/vim-hugefile'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'thinca/vim-singleton'
+"NeoBundleLazy 'vim-scripts/ZoomWin'
+NeoBundleLazy 'glidenote/memolist.vim', {'depends': 'Shougo/unite.vim'}
 NeoBundleLazy 'supermomonga/jazzradio.vim', {'depends': ['Shougo/unite.vim']}
 NeoBundleLazy 'kannokanno/previm.git', {'depends': 'tyru/open-browser.vim'}
-NeoBundleLazy 'rcmdnk/vim-markdown'
+"NeoBundleLazy 'rcmdnk/vim-markdown'
 NeoBundleLazy 'triglav/vim-visual-increment'
 NeoBundleLazy 'thinca/vim-ft-help_fold'
 NeoBundleLazy 'koron/codic-vim'
@@ -469,7 +472,7 @@ endif
 
 " color
 set background=dark
-colorscheme solarized
+colorscheme monokai
 
 highlight Search ctermbg=88
 
@@ -602,7 +605,7 @@ if neobundle#tap('lightline.vim')"{{{
                     \ }
     else
         let g:lightline = {
-                    \ 'colorscheme': 'solarized',
+                    \ 'colorscheme': 'Tomorrow_Night',
                     \ 'mode_map': { 'c': 'NORMAL' },
                     \ 'active': {
                     \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'anzu' ] ]
@@ -2553,6 +2556,46 @@ if neobundle#tap('tern_for_vim')"{{{
 
     au MyAutoCmd FileType coffee,typescript call tern#Enable()
     au MyAutoCmd FileType coffee,typescript setlocal omnifunc=tern#Complete
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('memolist.vim')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'commands': ['MemoList', 'MemoGrep', 'MemoNew']
+                \ }
+                \ })
+
+    if isdirectory($HOME . '/Dropbox')
+        let g:memolist_path = $HOME . '/Dropbox/memolist'
+    else
+        let g:memolist_path = $HOME . './memolist'
+    endif
+
+    call s:mkdir(g:memolist_path)
+
+    "let g:memolist_vimfiler = 1
+    let g:memolist_unite = 1
+    let g:memolist_unite_source = "file_rec"
+
+    " mappings
+    nnoremap <Leader>mn :<C-u>MemoNew<CR>
+    nnoremap <Leader>ml :<C-u>MemoList<CR>
+    nnoremap <Leader>mg :<C-u>MemoGrep<CR>
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('ZoomWin')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': [['n', '<Plug>ZoomWin']],
+                \   'commands': ['ZoomWin']
+                \ }
+                \ })
+
+    nmap so <Plug>ZoomWin
 
     call neobundle#untap()
 endif"}}}
