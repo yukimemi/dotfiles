@@ -12,3 +12,7 @@ vim/.vim/back
 
 # tag
 tags
+
+# netrw
+vim/.vim/.netrwhist
+

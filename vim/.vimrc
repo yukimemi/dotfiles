@@ -67,7 +67,8 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'CmdlineCompl.vim'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'LeafCage/yankround.vim', {'depends': 'kien/ctrlp.vim'}
-NeoBundle 'The-NERD-Commenter'
+"NeoBundle 'The-NERD-Commenter'
+NeoBundle 'tyru/caw.vim'
 "NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'banyan/recognize_charcode.vim'
@@ -2639,6 +2640,14 @@ if neobundle#tap('vim-operator-blockwise')"{{{
 	nmap DD <Plug>(operator-blockwise-delete-head)
 	" change
 	nmap CC <Plug>(operator-blockwise-change-head)
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('caw.vim')"{{{
+
+    nmap <Leader>c <Plug>(caw:I:toggle)
+    vmap <Leader>c <Plug>(caw:I:toggle)
 
     call neobundle#untap()
 endif"}}}
