@@ -2,7 +2,7 @@ update
 
 tap homebrew/dupes || true
 tap phinze/homebrew-cask || true
-tap sanemat/font
+tap sanemat/font || true
 
 install reattach-to-user-namespace
 install --disable-etcdir zsh
