@@ -2576,7 +2576,7 @@ if neobundle#tap('memolist.vim')"{{{
     if isdirectory($HOME . '/Dropbox')
         let g:memolist_path = $HOME . '/Dropbox/memolist'
     else
-        let g:memolist_path = $HOME . './memolist'
+        let g:memolist_path = $HOME . '/.memolist'
     endif
 
     call s:mkdir(g:memolist_path)
