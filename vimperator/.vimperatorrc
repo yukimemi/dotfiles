@@ -438,7 +438,7 @@ function addLocalMappings(buffer, maps) {
   );
 }
 addLocalMappings(
-  /^(http:\/\/(es|www).nicovideo.jp\/(watch|playlist\/mylist)|http:\/\/(jp|www)\.youtube\.com\/watch|http:\/\/(www\.)?vimeo\.com\/(channels\/(hd)?#)?\d+)/,
+  /^(http:\/\/(es|www).nicovideo.jp\/(watch|playlist\/mylist)|https:\/\/(jp|www)\.youtube\.com\/watch|http:\/\/(www\.)?vimeo\.com\/(channels\/(hd)?#)?\d+)/,
   [
     ['<C-g>', ':pageinfo S',      ],
     ['p',     ':stplay',          ],
