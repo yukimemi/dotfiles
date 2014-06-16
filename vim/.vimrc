@@ -115,7 +115,7 @@ NeoBundle 'thinca/vim-singleton'
 "NeoBundleLazy 'vim-scripts/ZoomWin'
 NeoBundleLazy 'osyo-manga/vim-operator-blockwise', {'depends': 'kana/vim-operator-user'}
 if ! s:is_windows
-    NeoBundleLazy 'mopp/googlesuggest-source.vim', {'depends': 'mattn/googlesuggest-complete-vim'}
+    " NeoBundleLazy 'mopp/googlesuggest-source.vim', {'depends': 'mattn/googlesuggest-complete-vim'}
 endif
 NeoBundleLazy 'glidenote/memolist.vim', {'depends': 'Shougo/unite.vim'}
 NeoBundleLazy 'supermomonga/jazzradio.vim', {'depends': ['Shougo/unite.vim']}
@@ -133,6 +133,7 @@ NeoBundleLazy 'superbrothers/vim-vimperator'
 NeoBundleLazy 'gregsexton/gitv', {'depends': 'tpope/vim-fugitive'}
 "NeoBundleLazy 'pekepeke/titanium-vim'
 NeoBundleLazy 'rhysd/vim-textobj-ruby', {'depends': 'kana/vim-textobj-user'}
+NeoBundleLazy 'rhysd/vim-operator-surround', {'depends': 'kana/vim-operator-user'}
 NeoBundleLazy 'osyo-manga/vim-textobj-multiblock', {'depends': 'kana/vim-textobj-user'}
 NeoBundleLazy 'osyo-manga/vim-operator-search', {'depends': 'kana/vim-operator-user'}
 NeoBundleLazy 'thinca/vim-visualstar'
@@ -2143,7 +2144,8 @@ endif"}}}
 if neobundle#tap('vim-textobj-multiblock')"{{{
     call neobundle#config({
                 \ 'autoload': {
-                \   'mappings': '<Plug>(textobj-multiblock'
+                \   'mappings': [['xo', '<Plug>(textobj-multiblock'],
+                \                ['xo', '<Plug>(textobj-multiblock']]
                 \ }
                 \ })
 
@@ -2614,6 +2616,8 @@ if neobundle#tap('lingr-vim')"{{{
                 \ }
                 \ })
 
+    let g:lingr_vim_user = 'yukimemi'
+
     call neobundle#untap()
 endif"}}}
 
@@ -2648,6 +2652,26 @@ if neobundle#tap('caw.vim')"{{{
 
     nmap <Leader>c <Plug>(caw:I:toggle)
     vmap <Leader>c <Plug>(caw:I:toggle)
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-operator-surround')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'mappings': [['nx', '<Plug>(operator-surround'],
+                \               ['n', '<Plug>(operator-surround-repeat)']]
+                \ }
+                \ })
+
+    " operator mappings
+    map <silent>sa <Plug>(operator-surround-append)
+    map <silent>sd <Plug>(operator-surround-delete)
+    map <silent>sr <Plug>(operator-surround-replace)
+
+    " vim-textobj-multiblock
+    nmap <silent>sdd <Plug>(operator-surround-delete)<Plug>(textobj-multiblock-a)
+    nmap <silent>srr <Plug>(operator-surround-replace)<Plug>(textobj-multiblock-a)
 
     call neobundle#untap()
 endif"}}}
