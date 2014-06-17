@@ -3,8 +3,12 @@ let barposition = "bottom"
 let blacklists = ["chrome://*","https://mail.google.com/*","http://feedly.com/*","https://www.google.com/calendar/*"]
 
 " mapping
-map <C-f> scrollFullPageDown
-map <C-b> scrollFullPageUp
-map u lastClosedTab
 map ; :
+map <C-f> scrollPageDown
+map <C-b> scrollPageUp
+map u lastClosedTab
+map d closeTab
+map sn nextTab
+map sp previousTab
+map <C-[><C-[> :nohl<CR>
 
