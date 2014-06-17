@@ -1,0 +1,10 @@
+" variable settings
+let barposition = "bottom"
+let blacklists = ["chrome://*","https://mail.google.com/*","http://feedly.com/*","https://www.google.com/calendar/*"]
+
+" mapping
+map <C-f> scrollFullPageDown
+map <C-b> scrollFullPageUp
+map u lastClosedTab
+map ; :
+
