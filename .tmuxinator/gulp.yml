@@ -1,7 +1,7 @@
 # ~/.tmuxinator/gulp.yml
 
 name: gulp
-root: ~/Documents/git/node-webkit
+root: ~/.ghq/bitbucket.org/yukimemi/node-webkit
 
 # Optional tmux socket
 # socket_name: foo

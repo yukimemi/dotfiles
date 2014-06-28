@@ -1,7 +1,7 @@
 # ~/.tmuxinator/github.yml
 
 name: github
-root: ~/Documents/git/yukimemi.github.io
+root: ~/.ghq/github.com/yukimemi/yukimemi.github.io
 
 windows:
   - github:

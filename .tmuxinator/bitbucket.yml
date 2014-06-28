@@ -1,7 +1,7 @@
 # ~/.tmuxinator/bitbucket.yml
 
 name: bitbucket
-root: ~/Documents/git/yukimemi.bitbucket.org
+root: ~/.ghq/bitbucket.org/yukimemi/yukimemi.bitbucket.org
 
 windows:
   - bitbucket:
