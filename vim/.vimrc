@@ -2705,7 +2705,7 @@ au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown fenc=utf8 ff=unix
 au MyAutoCmd FileType markdown setl fenc=utf8 ff=unix
       \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.rst setl tabstop=8 shiftwidth=3 softtabstop=3 expandtab
-au MyAutoCmd BufNewFile,BufRead *.jade setl ft=jade
+au MyAutoCmd BufNewFile,BufRead *.jade setl ft=jade ts=4 sw=2 st=2 et
 au MyAutoCmd BufNewFile,BufRead *.styl setl ft=stylus tabstop=8 shiftwidth=2
       \ softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.scpt,*.applescript setl filetype=applescript

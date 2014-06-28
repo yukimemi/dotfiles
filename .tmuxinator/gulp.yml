@@ -8,8 +8,9 @@ root: ~/Documents/git/node-webkit
 
 windows:
   - vim:
-      layout: 8c9f,226x57,0,0{43x57,0,0,5,182x57,44,0,12}
+      layout: 34ab,226x57,0,0{48x57,0,0[48x33,0,0,2,48x23,0,34,5],177x57,49,0,4}
       panes:
+        - pwd
         - pwd
         - pwd
   - shell: pwd

@@ -102,12 +102,14 @@ hi -append Normal opacity: 0.8;
 " quickmark {{{
 qmark 2 http://is.2ch.net/
 qmark a https://affiliate.amazon.co.jp/gp/associates/network/main.html
+qmark A https://www.google.com/analytics/web/?hl=ja&pli=1#report/visitors-overview/a47356782w84696412p87788910/
 qmark b https://bitbucket.org/yukimemi
 qmark c https://www.google.com/calendar/render?hl=ja
 qmark d http://192.168.1.1/
 qmark e https://www.evernote.com/Home.action
 qmark f http://www.facebook.com/
 qmark g https://www.google.com/adsense/v3/app#home
+qmark G http://yukimemi.github.io
 qmark h http://b.hatena.ne.jp/
 qmark k http://yukimemi.bitbucket.org/
 qmark l https://mail.google.com/mail/#inbox
