@@ -24,10 +24,20 @@ openssl x509 -noout -modulus -in *.crt | openssl md5
 openssl rsa  -noout -modulus -in *.key | openssl md5
 openssl req  -noout -modulus -in *.csr | openssl md5
 
-# find
-find ./ -daystart -ctime +2
-find ./ -daystart -ctime -2
-
 # date
 date +%Y%m%d
+
+# find
+find . -type f -mtime +10
+
+# kill
+kill -9 $(ps -ef | grep -i vlc | grep -v grep | awk '{ print $2 }')
+kill -9 $(ps -ef | grep -i firefox | grep -v grep | awk '{ print $2 }')
+
+# screensaver
+open /System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app
+
+# exiftool
+exiftool '-FileName < CreateDate' -d ~/backup/Photos/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(JPG|jpg)
+exiftool '-FileName < CreateDate' -d ~/backup/Mov/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(MOV|mov)
 

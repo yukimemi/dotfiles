@@ -177,7 +177,7 @@ NeoBundleLazy 'derekwyatt/vim-scala', {'build': {'mac': 'brew install scala sbt'
 NeoBundleLazy 'digitaltoad/vim-jade'
 NeoBundleLazy 'drakontia/sphinx.vim'
 NeoBundleLazy 'eagletmt/ghcmod-vim', {'build': {'mac': 'cabal install ghc-mod'}}
-NeoBundleLazy 'eagletmt/unite-haddock'
+NeoBundleLazy 'eagletmt/unite-haddock', {'build': {'others': 'cabal install hoogle'}}
 NeoBundleLazy 'ujihisa/ref-hoogle', {'build': {'mac': 'cabal install hoogle'}, 'depends': 'thinca/vim-ref'}
 NeoBundleLazy 'edsono/vim-matchit'
 NeoBundleLazy 'h1mesuke/unite-outline', {'depends': 'Shougo/unite.vim'}
@@ -2672,6 +2672,23 @@ if neobundle#tap('vim-operator-surround')"{{{
     " vim-textobj-multiblock
     nmap <silent>sdd <Plug>(operator-surround-delete)<Plug>(textobj-multiblock-a)
     nmap <silent>srr <Plug>(operator-surround-replace)<Plug>(textobj-multiblock-a)
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('unite-haddock')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'unite_sources': ['haddock', 'hoogle']
+                \ }
+                \ })
+
+    au MyAutoCmd FileType haskell call s:my_haskell_mappings()
+
+    function! s:my_haskell_mappings()
+        nnoremap <buffer> K :<C-u>UniteWithCursorWord hoogle<CR>
+        nnoremap <buffer> [Space]h :<C-u>Unite hoogle<CR>
+    endfunction
 
     call neobundle#untap()
 endif"}}}
