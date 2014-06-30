@@ -41,3 +41,21 @@ open /System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngin
 exiftool '-FileName < CreateDate' -d ~/backup/Photos/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(JPG|jpg)
 exiftool '-FileName < CreateDate' -d ~/backup/Mov/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(MOV|mov)
 
+# ghq
+# github
+ghq get git@github.com:yukimemi/md2docx.git
+ghq get git@github.com:yukimemi/prezto.git
+ghq get git@github.com:yukimemi/tmux-powerline.git
+ghq get git@github.com:yukimemi/gitstatus.git
+
+# bitbucket
+ghq get git@bitbucket.org:yukimemi/haskell.git
+ghq get git@bitbucket.org:yukimemi/node-webkit.git
+ghq get git@bitbucket.org:yukimemi/yukimemi.bitbucket.org.git
+ghq get git@bitbucket.org:yukimemi/vagrant.git
+ghq get git@bitbucket.org:yukimemi/packer-windows.git
+ghq get git@bitbucket.org:yukimemi/clojure.git
+ghq get git@bitbucket.org:yukimemi/go.git
+ghq get git@bitbucket.org:yukimemi/win.git
+ghq get git@bitbucket.org:yukimemi/scripts.git
+ghq get git@bitbucket.org:yukimemi/coffee.git
