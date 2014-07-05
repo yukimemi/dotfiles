@@ -59,3 +59,6 @@ ghq get git@bitbucket.org:yukimemi/go.git
 ghq get git@bitbucket.org:yukimemi/win.git
 ghq get git@bitbucket.org:yukimemi/scripts.git
 ghq get git@bitbucket.org:yukimemi/coffee.git
+
+# Get deploy.sh
+wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh && chmod +x deploy.sh

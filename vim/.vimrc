@@ -194,6 +194,7 @@ NeoBundleLazy 'majutsushi/tagbar', {'build': {'mac': 'brew install ctags'}}
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/excitetranslate-vim'
 NeoBundleLazy 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
+NeoBundleLazy 'lambdalisue/vim-gista', {'depends': 'tyru/open-browser.vim'}
 NeoBundleLazy 'mattn/googletasks-vim', {'depends': 'mattn/webapi-vim'}
 NeoBundleLazy 'mattn/unite-advent_calendar'
 NeoBundleLazy 'mattn/vimplenote-vim'
@@ -2689,6 +2690,20 @@ if neobundle#tap('unite-haddock')"{{{
         nnoremap <buffer> K :<C-u>UniteWithCursorWord hoogle<CR>
         nnoremap <buffer> [Space]h :<C-u>Unite hoogle<CR>
     endfunction
+
+    call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-gista')"{{{
+    call neobundle#config({
+                \ 'autoload': {
+                \   'unite_sources': ['g', 'gista'],
+                \   'mappings': [['n', '<Plug>(gista-']],
+                \   'commands': ['Gista']
+                \ }
+                \ })
+
+    let g:gista#github_user = 'yukimemi'
 
     call neobundle#untap()
 endif"}}}
