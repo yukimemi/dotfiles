@@ -370,6 +370,26 @@ function! s:dash(...)"{{{
     call system(printf("open dash://'%s'", word))
 endfunction
 command! -nargs=? Dash call <SID>dash(<f-args>)"}}}
+
+" markdown to docx"{{{
+function! s:md2docx()
+    let s:com = 'powershell -NoProfile -ExecutionPolicy unrestricted -File C:/work/git/md2docx/md2docx.ps1 ' . expand("%:p")
+    echom s:com
+    call {s:system}(s:com)
+    echo "md2docx exit !"
+endfunction
+
+function! s:automd2docx()
+    let s:compath = expand("%:p:r") . ".cmd"
+    if filereadable(s:compath)
+        let s:com = s:compath . " " . expand("%:p")
+        echo s:com
+        call {s:system}(s:com)
+    endif
+endfunction
+
+au MyAutoCmd FileType markdown nnoremap <expr><buffer> <Leader>m <SID>md2docx()
+au MyAutoCmd BufWritePost *.md call s:automd2docx()"}}}
 "===================================================================================}}}
 
 "{{{ ========== System ================================================================
@@ -1927,9 +1947,9 @@ if neobundle#tap('vim-ps1')"{{{
             call extend(list, getline("1", "$"))
             let cp932List = []
             for line in list
-                call add(cp932List, iconv(line . "\r", "UTF-8", "CP932"))
+                call add(cp932List, line . "\r")
             endfor
-            call writefile(cp932List, expand("%:p:r") . ".cmd", 'b')
+            call writefile(cp932List, expand("%:p:r") . ".cmd")
         endfunction
         au MyAutoCmd BufWritePost *.ps1 call s:addHeader(0)
         au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeader(1)
@@ -2498,24 +2518,6 @@ if neobundle#tap('vim-markdown')"{{{
                 \ }
                 \ })
 
-    function! s:md2docx()
-        let s:com = 'powershell -NoProfile -ExecutionPolicy unrestricted -File C:/work/git/win/ps1/md2docx.ps1 ' . expand("%:p")
-        echom s:com
-        call {s:system}(s:com)
-        echo "md2docx exit !"
-    endfunction
-
-    function! s:automd2docx()
-        let s:compath = expand("%:p:h") . "/md2docx.bat"
-        if filereadable(s:compath)
-            let s:com = s:compath . " " . expand("%:p")
-            echo s:com
-            call {s:system}(s:com)
-        endif
-    endfunction
-
-    au MyAutoCmd FileType markdown nnoremap <expr><buffer> <Leader>m <SID>md2docx()
-    au MyAutoCmd BufWritePost *.md call s:automd2docx()
 
     call neobundle#untap()
 endif"}}}
