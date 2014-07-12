@@ -539,6 +539,8 @@ endfunction"}}}
 "===================================================================================}}}
 
 "{{{ ========== Mappings ==============================================================
+inoremap <silent> jj <ESC>
+
 nnoremap j gj
 nnoremap k gk
 nnoremap <Down> gj
@@ -2727,7 +2729,7 @@ au MyAutoCmd BufNewFile,BufRead *.bat setl fenc=cp932 ff=dos
 au MyAutoCmd BufNewFile,BufRead *.ts setl ft=typescript fenc=utf8 ff=unix
 au MyAutoCmd BufNewFile,BufRead *.coffee setl ft=coffee fenc=utf8 ff=unix
       \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
-au MyAutoCmd BufNewFile,BufRead *.js setl ft=javascript fenc=utf8 ff=unix
+au MyAutoCmd FileType javascript setl fenc=utf8 ff=unix
       \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.wsf setl fenc=utf8 ff=unix
       \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
