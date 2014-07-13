@@ -316,7 +316,7 @@ function! Rtrim()"{{{
     %s/\s\+$//e
     call setpos(".", save_cursor)
 endfunction
-"au MyAutoCmd BufWritePre * call Rtrim()
+au MyAutoCmd BufWritePre *.coffee,*.ps1 call Rtrim()
 "}}}
 
 function! Format()"{{{
