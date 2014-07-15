@@ -316,7 +316,7 @@ function! Rtrim()"{{{
     %s/\s\+$//e
     call setpos(".", save_cursor)
 endfunction
-au MyAutoCmd BufWritePre *.coffee,*.ps1,*.md,*.jade,Vagrantfile call Rtrim()
+au MyAutoCmd BufWritePre *.coffee,*.js,*.ps1,*.md,*.jade,Vagrantfile call Rtrim()
 "}}}
 
 function! Format()"{{{
@@ -2721,7 +2721,7 @@ au MyAutoCmd FileType python setl autoindent smartindent
       \ cinwords=if,elif,else,for,while,try,except,finally,def,class
       \ tabstop=8 expandtab shiftwidth=4 softtabstop=4
       \ foldmethod=indent foldlevel=99
-au MyAutoCmd BufNewFile,BufRead *.cmd setl ft=ps1 fenc=cp932 ff=dos
+au MyAutoCmd BufNewFile,BufRead *.cmd setl fenc=cp932 ff=dos
 au MyAutoCmd FileType ps1 setl fenc=cp932 ff=dos ts=4 sw=2 sts=2
 au MyAutoCmd BufNewFile,BufRead *.hta setl ft=html fenc=cp932 ff=dos
 au MyAutoCmd BufNewFile,BufRead *.sql setl fenc=cp932 ff=dos
