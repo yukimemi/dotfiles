@@ -1370,6 +1370,13 @@ if neobundle#tap('vim-quickrun')"{{{
                 \ "markdown": {
                 \       "type": "markdown/pandoc",
                 \       "outputter": "browser"
+                \ },
+                \ "javascript": {
+                \       'hook/output_encode/enable': 1,
+                \       'hook/output_encode/encoding': "cp932",
+                \       "command": "cmd",
+                \       "cmdopt": "/c",
+                \       "exec": "%c %o %s"
                 \ }
                 \ }
 
@@ -1940,7 +1947,7 @@ if neobundle#tap('vim-ps1')"{{{
             call add(list, "@echo off")
             call add(list, "pushd \"%~dp0\" > nul")
             call add(list, "set tm=%time: =0%")
-            call add(list, "set ps1file=%~n0___%date:~-10,4%%date:~-5,2%%date:~-2,2%_%tm:~0,2%%tm:~3,2%%tm:~6,2%%tm:~9,2%.ps1")
+            call add(list, "set ps1file=%~n0___TEMP___%date:~-10,4%%date:~-5,2%%date:~-2,2%_%tm:~0,2%%tm:~3,2%%tm:~6,2%%tm:~9,2%.ps1")
             call add(list, "for /f \"usebackq skip=10 delims=\" %%i in (\"%~f0\") do @echo %%i >> \"%ps1file%\"")
             call add(list, "powershell -NoProfile -ExecutionPolicy unrestricted -File \"%ps1file%\" %*")
             call add(list, "del \"%ps1file%\"")
@@ -2564,6 +2571,7 @@ if neobundle#tap('jazzradio.vim')"{{{
 
 endif"}}}
 
+if ! s:is_windows
 if neobundle#tap('tern_for_vim')"{{{
     call neobundle#config({
                 \ 'autoload': {
@@ -2578,6 +2586,7 @@ if neobundle#tap('tern_for_vim')"{{{
 
     call neobundle#untap()
 endif"}}}
+endif
 
 if neobundle#tap('memolist.vim')"{{{
     call neobundle#config({
