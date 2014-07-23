@@ -48,6 +48,7 @@ ghq get git@github.com:yukimemi/prezto.git
 ghq get git@github.com:yukimemi/tmux-powerline.git
 ghq get git@github.com:yukimemi/gitstatus.git
 ghq get git@github.com:yukimemi/coffee-script-on-jscript.git
+ghq get git@github.com:yukimemi/ActiveXFileWrapper.js.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git

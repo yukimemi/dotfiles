@@ -103,7 +103,8 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
-"NeoBundle 'scrooloose/syntastic'
+NeoBundle 'osyo-manga/vim-watchdogs', {'depends': 'thinca/vim-quickrun'}
+" NeoBundle 'scrooloose/syntastic'
 "NeoBundle 'jiangmiao/auto-pairs'
 "NeoBundle 'osyo-manga/vim-precious', {'depends': 'Shougo/context_filetype.vim'}
 NeoBundle 'hunner/vim-plist'
@@ -112,6 +113,7 @@ NeoBundle 'mhinz/vim-hugefile'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'thinca/vim-singleton'
+NeoBundle 'chrisbra/Recover.vim'
 "NeoBundleLazy 'vim-scripts/ZoomWin'
 NeoBundleLazy 'osyo-manga/vim-operator-blockwise', {'depends': 'kana/vim-operator-user'}
 if ! s:is_windows
@@ -202,7 +204,6 @@ NeoBundleLazy 'mitechie/pyflakes-pathogen'
 NeoBundleLazy 'modsound/macdict-vim'
 NeoBundleLazy 'nanotech/jellybeans.vim'
 NeoBundleLazy 'osyo-manga/vim-over'
-NeoBundleLazy 'osyo-manga/vim-watchdogs'
 NeoBundleLazy 'pasela/unite-webcolorname'
 NeoBundleLazy 'rking/ag.vim'
 NeoBundleLazy 'sjl/gundo.vim'
@@ -2710,6 +2711,17 @@ if neobundle#tap('vim-gista')"{{{
     let g:gista#github_user = 'yukimemi'
 
     call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('vim-watchdogs')"{{{
+    call neobundle#config({
+        \ 'autoload': {
+        \   'commands': ['WatchdogsRunSweep', {'complete': 'customlist,quickrun#complete',
+        \                'name': 'WatchdogsRun'}, {'complete': 'customlist,quickrun#complete', 'name': 'WatchdogsRunSilent'}]
+        \ }
+        \ })
+
+    cal neobundle#untap()
 endif"}}}
 
 " disable plugin
