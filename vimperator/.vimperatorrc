@@ -197,7 +197,7 @@ js <<EOM
 if (liberator.has("Win32")) {
   liberator.execute('let g:plugin_loader_roots = "~/vimperator/vimperator-plugins/ ~/vimperator/377348/ ~/vimperator/caisui/plugin/ ~/.vimperator/vimperator-plugins-sample"');
 } else {
-  liberator.execute('let g:plugin_loader_roots = "~/.vimperator/vimperator-plugins/ ~/.vimperator/377348/ ~/.vimperator/caisui/plugin/ ~/.vimperator/vimperator-plugins-sample"');
+  liberator.execute('let g:plugin_loader_roots = "~/.ghq/github.com/vimpr/vimperator-plugins/ ~/.ghq/gist.github.com/377348/ ~/.ghq/github.com/caisui/vimperator/plugin/ ~/.ghq/github.com/Jagua/vimperator-plugins-sample/"');
 }
 EOM
 
