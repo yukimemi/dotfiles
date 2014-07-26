@@ -99,6 +99,7 @@ NeoBundle 'szw/vim-tags', {'build': {'mac': 'brew install ctags'}}
 NeoBundle 'thinca/vim-submode'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'rhysd/committia.vim'
 "NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
