@@ -98,6 +98,7 @@ NeoBundle 'tyru/operator-star.vim', {'depends': ['kana/vim-operator-user', 'thin
 NeoBundle 'szw/vim-tags', {'build': {'mac': 'brew install ctags'}}
 NeoBundle 'thinca/vim-submode'
 NeoBundle 'tomasr/molokai'
+NeoBundle 'mopp/mopkai.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'rhysd/committia.vim'
 "NeoBundle 'tpope/vim-surround'
@@ -120,6 +121,7 @@ NeoBundleLazy 'osyo-manga/vim-operator-blockwise', {'depends': 'kana/vim-operato
 if ! s:is_windows
     " NeoBundleLazy 'mopp/googlesuggest-source.vim', {'depends': 'mattn/googlesuggest-complete-vim'}
 endif
+NeoBundleLazy 'mattn/learn-vimscript'
 NeoBundleLazy 'glidenote/memolist.vim', {'depends': 'Shougo/unite.vim'}
 NeoBundleLazy 'supermomonga/jazzradio.vim', {'depends': ['Shougo/unite.vim']}
 NeoBundleLazy 'kannokanno/previm.git', {'depends': 'tyru/open-browser.vim'}
