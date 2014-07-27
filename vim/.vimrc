@@ -433,6 +433,8 @@ au MyAutoCmd WinEnter * checktime
 au MyAutoCmd BufNewFile,BufRead *.csv,*.log setl nowrap
 " no insert comment
 au MyAutoCmd FileType * set formatoptions-=ro
+" http://sangoukan.xrea.jp/cgi-bin/tDiary/?date=20120313
+au MyAutoCmd FileType coffee :inoremap # X#
 " windows cygwin
 if s:is_windows
     if isdirectory("C:/cygwin/bin")
@@ -2252,6 +2254,8 @@ if neobundle#tap('calendar.vim')"{{{
 
     let g:calendar_google_calendar = 1
     let g:calendar_google_task = 1
+
+    nnoremap [Space]c :<C-u>Calendar<CR>
 
     call neobundle#untap()
 endif"}}}
