@@ -66,3 +66,9 @@ ghq get git@bitbucket.org:yukimemi/coffee-windows.git
 
 # Get deploy.sh
 wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh && chmod +x deploy.sh
+
+# oh-my-vim
+curl -L https://raw.github.com/yukimemi/oh-my-vim/master/tools/prepare_mac.sh | sh
+curl -L https://raw.github.com/yukimemi/oh-my-vim/master/tools/install.sh | sh
+curl -L https://raw.github.com/yukimemi/oh-my-vim/master/tools/uninstall.sh | sh
+

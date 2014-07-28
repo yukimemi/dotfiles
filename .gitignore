@@ -3,6 +3,7 @@
 *~
 .vimpos
 vim/.vim/back
+vim/.vim/tmp
 
 # zsh history
 .zsh_hist*
