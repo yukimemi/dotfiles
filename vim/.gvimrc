@@ -42,7 +42,7 @@ if s:is_darwin
     set antialias
 elseif s:is_windows
     gui
-    set transparency=220
+    set transparency=240
     au MyAutoCmd GUIEnter * set lines=130 | set columns=120
 endif
 
