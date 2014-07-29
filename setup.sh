@@ -56,17 +56,14 @@ do
 done
 # tmux
 if [ ${tmux} != "" ]; then
-    rm ${HOME}/.tmux.conf
-    ln -s ${PWD}/${tmux} ${HOME}/.tmux.conf
+    ln -sf ${PWD}/${tmux} ${HOME}/.tmux.conf
 else
     # screen
-    rm ${HOME}/.screenrc
-    ln -s ${PWD}/${screen} ${HOME}/.screenrc
+    ln -sf ${PWD}/${screen} ${HOME}/.screenrc
 fi
 
 #[ ! -d "${HOME}/.oh-my-zsh" ] && git clone git@github.com:yukimemi/oh-my-zsh.git ${HOME}/.oh-my-zsh
-#rm ${HOME}/.zshrc
-#ln -s ${HOME}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME}/.zshrc
+#ln -sf ${HOME}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME}/.zshrc
 # prezto
 [ ! -d "${HOME}/.zprezto" ] && git clone --recursive git@github.com:yukimemi/prezto.git ${HOME}/.zprezto
 pushd ${HOME}/.zprezto/runcoms
@@ -82,8 +79,7 @@ cd vim
 VIM_FILE=( .vimrc .gvimrc .vim )
 for file in ${VIM_FILE[@]}
 do
-    rm ${HOME}/${file}
-    ln -s ${PWD}/${file} ${HOME}/${file}
+    ln -sf ${PWD}/${file} ${HOME}/${file}
 done
 cd ../
 
@@ -97,35 +93,21 @@ else
 fi
 cd vimperator
 [ ! -d ${HOME}/${VIMPERATOR_DIR}/plugin ] && mkdir -p ${HOME}/${VIMPERATOR_DIR}/plugin
-git clone git://github.com/caisui/vimperator.git ${HOME}/${VIMPERATOR_DIR}/caisui
-git clone git://gist.github.com/377348.git ${HOME}/${VIMPERATOR_DIR}/377348
-git clone git://github.com/vimpr/vimperator-plugins.git ${HOME}/${VIMPERATOR_DIR}/vimperator-plugins
-git clone git://github.com/vimpr/vimperator-rc.git ${HOME}/${VIMPERATOR_DIR}/vimperator-rc
 
-rm ${HOME}/${VIMPERATOR_FILE}
-ln -s ${PWD}/.vimperatorrc ${HOME}/${VIMPERATOR_FILE}
-
-rm ${HOME}/${VIMPERATOR_DIR}/plugin/plugin_loader.js
-ln -s ${HOME}/${VIMPERATOR_DIR}/vimperator-plugins/plugin_loader.js ${HOME}/${VIMPERATOR_DIR}/plugin/
-rm ${HOME}/${VIMPERATOR_DIR}/colors
-ln -s ${HOME}/${VIMPERATOR_DIR}/vimperator-rc/anekos/colors ${HOME}/${VIMPERATOR_DIR}/
-cd ../
+ln -sf ${PWD}/.vimperatorrc ${HOME}/${VIMPERATOR_FILE}
 
 # dotfiles
 DOT_FILES=(.vrapperrc .gemrc .bashrc .inputrc .tmuxinator .peco-snippets)
 for file in ${DOT_FILES[@]}
 do
-    rm ${HOME}/${file}
-    ln -s ${PWD}/${file} ${HOME}/${file}
+    ln -sf ${PWD}/${file} ${HOME}/${file}
 done
 
 # global gitignore
-rm ${HOME}/.gitignore
-ln -s ${PWD}/global-gitignore ${HOME}/.gitignore
+ln -sf ${PWD}/global-gitignore ${HOME}/.gitignore
 git config --global core.excludesfile ${HOME}/.gitignore
 # global gitattributes
-rm ${HOME}/.gitattributes
-ln -s ${PWD}/global-gitattributes ${HOME}/.gitattributes
+ln -sf ${PWD}/global-gitattributes ${HOME}/.gitattributes
 git config --global core.attributesfile ${HOME}/.gitattributes
 
 # git
@@ -168,9 +150,8 @@ if shell_is_osx ; then
 
     # KeyRemap4MacBook
     cd mac
-    rm ${HOME}/Library/Application\ Support/KeyRemap4MacBook/private.xml
     mkdir -p ${HOME}/Library/Application\ Support/KeyRemap4MacBook
-    ln -s ${PWD}/private.xml ${HOME}/Library/Application\ Support/KeyRemap4MacBook/private.xml
+    ln -sf ${PWD}/private.xml ${HOME}/Library/Application\ Support/KeyRemap4MacBook/private.xml
     cd ../
 fi
 #######################################################################

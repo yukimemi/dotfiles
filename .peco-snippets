@@ -43,12 +43,16 @@ exiftool '-FileName < CreateDate' -d ~/backup/Mov/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%
 
 # ghq
 # github
+# me
 ghq get git@github.com:yukimemi/md2docx.git
 ghq get git@github.com:yukimemi/prezto.git
 ghq get git@github.com:yukimemi/tmux-powerline.git
 ghq get git@github.com:yukimemi/gitstatus.git
 ghq get git@github.com:yukimemi/coffee-script-on-jscript.git
 ghq get git@github.com:yukimemi/ActiveXFileWrapper.js.git
+# others
+ghq get https://github.com/liangxianzhe/oh-my-vim.git
+ghq get https://github.com/Shougo/shougo-s-github.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git

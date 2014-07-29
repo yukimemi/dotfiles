@@ -4,6 +4,8 @@
 .vimpos
 vim/.vim/back
 vim/.vim/tmp
+vim/.vim/bundle
+restart_session.vim
 
 # zsh history
 .zsh_hist*
