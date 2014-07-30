@@ -128,7 +128,7 @@ NeoBundle 'tyru/caw.vim'
 NeoBundle 'tyru/operator-star.vim', {'depends': ['kana/vim-operator-user', 'thinca/vim-visualstar']}
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
-
+NeoBundle 'Raimondi/delimitMate'
 "}}}
 " Lazy"{{{
 " NeoBundleLazy 'AndrewRadev/linediff.vim'
