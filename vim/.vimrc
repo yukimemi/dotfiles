@@ -92,7 +92,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 " NeoBundle 'osyo-manga/vim-textobj-multitextobj', {'depends': 'kana/vim-textobj-user'}
 " NeoBundle 'scrooloose/syntastic'
 " NeoBundle 'tpope/vim-surround'
-" NeoBundle 'banyan/recognize_charcode.vim'
+NeoBundle 'banyan/recognize_charcode.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'LeafCage/yankround.vim', {'depends': 'kien/ctrlp.vim'}
