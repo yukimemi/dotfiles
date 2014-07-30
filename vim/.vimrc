@@ -31,6 +31,11 @@ if has('vim_starting') && has('reltime')
   au! MyAutoCmd VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
         \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
 endif"}}}
+
+" Use <Leader> in global plugin.
+let g:mapleader = ','
+" Use <LocalLeader> in filetype plugin.
+let g:maplocalleader = ' '
 "===================================================================================}}}
 
 "{{{ ========== Plugins ===============================================================
@@ -557,11 +562,6 @@ let g:markdown_fenced_languages = [
 "===================================================================================}}}
 
 "{{{ ========== Mappings ==============================================================
-" Use <Leader> in global plugin.
-let g:mapleader = ','
-" Use <LocalLeader> in filetype plugin.
-let g:maplocalleader = ' '
-
 inoremap <silent> jj <ESC>
 
 nnoremap j gj
@@ -2814,6 +2814,28 @@ if neobundle#tap('CamelCaseMotion')"{{{
 
   call neobundle#untap()
 endif"}}}
+
+if neobundle#tap('vim-jade')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'filetypes': 'jade'
+        \ }
+        \ })
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-stylus')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'filetypes': 'stylus'
+        \ }
+        \ })
+
+  call neobundle#untap()
+endif
+"}}}
 
 " disable plugin
 let plugin_dicwin_disable = 1
