@@ -579,7 +579,7 @@ cnoremap <C-d> <Del>
 cnoremap <C-y> <C-r>
 
 " mapping for NeoBundle
-nnoremap [Space]bi :<C-u>NeoBundleInstall!<CR>
+nnoremap [Space]bi :<C-u>NeoBundleInstall<CR>
 " Vim-users.jp - Hack #74: http://vim-users.jp/2009/09/hack74/
 nnoremap <silent> [Space]ev  :<C-u>tabedit $MYVIMRC<CR>
 nnoremap <silent> [Space]eg  :<C-u>tabedit $MYGVIMRC<CR>
