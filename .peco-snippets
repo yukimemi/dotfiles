@@ -53,6 +53,7 @@ ghq get git@github.com:yukimemi/ActiveXFileWrapper.js.git
 # others
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
+ghq get https://github.com/eagletmt/dotfiles
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git

@@ -409,6 +409,8 @@ call s:mkdir($MY_BACKUP_DIR)
 
 set undofile
 set undodir=$MY_BACKUP_DIR
+set backupdir=$MY_BACKUP_DIR
+set directory=$MY_BACKUP_DIR
 set encoding=utf-8
 set fileformat=unix
 set fileformats=unix,dos,mac
@@ -417,6 +419,9 @@ if has('unnamedplus')
   set clipboard& clipboard+=unnamedplus
 else
   set clipboard& clipboard+=unnamed
+endif
+if exists('+breakindent')
+  set breakindent
 endif
 set pastetoggle=
 set switchbuf=useopen
@@ -491,8 +496,6 @@ else
   "set listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%
   set listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
 endif
-set backupdir=$MY_BACKUP_DIR
-set directory=$MY_BACKUP_DIR
 set autoindent
 set smartindent
 set smarttab
@@ -1095,28 +1098,28 @@ if neobundle#tap('unite.vim')"{{{
         \ }
         \ })
   nnoremap <silent> [Space]uc :<C-u>Unite colorscheme -auto-preview<CR>
-  nnoremap <silent> [Space]uy :<C-u>Unite -no-split history/yank -buffer-name=history/yank<CR>
-  nnoremap <silent> [Space]ub :<C-u>Unite -no-split buffer -auto-preview -buffer-name=buffer<CR>
-  nnoremap <silent> [Space]uf :<C-u>Unite -no-split -buffer-name=files file_rec<CR>
-  "nnoremap <silent> [Space]uf :<C-u>Unite -no-split -buffer-name=file_rec/async file_rec/async<CR>
-  nnoremap <silent> ,ub :<C-u>Unite -no-split -buffer-name=bookmark -default-action=cd bookmark<CR>
+  nnoremap <silent> [Space]uy :<C-u>Unite history/yank -buffer-name=history/yank<CR>
+  nnoremap <silent> [Space]ub :<C-u>Unite buffer -auto-preview -buffer-name=buffer<CR>
+  nnoremap <silent> [Space]uf :<C-u>Unite -buffer-name=files file_rec<CR>
+  "nnoremap <silent> [Space]uf :<C-u>Unite -buffer-name=file_rec/async file_rec/async<CR>
+  nnoremap <silent> ,ub :<C-u>Unite -buffer-name=bookmark -default-action=cd bookmark<CR>
   nnoremap <silent> [Space]ug :<C-u>Unite -buffer-name=grep grep<CR>
   nnoremap <silent> [Space]ur :<C-u>UniteResume grep<CR>
   nnoremap <silent> [Space]uo :<C-u>Unite -buffer-name=outline outline<CR>
   nnoremap <silent> [Space]uq :<C-u>Unite -buffer-name=QuickFix -no-quit qf<CR>
   "nnoremap <silent> [Space]ur :<C-u>Unite -buffer-name=register register<CR>
-  nnoremap <silent> [Space]um :<C-u>Unite -no-split neomru/file -buffer-name=neomru_file -auto-preview<CR>
-  nnoremap <silent> [Space]uu :<C-u>Unite -no-split buffer neomru/file<CR>
-  nnoremap <silent> [Space]ua :<C-u>Unite -no-split -buffer-name=files buffer
+  nnoremap <silent> [Space]um :<C-u>Unite neomru/file -buffer-name=neomru_file -auto-preview<CR>
+  nnoremap <silent> [Space]uu :<C-u>Unite buffer neomru/file<CR>
+  nnoremap <silent> [Space]ua :<C-u>Unite -buffer-name=files buffer
         \                neomru/file bookmark file file_rec/async<CR>
   "nnoremap <silent> [Space]/ :<C-u>Unite -buffer-name=search line/fast -no-quit<CR>
-  nnoremap <silent> [Space]uh :<C-u>Unite -no-split -buffer-name=help help<CR>
+  nnoremap <silent> [Space]uh :<C-u>Unite -buffer-name=help help<CR>
 
   " NeoBundle
-  nnoremap [Space]ui :<C-u>Unite -no-split -no-start-insert -buffer-name=neobundle neobundle/update<CR>
-  nnoremap [Space]bs :<C-u>Unite -no-split -buffer-name=neobundle/search neobundle/search<CR>
+  nnoremap [Space]ui :<C-u>Unite -no-start-insert -buffer-name=neobundle neobundle/update<CR>
+  nnoremap [Space]bs :<C-u>Unite -buffer-name=neobundle/search neobundle/search<CR>
   " grep ~/.vim_junk
-  nnoremap [Space]ujg :<C-u>Unite -no-split -buffer-name=Grep_JunkFile grep:~/.vim_junk/
+  nnoremap [Space]ujg :<C-u>Unite -buffer-name=Grep_JunkFile grep:~/.vim_junk/
 
   " http://d.hatena.ne.jp/osyo-manga/20131217/1387292034"{{{
   let g:unite_source_alias_aliases = {
@@ -1170,9 +1173,20 @@ if neobundle#tap('unite.vim')"{{{
     let g:unite_source_grep_recursive_opt = ''
   endif
 
-  function! neobundle#tapped.hooks.on_source(bundle)
+  function! neobundle#hooks.on_source(bundle)
     " start unite in insert mode
     let g:unite_enable_start_insert = 1
+    let g:unite_split_rule = 'botright'
+    " Default configuration.
+    let default_context = {
+          \ 'vertical': 0,
+          \ 'short_source_names': 0,
+          \ }
+    if ! s:is_windows
+      let default_context.marked_icon = '✗'
+      let default_context.prompt = '» '
+    endif
+    call unite#custom#profile('default', 'context', default_context)
     " use vimfiler to open directory
     call unite#custom#default_action("source/bookmark/directory", "vimfiler")
     call unite#custom#default_action("directory", "vimfiler")
@@ -1184,7 +1198,6 @@ if neobundle#tap('unite.vim')"{{{
       nmap <buffer> <Esc> <Plug>(unite_exit)
       nmap <buffer> <C-n> <Plug>(unite_select_next_line)
       nmap <buffer> <C-p> <Plug>(unite_select_previous_line)
-      "let g:unite_enable_split_vertically = 1
       let g:unite_source_history_yank_enable = 1
     endfunction
   endfunction
@@ -2172,7 +2185,7 @@ if neobundle#tap('unite-qfixhowm')"{{{
         \ }
         \ })
 
-  nnoremap <silent> [Space]uq :<C-u>Unite -no-split -buffer-name=qfixhowm qfixhowm<CR>
+  nnoremap <silent> [Space]uq :<C-u>Unite -buffer-name=qfixhowm qfixhowm<CR>
 
   call neobundle#untap()
 endif"}}}
