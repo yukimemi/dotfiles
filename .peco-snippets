@@ -53,7 +53,8 @@ ghq get git@github.com:yukimemi/ActiveXFileWrapper.js.git
 # others
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
-ghq get https://github.com/eagletmt/dotfiles
+ghq get https://github.com/eagletmt/dotfiles.git
+ghq get https://github.com/supermomonga/dotfiles.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
@@ -76,6 +77,10 @@ wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh && chmod
 curl -L https://raw.github.com/yukimemi/oh-my-vim/master/tools/prepare_mac.sh | sh
 curl -L https://raw.github.com/yukimemi/oh-my-vim/master/tools/install.sh | sh
 curl -L https://raw.github.com/yukimemi/oh-my-vim/master/tools/uninstall.sh | sh
+
+# Add git upstream repo
+git remote add upstream https://github.com/erikw/tmux-powerline.git
+git remote add upstream https://github.com/sorin-ionescu/prezto.git
 
 # beer http://deeeet.com/writing/2014/04/30/beer-on-terminal/
 ruby -e 'C=`stty size`.scan(/\d+/)[1].to_i;S="\xf0\x9f\x8d\xba";a={};puts "\033[2J";loop{a[rand(C)]=0;a.each{|x,o|;a[x]+=1;print "\033[#{o};#{x}H \033[#{a[x]};#{x}H#{S} \033[0;0H"};$stdout.flush;sleep 0.01}'

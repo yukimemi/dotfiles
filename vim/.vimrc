@@ -33,9 +33,9 @@ if has('vim_starting') && has('reltime')
 endif"}}}
 
 " Use <Leader> in global plugin.
-let g:mapleader = ','
+let mapleader = ','
 " Use <LocalLeader> in filetype plugin.
-let g:maplocalleader = ' '
+let maplocalleader = ' '
 "===================================================================================}}}
 
 "{{{ ========== Plugins ===============================================================
@@ -136,7 +136,6 @@ NeoBundle 'Raimondi/delimitMate'
 " NeoBundleLazy 'DrawIt'
 " NeoBundleLazy 'adogear/vim-blockdiag-series'
 " NeoBundleLazy 'alpaca-tc/alpaca_tags', {'depends': 'Shougo/vimproc.vim'}
-" NeoBundleLazy 'basyura/J6uil.vim', {'depends': ['Shougo/vimproc.vim', 'mattn/webapi-vim']}
 " NeoBundleLazy 'basyura/unite-rails'
 " NeoBundleLazy 'derekwyatt/vim-scala', {'build': {'mac': 'brew install scala sbt'}}
 " NeoBundleLazy 'h1mesuke/unite-outline'
@@ -175,6 +174,7 @@ NeoBundleLazy 'Shougo/vimfiler.vim'
 NeoBundleLazy 'Shougo/vimshell.vim', {'depends': 'Shougo/vimproc.vim'}
 NeoBundleLazy 'Shougo/vinarise.vim'
 NeoBundleLazy 'aklt/plantuml-syntax'
+NeoBundleLazy 'basyura/J6uil.vim', {'depends': ['Shougo/vimproc.vim', 'mattn/webapi-vim']}
 NeoBundleLazy 'basyura/unite-firefox-bookmarks', {'depends': ['tyru/open-browser.vim', 'mattn/webapi-vim']}
 NeoBundleLazy 'cd01/poshcomplete-vim'
 NeoBundleLazy 'choplin/unite-vim_hacks'
@@ -212,6 +212,7 @@ NeoBundleLazy 'osyo-manga/unite-qfixhowm', {'depends': 'fuenor/qfixhowm'}
 NeoBundleLazy 'osyo-manga/vim-operator-blockwise', {'depends': 'kana/vim-operator-user'}
 NeoBundleLazy 'osyo-manga/vim-operator-search', {'depends': 'kana/vim-operator-user'}
 NeoBundleLazy 'osyo-manga/vim-over'
+NeoBundleLazy 'osyo-manga/unite-quickfix'
 NeoBundleLazy 'pangloss/vim-javascript'
 NeoBundleLazy 'pasela/unite-webcolorname'
 NeoBundleLazy 'rhysd/unite-codic.vim', {'depends': 'koron/codic-vim'}
@@ -428,7 +429,7 @@ set switchbuf=useopen
 set nrformats-=octal
 set timeoutlen=3500
 set hidden
-set history=100000
+set history=10000
 set formatoptions+=mM
 set textwidth=0
 set virtualedit=block
@@ -516,23 +517,26 @@ colorscheme monokai
 
 highlight Search ctermbg=88
 
-" hilight cursorline, cursorcolumn {{{
+" hilight cursorline, cursorcolumn "{{{
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
 au MyAutoCmd CursorMoved,CursorMovedI * call s:auto_cursorline('CursorMoved')
 au MyAutoCmd CursorHold,CursorHoldI * call s:auto_cursorline('CursorHold')
-au MyAutoCmd WinEnter * call s:auto_cursorline('WinEnter')
+au MyAutoCmd WinEnter,BufEnter * call s:auto_cursorline('WinBufEnter')
 au MyAutoCmd WinLeave * call s:auto_cursorline('WinLeave')
 
 let s:cursorline_lock = 0
 function! s:auto_cursorline(event)
-  if a:event ==# 'WinEnter'
+  if a:event ==# 'WinBufEnter'
+    " echo 'WinEnter'.s:cursorline_lock
     setlocal cursorline
     setlocal cursorcolumn
     let s:cursorline_lock = 2
   elseif a:event ==# 'WinLeave'
+    " echo 'WinLeave'.s:cursorline_lock
     setlocal nocursorline
     setlocal nocursorcolumn
   elseif a:event ==# 'CursorMoved'
+    " echo 'CursorMoved'.s:cursorline_lock
     if s:cursorline_lock
       if 1 < s:cursorline_lock
         let s:cursorline_lock = 1
@@ -543,15 +547,18 @@ function! s:auto_cursorline(event)
       endif
     endif
   elseif a:event ==# 'CursorHold'
-    setlocal cursorline
-    setlocal cursorcolumn
+    " echo 'CursorHold'.s:cursorline_lock
+    if &updatetime >= 4000
+      setlocal cursorline
+      setlocal cursorcolumn
+    endif
     let s:cursorline_lock = 1
   endif
-endfunction"}}}
+endfunction
+"}}}
 
 " http://mattn.kaoriya.net/software/vim/20140523124903.htm
 let g:markdown_fenced_languages = [
-      \ 'coffee',
       \ 'css',
       \ 'erb=eruby',
       \ 'javascript',
@@ -629,11 +636,11 @@ vnoremap : q:A
 
 "  for git mergetool
 if &diff
-  nnoremap <Leader>1 :diffget LOCAL<CR>
-  nnoremap <Leader>2 :diffget BASE<CR>
-  nnoremap <Leader>3 :diffget REMOTE<CR>
-  nnoremap <Leader>u :<C-u>diffupdate<CR>
-  nnoremap u u:<C-u>diffupdate<CR>
+  nnoremap <buffer> <Leader>1 :diffget LOCAL<CR>
+  nnoremap <buffer> <Leader>2 :diffget BASE<CR>
+  nnoremap <buffer> <Leader>3 :diffget REMOTE<CR>
+  nnoremap <buffer> <Leader>u :<C-u>diffupdate<CR>
+  nnoremap <buffer> u u:<C-u>diffupdate<CR>
 endif
 
 " hilight over 100 column {{{
@@ -841,15 +848,13 @@ if neobundle#tap('vim-submode')"{{{
   nnoremap sN :<C-u>bn<CR>
   nnoremap sP :<C-u>bp<CR>
   nnoremap st :<C-u>tabnew<CR>
-  nnoremap sT :<C-u>Unite tab<CR>
   nnoremap ss :<C-u>sp<CR>
   nnoremap sv :<C-u>vs<CR>
   nnoremap sq :<C-u>q<CR>
   nnoremap sQ :<C-u>bd<CR>
-  nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
-  nnoremap sf :<C-u>Unite file -buffer-name=file<CR>
-  nnoremap sF :<C-u>Unite file_rec/async -buffer-name=file_rec<CR>
-  nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+
+  nnoremap sbk :<C-u>bd!<CR>
+  nnoremap sbq :<C-u>q!<CR>
 
   call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
   call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
@@ -901,12 +906,12 @@ if neobundle#tap('TweetVim')"{{{
 
   au MyAutoCmd FileType tweetvim call s:my_tweetvim_mappings()
   nnoremap [Space]ut :<C-u>Unite tweetvim<CR>
-  nnoremap [Space]us :<C-u>TweetVimUserStream<CR>
+  nnoremap [Space]tu :<C-u>TweetVimUserStream<CR>
 
   function! s:my_tweetvim_mappings()
-    setl nowrap
+    " setl nowrap
     nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
-    nnoremap <buffer> <leader>s :<C-u>TweetVimSearch<Space>
+    nnoremap <buffer> <Leader>s :<C-u>TweetVimSearch<Space>
     nnoremap <buffer> [Space]tl :<C-u>Unite tweetvim<CR>
     nnoremap <buffer> [Space]ta :<C-u>Unite tweetvim/account<CR>
   endfunction
@@ -962,7 +967,7 @@ if neobundle#tap('vimfiler.vim')"{{{
       echoerr '!!!current directory is outside git working tree!!!'
     endif
   endfunction
-  function! neobundle#tapped.hooks.on_source(bundle)
+  function! neobundle#hooks.on_source(bundle)
     let g:vimfiler_as_default_explorer = 1
     let g:vimfiler_enable_auto_cd = 1
     if s:is_windows
@@ -974,12 +979,23 @@ endif"}}}
 
 if neobundle#tap('vimshell.vim')"{{{
   call neobundle#config({
-        \ 'autoload': {
+        \ 'augroup': 'vimshell', 'autoload': {
+        \   'unite_sources': ['vimshell_external_history', 'vimshell_history', 'vimshell_zsh_complete'],
         \   'mappings': [['n', '<Plug>(vimshell_']],
-        \   'commands': ['VimShell', 'VimShellPop']
+        \   'commands': [{'complete': 'customlist,vimshell#complete', 'name': 'VimShell'},
+        \                {'complete': 'customlist,vimshell#complete', 'name': 'VimShellPop'},
+        \                {'complete': 'customlist,vimshell#complete', 'name': 'VimShellCreate'},
+        \                {'complete': 'customlist,vimshell#complete', 'name': 'VimShellCurrentDir'},
+        \                {'complete': 'customlist,vimshell#helpers#vimshell_execute_complete', 'name': 'VimShellExecute'},
+        \                {'complete': 'customlist,vimshell#complete', 'name': 'VimShellBufferDir'}, 'VimShellSendString',
+        \                {'complete': 'customlist,vimshell#complete', 'name': 'VimShellTab'},
+        \                {'complete': 'customlist,vimshell#helpers#vimshell_execute_complete', 'name': 'VimShellTerminal'},
+        \                {'complete': 'customlist,vimshell#helpers#vimshell_execute_complete', 'name': 'VimShellInteractive'},
+        \                {'complete': 'buffer', 'name': 'VimShellSendBuffer'}]
         \ }
         \ })
-  function! neobundle#tapped.hooks.on_source(bundle)
+
+  function! neobundle#hooks.on_source(bundle)"{{{
     " PATH
     if has('unix')
       " home bin
@@ -988,41 +1004,36 @@ if neobundle#tap('vimshell.vim')"{{{
       let $PATH = '/usr/local/bin:' . $PATH
     endif
 
-    let g:vimshell_right_prompt = 'vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
-    let g:vimshell_enable_smart_case = 1
-
-    let g:vimshell_execute_file_list['zip'] = 'zipinfo'
-    call vimshell#set_execute_file('tgz,gz', 'gzcat')
-    call vimshell#set_execute_file('tbz,bz2', 'bzcat')
-
-    let g:vimshell_execute_file_list = {}
-    call vimshell#set_execute_file('txt,vim,c,h,cpp,d,xml,java', 'vim')
-    let g:vimshell_execute_file_list['rb'] = 'ruby'
-    let g:vimshell_execute_file_list['pl'] = 'perl'
-    let g:vimshell_execute_file_list['py'] = 'python'
-    call vimshell#set_execute_file('html,xhtml', 'gexe firefox')
+    " let g:vimshell_right_prompt = 'vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
+    " let g:vimshell_enable_smart_case = 1
+    "
+    " let g:vimshell_execute_file_list['zip'] = 'zipinfo'
+    " call vimshell#set_execute_file('tgz,gz', 'gzcat')
+    " call vimshell#set_execute_file('tbz,bz2', 'bzcat')
+    "
+    " let g:vimshell_execute_file_list = {}
+    " call vimshell#set_execute_file('txt,vim,c,h,cpp,d,xml,java', 'vim')
+    " let g:vimshell_execute_file_list['rb'] = 'ruby'
+    " let g:vimshell_execute_file_list['pl'] = 'perl'
+    " let g:vimshell_execute_file_list['py'] = 'python'
+    " call vimshell#set_execute_file('html,xhtml', 'gexe firefox')
 
     au MyAutoCmd FileType vimshell
           \ if ! s:is_windows
-          \| call vimshell#altercmd#define('i', 'iexe')
-          \| call vimshell#altercmd#define('ll', 'ls -l')
-          \| call vimshell#altercmd#define('la', 'ls -a')
-          \| call vimshell#altercmd#define('lla', 'ls -al')
-          \| call vimshell#altercmd#define('lv', 'vim -R')
-          \| call vimshell#altercmd#define('vimfiler', 'vim -c VimFilerDouble')
-          \| call vimshell#altercmd#define('rm', 'rmtrash')
-          \| call vimshell#altercmd#define('s', ':UniteBookmarkAdd .')
-          \| call vimshell#altercmd#define('g', ':Unite bookmark -start-insert')
-          \| call vimshell#altercmd#define('l', ':Unite bookmark')
-          \| call vimshell#hook#add('chpwd', 'my_chpwd', 'g:my_chpwd')
-          \| else
-            \| call vimshell#altercmd#define('vimfiler', 'gvim -c VimFilerDouble')
-            \| endif
-
-
-    function! g:my_chpwd(args, context)
-      call vimshell#execute('ls')
-    endfunction
+          \ | call vimshell#altercmd#define('i', 'iexe')
+          \ | call vimshell#altercmd#define('ll', 'ls -l')
+          \ | call vimshell#altercmd#define('la', 'ls -a')
+          \ | call vimshell#altercmd#define('lla', 'ls -al')
+          \ | call vimshell#altercmd#define('lv', 'vim -R')
+          \ | call vimshell#altercmd#define('vimfiler', 'vim -c VimFilerDouble')
+          \ | call vimshell#altercmd#define('rm', 'rmtrash')
+          \ | call vimshell#altercmd#define('s', ':UniteBookmarkAdd .')
+          \ | call vimshell#altercmd#define('g', ':Unite bookmark -start-insert')
+          \ | call vimshell#altercmd#define('l', ':Unite bookmark')
+          \ | call vimshell#hook#add('chpwd', 'my_chpwd', 'g:my_chpwd')
+          \ | else
+            \ | call vimshell#altercmd#define('vimfiler', 'gvim -c VimFilerDouble')
+            \ | endif
 
     au MyAutoCmd FileType int-* call s:interactive_settings()
     function! s:interactive_settings()
@@ -1032,9 +1043,11 @@ if neobundle#tap('vimshell.vim')"{{{
     let g:vimshell_max_command_history = 5000000
     " mapping
     "nnoremap [Space]s :<C-u>VimShell<CR>
-    au MyAutoCmd FileType vimshell inoremap <C-^> cd<Space>../<CR>
-    au MyAutoCmd FileType vimshell imap <C-l> <Plug>(vimshell_clear)
+    au MyAutoCmd FileType vimshell inoremap <buffer> <C-^> cd<Space>../<CR>
+    au MyAutoCmd FileType vimshell imap <buffer> <C-l> <Plug>(vimshell_clear)
   endfunction
+"}}}
+
   call neobundle#untap()
 endif"}}}
 
@@ -1061,7 +1074,7 @@ if neobundle#tap('neosnippet.vim')"{{{
   imap <C-k>   <Plug>(neosnippet_expand_or_jump)
   smap <C-k>   <Plug>(neosnippet_expand_or_jump)
   xmap <C-k>   <Plug>(neosnippet_expand_target)
-  function! neobundle#tapped.hooks.on_source(bundle)
+  function! neobundle#hooks.on_source(bundle)
     " Tell Neosnippet about the other snippets
     let g:neosnippet#snippets_directory = $HOME . '/.snippets,'
 
@@ -1097,29 +1110,37 @@ if neobundle#tap('unite.vim')"{{{
         \        'UniteStartup']
         \ }
         \ })
-  nnoremap <silent> [Space]uc :<C-u>Unite colorscheme -auto-preview<CR>
-  nnoremap <silent> [Space]uy :<C-u>Unite history/yank -buffer-name=history/yank<CR>
-  nnoremap <silent> [Space]ub :<C-u>Unite buffer -auto-preview -buffer-name=buffer<CR>
-  nnoremap <silent> [Space]uf :<C-u>Unite -buffer-name=files file_rec<CR>
-  "nnoremap <silent> [Space]uf :<C-u>Unite -buffer-name=file_rec/async file_rec/async<CR>
-  nnoremap <silent> ,ub :<C-u>Unite -buffer-name=bookmark -default-action=cd bookmark<CR>
-  nnoremap <silent> [Space]ug :<C-u>Unite -buffer-name=grep grep<CR>
-  nnoremap <silent> [Space]ur :<C-u>UniteResume grep<CR>
-  nnoremap <silent> [Space]uo :<C-u>Unite -buffer-name=outline outline<CR>
-  nnoremap <silent> [Space]uq :<C-u>Unite -buffer-name=QuickFix -no-quit qf<CR>
-  "nnoremap <silent> [Space]ur :<C-u>Unite -buffer-name=register register<CR>
-  nnoremap <silent> [Space]um :<C-u>Unite neomru/file -buffer-name=neomru_file -auto-preview<CR>
-  nnoremap <silent> [Space]uu :<C-u>Unite buffer neomru/file<CR>
-  nnoremap <silent> [Space]ua :<C-u>Unite -buffer-name=files buffer
-        \                neomru/file bookmark file file_rec/async<CR>
-  "nnoremap <silent> [Space]/ :<C-u>Unite -buffer-name=search line/fast -no-quit<CR>
-  nnoremap <silent> [Space]uh :<C-u>Unite -buffer-name=help help<CR>
+
+  " Use plefix s
+  nnoremap suc :<C-u>Unite colorscheme -auto-preview<CR>
+  nnoremap suy :<C-u>Unite history/yank<CR>
+  nnoremap sub :<C-u>Unite buffer -auto-preview<CR>
+  if s:is_windows
+    nnoremap suf :<C-u>Unite file_rec<CR>
+    nnoremap suF :<C-u>Unite file_rec<CR>
+  else
+    nnoremap suf :<C-u>Unite file_rec/async<CR>
+    nnoremap suF :<C-u>Unite file_rec/async<CR>
+  endif
+  nnoremap suB :<C-u>Unite bookmark -default-action=cd<CR>
+  nnoremap suo :<C-u>Unite outline -no-quit -no-start-insert -vertical -winwidth=40<CR>
+  nnoremap suq :<C-u>Unite quickfix -no-quit<CR>
+  nnoremap suh :<C-u>Unite help<CR>
+  nnoremap sur :<C-u>Unite register<CR>
+  nnoremap sum :<C-u>Unite neomru/file -auto-preview<CR>
+  nnoremap su/ :<C-u>Unite line -no-quit<CR>
+  nnoremap sug :<C-u>Unite grep -no-quit<CR>
+  nnoremap sut :<C-u>Unite tab<CR>
+  nnoremap suu :<C-u>Unite buffer neomru/file<CR>
+  nnoremap sua :<C-u>Unite buffer neomru/file bookmark file file_rec/async<CR>
+  nnoremap suM :<C-u>Unite mapping<CR>
+  nnoremap suR :<C-u>UniteResume<CR>
 
   " NeoBundle
-  nnoremap [Space]ui :<C-u>Unite -no-start-insert -buffer-name=neobundle neobundle/update<CR>
-  nnoremap [Space]bs :<C-u>Unite -buffer-name=neobundle/search neobundle/search<CR>
+  nnoremap sui :<C-u>Unite neobundle/update -no-start-insert<CR>
+  nnoremap sus :<C-u>Unite neobundle/search<CR>
   " grep ~/.vim_junk
-  nnoremap [Space]ujg :<C-u>Unite -buffer-name=Grep_JunkFile grep:~/.vim_junk/
+  nnoremap suj :<C-u>Unite grep:~/.cache/junkfile<CR>
 
   " http://d.hatena.ne.jp/osyo-manga/20131217/1387292034"{{{
   let g:unite_source_alias_aliases = {
@@ -1158,7 +1179,7 @@ if neobundle#tap('unite.vim')"{{{
         \ -quick-match
   " Auto start if arguments is nothing
   if has('vim_starting') && expand("%") == ""
-    au MyAutoCmd VimEnter * nested :UniteStartup
+    " au MyAutoCmd VimEnter * nested :UniteStartup
   endif
   "}}}
 
@@ -1176,6 +1197,7 @@ if neobundle#tap('unite.vim')"{{{
   function! neobundle#hooks.on_source(bundle)
     " start unite in insert mode
     let g:unite_enable_start_insert = 1
+    let g:unite_source_history_yank_enable = 1
     let g:unite_split_rule = 'botright'
     " Default configuration.
     let default_context = {
@@ -1198,7 +1220,6 @@ if neobundle#tap('unite.vim')"{{{
       nmap <buffer> <Esc> <Plug>(unite_exit)
       nmap <buffer> <C-n> <Plug>(unite_select_next_line)
       nmap <buffer> <C-p> <Plug>(unite_select_previous_line)
-      let g:unite_source_history_yank_enable = 1
     endfunction
   endfunction
   call neobundle#untap()
@@ -1233,7 +1254,7 @@ if neobundle#tap('open-browser.vim')"{{{
         \ }
         \ })
 
-  function! neobundle#tapped.hooks.on_source(bundle)
+  function! neobundle#hooks.on_source(bundle)
     " http://vim-users.jp/2011/08/hack225/
     nmap gx <Plug>(openbrowser-smart-search)
     vmap gx <Plug>(openbrowser-smart-search)
@@ -1252,7 +1273,7 @@ if neobundle#tap('sonictemplate-vim')"{{{
   au MyAutoCmd BufNewFile *.rb Template template
   au MyAutoCmd BufNewFile *.ps1 Template template
   au MyAutoCmd BufNewFile *.cmd Template template
-  function! neobundle#tapped.hooks.on_source(bundle)
+  function! neobundle#hooks.on_source(bundle)
     let g:sonictemplate_vim_template_dir = $MY_VIMRUNTIME . '/template'
   endfunction
 endif"}}}
@@ -1493,7 +1514,7 @@ if neobundle#tap('jedi-vim')"{{{
         \   'filetypes': ['python', 'python3']
         \ }
         \ })
-  function! neobundle#tapped.hooks.on_source(bundle)
+  function! neobundle#hooks.on_source(bundle)
     let g:jedi#auto_initialization = 1
     let g:jedi#auto_vim_configuration = 0
     let g:jedi#goto_assignments_command = '<Leader>G'
@@ -1560,7 +1581,7 @@ if neobundle#tap('tagbar')"{{{
         \ })
 
   nnoremap <Leader>t :<C-u>TagbarToggle<CR>
-  function! neobundle#tapped.hooks.on_source(bundle)
+  function! neobundle#hooks.on_source(bundle)
     let g:tagbar_type_scala = {
           \ 'ctagstype': 'Scala',
           \ 'kinds': [
@@ -1657,7 +1678,7 @@ if neobundle#tap('SrcExpl')"{{{
         \ })
   " The switch of the Source Explorer
   nmap <F8> :SrcExplToggle<CR>
-  function! neobundle#tapped.hooks.on_source(bundle)
+  function! neobundle#hooks.on_source(bundle)
     "  Set the height of Source Explorer window
     let g:SrcExpl_winHeight = 8
 
@@ -1818,7 +1839,7 @@ if neobundle#tap('vim-golang')"{{{
         \   'filetypes': 'go'
         \ }
         \ })
-  function! neobundle#tapped.hooks.on_source(bundle)
+  function! neobundle#hooks.on_source(bundle)
     " user goimports
     let g:gofmt_command = 'goimports'
     set rtp^=$GOROOT/misc/vim
@@ -1861,7 +1882,7 @@ if neobundle#tap('ghcmod-vim')"{{{
         \   'filetypes': 'haskell'
         \ }
         \ })
-  function! neobundle#tapped.hooks.on_source(bundle)
+  function! neobundle#hooks.on_source(bundle)
     "au MyAutoCmd BufWritePost <buffer> GhcModCheckAsync
   endfunction
 
@@ -2016,7 +2037,7 @@ if neobundle#tap('vim-ps1')"{{{
         \ }
         \ })
 
-  function! neobundle#tapped.hooks.on_source(bundle)
+  function! neobundle#hooks.on_source(bundle)
     function! s:addHeader(flg)
       let list = []
       call add(list, "@echo off")
@@ -2764,9 +2785,9 @@ if neobundle#tap('vim-operator-surround')"{{{
         \ })
 
   " operator mappings
-  map <silent>sa <Plug>(operator-surround-append)
-  map <silent>sd <Plug>(operator-surround-delete)
-  map <silent>sr <Plug>(operator-surround-replace)
+  map <silent>sA <Plug>(operator-surround-append)
+  map <silent>sD <Plug>(operator-surround-delete)
+  map <silent>sR <Plug>(operator-surround-replace)
 
   " vim-textobj-multiblock
   nmap <silent>sdd <Plug>(operator-surround-delete)<Plug>(textobj-multiblock-a)
@@ -2850,15 +2871,43 @@ if neobundle#tap('vim-stylus')"{{{
 endif
 "}}}
 
+if neobundle#tap('unite-quickfix')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'unite_sources': ['location_list', 'quickfix']
+        \ }
+        \ })
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('J6uil.vim')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'unite_sources': ['J6uil_members', 'J6uil_rooms'],
+        \   'mappings': [['n', '<Plug>(J6uil_']],
+        \   'commands': ['J6uilReconnect', 'J6uilNextRoom', 'J6uilPrevRoom', 'J6uilDisconnect',
+        \                {'complete': 'custom,J6uil#complete#room', 'name': 'J6uil'}]
+        \ }
+        \ })
+
+  let g:J6uil_user = 'yukimemi'
+  let g:J6uil_multi_window = 1
+
+  call neobundle#untap()
+endif
+"}}}
+
 " disable plugin
 let plugin_dicwin_disable = 1
 "===================================================================================}}}
 
 "{{{ ========== Language Settings =====================================================
 au MyAutoCmd FileType python setl autoindent smartindent
-    \ cinwords=if,elif,else,for,while,try,except,finally,def,class
-    \ tabstop=8 expandtab shiftwidth=4 softtabstop=4
-    \ foldmethod=indent foldlevel=99
+      \ cinwords=if,elif,else,for,while,try,except,finally,def,class
+      \ tabstop=8 expandtab shiftwidth=4 softtabstop=4
+      \ foldmethod=indent foldlevel=99
 au MyAutoCmd BufNewFile,BufRead *.cmd setl fenc=cp932 ff=dos
 au MyAutoCmd FileType ps1 setl fenc=cp932 ff=dos ts=4 sw=2 sts=2
 au MyAutoCmd BufNewFile,BufRead *.hta setl ft=html fenc=cp932 ff=dos
@@ -2866,26 +2915,26 @@ au MyAutoCmd BufNewFile,BufRead *.sql setl fenc=cp932 ff=dos
 au MyAutoCmd BufNewFile,BufRead *.bat setl fenc=cp932 ff=dos
 au MyAutoCmd BufNewFile,BufRead *.ts setl ft=typescript fenc=utf8 ff=unix
 au MyAutoCmd BufNewFile,BufRead *.coffee setl ft=coffee fenc=utf8 ff=unix
-    \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
+      \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd FileType javascript setl fenc=utf8 ff=unix
-    \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
+      \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.wsf setl fenc=utf8 ff=unix
-    \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
+      \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.html setl ts=4 sw=2 st=2 et
 au MyAutoCmd BufNewFile,BufRead *.uml setl fenc=cp932 ff=dos ft=plantuml
 au MyAutoCmd BufNewFile,BufRead *.diag setl fenc=utf8 ff=unix ft=blockdiag
 au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown fenc=utf8 ff=unix
-    \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
+      \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd FileType markdown setl fenc=utf8 ff=unix
-    \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
+      \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.rst setl tabstop=8 shiftwidth=3 softtabstop=3 expandtab
 au MyAutoCmd BufNewFile,BufRead *.jade setl ft=jade ts=4 sw=2 st=2 et
 au MyAutoCmd BufNewFile,BufRead *.styl setl ft=stylus tabstop=8 shiftwidth=2
-    \ softtabstop=2 expandtab
+      \ softtabstop=2 expandtab
 au MyAutoCmd BufNewFile,BufRead *.scpt,*.applescript setl filetype=applescript
 au MyAutoCmd BufNewFile,BufRead *.scala setl ft=scala
 au MyAutoCmd FileType ruby setl fenc=utf8 ff=unix
-    \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
+      \ tabstop=4 shiftwidth=2 softtabstop=2 expandtab
 " Scala {{{
 " http://vim-users.jp/2013/02/vim-advent-calendar-2012-ujihisa-4/
 function! s:ujihisa_start_sbt()"{{{
