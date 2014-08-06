@@ -87,3 +87,5 @@ ruby -e 'C=`stty size`.scan(/\d+/)[1].to_i;S="\xf0\x9f\x8d\xba";a={};puts "\033[
 # snow http://melborne.github.io/2013/12/13/translate-let-it-snow-in-the-terminal/
 ruby -e 'C=`stty size`.scan(/\d+/)[1].to_i;S=["2743".to_i(16)].pack("U*");a={};puts "\033[2J";loop{a[rand(C)]=0;a.each{|x,o|;a[x]+=1;print "\033[#{o};#{x}H \033[#{[*31..37].sample}m \033[#{a[x]};#{x}H#{S} \033[0;0H \033[0m"};$stdout.flush;sleep 0.1}'
 
+# sysctl
+sudo sysctl -w net.inet.tcp.delayed_ack=0

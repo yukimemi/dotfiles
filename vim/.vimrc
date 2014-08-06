@@ -35,7 +35,7 @@ endif"}}}
 " Use <Leader> in global plugin.
 let mapleader = ','
 " Use <LocalLeader> in filetype plugin.
-" let maplocalleader = ' '
+let maplocalleader = ' '
 "===================================================================================}}}
 
 "{{{ ========== Plugins ===============================================================
@@ -92,11 +92,11 @@ NeoBundle 'Shougo/vimproc.vim', {
 " NeoBundle 'osyo-manga/vim-textobj-multitextobj', {'depends': 'kana/vim-textobj-user'}
 " NeoBundle 'scrooloose/syntastic'
 " NeoBundle 'tpope/vim-surround'
+" NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'banyan/recognize_charcode.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'LeafCage/yankround.vim', {'depends': 'kien/ctrlp.vim'}
-" NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'Shougo/neocomplete.vim', {'depends': 'Shougo/context_filetype.vim'}
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -116,6 +116,7 @@ NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundle 'osyo-manga/vim-anzu'
 NeoBundle 'osyo-manga/vim-automatic', {'depends': ['osyo-manga/vim-gift', 'osyo-manga/vim-reunions']}
 NeoBundle 'osyo-manga/vim-watchdogs', {'depends': 'thinca/vim-quickrun'}
+NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'rhysd/committia.vim'
 NeoBundle 'sickill/vim-monokai'
 NeoBundle 'szw/vim-tags', {'build': {'mac': 'brew install ctags'}}
@@ -129,7 +130,6 @@ NeoBundle 'tyru/operator-star.vim', {'depends': ['kana/vim-operator-user', 'thin
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'rhysd/clever-f.vim'
 "}}}
 " Lazy"{{{
 " NeoBundleLazy 'AndrewRadev/linediff.vim'
@@ -137,7 +137,6 @@ NeoBundle 'rhysd/clever-f.vim'
 " NeoBundleLazy 'DrawIt'
 " NeoBundleLazy 'adogear/vim-blockdiag-series'
 " NeoBundleLazy 'alpaca-tc/alpaca_tags', {'depends': 'Shougo/vimproc.vim'}
-" NeoBundleLazy 'basyura/J6uil.vim', {'depends': ['Shougo/vimproc.vim', 'mattn/webapi-vim']}
 " NeoBundleLazy 'basyura/unite-rails'
 " NeoBundleLazy 'derekwyatt/vim-scala', {'build': {'mac': 'brew install scala sbt'}}
 " NeoBundleLazy 'h1mesuke/unite-outline'
@@ -206,9 +205,7 @@ NeoBundleLazy 'lambdalisue/vim-django-support'
 NeoBundleLazy 'lambdalisue/vim-gista', {'depends': 'tyru/open-browser.vim'}
 NeoBundleLazy 'leafgarland/typescript-vim'
 NeoBundleLazy 'majutsushi/tagbar', {'build': {'mac': 'brew install ctags'}}
-if ! s:is_windows
-  NeoBundleLazy 'marijnh/tern_for_vim', {'build': {'others': 'npm install'}}
-endif
+NeoBundleLazy 'marijnh/tern_for_vim', {'build': {'others': 'npm install'}}
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/vimplenote-vim'
 NeoBundleLazy 'nanotech/jellybeans.vim'
@@ -252,6 +249,7 @@ NeoBundleLazy 'wavded/vim-stylus'
 NeoBundleLazy 'wesleyche/SrcExpl'
 NeoBundleLazy 'yuyunko/dosbatch-indent', {'depends': 'taku-o/vim-batch-source'}
 NeoBundleLazy 'zhisheng/visualmark.vim'
+NeoBundleLazy 'fatih/vim-go'
 NeoBundleLazy 'davidhalter/jedi-vim', {
       \ 'depends': 'mitechie/pyflakes-pathogen',
       \ 'build': {
@@ -268,7 +266,6 @@ NeoBundleLazy 'basyura/TweetVim', 'dev', {
       \   'mattn/favstar-vim',
       \   'mattn/webapi-vim'
       \ ]}
-NeoBundleLazy 'fatih/vim-go'
 "}}}
 
 call neobundle#end()
@@ -370,12 +367,12 @@ nnoremap [Space]f :call Format()<CR>
 "au MyAutoCmd BufWrite * call Format()
 "}}}
 
-function! s:addQuote()"{{{
+function! AddQuote()"{{{
   normal gg2dd
   17,$s/^/> /
   normal gg
 endfunction
-au MyAutoCmd FileType mail nnoremap <silent><buffer> [Space]q :<C-u>silent call <SID>addQuote()<CR>
+au MyAutoCmd FileType mail nnoremap <buffer> [Space]q :<C-u>silent! call AddQuote()<CR>
 "}}}
 
 " diff original"{{{
@@ -525,13 +522,13 @@ highlight Search ctermbg=88
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
 au MyAutoCmd CursorMoved,CursorMovedI * call s:auto_cursorline('CursorMoved')
 au MyAutoCmd CursorHold,CursorHoldI * call s:auto_cursorline('CursorHold')
-au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * call s:auto_cursorline('WinEnter,BufEnter,CmdwinLeave')
+au MyAutoCmd WinEnter,BufEnter * call s:auto_cursorline('WinBufEnter')
 au MyAutoCmd WinLeave * call s:auto_cursorline('WinLeave')
 
 let s:cursorline_lock = 0
 function! s:auto_cursorline(event)
-  if a:event ==# 'WinEnter,BufEnter,CmdwinLeave'
-    " echo 'WinEnter,BufEnter,CmdwinLeave'.s:cursorline_lock
+  if a:event ==# 'WinBufEnter'
+    " echo 'WinEnter'.s:cursorline_lock
     setlocal cursorline
     setlocal cursorcolumn
     let s:cursorline_lock = 2
@@ -629,7 +626,7 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
 " mapping for NeoBundle
-nnoremap [Space]bi :<C-u>NeoBundleInstall!<CR>
+nnoremap [Space]bi :<C-u>NeoBundleInstall<CR>
 " Vim-users.jp - Hack #74: http://vim-users.jp/2009/09/hack74/
 nnoremap <silent> [Space]ev  :<C-u>tabedit $MYVIMRC<CR>
 nnoremap <silent> [Space]eg  :<C-u>tabedit $MYGVIMRC<CR>
@@ -1118,7 +1115,7 @@ if neobundle#tap('unite.vim')"{{{
   " Use plefix s
   nnoremap suc :<C-u>Unite colorscheme -auto-preview<CR>
   nnoremap suy :<C-u>Unite history/yank<CR>
-  nnoremap sub :<C-u>Unite buffer<CR>
+  nnoremap sub :<C-u>Unite buffer -auto-preview<CR>
   if s:is_windows
     nnoremap suf :<C-u>Unite file_rec<CR>
     nnoremap suF :<C-u>Unite file_rec<CR>
@@ -1839,20 +1836,22 @@ if neobundle#tap('vim-golang')"{{{
   call neobundle#config({
         \ 'autoload': {
         \   'mappings': ['<Plug>(godoc-keyword)'],
-        \   'commands': [{'complete': 'customlist,go#complete#Package', 'name': 'Godoc'}],
+        \   'commands': [{'complete': 'customlist,go#complete#Package', 'name': 'Godoc'},
+        \                'GoUpdateBinaries'],
         \   'filetypes': 'go'
         \ }
         \ })
+
   function! neobundle#hooks.on_source(bundle)
-    " user goimports
-    let g:gofmt_command = 'goimports'
-    set rtp^=$GOROOT/misc/vim
-    exe "set rtp^=" . globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-    setl completeopt=menu
+    " use goimports
+    " let g:gofmt_command = 'goimports'
+    " set rtp^=$GOROOT/misc/vim
+    " exe "set rtp^=" . globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+    " setl completeopt=menu
     " golint
-    exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
-    au MyAutoCmd BufWritePre *.go Fmt
-    au MyAutoCmd FileType go compiler go
+    " exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
+    " au MyAutoCmd BufWritePre *.go Fmt
+    " au MyAutoCmd FileType go compiler go
     nnoremap <buffer> K :<C-u>Godoc<Space><C-R><C-W><CR>
   endfunction
   call neobundle#untap()
@@ -2624,10 +2623,10 @@ if neobundle#tap('vim-easymotion')"{{{
 
   nmap [Space]s <Plug>(easymotion-s2)
 
-  " map f <Plug>(easymotion-fl)
-  " map t <Plug>(easymotion-tl)
-  " map F <Plug>(easymotion-Fl)
-  " map T <Plug>(easymotion-Tl)
+  map f <Plug>(easymotion-fl)
+  map t <Plug>(easymotion-tl)
+  map F <Plug>(easymotion-Fl)
+  map T <Plug>(easymotion-Tl)
 
   call neobundle#untap()
 endif"}}}
