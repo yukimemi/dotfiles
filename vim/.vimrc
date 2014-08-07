@@ -1832,40 +1832,15 @@ if neobundle#tap('macdict-vim')"{{{
   call neobundle#untap()
 endif"}}}
 
-if neobundle#tap('vim-golang')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'mappings': ['<Plug>(godoc-keyword)'],
-        \   'commands': [{'complete': 'customlist,go#complete#Package', 'name': 'Godoc'},
-        \                'GoUpdateBinaries'],
-        \   'filetypes': 'go'
-        \ }
-        \ })
-
-  function! neobundle#hooks.on_source(bundle)
-    " use goimports
-    " let g:gofmt_command = 'goimports'
-    " set rtp^=$GOROOT/misc/vim
-    " exe "set rtp^=" . globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-    " setl completeopt=menu
-    " golint
-    " exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
-    " au MyAutoCmd BufWritePre *.go Fmt
-    " au MyAutoCmd FileType go compiler go
-    nnoremap <buffer> K :<C-u>Godoc<Space><C-R><C-W><CR>
-  endfunction
-  call neobundle#untap()
-endif"}}}
-
 if neobundle#tap('vim-go')"{{{
   call neobundle#config({
         \ 'autoload': {
         \   'mappings': [['n', '<Plug>(go-']],
         \   'commands': ['GoErrCheck', 'GoOracleCallgraph', 'GoRun', 'GoDeps', 'GoInstall',
-        \        'GoDef', 'GoOracleDescribe', 'GoUpdateBinaries', 'GoVet', 'GoTest',
-        \        'GoOracleCallers', 'GoOracleChannelPeers', 'GoOracleCallees', 'GoOracleImplements',
-        \        {'complete': 'customlist,go#package#Complete', 'name': 'GoDoc'},
-        \        'GoFiles', 'GoBuild'],
+        \                'GoDef', 'GoOracleDescribe', 'GoUpdateBinaries', 'GoVet', 'GoTest',
+        \                'GoOracleCallers', 'GoOracleChannelPeers', 'GoOracleCallees', 'GoOracleImplements',
+        \                {'complete': 'customlist,go#package#Complete', 'name': 'GoDoc'},
+        \                'GoFiles', 'GoBuild'],
         \   'filetypes': 'go'
         \ }
         \ })
@@ -1874,6 +1849,8 @@ if neobundle#tap('vim-go')"{{{
   au MyAutoCmd Filetype go nnoremap <buffer> <leader>v :vsp <CR>:exe "GoDef" <CR>
   au MyAutoCmd Filetype go nnoremap <buffer> <leader>s :sp <CR>:exe "GoDef"<CR>
   au MyAutoCmd Filetype go nnoremap <buffer> <leader>t :tab split <CR>:exe "GoDef"<CR>
+
+  au MyAutoCmd Filetype go nnoremap <buffer> K :<C-u>Godoc<Space><C-r><C-w><CR>
 
   let g:go_snippet_engine = "neosnippet"
   call neobundle#untap()
