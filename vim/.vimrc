@@ -35,7 +35,7 @@ endif"}}}
 " Use <Leader> in global plugin.
 let mapleader = ','
 " Use <LocalLeader> in filetype plugin.
-let maplocalleader = ' '
+" let maplocalleader = ' '
 "===================================================================================}}}
 
 "{{{ ========== Plugins ===============================================================
@@ -137,6 +137,7 @@ NeoBundle 'Raimondi/delimitMate'
 " NeoBundleLazy 'DrawIt'
 " NeoBundleLazy 'adogear/vim-blockdiag-series'
 " NeoBundleLazy 'alpaca-tc/alpaca_tags', {'depends': 'Shougo/vimproc.vim'}
+" NeoBundleLazy 'basyura/J6uil.vim', {'depends': ['Shougo/vimproc.vim', 'mattn/webapi-vim']}
 " NeoBundleLazy 'basyura/unite-rails'
 " NeoBundleLazy 'derekwyatt/vim-scala', {'build': {'mac': 'brew install scala sbt'}}
 " NeoBundleLazy 'h1mesuke/unite-outline'
@@ -205,7 +206,9 @@ NeoBundleLazy 'lambdalisue/vim-django-support'
 NeoBundleLazy 'lambdalisue/vim-gista', {'depends': 'tyru/open-browser.vim'}
 NeoBundleLazy 'leafgarland/typescript-vim'
 NeoBundleLazy 'majutsushi/tagbar', {'build': {'mac': 'brew install ctags'}}
-NeoBundleLazy 'marijnh/tern_for_vim', {'build': {'others': 'npm install'}}
+if ! s:is_windows
+  NeoBundleLazy 'marijnh/tern_for_vim', {'build': {'others': 'npm install'}}
+endif
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/vimplenote-vim'
 NeoBundleLazy 'nanotech/jellybeans.vim'
@@ -367,12 +370,12 @@ nnoremap [Space]f :call Format()<CR>
 "au MyAutoCmd BufWrite * call Format()
 "}}}
 
-function! AddQuote()"{{{
+function! s:addQuote()"{{{
   normal gg2dd
   17,$s/^/> /
   normal gg
 endfunction
-au MyAutoCmd FileType mail nnoremap <buffer> [Space]q :<C-u>silent! call AddQuote()<CR>
+au MyAutoCmd FileType mail nnoremap <silent><buffer> [Space]q :<C-u>silent! call <SID>addQuote()<CR>
 "}}}
 
 " diff original"{{{
@@ -522,13 +525,13 @@ highlight Search ctermbg=88
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
 au MyAutoCmd CursorMoved,CursorMovedI * call s:auto_cursorline('CursorMoved')
 au MyAutoCmd CursorHold,CursorHoldI * call s:auto_cursorline('CursorHold')
-au MyAutoCmd WinEnter,BufEnter * call s:auto_cursorline('WinBufEnter')
+au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * call s:auto_cursorline('WinEnter,BufEnter,CmdwinLeave')
 au MyAutoCmd WinLeave * call s:auto_cursorline('WinLeave')
 
 let s:cursorline_lock = 0
 function! s:auto_cursorline(event)
-  if a:event ==# 'WinBufEnter'
-    " echo 'WinEnter'.s:cursorline_lock
+  if a:event ==# 'WinEnter,BufEnter,CmdwinLeave'
+    " echo 'WinEnter,BufEnter,CmdwinLeave'.s:cursorline_lock
     setlocal cursorline
     setlocal cursorcolumn
     let s:cursorline_lock = 2
@@ -1115,7 +1118,7 @@ if neobundle#tap('unite.vim')"{{{
   " Use plefix s
   nnoremap suc :<C-u>Unite colorscheme -auto-preview<CR>
   nnoremap suy :<C-u>Unite history/yank<CR>
-  nnoremap sub :<C-u>Unite buffer -auto-preview<CR>
+  nnoremap sub :<C-u>Unite buffer<CR>
   if s:is_windows
     nnoremap suf :<C-u>Unite file_rec<CR>
     nnoremap suF :<C-u>Unite file_rec<CR>
@@ -2600,10 +2603,10 @@ if neobundle#tap('vim-easymotion')"{{{
 
   nmap [Space]s <Plug>(easymotion-s2)
 
-  map f <Plug>(easymotion-fl)
-  map t <Plug>(easymotion-tl)
-  map F <Plug>(easymotion-Fl)
-  map T <Plug>(easymotion-Tl)
+  " map f <Plug>(easymotion-fl)
+  " map t <Plug>(easymotion-tl)
+  " map F <Plug>(easymotion-Fl)
+  " map T <Plug>(easymotion-Tl)
 
   call neobundle#untap()
 endif"}}}
