@@ -819,9 +819,11 @@ if neobundle#tap('vim-gitgutter')"{{{
         \ }
         \ })
 
-  let g:gitgutter_sign_added = '✚'
-  let g:gitgutter_sign_modified = '➜'
-  let g:gitgutter_sign_removed = '✘'
+  if ! s:is_windows
+    let g:gitgutter_sign_added = '✚'
+    let g:gitgutter_sign_modified = '➜'
+    let g:gitgutter_sign_removed = '✘'
+  endif
 
   nnoremap [Space]gg :<C-u>GitGutterToggle<CR>
 
@@ -911,13 +913,12 @@ if neobundle#tap('TweetVim')"{{{
   au MyAutoCmd FileType tweetvim call s:my_tweetvim_mappings()
   nnoremap [Space]ut :<C-u>Unite tweetvim<CR>
   nnoremap [Space]tu :<C-u>TweetVimUserStream<CR>
+  nnoremap [Space]tl :<C-u>Unite tweetvim<CR>
+  nnoremap [Space]ta :<C-u>Unite tweetvim/account<CR>
 
   function! s:my_tweetvim_mappings()
     " setl nowrap
     nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
-    nnoremap <buffer> <Leader>s :<C-u>TweetVimSearch<Space>
-    nnoremap <buffer> [Space]tl :<C-u>Unite tweetvim<CR>
-    nnoremap <buffer> [Space]ta :<C-u>Unite tweetvim/account<CR>
   endfunction
 
   let g:tweetvim_default_account = "yukimemi"
