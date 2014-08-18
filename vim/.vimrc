@@ -181,6 +181,7 @@ NeoBundleLazy 'basyura/unite-firefox-bookmarks', {'depends': ['tyru/open-browser
 NeoBundleLazy 'cd01/poshcomplete-vim'
 NeoBundleLazy 'choplin/unite-vim_hacks'
 NeoBundleLazy 'cocopon/colorswatch.vim'
+NeoBundleLazy 'cohama/agit.vim'
 NeoBundleLazy 'dag/vim2hs'
 NeoBundleLazy 'digitaltoad/vim-jade'
 NeoBundleLazy 'drakontia/sphinx.vim'
@@ -2905,6 +2906,18 @@ if neobundle#tap('clever-f.vim')"{{{
 
   let g:clever_f_smart_case = 1
   let g:clever_f_use_migemo = 1
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('agit.vim')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'mappings': [['n', '<Plug>(agit-']],
+        \   'commands': ['Agit']
+        \ }
+        \ })
 
   call neobundle#untap()
 endif

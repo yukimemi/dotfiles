@@ -399,7 +399,7 @@ liberator.globalVariables.copy_templates = [
   },
 
   // NeoBundle.vim syntax
-  { label: 'neobunble',      value: "NeoBundle '%TITLE%'",
+  { label: 'neobundle',      value: "NeoBundle '%TITLE%'",
     custom: function() {
       if(!getDocUrl().match('^https?://github\.com/')) {
         throw "This page is not GitHub!!!";
