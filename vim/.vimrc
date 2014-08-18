@@ -1849,14 +1849,27 @@ if neobundle#tap('vim-go')"{{{
         \ }
         \ })
 
-  au MyAutoCmd Filetype go nnoremap <buffer> <leader>i :exe 'GoImport ' . expand('<cword>')<CR>
-  au MyAutoCmd Filetype go nnoremap <buffer> <leader>v :vsp <CR>:exe "GoDef" <CR>
-  au MyAutoCmd Filetype go nnoremap <buffer> <leader>s :sp <CR>:exe "GoDef"<CR>
-  au MyAutoCmd Filetype go nnoremap <buffer> <leader>t :tab split <CR>:exe "GoDef"<CR>
-
-  au MyAutoCmd Filetype go nnoremap <buffer> K :<C-u>Godoc<Space><C-r><C-w><CR>
-
+  let g:go_auto_type_info = 1
   let g:go_snippet_engine = "neosnippet"
+
+  au MyAutoCmd FileType go call s:my_golang_settings()
+
+  function! s:my_golang_settings()
+    nmap <buffer> <Leader>gd <Plug>(go-doc)
+    nmap <buffer> <Leader>gs <Plug>(go-doc-split)
+    nmap <buffer> <Leader>gv <Plug>(go-doc-vertical)
+    nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
+
+    " nmap <buffer> <leader>r <Plug>(go-run)
+    nmap <buffer> <leader>b <Plug>(go-build)
+    nmap <buffer> <leader>t <Plug>(go-test)
+    nmap <buffer> <leader>c <Plug>(go-coverage)
+
+    nmap <buffer> <Leader>ds <Plug>(go-def-split)
+    nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
+    nmap <buffer> <Leader>dt <Plug>(go-def-tab)
+  endfunction
+
   call neobundle#untap()
 endif"}}}
 
