@@ -1308,6 +1308,8 @@ if neobundle#tap('vim-quickrun')"{{{
         \ }
         \ })
   "nnoremap <Leader>r <Plug>(quickrun)
+  nnoremap <Leader>a :<C-u>QuickRun<Space>-args<Space>
+
   " echo quickrun command output {{{
   " http://d.hatena.ne.jp/osyo-manga/searchdiary?word=quickrun
   let s:hook = {
@@ -1320,7 +1322,7 @@ if neobundle#tap('vim-quickrun')"{{{
         \ }
 
   function! s:hook.on_ready(session, context)
-    HierClear
+    " HierClear
     for command in a:session.commands
       execute self.config.log ? "echom command" : "echo command"
     endfor
