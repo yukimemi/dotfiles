@@ -178,7 +178,7 @@ NeoBundleLazy 'Shougo/vinarise.vim'
 NeoBundleLazy 'aklt/plantuml-syntax'
 NeoBundleLazy 'basyura/J6uil.vim', {'depends': ['Shougo/vimproc.vim', 'mattn/webapi-vim']}
 NeoBundleLazy 'basyura/unite-firefox-bookmarks', {'depends': ['tyru/open-browser.vim', 'mattn/webapi-vim']}
-NeoBundleLazy 'cd01/poshcomplete-vim'
+" NeoBundleLazy 'cd01/poshcomplete-vim'
 NeoBundleLazy 'choplin/unite-vim_hacks'
 NeoBundleLazy 'cocopon/colorswatch.vim'
 NeoBundleLazy 'cohama/agit.vim'
@@ -497,7 +497,7 @@ set softtabstop=0
 set expandtab
 set list
 if s:is_windows
-  set listchars=tab:>\ ,trail:-,extends:>,precedes:<
+  set listchars=tab:\|\ ,trail:-,extends:>,precedes:<
 else
   "set listchars=tab:»\ ,trail:-,extends:»,precedes:«,nbsp:%
   set listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
@@ -1850,8 +1850,14 @@ if neobundle#tap('vim-go')"{{{
         \ }
         \ })
 
+  let g:go_bin_path = expand("~/.go/bin")
   let g:go_auto_type_info = 1
   let g:go_snippet_engine = "neosnippet"
+  " let g:go_play_open_browser = 0
+  let g:go_fmt_fail_silently = 1
+  " let g:go_fmt_autosave = 0
+  " let g:go_fmt_command = "gofmt"
+  let g:go_disable_autoinstall = 1
 
   au MyAutoCmd FileType go call s:my_golang_settings()
 
@@ -2038,25 +2044,23 @@ if neobundle#tap('vim-ps1')"{{{
   function! neobundle#hooks.on_source(bundle)
     function! s:addHeader(flg)
       let list = []
-      call add(list, "@echo off")
-      call add(list, "pushd \"%~dp0\" > nul")
-      call add(list, "set tm=%time: =0%")
-      call add(list, "set ps1file=%~n0___%date:~-10,4%%date:~-5,2%%date:~-2,2%_%tm:~0,2%%tm:~3,2%%tm:~6,2%%tm:~9,2%.ps1")
-      call add(list, "for /f \"usebackq skip=10 delims=\" %%i in (\"%~f0\") do @echo %%i >> \"%ps1file%\"")
-      call add(list, "powershell -NoProfile -ExecutionPolicy unrestricted -File \"%ps1file%\" %*")
-      call add(list, "del \"%ps1file%\"")
-      call add(list, "popd > nul")
+      call add(list, "@echo off\r")
+      call add(list, "pushd \"%~dp0\" > nul\r")
+      call add(list, "set tm=%time: =0%\r")
+      call add(list, "set ps1file=%~n0___%date:~-10,4%%date:~-5,2%%date:~-2,2%_%tm:~0,2%%tm:~3,2%%tm:~6,2%%tm:~9,2%.ps1\r")
+      " call add(list, "for /f \"usebackq skip=10 delims=\" %%i in (\"%~f0\") do @echo %%i >> \"%ps1file%\"\r")
+      call add(list, "more +10 \"%~f0\" | sort /+10000000 | sort /+10000000 /o \"%ps1file%\"\r")
+      call add(list, "powershell -NoProfile -ExecutionPolicy unrestricted -File \"%ps1file%\" %*\r")
+      call add(list, "del \"%ps1file%\"\r")
+      call add(list, "popd > nul\r")
       if ! a:flg
-        call add(list, "pause")
+        call add(list, "pause\r")
       endif
-      call add(list, "exit %ERRORLEVEL%")
-      call add(list, "\# ========== do ps1 file as a dosbatch ==========")
-      call extend(list, getline("1", "$"))
+      call add(list, "exit %ERRORLEVEL%\r")
+      call add(list, "\# ========== do ps1 file as a dosbatch ==========\r")
+      call extend(list, readfile(expand("%"), "b"))
       let cp932List = []
-      for line in list
-        call add(cp932List, line . "\r")
-      endfor
-      call writefile(cp932List, expand("%:p:r") . ".cmd")
+      call writefile(list, expand("%:p:r") . ".cmd", "b")
     endfunction
     au MyAutoCmd BufWritePost *.ps1 call s:addHeader(0)
     au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeader(1)
@@ -2072,7 +2076,7 @@ if neobundle#tap('poshcomplete-vim')"{{{
         \ }
         \ })
 
-  au MyAutoCmd FileType ps1 setl omnifunc=poshcomplete#CompleteCommand
+  " au MyAutoCmd FileType ps1 setl omnifunc=poshcomplete#CompleteCommand
   call neobundle#untap()
 endif"}}}
 
