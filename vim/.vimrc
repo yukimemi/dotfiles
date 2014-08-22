@@ -94,7 +94,6 @@ NeoBundle 'Shougo/vimproc.vim', {
 " NeoBundle 'tpope/vim-surround'
 " NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'banyan/recognize_charcode.vim'
-NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'LeafCage/yankround.vim', {'depends': 'kien/ctrlp.vim'}
 NeoBundle 'Shougo/neocomplete.vim', {'depends': 'Shougo/context_filetype.vim'}
@@ -130,6 +129,9 @@ NeoBundle 'tyru/operator-star.vim', {'depends': ['kana/vim-operator-user', 'thin
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'Raimondi/delimitMate'
+if ! s:is_windows
+  NeoBundle 'airblade/vim-gitgutter'
+endif
 "}}}
 " Lazy"{{{
 " NeoBundleLazy 'AndrewRadev/linediff.vim'
@@ -389,7 +391,7 @@ com! Wsu w !sudo tee > /dev/null %
 
 " markdown to docx"{{{
 function! s:md2docx()
-  let s:com = 'powershell -NoProfile -ExecutionPolicy unrestricted -File C:/work/git/md2docx/md2docx.ps1 ' . expand("%:p")
+  let s:com = 'powershell -NoProfile -ExecutionPolicy unrestricted -File md2docx.ps1 ' . expand("%:p")
   echom s:com
   call {s:system}(s:com)
   echo "md2docx exit !"
@@ -405,7 +407,8 @@ function! s:automd2docx()
 endfunction
 
 au MyAutoCmd FileType markdown nnoremap <expr><buffer> <Leader>m <SID>md2docx()
-au MyAutoCmd BufWritePost *.md call s:automd2docx()"}}}
+" au MyAutoCmd BufWritePost *.md call s:automd2docx()
+"}}}
 "===================================================================================}}}
 
 "{{{ ========== System ================================================================
@@ -2049,7 +2052,8 @@ if neobundle#tap('vim-ps1')"{{{
       call add(list, "set tm=%time: =0%\r")
       call add(list, "set ps1file=%~n0___%date:~-10,4%%date:~-5,2%%date:~-2,2%_%tm:~0,2%%tm:~3,2%%tm:~6,2%%tm:~9,2%.ps1\r")
       " call add(list, "for /f \"usebackq skip=10 delims=\" %%i in (\"%~f0\") do @echo %%i >> \"%ps1file%\"\r")
-      call add(list, "more +10 \"%~f0\" | sort /+10000000 | sort /+10000000 /o \"%ps1file%\"\r")
+      " call add(list, "more +10 \"%~f0\" | sort /+10000000 | sort /+10000000 /o \"%ps1file%\"\r")
+      call add(list, "more +10 \"%~f0\" >> \"%ps1file%\"\r")
       call add(list, "powershell -NoProfile -ExecutionPolicy unrestricted -File \"%ps1file%\" %*\r")
       call add(list, "del \"%ps1file%\"\r")
       call add(list, "popd > nul\r")
