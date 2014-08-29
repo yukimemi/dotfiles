@@ -93,6 +93,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 " NeoBundle 'scrooloose/syntastic'
 " NeoBundle 'tpope/vim-surround'
 " NeoBundle 'Lokaltog/vim-easymotion'
+" NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'banyan/recognize_charcode.vim'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'LeafCage/yankround.vim', {'depends': 'kien/ctrlp.vim'}
@@ -111,7 +112,6 @@ NeoBundle 'kana/vim-textobj-indent', {'depends': 'kana/vim-textobj-user'}
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mhinz/vim-hugefile'
-NeoBundle 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundle 'osyo-manga/vim-anzu'
 NeoBundle 'osyo-manga/vim-automatic', {'depends': ['osyo-manga/vim-gift', 'osyo-manga/vim-reunions']}
 NeoBundle 'osyo-manga/vim-watchdogs', {'depends': 'thinca/vim-quickrun'}
@@ -128,7 +128,6 @@ NeoBundle 'tyru/caw.vim'
 NeoBundle 'tyru/operator-star.vim', {'depends': ['kana/vim-operator-user', 'thinca/vim-visualstar']}
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'Raimondi/delimitMate'
 if ! s:is_windows
   NeoBundle 'airblade/vim-gitgutter'
 endif
@@ -220,6 +219,7 @@ NeoBundleLazy 'osyo-manga/vim-operator-blockwise', {'depends': 'kana/vim-operato
 NeoBundleLazy 'osyo-manga/vim-operator-search', {'depends': 'kana/vim-operator-user'}
 NeoBundleLazy 'osyo-manga/vim-over'
 NeoBundleLazy 'osyo-manga/unite-quickfix'
+NeoBundleLazy 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundleLazy 'pangloss/vim-javascript'
 NeoBundleLazy 'pasela/unite-webcolorname'
 NeoBundleLazy 'rhysd/unite-codic.vim', {'depends': 'koron/codic-vim'}
@@ -1013,20 +1013,6 @@ if neobundle#tap('vimshell.vim')"{{{
       let $PATH = '/usr/local/bin:' . $PATH
     endif
 
-    " let g:vimshell_right_prompt = 'vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
-    " let g:vimshell_enable_smart_case = 1
-    "
-    " let g:vimshell_execute_file_list['zip'] = 'zipinfo'
-    " call vimshell#set_execute_file('tgz,gz', 'gzcat')
-    " call vimshell#set_execute_file('tbz,bz2', 'bzcat')
-    "
-    " let g:vimshell_execute_file_list = {}
-    " call vimshell#set_execute_file('txt,vim,c,h,cpp,d,xml,java', 'vim')
-    " let g:vimshell_execute_file_list['rb'] = 'ruby'
-    " let g:vimshell_execute_file_list['pl'] = 'perl'
-    " let g:vimshell_execute_file_list['py'] = 'python'
-    " call vimshell#set_execute_file('html,xhtml', 'gexe firefox')
-
     au MyAutoCmd FileType vimshell
           \ if ! s:is_windows
           \ | call vimshell#altercmd#define('i', 'iexe')
@@ -1039,12 +1025,16 @@ if neobundle#tap('vimshell.vim')"{{{
           \ | call vimshell#altercmd#define('s', ':UniteBookmarkAdd .')
           \ | call vimshell#altercmd#define('g', ':Unite bookmark -start-insert')
           \ | call vimshell#altercmd#define('l', ':Unite bookmark')
-          \ | call vimshell#hook#add('chpwd', 'my_chpwd', 'g:my_chpwd')
+          \ | call vimshell#hook#add('chpwd', 'my_chpwd', 'MyChpwd')
           \ | else
             \ | call vimshell#altercmd#define('vimfiler', 'gvim -c VimFilerDouble')
             \ | endif
 
-    au MyAutoCmd FileType int-* call s:interactive_settings()
+    function! MyChpwd(args, context)
+      call vimshell#execute('ls')
+    endfunction
+
+    autocmd FileType int-* call s:interactive_settings()
     function! s:interactive_settings()
     endfunction
 
@@ -1495,9 +1485,7 @@ endif"}}}
 if neobundle#tap('shabadou.vim')"{{{
   call neobundle#config({
         \ 'autoload': {
-        \   'on_source': ['vim-quickrun'],
-        \   'mappings': [['sxn', '<Plug>(quickrun']],
-        \   'commands': {'complete': 'customlist,quickrun#complete', 'name': 'QuickRun'}
+        \   'on_source': ['vim-quickrun']
         \ }
         \ })
   call neobundle#untap()
@@ -1800,6 +1788,9 @@ if neobundle#tap('vim-automatic')"{{{
         \       'filetype': 'qf',
         \       'autocmds': ['FileType']
         \     },
+        \     'set': {
+        \       'height': 8
+        \     }
         \   },
         \   {
         \     'match': {
@@ -1855,14 +1846,13 @@ if neobundle#tap('vim-go')"{{{
         \ }
         \ })
 
-  let g:go_bin_path = expand("~/.go/bin")
   let g:go_auto_type_info = 1
   let g:go_snippet_engine = "neosnippet"
   " let g:go_play_open_browser = 0
-  let g:go_fmt_fail_silently = 1
+  let g:go_fmt_fail_silently = 0
   " let g:go_fmt_autosave = 0
   " let g:go_fmt_command = "gofmt"
-  let g:go_disable_autoinstall = 1
+  " let g:go_disable_autoinstall = 1
 
   au MyAutoCmd FileType go call s:my_golang_settings()
 
@@ -1873,13 +1863,17 @@ if neobundle#tap('vim-go')"{{{
     nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
 
     " nmap <buffer> <leader>r <Plug>(go-run)
-    nmap <buffer> <leader>b <Plug>(go-build)
-    nmap <buffer> <leader>t <Plug>(go-test)
-    nmap <buffer> <leader>c <Plug>(go-coverage)
+    nmap <buffer> <leader>gb <Plug>(go-build)
+    nmap <buffer> <leader>gt <Plug>(go-test)
+    nmap <buffer> <leader>gc <Plug>(go-coverage)
 
     nmap <buffer> <Leader>ds <Plug>(go-def-split)
     nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
     nmap <buffer> <Leader>dt <Plug>(go-def-tab)
+
+    nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
+
+    setl completeopt=menu,preview
   endfunction
 
   call neobundle#untap()
@@ -2788,7 +2782,7 @@ if neobundle#tap('vim-operator-surround')"{{{
   call neobundle#config({
         \ 'autoload': {
         \   'mappings': [['nx', '<Plug>(operator-surround'],
-        \         ['n', '<Plug>(operator-surround-repeat)']]
+        \                ['n', '<Plug>(operator-surround-repeat)']]
         \ }
         \ })
 

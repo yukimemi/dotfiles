@@ -50,11 +50,14 @@ ghq get git@github.com:yukimemi/tmux-powerline.git
 ghq get git@github.com:yukimemi/gitstatus.git
 ghq get git@github.com:yukimemi/coffee-script-on-jscript.git
 ghq get git@github.com:yukimemi/ActiveXFileWrapper.js.git
+ghq get git@github.com:yukimemi/copybackup.git
+ghq get git@github.com:yukimemi/gocore.git
 # others
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
 ghq get https://github.com/eagletmt/dotfiles.git
 ghq get https://github.com/supermomonga/dotfiles.git
+ghq get https://github.com/tcnksm/go-compile-scripts.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
@@ -69,6 +72,20 @@ ghq get git@bitbucket.org:yukimemi/scripts.git
 ghq get git@bitbucket.org:yukimemi/coffee.git
 ghq get git@bitbucket.org:yukimemi/nicobrowser.git
 ghq get git@bitbucket.org:yukimemi/coffee-windows.git
+
+# Gist
+ghq get https://gist.github.com/5507969.git \# golang copy file example
+
+# Go lang
+# me
+go get github.com/yukimemi/copybackup
+go get github.com/yukimemi/copybackup/cmd/copybackup
+# others
+go get github.com/jessevdk/go-flags
+go get github.com/umisama/golog
+go get github.com/smartystreets/goconvey
+go get github.com/mitchellh/gox
+go get github.com/laher/goxc
 
 # Get deploy.sh
 wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh && chmod +x deploy.sh
@@ -89,3 +106,7 @@ ruby -e 'C=`stty size`.scan(/\d+/)[1].to_i;S=["2743".to_i(16)].pack("U*");a={};p
 
 # sysctl
 sudo sysctl -w net.inet.tcp.delayed_ack=0
+
+# git config
+git config --global ghq.root ~/.ghq/src
+
