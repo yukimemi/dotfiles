@@ -86,6 +86,7 @@ go get github.com/umisama/golog
 go get github.com/smartystreets/goconvey
 go get github.com/mitchellh/gox
 go get github.com/laher/goxc
+go get github.com/kr/godep
 
 # Get deploy.sh
 wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh && chmod +x deploy.sh
