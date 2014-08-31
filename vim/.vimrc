@@ -256,12 +256,14 @@ NeoBundleLazy 'wesleyche/SrcExpl'
 NeoBundleLazy 'yuyunko/dosbatch-indent', {'depends': 'taku-o/vim-batch-source'}
 NeoBundleLazy 'zhisheng/visualmark.vim'
 NeoBundleLazy 'fatih/vim-go'
-NeoBundleLazy 'davidhalter/jedi-vim', {
-      \ 'depends': 'mitechie/pyflakes-pathogen',
-      \ 'build': {
-      \   'mac': 'pip install jedi',
-      \   'unix': 'pip install jedi'
-      \ }}
+if ! s:is_windows
+  NeoBundleLazy 'davidhalter/jedi-vim', {
+        \ 'depends': 'mitechie/pyflakes-pathogen',
+        \ 'build': {
+        \   'mac': 'pip install jedi',
+        \   'unix': 'pip install jedi'
+        \ }}
+endif
 NeoBundleLazy 'basyura/TweetVim', 'dev', {
       \ 'depends': [
       \   'tyru/open-browser.vim',
