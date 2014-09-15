@@ -83,7 +83,6 @@ NeoBundle 'Shougo/vimproc.vim', {
 " NeoBundle 'hokorobi/vim-tagsgen', {'other': 'go get github.com/jstemmer/gotags'}
 " NeoBundle 'hunner/vim-plist'
 " NeoBundle 'itchyny/landscape.vim'
-" NeoBundle 'jceb/vim-hier'
 " NeoBundle 'jiangmiao/auto-pairs'
 " NeoBundle 'mattn/sonictemplate-vim'
 " NeoBundle 'nathanaelkane/vim-indent-guides'
@@ -94,6 +93,8 @@ NeoBundle 'Shougo/vimproc.vim', {
 " NeoBundle 'tpope/vim-surround'
 " NeoBundle 'Lokaltog/vim-easymotion'
 " NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'jceb/vim-hier'
+NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'banyan/recognize_charcode.vim'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'LeafCage/yankround.vim', {'depends': 'kien/ctrlp.vim'}
@@ -172,6 +173,7 @@ NeoBundleLazy 'Shougo/junkfile.vim'
 NeoBundleLazy 'Shougo/neomru.vim'
 NeoBundleLazy 'Shougo/neosnippet.vim', {'depends': ['Shougo/neosnippet-snippets', 'Shougo/context_filetype.vim']}
 NeoBundleLazy 'Shougo/unite.vim', {'depends': 'Shougo/vimproc.vim'}
+NeoBundleLazy 'Shougo/unite-outline'
 NeoBundleLazy 'Shougo/vim-vcs'
 NeoBundleLazy 'Shougo/vimfiler.vim'
 NeoBundleLazy 'Shougo/vimshell.vim', {'depends': 'Shougo/vimproc.vim'}
@@ -220,10 +222,12 @@ NeoBundleLazy 'osyo-manga/vim-operator-search', {'depends': 'kana/vim-operator-u
 NeoBundleLazy 'osyo-manga/vim-over'
 NeoBundleLazy 'osyo-manga/unite-quickfix'
 NeoBundleLazy 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
+NeoBundleLazy 'osyo-manga/vim-marching'
 NeoBundleLazy 'pangloss/vim-javascript'
 NeoBundleLazy 'pasela/unite-webcolorname'
 NeoBundleLazy 'rhysd/unite-codic.vim', {'depends': 'koron/codic-vim'}
 NeoBundleLazy 'rhysd/vim-operator-surround', {'depends': 'kana/vim-operator-user'}
+NeoBundleLazy 'rhysd/wandbox-vim'
 NeoBundleLazy 'rking/ag.vim'
 NeoBundleLazy 'sjl/gundo.vim'
 NeoBundleLazy 'superbrothers/vim-vimperator'
@@ -264,6 +268,7 @@ if ! s:is_windows
         \   'unix': 'pip install jedi'
         \ }}
 endif
+NeoBundleLazy 'vim-jp/cpp-vim'
 NeoBundleLazy 'basyura/TweetVim', 'dev', {
       \ 'depends': [
       \   'tyru/open-browser.vim',
@@ -466,6 +471,7 @@ if s:is_windows
   if isdirectory("C:/cygwin/bin")
     "let $PATH = 'C:/cygwin/bin;' . $PATH
   endif
+  set shell=C:\WINDOWS\system32\cmd.exe
 endif
 " http://d.hatena.ne.jp/osyo-manga/20140210/1392036881
 au MyAutoCmd CmdwinEnter * :silent! 1,$-20 delete _ | call cursor("$", 1)
@@ -659,7 +665,7 @@ noremap <Plug>(ToggleColorColumn)
       \ :<c-u>let &colorcolumn = len(&colorcolumn) > 0 ? '' :
       \   join(range(101, 9999), ',')<CR>
 
-nmap cc <Plug>(ToggleColorColumn)"}}}
+nmap <silent> cc <Plug>(ToggleColorColumn)"}}}
 "===================================================================================}}}
 
 "{{{ ========== Plugin Settings =======================================================
@@ -778,6 +784,8 @@ if neobundle#tap('neocomplete.vim')"{{{
   let g:neocomplete#enable_at_startup = 1
   let g:neocomplete#enable_smart_case = 1
   let g:neocomplete#sources#syntax#min_keyword_length = 1
+  let g:neocomplete#skip_auto_completion_time = 5
+  let g:neocomplete#enable_auto_close_preview = 0
   " Define dictionary.
   let g:neocomplete#sources#dictionary#dictionaries = {
         \ 'default': '',
@@ -1077,7 +1085,7 @@ if neobundle#tap('neosnippet.vim')"{{{
   xmap <C-k>   <Plug>(neosnippet_expand_target)
   function! neobundle#hooks.on_source(bundle)
     " Tell Neosnippet about the other snippets
-    let g:neosnippet#snippets_directory = $HOME . '/.snippets,'
+    let g:neosnippet#snippets_directory = $HOME . '/.snippets'
 
     " For snippet_complete marker.
     if has('conceal')
@@ -2762,12 +2770,12 @@ if neobundle#tap('vim-operator-blockwise')"{{{
         \ }
         \ })
 
-	" yank
-	nmap YY <Plug>(operator-blockwise-yank-head)
-	" delete
-	nmap DD <Plug>(operator-blockwise-delete-head)
-	" change
-	nmap CC <Plug>(operator-blockwise-change-head)
+  " yank
+  nmap YY <Plug>(operator-blockwise-yank-head)
+  " delete
+  nmap DD <Plug>(operator-blockwise-delete-head)
+  " change
+  nmap CC <Plug>(operator-blockwise-change-head)
 
   call neobundle#untap()
 endif"}}}
@@ -2838,6 +2846,40 @@ if neobundle#tap('vim-watchdogs')"{{{
     \        'name': 'WatchdogsRun'}, {'complete': 'customlist,quickrun#complete', 'name': 'WatchdogsRunSilent'}]
     \ }
     \ })
+
+  let g:watchdogs_config = {}
+  let g:watchdogs_config = {
+        \ "cpp/wandbox" : {
+        \   "runner" : "wandbox",
+        \   "runner/wandbox/compiler" : "clang-head",
+        \   "runner/wandbox/options" : "warning,c++1y,boost-1.55"
+        \ },
+        \
+        \ "cpp/g++" : {
+        \   "cmdopt" : "-std=c++0x -Wall"
+        \ },
+        \
+        \ "cpp/clang++" : {
+        \   "cmdopt" : "-std=c++0x -Wall"
+        \ },
+        \
+        \ "cpp/watchdogs_checker" : {
+        \   "type" : "watchdogs_checker/clang++"
+        \ },
+        \
+        \ "watchdogs_checker/_" : {
+        \   "outputter/quickfix/open_cmd" : ""
+        \ },
+        \
+        \ "watchdogs_checker/g++" : {
+        \   "cmdopt" : "-Wall"
+        \ },
+        \
+        \ "watchdogs_checker/clang++" : {
+        \   "cmdopt" : "-Wall"
+        \ }
+        \ }
+  call extend(g:quickrun_config, g:watchdogs_config)
 
   cal neobundle#untap()
 endif"}}}
@@ -2929,6 +2971,63 @@ if neobundle#tap('agit.vim')"{{{
 endif
 "}}}
 
+if neobundle#tap('quickfixstatus')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'commands': ['QuickfixStatusDisable', 'QuickfixStatusEnable']
+        \ }
+        \ })
+
+  function! neobundle#hooks.on_source(bundle)
+    QuickfixStatusEnable
+  endfunction
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-marching')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'mappings': [['i', '<Plug>(marching_']],
+        \   'commands': ['MarchingDisableDebug', 'MarchingDebugCheck', 'MarchingDebugClearLog',
+        \                'MarchingBufferClearCache', 'MarchingEnableDebug', 'MarchingDebugLog'],
+        \   'filetypes': 'cpp'
+        \ }
+        \ })
+
+  function! neobundle#hooks.on_source(bundle)
+    let g:marching_clang_command = "clang"
+
+    if !empty(g:marching_clang_command) && executable(g:marching_clang_command)
+      " Sync
+      let g:marching_backend = "sync_clang_command"
+    else
+      " Not executable clang, use wandbox
+      let g:marching_backend = "wandbox"
+      let g:marching_clang_command = ""
+    endif
+
+    " Option settings
+    let g:marching#clang_command#options = {
+          \ "cpp" : "-std=gnu++1y"
+          \}
+
+    " Use neocomplete
+    let g:marching_enable_neocomplete = 1
+
+    if !exists('g:neocomplete#force_omni_input_patterns')
+      let g:neocomplete#force_omni_input_patterns = {}
+    endif
+
+    let g:neocomplete#force_omni_input_patterns.cpp =
+          \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  endfunction
+
+  call neobundle#untap()
+endif
+"}}}
+
 " disable plugin
 let plugin_dicwin_disable = 1
 "===================================================================================}}}
@@ -3001,6 +3100,28 @@ augroup vimrc_scala"{{{
   au FileType scala call s:vimrc_scala()
   au FileType scala nnoremap <buffer> [Space]st :<C-u>StartSBT<Cr>
 augroup END"}}}
+"}}}
+" c++"{{{
+function! s:my_cpp_settings()
+  " Setting include path
+  let &l:path = join(filter(split($VIM_CPP_STDLIB . "," . $VIM_CPP_INCLUDE_DIR, '[,;]'), 'isdirectory(v:val)'), ',')
+
+  " Tab
+  setlocal tabstop=4
+  setlocal shiftwidth=2
+  setlocal softtabstop=2
+
+  " Use <>
+  setlocal matchpairs+=<:>
+
+  " Move to last definition and change to insert mode
+  nnoremap <buffer><silent> [Space]ii :execute "?".&include<CR> :noh<CR> o
+
+  " Highlight BOOST_PP_XXX etc
+  syntax match boost_pp /BOOST_PP_[A-z0-9_]*/
+  highlight link boost_pp cppStatement
+endfunction
+au! MyAutoCmd FileType cpp call s:my_cpp_settings()
 "}}}
 " html
 let g:html_indent_inctags = "html,body,head,tbody"
