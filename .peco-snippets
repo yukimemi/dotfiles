@@ -59,6 +59,8 @@ ghq get https://github.com/eagletmt/dotfiles.git
 ghq get https://github.com/supermomonga/dotfiles.git
 ghq get https://github.com/tcnksm/go-compile-scripts.git
 ghq get https://github.com/osyo-manga/cpp-vimrc.git
+ghq get https://github.com/Xfennec/cv.git
+ghq get https://github.com/BestPig/cv.git # for mac
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
@@ -74,6 +76,7 @@ ghq get git@bitbucket.org:yukimemi/coffee.git
 ghq get git@bitbucket.org:yukimemi/nicobrowser.git
 ghq get git@bitbucket.org:yukimemi/coffee-windows.git
 ghq get git@bitbucket.org:yukimemi/cpp.git
+ghq get git@bitbucket.org:yukimemi/books.git
 
 # Gist
 ghq get https://gist.github.com/5507969.git \# golang copy file example
