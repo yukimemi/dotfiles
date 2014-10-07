@@ -71,10 +71,10 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Not lazy"{{{
 NeoBundle 'Shougo/vimproc.vim', {
       \ 'build': {
-      \   'windows' : 'C:\\MinGW\\bin\\mingw32-make -f make_mingw32.mak',
-      \   'cygwin'  : 'make -f make_cygwin.mak',
-      \   'mac'   : 'make -f make_mac.mak',
-      \   'unix'  : 'make -f make_unix.mak',
+      \   'windows': 'mingw32-make -f make_mingw32.mak',
+      \   'cygwin': 'make -f make_cygwin.mak',
+      \   'mac': 'make -f make_mac.mak',
+      \   'unix': 'make -f make_unix.mak',
       \ }}
 " NeoBundle 'CmdlineCompl.vim'
 " NeoBundle 'The-NERD-Commenter'

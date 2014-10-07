@@ -194,11 +194,7 @@ set! browser.contentHandlers.types.6.uri=http://cloud.feedly.com/#subscription/f
 " plugins {{{
 " plugin_loader.js
 js <<EOM
-if (liberator.has("Win32")) {
-  liberator.execute('let g:plugin_loader_roots = "~/vimperator/vimperator-plugins/ ~/vimperator/377348/ ~/vimperator/caisui/plugin/ ~/.vimperator/vimperator-plugins-sample"');
-} else {
-  liberator.execute('let g:plugin_loader_roots = "~/.ghq/src/github.com/vimpr/vimperator-plugins/ ~/.ghq/src/gist.github.com/377348/ ~/.ghq/src/github.com/caisui/vimperator/plugin/ ~/.ghq/src/github.com/Jagua/vimperator-plugins-sample/"');
-}
+liberator.execute('let g:plugin_loader_roots = "~/.ghq/src/github.com/vimpr/vimperator-plugins/ ~/.ghq/src/gist.github.com/377348/ ~/.ghq/src/github.com/caisui/vimperator/plugin/ ~/.ghq/src/github.com/Jagua/vimperator-plugins-sample/"');
 EOM
 
 let g:plugin_loader_plugins = "_libly,_smooziee,auto-focus-frame,commandBookmarklet,multi_requester,copy,opener-ex,stella,twittperator,slideshare,hints-ext,x-hint,smooth-scroll,xpath-hint,graphical-position,statusbar_panel"
