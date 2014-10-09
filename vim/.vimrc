@@ -28,7 +28,7 @@ augroup END"}}}
 " Echo startup time on start"{{{
 if has('vim_starting') && has('reltime')
   let g:startuptime = reltime()
-  au! MyAutoCmd VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
+  au MyAutoCmd VimEnter * let g:startuptime = reltime(g:startuptime) | redraw
         \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
 endif"}}}
 
@@ -185,6 +185,7 @@ NeoBundleLazy 'basyura/unite-firefox-bookmarks', {'depends': ['tyru/open-browser
 NeoBundleLazy 'choplin/unite-vim_hacks'
 NeoBundleLazy 'cocopon/colorswatch.vim'
 NeoBundleLazy 'cohama/agit.vim'
+NeoBundleLazy 'clausreinke/typescript-tools', {'build': {'others': 'npm install -g typescript-tools'}}
 NeoBundleLazy 'dag/vim2hs'
 NeoBundleLazy 'digitaltoad/vim-jade'
 NeoBundleLazy 'drakontia/sphinx.vim'
@@ -199,6 +200,7 @@ NeoBundleLazy 'itchyny/calendar.vim'
 NeoBundleLazy 'itchyny/dictionary.vim'
 NeoBundleLazy 'itchyny/thumbnail.vim'
 NeoBundleLazy 'jmcantrell/vim-virtualenv'
+NeoBundleLazy 'jason0x43/vim-js-indent'
 NeoBundleLazy 'kana/vim-filetype-haskell'
 NeoBundleLazy 'kannokanno/previm.git', {'depends': 'tyru/open-browser.vim'}
 NeoBundleLazy 'kchmck/vim-coffee-script'
@@ -799,11 +801,19 @@ if neobundle#tap('neocomplete.vim')"{{{
         \ 'javascript': $MY_VIMRUNTIME . '/dict/wsh.dict'
         \ }
 
-  " SQL
   if !exists('g:neocomplete#sources#omni#functions')
     let g:neocomplete#sources#omni#functions = {}
   endif
+  " SQL
   let g:neocomplete#sources#omni#functions.sql = 'sqlcomplete#Complete'
+  " typescript
+  " let g:neocomplete#sources#omni#functions.typescript = 'TSScompleteFunc'
+
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  let g:neocomplete#force_omni_input_patterns.typescript =
+        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
   call neobundle#untap()
 endif"}}}
@@ -2690,12 +2700,12 @@ if neobundle#tap('tern_for_vim')"{{{
         \ 'autoload': {
         \   'commands': ['TernDocBrowse', 'TernType', 'TernRename', 'TernDefPreview',
         \        'TernDoc', 'TernDef', 'TernDefTab', 'TernDefSplit', 'TernRefs'],
-        \   'filetypes': ['javascript', 'typescript', 'coffee']
+        \   'filetypes': ['javascript', 'coffee']
         \ }
         \ })
 
-  au MyAutoCmd FileType coffee,typescript call tern#Enable()
-  au MyAutoCmd FileType coffee,typescript setlocal omnifunc=tern#Complete
+  au MyAutoCmd FileType coffee call tern#Enable()
+  au MyAutoCmd FileType coffee setlocal omnifunc=tern#Complete
 
   call neobundle#untap()
 endif"}}}
@@ -3028,6 +3038,47 @@ if neobundle#tap('vim-marching')"{{{
 endif
 "}}}
 
+if neobundle#tap('typescript-tools')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'filetypes': 'typescript'
+        \ }
+        \ })
+
+  au MyAutoCmd BufNewFile,BufRead *.ts call s:my_typescript_settings()
+
+  function! s:my_typescript_settings()
+    setl omnifunc=TSScompleteFunc
+    TSSstarthere
+  endfunction
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('typescript-vim')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'filetypes': 'typescript'
+        \ }
+        \ })
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-js-indent')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'filetypes': ['javascript', 'typescript']
+        \ }
+        \ })
+
+
+  call neobundle#untap()
+endif
+"}}}
+
 " disable plugin
 let plugin_dicwin_disable = 1
 "===================================================================================}}}
@@ -3121,7 +3172,7 @@ function! s:my_cpp_settings()
   syntax match boost_pp /BOOST_PP_[A-z0-9_]*/
   highlight link boost_pp cppStatement
 endfunction
-au! MyAutoCmd FileType cpp call s:my_cpp_settings()
+au MyAutoCmd FileType cpp call s:my_cpp_settings()
 "}}}
 " html
 let g:html_indent_inctags = "html,body,head,tbody"
