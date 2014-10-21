@@ -63,6 +63,7 @@ ghq get https://github.com/Xfennec/cv.git
 ghq get https://github.com/BestPig/cv.git # for mac
 ghq get https://github.com/tcnksm/dotfiles
 ghq get https://github.com/cd01/vimppm
+ghq get https://github.com/Lokaltog/powerline-fonts.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git

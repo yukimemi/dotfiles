@@ -163,7 +163,9 @@ endif
 " NeoBundleLazy 'tpope/vim-endwise'
 " NeoBundleLazy 'tpope/vim-rails'
 " NeoBundleLazy 'triglav/vim-visual-increment'
-" NeoBundleLazy 'ujihisa/ref-hoogle', {'build': {'mac': 'cabal install hoogle'}, 'depends': 'thinca/vim-ref'}
+" if executable('cabal')
+  " NeoBundleLazy 'ujihisa/ref-hoogle', {'build': {'mac': 'cabal install hoogle'}, 'depends': 'thinca/vim-ref'}
+" endif
 " NeoBundleLazy 'vim-scripts/ZoomWin'
 NeoBundleLazy 'LeafCage/nebula.vim'
 NeoBundleLazy 'PProvost/vim-ps1'
@@ -185,13 +187,17 @@ NeoBundleLazy 'basyura/unite-firefox-bookmarks', {'depends': ['tyru/open-browser
 NeoBundleLazy 'choplin/unite-vim_hacks'
 NeoBundleLazy 'cocopon/colorswatch.vim'
 NeoBundleLazy 'cohama/agit.vim'
-NeoBundleLazy 'clausreinke/typescript-tools', {'build': {'others': 'npm install -g typescript-tools'}}
+if executable('npm')
+  NeoBundleLazy 'clausreinke/typescript-tools', {'build': {'others': 'npm install -g typescript-tools'}}
+endif
 NeoBundleLazy 'dag/vim2hs'
 NeoBundleLazy 'digitaltoad/vim-jade'
 NeoBundleLazy 'drakontia/sphinx.vim'
-NeoBundleLazy 'eagletmt/ghcmod-vim', {'build': {'mac': 'cabal install ghc-mod'}}
-NeoBundleLazy 'eagletmt/neco-ghc', {'build': {'mac': 'cabal install ghc-mod'}}
-NeoBundleLazy 'eagletmt/unite-haddock', {'build': {'others': 'cabal install hoogle'}}
+if executable('cabal')
+  NeoBundleLazy 'eagletmt/ghcmod-vim', {'build': {'mac': 'cabal install ghc-mod'}}
+  NeoBundleLazy 'eagletmt/neco-ghc', {'build': {'mac': 'cabal install ghc-mod'}}
+  NeoBundleLazy 'eagletmt/unite-haddock', {'build': {'others': 'cabal install hoogle'}}
+endif
 NeoBundleLazy 'edsono/vim-matchit'
 NeoBundleLazy 'glidenote/memolist.vim'
 NeoBundleLazy 'gregsexton/gitv', {'depends': 'tpope/vim-fugitive'}
@@ -212,7 +218,7 @@ NeoBundleLazy 'lambdalisue/vim-django-support'
 NeoBundleLazy 'lambdalisue/vim-gista', {'depends': 'tyru/open-browser.vim'}
 NeoBundleLazy 'leafgarland/typescript-vim'
 NeoBundleLazy 'majutsushi/tagbar', {'build': {'mac': 'brew install ctags'}}
-if ! s:is_windows
+if executable('npm')
   NeoBundleLazy 'marijnh/tern_for_vim', {'build': {'others': 'npm install'}}
 endif
 NeoBundleLazy 'mattn/emmet-vim'
@@ -262,7 +268,7 @@ NeoBundleLazy 'wesleyche/SrcExpl'
 NeoBundleLazy 'yuyunko/dosbatch-indent', {'depends': 'taku-o/vim-batch-source'}
 NeoBundleLazy 'zhisheng/visualmark.vim'
 NeoBundleLazy 'fatih/vim-go'
-if ! s:is_windows
+if executable('pip')
   NeoBundleLazy 'davidhalter/jedi-vim', {
         \ 'depends': 'mitechie/pyflakes-pathogen',
         \ 'build': {
@@ -1156,7 +1162,7 @@ if neobundle#tap('unite.vim')"{{{
   nnoremap suR :<C-u>UniteResume<CR>
 
   " NeoBundle
-  nnoremap sui :<C-u>Unite neobundle/update -no-start-insert<CR>
+  nnoremap sui :<C-u>Unite neobundle/update -no-start-insert -no-split<CR>
   nnoremap sus :<C-u>Unite neobundle/search<CR>
   " grep ~/.vim_junk
   nnoremap suj :<C-u>Unite grep:~/.cache/junkfile<CR>
@@ -1214,20 +1220,20 @@ if neobundle#tap('unite.vim')"{{{
   endif
 
   function! neobundle#hooks.on_source(bundle)
-    " start unite in insert mode
-    let g:unite_enable_start_insert = 1
-    let g:unite_source_history_yank_enable = 1
-    let g:unite_split_rule = 'botright'
-    " Default configuration.
-    let default_context = {
+    " Like ctrlp.vim settings.
+    call unite#custom#profile('default', 'context', {
+          \ 'start_insert': 1,
+          \ 'winheight': 10,
           \ 'vertical': 0,
           \ 'short_source_names': 0,
-          \ }
+          \ 'direction': 'botright'
+          \ })
     if ! s:is_windows
-      let default_context.marked_icon = '✗'
-      let default_context.prompt = '» '
+      call unite#custom#profile('default', 'context', {
+            \ 'prompt': '» ',
+            \ 'marked_icon': '✗'
+            \ })
     endif
-    call unite#custom#profile('default', 'context', default_context)
     " use vimfiler to open directory
     call unite#custom#default_action("source/bookmark/directory", "vimfiler")
     call unite#custom#default_action("directory", "vimfiler")

@@ -95,6 +95,7 @@ cd vimperator
 [ ! -d ${HOME}/${VIMPERATOR_DIR}/plugin ] && mkdir -p ${HOME}/${VIMPERATOR_DIR}/plugin
 
 ln -sf ${PWD}/.vimperatorrc ${HOME}/${VIMPERATOR_FILE}
+cd -
 
 # dotfiles
 DOT_FILES=(.vrapperrc .gemrc .bashrc .inputrc .tmuxinator .peco-snippets)
@@ -139,20 +140,22 @@ cd -
 
 ############################## for OS X ##############################
 if shell_is_osx ; then
-    # install homebrew
-    ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
 
     # iterm2 solalized colorscheme
-    [ ! -d ${HOME}/.iterm2-colorscheme ] && mkdir -p ${HOME}/.iterm2-colorscheme
-    git clone https://github.com/altercation/solarized.git ${HOME}/.iterm2-colorscheme/solarized
-    git clone https://github.com/larssmit/iterm2-getafe.git ${HOME}/.iterm2-colorscheme/getafe
-    git clone https://github.com/baskerville/iTerm-2-Color-Themes.git ${HOME}/.iterm2-colorscheme/iTerm-2-Color-Themes
+    # [ ! -d ${HOME}/.iterm2-colorscheme ] && mkdir -p ${HOME}/.iterm2-colorscheme
+    # git clone https://github.com/altercation/solarized.git ${HOME}/.iterm2-colorscheme/solarized
+    # git clone https://github.com/larssmit/iterm2-getafe.git ${HOME}/.iterm2-colorscheme/getafe
+    # git clone https://github.com/baskerville/iTerm-2-Color-Themes.git ${HOME}/.iterm2-colorscheme/iTerm-2-Color-Themes
 
-    # KeyRemap4MacBook
+    # Karabiner
     cd mac
-    mkdir -p ${HOME}/Library/Application\ Support/KeyRemap4MacBook
-    ln -sf ${PWD}/private.xml ${HOME}/Library/Application\ Support/KeyRemap4MacBook/private.xml
-    cd ../
+    mkdir -p ${HOME}/Library/Application\ Support/Karabiner
+    ln -sf ${PWD}/private.xml ${HOME}/Library/Application\ Support/Karabiner/private.xml
+    cd -
+
+    # install homebrew
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    brew doctor
 fi
 #######################################################################
 
