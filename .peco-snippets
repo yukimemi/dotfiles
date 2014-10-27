@@ -38,8 +38,13 @@ kill -9 $(ps -ef | grep -i firefox | grep -v grep | awk '{ print $2 }')
 open /System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app
 
 # exiftool
-exiftool '-FileName < CreateDate' -d ~/backup/Photos/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(JPG|jpg)
-exiftool '-FileName < CreateDate' -d ~/backup/Mov/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(MOV|mov)
+exiftool '-FileName < CreateDate' -d /Volumes/new/backup/Photos/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(JPG|jpg)
+exiftool '-FileName < CreateDate' -d /Volumes/new/backup/Mov/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(MOV|mov)
+find . -type f -iname "*.jpg" -print0 | xargs -0 exiftool '-FileName < CreateDate' -d /Volumes/new/backup/Photos/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
+find . -type f -iname "*.mov" -print0 | xargs -0 exiftool '-FileName < CreateDate' -d /Volumes/new/backup/Mov/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
+find . -type f -iname "*.png" -print0 | xargs -0 exiftool '-FileName < FileModifyDate' -d /Volumes/new/backup/Photos/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
+find . -type f -iname "*.jpg" -print0 | xargs -0 exiftool '-FileName < FileModifyDate' -d /Volumes/new/backup/IMG/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
+find . -type f -iname "*.m2ts" -print0 | xargs -0 exiftool '-FileName < DateTimeOriginal' -d /Volumes/new/backup/m2ts/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
 
 # ghq
 # github

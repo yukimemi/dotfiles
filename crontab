@@ -1,7 +1,9 @@
-*/10 * * * * echo `date` >> ~/Dropbox/log/rsync_iPhone_media.log 2>&1 && rsync -av8 --progress mobile@192.168.1.5:~/Media/DCIM ~/Pictures/iPhone/ >> ~/Dropbox/log/rsync_iPhone_media.log 2>&1
-*/10 * * * * echo `date` >> ~/Dropbox/log/rsync_iPad_media.log 2>&1 && rsync -av8 --progress mobile@192.168.1.7:~/Media/DCIM ~/Pictures/iPad/ >> ~/Dropbox/log/rsync_iPad_media.log 2>&1
+# */10 * * * * echo `date` >> ~/Dropbox/log/rsync_iPhone_media.log 2>&1 && rsync -av8 --progress mobile@192.168.1.8:~/Media/DCIM ~/Pictures/iPhone/ >> ~/Dropbox/log/rsync_iPhone_media.log 2>&1
+# */10 * * * * echo `date` >> ~/Dropbox/log/rsync_iPad_media.log 2>&1 && rsync -av8 --progress mobile@192.168.1.7:~/Media/DCIM ~/Pictures/iPad/ >> ~/Dropbox/log/rsync_iPad_media.log 2>&1
 #*/15 * * * * chmod -R 777 ~/Pictures/iPhone > /dev/null
 #*/15 * * * * chmod -R 777 ~/Pictures/iPad > /dev/null
 0 * * * * /bin/rm -rf ~/Dropbox/.dropbox.cache/* > /dev/null
-0 * * * * ~/bin/scripts/rsync_Photos.sh >> ~/Dropbox/log/rsync_Photos.log 2>&1
-5 2 * * * cd ~/Documents/git/nicobrowser; nicobrowser_daemon.sh >> ~/Dropbox/log/nicobrowser.log 2>&1
+# 0 0 * * * ~/bin/scripts/rsync_Photos.sh >> ~/Dropbox/log/rsync_Photos.log 2>&1
+# 5 2 * * * cd ~/Documents/git/nicobrowser; ./nicobrowser_daemon.sh >> ~/Dropbox/log/nicobrowser.log 2>&1
+# 30 1 * * * echo `date` >> ~/Dropbox/log/rsync_iso.log 2>&1 && cd ~/bin/scripts && ./rsync_iso.sh >> ~/Dropbox/log/rsync_iso.log 2>&1
+*/10 * * * * cd ~/bin/scripts && ~/bin/scripts/ddns-update.pl
