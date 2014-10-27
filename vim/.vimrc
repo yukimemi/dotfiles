@@ -93,6 +93,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 " NeoBundle 'tpope/vim-surround'
 " NeoBundle 'Lokaltog/vim-easymotion'
 " NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle 'jceb/vim-hier'
 NeoBundle 'dannyob/quickfixstatus'
 NeoBundle 'banyan/recognize_charcode.vim'
@@ -194,8 +195,8 @@ NeoBundleLazy 'dag/vim2hs'
 NeoBundleLazy 'digitaltoad/vim-jade'
 NeoBundleLazy 'drakontia/sphinx.vim'
 if executable('cabal')
-  NeoBundleLazy 'eagletmt/ghcmod-vim', {'build': {'mac': 'cabal install ghc-mod'}}
-  NeoBundleLazy 'eagletmt/neco-ghc', {'build': {'mac': 'cabal install ghc-mod'}}
+  NeoBundleLazy 'eagletmt/ghcmod-vim', {'build': {'others': 'cabal install ghc-mod'}}
+  NeoBundleLazy 'eagletmt/neco-ghc', {'build': {'others': 'cabal install ghc-mod'}}
   NeoBundleLazy 'eagletmt/unite-haddock', {'build': {'others': 'cabal install hoogle'}}
 endif
 NeoBundleLazy 'edsono/vim-matchit'
@@ -905,15 +906,15 @@ if neobundle#tap('vim-submode')"{{{
 endif"}}}
 
 if neobundle#tap('vim-anzu')"{{{
-  au MyAutoCmd BufEnter,BufLeave,BufWinEnter,BufWinLeave,WinEnter,CmdwinLeave * nnoremap <ESC><ESC> :<C-u>nohlsearch<CR>
+  " au MyAutoCmd BufEnter,BufLeave,BufWinEnter,BufWinLeave,WinEnter,CmdwinLeave * nnoremap <ESC><ESC> :<C-u>nohlsearch<CR>
   "nmap n <Plug>(anzu-mode-n)
   "nmap N <Plug>(anzu-mode-N)
   "nnoremap <expr> n anzu#mode#mapexpr("n", "", "zzzv")
   "nnoremap <expr> N anzu#mode#mapexpr("N", "", "zzzv")
-  nmap n <Plug>(anzu-n)zzzv
-  nmap N <Plug>(anzu-N)zzzv
-  nmap * <Plug>(anzu-star)zzzv
-  nmap # <Plug>(anzu-sharp)zzzv
+  " nmap n <Plug>(anzu-n)zzzv
+  " nmap N <Plug>(anzu-N)zzzv
+  " nmap * <Plug>(anzu-star)zzzv
+  " nmap # <Plug>(anzu-sharp)zzzv
   "set statusline=%{anzu#search_status()}
 
   au MyAutoCmd WinLeave,TabLeave * call anzu#clear_search_status()
@@ -1109,10 +1110,12 @@ if neobundle#tap('neosnippet.vim')"{{{
     endif
 
     " for unite
-    imap <C-s> <Plug>(neocomplcache_start_unite_snippet)
+		imap <C-s> <Plug>(neosnippet_start_unite_snippet)
   endfunction
+
   call neobundle#untap()
-endif"}}}
+endif
+"}}}
 
 if neobundle#tap('unite.vim')"{{{
   call neobundle#config({
@@ -1219,21 +1222,23 @@ if neobundle#tap('unite.vim')"{{{
     let g:unite_source_grep_recursive_opt = ''
   endif
 
-  function! neobundle#hooks.on_source(bundle)
-    " Like ctrlp.vim settings.
-    call unite#custom#profile('default', 'context', {
-          \ 'start_insert': 1,
-          \ 'winheight': 10,
-          \ 'vertical': 0,
-          \ 'short_source_names': 0,
-          \ 'direction': 'botright'
+  " Like ctrlp.vim settings.
+  let s:unite_default_context = {
+        \ 'start_insert': 1,
+        \ 'winheight': 10,
+        \ 'vertical': 0,
+        \ 'short_source_names': 0,
+        \ 'direction': 'botright'
+        \ }
+  if ! s:is_windows
+    call extend(s:unite_default_context, {
+          \ 'prompt': '» ',
+          \ 'marked_icon': '✗'
           \ })
-    if ! s:is_windows
-      call unite#custom#profile('default', 'context', {
-            \ 'prompt': '» ',
-            \ 'marked_icon': '✗'
-            \ })
-    endif
+  endif
+  call unite#custom#profile('default', 'context', s:unite_default_context)
+
+  function! neobundle#hooks.on_source(bundle)
     " use vimfiler to open directory
     call unite#custom#default_action("source/bookmark/directory", "vimfiler")
     call unite#custom#default_action("directory", "vimfiler")
@@ -1241,14 +1246,15 @@ if neobundle#tap('unite.vim')"{{{
     "call unite#custom#default_action("file", "tabdrop")
     au MyAutoCmd FileType unite call s:unite_settings()
     function! s:unite_settings()
-      silent! nunmap <ESC><ESC>
       nmap <buffer> <Esc> <Plug>(unite_exit)
       nmap <buffer> <C-n> <Plug>(unite_select_next_line)
       nmap <buffer> <C-p> <Plug>(unite_select_previous_line)
     endfunction
   endfunction
+
   call neobundle#untap()
-endif"}}}
+endif
+"}}}
 
 if neobundle#tap('unite-help')"{{{
   call neobundle#config({
@@ -1783,7 +1789,6 @@ if neobundle#tap('vim-automatic')"{{{
 
   nnoremap <silent> <Plug>(quit) :<C-u>q<CR>
   function! s:my_temporary_window_init(config, context)
-    silent! nunmap <ESC><ESC>
     nmap <buffer> <C-[> <Plug>(quit)
   endfunction
 
@@ -3080,6 +3085,39 @@ if neobundle#tap('vim-js-indent')"{{{
         \ }
         \ })
 
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('incsearch.vim')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'mappings': [['sxno', '<Plug>(_incsearch-N)'], ['sxno', '<Plug>(incsearch-nohl-N)'],
+        \                ['sxno', '<Plug>(_incsearch-#)'], ['sxno', '<Plug>(_incsearch-*)'],
+        \                ['sxno', '<Plug>(incsearch-nohl-#)'], ['sxno', '<Plug>(incsearch-forward)'],
+        \                ['sxno', '<Plug>(incsearch-nohl-*)'], ['sxno', '<Plug>(incsearch-stay)'],
+        \                ['sxno', '<Plug>(incsearch-nohl)'], ['sxno', '<Plug>(_incsearch-n)'],
+        \                ['sxno', '<Plug>(incsearch-nohl-n)'], ['sxno', '<Plug>(_incsearch-g*)'],
+        \                ['sxno', '<Plug>(_incsearch-g#)'], ['sxno', '<Plug>(incsearch-backward)'],
+        \                ['sxno', '<Plug>(incsearch-nohl-g#)'], ['sxno', '<Plug>(incsearch-nohl-g*)']],
+        \   'commands': ['IncSearchNoreMap', 'IncSearchMap']
+        \ }
+        \ })
+
+  map /  <Plug>(incsearch-forward)
+  map ?  <Plug>(incsearch-backward)
+  map g/ <Plug>(incsearch-stay)
+
+  " :h g:incsearch#auto_nohlsearch
+  set hlsearch
+  let g:incsearch#auto_nohlsearch = 1
+  nmap n  <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)zv
+  nmap N  <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)zv
+  nmap *  <Plug>(incsearch-nohl)<Plug>(anzu-star-with-echo)zv
+  nmap #  <Plug>(incsearch-nohl)<Plug>(anzu-sharp-with-echo)zv
+  nmap g* <Plug>(incsearch-nohl-g*)
+  nmap g# <Plug>(incsearch-nohl-g#)
 
   call neobundle#untap()
 endif
