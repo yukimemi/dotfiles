@@ -27,7 +27,7 @@ brew install --powerline ricty
 brew install homebrew/dupes/grep
 
 # macvim
-brew install macvim --with-cscope --with-lua --override-system-vim --HEAD 
+brew install macvim --with-cscope --with-lua --override-system-vim --HEAD
 
 # macvim-kaoriya
 # tap supermomonga/homebrew-splhack

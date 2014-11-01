@@ -126,3 +126,7 @@ sudo sysctl -w net.inet.tcp.delayed_ack=0
 # git config
 git config --global ghq.root ~/.ghq/src
 
+# ievms
+curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | bash
+curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="11" bash
+
