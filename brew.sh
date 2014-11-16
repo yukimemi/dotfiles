@@ -41,6 +41,7 @@ brew install brew-cask
 brew cask install google-chrome
 brew cask install firefox
 brew cask install karabiner
+brew cask install seil
 brew cask install caffeine
 brew cask install nosleep
 brew cask install bettertouchtool

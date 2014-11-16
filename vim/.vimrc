@@ -221,6 +221,7 @@ NeoBundleLazy 'leafgarland/typescript-vim'
 NeoBundleLazy 'majutsushi/tagbar', {'build': {'mac': 'brew install ctags'}}
 if executable('npm')
   NeoBundleLazy 'marijnh/tern_for_vim', {'build': {'others': 'npm install'}}
+  NeoBundleLazy 'mephux/vim-jsfmt', {'build': {'others': 'npm install -g jsfmt'}}
 endif
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/vimplenote-vim'
@@ -1110,7 +1111,7 @@ if neobundle#tap('neosnippet.vim')"{{{
     endif
 
     " for unite
-		imap <C-s> <Plug>(neosnippet_start_unite_snippet)
+    imap <C-s> <Plug>(neosnippet_start_unite_snippet)
   endfunction
 
   call neobundle#untap()
@@ -1969,7 +1970,7 @@ endif"}}}
 
 if neobundle#tap('foldCC')"{{{
   set foldmethod=marker
-  set foldtext=foldCC#foldtext()
+  set foldtext=FoldCCtext()
   set foldcolumn=0
   set fillchars=vert:\|
   nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'

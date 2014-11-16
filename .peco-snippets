@@ -47,6 +47,9 @@ find . -type f -iname "*.png" -print0 | xargs -0 exiftool '-FileName < FileModif
 find . -type f -iname "*.jpg" -print0 | xargs -0 exiftool '-FileName < FileModifyDate' -d /Volumes/new/backup/IMG/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
 find . -type f -iname "*.m2ts" -print0 | xargs -0 exiftool '-FileName < DateTimeOriginal' -d /Volumes/new/backup/m2ts/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
 
+# youtube-dl
+youtube-dl -x --audio-format mp3 --audio-quality 0 
+
 # ghq
 # github
 # me
@@ -58,6 +61,7 @@ ghq get git@github.com:yukimemi/coffee-script-on-jscript.git
 ghq get git@github.com:yukimemi/ActiveXFileWrapper.js.git
 ghq get git@github.com:yukimemi/copybackup.git
 ghq get git@github.com:yukimemi/gocore.git
+ghq get git@github.com:yukimemi/yukimemi.github.io.git
 # others
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
@@ -102,6 +106,10 @@ go get github.com/smartystreets/goconvey
 go get github.com/mitchellh/gox
 go get github.com/laher/goxc
 go get github.com/kr/godep
+go get github.com/spf13/hugo
+
+# Hugo
+git clone --recursive https://github.com/spf13/hugoThemes themes
 
 # Get deploy.sh
 wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh && chmod +x deploy.sh
