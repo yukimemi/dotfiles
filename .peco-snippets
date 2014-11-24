@@ -74,6 +74,7 @@ ghq get https://github.com/BestPig/cv.git # for mac
 ghq get https://github.com/tcnksm/dotfiles
 ghq get https://github.com/cd01/vimppm
 ghq get https://github.com/Lokaltog/powerline-fonts.git
+ghq get https://github.com/itchyny/miv.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
@@ -107,6 +108,8 @@ go get github.com/mitchellh/gox
 go get github.com/laher/goxc
 go get github.com/kr/godep
 go get github.com/spf13/hugo
+go get golang.org/x/text/encoding/japanese
+go get golang.org/x/text/encoding
 
 # Hugo
 git clone --recursive https://github.com/spf13/hugoThemes themes
