@@ -130,6 +130,8 @@ NeoBundle 'tyru/caw.vim'
 NeoBundle 'tyru/operator-star.vim', {'depends': ['kana/vim-operator-user', 'thinca/vim-visualstar']}
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'supermomonga/thingspast.vim'
+NeoBundle 'jacquesbh/vim-showmarks'
 if ! s:is_windows
   NeoBundle 'airblade/vim-gitgutter'
 endif
@@ -1156,7 +1158,7 @@ if neobundle#tap('unite.vim')"{{{
   nnoremap suq :<C-u>Unite quickfix -no-quit<CR>
   nnoremap suh :<C-u>Unite help<CR>
   nnoremap sur :<C-u>Unite register<CR>
-  nnoremap sum :<C-u>Unite neomru/file -auto-preview<CR>
+  " nnoremap sum :<C-u>Unite neomru/file -auto-preview<CR>
   nnoremap su/ :<C-u>Unite line -no-quit<CR>
   nnoremap sug :<C-u>Unite grep -no-quit<CR>
   nnoremap sut :<C-u>Unite tab<CR>
@@ -3119,6 +3121,49 @@ if neobundle#tap('incsearch.vim')"{{{
   nmap #  <Plug>(incsearch-nohl)<Plug>(anzu-sharp-with-echo)zv
   nmap g* <Plug>(incsearch-nohl-g*)
   nmap g# <Plug>(incsearch-nohl-g#)
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-showmarks')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'commands': ['ShowMarksOnce', 'NoShowMarks', 'DoShowMarks', 'PreviewMarks']
+        \ }
+        \ })
+
+  set viminfo='50,\"1000,:0,n~/.vim/viminfo
+  let g:showmarks_marks_notime = 1
+  let g:unite_source_mark_marks = '01abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ'
+  let g:showmarks_enable = 0
+  if !exists('g:markrement_char')
+    let g:markrement_char = [
+          \     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+          \     'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+          \     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+          \     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+          \ ]
+  en
+
+  fu! s:AutoMarkrement()
+    if !exists('b:markrement_pos')
+      let b:markrement_pos = 0
+    else
+      let b:markrement_pos = (b:markrement_pos + 1) % len(g:markrement_char)
+    en
+    exe 'mark' g:markrement_char[b:markrement_pos]
+    echo 'marked' g:markrement_char[b:markrement_pos]
+  endf
+
+  au MyAutoCmd BufReadPost * sil! ShowMarksOnce
+
+  nn [Mark] <Nop>
+  nm sm [Mark]
+  nn sum :<C-u>Unite mark<CR>
+  nn [Mark] :<C-u>call <SID>AutoMarkrement()<CR><CR>:ShowMarksOnce<CR>
+  com! -bar MarksDelete sil :delm! | :delm 0-9A-Z | :wv! | :ShowMarksOnce
+  nn <silent>[Mark]d :MarksDelete<CR>
 
   call neobundle#untap()
 endif
