@@ -92,6 +92,7 @@ ghq get git@bitbucket.org:yukimemi/coffee-windows.git
 ghq get git@bitbucket.org:yukimemi/cpp.git
 ghq get git@bitbucket.org:yukimemi/books.git
 ghq get git@bitbucket.org:yukimemi/typescript.git
+ghq get git@bitbucket.org:yukimemi/jscript.git
 
 # Gist
 ghq get https://gist.github.com/5507969.git \# golang copy file example
@@ -140,4 +141,10 @@ git config --global ghq.root ~/.ghq/src
 # ievms
 curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | bash
 curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="11" bash
+
+# neobundle update
+vim -g -f -c "silent exe 'NeoBundleUpdate | q'" &> /dev/null
+
+# mac search profile
+curl -sL https://raw.githubusercontent.com/syui/json-script/master/script/macbook-model-command.sh | sh
 
