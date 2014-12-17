@@ -62,6 +62,7 @@ ghq get git@github.com:yukimemi/ActiveXFileWrapper.js.git
 ghq get git@github.com:yukimemi/copybackup.git
 ghq get git@github.com:yukimemi/gocore.git
 ghq get git@github.com:yukimemi/yukimemi.github.io.git
+ghq get git@github.com:yukimemi/Brewfile.git
 # others
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
@@ -75,6 +76,7 @@ ghq get https://github.com/tcnksm/dotfiles
 ghq get https://github.com/cd01/vimppm
 ghq get https://github.com/Lokaltog/powerline-fonts.git
 ghq get https://github.com/itchyny/miv.git
+ghq get https://github.com/joefitzgerald/packer-windows
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
@@ -147,4 +149,7 @@ vim -g -f -c "silent exe 'NeoBundleUpdate | q'" &> /dev/null
 
 # mac search profile
 curl -sL https://raw.githubusercontent.com/syui/json-script/master/script/macbook-model-command.sh | sh
+
+# brew file
+brew install rcmdnk/file/brew-file
 
