@@ -76,8 +76,8 @@ popd
 
 # vim
 cd vim
-VIM_FILE=( .vimrc .gvimrc .vim )
-for file in ${VIM_FILE[@]}
+VIM_FILES=( .vimrc .gvimrc .vim )
+for file in ${VIM_FILES[@]}
 do
     ln -sf ${PWD}/${file} ${HOME}/${file}
 done
