@@ -304,7 +304,7 @@ if neobundle#tap('vimfiler.vim')"{{{
         \ }
         \ })
 
-  nnoremap <Leader>f :<C-u>VimFiler -split -simple -toggle -winwidth=35 -no-quit<CR>
+  nnoremap <Leader>f :<C-u>VimFiler -split -simple -find -toggle -winwidth=35 -no-quit<CR>
   nnoremap <C-e> :<C-u>VimFilerDouble<CR>
   nnoremap <expr><Leader>g <SID>git_root_dir()
   function! s:git_root_dir()
@@ -1535,7 +1535,10 @@ endif
 
 if neobundle#tap('indentLine')"{{{
 
+
+  let g:indentLine_faster = 1
   let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail']
+  let g:indentLine_char = '┊'
 
   call neobundle#untap()
 endif

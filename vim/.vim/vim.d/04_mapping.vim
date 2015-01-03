@@ -1,6 +1,8 @@
 inoremap <silent> jj <ESC>
 nnoremap j gj
+xnoremap j gj
 nnoremap k gk
+xnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
 nnoremap h <Left>
