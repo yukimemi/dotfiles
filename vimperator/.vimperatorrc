@@ -2,14 +2,13 @@
 set titlestring="Mozilla Firefox"
 set verbose=9
 set gui=none,tabs
-set animations=true
 set hintchars=hjklasdfgyuiopqwertnmzxcvb
 set complete=tbsl
 set ignorecase
 set smartcase
 set focuscontent
 set newtab=all
-set noanimations
+set animations
 set visualbell
 
 " editor
@@ -198,7 +197,7 @@ js <<EOM
 liberator.execute('let g:plugin_loader_roots = "~/.ghq/src/github.com/vimpr/vimperator-plugins/ ~/.ghq/src/gist.github.com/377348/ ~/.ghq/src/github.com/caisui/vimperator/plugin/ ~/.ghq/src/github.com/Jagua/vimperator-plugins-sample/"');
 EOM
 
-let g:plugin_loader_plugins = "_libly,_smooziee,auto-focus-frame,commandBookmarklet,multi_requester,copy,opener-ex,stella,twittperator,slideshare,hints-ext,x-hint,smooth-scroll,xpath-hint,graphical-position,statusbar_panel"
+let g:plugin_loader_plugins = "_libly,_smooziee,auto-focus-frame,commandBookmarklet,copy,opener-ex,stella,twittperator,slideshare,hints-ext,x-hint,smooth-scroll,xpath-hint"
 
 " hints-ext"{{{
 let use_hintchars_ex=2

@@ -63,6 +63,7 @@ ghq get git@github.com:yukimemi/copybackup.git
 ghq get git@github.com:yukimemi/gocore.git
 ghq get git@github.com:yukimemi/yukimemi.github.io.git
 ghq get git@github.com:yukimemi/Brewfile.git
+ghq get git@github.com:yukimemi/homebrew-custom.git
 # others
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
@@ -154,3 +155,4 @@ curl -sL https://raw.githubusercontent.com/syui/json-script/master/script/macboo
 # brew file
 brew install rcmdnk/file/brew-file
 
+brew tap yukimemi/homebrew-custom
