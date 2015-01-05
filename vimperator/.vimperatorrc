@@ -1,7 +1,8 @@
 " basic {{{
 set titlestring="Mozilla Firefox"
 set verbose=9
-set gui=none,tabs
+set gui=none
+set gui=navigation,tabs
 set hintchars=hjklasdfgyuiopqwertnmzxcvb
 set complete=tbsl
 set ignorecase
