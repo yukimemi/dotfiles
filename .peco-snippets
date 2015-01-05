@@ -154,5 +154,5 @@ curl -sL https://raw.githubusercontent.com/syui/json-script/master/script/macboo
 
 # brew file
 brew install rcmdnk/file/brew-file
+brew file set_repo -r yukimemi/Brewfile
 
-brew tap yukimemi/homebrew-custom
