@@ -2,7 +2,7 @@
 set titlestring="Mozilla Firefox"
 set verbose=9
 set gui=none
-set gui=navigation,tabs
+set gui=tabs
 set hintchars=hjklasdfgyuiopqwertnmzxcvb
 set complete=tbsl
 set ignorecase
@@ -97,6 +97,8 @@ colorscheme theme
 "colorscheme fix-firefox
 
 hi -append Normal opacity: 0.8;
+" http://chroju89.hatenablog.jp/entry/2014/02/09/102914
+hi ErrorMsg color:white; background-color: #ec6aa1;
 " }}}
 
 " quickmark {{{
@@ -162,6 +164,21 @@ commands.addUserCommand(
   true
 );
 EOM
+"}}}
+
+" Tab pinned. http://qiita.com/t3kot3ko/items/1b032940dbb79e88323e"{{{
+javascript <<EOM
+liberator.modules.commands.addUserCommand(["togglepin"], "add pin to current tab",
+function() {
+  var currentTab = gBrowser.mCurrentTab
+  if (currentTab.pinned) {
+    gBrowser.unpinTab(currentTab)
+  } else {
+    gBrowser.pinTab(currentTab)
+  }
+});
+EOM
+nnoremap @ :togglepin<CR>
 "}}}
 
 " FORCE <ESC> for the INSERT MODE; when focus WYSIWYG editor, not transmit NORMAL MODE by default <ESC> behavior. {{{

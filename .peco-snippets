@@ -79,6 +79,7 @@ ghq get https://github.com/Lokaltog/powerline-fonts.git
 ghq get https://github.com/itchyny/miv.git
 ghq get https://github.com/joefitzgerald/packer-windows.git
 ghq get https://github.com/glidenote/dotfiles.git
+ghq get https://github.com/rhysd/dotfiles.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
