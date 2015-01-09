@@ -19,3 +19,5 @@ tags
 # netrw
 vim/.vim/.netrwhist
 
+# bittorrent sync
+.sync/
