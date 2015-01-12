@@ -625,8 +625,8 @@ if neobundle#tap('vim-quickrun')"{{{
         \   'commands': {'complete': 'customlist,quickrun#complete', 'name': 'QuickRun'}
         \ }
         \ })
-  nnoremap <Leader>r <Plug>(quickrun)
-  nnoremap <Leader>a :<C-u>QuickRun<Space>-args<Space>
+  nmap <Leader>r <Plug>(quickrun)
+  nmap <Leader>a :<C-u>QuickRun<Space>-args<Space>
 
   " echo quickrun command output {{{
   " http://d.hatena.ne.jp/osyo-manga/searchdiary?word=quickrun
@@ -805,6 +805,11 @@ if neobundle#tap('vim-quickrun')"{{{
         \ "markdown": {
         \     "type": "markdown/pandoc",
         \     "outputter": "browser"
+        \ },
+        \ "ruby": {
+        \     "command": "ruby",
+        \     "cmdopt": "bundle exec",
+        \     "exec": "%o %c %s"
         \ }
         \ }
 
@@ -999,7 +1004,7 @@ if neobundle#tap('vim-go')"{{{
         \                'GoDef', 'GoOracleDescribe', 'GoUpdateBinaries', 'GoVet', 'GoTest',
         \                'GoOracleCallers', 'GoOracleChannelPeers', 'GoOracleCallees', 'GoOracleImplements',
         \                {'complete': 'customlist,go#package#Complete', 'name': 'GoDoc'},
-        \                'GoFiles', 'GoBuild'],
+        \                'GoFiles', 'GoBuild', 'GoInstallBinaries'],
         \   'filetypes': 'go'
         \ }
         \ })
@@ -1538,7 +1543,7 @@ if neobundle#tap('indentLine')"{{{
 
   let g:indentLine_faster = 1
   let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail']
-  let g:indentLine_char = '┊'
+  " let g:indentLine_char = '┊'
 
   call neobundle#untap()
 endif
