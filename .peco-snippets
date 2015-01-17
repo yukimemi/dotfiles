@@ -80,6 +80,8 @@ ghq get https://github.com/itchyny/miv.git
 ghq get https://github.com/joefitzgerald/packer-windows.git
 ghq get https://github.com/glidenote/dotfiles.git
 ghq get https://github.com/rhysd/dotfiles.git
+ghq get https://github.com/sorah/niconico.git
+ghq get https://github.com/vimperator/vimperator-labs.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
@@ -98,6 +100,7 @@ ghq get git@bitbucket.org:yukimemi/cpp.git
 ghq get git@bitbucket.org:yukimemi/books.git
 ghq get git@bitbucket.org:yukimemi/typescript.git
 ghq get git@bitbucket.org:yukimemi/jscript.git
+ghq get git@bitbucket.org:yukimemi/ruby.git
 ghq get git@bitbucket.org:yukimemi/nicodown.git
 
 # Gist
@@ -157,4 +160,10 @@ curl -sL https://raw.githubusercontent.com/syui/json-script/master/script/macboo
 # brew file
 brew install rcmdnk/file/brew-file
 brew file set_repo -r yukimemi/Brewfile
+
+# vimperator build
+cd ~/.ghq/src/github.com/vimperator/vimperator-labs && make && open -a 'firefox' downloads/vimperator*.xpi
+
+# gitignore.io
+git config --global alias.ignore '!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi'
 

@@ -122,7 +122,8 @@ if neobundle#tap('neocomplete.vim')"{{{
         \ 'dosbatch': $MY_VIMRUNTIME . '/dict/dosbatch.dict',
         \ 'scala': $MY_VIMRUNTIME . '/dict/scala.dict',
         \ 'ps1': $MY_VIMRUNTIME . '/dict/ps1.dict',
-        \ 'javascript': $MY_VIMRUNTIME . '/dict/wsh.dict'
+        \ 'javascript': $MY_VIMRUNTIME . '/dict/wsh.dict',
+        \ 'ruby': $MY_VIMRUNTIME . '/dict/ruby.dict'
         \ }
 
   if !exists('g:neocomplete#sources#omni#functions')
@@ -137,6 +138,7 @@ if neobundle#tap('neocomplete.vim')"{{{
     let g:neocomplete#force_omni_input_patterns = {}
   endif
   let g:neocomplete#force_omni_input_patterns.typescript = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
   call neobundle#untap()
 endif
@@ -2271,6 +2273,30 @@ if neobundle#tap('vim-showmarks')"{{{
   nn [Mark] :<C-u>call <SID>AutoMarkrement()<CR><CR>:ShowMarksOnce<CR>
   com! -bar MarksDelete sil :delm! | :delm 0-9A-Z | :wv! | :ShowMarksOnce
   nn <silent>[Mark]d :MarksDelete<CR>
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('rsense')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'filetypes': ['ruby']
+        \ }
+        \ })
+
+  let g:rsenseUseOmniFunc = 1
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('neocomplete-rsense.vim')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'filetypes': ['ruby']
+        \ }
+        \ })
 
   call neobundle#untap()
 endif
