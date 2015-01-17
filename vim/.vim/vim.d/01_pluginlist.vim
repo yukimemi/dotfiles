@@ -162,7 +162,8 @@ NeoBundleLazy 'rking/ag.vim'
 NeoBundleLazy 'sjl/gundo.vim'
 NeoBundleLazy 'superbrothers/vim-vimperator'
 NeoBundleLazy 'supermomonga/jazzradio.vim'
-NeoBundleLazy 'supermomonga/vimshell-pure.vim', {'depends' : 'Shougo/vimshell.vim'}
+NeoBundleLazy 'supermomonga/vimshell-pure.vim', {'depends': 'Shougo/vimshell.vim'}
+NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {'depends': 'marcus/rsense'}
 NeoBundleLazy 't9md/vim-choosewin'
 NeoBundleLazy 't9md/vim-quickhl'
 NeoBundleLazy 'tacroe/unite-mark'
@@ -189,6 +190,7 @@ NeoBundleLazy 'wesleyche/SrcExpl'
 NeoBundleLazy 'yuyunko/dosbatch-indent', {'depends': 'taku-o/vim-batch-source'}
 NeoBundleLazy 'zhisheng/visualmark.vim'
 NeoBundleLazy 'fatih/vim-go'
+NeoBundleLazy 'marcus/rsense', {'build': {'others': 'ruby etc/config.rb > ~/.rsense'}}
 if executable('pip')
   NeoBundleLazy 'davidhalter/jedi-vim', {
         \ 'depends': 'mitechie/pyflakes-pathogen',

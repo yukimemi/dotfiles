@@ -16,6 +16,16 @@ endif
 au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 "}}}
 
+" vim config path"{{{
+if isdirectory($HOME . '/.vim')
+  let $MY_VIMRUNTIME = $HOME . '/.vim'
+elseif isdirectory($HOME . '\vimfiles')
+  let $MY_VIMRUNTIME = $HOME . '\vimfiles'
+elseif isdirectory($VIM . '\vimfiles')
+  let $MY_VIMRUNTIME = $VIM . '\vimfiles'
+endif
+"}}}
+
 function! Mkdir(dir)"{{{
   if !isdirectory(a:dir)
     call mkdir(a:dir, "p")

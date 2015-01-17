@@ -12,6 +12,9 @@ set newtab=all
 set animations
 set visualbell
 
+set nextpattern=\bnext\b,\bmore\b,next,^次(の)?ページ,\b次.*,→\b,^>$,^(>>|≫)$,^(>|≫),(>|≫)$
+set previouspattern=\bprev|previous\b,prev,^前(の)?ページ,\b前.*,\b←,^<$,^(<<|≪)$,^(<|≪),(<|≪)$
+
 " editor
 js <<EOM
 if (liberator.has("MacUnix")) {
@@ -215,7 +218,7 @@ js <<EOM
 liberator.execute('let g:plugin_loader_roots = "~/.ghq/src/github.com/vimpr/vimperator-plugins/ ~/.ghq/src/gist.github.com/377348/ ~/.ghq/src/github.com/caisui/vimperator/plugin/ ~/.ghq/src/github.com/Jagua/vimperator-plugins-sample/"');
 EOM
 
-let g:plugin_loader_plugins = "_libly,_smooziee,auto-focus-frame,commandBookmarklet,copy,opener-ex,stella,twittperator,slideshare,hints-ext,x-hint,smooth-scroll,xpath-hint"
+let g:plugin_loader_plugins = "_libly,_smooziee,auto-focus-frame,commandBookmarklet,copy,opener-ex,stella,twittperator,slideshare,hints-ext,x-hint,smooth-scroll,xpath-hint,nextlink"
 
 " hints-ext"{{{
 let use_hintchars_ex=2
