@@ -40,6 +40,7 @@ open /System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngin
 # exiftool
 exiftool '-FileName < CreateDate' -d /Volumes/new/backup/Photos/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(JPG|jpg)
 exiftool '-FileName < CreateDate' -d /Volumes/new/backup/Mov/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(MOV|mov)
+exiftool '-FileName < CreateDate' -d /Volumes/new/backup/mp4/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(MP4|mp4)
 find . -type f -iname "*.jpg" -print0 | xargs -0 exiftool '-FileName < CreateDate' -d /Volumes/new/backup/Photos/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
 find . -type f -iname "*.mov" -print0 | xargs -0 exiftool '-FileName < CreateDate' -d /Volumes/new/backup/Mov/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
 find . -type f -iname "*.mp4" -print0 | xargs -0 exiftool '-FileName < CreateDate' -d /Volumes/new/backup/mp4/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
@@ -120,6 +121,7 @@ go get github.com/kr/godep
 go get github.com/spf13/hugo
 go get golang.org/x/text/encoding/japanese
 go get golang.org/x/text/encoding
+go get github.com/headzoo/surf
 
 # Hugo
 git clone --recursive https://github.com/spf13/hugoThemes themes

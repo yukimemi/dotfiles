@@ -64,6 +64,7 @@ NeoBundle 'tyru/operator-star.vim', {'depends': ['thinca/vim-visualstar']}
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'KazuakiM/vim-qfsigns', {'depends': ['osyo-manga/vim-watchdogs']}
 "}}}
 " Lazy"{{{
 " NeoBundleLazy 'DrawIt'
@@ -191,6 +192,7 @@ NeoBundleLazy 'yuyunko/dosbatch-indent', {'depends': 'taku-o/vim-batch-source'}
 NeoBundleLazy 'zhisheng/visualmark.vim'
 NeoBundleLazy 'fatih/vim-go'
 NeoBundleLazy 'marcus/rsense', {'build': {'others': 'ruby etc/config.rb > ~/.rsense'}}
+NeoBundleLazy 'taka84u9/vim-ref-ri', {'depends': 'thinca/vim-ref'}
 if executable('pip')
   NeoBundleLazy 'davidhalter/jedi-vim', {
         \ 'depends': 'mitechie/pyflakes-pathogen',
