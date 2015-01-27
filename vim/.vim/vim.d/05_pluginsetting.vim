@@ -902,12 +902,13 @@ if neobundle#tap('vim-ref')"{{{
     elseif &filetype =~ 'python'
       Unite -start-insert ref/pydoc
     elseif &filetype =~ 'ruby'
-      Unite ref/refe
+      Unite -start-insert ref/ri
     else
       Unite ref/man
     endif
   endfunction
   " nnoremap sur :<C-u>call s:unite_ref_doc()<CR>
+  command! UniteRef call <SID>unite_ref_doc()
   call neobundle#untap()
 endif
 "}}}
@@ -1974,44 +1975,54 @@ endif
 if neobundle#tap('vim-watchdogs')"{{{
   call neobundle#config({
         \ 'autoload': {
-        \   'commands': ['WatchdogsRunSweep', {'complete': 'customlist,quickrun#complete',
-        \        'name': 'WatchdogsRun'}, {'complete': 'customlist,quickrun#complete', 'name': 'WatchdogsRunSilent'}]
+        \   'commands': ['WatchdogsRunSweep', {'complete': 'customlist,quickrun#complete', 'name': 'WatchdogsRun'},
+        \                {'complete': 'customlist,quickrun#complete', 'name': 'WatchdogsRunSilent'}]
         \ }
         \ })
 
-  let g:watchdogs_config = {}
+  if !exists('g:watchdogs_config')
+    let g:watchdogs_config = {}
+  endif
   let g:watchdogs_config = {
-        \ "cpp/wandbox" : {
-        \   "runner" : "wandbox",
-        \   "runner/wandbox/compiler" : "clang-head",
-        \   "runner/wandbox/options" : "warning,c++1y,boost-1.55"
+        \ "watchdogs_checker/_": {
+        \   "hook/qfsigns_update/enable_exit": 1,
+        \   "hook/qfsigns_update/priority_exit": 3
         \ },
         \
-        \ "cpp/g++" : {
-        \   "cmdopt" : "-std=c++0x -Wall"
+        \ "cpp/wandbox": {
+        \   "runner": "wandbox",
+        \   "runner/wandbox/compiler": "clang-head",
+        \   "runner/wandbox/options": "warning,c++1y,boost-1.55"
         \ },
         \
-        \ "cpp/clang++" : {
-        \   "cmdopt" : "-std=c++0x -Wall"
+        \ "cpp/g++": {
+        \   "cmdopt": "-std=c++0x -Wall"
         \ },
         \
-        \ "cpp/watchdogs_checker" : {
-        \   "type" : "watchdogs_checker/clang++"
+        \ "cpp/clang++": {
+        \   "cmdopt": "-std=c++0x -Wall"
         \ },
         \
-        \ "watchdogs_checker/_" : {
-        \   "outputter/quickfix/open_cmd" : ""
+        \ "cpp/watchdogs_checker": {
+        \   "type": "watchdogs_checker/clang++"
         \ },
         \
-        \ "watchdogs_checker/g++" : {
-        \   "cmdopt" : "-Wall"
+        \ "watchdogs_checker/g++": {
+        \   "cmdopt": "-Wall"
         \ },
         \
-        \ "watchdogs_checker/clang++" : {
-        \   "cmdopt" : "-Wall"
+        \ "watchdogs_checker/clang++": {
+        \   "cmdopt": "-Wall"
         \ }
         \ }
   call extend(g:quickrun_config, g:watchdogs_config)
+
+  " auto check at save
+  let g:watchdogs_check_BufWritePost_enable = 1
+
+  let g:watchdogs_check_BufWritePost_enables = {
+        \ "javascript": 0
+        \ }
 
   cal neobundle#untap()
 endif
@@ -2295,6 +2306,28 @@ if neobundle#tap('neocomplete-rsense.vim')"{{{
   call neobundle#config({
         \ 'autoload': {
         \   'filetypes': ['ruby']
+        \ }
+        \ })
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-qfsigns')"{{{
+
+  " If syntax error, cursor is moved at line setting sign.
+  let g:qfsigns#AutoJump = 1
+  " If syntax error, view split and cursor is moved at line setting sign.
+  " let g:qfsigns#AutoJump = 2
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-ref-ri')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'unite_sources': ['ref/ri']
         \ }
         \ })
 
