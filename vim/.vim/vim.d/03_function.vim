@@ -67,3 +67,22 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 " save as root"{{{
 com! Wsu w !sudo tee > /dev/null %
 "}}}
+
+" remove file if 0 byte"{{{
+" http://qiita.com/hykw/items/6dbb43bdcd8874a0daf7
+au MyAutoCmd BufWritePost * call s:Hykw_removeFileIf0Byte()
+function! s:Hykw_removeFileIf0Byte()
+  let filename = expand('%:p')
+  if getfsize(filename) > 0
+    " do nothing
+    return
+  endif
+
+  let msg = printf("\n%s is empty, remove?(y/N)", filename)
+  if input(msg) == 'y'
+    call delete(filename)
+    bdelete
+  endif
+endfunction
+"}}}
+
