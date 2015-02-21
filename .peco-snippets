@@ -103,6 +103,8 @@ ghq get git@bitbucket.org:yukimemi/typescript.git
 ghq get git@bitbucket.org:yukimemi/jscript.git
 ghq get git@bitbucket.org:yukimemi/ruby.git
 ghq get git@bitbucket.org:yukimemi/nicodown.git
+ghq get git@bitbucket.org:yukimemi/yukimemi.git # not use !
+git clone git@bitbucket.org:yukimemi/yukimemi.git themes/yukimemi
 
 # Gist
 ghq get https://gist.github.com/5507969.git \# golang copy file example
