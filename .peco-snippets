@@ -171,6 +171,9 @@ cd ~/.ghq/src/github.com/vimperator/vimperator-labs && git pull && make && open 
 # vimperator-plugins update
 cd ~/.ghq/src/github.com/vimpr/vimperator-plugins && git pull && cd ~/.ghq/src/github.com/caisui/vimperator && git pull
 
+# install vimppm
+cd ~/.vimperator && git clone git@github.com:yukimemi/vimppm && cd vimppm && git remote add upstream https://github.com/cd01/vimppm
+
 # gitignore.io
 git config --global alias.ignore '!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi'
 
