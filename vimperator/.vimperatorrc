@@ -101,7 +101,8 @@ colorscheme theme
 
 hi -append Normal opacity: 0.8;
 " http://chroju89.hatenablog.jp/entry/2014/02/09/102914
-hi ErrorMsg color:white; background-color: #ec6aa1;
+hi ErrorMsg color:white; background-color:#ec6aa1;
+hi Hint z-index:5000; font-size:14px; color:white; background-color:red; border-color:ButtonShadow; border-width:0px; border-style:solid; padding:0px 2px 0px 2px; position:absolute; font-family: Menlo, Consolas, Monaco, monospace; text-transform: uppercase;
 " }}}
 
 " quickmark {{{
@@ -118,7 +119,7 @@ qmark G http://yukimemi.github.io
 qmark h http://b.hatena.ne.jp/
 qmark i https://www.icloud.com
 qmark k http://yukimemi.bitbucket.org/
-qmark l https://mail.google.com/mail/#inbox
+qmark l https://inbox.google.com
 qmark m http://mixi.jp/home.pl
 qmark o http://yukimemi.github.com
 qmark p https://plus.google.com/
@@ -131,8 +132,8 @@ qmark y http://www.youtube.com/?gl=JP&hl=ja
 " }}}
 
 " ignorekeys"{{{
-ignorekeys add mail\\.google\\.com -except :,F,t,O,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,d,D
-ignorekeys add plus\\.google\\.com -except :,t,f,F,d,D,g,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,gg,G,<C-[>
+" ignorekeys add mail\\.google\\.com -except :,F,t,O,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,d,D
+" ignorekeys add plus\\.google\\.com -except :,t,f,F,d,D,g,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,gg,G,<C-[>
 "}}}
 
 " javascript {{{
@@ -212,27 +213,19 @@ set! browser.contentHandlers.types.6.type=application/vnd.mozilla.maybe.feed
 set! browser.contentHandlers.types.6.uri=http://cloud.feedly.com/#subscription/feed/%s
 " }}}
 
-" plugins {{{
-" plugin_loader.js
-js <<EOM
-liberator.execute('let g:plugin_loader_roots = "~/.ghq/src/github.com/vimpr/vimperator-plugins/ ~/.ghq/src/gist.github.com/377348/ ~/.ghq/src/github.com/caisui/vimperator/plugin/ ~/.ghq/src/github.com/Jagua/vimperator-plugins-sample/"');
-EOM
+" vimppm {{{
+source ~/.vimperator/vimppm/plugin/vimppm.js
 
-" let g:plugin_loader_plugins = "_libly,_smooziee,auto-focus-frame,commandBookmarklet,copy,opener-ex,stella,twittperator,slideshare,hints-ext,x-hint,smooth-scroll,xpath-hint,nextlink"
-let g:plugin_loader_plugins = "_libly,_smooziee,smooth-scroll,commandBookmarklet,copy,opener-ex,hints-ext,x-hint,xpath-hint"
+" vimppm '_libly.js'
+" vimppm 'feedSomeKeys_3.js'
+" vimppm 'x-hint.js'
+vimppm '_smooziee.js'
+vimppm 'copy.js'
+vimppm 'caret-hint.js'
 
-" _smooziee.js"{{{
+" _smooziee {{{
 let g:smooziee_scroll_amount="150"
 let g:smooziee_scroll_interval="50"
-"}}}
-
-" for slideshare.js"{{{
-nnoremap -urls=^http://www\.slideshare\.net/ <S-J> :slideshare next<CR>
-nnoremap -urls=^http://www\.slideshare\.net/ <S-K> :slideshare prev<CR>
-"}}}
-
-" for xpath_hint.js"{{{
-let g:xpath_hint_map = 'X'
 "}}}
 
 " copy {{{
@@ -421,98 +414,6 @@ EOM
 nnoremap C :copy<space>
 vnoremap C :copy<space>
 " }}}
-
-" stella.js"{{{
-js <<EOM
-function addLocalMappings(buffer, maps) {
-  maps.forEach(
-    function (map) {
-    let [cmd, action, extra] = map;
-    let actionFunc = action;
-    extra || (extra = {});
-
-    if (typeof action == "string") {
-      if (action.charAt(0) == ':')
-        actionFunc = extra.open ? function () commandline.open("", action, modes.EX)
-          : function () liberator.execute(action);
-          else
-            actionFunc = function () events.feedkeys(action, extra.noremap, true);
-    }
-    extra.matchingUrls = buffer;
-    mappings.addUserMap(
-      [modes.NORMAL],
-      [cmd],
-      "Local mapping for " + buffer,
-      actionFunc,
-      extra
-    );
-  }
-  );
-}
-addLocalMappings(
-  /^(http:\/\/(es|www).nicovideo.jp\/(watch|playlist\/mylist)|https:\/\/(jp|www)\.youtube\.com\/watch|http:\/\/(www\.)?vimeo\.com\/(channels\/(hd)?#)?\d+)/,
-  [
-    ['<C-g>', ':pageinfo S',      ],
-    ['p',     ':stplay',          ],
-    ['m',     ':stmute',          ],
-    [',c',    ':stcomment',       ],
-    ['zz',    ':stlarge',         ],
-    ['r',     ':strepeat',        ],
-    ['+',     ':stvolume! 10',    ],
-    ['-',     ':stvolume! -10',   ],
-    ['<',     ':stseek! -10',     ],
-    ['>',     ':stseek! 10',      ],
-    ['v',     ':stvolume ',       {open: true}],
-    ['V',     ':stvolume! ',      {open: true}],
-    ['o',     ':strelations ',    {open: true}],
-    ['O',     ':strelations! ',   {open: true}],
-  ]
-);
-EOM
-"}}}
-
-" twittperator.js"{{{
-nmap ,tp :<C-u>tw<Space>
-nmap ,tt :<C-u>tw!<CR>
-nmap ,t@ :<C-u>tw!@<CR>
-nmap ,tu :<C-u>twuri<CR><C-a><Right><Right><Right>
-js <<EOM
-userContext.ggl = function getGoogleShortenURL (url, callback) {
-  let uri = "https://www.googleapis.com/urlshortener/v1/url";
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", uri, !!callback);
-  if (callback) {
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        callback(JSON.parse(xhr.responseText));
-      }
-    }
-  }
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.send(JSON.stringify({ longUrl: url || buffer.URL }));
-  if (!callback) {
-    return JSON.parse(xhr.responseText).id;
-  }
-};
-EOM
-cabbrev -javascript ggl userContenxt.ggl(buffer.URI)
-
-js <<EOM
-commands.addUserCommand(
-  ["twuri"],
-  "Twittperator tweet with URI",
-  function(){
-    let uri = 'https://www.googleapis.com/urlshortener/v1/url';
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", uri, false);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(JSON.stringify({ longUrl: buffer.URI }));
-    let result = JSON.parse(xhr.responseText).id;
-    commandline.open(":",["tw"," /",buffer.title,result].join(" "),modes.EX);
-  }
-);
-EOM
-"}}}
 
 " }}}
 
