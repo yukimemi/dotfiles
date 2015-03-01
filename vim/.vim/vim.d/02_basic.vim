@@ -74,7 +74,7 @@ set wrapscan
 set incsearch
 set infercase
 set hlsearch
-set grepprg=grep\ -nH
+set grepprg=jvgrep
 " https://sites.google.com/site/hymd3a/vim/vimgrep
 au MyAutoCmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) != 0 | copen | endif
 " use verymagic
