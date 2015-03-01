@@ -523,7 +523,11 @@ if neobundle#tap('unite.vim')"{{{
   "}}}
 
   " grep source setting
-  if executable('pt')
+  if executable('jvgrep')
+    let g:unite_source_grep_command = 'jvgrep'
+    " let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+    let g:unite_source_grep_recursive_opt = ''
+  elseif executable('pt')
     let g:unite_source_grep_command = 'pt'
     let g:unite_source_grep_default_opts = '--nogroup --nocolor'
     let g:unite_source_grep_recursive_opt = ''

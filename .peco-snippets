@@ -74,8 +74,8 @@ ghq get https://github.com/tcnksm/go-compile-scripts.git
 ghq get https://github.com/osyo-manga/cpp-vimrc.git
 ghq get https://github.com/Xfennec/cv.git
 ghq get https://github.com/BestPig/cv.git # for mac
-ghq get https://github.com/tcnksm/dotfiles
-ghq get https://github.com/cd01/vimppm
+ghq get https://github.com/tcnksm/dotfiles.git
+ghq get https://github.com/cd01/vimppm.git
 ghq get https://github.com/Lokaltog/powerline-fonts.git
 ghq get https://github.com/itchyny/miv.git
 ghq get https://github.com/joefitzgerald/packer-windows.git
@@ -83,6 +83,8 @@ ghq get https://github.com/glidenote/dotfiles.git
 ghq get https://github.com/rhysd/dotfiles.git
 ghq get https://github.com/sorah/niconico.git
 ghq get https://github.com/vimperator/vimperator-labs.git
+ghq get https://github.com/vimpr/vimperator-colors.git
+ghq get https://github.com/tomokuni/Myrica.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
