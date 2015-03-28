@@ -771,7 +771,7 @@ if neobundle#tap('vim-quickrun')"{{{
         \     "hook/close_unite_quickfix/enable_hook_loaded": 1,
         \     "hook/unite_quickfix/enable_failure": 1,
         \     "hook/close_quickfix/enable_exit": 1,
-        \     "hook/close_buffer/enable_failure": 0,
+        \     "hook/close_buffer/enable_failure": 1,
         \     "hook/close_buffer/enable_empty_data": 1,
         \     "hook/echo/enable": 1,
         \     "hook/echo/output_success": "success!!!",
@@ -2150,7 +2150,7 @@ if neobundle#tap('vim-marching')"{{{
 
     if !empty(g:marching_clang_command) && executable(g:marching_clang_command)
       " Sync
-      let g:marching_backend = "sync_clang_command"
+      " let g:marching_backend = "sync_clang_command"
     else
       " Not executable clang, use wandbox
       let g:marching_backend = "wandbox"
@@ -2338,6 +2338,17 @@ if neobundle#tap('vim-ref-ri')"{{{
   call neobundle#untap()
 endif
 "}}}
+
+if neobundle#tap('vim-itunes-bgm')
+  call neobundle#config({
+        \ 'autoload': {
+        \   'commands': ['ITunesBGMStart', 'ITunesBGMStop', 'ITunesBGMNext'],
+        \   'unite_sources': ['itunesbgm']
+        \ }
+        \ })
+
+  call neobundle#untap()
+endif
 
 " disable plugin
 let plugin_dicwin_disable = 1
