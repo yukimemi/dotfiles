@@ -154,6 +154,7 @@ NeoBundleLazy 'osyo-manga/vim-over'
 NeoBundleLazy 'osyo-manga/unite-quickfix'
 NeoBundleLazy 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
 NeoBundleLazy 'osyo-manga/vim-marching'
+NeoBundleLazy 'osyo-manga/vim-itunes-bgm'
 NeoBundleLazy 'pangloss/vim-javascript'
 NeoBundleLazy 'pasela/unite-webcolorname'
 NeoBundleLazy 'rhysd/unite-codic.vim', {'depends': 'koron/codic-vim'}
