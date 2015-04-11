@@ -1,42 +1,21 @@
 " variable settings
 let barposition = "bottom"
 let blacklists = ["*://mail.google.com/*","*://feedly.com/*","*://www.google.com/calendar/*"]
-" let scrollstep = 30
-let scrollduration = 10
-" let fullpagescrollpercent = 100
-"set nohud
-"set noinsertmappings
 set smoothscroll
 let mapleader = ","
 let locale = "jp"
-let hintcharacters = "hjklasdfgyuiopqwertnmzxcvb"
-let typelinkhintsdelay = 0
-
-" settings
-set autohidecursor
-set linkanimations
-set autoupdategist
-set noautofocus
 
 " qmarks
 " google mail/task/calendar
 let qmark m = ["https://mail.google.com"]
 let qmark t = ["https://mail.google.com/tasks/canvas"]
 let qmark c = ["https://www.google.com/calendar"]
-" google translator en/ja/language tool
-let qmark e = ["javascript:var%20t=((window.getSelection&&window.getSelection())%7C%7C(document.getSelection&&document.getSelection())%7C%7C(document.selection&&document.selection.createRange&&document.selection.createRange().text));var%20e=(document.charset%7C%7Cdocument.characterSet);if(t!='')%7Blocation.href='http://translate.google.com/translate_t?text='+t+'&hl=ja&langpair=auto%7Cen&tbb=1&ie='+e;%7Delse%7Blocation.href='http://translate.google.com/translate?u='+escape(location.href)+'&hl=ja&langpair=auto%7Cen&tbb=1&ie='+e;%7D;"]
-let qmark j = ["javascript:var%20t=((window.getSelection&&window.getSelection())%7C%7C(document.getSelection&&document.getSelection())%7C%7C(document.selection&&document.selection.createRange&&document.selection.createRange().text));var%20e=(document.charset%7C%7Cdocument.characterSet);if(t!='')%7Blocation.href='http://translate.google.com/?text='+t+'&hl=ja&langpair=auto%7Cja&tbb=1&ie='+e;%7Delse%7Blocation.href='http://translate.google.com/translate?u='+encodeURIComponent(location.href)+'&hl=ja&langpair=auto%7Cja&tbb=1&ie='+e;%7D;"]
 let qmark l = ["http://www.google.com/language_tools"]
-" Feedly/Pocket/GitHub
 let qmark f = ["http://cloud.feedly.com/#latest"]
 let qmark p = ["http://getpocket.com/a/queue/"]
 let qmark g = ["http://github.com/yukimemi"]
 
 " mappings
-map h scrollLeft
-map <C-j> scrollDown
-map <C-k> scrollUp
-map l scrollRight
 map <C-u> scrollPageUp
 map <C-d> scrollPageDown
 map <C-b> scrollFullPageUp
@@ -47,12 +26,5 @@ map d closeTab
 map u lastClosedTab
 map <C-h> previousTab
 map <C-l> nextTab
-map L goForward
-map H goBack
-map :wo :new<Space>
-map ;wo :new<Space>
 map R reloadTabUncached
-map : ;
 
-" Text boxes
-iunmapAll
