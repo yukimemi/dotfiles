@@ -28,8 +28,6 @@ REM vimperator
 if exist "%USERPROFILE%\_vimperatorrc" del "%USERPROFILE%\_vimperatorrc"
 %LINKCMD_F% "%USERPROFILE%\_vimperatorrc" "%THIS_FILE_PASS%vimperator\.vimperatorrc"
 if not exist "%USERPROFILE%\vimperator\plugin" mkdir "%USERPROFILE%\vimperator\plugin"
-if exist "%USERPROFILE%\vimperator\plugin\plugin_loader.js" del "%USERPROFILE%\vimperator\plugin\plugin_loader.js"
-%LINKCMD_F% "%USERPROFILE%\vimperator\plugin\plugin_loader.js" "%GHQ_HOME%\github.com\vimpr\vimperator-plugins\plugin_loader.js"
 if exist "%USERPROFILE%\vimperator\colors" %RDCMD% "%USERPROFILE%\vimperator\colors"
 %LINKCMD_D% "%USERPROFILE%\vimperator\colors" "%GHQ_HOME%\github.com\vimpr\vimperator-rc\anekos\colors"
 
