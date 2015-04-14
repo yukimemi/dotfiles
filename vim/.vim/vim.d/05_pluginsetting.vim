@@ -2366,9 +2366,33 @@ if neobundle#tap('tsuquyomi')"{{{
         \ }
         \ })
 
-
+  call neobundle#untap()
 endif
 "}}}
+
+if neobundle#tap('qfixhowm')"{{{
+  " use markdown
+  let howm_filename = '%Y/%m/%Y-%m-%d-%H%M%S.md'
+  " filetype markdown
+  let QFixHowm_FileType = 'markdown'
+  let QFixHowm_Title = '#'
+  " let QFixMRU_Title = {}
+  " let QFixMRU_Title['md'] = '^###[^#]'
+  " let QFixMRU_Title['md_regxp'] = '^###[^#]'
+  let howm_dir = $HOME . '/.howm'
+  call neobundle#untap()
+endif"}}}
+
+if neobundle#tap('qfixgrep')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'on_source': ['qfixhowm']
+        \ }
+        \ })
+  call neobundle#untap()
+endif
+"}}}
+
 " disable plugin
 let plugin_dicwin_disable = 1
 

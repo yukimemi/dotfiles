@@ -181,7 +181,7 @@ NeoBundleLazy 'thinca/vim-ft-help_fold'
 NeoBundleLazy 'thinca/vim-prettyprint'
 NeoBundleLazy 'thinca/vim-quickrun'
 NeoBundleLazy 'thinca/vim-ref'
-NeoBundleLazy 'thinca/vim-splash'
+" NeoBundleLazy 'thinca/vim-splash'
 NeoBundleLazy 'thinca/vim-template'
 NeoBundleLazy 'thinca/vim-visualstar'
 NeoBundleLazy 'tpope/vim-fireplace', {'depends': ['tpope/vim-classpath', 'guns/vim-clojure-static']}
@@ -202,6 +202,8 @@ NeoBundleLazy 'zhisheng/visualmark.vim'
 NeoBundleLazy 'fatih/vim-go'
 NeoBundleLazy 'marcus/rsense', {'build': {'others': 'ruby etc/config.rb > ~/.rsense'}}
 NeoBundleLazy 'taka84u9/vim-ref-ri', {'depends': 'thinca/vim-ref'}
+NeoBundleLazy 'fuenor/qfixgrep'
+NeoBundleLazy 'fuenor/qfixhowm', {'depends': 'fuenor/qfixgrep'}
 if executable('pip')
   NeoBundleLazy 'davidhalter/jedi-vim', {
         \ 'depends': 'mitechie/pyflakes-pathogen',
