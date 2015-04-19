@@ -17,20 +17,6 @@ shell_is_osx()   { [[ $SHELL_PLATFORM == 'osx' ]]; }
 shell_is_bsd()   { [[ $SHELL_PLATFORM == 'bsd' || $SHELL_PLATFORM == 'osx' ]]; }
 shell_is_cygwin() { [[ $SHELL_PLATFORM == 'cygwin' ]]; }
 
-############################## for Linux ##############################
-if shell_is_linux ; then
-    if which yum > /dev/null 2>&1 ; then
-        apget=yum
-    else
-        apget=apt-get
-    fi
-
-    eval sudo $apget install git
-    eval sudo $apget install zsh
-    eval sudo $apget install tmux
-fi
-#######################################################################
-
 # tmux or screen
 echo "local? , server? , linux?, or windows?"
 echo "l, s, x, or w"
@@ -115,9 +101,7 @@ git config --global core.attributesfile ${HOME}/.gitattributes
 git config --global user.name 'yukimemi'
 git config --global user.email 'yukimemi@gmail.com'
 git config --global github.user 'yukimemi'
-if ! shell_is_cygwin ; then
-    git config --global push.default simple
-fi
+git config --global push.default simple
 git config --global color.diff auto
 # alias
 git config --global alias.ci commit
@@ -130,7 +114,9 @@ git config --global alias.k 'log --graph --pretty'
 # editor
 git config --global core.editor vim
 # mergetool
-git config --global merge.tool mvimdiff
+if shell_is_osx ; then
+  git config --global merge.tool mvimdiff
+fi
 
 # scripts git clone
 [ ! -d ${HOME}/bin ] && mkdir ${HOME}/bin
