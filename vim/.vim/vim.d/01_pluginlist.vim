@@ -203,7 +203,7 @@ NeoBundleLazy 'fatih/vim-go'
 NeoBundleLazy 'marcus/rsense', {'build': {'others': 'ruby etc/config.rb > ~/.rsense'}}
 NeoBundleLazy 'taka84u9/vim-ref-ri', {'depends': 'thinca/vim-ref'}
 NeoBundleLazy 'fuenor/qfixgrep'
-NeoBundleLazy 'fuenor/qfixhowm', {'depends': 'fuenor/qfixgrep'}
+NeoBundle 'fuenor/qfixhowm', {'depends': 'fuenor/qfixgrep'}
 if executable('pip')
   NeoBundleLazy 'davidhalter/jedi-vim', {
         \ 'depends': 'mitechie/pyflakes-pathogen',
