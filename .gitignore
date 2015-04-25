@@ -19,3 +19,8 @@ tags
 # netrw
 vim/.vim/.netrwhist
 
+# haskell
+*.hi
+*.o
+*.errors
+
