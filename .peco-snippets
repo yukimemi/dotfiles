@@ -86,6 +86,10 @@ ghq get https://github.com/sorah/niconico.git
 ghq get https://github.com/vimperator/vimperator-labs.git
 ghq get https://github.com/vimpr/vimperator-colors.git
 ghq get https://github.com/tomokuni/Myrica.git
+ghq get https://github.com/coolwanglu/guake-colors-solarized.git
+ghq get https://github.com/erroneousboat/guake-colors-monokai.git
+ghq get https://github.com/l0b0/xterm-color-count.git
+ghq get https://github.com/kenhys/mayu.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
@@ -176,7 +180,23 @@ cd ~/.ghq/src/github.com/vimpr/vimperator-plugins && git pull && cd ~/.ghq/src/g
 
 # install vimppm
 cd ~/.vimperator && git clone git@github.com:yukimemi/vimppm && cd vimppm && git remote add upstream https://github.com/cd01/vimppm
+cd ~/.vimperator && git clone https://github.com/cd01/vimppm
 
 # gitignore.io
 git config --global alias.ignore '!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi'
+
+# install mutate
+sudo add-apt-repository ppa:mutate/ppa && sudo apt-get update && sudo apt-get install mutate --no-install-recommends
+
+# install btsync
+sudo add-apt-repository ppa:tuxpoldo/btsync && sudo apt-get update && sudo apt-get install btsync
+
+# install neovim
+sudo add-apt-repository ppa:neovim-ppa/unstable && sudo apt-get update && sudo apt-get install neovim
+
+# install atom
+sudo add-apt-repository ppa:webupd8team/atom && sudo apt-get update && sudo apt-get install atom
+
+# mayu
+cd ~/.ghq/src/github.com/kenhys/mayu && sudo aptitude install build-essential libboost-iostreams-dev libudev-dev libusb-1.0-0-dev && ./configure --with-boost-libdir=/usr/lib/x86_64-linux-gnu/ && make && sudo make install && sudo chmod +s /usr/local/bin/mayu
 

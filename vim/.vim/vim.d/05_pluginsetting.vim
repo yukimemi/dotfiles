@@ -523,10 +523,10 @@ if neobundle#tap('unite.vim')"{{{
   "}}}
 
   " grep source setting
-  if executable('jvgrep')
-    let g:unite_source_grep_command = 'jvgrep'
-    " let g:unite_source_grep_default_opts = '--nogroup --nocolor'
-    let g:unite_source_grep_recursive_opt = ''
+	if executable('jvgrep')
+	  let g:unite_source_grep_command = 'jvgrep'
+	  let g:unite_source_grep_default_opts = '-i --exclude ''\.(git|svn|hg|bzr)'''
+	  let g:unite_source_grep_recursive_opt = '-R'
   elseif executable('pt')
     let g:unite_source_grep_command = 'pt'
     let g:unite_source_grep_default_opts = '--nogroup --nocolor'
@@ -2339,7 +2339,7 @@ if neobundle#tap('vim-ref-ri')"{{{
 endif
 "}}}
 
-if neobundle#tap('vim-itunes-bgm')
+if neobundle#tap('vim-itunes-bgm')"{{{
   call neobundle#config({
         \ 'autoload': {
         \   'commands': ['ITunesBGMStart', 'ITunesBGMStop', 'ITunesBGMNext'],
@@ -2349,6 +2349,15 @@ if neobundle#tap('vim-itunes-bgm')
 
   call neobundle#untap()
 endif
+"}}}
+
+if neobundle#tap('im_control.vim')"{{{
+  " Use fcitx
+  let IM_CtrlMode = 6
+  inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
+  set timeout timeoutlen=3000 ttimeoutlen=50
+endif
+"}}}
 
 " disable plugin
 let plugin_dicwin_disable = 1
