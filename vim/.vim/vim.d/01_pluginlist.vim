@@ -41,6 +41,7 @@ NeoBundle 'LeafCage/yankround.vim', {'depends': 'kien/ctrlp.vim'}
 NeoBundle 'Shougo/neocomplete.vim', {'depends': 'Shougo/context_filetype.vim'}
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'tomasr/molokai'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'kana/vim-operator-user'
 NeoBundle 'kana/vim-textobj-user'
@@ -65,6 +66,9 @@ NeoBundle 'tyru/caw.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'KazuakiM/vim-qfsigns', {'depends': ['osyo-manga/vim-watchdogs']}
+if executable('fcitx-remote')
+  NeoBundle 'fuenor/im_control.vim'
+endif
 "}}}
 " Lazy"{{{
 " NeoBundleLazy 'DrawIt'
