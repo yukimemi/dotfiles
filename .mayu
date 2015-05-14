@@ -61,6 +61,7 @@ def key FullStop Period = 0x34 # .>
 def key Solidus Slash = 0x35 # /?
 def key Space = 0x39
 def key YenSign Yen = 0x7d # \|
+def key BackSlash = 0x7c
 
 #存在しないけど残す
 def key 半角/全角 漢字 Kanji = 0x29 # 半角/全角 漢字
@@ -78,13 +79,11 @@ def key F9 = 0x43
 def key F10 = 0x44
 def key F11 = 0x57
 def key F12 = 0x58
-def key F13 = 0x64
-def key F14 = 0x65
-def key F15 = 0x66
-def key F16 = 0x67
-def key F17 = 0x68
-def key F18 = 0x69
-def key F19 = 0x6a
+
+def key Up = 0x67
+def key Down = 0x6c
+def key Left = 0x69
+def key Right = 0x6a
 
 #テンキー部分
 def key NumAsterisk NumMultiply = 0x37 # テンキー *

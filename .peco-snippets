@@ -82,14 +82,18 @@ ghq get https://github.com/itchyny/miv.git
 ghq get https://github.com/joefitzgerald/packer-windows.git
 ghq get https://github.com/glidenote/dotfiles.git
 ghq get https://github.com/rhysd/dotfiles.git
+ghq get https://github.com/b4b4r07/dotfiles.git
 ghq get https://github.com/sorah/niconico.git
 ghq get https://github.com/vimperator/vimperator-labs.git
 ghq get https://github.com/vimpr/vimperator-colors.git
+ghq get https://github.com/vimpr/vimperator-plugins.git
 ghq get https://github.com/tomokuni/Myrica.git
 ghq get https://github.com/coolwanglu/guake-colors-solarized.git
 ghq get https://github.com/erroneousboat/guake-colors-monokai.git
 ghq get https://github.com/l0b0/xterm-color-count.git
 ghq get https://github.com/kenhys/mayu.git
+ghq get https://github.com/atom/electron.git
+ghq get https://github.com/atom/electron-starter.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
@@ -110,6 +114,7 @@ ghq get git@bitbucket.org:yukimemi/typescript.git
 ghq get git@bitbucket.org:yukimemi/jscript.git
 ghq get git@bitbucket.org:yukimemi/ruby.git
 ghq get git@bitbucket.org:yukimemi/nicodown.git
+ghq get git@bitbucket.org:yukimemi/electron.git
 ghq get git@bitbucket.org:yukimemi/yukimemi.git # not use !
 git clone git@bitbucket.org:yukimemi/yukimemi.git themes/yukimemi
 
@@ -197,6 +202,11 @@ sudo add-apt-repository ppa:neovim-ppa/unstable && sudo apt-get update && sudo a
 # install atom
 sudo add-apt-repository ppa:webupd8team/atom && sudo apt-get update && sudo apt-get install atom
 
-# mayu
+# install mayu
 cd ~/.ghq/src/github.com/kenhys/mayu && sudo aptitude install build-essential libboost-iostreams-dev libudev-dev libusb-1.0-0-dev && ./configure --with-boost-libdir=/usr/lib/x86_64-linux-gnu/ && make && sudo make install && sudo chmod +s /usr/local/bin/mayu
 
+# install dropbox
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - && wget "https://www.dropbox.com/download?dl=packages/dropbox.py" -O ~/bin/dropbox.py && chmod +x ~/bn/dropbox.py
+
+# install miv
+ghq get ghq get https://github.com/itchyny/miv.git; cd ~/.ghq/src/github.com/itchyny/miv && cabal update && cabal install
