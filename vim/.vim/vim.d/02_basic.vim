@@ -30,7 +30,7 @@ set fileformat=unix
 set fileformats=unix,dos,mac
 " Use clipboard register.
 if has('unnamedplus')
-  set clipboard& clipboard+=unnamedplus
+  set clipboard=unnamedplus,autoselect
 else
   set clipboard& clipboard+=unnamed
 endif
@@ -116,6 +116,7 @@ set background=dark
 colorscheme molokai
 
 highlight Search ctermbg=88
+highlight Normal ctermbg=none
 
 " hilight cursorline, cursorcolumn "{{{
 " http://d.hatena.ne.jp/thinca/20090530/1243615055

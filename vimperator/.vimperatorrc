@@ -82,6 +82,10 @@ nnoremap <silent> y :javascript util.copyToClipboard(buffer.URL);<CR>:echo "Yank
 nnoremap ,r :source ~/.vimperatorrc<CR>
 
 nnoremap .r :restart<CR>
+
+" Force ime off in hint mode
+noremap <silent> f :!fcitx-remote -c<CR>qf
+noremap <silent> F :!fcitx-remote -c<CR>qF
 "}}}
 
 " style {{{
@@ -226,6 +230,7 @@ vimppm '_smooziee.js'
 vimppm 'copy.js'
 vimppm 'caret-hint.js'
 vimppm 'commandBookmarklet.js'
+vimppm 'google-exopen.js'
 " vimppm 'opener-ex.js'
 
 " _smooziee {{{
