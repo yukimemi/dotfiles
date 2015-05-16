@@ -2239,10 +2239,10 @@ if neobundle#tap('incsearch.vim')"{{{
 
   " set hlsearch
   " let g:incsearch#auto_nohlsearch = 1
-  nmap n  <Plug>(anzu-n)zv
-  nmap N  <Plug>(anzu-N)zv
-  nmap *  <Plug>(anzu-star)zv
-  nmap #  <Plug>(anzu-sharp)zv
+  nmap n  <Plug>(anzu-jump-n)zv
+  nmap N  <Plug>(anzu-jump-N)zv
+  nmap *  <Plug>(anzu-jump-star)zv
+  nmap #  <Plug>(anzu-jump-sharp)zv
 
   call neobundle#untap()
 endif
