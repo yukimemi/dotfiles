@@ -2237,15 +2237,12 @@ if neobundle#tap('incsearch.vim')"{{{
   map ?  <Plug>(incsearch-backward)
   map g/ <Plug>(incsearch-stay)
 
-  " :h g:incsearch#auto_nohlsearch
-  set hlsearch
-  let g:incsearch#auto_nohlsearch = 1
-  nmap n  <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)zv
-  nmap N  <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)zv
-  nmap *  <Plug>(incsearch-nohl)<Plug>(anzu-star-with-echo)zv
-  nmap #  <Plug>(incsearch-nohl)<Plug>(anzu-sharp-with-echo)zv
-  nmap g* <Plug>(incsearch-nohl-g*)
-  nmap g# <Plug>(incsearch-nohl-g#)
+  " set hlsearch
+  " let g:incsearch#auto_nohlsearch = 1
+  nmap n  <Plug>(anzu-n)zv
+  nmap N  <Plug>(anzu-N)zv
+  nmap *  <Plug>(anzu-star)zv
+  nmap #  <Plug>(anzu-sharp)zv
 
   call neobundle#untap()
 endif
