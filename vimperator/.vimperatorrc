@@ -230,7 +230,7 @@ vimppm '_smooziee.js'
 vimppm 'copy.js'
 vimppm 'caret-hint.js'
 vimppm 'commandBookmarklet.js'
-vimppm 'google-exopen.js'
+" vimppm 'google-exopen.js'
 " vimppm 'opener-ex.js'
 
 " _smooziee {{{

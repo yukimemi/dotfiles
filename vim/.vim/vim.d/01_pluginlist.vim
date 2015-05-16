@@ -117,9 +117,12 @@ NeoBundleLazy 'choplin/unite-vim_hacks'
 NeoBundleLazy 'cocopon/colorswatch.vim'
 NeoBundleLazy 'cohama/agit.vim'
 if executable('npm')
-  NeoBundleLazy 'clausreinke/typescript-tools', {'build': {'others': 'npm install -g typescript-tools'}}
-  NeoBundleLazy 'marijnh/tern_for_vim', {'build': {'others': 'npm install'}}
   NeoBundleLazy 'mephux/vim-jsfmt', {'build': {'others': 'npm install -g jsfmt'}}
+  if executable('tsc')
+    NeoBundleLazy 'clausreinke/typescript-tools', {'build': {'others': 'npm install -g typescript-tools'}}
+    NeoBundleLazy 'marijnh/tern_for_vim', {'build': {'others': 'npm install'}}
+    NeoBundleLazy 'Quramy/tsuquyomi'
+  endif
 endif
 NeoBundleLazy 'dag/vim2hs'
 NeoBundleLazy 'digitaltoad/vim-jade'
@@ -127,7 +130,7 @@ NeoBundleLazy 'drakontia/sphinx.vim'
 if executable('cabal')
   NeoBundleLazy 'eagletmt/ghcmod-vim', {'build': {'others': 'cabal install ghc-mod'}}
   NeoBundleLazy 'eagletmt/neco-ghc', {'build': {'others': 'cabal install ghc-mod'}}
-  NeoBundleLazy 'eagletmt/unite-haddock', {'build': {'others': 'cabal install hoogle'}}
+  " NeoBundleLazy 'eagletmt/unite-haddock', {'build': {'others': 'cabal install hoogle'}}
 endif
 NeoBundleLazy 'edsono/vim-matchit'
 NeoBundleLazy 'glidenote/memolist.vim'
