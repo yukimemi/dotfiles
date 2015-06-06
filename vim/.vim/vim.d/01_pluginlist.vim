@@ -29,10 +29,11 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Not lazy"{{{
 NeoBundle 'Shougo/vimproc.vim', {
       \ 'build': {
-      \   'windows': 'mingw32-make -f make_mingw32.mak',
+      \   'windows': 'tools\\update-dll-mingw',
       \   'cygwin': 'make -f make_cygwin.mak',
       \   'mac': 'make -f make_mac.mak',
-      \   'unix': 'make -f make_unix.mak',
+      \   'linux': 'make',
+      \   'unix': 'gmake'
       \ }}
 NeoBundle 'haya14busa/incsearch.vim'
 NeoBundle 'banyan/recognize_charcode.vim'
@@ -118,9 +119,9 @@ NeoBundleLazy 'cocopon/colorswatch.vim'
 NeoBundleLazy 'cohama/agit.vim'
 if executable('npm')
   NeoBundleLazy 'mephux/vim-jsfmt', {'build': {'others': 'npm install -g jsfmt'}}
+  NeoBundleLazy 'marijnh/tern_for_vim', {'build': {'others': 'npm install'}}
   if executable('tsc')
-    NeoBundleLazy 'clausreinke/typescript-tools', {'build': {'others': 'npm install -g typescript-tools'}}
-    NeoBundleLazy 'marijnh/tern_for_vim', {'build': {'others': 'npm install'}}
+    " NeoBundleLazy 'clausreinke/typescript-tools', {'build': {'others': 'npm install -g typescript-tools'}}
     NeoBundleLazy 'Quramy/tsuquyomi'
   endif
 endif
