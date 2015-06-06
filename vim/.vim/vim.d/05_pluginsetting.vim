@@ -2356,6 +2356,18 @@ if neobundle#tap('im_control.vim')"{{{
 endif
 "}}}
 
+if neobundle#tap('tsuquyomi')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'commands': ['TsuquyomiReloadProject', 'TsuquyomiStartServer', 'TsuquyomiStatusServer',
+        \                'TsuquyomiStopServer'],
+        \   'filetypes': ['typescript']
+        \ }
+        \ })
+
+
+endif
+"}}}
 " disable plugin
 let plugin_dicwin_disable = 1
 

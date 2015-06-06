@@ -114,7 +114,7 @@ syntax enable
 
 " color
 set background=dark
-colorscheme molokai
+colorscheme solarized
 
 highlight Search ctermbg=88
 highlight Normal ctermbg=none
