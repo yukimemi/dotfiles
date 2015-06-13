@@ -1467,7 +1467,7 @@ endif
 if neobundle#tap('vim-javascript')"{{{
   call neobundle#config({
         \ 'autoload': {
-        \   'filetypes': 'javascript'
+        \   'filetypes': ['javascript']
         \ }
         \ })
 
@@ -2201,6 +2201,7 @@ if neobundle#tap('typescript-vim')"{{{
         \   'filetypes': 'typescript'
         \ }
         \ })
+  let g:typescript_indent_disable = 1
 
   call neobundle#untap()
 endif
