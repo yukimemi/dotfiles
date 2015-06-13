@@ -122,6 +122,7 @@ if executable('npm')
   NeoBundleLazy 'marijnh/tern_for_vim', {'build': {'others': 'npm install'}}
   if executable('tsc')
     " NeoBundleLazy 'clausreinke/typescript-tools', {'build': {'others': 'npm install -g typescript-tools'}}
+    NeoBundleLazy 'leafgarland/typescript-vim'
     NeoBundleLazy 'Quramy/tsuquyomi'
   endif
 endif
@@ -151,7 +152,6 @@ NeoBundleLazy 'koron/chalice'
 NeoBundleLazy 'koron/codic-vim'
 NeoBundleLazy 'lambdalisue/vim-django-support'
 NeoBundleLazy 'lambdalisue/vim-gista'
-NeoBundleLazy 'leafgarland/typescript-vim'
 NeoBundleLazy 'majutsushi/tagbar', {'build': {'mac': 'brew install ctags'}}
 NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'mattn/vimplenote-vim'
