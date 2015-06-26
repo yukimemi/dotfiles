@@ -147,6 +147,8 @@ NeoBundleLazy 'kana/vim-filetype-haskell'
 NeoBundleLazy 'kannokanno/previm.git'
 NeoBundleLazy 'kchmck/vim-coffee-script'
 NeoBundleLazy 'kien/ctrlp.vim'
+NeoBundleLazy 'mattn/ctrlp-filer'
+NeoBundleLazy 'sgur/ctrlp-extensions.vim'
 NeoBundleLazy 'kien/rainbow_parentheses.vim'
 NeoBundleLazy 'koron/chalice'
 NeoBundleLazy 'koron/codic-vim'
@@ -173,7 +175,6 @@ NeoBundleLazy 'sjl/gundo.vim'
 NeoBundleLazy 'superbrothers/vim-vimperator'
 NeoBundleLazy 'supermomonga/jazzradio.vim'
 NeoBundleLazy 'supermomonga/vimshell-pure.vim', {'depends': 'Shougo/vimshell.vim'}
-NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {'depends': 'marcus/rsense'}
 NeoBundleLazy 't9md/vim-choosewin'
 NeoBundleLazy 't9md/vim-quickhl'
 NeoBundleLazy 'tacroe/unite-mark'
@@ -200,10 +201,13 @@ NeoBundleLazy 'wesleyche/SrcExpl'
 NeoBundleLazy 'yuyunko/dosbatch-indent', {'depends': 'taku-o/vim-batch-source'}
 NeoBundleLazy 'zhisheng/visualmark.vim'
 NeoBundleLazy 'fatih/vim-go'
-NeoBundleLazy 'marcus/rsense', {'build': {'others': 'ruby etc/config.rb > ~/.rsense'}}
 NeoBundleLazy 'taka84u9/vim-ref-ri', {'depends': 'thinca/vim-ref'}
 NeoBundleLazy 'fuenor/qfixgrep'
 NeoBundle 'fuenor/qfixhowm', {'depends': 'fuenor/qfixgrep'}
+if executable('ruby')
+  NeoBundleLazy 'marcus/rsense', {'build': {'others': 'ruby etc/config.rb > ~/.rsense'}}
+  NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {'depends': 'marcus/rsense'}
+endif
 if executable('pip')
   NeoBundleLazy 'davidhalter/jedi-vim', {
         \ 'depends': 'mitechie/pyflakes-pathogen',
