@@ -6,6 +6,7 @@ vim/.vim/back
 vim/.vim/tmp
 vim/.vim/bundle
 vim/.vim/miv
+vim/.vim/save
 restart_session.vim
 
 # zsh history
