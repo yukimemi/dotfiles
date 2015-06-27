@@ -163,13 +163,12 @@ NeoBundleLazy 'osyo-manga/vim-operator-search', {'depends': 'kana/vim-operator-u
 NeoBundleLazy 'osyo-manga/vim-over'
 NeoBundleLazy 'osyo-manga/unite-quickfix'
 NeoBundleLazy 'osyo-manga/shabadou.vim', {'depends': 'thinca/vim-quickrun'}
-NeoBundleLazy 'osyo-manga/vim-marching'
 NeoBundleLazy 'osyo-manga/vim-itunes-bgm'
+NeoBundleLazy 'osyo-manga/vim-reanimate'
 NeoBundleLazy 'pangloss/vim-javascript'
 NeoBundleLazy 'pasela/unite-webcolorname'
 NeoBundleLazy 'rhysd/unite-codic.vim', {'depends': 'koron/codic-vim'}
 NeoBundleLazy 'rhysd/vim-operator-surround', {'depends': 'kana/vim-operator-user'}
-NeoBundleLazy 'rhysd/wandbox-vim'
 NeoBundleLazy 'rking/ag.vim'
 NeoBundleLazy 'sjl/gundo.vim'
 NeoBundleLazy 'superbrothers/vim-vimperator'
@@ -204,6 +203,10 @@ NeoBundleLazy 'fatih/vim-go'
 NeoBundleLazy 'taka84u9/vim-ref-ri', {'depends': 'thinca/vim-ref'}
 NeoBundleLazy 'fuenor/qfixgrep'
 NeoBundle 'fuenor/qfixhowm', {'depends': 'fuenor/qfixgrep'}
+if executable('clang')
+  NeoBundleLazy 'osyo-manga/vim-marching'
+  NeoBundleLazy 'rhysd/wandbox-vim'
+endif
 if executable('ruby')
   NeoBundleLazy 'marcus/rsense', {'build': {'others': 'ruby etc/config.rb > ~/.rsense'}}
   NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {'depends': 'marcus/rsense'}

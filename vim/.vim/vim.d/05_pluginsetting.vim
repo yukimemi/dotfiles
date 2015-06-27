@@ -2371,6 +2371,31 @@ if neobundle#tap('qfixgrep')"{{{
 endif
 "}}}
 
+if neobundle#tap('vim-reanimate')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'unite_sources': ['reanimate'],
+        \   'commands': [{'complete': 'customlist,s:save_point_completelist', 'name': 'ReanimateLoad'},
+        \                'ReanimateLoadLatest', 'ReanimateSaveCursorHold', 'ReanimateLoadInput',
+        \                {'complete': 'customlist,s:save_point_completelist', 'name': 'ReanimateSave'},
+        \                {'complete': 'customlist,s:save_point_completelist', 'name': 'ReanimateEditVimrcLocal'},
+        \                'ReanimateSaveInput',
+        \                {'complete': 'customlist,s:save_point_completelist', 'name': 'ReanimateSwitch'},
+        \                'ReanimateUnload']
+        \ }
+        \ })
+
+  let g:reanimate_save_dir = "~/.vim/save"
+  let g:reanimate_default_category = "default"
+  let g:reanimate_default_save_name = "latest"
+  let g:reanimate_sessionoptions = "curdir,folds,globals,help,localoptions,slash,tabpages,winsize"
+
+  au MyAutoCmd VimLeavePre * ReanimateSave
+  au MyAutoCmd VimEnter * ReanimateLoad
+
+endif
+"}}}
+
 " disable plugin
 let plugin_dicwin_disable = 1
 
