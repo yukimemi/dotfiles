@@ -7,47 +7,25 @@ endif
 "}}}
 
 if neobundle#tap('lightline.vim')"{{{
-  if g:is_windows || g:is_cygwin
-    let g:lightline = {
-          \ 'colorscheme': 'solarized',
-          \ 'mode_map': { 'c': 'NORMAL' },
-          \ 'active': {
-          \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'anzu' ] ]
-          \ },
-          \ 'component_function': {
-          \   'modified': 'MyModified',
-          \   'readonly': 'MyReadonly',
-          \   'fugitive': 'MyFugitive',
-          \   'filename': 'MyFilename',
-          \   'fileformat': 'MyFileformat',
-          \   'filetype': 'MyFiletype',
-          \   'fileencoding': 'MyFileencoding',
-          \   'mode': 'MyMode',
-          \   'anzu': 'anzu#search_status'
-          \ }
-          \ }
-  else
-    let g:lightline = {
-          \ 'colorscheme': 'solarized',
-          \ 'mode_map': { 'c': 'NORMAL' },
-          \ 'active': {
-          \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'anzu' ] ]
-          \ },
-          \ 'component_function': {
-          \   'modified': 'MyModified',
-          \   'readonly': 'MyReadonly',
-          \   'fugitive': 'MyFugitive',
-          \   'filename': 'MyFilename',
-          \   'fileformat': 'MyFileformat',
-          \   'filetype': 'MyFiletype',
-          \   'fileencoding': 'MyFileencoding',
-          \   'mode': 'MyMode',
-          \   'anzu': 'anzu#search_status'
-          \ },
-          \ 'separator': { 'left': '⮀', 'right': '⮂' },
-          \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-          \ }
-  endif
+  let g:lightline = {
+        \ 'colorscheme': 'solarized',
+        \ 'mode_map': { 'c': 'NORMAL' },
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'anzu' ] ]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'MyModified',
+        \   'readonly': 'MyReadonly',
+        \   'fugitive': 'MyFugitive',
+        \   'filename': 'MyFilename',
+        \   'fileformat': 'MyFileformat',
+        \   'filetype': 'MyFiletype',
+        \   'fileencoding': 'MyFileencoding',
+        \   'mode': 'MyMode',
+        \   'anzu': 'anzu#search_status'
+        \ }
+        \ }
+
   function! MyModified()"{{{
     return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
   endfunction"}}}
