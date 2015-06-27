@@ -136,6 +136,7 @@ go get github.com/spf13/hugo
 go get golang.org/x/text/encoding/japanese
 go get golang.org/x/text/encoding
 go get github.com/headzoo/surf
+go get github.com/laurent22/massren && massren --config editor vim
 
 # Hugo
 git clone --recursive https://github.com/spf13/hugoThemes themes

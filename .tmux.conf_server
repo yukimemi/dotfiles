@@ -85,7 +85,7 @@ set -g status-right-length 90
 set -g status-left "#(~/.tmux-powerline/powerline.sh left)"
 set -g status-right "#(~/.tmux-powerline/powerline.sh right)"
 
-setw -g window-status-current-format "#[fg=colour235, bg=colour160]⮀#[fg=colour255, bg=colour160] #I ⮁ #W #[fg=colour160, bg=colour235]⮀"
+setw -g window-status-current-format "#[fg=colour235, bg=colour160] | #[fg=colour255, bg=colour160] #I | #W #[fg=colour160, bg=colour235]"
 
 bind C-[ run '~/.tmux-powerline/mute_powerline.sh left'      # Mute left statusbar.
 bind C-] run '~/.tmux-powerline/mute_powerline.sh right'     # Mute right statusbar.
