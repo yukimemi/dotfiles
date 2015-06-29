@@ -459,6 +459,10 @@ if neobundle#tap('unite.vim')"{{{
   " grep ~/.vim_junk
   nnoremap suj :<C-u>Unite grep:~/.cache/junkfile<CR>
 
+  " Incremental search in cmdline history.
+  " http://d.hatena.ne.jp/osyo-manga/20140825
+  inoremap <C-l> <ESC>:Unite history/command -start-insert -default-action=edit<CR>
+
   " http://d.hatena.ne.jp/osyo-manga/20131217/1387292034"{{{
   let g:unite_source_alias_aliases = {
         \ "startup_neomru": {
@@ -501,10 +505,10 @@ if neobundle#tap('unite.vim')"{{{
   "}}}
 
   " grep source setting
-	if executable('jvgrep')
-	  let g:unite_source_grep_command = 'jvgrep'
-	  let g:unite_source_grep_default_opts = '-i --exclude ''\.(git|svn|hg|bzr)'''
-	  let g:unite_source_grep_recursive_opt = '-R'
+  if executable('jvgrep')
+    let g:unite_source_grep_command = 'jvgrep'
+    let g:unite_source_grep_default_opts = '-i --color=never'
+    let g:unite_source_grep_recursive_opt = '-R'
   elseif executable('pt')
     let g:unite_source_grep_command = 'pt'
     let g:unite_source_grep_default_opts = '--nogroup --nocolor'
@@ -519,8 +523,6 @@ if neobundle#tap('unite.vim')"{{{
   let s:unite_default_context = {
         \ 'start_insert': 1,
         \ 'winheight': 10,
-        \ 'vertical': 0,
-        \ 'short_source_names': 0,
         \ 'direction': 'botright'
         \ }
   if ! g:is_windows
@@ -2390,9 +2392,30 @@ if neobundle#tap('vim-reanimate')"{{{
   let g:reanimate_default_save_name = "latest"
   let g:reanimate_sessionoptions = "curdir,folds,globals,help,localoptions,slash,tabpages,winsize"
 
-  au MyAutoCmd VimLeavePre * ReanimateSave
-  au MyAutoCmd VimEnter * ReanimateLoad
+  " Disable confirm
+  let g:reanimate_event_disables = {
+        \ "_" : {
+        \   "reanimate_confirm" : 1
+        \ }
+        \ }
 
+  au MyAutoCmd VimLeavePre * ReanimateSave
+  if has('vim_starting') && expand("%") == ""
+    au MyAutoCmd VimEnter * ReanimateLoad
+  endif
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-unite-history')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'unite_sources': ['history']
+        \ }
+        \ })
+
+  call neobundle#untap()
 endif
 "}}}
 

@@ -184,6 +184,7 @@ NeoBundleLazy 'thinca/vim-ref'
 " NeoBundleLazy 'thinca/vim-splash'
 NeoBundleLazy 'thinca/vim-template'
 NeoBundleLazy 'thinca/vim-visualstar'
+NeoBundleLazy 'thinca/vim-unite-history'
 NeoBundleLazy 'tpope/vim-fireplace', {'depends': ['tpope/vim-classpath', 'guns/vim-clojure-static']}
 NeoBundleLazy 'tsukkee/lingr-vim'
 NeoBundleLazy 'tsukkee/unite-help'
