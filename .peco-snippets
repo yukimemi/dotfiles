@@ -77,7 +77,8 @@ ghq get https://github.com/Xfennec/cv.git
 ghq get https://github.com/BestPig/cv.git # for mac
 ghq get https://github.com/tcnksm/dotfiles.git
 ghq get https://github.com/cd01/vimppm.git
-ghq get https://github.com/Lokaltog/powerline-fonts.git
+ghq get https://github.com/powerline/fonts.git
+ghq get https://github.com/powerline/powerline.git
 ghq get https://github.com/itchyny/miv.git
 ghq get https://github.com/joefitzgerald/packer-windows.git
 ghq get https://github.com/glidenote/dotfiles.git
@@ -211,3 +212,10 @@ cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 
 # install miv
 ghq get ghq get https://github.com/itchyny/miv.git; cd ~/.ghq/src/github.com/itchyny/miv && cabal update && cabal install
+
+# Install pip
+curl -kL https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
+
+# Install powerline
+pip install --user powerline-status
+
