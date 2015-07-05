@@ -1181,29 +1181,19 @@ if neobundle#tap('vim-ps1')"{{{
         \ })
 
   function! neobundle#hooks.on_source(bundle)
-    function! s:addHeader(flg)
+    function! s:addHeaderPs1(flg)
       let list = []
-      call add(list, "@echo off\r")
-      call add(list, "pushd \"%~dp0\" > nul\r")
-      call add(list, "set tm=%time: =0%\r")
-      call add(list, "set ps1file=%~n0___%date:~-10,4%%date:~-5,2%%date:~-2,2%_%tm:~0,2%%tm:~3,2%%tm:~6,2%%tm:~9,2%.ps1\r")
-      " call add(list, "for /f \"usebackq skip=10 delims=\" %%i in (\"%~f0\") do @echo %%i >> \"%ps1file%\"\r")
-      " call add(list, "more +10 \"%~f0\" | sort /+10000000 | sort /+10000000 /o \"%ps1file%\"\r")
-      call add(list, "more +10 \"%~f0\" >> \"%ps1file%\"\r")
-      call add(list, "powershell -NoProfile -ExecutionPolicy unrestricted -File \"%ps1file%\" %*\r")
-      call add(list, "del \"%ps1file%\"\r")
-      call add(list, "popd > nul\r")
       if ! a:flg
-        call add(list, "pause\r")
+        call add(list, "@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@goto :eof\r")
+      else
+        call add(list, "@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@goto :eof&@pause\r")
       endif
-      call add(list, "exit %ERRORLEVEL%\r")
-      call add(list, "\# ========== do ps1 file as a dosbatch ==========\r")
       call extend(list, readfile(expand("%"), "b"))
       let cp932List = []
       call writefile(list, expand("%:p:r") . ".cmd", "b")
     endfunction
-    au MyAutoCmd BufWritePost *.ps1 call s:addHeader(0)
-    au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeader(1)
+    au MyAutoCmd BufWritePost *.ps1 call s:addHeaderPs1(0)
+    au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
   endfunction
 
   call neobundle#untap()
@@ -1450,6 +1440,26 @@ if neobundle#tap('vim-javascript')"{{{
         \   'filetypes': ['javascript']
         \ }
         \ })
+
+  function! neobundle#hooks.on_source(bundle)
+    function! s:addHeaderJavascript(flg)
+      if &fileencoding == 'cp932'
+        let list = []
+        call add(list, "@set @junk=1 /*\r")
+        if ! a:flg
+          call add(list, "@cscript //nologo //e:jscript \"%~f0\" %* & @ping -n 10 localhost > nul & @goto :eof\r")
+        else
+          call add(list, "@cscript //nologo //e:jscript \"%~f0\" %* & @ping -n 10 localhost > nul & @goto :eof&@pause\r")
+        endif
+        call add(list, "*/\r")
+        call extend(list, readfile(expand("%"), "b"))
+        let cp932List = []
+        call writefile(list, expand("%:p:r") . ".cmd", "b")
+      endif
+    endfunction
+    au MyAutoCmd BufWritePost *.js call s:addHeaderJavascript(0)
+    au MyAutoCmd FileType javascript nnoremap <buffer> <expr><Leader>m <SID>addHeaderJavascript(1)
+  endfunction
 
   call neobundle#untap()
 endif
