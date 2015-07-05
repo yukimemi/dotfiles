@@ -1189,8 +1189,9 @@ if neobundle#tap('vim-ps1')"{{{
         call add(list, "@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@goto :eof&@pause\r")
       endif
       call extend(list, readfile(expand("%"), "b"))
-      let cp932List = []
-      call writefile(list, expand("%:p:r") . ".cmd", "b")
+      let s:basedir = expand("%:p:h") . "/cmd/"
+      call Mkdir(s:basedir)
+      call writefile(list,  s:basedir . expand("%:p:t:r") . ".cmd", "b")
     endfunction
     au MyAutoCmd BufWritePost *.ps1 call s:addHeaderPs1(0)
     au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
@@ -1453,8 +1454,9 @@ if neobundle#tap('vim-javascript')"{{{
         endif
         call add(list, "*/\r")
         call extend(list, readfile(expand("%"), "b"))
-        let cp932List = []
-        call writefile(list, expand("%:p:r") . ".cmd", "b")
+        let s:basedir = expand("%:p:h") . "/cmd/"
+        call Mkdir(s:basedir)
+        call writefile(list,  s:basedir . expand("%:p:t:r") . ".cmd", "b")
       endif
     endfunction
     au MyAutoCmd BufWritePost *.js call s:addHeaderJavascript(0)
