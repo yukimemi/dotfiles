@@ -21,6 +21,8 @@ nnoremap [Space] <Nop>
 
 " Useful save mappings.
 nnoremap <silent> <Leader><Leader> :<C-u>update<CR>
+" Paste continuously
+vnoremap <C-p> "0p<CR>
 
 " Change current directory.
 nnoremap [Space]cd :<C-u>call <SID>cd_buffer_dir()<CR>
