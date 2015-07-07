@@ -525,12 +525,10 @@ if neobundle#tap('unite.vim')"{{{
         \ 'winheight': 10,
         \ 'direction': 'botright'
         \ }
-  if ! g:is_windows
-    call extend(s:unite_default_context, {
-          \ 'prompt': '» ',
-          \ 'marked_icon': '✗'
-          \ })
-  endif
+  call extend(s:unite_default_context, {
+        \ 'prompt': '» ',
+        \ 'marked_icon': '✗'
+        \ })
   call unite#custom#profile('default', 'context', s:unite_default_context)
 
   function! neobundle#hooks.on_source(bundle)
@@ -2426,6 +2424,61 @@ if neobundle#tap('vim-unite-history')"{{{
         \   'unite_sources': ['history']
         \ }
         \ })
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('xmledit')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'filetypes': ['xml']
+        \ }
+        \ })
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-easy-align')"{{{
+  call neobundle#config({
+        \ 'autoload': {
+        \   'mappings': ['<Plug>(EasyAlignOperator)', ['sxn', '<Plug>(EasyAlign)'],
+        \                ['sxn', '<Plug>(LiveEasyAlign)'],
+        \                ['sxn', '<Plug>(EasyAlignRepeat)']],
+        \   'commands': ['EasyAlign', 'LiveEasyAlign']
+        \ }
+        \ })
+
+  vmap <Enter> <Plug>(EasyAlign)
+  let g:easy_align_delimiters = {
+        \ '>': {
+        \       'pattern': '>>\|=>\|>.\+',
+        \       'right_margin':  0,
+        \       'delimiter_align': 'l'
+        \   },
+        \ '/': {
+        \       'pattern':         '//\+\|/\*\|\*/',
+        \       'delimiter_align': 'l',
+        \       'ignore_groups':   ['!Comment'] },
+        \ ']': {
+        \       'pattern':       '[[\]]',
+        \       'left_margin':   0,
+        \       'right_margin':  0,
+        \       'stick_to_left': 0
+        \   },
+        \ ')': {
+        \       'pattern':       '[()]',
+        \       'left_margin':   0,
+        \       'right_margin':  0,
+        \       'stick_to_left': 0
+        \   },
+        \ 'd': {
+        \       'pattern':      ' \(\S\+\s*[;=]\)\@=',
+        \       'left_margin':  0,
+        \       'right_margin': 0
+        \   }
+        \ }
 
   call neobundle#untap()
 endif
