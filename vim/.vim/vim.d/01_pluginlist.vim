@@ -67,6 +67,7 @@ NeoBundle 'tyru/caw.vim'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'KazuakiM/vim-qfsigns', {'depends': ['osyo-manga/vim-watchdogs']}
+" NeoBundle 'yonchu/accelerated-smooth-scroll'
 if executable('fcitx-remote')
   NeoBundle 'fuenor/im_control.vim'
 endif
@@ -203,6 +204,8 @@ NeoBundleLazy 'zhisheng/visualmark.vim'
 NeoBundleLazy 'fatih/vim-go'
 NeoBundleLazy 'taka84u9/vim-ref-ri', {'depends': 'thinca/vim-ref'}
 NeoBundleLazy 'fuenor/qfixgrep'
+NeoBundleLazy 'sukima/xmledit'
+NeoBundleLazy 'junegunn/vim-easy-align'
 NeoBundle 'fuenor/qfixhowm', {'depends': 'fuenor/qfixgrep'}
 if executable('clang')
   NeoBundleLazy 'osyo-manga/vim-marching'
