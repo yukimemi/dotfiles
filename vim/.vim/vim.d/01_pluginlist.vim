@@ -54,7 +54,7 @@ NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'osyo-manga/vim-anzu'
 NeoBundle 'osyo-manga/vim-automatic', {'depends': ['osyo-manga/vim-gift', 'osyo-manga/vim-reunions']}
-NeoBundle 'osyo-manga/vim-watchdogs', {'depends': 'thinca/vim-quickrun'}
+NeoBundle 'osyo-manga/vim-watchdogs', {'depends': ['thinca/vim-quickrun']}
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'rhysd/committia.vim'
 NeoBundle 'soramugi/auto-ctags.vim'

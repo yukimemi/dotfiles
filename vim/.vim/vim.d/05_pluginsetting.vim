@@ -2007,15 +2007,25 @@ if neobundle#tap('vim-watchdogs')"{{{
         \
         \ "watchdogs_checker/clang++": {
         \   "cmdopt": "-Wall"
+        \ },
+        \ "xml/watchdogs_checker": {
+        \   "type": "watchdogs_checker/xmllint"
+        \ },
+        \ "watchdogs_checker/xmllint": {
+        \   "command": "xmllint",
+        \   "exec": "%c %o %s",
+        \   "cmdopt": "--recover"
         \ }
         \ }
   call extend(g:quickrun_config, g:watchdogs_config)
+  call watchdogs#setup(g:quickrun_config)
 
   " auto check at save
   let g:watchdogs_check_BufWritePost_enable = 1
 
   let g:watchdogs_check_BufWritePost_enables = {
-        \ "javascript": 0
+        \ "javascript": 0,
+        \ "xml": 1
         \ }
 
   cal neobundle#untap()
@@ -2451,6 +2461,7 @@ if neobundle#tap('vim-easy-align')"{{{
         \ })
 
   vmap <Enter> <Plug>(EasyAlign)
+
   let g:easy_align_delimiters = {
         \ '>': {
         \       'pattern': '>>\|=>\|>.\+',
@@ -2477,6 +2488,10 @@ if neobundle#tap('vim-easy-align')"{{{
         \       'pattern':      ' \(\S\+\s*[;=]\)\@=',
         \       'left_margin':  0,
         \       'right_margin': 0
+        \   },
+        \ 'p': {
+        \       'pattern':      'pos\|size',
+        \       'filter':       'g'
         \   }
         \ }
 
