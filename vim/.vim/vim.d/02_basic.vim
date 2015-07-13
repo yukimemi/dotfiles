@@ -1,10 +1,3 @@
-" Judge os type"{{{
-let g:is_windows = has('win16') || has('win32') || has('win64')
-let g:is_cygwin = has('win32unix')
-let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
-let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
-"}}}
-
 let mapleader = ','
 " let maplocalleader = ' '
 
@@ -68,6 +61,7 @@ au MyAutoCmd CmdwinEnter * :silent! 1,$-20 delete _ | call cursor("$", 1)
 " Reload .vimrc automatically.
 " au MyAutoCmd BufWritePost *vimrc source $MYVIMRC | redraw
 " au MyAutoCmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+au MyAutoCmd BufWritePost .vimrc,vimrc,*.rc.vim,neobundle.toml,neobundlelazy.toml NeoBundleClearCache
 
 set ignorecase
 set smartcase
@@ -87,7 +81,7 @@ set novisualbell
 set visualbell t_vb=
 set shellslash
 set number
-set showmatch matchtime=3
+set showmatch matchtime=1
 set tabstop=2
 set shiftwidth=2
 set softtabstop=0
@@ -110,7 +104,6 @@ set display=lastline
 set foldmethod=marker
 set foldclose=all
 set t_Co=256
-syntax enable
 
 " color
 set background=dark
@@ -167,4 +160,13 @@ let g:markdown_fenced_languages = [
       \ 'xml',
       \ 'vim',
       \ ]
+
+" For binary
+au MyAutoCmd BufReadPre  *.bin,*.dat let &bin=1
+au MyAutoCmd BufReadPost *.bin,*.dat if &bin | %!xxd
+au MyAutoCmd BufReadPost *.bin,*.dat set ft=xxd | endif
+au MyAutoCmd BufWritePre *.bin,*.dat if &bin | %!xxd -r
+au MyAutoCmd BufWritePre *.bin,*.dat endif
+au MyAutoCmd BufWritePost *.bin,*.dat if &bin | %!xxd
+au MyAutoCmd BufWritePost *.bin,*.dat set nomod | endif
 

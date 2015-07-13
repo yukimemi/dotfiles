@@ -66,6 +66,7 @@ ghq get git@github.com:yukimemi/gocore.git
 ghq get git@github.com:yukimemi/yukimemi.github.io.git
 ghq get git@github.com:yukimemi/Brewfile.git
 ghq get git@github.com:yukimemi/homebrew-custom.git
+ghq get git@github.com:yukimemi/powerline.git
 # others
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
@@ -95,6 +96,7 @@ ghq get https://github.com/l0b0/xterm-color-count.git
 ghq get https://github.com/kenhys/mayu.git
 ghq get https://github.com/atom/electron.git
 ghq get https://github.com/atom/electron-starter.git
+ghq get https://github.com/tacahilo/.vim
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git

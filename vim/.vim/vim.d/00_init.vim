@@ -26,6 +26,13 @@ elseif isdirectory($VIM . '\vimfiles')
 endif
 "}}}
 
+" Judge os type"{{{
+let g:is_windows = has('win16') || has('win32') || has('win64')
+let g:is_cygwin = has('win32unix')
+let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
+let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
+"}}}
+
 function! Mkdir(dir)"{{{
   if !isdirectory(a:dir)
     call mkdir(a:dir, "p")
