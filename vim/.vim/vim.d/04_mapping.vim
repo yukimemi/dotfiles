@@ -1,7 +1,5 @@
 inoremap <silent> jj <ESC>
-nnoremap j gj
 xnoremap j gj
-nnoremap k gk
 xnoremap k gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
@@ -23,6 +21,8 @@ nnoremap [Space] <Nop>
 nnoremap <silent> <Leader><Leader> :<C-u>update<CR>
 " Paste continuously
 vnoremap <C-p> "0p<CR>
+
+nnoremap Y y$
 
 " Change current directory.
 nnoremap [Space]cd :<C-u>call <SID>cd_buffer_dir()<CR>

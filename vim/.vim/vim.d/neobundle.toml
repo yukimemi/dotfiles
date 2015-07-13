@@ -1,0 +1,62 @@
+# ======================================================================
+# Visual {{{
+# ======================================================================
+[[plugins]]
+repository = 'altercation/vim-colors-solarized'
+
+[[plugins]]
+repository = 'itchyny/lightline.vim'
+
+[[plugins]]
+repository = 'Yggdroot/indentLine'
+
+[[plugins]]
+repository = 'LeafCage/foldCC'
+# }}}
+
+# ======================================================================
+# Search {{{
+# ======================================================================
+[[plugins]]
+repository = 'haya14busa/incsearch.vim'
+
+[[plugins]]
+repository = 'osyo-manga/vim-anzu'
+# }}}
+
+# ======================================================================
+# Window {{{
+# ======================================================================
+[[plugins]]
+repository = 'thinca/vim-submode'
+
+[[plugins]]
+repository = 'osyo-manga/vim-automatic'
+depends = ['osyo-manga/vim-gift', 'osyo-manga/vim-reunions']
+
+[[plugins]]
+repository = 'kana/vim-tabpagecd'
+# }}}
+
+# ======================================================================
+# Check {{{
+# ======================================================================
+[[plugins]]
+repository = 'osyo-manga/vim-watchdogs'
+depends = 'thinca/vim-quickrun'
+# }}}
+
+# ======================================================================
+# Yank/Paste {{{
+# ======================================================================
+[[plugins]]
+repository = 'LeafCage/yankround.vim'
+# }}}
+
+# ======================================================================
+# Utility {{{
+# ======================================================================
+[[plugins]]
+repository = 'mattn/webapi-vim'
+# }}}
+
