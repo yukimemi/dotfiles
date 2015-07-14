@@ -4,6 +4,6 @@ set all&
 scriptencoding utf-8
 
 " Load other config files
-set runtimepath+=~/.vim
+set runtimepath+=~/.vim,~/.vim/after
 runtime! vim.d/*.vim
 
