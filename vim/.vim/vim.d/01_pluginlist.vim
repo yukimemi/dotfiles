@@ -6,12 +6,6 @@ endif
 let s:neobundle_dir = expand('$CACHE/neobundle')
 
 if has('vim_starting') "{{{
-  " Set runtimepath.
-  if g:is_windows
-    let &runtimepath = join([
-          \ expand('~/.vim'),
-          \ expand('~/.vim/after')], ',')
-  endif
 
   " Load neobundle.
   if finddir('neobundle.vim', '.;') != ''
