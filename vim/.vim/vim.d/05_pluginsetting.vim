@@ -1813,6 +1813,9 @@ if neobundle#tap('vim-easy-align')"{{{
         \ 'p': {
         \       'pattern':      'pos\|size',
         \       'filter':       'g'
+        \   },
+        \ 's': {
+        \       'pattern':      'sys=\|Trns='
         \   }
         \ }
 

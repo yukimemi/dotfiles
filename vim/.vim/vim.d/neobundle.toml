@@ -5,6 +5,9 @@
 repository = 'altercation/vim-colors-solarized'
 
 [[plugins]]
+repository = 'tomasr/molokai'
+
+[[plugins]]
 repository = 'itchyny/lightline.vim'
 
 [[plugins]]
