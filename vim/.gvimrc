@@ -18,10 +18,9 @@ if s:is_darwin
   let g:solarized_contrast = "high"
   set background=dark
 else
-  " set background=dark
   set background=light
-  " colorscheme solarized
-  colorscheme sakura
+  let g:solarized_italic = 0
+  colorscheme solarized
   " let g:solarized_visibility = "high"
   " let g:solarized_contrast = "high"
 endif
