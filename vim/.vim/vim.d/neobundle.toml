@@ -61,5 +61,8 @@ repository = 'LeafCage/yankround.vim'
 # ======================================================================
 [[plugins]]
 repository = 'mattn/webapi-vim'
+
+[[plugins]]
+repository = 'rhysd/committia.vim'
 # }}}
 

@@ -1950,13 +1950,6 @@ if neobundle#tap('vim-operator-user')"{{{
 endif
 "}}}
 
-if neobundle#tap('commitia.vim')"{{{
-  au MyAutoCmd BufReadPre COMMIT_EDITMSG NeoBundleSource 'commitia.vim'
-
-  call neobundle#untap()
-endif
-"}}}
-
 " disable plugin
 let plugin_dicwin_disable = 1
 
