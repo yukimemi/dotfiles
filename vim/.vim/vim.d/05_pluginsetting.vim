@@ -1889,22 +1889,35 @@ if neobundle#tap('vim-textobj-user')"{{{
   xmap ib <Plug>(textobj-multiblock-i)
   " vim-textobj-entire
   map ae <Plug>(textobj-entire-a)
+  nunmap ae
   map ie <Plug>(textobj-entire-i)
+  nunmap ie
   " vim-textobj-fold
   map az <Plug>(textobj-fold-a)
+  nunmap az
   map iz <Plug>(textobj-fold-i)
+  nunmap iz
   " vim-textobj-function
   map af <Plug>(textobj-function-a)
+  nunmap af
   map if <Plug>(textobj-function-i)
+  nunmap if
   map aF <Plug>(textobj-function-A)
+  nunmap aF
   map iF <Plug>(textobj-function-I)
+  nunmap iF
   " vim-textobj-indent
   map ai <Plug>(textobj-indent-a)
+  nunmap ai
   map ii <Plug>(textobj-indent-i)
+  nunmap ii
   map aI <Plug>(textobj-indent-same-a)
+  nunmap aI
   map iI <Plug>(textobj-indent-same-i)
+  nunmap iI
   " textobj-lastpaste
   map iP <Plug>(textobj-lastpaste-i)
+  nunmap iP
 
   call neobundle#untap()
 endif
@@ -1932,6 +1945,13 @@ if neobundle#tap('vim-operator-user')"{{{
   nmap <Leader>g* <Plug>(operator-g*)
   nmap <Leader>#  <Plug>(operator-#)
   nmap <Leader>g# <Plug>(operator-g#)
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('commitia.vim')"{{{
+  au MyAutoCmd BufReadPre COMMIT_EDITMSG NeoBundleSource 'commitia.vim'
 
   call neobundle#untap()
 endif
