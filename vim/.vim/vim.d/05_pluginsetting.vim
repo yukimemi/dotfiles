@@ -1089,42 +1089,6 @@ if neobundle#tap('rainbow_parentheses.vim')"{{{
 endif
 "}}}
 
-if neobundle#tap('vim-tagsgen')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'commands': ['TagsgenSetDir', 'Tagsgen']
-        \ }
-        \ })
-
-  let g:tagsgen_tags_command = {
-        \ '_': 'ctags',
-        \ 'go': 'gotags'
-        \ }
-  let g:tagsgen_option = {
-        \ '_' : '-R',
-        \ 'vim': '-R --languages=Vim',
-        \ 'python': '-R --languages=Python',
-        \ 'go': '{CURFILES} > tags'
-        \ }
-
-  au MyAutoCmd BufWinEnter *.{vim,go,python} TagsgenSetDir
-  au MyAutoCmd BufWritePost *.{vim,go,python} Tagsgen
-
-  call neobundle#untap()
-endif
-"}}}
-
-if neobundle#tap('vim-visual-increment')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'mappings': [['sx', '<Plug>Visual']]
-        \ }
-        \ })
-
-  call neobundle#untap()
-endif
-"}}}
-
 if neobundle#tap('vim-easymotion')"{{{
   call neobundle#config({
         \ 'autoload': {
@@ -1945,6 +1909,14 @@ if neobundle#tap('vim-operator-user')"{{{
   nmap <Leader>g* <Plug>(operator-g*)
   nmap <Leader>#  <Plug>(operator-#)
   nmap <Leader>g# <Plug>(operator-g#)
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('auto-ctags.vim')"{{{
+  let g:auto_ctags = 1
+  let g:auto_ctags_tags_name = '.tags'
 
   call neobundle#untap()
 endif
