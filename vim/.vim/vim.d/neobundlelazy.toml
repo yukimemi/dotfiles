@@ -555,6 +555,7 @@ commands = 'PP'
 [[plugins]]
 repository = 'thinca/vim-qfreplace'
 filetypes = ['unite', 'quickfix']
+commands = 'Qfreplace'
 
 [[plugins]]
 repository = 'itchyny/vim-external'
@@ -640,5 +641,9 @@ repository = 'koron/codic-vim'
   [plugins.commands]
   name = 'Codic'
   complete = 'customlist,codic#complete'
+
+[[plugins]]
+repository = 'soramugi/auto-ctags.vim'
+commands = 'Ctags'
 # }}}
 
