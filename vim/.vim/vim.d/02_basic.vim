@@ -61,7 +61,7 @@ au MyAutoCmd CmdwinEnter * :silent! 1,$-20 delete _ | call cursor("$", 1)
 " Reload .vimrc automatically.
 " au MyAutoCmd BufWritePost *vimrc source $MYVIMRC | redraw
 " au MyAutoCmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
-au MyAutoCmd BufWritePost .vimrc,vimrc,*.rc.vim,neobundle.toml,neobundlelazy.toml NeoBundleClearCache
+au MyAutoCmd BufWritePost .vimrc,vimrc,*.rc.vim,neobundle*.toml NeoBundleClearCache
 
 set ignorecase
 set smartcase

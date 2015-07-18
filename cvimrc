@@ -28,3 +28,4 @@ map <C-h> previousTab
 map <C-l> nextTab
 map R reloadTabUncached
 
+map <C-[> <ESC>

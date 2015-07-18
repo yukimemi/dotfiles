@@ -1090,13 +1090,6 @@ endif
 "}}}
 
 if neobundle#tap('vim-easymotion')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'mappings': [['sxno', '<Plug>(easymotion-']],
-        \   'commands': ['EMCommandLineNoreMap', 'EMCommandLineMap', 'EMCommandLineUnMap']
-        \ }
-        \ })
-
   " Disable default mappings
   let g:EasyMotion_do_mapping = 0
   let g:EasyMotion_use_migemo = 1
@@ -1129,28 +1122,6 @@ if neobundle#tap('vim-easymotion')"{{{
 endif
 "}}}
 
-if neobundle#tap('vim-markdown')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'filetypes': 'markdown'
-        \ }
-        \ })
-
-  call neobundle#untap()
-endif
-"}}}
-
-if neobundle#tap('previm')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'commands': ['PrevimOpen']
-        \ }
-        \ })
-
-  call neobundle#untap()
-endif
-"}}}
-
 if neobundle#tap('vim-filetype-haskell')"{{{
   call neobundle#config({
         \ 'autoload': {
@@ -1159,21 +1130,6 @@ if neobundle#tap('vim-filetype-haskell')"{{{
         \ })
 
   call neobundle#untap()
-endif
-"}}}
-
-if neobundle#tap('jazzradio.vim')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'unite_sources': ['jazzradio'],
-        \   'commands': ['JazzradioUpdateChannels', 'JazzradioStop',
-        \        {'complete': 'customlist,jazzradio#channel_key_complete', 'name': 'JazzradioPlay'}],
-        \   'function_prefix': 'jazzradio'
-        \ }
-        \ })
-
-  call neobundle#untap()
-
 endif
 "}}}
 
@@ -1194,12 +1150,6 @@ endif
 "}}}
 
 if neobundle#tap('memolist.vim')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'commands': ['MemoList', 'MemoGrep', 'MemoNew']
-        \ }
-        \ })
-
   if isdirectory($HOME . '/Dropbox')
     let g:memolist_path = $HOME . '/Dropbox/memolist'
   else
@@ -1222,13 +1172,6 @@ endif
 "}}}
 
 if neobundle#tap('ZoomWin')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'mappings': [['n', '<Plug>ZoomWin']],
-        \   'commands': ['ZoomWin']
-        \ }
-        \ })
-
   nmap so <Plug>ZoomWin
 
   call neobundle#untap()
@@ -1700,10 +1643,10 @@ if neobundle#tap('vim-reanimate')"{{{
   let g:reanimate_save_dir = "~/.vim/save"
   let g:reanimate_default_category = "default"
   let g:reanimate_default_save_name = "latest"
-  if has('gui_running')
-    let g:reanimate_sessionoptions = "curdir,folds,globals,help,localoptions,slash,tabpages,winsize"
-  else
-    let g:reanimate_sessionoptions = "curdir,folds,globals,help,localoptions,slash,tabpages"
+  let g:reanimate_sessionoptions = "curdir,folds,globals,help,localoptions,slash,tabpages,winsize"
+
+  if !has("gui_running")
+    let g:reanimate_disables = ["reanimate_window"]
   endif
 
   " Disable confirm
@@ -1917,6 +1860,15 @@ endif
 if neobundle#tap('auto-ctags.vim')"{{{
   let g:auto_ctags = 1
   let g:auto_ctags_tags_name = '.tags'
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-better-whitespace')"{{{
+  let g:better_whitespace_filetypes_blacklist=['unite', 'vimfiler']
+
+  au MyAutoCmd BufWritePre *.coffee,*.js,*.ps1,*.md,*.jade,Vagrantfile,.vimrc,*.vim StripWhitespace
 
   call neobundle#untap()
 endif

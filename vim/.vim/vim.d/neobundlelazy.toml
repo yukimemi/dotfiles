@@ -141,6 +141,10 @@ filetypes = 'all'
 [[plugins]]
 repository = 'kien/rainbow_parentheses.vim'
 commands = 'RainbowParenthesesToggle'
+
+[[plugins]]
+repository = 'ntpeters/vim-better-whitespace'
+filetypes = 'all'
 # }}}
 
 # ======================================================================
@@ -645,5 +649,9 @@ repository = 'koron/codic-vim'
 [[plugins]]
 repository = 'soramugi/auto-ctags.vim'
 commands = 'Ctags'
+
+[[plugins]]
+repository = 'yassu/todo-env.vim'
+filetypes = 'todo'
 # }}}
 
