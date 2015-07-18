@@ -18,7 +18,7 @@ if s:is_darwin
   let g:solarized_contrast = "high"
   set background=dark
 else
-  set background=light
+  set background=dark
   let g:solarized_italic = 0
   colorscheme solarized
   " let g:solarized_visibility = "high"
