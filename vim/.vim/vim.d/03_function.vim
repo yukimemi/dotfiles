@@ -32,16 +32,6 @@ endfunction
 au MyAutoCmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
 "}}}
 
-function! s:rtrim()"{{{
-  " delete space at the end of line
-  let save_cursor = getpos(".")
-  %s/\s\+$//e
-  call setpos(".", save_cursor)
-endfunction
-au MyAutoCmd BufWritePre *.coffee,*.js,*.ps1,*.md,*.jade,Vagrantfile,.vimrc call <SID>rtrim()
-com! Rtrim call <SID>rtrim()
-"}}}
-
 function! s:format()"{{{
   " auto indent format
   let save_view = winsaveview()
