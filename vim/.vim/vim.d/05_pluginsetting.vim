@@ -638,8 +638,12 @@ if neobundle#tap('vim-quickrun')"{{{
         \   },
         \ "plantuml": {
         \     "command": "java",
-        \     "cmdopt": "-jar plantuml.jar -tpng",
+        \     "cmdopt": "-jar ../bin/plantuml.jar -tpng",
         \     "exec": "%c %o %s"
+        \   },
+        \ "mermaid": {
+        \     "command": "mermaid",
+        \     "exec": "%c %s"
         \   },
         \ "blockdiag": {
         \     "command": "blockdiag",
@@ -1866,7 +1870,7 @@ endif
 "}}}
 
 if neobundle#tap('vim-better-whitespace')"{{{
-  let g:better_whitespace_filetypes_blacklist=['unite', 'vimfiler']
+  let g:better_whitespace_filetypes_blacklist=['unite', 'vimfiler', 'tweetvim']
 
   au MyAutoCmd BufWritePre *.coffee,*.js,*.ps1,*.md,*.jade,Vagrantfile,.vimrc,*.vim StripWhitespace
 

@@ -4,3 +4,4 @@ au MyAutoCmd BufNewFile,BufRead *.uml setl ft=plantuml
 au MyAutoCmd BufNewFile,BufRead *.diag setl ft=blockdiag
 au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown
 au MyAutoCmd BufNewFile,BufRead *.scpt,*.applescript setl filetype=applescript
+au MyAutoCmd BufNewFile,BufRead *.mmd setl filetype=mermaid
