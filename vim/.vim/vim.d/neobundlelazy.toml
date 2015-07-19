@@ -326,7 +326,7 @@ filetypes = ['markdown', 'mkd']
 # ======================================================================
 [[plugins]]
 repository = 'mattn/emmet-vim'
-filetypes = 'html'
+filetypes = ['html', 'markdown', 'xml']
 # }}}
 
 # ======================================================================
@@ -496,9 +496,29 @@ depends = 'mattn/webapi-vim'
 
 [[plugins]]
 repository =  'basyura/TweetVim''
+depends = ['basyura/twibill.vim', 'tyru/open-browser.vim', 'basyura/bitly.vim', 'mattn/favstar-vim']
 unite_sources = 'tweetvim'
 commands = ['TweetVim', 'TweetVimUserStream','TweetVimSay']
 filetypes = 'tweetvim'
+
+[[plugins]]
+repository = 'basyura/twibill.vim'
+
+[[plugins]]
+repository = 'tyru/open-browser.vim'
+
+[[plugins]]
+repository = 'basyura/bitly.vim'
+
+[[plugins]]
+repository = 'mattn/favstar-vim'
+
+[[plugins]]
+repository = 'supermomonga/jazzradio.vim'
+unite_sources = 'jazzradio'
+  [plugins.commands]
+  name = 'JazzradioPlay'
+  complete = 'customlist,Jazzradio#channel_key_complete'
 # }}}
 
 # ======================================================================
