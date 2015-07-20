@@ -98,6 +98,13 @@ ghq get https://github.com/atom/electron.git
 ghq get https://github.com/atom/electron-starter.git
 ghq get https://github.com/tacahilo/.vim
 ghq get https://github.com/knsv/mermaid.git
+ghq get https://github.com/mawatari/mac-provisioning.git
+ghq get https://github.com/twada/macbook-provisioning.git
+ghq get https://github.com/tell-k/blister-pack.git
+ghq get https://github.com/supistar/dotfiles.git
+ghq get https://github.com/k2wanko/dotfiles.git
+ghq get https://github.com/joe-re/dotfiles.git
+ghq get https://github.com/ansible/ansible-examples.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git

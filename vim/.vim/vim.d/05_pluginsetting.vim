@@ -1126,25 +1126,7 @@ if neobundle#tap('vim-easymotion')"{{{
 endif
 "}}}
 
-if neobundle#tap('vim-filetype-haskell')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'filetypes': 'haskell'
-        \ }
-        \ })
-
-  call neobundle#untap()
-endif
-"}}}
-
 if neobundle#tap('tern_for_vim')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'commands': ['TernDocBrowse', 'TernType', 'TernRename', 'TernDefPreview',
-        \        'TernDoc', 'TernDef', 'TernDefTab', 'TernDefSplit', 'TernRefs'],
-        \   'filetypes': ['javascript', 'coffee']
-        \ }
-        \ })
 
   au MyAutoCmd FileType coffee call tern#Enable()
   au MyAutoCmd FileType coffee setlocal omnifunc=tern#Complete
@@ -1183,25 +1165,7 @@ endif
 "}}}
 
 if neobundle#tap('lingr-vim')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'mappings': [['sxno', '<Plug>(lingr-messages-quote)']],
-        \   'commands': ['LingrLaunch', 'LingrExit']
-        \ }
-        \ })
-
   let g:lingr_vim_user = 'yukimemi'
-
-  call neobundle#untap()
-endif
-"}}}
-
-if neobundle#tap('googlesuggest-source.vim')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'insert': 1
-        \ }
-        \ })
 
   call neobundle#untap()
 endif
@@ -1216,14 +1180,8 @@ endif
 "}}}
 
 if neobundle#tap('unite-haddock')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'unite_sources': ['haddock', 'hoogle']
-        \ }
-        \ })
 
   au MyAutoCmd FileType haskell call s:my_haskell_mappings()
-
   function! s:my_haskell_mappings()
     nnoremap <buffer> K :<C-u>UniteWithCursorWord hoogle<CR>
     nnoremap <buffer> [Space]h :<C-u>Unite hoogle<CR>

@@ -6,10 +6,10 @@ git submodule update
 ostype() { echo $OSTYPE | tr '[A-Z]' '[a-z]'; }
 SHELL_PLATFORM='unknown'
 case "$(ostype)" in
-    *'linux'*   ) SHELL_PLATFORM='linux';;
-    *'cygwin'*  ) SHELL_PLATFORM='cygwin';;
-    *'darwin'*  ) SHELL_PLATFORM='osx';;
-    *'bsd'*     ) SHELL_PLATFORM='bsd';;
+  *'linux'*   ) SHELL_PLATFORM='linux';;
+  *'cygwin'*  ) SHELL_PLATFORM='cygwin';;
+  *'darwin'*  ) SHELL_PLATFORM='osx';;
+  *'bsd'*     ) SHELL_PLATFORM='bsd';;
 esac
 
 shell_is_linux() { [[ $SHELL_PLATFORM == 'linux' || $SHELL_PLATFORM == 'bsd' ]]; }
@@ -23,29 +23,29 @@ echo "l, s, x, or w"
 read lsxw
 while :
 do
-    if [ "${lsxw}" = "l" ]; then
-        tmux=".tmux.conf"
-        break
-    elif [ "${lsxw}" = "s" ]; then
-        tmux=".tmux.conf_server"
-        break
-    elif [ "${lsxw}" = "x" ]; then
-        tmux=".tmux.conf_linux"
-        break
-    elif [ "${lsxw}" = "w" ]; then
-        screen=".screenrc_win"
-        break
-    else
-        echo "Press l ,s ,x or w"
-        read lsxw
-    fi
+  if [ "${lsxw}" = "l" ]; then
+    tmux=".tmux.conf"
+    break
+  elif [ "${lsxw}" = "s" ]; then
+    tmux=".tmux.conf_server"
+    break
+  elif [ "${lsxw}" = "x" ]; then
+    tmux=".tmux.conf_linux"
+    break
+  elif [ "${lsxw}" = "w" ]; then
+    screen=".screenrc_win"
+    break
+  else
+    echo "Press l ,s ,x or w"
+    read lsxw
+  fi
 done
 # tmux
 if [ ${tmux} != "" ]; then
-    ln -sf ${PWD}/${tmux} ${HOME}/.tmux.conf
+  ln -sf ${PWD}/${tmux} ${HOME}/.tmux.conf
 else
-    # screen
-    ln -sf ${PWD}/${screen} ${HOME}/.screenrc
+  # screen
+  ln -sf ${PWD}/${screen} ${HOME}/.screenrc
 fi
 
 #[ ! -d "${HOME}/.oh-my-zsh" ] && git clone git@github.com:yukimemi/oh-my-zsh.git ${HOME}/.oh-my-zsh
@@ -56,7 +56,7 @@ pushd ${HOME}/.zprezto/runcoms
 PREZTO_FILES=( zlogin zlogout zpreztorc zprofile zshenv zshrc )
 for file in ${PREZTO_FILES[@]}
 do
-    ln -sf "${PWD}/${file}" "${ZDOTDIR:-$HOME}/.${file}"
+  ln -sf "${PWD}/${file}" "${ZDOTDIR:-$HOME}/.${file}"
 done
 popd
 
@@ -65,17 +65,17 @@ cd vim
 VIM_FILES=( .vimrc .gvimrc .vim )
 for file in ${VIM_FILES[@]}
 do
-    ln -sf ${PWD}/${file} ${HOME}/${file}
+  ln -sf ${PWD}/${file} ${HOME}/${file}
 done
 cd ../
 
 # vimperator
 if shell_is_cygwin ; then
-    VIMPERATOR_DIR="vimperator"
-    VIMPERATOR_FILE="_vimperatorrc"
+  VIMPERATOR_DIR="vimperator"
+  VIMPERATOR_FILE="_vimperatorrc"
 else
-    VIMPERATOR_DIR=".vimperator"
-    VIMPERATOR_FILE=".vimperatorrc"
+  VIMPERATOR_DIR=".vimperator"
+  VIMPERATOR_FILE=".vimperatorrc"
 fi
 cd vimperator
 [ ! -d ${HOME}/${VIMPERATOR_DIR}/plugin ] && mkdir -p ${HOME}/${VIMPERATOR_DIR}/plugin
@@ -87,7 +87,7 @@ cd -
 DOT_FILES=(.vrapperrc .gemrc .bashrc .inputrc .tmuxinator .peco-snippets)
 for file in ${DOT_FILES[@]}
 do
-    ln -sf ${PWD}/${file} ${HOME}/${file}
+  ln -sf ${PWD}/${file} ${HOME}/${file}
 done
 
 # global gitignore
@@ -127,21 +127,21 @@ cd -
 ############################## for OS X ##############################
 if shell_is_osx ; then
 
-    # iterm2 solalized colorscheme
-    # [ ! -d ${HOME}/.iterm2-colorscheme ] && mkdir -p ${HOME}/.iterm2-colorscheme
-    # git clone https://github.com/altercation/solarized.git ${HOME}/.iterm2-colorscheme/solarized
-    # git clone https://github.com/larssmit/iterm2-getafe.git ${HOME}/.iterm2-colorscheme/getafe
-    # git clone https://github.com/baskerville/iTerm-2-Color-Themes.git ${HOME}/.iterm2-colorscheme/iTerm-2-Color-Themes
+  # iterm2 solalized colorscheme
+  # [ ! -d ${HOME}/.iterm2-colorscheme ] && mkdir -p ${HOME}/.iterm2-colorscheme
+  # git clone https://github.com/altercation/solarized.git ${HOME}/.iterm2-colorscheme/solarized
+  # git clone https://github.com/larssmit/iterm2-getafe.git ${HOME}/.iterm2-colorscheme/getafe
+  # git clone https://github.com/baskerville/iTerm-2-Color-Themes.git ${HOME}/.iterm2-colorscheme/iTerm-2-Color-Themes
 
-    # Karabiner
-    cd mac
-    mkdir -p ${HOME}/Library/Application\ Support/Karabiner
-    ln -sf ${PWD}/private.xml ${HOME}/Library/Application\ Support/Karabiner/private.xml
-    cd -
+  # Karabiner
+  cd mac
+  mkdir -p ${HOME}/Library/Application\ Support/Karabiner
+  ln -sf ${PWD}/private.xml ${HOME}/Library/Application\ Support/Karabiner/private.xml
+  cd -
 
-    # install homebrew
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    brew doctor
+  # install homebrew
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  brew doctor
 fi
 #######################################################################
 
