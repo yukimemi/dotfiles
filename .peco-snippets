@@ -223,3 +223,7 @@ curl -kL https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
 # Install powerline
 pip install --user powerline-status
 
+# Change https to ssh
+git remote set-url origin git@github.com:yukimemi/dotfiles.git
+git remote set-url origin git@github.com:yukimemi/prezto.git
+
