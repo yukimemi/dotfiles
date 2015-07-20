@@ -14,6 +14,8 @@ let qmark l = ["http://www.google.com/language_tools"]
 let qmark f = ["http://cloud.feedly.com/#latest"]
 let qmark p = ["http://getpocket.com/a/queue/"]
 let qmark g = ["http://github.com/yukimemi"]
+let qmark h = ["http://b.hatena.ne.jp"]
+let qmark i = ["https://inbox.google.com"]
 
 " mappings
 map <C-u> scrollPageUp

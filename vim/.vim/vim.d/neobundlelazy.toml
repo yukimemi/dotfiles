@@ -98,6 +98,11 @@ insert = 1
 repository = 'Shougo/neco-vim'
 depends = 'Shougo/neocomplete.vim'
 filetypes = 'vim'
+
+[[plugins]]
+repository = 'mopp/googlesuggest-source.vim'
+depends = 'Shougo/neocomplete.vim'
+insert = 1
 # }}}
 
 # ======================================================================
@@ -355,6 +360,10 @@ filetypes = 'javascript'
 [[plugins]]
 repository = 'kchmck/vim-coffee-script'
 filetypes = 'coffee'
+
+[[plugins]]
+repository = 'marijnh/tern_for_vim'
+filetypes = ['javascript', 'coffee']
 # }}}
 
 # ======================================================================
@@ -627,7 +636,7 @@ mappings = '<Plug>'
 [[plugins]]
 repository = 'lambdalisue/vim-gista'
 commands = 'Gista'
-mappings = '<Plug>'
+mappings = '<Plug>(gista-'
 unite_sources = 'gista'
 
 [[plugins]]

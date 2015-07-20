@@ -250,5 +250,5 @@ keyseq $TILDE = S-*CircumflexAccent # ~
 
 # my settings for ime
 key Esc = Esc Eisu
-key C-OpenBracket = C-OpenBracket Eisu
+key C-OpenBracket = Esc Eisu
 
