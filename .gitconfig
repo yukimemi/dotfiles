@@ -1,0 +1,19 @@
+[user]
+	name = yukimemi
+	email = yukimemi@gmail.com
+[github]
+	user = yukimemi
+[push]
+	default = simple
+[color]
+	diff = auto
+[alias]
+	ci = commit
+	co = checkout
+	st = status
+	a = add
+	br = branch
+	di = diff
+	k = log --graph --pretty
+[core]
+	editor = vim

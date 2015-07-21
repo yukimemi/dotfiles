@@ -608,7 +608,7 @@ augroup = 'winmove'
 
 [[plugins]]
 repository = 'rhysd/accelerated-jk'
-mappings = '<Plug>'
+mappings = '<Plug>(accelerated_jk_'
 
 [[plugins]]
 repository = 'matchit.zip'
