@@ -2,11 +2,11 @@
 *.~
 *~
 .vimpos
-vim/.vim/back
-vim/.vim/tmp
-vim/.vim/bundle
-vim/.vim/miv
-vim/.vim/save
+.vim/back
+.vim/tmp
+.vim/bundle
+.vim/miv
+.vim/save
 restart_session.vim
 
 # zsh history
@@ -19,10 +19,11 @@ restart_session.vim
 tags
 
 # netrw
-vim/.vim/.netrwhist
+.vim/.netrwhist
 
 # haskell
 *.hi
 *.o
 *.errors
+
 

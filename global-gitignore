@@ -1,9 +1,0 @@
-# doc
-doc/tags
-doc/tags-ja
-
-# zsh-history
-.zsh_hist*
-
-# mac
-.DS_Store

@@ -105,6 +105,7 @@ ghq get https://github.com/supistar/dotfiles.git
 ghq get https://github.com/k2wanko/dotfiles.git
 ghq get https://github.com/joe-re/dotfiles.git
 ghq get https://github.com/ansible/ansible-examples.git
+ghq get https://github.com/makiton/playbook-osx.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
