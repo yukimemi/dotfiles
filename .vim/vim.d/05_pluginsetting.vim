@@ -1709,7 +1709,7 @@ if neobundle#tap('try-colorscheme.vim')"{{{
 endif
 "}}}
 
-if neobundle#tap('itchyny/vim-external')"{{{
+if neobundle#tap('vim-external')"{{{
   map <Leader>e <Plug>(external-editor)
   map <Leader>n <Plug>(external-explorer)
   map <Leader>b <Plug>(external-browser)

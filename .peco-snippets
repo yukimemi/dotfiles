@@ -235,3 +235,9 @@ pip install --user powerline-status
 git remote set-url origin git@github.com:yukimemi/dotfiles.git
 git remote set-url origin git@github.com:yukimemi/prezto.git
 
+# Ansible
+curl -L https://raw.githubusercontent.com/yukimemi/mac-ansible/master/i.sh | sh
+
+# Uninstall homebrew
+cd /tmp && curl -OL https://raw.githubusercontent.com/Homebrew/install/master/uninstall && chmod +x uninstall && ./uninstall
+
