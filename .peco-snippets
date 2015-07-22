@@ -106,6 +106,8 @@ ghq get https://github.com/k2wanko/dotfiles.git
 ghq get https://github.com/joe-re/dotfiles.git
 ghq get https://github.com/ansible/ansible-examples.git
 ghq get https://github.com/makiton/playbook-osx.git
+ghq get https://github.com/seebi/tmux-colors-solarized.git
+ghq get https://github.com/jimeh/tmux-themepack.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git

@@ -168,7 +168,7 @@ unite_sources = 'reanimate'
 # ======================================================================
 [[plugins]]
 repository = 'kana/vim-operator-user'
-filetyps = 'all'
+filetypes = 'all'
 
 [[plugins]]
 repository = 'kana/vim-operator-replace'
@@ -217,7 +217,7 @@ mappings = ['<Plug>(operator-*)', '<Plug>(operator-g*)', '<Plug>(operator-#)', '
 # ======================================================================
 [[plugins]]
 repository = 'kana/vim-textobj-user'
-filetyps = 'all'
+filetypes = 'all'
 
 [[plugins]]
 repository = 'osyo-manga/vim-textobj-multiblock'
@@ -255,7 +255,7 @@ mappings = '<Plug>(textobj-lastpaste-i)'
 # ======================================================================
 [[plugins]]
 repository = 'tpope/vim-fugitive'
-filetyps = 'all'
+filetypes = 'all'
 
 [[plugins]]
 repository = 'gregsexton/gitv'
