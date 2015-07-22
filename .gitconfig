@@ -17,3 +17,5 @@
 	k = log --graph --pretty
 [core]
 	editor = vim
+[ghq]
+	root = /Users/yukimemi/.ghq/src
