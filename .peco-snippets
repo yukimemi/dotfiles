@@ -246,3 +246,9 @@ curl -L https://raw.githubusercontent.com/yukimemi/mac-ansible/master/i.sh | sh
 # Uninstall homebrew
 cd /tmp && curl -OL https://raw.githubusercontent.com/Homebrew/install/master/uninstall && chmod +x uninstall && ./uninstall
 
+# Install git-ignore
+curl -sL https://raw.githubusercontent.com/yuroyoro/git-ignore/master/git-ignore > ~/bin/git-ignore && chmod +x ~/bin/git-ignore
+
+# Change boot volume to 0 on Mac (yosemite)
+sudo nvram SystemAudioVolume=%00 && nvram -p | grep SystemAudioVolume
+

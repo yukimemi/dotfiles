@@ -822,6 +822,9 @@ if neobundle#tap('vim-go')"{{{
 
     nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
 
+    autocmd MyAutoCmd FileType go :highlight goErr cterm=bold ctermfg=214
+    autocmd MyAutoCmd FileType go :match goErr /\<err\>/
+
     setl completeopt=menu,preview
   endfunction
 
