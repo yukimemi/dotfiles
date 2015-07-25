@@ -110,6 +110,7 @@ ghq get https://github.com/makiton/playbook-osx.git
 ghq get https://github.com/seebi/tmux-colors-solarized.git
 ghq get https://github.com/jimeh/tmux-themepack.git
 ghq get https://github.com/mbadolato/iTerm2-Color-Schemes.git
+ghq get https://github.com/yuroyoro/dotfiles.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
