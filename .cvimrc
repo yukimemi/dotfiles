@@ -16,6 +16,7 @@ let qmark p = ["http://getpocket.com/a/queue/"]
 let qmark g = ["http://github.com/yukimemi"]
 let qmark h = ["http://b.hatena.ne.jp"]
 let qmark i = ["https://inbox.google.com"]
+let qmark T = ["https://translate.google.co.jp/?hl=ja"]
 
 " mappings
 map <C-u> scrollPageUp
