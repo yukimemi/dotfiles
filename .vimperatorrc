@@ -84,8 +84,8 @@ nnoremap ,r :source ~/.vimperatorrc<CR>
 nnoremap .r :restart<CR>
 
 " Force ime off in hint mode
-noremap <silent> f :!fcitx-remote -c<CR>qf
-noremap <silent> F :!fcitx-remote -c<CR>qF
+" noremap <silent> f :!fcitx-remote -c<CR>qf
+" noremap <silent> F :!fcitx-remote -c<CR>qF
 "}}}
 
 " style {{{
