@@ -33,11 +33,11 @@ if exist "%USERPROFILE%\vimperator\colors" %RDCMD% "%USERPROFILE%\vimperator\col
 
 REM vim
 if exist "%USERPROFILE%\.vimrc" del "%USERPROFILE%\.vimrc"
-%LINKCMD_F% "%USERPROFILE%\.vimrc" "%THIS_FILE_PASS%vim\.vimrc"
+%LINKCMD_F% "%USERPROFILE%\.vimrc" "%THIS_FILE_PASS%.vimrc"
 if exist "%USERPROFILE%\.gvimrc" del "%USERPROFILE%\.gvimrc"
-%LINKCMD_F% "%USERPROFILE%\.gvimrc" "%THIS_FILE_PASS%vim\.gvimrc"
+%LINKCMD_F% "%USERPROFILE%\.gvimrc" "%THIS_FILE_PASS%.gvimrc"
 if exist "%USERPROFILE%\.vim" %RDCMD% "%USERPROFILE%\.vim"
-%LINKCMD_D% "%USERPROFILE%\.vim" "%THIS_FILE_PASS%vim\.vim"
+%LINKCMD_D% "%USERPROFILE%\.vim" "%THIS_FILE_PASS%.vim"
 
 REM zsh
 REM if exist "%CYGWIN_HOME%\.zshrc" rename "%CYGWIN_HOME%\.zshrc" ".zshrc.bak_%TODAY%"

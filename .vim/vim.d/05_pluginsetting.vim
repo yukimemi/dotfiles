@@ -1605,7 +1605,7 @@ endif
 "}}}
 
 if neobundle#tap('vim-reanimate')"{{{
-  let g:reanimate_save_dir = "~/.vim/save"
+  let g:reanimate_save_dir = "~/.cache/save"
   let g:reanimate_default_category = "default"
   let g:reanimate_default_save_name = "latest"
   let g:reanimate_sessionoptions = "curdir,folds,globals,help,localoptions,slash,tabpages,winsize"
@@ -1683,11 +1683,20 @@ if neobundle#tap('vim-easy-align')"{{{
         \       'right_margin': 0
         \   },
         \ 'p': {
-        \       'pattern':      'pos\|size',
-        \       'filter':       'g'
+        \       'pattern':      'pos=\|size=',
+        \       'right_margin': 0
         \   },
         \ 's': {
-        \       'pattern':      'sys=\|Trns='
+        \       'pattern':      'sys=\|Trns=',
+        \       'right_margin': 0
+        \   },
+        \ 'k': {
+        \       'pattern':      'key=\|cmt=',
+        \       'right_margin': 0
+        \   },
+        \ 'c': {
+        \       'pattern':      'cmt=',
+        \       'right_margin': 0
         \   }
         \ }
 
