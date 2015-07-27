@@ -26,3 +26,5 @@ tags
 *.o
 *.errors
 
+# BetterTouchTool
+mac/BetterTouchTool/Logs/
