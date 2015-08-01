@@ -1209,13 +1209,6 @@ if neobundle#tap('vim-jplus') "{{{
 endif "}}}
 
 if neobundle#tap('vim-watchdogs')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'commands': ['WatchdogsRunSweep', {'complete': 'customlist,quickrun#complete', 'name': 'WatchdogsRun'},
-        \                {'complete': 'customlist,quickrun#complete', 'name': 'WatchdogsRunSilent'}]
-        \ }
-        \ })
-
   if !exists('g:watchdogs_config')
     let g:watchdogs_config = {}
   endif
@@ -1286,32 +1279,10 @@ if neobundle#tap('CamelCaseMotion')"{{{
 endif
 "}}}
 
-if neobundle#tap('vim-jade')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'filetypes': 'jade'
-        \ }
-        \ })
-
-  call neobundle#untap()
-endif
-"}}}
-
 if neobundle#tap('vim-stylus')"{{{
   call neobundle#config({
         \ 'autoload': {
         \   'filetypes': 'stylus'
-        \ }
-        \ })
-
-  call neobundle#untap()
-endif
-"}}}
-
-if neobundle#tap('unite-quickfix')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'unite_sources': ['location_list', 'quickfix']
         \ }
         \ })
 
@@ -1350,11 +1321,6 @@ endif
 "}}}
 
 if neobundle#tap('quickfixstatus')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'commands': ['QuickfixStatusDisable', 'QuickfixStatusEnable']
-        \ }
-        \ })
 
   function! neobundle#hooks.on_source(bundle)
     QuickfixStatusEnable
@@ -1419,20 +1385,6 @@ endif
 "}}}
 
 if neobundle#tap('incsearch.vim')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'mappings': [['sxno', '<Plug>(_incsearch-N)'], ['sxno', '<Plug>(incsearch-nohl-N)'],
-        \                ['sxno', '<Plug>(_incsearch-#)'], ['sxno', '<Plug>(_incsearch-*)'],
-        \                ['sxno', '<Plug>(incsearch-nohl-#)'], ['sxno', '<Plug>(incsearch-forward)'],
-        \                ['sxno', '<Plug>(incsearch-nohl-*)'], ['sxno', '<Plug>(incsearch-stay)'],
-        \                ['sxno', '<Plug>(incsearch-nohl)'], ['sxno', '<Plug>(_incsearch-n)'],
-        \                ['sxno', '<Plug>(incsearch-nohl-n)'], ['sxno', '<Plug>(_incsearch-g*)'],
-        \                ['sxno', '<Plug>(_incsearch-g#)'], ['sxno', '<Plug>(incsearch-backward)'],
-        \                ['sxno', '<Plug>(incsearch-nohl-g#)'], ['sxno', '<Plug>(incsearch-nohl-g*)']],
-        \   'commands': ['IncSearchNoreMap', 'IncSearchMap']
-        \ }
-        \ })
-
   map /  <Plug>(incsearch-forward)
   map ?  <Plug>(incsearch-backward)
   map g/ <Plug>(incsearch-stay)
@@ -1449,12 +1401,6 @@ endif
 "}}}
 
 if neobundle#tap('vim-showmarks')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'commands': ['ShowMarksOnce', 'NoShowMarks', 'DoShowMarks', 'PreviewMarks']
-        \ }
-        \ })
-
   let g:showmarks_marks_notime = 1
   let g:unite_source_mark_marks = '01abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ'
   let g:showmarks_enable = 0
@@ -1491,24 +1437,8 @@ endif
 "}}}
 
 if neobundle#tap('rsense')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'filetypes': ['ruby']
-        \ }
-        \ })
 
   let g:rsenseUseOmniFunc = 1
-
-  call neobundle#untap()
-endif
-"}}}
-
-if neobundle#tap('neocomplete-rsense.vim')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'filetypes': ['ruby']
-        \ }
-        \ })
 
   call neobundle#untap()
 endif
