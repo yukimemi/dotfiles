@@ -1,0 +1,12 @@
+let mapleader = ','
+
+set ignorecase
+set smartcase
+set wrapscan
+set incsearch
+set hlsearch
+
+nnoremap Y y$
+nnoremap <Leader><Leader> :<C-u>w<CR>
+nnoremap <Leader>r :<C-u>source ~/.vsvimrc<CR>
+
