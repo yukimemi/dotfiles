@@ -682,5 +682,10 @@ commands = 'Ctags'
 [[plugins]]
 repository = 'yassu/todo-env.vim'
 filetypes = 'todo'
+
+[[plugins]]
+repository = 'fuenor/qfixhowm'
+depends = 'fuenor/qfixgrep'
+function_prefix = 'qfixmemo'
 # }}}
 
