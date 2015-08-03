@@ -1500,22 +1500,16 @@ endif
 "}}}
 
 if neobundle#tap('qfixhowm')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'function_prefix': ['qfixmemo']
-        \ }
-        \ })
 
   nnoremap g,l :<C-U>call qfixmemo#ListRecent()<CR>
   nnoremap g,c :<C-U>call qfixmemo#EditNew()<CR>
   " use markdown
-  " let howm_filename = '%Y/%m/%Y-%m-%d-%H%M%S.md'
-  " filetype markdown
-  " let QFixHowm_FileType = 'markdown'
-  " let QFixHowm_Title = '#'
-  " let QFixMRU_Title = {}
-  " let QFixMRU_Title['md'] = '^###[^#]'
-  " let QFixMRU_Title['md_regxp'] = '^###[^#]'
+  let howm_filename = '%Y/%m/%Y-%m-%d-%H%M%S.md'
+  let QFixHowm_FileType = 'markdown'
+  let QFixHowm_Title = '#'
+  let QFixMRU_Title = {}
+  let QFixMRU_Title['md'] = '^###[^#]'
+  let QFixMRU_Title['md_regxp'] = '^###[^#]'
   if isdirectory($HOME . '/Dropbox')
     let howm_dir = $HOME . '/Dropbox/.howm'
   else
