@@ -68,6 +68,7 @@ ghq get git@github.com:yukimemi/Brewfile.git
 ghq get git@github.com:yukimemi/homebrew-custom.git
 ghq get git@github.com:yukimemi/powerline.git
 ghq get git@github.com:yukimemi/ansible-playbook.git
+ghq get git@github.com:yukimemi/makejscript.git
 # others
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
