@@ -115,6 +115,10 @@ mappings = '<Plug>(visualstar-'
 [[plugins]]
 repository = 't9md/vim-quickhl'
 mappings = '<Plug>(quickhl-'
+
+[[plugins]]
+repository = 'osyo-manga/vim-over'
+mappings = '<Plug>'
 # }}}
 
 # ======================================================================

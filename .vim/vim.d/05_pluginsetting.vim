@@ -862,7 +862,7 @@ endif
 
 if neobundle#tap('vim-over')"{{{
 
-  nnoremap <silent> <Leader>o :<C-u>OverCommandLine<CR>%s/
+  nnoremap <silent> <Leader>o :<C-u>OverCommandLine<CR>
   call neobundle#untap()
 endif
 "}}}
