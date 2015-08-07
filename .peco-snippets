@@ -112,6 +112,7 @@ ghq get https://github.com/jimeh/tmux-themepack.git
 ghq get https://github.com/mbadolato/iTerm2-Color-Schemes.git
 ghq get https://github.com/yuroyoro/dotfiles.git
 ghq get https://github.com/google/material-design-lite.git
+ghq get https://github.com/suisho/example-electron-babel.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
@@ -156,6 +157,8 @@ go get golang.org/x/text/encoding/japanese
 go get golang.org/x/text/encoding
 go get github.com/headzoo/surf
 go get github.com/laurent22/massren && massren --config editor vim
+# gcli
+go get -d github.com/tcnksm/gcli && cd $GOPATH/src/github.com/tcnksm/gcli && make install
 
 # Hugo
 git clone --recursive https://github.com/spf13/hugoThemes themes
