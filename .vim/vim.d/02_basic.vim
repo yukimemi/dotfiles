@@ -52,7 +52,7 @@ set keywordprg=:help
 set autoread
 au MyAutoCmd WinEnter * checktime
 au MyAutoCmd BufNewFile,BufRead *.csv,*.log setl nowrap
-au MyAutoCmd FileType * set formatoptions-=ro
+au MyAutoCmd WinEnter,BufEnter * set formatoptions-=ro
 au MyAutoCmd CursorHold * setl nohlsearch
 " http://sangoukan.xrea.jp/cgi-bin/tDiary/?date=20120313
 " au MyAutoCmd FileType * :inoremap # X#

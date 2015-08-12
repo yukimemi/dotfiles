@@ -328,6 +328,10 @@ filetypes = 'vimperator'
 [[plugins]]
 repository = 'rcmdnk/vim-markdown'
 filetypes = ['markdown', 'mkd']
+
+[[plugins]]
+repository = 'mattn/vim-maketable'
+commands = 'MakeTable'
 # }}}
 
 # ======================================================================
@@ -368,6 +372,7 @@ filetypes = 'coffee'
 [[plugins]]
 repository = 'marijnh/tern_for_vim'
 filetypes = ['javascript', 'coffee']
+function_prefix = 'tern'
 # }}}
 
 # ======================================================================

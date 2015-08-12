@@ -797,11 +797,12 @@ if neobundle#tap('vim-go')"{{{
 
   let g:go_auto_type_info = 1
   let g:go_snippet_engine = "neosnippet"
-  " let g:go_play_open_browser = 0
-  " let g:go_fmt_fail_silently = 0
-  " let g:go_fmt_autosave = 0
-  " let g:go_fmt_command = "gofmt"
-  " let g:go_disable_autoinstall = 1
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_build_constraints = 1
+  let g:go_fmt_command = "goimports"
 
   au MyAutoCmd FileType go call s:my_golang_settings()
 
@@ -810,6 +811,7 @@ if neobundle#tap('vim-go')"{{{
     nmap <buffer> <Leader>gs <Plug>(go-doc-split)
     nmap <buffer> <Leader>gv <Plug>(go-doc-vertical)
     nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
+    nmap <buffer> <Leader>gr <Plug>(go-rename)
 
     " nmap <buffer> <leader>r <Plug>(go-run)
     nmap <buffer> <leader>gb <Plug>(go-build)
@@ -819,14 +821,13 @@ if neobundle#tap('vim-go')"{{{
     nmap <buffer> <Leader>ds <Plug>(go-def-split)
     nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
     nmap <buffer> <Leader>dt <Plug>(go-def-tab)
-
     nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
-
-    autocmd MyAutoCmd FileType go :highlight goErr cterm=bold ctermfg=214
-    autocmd MyAutoCmd FileType go :match goErr /\<err\>/
 
     setl completeopt=menu,preview
   endfunction
+
+  au MyAutoCmd ColorScheme,VimEnter,WinEnter,BufEnter,CursorHold *.go highlight goErr cterm=bold ctermfg=214
+  au MyAutoCmd ColorScheme,VimEnter,WinEnter,BufEnter,CursorHold *.go match goErr /\<err\>/
 
   call neobundle#untap()
 endif
@@ -957,18 +958,15 @@ endif
 "}}}
 
 if neobundle#tap('vim-quickhl')"{{{
-  nmap [Space]m <Plug>(quickhl-manual-this)
-  xmap [Space]m <Plug>(quickhl-manual-this)
-  "nmap <F9>   <Plug>(quickhl-manual-toggle)
-  "xmap <F9>   <Plug>(quickhl-manual-toggle)
 
-  nmap [Space]M <Plug>(quickhl-manual-reset)
-  xmap [Space]M <Plug>(quickhl-manual-reset)
+  nmap <Space>m <Plug>(quickhl-manual-this)
+  xmap <Space>m <Plug>(quickhl-manual-this)
+  nmap <Space>M <Plug>(quickhl-manual-reset)
+  xmap <Space>M <Plug>(quickhl-manual-reset)
 
-  nmap [Space]j <Plug>(quickhl-cword-toggle)
-  nmap [Space]] <Plug>(quickhl-tag-toggle)
-
-  "map H <Plug>(operator-quickhl-manual-this-motion)
+  nmap <Space>j <Plug>(quickhl-cword-toggle)
+  nmap <Space>] <Plug>(quickhl-tag-toggle)
+  map H <Plug>(operator-quickhl-manual-this-motion)
 
   call neobundle#untap()
 endif
@@ -1389,7 +1387,6 @@ if neobundle#tap('incsearch.vim')"{{{
   map ?  <Plug>(incsearch-backward)
   map g/ <Plug>(incsearch-stay)
 
-  " set hlsearch
   " let g:incsearch#auto_nohlsearch = 1
   nmap n  <Plug>(anzu-jump-n)zv
   nmap N  <Plug>(anzu-jump-N)zv
