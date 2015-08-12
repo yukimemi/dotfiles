@@ -1,13 +1,3 @@
-function! ZenkakuSpace()
-  highlight ZenkakuSpace cterm=underline ctermfg=darkgrey gui=underline guifg=darkgrey
-  silent! match ZenkakuSpace /　/
-endfunction
-
-if has('syntax')
-  au MyAutoCmd VimEnter,BufEnter * call ZenkakuSpace()
-endif
-"}}}
-
 " autochdir"{{{
 au MyAutoCmd BufEnter * execute ":silent! lcd " . escape(expand("%:p:h"), ' ')
 "}}}

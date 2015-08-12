@@ -115,6 +115,7 @@ ghq get https://github.com/mbadolato/iTerm2-Color-Schemes.git
 ghq get https://github.com/yuroyoro/dotfiles.git
 ghq get https://github.com/google/material-design-lite.git
 ghq get https://github.com/suisho/example-electron-babel.git
+ghq get https://github.com/yuya-takeyama/ggallin.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
@@ -145,20 +146,27 @@ ghq get https://gist.github.com/5507969.git \# golang copy file example
 
 # Go lang
 # me
-go get github.com/yukimemi/copybackup
-go get github.com/yukimemi/copybackup/cmd/copybackup
+go get -u github.com/yukimemi/copybackup
+go get -u github.com/yukimemi/copybackup/cmd/copybackup
+go get -u github.com/yukimemi/makejscript
 # others
-go get github.com/jessevdk/go-flags
-go get github.com/umisama/golog
-go get github.com/smartystreets/goconvey
-go get github.com/mitchellh/gox
-go get github.com/laher/goxc
-go get github.com/kr/godep
-go get github.com/spf13/hugo
-go get golang.org/x/text/encoding/japanese
-go get golang.org/x/text/encoding
-go get github.com/headzoo/surf
-go get github.com/laurent22/massren && massren --config editor vim
+go get -u github.com/jessevdk/go-flags
+go get -u github.com/umisama/golog
+go get -u github.com/smartystreets/goconvey
+go get -u github.com/mitchellh/gox && gox -build-toolchain
+go get -u github.com/laher/goxc
+go get -u github.com/kr/godep
+go get -u github.com/spf13/hugo
+go get -u golang.org/x/text/encoding/japanese
+go get -u golang.org/x/text/encoding
+go get -u golang.org/x/text/transform
+go get -u github.com/headzoo/surf
+go get -u github.com/laurent22/massren && massren --config editor vim
+go get -u golang.org/x/tools/cmd/gorename
+go get -u github.com/tcnksm/ghr
+go get -u github.com/yuya-takeyama/ggallin
+go get -u github.com/mattn/goemon/cmd/goemon
+
 # gcli
 go get -d github.com/tcnksm/gcli && cd $GOPATH/src/github.com/tcnksm/gcli && make install
 
