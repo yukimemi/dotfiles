@@ -26,10 +26,12 @@ REM =====================================================}}}
 
 REM vimperator
 if exist "%USERPROFILE%\_vimperatorrc" del "%USERPROFILE%\_vimperatorrc"
-%LINKCMD_F% "%USERPROFILE%\_vimperatorrc" "%THIS_FILE_PASS%vimperator\.vimperatorrc"
+%LINKCMD_F% "%USERPROFILE%\_vimperatorrc" "%THIS_FILE_PASS%.vimperatorrc"
 if not exist "%USERPROFILE%\vimperator\plugin" mkdir "%USERPROFILE%\vimperator\plugin"
 if exist "%USERPROFILE%\vimperator\colors" %RDCMD% "%USERPROFILE%\vimperator\colors"
-%LINKCMD_D% "%USERPROFILE%\vimperator\colors" "%GHQ_HOME%\github.com\vimpr\vimperator-rc\anekos\colors"
+git clone https://github.com/vimpr/vimperator-colors.git %USERPROFILE%\vimperator\colors
+if exist "%USERPROFILE%\vimperator\vimppm" %RDCMD% "%USERPROFILE%\vimperator\vimppm"
+git clone https://github.com/cd01/vimppm.git %USERPROFILE%\vimperator\vimppm
 
 REM vim
 if exist "%USERPROFILE%\.vimrc" del "%USERPROFILE%\.vimrc"
