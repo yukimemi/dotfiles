@@ -222,7 +222,15 @@ set! browser.contentHandlers.types.6.uri=http://cloud.feedly.com/#subscription/f
 " }}}
 
 " vimppm {{{
-source ~/.vimperator/vimppm/plugin/vimppm.js
+js <<EOM
+if (liberator.has("MacUnix")) {
+    // Mac
+    liberator.execute("source ~/.vimperator/vimppm/plugin/vimppm.js");
+} else {
+    // Other
+    liberator.execute("source ~/vimperator/vimppm/plugin/vimppm.js");
+}
+EOM
 
 " vimppm '_libly.js'
 " vimppm 'feedSomeKeys_3.js'

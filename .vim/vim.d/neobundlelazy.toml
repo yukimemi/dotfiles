@@ -377,10 +377,10 @@ filetypes = ['javascript', 'jsx']
 repository = 'kchmck/vim-coffee-script'
 filetypes = 'coffee'
 
-[[plugins]]
-repository = 'marijnh/tern_for_vim'
-filetypes = ['javascript', 'coffee']
-function_prefix = 'tern'
+# [[plugins]]
+# repository = 'marijnh/tern_for_vim'
+# filetypes = ['javascript', 'coffee']
+# function_prefix = 'tern'
 # }}}
 
 # ======================================================================
