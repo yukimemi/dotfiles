@@ -70,6 +70,7 @@ ghq get git@github.com:yukimemi/homebrew-custom.git
 ghq get git@github.com:yukimemi/powerline.git
 ghq get git@github.com:yukimemi/ansible-playbook.git
 ghq get git@github.com:yukimemi/makejscript.git
+ghq get git@github.com:yukimemi/spyrun.git
 # others
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
@@ -115,7 +116,6 @@ ghq get https://github.com/mbadolato/iTerm2-Color-Schemes.git
 ghq get https://github.com/yuroyoro/dotfiles.git
 ghq get https://github.com/google/material-design-lite.git
 ghq get https://github.com/suisho/example-electron-babel.git
-ghq get https://github.com/yuya-takeyama/ggallin.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
@@ -149,6 +149,7 @@ ghq get https://gist.github.com/5507969.git \# golang copy file example
 go get -u github.com/yukimemi/copybackup
 go get -u github.com/yukimemi/copybackup/cmd/copybackup
 go get -u github.com/yukimemi/makejscript
+go get -u github.com/yukimemi/spyrun/cmd/spyrun
 # others
 go get -u github.com/jessevdk/go-flags
 go get -u github.com/umisama/golog
@@ -166,6 +167,8 @@ go get -u golang.org/x/tools/cmd/gorename
 go get -u github.com/tcnksm/ghr
 go get -u github.com/yuya-takeyama/ggallin
 go get -u github.com/mattn/goemon/cmd/goemon
+# go get -u github.com/BurntSushi/toml
+go get -u github.com/naoina/toml
 
 # gcli
 go get -d github.com/tcnksm/gcli && cd $GOPATH/src/github.com/tcnksm/gcli && make install
@@ -256,6 +259,7 @@ git remote set-url origin git@github.com:yukimemi/prezto.git
 
 # Ansible
 curl -L https://raw.githubusercontent.com/yukimemi/mac-ansible/master/i.sh | sh
+curl -L http://git.io/yukimemi-ansible | sh
 
 # Uninstall homebrew
 cd /tmp && curl -OL https://raw.githubusercontent.com/Homebrew/install/master/uninstall && chmod +x uninstall && ./uninstall
