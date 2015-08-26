@@ -1211,11 +1211,6 @@ if neobundle#tap('vim-watchdogs')"{{{
     let g:watchdogs_config = {}
   endif
   let g:watchdogs_config = {
-        \ "watchdogs_checker/_": {
-        \   "hook/qfsigns_update/enable_exit": 1,
-        \   "hook/qfsigns_update/priority_exit": 3
-        \ },
-        \
         \ "cpp/wandbox": {
         \   "runner": "wandbox",
         \   "runner/wandbox/compiler": "clang-head",
@@ -1248,6 +1243,13 @@ if neobundle#tap('vim-watchdogs')"{{{
         \   "command": "xmllint",
         \   "exec": "%c %o %s",
         \   "cmdopt": "--recover"
+        \ },
+        \ "go/watchdogs_checker": {
+        \   "type": "watchdogs_checker/golint"
+        \ },
+        \ "watchdogs_checker/golint": {
+        \   "command": "golint",
+        \   "exec": "%c %s"
         \ }
         \ }
   call extend(g:quickrun_config, g:watchdogs_config)
