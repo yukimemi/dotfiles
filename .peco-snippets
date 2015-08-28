@@ -116,6 +116,7 @@ ghq get https://github.com/mbadolato/iTerm2-Color-Schemes.git
 ghq get https://github.com/yuroyoro/dotfiles.git
 ghq get https://github.com/google/material-design-lite.git
 ghq get https://github.com/suisho/example-electron-babel.git
+ghq get https://gist.github.com/ce81e95c6f6c5747d8aa.git \# gulp for es6
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
@@ -269,4 +270,7 @@ curl -sL https://raw.githubusercontent.com/yuroyoro/git-ignore/master/git-ignore
 
 # Change boot volume to 0 on Mac (yosemite)
 sudo nvram SystemAudioVolume=%00 && nvram -p | grep SystemAudioVolume
+
+# npm install
+npm i -D babel bower typescript gulp gulp-typescript del browserify tsify debowerify watchify vinyl-transform require-dir gulp-rename gulp-if gulp-exec gulp-load-plugins gulp-plumber gulp-notify gulp-webpack
 

@@ -132,7 +132,8 @@ qmark o http://yukimemi.github.com
 qmark p https://plus.google.com/
 qmark P http://getpocket.com/a/queue/
 qmark r http://cloud.feedly.com/
-qmark t https://mail.google.com/tasks/canvas
+qmark T https://mail.google.com/tasks/canvas
+qmark t https://trello.com/
 qmark u http://uhloop.com/
 qmark v http://tv.yahoo.co.jp/listings/realtime/
 qmark y http://www.youtube.com/?gl=JP&hl=ja
