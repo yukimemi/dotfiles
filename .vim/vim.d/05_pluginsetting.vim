@@ -1260,7 +1260,8 @@ if neobundle#tap('vim-watchdogs')"{{{
 
   let g:watchdogs_check_BufWritePost_enables = {
         \ "javascript": 0,
-        \ "xml": 1
+        \ "xml": 1,
+        \ "typescript": 0
         \ }
 
   cal neobundle#untap()
@@ -1766,6 +1767,22 @@ if neobundle#tap('vim-better-whitespace')"{{{
   let g:better_whitespace_filetypes_blacklist=['unite', 'vimfiler', 'tweetvim']
 
   au MyAutoCmd BufWritePre *.coffee,*.js,*.ps1,*.md,*.jade,Vagrantfile,.vimrc,*.vim StripWhitespace
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-jsx')"{{{
+  " let g:jsx_ext_required = 0
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-jsfmt')"{{{
+  let g:js_fmt_autosave = 1
+  let g:js_fmt_fail_silently = 1
+  " let g:js_fmt_options = ''
+  let g:js_fmt_command = "jsfmt"
 
   call neobundle#untap()
 endif
