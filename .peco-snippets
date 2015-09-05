@@ -71,6 +71,7 @@ ghq get git@github.com:yukimemi/powerline.git
 ghq get git@github.com:yukimemi/ansible-playbook.git
 ghq get git@github.com:yukimemi/makejscript.git
 ghq get git@github.com:yukimemi/spyrun.git
+ghq get git@github.com:yukimemi/vim-jsfmt.git
 # others
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
@@ -117,6 +118,11 @@ ghq get https://github.com/yuroyoro/dotfiles.git
 ghq get https://github.com/google/material-design-lite.git
 ghq get https://github.com/suisho/example-electron-babel.git
 ghq get https://gist.github.com/ce81e95c6f6c5747d8aa.git \# gulp for es6
+ghq get https://github.com/sskyu/gulp-webpack-skeleton.git
+ghq get https://github.com/sugarshin/gulpfiles.git
+ghq get https://github.com/tsuyoshiwada/sample-webpack-coffee.git
+ghq get https://github.com/KazIgu/gulp-sample.git
+ghq get https://github.com/Quramy/electron-jsx-babel-boilerplate.git
 
 # bitbucket
 ghq get git@bitbucket.org:yukimemi/haskell.git
@@ -139,6 +145,7 @@ ghq get git@bitbucket.org:yukimemi/ruby.git
 ghq get git@bitbucket.org:yukimemi/nicodown.git
 ghq get git@bitbucket.org:yukimemi/electron.git
 ghq get git@bitbucket.org:yukimemi/mermaid.git
+ghq get git@bitbucket.org:yukimemi/tswsh.git
 ghq get git@bitbucket.org:yukimemi/yukimemi.git # not use !
 git clone git@bitbucket.org:yukimemi/yukimemi.git themes/yukimemi
 
@@ -273,4 +280,7 @@ sudo nvram SystemAudioVolume=%00 && nvram -p | grep SystemAudioVolume
 
 # npm install
 npm i -D babel bower typescript gulp gulp-typescript del browserify tsify debowerify watchify vinyl-transform require-dir gulp-rename gulp-if gulp-exec gulp-load-plugins gulp-plumber gulp-notify gulp-webpack
+
+# Add node_modules/.bin path to envrc
+echo "export PATH=\$(npm bin):\$PATH" > .envrc && direnv allow
 

@@ -349,17 +349,25 @@ filetypes = ['html', 'markdown', 'xml']
 # repository = 'jiangmiao/simple-javascript-indenter'
 # filetypes = 'javascript'
 
-[[plugins]]
-repository = 'jelera/vim-javascript-syntax'
-filetypes = 'javascript'
+# [[plugins]]
+# repository = 'jelera/vim-javascript-syntax'
+# filetypes = 'javascript'
 
-[[plugins]]
-repository = 'jason0x43/vim-js-indent'
-filetypes = ['javascript', 'typescript']
+# [[plugins]]
+# repository = 'jason0x43/vim-js-indent'
+# filetypes = ['javascript', 'typescript']
 
 [[plugins]]
 repository = 'pangloss/vim-javascript'
 filetypes = 'javascript'
+
+[[plugins]]
+repository = 'mxw/vim-jsx'
+filetypes = ['javascript', 'jsx']
+
+[[plugins]]
+repository = 'mephux/vim-jsfmt'
+filetypes = ['javascript', 'jsx']
 # }}}
 
 # ======================================================================
