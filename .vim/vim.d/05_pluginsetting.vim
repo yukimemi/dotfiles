@@ -1241,8 +1241,8 @@ if neobundle#tap('vim-watchdogs')"{{{
         \ },
         \ "watchdogs_checker/xmllint": {
         \   "command": "xmllint",
-        \   "exec": "%c %o %s",
-        \   "cmdopt": "--recover"
+        \   "cmdopt": "--recover",
+        \   "exec": "%c %o %s"
         \ },
         \ "go/watchdogs_checker": {
         \   "type": "watchdogs_checker/golint"
@@ -1250,6 +1250,14 @@ if neobundle#tap('vim-watchdogs')"{{{
         \ "watchdogs_checker/golint": {
         \   "command": "golint",
         \   "exec": "%c %s"
+        \ },
+        \ "javascript/watchdogs_checker": {
+        \   "type": "watchdogs_checker/jsfmt"
+        \ },
+        \ "watchdogs_checker/jsfmt": {
+        \   "command": "jsfmt",
+        \   "cmdopt": "-w",
+        \   "exec": "%c %o %s"
         \ }
         \ }
   call extend(g:quickrun_config, g:watchdogs_config)
@@ -1259,7 +1267,7 @@ if neobundle#tap('vim-watchdogs')"{{{
   let g:watchdogs_check_BufWritePost_enable = 1
 
   let g:watchdogs_check_BufWritePost_enables = {
-        \ "javascript": 0,
+        \ "javascript": 1,
         \ "xml": 1,
         \ "typescript": 0
         \ }
@@ -1774,16 +1782,6 @@ endif
 
 if neobundle#tap('vim-jsx')"{{{
   " let g:jsx_ext_required = 0
-  call neobundle#untap()
-endif
-"}}}
-
-if neobundle#tap('vim-jsfmt')"{{{
-  let g:js_fmt_autosave = 1
-  let g:js_fmt_fail_silently = 1
-  " let g:js_fmt_options = ''
-  let g:js_fmt_command = "jsfmt"
-
   call neobundle#untap()
 endif
 "}}}
