@@ -367,47 +367,6 @@ if neobundle#tap('unite.vim')"{{{
   " http://d.hatena.ne.jp/osyo-manga/20140825
   inoremap <C-l> <ESC>:Unite history/command -start-insert -default-action=edit<CR>
 
-  " http://d.hatena.ne.jp/osyo-manga/20131217/1387292034"{{{
-  let g:unite_source_alias_aliases = {
-        \ "startup_neomru": {
-        \   "source": "neomru/file"
-        \ },
-        \ "startup_directory_mru": {
-        \   "source": "directory_mru"
-        \ }
-        \}
-
-  call unite#custom_max_candidates("startup_neomru", 10)
-  call unite#custom_max_candidates("startup_directory_mru", 10)
-
-  if !exists("g:unite_source_menu_menus")
-    let g:unite_source_menu_menus = {}
-  endif
-  let g:unite_source_menu_menus.startup = {
-        \ "description": "startup menu",
-        \   "command_candidates": [
-        \     ["vimrc",  "edit " . $MYVIMRC],
-        \     ["gvimrc", "edit " . $MYGVIMRC],
-        \     ["unite-neomru", "Unite neomru/file"],
-        \     ["unite-directory_mru", "Unite directory_mru"],
-        \   ]
-        \ }
-  command! UniteStartup
-        \ Unite
-        \ output:echo:"===:file:mru:===":! startup_neomru
-        \ output:echo:":":!
-        \ output:echo:"===:directory:mru:===":! startup_directory_mru
-        \ output:echo:":":!
-        \ output:echo:"===:menu:===":! menu:startup
-        \ -hide-source-names
-        \ -no-split
-        \ -quick-match
-  " Auto start if arguments is nothing
-  if has('vim_starting') && expand("%") == ""
-    " au MyAutoCmd VimEnter * nested :UniteStartup
-  endif
-  "}}}
-
   " grep source setting
   if executable('jvgrep')
     let g:unite_source_grep_command = 'jvgrep'

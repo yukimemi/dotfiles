@@ -455,9 +455,9 @@ repository =  'tpope/vim-fireplace'
 depends = ['tpope/vim-classpath', 'guns/vim-clojure-static']
 filetypes = 'clojure'
 
-[[plugins]]
-repository = 'thinca/vim-ft-clojure'
-filetypes = 'clojure'
+# [[plugins]]
+# repository = 'thinca/vim-ft-clojure'
+# filetypes = 'clojure'
 
 [[plugins]]
 repository = 'guns/vim-clojure-static'
@@ -696,9 +696,9 @@ repository = 'koron/codic-vim'
 repository = 'soramugi/auto-ctags.vim'
 commands = 'Ctags'
 
-[[plugins]]
-repository = 'yassu/todo-env.vim'
-filetypes = 'todo'
+# [[plugins]]
+# repository = 'yassu/todo-env.vim'
+# filetypes = 'todo'
 
 [[plugins]]
 repository = 'fuenor/qfixhowm'
