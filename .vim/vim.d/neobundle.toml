@@ -60,9 +60,20 @@ repository = 'LeafCage/yankround.vim'
 # Utility {{{
 # ======================================================================
 [[plugins]]
+repository = 'Shougo/neobundle.vim'
+fetch = 1
+
+[[plugins]]
 repository = 'mattn/webapi-vim'
 
 [[plugins]]
 repository = 'rhysd/committia.vim'
-# }}}
 
+[[plugins]]
+repository = 'Shougo/vimproc.vim'
+
+  [plugins.build]
+  windows = 'tools\\update-dll-mingw'
+  cygwin = 'make -f make_cygwin.mak'
+  mac = 'make -f make_mac.mak'
+  unix = 'make -f make_unix.mak'

@@ -25,19 +25,10 @@ endif
 
 call neobundle#begin(expand('$CACHE/neobundle'))
 if neobundle#load_cache()
-  NeoBundleFetch 'Shougo/neobundle.vim'
-
-  NeoBundle 'Shougo/vimproc.vim', {
-        \ 'build' : {
-        \     'windows' : 'tools\\update-dll-mingw',
-        \     'cygwin' : 'make -f make_cygwin.mak',
-        \     'mac' : 'make -f make_mac.mak',
-        \     'unix' : 'make -f make_unix.mak',
-        \    }
-        \ }
 
   call neobundle#load_toml('~/.vim/vim.d/neobundle.toml')
   call neobundle#load_toml('~/.vim/vim.d/neobundlelazy.toml', {'lazy' : 1})
+
   NeoBundleSaveCache
 endif
 
