@@ -382,29 +382,31 @@ if neobundle#tap('unite.vim')"{{{
     let g:unite_source_grep_recursive_opt = ''
   endif
 
-  " Like ctrlp.vim settings.
-  let s:unite_default_context = {
-        \ 'start_insert': 1,
-        \ 'winheight': 10,
-        \ 'direction': 'botright'
-        \ }
-  call extend(s:unite_default_context, {
-        \ 'prompt': '» ',
-        \ 'marked_icon': '✗'
-        \ })
-  call unite#custom#profile('default', 'context', s:unite_default_context)
+  function! neobundle#hooks.on_source(bundle)
+    " Like ctrlp.vim settings.
+    let s:unite_default_context = {
+          \ 'start_insert': 1,
+          \ 'winheight': 10,
+          \ 'direction': 'botright'
+          \ }
+    call extend(s:unite_default_context, {
+          \ 'prompt': '» ',
+          \ 'marked_icon': '✗'
+          \ })
+    call unite#custom#profile('default', 'context', s:unite_default_context)
 
-  " use vimfiler to open directory
-  call unite#custom#default_action("source/bookmark/directory", "vimfiler")
-  call unite#custom#default_action("directory", "vimfiler")
-  call unite#custom#default_action("directory_mru", "vimfiler")
-  "call unite#custom#default_action("file", "tabdrop")
+    " use vimfiler to open directory
+    call unite#custom#default_action("source/bookmark/directory", "vimfiler")
+    call unite#custom#default_action("directory", "vimfiler")
+    call unite#custom#default_action("directory_mru", "vimfiler")
+    "call unite#custom#default_action("file", "tabdrop")
 
-  au MyAutoCmd FileType unite call s:unite_settings()
-  function! s:unite_settings()
-    nmap <buffer> <Esc> <Plug>(unite_exit)
-    nmap <buffer> <C-n> <Plug>(unite_select_next_line)
-    nmap <buffer> <C-p> <Plug>(unite_select_previous_line)
+    au MyAutoCmd FileType unite call s:unite_settings()
+    function! s:unite_settings()
+      nmap <buffer> <Esc> <Plug>(unite_exit)
+      nmap <buffer> <C-n> <Plug>(unite_select_next_line)
+      nmap <buffer> <C-p> <Plug>(unite_select_previous_line)
+    endfunction
   endfunction
 
   call neobundle#untap()
