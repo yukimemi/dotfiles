@@ -53,5 +53,5 @@ function! s:loadAllPlugins()
   call neobundle#end()
   filetype plugin indent on
   source ~/.vim/vim.d/05_pluginsetting.vim
-  echom "Load all plugins done !"
+  echom "Suuuuuuuuuper !!!!!!!"
 endfunction

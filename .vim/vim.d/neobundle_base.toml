@@ -22,6 +22,9 @@ repository = 'haya14busa/incsearch.vim'
 
 [[plugins]]
 repository = 'osyo-manga/vim-anzu'
+
+[[plugins]]
+repository = 'jacquesbh/vim-showmarks'
 # }}}
 
 # ======================================================================
