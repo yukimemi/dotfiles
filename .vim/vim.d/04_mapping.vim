@@ -80,3 +80,6 @@ nmap <silent> cc <Plug>(ToggleColorColumn)
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
       \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
 omap s :normal vs<CR>
+
+inoremap <ESC> <ESC>:set iminsert=0<CR>
+

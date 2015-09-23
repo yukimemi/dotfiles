@@ -95,6 +95,8 @@ endif
 set autoindent
 set smartindent
 set smarttab
+set iminsert=0
+set imsearch=-1
 set cinoptions+=:0
 set title
 set cmdheight=2
