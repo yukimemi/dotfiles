@@ -5,6 +5,9 @@ set smoothscroll
 let mapleader = ","
 let locale = "jp"
 
+let scrollstep = 100
+let scrollduration = 40
+
 " qmarks
 " google mail/task/calendar
 let qmark m = ["https://mail.google.com"]
