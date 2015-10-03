@@ -430,5 +430,9 @@ commands = 'Ctags'
 repository = 'fuenor/qfixhowm'
 depends = 'fuenor/qfixgrep'
 function_prefix = 'qfixmemo'
+
+[[plugins]]
+repository = 'mattn/benchvimrc-vim'
+commands = 'BenchVimrc'
 # }}}
 
