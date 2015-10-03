@@ -28,6 +28,8 @@ if neobundle#load_cache()
 
   call neobundle#load_toml('~/.vim/vim.d/neobundle_base.toml')
   call neobundle#load_toml('~/.vim/vim.d/neobundlelazy_base.toml', {'lazy' : 1})
+  call neobundle#load_toml('~/.vim/vim.d/neobundle.toml')
+  call neobundle#load_toml('~/.vim/vim.d/neobundlelazy.toml', {'lazy' : 1})
 
   NeoBundleSaveCache
 endif
