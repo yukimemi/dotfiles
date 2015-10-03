@@ -11,3 +11,8 @@
     preferredLineLength: 100
   whitespace:
     removeTrailingWhitespace: false
+  "vim-mode":
+    useClipboardAsDefaultRegister: true
+    useSmartcaseForSearch: true
+    wrapLeftRightMotion: true
+  "atom-beautify": {}
