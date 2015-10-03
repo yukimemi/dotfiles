@@ -28,3 +28,6 @@ tags
 
 # BetterTouchTool
 mac/BetterTouchTool/Logs/
+
+# mac
+.DS_Store
