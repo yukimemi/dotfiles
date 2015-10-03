@@ -16,3 +16,10 @@
     useSmartcaseForSearch: true
     wrapLeftRightMotion: true
   "atom-beautify": {}
+  "autocomplete-plus":
+    minimumWordLength: 2
+    backspaceTriggersAutocomplete: true
+    useCoreMovementCommands: false
+  "trailing-spaces":
+    enableForIndentation: true
+    enableForCursorLines: true
