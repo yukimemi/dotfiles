@@ -8,3 +8,6 @@
     invisibles: {}
     showIndentGuide: true
     showInvisibles: true
+    preferredLineLength: 100
+  whitespace:
+    removeTrailingWhitespace: false
