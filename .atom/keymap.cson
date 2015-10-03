@@ -23,3 +23,32 @@
 # This file uses CoffeeScript Object Notation (CSON).
 # If you are unfamiliar with CSON, you can read more about it here:
 # https://github.com/bevry/cson#what-is-cson
+
+# autocomplete-plus
+'body atom-text-editor.autocomplete-active':
+  'ctrl-p': 'autocomplete-plus:move-up'
+  'ctrl-n': 'autocomplete-plus:move-down'
+  'pageup': 'autocomplete-plus:page-up'
+  'pagedown': 'autocomplete-plus:page-down'
+  'home': 'autocomplete-plus:move-to-top'
+  'end': 'autocomplete-plus:move-to-bottom'
+  'ctrl-space': 'autocomplete-plus:activate'
+  'escape': 'autocomplete-plus:cancel'
+
+# Use prefix 's'
+'atom-text-editor.vim-mode:not(.insert-mode)':
+  # For window
+  's j': 'window:focus-pane-below'
+  's k': 'window:focus-pane-above'
+  's h': 'window:focus-pane-on-left'
+  's l': 'window:focus-pane-on-right'
+  's w': 'window:focus-next-pane'
+  's p': 'window:focus-previous-pane'
+
+  # For pane
+  's s': 'pane:split-down'
+  's v': 'pane:split-right'
+  's q': 'core:close'
+
+  # Save
+  ', ,': 'core:save'
