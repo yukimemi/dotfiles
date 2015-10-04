@@ -35,20 +35,78 @@
   'ctrl-space': 'autocomplete-plus:activate'
   'escape': 'autocomplete-plus:cancel'
 
-# Use prefix 's'
-'atom-text-editor.vim-mode:not(.insert-mode)':
+'atom-workspace:not([mini])':
+  # For pane
+  's s': 'pane:split-down'
+  's v': 'pane:split-right'
+  's q': 'core:close'
+  's 0': 'close-other-panes:close-other-panes'
+  # For tab
+  's O': 'close-other-tabs:close-other-tabs'
+  'ctrl-h': 'pane:show-previous-item'
+  'ctrl-l': 'pane:show-next-item'
+  # paner
+  's o': 'paner:maximize'
+  # recent-finder
+  'cmd-p': 'recent-finder:toggle'
+  # project-find-navigation
+  'ctrl-cmd-f': 'project-find-navigation:activate-results-pane'
+
+# vim-mode-plus
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
   # For window
   's j': 'window:focus-pane-below'
   's k': 'window:focus-pane-above'
   's h': 'window:focus-pane-on-left'
   's l': 'window:focus-pane-on-right'
-  's w': 'window:focus-next-pane'
+  's w': 'window:focus-ne:xt-pane'
   's p': 'window:focus-previous-pane'
-
-  # For pane
-  's s': 'pane:split-down'
-  's v': 'pane:split-right'
-  's q': 'core:close'
-
   # Save
   ', ,': 'core:save'
+
+# vim-mode-plus
+'atom-text-editor.vim-mode-plus.normal-mode, atom-text-editor.vim-mode-plus.visual-mode':
+  '_': 'vim-mode-plus:replace-with-register'
+  # quick-highlight
+  'space m': 'quick-highlight:toggle'
+  'space M': 'quick-highlight:clear'
+  # command-palette
+  ':': 'command-palette:toggle'
+
+'atom-text-editor.vim-mode-plus.operator-pending-mode, atom-text-editor.vim-mode-plus.visual-mode':
+  # 'is' is mapped to inner-any-pair by default(so you can use `vis`, `cis` etc).
+  # By mapping `;` here, I can choose inner-any-pair with like `c;`, `v;`.
+  # And more, I can expand selection across any-pair with `vi;;;;` or `va;;;;`.
+  ';': 'vim-mode-plus:inner-any-pair'
+  # I overwrite vim-mode-plus:inner-single-quote here so that I can select any Quoted pair with single quote.
+  "'": 'vim-mode-plus:inner-any-quote'
+
+'atom-text-editor.vim-mode-plus.normal-mode':
+  'S': 'vim-mode-plus:surround-word'
+  'd s': 'vim-mode-plus:delete-surround-any-pair'
+  'c s': 'vim-mode-plus:change-surround-any-pair'
+  # cursor-history
+  'ctrl-i': 'cursor-history:next'
+  'ctrl-o': 'cursor-history:prev'
+  # open-this
+  'g f': 'open-this:here'
+
+# when you want to search `[`, `]`, `;`, input `ctrl-v` following these keys.
+'atom-text-editor.vim-mode-plus-search':
+  '[': 'vim-mode-plus:search-visit-prev'
+  ']': 'vim-mode-plus:search-visit-next'
+  ';': 'vim-mode-plus:search-confirm'
+  'ctrl-f': 'vim-mode-plus:search-scroll-next'
+  'ctrl-b': 'vim-mode-plus:search-scroll-prev'
+  'ctrl-g': 'vim-mode-plus:search-cancel'
+
+'atom-text-editor.vim-mode-plus-input':
+  'ctrl-g': 'vim-mode-plus:input-cancel'
+
+# project-find-navigation
+'.preview-pane.project-find-navigation':
+  'l': 'core:move-right'
+  'h': 'core:move-left'
+  'j': 'project-find-navigation:select-next-and-confirm'
+  'k': 'project-find-navigation:select-prev-and-confirm'
+  'enter': 'project-find-navigation:confirm'

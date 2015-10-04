@@ -3,7 +3,13 @@
     userId: "4a7e9009-6e5c-bb28-798c-b5a54c5682ed"
   welcome:
     showOnStartup: false
-  core: {}
+  core:
+    disabledPackages: [
+      "vim-mode"
+      "vim-mode-visual-block"
+      "vim-surround"
+      "ex-mode"
+    ]
   editor:
     invisibles: {}
     showIndentGuide: true
@@ -15,7 +21,8 @@
     useClipboardAsDefaultRegister: true
     useSmartcaseForSearch: true
     wrapLeftRightMotion: true
-  "atom-beautify": {}
+  "atom-beautify":
+    _analyticsUserId: "0ca680eb-6242-424e-9db7-a68817dfed30"
   "autocomplete-plus":
     minimumWordLength: 2
     backspaceTriggersAutocomplete: true
@@ -36,6 +43,26 @@
   "go-plus":
     goPath: "~/.ghq"
     goInstallation: "~/.anyenv/envs/goenv/shims/go"
+  docblockr: {}
+  "vim-mode-plus":
+    useClipboardAsDefaultRegister: true
+    useSmartcaseForSearch: true
+    incrementalSearch: true
+    showHoverOnOperate: true
+    showHoverSearchCounter: true
+  "one-dark-ui": {}
+  "quick-highlight": {}
+  "recent-finder": {}
+  "cursor-history":
+    flashOnLand: true
+  "project-folder":
+    projectRootDirectories: [
+      "~/.dotfiles"
+      "~/.zprezto"
+    ]
+    gitProjectDirectories: [
+      "~/.ghq/src"
+    ]
 ".diff.source":
   editor:
     preferredLineLength: 100
