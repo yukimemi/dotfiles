@@ -57,8 +57,7 @@
     flashOnLand: true
   "project-folder":
     projectRootDirectories: [
-      "~/.dotfiles"
-      "~/.zprezto"
+      "~/"
     ]
     gitProjectDirectories: [
       "~/.ghq/src"
