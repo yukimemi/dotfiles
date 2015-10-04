@@ -1,12 +1,11 @@
 " variable settings
 let barposition = "bottom"
 let blacklists = ["*://mail.google.com/*","*://feedly.com/*","*://www.google.com/calendar/*"]
-set smoothscroll
 let mapleader = ","
 let locale = "jp"
 
 let scrollstep = 100
-let scrollduration = 40
+"let scrollduration = 40
 
 " qmarks
 " google mail/task/calendar
