@@ -1,1 +1,25 @@
-{}
+".zprezto":
+  title: ".zprezto"
+  paths: [
+    "/Users/yukimemi/.zprezto"
+  ]
+".dotfiles":
+  title: ".dotfiles"
+  paths: [
+    "/Users/yukimemi/.dotfiles"
+  ]
+"ansible-playbook":
+  title: "ansible-playbook"
+  paths: [
+    "/Users/yukimemi/.ghq/src/github.com/yukimemi/ansible-playbook"
+  ]
+msglink:
+  title: "msglink"
+  paths: [
+    "/Users/yukimemi/.ghq/src/bitbucket.org/yukimemi/electron/msglink"
+  ]
+spyrun:
+  title: "spyrun"
+  paths: [
+    "/Users/yukimemi/.ghq/src/github.com/yukimemi/spyrun"
+  ]

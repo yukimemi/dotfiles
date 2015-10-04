@@ -23,3 +23,19 @@
   "trailing-spaces":
     enableForIndentation: true
     enableForCursorLines: true
+  minimap:
+    plugins:
+      "highlight-selected": true
+      pigments: true
+      "git-diff": true
+      "minimap-autohide": true
+  linter: {}
+  "symbols-tree-view": {}
+  "vim-surround": {}
+  "git-plus": {}
+  "go-plus":
+    goPath: "~/.ghq"
+    goInstallation: "~/.anyenv/envs/goenv/shims/go"
+".diff.source":
+  editor:
+    preferredLineLength: 100
