@@ -78,3 +78,10 @@ endfunction
 vmap <silent> <expr> p <sid>Repl()
 "}}}
 
+" Delete other line"{{{
+function! s:deleteOtherLine()
+  %g!//d
+endfunction
+nnoremap [Space]d :<C-u>call <SID>deleteOtherLine()<CR>
+"}}}
+
