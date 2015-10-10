@@ -24,6 +24,7 @@ endif
 "}}}
 
 call neobundle#begin(expand('$CACHE/neobundle'))
+
 if neobundle#load_cache()
 
   call neobundle#load_toml('~/.vim/vim.d/neobundle.toml')
@@ -31,6 +32,9 @@ if neobundle#load_cache()
 
   NeoBundleSaveCache
 endif
+
+" Load plugin setting.
+call Source('plugins/plugins.vim')
 
 call neobundle#end()
 

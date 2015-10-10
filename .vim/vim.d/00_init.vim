@@ -40,4 +40,8 @@ function! Mkdir(dir)"{{{
 endfunction
 "}}}
 
+function! Source(path)"{{{
+  execute 'source' fnameescape(expand($MY_VIMRUNTIME . '/vim.d/' . a:path))
+endfunction
+"}}}
 
