@@ -98,40 +98,40 @@ endif
 "}}}
 
 if neobundle#tap('neocomplete.vim')"{{{
-  function! neobundle#hooks.on_source(bundle)
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#enable_smart_case = 1
-    let g:neocomplete#sources#syntax#min_keyword_length = 1
-    " let g:neocomplete#skip_auto_completion_time = 5
-    let g:neocomplete#enable_auto_close_preview = 0
-    " Define dictionary.
-    let g:neocomplete#sources#dictionary#dictionaries = {
-          \ 'default': '',
-          \ 'vimshell': $HOME . '/.vimshell_hist',
-          \ 'scheme': $HOME . '/.gosh_completions',
-          \ 'coffee': $MY_VIMRUNTIME . '/dict/coffee.dict',
-          \ 'vbs': $MY_VIMRUNTIME . '/dict/vbs.dict',
-          \ 'dosbatch': $MY_VIMRUNTIME . '/dict/dosbatch.dict',
-          \ 'scala': $MY_VIMRUNTIME . '/dict/scala.dict',
-          \ 'ps1': $MY_VIMRUNTIME . '/dict/ps1.dict',
-          \ 'javascript': $MY_VIMRUNTIME . '/dict/wsh.dict',
-          \ 'ruby': $MY_VIMRUNTIME . '/dict/ruby.dict'
-          \ }
 
-    if !exists('g:neocomplete#sources#omni#functions')
-      let g:neocomplete#sources#omni#functions = {}
-    endif
-    " SQL
-    let g:neocomplete#sources#omni#functions.sql = 'sqlcomplete#Complete'
-    " typescript
-    " let g:neocomplete#sources#omni#functions.typescript = 'TSScompleteFunc'
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_smart_case = 1
+  let g:neocomplete#sources#syntax#min_keyword_length = 1
+  " let g:neocomplete#skip_auto_completion_time = 5
+  let g:neocomplete#enable_auto_close_preview = 0
+  " Define dictionary.
+  let g:neocomplete#sources#dictionary#dictionaries = {
+        \ 'default': '',
+        \ 'vimshell': $HOME . '/.vimshell_hist',
+        \ 'scheme': $HOME . '/.gosh_completions',
+        \ 'coffee': $MY_VIMRUNTIME . '/dict/coffee.dict',
+        \ 'vbs': $MY_VIMRUNTIME . '/dict/vbs.dict',
+        \ 'dosbatch': $MY_VIMRUNTIME . '/dict/dosbatch.dict',
+        \ 'scala': $MY_VIMRUNTIME . '/dict/scala.dict',
+        \ 'ps1': $MY_VIMRUNTIME . '/dict/ps1.dict',
+        \ 'javascript': $MY_VIMRUNTIME . '/dict/wsh.dict',
+        \ 'ruby': $MY_VIMRUNTIME . '/dict/ruby.dict'
+        \ }
 
-    if !exists('g:neocomplete#force_omni_input_patterns')
-      let g:neocomplete#force_omni_input_patterns = {}
-    endif
-    let g:neocomplete#force_omni_input_patterns.typescript = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-    let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-  endfunction
+  if !exists('g:neocomplete#sources#omni#functions')
+    let g:neocomplete#sources#omni#functions = {}
+  endif
+
+  " SQL
+  let g:neocomplete#sources#omni#functions.sql = 'sqlcomplete#Complete'
+  " typescript
+  " let g:neocomplete#sources#omni#functions.typescript = 'TSScompleteFunc'
+
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  let g:neocomplete#force_omni_input_patterns.typescript = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
   call neobundle#untap()
 endif
@@ -351,6 +351,7 @@ if neobundle#tap('unite.vim')"{{{
   " nnoremap sum :<C-u>Unite neomru/file -auto-preview<CR>
   nnoremap su/ :<C-u>Unite line -no-quit<CR>
   nnoremap sug :<C-u>Unite grep -no-quit<CR>
+  nnoremap suG :<C-u>Unite grep/git -no-quit<CR>
   nnoremap sut :<C-u>Unite tab<CR>
   nnoremap suu :<C-u>Unite buffer neomru/file<CR>
   nnoremap sua :<C-u>Unite buffer neomru/file bookmark file file_rec/async<CR>
@@ -1762,6 +1763,14 @@ endif
 
 if neobundle#tap('vim-jsx')"{{{
   " let g:jsx_ext_required = 0
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-rooter')"{{{
+
+  let g:rooter_use_lcd = 1
+
   call neobundle#untap()
 endif
 "}}}
