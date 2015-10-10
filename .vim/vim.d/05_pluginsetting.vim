@@ -1165,7 +1165,8 @@ if neobundle#tap('vim-jplus') "{{{
   vmap J <Plug>(jplus)
 
   call neobundle#untap()
-endif "}}}
+endif
+"}}}
 
 if neobundle#tap('vim-watchdogs')"{{{
   if !exists('g:watchdogs_config')
@@ -1250,25 +1251,12 @@ endif
 "}}}
 
 if neobundle#tap('vim-stylus')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'filetypes': 'stylus'
-        \ }
-        \ })
 
   call neobundle#untap()
 endif
 "}}}
 
 if neobundle#tap('J6uil.vim')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'unite_sources': ['J6uil_members', 'J6uil_rooms'],
-        \   'mappings': [['n', '<Plug>(J6uil_']],
-        \   'commands': ['J6uilReconnect', 'J6uilNextRoom', 'J6uilPrevRoom', 'J6uilDisconnect',
-        \                {'complete': 'custom,J6uil#complete#room', 'name': 'J6uil'}]
-        \ }
-        \ })
 
   let g:J6uil_user = 'yukimemi'
   let g:J6uil_multi_window = 1
@@ -1489,23 +1477,12 @@ endif
 "}}}
 
 if neobundle#tap('vim-ref-ri')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'unite_sources': ['ref/ri']
-        \ }
-        \ })
 
   call neobundle#untap()
 endif
 "}}}
 
 if neobundle#tap('vim-itunes-bgm')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'commands': ['ITunesBGMStart', 'ITunesBGMStop', 'ITunesBGMNext'],
-        \   'unite_sources': ['itunesbgm']
-        \ }
-        \ })
 
   call neobundle#untap()
 endif
@@ -1516,17 +1493,12 @@ if neobundle#tap('im_control.vim')"{{{
   let IM_CtrlMode = 6
   inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
   set timeout timeoutlen=3000 ttimeoutlen=50
+
+  call neobundle#untap()
 endif
 "}}}
 
 if neobundle#tap('tsuquyomi')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'commands': ['TsuquyomiReloadProject', 'TsuquyomiStartServer', 'TsuquyomiStatusServer',
-        \                'TsuquyomiStopServer'],
-        \   'filetypes': ['typescript']
-        \ }
-        \ })
 
   call neobundle#untap()
 endif
@@ -1552,11 +1524,7 @@ if neobundle#tap('qfixhowm')"{{{
 endif"}}}
 
 if neobundle#tap('qfixgrep')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'on_source': ['qfixhowm']
-        \ }
-        \ })
+
   call neobundle#untap()
 endif
 "}}}
@@ -1588,22 +1556,12 @@ endif
 "}}}
 
 if neobundle#tap('vim-unite-history')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'unite_sources': ['history']
-        \ }
-        \ })
 
   call neobundle#untap()
 endif
 "}}}
 
 if neobundle#tap('xmledit')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'filetypes': ['xml']
-        \ }
-        \ })
 
   call neobundle#untap()
 endif
@@ -1668,11 +1626,6 @@ endif
 "}}}
 
 if neobundle#tap('try-colorscheme.vim')"{{{
-  call neobundle#config({
-        \ 'autoload': {
-        \   'commands': ['TryColorscheme']
-        \ }
-        \ })
 
   call neobundle#untap()
 endif
@@ -1708,6 +1661,8 @@ endif
 if neobundle#tap('accelerated-jk')"{{{
   nmap j <Plug>(accelerated_jk_gj)
   nmap k <Plug>(accelerated_jk_gk)
+
+  call neobundle#untap()
 endif
 "}}}
 
