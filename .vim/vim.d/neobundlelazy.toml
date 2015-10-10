@@ -265,6 +265,11 @@ filetypes = 'all'
 [[plugins]]
 repository = 'gregsexton/gitv'
 commands = 'Gitv'
+
+[[plugins]]
+repository = 'rhysd/github-complete.vim'
+filetypes = 'gitcommit'
+
 # }}}
 
 # ======================================================================
