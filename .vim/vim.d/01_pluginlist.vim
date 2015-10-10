@@ -26,8 +26,6 @@ endif
 call neobundle#begin(expand('$CACHE/neobundle'))
 if neobundle#load_cache()
 
-  call neobundle#load_toml('~/.vim/vim.d/neobundle_base.toml')
-  call neobundle#load_toml('~/.vim/vim.d/neobundlelazy_base.toml', {'lazy' : 1})
   call neobundle#load_toml('~/.vim/vim.d/neobundle.toml')
   call neobundle#load_toml('~/.vim/vim.d/neobundlelazy.toml', {'lazy' : 1})
 
@@ -44,16 +42,3 @@ if ! has('gui_running')
   NeoBundleCheck
 endif
 
-" Load full plugins
-nnoremap <silent> [Space]s :<C-u>call <SID>loadAllPlugins()<CR>
-function! s:loadAllPlugins()
-  call neobundle#append()
-
-  call neobundle#load_toml('~/.vim/vim.d/neobundle.toml')
-  call neobundle#load_toml('~/.vim/vim.d/neobundlelazy.toml', {'lazy' : 1})
-
-  call neobundle#end()
-  filetype plugin indent on
-  source ~/.vim/vim.d/05_pluginsetting.vim
-  echom "Suuuuuuuuuper !!!!!!!"
-endfunction
