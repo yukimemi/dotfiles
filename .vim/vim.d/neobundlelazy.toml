@@ -72,6 +72,10 @@ unite_sources = 'advent_calendar'
 repository = 'rhysd/unite-codic.vim'
 depends = 'koron/codic-vim'
 unite_sources = 'codic'
+
+[[plugins]]
+repository = 'lambdalisue/unite-grep-vcs'
+unite_sources = ['grep/git', 'grep/hg']
 # }}}
 
 # ======================================================================
@@ -80,6 +84,11 @@ unite_sources = 'codic'
 [[plugins]]
 repository = 'Shougo/neocomplete.vim'
 depends = 'Shougo/context_filetype.vim'
+insert = 1
+
+[[plugins]]
+repository = 'Shougo/neco-syntax'
+depends = 'Shougo/neocomplete.vim'
 insert = 1
 
 [[plugins]]
@@ -177,43 +186,43 @@ filetypes = 'all'
 
 [[plugins]]
 repository = 'kana/vim-operator-replace'
-depends = 'vim-operator-user'
+depends = 'kana/vim-operator-user'
 mappings = '<Plug>(operator-replace)'
 
 [[plugins]]
 repository = 'rhysd/vim-operator-surround'
-depends = 'vim-operator-user'
+depends = 'kana/vim-operator-user'
 mappings = '<Plug>(operator-surround'
 
 [[plugins]]
 repository = 'chikatoike/concealedyank.vim'
-depends = 'vim-operator-user'
+depends = 'kana/vim-operator-user'
 filetypes = 'vimshell'
 mappings = '<Plug>(operator-concealedyank)'
 
 [[plugins]]
 repository = 'osyo-manga/vim-operator-blockwise'
-depends = 'vim-operator-user'
+depends = 'kana/vim-operator-user'
 mappings = '<Plug>(operator-blockwise'
 
 [[plugins]]
 repository = 'rhysd/vim-operator-trailingspace-killer'
-depends = 'vim-operator-user'
+depends = 'kana/vim-operator-user'
 mappings = '<Plug>(operator-trailingspace-killer)'
 
 [[plugins]]
 repository = 'rhysd/vim-clang-format'
-depends = 'vim-operator-user'
+depends = 'kana/vim-operator-user'
 mappings = '<Plug>(operator-clang-format)'
 
 [[plugins]]
 repository = 'osyo-manga/vim-operator-search'
-depends = 'vim-operator-user'
+depends = 'kana/vim-operator-user'
 mappings = '<Plug>(operator-search)'
 
 [[plugins]]
 repository = 'tyru/operator-star.vim'
-depends = ['vim-operator-user', 'thinca/vim-visualstar']
+depends = ['kana/vim-operator-user', 'thinca/vim-visualstar']
 mappings = ['<Plug>(operator-*)', '<Plug>(operator-g*)', '<Plug>(operator-#)', '<Plug>(operator-g#)']
 # }}}
 
@@ -226,32 +235,32 @@ filetypes = 'all'
 
 [[plugins]]
 repository = 'osyo-manga/vim-textobj-multiblock'
-depends = 'vim-textobj-user'
+depends = 'kana/vim-textobj-user'
 mappings = '<Plug>(textobj-multiblock'
 
 [[plugins]]
 repository = 'kana/vim-textobj-entire'
-depends = 'vim-textobj-user'
+depends = 'kana/vim-textobj-user'
 mappings = '<Plug>(textobj-entire'
 
 [[plugins]]
 repository = 'kana/vim-textobj-fold'
-depends = 'vim-textobj-user'
+depends = 'kana/vim-textobj-user'
 mappings = '<Plug>(textobj-fold'
 
 [[plugins]]
 repository = 'kana/vim-textobj-function'
-depends = 'vim-textobj-user'
+depends = 'kana/vim-textobj-user'
 mappings = '<Plug>(textobj-function'
 
 [[plugins]]
 repository = 'kana/vim-textobj-indent'
-depends = 'vim-textobj-user'
+depends = 'kana/vim-textobj-user'
 mappings = '<Plug>(textobj-indent'
 
 [[plugins]]
 repository = 'gilligan/textobj-lastpaste'
-depends = 'vim-textobj-user'
+depends = 'kana/vim-textobj-user'
 mappings = '<Plug>(textobj-lastpaste-i)'
 # }}}
 
@@ -269,6 +278,7 @@ commands = 'Gitv'
 [[plugins]]
 repository = 'rhysd/github-complete.vim'
 filetypes = 'gitcommit'
+
 
 # }}}
 

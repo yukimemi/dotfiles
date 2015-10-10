@@ -1,5 +1,5 @@
 " autochdir"{{{
-au MyAutoCmd BufEnter * execute ":silent! lcd " . escape(expand("%:p:h"), ' ')
+" au MyAutoCmd BufEnter * execute ":silent! lcd " . escape(expand("%:p:h"), ' ')
 "}}}
 
 function! s:str2byte(str)"{{{

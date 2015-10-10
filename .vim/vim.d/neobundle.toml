@@ -63,6 +63,9 @@ repository = 'LeafCage/yankround.vim'
 # Utility {{{
 # ======================================================================
 [[plugins]]
+repository = 'airblade/vim-rooter'
+
+[[plugins]]
 repository = 'mattn/webapi-vim'
 
 [[plugins]]

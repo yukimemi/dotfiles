@@ -50,7 +50,7 @@ if has('mouse')
 endif
 set keywordprg=:help
 set autoread
-au MyAutoCmd WinEnter * checktime
+au MyAutoCmd WinEnter,CursorHold * checktime
 au MyAutoCmd BufNewFile,BufRead *.csv,*.log setl nowrap
 au MyAutoCmd WinEnter,BufEnter * set formatoptions-=ro
 au MyAutoCmd CursorHold * setl nohlsearch
@@ -61,7 +61,7 @@ au MyAutoCmd CmdwinEnter * :silent! 1,$-20 delete _ | call cursor("$", 1)
 " Reload .vimrc automatically.
 " au MyAutoCmd BufWritePost *vimrc source $MYVIMRC | redraw
 " au MyAutoCmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
-au MyAutoCmd BufWritePost .vimrc,vimrc,*.rc.vim,neobundle*.toml NeoBundleClearCache
+au MyAutoCmd BufWritePost .vimrc,vimrc,*.vim,neobundle*.toml NeoBundleClearCache
 
 set ignorecase
 set smartcase
