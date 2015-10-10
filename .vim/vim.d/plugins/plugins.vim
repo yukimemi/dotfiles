@@ -393,8 +393,7 @@ if neobundle#tap('unite.vim')"{{{
           \ 'direction': 'botright'
           \ }
     call extend(s:unite_default_context, {
-          \ 'prompt': '» ',
-          \ 'marked_icon': '✗'
+          \ 'prompt': '» '
           \ })
     call unite#custom#profile('default', 'context', s:unite_default_context)
 
