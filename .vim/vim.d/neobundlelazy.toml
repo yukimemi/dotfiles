@@ -160,10 +160,6 @@ filetypes = 'all'
 [[plugins]]
 repository = 'kien/rainbow_parentheses.vim'
 commands = 'RainbowParenthesesToggle'
-
-[[plugins]]
-repository = 'ntpeters/vim-better-whitespace'
-filetypes = 'all'
 # }}}
 
 # ======================================================================
