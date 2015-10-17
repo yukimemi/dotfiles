@@ -144,6 +144,11 @@ on_source = 'osyo-manga/vim-watchdogs'
 repository = 'osyo-manga/shabadou.vim'
 depends = 'thinca/vim-quickrun'
 on_source = 'thinca/vim-quickrun'
+
+[[plugins]]
+repository = 'osyo-manga/vim-watchdogs'
+filetypes = 'all'
+depends = 'thinca/vim-quickrun'
 # }}}
 
 # ======================================================================
