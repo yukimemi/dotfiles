@@ -143,7 +143,7 @@ on_source = 'osyo-manga/vim-watchdogs'
 [[plugins]]
 repository = 'osyo-manga/shabadou.vim'
 depends = 'thinca/vim-quickrun'
-on_source = 'thinca/vim-quickrun'
+on_source = ['thinca/vim-quickrun', 'osyo-manga/vim-watchdogs']
 
 [[plugins]]
 repository = 'osyo-manga/vim-watchdogs'
@@ -162,6 +162,14 @@ filetypes = 'all'
 # ======================================================================
 # Visual {{{
 # ======================================================================
+[[plugins]]
+repository = 'Yggdroot/indentLine'
+filetypes = ['javascript', 'ruby', 'go', 'haskell', 'markdown', 'vim']
+
+# [[plugins]]
+# repository = 'nathanaelkane/vim-indent-guides'
+# filetypes = ['javascript', 'ruby', 'go', 'haskell', 'markdown', 'vim']
+
 [[plugins]]
 repository = 'kien/rainbow_parentheses.vim'
 commands = 'RainbowParenthesesToggle'
@@ -725,5 +733,9 @@ function_prefix = 'qfixmemo'
 [[plugins]]
 repository = 'mattn/benchvimrc-vim'
 commands = 'BenchVimrc'
+
+# [[plugins]]
+# repository = 'seletskiy/vim-autosurround'
+# functions = 'AutoSurround'
 # }}}
 

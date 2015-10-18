@@ -2,9 +2,6 @@
 # Visual {{{
 # ======================================================================
 [[plugins]]
-repository = 'Yggdroot/indentLine'
-
-[[plugins]]
 repository = 'altercation/vim-colors-solarized'
 
 [[plugins]]

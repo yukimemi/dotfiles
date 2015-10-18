@@ -237,9 +237,9 @@ endif
 if neobundle#tap('vim-indent-guides')"{{{
   let g:indent_guides_enable_on_vim_startup = 1
   let g:indent_guides_guide_size = 1
-  let g:indent_guides_auto_colors = 1
   let g:indent_guides_start_level = 2
-  let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'calendar', 'thumbnail']
+  let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'calendar', 'thumbnail', 'vimfiler', 'unite']
+  let g:indent_guides_auto_colors = 1
 
   call neobundle#untap()
 endif
@@ -1782,6 +1782,13 @@ endif
 if neobundle#tap('vim-rooter')"{{{
 
   let g:rooter_use_lcd = 1
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-autosurround')"{{{
+  inoremap  ( (<C-O>:call AutoSurround(")")<CR>
 
   call neobundle#untap()
 endif
