@@ -33,10 +33,8 @@ if s:is_windows
   set gfw=Ricty_Diminished:h9:cSHIFTJIS
   set rop=type:directx
 else
-  " set gfn=Ricty\ Regular\ for\ Powerline:h12
-  " set gfw=Ricty\ Regular\ for\ Powerline:h12
-  set gfn=ゆたぽん（コーディング）Backsl:h12
-  set gfw=ゆたぽん（コーディング）Backsl:h12
+  set gfn=Ricty\ Regular\ for\ Powerline:h12
+  set gfw=Ricty\ Regular\ for\ Powerline:h12
 endif
 
 " only mac
