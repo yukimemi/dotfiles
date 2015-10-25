@@ -93,7 +93,7 @@ if neobundle#tap('lightline.vim')"{{{
   endfunction"}}}
 
   function! MyAbsolutePath()"{{{
-    return (winwidth('.') - strlen(expand('%:p')) > 80) ? expand('%:p') : ((winwidth('.') - strlen(expand('%')) > 70) ? expand('%') : '')
+    return (winwidth('.') - strlen(expand('%:p')) > 90) ? expand('%:p') : ((winwidth('.') - strlen(expand('%')) > 70) ? expand('%') : '')
   endfunction"}}}
 
   call neobundle#untap()
