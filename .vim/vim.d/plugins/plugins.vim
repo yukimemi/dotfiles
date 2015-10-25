@@ -8,7 +8,7 @@ endif
 
 if neobundle#tap('lightline.vim')"{{{
   let g:lightline = {
-        \ 'colorscheme': 'wombat',
+        \ 'colorscheme': 'solarized',
         \ 'mode_map': {
         \   'n' : 'N',
         \   'i' : 'I',
@@ -24,7 +24,10 @@ if neobundle#tap('lightline.vim')"{{{
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'anzu' ] ],
         \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ],
-        \              [ 'absolutepath' ] ]
+        \              [ 'absolutepath', 'charcode' ] ]
+        \ },
+        \ 'component': {
+        \   'charcode': '[%03.3b, 0x%02.2B]'
         \ },
         \ 'component_function': {
         \   'modified': 'MyModified',
@@ -36,7 +39,7 @@ if neobundle#tap('lightline.vim')"{{{
         \   'fileencoding': 'MyFileencoding',
         \   'absolutepath': 'MyAbsolutePath',
         \   'mode': 'MyMode',
-        \   'anzu': 'anzu#search_status'
+        \   'anzu': 'anzu#search_status',
         \ }
         \ }
 
@@ -1226,6 +1229,14 @@ if neobundle#tap('vim-watchdogs')"{{{
         \   "command": "jsfmt",
         \   "cmdopt": "-w",
         \   "exec": "%c %o %s"
+        \ },
+        \ "typescript/watchdogs_checker": {
+        \   "type": "watchdogs_checker/tsfmt"
+        \ },
+        \ "watchdogs_checker/tsfmt": {
+        \   "command": "tsfmt",
+        \   "cmdopt": "-r",
+        \   "exec": "%c %o %s"
         \ }
         \ }
 
@@ -1235,7 +1246,7 @@ if neobundle#tap('vim-watchdogs')"{{{
   let g:watchdogs_check_BufWritePost_enables = {
         \ "javascript": 1,
         \ "xml": 1,
-        \ "typescript": 0
+        \ "typescript": 1
         \ }
 
   call extend(g:quickrun_config, g:watchdogs_config)
