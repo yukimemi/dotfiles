@@ -1225,6 +1225,9 @@ if neobundle#tap('vim-watchdogs')"{{{
         \ "javascript/watchdogs_checker": {
         \   "type": "watchdogs_checker/jsfmt"
         \ },
+        \ "javascript.jsx/watchdogs_checker": {
+        \   "type": "watchdogs_checker/jsfmt"
+        \ },
         \ "watchdogs_checker/jsfmt": {
         \   "command": "jsfmt",
         \   "cmdopt": "-w",
@@ -1245,6 +1248,7 @@ if neobundle#tap('vim-watchdogs')"{{{
 
   let g:watchdogs_check_BufWritePost_enables = {
         \ "javascript": 1,
+        \ "javascript.jsx": 1,
         \ "xml": 1,
         \ "typescript": 1
         \ }
