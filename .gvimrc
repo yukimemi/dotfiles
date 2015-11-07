@@ -27,14 +27,12 @@ endif
 
 " font
 if s:is_windows
-  " set gfn=MS_Gothic:h9:cSHIFTJIS
   set gfn=Ricty_Diminished:h9:cSHIFTJIS
-  " set gfw=MS_Gothic:h9:cSHIFTJIS
   set gfw=Ricty_Diminished:h9:cSHIFTJIS
   set rop=type:directx
 else
-  set gfn=Ricty\ Regular\ for\ Powerline:h12
-  set gfw=Ricty\ Regular\ for\ Powerline:h12
+  set gfn=Ricty_Diminished:h18
+  set gfw=Ricty_Diminished:h18
 endif
 
 " only mac
