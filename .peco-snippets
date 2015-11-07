@@ -56,22 +56,22 @@ youtube-dl -x --audio-format mp3 --audio-quality 0
 # ghq
 # github
 # me
-ghq get git@github.com:yukimemi/md2docx.git
-ghq get git@github.com:yukimemi/prezto.git
-ghq get git@github.com:yukimemi/tmux-powerline.git
-ghq get git@github.com:yukimemi/gitstatus.git
-ghq get git@github.com:yukimemi/coffee-script-on-jscript.git
-ghq get git@github.com:yukimemi/ActiveXFileWrapper.js.git
-ghq get git@github.com:yukimemi/copybackup.git
-ghq get git@github.com:yukimemi/gocore.git
-ghq get git@github.com:yukimemi/yukimemi.github.io.git
-ghq get git@github.com:yukimemi/Brewfile.git
-ghq get git@github.com:yukimemi/homebrew-custom.git
-ghq get git@github.com:yukimemi/powerline.git
-ghq get git@github.com:yukimemi/ansible-playbook.git
-ghq get git@github.com:yukimemi/makejscript.git
-ghq get git@github.com:yukimemi/spyrun.git
-ghq get git@github.com:yukimemi/vim-jsfmt.git
+ghq get https://github.com/yukimemi/md2docx.git
+ghq get https://github.com/yukimemi/prezto.git
+ghq get https://github.com/yukimemi/tmux-powerline.git
+ghq get https://github.com/yukimemi/gitstatus.git
+ghq get https://github.com/yukimemi/coffee-script-on-jscript.git
+ghq get https://github.com/yukimemi/ActiveXFileWrapper.js.git
+ghq get https://github.com/yukimemi/copybackup.git
+ghq get https://github.com/yukimemi/gocore.git
+ghq get https://github.com/yukimemi/yukimemi.github.io.git
+ghq get https://github.com/yukimemi/Brewfile.git
+ghq get https://github.com/yukimemi/homebrew-custom.git
+ghq get https://github.com/yukimemi/powerline.git
+ghq get https://github.com/yukimemi/ansible-playbook.git
+ghq get https://github.com/yukimemi/makejscript.git
+ghq get https://github.com/yukimemi/spyrun.git
+ghq get https://github.com/yukimemi/vim-jsfmt.git
 # others
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
@@ -125,29 +125,29 @@ ghq get https://github.com/KazIgu/gulp-sample.git
 ghq get https://github.com/Quramy/electron-jsx-babel-boilerplate.git
 
 # bitbucket
-ghq get git@bitbucket.org:yukimemi/haskell.git
-ghq get git@bitbucket.org:yukimemi/node-webkit.git
-ghq get git@bitbucket.org:yukimemi/yukimemi.bitbucket.org.git
-ghq get git@bitbucket.org:yukimemi/vagrant.git
-ghq get git@bitbucket.org:yukimemi/packer-windows.git
-ghq get git@bitbucket.org:yukimemi/clojure.git
-ghq get git@bitbucket.org:yukimemi/go.git
-ghq get git@bitbucket.org:yukimemi/win.git
-ghq get git@bitbucket.org:yukimemi/scripts.git
-ghq get git@bitbucket.org:yukimemi/coffee.git
-ghq get git@bitbucket.org:yukimemi/nicobrowser.git
-ghq get git@bitbucket.org:yukimemi/coffee-windows.git
-ghq get git@bitbucket.org:yukimemi/cpp.git
-ghq get git@bitbucket.org:yukimemi/books.git
-ghq get git@bitbucket.org:yukimemi/typescript.git
-ghq get git@bitbucket.org:yukimemi/jscript.git
-ghq get git@bitbucket.org:yukimemi/ruby.git
-ghq get git@bitbucket.org:yukimemi/nicodown.git
-ghq get git@bitbucket.org:yukimemi/electron.git
-ghq get git@bitbucket.org:yukimemi/mermaid.git
-ghq get git@bitbucket.org:yukimemi/tswsh.git
-ghq get git@bitbucket.org:yukimemi/yukimemi.git # not use !
-git clone git@bitbucket.org:yukimemi/yukimemi.git themes/yukimemi
+ghq get https://bitbucket.org/yukimemi/haskell.git
+ghq get https://bitbucket.org/yukimemi/node-webkit.git
+ghq get https://bitbucket.org/yukimemi/yukimemi.bitbucket.org.git
+ghq get https://bitbucket.org/yukimemi/vagrant.git
+ghq get https://bitbucket.org/yukimemi/packer-windows.git
+ghq get https://bitbucket.org/yukimemi/clojure.git
+ghq get https://bitbucket.org/yukimemi/go.git
+ghq get https://bitbucket.org/yukimemi/win.git
+ghq get https://bitbucket.org/yukimemi/scripts.git
+ghq get https://bitbucket.org/yukimemi/coffee.git
+ghq get https://bitbucket.org/yukimemi/nicobrowser.git
+ghq get https://bitbucket.org/yukimemi/coffee-windows.git
+ghq get https://bitbucket.org/yukimemi/cpp.git
+ghq get https://bitbucket.org/yukimemi/books.git
+ghq get https://bitbucket.org/yukimemi/typescript.git
+ghq get https://bitbucket.org/yukimemi/jscript.git
+ghq get https://bitbucket.org/yukimemi/ruby.git
+ghq get https://bitbucket.org/yukimemi/nicodown.git
+ghq get https://bitbucket.org/yukimemi/electron.git
+ghq get https://bitbucket.org/yukimemi/mermaid.git
+ghq get https://bitbucket.org/yukimemi/tswsh.git
+ghq get https://bitbucket.org/yukimemi/yukimemi.git # not use !
+git clone https://bitbucket.org/yukimemi/yukimemi.git themes/yukimemi
 
 # Gist
 ghq get https://gist.github.com/5507969.git \# golang copy file example
