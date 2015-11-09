@@ -102,11 +102,6 @@ depends = 'Shougo/neocomplete.vim'
 filetypes = 'vim'
 
 [[plugins]]
-repository = 'mopp/googlesuggest-source.vim'
-depends = 'Shougo/neocomplete.vim'
-insert = 1
-
-[[plugins]]
 repository = 'Shougo/neosnippet.vim'
 depends = ['Shougo/neosnippet-snippets', 'Shougo/context_filetype.vim']
 insert = 1
@@ -737,5 +732,9 @@ commands = 'BenchVimrc'
 # [[plugins]]
 # repository = 'seletskiy/vim-autosurround'
 # functions = 'AutoSurround'
+
+[[plugins]]
+repository = 'Chiel92/vim-autoformat'
+commands = 'Autoformat'
 # }}}
 

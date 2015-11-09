@@ -1221,25 +1221,6 @@ if neobundle#tap('vim-watchdogs')"{{{
         \ "watchdogs_checker/golint": {
         \   "command": "golint",
         \   "exec": "%c %s"
-        \ },
-        \ "javascript/watchdogs_checker": {
-        \   "type": "watchdogs_checker/jsfmt"
-        \ },
-        \ "javascript.jsx/watchdogs_checker": {
-        \   "type": "watchdogs_checker/jsfmt"
-        \ },
-        \ "watchdogs_checker/jsfmt": {
-        \   "command": "jsfmt",
-        \   "cmdopt": "-w",
-        \   "exec": "%c %o %s"
-        \ },
-        \ "typescript/watchdogs_checker": {
-        \   "type": "watchdogs_checker/tsfmt"
-        \ },
-        \ "watchdogs_checker/tsfmt": {
-        \   "command": "tsfmt",
-        \   "cmdopt": "-r",
-        \   "exec": "%c %o %s"
         \ }
         \ }
 
@@ -1247,10 +1228,7 @@ if neobundle#tap('vim-watchdogs')"{{{
   let g:watchdogs_check_BufWritePost_enable = 1
 
   let g:watchdogs_check_BufWritePost_enables = {
-        \ "javascript": 1,
-        \ "javascript.jsx": 1,
-        \ "xml": 1,
-        \ "typescript": 1
+        \ "xml": 1
         \ }
 
   call extend(g:quickrun_config, g:watchdogs_config)
@@ -1804,6 +1782,13 @@ endif
 
 if neobundle#tap('vim-autosurround')"{{{
   inoremap  ( (<C-O>:call AutoSurround(")")<CR>
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-autoformat')"{{{
+  au MyAutoCmd BufWrite *.js,*.jsx,*.json,*.ts Autoformat
 
   call neobundle#untap()
 endif
