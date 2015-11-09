@@ -18,7 +18,7 @@ set undodir=$MY_BACKUP_DIR
 set backupdir=$MY_BACKUP_DIR
 set directory=$MY_BACKUP_DIR
 set encoding=utf-8
-set fileencodings=utf-8,cp932
+set fileencodings=utf-8,cp932,utf-16le,utf-16
 set fileformat=unix
 set fileformats=unix,dos,mac
 " Use clipboard register.
