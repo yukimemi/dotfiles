@@ -1788,7 +1788,14 @@ endif
 "}}}
 
 if neobundle#tap('vim-autoformat')"{{{
-  au MyAutoCmd BufWrite *.js,*.jsx,*.ts Autoformat
+  " au MyAutoCmd BufWrite *.js,*.jsx,*.ts Autoformat
+
+  call neobundle#untap()
+endif
+"}}}
+
+if neobundle#tap('vim-jsbeautify')"{{{
+  au MyAutoCmd BufWrite *.js,*.ts call JsBeautify()
 
   call neobundle#untap()
 endif
