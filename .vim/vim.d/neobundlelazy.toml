@@ -388,6 +388,10 @@ filetypes = ['javascript', 'jsx']
 # [[plugins]]
 # repository = 'mephux/vim-jsfmt'
 # filetypes = ['javascript', 'jsx']
+
+[[plugins]]
+repository = 'maksimr/vim-jsbeautify'
+functions = ['JsBeautify', 'HtmlBeautify', 'CSSBeautify']
 # }}}
 
 # ======================================================================
