@@ -1795,7 +1795,7 @@ endif
 "}}}
 
 if neobundle#tap('vim-jsbeautify')"{{{
-  au MyAutoCmd BufWrite *.js,*.ts call JsBeautify()
+  au MyAutoCmd BufWrite *.js,*.jsx,*.ts call JsBeautify()
 
   call neobundle#untap()
 endif
