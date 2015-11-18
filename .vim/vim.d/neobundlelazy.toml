@@ -290,6 +290,14 @@ filetypes = 'gitcommit'
 # Filetype (haskell) {{{
 # ======================================================================
 [[plugins]]
+repository = 'itchyny/vim-haskell-indent'
+filetypes = 'haskell'
+
+[[plugins]]
+repository = 'nbouscal/vim-stylish-haskell'
+filetypes = 'haskell'
+
+[[plugins]]
 repository = 'eagletmt/neco-ghc'
 filetypes = 'haskell'
 
