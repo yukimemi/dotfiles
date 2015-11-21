@@ -872,9 +872,9 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>969 347 445 77 0 0 2304 1417 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>430 385 924 485 0 0 2304 1417 </string>
+	<string>430 385 924 485 0 0 2304 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 2304 1440 0 0 2304 1417 </string>
+	<string>328 189 730 501 0 0 2304 1440 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -883,7 +883,7 @@
 			<key>Allow Title Reporting</key>
 			<false/>
 			<key>Ambiguous Double Width</key>
-			<true/>
+			<false/>
 			<key>Ansi 0 Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -1617,7 +1617,7 @@
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>468248890.21026498</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>468679731.38551199</real>
+	<real>469280861.33338797</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
