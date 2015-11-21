@@ -470,9 +470,9 @@ filetypes = 'go'
 repository = 'PProvost/vim-ps1'
 filetypes = 'ps1'
 
-[[plugins]]
-repository = 'vim-scripts/Windows-PowerShell-indent-enhanced.git'
-filetypes = 'ps1'
+# [[plugins]]
+# repository = 'vim-scripts/Windows-PowerShell-indent-enhanced.git'
+# filetypes = 'ps1'
 
 # }}}
 

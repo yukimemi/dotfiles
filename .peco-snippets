@@ -138,6 +138,7 @@ ghq get https://bitbucket.org/yukimemi/coffee.git
 ghq get https://bitbucket.org/yukimemi/nicobrowser.git
 ghq get https://bitbucket.org/yukimemi/coffee-windows.git
 ghq get https://bitbucket.org/yukimemi/cpp.git
+ghq get https://bitbucket.org/yukimemi/ps1.git
 ghq get https://bitbucket.org/yukimemi/books.git
 ghq get https://bitbucket.org/yukimemi/typescript.git
 ghq get https://bitbucket.org/yukimemi/jscript.git

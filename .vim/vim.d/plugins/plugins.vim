@@ -889,17 +889,17 @@ if neobundle#tap('vim-ps1')"{{{
   function! neobundle#hooks.on_source(bundle)
     function! s:addHeaderPs1(flg)
       let list = []
-      if ! a:flg
+      if a:flg
         call add(list, "@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@exit /b %errorlevel%\r")
       else
-        call add(list, "@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@goto :eof&@pause\r")
+        call add(list, "@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul&@exit /b %errorlevel%\r")
       endif
       call extend(list, readfile(expand("%"), "b"))
       let s:basedir = expand("%:p:h") . "/cmd/"
       call Mkdir(s:basedir)
       call writefile(list,  s:basedir . expand("%:p:t:r") . ".cmd", "b")
     endfunction
-    " au MyAutoCmd BufWritePost *.ps1 call s:addHeaderPs1(0)
+    au MyAutoCmd BufWritePost *.ps1 call s:addHeaderPs1(0)
     au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
   endfunction
 

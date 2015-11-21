@@ -875,6 +875,8 @@
 	<string>430 385 924 485 0 0 2304 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>328 189 730 501 0 0 2304 1440 </string>
+	<key>NeverWarnAboutXterm256ColorTerminfo</key>
+	<true/>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1617,7 +1619,7 @@
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>468248890.21026498</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>469280861.33338797</real>
+	<real>469759361.83600199</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -1682,7 +1684,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-11-15T11:41:43Z</date>
+	<date>2015-11-21T00:42:31Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
