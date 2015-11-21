@@ -899,7 +899,7 @@ if neobundle#tap('vim-ps1')"{{{
       call Mkdir(s:basedir)
       call writefile(list,  s:basedir . expand("%:p:t:r") . ".cmd", "b")
     endfunction
-    au MyAutoCmd BufWritePost *.ps1 call s:addHeaderPs1(0)
+    " au MyAutoCmd BufWritePost *.ps1 call s:addHeaderPs1(0)
     au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
   endfunction
 
