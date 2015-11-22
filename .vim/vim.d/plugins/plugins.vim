@@ -890,9 +890,9 @@ if neobundle#tap('vim-ps1')"{{{
     function! s:addHeaderPs1(flg)
       let list = []
       if a:flg
-        call add(list, "@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@exit /b %errorlevel%\r")
+        call add(list, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@exit /b %errorlevel%\r")
       else
-        call add(list, "@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul&@exit /b %errorlevel%\r")
+        call add(list, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul&@exit /b %errorlevel%\r")
       endif
       call extend(list, readfile(expand("%"), "b"))
       let s:basedir = expand("%:p:h") . "/cmd/"
