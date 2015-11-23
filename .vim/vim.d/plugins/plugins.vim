@@ -23,7 +23,7 @@ if neobundle#tap('lightline.vim')"{{{
         \   },
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'anzu' ] ],
-        \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ],
+        \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'bomb', 'filetype' ],
         \              [ 'absolutepath', 'charcode' ] ]
         \ },
         \ 'component': {
@@ -37,6 +37,7 @@ if neobundle#tap('lightline.vim')"{{{
         \   'fileformat': 'MyFileformat',
         \   'filetype': 'MyFiletype',
         \   'fileencoding': 'MyFileencoding',
+        \   'bomb': 'MyBomb',
         \   'absolutepath': 'MyAbsolutePath',
         \   'mode': 'MyMode',
         \   'anzu': 'anzu#search_status',
@@ -86,6 +87,10 @@ if neobundle#tap('lightline.vim')"{{{
 
   function! MyFileencoding()"{{{
     return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+  endfunction"}}}
+
+  function! MyBomb()"{{{
+    return &bomb ? 'b' : 'nb'
   endfunction"}}}
 
   function! MyMode()"{{{
@@ -890,14 +895,16 @@ if neobundle#tap('vim-ps1')"{{{
     function! s:addHeaderPs1(flg)
       let list = []
       if a:flg
-        call add(list, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@exit /b %errorlevel%\r")
+        call add(list, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc -en utf8 \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@exit /b %errorlevel%")
       else
-        call add(list, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul&@exit /b %errorlevel%\r")
+        call add(list, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc -en utf8 \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul&@exit /b %errorlevel%")
       endif
-      call extend(list, readfile(expand("%"), "b"))
+      call extend(list, readfile(expand("%")))
       let s:basedir = expand("%:p:h") . "/cmd/"
+      let s:cmdFile = expand("%:p:t:r") . ".cmd"
       call Mkdir(s:basedir)
-      call writefile(list,  s:basedir . expand("%:p:t:r") . ".cmd", "b")
+      call writefile(list,  s:basedir . s:cmdFile, "b")
+      echo "Write " . s:basedir . expand("%:p:t:r") . ".cmd"
     endfunction
     au MyAutoCmd BufWritePost *.ps1 call s:addHeaderPs1(0)
     au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
