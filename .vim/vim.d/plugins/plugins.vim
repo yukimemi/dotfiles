@@ -893,17 +893,23 @@ endif
 if neobundle#tap('vim-ps1')"{{{
   function! neobundle#hooks.on_source(bundle)
     function! s:addHeaderPs1(flg)
-      let list = []
+      let lines = []
       if a:flg
-        call add(list, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc -en utf8 \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@exit /b %errorlevel%")
+        call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc -en utf8 \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
       else
-        call add(list, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc -en utf8 \\\"%~f0\\\"|?{$_.readcount -gt 1})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul&@exit /b %errorlevel%")
+        call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc -en utf8 \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
       endif
-      call extend(list, readfile(expand("%")))
+      call add(lines, "@exit /b %errorlevel%")
+      call extend(lines, readfile(expand("%")))
+      let i = 0
+      for line in lines
+        let lines[i] .= "\r"
+        let i += 1
+      endfor
       let s:basedir = expand("%:p:h") . "/cmd/"
       let s:cmdFile = expand("%:p:t:r") . ".cmd"
       call Mkdir(s:basedir)
-      call writefile(list,  s:basedir . s:cmdFile, "b")
+      call writefile(lines,  s:basedir . s:cmdFile, "b")
       echo "Write " . s:basedir . expand("%:p:t:r") . ".cmd"
     endfunction
     au MyAutoCmd BufWritePost *.ps1 call s:addHeaderPs1(0)
