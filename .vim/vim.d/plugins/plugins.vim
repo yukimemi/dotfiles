@@ -903,7 +903,9 @@ if neobundle#tap('vim-ps1')"{{{
       call extend(lines, readfile(expand("%")))
       let i = 0
       for line in lines
-        let lines[i] .= "\r"
+        if len(lines) != (i + 1)
+          let lines[i] .= "\r"
+        endif
         let i += 1
       endfor
       let s:basedir = expand("%:p:h") . "/cmd/"
@@ -1780,7 +1782,7 @@ if neobundle#tap('vim-better-whitespace')"{{{
   function! neobundle#hooks.on_source(bundle)
     let g:better_whitespace_filetypes_blacklist=['unite', 'vimfiler', 'tweetvim']
 
-    au MyAutoCmd BufWritePre *.coffee,*.js,*.ps1,*.md,*.jade,Vagrantfile,.vimrc,*.vim StripWhitespace
+    au MyAutoCmd BufWritePre *.coffee,*.js,*.ps*,*.md,*.jade,Vagrantfile,.vimrc,*.vim StripWhitespace
   endfunction
 
   call neobundle#untap()
