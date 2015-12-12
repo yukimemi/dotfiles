@@ -284,3 +284,5 @@ npm i -D babel bower typescript gulp gulp-typescript del browserify tsify debowe
 # Add node_modules/.bin path to envrc
 echo "export PATH=\$(npm bin):\$PATH" > .envrc && direnv allow
 
+# zplug
+curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug
