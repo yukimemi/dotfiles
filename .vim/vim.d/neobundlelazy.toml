@@ -637,7 +637,7 @@ commands = 'Vitalize'
 
 [[plugins]]
 repository = 'ctrlpvim/ctrlp.vim'
-commands = 'CtrlP'
+commands = ['CtrlP', 'CtrlPBuffer', 'CtrlPDir', 'CtrlPLine', 'CtrlPMRUFiles', 'CtrlPQuickfix', 'CtrlPMixed', 'CtrlPTag']
 
 [[plugins]]
 repository = 'thinca/vim-fontzoom'

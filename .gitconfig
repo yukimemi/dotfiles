@@ -21,3 +21,5 @@
 	root = /Users/yukimemi/.ghq/src
 [credential]
 	helper = store
+[merge]
+	tool = vimdiff

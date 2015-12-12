@@ -694,8 +694,27 @@ endif
 "}}}
 
 if neobundle#tap('ctrlp.vim')"{{{
-  let g:ctrlp_map = '<Leader>p'
-  nnoremap <Leader>p :<C-u>CtrlP<CR>
+  let g:ctrlp_map = '<Nop>'
+
+  nnoremap [Space]<Space>a :<C-u>CtrlP<CR>
+  nnoremap [Space]<Space>b :<C-u>CtrlPBuffer<CR>
+  nnoremap [Space]<Space>d :<C-u>CtrlPDir<CR>
+  nnoremap [Space]<Space>f :<C-u>CtrlP<CR>
+  nnoremap [Space]<Space>l :<C-u>CtrlPLine<CR>
+  nnoremap [Space]<Space>m :<C-u>CtrlPMRUFiles<CR>
+  nnoremap [Space]<Space>q :<C-u>CtrlPQuickfix<CR>
+  nnoremap [Space]<Space>s :<C-u>CtrlPMixed<CR>
+  nnoremap [Space]<Space>t :<C-u>CtrlPTag<CR>
+
+  " Guess vcs root dir
+  let g:ctrlp_working_path_mode = 'ra'
+  " Open new file in current window
+  let g:ctrlp_open_new_file = 'r'
+  let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:18'
+
+  if executable('files')
+    let g:ctrlp_user_command = 'files -a %s'
+  endif
   call neobundle#untap()
 endif
 "}}}
