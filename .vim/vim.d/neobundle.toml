@@ -4,8 +4,8 @@
 [[plugins]]
 repository = 'altercation/vim-colors-solarized'
 
-[[plugins]]
-repository = 'tomasr/molokai'
+# [[plugins]]
+# repository = 'tomasr/molokai'
 
 [[plugins]]
 repository = 'itchyny/lightline.vim'
@@ -23,8 +23,8 @@ repository = 'haya14busa/incsearch.vim'
 [[plugins]]
 repository = 'osyo-manga/vim-anzu'
 
-[[plugins]]
-repository = 'jacquesbh/vim-showmarks'
+# [[plugins]]
+# repository = 'jacquesbh/vim-showmarks'
 # }}}
 
 # ======================================================================
@@ -54,8 +54,8 @@ repository = 'LeafCage/yankround.vim'
 [[plugins]]
 repository = 'airblade/vim-rooter'
 
-[[plugins]]
-repository = 'mattn/webapi-vim'
+# [[plugins]]
+# repository = 'mattn/webapi-vim'
 
 [[plugins]]
 repository = 'rhysd/committia.vim'
