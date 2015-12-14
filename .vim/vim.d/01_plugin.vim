@@ -13,7 +13,7 @@ if has('vim_starting') "{{{
           \ fnamemodify(finddir('neobundle.vim', '.;'), ':p')
   elseif &runtimepath !~ '/neobundle.vim'
     if !isdirectory(s:neobundle_dir.'/neobundle.vim')
-      execute printf('!git clone %s://github.com/Shougo/neobundle.vim.git',
+      execute printf('!git clone --depth 1 %s://github.com/Shougo/neobundle.vim.git',
             \ (exists('$http_proxy') ? 'https' : 'git'))
             \ s:neobundle_dir.'/neobundle.vim'
     endif

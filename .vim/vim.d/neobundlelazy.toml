@@ -41,10 +41,6 @@ unite_sources = 'ref'
   complete = 'customlist,ref#complete'
 
 [[plugins]]
-repository = 'ujihisa/unite-colorscheme'
-unite_sources = 'colorscheme'
-
-[[plugins]]
 repository = 'osyo-manga/unite-quickfix'
 unite_sources = 'quickfix'
 
@@ -86,15 +82,15 @@ repository = 'Shougo/neocomplete.vim'
 depends = 'Shougo/context_filetype.vim'
 insert = 1
 
-[[plugins]]
-repository = 'Shougo/neco-syntax'
-depends = 'Shougo/neocomplete.vim'
-insert = 1
+# [[plugins]]
+# repository = 'Shougo/neco-syntax'
+# depends = 'Shougo/neocomplete.vim'
+# insert = 1
 
-[[plugins]]
-repository = 'ujihisa/neco-look'
-depends = 'Shougo/neocomplete.vim'
-insert = 1
+# [[plugins]]
+# repository = 'ujihisa/neco-look'
+# depends = 'Shougo/neocomplete.vim'
+# insert = 1
 
 [[plugins]]
 repository = 'Shougo/neco-vim'
@@ -106,7 +102,6 @@ repository = 'Shougo/neosnippet.vim'
 depends = ['Shougo/neosnippet-snippets', 'Shougo/context_filetype.vim']
 insert = 1
 filetypes = 'snippet'
-unite_sources = ['neosnippet', 'neosnippet/user', 'neosnippet/runtime']
 
 # }}}
 
@@ -121,9 +116,9 @@ mappings = '<Plug>(visualstar-'
 repository = 't9md/vim-quickhl'
 mappings = '<Plug>(quickhl-'
 
-[[plugins]]
-repository = 'osyo-manga/vim-over'
-mappings = '<Plug>'
+# [[plugins]]
+# repository = 'osyo-manga/vim-over'
+# mappings = '<Plug>'
 # }}}
 
 # ======================================================================
@@ -159,15 +154,15 @@ filetypes = 'all'
 # ======================================================================
 [[plugins]]
 repository = 'Yggdroot/indentLine'
-filetypes = ['javascript', 'ruby', 'go', 'haskell', 'markdown', 'vim']
+filetypes = ['javascript', 'ruby', 'go', 'haskell', 'markdown', 'vim', 'ps1']
 
 # [[plugins]]
 # repository = 'nathanaelkane/vim-indent-guides'
 # filetypes = ['javascript', 'ruby', 'go', 'haskell', 'markdown', 'vim']
 
-[[plugins]]
-repository = 'kien/rainbow_parentheses.vim'
-commands = 'RainbowParenthesesToggle'
+# [[plugins]]
+# repository = 'kien/rainbow_parentheses.vim'
+# commands = 'RainbowParenthesesToggle'
 
 [[plugins]]
 repository = 'ntpeters/vim-better-whitespace'
@@ -564,22 +559,10 @@ depends = 'mattn/webapi-vim'
 
 [[plugins]]
 repository =  'basyura/TweetVim''
-depends = ['basyura/twibill.vim', 'tyru/open-browser.vim', 'basyura/bitly.vim', 'mattn/favstar-vim']
+depends = ['basyura/twibill.vim', 'tyru/open-browser.vim', 'basyura/bitly.vim', 'mattn/favstar-vim', 'mattn/webapi-vim']
 unite_sources = 'tweetvim'
 commands = ['TweetVim', 'TweetVimUserStream','TweetVimSay']
 filetypes = 'tweetvim'
-
-[[plugins]]
-repository = 'basyura/twibill.vim'
-
-[[plugins]]
-repository = 'tyru/open-browser.vim'
-
-[[plugins]]
-repository = 'basyura/bitly.vim'
-
-[[plugins]]
-repository = 'mattn/favstar-vim'
 
 [[plugins]]
 repository = 'supermomonga/jazzradio.vim'
@@ -639,35 +622,31 @@ commands = 'Vitalize'
 repository = 'ctrlpvim/ctrlp.vim'
 commands = ['CtrlP', 'CtrlPBuffer', 'CtrlPDir', 'CtrlPLine', 'CtrlPMRUFiles', 'CtrlPQuickfix', 'CtrlPMixed', 'CtrlPTag']
 
-[[plugins]]
-repository = 'thinca/vim-fontzoom'
-gui = 1
-mappings = '<Plug>'
-
-[[plugins]]
-repository = 'thinca/vim-prettyprint'
-commands = 'PP'
+# [[plugins]]
+# repository = 'thinca/vim-fontzoom'
+# gui = 1
+# mappings = '<Plug>'
 
 [[plugins]]
 repository = 'thinca/vim-qfreplace'
 filetypes = ['unite', 'quickfix']
 commands = 'Qfreplace'
 
-[[plugins]]
-repository = 'itchyny/vim-external'
-mappings = '<Plug>'
+# [[plugins]]
+# repository = 'itchyny/vim-external'
+# mappings = '<Plug>'
 
 [[plugins]]
 repository = 'tyru/restart.vim'
 gui = 1
 commands = 'Restart'
 
-[[plugins]]
-repository = 'tyru/winmove.vim'
-depends = 'thinca/vim-submode'
-mappings = '<Plug>'
-gui = 1
-augroup = 'winmove'
+# [[plugins]]
+# repository = 'tyru/winmove.vim'
+# depends = 'thinca/vim-submode'
+# mappings = '<Plug>'
+# gui = 1
+# augroup = 'winmove'
 
 [[plugins]]
 repository = 'matchit.zip'
@@ -678,10 +657,10 @@ repository = 't9md/vim-choosewin'
 mappings = '<Plug>(choosewin)'
 commands = ['FontReview', 'FontPerfSmall', 'ChooseWin', 'FontPerfLarge']
 
-[[plugins]]
-repository = 'lambdalisue/vim-fullscreen'
-gui = 1
-mappings = '<Plug>'
+# [[plugins]]
+# repository = 'lambdalisue/vim-fullscreen'
+# gui = 1
+# mappings = '<Plug>'
 
 [[plugins]]
 repository = 'syngan/vim-vimlint'
@@ -698,9 +677,9 @@ commands = 'Gista'
 mappings = '<Plug>(gista-'
 unite_sources = 'gista'
 
-[[plugins]]
-repository = 'kana/vim-niceblock'
-mappings = '<Plug>'
+# [[plugins]]
+# repository = 'kana/vim-niceblock'
+# mappings = '<Plug>'
 
 [[plugins]]
 repository = 'junegunn/vim-easy-align'
