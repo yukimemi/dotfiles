@@ -110,11 +110,11 @@ filetypes = 'snippet'
 # ======================================================================
 [[plugins]]
 repository = 'thinca/vim-visualstar'
-mappings = '<Plug>(visualstar-'
+mappings = '<Plug>'
 
 [[plugins]]
 repository = 't9md/vim-quickhl'
-mappings = '<Plug>(quickhl-'
+mappings = '<Plug>'
 
 # [[plugins]]
 # repository = 'osyo-manga/vim-over'
@@ -126,7 +126,7 @@ mappings = '<Plug>(quickhl-'
 # ======================================================================
 [[plugins]]
 repository = 'thinca/vim-quickrun'
-mappings = '<Plug>(quickrun)'
+mappings = '<Plug>'
 commands = 'QuickRun'
 on_source = 'osyo-manga/vim-watchdogs'
 
@@ -154,7 +154,8 @@ filetypes = 'all'
 # ======================================================================
 [[plugins]]
 repository = 'Yggdroot/indentLine'
-filetypes = ['javascript', 'ruby', 'go', 'haskell', 'markdown', 'vim', 'ps1']
+# filetypes = ['javascript', 'ruby', 'go', 'haskell', 'markdown', 'vim', 'ps1']
+filetypes = 'all'
 
 # [[plugins]]
 # repository = 'nathanaelkane/vim-indent-guides'
@@ -191,43 +192,43 @@ filetypes = 'all'
 [[plugins]]
 repository = 'kana/vim-operator-replace'
 depends = 'kana/vim-operator-user'
-mappings = '<Plug>(operator-replace)'
+mappings = '<Plug>'
 
 [[plugins]]
 repository = 'rhysd/vim-operator-surround'
 depends = 'kana/vim-operator-user'
-mappings = '<Plug>(operator-surround'
+mappings = '<Plug>'
 
 [[plugins]]
 repository = 'chikatoike/concealedyank.vim'
 depends = 'kana/vim-operator-user'
 filetypes = 'vimshell'
-mappings = '<Plug>(operator-concealedyank)'
+mappings = '<Plug>'
 
 [[plugins]]
 repository = 'osyo-manga/vim-operator-blockwise'
 depends = 'kana/vim-operator-user'
-mappings = '<Plug>(operator-blockwise'
+mappings = '<Plug>'
 
 [[plugins]]
 repository = 'rhysd/vim-operator-trailingspace-killer'
 depends = 'kana/vim-operator-user'
-mappings = '<Plug>(operator-trailingspace-killer)'
+mappings = '<Plug>'
 
 [[plugins]]
 repository = 'rhysd/vim-clang-format'
 depends = 'kana/vim-operator-user'
-mappings = '<Plug>(operator-clang-format)'
+mappings = '<Plug>'
 
 [[plugins]]
 repository = 'osyo-manga/vim-operator-search'
 depends = 'kana/vim-operator-user'
-mappings = '<Plug>(operator-search)'
+mappings = '<Plug>'
 
 [[plugins]]
 repository = 'tyru/operator-star.vim'
 depends = ['kana/vim-operator-user', 'thinca/vim-visualstar']
-mappings = ['<Plug>(operator-*)', '<Plug>(operator-g*)', '<Plug>(operator-#)', '<Plug>(operator-g#)']
+mappings = '<Plug>'
 # }}}
 
 # ======================================================================
@@ -240,32 +241,32 @@ filetypes = 'all'
 [[plugins]]
 repository = 'osyo-manga/vim-textobj-multiblock'
 depends = 'kana/vim-textobj-user'
-mappings = '<Plug>(textobj-multiblock'
+mappings = '<Plug>'
 
 [[plugins]]
 repository = 'kana/vim-textobj-entire'
 depends = 'kana/vim-textobj-user'
-mappings = '<Plug>(textobj-entire'
+mappings = '<Plug>'
 
 [[plugins]]
 repository = 'kana/vim-textobj-fold'
 depends = 'kana/vim-textobj-user'
-mappings = '<Plug>(textobj-fold'
+mappings = '<Plug>'
 
 [[plugins]]
 repository = 'kana/vim-textobj-function'
 depends = 'kana/vim-textobj-user'
-mappings = '<Plug>(textobj-function'
+mappings = '<Plug>'
 
 [[plugins]]
 repository = 'kana/vim-textobj-indent'
 depends = 'kana/vim-textobj-user'
-mappings = '<Plug>(textobj-indent'
+mappings = '<Plug>'
 
 [[plugins]]
 repository = 'gilligan/textobj-lastpaste'
 depends = 'kana/vim-textobj-user'
-mappings = '<Plug>(textobj-lastpaste-i)'
+mappings = '<Plug>'
 # }}}
 
 # ======================================================================
@@ -577,11 +578,11 @@ unite_sources = 'jazzradio'
 # ======================================================================
 [[plugins]]
 repository = 'rhysd/clever-f.vim'
-mappings = '<Plug>(clever-f-'
+mappings = '<Plug>'
 
 # [[plugins]]
 # repository = 'rhysd/accelerated-jk'
-# mappings = '<Plug>(accelerated_jk_'
+# mappings = '<Plug>'
 
 [[plugins]]
 repository = 'Shougo/vimfiler.vim'
@@ -654,7 +655,7 @@ mappings = [['nxo', '%', 'g%']]
 
 [[plugins]]
 repository = 't9md/vim-choosewin'
-mappings = '<Plug>(choosewin)'
+mappings = '<Plug>'
 commands = ['FontReview', 'FontPerfSmall', 'ChooseWin', 'FontPerfLarge']
 
 # [[plugins]]
@@ -674,7 +675,7 @@ mappings = '<Plug>'
 [[plugins]]
 repository = 'lambdalisue/vim-gista'
 commands = 'Gista'
-mappings = '<Plug>(gista-'
+mappings = '<Plug>'
 unite_sources = 'gista'
 
 # [[plugins]]

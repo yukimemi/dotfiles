@@ -360,7 +360,7 @@ if neobundle#tap('unite.vim')"{{{
   nnoremap sur :<C-u>Unite register<CR>
   " nnoremap sum :<C-u>Unite neomru/file -auto-preview<CR>
   nnoremap su/ :<C-u>Unite line -no-quit<CR>
-  nnoremap sug :<C-u>Unite grep -no-quit<CR>
+  nnoremap sug :<C-u>Unite grep -no-quit -no-start-insert<CR>
   nnoremap suG :<C-u>Unite grep/git -no-quit<CR>
   nnoremap sut :<C-u>Unite tab<CR>
   nnoremap suu :<C-u>Unite buffer neomru/file<CR>
@@ -1046,9 +1046,11 @@ endif
 
 if neobundle#tap('indentLine')"{{{
 
-  let g:indentLine_faster = 1
-  let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail']
-  " let g:indentLine_char = '┊'
+  " let g:indentLine_faster = 1
+  let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'unite', 'vimfiler']
+  if ! g:is_windows
+    let g:indentLine_char = '┊'
+  endif
 
   call neobundle#untap()
 endif
