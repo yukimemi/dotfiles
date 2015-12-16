@@ -16,6 +16,11 @@ endif
 au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 "}}}
 
+" Set mapleader"{{{
+let mapleader = ','
+" let maplocalleader = ' '
+"}}}
+
 " vim config path"{{{
 if isdirectory($HOME . '/.vim')
   let $MY_VIMRUNTIME = $HOME . '/.vim'

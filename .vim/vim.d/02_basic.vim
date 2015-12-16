@@ -1,6 +1,3 @@
-let mapleader = ','
-" let maplocalleader = ' '
-
 " backup directory
 let $MY_BACKUP_DIR = $CACHE . '/vim/back'
 call Mkdir($MY_BACKUP_DIR)

@@ -587,7 +587,6 @@ mappings = '<Plug>'
 [[plugins]]
 repository = 'Shougo/vimfiler.vim'
 depends = 'Shougo/unite.vim'
-mappings = '<Plug>'
 explorer = 1
   [plugins.commands]
   name = ['VimFiler']
