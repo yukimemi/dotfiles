@@ -254,7 +254,7 @@ endif
 "}}}
 
 if neobundle#tap('vimfiler.vim')"{{{
-  nnoremap <Leader>f :<C-u>VimFiler -split -simple -find -toggle -winwidth=35 -no-quit<CR>
+  nnoremap [Space]v :<C-u>VimFiler -split -simple -find -toggle -winwidth=35 -no-quit<CR>
   nnoremap <C-e> :<C-u>VimFilerDouble<CR>
   nnoremap <expr><Leader>g <SID>git_root_dir()
   function! s:git_root_dir()
@@ -694,27 +694,18 @@ endif
 "}}}
 
 if neobundle#tap('ctrlp.vim')"{{{
-  let g:ctrlp_map = '<Nop>'
 
-  nnoremap [Space]<Space>a :<C-u>CtrlP<CR>
-  nnoremap [Space]<Space>b :<C-u>CtrlPBuffer<CR>
-  nnoremap [Space]<Space>d :<C-u>CtrlPDir<CR>
-  nnoremap [Space]<Space>f :<C-u>CtrlP<CR>
-  nnoremap [Space]<Space>l :<C-u>CtrlPLine<CR>
-  nnoremap [Space]<Space>m :<C-u>CtrlPMRUFiles<CR>
-  nnoremap [Space]<Space>q :<C-u>CtrlPQuickfix<CR>
-  nnoremap [Space]<Space>s :<C-u>CtrlPMixed<CR>
-  nnoremap [Space]<Space>t :<C-u>CtrlPTag<CR>
+  " Use plefix s
+  nnoremap sca :<C-u>CtrlP<Space>
+  nnoremap scb :<C-u>CtrlPBuffer<CR>
+  nnoremap scd :<C-u>CtrlPDir<CR>
+  nnoremap scf :<C-u>CtrlP<CR>
+  nnoremap scl :<C-u>CtrlPLine<CR>
+  nnoremap scm :<C-u>CtrlPMRUFiles<CR>
+  nnoremap scq :<C-u>CtrlPQuickfix<CR>
+  nnoremap scc :<C-u>CtrlPMixed<CR>
+  nnoremap sct :<C-u>CtrlPTag<CR>
 
-  " Guess vcs root dir
-  let g:ctrlp_working_path_mode = 'ra'
-  " Open new file in current window
-  let g:ctrlp_open_new_file = 'r'
-  let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:18'
-
-  if executable('files')
-    let g:ctrlp_user_command = 'files -a %s'
-  endif
   call neobundle#untap()
 endif
 "}}}
