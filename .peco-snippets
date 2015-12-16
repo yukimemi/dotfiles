@@ -123,6 +123,7 @@ ghq get https://github.com/sugarshin/gulpfiles.git
 ghq get https://github.com/tsuyoshiwada/sample-webpack-coffee.git
 ghq get https://github.com/KazIgu/gulp-sample.git
 ghq get https://github.com/Quramy/electron-jsx-babel-boilerplate.git
+ghq get https://github.com/RamblingCookieMonster/Invoke-Parallel.git
 
 # bitbucket
 ghq get https://bitbucket.org/yukimemi/haskell.git
