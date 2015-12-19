@@ -82,10 +82,10 @@ repository = 'Shougo/neocomplete.vim'
 depends = 'Shougo/context_filetype.vim'
 on_i = 1
 
-# [[plugins]]
-# repository = 'Shougo/neco-syntax'
-# depends = 'Shougo/neocomplete.vim'
-# on_i = 1
+[[plugins]]
+repository = 'Shougo/neco-syntax'
+depends = 'Shougo/neocomplete.vim'
+on_i = 1
 
 # [[plugins]]
 # repository = 'ujihisa/neco-look'
@@ -283,6 +283,10 @@ on_cmd = 'Gitv'
 [[plugins]]
 repository = 'rhysd/github-complete.vim'
 on_ft = 'gitcommit'
+
+[[plugins]]
+repository = 'airblade/vim-gitgutter'
+on_ft = 'all'
 # }}}
 
 # ======================================================================
