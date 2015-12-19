@@ -27,8 +27,12 @@ endif
 
 " font
 if s:is_windows
-  set gfn=Ricty_Diminished:h9:cSHIFTJIS
-  set gfw=Ricty_Diminished:h9:cSHIFTJIS
+  set gfn=MS_Gothic:h9:cSHIFTJIS
+  " set gfn=Ricty_Diminished:h9:cSHIFTJIS
+  " set gfn=RzRicty_Diminished_Discord:h9:cSHIFTJIS
+  set gfw=MS_Gothic:h9:cSHIFTJIS
+  " set gfw=Ricty_Diminished:h9:cSHIFTJIS
+  " set gfw=Ricty_Diminished_Discord:h9:cSHIFTJIS
   set rop=type:directx
 else
   set gfn=Ricty_Discord:h15
@@ -65,4 +69,6 @@ elseif s:is_windows
     "au MyAutoCmd BufEnter * macaction performZoom:
   endif
 endif
+
+set ambiwidth=double
 "===================================================================================}}}
