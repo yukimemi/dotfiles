@@ -72,6 +72,7 @@ ghq get https://github.com/yukimemi/ansible-playbook.git
 ghq get https://github.com/yukimemi/makejscript.git
 ghq get https://github.com/yukimemi/spyrun.git
 ghq get https://github.com/yukimemi/vim-jsfmt.git
+ghq get https://github.com/yukimemi/imexpand.git
 # others
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
