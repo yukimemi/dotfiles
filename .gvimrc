@@ -14,8 +14,8 @@ set guioptions=none
 " color
 if s:is_darwin
   colorscheme solarized
-  "let g:solarized_visibility = "high"
-  let g:solarized_contrast = "high"
+  " let g:solarized_visibility = "high"
+  " let g:solarized_contrast = "high"
   set background=dark
 else
   set background=dark
@@ -31,8 +31,8 @@ if s:is_windows
   set gfw=Ricty_Diminished:h9:cSHIFTJIS
   set rop=type:directx
 else
-  set gfn=Ricty_Diminished:h18
-  set gfw=Ricty_Diminished:h18
+  set gfn=Ricty_Discord:h15
+  set gfw=Ricty_Discord:h15
 endif
 
 " only mac
