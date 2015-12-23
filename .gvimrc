@@ -35,14 +35,14 @@ if s:is_windows
   " set gfw=Ricty_Diminished_Discord:h9:cSHIFTJIS
   set rop=type:directx
 else
-  set gfn=Ricty_Discord:h15
-  set gfw=Ricty_Discord:h15
+  set gfn=Ricty_Discord:h17
+  set gfw=Ricty_Discord:h17
 endif
 
 " only mac
 if s:is_darwin
   gui
-  set transparency=10
+  set transparency=5
   set antialias
 elseif s:is_windows
   gui
