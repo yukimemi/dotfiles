@@ -1047,7 +1047,7 @@ if neobundle#tap('indentLine')"{{{
   " let g:indentLine_faster = 1
   let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'unite', 'vimfiler']
   if ! g:is_windows
-    let g:indentLine_char = '┊'
+    " let g:indentLine_char = '┊'
   endif
 
   call neobundle#untap()
