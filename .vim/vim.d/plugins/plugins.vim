@@ -109,9 +109,9 @@ if neobundle#tap('neocomplete.vim')"{{{
 
   let g:neocomplete#enable_at_startup = 1
   let g:neocomplete#enable_smart_case = 1
-  let g:neocomplete#sources#syntax#min_keyword_length = 1
+  " let g:neocomplete#sources#syntax#min_keyword_length = 1
   " let g:neocomplete#skip_auto_completion_time = 5
-  let g:neocomplete#enable_auto_close_preview = 0
+  " let g:neocomplete#enable_auto_close_preview = 0
   " Define dictionary.
   let g:neocomplete#sources#dictionary#dictionaries = {
         \ 'default': '',
@@ -161,9 +161,11 @@ endif
 "}}}
 
 if neobundle#tap('vim-gitgutter')"{{{
-  let g:gitgutter_sign_added = '✚'
-  let g:gitgutter_sign_modified = '➜'
-  let g:gitgutter_sign_removed = '✘'
+  if !g:is_windows
+    let g:gitgutter_sign_added = '✚'
+    let g:gitgutter_sign_modified = '➜'
+    let g:gitgutter_sign_removed = '✘'
+  endif
 
   call neobundle#untap()
 endif
