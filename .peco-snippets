@@ -180,6 +180,7 @@ go get -u github.com/yuya-takeyama/ggallin
 go get -u github.com/mattn/goemon/cmd/goemon
 # go get -u github.com/BurntSushi/toml
 go get -u github.com/naoina/toml
+go get -u github.com/pranavraja/tldr
 
 # gcli
 go get -d github.com/tcnksm/gcli && cd $GOPATH/src/github.com/tcnksm/gcli && make install
