@@ -229,6 +229,11 @@ on_map = '<Plug>'
 repository = 'tyru/operator-star.vim'
 depends = ['kana/vim-operator-user', 'thinca/vim-visualstar']
 on_map = '<Plug>'
+
+[[plugins]]
+repository = 'haya14busa/vim-operator-flashy'
+depends = ['kana/vim-operator-user']
+on_map = '<Plug>'
 # }}}
 
 # ======================================================================
