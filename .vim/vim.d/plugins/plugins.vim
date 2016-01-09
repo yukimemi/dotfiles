@@ -1785,6 +1785,9 @@ if neobundle#tap('vim-operator-user')"{{{
   nmap <Leader>g* <Plug>(operator-g*)
   nmap <Leader>#  <Plug>(operator-#)
   nmap <Leader>g# <Plug>(operator-g#)
+  " vim-operator-flashy
+  map y <Plug>(operator-flashy)
+  nmap Y <Plug>(operator-flashy)$
 
   call neobundle#untap()
 endif
