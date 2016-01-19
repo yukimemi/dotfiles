@@ -42,5 +42,7 @@ filetype plugin indent on
 syntax enable
 
 " Installation check.
-NeoBundleCheck
+if !has('gui_running')
+  NeoBundleCheck
+endif
 
