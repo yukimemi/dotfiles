@@ -914,9 +914,9 @@ if neobundle#tap('vim-ps1')"{{{
     function! s:addHeaderPs1(flg)
       let lines = []
       if a:flg
-        call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc -en utf8 \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
+        call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
       else
-        call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc -en utf8 \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
+        call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
       endif
       call add(lines, "@exit /b %errorlevel%")
       call extend(lines, readfile(expand("%")))
@@ -1806,7 +1806,7 @@ if neobundle#tap('vim-better-whitespace')"{{{
   function! neobundle#hooks.on_source(bundle)
     let g:better_whitespace_filetypes_blacklist=['unite', 'vimfiler', 'tweetvim']
 
-    au MyAutoCmd BufWritePre *.coffee,*.js,*.ps*,*.md,*.jade,Vagrantfile,.vimrc,*.vim StripWhitespace
+    au MyAutoCmd BufWritePre *.coffee,*.js,*.ps*,*.xml,*.md,*.jade,Vagrantfile,.vimrc,*.vim StripWhitespace
   endfunction
 
   call neobundle#untap()
