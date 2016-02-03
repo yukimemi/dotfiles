@@ -927,7 +927,7 @@ if neobundle#tap('vim-ps1')"{{{
         endif
         let i += 1
       endfor
-      let s:basedir = expand("%:p:h") . "/cmd/"
+      let s:basedir = expand("%:p:h") . "/../cmd/"
       let s:cmdFile = expand("%:p:t:r") . ".cmd"
       call Mkdir(s:basedir)
       call writefile(lines,  s:basedir . s:cmdFile, "b")
@@ -1151,14 +1151,18 @@ if neobundle#tap('memolist.vim')"{{{
 
   call Mkdir(g:memolist_path)
 
-  "let g:memolist_vimfiler = 1
-  let g:memolist_unite = 1
-  let g:memolist_unite_source = "file_rec"
+  " let g:memolist_vimfiler = 1
+  " let g:memolist_unite = 1
+  " let g:memolist_unite_source = "file_rec"
 
   " mappings
   nnoremap <Leader>mn :<C-u>MemoNew<CR>
   nnoremap <Leader>ml :<C-u>MemoList<CR>
   nnoremap <Leader>mg :<C-u>MemoGrep<CR>
+  nmap <Leader>mf :exe "CtrlP" g:memolist_path<cr>
+
+  " use various Ex commands (default '')
+  let g:memolist_ex_cmd = 'CtrlP'
 
   call neobundle#untap()
 endif
