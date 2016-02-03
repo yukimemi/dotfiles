@@ -289,9 +289,9 @@ on_cmd = 'Gitv'
 repository = 'rhysd/github-complete.vim'
 on_ft = 'gitcommit'
 
-[[plugins]]
-repository = 'airblade/vim-gitgutter'
-on_ft = 'all'
+# [[plugins]]
+# repository = 'airblade/vim-gitgutter'
+# on_ft = 'all'
 # }}}
 
 # ======================================================================
@@ -745,5 +745,9 @@ on_cmd = 'BenchVimrc'
 [[plugins]]
 repository = 'Chiel92/vim-autoformat'
 on_cmd = 'Autoformat'
+
+[[plugins]]
+repository = 'glidenote/memolist.vim'
+on_cmd = ['MemoNew', 'MemoList', 'MemoGrep']
 # }}}
 
