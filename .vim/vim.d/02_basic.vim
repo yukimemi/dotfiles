@@ -101,7 +101,7 @@ set laststatus=2
 set showcmd
 set display=lastline
 set foldmethod=marker
-set foldclose=all
+" set foldclose=all
 set t_Co=256
 
 " color
