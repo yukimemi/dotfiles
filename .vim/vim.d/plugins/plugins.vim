@@ -376,6 +376,7 @@ if neobundle#tap('unite.vim')"{{{
   nnoremap sua :<C-u>Unite buffer neomru/file bookmark file file_rec/async<CR>
   nnoremap suM :<C-u>Unite mapping<CR>
   nnoremap suR :<C-u>UniteResume<CR>
+  nnoremap sud :<C-u>Unite -default-action=lcd directory_mru<CR>
 
   " NeoBundle
   nnoremap sui :<C-u>Unite neobundle/update -no-start-insert -no-split<CR>
