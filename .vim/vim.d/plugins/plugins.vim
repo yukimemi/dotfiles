@@ -1152,6 +1152,7 @@ if neobundle#tap('memolist.vim')"{{{
 
   call Mkdir(g:memolist_path)
 
+  let g:memolist_memo_suffix = "md"
   " let g:memolist_vimfiler = 1
   " let g:memolist_unite = 1
   " let g:memolist_unite_source = "file_rec"
@@ -1160,7 +1161,7 @@ if neobundle#tap('memolist.vim')"{{{
   nnoremap <Leader>mn :<C-u>MemoNew<CR>
   nnoremap <Leader>ml :<C-u>MemoList<CR>
   nnoremap <Leader>mg :<C-u>MemoGrep<CR>
-  nmap <Leader>mf :exe "CtrlP" g:memolist_path<cr>
+  nmap <Leader>mf :exe "CtrlP" g:memolist_path<CR><F5>
 
   " use various Ex commands (default '')
   let g:memolist_ex_cmd = 'CtrlP'
@@ -1811,7 +1812,7 @@ if neobundle#tap('vim-better-whitespace')"{{{
   function! neobundle#hooks.on_source(bundle)
     let g:better_whitespace_filetypes_blacklist=['unite', 'vimfiler', 'tweetvim']
 
-    au MyAutoCmd BufWritePre *.coffee,*.js,*.ps*,*.xml,*.md,*.jade,Vagrantfile,.vimrc,*.vim StripWhitespace
+    au MyAutoCmd BufWritePre *.coffee,*.js,*.ps*,*.xml,*.jade,Vagrantfile,.vimrc,*.vim StripWhitespace
   endfunction
 
   call neobundle#untap()
