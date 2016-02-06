@@ -291,3 +291,5 @@ echo "export PATH=\$(npm bin):\$PATH" > .envrc && direnv allow
 # Install Ricty Diminished.
 curl -LO https://raw.github.usercontent.com/yascentur/RictyDiminished/master/RictyDiminished-Regular.ttf
 
+# Add /etc/auto_master
+echo "/Users/yukimemi/mnt    auto_nas" | sudo tee -a /etc/auto_master
