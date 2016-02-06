@@ -125,6 +125,7 @@ ghq get https://github.com/tsuyoshiwada/sample-webpack-coffee.git
 ghq get https://github.com/KazIgu/gulp-sample.git
 ghq get https://github.com/Quramy/electron-jsx-babel-boilerplate.git
 ghq get https://github.com/RamblingCookieMonster/Invoke-Parallel.git
+ghq get https://github.com/yascentur/RictyDiminished.git
 
 # bitbucket
 ghq get https://bitbucket.org/yukimemi/haskell.git
@@ -287,5 +288,6 @@ npm i -D babel bower typescript gulp gulp-typescript del browserify tsify debowe
 # Add node_modules/.bin path to envrc
 echo "export PATH=\$(npm bin):\$PATH" > .envrc && direnv allow
 
-# zplug
-curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug
+# Install Ricty Diminished.
+curl -LO https://raw.github.usercontent.com/yascentur/RictyDiminished/master/RictyDiminished-Regular.ttf
+
