@@ -289,6 +289,18 @@ endif
 
 if neobundle#tap('vimshell.vim')"{{{
   function! neobundle#hooks.on_source(bundle)"{{{
+
+    let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+    " let g:vimshell_right_prompt = 'vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
+
+    if g:is_windows
+      " Display user name on Windows.
+      let g:vimshell_prompt = $USERNAME." > "
+    else
+      " Display user name on Linux.
+      let g:vimshell_prompt = $USER." > "
+    endif
+
     au MyAutoCmd FileType vimshell
           \ if ! g:is_windows
           \ | call vimshell#altercmd#define('i', 'iexe')
@@ -297,7 +309,7 @@ if neobundle#tap('vimshell.vim')"{{{
           \ | call vimshell#altercmd#define('lla', 'ls -al')
           \ | call vimshell#altercmd#define('lv', 'vim -R')
           \ | call vimshell#altercmd#define('vimfiler', 'vim -c VimFilerDouble')
-          \ | call vimshell#altercmd#define('rm', 'rmtrash')
+          \ | call vimshell#altercmd#define('rm', 'gomi')
           \ | call vimshell#altercmd#define('s', ':UniteBookmarkAdd .')
           \ | call vimshell#altercmd#define('g', ':Unite bookmark -start-insert')
           \ | call vimshell#altercmd#define('l', ':Unite bookmark')
@@ -318,8 +330,8 @@ if neobundle#tap('vimshell.vim')"{{{
     let g:vimshell_max_command_history = 5000000
     " mapping
     "nnoremap [Space]s :<C-u>VimShell<CR>
-    au MyAutoCmd FileType vimshell inoremap <buffer> <C-^> cd<Space>../<CR>
-    au MyAutoCmd FileType vimshell imap <buffer> <C-l> <Plug>(vimshell_clear)
+    au MyAutoCmd FileType vimshell imap <buffer> <C-^> cdup<Plug>(vimshell_enter)
+    " au MyAutoCmd FileType vimshell imap <buffer> <C-l> <Plug>(vimshell_clear)
   endfunction
   "}}}
 
@@ -716,6 +728,10 @@ if neobundle#tap('ctrlp.vim')"{{{
   nnoremap scc :<C-u>CtrlPMixed<CR>
   nnoremap sct :<C-u>CtrlPTag<CR>
 
+  if executable('files')
+    let g:ctrlp_user_command = 'files -a %s'
+  endif
+
   call neobundle#untap()
 endif
 "}}}
@@ -739,7 +755,6 @@ if neobundle#tap('vim-automatic')"{{{
         \ }
   let g:automatic_config = [
         \   {'match': {'buftype': 'help'}},
-        \   {'match': {'bufname': '^.vimshell'}},
         \   {'match': {'bufname': 'MacDict.*'}},
         \   {
         \     'match': {
