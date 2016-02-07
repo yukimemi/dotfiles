@@ -126,6 +126,7 @@ ghq get https://github.com/KazIgu/gulp-sample.git
 ghq get https://github.com/Quramy/electron-jsx-babel-boilerplate.git
 ghq get https://github.com/RamblingCookieMonster/Invoke-Parallel.git
 ghq get https://github.com/yascentur/RictyDiminished.git
+ghq get https://github.com/monochromegane/dotfiles
 
 # bitbucket
 ghq get https://bitbucket.org/yukimemi/haskell.git
