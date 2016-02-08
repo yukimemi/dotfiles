@@ -288,6 +288,7 @@ endif
 "}}}
 
 if neobundle#tap('vimshell.vim')"{{{
+
   function! neobundle#hooks.on_source(bundle)"{{{
 
     let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
@@ -295,31 +296,39 @@ if neobundle#tap('vimshell.vim')"{{{
 
     if g:is_windows
       " Display user name on Windows.
-      let g:vimshell_prompt = $USERNAME." > "
+      let g:vimshell_prompt = $USERNAME." » "
     else
       " Display user name on Linux.
-      let g:vimshell_prompt = $USER." > "
+      let g:vimshell_prompt = $USER." » "
     endif
 
-    au MyAutoCmd FileType vimshell
-          \ if ! g:is_windows
-          \ | call vimshell#altercmd#define('i', 'iexe')
-          \ | call vimshell#altercmd#define('ll', 'ls -l')
-          \ | call vimshell#altercmd#define('la', 'ls -a')
-          \ | call vimshell#altercmd#define('lla', 'ls -al')
-          \ | call vimshell#altercmd#define('lv', 'vim -R')
-          \ | call vimshell#altercmd#define('vimfiler', 'vim -c VimFilerDouble')
-          \ | call vimshell#altercmd#define('rm', 'gomi')
-          \ | call vimshell#altercmd#define('s', ':UniteBookmarkAdd .')
-          \ | call vimshell#altercmd#define('g', ':Unite bookmark -start-insert')
-          \ | call vimshell#altercmd#define('l', ':Unite bookmark')
-          \ | call vimshell#hook#add('chpwd', 'my_chpwd', 'MyChpwd')
-          \ | else
-            \ | call vimshell#altercmd#define('vimfiler', 'gvim -c VimFilerDouble')
-            \ | endif
+    au MyAutoCmd FileType vimshell call s:vimshell_settings()
+
+    function! s:vimshell_settings() abort
+      call vimshell#altercmd#define('i', 'iexe')
+      call vimshell#altercmd#define('s', ':UniteBookmarkAdd .')
+      call vimshell#altercmd#define('g', ':Unite bookmark -start-insert')
+      call vimshell#altercmd#define('l', ':Unite bookmark')
+      call vimshell#hook#add('chpwd', 'my_chpwd', 'MyChpwd')
+
+      if g:is_windows
+        call vimshell#altercmd#define('vimfiler', 'gvim -c VimFilerDouble')
+      else
+        call vimshell#altercmd#define('ll', 'ls -l')
+        call vimshell#altercmd#define('la', 'ls -a')
+        call vimshell#altercmd#define('lla', 'ls -al')
+        call vimshell#altercmd#define('lv', 'vim -R')
+        call vimshell#altercmd#define('vimfiler', 'vim -c VimFilerDouble')
+        call vimshell#altercmd#define('rm', 'gomi')
+      endif
+    endfunction
 
     function! MyChpwd(args, context)
-      call vimshell#execute('ls')
+      if g:is_windows
+        call vimshell#execute('dir')
+      else
+        call vimshell#execute('ls')
+      endif
     endfunction
 
     autocmd FileType int-* call s:interactive_settings()
@@ -328,12 +337,14 @@ if neobundle#tap('vimshell.vim')"{{{
 
     " history
     let g:vimshell_max_command_history = 5000000
-    " mapping
-    "nnoremap [Space]s :<C-u>VimShell<CR>
     au MyAutoCmd FileType vimshell imap <buffer> <C-^> cdup<Plug>(vimshell_enter)
     " au MyAutoCmd FileType vimshell imap <buffer> <C-l> <Plug>(vimshell_clear)
   endfunction
   "}}}
+
+  " mapping
+  nnoremap [Space]s :<C-u>VimShell<CR>
+  nnoremap [Space]p :<C-u>VimShellPop<CR>
 
   call neobundle#untap()
 endif
