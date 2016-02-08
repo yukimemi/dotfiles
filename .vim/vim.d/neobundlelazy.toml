@@ -34,6 +34,10 @@ on_unite = 'junkfile'
 on_cmd = 'JunkfileOpen'
 
 [[plugins]]
+repository = 'Shougo/neoyank.vim'
+on_unite = 'history/yank'
+
+[[plugins]]
 repository = 'thinca/vim-ref'
 on_unite = 'ref'
   [plugins.on_cmd]

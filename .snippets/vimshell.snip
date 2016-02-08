@@ -1,0 +1,296 @@
+# apache
+tail -n 5000 /usr/local/apache2/logs/access_log | awk '{print $1}'  | sort | uniq -c | sort -gr | head -n 4
+tail -n 5000 /usr/local/apache2/logs/access_log | awk '{print $2}'  | sort | uniq -c | sort -gr | head -n 4
+tail -n 5000 /usr/local/apache2/logs/access_log | awk '{print $12}' | sort | uniq -c | sort -gr | head -n 4
+tail -n 5000 /usr/local/apache2/logs/access_log | awk '{print $13}' | sort | uniq -c | sort -gr | head -n 4
+
+# search
+netstat -ltapn | grep ESTABLISHED | more
+netstat -ltan | grep ":80 " | awk '{print $5}' | awk -F : '{print $4}' | sort | uniq -c | sort -nr | head
+lsof -i:80
+
+# dstat
+dstat -Tclmdrn
+dstat -Tclm
+dstat -Tclr
+dstat -Tclnd
+dstat -Tcldr
+dstat --top-cpu --top-cputime
+dstat --top-io --top-bio
+dstat --top-io-adv --top-bio-adv
+
+# openssl
+openssl x509 -noout -modulus -in *.crt | openssl md5
+openssl rsa  -noout -modulus -in *.key | openssl md5
+openssl req  -noout -modulus -in *.csr | openssl md5
+
+# date
+date +%Y%m%d
+
+# find
+find . -type f -mtime +10
+
+# kill
+kill -9 $(ps -ef | grep -i vlc | grep -v grep | awk '{ print $2 }')
+kill -9 $(ps -ef | grep -i firefox | grep -v grep | awk '{ print $2 }')
+
+# screensaver
+open /System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app
+
+# exiftool
+exiftool '-FileName < CreateDate' -d /Volumes/new/backup/Photos/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(JPG|jpg)
+exiftool '-FileName < CreateDate' -d /Volumes/new/backup/Mov/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(MOV|mov)
+exiftool '-FileName < CreateDate' -d /Volumes/new/backup/mp4/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(MP4|mp4)
+exiftool '-FileName < DateTimeOriginal' -d /Volumes/new/backup/m2ts/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e *.(mts|MTS)
+find . -type f -iname "*.jpg" -print0 | xargs -0 exiftool '-FileName < CreateDate' -d /Volumes/new/backup/Photos/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
+find . -type f -iname "*.mov" -print0 | xargs -0 exiftool '-FileName < CreateDate' -d /Volumes/new/backup/Mov/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
+find . -type f -iname "*.mp4" -print0 | xargs -0 exiftool '-FileName < CreateDate' -d /Volumes/new/backup/mp4/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
+find . -type f -iname "*.png" -print0 | xargs -0 exiftool '-FileName < FileModifyDate' -d /Volumes/new/backup/Photos/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
+find . -type f -iname "*.jpg" -print0 | xargs -0 exiftool '-FileName < FileModifyDate' -d /Volumes/new/backup/IMG/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
+find . -type f -iname "*.m2ts" -print0 | xargs -0 exiftool '-FileName < DateTimeOriginal' -d /Volumes/new/backup/m2ts/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
+find . -type f -iname "*.mts" -print0 | xargs -0 exiftool '-FileName < DateTimeOriginal' -d /Volumes/new/backup/m2ts/%Y-%m/%Y-%m-%d_%H-%M-%S%%-c.%%e
+
+# youtube-dl
+youtube-dl -x --audio-format mp3 --audio-quality 0
+
+# ghq
+# github
+# me
+ghq get https://github.com/yukimemi/md2docx.git
+ghq get https://github.com/yukimemi/prezto.git
+ghq get https://github.com/yukimemi/tmux-powerline.git
+ghq get https://github.com/yukimemi/gitstatus.git
+ghq get https://github.com/yukimemi/coffee-script-on-jscript.git
+ghq get https://github.com/yukimemi/ActiveXFileWrapper.js.git
+ghq get https://github.com/yukimemi/copybackup.git
+ghq get https://github.com/yukimemi/gocore.git
+ghq get https://github.com/yukimemi/yukimemi.github.io.git
+ghq get https://github.com/yukimemi/Brewfile.git
+ghq get https://github.com/yukimemi/homebrew-custom.git
+ghq get https://github.com/yukimemi/powerline.git
+ghq get https://github.com/yukimemi/ansible-playbook.git
+ghq get https://github.com/yukimemi/makejscript.git
+ghq get https://github.com/yukimemi/spyrun.git
+ghq get https://github.com/yukimemi/vim-jsfmt.git
+ghq get https://github.com/yukimemi/imexpand.git
+# others
+ghq get https://github.com/liangxianzhe/oh-my-vim.git
+ghq get https://github.com/Shougo/shougo-s-github.git
+ghq get https://github.com/eagletmt/dotfiles.git
+ghq get https://github.com/supermomonga/dotfiles.git
+ghq get https://github.com/tcnksm/go-compile-scripts.git
+ghq get https://github.com/osyo-manga/cpp-vimrc.git
+ghq get https://github.com/Xfennec/cv.git
+ghq get https://github.com/BestPig/cv.git # for mac
+ghq get https://github.com/tcnksm/dotfiles.git
+ghq get https://github.com/cd01/vimppm.git
+ghq get https://github.com/powerline/fonts.git
+ghq get https://github.com/powerline/powerline.git
+ghq get https://github.com/itchyny/miv.git
+ghq get https://github.com/joefitzgerald/packer-windows.git
+ghq get https://github.com/glidenote/dotfiles.git
+ghq get https://github.com/rhysd/dotfiles.git
+ghq get https://github.com/b4b4r07/dotfiles.git
+ghq get https://github.com/sorah/niconico.git
+ghq get https://github.com/vimperator/vimperator-labs.git
+ghq get https://github.com/vimpr/vimperator-colors.git
+ghq get https://github.com/vimpr/vimperator-plugins.git
+ghq get https://github.com/tomokuni/Myrica.git
+ghq get https://github.com/coolwanglu/guake-colors-solarized.git
+ghq get https://github.com/erroneousboat/guake-colors-monokai.git
+ghq get https://github.com/l0b0/xterm-color-count.git
+ghq get https://github.com/kenhys/mayu.git
+ghq get https://github.com/atom/electron.git
+ghq get https://github.com/atom/electron-starter.git
+ghq get https://github.com/tacahilo/.vim
+ghq get https://github.com/knsv/mermaid.git
+ghq get https://github.com/mawatari/mac-provisioning.git
+ghq get https://github.com/twada/macbook-provisioning.git
+ghq get https://github.com/tell-k/blister-pack.git
+ghq get https://github.com/supistar/dotfiles.git
+ghq get https://github.com/k2wanko/dotfiles.git
+ghq get https://github.com/joe-re/dotfiles.git
+ghq get https://github.com/ansible/ansible-examples.git
+ghq get https://github.com/makiton/playbook-osx.git
+ghq get https://github.com/seebi/tmux-colors-solarized.git
+ghq get https://github.com/jimeh/tmux-themepack.git
+ghq get https://github.com/mbadolato/iTerm2-Color-Schemes.git
+ghq get https://github.com/yuroyoro/dotfiles.git
+ghq get https://github.com/google/material-design-lite.git
+ghq get https://github.com/suisho/example-electron-babel.git
+ghq get https://gist.github.com/ce81e95c6f6c5747d8aa.git \# gulp for es6
+ghq get https://github.com/sskyu/gulp-webpack-skeleton.git
+ghq get https://github.com/sugarshin/gulpfiles.git
+ghq get https://github.com/tsuyoshiwada/sample-webpack-coffee.git
+ghq get https://github.com/KazIgu/gulp-sample.git
+ghq get https://github.com/Quramy/electron-jsx-babel-boilerplate.git
+ghq get https://github.com/RamblingCookieMonster/Invoke-Parallel.git
+ghq get https://github.com/yascentur/RictyDiminished.git
+ghq get https://github.com/monochromegane/dotfiles
+
+# bitbucket
+ghq get https://bitbucket.org/yukimemi/haskell.git
+ghq get https://bitbucket.org/yukimemi/node-webkit.git
+ghq get https://bitbucket.org/yukimemi/yukimemi.bitbucket.org.git
+ghq get https://bitbucket.org/yukimemi/vagrant.git
+ghq get https://bitbucket.org/yukimemi/packer-windows.git
+ghq get https://bitbucket.org/yukimemi/clojure.git
+ghq get https://bitbucket.org/yukimemi/go.git
+ghq get https://bitbucket.org/yukimemi/win.git
+ghq get https://bitbucket.org/yukimemi/scripts.git
+ghq get https://bitbucket.org/yukimemi/coffee.git
+ghq get https://bitbucket.org/yukimemi/nicobrowser.git
+ghq get https://bitbucket.org/yukimemi/coffee-windows.git
+ghq get https://bitbucket.org/yukimemi/cpp.git
+ghq get https://bitbucket.org/yukimemi/ps1.git
+ghq get https://bitbucket.org/yukimemi/books.git
+ghq get https://bitbucket.org/yukimemi/typescript.git
+ghq get https://bitbucket.org/yukimemi/jscript.git
+ghq get https://bitbucket.org/yukimemi/ruby.git
+ghq get https://bitbucket.org/yukimemi/nicodown.git
+ghq get https://bitbucket.org/yukimemi/electron.git
+ghq get https://bitbucket.org/yukimemi/mermaid.git
+ghq get https://bitbucket.org/yukimemi/tswsh.git
+ghq get https://bitbucket.org/yukimemi/yukimemi.git # not use !
+git clone https://bitbucket.org/yukimemi/yukimemi.git themes/yukimemi
+
+# Gist
+ghq get https://gist.github.com/5507969.git \# golang copy file example
+
+# Go lang
+# me
+go get -u github.com/yukimemi/copybackup
+go get -u github.com/yukimemi/copybackup/cmd/copybackup
+go get -u github.com/yukimemi/makejscript
+go get -u github.com/yukimemi/spyrun/cmd/spyrun
+# others
+go get -u github.com/jessevdk/go-flags
+go get -u github.com/umisama/golog
+go get -u github.com/smartystreets/goconvey
+go get -u github.com/mitchellh/gox && gox -build-toolchain
+go get -u github.com/laher/goxc
+go get -u github.com/kr/godep
+go get -u github.com/spf13/hugo
+go get -u golang.org/x/text/encoding/japanese
+go get -u golang.org/x/text/encoding
+go get -u golang.org/x/text/transform
+go get -u github.com/headzoo/surf
+go get -u github.com/laurent22/massren && massren --config editor vim
+go get -u golang.org/x/tools/cmd/gorename
+go get -u github.com/tcnksm/ghr
+go get -u github.com/yuya-takeyama/ggallin
+go get -u github.com/mattn/goemon/cmd/goemon
+# go get -u github.com/BurntSushi/toml
+go get -u github.com/naoina/toml
+go get -u github.com/pranavraja/tldr
+
+# gcli
+go get -d github.com/tcnksm/gcli && cd $GOPATH/src/github.com/tcnksm/gcli && make install
+
+# Hugo
+git clone --recursive https://github.com/spf13/hugoThemes themes
+
+# Get deploy.sh
+wget https://github.com/X1011/git-directory-deploy/raw/master/deploy.sh && chmod +x deploy.sh
+
+# oh-my-vim
+curl -L https://raw.github.com/yukimemi/oh-my-vim/master/tools/prepare_mac.sh | sh
+curl -L https://raw.github.com/yukimemi/oh-my-vim/master/tools/install.sh | sh
+curl -L https://raw.github.com/yukimemi/oh-my-vim/master/tools/uninstall.sh | sh
+
+# Add git upstream repo
+git remote add upstream https://github.com/erikw/tmux-powerline.git
+git remote add upstream https://github.com/sorin-ionescu/prezto.git
+
+# beer http://deeeet.com/writing/2014/04/30/beer-on-terminal/
+ruby -e 'C=`stty size`.scan(/\d+/)[1].to_i;S="\xf0\x9f\x8d\xba";a={};puts "\033[2J";loop{a[rand(C)]=0;a.each{|x,o|;a[x]+=1;print "\033[#{o};#{x}H \033[#{a[x]};#{x}H#{S} \033[0;0H"};$stdout.flush;sleep 0.01}'
+# snow http://melborne.github.io/2013/12/13/translate-let-it-snow-in-the-terminal/
+ruby -e 'C=`stty size`.scan(/\d+/)[1].to_i;S=["2743".to_i(16)].pack("U*");a={};puts "\033[2J";loop{a[rand(C)]=0;a.each{|x,o|;a[x]+=1;print "\033[#{o};#{x}H \033[#{[*31..37].sample}m \033[#{a[x]};#{x}H#{S} \033[0;0H \033[0m"};$stdout.flush;sleep 0.1}'
+
+# sysctl
+sudo sysctl -w net.inet.tcp.delayed_ack=0
+
+# git config
+git config --global ghq.root ~/.ghq/src
+
+# ievms
+curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | bash
+curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="11" bash
+
+# neobundle update
+vim -g -f -c "silent exe 'NeoBundleUpdate | q'" &> /dev/null
+
+# mac search profile
+curl -sL https://raw.githubusercontent.com/syui/json-script/master/script/macbook-model-command.sh | sh
+
+# brew file
+brew install rcmdnk/file/brew-file
+brew file set_repo -r yukimemi/Brewfile
+
+# vimperator build
+cd ~/.ghq/src/github.com/vimperator/vimperator-labs && git pull && make && open -a 'firefox' downloads/vimperator*.xpi
+
+# vimperator-plugins update
+cd ~/.ghq/src/github.com/vimpr/vimperator-plugins && git pull && cd ~/.ghq/src/github.com/caisui/vimperator && git pull
+
+# install vimppm
+cd ~/.vimperator && git clone git@github.com:yukimemi/vimppm && cd vimppm && git remote add upstream https://github.com/cd01/vimppm
+cd ~/.vimperator && git clone https://github.com/cd01/vimppm
+
+# gitignore.io
+git config --global alias.ignore '!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi'
+
+# install mutate
+sudo add-apt-repository ppa:mutate/ppa && sudo apt-get update && sudo apt-get install mutate --no-install-recommends
+
+# install btsync
+sudo add-apt-repository ppa:tuxpoldo/btsync && sudo apt-get update && sudo apt-get install btsync
+
+# install neovim
+sudo add-apt-repository ppa:neovim-ppa/unstable && sudo apt-get update && sudo apt-get install neovim
+
+# install atom
+sudo add-apt-repository ppa:webupd8team/atom && sudo apt-get update && sudo apt-get install atom
+
+# install mayu
+cd ~/.ghq/src/github.com/kenhys/mayu && sudo aptitude install build-essential libboost-iostreams-dev libudev-dev libusb-1.0-0-dev && ./configure --with-boost-libdir=/usr/lib/x86_64-linux-gnu/ && make && sudo make install && sudo chmod +s /usr/local/bin/mayu
+
+# install dropbox
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - && wget "https://www.dropbox.com/download?dl=packages/dropbox.py" -O ~/bin/dropbox.py && chmod +x ~/bn/dropbox.py
+
+# install miv
+ghq get ghq get https://github.com/itchyny/miv.git; cd ~/.ghq/src/github.com/itchyny/miv && cabal update && cabal install
+
+# Install pip
+curl -kL https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
+
+# Install powerline
+pip install --user powerline-status
+
+# Change https to ssh
+git remote set-url origin git@github.com:yukimemi/dotfiles.git
+git remote set-url origin git@github.com:yukimemi/prezto.git
+
+# Ansible
+curl -L http://git.io/yukimemi-ansible | sh
+
+# Uninstall homebrew
+cd /tmp && curl -OL https://raw.githubusercontent.com/Homebrew/install/master/uninstall && chmod +x uninstall && ./uninstall
+
+# Install git-ignore
+curl -sL https://raw.githubusercontent.com/yuroyoro/git-ignore/master/git-ignore > ~/bin/git-ignore && chmod +x ~/bin/git-ignore
+
+# Change boot volume to 0 on Mac (yosemite)
+sudo nvram SystemAudioVolume=%00 && nvram -p | grep SystemAudioVolume
+
+# npm install
+npm i -D babel bower typescript gulp gulp-typescript del browserify tsify debowerify watchify vinyl-transform require-dir gulp-rename gulp-if gulp-exec gulp-load-plugins gulp-plumber gulp-notify gulp-webpack
+
+# Add node_modules/.bin path to envrc
+echo "export PATH=\$(npm bin):\$PATH" > .envrc && direnv allow
+
+# Install Ricty Diminished.
+curl -LO https://raw.github.usercontent.com/yascentur/RictyDiminished/master/RictyDiminished-Regular.ttf
+
+# Add /etc/auto_master
+echo "/Users/yukimemi/mnt    auto_nas" | sudo tee -a /etc/auto_master

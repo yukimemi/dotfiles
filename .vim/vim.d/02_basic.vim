@@ -169,3 +169,6 @@ au MyAutoCmd BufWritePre *.bin,*.dat endif
 au MyAutoCmd BufWritePost *.bin,*.dat if &bin | %!xxd
 au MyAutoCmd BufWritePost *.bin,*.dat set nomod | endif
 
+" path
+let $GOPATH = $HOME."/.ghq"
+let $PATH = $PATH.":".$GOPATH."/bin"
