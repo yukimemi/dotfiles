@@ -76,6 +76,10 @@ on_source = 'unite.vim'
 [[plugins]]
 repository = 'lambdalisue/unite-grep-vcs'
 on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'Shougo/neossh.vim'
+on_source = 'unite.vim'
 # }}}
 
 # ======================================================================
@@ -753,5 +757,9 @@ on_cmd = 'Autoformat'
 [[plugins]]
 repository = 'glidenote/memolist.vim'
 on_cmd = ['MemoNew', 'MemoList', 'MemoGrep']
+
+[[plugins]]
+repository ='ujihisa/vimshell-ssh'
+on_source = 'vimshell.vim'
 # }}}
 
