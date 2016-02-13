@@ -2136,8 +2136,8 @@ nnoremap l <Right>
 " open folding in "l"
 nnoremap <expr> l foldlevel(line('.')) ? "\<Right>zo" : "\<Right>"
 " for buffer
-nnoremap gh :bp<CR>
-nnoremap gl :bn<CR>
+nnoremap gh ^
+nnoremap gl $
 " for tab
 nnoremap <C-l> gt
 nnoremap <C-h> gT
@@ -2217,12 +2217,13 @@ au MyAutoCmd BufNewFile,BufRead *.scpt,*.applescript setl ft=applescript
 au MyAutoCmd BufNewFile,BufRead *.mmd setl ft=mermaid
 au MyAutoCmd BufNewFile,BufRead *.js setl ft=javascript
 au MyAutoCmd BufNewFile,BufRead *.csv,*.log setl nowrap
+au MyAutoCmd BufNewFile,BufRead *.ps1 setl ft=ps1
 
 
 " Autocmd: {{{1
 au MyAutoCmd WinEnter,CursorHold * checktime
 au MyAutoCmd CursorHold * setl nohlsearch
-au MyAutoCmd CmdwinEnter * :silent! 1,$-100 delete _ | call cursor("$", 1)
+au MyAutoCmd CmdwinEnter * :silent! 1,$-40 delete _ | call cursor("$", 1)
 
 " Reload .vimrc automatically.
 au MyAutoCmd BufWritePost $MYVIMRC silent! nested source $MYVIMRC | redraw
