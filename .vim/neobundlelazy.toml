@@ -10,72 +10,72 @@ depends = 'Shougo/neomru.vim'
 
 [[plugins]]
 repository = 'Shougo/neomru.vim'
-on_unite = 'neomru'
+on_source = 'unite.vim'
 
 [[plugins]]
 repository = 'Shougo/unite-outline'
-on_unite = 'outline'
+on_source = 'unite.vim'
 
 [[plugins]]
 repository = 'thinca/vim-unite-history'
-on_unite = 'history'
+on_source = 'unite.vim'
 
 [[plugins]]
 repository = 'Shougo/unite-help'
-on_unite = 'help'
+on_source = 'unite.vim'
 
 [[plugins]]
 repository = 'tsukkee/unite-tag'
-on_unite = 'tag'
+on_source = 'unite.vim'
 
 [[plugins]]
 repository = 'Shougo/junkfile.vim'
-on_unite = 'junkfile'
+on_source = 'unite.vim'
 on_cmd = 'JunkfileOpen'
 
 [[plugins]]
 repository = 'Shougo/neoyank.vim'
-on_unite = 'history/yank'
+on_source = 'unite.vim'
 
 [[plugins]]
 repository = 'thinca/vim-ref'
-on_unite = 'ref'
+on_source = 'unite.vim'
   [plugins.on_cmd]
   name = 'Ref'
   complete = 'customlist,ref#complete'
 
 [[plugins]]
 repository = 'osyo-manga/unite-quickfix'
-on_unite = 'quickfix'
+on_source = 'unite.vim'
 
 [[plugins]]
 repository = 'osyo-manga/unite-filetype'
-on_unite = 'filetype'
+on_source = 'unite.vim'
 
 [[plugins]]
 repository = 'sorah/unite-ghq'
-on_unite = 'ghq'
+on_source = 'unite.vim'
 
 [[plugins]]
 repository = 'ujihisa/unite-colorscheme'
-on_unite = 'colorscheme'
+on_source = 'unite.vim'
 
 [[plugins]]
 repository = 'mattn/unite-vim_advent-calendar'
-on_unite = 'vim_advent_calendar'
+on_source = 'unite.vim'
 
 [[plugins]]
 repository = 'mattn/unite-advent_calendar'
-on_unite = 'advent_calendar'
+on_source = 'unite.vim'
 
 [[plugins]]
 repository = 'rhysd/unite-codic.vim'
 depends = 'koron/codic-vim'
-on_unite = 'codic'
+on_source = 'unite.vim'
 
 [[plugins]]
 repository = 'lambdalisue/unite-grep-vcs'
-on_unite = ['grep/git', 'grep/hg']
+on_source = 'unite.vim'
 # }}}
 
 # ======================================================================
@@ -180,7 +180,7 @@ on_ft = 'all'
 # ======================================================================
 [[plugins]]
 repository = 'osyo-manga/vim-reanimate'
-on_unite = 'reanimate'
+on_source = 'unite.vim'
   [plugins.on_cmd]
   name = ['ReanimateLoad']
   complete = 'customlist,s:save_point_completelist'
@@ -563,7 +563,7 @@ on_ft = 'help'
 [[plugins]]
 repository = 'basyura/J6uil.vim'
 on_func = 'J6uil'
-on_unite = 'J6uil'
+on_source = 'unite.vim'
 depends = 'mattn/webapi-vim'
   [plugins.on_cmd]
   name = 'J6uil'
@@ -572,13 +572,13 @@ depends = 'mattn/webapi-vim'
 [[plugins]]
 repository =  'basyura/TweetVim''
 depends = ['basyura/twibill.vim', 'tyru/open-browser.vim', 'basyura/bitly.vim', 'mattn/favstar-vim', 'mattn/webapi-vim']
-on_unite = 'tweetvim'
+on_source = 'unite.vim'
 on_cmd = ['TweetVim', 'TweetVimUserStream','TweetVimSay']
 on_ft = 'tweetvim'
 
 [[plugins]]
 repository = 'supermomonga/jazzradio.vim'
-on_unite = 'jazzradio'
+on_source = 'unite.vim'
   [plugins.on_cmd]
   name = 'JazzradioPlay'
   complete = 'customlist,Jazzradio#channel_key_complete'
@@ -687,7 +687,7 @@ on_map = '<Plug>'
 repository = 'lambdalisue/vim-gista'
 on_cmd = 'Gista'
 on_map = '<Plug>'
-on_unite = 'gista'
+on_source = 'unite.vim'
 
 # [[plugins]]
 # repository = 'kana/vim-niceblock'
