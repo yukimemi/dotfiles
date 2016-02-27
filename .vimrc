@@ -440,7 +440,7 @@ if neobundle#tap('vimshell.vim') "{{{3
       imap <buffer> <C-^> cdup<Plug>(vimshell_enter)
       imap <buffer> <C-k> <Plug>(vimshell_zsh_complete)
       imap <buffer> <C-g> <Plug>(vimshell_history_neocomplete)
-      imap <silent> <buffer> <C-@> vexe --insert :Unite -start-insert -default-action=lcd directory_mru<CR>
+      imap <buffer> <silent> <C-@> vexe --insert :Unite -start-insert -default-action=lcd directory_mru<CR>
 
       call vimshell#altercmd#define('i', 'iexe')
       call vimshell#altercmd#define('s', ':UniteBookmarkAdd .')
@@ -448,8 +448,9 @@ if neobundle#tap('vimshell.vim') "{{{3
       call vimshell#altercmd#define('l', ':Unite bookmark')
       call vimshell#hook#add('chpwd', 'my_chpwd', 'MyChpwd')
       " Auto jump.
-      call vimshell#set_alias('j', ':Unite -buffer-name=files
-            \ -default-action=lcd -no-split -input=$$args directory_mru')
+      call vimshell#set_alias('j', 'vexe --insert :Unite -buffer-name=files -default-action=lcd -no-split -input=$$args directory_mru')
+      " ghq
+      call vimshell#set_alias('ghl', 'vexe --insert :Unite -buffer-name=ghq -default-action=lcd -no-split -start-insert -input=$$args ghq')
 
       if s:is_windows
         call vimshell#altercmd#define('vimfiler', 'gvim -c VimFilerDouble')
@@ -538,6 +539,7 @@ if neobundle#tap('unite.vim') "{{{3
   nnoremap suM :<C-u>Unite mapping<CR>
   nnoremap suR :<C-u>UniteResume<CR>
   nnoremap sud :<C-u>Unite -default-action=lcd directory_mru<CR>
+  nnoremap sul :<C-u>Unite history/command<CR>
 
   " NeoBundle
   nnoremap sui :<C-u>Unite neobundle/update -no-start-insert -no-split<CR>
@@ -640,7 +642,7 @@ if neobundle#tap('vim-quickrun') "{{{3
         \     "runner/vimproc/updatetime": 40
         \   },
         \ "typescript": {
-        \     "commad": "tsc",
+        \     "command": "tsc",
         \     "cmdopt": "--nolib --out",
         \     "exec"  : "%c %s _lib.ts %o %s:p:r.js",
         \     "hook/typescript_compile/enable": 1,
@@ -2218,12 +2220,13 @@ au MyAutoCmd BufNewFile,BufRead *.mmd setl ft=mermaid
 au MyAutoCmd BufNewFile,BufRead *.js setl ft=javascript
 au MyAutoCmd BufNewFile,BufRead *.csv,*.log setl nowrap
 au MyAutoCmd BufNewFile,BufRead *.ps1 setl ft=ps1
+au MyAutoCmd BufNewFile,BufRead *.toml setl ft=toml
 
 
 " Autocmd: {{{1
 au MyAutoCmd WinEnter,CursorHold * checktime
 au MyAutoCmd CursorHold * setl nohlsearch
-au MyAutoCmd CmdwinEnter * :silent! 1,$-40 delete _ | call cursor("$", 1)
+au MyAutoCmd CmdwinEnter * :silent! 1,$-50 delete _ | call cursor("$", 1)
 
 " Reload .vimrc automatically.
 au MyAutoCmd BufWritePost $MYVIMRC silent! nested source $MYVIMRC | redraw
