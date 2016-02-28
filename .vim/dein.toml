@@ -1,0 +1,77 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# ======================================================================
+# Visual {{{1
+# ======================================================================
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
+
+# [[plugins]]
+# repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+[[plugins]]
+repo = 'LeafCage/foldCC'
+
+# ======================================================================
+# Search {{{1
+# ======================================================================
+[[plugins]]
+repo = 'haya14busa/incsearch.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'
+
+# [[plugins]]
+# repo = 'jacquesbh/vim-showmarks'
+
+# ======================================================================
+# Window {{{1
+# ======================================================================
+[[plugins]]
+repo = 'thinca/vim-submode'
+
+[[plugins]]
+repo = 'osyo-manga/vim-automatic'
+#depends = ['osyo-manga/vim-gift', 'osyo-manga/vim-reunions']
+
+[[plugins]]
+repo = 'kana/vim-tabpagecd'
+
+#[[plugins]]
+#repo = 'osyo-manga/vim-gift'
+#on_source = 'vim-automatic'
+
+#[[plugins]]
+#repo = 'osyo-manga/vim-reunions'
+#on_source = 'vim-automatic'
+
+# ======================================================================
+# Yank/Paste {{{1
+# ======================================================================
+[[plugins]]
+repo = 'LeafCage/yankround.vim'
+
+# ======================================================================
+# Utility {{{1
+# ======================================================================
+[[plugins]]
+repo = 'airblade/vim-rooter'
+
+# [[plugins]]
+# repo = 'mattn/webapi-vim'
+
+[[plugins]]
+repo = 'rhysd/committia.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+
+  [plugins.build]
+  windows = 'tools\\update-dll-mingw'
+  cygwin = 'make -f make_cygwin.mak'
+  mac = 'make -f make_mac.mak'
+  unix = 'make -f make_unix.mak'

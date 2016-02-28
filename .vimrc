@@ -15,8 +15,8 @@ if has('vim_starting') && has('reltime')
 endif
 
 " Set mapleader.
-let mapleader = ','
-let maplocalleader = ','
+let g:mapleader = ','
+let g:maplocalleader = ','
 
 
 " Utility: {{{1
@@ -83,9 +83,9 @@ function! s:cd_buffer_dir() "{{{2
   cd `=dir`
 endfunction
 
-" Remove file if 0 byte. {{{2
-" http://qiita.com/hykw/items/6dbb43bdcd8874a0daf7
-function! s:Hykw_removeFileIf0Byte()
+function! s:Hykw_removeFileIf0Byte() "{{{2
+  " Remove file if 0 byte.
+  " http://qiita.com/hykw/items/6dbb43bdcd8874a0daf7
   let filename = expand('%:p')
   if getfsize(filename) > 0
     " do nothing
@@ -99,50 +99,58 @@ function! s:Hykw_removeFileIf0Byte()
   endif
 endfunction
 
-" Delete other line {{{2
-function! s:deleteOtherLine()
+function! s:deleteOtherLine() "{{{2
+" Delete other line
   %g!//d
+endfunction
+
+function! s:my_on_filetype() abort "{{{2
+  " Disable automatically insert comment.
+  setl formatoptions-=ro | setl formatoptions+=mMBl
+
+  if &l:filetype != '' || bufname('%') != ''
+    redir => filetype_out
+    silent! filetype
+    redir END
+    if filetype_out =~# 'OFF'
+      " Lazy loading
+      silent! filetype plugin indent on
+      syntax enable
+    endif
+  endif
 endfunction
 
 
 " Plugin: {{{1
-" Use neobundle.vim.
-let $NEOBUNDLE_PATH = expand('$CACHE/vim/neobundle')
-call s:mkdir($NEOBUNDLE_PATH)
+" Use dein.vim
+let s:dein_dir = finddir('dein.vim', '.;')
+if s:dein_dir != '' || &runtimepath !~ '/dein.vim'
+  if s:dein_dir == '' && &runtimepath !~ '/dein.vim'
+    let s:dein_dir = expand('$CACHE/vim/dein')
+          \. '/repos/github.com/Shougo/dein.vim'
 
-if has('vim_starting')
-  " Load neobundle.
-  if finddir('neobundle.vim', '.;') != ''
-    execute 'set runtimepath^=' .
-          \ fnamemodify(finddir('neobundle.vim', '.;'), ':p')
-  elseif &runtimepath !~ '/neobundle.vim'
-    if !isdirectory($NEOBUNDLE_PATH.'/neobundle.vim')
-      execute printf('!git clone %s://github.com/Shougo/neobundle.vim.git',
-            \ (exists('$http_proxy') ? 'https' : 'git'))
-            \ $NEOBUNDLE_PATH.'/neobundle.vim'
+    if !isdirectory(s:dein_dir)
+      execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
     endif
-
-    execute 'set runtimepath^=' . $NEOBUNDLE_PATH . '/neobundle.vim'
   endif
+
+  execute 'set runtimepath^=' . fnamemodify(s:dein_dir, ':p')
 endif
 
-call neobundle#begin($NEOBUNDLE_PATH)
+call dein#begin(expand('$CACHE/vim/dein'))
 
-if neobundle#load_cache()
-  call neobundle#load_toml('~/.vim/neobundle.toml')
-  call neobundle#load_toml('~/.vim/neobundlelazy.toml', {'lazy' : 1})
-  NeoBundleSaveCache
+let s:toml_path = '~/.vim/dein.toml'
+let s:toml_lazy_path = '~/.vim/deinlazy.toml'
+
+if dein#load_cache([expand('<sfile>'), s:toml_path, s:toml_lazy_path])
+  call dein#load_toml(s:toml_path, {'lazy': 0})
+  call dein#load_toml(s:toml_lazy_path, {'lazy' : 1})
+
+  call dein#save_cache()
 endif
 
 " Plugin settings. {{{2
-if neobundle#tap('neobundle.vim') "{{{3
-  " mapping for NeoBundle
-  nnoremap [Space]bi :<C-u>NeoBundleInstall<CR>
-
-  call neobundle#untap()
-endif
-
-if neobundle#tap('lightline.vim') "{{{3
+if dein#tap('lightline.vim') "{{{3
   let g:lightline = {
         \ 'colorscheme': 'solarized',
         \ 'mode_map': {
@@ -237,10 +245,9 @@ if neobundle#tap('lightline.vim') "{{{3
     return (winwidth('.') - strlen(expand('%:p')) > 90) ? expand('%:p') : ((winwidth('.') - strlen(expand('%')) > 70) ? expand('%') : '')
   endfunction
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('neocomplete.vim') "{{{3
+if dein#tap('neocomplete.vim') "{{{3
 
   let g:neocomplete#enable_at_startup = 1
   let g:neocomplete#enable_smart_case = 1
@@ -289,25 +296,16 @@ if neobundle#tap('neocomplete.vim') "{{{3
   let g:neocomplete#force_omni_input_patterns.typescript = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
   let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('echodoc.vim') "{{{3
-  function! neobundle#hooks.on_source(bundle)
-    let g:echodoc_enable_at_startup = 1
-  endfunction
-  call neobundle#untap()
-endif
-
-if neobundle#tap('vim-gitgutter') "{{{3
+if dein#tap('vim-gitgutter') "{{{3
   let g:gitgutter_sign_added = '✚'
   let g:gitgutter_sign_modified = '➜'
   let g:gitgutter_sign_removed = '✘'
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-submode') "{{{3
+if dein#tap('vim-submode') "{{{3
   let g:submode_leave_with_key = 1
 
   " user prefix 's' http://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca
@@ -339,7 +337,7 @@ if neobundle#tap('vim-submode') "{{{3
   nnoremap sbk :<C-u>bd!<CR>
   nnoremap sbq :<C-u>q!<CR>
 
-  function! neobundle#hooks.on_source(bundle)
+  function! s:vim_submode_on_source() abort
     call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
     call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
     call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
@@ -349,18 +347,17 @@ if neobundle#tap('vim-submode') "{{{3
     call submode#map('bufmove', 'n', '', '+', '<C-w>+')
     call submode#map('bufmove', 'n', '', '-', '<C-w>-')
   endfunction
-
-  call neobundle#untap()
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:vim_submode_on_source()'
 endif
 
-if neobundle#tap('vim-anzu') "{{{3
+if dein#tap('vim-anzu') "{{{3
 
   au MyAutoCmd WinLeave,TabLeave * call anzu#clear_search_status()
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('TweetVim') "{{{3
+if dein#tap('TweetVim') "{{{3
   au MyAutoCmd FileType tweetvim call s:my_tweetvim_mappings()
   nnoremap [Space]ut :<C-u>Unite tweetvim<CR>
   nnoremap [Space]tu :<C-u>TweetVimUserStream<CR>
@@ -381,21 +378,19 @@ if neobundle#tap('TweetVim') "{{{3
   "let g:tweetvim_display_icon = 1
   let g:tweetvim_async_post = 1
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-indent-guides') "{{{3
+if dein#tap('vim-indent-guides') "{{{3
   let g:indent_guides_enable_on_vim_startup = 1
   let g:indent_guides_guide_size = 1
   let g:indent_guides_start_level = 2
   let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'calendar', 'thumbnail', 'vimfiler', 'unite']
   let g:indent_guides_auto_colors = 1
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vimfiler.vim') "{{{3
-  nnoremap [Space]v :<C-u>VimFiler -split -simple -find -toggle -winwidth=35 -no-quit<CR>
+if dein#tap('vimfiler.vim') "{{{3
+  nnoremap [Space]v :<C-u>VimFiler -create -split -simple -find -toggle -winwidth=35 -no-quit<CR>
   nnoremap <C-e> :<C-u>VimFilerDouble<CR>
   nnoremap <expr><Leader>g <SID>git_root_dir()
   function! s:git_root_dir()
@@ -407,20 +402,21 @@ if neobundle#tap('vimfiler.vim') "{{{3
       echoerr '!!!current directory is outside git working tree!!!'
     endif
   endfunction
-  function! neobundle#hooks.on_source(bundle)
+
+  function! s:vimfiler_on_source() abort
     let g:vimfiler_as_default_explorer = 1
     let g:vimfiler_enable_auto_cd = 1
     if s:is_windows
       let g:unite_kind_file_use_trashbox = 1
     endif
   endfunction
-
-  call neobundle#untap()
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:vimfiler_on_source()'
 endif
 
-if neobundle#tap('vimshell.vim') "{{{3
+if dein#tap('vimshell.vim') "{{{3
 
-  function! neobundle#hooks.on_source(bundle)
+  function! s:vimshell_on_source() abort
 
     let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
     " let g:vimshell_right_prompt = 'vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
@@ -484,18 +480,20 @@ if neobundle#tap('vimshell.vim') "{{{3
 
   " mapping
   nnoremap [Space]s :<C-u>VimShell<CR>
+  nnoremap [Space]n :<C-u>VimShellCreate<CR>
   nnoremap [Space]p :<C-u>VimShellPop<CR>
 
-  call neobundle#untap()
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:vimshell_on_source()'
 endif
 
-if neobundle#tap('neosnippet.vim') "{{{3
+if dein#tap('neosnippet.vim') "{{{3
 
   " Plugin key-mappings.
   imap <C-k> <Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
   xmap <C-k> <Plug>(neosnippet_expand_target)
-  function! neobundle#hooks.on_source(bundle)
+  function! s:neosnippet_on_source() abort
     " Tell Neosnippet about the other snippets
     let g:neosnippet#snippets_directory = $HOME . '/.snippets'
 
@@ -508,11 +506,12 @@ if neobundle#tap('neosnippet.vim') "{{{3
     imap <C-s> <Plug>(neosnippet_start_unite_snippet)
   endfunction
 
-  call neobundle#untap()
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:neosnippet_on_source()'
 endif
 
 
-if neobundle#tap('unite.vim') "{{{3
+if dein#tap('unite.vim') "{{{3
   " Use plefix s
   nnoremap suc :<C-u>Unite colorscheme -auto-preview<CR>
   nnoremap suy :<C-u>Unite history/yank<CR>
@@ -541,9 +540,9 @@ if neobundle#tap('unite.vim') "{{{3
   nnoremap sud :<C-u>Unite -default-action=lcd directory_mru<CR>
   nnoremap sul :<C-u>Unite history/command<CR>
 
-  " NeoBundle
-  nnoremap sui :<C-u>Unite neobundle/update -no-start-insert -no-split<CR>
-  nnoremap sus :<C-u>Unite neobundle/search<CR>
+  " dein
+  nnoremap sui :<C-u>Unite dein/update -no-start-insert -no-split<CR>
+  nnoremap sus :<C-u>Unite dein/search<CR>
   " grep ~/.vim_junk
   nnoremap suj :<C-u>Unite grep:~/.cache/junkfile<CR>
 
@@ -566,7 +565,7 @@ if neobundle#tap('unite.vim') "{{{3
     let g:unite_source_grep_recursive_opt = ''
   endif
 
-  function! neobundle#hooks.on_source(bundle)
+  function! s:unite_on_source() abort
     " Like ctrlp.vim settings.
     let s:unite_default_context = {
           \ 'start_insert': 1,
@@ -593,19 +592,19 @@ if neobundle#tap('unite.vim') "{{{3
     endfunction
   endfunction
 
-  call neobundle#untap()
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:unite_on_source()'
 endif
 
-if neobundle#tap('open-browser.vim') "{{{3
+if dein#tap('open-browser.vim') "{{{3
 
   " http://vim-users.jp/2011/08/hack225/
   nmap gx <Plug>(openbrowser-smart-search)
   vmap gx <Plug>(openbrowser-smart-search)
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-fugitive') "{{{3
+if dein#tap('vim-fugitive') "{{{3
   nnoremap [Space]gd :<C-u>Gdiff<Enter>
   nnoremap [Space]gs :<C-u>Gstatus<Enter>
   nnoremap [Space]gl :<C-u>Glog<Enter>
@@ -615,10 +614,9 @@ if neobundle#tap('vim-fugitive') "{{{3
   nnoremap [Space]gp :<C-u>Git pull --rebase<Enter>
   nnoremap [Space]gb :<C-u>Gblame<Enter>
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-quickrun') "{{{3
+if dein#tap('vim-quickrun') "{{{3
 
   nmap <Leader>r <Plug>(quickrun)
   nmap <Leader>a :<C-u>QuickRun<Space>-args<Space>
@@ -683,7 +681,7 @@ if neobundle#tap('vim-quickrun') "{{{3
         \ }
         \ }
 
-  function! neobundle#hooks.on_source(bundle)
+  function! s:vim_quickrun_on_source() abort
     " echo quickrun command output
     " http://d.hatena.ne.jp/osyo-manga/searchdiary?word=quickrun
     let s:hook = {
@@ -816,19 +814,19 @@ if neobundle#tap('vim-quickrun') "{{{3
     nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
   endfunction
 
-  call neobundle#untap()
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:vim_quickrun_on_source()'
 endif
 
-if neobundle#tap('vim-coffee-script') "{{{3
+if dein#tap('vim-coffee-script') "{{{3
   let coffee_compile_vert = 1
   let coffee_make_options = '--bare'
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('jedi-vim') "{{{3
+if dein#tap('jedi-vim') "{{{3
 
-  function! neobundle#hooks.on_source(bundle)
+  function! s:jedi_vim_on_source() abort
     let g:jedi#auto_initialization = 1
     let g:jedi#auto_vim_configuration = 0
     let g:jedi#goto_assignments_command = '<Leader>G'
@@ -838,10 +836,12 @@ if neobundle#tap('jedi-vim') "{{{3
     "let g:jedi#popup_on_dot = 1
     au MyAutoCmd FileType python let b:did_ftplugin = 1
   endfunction
-  call neobundle#untap()
+
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:jedi_vim_on_source()'
 endif
 
-if neobundle#tap('vim-ref') "{{{3
+if dein#tap('vim-ref') "{{{3
   function! s:unite_ref_doc()
     if &filetype =~ 'perl'
       Unite ref/perldoc
@@ -855,10 +855,9 @@ if neobundle#tap('vim-ref') "{{{3
   endfunction
   " nnoremap sur :<C-u>call s:unite_ref_doc()<CR>
   command! UniteRef call <SID>unite_ref_doc()
-  call neobundle#untap()
 endif
 
-if neobundle#tap('ctrlp.vim') "{{{3
+if dein#tap('ctrlp.vim') "{{{3
 
   " Guess vcs root dir
   let g:ctrlp_working_path_mode = 'ra'
@@ -881,11 +880,10 @@ if neobundle#tap('ctrlp.vim') "{{{3
     let g:ctrlp_user_command = 'files -a %s'
   endif
 
-  call neobundle#untap()
 endif
 
 
-if neobundle#tap('vim-automatic') "{{{3
+if dein#tap('vim-automatic') "{{{3
   " http://blog.supermomonga.com/articles/vim/automatic.html
 
   nnoremap <silent> <Plug>(quit) :<C-u>q<CR>
@@ -948,10 +946,9 @@ if neobundle#tap('vim-automatic') "{{{3
         \   }
         \ ]
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-go') "{{{3
+if dein#tap('vim-go') "{{{3
 
   let g:go_auto_type_info = 1
   let g:go_snippet_engine = "neosnippet"
@@ -987,24 +984,23 @@ if neobundle#tap('vim-go') "{{{3
   au MyAutoCmd ColorScheme,VimEnter,WinEnter,BufEnter,CursorHold *.go highlight goErr cterm=bold ctermfg=214
   au MyAutoCmd ColorScheme,VimEnter,WinEnter,BufEnter,CursorHold *.go match goErr /\<err\>/
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('ghcmod-vim') "{{{3
-  function! neobundle#hooks.on_source(bundle)
+if dein#tap('ghcmod-vim') "{{{3
+  function! s:ghcmod_vim_on_source() abort
     au MyAutoCmd BufWritePost <buffer> GhcModCheckAsync
   endfunction
 
-  call neobundle#untap()
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:ghcmod_vim_on_source()'
 endif
 
-if neobundle#tap('neco-ghc') "{{{3
+if dein#tap('neco-ghc') "{{{3
   let g:necoghc_enable_detailed_browse = 1
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('yankround.vim') "{{{3
+if dein#tap('yankround.vim') "{{{3
   nmap p <Plug>(yankround-p)
   nmap P <Plug>(yankround-P)
   nmap <C-p> <Plug>(yankround-prev)
@@ -1012,16 +1008,14 @@ if neobundle#tap('yankround.vim') "{{{3
   let g:yankround_max_history = 100
 
   nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-over') "{{{3
+if dein#tap('vim-over') "{{{3
 
   nnoremap <silent> <Leader>o :<C-u>OverCommandLine<CR>
-  call neobundle#untap()
 endif
 
-if neobundle#tap('foldCC') "{{{3
+if dein#tap('foldCC') "{{{3
   set foldmethod=marker
   set foldtext=FoldCCtext()
   set fillchars=vert:\|
@@ -1062,12 +1056,13 @@ if neobundle#tap('foldCC') "{{{3
 
   nnoremap <silent>z<C-_>  zMzvzc
   nnoremap <silent>z0  :<C-u>set foldlevel=<C-r>=foldlevel('.')<CR><CR>
+  noremap [Space]j zj
+  noremap [Space]k zk
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-ps1') "{{{3
-  function! neobundle#hooks.on_source(bundle)
+if dein#tap('vim-ps1') "{{{3
+  function! s:vim_ps1_on_source() abort
     function! s:addHeaderPs1(flg)
       let lines = []
       if a:flg
@@ -1094,10 +1089,11 @@ if neobundle#tap('vim-ps1') "{{{3
     au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
   endfunction
 
-  call neobundle#untap()
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:vim_ps1_on_source()'
 endif
 
-if neobundle#tap('vim-splash') "{{{3
+if dein#tap('vim-splash') "{{{3
   " clone splash gist
   function! s:clone_splash()
     let s:splash_dir = $HOME . "/.vim-splash"
@@ -1113,32 +1109,29 @@ if neobundle#tap('vim-splash') "{{{3
 
   let g:splash#path = s:splash_dir . '/vim_intro.txt'
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-quickhl') "{{{3
+if dein#tap('vim-quickhl') "{{{3
 
   nmap <Space>m <Plug>(quickhl-manual-this)
   xmap <Space>m <Plug>(quickhl-manual-this)
   nmap <Space>M <Plug>(quickhl-manual-reset)
   xmap <Space>M <Plug>(quickhl-manual-reset)
 
-  nmap <Space>j <Plug>(quickhl-cword-toggle)
+  " nmap <Space>j <Plug>(quickhl-cword-toggle)
   nmap <Space>] <Plug>(quickhl-tag-toggle)
   map H <Plug>(operator-quickhl-manual-this-motion)
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-visualstar') "{{{3
+if dein#tap('vim-visualstar') "{{{3
   map * <Plug>(visualstar-*)
   map # <Plug>(visualstar-#)
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-javascript') "{{{3
-  function! neobundle#hooks.on_source(bundle)
+if dein#tap('vim-javascript') "{{{3
+  function! s:vim_javascript_on_source() abort
     function! s:addHeaderJavascript(flg)
       if &fileencoding == 'cp932'
         let list = []
@@ -1159,19 +1152,19 @@ if neobundle#tap('vim-javascript') "{{{3
     au MyAutoCmd FileType javascript nnoremap <buffer> <expr><Leader>m <SID>addHeaderJavascript(1)
   endfunction
 
-  call neobundle#untap()
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:vim_javascript_on_source()'
 endif
 
-if neobundle#tap('calendar.vim') "{{{3
+if dein#tap('calendar.vim') "{{{3
 
   let g:calendar_google_calendar = 1
   let g:calendar_google_task = 1
   nnoremap [Space]c :<C-u>Calendar<CR>
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-choosewin') "{{{3
+if dein#tap('vim-choosewin') "{{{3
   nmap - <Plug>(choosewin)
 
   let g:choosewin_overlay_enable = 1
@@ -1191,10 +1184,9 @@ if neobundle#tap('vim-choosewin') "{{{3
   let g:choosewin_statusline_replace = 0
   let g:choosewin_tabline_replace  = 0
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('indentLine') "{{{3
+if dein#tap('indentLine') "{{{3
 
   " let g:indentLine_faster = 1
   let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'unite', 'vimfiler']
@@ -1202,23 +1194,20 @@ if neobundle#tap('indentLine') "{{{3
     " let g:indentLine_char = '┊'
   endif
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vimplenote-vim') "{{{3
+if dein#tap('vimplenote-vim') "{{{3
   nnoremap <Leader>vl :<C-u>VimpleNote -l<CR>
   nnoremap <Leader>vn :<C-u>VimpleNote -n<CR>
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('neomru.vim') "{{{3
+if dein#tap('neomru.vim') "{{{3
   let g:neomru#file_mru_limit = 5000
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('rainbow_parentheses.vim') "{{{3
+if dein#tap('rainbow_parentheses.vim') "{{{3
   let g:rbpt_colorpairs = [
         \ ['brown',       'RoyalBlue3'],
         \ ['Darkblue',    'SeaGreen3'],
@@ -1243,10 +1232,9 @@ if neobundle#tap('rainbow_parentheses.vim') "{{{3
   au MyAutoCmd Syntax * RainbowParenthesesLoadSquare
   au MyAutoCmd Syntax * RainbowParenthesesLoadBraces
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-easymotion') "{{{3
+if dein#tap('vim-easymotion') "{{{3
   " Disable default mappings
   let g:EasyMotion_do_mapping = 0
   let g:EasyMotion_use_migemo = 1
@@ -1275,18 +1263,16 @@ if neobundle#tap('vim-easymotion') "{{{3
   " map F <Plug>(easymotion-Fl)
   " map T <Plug>(easymotion-Tl)
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('tern_for_vim') "{{{3
+if dein#tap('tern_for_vim') "{{{3
 
   au MyAutoCmd FileType coffee call tern#Enable()
   au MyAutoCmd FileType coffee setlocal omnifunc=tern#Complete
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('memolist.vim') "{{{3
+if dein#tap('memolist.vim') "{{{3
   if isdirectory($HOME . '/Dropbox')
     let g:memolist_path = $HOME . '/Dropbox/memolist'
   else
@@ -1309,29 +1295,30 @@ if neobundle#tap('memolist.vim') "{{{3
   " use various Ex commands (default '')
   let g:memolist_ex_cmd = 'CtrlP'
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('ZoomWin') "{{{3
+if dein#tap('ZoomWin') "{{{3
   nmap so <Plug>ZoomWin
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('lingr-vim') "{{{3
+if dein#tap('lingr-vim') "{{{3
   let g:lingr_vim_user = 'yukimemi'
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('caw.vim') "{{{3
-  nmap <Leader>c <Plug>(caw:I:toggle)
-  vmap <Leader>c <Plug>(caw:I:toggle)
+if dein#tap('caw.vim') "{{{3
+  au MyAutoCmd FileType * call s:init_caw()
+  function! s:init_caw() abort
+    nmap <buffer> gc <Plug>(caw:prefix)
+    xmap <buffer> gc <Plug>(caw:prefix)
+    nmap <buffer> gcc <Plug>(caw:i:toggle)
+    xmap <buffer> gcc <Plug>(caw:i:toggle)
+  endfunction
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('unite-haddock') "{{{3
+if dein#tap('unite-haddock') "{{{3
 
   au MyAutoCmd FileType haskell call s:my_haskell_mappings()
   function! s:my_haskell_mappings()
@@ -1339,23 +1326,20 @@ if neobundle#tap('unite-haddock') "{{{3
     nnoremap <buffer> [Space]h :<C-u>Unite hoogle<CR>
   endfunction
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-gista') "{{{3
+if dein#tap('vim-gista') "{{{3
   let g:gista#github_user = 'yukimemi'
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-jplus') "{{{3
+if dein#tap('vim-jplus') "{{{3
   nmap J <Plug>(jplus)
   vmap J <Plug>(jplus)
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-watchdogs') "{{{3
+if dein#tap('vim-watchdogs') "{{{3
   if !exists('g:watchdogs_config')
     let g:watchdogs_config = {}
   endif
@@ -1411,14 +1395,15 @@ if neobundle#tap('vim-watchdogs') "{{{3
 
   call extend(g:quickrun_config, g:watchdogs_config)
 
-  function! neobundle#hooks.on_source(bundle)
+  function! s:vim_watchdogs_on_source() abort
     call watchdogs#setup(g:quickrun_config)
   endfunction
 
-  cal neobundle#untap()
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:vim_watchdogs_on_source()'
 endif
 
-if neobundle#tap('CamelCaseMotion') "{{{3
+if dein#tap('CamelCaseMotion') "{{{3
   nmap <silent> W <Plug>CamelCaseMotion_w
   xmap <silent> W <Plug>CamelCaseMotion_w
   omap <silent> W <Plug>CamelCaseMotion_w
@@ -1426,23 +1411,20 @@ if neobundle#tap('CamelCaseMotion') "{{{3
   xmap <silent> B <Plug>CamelCaseMotion_b
   omap <silent> B <Plug>CamelCaseMotion_b
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-stylus') "{{{3
+if dein#tap('vim-stylus') "{{{3
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('J6uil.vim') "{{{
+if dein#tap('J6uil.vim') "{{{
 
   let g:J6uil_user = 'yukimemi'
   let g:J6uil_multi_window = 1
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('clever-f.vim') "{{{3
+if dein#tap('clever-f.vim') "{{{3
   map f <Plug>(clever-f-f)
   map F <Plug>(clever-f-F)
   map t <Plug>(clever-f-t)
@@ -1451,21 +1433,20 @@ if neobundle#tap('clever-f.vim') "{{{3
   let g:clever_f_smart_case = 1
   let g:clever_f_use_migemo = 1
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('quickfixstatus') "{{{3
-
-  function! neobundle#hooks.on_source(bundle)
+if dein#tap('quickfixstatus') "{{{3
+  function! s:quickfixstatus_on_source() abort
     QuickfixStatusEnable
   endfunction
 
-  call neobundle#untap()
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:quickfixstatus_on_source()'
 endif
 
-if neobundle#tap('vim-marching') "{{{3
+if dein#tap('vim-marching') "{{{3
 
-  function! neobundle#hooks.on_source(bundle)
+  function! s:vim_marching_on_source() abort
     let g:marching_clang_command = "clang"
 
     if !empty(g:marching_clang_command) && executable(g:marching_clang_command)
@@ -1493,10 +1474,11 @@ if neobundle#tap('vim-marching') "{{{3
           \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
   endfunction
 
-  call neobundle#untap()
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:vim_marching_on_source()'
 endif
 
-if neobundle#tap('typescript-tools') "{{{3
+if dein#tap('typescript-tools') "{{{3
 
   au MyAutoCmd BufNewFile,BufRead *.ts call s:my_typescript_settings()
 
@@ -1505,16 +1487,14 @@ if neobundle#tap('typescript-tools') "{{{3
     TSSstarthere
   endfunction
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('typescript-vim') "{{{3
+if dein#tap('typescript-vim') "{{{3
   let g:typescript_indent_disable = 1
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('incsearch.vim') "{{{3
+if dein#tap('incsearch.vim') "{{{3
   map /  <Plug>(incsearch-forward)
   map ?  <Plug>(incsearch-backward)
   map g/ <Plug>(incsearch-stay)
@@ -1525,10 +1505,9 @@ if neobundle#tap('incsearch.vim') "{{{3
   nmap *  <Plug>(anzu-jump-star)zv
   nmap #  <Plug>(anzu-jump-sharp)zv
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-showmarks') "{{{3
+if dein#tap('vim-showmarks') "{{{3
   " http://calcurio.com/blog/vim_mark.html
 
   au MyAutoCmd BufReadPost * sil! DoShowMarks
@@ -1624,51 +1603,44 @@ if neobundle#tap('vim-showmarks') "{{{3
   com! -bar MarksDelete sil :delm! | :delm 0-9A-Z | :wv! | :DoShowMarks
   nnoremap <silent>[Mark]d :<C-u>MarksDelete<CR>
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('rsense') "{{{3
+if dein#tap('rsense') "{{{3
 
   let g:rsenseUseOmniFunc = 1
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-qfsigns') "{{{3
+if dein#tap('vim-qfsigns') "{{{3
 
   " If syntax error, cursor is moved at line setting sign.
   let g:qfsigns#AutoJump = 1
   " If syntax error, view split and cursor is moved at line setting sign.
   " let g:qfsigns#AutoJump = 2
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-ref-ri') "{{{3
+if dein#tap('vim-ref-ri') "{{{3
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-itunes-bgm') "{{{3
+if dein#tap('vim-itunes-bgm') "{{{3
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('im_control.vim') "{{{3
+if dein#tap('im_control.vim') "{{{3
   " Use fcitx
   let IM_CtrlMode = 6
   inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
   set timeout timeoutlen=3000 ttimeoutlen=50
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('tsuquyomi') "{{{3
+if dein#tap('tsuquyomi') "{{{3
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('qfixhowm') "{{{3
+if dein#tap('qfixhowm') "{{{3
 
   nnoremap g,l :<C-U>call qfixmemo#ListRecent()<CR>
   nnoremap g,c :<C-U>call qfixmemo#EditNew()<CR>
@@ -1684,15 +1656,13 @@ if neobundle#tap('qfixhowm') "{{{3
   else
     let howm_dir = $HOME . '/.howm'
   endif
-  call neobundle#untap()
 endif
 
-if neobundle#tap('qfixgrep') "{{{3
+if dein#tap('qfixgrep') "{{{3
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-reanimate') "{{{3
+if dein#tap('vim-reanimate') "{{{3
   let g:reanimate_save_dir = "~/.cache/save"
   let g:reanimate_default_category = "default"
   let g:reanimate_default_save_name = "latest"
@@ -1714,20 +1684,17 @@ if neobundle#tap('vim-reanimate') "{{{3
     au MyAutoCmd VimEnter * ReanimateLoad
   endif
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-unite-history') "{{{3
+if dein#tap('vim-unite-history') "{{{3
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('xmledit') "{{{3
+if dein#tap('xmledit') "{{{3
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-easy-align') "{{{3
+if dein#tap('vim-easy-align') "{{{3
   vmap <Enter> <Plug>(EasyAlign)
 
   let g:easy_align_delimiters = {
@@ -1783,28 +1750,24 @@ if neobundle#tap('vim-easy-align') "{{{3
         \   }
         \ }
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vinarise.vim') "{{{3
+if dein#tap('vinarise.vim') "{{{3
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('try-colorscheme.vim') "{{{3
+if dein#tap('try-colorscheme.vim') "{{{3
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-external') "{{{3
+if dein#tap('vim-external') "{{{3
   map <Leader>e <Plug>(external-editor)
   map <Leader>n <Plug>(external-explorer)
   map <Leader>b <Plug>(external-browser)
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('winmove') "{{{3
+if dein#tap('winmove') "{{{3
   " Use submode
   let g:wm_move_down  = ''
   let g:wm_move_up    = ''
@@ -1818,24 +1781,21 @@ if neobundle#tap('winmove') "{{{3
   call submode#map('move-window', 'n', 'r', 'h', '<Plug>(winmove-left)')
   call submode#map('move-window', 'n', 'r', 'l', '<Plug>(winmove-right)')
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('accelerated-jk') "{{{3
+if dein#tap('accelerated-jk') "{{{3
   nmap j <Plug>(accelerated_jk_gj)
   nmap k <Plug>(accelerated_jk_gk)
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-niceblock') "{{{3
+if dein#tap('vim-niceblock') "{{{3
   xmap I  <Plug>(niceblock-I)
   xmap A  <Plug>(niceblock-A)
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-textobj-user') "{{{3
+if dein#tap('vim-textobj-user') "{{{3
   " vim-textobj-multiblock
   omap ab <Plug>(textobj-multiblock-a)
   omap ib <Plug>(textobj-multiblock-i)
@@ -1873,10 +1833,9 @@ if neobundle#tap('vim-textobj-user') "{{{3
   map iP <Plug>(textobj-lastpaste-i)
   nunmap iP
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-operator-user') "{{{3
+if dein#tap('vim-operator-user') "{{{3
   " vim-operator-blockwise
   nmap YY <Plug>(operator-blockwise-yank-head)
   nmap DD <Plug>(operator-blockwise-delete-head)
@@ -1902,68 +1861,62 @@ if neobundle#tap('vim-operator-user') "{{{3
   map y <Plug>(operator-flashy)
   nmap Y <Plug>(operator-flashy)$
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('auto-ctags.vim') "{{{3
+if dein#tap('auto-ctags.vim') "{{{3
   let g:auto_ctags = 1
   let g:auto_ctags_tags_name = '.tags'
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-better-whitespace') "{{{3
+if dein#tap('vim-better-whitespace') "{{{3
 
-  function! neobundle#hooks.on_source(bundle)
+  function! s:vim_better_whitespace_on_source() abort
     let g:better_whitespace_filetypes_blacklist=['unite', 'vimfiler', 'tweetvim']
 
     au MyAutoCmd BufWritePre *.coffee,*.js,*.ps*,*.xml,*.jade,Vagrantfile,.vimrc,*.vim StripWhitespace
   endfunction
 
-  call neobundle#untap()
+  execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
+        \ 'call s:vim_better_whitespace_on_source()'
 endif
 
-if neobundle#tap('vim-jsx') "{{{3
+if dein#tap('vim-jsx') "{{{3
   " let g:jsx_ext_required = 0
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-rooter') "{{{3
+if dein#tap('vim-rooter') "{{{3
 
   let g:rooter_use_lcd = 1
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-autosurround') "{{{3
+if dein#tap('vim-autosurround') "{{{3
   inoremap  ( (<C-O>:call AutoSurround(")")<CR>
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-autoformat') "{{{3
+if dein#tap('vim-autoformat') "{{{3
   " au MyAutoCmd BufWrite *.js,*.jsx,*.ts Autoformat
 
-  call neobundle#untap()
 endif
 
-if neobundle#tap('vim-jsbeautify') "{{{3
+if dein#tap('vim-jsbeautify') "{{{3
   au MyAutoCmd BufWrite *.js,*.jsx,*.ts call JsBeautify()
 
-  call neobundle#untap()
 endif
 
-" After neobundle {{{2
-call neobundle#end()
+" After dein {{{2
+call dein#end()
 
-filetype plugin indent on
-syntax enable
+" filetype plugin indent on
+" syntax enable
 
 " Installation check.
-if !has('gui_running')
-  NeoBundleCheck
+if dein#check_install()
+  " Installation check.
+  call dein#install()
 endif
-
 
 " Basic: {{{1
 
@@ -2231,7 +2184,7 @@ au MyAutoCmd CmdwinEnter * :silent! 1,$-50 delete _ | call cursor("$", 1)
 " Reload .vimrc automatically.
 au MyAutoCmd BufWritePost $MYVIMRC silent! nested source $MYVIMRC | redraw
 au MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') nested source $MYGVIMRC | redraw
-au MyAutoCmd BufWritePost $MYVIMRC,$MYGVIMRC,*.vim,neobundle*.toml NeoBundleClearCache
+au MyAutoCmd BufWritePost $MYVIMRC,$MYGVIMRC,*.vim,dein*.toml call dein#clear_cache()
 
 " Auto open cwindow.
 au MyAutoCmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) != 0 | copen | endif
@@ -2256,5 +2209,7 @@ au MyAutoCmd BufWritePost * call s:Hykw_removeFileIf0Byte()
 
 " Restore last cursor position when open a file.
 au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+au MyAutoCmd FileType,Syntax,BufEnter,BufWinEnter * call s:my_on_filetype()
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
