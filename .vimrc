@@ -27,15 +27,20 @@ let s:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
 let s:is_linux = !s:is_windows && !s:is_cygwin && !s:is_darwin
 
 " Set path. {{{2
+set shellslash
 let $VIM_PATH = expand('~/.vim')
 let $CACHE = expand('~/.cache')
 let $BACKUP_PATH = expand('$CACHE/vim/back')
 let $MYVIMRC = expand('~/.vimrc')
 let $MYGVIMRC = expand('~/.gvimrc')
 
+" Add runtimepath for windows.
+if s:is_windows
+  execute 'set runtimepath+=' . $VIM_PATH . '/after'
+endif
 
 " Functions: {{{1
-function! s:mkdir(dir)
+function! s:mkdir(dir) "{{{2
   if !isdirectory(a:dir)
     call mkdir(a:dir, "p")
   endif
@@ -390,7 +395,7 @@ if dein#tap('vim-indent-guides') "{{{3
 endif
 
 if dein#tap('vimfiler.vim') "{{{3
-  nnoremap [Space]v :<C-u>VimFiler -create -split -simple -find -toggle -winwidth=35 -no-quit<CR>
+  nnoremap [Space]v :<C-u>VimFilerBufferDir -split -simple -find -toggle -create -winwidth=35 -no-quit<CR>
   nnoremap <C-e> :<C-u>VimFilerDouble<CR>
   nnoremap <expr><Leader>g <SID>git_root_dir()
   function! s:git_root_dir()
@@ -436,7 +441,7 @@ if dein#tap('vimshell.vim') "{{{3
       imap <buffer> <C-^> cdup<Plug>(vimshell_enter)
       imap <buffer> <C-k> <Plug>(vimshell_zsh_complete)
       imap <buffer> <C-g> <Plug>(vimshell_history_neocomplete)
-      imap <buffer> <silent> <C-@> vexe --insert :Unite -start-insert -default-action=lcd directory_mru<CR>
+      imap <silent> <buffer> <C-@> vexe --insert :Unite -start-insert -default-action=lcd directory_mru<CR>
 
       call vimshell#altercmd#define('i', 'iexe')
       call vimshell#altercmd#define('s', ':UniteBookmarkAdd .')
@@ -523,7 +528,8 @@ if dein#tap('unite.vim') "{{{3
     nnoremap suf :<C-u>Unite file_rec/async<CR>
     nnoremap suF :<C-u>Unite file_rec/async<CR>
   endif
-  nnoremap suB :<C-u>Unite bookmark -default-action=cd<CR>
+  nnoremap suB :<C-u>Unite bookmark -default-action=lcd<CR>
+  nnoremap suA :<C-u>UniteBookmarkAdd<CR>
   nnoremap suo :<C-u>Unite outline -no-quit -no-start-insert -vertical -winwidth=40<CR>
   nnoremap suq :<C-u>Unite quickfix -no-quit<CR>
   nnoremap suh :<C-u>Unite help<CR>
@@ -619,7 +625,7 @@ endif
 if dein#tap('vim-quickrun') "{{{3
 
   nmap <Leader>r <Plug>(quickrun)
-  nmap <Leader>a :<C-u>QuickRun<Space>-args<Space>
+  nnoremap <Leader>a :<C-u>QuickRun<Space>-args<Space>
 
   let g:quickrun_config = {}
   let g:quickrun_config = {
@@ -634,7 +640,6 @@ if dein#tap('vim-quickrun') "{{{3
         \     "hook/echo/enable": 1,
         \     "hook/echo/output_success": "success!!!",
         \     "hook/echo/output_failure": "failure...",
-        \     "outputter": "multi:buffer:quickfix",
         \     "outputter/buffer/split": ":botright 18sp",
         \     "runner": "vimproc",
         \     "runner/vimproc/updatetime": 40
@@ -1188,12 +1193,9 @@ endif
 
 if dein#tap('indentLine') "{{{3
 
-  " let g:indentLine_faster = 1
+  let g:indentLine_faster = 1
+  nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
   let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'unite', 'vimfiler']
-  if ! s:is_windows
-    " let g:indentLine_char = '┊'
-  endif
-
 endif
 
 if dein#tap('vimplenote-vim') "{{{3
@@ -1681,7 +1683,7 @@ if dein#tap('vim-reanimate') "{{{3
 
   au MyAutoCmd VimLeavePre * ReanimateSave
   if has('vim_starting') && expand("%") == ""
-    au MyAutoCmd VimEnter * ReanimateLoad
+    " au MyAutoCmd VimEnter * ReanimateLoad
   endif
 
 endif
@@ -1909,8 +1911,8 @@ endif
 " After dein {{{2
 call dein#end()
 
-" filetype plugin indent on
-" syntax enable
+filetype plugin indent on
+syntax enable
 
 " Installation check.
 if dein#check_install()
@@ -1981,7 +1983,6 @@ set grepprg=jvgrep
 set noerrorbells
 set novisualbell
 set visualbell t_vb=
-set shellslash
 set number
 set showmatch matchtime=1
 
@@ -2014,8 +2015,8 @@ set t_Co=256
 set background=dark
 colorscheme solarized
 
-highlight Search ctermbg=88
-highlight Normal ctermbg=none
+" highlight Search ctermbg=88
+" highlight Normal ctermbg=none
 
 " hilight cursorline, cursorcolumn {{{2
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
@@ -2090,9 +2091,9 @@ nnoremap h <Left>
 nnoremap l <Right>
 " open folding in "l"
 nnoremap <expr> l foldlevel(line('.')) ? "\<Right>zo" : "\<Right>"
-" for buffer
-nnoremap gh ^
-nnoremap gl $
+
+noremap gh ^
+noremap gl $
 " for tab
 nnoremap <C-l> gt
 nnoremap <C-h> gT
@@ -2133,6 +2134,9 @@ vnoremap : q:A
 
 " Delete other line
 nnoremap [Space]d :<C-u>call <SID>deleteOtherLine()<CR>
+
+" dein update
+nnoremap [Space]du :<C-u>call dein#update()<CR>
 
 "  for git mergetool {{{2
 if &diff
@@ -2178,7 +2182,7 @@ au MyAutoCmd BufNewFile,BufRead *.toml setl ft=toml
 
 " Autocmd: {{{1
 au MyAutoCmd WinEnter,CursorHold * checktime
-au MyAutoCmd CursorHold * setl nohlsearch
+" au MyAutoCmd CursorHold * setl nohlsearch
 au MyAutoCmd CmdwinEnter * :silent! 1,$-50 delete _ | call cursor("$", 1)
 
 " Reload .vimrc automatically.
@@ -2210,6 +2214,6 @@ au MyAutoCmd BufWritePost * call s:Hykw_removeFileIf0Byte()
 " Restore last cursor position when open a file.
 au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-au MyAutoCmd FileType,Syntax,BufEnter,BufWinEnter * call s:my_on_filetype()
+" au MyAutoCmd FileType,Syntax,BufEnter,BufWinEnter * call s:my_on_filetype()
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
