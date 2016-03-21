@@ -22,6 +22,9 @@ repo = 'itchyny/lightline.vim'
 [[plugins]]
 repo = 'LeafCage/foldCC'
 
+[[plugins]]
+repo = 'Konfekt/FastFold'
+
 # ======================================================================
 # Search {{{1
 # ======================================================================

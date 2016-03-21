@@ -31,3 +31,6 @@ mac/BetterTouchTool/Logs/
 
 # mac
 .DS_Store
+
+# atom
+blob-store/

@@ -1,112 +1,141 @@
-# Your keymap
-#
-# Atom keymaps work similarly to style sheets. Just as style sheets use
-# selectors to apply styles to elements, Atom keymaps use selectors to associate
-# keystrokes with events in specific contexts.
-#
-# You can create a new keybinding in this file by typing "key" and then hitting
-# tab.
-#
-# Here's an example taken from Atom's built-in keymap:
-#
-# 'atom-text-editor':
-#   'enter': 'editor:newline'
-#
-# 'atom-workspace':
-#   'ctrl-shift-p': 'core:move-up'
-#   'ctrl-p': 'core:move-down'
-#
-# You can find more information about keymaps in these guides:
-# * https://atom.io/docs/latest/using-atom-basic-customization#customizing-key-bindings
-# * https://atom.io/docs/latest/behind-atom-keymaps-in-depth
-#
-# This file uses CoffeeScript Object Notation (CSON).
-# If you are unfamiliar with CSON, you can read more about it here:
-# https://github.com/bevry/cson#what-is-cson
-
-# autocomplete-plus
-'body atom-text-editor.autocomplete-active':
-  'ctrl-p': 'autocomplete-plus:move-up'
-  'ctrl-n': 'autocomplete-plus:move-down'
-  'pageup': 'autocomplete-plus:page-up'
-  'pagedown': 'autocomplete-plus:page-down'
-  'home': 'autocomplete-plus:move-to-top'
-  'end': 'autocomplete-plus:move-to-bottom'
-  'ctrl-space': 'autocomplete-plus:activate'
-  'escape': 'autocomplete-plus:cancel'
-
+########################################
+# workspace
+########################################
 'atom-workspace:not([mini])':
-  # For pane
-  's s': 'pane:split-down'
-  's v': 'pane:split-right'
-  's q': 'core:close'
-  's 0': 'close-other-panes:close-other-panes'
-  # For tab
-  's O': 'close-other-tabs:close-other-tabs'
-  'ctrl-h': 'pane:show-previous-item'
-  'ctrl-l': 'pane:show-next-item'
-  # paner
-  's o': 'paner:maximize'
-  # recent-finder
-  'cmd-p': 'recent-finder:toggle'
-  # project-find-navigation
-  'ctrl-cmd-f': 'project-find-navigation:activate-results-pane'
+  'ctrl-g': 'core:cancel'
 
-# vim-mode-plus
-'atom-text-editor.vim-mode-plus:not(.insert-mode)':
-  # For window
+########################################
+# text-editor
+########################################
+# mini
+'atom-text-editor[mini]':
+  'ctrl-u': 'editor:delete-to-beginning-of-line'
+  'ctrl-w': 'editor:delete-to-beginning-of-word'
+
+# not mini
+'atom-text-editor:not([mini])':
+  # cursor-history
+  'ctrl-i': 'cursor-history:next'
+  'ctrl-o': 'cursor-history:prev'
+  'ctrl-cmd-i': 'cursor-history:next-within-editor'
+  'ctrl-cmd-o': 'cursor-history:prev-within-editor'
+
+# normal-mode
+'atom-text-editor.vim-mode-plus.normal-mode':
+  's s': 'pane:split-down-and-copy-active-item'
+  's v': 'pane:split-right-and-copy-active-item'
+  's q': 'pane:close'
+  's O': 'pane:close-other-items'
   's j': 'window:focus-pane-below'
   's k': 'window:focus-pane-above'
   's h': 'window:focus-pane-on-left'
   's l': 'window:focus-pane-on-right'
-  's w': 'window:focus-ne:xt-pane'
+  's w': 'window:focus-next-pane'
   's p': 'window:focus-previous-pane'
-  # Save
+  's o': 'vim-mode-plus:maximize-pane'
   ', ,': 'core:save'
+  
+  'ctrl-h': 'pane:show-previous-item'
+  'ctrl-l': 'pane:show-next-item'
+  # recent-finder
+  's u m': 'recent-finder:toggle'
+  
+  # open-this
+  'g f': 'open-this:here'
+  'ctrl-w f': 'open-this:split-down'
+  'ctrl-w F': 'open-this:split-right'
+  
+  'g c': 'vim-mode-plus:select-latest-change'
+  
+  # surround
+  'S': 'vim-mode-plus:surround-smart-word'
+  'y s': 'vim-mode-plus:surround'
+  'm s': 'vim-mode-plus:map-surround'
+  'd s': 'vim-mode-plus:delete-surround-any-pair'
+  'c s': 'vim-mode-plus:change-surround-any-pair'
 
-# vim-mode-plus
-'atom-text-editor.vim-mode-plus.normal-mode, atom-text-editor.vim-mode-plus.visual-mode':
+  # option toggle
+  'space n': 'editor:toggle-line-numbers'
+  'space i': 'user:toggle-show-invisible'
+  'space I': 'editor:toggle-indent-guide'
+  'space w': 'editor:toggle-soft-wrap'
+  'space /': 'vim-mode-plus:clear-highlight-search'
+  
+# insert
+'atom-text-editor.vim-mode-plus.insert-mode':
+  'ctrl-i': 'vim-mode-plus:insert-last-inserted'
+
+# not-insert
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  'g x': 'link:open'
+  # clipboard-plus
+  'ctrl-y': 'clipboard-plus:toggle'
+  
+  # operator
   '_': 'vim-mode-plus:replace-with-register'
+  'g C': 'vim-mode-plus:camel-case'
+  'g _': 'vim-mode-plus:snake-case'
+
+  'ctrl-k': 'vim-mode-plus:move-up-to-edge'
+  'ctrl-j': 'vim-mode-plus:move-down-to-edge'
+  'ctrl-p': 'vim-mode-plus:move-to-previous-fold-start'
+  'ctrl-n': 'vim-mode-plus:move-to-next-fold-start'
+  '(': 'vim-mode-plus:move-to-previous-fold-start-with-same-indent'
+  ')': 'vim-mode-plus:move-to-next-fold-start-with-same-indent'
+  
+  'g h': 'vim-mode-plus:move-to-first-character-of-line'
+  'g l': 'vim-mode-plus:move-to-last-character-of-line'
+  
   # quick-highlight
   'space m': 'quick-highlight:toggle'
   'space M': 'quick-highlight:clear'
+  
   # command-palette
   ':': 'command-palette:toggle'
 
+# visual, operator-pending
 'atom-text-editor.vim-mode-plus.operator-pending-mode, atom-text-editor.vim-mode-plus.visual-mode':
-  # 'is' is mapped to inner-any-pair by default(so you can use `vis`, `cis` etc).
-  # By mapping `;` here, I can choose inner-any-pair with like `c;`, `v;`.
-  # And more, I can expand selection across any-pair with `vi;;;;` or `va;;;;`.
-  ';': 'vim-mode-plus:inner-any-pair'
-  # I overwrite vim-mode-plus:inner-single-quote here so that I can select any Quoted pair with single quote.
+  ';': 'vim-mode-plus:inner-any-pair-allow-forwarding'
+  ':': 'vim-mode-plus:a-any-pair-allow-forwarding'
   "'": 'vim-mode-plus:inner-any-quote'
 
-'atom-text-editor.vim-mode-plus.normal-mode':
-  'S': 'vim-mode-plus:surround-word'
-  'd s': 'vim-mode-plus:delete-surround-any-pair'
-  'c s': 'vim-mode-plus:change-surround-any-pair'
-  # cursor-history
-  'ctrl-i': 'cursor-history:next'
-  'ctrl-o': 'cursor-history:prev'
-  # open-this
-  'g f': 'open-this:here'
+# visual
+'atom-text-editor.vim-mode-plus.visual-mode':
+  # Need vim-mode-plus-move-selected-text package
+  'ctrl-k': 'vim-mode-plus-user:move-selected-text-up'
+  'ctrl-j': 'vim-mode-plus-user:move-selected-text-down'
+  'ctrl-h': 'vim-mode-plus-user:move-selected-text-left'
+  'ctrl-l': 'vim-mode-plus-user:move-selected-text-right'
 
-# when you want to search `[`, `]`, `;`, input `ctrl-v` following these keys.
+  'cmd-K': 'vim-mode-plus-user:duplicate-selected-text-up'
+  'cmd-J': 'vim-mode-plus-user:duplicate-selected-text-down'
+  'cmd-H': 'vim-mode-plus-user:duplicate-selected-text-left'
+  'cmd-L': 'vim-mode-plus-user:duplicate-selected-text-right'
+
+# Input
+'atom-text-editor.vim-mode-plus-input':
+  'ctrl-g': 'vim-mode-plus:input-cancel'
+
+# Search input
 'atom-text-editor.vim-mode-plus-search':
   '[': 'vim-mode-plus:search-visit-prev'
   ']': 'vim-mode-plus:search-visit-next'
   ';': 'vim-mode-plus:search-confirm'
-  'ctrl-f': 'vim-mode-plus:search-scroll-next'
-  'ctrl-b': 'vim-mode-plus:search-scroll-prev'
+  'space': 'vim-mode-plus:search-insert-wild-pattern'
   'ctrl-g': 'vim-mode-plus:search-cancel'
 
-'atom-text-editor.vim-mode-plus-input':
-  'ctrl-g': 'vim-mode-plus:input-cancel'
+# Other
+'.select-list':
+  ';': 'core:confirm'
+  'ctrl-l': 'pane:split-right'
+  'ctrl-j': 'pane:split-down'
+  'ctrl-g': 'core:cancel'
 
-# project-find-navigation
-'.preview-pane.project-find-navigation':
-  'l': 'core:move-right'
-  'h': 'core:move-left'
-  'j': 'project-find-navigation:select-next-and-confirm'
-  'k': 'project-find-navigation:select-prev-and-confirm'
-  'enter': 'project-find-navigation:confirm'
+# ########################################
+# # autocomplete-plus
+# ########################################
+'body atom-text-editor.autocomplete-active':
+  'ctrl-p': 'autocomplete-plus:move-up'
+  'ctrl-n': 'autocomplete-plus:move-down'
+  'ctrl-space': 'autocomplete-plus:activate'
+  'escape': 'autocomplete-plus:cancel'
