@@ -142,16 +142,16 @@ if s:dein_dir != '' || &runtimepath !~ '/dein.vim'
   execute 'set runtimepath^=' . fnamemodify(s:dein_dir, ':p')
 endif
 
-call dein#begin(expand('$CACHE/vim/dein'))
+if dein#load_state(s:dein_dir)
+  let s:toml_path = '~/.vim/dein.toml'
+  let s:toml_lazy_path = '~/.vim/deinlazy.toml'
 
-let s:toml_path = '~/.vim/dein.toml'
-let s:toml_lazy_path = '~/.vim/deinlazy.toml'
-
-if dein#load_cache([expand('<sfile>'), s:toml_path, s:toml_lazy_path])
+  call dein#begin(s:dein_dir, [expand('<sfile>'), s:toml_path, s:toml_lazy_path])
   call dein#load_toml(s:toml_path, {'lazy': 0})
   call dein#load_toml(s:toml_lazy_path, {'lazy' : 1})
+  call dein#end()
 
-  call dein#save_cache()
+  call dein#save_state()
 endif
 
 " Plugin settings. {{{2
@@ -1876,7 +1876,7 @@ if dein#tap('vim-better-whitespace') "{{{3
   function! s:vim_better_whitespace_on_source() abort
     let g:better_whitespace_filetypes_blacklist=['unite', 'vimfiler', 'tweetvim']
 
-    au MyAutoCmd BufWritePre *.coffee,*.js,*.ps*,*.xml,*.jade,Vagrantfile,.vimrc,*.vim StripWhitespace
+    au MyAutoCmd BufWritePre *.coffee,*.js,*.ps*,*.xml,*.jade,Vagrantfile,.vimrc,*.vim,*.go StripWhitespace
   endfunction
 
   execute 'autocmd MyAutoCmd User' 'dein#source#'.g:dein#name
@@ -1909,8 +1909,6 @@ if dein#tap('vim-jsbeautify') "{{{3
 endif
 
 " After dein {{{2
-call dein#end()
-
 filetype plugin indent on
 syntax enable
 
@@ -2188,7 +2186,6 @@ au MyAutoCmd CmdwinEnter * :silent! 1,$-50 delete _ | call cursor("$", 1)
 " Reload .vimrc automatically.
 au MyAutoCmd BufWritePost $MYVIMRC silent! nested source $MYVIMRC | redraw
 au MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') nested source $MYGVIMRC | redraw
-au MyAutoCmd BufWritePost $MYVIMRC,$MYGVIMRC,*.vim,dein*.toml call dein#clear_cache()
 
 " Auto open cwindow.
 au MyAutoCmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) != 0 | copen | endif

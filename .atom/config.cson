@@ -1,67 +1,88 @@
 "*":
-  "exception-reporting":
-    userId: "4a7e9009-6e5c-bb28-798c-b5a54c5682ed"
-  welcome:
-    showOnStartup: false
+  "atom-beautify":
+    _analyticsUserId: "0ca680eb-6242-424e-9db7-a68817dfed30"
+  "autocomplete-plus":
+    backspaceTriggersAutocomplete: true
+    minimumWordLength: 2
+    useCoreMovementCommands: false
+  "clip-history": {}
+  "clipboard-plus": {}
   core:
     disabledPackages: [
       "vim-mode"
       "vim-mode-visual-block"
       "vim-surround"
       "ex-mode"
+      "vim-mode-plus-ex-mode"
+      "clip-history"
     ]
+    packagesWithKeymapsDisabled: [
+      "clipboard-plus"
+    ]
+  "cursor-history":
+    flashOnLand: true
+  "disable-keybindings":
+    prefixKeys: [
+      "ctrl-p"
+    ]
+  docblockr: {}
   editor:
     invisibles: {}
+    preferredLineLength: 100
     showIndentGuide: true
     showInvisibles: true
-    preferredLineLength: 100
-  whitespace:
-    removeTrailingWhitespace: false
+  "exception-reporting":
+    userId: "4a7e9009-6e5c-bb28-798c-b5a54c5682ed"
+  "git-plus": {}
+  "go-plus":
+    goInstallation: "~/.anyenv/envs/goenv/shims/go"
+    goPath: "~/.ghq"
+  "keyboard-localization":
+    useKeyboardLayout: "ja_JP"
+  linter: {}
+  minimap:
+    plugins:
+      "git-diff": true
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+      "minimap-autohide": true
+      "minimap-autohideDecorationsZIndex": 0
+      pigments: true
+  "one-dark-ui": {}
+  "project-folder":
+    gitProjectDirectories: [
+      "~/.ghq/src"
+    ]
+    projectRootDirectories: [
+      "~/"
+    ]
+  "quick-highlight": {}
+  "recent-finder": {}
+  "symbols-tree-view": {}
+  "trailing-spaces":
+    enableForCursorLines: true
+    enableForIndentation: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
     useSmartcaseForSearch: true
     wrapLeftRightMotion: true
-  "atom-beautify":
-    _analyticsUserId: "0ca680eb-6242-424e-9db7-a68817dfed30"
-  "autocomplete-plus":
-    minimumWordLength: 2
-    backspaceTriggersAutocomplete: true
-    useCoreMovementCommands: false
-  "trailing-spaces":
-    enableForIndentation: true
-    enableForCursorLines: true
-  minimap:
-    plugins:
-      "highlight-selected": true
-      pigments: true
-      "git-diff": true
-      "minimap-autohide": true
-  linter: {}
-  "symbols-tree-view": {}
-  "vim-surround": {}
-  "git-plus": {}
-  "go-plus":
-    goPath: "~/.ghq"
-    goInstallation: "~/.anyenv/envs/goenv/shims/go"
-  docblockr: {}
+  "vim-mode-clipboard-plus":
+    useVimModePlus: true
   "vim-mode-plus":
-    useClipboardAsDefaultRegister: true
-    useSmartcaseForSearch: true
+    disableInputMethodExceptInsertMode: true
+    flashOnUndoRedo: true
+    highlightSearch: true
+    ignoreCaseForSearch: true
     incrementalSearch: true
     showHoverOnOperate: true
     showHoverSearchCounter: true
-  "one-dark-ui": {}
-  "quick-highlight": {}
-  "recent-finder": {}
-  "cursor-history":
-    flashOnLand: true
-  "project-folder":
-    projectRootDirectories: [
-      "~/"
-    ]
-    gitProjectDirectories: [
-      "~/.ghq/src"
-    ]
+    useClipboardAsDefaultRegister: true
+    useSmartcaseForSearch: true
+  "vim-surround": {}
+  welcome:
+    showOnStartup: false
+  whitespace:
+    removeTrailingWhitespace: false
 ".diff.source":
   editor:
     preferredLineLength: 100
