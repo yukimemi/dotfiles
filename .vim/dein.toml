@@ -600,6 +600,11 @@ hook_add = '''
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
+hook_add = '''
+  if g:is_windows
+    let g:vimproc#download_windows_dll = 1
+  endif
+'''
 
 [[plugins]]
 repo = 'airblade/vim-rooter'
