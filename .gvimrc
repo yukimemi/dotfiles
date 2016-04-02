@@ -19,18 +19,17 @@ if s:is_darwin
   set background=dark
 else
   set background=dark
-  let g:solarized_italic = 0
-  colorscheme solarized
-  " let g:solarized_visibility = "high"
-  " let g:solarized_contrast = "high"
+  colorscheme japanesque
 endif
 
 " font
 if s:is_windows
-  set gfn=MS_Gothic:h9:cSHIFTJIS
+  " set gfn=MS_Gothic:h9:cSHIFTJIS
+  set gfn=MS_Gothic:h9
   " set gfn=Ricty_Diminished:h9:cSHIFTJIS
   " set gfn=RzRicty_Diminished_Discord:h9:cSHIFTJIS
-  set gfw=MS_Gothic:h9:cSHIFTJIS
+  " set gfw=MS_Gothic:h9:cSHIFTJIS
+  set gfw=MS_Gothic:h9
   " set gfw=Ricty_Diminished:h9:cSHIFTJIS
   " set gfw=Ricty_Diminished_Discord:h9:cSHIFTJIS
   set rop=type:directx
