@@ -216,6 +216,7 @@ hook_add = '''
   let g:indentLine_faster = 1
   nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
   let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'unite', 'vimfiler']
+  au MyAutoCmd User PreciousFileType execute 'IndentLinesReset'
 '''
 
 # ==================== Search ==================== {{{1
@@ -413,7 +414,9 @@ hook_add = '''
 # ==================== QuickRun ================== {{{1
 [[plugins]]
 repo = 'thinca/vim-quickrun'
-hook_source = '''
+on_source = 'vim-watchdogs'
+on_map = '<Plug>'
+hook_add = '''
   nmap <Leader>r <Plug>(quickrun)
   nnoremap <Leader>a :<C-u>QuickRun<Space>-args<Space>
 
@@ -475,7 +478,8 @@ hook_source = '''
         \     "exec": "%o %c %s"
         \ }
         \ }
-
+'''
+hook_source = '''
   " echo quickrun command output
   " http://d.hatena.ne.jp/osyo-manga/searchdiary?word=quickrun
   let s:hook = {
@@ -509,8 +513,8 @@ on_source = ['vim-quickrun', 'vim-watchdogs']
 [[plugins]]
 repo = 'osyo-manga/vim-watchdogs'
 depends = 'vim-quickrun'
-on_source = 'vim-quickrun'
-hook_add = '''
+on_ft = ['xml', 'cpp', 'go']
+hook_source = '''
   if !exists('g:watchdogs_config')
     let g:watchdogs_config = {}
   endif
@@ -564,12 +568,8 @@ hook_add = '''
         \ "xml": 1
         \ }
 
-  if exists('g:quickrun_config')
-    call extend(g:quickrun_config, g:watchdogs_config)
-    call watchdogs#setup(g:quickrun_config)
-  else
-    call watchdogs#setup(g:watchdogs_config)
-  endif
+  call extend(g:quickrun_config, g:watchdogs_config)
+  call watchdogs#setup(g:quickrun_config)
 '''
 
 # ==================== Comment =================== {{{1
@@ -579,8 +579,8 @@ on_map = '<Plug>'
 hook_add = '''
   nmap gc <Plug>(caw:prefix)
   xmap gc <Plug>(caw:prefix)
-  nmap gcc <Plug>(caw:tildepos:toggle)
-  xmap gcc <Plug>(caw:tildepos:toggle)
+  nmap gcc <Plug>(caw:hatpos:toggle)
+  xmap gcc <Plug>(caw:hatpos:toggle)
 '''
 
 
@@ -594,6 +594,11 @@ hook_add = '''
   nmap <C-n> <Plug>(yankround-next)
   let g:yankround_max_history = 100
 '''
+
+
+# ==================== Git ======================= {{{1
+[[plugins]]
+repo = 'lambdalisue/vim-gita'
 
 
 # ==================== Utility =================== {{{1
@@ -648,6 +653,81 @@ hook_add = '''
     let g:unite_kind_file_use_trashbox = 1
   endif
   nnoremap <silent> [Space]v :<C-u>VimFilerBufferDir -explorer -find<CR>
+'''
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_map = '<Plug>(EasyAlign)'
+hook_add = '''
+  vmap <Enter> <Plug>(EasyAlign)
+
+  let g:easy_align_delimiters = {
+        \ '>': {
+        \       'pattern': '>>\|=>\|>.\+',
+        \       'right_margin': 0,
+        \       'delimiter_align': 'l'
+        \   },
+        \ '/': {
+        \       'pattern': '//\+\|/\*\|\*/',
+        \       'delimiter_align': 'l',
+        \       'ignore_groups': ['!Comment']
+        \   },
+        \ ']': {
+        \       'pattern': '[[\]]',
+        \       'left_margin': 0,
+        \       'right_margin': 0,
+        \       'stick_to_left': 0
+        \   },
+        \ ')': {
+        \       'pattern': '[()]',
+        \       'left_margin': 0,
+        \       'right_margin': 0,
+        \       'stick_to_left': 0
+        \   },
+        \ 'd': {
+        \       'pattern': ' \(\S\+\s*[;=]\)\@=',
+        \       'left_margin': 0,
+        \       'right_margin': 0
+        \   },
+        \ 'p': {
+        \       'pattern': 'pos=\|size=',
+        \       'right_margin': 0
+        \   },
+        \ 's': {
+        \       'pattern': 'sys=\|Trns=',
+        \       'right_margin': 0
+        \   },
+        \ 'k': {
+        \       'pattern': 'key=\|cmt=',
+        \       'right_margin': 0
+        \   },
+        \ 'c': {
+        \       'pattern': 'cmt=',
+        \       'right_margin': 0
+        \   },
+        \ ':': {
+        \       'pattern': ':',
+        \       'left_margin': 1,
+        \       'right_margin': 1,
+        \       'stick_to_left': 0,
+        \       'ignore_groups': []
+        \   }
+        \ }
+'''
+
+[[plugins]]
+repo = 'tyru/capture.vim'
+on_cmd = 'Capture'
+
+[[plugins]]
+repo = 'thinca/vim-prettyprint'
+on_cmd = 'PP'
+
+[[plugins]]
+repo = 'ntpeters/vim-better-whitespace'
+hook_add = '''
+  let g:better_whitespace_filetypes_blacklist = ['unite', 'vimfiler', 'tweetvim']
+  au MyAutoCmd BufWritePre * StripWhitespace
 '''
 
 
@@ -806,13 +886,16 @@ on_source = 'unite.vim'
 
 
 # ==================== FileType ================== {{{1
+# [[plugins]]
+# repo = 'editorconfig/editorconfig-vim'
+
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
 depends = 'context_filetype.vim'
 hook_source = '''
-  let g:precious_enable_switch_CursorMoved = { '*': 0 }
-  au MyAutoCmd InsertEnter * PreciousSwitch
-  au MyAutoCmd InsertLeave * PreciousReset
+  " let g:precious_enable_switch_CursorMoved = { '*': 0 }
+  " au MyAutoCmd InsertEnter * PreciousSwitch
+  " au MyAutoCmd InsertLeave * PreciousReset
 '''
 
 # ==================== Filetype (haskell) ======== {{{1
