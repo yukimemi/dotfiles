@@ -147,7 +147,7 @@ if dein#tap('lightline.vim') "{{{2
         \   "\<C-s>": 'S-B'
         \   },
         \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename', 'anzu' ] ],
+        \   'left': [ [ 'mode', 'paste' ], [ 'git_branch', 'git_traffic', 'git_status', 'filename', 'anzu' ] ],
         \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'bomb', 'filetype' ],
         \              [ 'absolutepath', 'charcode' ] ]
         \ },
@@ -158,6 +158,9 @@ if dein#tap('lightline.vim') "{{{2
         \   'modified': 'MyModified',
         \   'readonly': 'MyReadonly',
         \   'fugitive': 'MyFugitive',
+        \   'git_branch': 'MyGitBranch',
+        \   'git_traffic': 'MyGitTraffic',
+        \   'git_status': 'MyGitStatus',
         \   'filename': 'MyFilename',
         \   'fileformat': 'MyFileformat',
         \   'filetype': 'MyFiletype',
@@ -189,6 +192,16 @@ if dein#tap('lightline.vim') "{{{2
           \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
           \ ('' != MyModified() ? ' ' . MyModified() : '')
   endfunction
+
+  function! MyGitBranch()
+    return winwidth(0) > 70 ? gita#statusline#preset('branch_fancy') : ''
+  endfunction  
+  function! MyGitTraffic()
+    return winwidth(0) > 70 ? gita#statusline#preset('traffic_fancy') : ''
+  endfunction 
+  function! MyGitStatus()
+    return winwidth(0) > 70 ? gita#statusline#preset('status') : ''
+  endfunction 
 
   function! MyFugitive()
     if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
