@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/04/11 02:31:35.
+# Last Change : 2016/04/11 02:52:05.
 # =============================================================================
 
 [[plugins]]
@@ -619,6 +619,10 @@ repo = 'lambdalisue/vim-gita'
 hook_add = '''
   nnoremap [Space]gs :<C-u>Gita status<CR>
   nnoremap [Space]gb :<C-u>Gita branch<CR>
+  nnoremap [Space]gg :<C-u>Gita grep<CR>
+  nnoremap [Space]gd :<C-u>Gita diff<CR>
+  nnoremap [Space]gl :<C-u>Gita ls-files<CR>
+  nnoremap [Space]gp :<C-u>Gita push<CR>
 '''
 
 
@@ -777,7 +781,11 @@ hook_add = '''
 
 [[plugins]]
 repo = 'autodate.vim'
-hook_add = 'let g:autodate_format = "%Y/%m/%d %H:%M:%S"'
+hook_add = '''
+  let g:autodate_format = "%Y/%m/%d %H:%M:%S"
+  let g:autodate_keyword_pre  = "Last Change :"
+  let g:autodate_keyword_post = "."
+'''
 
 
 # ==================== Unite ===================== {{{1
