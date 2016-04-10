@@ -1,3 +1,9 @@
+" =============================================================================
+" File        : .vimrc
+" Author      : yukimemi
+" Last Change : 2016/04/11 02:31:35.
+" =============================================================================
+
 " Init: {{{1
 set encoding=utf-8
 scriptencoding utf-8
@@ -195,13 +201,13 @@ if dein#tap('lightline.vim') "{{{2
 
   function! MyGitBranch()
     return winwidth(0) > 70 ? gita#statusline#preset('branch_fancy') : ''
-  endfunction  
+  endfunction
   function! MyGitTraffic()
     return winwidth(0) > 70 ? gita#statusline#preset('traffic_fancy') : ''
-  endfunction 
+  endfunction
   function! MyGitStatus()
     return winwidth(0) > 70 ? gita#statusline#preset('status') : ''
-  endfunction 
+  endfunction
 
   function! MyFugitive()
     if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
@@ -461,7 +467,7 @@ com! Wsu w !sudo tee > /dev/null %
 
 
 " Mapping: {{{1
-" use verymagic
+" Use verymagic.
 nnoremap / /\v
 inoremap %s/ %s/\v
 
@@ -478,21 +484,27 @@ nnoremap <Down> gj
 nnoremap <Up>   gk
 nnoremap h <Left>
 nnoremap l <Right>
-" open folding in "l"
+" Open folding in "l"
 nnoremap <expr> l foldlevel(line('.')) ? "\<Right>zo" : "\<Right>"
 
 noremap gh ^
 noremap gl $
-" for tab
+
+" For tab.
 nnoremap <C-l> gt
 nnoremap <C-h> gT
 
+" Benri scroll.
+" http://itchyny.hatenablog.com/entry/2016/02/02/210000
+noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('.') < 1         + winheight(0) ? 'H' : 'L')
+noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('.') > line('$') - winheight(0) ? 'L' : 'H')
+noremap <expr> <C-y> (line('w0') <= 1         ? 'k' : "\<C-y>")
+noremap <expr> <C-e> (line('w$') >= line('$') ? 'j' : "\<C-e>")
+
 " Useful save mappings.
 nnoremap <silent> <Leader><Leader> :<C-u>update<CR>
-" Paste continuously
+" Paste continuously.
 vnoremap <C-p> "0p<CR>
-
-" nnoremap Y y$
 
 " Change current directory.
 nnoremap [Space]cd :<C-u>call <SID>cd_buffer_dir()<CR>
@@ -500,7 +512,7 @@ nnoremap [Space]cd :<C-u>call <SID>cd_buffer_dir()<CR>
 " Auto mkdir.
 au MyAutoCmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
 
-" like emacs
+" Like emacs.
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
@@ -514,14 +526,14 @@ cnoremap <C-n> <Down>
 nnoremap <silent> [Space]ev  :<C-u>tabedit $MYVIMRC<CR>
 nnoremap <silent> [Space]eg  :<C-u>tabedit $MYGVIMRC<CR>
 
-" cmdwin
+" cmdwin.
 nnoremap : q:i
 vnoremap : q:A
 
-" Delete other line
+" Delete other line.
 nnoremap [Space]d :<C-u>call <SID>deleteOtherLine()<CR>
 
-" dein update
+" dein update.
 nnoremap [Space]du :<C-u>call dein#update()<CR>
 
 " Use prefix s.
@@ -612,5 +624,9 @@ au MyAutoCmd BufWritePost * call <SID>removeFileIf0Byte()
 
 " Restore last cursor position when open a file.
 au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+" For swap.
+" http://itchyny.hatenablog.com/entry/2014/12/25/090000
+au MyAutoCmd SwapExists * let v:swapchoice = 'o'
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

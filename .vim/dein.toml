@@ -1,11 +1,16 @@
+# =============================================================================
+# File        : dein.toml
+# Author      : yukimemi
+# Last Change : 2016/04/11 02:31:35.
+# =============================================================================
+
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
 # ==================== Window ==================== {{{1
 [[plugins]]
 repo = 'thinca/vim-submode'
-lazy = 1
-hook_add = '''
+hook_source = '''
   let g:submode_leave_with_key = 1
 
   call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
@@ -45,9 +50,16 @@ hook_source = '''
         \ 'cterm': [ 124, 124 ]
         \ }
 
-  let g:choosewin_blink_on_land    = 0
+  let g:choosewin_blink_on_land = 0
   let g:choosewin_statusline_replace = 0
-  let g:choosewin_tabline_replace  = 0
+  let g:choosewin_tabline_replace = 0
+'''
+
+[[plugins]]
+repo = 'itchyny/thumbnail.vim'
+on_cmd = 'Thumbnail'
+hook_add = '''
+  nnoremap [Space]t :<C-u>Thumbnail<CR>
 '''
 
 
@@ -218,6 +230,9 @@ hook_add = '''
   let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'unite', 'vimfiler']
   au MyAutoCmd User PreciousFileType execute 'IndentLinesReset'
 '''
+
+[[plugins]]
+repo = 'itchyny/vim-highlighturl'
 
 # ==================== Search ==================== {{{1
 [[plugins]]
@@ -414,7 +429,6 @@ hook_add = '''
 # ==================== QuickRun ================== {{{1
 [[plugins]]
 repo = 'thinca/vim-quickrun'
-on_source = 'vim-watchdogs'
 on_map = '<Plug>'
 hook_add = '''
   nmap <Leader>r <Plug>(quickrun)
@@ -422,61 +436,62 @@ hook_add = '''
 
   let g:quickrun_config = {}
   let g:quickrun_config = {
-        \   "_": {
-        \     "hook/output_command/enable": 1,
-        \     "hook/output_command/log": 1,
-        \     "hook/close_unite_quickfix/enable_hook_loaded": 1,
-        \     "hook/unite_quickfix/enable_failure": 1,
-        \     "hook/close_quickfix/enable_exit": 1,
-        \     "hook/close_buffer/enable_failure": 1,
-        \     "hook/close_buffer/enable_empty_data": 1,
-        \     "hook/echo/enable": 1,
-        \     "hook/echo/output_success": "success!!!",
-        \     "hook/echo/output_failure": "failure...",
-        \     "outputter/buffer/split": ":botright 18sp",
-        \     "runner": "vimproc",
-        \     "runner/vimproc/updatetime": 40
-        \   },
+        \ "_": {
+        \   "hook/output_command/enable": 1,
+        \   "hook/output_command/log": 1,
+        \   "hook/close_unite_quickfix/enable_hook_loaded": 1,
+        \   "hook/unite_quickfix/enable_failure": 1,
+        \   "hook/close_quickfix/enable_exit": 0,
+        \   "hook/close_buffer/enable_failure": 1,
+        \   "hook/close_buffer/enable_empty_data": 1,
+        \   "hook/echo/enable": 1,
+        \   "hook/echo/output_success": "success!!!",
+        \   "hook/echo/output_failure": "failure...",
+        \   "hook/neco/enable": 1,
+        \   "outputter/buffer/split": ":botright 18sp",
+        \   "runner": "vimproc",
+        \   "runner/vimproc/updatetime": 40,
+        \ },
         \ "typescript": {
         \     "command": "tsc",
         \     "cmdopt": "--nolib --out",
         \     "exec"  : "%c %s _lib.ts %o %s:p:r.js",
         \     "hook/typescript_compile/enable": 1,
         \     "hook/js2cmd/enable": 1,
-        \     "hook/output_command/log": 1
-        \   },
+        \     "hook/output_command/log": 1,
+        \ },
         \ "plantuml": {
         \     "command": "java",
         \     "cmdopt": "-jar ../bin/plantuml.jar -tpng",
-        \     "exec": "%c %o %s"
-        \   },
+        \     "exec": "%c %o %s",
+        \ },
         \ "mermaid": {
         \     "command": "mermaid",
-        \     "exec": "%c %s"
-        \   },
+        \     "exec": "%c %s",
+        \ },
         \ "blockdiag": {
         \     "command": "blockdiag",
         \     "cmdopt": "-Tsvg",
-        \     "exec": "%c %o %s"
-        \   },
+        \     "exec": "%c %o %s",
+        \ },
         \ "rst": {
         \     "command": "make",
         \     "cmdopt": "html",
-        \     "exec": "%c %o"
+        \     "exec": "%c %o",
         \ },
         \ "ps1": {
         \     'hook/output_encode/enable': 1,
-        \     'hook/output_encode/encoding': "cp932"
+        \     'hook/output_encode/encoding': "cp932",
         \ },
         \ "markdown": {
         \     "type": "markdown/pandoc",
-        \     "outputter": "browser"
+        \     "outputter": "browser",
         \ },
         \ "ruby": {
         \     "command": "ruby",
         \     "cmdopt": "bundle exec",
-        \     "exec": "%o %c %s"
-        \ }
+        \     "exec": "%o %c %s",
+        \ },
         \ }
 '''
 hook_source = '''
@@ -512,65 +527,67 @@ on_source = ['vim-quickrun', 'vim-watchdogs']
 
 [[plugins]]
 repo = 'osyo-manga/vim-watchdogs'
-depends = 'vim-quickrun'
-on_ft = ['xml', 'cpp', 'go']
+depends = ['vim-quickrun', 'shabadou.vim']
+on_idle = 1
 hook_source = '''
-  if !exists('g:watchdogs_config')
-    let g:watchdogs_config = {}
-  endif
+  let g:watchdogs_config = get(g:, 'watchdogs_config', {})
   let g:watchdogs_config = {
         \ "cpp/wandbox": {
         \   "runner": "wandbox",
         \   "runner/wandbox/compiler": "clang-head",
-        \   "runner/wandbox/options": "warning,c++1y,boost-1.55"
+        \   "runner/wandbox/options": "warning,c++1y,boost-1.55",
         \ },
         \
         \ "cpp/g++": {
-        \   "cmdopt": "-std=c++0x -Wall"
+        \   "cmdopt": "-std=c++0x -Wall",
         \ },
         \
         \ "cpp/clang++": {
-        \   "cmdopt": "-std=c++0x -Wall"
+        \   "cmdopt": "-std=c++0x -Wall",
         \ },
         \
         \ "cpp/watchdogs_checker": {
-        \   "type": "watchdogs_checker/clang++"
+        \   "type": "watchdogs_checker/clang++",
         \ },
         \
         \ "watchdogs_checker/g++": {
-        \   "cmdopt": "-Wall"
+        \   "cmdopt": "-Wall",
         \ },
         \
         \ "watchdogs_checker/clang++": {
-        \   "cmdopt": "-Wall"
+        \   "cmdopt": "-Wall",
         \ },
         \ "xml/watchdogs_checker": {
-        \   "type": "watchdogs_checker/xmllint"
+        \   "type": "watchdogs_checker/xmllint",
         \ },
         \ "watchdogs_checker/xmllint": {
         \   "command": "xmllint",
         \   "cmdopt": "--recover",
-        \   "exec": "%c %o %s"
+        \   "exec": "%c %o %s",
         \ },
         \ "go/watchdogs_checker": {
-        \   "type": "watchdogs_checker/golint"
+        \   "type": "watchdogs_checker/golint",
         \ },
         \ "watchdogs_checker/golint": {
         \   "command": "golint",
-        \   "exec": "%c %s"
-        \ }
+        \   "exec": "%c %s",
+        \ },
         \ }
 
   " auto check at save
   let g:watchdogs_check_BufWritePost_enable = 1
 
   let g:watchdogs_check_BufWritePost_enables = {
-        \ "xml": 1
+        \ "xml": 1,
         \ }
 
   call extend(g:quickrun_config, g:watchdogs_config)
-  call watchdogs#setup(g:quickrun_config)
 '''
+hook_post_source = 'call watchdogs#setup(g:quickrun_config)'
+
+[[plugins]]
+repo = 'cohama/vim-hier'
+on_source = 'vim-watchdogs'
 
 # ==================== Comment =================== {{{1
 [[plugins]]
@@ -599,6 +616,10 @@ hook_add = '''
 # ==================== Git ======================= {{{1
 [[plugins]]
 repo = 'lambdalisue/vim-gita'
+hook_add = '''
+  nnoremap [Space]gs :<C-u>Gita status<CR>
+  nnoremap [Space]gb :<C-u>Gita branch<CR>
+'''
 
 
 # ==================== Utility =================== {{{1
@@ -730,6 +751,34 @@ hook_add = '''
   au MyAutoCmd BufWritePre * StripWhitespace
 '''
 
+[[plugins]]
+repo = 'itchyny/vim-external'
+on_map = '<Plug>'
+hook_add = '''
+  map <Leader>e <Plug>(external-editor)
+  map <Leader>n <Plug>(external-explorer)
+  map <Leader>b <Plug>(external-browser)
+'''
+
+[[plugins]]
+repo = 'mattn/sonictemplate-vim'
+on_cmd = 'Template'
+on_source = 'unite.vim'
+hook_add = '''
+  nnoremap suT :<C-u>Unite sonictemplate<CR>
+  let g:sonictemplate_vim_template_dir = '$HOME/.vim/template'
+  let g:sonictemplate_vim_vars = {
+        \ '_': {
+        \   'author': 'yukimemi',
+        \   'mail': 'yukimemi@gmail.com',
+        \ },
+        \ }
+'''
+
+[[plugins]]
+repo = 'autodate.vim'
+hook_add = 'let g:autodate_format = "%Y/%m/%d %H:%M:%S"'
+
 
 # ==================== Unite ===================== {{{1
 [[plugins]]
@@ -786,8 +835,8 @@ hook_add = '''
     let g:unite_source_grep_default_opts = '--nocolor --nogroup --column'
     let g:unite_source_grep_recursive_opt = ''
   endif
-
-
+'''
+hook_source = '''
   " Like ctrlp.vim settings.
   let s:unite_default_context = {
         \ 'start_insert': 1,
@@ -803,7 +852,6 @@ hook_add = '''
   call unite#custom#default_action("source/bookmark/directory", "vimfiler")
   call unite#custom#default_action("directory", "vimfiler")
   call unite#custom#default_action("directory_mru", "vimfiler")
-  "call unite#custom#default_action("file", "tabdrop")
 
   function! s:unite_settings()
     nmap <buffer> <Esc> <Plug>(unite_exit)
