@@ -1,14 +1,26 @@
-pushd "%~dp0" > nul
+@echo off
+setlocal enabledelayedexpansion
+REM ====================================================================== {{{1
 set tm=%time: =0%
-set ps1file=%~n0%date:~-10,4%%date:~-5,2%%date:~-2,2%_%tm:~0,2%%tm:~3,2%%tm:~6,2%%tm:~9,2%.ps1
-for /f "usebackq skip=10 delims=" %%i in ("%~f0") do @echo %%i >> "%ps1file%"
-powershell -NoProfile -ExecutionPolicy unrestricted -File "%ps1file%" %*
-del "%ps1file%"
-popd > nul
+set today=%date:~-10,4%%date:~-5,2%%date:~-2,2%
+set nowtime=%tm:~0,2%%tm:~3,2%%tm:~6,2%%tm:~9,2%
+set now=%today%_%nowtime%
+set cmdDir=%~dp0
+set cmdFile=%~f0
+set cmdName=%~n0
+set cmdFileName=%~nx0
+REM ======================================================================
+
+pushd "%cmdDir%"
+
+{{_cursor_}}
+
+popd
+
+echo Exit. [ExitCode: %errorlevel%]
+
 pause
-GOTO :EOF
 
-# ========== ªªª template ªªª ==========
-gci
+exit /b %ERRORLEVEL%
 
-# vim: ft=ps1
+
