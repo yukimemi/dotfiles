@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/04/11 02:52:05.
+# Last Change : 2016/04/15 12:55:13.
 # =============================================================================
 
 [[plugins]]
@@ -787,6 +787,9 @@ hook_add = '''
   let g:autodate_keyword_post = "."
 '''
 
+[[plugins]]
+repo = 'sjl/gundo.vim'
+
 
 # ==================== Unite ===================== {{{1
 [[plugins]]
@@ -1123,11 +1126,11 @@ hook_source = '''
     endfor
     let s:basedir = expand("%:p:h") . "/../cmd/"
     let s:cmdFile = expand("%:p:t:r") . ".cmd"
-    call s:mkdir(s:basedir)
+    call Mkdir(s:basedir)
     call writefile(lines,  s:basedir . s:cmdFile, "b")
     echo "Write " . s:basedir . expand("%:p:t:r") . ".cmd"
   endfunction
-  au MyAutoCmd BufWritePost *.ps1 call <SID>addHeaderPs1(0)
+  " au MyAutoCmd BufWritePost *.ps1 call <SID>addHeaderPs1(0)
   au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
 '''
 
