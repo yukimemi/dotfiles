@@ -45,7 +45,7 @@ if g:is_windows
 endif
 
 " Functions: {{{1
-function! s:mkdir(dir) "{{{2
+function! Mkdir(dir) "{{{2
   if !isdirectory(a:dir)
     call mkdir(a:dir, "p")
   endif
@@ -320,7 +320,7 @@ let s:system = exists('g:loaded_vimproc') ? 'vimproc#system_bg' : 'system'
 set tags& tags-=tags tags+=./tags;
 
 " undo, swap.
-call s:mkdir($BACKUP_PATH)
+call Mkdir($BACKUP_PATH)
 set undofile
 set undodir=$BACKUP_PATH
 set backupdir=$BACKUP_PATH
