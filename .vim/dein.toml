@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/04/15 12:55:13.
+# Last Change : 2016/04/19 08:00:40.
 # =============================================================================
 
 [[plugins]]
@@ -646,6 +646,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'mattn/webapi-vim'
+lazy = 1
 
 [[plugins]]
 repo = 'rhysd/committia.vim'
@@ -789,6 +790,11 @@ hook_add = '''
 
 [[plugins]]
 repo = 'sjl/gundo.vim'
+
+[[plugins]]
+repo = 'mattn/vimplenote-vim.git'
+depends = 'webapi-vim'
+on_cmd = 'VimpleNote'
 
 
 # ==================== Unite ===================== {{{1
