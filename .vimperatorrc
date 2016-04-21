@@ -1,4 +1,4 @@
-" basic {{{
+" basic {{{1
 set titlestring="Mozilla Firefox"
 set verbose=9
 set gui=none
@@ -25,12 +25,11 @@ if (liberator.has("MacUnix")) {
     liberator.execute("set editor='gvim -f'");
 }
 EOM
-"}}}
 
-" mappings {{{
+" mappings {{{1
 nnoremap <C-l> <C-n>
 nnoremap <C-h> <C-p>
-nnoremap s <Nop>
+"nnoremap s <Nop>
 nnoremap sn gt
 nnoremap sp gT
 nnoremap sq :<C-u>q<CR>
@@ -86,9 +85,8 @@ nnoremap .r :restart<CR>
 " Force ime off in hint mode
 " noremap <silent> f :!fcitx-remote -c<CR>qf
 " noremap <silent> F :!fcitx-remote -c<CR>qF
-"}}}
 
-" style {{{
+" style {{{1
 " IME off at Hint
 style! -name=commandline-ime chrome://* #liberator-commandline-command input { ime-mode: inactive; }
 style! -name=textarea-ime * textarea,input { ime-mode: inactive; }
@@ -96,9 +94,8 @@ style! -name=disabled_fxlinkpopup chrome://* #statusbar-display[type="overLink"]
 
 " for treestyletab
 style! -name=treestyletab chrome://* .tabbrowser-tab { z-index: 0 !important; }
-"}}}
 
-" colorscheme {{{
+" colorscheme {{{1
 " colorscheme theme
 " colorscheme fix-addon
 " colorscheme fix-firefox
@@ -110,9 +107,8 @@ hi -append Normal opacity: 0.8;
 hi ErrorMsg color:white; background-color:#ec6aa1;
 " hi Hint z-index:5000; font-size:14px; color:white; background-color:red; border-color:ButtonShadow; border-width:0px; border-style:solid; padding:0px 2px 0px 2px; position:absolute; font-family: Menlo, Consolas, Monaco, monospace; text-transform: uppercase;
 hi CompTitle background: Orchid;
-" }}}
 
-" quickmark {{{
+" quickmark {{{1
 qmark 2 http://is.2ch.net/
 qmark a https://affiliate.amazon.co.jp/gp/associates/network/main.html
 qmark A https://www.google.com/analytics/web/?hl=ja&pli=1#report/visitors-overview/a47356782w84696412p87788910/
@@ -137,15 +133,13 @@ qmark t https://trello.com/
 qmark u http://uhloop.com/
 qmark v http://tv.yahoo.co.jp/listings/realtime/
 qmark y http://www.youtube.com/?gl=JP&hl=ja
-" }}}
 
-" ignorekeys"{{{
+" ignorekeys"{{{1
 " ignorekeys add mail\\.google\\.com -except :,F,t,O,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,d,D
 " ignorekeys add plus\\.google\\.com -except :,t,f,F,d,D,g,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,gg,G,<C-[>
-"}}}
 
-" javascript {{{
-" Google search in the site {{{
+" javascript {{{1
+" Google search in the site {{{2
 " http://blog.feelmy.net/2012/12/22/useful-tips-for-vimperator/
 nnoremap ,/ :sitesearch<Space>
 
@@ -176,9 +170,8 @@ commands.addUserCommand(
   true
 );
 EOM
-"}}}
 
-" Tab pinned. http://qiita.com/t3kot3ko/items/1b032940dbb79e88323e"{{{
+" Tab pinned. http://qiita.com/t3kot3ko/items/1b032940dbb79e88323e"{{{2
 javascript <<EOM
 liberator.modules.commands.addUserCommand(["togglepin"], "add pin to current tab",
 function() {
@@ -191,9 +184,8 @@ function() {
 });
 EOM
 nnoremap @ :togglepin<CR>
-"}}}
 
-" FORCE <ESC> for the INSERT MODE; when focus WYSIWYG editor, not transmit NORMAL MODE by default <ESC> behavior. {{{
+" FORCE <ESC> for the INSERT MODE; when focus WYSIWYG editor, not transmit NORMAL MODE by default <ESC> behavior. {{{2
 js <<EOS
 liberator.modules.mappings.addUserMap(
   [modes.INSERT],
@@ -206,10 +198,8 @@ liberator.modules.mappings.addUserMap(
   }
 );
 EOS
-"}}}
-"}}}
 
-" firefox about:config {{{
+" firefox about:config {{{1
 " don't show download-manager
 set! browser.download.manager.showWhenStarting=false
 
@@ -219,9 +209,8 @@ set! extensions.checkCompatibility.18.0.2=false
 set! browser.contentHandlers.types.6.title=feedly
 set! browser.contentHandlers.types.6.type=application/vnd.mozilla.maybe.feed
 set! browser.contentHandlers.types.6.uri=http://cloud.feedly.com/#subscription/feed/%s
-" }}}
 
-" vimppm {{{
+" vimppm {{{1
 js <<EOM
 if (liberator.has("MacUnix")) {
     // Mac
@@ -432,8 +421,5 @@ liberator.globalVariables.copy_templates = [
 EOM
 nnoremap C :copy<space>
 vnoremap C :copy<space>
-" }}}
-
-" }}}
 
 " vim: ft=vim sw=2 sts=2 fdm=marker
