@@ -632,7 +632,7 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 hook_add = '''
   if g:is_windows
-    if !glob($CACHE . '/dein/lib/vimproc_win32.dll')
+    if !glob($CACHE . '/dein/lib/vimproc_win*')
       let g:vimproc#download_windows_dll = 1
     endif
   endif
@@ -766,6 +766,10 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'tyru/open-browser.vim'
+lazy = 1
+
+[[plugins]]
 repo = 'mattn/sonictemplate-vim'
 on_cmd = 'Template'
 on_source = 'unite.vim'
@@ -790,6 +794,15 @@ hook_add = '''
 
 [[plugins]]
 repo = 'sjl/gundo.vim'
+if = "has('python')"
+
+[[plugins]]
+repo = 'machakann/vim-swap'
+
+[[plugins]]
+repo = 'kannokanno/previm'
+depends = 'open-browser.vim'
+on_cmd = 'PrevimOpen'
 
 [[plugins]]
 repo = 'mattn/vimplenote-vim.git'
@@ -951,8 +964,9 @@ on_source = 'unite.vim'
 
 
 # ==================== FileType ================== {{{1
-# [[plugins]]
-# repo = 'editorconfig/editorconfig-vim'
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+if = "has('python')"
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
@@ -1027,8 +1041,12 @@ repo = 'mattn/emmet-vim'
 on_ft = ['html', 'markdown', 'xml']
 
 # ==================== Filetype (javascript) ===== {{{1
+# [[plugins]]
+# repo = 'pangloss/vim-javascript'
+# on_ft = 'javascript'
+
 [[plugins]]
-repo = 'pangloss/vim-javascript'
+repo = 'jason0x43/vim-js-indent'
 on_ft = 'javascript'
 
 [[plugins]]
@@ -1037,6 +1055,7 @@ on_ft = ['javascript', 'jsx']
 
 [[plugins]]
 repo = 'maksimr/vim-jsbeautify'
+on_ft = ['javascript', 'jsx']
 on_func = ['JsBeautify', 'HtmlBeautify', 'CSSBeautify']
 
 # ==================== Filetype (coffee-script) === {{1
