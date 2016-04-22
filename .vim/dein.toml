@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/04/19 08:00:40.
+# Last Change : 2016/04/22 23:28:47.
 # =============================================================================
 
 [[plugins]]
@@ -808,6 +808,32 @@ on_cmd = 'PrevimOpen'
 repo = 'mattn/vimplenote-vim.git'
 depends = 'webapi-vim'
 on_cmd = 'VimpleNote'
+hook_add = '''
+  nnoremap <Leader>vl :<C-u>VimpleNote -l<CR>
+  nnoremap <Leader>vs :<C-u>VimpleNote -s<CR>
+  nnoremap <Leader>vd :<C-u>VimpleNote -d<CR>
+  nnoremap <Leader>vu :<C-u>VimpleNote -u<CR>
+  nnoremap <Leader>vn :<C-u>VimpleNote -n<CR>
+  nnoremap <Leader>vt :<C-u>VimpleNote -t<CR>
+  nnoremap <Leader>vl :<C-u>VimpleNote -l<CR>
+  nnoremap <Leader>vD :<C-u>VimpleNote -D<CR>
+'''
+
+[[plugins]]
+repo = 'khadiwala/wundervim'
+if = "has('python')"
+
+[[plugins]]
+repo = 'itchyny/calendar.vim'
+on_cmd = 'Calendar'
+hook_add = '''
+  nnoremap [Space]cl :<C-u>Calendar<CR>
+  let g:calendar_google_calendar = 1
+  let g:calendar_google_task = 1
+  let g:calendar_frame = 'default'
+  let g:calendar_first_day = 'monday'
+  let g:calendar_task = 1
+'''
 
 
 # ==================== Unite ===================== {{{1
