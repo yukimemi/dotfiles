@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/04/23 20:55:07.
+# Last Change : 2016/04/26 19:01:38.
 # =============================================================================
 
 [[plugins]]
@@ -838,6 +838,32 @@ hook_add = '''
 [[plugins]]
 repo = 'tpope/vim-repeat'
 
+[[plugins]]
+repo = 'glidenote/memolist.vim'
+on_cmd = 'Memolist'
+hook_add = '''
+  if isdirectory($HOME . '/Dropbox')
+    let g:memolist_path = $HOME . '/Dropbox/memolist'
+  else
+    let g:memolist_path = $HOME . '/.memolist'
+  endif
+
+  call Mkdir(g:memolist_path)
+
+  let g:memolist_memo_suffix = "md"
+  " let g:memolist_vimfiler = 1
+  let g:memolist_unite = 1
+  " let g:memolist_unite_source = "file_rec"
+
+  " mappings
+  nnoremap <Leader>mn :<C-u>MemoNew<CR>
+  nnoremap <Leader>ml :<C-u>MemoList<CR>
+  nnoremap <Leader>mg :<C-u>MemoGrep<CR>
+  " nmap <Leader>mf :exe "CtrlP" g:memolist_path<CR><F5>
+
+  " use various Ex commands (default '')
+  " let g:memolist_ex_cmd = 'CtrlP'
+'''
 
 # ==================== Unite ===================== {{{1
 [[plugins]]
@@ -868,7 +894,7 @@ hook_add = '''
   nnoremap sut :<C-u>Unite tab<CR>
   nnoremap suu :<C-u>Unite buffer neomru/file<CR>
   nnoremap sua :<C-u>Unite buffer neomru/file bookmark file file_rec/async<CR>
-  nnoremap suM :<C-u>Unite mapping<CR>
+  " nnoremap suM :<C-u>Unite mapping<CR>
   nnoremap suR :<C-u>UniteResume<CR>
   nnoremap sud :<C-u>Unite -default-action=lcd directory_mru<CR>
   nnoremap sul :<C-u>Unite history/command<CR>
