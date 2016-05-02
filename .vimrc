@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : .vimrc
 " Author      : yukimemi
-" Last Change : 2016/04/11 02:31:35.
+" Last Change : 2016/05/02 08:51:35.
 " =============================================================================
 
 " Init: {{{1
@@ -468,8 +468,8 @@ com! Wsu w !sudo tee > /dev/null %
 
 " Mapping: {{{1
 " Use verymagic.
-nnoremap / /\v
-inoremap %s/ %s/\v
+" nnoremap / /\v
+" inoremap %s/ %s/\v
 
 " Use space.
 nmap <Space> [Space]

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/04/26 19:01:38.
+# Last Change : 2016/05/02 11:33:34.
 # =============================================================================
 
 [[plugins]]
@@ -1098,7 +1098,7 @@ on_ft = ['html', 'markdown', 'xml']
 # ==================== Filetype (javascript) ===== {{{1
 # [[plugins]]
 # repo = 'pangloss/vim-javascript'
-# on_ft = 'javascript'
+# on_ft = ['javascript', 'javascript.jsx']
 
 [[plugins]]
 repo = 'jason0x43/vim-js-indent'
@@ -1106,12 +1106,22 @@ on_ft = 'javascript'
 
 [[plugins]]
 repo = 'mxw/vim-jsx'
-on_ft = ['javascript', 'jsx']
+on_ft = ['javascript', 'javascript.jsx']
+
+# [[plugins]]
+# repo = 'maksimr/vim-jsbeautify'
+# on_ft = ['javascript', 'javascript.jsx']
+# on_func = ['JsBeautify', 'HtmlBeautify', 'CSSBeautify']
 
 [[plugins]]
-repo = 'maksimr/vim-jsbeautify'
-on_ft = ['javascript', 'jsx']
-on_func = ['JsBeautify', 'HtmlBeautify', 'CSSBeautify']
+repo = 'Chiel92/vim-autoformat'
+hook_add = '''
+  " let g:autoformat_autoindent = 0
+  " let g:autoformat_retab = 0
+  " let g:autoformat_remove_trailing_spaces = 0
+  au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
+  au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
+'''
 
 # ==================== Filetype (coffee-script) === {{1
 [[plugins]]
