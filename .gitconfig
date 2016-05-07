@@ -24,3 +24,5 @@
 	helper = store
 [merge]
 	tool = vimdiff
+[branch]
+	autosetuprebase = always
