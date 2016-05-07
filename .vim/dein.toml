@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/05/03 12:14:04.
+# Last Change : 2016/05/07 22:02:54.
 # =============================================================================
 
 [[plugins]]
@@ -865,6 +865,17 @@ hook_add = '''
   " let g:memolist_ex_cmd = 'CtrlP'
 '''
 
+[[plugins]]
+repo = 'Chiel92/vim-autoformat'
+hook_add = '''
+  " let g:autoformat_autoindent = 0
+  " let g:autoformat_retab = 0
+  " let g:autoformat_remove_trailing_spaces = 0
+  " au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
+  " au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
+  nnoremap [Space]f :<C-u>Autoformat<CR>
+'''
+
 # ==================== Unite ===================== {{{1
 [[plugins]]
 repo = 'Shougo/unite.vim'
@@ -1112,16 +1123,6 @@ on_ft = ['javascript', 'javascript.jsx']
 # repo = 'maksimr/vim-jsbeautify'
 # on_ft = ['javascript', 'javascript.jsx']
 # on_func = ['JsBeautify', 'HtmlBeautify', 'CSSBeautify']
-
-[[plugins]]
-repo = 'Chiel92/vim-autoformat'
-hook_add = '''
-  " let g:autoformat_autoindent = 0
-  " let g:autoformat_retab = 0
-  " let g:autoformat_remove_trailing_spaces = 0
-  " au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
-  " au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
-'''
 
 # ==================== Filetype (coffee-script) === {{1
 [[plugins]]
