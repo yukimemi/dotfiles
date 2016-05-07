@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/05/02 11:33:34.
+# Last Change : 2016/05/03 12:14:04.
 # =============================================================================
 
 [[plugins]]
@@ -1119,8 +1119,8 @@ hook_add = '''
   " let g:autoformat_autoindent = 0
   " let g:autoformat_retab = 0
   " let g:autoformat_remove_trailing_spaces = 0
-  au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
-  au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
+  " au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
+  " au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
 '''
 
 # ==================== Filetype (coffee-script) === {{1
