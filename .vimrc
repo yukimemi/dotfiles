@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : .vimrc
 " Author      : yukimemi
-" Last Change : 2016/05/07 22:02:18.
+" Last Change : 2016/05/21 22:32:07.
 " =============================================================================
 
 " Init: {{{1
@@ -153,7 +153,7 @@ if dein#tap('lightline.vim') "{{{2
         \   "\<C-s>": 'S-B'
         \   },
         \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'git_branch', 'git_traffic', 'git_status', 'filename', 'anzu' ] ],
+        \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'anzu' ] ],
         \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'bomb', 'filetype' ],
         \              [ 'absolutepath', 'charcode' ] ]
         \ },
@@ -177,6 +177,7 @@ if dein#tap('lightline.vim') "{{{2
         \   'anzu': 'anzu#search_status',
         \ }
         \ }
+        " \   'left': [ [ 'mode', 'paste' ], [ 'git_branch', 'git_traffic', 'git_status', 'filename', 'anzu' ] ],
 
   function! MyModified()
     return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
