@@ -294,3 +294,10 @@ curl -LO https://raw.github.usercontent.com/yascentur/RictyDiminished/master/Ric
 
 # Add /etc/auto_master
 echo "/Users/yukimemi/mnt    auto_nas" | sudo tee -a /etc/auto_master
+
+# Install emacs with homebrew.
+brew tap d12frosted/emacs-plus && brew install emacs-plus --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --with-spacemacs-icon && brew linkapps
+
+# Install spacemacs.
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+
