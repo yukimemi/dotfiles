@@ -34,3 +34,5 @@ mac/BetterTouchTool/Logs/
 
 # atom
 blob-store/
+.atom/.apmrc
+
