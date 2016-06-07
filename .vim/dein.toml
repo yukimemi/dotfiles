@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/06/02 13:28:19.
+# Last Change : 2016/06/08 06:18:54.
 # =============================================================================
 
 [[plugins]]
@@ -1208,9 +1208,9 @@ hook_source = '''
   function! s:addHeaderPs1(flg)
     let lines = []
     if a:flg
-      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
+      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
     else
-      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy Unrestricted \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
+      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
     endif
     call add(lines, "@exit /b %errorlevel%")
     call extend(lines, readfile(expand("%")))
