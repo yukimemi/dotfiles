@@ -8,6 +8,7 @@
   "clip-history": {}
   "clipboard-plus": {}
   core:
+    autoHideMenuBar: true
     disabledPackages: [
       "vim-mode"
       "vim-mode-visual-block"
@@ -19,6 +20,10 @@
     packagesWithKeymapsDisabled: [
       "clipboard-plus"
     ]
+    themes: [
+      "material-ui"
+      "material-syntax"
+    ]
   "cursor-history":
     flashOnLand: true
   "disable-keybindings":
@@ -27,6 +32,7 @@
     ]
   docblockr: {}
   editor:
+    fontSize: 13
     invisibles: {}
     preferredLineLength: 100
     showIndentGuide: true

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/05/09 07:12:29.
+# Last Change : 2016/06/02 13:28:19.
 # =============================================================================
 
 [[plugins]]
@@ -441,7 +441,7 @@ hook_add = '''
         \   "hook/output_command/log": 1,
         \   "hook/close_unite_quickfix/enable_hook_loaded": 1,
         \   "hook/unite_quickfix/enable_failure": 1,
-        \   "hook/close_quickfix/enable_exit": 0,
+        \   "hook/close_quickfix/enable_exit": 1,
         \   "hook/close_buffer/enable_failure": 1,
         \   "hook/close_buffer/enable_empty_data": 1,
         \   "hook/echo/enable": 1,
@@ -578,7 +578,7 @@ hook_source = '''
   let g:watchdogs_check_BufWritePost_enable = 1
 
   let g:watchdogs_check_BufWritePost_enables = {
-        \ "xml": 1,
+        \ "xml": 0,
         \ }
 
   call extend(g:quickrun_config, g:watchdogs_config)
@@ -840,7 +840,7 @@ repo = 'tpope/vim-repeat'
 
 [[plugins]]
 repo = 'glidenote/memolist.vim'
-on_cmd = 'Memolist'
+on_cmd = ['Memolist', 'MemoNew']
 hook_add = '''
   if isdirectory($HOME . '/Dropbox')
     let g:memolist_path = $HOME . '/Dropbox/memolist'
@@ -874,6 +874,12 @@ hook_add = '''
   " au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
   " au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
   nnoremap [Space]f :<C-u>Autoformat<CR>
+'''
+
+[[plugins]]
+repo = 'thinca/vim-singleton'
+hook_add = '''
+  call singleton#enable()
 '''
 
 # ==================== Unite ===================== {{{1
@@ -1270,4 +1276,9 @@ on_ft = 'help'
 repo = 'thinca/vim-ft-help_fold'
 on_ft = 'help'
 
+
+# ==================== Filetype (log) =========== {{{1
+[[plugins]]
+repo = 'dzeban/vim-log-syntax'
+on_ft = 'log'
 

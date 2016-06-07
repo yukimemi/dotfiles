@@ -21,6 +21,6 @@ echo Exit. [ExitCode: %errorlevel%]
 
 pause
 
-exit /b %ERRORLEVEL%
+exit /b %errorlevel%
 
 

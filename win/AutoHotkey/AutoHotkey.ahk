@@ -36,7 +36,7 @@ Process,Exist,gvim.exe
 If ErrorLevel <> 0
   WinActivate, ahk_pid %ErrorLevel%
 else
-  Run, d:\app\vim\gvim.exe
+  Run, %USERPROFILE%\app\vim\gvim.exe
 return
 
 ; for cfiler
@@ -45,12 +45,12 @@ Process,Exist,cfiler.exe
 If ErrorLevel <> 0
   WinActivate, ahk_pid %ErrorLevel%
 else
-  Run, d:\app\cfiler\cfiler.exe, d:\app\cfiler, Max
+  Run, %USERPROFILE%\app\cfiler\cfiler.exe, %USERPROFILE%\app\cfiler, Max
 return
 
 ; for rapture
 ;F9::
-;Run, d:\app\rapture\rapture.exe
+;Run, %USERPROFILE%\app\rapture\rapture.exe
 ;return
 
 ; for vim
@@ -81,8 +81,8 @@ file.Write(Clipboard)
 file.Close()
 Clipboard := saveclip
 
-RunWait "d:\app\vim\gvim.exe" "--cmd" "let g:singleton#disable=1" %tempfile%
-;RunWait "D:\app\Atom\atom.exe" %tempfile%
+RunWait "%USERPROFILE%\app\vim\gvim.exe" "--cmd" "let g:singleton#disable=1" %tempfile%
+;RunWait "%USERPROFILE%\app\Atom\atom.exe" %tempfile%
 
 file := FileOpen(tempfile, "r")
 if !IsObject(file)
