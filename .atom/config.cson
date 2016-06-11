@@ -17,6 +17,7 @@
       "vim-mode-plus-ex-mode"
       "clip-history"
       "editorconfig"
+      "terminal-plus"
     ]
     packagesWithKeymapsDisabled: [
       "clipboard-plus"
