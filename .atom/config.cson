@@ -16,13 +16,14 @@
       "ex-mode"
       "vim-mode-plus-ex-mode"
       "clip-history"
+      "editorconfig"
     ]
     packagesWithKeymapsDisabled: [
       "clipboard-plus"
     ]
     themes: [
-      "material-ui"
-      "material-syntax"
+      "atom-material-ui"
+      "atom-material-syntax"
     ]
   "cursor-history":
     flashOnLand: true
@@ -32,7 +33,6 @@
     ]
   docblockr: {}
   editor:
-    fontSize: 13
     invisibles: {}
     preferredLineLength: 100
     showIndentGuide: true
@@ -49,18 +49,21 @@
   minimap:
     plugins:
       "git-diff": true
+      "git-diffDecorationsZIndex": 0
       "highlight-selected": true
       "highlight-selectedDecorationsZIndex": 0
       "minimap-autohide": true
       "minimap-autohideDecorationsZIndex": 0
       pigments: true
+      pigmentsDecorationsZIndex: 0
   "one-dark-ui": {}
+  "plantuml-viewer": {}
   "project-folder":
     gitProjectDirectories: [
       "~/.ghq/src"
     ]
     projectRootDirectories: [
-      "~/"
+      "~/.ghq/src"
     ]
   "quick-highlight": {}
   "recent-finder": {}
@@ -87,8 +90,10 @@
   "vim-surround": {}
   welcome:
     showOnStartup: false
-  whitespace:
-    removeTrailingWhitespace: false
+  whitespace: {}
 ".diff.source":
+  editor:
+    preferredLineLength: 100
+".ini.source":
   editor:
     preferredLineLength: 100
