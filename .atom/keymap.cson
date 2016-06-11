@@ -34,33 +34,33 @@
   's p': 'window:focus-previous-pane'
   's o': 'vim-mode-plus:maximize-pane'
   ', ,': 'core:save'
-  
+
   'ctrl-h': 'pane:show-previous-item'
   'ctrl-l': 'pane:show-next-item'
   # recent-finder
   's u m': 'recent-finder:toggle'
-  
+
   # open-this
   'g f': 'open-this:here'
   'ctrl-w f': 'open-this:split-down'
   'ctrl-w F': 'open-this:split-right'
-  
+
   'g c': 'vim-mode-plus:select-latest-change'
-  
+
   # surround
   'S': 'vim-mode-plus:surround-smart-word'
   'y s': 'vim-mode-plus:surround'
   'm s': 'vim-mode-plus:map-surround'
   'd s': 'vim-mode-plus:delete-surround-any-pair'
   'c s': 'vim-mode-plus:change-surround-any-pair'
-  
+
   # option toggle
   'space n': 'editor:toggle-line-numbers'
   'space i': 'user:toggle-show-invisible'
   'space I': 'editor:toggle-indent-guide'
   'space w': 'editor:toggle-soft-wrap'
   'space /': 'vim-mode-plus:clear-highlight-search'
-  
+
 # insert
 'atom-text-editor.vim-mode-plus.insert-mode':
   'ctrl-i': 'vim-mode-plus:insert-last-inserted'
@@ -70,7 +70,7 @@
   'g x': 'link:open'
   # clipboard-plus
   'ctrl-y': 'clipboard-plus:toggle'
-  
+
   # operator
   '_': 'vim-mode-plus:replace-with-register'
   'g C': 'vim-mode-plus:camel-case'
@@ -82,14 +82,14 @@
   'ctrl-n': 'vim-mode-plus:move-to-next-fold-start'
   '(': 'vim-mode-plus:move-to-previous-fold-start-with-same-indent'
   ')': 'vim-mode-plus:move-to-next-fold-start-with-same-indent'
-  
+
   'g h': 'vim-mode-plus:move-to-first-character-of-line'
   'g l': 'vim-mode-plus:move-to-last-character-of-line'
-  
+
   # quick-highlight
   'space m': 'quick-highlight:toggle'
   'space M': 'quick-highlight:clear'
-  
+
   # command-palette
   ':': 'command-palette:toggle'
 
@@ -123,6 +123,7 @@
   ';': 'vim-mode-plus:search-confirm'
   'space': 'vim-mode-plus:search-insert-wild-pattern'
   'ctrl-g': 'vim-mode-plus:search-cancel'
+  'cmd-enter': 'vim-mode-plus-user:project-find-from-search'
 
 # Other
 '.select-list':
@@ -139,4 +140,3 @@
   'ctrl-n': 'autocomplete-plus:move-down'
   'ctrl-space': 'autocomplete-plus:activate'
   'escape': 'autocomplete-plus:cancel'
-  
