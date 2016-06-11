@@ -24,7 +24,7 @@
 'atom-text-editor.vim-mode-plus.normal-mode':
   's s': 'pane:split-down-and-copy-active-item'
   's v': 'pane:split-right-and-copy-active-item'
-  's q': 'pane:close'
+  's q': 'core:close'
   's O': 'pane:close-other-items'
   's j': 'window:focus-pane-below'
   's k': 'window:focus-pane-above'
