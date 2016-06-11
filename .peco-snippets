@@ -301,3 +301,5 @@ brew tap d12frosted/emacs-plus && brew install emacs-plus --with-cocoa --with-gn
 # Install spacemacs.
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
+# For webpack jscript.
+npm i -D json3 babel-core babel-loader babel-polyfill babel-preset-es2015 imports-loader webpack
