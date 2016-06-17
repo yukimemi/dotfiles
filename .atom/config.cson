@@ -34,6 +34,7 @@
     ]
   docblockr: {}
   editor:
+    fontSize: 11
     invisibles: {}
     preferredLineLength: 100
     showIndentGuide: true
