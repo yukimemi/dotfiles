@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/06/08 06:18:54.
+# Last Change : 2016/06/08 06:50:33.
 # =============================================================================
 
 [[plugins]]
@@ -881,6 +881,9 @@ repo = 'thinca/vim-singleton'
 hook_add = '''
   call singleton#enable()
 '''
+
+[[plugins]]
+repo = 'itmammoth/doorboy.vim'
 
 # ==================== Unite ===================== {{{1
 [[plugins]]
