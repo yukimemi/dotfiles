@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/06/08 06:50:33.
+# Last Change : 2016/06/25 15:02:03.
 # =============================================================================
 
 [[plugins]]
@@ -94,6 +94,12 @@ hook_add = '''
         \ 'ruby': $VIM_PATH . '/dict/ruby.dict'
         \ }
 
+  " Define keyword.
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
   " Enable omni completion.
   au MyAutoCmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   au MyAutoCmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -101,20 +107,22 @@ hook_add = '''
   au MyAutoCmd FileType python setlocal omnifunc=pythoncomplete#Complete
   au MyAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-  if !exists('g:neocomplete#sources#omni#functions')
-    let g:neocomplete#sources#omni#functions = {}
+  " Enable heavy omni completion.
+  if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
   endif
-
-  " SQL
-  let g:neocomplete#sources#omni#functions.sql = 'sqlcomplete#Complete'
-  " typescript
-  " let g:neocomplete#sources#omni#functions.typescript = 'TSScompleteFunc'
-
   if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns = {}
   endif
+
+  " SQL
+  " let g:neocomplete#sources#omni#functions.sql = 'sqlcomplete#Complete'
+  " typescript
+  " let g:neocomplete#sources#omni#functions.typescript = 'TSScompleteFunc'
+
   let g:neocomplete#force_omni_input_patterns.typescript = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
   let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+  let g:neocomplete#force_omni_input_patterns.go = '[^. *\t]\.\w*\|\h\w*::'
 '''
 
 [[plugins]]
@@ -753,7 +761,7 @@ on_cmd = 'PP'
 repo = 'ntpeters/vim-better-whitespace'
 hook_add = '''
   let g:better_whitespace_filetypes_blacklist = ['unite', 'vimfiler', 'tweetvim']
-  au MyAutoCmd BufWritePre * StripWhitespace
+  " au MyAutoCmd BufWritePre * StripWhitespace
 '''
 
 [[plugins]]
@@ -1039,9 +1047,9 @@ on_source = 'unite.vim'
 
 
 # ==================== FileType ================== {{{1
-[[plugins]]
-repo = 'editorconfig/editorconfig-vim'
-if = "has('python')"
+# [[plugins]]
+# repo = 'editorconfig/editorconfig-vim'
+# if = "has('python')"
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
@@ -1176,30 +1184,37 @@ on_ft = 'go'
 hook_add = '''
   let g:go_auto_type_info = 1
   let g:go_snippet_engine = "neosnippet"
-  let g:go_highlight_functions = 1
-  let g:go_highlight_methods = 1
-  let g:go_highlight_structs = 1
-  let g:go_highlight_operators = 1
-  let g:go_highlight_build_constraints = 1
   let g:go_fmt_command = "goimports"
 
-  nmap <buffer> <Leader>gd <Plug>(go-doc)
-  nmap <buffer> <Leader>gs <Plug>(go-doc-split)
-  nmap <buffer> <Leader>gv <Plug>(go-doc-vertical)
-  nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
-  nmap <buffer> <Leader>gr <Plug>(go-rename)
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_interfaces = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_build_constraints = 1
 
-  " nmap <buffer> <Leader>r <Plug>(go-run)
-  nmap <buffer> <Leader>gb <Plug>(go-build)
-  nmap <buffer> <Leader>gt <Plug>(go-test)
-  nmap <buffer> <Leader>gc <Plug>(go-coverage)
+  au MyAutoCmd BufNew,BufRead *.go call s:my_go_settings()
 
-  nmap <buffer> <Leader>ds <Plug>(go-def-split)
-  nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
-  nmap <buffer> <Leader>dt <Plug>(go-def-tab)
-  nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
+  function! s:my_go_settings() abort
+    nmap <buffer> <Leader>gd <Plug>(go-doc)
+    nmap <buffer> <Leader>gs <Plug>(go-doc-split)
+    nmap <buffer> <Leader>gv <Plug>(go-doc-vertical)
+    nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
+    nmap <buffer> <Leader>gr <Plug>(go-rename)
 
-  setl completeopt=menu,preview
+    " nmap <buffer> <Leader>r <Plug>(go-run)
+    nmap <buffer> <Leader>gb <Plug>(go-build)
+    nmap <buffer> <Leader>gt <Plug>(go-test)
+    nmap <buffer> <Leader>gc <Plug>(go-coverage)
+
+    nmap <buffer> <Leader>ds <Plug>(go-def-split)
+    nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
+    nmap <buffer> <Leader>dt <Plug>(go-def-tab)
+    nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
+
+    setl completeopt=menu,preview
+  endfunction
 '''
 
 
