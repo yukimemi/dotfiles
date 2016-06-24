@@ -61,6 +61,9 @@
   'space w': 'editor:toggle-soft-wrap'
   'space /': 'vim-mode-plus:clear-highlight-search'
 
+  # ':': 'vim-mode-plus-ex-mode:open'
+  # '!': 'vim-mode-plus-ex-mode:toggle-setting'
+
 # insert
 'atom-text-editor.vim-mode-plus.insert-mode':
   'ctrl-i': 'vim-mode-plus:insert-last-inserted'
@@ -89,6 +92,9 @@
   # quick-highlight
   'space m': 'quick-highlight:toggle'
   'space M': 'quick-highlight:clear'
+
+  # comment
+  'g c c': 'editor:toggle-line-comments'
 
   # command-palette
   ':': 'command-palette:toggle'
@@ -120,7 +126,6 @@
 'atom-text-editor.vim-mode-plus-search':
   '[': 'vim-mode-plus:search-visit-prev'
   ']': 'vim-mode-plus:search-visit-next'
-  ';': 'vim-mode-plus:search-confirm'
   'space': 'vim-mode-plus:search-insert-wild-pattern'
   'ctrl-g': 'vim-mode-plus:search-cancel'
   'cmd-enter': 'vim-mode-plus-user:project-find-from-search'
@@ -131,6 +136,9 @@
   'ctrl-l': 'pane:split-right'
   'ctrl-j': 'pane:split-down'
   'ctrl-g': 'core:cancel'
+
+'.tree-view':
+  ':': 'command-palette:toggle'
 
 # ########################################
 # # autocomplete-plus
