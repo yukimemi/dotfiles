@@ -49,7 +49,7 @@
     ]
   docblockr: {}
   editor:
-    fontSize: 13
+    fontSize: 15
     invisibles: {}
     preferredLineLength: 100
     showIndentGuide: true

@@ -16,7 +16,7 @@
 	di = diff
 	k = log --graph --pretty
 [core]
-	editor = vim
+	editor = nvim
 	autocrlf = false
 [ghq]
 	root = /Users/yukimemi/.ghq/src
