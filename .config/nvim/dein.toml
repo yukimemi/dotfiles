@@ -1,0 +1,827 @@
+# =============================================================================
+# File        : dein.toml
+# Author      : yukimemi
+# Last Change : 2016/06/25 15:02:03.
+# =============================================================================
+
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# ==================== Visual ==================== {{{1
+[[plugins]]
+repo = 'aereal/vim-colors-japanesque'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+  let g:lightline = {
+        \ 'colorscheme': 'solarized',
+        \ 'mode_map': {
+        \   'n' : 'N',
+        \   'i' : 'I',
+        \   'R' : 'R',
+        \   'v' : 'V',
+        \   'V' : 'V-L',
+        \   'c' : 'C',
+        \   "\<C-v>": 'V-B',
+        \   's' : 'S',
+        \   'S' : 'S-L',
+        \   "\<C-s>": 'S-B'
+        \   },
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'anzu' ] ],
+        \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'bomb', 'filetype' ],
+        \              [ 'absolutepath', 'charcode' ] ]
+        \ },
+        \ 'component': {
+        \   'charcode': '[%03.3b, 0x%02.2B]'
+        \ },
+        \ 'component_function': {
+        \   'modified': 'MyModified',
+        \   'readonly': 'MyReadonly',
+        \   'fugitive': 'MyFugitive',
+        \   'git_branch': 'MyGitBranch',
+        \   'git_traffic': 'MyGitTraffic',
+        \   'git_status': 'MyGitStatus',
+        \   'filename': 'MyFilename',
+        \   'fileformat': 'MyFileformat',
+        \   'filetype': 'MyFiletype',
+        \   'fileencoding': 'MyFileencoding',
+        \   'bomb': 'MyBomb',
+        \   'absolutepath': 'MyAbsolutePath',
+        \   'mode': 'MyMode',
+        \   'anzu': 'anzu#search_status',
+        \ }
+        \ }
+
+  function! MyModified()
+    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  endfunction
+
+  function! MyReadonly()
+    if g:is_windows
+      return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'R' : ''
+    else
+      return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
+    endif
+  endfunction
+
+  function! MyFilename()
+    return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+          \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+          \  &ft == 'unite' ? unite#get_status_string() :
+          \  &ft == 'vimshell' ? vimshell#get_status_string() :
+          \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+          \ ('' != MyModified() ? ' ' . MyModified() : '')
+  endfunction
+
+  function! MyGitBranch()
+    return winwidth(0) > 70 ? gita#statusline#preset('branch_fancy') : ''
+  endfunction
+  function! MyGitTraffic()
+    return winwidth(0) > 70 ? gita#statusline#preset('traffic_fancy') : ''
+  endfunction
+  function! MyGitStatus()
+    return winwidth(0) > 70 ? gita#statusline#preset('status') : ''
+  endfunction
+
+  function! MyFugitive()
+    if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+      let _ = fugitive#head()
+      if g:is_windows
+        return strlen(_) ? '| '._ : ''
+      else
+        return strlen(_) ? '⭠ '._ : ''
+      endif
+    endif
+    return ''
+  endfunction
+
+  function! MyFileformat()
+    return winwidth('.') > 70 ? &fileformat : ''
+  endfunction
+
+  function! MyFiletype()
+    return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+  endfunction
+
+  function! MyFileencoding()
+    return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+  endfunction
+
+  function! MyBomb()
+    return &bomb ? 'b' : 'nb'
+  endfunction
+
+  function! MyMode()
+    return winwidth('.') > 60 ? lightline#mode() : ''
+  endfunction
+
+  function! MyAbsolutePath()
+    return (winwidth('.') - strlen(expand('%:p')) > 90) ? expand('%:p') : ((winwidth('.') - strlen(expand('%')) > 70) ? expand('%') : '')
+  endfunction
+'''
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+  let g:indentLine_faster = 1
+  nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+  let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'unite', 'vimfiler']
+  au MyAutoCmd User PreciousFileType execute 'IndentLinesReset'
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-highlighturl'
+
+
+# ==================== Complement ================ {{{1
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+on_i = 1
+hook_add = '''
+  let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+depends = ['neosnippet-snippets', 'context_filetype.vim']
+on_i = 1
+on_ft = 'snippet'
+hook_source = '''
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+  " Tell Neosnippet about the other snippets
+  let g:neosnippet#snippets_directory = $VIM_PATH . '/snippets'
+
+  " For snippet_complete marker.
+  if has('conceal')
+    set conceallevel=2 concealcursor=i
+  endif
+
+  " for unite
+  imap <C-s> <Plug>(neosnippet_start_unite_snippet)
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'zchee/deoplete-go'
+depends = 'deoplete.nvim'
+on_ft = 'go'
+build = 'make'
+hook_add = '''
+  let g:deoplete#sources#go#use_cache = 1
+'''
+
+# ==================== Utility =================== {{{1
+[[plugins]]
+repo = 'airblade/vim-rooter'
+hook_add = '''
+  let g:rooter_use_lcd = 1
+'''
+
+[[plugins]]
+repo = 'Shougo/vimfiler.vim'
+depends = 'unite.vim'
+on_map = '<Plug>'
+on_path = '.*'
+on_cmd = ['VimFiler', 'VimFilerBufferDir']
+hook_add = '''
+  let g:vimfiler_as_default_explorer = 1
+  let g:vimfiler_enable_auto_cd = 1
+  if g:is_windows
+    let g:unite_kind_file_use_trashbox = 1
+  endif
+  nnoremap <silent> [Space]v :<C-u>VimFilerBufferDir -explorer -find<CR>
+'''
+
+[[plugins]]
+repo = 'thinca/vim-submode'
+hook_source = '''
+  let g:submode_leave_with_key = 1
+
+  call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+  call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+  call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+  call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+  call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+  call submode#map('bufmove', 'n', '', '<', '<C-w><')
+  call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+  call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+'''
+
+[[plugins]]
+repo = 't9md/vim-choosewin'
+on_map = '<Plug>'
+on_source = 'vimfiler.vim'
+hook_source = '''
+  nmap - <Plug>(choosewin)
+
+  let g:choosewin_overlay_enable = 1
+  let g:choosewin_overlay_clear_multibyte = 1
+
+  " color like tmux
+  let g:choosewin_color_overlay = {
+        \ 'gui': ['DodgerBlue3', 'DodgerBlue3' ],
+        \ 'cterm': [ 25, 25 ]
+        \ }
+  let g:choosewin_color_overlay_current = {
+        \ 'gui': ['firebrick1', 'firebrick1' ],
+        \ 'cterm': [ 124, 124 ]
+        \ }
+
+  let g:choosewin_blink_on_land = 0
+  let g:choosewin_statusline_replace = 0
+  let g:choosewin_tabline_replace = 0
+'''
+
+[[plugins]]
+repo = 'Konfekt/FastFold'
+on_path = '.*'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+hook_add = '''
+  if g:is_windows
+    let g:vimproc#download_windows_dll = 1
+  endif
+'''
+
+
+# ==================== Unite ===================== {{{1
+[[plugins]]
+repo = 'Shougo/unite.vim'
+on_cmd = 'Unite'
+hook_add = '''
+  " Use plefix s
+  nnoremap suc :<C-u>Unite colorscheme -auto-preview<CR>
+  nnoremap suy :<C-u>Unite history/yank<CR>
+  nnoremap sub :<C-u>Unite buffer<CR>
+  if g:is_windows
+    nnoremap suf :<C-u>Unite file_rec<CR>
+    nnoremap suF :<C-u>Unite file_rec<CR>
+  else
+    nnoremap suf :<C-u>Unite file_rec/async<CR>
+    nnoremap suF :<C-u>Unite file_rec/async<CR>
+  endif
+  nnoremap suB :<C-u>Unite bookmark -default-action=lcd<CR>
+  nnoremap suA :<C-u>UniteBookmarkAdd<CR>
+  nnoremap suo :<C-u>Unite outline -no-quit -no-start-insert -vertical -winwidth=40<CR>
+  nnoremap suq :<C-u>Unite quickfix -no-quit<CR>
+  nnoremap suh :<C-u>Unite help<CR>
+  nnoremap sur :<C-u>Unite register<CR>
+  " nnoremap sum :<C-u>Unite neomru/file -auto-preview<CR>
+  nnoremap su/ :<C-u>Unite line -no-quit<CR>
+  nnoremap sug :<C-u>Unite grep -no-quit -no-start-insert<CR>
+  nnoremap suG :<C-u>Unite grep/git -no-quit<CR>
+  nnoremap sut :<C-u>Unite tab<CR>
+  nnoremap suu :<C-u>Unite buffer neomru/file<CR>
+  nnoremap sua :<C-u>Unite buffer neomru/file bookmark file file_rec/async<CR>
+  " nnoremap suM :<C-u>Unite mapping<CR>
+  nnoremap suR :<C-u>UniteResume<CR>
+  nnoremap sud :<C-u>Unite -default-action=lcd directory_mru<CR>
+  nnoremap sul :<C-u>Unite history/command<CR>
+
+  " grep ~/.vim_junk
+  nnoremap suj :<C-u>Unite grep:~/.cache/junkfile<CR>
+
+  " Incremental search in cmdline history.
+  " http://d.hatena.ne.jp/osyo-manga/20140825
+  inoremap <C-l> <ESC>:Unite history/command -start-insert -default-action=edit<CR>
+
+  " grep source setting
+  if executable('jvgrep')
+    let g:unite_source_grep_command = 'jvgrep'
+    let g:unite_source_grep_default_opts = '-i --color=never'
+    let g:unite_source_grep_recursive_opt = '-R'
+  elseif executable('pt')
+    let g:unite_source_grep_command = 'pt'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+    let g:unite_source_grep_recursive_opt = ''
+  elseif executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nocolor --nogroup --column'
+    let g:unite_source_grep_recursive_opt = ''
+  endif
+'''
+hook_source = '''
+  " Like ctrlp.vim settings.
+  let s:unite_default_context = {
+        \ 'start_insert': 1,
+        \ 'winheight': 10,
+        \ 'direction': 'botright'
+        \ }
+  call extend(s:unite_default_context, {
+        \ 'prompt': '» '
+        \ })
+  call unite#custom#profile('default', 'context', s:unite_default_context)
+
+  " use vimfiler to open directory
+  call unite#custom#default_action("source/bookmark/directory", "vimfiler")
+  call unite#custom#default_action("directory", "vimfiler")
+  call unite#custom#default_action("directory_mru", "vimfiler")
+
+  function! s:unite_settings()
+    nmap <buffer> <Esc> <Plug>(unite_exit)
+    nmap <buffer> <C-n> <Plug>(unite_select_next_line)
+    nmap <buffer> <C-p> <Plug>(unite_select_previous_line)
+  endfunction
+  au MyAutoCmd FileType unite call <SID>unite_settings()
+'''
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'Shougo/unite-outline'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'thinca/vim-unite-history'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'Shougo/unite-help'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'tsukkee/unite-tag'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'Shougo/junkfile.vim'
+on_source = 'unite.vim'
+on_cmd = 'JunkfileOpen'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+on_source = 'unite.vim'
+on_cmd = 'Ref'
+
+[[plugins]]
+repo = 'osyo-manga/unite-quickfix'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'osyo-manga/unite-filetype'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'sorah/unite-ghq'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'ujihisa/unite-colorscheme'
+on_source = 'unite.vim'
+
+# ==================== Search ==================== {{{1
+[[plugins]]
+repo = 'haya14busa/vim-asterisk'
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'haya14busa/incsearch.vim'
+depends = ['vim-asterisk', 'vim-anzu']
+on_map = '<Plug>'
+hook_add = '''
+  map /  <Plug>(incsearch-forward)
+  map ?  <Plug>(incsearch-backward)
+  map g/ <Plug>(incsearch-stay)
+
+  let g:incsearch#auto_nohlsearch = 1
+  map n <Plug>(incsearch-nohl)<Plug>(anzu-n)zv
+  map N <Plug>(incsearch-nohl)<Plug>(anzu-N)zv
+  map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)zv
+  map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)zv
+  map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)zv
+  map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)zv
+
+  map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
+  map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
+  map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
+  map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
+'''
+
+[[plugins]]
+repo = 't9md/vim-quickhl'
+hook_add = '''
+  let g:quickhl_manual_enable_at_startup = 1
+
+  nmap [Space]m <Plug>(quickhl-manual-this)
+  xmap [Space]m <Plug>(quickhl-manual-this)
+  nmap [Space]M <Plug>(quickhl-manual-reset)
+  xmap [Space]M <Plug>(quickhl-manual-reset)
+
+  let g:quickhl_manual_keywords = [
+        \ "失敗",
+        \ "警告",
+        \ "エラー",
+        \ "異常",
+        \ "warn",
+        \ "WARN",
+        \ "error",
+        \ "ERROR",
+        \ ]
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-parenmatch'
+hook_add = 'let g:loaded_matchparen = 1'
+
+[[plugins]]
+repo = 'itchyny/vim-cursorword'
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
+on_ft = ['unite', 'quickfix']
+
+
+# ==================== Operators ================= {{{1
+[[plugins]]
+repo = 'kana/vim-operator-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'kana/vim-operator-replace'
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = 'map _ <Plug>(operator-replace)'
+
+[[plugins]]
+repo = 'rhysd/vim-operator-surround'
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = '''
+  map sA <Plug>(operator-surround-append)
+  map sD <Plug>(operator-surround-delete)
+  map sR <Plug>(operator-surround-replace)
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-operator-blockwise'
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = '''
+  nmap YY <Plug>(operator-blockwise-yank-head)
+  nmap DD <Plug>(operator-blockwise-delete-head)
+  nmap CC <Plug>(operator-blockwise-change-head)
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-operator-search'
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = 'nmap [Space]/ <Plug>(operator-search)'
+
+[[plugins]]
+repo = 'haya14busa/vim-operator-flashy'
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = '''
+  map y <Plug>(operator-flashy)
+  nmap Y <Plug>(operator-flashy)$
+'''
+
+
+
+# ==================== Textobjs ================== {{{1
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'osyo-manga/vim-textobj-multiblock'
+depends = 'vim-textobj-user'
+on_map = '<Plug>'
+hook_add = '''
+  omap ab <Plug>(textobj-multiblock-a)
+  omap ib <Plug>(textobj-multiblock-i)
+  xmap ab <Plug>(textobj-multiblock-a)
+  xmap ib <Plug>(textobj-multiblock-i)
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-entire'
+depends = 'vim-textobj-user'
+on_map = '<Plug>'
+hook_add = '''
+  map ae <Plug>(textobj-entire-a)
+  nunmap ae
+  map ie <Plug>(textobj-entire-i)
+  nunmap ie
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-fold'
+depends = 'vim-textobj-user'
+on_map = '<Plug>'
+hook_add = '''
+  map az <Plug>(textobj-fold-a)
+  nunmap az
+  map iz <Plug>(textobj-fold-i)
+  nunmap iz
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-function'
+depends = 'vim-textobj-user'
+on_map = '<Plug>'
+hook_add = '''
+  map af <Plug>(textobj-function-a)
+  nunmap af
+  map if <Plug>(textobj-function-i)
+  nunmap if
+  map aF <Plug>(textobj-function-A)
+  nunmap aF
+  map iF <Plug>(textobj-function-I)
+  nunmap iF
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-indent'
+depends = 'vim-textobj-user'
+on_map = '<Plug>'
+hook_add = '''
+  map ai <Plug>(textobj-indent-a)
+  nunmap ai
+  map ii <Plug>(textobj-indent-i)
+  nunmap ii
+  map aI <Plug>(textobj-indent-same-a)
+  nunmap aI
+  map iI <Plug>(textobj-indent-same-i)
+  nunmap iI
+'''
+
+[[plugins]]
+repo = 'gilligan/textobj-lastpaste'
+depends = 'vim-textobj-user'
+on_map = '<Plug>'
+hook_add = '''
+  map iP <Plug>(textobj-lastpaste-i)
+  nunmap iP
+'''
+
+
+# ==================== QuickRun ================== {{{1
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_map = '<Plug>'
+hook_add = '''
+  nmap <Leader>r <Plug>(quickrun)
+  nnoremap <Leader>a :<C-u>QuickRun<Space>-args<Space>
+
+  let g:quickrun_config = {}
+  let g:quickrun_config = {
+        \ "_": {
+        \   "hook/output_command/enable": 1,
+        \   "hook/output_command/log": 1,
+        \   "hook/close_unite_quickfix/enable_hook_loaded": 1,
+        \   "hook/unite_quickfix/enable_failure": 1,
+        \   "hook/close_quickfix/enable_exit": 1,
+        \   "hook/close_buffer/enable_failure": 1,
+        \   "hook/close_buffer/enable_empty_data": 1,
+        \   "hook/echo/enable": 1,
+        \   "hook/echo/output_success": "success!!!",
+        \   "hook/echo/output_failure": "failure...",
+        \   "hook/neco/enable": 1,
+        \   "outputter/buffer/split": ":botright 18sp",
+        \   "runner": "vimproc",
+        \   "runner/vimproc/updatetime": 40,
+        \ },
+        \ "typescript": {
+        \     "command": "tsc",
+        \     "cmdopt": "--nolib --out",
+        \     "exec"  : "%c %s _lib.ts %o %s:p:r.js",
+        \     "hook/typescript_compile/enable": 1,
+        \     "hook/js2cmd/enable": 1,
+        \     "hook/output_command/log": 1,
+        \ },
+        \ "plantuml": {
+        \     "command": "java",
+        \     "cmdopt": "-jar ../bin/plantuml.jar -tpng",
+        \     "exec": "%c %o %s",
+        \ },
+        \ "mermaid": {
+        \     "command": "mermaid",
+        \     "exec": "%c %s",
+        \ },
+        \ "blockdiag": {
+        \     "command": "blockdiag",
+        \     "cmdopt": "-Tsvg",
+        \     "exec": "%c %o %s",
+        \ },
+        \ "rst": {
+        \     "command": "make",
+        \     "cmdopt": "html",
+        \     "exec": "%c %o",
+        \ },
+        \ "ps1": {
+        \     'hook/output_encode/enable': 1,
+        \     'hook/output_encode/encoding': "cp932",
+        \ },
+        \ "markdown": {
+        \     "type": "markdown/pandoc",
+        \     "outputter": "browser",
+        \ },
+        \ "ruby": {
+        \     "command": "ruby",
+        \     "cmdopt": "bundle exec",
+        \     "exec": "%o %c %s",
+        \ },
+        \ }
+'''
+hook_source = '''
+  " echo quickrun command output
+  " http://d.hatena.ne.jp/osyo-manga/searchdiary?word=quickrun
+  let s:hook = {
+        \   "name": "output_command",
+        \   "kind": "hook",
+        \   "config": {
+        \     "enable": 0,
+        \     "log": 0
+        \   }
+        \ }
+
+  function! s:hook.on_ready(session, context)
+    " HierClear
+    for command in a:session.commands
+      execute self.config.log ? "echom command" : "echo command"
+    endfor
+  endfunction
+
+  call quickrun#module#register(s:hook, 1)
+  unlet s:hook
+
+  " Stop quickrun
+  nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+'''
+
+[[plugins]]
+repo = 'osyo-manga/shabadou.vim'
+depends = 'vim-quickrun'
+on_source = ['vim-quickrun', 'vim-watchdogs']
+
+[[plugins]]
+repo = 'osyo-manga/vim-watchdogs'
+depends = ['vim-quickrun', 'shabadou.vim']
+on_idle = 1
+hook_source = '''
+  let g:watchdogs_config = get(g:, 'watchdogs_config', {})
+  let g:watchdogs_config = {
+        \ "cpp/wandbox": {
+        \   "runner": "wandbox",
+        \   "runner/wandbox/compiler": "clang-head",
+        \   "runner/wandbox/options": "warning,c++1y,boost-1.55",
+        \ },
+        \
+        \ "cpp/g++": {
+        \   "cmdopt": "-std=c++0x -Wall",
+        \ },
+        \
+        \ "cpp/clang++": {
+        \   "cmdopt": "-std=c++0x -Wall",
+        \ },
+        \
+        \ "cpp/watchdogs_checker": {
+        \   "type": "watchdogs_checker/clang++",
+        \ },
+        \
+        \ "watchdogs_checker/g++": {
+        \   "cmdopt": "-Wall",
+        \ },
+        \
+        \ "watchdogs_checker/clang++": {
+        \   "cmdopt": "-Wall",
+        \ },
+        \ "xml/watchdogs_checker": {
+        \   "type": "watchdogs_checker/xmllint",
+        \ },
+        \ "watchdogs_checker/xmllint": {
+        \   "command": "xmllint",
+        \   "cmdopt": "--recover",
+        \   "exec": "%c %o %s",
+        \ },
+        \ "go/watchdogs_checker": {
+        \   "type": "watchdogs_checker/golint",
+        \ },
+        \ "watchdogs_checker/golint": {
+        \   "command": "golint",
+        \   "exec": "%c %s",
+        \ },
+        \ }
+
+  " auto check at save
+  let g:watchdogs_check_BufWritePost_enable = 1
+
+  let g:watchdogs_check_BufWritePost_enables = {
+        \ "xml": 0,
+        \ }
+
+  call extend(g:quickrun_config, g:watchdogs_config)
+'''
+hook_post_source = 'call watchdogs#setup(g:quickrun_config)'
+
+[[plugins]]
+repo = 'cohama/vim-hier'
+on_source = 'vim-watchdogs'
+
+# ==================== Comment =================== {{{1
+[[plugins]]
+repo = 'tyru/caw.vim'
+on_map = '<Plug>'
+hook_add = '''
+  nmap gc <Plug>(caw:prefix)
+  xmap gc <Plug>(caw:prefix)
+  nmap gcc <Plug>(caw:hatpos:toggle)
+  xmap gcc <Plug>(caw:hatpos:toggle)
+'''
+
+
+# ==================== Yank/Paste ================ {{{1
+[[plugins]]
+repo = 'LeafCage/yankround.vim'
+hook_add = '''
+  nmap p <Plug>(yankround-p)
+  nmap P <Plug>(yankround-P)
+  nmap <C-p> <Plug>(yankround-prev)
+  nmap <C-n> <Plug>(yankround-next)
+  let g:yankround_max_history = 100
+'''
+
+
+# ==================== Git ======================= {{{1
+[[plugins]]
+repo = 'lambdalisue/vim-gita'
+hook_add = '''
+  nnoremap [Space]gs :<C-u>Gita status<CR>
+  nnoremap [Space]gb :<C-u>Gita branch<CR>
+  nnoremap [Space]gg :<C-u>Gita grep<CR>
+  nnoremap [Space]gd :<C-u>Gita diff<CR>
+  nnoremap [Space]gl :<C-u>Gita ls-files<CR>
+  nnoremap [Space]gp :<C-u>Gita push<CR>
+'''
+
+
+# ==================== Filetype (go) ============= {{{1
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
+hook_add = '''
+  let g:go_auto_type_info = 1
+  let g:go_snippet_engine = "neosnippet"
+  let g:go_fmt_command = "goimports"
+
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_interfaces = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_build_constraints = 1
+
+  au MyAutoCmd BufNew,BufRead *.go call s:my_go_settings()
+
+  function! s:my_go_settings() abort
+    setl foldmethod=syntax
+    setl tabstop=4
+    setl shiftwidth=4
+    setl softtabstop=0
+    setl noexpandtab
+
+    nmap <buffer> <Leader>gd <Plug>(go-doc)
+    nmap <buffer> <Leader>gs <Plug>(go-doc-split)
+    nmap <buffer> <Leader>gv <Plug>(go-doc-vertical)
+    nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
+    nmap <buffer> <Leader>gr <Plug>(go-rename)
+
+    " nmap <buffer> <Leader>r <Plug>(go-run)
+    nmap <buffer> <Leader>gb <Plug>(go-build)
+    nmap <buffer> <Leader>gt <Plug>(go-test)
+    nmap <buffer> <Leader>gc <Plug>(go-coverage)
+
+    nmap <buffer> <Leader>ds <Plug>(go-def-split)
+    nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
+    nmap <buffer> <Leader>dt <Plug>(go-def-tab)
+    nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
+
+    setl completeopt=menu,preview
+  endfunction
+'''
+
