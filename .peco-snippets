@@ -248,6 +248,7 @@ sudo add-apt-repository ppa:tuxpoldo/btsync && sudo apt-get update && sudo apt-g
 
 # install neovim
 sudo add-apt-repository ppa:neovim-ppa/unstable && sudo apt-get update && sudo apt-get install neovim
+pip3 install --upgrade neovim && go get -u github.com/nsf/gocode
 
 # install atom
 sudo add-apt-repository ppa:webupd8team/atom && sudo apt-get update && sudo apt-get install atom
@@ -303,3 +304,6 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 # For webpack jscript.
 npm i -D json3 babel-core babel-loader babel-polyfill babel-preset-es2015 imports-loader webpack
+
+# vim-go-ide
+git clone https://github.com/farazdagi/vim-go-ide.git ~/.vim_go_runtime && sh ~/.vim_go_runtime/bin/install
