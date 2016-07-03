@@ -138,9 +138,72 @@ repo = 'itchyny/vim-highlighturl'
 # ==================== Complement ================ {{{1
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+if = "has('nvim')"
 on_i = 1
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+depends = 'context_filetype.vim'
+if = "!has('nvim')"
+on_i = 1
+hook_add = '''
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_smart_case = 1
+  let g:neocomplete#enable_camel_case = 1
+  let g:neocomplete#enable_fuzzy_completion = 1
+  let g:neocomplete#auto_completion_start_length = 2
+  let g:neocomplete#manual_completion_start_length = 0
+  let g:neocomplete#min_keyword_length = 3
+  let g:neocomplete#enable_auto_delimiter = 1
+  " let g:neocomplete#sources#syntax#min_keyword_length = 1
+  " let g:neocomplete#skip_auto_completion_time = 5
+  " let g:neocomplete#enable_auto_close_preview = 0
+  " Define dictionary.
+  let g:neocomplete#sources#dictionary#dictionaries = {
+        \ 'default': '',
+        \ 'vimshell': $HOME . '/.vimshell_hist',
+        \ 'scheme': $HOME . '/.gosh_completions',
+        \ 'coffee': $VIM_PATH . '/dict/coffee.dict',
+        \ 'vbs': $VIM_PATH . '/dict/vbs.dict',
+        \ 'dosbatch': $VIM_PATH . '/dict/dosbatch.dict',
+        \ 'scala': $VIM_PATH . '/dict/scala.dict',
+        \ 'ps1': $VIM_PATH . '/dict/ps1.dict',
+        \ 'javascript': $VIM_PATH . '/dict/wsh.dict',
+        \ 'ruby': $VIM_PATH . '/dict/ruby.dict'
+        \ }
+
+  " Define keyword.
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+  " Enable omni completion.
+  au MyAutoCmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  au MyAutoCmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  au MyAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  au MyAutoCmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  au MyAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+  " Enable heavy omni completion.
+  if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+  endif
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+
+  " SQL
+  " let g:neocomplete#sources#omni#functions.sql = 'sqlcomplete#Complete'
+  " typescript
+  " let g:neocomplete#sources#omni#functions.typescript = 'TSScompleteFunc'
+
+  let g:neocomplete#force_omni_input_patterns.typescript = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+  let g:neocomplete#force_omni_input_patterns.go = '[^. *\t]\.\w*\|\h\w*::'
 '''
 
 [[plugins]]
@@ -174,6 +237,7 @@ repo = 'Shougo/context_filetype.vim'
 [[plugins]]
 repo = 'zchee/deoplete-go'
 depends = 'deoplete.nvim'
+if = "has('nvim')"
 on_ft = 'go'
 build = 'make'
 hook_add = '''
@@ -824,4 +888,53 @@ hook_add = '''
     setl completeopt=menu,preview
   endfunction
 '''
+
+# ==================== Filetype (ps1) ============ {{{1
+[[plugins]]
+repo = 'PProvost/vim-ps1'
+on_ft = 'ps1'
+hook_source = '''
+  function! s:addHeaderPs1(flg)
+    let lines = []
+    if a:flg
+      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
+    else
+      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
+    endif
+    call add(lines, "@exit /b %errorlevel%")
+    call extend(lines, readfile(expand("%")))
+    let i = 0
+    for line in lines
+      if len(lines) != (i + 1)
+        let lines[i] .= "\r"
+      endif
+      let i += 1
+    endfor
+    let s:basedir = expand("%:p:h") . "/../cmd/"
+    let s:cmdFile = expand("%:p:t:r") . ".cmd"
+    call Mkdir(s:basedir)
+    call writefile(lines,  s:basedir . s:cmdFile, "b")
+    echo "Write " . s:basedir . expand("%:p:t:r") . ".cmd"
+  endfunction
+  " au MyAutoCmd BufWritePost *.ps1 call <SID>addHeaderPs1(0)
+  au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
+'''
+
+
+# ==================== Filetype (toml) =========== {{{1
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+
+# ==================== Filetype (plantuml) ====== {{{1
+[[plugins]]
+repo =  'aklt/plantuml-syntax'
+on_ft = 'plantuml'
+
+
+# ==================== Filetype (log) =========== {{{1
+[[plugins]]
+repo = 'dzeban/vim-log-syntax'
+on_ft = 'log'
 
