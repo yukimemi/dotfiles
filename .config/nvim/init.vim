@@ -1,7 +1,7 @@
 " =============================================================================
-" File        : init.vim
+" File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2016/05/30 07:07:11.
+" Last Change : 2016/07/03 17:51:50.
 " =============================================================================
 
 " Init: {{{1
@@ -33,8 +33,14 @@ let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
 
 " Set path. {{{2
 set shellslash
-let $VIM_PATH = expand('~/.config/nvim')
-let $MYVIMRC = expand('~/.config/nvim/init.vim')
+if has('nvim')
+  let $VIM_PATH = expand('~/.config/nvim')
+  let $MYVIMRC = expand('~/.config/nvim/init.vim')
+else
+  let $VIM_PATH = expand('~/.vim')
+  let $MYVIMRC = expand('~/.vimrc')
+  let $MYGVIMRC = expand('~/.gvimrc')
+endif
 let $CACHE = expand('~/.cache')
 let $BACKUP_PATH = expand('$CACHE/vim/back')
 
@@ -115,7 +121,12 @@ endfunction
 
 " Plugin: {{{1
 " Use dein.
-let s:cache_home = expand('~/.cache/nvim') 
+if has('nvim')
+  let s:cache_home = expand('~/.cache/nvim') 
+else
+  let s:cache_home = expand('~/.cache') 
+endif
+
 let s:dein_dir = s:cache_home . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if !isdirectory(s:dein_repo_dir)
@@ -462,3 +473,4 @@ au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer> <ESC> :q<CR>
 
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
+
