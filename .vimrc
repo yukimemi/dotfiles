@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : .vimrc
 " Author      : yukimemi
-" Last Change : 2016/05/30 07:07:11.
+" Last Change : 2016/07/03 17:51:38.
 " =============================================================================
 
 " Init: {{{1
@@ -121,11 +121,15 @@ endfunction
 
 " Plugin: {{{1
 " Use dein.
-let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
+if has('nvim')
+  let s:cache_home = expand('~/.cache/nvim') 
+else
+  let s:cache_home = expand('~/.cache') 
+endif
+
 let s:dein_dir = s:cache_home . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if !isdirectory(s:dein_repo_dir)
-  "execute '!git clone https://github.com/Shougo/dein.vim ' . shellescape(s:dein_repo_dir)
   execute '!git clone https://github.com/Shougo/dein.vim ' . s:dein_repo_dir
 endif
 execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
@@ -145,185 +149,11 @@ if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
 
-if dein#tap('lightline.vim') "{{{2
-  let g:lightline = {
-        \ 'colorscheme': 'solarized',
-        \ 'mode_map': {
-        \   'n' : 'N',
-        \   'i' : 'I',
-        \   'R' : 'R',
-        \   'v' : 'V',
-        \   'V' : 'V-L',
-        \   'c' : 'C',
-        \   "\<C-v>": 'V-B',
-        \   's' : 'S',
-        \   'S' : 'S-L',
-        \   "\<C-s>": 'S-B'
-        \   },
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'anzu' ] ],
-        \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'bomb', 'filetype' ],
-        \              [ 'absolutepath', 'charcode' ] ]
-        \ },
-        \ 'component': {
-        \   'charcode': '[%03.3b, 0x%02.2B]'
-        \ },
-        \ 'component_function': {
-        \   'modified': 'MyModified',
-        \   'readonly': 'MyReadonly',
-        \   'fugitive': 'MyFugitive',
-        \   'git_branch': 'MyGitBranch',
-        \   'git_traffic': 'MyGitTraffic',
-        \   'git_status': 'MyGitStatus',
-        \   'filename': 'MyFilename',
-        \   'fileformat': 'MyFileformat',
-        \   'filetype': 'MyFiletype',
-        \   'fileencoding': 'MyFileencoding',
-        \   'bomb': 'MyBomb',
-        \   'absolutepath': 'MyAbsolutePath',
-        \   'mode': 'MyMode',
-        \   'anzu': 'anzu#search_status',
-        \ }
-        \ }
-        " \   'left': [ [ 'mode', 'paste' ], [ 'git_branch', 'git_traffic', 'git_status', 'filename', 'anzu' ] ],
-
-  function! MyModified()
-    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-  endfunction
-
-  function! MyReadonly()
-    if g:is_windows
-      return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'R' : ''
-    else
-      return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
-    endif
-  endfunction
-
-  function! MyFilename()
-    return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-          \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-          \  &ft == 'unite' ? unite#get_status_string() :
-          \  &ft == 'vimshell' ? vimshell#get_status_string() :
-          \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-          \ ('' != MyModified() ? ' ' . MyModified() : '')
-  endfunction
-
-  function! MyGitBranch()
-    return winwidth(0) > 70 ? gita#statusline#preset('branch_fancy') : ''
-  endfunction
-  function! MyGitTraffic()
-    return winwidth(0) > 70 ? gita#statusline#preset('traffic_fancy') : ''
-  endfunction
-  function! MyGitStatus()
-    return winwidth(0) > 70 ? gita#statusline#preset('status') : ''
-  endfunction
-
-  function! MyFugitive()
-    if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
-      let _ = fugitive#head()
-      if g:is_windows
-        return strlen(_) ? '| '._ : ''
-      else
-        return strlen(_) ? '⭠ '._ : ''
-      endif
-    endif
-    return ''
-  endfunction
-
-  function! MyFileformat()
-    return winwidth('.') > 70 ? &fileformat : ''
-  endfunction
-
-  function! MyFiletype()
-    return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-  endfunction
-
-  function! MyFileencoding()
-    return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-  endfunction
-
-  function! MyBomb()
-    return &bomb ? 'b' : 'nb'
-  endfunction
-
-  function! MyMode()
-    return winwidth('.') > 60 ? lightline#mode() : ''
-  endfunction
-
-  function! MyAbsolutePath()
-    return (winwidth('.') - strlen(expand('%:p')) > 90) ? expand('%:p') : ((winwidth('.') - strlen(expand('%')) > 70) ? expand('%') : '')
-  endfunction
-endif
-
-if dein#tap('vim-automatic') "{{{2
-  nnoremap <silent> <Plug>(quit) :<C-u>q<CR>
-  function! s:my_automatic(config, context)
-    silent! nmap <buffer> <C-[> <Plug>(quit)
-  endfunction
-
-  let g:automatic_default_match_config = {
-        \   'is_open_other_window': 1
-        \ }
-  let g:automatic_default_set_config = {
-        \   'height': '40%',
-        \   'move': "bottom",
-        \   'apply': function('s:my_automatic')
-        \ }
-  let g:automatic_config = [
-        \   {'match': {'buftype': 'help'}},
-        \   {'match': {'bufname': 'MacDict.*'}},
-        \   {
-        \     'match': {
-        \       'autocmd_history_pattern' : 'BufWinEnterFileType$',
-        \       'filetype' : 'unite'
-        \     },
-        \     'set': {
-        \       'unsettings': ['move', 'resize']
-        \     }
-        \   },
-        \   {
-        \     'match': {
-        \       'filetype': 'qf',
-        \       'autocmds': ['FileType']
-        \     },
-        \     'set': {
-        \       'height': 8
-        \     }
-        \   },
-        \   {
-        \     'match': {
-        \       'filetype': '\v^ref-.+',
-        \       'autocmds': ['FileType']
-        \     }
-        \   },
-        \   {
-        \     'match': {
-        \       'bufname': '\[quickrun output\]'
-        \     },
-        \     'set': {
-        \       'height': 8
-        \     }
-        \   },
-        \   {
-        \     'match': {
-        \       'autocmds': ['CmdwinEnter']
-        \     },
-        \     'set': {
-        \       'is_close_focus_out': 1,
-        \       'unsettings': ['move', 'resize']
-        \     }
-        \   }
-        \ ]
-endif
-
 " After dein
 filetype plugin indent on
 syntax enable
 
 " Basic: {{{1
-
-" Use vimproc for system.
-let s:system = exists('g:loaded_vimproc') ? 'vimproc#system_bg' : 'system'
 
 " ctags.
 set tags& tags-=tags tags+=./tags;
@@ -535,7 +365,7 @@ cnoremap <C-n> <Down>
 nnoremap <silent> [Space]ev  :<C-u>tabedit $MYVIMRC<CR>
 nnoremap <silent> [Space]eg  :<C-u>tabedit $MYGVIMRC<CR>
 
-" cmdwin.
+" Cmdwin.
 nnoremap : q:i
 vnoremap : q:A
 
@@ -638,4 +468,9 @@ au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 " http://itchyny.hatenablog.com/entry/2014/12/25/090000
 au MyAutoCmd SwapExists * let v:swapchoice = 'o'
 
+" Escape pop win.
+au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer> <ESC> :q<CR>
+
+
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
+
