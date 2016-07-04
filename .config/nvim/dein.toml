@@ -244,6 +244,15 @@ hook_add = '''
   let g:deoplete#sources#go#use_cache = 1
 '''
 
+[[plugins]]
+repo = 'carlitux/deoplete-ternjs'
+depends = 'deoplete.nvim'
+if = "has('nvim')"
+on_ft = ['javascript', 'typescript']
+build = 'npm install -g tern'
+
+
+
 # ==================== Utility =================== {{{1
 [[plugins]]
 repo = 'airblade/vim-rooter'
