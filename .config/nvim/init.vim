@@ -303,6 +303,8 @@ com! Wsu w !sudo tee > /dev/null %
 
 " FileType: {{{1
 " au MyAutoCmd BufNewFile,BufRead *.toml setl ft=toml
+au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail
+
 
 
 " Mapping: {{{1
