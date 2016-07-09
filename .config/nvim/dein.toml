@@ -388,6 +388,12 @@ hook_add = '''
         \ }
 '''
 
+[[plugins]]
+repo = 'thinca/vim-singleton'
+hook_add = '''
+  call singleton#enable()
+'''
+
 
 # ==================== Unite ===================== {{{1
 [[plugins]]

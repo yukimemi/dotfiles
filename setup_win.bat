@@ -17,7 +17,8 @@ if "%os%"=="XP" (
     set LINKCMD_D=junction
     set RDCMD=junction -d
 ) else (
-    set LINKCMD_F=mklink /h
+    REM set LINKCMD_F=mklink /h
+    set LINKCMD_F=mklink
     set LINKCMD_D=mklink /d
     set RDCMD=rd /s /q
 )
@@ -35,11 +36,14 @@ git clone https://github.com/cd01/vimppm.git %USERPROFILE%\vimperator\vimppm
 
 REM vim
 if exist "%USERPROFILE%\.vimrc" del "%USERPROFILE%\.vimrc"
-%LINKCMD_F% "%USERPROFILE%\.vimrc" "%THIS_FILE_PASS%.vimrc"
+REM %LINKCMD_F% "%USERPROFILE%\.vimrc" "%THIS_FILE_PASS%.vimrc"
+%LINKCMD_F% "%USERPROFILE%\.vimrc" "%THIS_FILE_PASS%.config\nvim\init.vim"
 if exist "%USERPROFILE%\.gvimrc" del "%USERPROFILE%\.gvimrc"
 %LINKCMD_F% "%USERPROFILE%\.gvimrc" "%THIS_FILE_PASS%.gvimrc"
 if exist "%USERPROFILE%\.vim" %RDCMD% "%USERPROFILE%\.vim"
 %LINKCMD_D% "%USERPROFILE%\.vim" "%THIS_FILE_PASS%.vim"
+if exist "%USERPROFILE%\.vim\dein.toml" del "%USERPROFILE%\.vim\dein.toml"
+%LINKCMD_F% "%USERPROFILE%\.vim\dein.toml" "%THIS_FILE_PASS%.config\nvim\dein.toml"
 
 REM zsh
 REM if exist "%CYGWIN_HOME%\.zshrc" rename "%CYGWIN_HOME%\.zshrc" ".zshrc.bak_%TODAY%"
