@@ -12,15 +12,8 @@ let s:is_linux = !s:is_windows && !s:is_cygwin && !s:is_darwin
 set guioptions=none
 
 " color
-if s:is_darwin
-  colorscheme solarized
-  " let g:solarized_visibility = "high"
-  " let g:solarized_contrast = "high"
-  set background=dark
-else
-  set background=dark
-  colorscheme japanesque
-endif
+colorscheme japanesque
+set background=dark
 
 " font
 if s:is_windows
