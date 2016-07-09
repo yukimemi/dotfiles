@@ -15,6 +15,7 @@
 	br = branch
 	di = diff
 	k = log --graph --pretty
+	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 [core]
 	editor = nvim
 	autocrlf = false
@@ -26,3 +27,5 @@
 	tool = vimdiff
 [branch]
 	autosetuprebase = always
+[commit]
+	template = /Users/yukimemi/.ghq/src/gist.github.com/nownabe/85d8595fd142adc426fbfaf2bab015e0/.commit_template
