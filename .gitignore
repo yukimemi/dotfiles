@@ -8,6 +8,7 @@
 .vim/miv
 .vim/save
 restart_session.vim
+.vim/dein.toml
 
 # zsh history
 .zsh_hist*
