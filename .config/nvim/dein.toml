@@ -277,7 +277,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'thinca/vim-submode'
-hook_source = '''
+hook_add = '''
   let g:submode_leave_with_key = 1
 
   call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
@@ -326,6 +326,66 @@ hook_add = '''
   if g:is_windows
     let g:vimproc#download_windows_dll = 1
   endif
+'''
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_map = '<Plug>(EasyAlign)'
+hook_add = '''
+  vmap <Enter> <Plug>(EasyAlign)
+
+  let g:easy_align_delimiters = {
+        \ '>': {
+        \       'pattern': '>>\|=>\|>.\+',
+        \       'right_margin': 0,
+        \       'delimiter_align': 'l'
+        \   },
+        \ '/': {
+        \       'pattern': '//\+\|/\*\|\*/',
+        \       'delimiter_align': 'l',
+        \       'ignore_groups': ['!Comment']
+        \   },
+        \ ']': {
+        \       'pattern': '[[\]]',
+        \       'left_margin': 0,
+        \       'right_margin': 0,
+        \       'stick_to_left': 0
+        \   },
+        \ ')': {
+        \       'pattern': '[()]',
+        \       'left_margin': 0,
+        \       'right_margin': 0,
+        \       'stick_to_left': 0
+        \   },
+        \ 'd': {
+        \       'pattern': ' \(\S\+\s*[;=]\)\@=',
+        \       'left_margin': 0,
+        \       'right_margin': 0
+        \   },
+        \ 'p': {
+        \       'pattern': 'pos=\|size=',
+        \       'right_margin': 0
+        \   },
+        \ 's': {
+        \       'pattern': 'sys=\|Trns=',
+        \       'right_margin': 0
+        \   },
+        \ 'k': {
+        \       'pattern': 'key=\|cmt=',
+        \       'right_margin': 0
+        \   },
+        \ 'c': {
+        \       'pattern': 'cmt=',
+        \       'right_margin': 0
+        \   },
+        \ ':': {
+        \       'pattern': ':',
+        \       'left_margin': 1,
+        \       'right_margin': 1,
+        \       'stick_to_left': 0,
+        \       'ignore_groups': []
+        \   }
+        \ }
 '''
 
 
@@ -850,6 +910,10 @@ hook_add = '''
   nnoremap [Space]gl :<C-u>Gita ls-files<CR>
   nnoremap [Space]gp :<C-u>Gita push<CR>
 '''
+
+[[plugins]]
+repo = 'cohama/agit.vim'
+on_cmd = 'Agit'
 
 
 # ==================== Filetype (go) ============= {{{1
