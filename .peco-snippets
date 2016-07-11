@@ -183,6 +183,7 @@ go get -u github.com/mattn/goemon/cmd/goemon
 # go get -u github.com/BurntSushi/toml
 go get -u github.com/naoina/toml
 go get -u github.com/pranavraja/tldr
+go get -u github.com/ejcx/passgo
 
 # gore
 go get -u github.com/motemen/gore && go get -u github.com/nsf/gocode && go get -u github.com/k0kubun/pp && go get -u golang.org/x/tools/cmd/godoc
