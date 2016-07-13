@@ -1025,7 +1025,8 @@ hook_source = '''
       endif
       let i += 1
     endfor
-    let s:basedir = expand("%:p:h") . "/../cmd/"
+    " let s:basedir = expand("%:p:h") . "/../cmd/"
+    let s:basedir = expand("%:p:h") . "/"
     let s:cmdFile = expand("%:p:t:r") . ".cmd"
     call Mkdir(s:basedir)
     call writefile(lines,  s:basedir . s:cmdFile, "b")
