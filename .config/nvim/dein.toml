@@ -757,6 +757,7 @@ hook_add = '''
 # ==================== QuickRun ================== {{{1
 [[plugins]]
 repo = 'thinca/vim-quickrun'
+depends = ['vim-hier']
 on_map = '<Plug>'
 hook_add = '''
   nmap <Leader>r <Plug>(quickrun)
@@ -835,7 +836,7 @@ hook_source = '''
         \ }
 
   function! s:hook.on_ready(session, context)
-    " HierClear
+    HierClear
     for command in a:session.commands
       execute self.config.log ? "echom command" : "echo command"
     endfor
@@ -855,7 +856,7 @@ on_source = ['vim-quickrun', 'vim-watchdogs']
 
 [[plugins]]
 repo = 'osyo-manga/vim-watchdogs'
-depends = ['vim-quickrun', 'shabadou.vim']
+depends = ['vim-quickrun', 'shabadou.vim', 'vim-hier']
 on_idle = 1
 hook_source = '''
   let g:watchdogs_config = get(g:, 'watchdogs_config', {})
@@ -907,6 +908,7 @@ hook_source = '''
 
   let g:watchdogs_check_BufWritePost_enables = {
         \ "xml": 0,
+        \ "go": 0,
         \ }
 
   call extend(g:quickrun_config, g:watchdogs_config)
@@ -915,7 +917,7 @@ hook_post_source = 'call watchdogs#setup(g:quickrun_config)'
 
 [[plugins]]
 repo = 'cohama/vim-hier'
-on_source = 'vim-watchdogs'
+lazy = 1
 
 # ==================== Comment =================== {{{1
 [[plugins]]
