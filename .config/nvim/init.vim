@@ -119,6 +119,7 @@ function! s:deleteOtherLine() "{{{2
   %g!//d
 endfunction
 
+
 " Plugin: {{{1
 " Use dein.
 if has('nvim')
@@ -377,6 +378,9 @@ nnoremap [Space]d :<C-u>call <SID>deleteOtherLine()<CR>
 " dein update.
 nnoremap [Space]du :<C-u>call dein#update()<CR>
 
+" nohlsearch.
+nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
+
 " Use prefix s.
 nnoremap s <Nop>
 nnoremap sj <C-w>j
@@ -470,8 +474,8 @@ au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 " http://itchyny.hatenablog.com/entry/2014/12/25/090000
 au MyAutoCmd SwapExists * let v:swapchoice = 'o'
 
-" Escape pop win.
-au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer> <ESC> :q<CR>
+" Escape cmd win.
+au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<CR>
 
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
