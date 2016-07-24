@@ -306,7 +306,7 @@ com! Wsu w !sudo tee > /dev/null %
 " au MyAutoCmd BufNewFile,BufRead *.toml setl ft=toml
 au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail
 au MyAutoCmd BufNewFile,BufRead *.js setl ft=javascript
-
+au MyAutoCmd BufNewFile,BufRead *.vim setl ft=vim
 
 
 " Mapping: {{{1
