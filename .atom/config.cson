@@ -121,6 +121,16 @@
 ".diff.source":
   editor:
     preferredLineLength: 100
+".go.source":
+  editor:
+    preferredLineLength: 100
+    tabLength: 4
+".gohtml.html.text":
+  editor:
+    preferredLineLength: 100
+".gotemplate.source":
+  editor:
+    preferredLineLength: 100
 ".ini.source":
   editor:
     preferredLineLength: 100
