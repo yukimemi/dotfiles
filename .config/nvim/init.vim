@@ -244,7 +244,7 @@ set t_Co=256
 
 " Color: {{{1
 set background=dark
-colorscheme japanesque
+colorscheme molokai
 
 " hilight cursorline, cursorcolumn {{{2
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
@@ -307,6 +307,7 @@ com! Wsu w !sudo tee > /dev/null %
 au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail
 au MyAutoCmd BufNewFile,BufRead *.js setl ft=javascript
 au MyAutoCmd BufNewFile,BufRead *.vim setl ft=vim
+au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown
 
 
 " Mapping: {{{1
