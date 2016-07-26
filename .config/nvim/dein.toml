@@ -12,6 +12,9 @@ repo = 'Shougo/dein.vim'
 repo = 'aereal/vim-colors-japanesque'
 
 [[plugins]]
+repo = 'tomasr/molokai'
+
+[[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
   let g:lightline = {
