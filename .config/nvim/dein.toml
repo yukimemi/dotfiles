@@ -18,7 +18,7 @@ repo = 'tomasr/molokai'
 repo = 'itchyny/lightline.vim'
 hook_add = '''
   let g:lightline = {
-        \ 'colorscheme': 'solarized',
+        \ 'colorscheme': 'wombat',
         \ 'mode_map': {
         \   'n' : 'N',
         \   'i' : 'I',
@@ -193,11 +193,11 @@ hook_add = '''
   let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
   " Enable omni completion.
-  au MyAutoCmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  au MyAutoCmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  au MyAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  au MyAutoCmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  au MyAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+  au MyAutoCmd FileType css setl omnifunc=csscomplete#CompleteCSS
+  au MyAutoCmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
+  au MyAutoCmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
+  au MyAutoCmd FileType python setl omnifunc=pythoncomplete#Complete
+  au MyAutoCmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
 
   " Enable heavy omni completion.
   if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -261,7 +261,6 @@ depends = 'deoplete.nvim'
 if = "has('nvim')"
 on_ft = ['javascript', 'typescript']
 build = 'npm install -g tern'
-
 
 
 # ==================== Utility =================== {{{1
@@ -1058,4 +1057,38 @@ on_ft = 'plantuml'
 [[plugins]]
 repo = 'dzeban/vim-log-syntax'
 on_ft = 'log'
+
+# ==================== Filetype (javascript) ===== {{{1
+# [[plugins]]
+# repo = 'pangloss/vim-javascript'
+# on_ft = ['javascript', 'javascript.jsx']
+
+# [[plugins]]
+# repo = 'jason0x43/vim-js-indent'
+# on_ft = 'javascript'
+
+[[plugins]]
+repo = 'mxw/vim-jsx'
+on_ft = ['javascript', 'javascript.jsx']
+
+[[plugins]]
+repo = 'othree/yajs.vim'
+on_ft = ['javascript', 'javascript.jsx']
+
+[[plugins]]
+repo = 'maxmellon/vim-jsx-pretty'
+on_ft = ['javascript', 'javascript.jsx']
+
+[[plugins]]
+repo = 'othree/javascript-libraries-syntax.vim'
+on_ft = ['javascript', 'javascript.jsx']
+
+[[plugins]]
+repo = 'othree/es.next.syntax.vim'
+on_ft = ['javascript', 'javascript.jsx']
+
+# [[plugins]]
+# repo = 'maksimr/vim-jsbeautify'
+# on_ft = ['javascript', 'javascript.jsx']
+# on_func = ['JsBeautify', 'HtmlBeautify', 'CSSBeautify']
 
