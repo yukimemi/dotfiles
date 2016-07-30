@@ -479,6 +479,8 @@ au MyAutoCmd SwapExists * let v:swapchoice = 'o'
 " Escape cmd win.
 au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<CR>
 
+" For git commit.
+au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
 
