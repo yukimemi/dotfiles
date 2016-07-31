@@ -41,9 +41,7 @@ REM %LINKCMD_F% "%USERPROFILE%\.vimrc" "%THIS_FILE_PASS%.vimrc"
 if exist "%USERPROFILE%\.gvimrc" del "%USERPROFILE%\.gvimrc"
 %LINKCMD_F% "%USERPROFILE%\.gvimrc" "%THIS_FILE_PASS%.gvimrc"
 if exist "%USERPROFILE%\.vim" %RDCMD% "%USERPROFILE%\.vim"
-%LINKCMD_D% "%USERPROFILE%\.vim" "%THIS_FILE_PASS%.vim"
-if exist "%USERPROFILE%\.vim\dein.toml" del "%USERPROFILE%\.vim\dein.toml"
-%LINKCMD_F% "%USERPROFILE%\.vim\dein.toml" "%THIS_FILE_PASS%.config\nvim\dein.toml"
+%LINKCMD_D% "%USERPROFILE%\.vim" "%THIS_FILE_PASS%.config\nvim"
 
 REM zsh
 REM if exist "%CYGWIN_HOME%\.zshrc" rename "%CYGWIN_HOME%\.zshrc" ".zshrc.bak_%TODAY%"

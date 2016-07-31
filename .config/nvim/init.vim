@@ -308,6 +308,8 @@ au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail
 au MyAutoCmd BufNewFile,BufRead *.js setl ft=javascript
 au MyAutoCmd BufNewFile,BufRead *.vim setl ft=vim
 au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown
+au MyAutoCmd BufNewFile,BufRead *.xml setl ft=xml
+au MyAutoCmd BufNewFile,BufRead *.bat setl ft=dosbatch
 
 
 " Mapping: {{{1
