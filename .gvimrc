@@ -12,7 +12,7 @@ let s:is_linux = !s:is_windows && !s:is_cygwin && !s:is_darwin
 set guioptions=none
 
 " color
-colorscheme japanesque
+colorscheme molokai
 set background=dark
 
 " font
