@@ -1059,9 +1059,9 @@ repo = 'dzeban/vim-log-syntax'
 on_ft = 'log'
 
 # ==================== Filetype (javascript) ===== {{{1
-# [[plugins]]
-# repo = 'pangloss/vim-javascript'
-# on_ft = ['javascript', 'javascript.jsx']
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+on_ft = ['javascript', 'javascript.jsx']
 
 # [[plugins]]
 # repo = 'jason0x43/vim-js-indent'
