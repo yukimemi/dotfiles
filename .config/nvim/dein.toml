@@ -432,6 +432,20 @@ hook_add = '''
   " let g:memolist_ex_cmd = 'CtrlP'
 '''
 
+[[plugins]]
+repo = 'mattn/sonictemplate-vim'
+on_cmd = 'Template'
+on_source = 'unite.vim'
+hook_add = '''
+  nnoremap suT :<C-u>Unite sonictemplate<CR>
+  let g:sonictemplate_vim_template_dir = '$HOME/.vim/template'
+  let g:sonictemplate_vim_vars = {
+        \ '_': {
+        \   'author': 'yukimemi',
+        \   'mail': 'yukimemi@gmail.com',
+        \ },
+        \ }
+'''
 
 # ==================== Unite ===================== {{{1
 [[plugins]]
@@ -507,11 +521,11 @@ hook_source = '''
   call unite#custom#default_action("directory_mru", "vimfiler")
 
   function! s:unite_settings()
-    nmap <buffer> <Esc> <Plug>(unite_exit)
+    nmap <buffer><nowait> <Esc> <Plug>(unite_exit)
     nmap <buffer> <C-n> <Plug>(unite_select_next_line)
     nmap <buffer> <C-p> <Plug>(unite_select_previous_line)
   endfunction
-  au MyAutoCmd FileType unite call <SID>unite_settings()
+  au MyAutoCmd FileType unite call s:unite_settings()
 '''
 
 [[plugins]]
