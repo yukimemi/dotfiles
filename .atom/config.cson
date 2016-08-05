@@ -137,3 +137,11 @@
 ".js.jsx.source":
   editor:
     preferredLineLength: 100
+".text.xml":
+  editor:
+    preferredLineLength: 100
+    tabLength: 4
+".text.xml.xsl":
+  editor:
+    preferredLineLength: 100
+    tabLength: 4
