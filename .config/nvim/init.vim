@@ -310,6 +310,8 @@ au MyAutoCmd BufNewFile,BufRead *.vim setl ft=vim
 au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown
 au MyAutoCmd BufNewFile,BufRead *.xml setl ft=xml
 au MyAutoCmd BufNewFile,BufRead *.bat setl ft=dosbatch
+au MyAutoCmd BufNewFile,BufRead *.html setl ft=html
+au MyAutoCmd BufNewFile,BufRead *.json setl ft=json
 
 
 " Mapping: {{{1
