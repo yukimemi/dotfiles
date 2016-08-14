@@ -315,3 +315,6 @@ git clone https://github.com/farazdagi/vim-go-ide.git ~/.vim_go_runtime && sh ~/
 # emoji commit.
 ghq get -u https://gist.github.com/nownabe/85d8595fd142adc426fbfaf2bab015e0; cd ~/.ghq/src/gist.github.com/nownabe/85d8595fd142adc426fbfaf2bab015e0 && git config --global commit.template ~/.ghq/src/gist.github.com/nownabe/85d8595fd142adc426fbfaf2bab015e0/.commit_template
 
+# iTerm2 shell integration.
+curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
+
