@@ -469,7 +469,7 @@ au MyAutoCmd BufWritePost *.bin,*.dat set nomod | endif
 au MyAutoCmd FileType mail nnoremap <silent><buffer> [Space]q :<C-u>silent! call <SID>addQuote()<CR>
 
 "au MyAutoCmd BufWrite * call <SID>format()
-autocmd FileType * setlocal formatoptions-=ro
+au FileType * setlocal formatoptions-=ro
 
 au MyAutoCmd BufWritePost * call <SID>removeFileIf0Byte()
 
