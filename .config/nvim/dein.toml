@@ -331,12 +331,24 @@ on_path = '.*'
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
-build = 'make'
 hook_add = '''
-  if g:is_windows
+  if dein#util#_is_windows()
     let g:vimproc#download_windows_dll = 1
   endif
 '''
+hook_post_update = '''
+  if dein#util#_is_windows()
+    let cmd = 'tools\\update-dll-mingw'
+  elseif dein#util#_is_cygwin()
+    let cmd = 'make -f make_cygwin.mak'
+  elseif executable('gmake')
+    let cmd = 'gmake'
+  else
+    let cmd = 'make'
+  endif
+  let g:dein#plugin.build = cmd
+'''
+
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
@@ -1061,13 +1073,13 @@ repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
 
-# ==================== Filetype (plantuml) ====== {{{1
+# ==================== Filetype (plantuml) ======= {{{1
 [[plugins]]
 repo =  'aklt/plantuml-syntax'
 on_ft = 'plantuml'
 
 
-# ==================== Filetype (log) =========== {{{1
+# ==================== Filetype (log) ============ {{{1
 [[plugins]]
 repo = 'dzeban/vim-log-syntax'
 on_ft = 'log'
@@ -1105,4 +1117,11 @@ on_ft = ['javascript', 'javascript.jsx']
 # repo = 'maksimr/vim-jsbeautify'
 # on_ft = ['javascript', 'javascript.jsx']
 # on_func = ['JsBeautify', 'HtmlBeautify', 'CSSBeautify']
+
+
+# ==================== After ftplugin ============ {{{1
+[ftplugin]
+_ = '''
+  setl formatoptions-=ro
+'''
 
