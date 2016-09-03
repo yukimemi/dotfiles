@@ -15,6 +15,7 @@ let scrollstep = 100
 
 " qmarks
 " google mail/task/calendar
+let qmark G = ["http://yukimemi.github.io"]
 let qmark T = ["https://translate.google.co.jp/?hl=ja"]
 let qmark c = ["https://www.google.com/calendar"]
 let qmark f = ["http://cloud.feedly.com/#latest"]
