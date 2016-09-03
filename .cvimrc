@@ -1,3 +1,6 @@
+" option
+set smoothscroll
+
 " variable settings
 let barposition = "bottom"
 let blacklists = ["*://mail.google.com/*","*://feedly.com/*","*://www.google.com/calendar/*"]
