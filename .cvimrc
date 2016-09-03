@@ -1,5 +1,8 @@
 " option
 set smoothscroll
+set noautofocus
+set autoupdategist
+set autohidecursor
 
 " variable settings
 let barposition = "bottom"
@@ -12,16 +15,16 @@ let scrollstep = 100
 
 " qmarks
 " google mail/task/calendar
-let qmark m = ["https://mail.google.com"]
-let qmark t = ["https://mail.google.com/tasks/canvas"]
+let qmark T = ["https://translate.google.co.jp/?hl=ja"]
 let qmark c = ["https://www.google.com/calendar"]
-let qmark l = ["http://www.google.com/language_tools"]
 let qmark f = ["http://cloud.feedly.com/#latest"]
-let qmark p = ["http://getpocket.com/a/queue/"]
 let qmark g = ["http://github.com/yukimemi"]
 let qmark h = ["http://b.hatena.ne.jp"]
 let qmark i = ["https://inbox.google.com"]
-let qmark T = ["https://translate.google.co.jp/?hl=ja"]
+let qmark l = ["http://www.google.com/language_tools"]
+let qmark m = ["https://mail.google.com"]
+let qmark p = ["http://getpocket.com/a/queue/"]
+let qmark t = ["https://mail.google.com/tasks/canvas"]
 
 " mappings
 map <C-u> scrollPageUp
@@ -37,3 +40,4 @@ map <C-l> nextTab
 map R reloadTabUncached
 
 map <C-[> <ESC>
+
