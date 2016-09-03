@@ -137,6 +137,12 @@
 ".js.jsx.source":
   editor:
     preferredLineLength: 100
+".source.ts":
+  editor:
+    preferredLineLength: 100
+".source.tsx":
+  editor:
+    preferredLineLength: 100
 ".text.xml":
   editor:
     preferredLineLength: 100
