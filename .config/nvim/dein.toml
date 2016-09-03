@@ -459,6 +459,46 @@ hook_add = '''
         \ }
 '''
 
+[[plugins]]
+repo = 'basyura/TweetVim''
+depends = ['twibill.vim', 'open-browser.vim', 'bitly.vim', 'favstar-vim', 'webapi-vim']
+on_cmd = ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay']
+on_ft = 'tweetvim'
+hook_add = '''
+  au MyAutoCmd FileType tweetvim call s:my_tweetvim_mappings()
+  function! s:my_tweetvim_mappings()
+    setl nowrap
+    nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
+  endfunction
+
+  nnoremap [Space]ut :<C-u>Unite tweetvim<CR>
+  nnoremap [Space]tu :<C-u>TweetVimUserStream<CR>
+  nnoremap [Space]tl :<C-u>Unite tweetvim<CR>
+  nnoremap [Space]ta :<C-u>Unite tweetvim/account<CR>
+
+  let g:tweetvim_default_account = "yukimemi"
+  let g:tweetvim_tweet_per_page = 100
+  let g:tweetvim_cache_size = 50
+  "let g:tweetvim_display_username = 1
+  let g:tweetvim_display_source = 1
+  let g:tweetvim_display_time = 1
+  "let g:tweetvim_display_icon = 1
+  let g:tweetvim_async_post = 1
+'''
+
+[[plugins]]
+repo = 'basyura/twibill.vim'
+lazy = 1
+
+[[plugins]]
+repo = 'mattn/webapi-vim'
+lazy = 1
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+lazy = 1
+
+
 # ==================== Unite ===================== {{{1
 [[plugins]]
 repo = 'Shougo/unite.vim'
@@ -1095,29 +1135,41 @@ on_ft = ['javascript', 'javascript.jsx']
 
 [[plugins]]
 repo = 'mxw/vim-jsx'
-on_ft = ['javascript', 'javascript.jsx']
+on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
 [[plugins]]
 repo = 'othree/yajs.vim'
-on_ft = ['javascript', 'javascript.jsx']
+on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
 [[plugins]]
 repo = 'maxmellon/vim-jsx-pretty'
-on_ft = ['javascript', 'javascript.jsx']
+on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
 [[plugins]]
 repo = 'othree/javascript-libraries-syntax.vim'
-on_ft = ['javascript', 'javascript.jsx']
+on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
 [[plugins]]
 repo = 'othree/es.next.syntax.vim'
-on_ft = ['javascript', 'javascript.jsx']
+on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
 # [[plugins]]
 # repo = 'maksimr/vim-jsbeautify'
 # on_ft = ['javascript', 'javascript.jsx']
 # on_func = ['JsBeautify', 'HtmlBeautify', 'CSSBeautify']
 
+
+# ==================== Filetype (typescript) ===== {{{1
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+on_ft = ['typescript']
+
+[[plugins]]
+repo = 'Quramy/tsuquyomi'
+on_ft = ['typescript']
+hook_add = '''
+  au MyAutoCmd FileType typescript nnoremap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
+'''
 
 # ==================== After ftplugin ============ {{{1
 [ftplugin]
