@@ -181,6 +181,7 @@ go get -u golang.org/x/tools/cmd/gorename
 go get -u github.com/tcnksm/ghr
 go get -u github.com/yuya-takeyama/ggallin
 go get -u github.com/mattn/goemon/cmd/goemon
+go get -u github.com/Songmu/ghg/cmd/ghg
 # go get -u github.com/BurntSushi/toml
 go get -u github.com/naoina/toml
 go get -u github.com/pranavraja/tldr
@@ -318,4 +319,7 @@ ghq get -u https://gist.github.com/nownabe/85d8595fd142adc426fbfaf2bab015e0; cd 
 
 # iTerm2 shell integration.
 curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
+
+# Tickeys
+brew cask install tickeys
 
