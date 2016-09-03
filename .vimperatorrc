@@ -137,6 +137,7 @@ qmark y http://www.youtube.com/?gl=JP&hl=ja
 " ignorekeys"{{{1
 " ignorekeys add mail\\.google\\.com -except :,F,t,O,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,d,D
 " ignorekeys add plus\\.google\\.com -except :,t,f,F,d,D,g,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,gg,G,<C-[>
+ignorekeys add feedly\\.com -except :,t,f,F,d,D,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,gg,G,<C-[>
 
 " javascript {{{1
 " Google search in the site {{{2
