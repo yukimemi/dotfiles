@@ -1153,6 +1153,10 @@ on_ft = ['javascript', 'javascript.jsx', 'typescript']
 repo = 'othree/es.next.syntax.vim'
 on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
+[[plugins]]
+repo = 'flowtype/vim-flow'
+on_ft = ['javascript', 'javascript.jsx']
+
 # [[plugins]]
 # repo = 'maksimr/vim-jsbeautify'
 # on_ft = ['javascript', 'javascript.jsx']
