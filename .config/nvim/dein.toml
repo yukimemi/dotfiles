@@ -153,6 +153,8 @@ if = "has('nvim')"
 on_i = 1
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
+  let g:deoplete#omni_patterns = {}
+  let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
 '''
 
 [[plugins]]
@@ -255,12 +257,12 @@ hook_add = '''
   let g:deoplete#sources#go#use_cache = 1
 '''
 
-[[plugins]]
-repo = 'carlitux/deoplete-ternjs'
-depends = 'deoplete.nvim'
-if = "has('nvim')"
-on_ft = ['javascript', 'typescript']
-build = 'npm install -g tern'
+# [[plugins]]
+# repo = 'carlitux/deoplete-ternjs'
+# depends = 'deoplete.nvim'
+# if = "has('nvim')"
+# on_ft = ['javascript', 'typescript']
+# build = 'npm install -g tern'
 
 
 # ==================== Utility =================== {{{1
@@ -1156,6 +1158,10 @@ on_ft = ['javascript', 'javascript.jsx', 'typescript']
 [[plugins]]
 repo = 'flowtype/vim-flow'
 on_ft = ['javascript', 'javascript.jsx']
+build = 'npm install -g flow-bin'
+hook_add = '''
+  let g:flow#autoclose = 1
+'''
 
 # [[plugins]]
 # repo = 'maksimr/vim-jsbeautify'
