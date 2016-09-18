@@ -128,6 +128,8 @@ ghq get https://github.com/RamblingCookieMonster/Invoke-Parallel.git
 ghq get https://github.com/yascentur/RictyDiminished.git
 ghq get https://github.com/monochromegane/dotfiles
 ghq get https://github.com/delphinus35/dotfiles
+ghq get https://github.com/aereal/dotfiles
+ghq get https://github.com/altercation/solarized
 
 # bitbucket
 ghq get https://bitbucket.org/yukimemi/haskell.git
