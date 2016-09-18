@@ -128,7 +128,7 @@ qmark o http://yukimemi.github.com
 qmark p https://plus.google.com/
 qmark P http://getpocket.com/a/queue/
 qmark r http://cloud.feedly.com/
-qmark T https://mail.google.com/tasks/canvas
+qmark T https://twitter.com
 qmark t https://trello.com/
 qmark u http://uhloop.com/
 qmark v http://tv.yahoo.co.jp/listings/realtime/
@@ -138,6 +138,7 @@ qmark y http://www.youtube.com/?gl=JP&hl=ja
 " ignorekeys add mail\\.google\\.com -except :,F,t,O,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,d,D
 " ignorekeys add plus\\.google\\.com -except :,t,f,F,d,D,g,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,gg,G,<C-[>
 ignorekeys add feedly\\.com -except :,t,f,F,d,D,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,gg,G,<C-[>
+ignorekeys add twitter\\.com -except :,f,F,d,D,<C-h>,<C-l>,<C-n>,<C-p>,gt,gT,gg,G,<C-[>
 
 " javascript {{{1
 " Google search in the site {{{2
@@ -203,8 +204,6 @@ EOS
 " firefox about:config {{{1
 " don't show download-manager
 set! browser.download.manager.showWhenStarting=false
-
-set! extensions.checkCompatibility.18.0.2=false
 
 " feedly
 set! browser.contentHandlers.types.6.title=feedly
