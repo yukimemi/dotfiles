@@ -20,6 +20,14 @@ if has('vim_starting') && has('reltime')
         \ | echomsg 'startuptime: ' . reltimestr(s:startuptime)
 endif
 
+" True color.
+if has('patch-7.4.1778')
+  set guicolors
+endif
+if has('nvim')
+  set termguicolors
+endif
+
 " Set mapleader.
 let g:mapleader = ','
 let g:maplocalleader = ','
