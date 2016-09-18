@@ -251,7 +251,8 @@ set foldmethod=marker
 set background=dark
 " colorscheme japanesque
 " colorscheme molokai
-colorscheme solarized8_dark
+" colorscheme solarized8_dark
+colorscheme onedark
 
 " hilight cursorline, cursorcolumn {{{2
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
