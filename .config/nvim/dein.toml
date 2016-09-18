@@ -21,10 +21,13 @@ repo = 'altercation/vim-colors-solarized'
 repo = 'lifepillar/vim-solarized8'
 
 [[plugins]]
+repo = 'joshdick/onedark.vim'
+
+[[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
   let g:lightline = {
-        \ 'colorscheme': 'wombat',
+        \ 'colorscheme': 'jellybeans',
         \ 'mode_map': {
         \   'n' : 'N',
         \   'i' : 'I',
