@@ -12,8 +12,9 @@ let s:is_linux = !s:is_windows && !s:is_cygwin && !s:is_darwin
 set guioptions=none
 
 " color
-colorscheme molokai
 set background=dark
+" colorscheme molokai
+colorscheme solarized
 
 " font
 if s:is_windows

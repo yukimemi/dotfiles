@@ -21,9 +21,6 @@ if has('vim_starting') && has('reltime')
 endif
 
 " True color.
-if has('patch-7.4.1778')
-  set guicolors
-endif
 if has('nvim')
   set termguicolors
 endif
@@ -248,11 +245,13 @@ set showcmd
 set display=lastline
 set foldmethod=marker
 " set foldclose=all
-set t_Co=256
+" set t_Co=256
 
 " Color: {{{1
 set background=dark
-colorscheme molokai
+" colorscheme japanesque
+" colorscheme molokai
+colorscheme solarized8_dark
 
 " hilight cursorline, cursorcolumn {{{2
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
