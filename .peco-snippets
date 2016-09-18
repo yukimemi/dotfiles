@@ -130,6 +130,7 @@ ghq get https://github.com/monochromegane/dotfiles
 ghq get https://github.com/delphinus35/dotfiles
 ghq get https://github.com/aereal/dotfiles
 ghq get https://github.com/altercation/solarized
+ghq get https://github.com/nathanbuchar/atom-one-dark-terminal
 
 # bitbucket
 ghq get https://bitbucket.org/yukimemi/haskell.git
