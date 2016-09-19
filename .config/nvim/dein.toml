@@ -139,7 +139,7 @@ repo = 'Yggdroot/indentLine'
 hook_add = '''
   let g:indentLine_faster = 1
   nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-  let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'unite', 'vimfiler']
+  let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'unite', 'vimfiler', 'tweetvim']
   au MyAutoCmd User PreciousFileType execute 'IndentLinesReset'
 '''
 
