@@ -3,6 +3,7 @@ set smoothscroll
 set noautofocus
 set autoupdategist
 set autohidecursor
+set cncpcompletion
 
 " variable settings
 let barposition = "bottom"
@@ -28,6 +29,8 @@ let qmark p = ["http://getpocket.com/a/queue/"]
 let qmark t = ["https://mail.google.com/tasks/canvas"]
 
 " mappings
+map <C-[> <ESC>
+
 map <C-u> scrollPageUp
 map <C-d> scrollPageDown
 map <C-b> scrollFullPageUp
@@ -38,7 +41,47 @@ map d closeTab
 map u lastClosedTab
 map <C-h> previousTab
 map <C-l> nextTab
+map ga firstTab
+map ge lastTab
 map R reloadTabUncached
+map gu goUpUrl
+map \ goToRootUrl
+map <C-g> :execute vyP<CR>
 
-map <C-[> <ESC>
+" searchengine
+let searchengine duckduckgo =  "https://duckduckgo.com/?q=%s"
+let searchengine goo = "http://dictionary.goo.ne.jp/srch/all/%s/m0u/"
+let searchengine ja = "https://translate.google.com/?hl=ja&tab=TT#auto/ja/%s"
+let searchengine en = "https://translate.google.com/?hl=ja&tab=TT#auto/en/%s"
+let searchengine refind2ch = "http://refind2ch.org/search?q=%s"
+let searchengine amazon = "https://www.amazon.co.jp/s/?field-keywords=%s"
+let searchengine chocolatey = "https://chocolatey.org/packages?q=%s"
+let searchengine webstore = "https://chrome.google.com/webstore/search?q=%s"
+let searchengine evernote = "https://www.evernote.com/Home.action#ses=1&sh=5&sds=3&x=%s&"
+let searchengine portableapps = "http://portableapps.com/search/node/%s"
+let searchengine qiita = "https://qiita.com/search?utf8=%E2%9C%93&sort=rel&q=%s&sort=rel"
+let searchengine socialbearing = "http://www.socialbearing.com/search/general/=%s%20lang:ja"
+let searchengine realtime = "http://realtime.search.yahoo.co.jp/search?ei=UTF-8&p=%s"
+let searchengine youtube = "https://www.youtube.com/results?search_query=%s"
+let searchengine wiki = "https://ja.wikipedia.org/wiki/%s"
+" searchalias
+let searchalias dd = "duckduckgo"
+let searchalias ga = "goo"
+let searchalias gj = "ja"
+let searchalias ge = "en"
+let searchalias 2 = "refind2ch"
+let searchalias a = "amazon"
+let searchalias c = "chocolatey"
+let searchalias cw = "webstore"
+let searchalias e = "evernote"
+let searchalias pa = "portableapps"
+let searchalias q = "qiita"
+let searchalias s = "socialbearing"
+let searchalias rt = "realtime"
+let searchalias y = "youtube"
+let searchalias w = "wiki"
 
+" Site-specific Configuration
+site '*://twitter.com/*' {
+  unmap j k
+}
