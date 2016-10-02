@@ -2043,7 +2043,7 @@
 	<key>NSNavLastRootDirectory</key>
 	<string>~/.dotfiles/mac/iTerm2</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
-	<string>{712, 459}</string>
+	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -2063,7 +2063,7 @@
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
 		hAErATGG
 		</data>
-		<string>307</string>
+		<string>322</string>
 	</array>
 	<key>NSTableView Hidden Columns KeyBingingTable</key>
 	<array/>
@@ -2075,15 +2075,13 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>969 33 445 77 0 0 2304 1417 </string>
-	<key>NSWindow Frame Preferences</key>
-	<string>870 592 924 485 0 0 2304 1440 </string>
+	<string>1593 446 445 103 0 0 2304 1418 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>854 768 620 392 0 0 2304 1417 </string>
+	<string>410 382 620 392 0 0 1440 900 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>732 901 796 473 0 0 2304 1440 </string>
+	<string>630 298 796 473 0 0 2304 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 2304 1440 0 0 2304 1417 </string>
+	<string>0 0 2048 1280 0 0 2048 1258 </string>
 	<key>NeverWarnAboutXterm256ColorTerminfo</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -2765,11 +2763,11 @@
 			<key>Name</key>
 			<string>Default</string>
 			<key>Non Ascii Font</key>
-			<string>RictyDiscord-Regular 18</string>
+			<string>RictyDiminishedDiscordForPowerline-Regular 14</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>RictyDiscord-Regular 18</string>
+			<string>RictyDiminishedDiscordForPowerline-Regular 14</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -2955,38 +2953,13 @@
 		</dict>
 	</array>
 	<key>NoSyncInstallationId</key>
-	<string>4B6EFAA8-4CCC-4716-8071-50CEF18DEFBE</string>
-	<key>NoSyncLastTipTime</key>
-	<real>496202611.74214798</real>
-	<key>NoSyncNeverRemindPrefsChangesCopy</key>
-	<true/>
+	<string>9EF912C9-1379-48DA-81F0-5510CEEF79A9</string>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
 	<integer>0</integer>
-	<key>NoSyncPermissionToShowTip</key>
-	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
-	<real>492311106.441854</real>
-	<key>NoSyncTimeOfLastPromo</key>
-	<real>468248890.21026498</real>
-	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>491149085.61702502</real>
-	<key>NoSyncTipsToNotShow</key>
-	<array>
-		<string>000</string>
-		<string>0000</string>
-		<string>0001</string>
-		<string>0002</string>
-		<string>0003</string>
-		<string>0004</string>
-		<string>0005</string>
-		<string>0006</string>
-		<string>0007</string>
-		<string>0008</string>
-		<string>0009</string>
-		<string>0010</string>
-	</array>
+	<real>496367785.67018002</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -3051,11 +3024,13 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing.xml?shard=7</string>
+	<string>https://iterm2.com/appcasts/testing.xml?shard=31</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-09-18T14:57:14Z</date>
+	<date>2016-09-25T12:45:11Z</date>
+	<key>SUSendProfileInfo</key>
+	<false/>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -3097,6 +3072,6 @@
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>iTerm Version</key>
-	<string>3.0.9</string>
+	<string>3.0.10</string>
 </dict>
 </plist>
