@@ -14,7 +14,7 @@ set guioptions=none
 " color
 set background=dark
 " colorscheme molokai
-colorscheme solarized
+colorscheme onedark
 
 " font
 if s:is_windows
