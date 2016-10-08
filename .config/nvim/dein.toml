@@ -1135,6 +1135,11 @@ on_ft = 'plantuml'
 repo = 'dzeban/vim-log-syntax'
 on_ft = 'log'
 
+# ==================== Filetype (Vue) ============ {{{1
+[[plugins]]
+repo = 'posva/vim-vue'
+on_ft = 'vue'
+
 # ==================== Filetype (javascript) ===== {{{1
 [[plugins]]
 repo = 'pangloss/vim-javascript'
