@@ -158,6 +158,7 @@ ghq get https://bitbucket.org/yukimemi/nicodown.git
 ghq get https://bitbucket.org/yukimemi/electron.git
 ghq get https://bitbucket.org/yukimemi/mermaid.git
 ghq get https://bitbucket.org/yukimemi/tswsh.git
+ghq get https://bitbucket.org/yukimemi/fcon.git
 ghq get https://bitbucket.org/yukimemi/yukimemi.git # not use !
 git clone https://bitbucket.org/yukimemi/yukimemi.git themes/yukimemi
 
