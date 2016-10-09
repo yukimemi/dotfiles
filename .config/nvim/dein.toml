@@ -509,6 +509,34 @@ lazy = 1
 repo = 'tyru/open-browser.vim'
 lazy = 1
 
+[[plugins]]
+repo = 'autodate.vim'
+hook_add = '''
+  let g:autodate_format = "%Y/%m/%d %H:%M:%S"
+  let g:autodate_keyword_pre  = "Last Change *:"
+  let g:autodate_keyword_post = "."
+'''
+
+[[plugins]]
+repo = 'sjl/gundo.vim'
+if = "has('python')"
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+[[plugins]]
+repo = 'Chiel92/vim-autoformat'
+hook_add = '''
+  let g:autoformat_autoindent = 0
+  let g:autoformat_retab = 0
+  let g:autoformat_remove_trailing_spaces = 0
+  au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
+  au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
+  nnoremap [Space]f :<C-u>Autoformat<CR>
+'''
+
+[[plugins]]
+repo = 'itmammoth/doorboy.vim'
 
 # ==================== Unite ===================== {{{1
 [[plugins]]
@@ -1149,17 +1177,17 @@ on_ft = ['javascript', 'javascript.jsx']
 # repo = 'jason0x43/vim-js-indent'
 # on_ft = 'javascript'
 
-[[plugins]]
-repo = 'mxw/vim-jsx'
-on_ft = ['javascript', 'javascript.jsx', 'typescript']
-
-[[plugins]]
-repo = 'othree/yajs.vim'
-on_ft = ['javascript', 'javascript.jsx', 'typescript']
+# [[plugins]]
+# repo = 'mxw/vim-jsx'
+# on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
 [[plugins]]
 repo = 'maxmellon/vim-jsx-pretty'
 on_ft = ['javascript', 'javascript.jsx', 'typescript']
+
+# [[plugins]]
+# repo = 'othree/yajs.vim'
+# on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
 [[plugins]]
 repo = 'othree/javascript-libraries-syntax.vim'
@@ -1194,6 +1222,11 @@ on_ft = ['typescript']
 hook_add = '''
   au MyAutoCmd FileType typescript nnoremap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
 '''
+
+# ==================== Filetype (coffee-script) == {{{1
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+on_ft = 'coffee'
 
 # ==================== After ftplugin ============ {{{1
 [ftplugin]
