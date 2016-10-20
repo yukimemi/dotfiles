@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2016/07/03 17:51:50.
+" Last Change : 2016/10/20 12:52:12.
 " =============================================================================
 
 " Init: {{{1
@@ -51,6 +51,7 @@ let $BACKUP_PATH = expand('$CACHE/vim/back')
 
 " Add runtimepath for windows.
 if g:is_windows
+  execute 'set runtimepath+=' . $VIM_PATH
   execute 'set runtimepath+=' . $VIM_PATH . '/after'
 endif
 
