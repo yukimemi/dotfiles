@@ -49,8 +49,7 @@
     ]
   docblockr: {}
   editor:
-    fontFamily: "Ricty Diminished"
-    fontSize: 13
+    fontFamily: "Ricty Diminished Discord"
     invisibles: {}
     preferredLineLength: 100
     showIndentGuide: true

@@ -28,8 +28,8 @@ if s:is_windows
   " set gfw=Ricty_Diminished_Discord:h9:cSHIFTJIS
   set rop=type:directx
 else
-  set gfn=Ricty_Diminished:h18
-  set gfw=Ricty_Diminished:h18
+  set gfn=Ricty\ Diminished\ Discord\ Regular:h18
+  set gfw=Ricty\ Diminished\ Discord\ Regular:h18
 endif
 
 " only mac
