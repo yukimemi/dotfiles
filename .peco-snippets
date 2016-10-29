@@ -73,6 +73,7 @@ ghq get https://github.com/yukimemi/makejscript.git
 ghq get https://github.com/yukimemi/spyrun.git
 ghq get https://github.com/yukimemi/vim-jsfmt.git
 ghq get https://github.com/yukimemi/imexpand.git
+ghq get https://github.com/yukimemi/gfi.git
 # others
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
@@ -134,6 +135,7 @@ ghq get https://github.com/altercation/solarized
 ghq get https://github.com/nathanbuchar/atom-one-dark-terminal
 ghq get https://github.com/bokuweb/ithildin
 ghq get https://github.com/k0kubun/Nocturn
+ghq get https://github.com/erukiti/tomato
 
 # bitbucket
 ghq get https://bitbucket.org/yukimemi/haskell.git
@@ -175,7 +177,8 @@ go get -u github.com/yukimemi/spyrun/cmd/spyrun
 go get -u github.com/jessevdk/go-flags
 go get -u github.com/umisama/golog
 go get -u github.com/smartystreets/goconvey
-go get -u github.com/mitchellh/gox && gox -build-toolchain
+# go get -u github.com/mitchellh/gox && gox -build-toolchain
+go get -u github.com/mitchellh/gox
 go get -u github.com/laher/goxc
 go get -u github.com/kr/godep
 go get -u github.com/spf13/hugo
@@ -228,7 +231,8 @@ git config --global ghq.root ~/.ghq/src
 
 # ievms
 curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | bash
-curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="11" bash
+curl -s https://raw.githubusercontent.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="EDGE" bash
+open https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/
 
 # neobundle update
 vim -g -f -c "silent exe 'NeoBundleUpdate | q'" &> /dev/null

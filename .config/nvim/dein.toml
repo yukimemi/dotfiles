@@ -225,7 +225,8 @@ hook_add = '''
 
   let g:neocomplete#force_omni_input_patterns.typescript = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
   let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-  let g:neocomplete#force_omni_input_patterns.go = '[^. *\t]\.\w*\|\h\w*::'
+  let g:neocomplete#force_omni_input_patterns.go = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  " let g:neocomplete#force_omni_input_patterns.go = '[^. *\t]\.\w*\|\h\w*::'
 '''
 
 [[plugins]]
@@ -264,6 +265,9 @@ on_ft = 'go'
 build = 'make'
 hook_add = '''
   let g:deoplete#sources#go#use_cache = 1
+  let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
+  let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+  let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 '''
 
 # [[plugins]]
@@ -273,6 +277,9 @@ hook_add = '''
 # on_ft = ['javascript', 'typescript']
 # build = 'npm install -g tern'
 
+# [[plugins]]
+# repo = 'maralla/completor.vim'
+# if = "has('python')"
 
 # ==================== Utility =================== {{{1
 [[plugins]]
@@ -293,7 +300,7 @@ hook_add = '''
   if g:is_windows
     let g:unite_kind_file_use_trashbox = 1
   endif
-  nnoremap <silent> [Space]v :<C-u>VimFilerBufferDir -explorer -find<CR>
+  nnoremap <silent> [Space]v :<C-u>VimFilerBufferDir -explorer -find -create<CR>
 '''
 
 [[plugins]]
@@ -541,6 +548,20 @@ repo = 'itmammoth/doorboy.vim'
 [[plugins]]
 repo = 'mattn/vim-sqlfmt'
 on_ft = 'sql'
+
+[[plugins]]
+repo = 'neomake/neomake'
+depends = 'vim-go'
+hook_add = '''
+  au MyAutoCmd BufWritePost *.go Neomake
+  let s:goargs = go#package#ImportPath(expand('%:p:h'))
+  let g:neomake_go_errcheck_maker = {
+        \ 'args': ['-abspath', s:goargs],
+        \ 'append_file': 0,
+        \ 'errorformat': '%f:%l:%c:\ %m, %f:%l:%c\ %#%m',
+        \ }
+  " let g:neomake_go_enabled_makers = ['golint', 'govet']
+'''
 
 # ==================== Unite ===================== {{{1
 [[plugins]]
@@ -1235,6 +1256,3 @@ on_ft = 'coffee'
 # ==================== After ftplugin ============ {{{1
 [ftplugin]
 _ = '''
-  setl formatoptions-=ro
-'''
-
