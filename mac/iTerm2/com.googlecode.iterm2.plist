@@ -2955,7 +2955,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>9EF912C9-1379-48DA-81F0-5510CEEF79A9</string>
 	<key>NoSyncLastTipTime</key>
-	<real>497711832.14674002</real>
+	<real>499399105.70557302</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2973,6 +2973,10 @@
 		<string>0003</string>
 		<string>0004</string>
 		<string>0005</string>
+		<string>0006</string>
+		<string>0007</string>
+		<string>0008</string>
+		<string>0009</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
@@ -3042,7 +3046,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-10-08T05:26:19Z</date>
+	<date>2016-10-22T00:56:38Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -3084,7 +3088,7 @@
 	<key>WindowStyle</key>
 	<integer>0</integer>
 	<key>WordCharacters</key>
-	<string>/-+\~_.</string>
+	<string></string>
 	<key>iTerm Version</key>
 	<string>3.0.10</string>
 </dict>
