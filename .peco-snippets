@@ -136,6 +136,7 @@ ghq get https://github.com/nathanbuchar/atom-one-dark-terminal
 ghq get https://github.com/bokuweb/ithildin
 ghq get https://github.com/k0kubun/Nocturn
 ghq get https://github.com/erukiti/tomato
+ghq get https://github.com/hnakamur/execcommandexample
 
 # bitbucket
 ghq get https://bitbucket.org/yukimemi/haskell.git
