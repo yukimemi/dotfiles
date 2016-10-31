@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/10/20 12:20:25.
+# Last Change : 2016/10/31 22:51:31.
 # =============================================================================
 
 [[plugins]]
@@ -162,8 +162,8 @@ if = "has('nvim')"
 on_i = 1
 hook_add = '''
   let g:deoplete#enable_at_startup = 1
-  let g:deoplete#omni_patterns = {}
-  let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
+  " let g:deoplete#omni_patterns = {}
+  " let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
 '''
 
 [[plugins]]
@@ -346,6 +346,9 @@ hook_source = '''
 [[plugins]]
 repo = 'Konfekt/FastFold'
 on_path = '.*'
+hokk_add = '''
+  let g:fastfold_savehook = 0
+'''
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
@@ -553,7 +556,7 @@ on_ft = 'sql'
 repo = 'neomake/neomake'
 depends = 'vim-go'
 hook_add = '''
-  au MyAutoCmd BufWritePost *.go Neomake
+  " au MyAutoCmd BufWritePost *.go Neomake
   let s:goargs = go#package#ImportPath(expand('%:p:h'))
   let g:neomake_go_errcheck_maker = {
         \ 'args': ['-abspath', s:goargs],
@@ -562,6 +565,9 @@ hook_add = '''
         \ }
   " let g:neomake_go_enabled_makers = ['golint', 'govet']
 '''
+
+[[plugins]]
+repo = 'w0rp/ale'
 
 # ==================== Unite ===================== {{{1
 [[plugins]]
@@ -1109,6 +1115,11 @@ hook_add = '''
   let g:go_highlight_operators = 1
   let g:go_highlight_build_constraints = 1
 
+  let g:go_metalinter_autosave = 0
+  au MyAutoCmd BufWritePost *.go GoMetaLinter
+  let g:go_fmt_autosave = 0
+  " au MyAutoCmd BufWritePre *.go silent GoFmt
+
   au MyAutoCmd BufNew,BufRead *.go call s:my_go_settings()
 
   function! s:my_go_settings() abort
@@ -1256,3 +1267,6 @@ on_ft = 'coffee'
 # ==================== After ftplugin ============ {{{1
 [ftplugin]
 _ = '''
+  set formatoptions-=ro
+'''
+
