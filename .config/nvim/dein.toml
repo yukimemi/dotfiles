@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/10/31 22:51:31.
+# Last Change : 2016/11/17 08:13:12.
 # =============================================================================
 
 [[plugins]]
@@ -307,7 +307,8 @@ hook_add = '''
 repo = 'thinca/vim-submode'
 hook_add = '''
   let g:submode_leave_with_key = 1
-
+'''
+hook_source = '''
   call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
   call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
   call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
@@ -434,7 +435,7 @@ hook_add = '''
 [[plugins]]
 repo = 'thinca/vim-singleton'
 if = "!has('nvim')"
-hook_add = '''
+hook_source = '''
   call singleton#enable()
 '''
 
@@ -555,7 +556,7 @@ on_ft = 'sql'
 [[plugins]]
 repo = 'neomake/neomake'
 depends = 'vim-go'
-hook_add = '''
+hook_source = '''
   " au MyAutoCmd BufWritePost *.go Neomake
   let s:goargs = go#package#ImportPath(expand('%:p:h'))
   let g:neomake_go_errcheck_maker = {
@@ -1179,6 +1180,7 @@ hook_source = '''
   endfunction
   " au MyAutoCmd BufWritePost *.ps1 call <SID>addHeaderPs1(0)
   au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
+  au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0)
 '''
 
 
