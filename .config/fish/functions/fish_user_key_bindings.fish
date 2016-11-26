@@ -34,4 +34,6 @@ function fish_user_key_bindings
   bind \ch tmux_previous_window
   bind \cl tmux_next_window
 
+  bind so tmux_resize_pane_zoom
+
 end
