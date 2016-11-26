@@ -1,1 +1,0 @@
-/Users/yukimemi/.config/fisherman/gi/functions/gi.fish
