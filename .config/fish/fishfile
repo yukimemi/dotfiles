@@ -1,9 +1,11 @@
-fisherman/await
 oh-my-fish/plugin-brew
-fisherman/fzf
 fisherman/getopts
 oh-my-fish/plugin-gi
+fisherman/git_util
+fisherman/host_info
+fisherman/humanize_duration
 fisherman/last_job_id
-oh-my-fish/plugin-peco
-oh-my-fish/theme-robbyrussell
+fisherman/pwd_info
+fisherman/pwd_is_home
+fisherman/simple
 fisherman/z
