@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/11/18 09:12:05.
+# Last Change : 2016/11/25 15:32:56.
 # =============================================================================
 
 [[plugins]]
@@ -1265,6 +1265,11 @@ hook_add = '''
 [[plugins]]
 repo = 'kchmck/vim-coffee-script'
 on_ft = 'coffee'
+
+# ==================== Filetype (fish-shell) ===== {{{1
+[[plugins]]
+repo = 'dag/vim-fish'
+on_ft = 'fish'
 
 # ==================== After ftplugin ============ {{{1
 [ftplugin]
