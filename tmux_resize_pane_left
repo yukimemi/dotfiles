@@ -1,0 +1,1 @@
+bind -m insert s delete-char force-repaint
