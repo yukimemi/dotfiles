@@ -339,3 +339,6 @@ brew cask install tickeys
 # install fisherman
 curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisherman
 
+# install fzy
+brew tap jhawthorn/fzy; and brew install fzy
+
