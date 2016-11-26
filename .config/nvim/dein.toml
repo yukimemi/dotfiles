@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/11/25 15:32:56.
+# Last Change : 2016/11/27 00:35:24.
 # =============================================================================
 
 [[plugins]]
@@ -482,6 +482,10 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'basyura/twibill.vim'
+lazy = 1
+
+[[plugins]]
 repo = 'basyura/TweetVim''
 depends = ['twibill.vim', 'open-browser.vim', 'bitly.vim', 'favstar-vim', 'webapi-vim']
 on_cmd = ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay']
@@ -507,10 +511,6 @@ hook_add = '''
   "let g:tweetvim_display_icon = 1
   let g:tweetvim_async_post = 1
 '''
-
-[[plugins]]
-repo = 'basyura/twibill.vim'
-lazy = 1
 
 [[plugins]]
 repo = 'mattn/webapi-vim'
