@@ -22,6 +22,7 @@ function fish_user_key_bindings
 
   # filter command.
   bind -M insert \cr __filter_command_history_select
+  bind -M insert \cs __filter_command_shell_snippets
   bind sul __filter_command_history_execute
 
   ### fzf ###
