@@ -1,0 +1,1 @@
+/Users/yukimemi/.config/fisherman/fzf/functions/__fzfescape.fish
