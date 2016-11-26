@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2016/10/20 12:52:12.
+" Last Change : 2016/11/25 15:33:51.
 " =============================================================================
 
 " Init: {{{1
@@ -321,6 +321,7 @@ au MyAutoCmd BufNewFile,BufRead *.xml setl ft=xml
 au MyAutoCmd BufNewFile,BufRead *.bat setl ft=dosbatch
 au MyAutoCmd BufNewFile,BufRead *.html setl ft=html
 au MyAutoCmd BufNewFile,BufRead *.json setl ft=json
+au MyAutoCmd BufNewFile,BufRead *.fish setl ft=fish
 
 
 " Mapping: {{{1
