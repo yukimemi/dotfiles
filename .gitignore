@@ -37,3 +37,6 @@ mac/BetterTouchTool/Logs/
 blob-store/
 .atom/.apmrc
 
+# fish
+fishd.*
+

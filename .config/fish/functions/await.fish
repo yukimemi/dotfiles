@@ -1,0 +1,1 @@
+/Users/yukimemi/.config/fisherman/await/functions/await.fish

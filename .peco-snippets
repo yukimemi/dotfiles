@@ -336,3 +336,6 @@ curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 # Tickeys
 brew cask install tickeys
 
+# install fisherman
+curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisherman
+
