@@ -12,6 +12,9 @@ set -x PAGER less
 
 # GOPATH
 set -x GOPATH ~/.ghq
+set -x PATH $GOPATH/bin $PATH
+set -x PATH ~/bin $PATH
+set -x PATH ~/bin/scripts $PATH
 
 ### Util functions. {{{1
 # cd and ls.
@@ -31,6 +34,8 @@ end
 alias ghl __filter_command_ghq
 
 ### Abbr. {{{1
+abbr -a fvim __filter_command_nvim
+abbr -a fmvim __filter_command_mvim
 
 ### Options. {{{1
 # Use fish_vi_key_bindings.
