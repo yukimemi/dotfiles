@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2016/11/25 15:33:51.
+" Last Change : 2016/12/05 13:28:54.
 " =============================================================================
 
 " Init: {{{1
@@ -151,6 +151,8 @@ if dein#load_state(s:dein_dir)
   call dein#end()
   call dein#save_state()
 endif
+call dein#call_hook('source')
+
 " Check and install.
 if has('vim_starting') && dein#check_install()
   call dein#install()
