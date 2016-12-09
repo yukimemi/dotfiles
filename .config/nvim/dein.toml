@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/12/05 13:15:53.
+# Last Change : 2016/12/09 10:17:46.
 # =============================================================================
 
 [[plugins]]
@@ -434,6 +434,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'thinca/vim-singleton'
+if = "!has('nvim')"
 hook_source = '''
   call singleton#enable()
 '''
