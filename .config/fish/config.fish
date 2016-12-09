@@ -36,6 +36,7 @@ alias ghl __filter_command_ghq
 ### Abbr. {{{1
 abbr -a fvim __filter_command_nvim
 abbr -a fmvim __filter_command_mvim
+abbr -a dup 'nvim -c "silent! call dein#update() | q"'
 
 ### Options. {{{1
 # Use fish_vi_key_bindings.
