@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2016/12/05 13:28:54.
+" Last Change : 2016/12/09 16:19:07.
 " =============================================================================
 
 " Init: {{{1
@@ -129,9 +129,9 @@ endfunction
 " Plugin: {{{1
 " Use dein.
 if has('nvim')
-  let s:cache_home = expand('~/.cache/nvim') 
+  let s:cache_home = expand('~/.cache/nvim')
 else
-  let s:cache_home = expand('~/.cache') 
+  let s:cache_home = expand('~/.cache/vim')
 endif
 
 let s:dein_dir = s:cache_home . '/dein'
@@ -158,7 +158,7 @@ if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
 
-" After dein
+" After dein.
 filetype plugin indent on
 syntax enable
 
