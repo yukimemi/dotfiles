@@ -21,6 +21,9 @@ set -x PATH ~/bin/scripts $PATH
 # coreutils. {{{2
 set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
 
+# yarn. {{{2
+set -x PATH $PATH (yarn global bin)
+
 ### Util functions. {{{1
 # cd and ls.
 function cd
