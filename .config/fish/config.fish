@@ -4,17 +4,22 @@ for func in ~/.config/fish/my_functions/*.fish
 end
 
 ### Environment. {{{1
-# Basic.
+# Basic. {{{2
 set -x SHELL fish
 set -x EDITOR nvim
 set -x VISUAL nvim
 set -x PAGER less
 
-# GOPATH
+# GOPATH. {{{2
 set -x GOPATH ~/.ghq
 set -x PATH $GOPATH/bin $PATH
+
+# HOME. {{{2
 set -x PATH ~/bin $PATH
 set -x PATH ~/bin/scripts $PATH
+
+# coreutils. {{{2
+set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
 
 ### Util functions. {{{1
 # cd and ls.
@@ -32,6 +37,9 @@ end
 
 ### Alias. {{{1
 alias ghl __filter_command_ghq
+alias cp "cp -v"
+alias mv "mv -v"
+alias rm "rm -v"
 
 ### Abbr. {{{1
 abbr -a fvim __filter_command_nvim
