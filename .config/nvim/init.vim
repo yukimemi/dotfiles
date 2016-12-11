@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2016/12/09 16:19:07.
+" Last Change : 2016/12/12 01:08:16.
 " =============================================================================
 
 " Init: {{{1
@@ -125,6 +125,11 @@ function! s:deleteOtherLine() "{{{2
   %g!//d
 endfunction
 
+function s:updateColorScheme() "{{{2
+  if &readonly && &buftype ==# ""
+    colorscheme github
+  endif
+endfunction
 
 " Plugin: {{{1
 " Use dein.
@@ -497,6 +502,9 @@ au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<CR>
 
 " For git commit.
 au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
+
+" Change colorscheme for readonly.
+au MyAutoCmd BufReadPost,BufEnter * call s:updateColorScheme()
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
 

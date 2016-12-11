@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/12/09 10:17:46.
+# Last Change : 2016/12/12 00:37:21.
 # =============================================================================
 
 [[plugins]]
@@ -9,19 +9,25 @@ repo = 'Shougo/dein.vim'
 
 # ==================== Visual ==================== {{{1
 [[plugins]]
-repo = 'aereal/vim-colors-japanesque'
-
-[[plugins]]
 repo = 'tomasr/molokai'
+lazy = 1
 
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
+lazy = 1
 
 [[plugins]]
 repo = 'lifepillar/vim-solarized8'
+lazy = 1
 
 [[plugins]]
 repo = 'joshdick/onedark.vim'
+
+[[plugins]]
+repo = 'aereal/vim-colors-japanesque'
+
+[[plugins]]
+repo = 'endel/vim-github-colorscheme'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
@@ -700,6 +706,9 @@ on_source = 'unite.vim'
 [[plugins]]
 repo = 'ujihisa/unite-colorscheme'
 on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
 
 # ==================== Search ==================== {{{1
 [[plugins]]
