@@ -434,11 +434,10 @@ nnoremap sbq :<C-u>q!<CR>
 
 "  for git mergetool {{{2
 if &diff
-  nnoremap <buffer> <Leader>1 :diffget LOCAL<CR>
-  nnoremap <buffer> <Leader>2 :diffget BASE<CR>
-  nnoremap <buffer> <Leader>3 :diffget REMOTE<CR>
-  nnoremap <buffer> <Leader>u :<C-u>diffupdate<CR>
-  nnoremap <buffer> u u:<C-u>diffupdate<CR>
+  nnoremap <Leader>1 :diffget LOCAL<CR>
+  nnoremap <Leader>2 :diffget BASE<CR>
+  nnoremap <Leader>3 :diffget REMOTE<CR>
+  nnoremap <Leader>u :<C-u>diffupdate<CR>
 endif
 
 " hilight over 100 column {{{2
