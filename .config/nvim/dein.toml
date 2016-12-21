@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/12/15 11:34:49.
+# Last Change : 2016/12/21 11:14:56.
 # =============================================================================
 
 [[plugins]]
@@ -33,7 +33,7 @@ repo = 'endel/vim-github-colorscheme'
 repo = 'itchyny/lightline.vim'
 hook_add = '''
   let g:lightline = {
-        \ 'colorscheme': 'jellybeans',
+        \ 'colorscheme': 'onedark',
         \ 'mode_map': {
         \   'n' : 'N',
         \   'i' : 'I',
