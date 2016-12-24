@@ -12,17 +12,13 @@ set -x PAGER less
 
 # GOPATH. {{{2
 set -x GOPATH ~/.ghq
-set -x PATH $GOPATH/bin $PATH
 
-# HOME. {{{2
-set -x PATH ~/bin $PATH
-set -x PATH ~/bin/scripts $PATH
-
-# coreutils. {{{2
-set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
-
-# yarn. {{{2
-set -x PATH $PATH (yarn global bin)
+# PATH. {{{2
+set -U fish_user_paths ~/bin
+set -U fish_user_paths ~/bin/scripts $fish_user_paths
+set -U fish_user_paths $GOPATH/bin $fish_user_paths
+set -U fish_user_paths /usr/local/opt/coreutils/libexec/gnubin $fish_user_paths
+set -U fish_user_paths (yarn global bin) $fish_user_paths
 
 ### Util functions. {{{1
 # cd and ls.
