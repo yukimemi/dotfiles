@@ -200,6 +200,7 @@ go get -u github.com/pranavraja/tldr
 go get -u github.com/ejcx/passgo
 go get -u github.com/massa142/hngo
 go get -u github.com/massa142/gotebu
+go get -u github.com/mattn/gobanner
 
 # gore
 go get -u github.com/motemen/gore && go get -u github.com/nsf/gocode && go get -u github.com/k0kubun/pp && go get -u golang.org/x/tools/cmd/godoc
