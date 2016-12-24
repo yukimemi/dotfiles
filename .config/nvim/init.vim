@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2016/12/21 12:48:39.
+" Last Change : 2016/12/23 17:53:45.
 " =============================================================================
 
 " Init: {{{1
@@ -503,7 +503,7 @@ au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<CR>
 au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
 
 " Change colorscheme for readonly.
-au MyAutoCmd BufReadPost,BufEnter * call s:updateColorScheme()
+" au MyAutoCmd BufReadPost,BufEnter * call s:updateColorScheme()
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
 
