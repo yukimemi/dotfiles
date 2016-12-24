@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/12/21 12:47:58.
+# Last Change : 2016/12/23 17:55:59.
 # =============================================================================
 
 [[plugins]]
@@ -580,6 +580,10 @@ repo = 'w0rp/ale'
 repo = 'shinespark/vim-list2tree'
 on_cmd = ['List2Tree']
 
+[[plugins]]
+repo = 'yuttie/comfortable-motion.vim'
+
+
 # ==================== Unite ===================== {{{1
 [[plugins]]
 repo = 'Shougo/unite.vim'
@@ -1129,7 +1133,8 @@ hook_add = '''
   let g:go_highlight_operators = 1
   let g:go_highlight_build_constraints = 1
 
-  let g:go_metalinter_autosave = 0
+  " let g:go_metalinter_autosave = 0
+  let g:go_metalinter_autosave = 1
   au MyAutoCmd BufWritePost *.go GoMetaLinter
   let g:go_fmt_autosave = 0
   " au MyAutoCmd BufWritePre *.go silent GoFmt
