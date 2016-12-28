@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/12/23 17:55:59.
+# Last Change : 2016/12/28 14:58:56.
 # =============================================================================
 
 [[plugins]]
@@ -583,6 +583,9 @@ on_cmd = ['List2Tree']
 [[plugins]]
 repo = 'yuttie/comfortable-motion.vim'
 
+[[plugins]]
+repo = 'tyru/capture.vim'
+on_cmd = ['Capture']
 
 # ==================== Unite ===================== {{{1
 [[plugins]]
@@ -853,10 +856,10 @@ repo = 'kana/vim-textobj-entire'
 depends = 'vim-textobj-user'
 on_map = '<Plug>'
 hook_add = '''
-  map ae <Plug>(textobj-entire-a)
-  nunmap ae
-  map ie <Plug>(textobj-entire-i)
-  nunmap ie
+  omap ae <Plug>(textobj-entire-a)
+  xmap ae <Plug>(textobj-entire-a)
+  omap ie <Plug>(textobj-entire-i)
+  xmap ie <Plug>(textobj-entire-i)
 '''
 
 [[plugins]]
