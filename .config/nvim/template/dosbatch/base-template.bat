@@ -14,12 +14,12 @@ REM ======================================================================
 pushd "%cmdDir%"
 
 {{_cursor_}}
+set exitCode=%errorlevel%
 
-popd
-
-echo Exit. [ExitCode: %errorlevel%]
+echo Exit. [ExitCode: %exitCode%]
 
 pause
+popd
 
 exit /b %errorlevel%
 
