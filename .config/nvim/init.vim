@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2016/12/23 17:53:45.
+" Last Change : 2016/12/29 12:32:53.
 " =============================================================================
 
 " Init: {{{1
@@ -494,7 +494,7 @@ au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 
 " For swap.
 " http://itchyny.hatenablog.com/entry/2014/12/25/090000
-au MyAutoCmd SwapExists * let v:swapchoice = 'o'
+" au MyAutoCmd SwapExists * let v:swapchoice = 'o'
 
 " Escape cmd win.
 au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<CR>
