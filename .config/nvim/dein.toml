@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/12/28 14:58:56.
+# Last Change : 2016/12/29 23:52:03.
 # =============================================================================
 
 [[plugins]]
@@ -560,32 +560,32 @@ repo = 'mattn/vim-sqlfmt'
 on_ft = 'sql'
 
 [[plugins]]
-repo = 'neomake/neomake'
-depends = 'vim-go'
-hook_source = '''
-  " au MyAutoCmd BufWritePost *.go Neomake
-  let s:goargs = go#package#ImportPath(expand('%:p:h'))
-  let g:neomake_go_errcheck_maker = {
-        \ 'args': ['-abspath', s:goargs],
-        \ 'append_file': 0,
-        \ 'errorformat': '%f:%l:%c:\ %m, %f:%l:%c\ %#%m',
-        \ }
-  " let g:neomake_go_enabled_makers = ['golint', 'govet']
-'''
-
-[[plugins]]
 repo = 'w0rp/ale'
+hook_add = '''
+  nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+  nmap <silent> <C-j> <Plug>(ale_next_wrap)
+'''
 
 [[plugins]]
 repo = 'shinespark/vim-list2tree'
 on_cmd = ['List2Tree']
 
-[[plugins]]
-repo = 'yuttie/comfortable-motion.vim'
+# [[plugins]]
+# repo = 'yuttie/comfortable-motion.vim'
 
 [[plugins]]
 repo = 'tyru/capture.vim'
 on_cmd = ['Capture']
+
+[[plugins]]
+repo = 'taku-o/vim-ro-when-swapfound'
+hook_add = '''
+  function! s:swapChoice() abort
+    ToggleSwapCheck
+    :e
+  endfunction
+  com! SwapChoice call s:swapChoice()
+'''
 
 # ==================== Unite ===================== {{{1
 [[plugins]]
