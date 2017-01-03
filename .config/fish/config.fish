@@ -35,7 +35,6 @@ function fish_right_prompt
 end
 
 ### Alias. {{{1
-alias ghl __filter_command_ghq
 alias cp "cp -v"
 alias mv "mv -v"
 alias rm "rm -v"
@@ -43,6 +42,8 @@ alias rm "rm -v"
 ### Abbr. {{{1
 abbr -a fvim __filter_command_nvim
 abbr -a fmvim __filter_command_mvim
+abbr -a ghl __filter_command_ghq
+abbr -a j __filter_command_z
 abbr -a dup 'nvim -c "silent! call dein#update() | q"'
 
 ### Options. {{{1
