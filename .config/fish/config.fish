@@ -37,7 +37,7 @@ end
 ### Alias. {{{1
 alias cp "cp -v"
 alias mv "mv -v"
-alias rm "rm -v"
+alias rm "gomi -s"
 
 ### Abbr. {{{1
 abbr -a fvim __filter_command_nvim
