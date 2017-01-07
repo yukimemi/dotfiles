@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2016/12/29 23:52:03.
+# Last Change : 2017/01/06 23:43:21.
 # =============================================================================
 
 [[plugins]]
@@ -562,6 +562,9 @@ on_ft = 'sql'
 [[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
+  let g:ale_linters = {
+        \ 'go': ['golint', 'go vet', 'goimports']
+        \ }
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
 '''
