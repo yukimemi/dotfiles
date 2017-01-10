@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/01/06 23:43:21.
+# Last Change : 2017/01/11 07:54:02.
 # =============================================================================
 
 [[plugins]]
@@ -1139,10 +1139,9 @@ hook_add = '''
   let g:go_highlight_operators = 1
   let g:go_highlight_build_constraints = 1
 
-  " let g:go_metalinter_autosave = 0
   let g:go_metalinter_autosave = 1
-  au MyAutoCmd BufWritePost *.go GoMetaLinter
-  let g:go_fmt_autosave = 0
+  let g:go_fmt_autosave = 1
+  " au MyAutoCmd BufWritePost *.go GoMetaLinter
   " au MyAutoCmd BufWritePre *.go silent GoFmt
 
   au MyAutoCmd BufNew,BufRead *.go call s:my_go_settings()
