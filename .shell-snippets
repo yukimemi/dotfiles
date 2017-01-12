@@ -141,6 +141,7 @@ ghq get https://github.com/hnakamur/execcommandexample
 ghq get https://github.com/MaxMEllon/.dotfiles
 ghq get https://github.com/coreos/etcd
 ghq get https://github.com/mattn/pcd
+ghq get https://github.com/ashitani/golangtips
 
 # bitbucket
 ghq get https://bitbucket.org/yukimemi/haskell.git
