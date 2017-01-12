@@ -1,5 +1,6 @@
 function __filter_command_nvim
-  find . -type f | __filter_command | read -l file
+  # find . -type f | __filter_command | read -l file
+  files -A | __filter_command | read -l file
   and echo "
   ------
   Edit file: $file
