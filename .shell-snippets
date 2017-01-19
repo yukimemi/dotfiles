@@ -63,7 +63,7 @@ ghq get https://github.com/yukimemi/gitstatus.git
 ghq get https://github.com/yukimemi/coffee-script-on-jscript.git
 ghq get https://github.com/yukimemi/ActiveXFileWrapper.js.git
 ghq get https://github.com/yukimemi/copybackup.git
-ghq get https://github.com/yukimemi/gocore.git
+ghq get https://github.com/yukimemi/core.git
 ghq get https://github.com/yukimemi/yukimemi.github.io.git
 ghq get https://github.com/yukimemi/Brewfile.git
 ghq get https://github.com/yukimemi/homebrew-custom.git
@@ -142,6 +142,7 @@ ghq get https://github.com/MaxMEllon/.dotfiles
 ghq get https://github.com/coreos/etcd
 ghq get https://github.com/mattn/pcd
 ghq get https://github.com/ashitani/golangtips
+ghq get https://github.com/rhysd/dogfiles
 
 # bitbucket
 ghq get https://bitbucket.org/yukimemi/haskell.git

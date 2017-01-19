@@ -36,13 +36,13 @@ function isLinux
   return (test (uname) != "Darwin")
 end
 
-# Install func. {{{3
+# Install func. {{{2
 function in
-  if which brew
+  if which brew > /dev/null
     brew $argv
-  else if which apt-get
+  else if which apt-get > /dev/null
     apt-get $argv
-  else if which yum
+  else if which yum > /dev/null
     yum $argv
   end
 end
@@ -58,14 +58,23 @@ end
 ### Alias. {{{1
 alias cp "cp -v"
 alias mv "mv -v"
-alias rm "gomi -s"
+alias rm "gomi"
 
 ### Abbr. {{{1
 abbr -a v __filter_command_nvim
 abbr -a fmvim __filter_command_mvim
 abbr -a ghl __filter_command_ghq
 abbr -a j __filter_command_z
+abbr -a r __filter_command_rm
+abbr -a co __filter_command_git_select_branch
+abbr -a gb 'git branch'
+abbr -a gp 'git pull --rebase'
+abbr -a gs 'git status'
+abbr -a gh 'git show'
+abbr -a gd 'git diff'
+abbr -a gk 'git log --graph --pretty'
 abbr -a dup 'nvim -c "silent! call dein#update() | q"'
+abbr -a vdup 'vim -c "silent! call dein#update() | q"'
 
 ### Options. {{{1
 # Use fish_vi_key_bindings.
