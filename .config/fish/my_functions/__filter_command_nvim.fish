@@ -1,10 +1,6 @@
 function __filter_command_nvim
-  # find . -type f | __filter_command | read -l file
-  files -A | __filter_command | read -l file
-  and echo "
-  ------
-  Edit file: $file
-  ------"
-  and nvim $file
+  files -A | __filter_command | read -l line
+  and __echo "Edit" $line
+  and nvim $line
   commandline -f repaint
 end

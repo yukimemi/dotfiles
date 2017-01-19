@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/01/11 07:54:02.
+# Last Change : 2017/01/14 23:27:24.
 # =============================================================================
 
 [[plugins]]
@@ -434,6 +434,11 @@ hook_add = '''
         \       'right_margin': 1,
         \       'stick_to_left': 0,
         \       'ignore_groups': []
+        \   },
+        \ 't': {
+        \       'pattern': "\<tab>",
+        \       'left_margin': 0,
+        \       'right_margin': 0
         \   }
         \ }
 '''
@@ -1121,6 +1126,8 @@ hook_add = '''
 repo = 'cohama/agit.vim'
 on_cmd = 'Agit'
 
+[[plugins]]
+repo = 'rhysd/committia.vim'
 
 # ==================== Filetype (go) ============= {{{1
 [[plugins]]
