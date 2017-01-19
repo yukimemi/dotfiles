@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2016/12/29 12:32:53.
+" Last Change : 2017/01/14 08:50:08.
 " =============================================================================
 
 " Init: {{{1
@@ -147,7 +147,7 @@ endif
 execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 
 let g:dein#install_max_processes = 16
-let g:dein#install_progress_type = 'title'
+" let g:dein#install_progress_type = 'title'
 let g:dein#enable_notification = 1
 let s:toml_file = $VIM_PATH . '/dein.toml'
 if dein#load_state(s:dein_dir)
@@ -356,8 +356,8 @@ noremap gh ^
 noremap gl $
 
 " For tab.
-nnoremap <C-l> gt
-nnoremap <C-h> gT
+nnoremap <silent><C-l> gt
+nnoremap <silent><C-h> gT
 
 " Benri scroll.
 " http://itchyny.hatenablog.com/entry/2016/02/02/210000
@@ -414,16 +414,14 @@ nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
 nnoremap sL <C-w>L
 nnoremap sH <C-w>H
-nnoremap sn gt
-nnoremap sp gT
 nnoremap sr <C-w>r
 nnoremap s= <C-w>=
 nnoremap sw <C-w>w
 nnoremap so <C-w>_<C-w>|
 nnoremap s0 :<C-u>only<CR>
 nnoremap sO :<C-u>tabonly<CR>
-nnoremap sN :<C-u>bn<CR>
-nnoremap sP :<C-u>bp<CR>
+nnoremap sn :<C-u>bn<CR>
+nnoremap sp :<C-u>bp<CR>
 nnoremap st :<C-u>tabnew<CR>
 nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
