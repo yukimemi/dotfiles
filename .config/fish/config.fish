@@ -66,9 +66,14 @@ abbr -a fmvim __filter_command_mvim
 abbr -a ghl __filter_command_ghq
 abbr -a j __filter_command_z
 abbr -a r __filter_command_rm
+abbr -a c __filter_command_cd
+abbr -a b bd
 abbr -a co __filter_command_git_select_branch
+abbr -a ga 'git add'
+abbr -a gc 'git commit'
 abbr -a gb 'git branch'
 abbr -a gp 'git pull --rebase'
+abbr -a gpu 'git push'
 abbr -a gs 'git status'
 abbr -a gh 'git show'
 abbr -a gd 'git diff'
