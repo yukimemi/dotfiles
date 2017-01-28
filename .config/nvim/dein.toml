@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/01/28 23:44:07.
+# Last Change : 2017/01/29 00:19:08.
 # =============================================================================
 
 [[plugins]]
@@ -25,6 +25,9 @@ repo = 'joshdick/onedark.vim'
 
 [[plugins]]
 repo = 'aereal/vim-colors-japanesque'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
 
 [[plugins]]
 repo = 'endel/vim-github-colorscheme'
@@ -301,7 +304,7 @@ on_map = '<Plug>'
 on_path = '.*'
 on_cmd = ['VimFiler', 'VimFilerBufferDir']
 hook_add = '''
-  let g:vimfiler_as_default_explorer = 1
+  " let g:vimfiler_as_default_explorer = 1
   let g:vimfiler_enable_auto_cd = 1
   if g:is_windows
     let g:unite_kind_file_use_trashbox = 1
@@ -598,6 +601,10 @@ hook_add = '''
 [[plugins]]
 repo = 'cocopon/vaffle.vim'
 on_cmd = ['Vaffle']
+
+[[plugins]]
+repo = 'justinmk/vim-dirvish'
+on_cmd = ['Dirvish']
 
 # ==================== Unite ===================== {{{1
 [[plugins]]
