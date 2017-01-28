@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/01/14 08:50:08.
+" Last Change : 2017/01/29 00:17:56.
 " =============================================================================
 
 " Init: {{{1
@@ -261,6 +261,7 @@ set background=dark
 " colorscheme molokai
 " colorscheme solarized8_dark
 colorscheme onedark
+" colorscheme iceberg
 
 " hilight cursorline, cursorcolumn {{{2
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
