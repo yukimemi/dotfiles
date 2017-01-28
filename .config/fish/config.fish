@@ -61,23 +61,47 @@ alias mv "mv -v"
 alias rm "gomi"
 
 ### Abbr. {{{1
-abbr -a v __filter_command_nvim
+abbr -a fv __filter_command_nvim
 abbr -a fmvim __filter_command_mvim
 abbr -a ghl __filter_command_ghq
 abbr -a j __filter_command_z
 abbr -a r __filter_command_rm
 abbr -a c __filter_command_cd
 abbr -a b bd
+abbr -a v nvim
+
+# Git. {{{2
+# checkout
+abbr -a gco 'git checkout'
+abbr -a gcot 'git checkout --theirs'
 abbr -a co __filter_command_git_select_branch
+# add
 abbr -a ga 'git add'
-abbr -a gc 'git commit'
+# commit
+abbr -a gci 'git commit'
+# branch
 abbr -a gb 'git branch'
+abbr -a gba 'git branch -a'
+abbr -a gbd 'git branch -d'
+# pull
 abbr -a gp 'git pull --rebase'
+# push
 abbr -a gpu 'git push'
+# status
 abbr -a gs 'git status'
+# show
 abbr -a gh 'git show'
+# diff
 abbr -a gd 'git diff'
+# rebase
+abbr -a gr 'git rebase'
+abbr -a gri 'git rebase -i'
+# log
+abbr -a gl 'git log'
+abbr -a glo 'git log --oneline'
 abbr -a gk 'git log --graph --pretty'
+
+# vim {{{2
 abbr -a dup 'nvim -c "silent! call dein#update() | q"'
 abbr -a vdup 'vim -c "silent! call dein#update() | q"'
 
