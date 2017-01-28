@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/01/14 23:27:24.
+# Last Change : 2017/01/28 23:44:07.
 # =============================================================================
 
 [[plugins]]
@@ -594,6 +594,10 @@ hook_add = '''
   endfunction
   com! SwapChoice call s:swapChoice()
 '''
+
+[[plugins]]
+repo = 'cocopon/vaffle.vim'
+on_cmd = ['Vaffle']
 
 # ==================== Unite ===================== {{{1
 [[plugins]]
@@ -1305,6 +1309,11 @@ on_ft = 'fish'
 [[plugins]]
 repo = 'rhysd/vim-gfm-syntax'
 on_ft = 'markdown'
+
+# ==================== Filetype (Dockerfile) ===== {{{1
+[[plugins]]
+repo = 'ekalinin/Dockerfile.vim'
+on_ft = 'Dockerfile'
 
 # ==================== After ftplugin ============ {{{1
 [ftplugin]
