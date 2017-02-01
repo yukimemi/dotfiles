@@ -1,0 +1,16 @@
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+#VimFxMarkersContainer .marker {
+  font-size: 14px !important;
+}
+
+/* Make location bar red while in ignore mode */
+#main-window[vimfx-mode="ignore"] #urlbar {
+  background: red !important;
+}
+
+statuspanel label.statuspanel-label {
+  background: linear-gradient(45deg, rgba(22, 22, 22, 0.9), rgba(99, 99, 99, 0.9)) !important;
+  color: whitesmoke !important;
+  font-size: 14px !important;
+}
