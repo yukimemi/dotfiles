@@ -18,7 +18,9 @@ set -U fish_user_paths ~/bin
 set -U fish_user_paths ~/bin/scripts $fish_user_paths
 set -U fish_user_paths $GOPATH/bin $fish_user_paths
 set -U fish_user_paths /usr/local/opt/coreutils/libexec/gnubin $fish_user_paths
-set -U fish_user_paths (yarn global bin) $fish_user_paths
+if which node > /dev/null; and which yarn > /dev/null
+  set -U fish_user_paths (yarn global bin) $fish_user_paths
+end
 
 ### Util functions. {{{1
 # cd and ls. {{{2
@@ -47,6 +49,11 @@ function in
   end
 end
 
+function cli_install -a cmd repo
+  if not which $cmd > /dev/null
+    curl -L git.io/cli | env L=$repo sh
+  end
+end
 
 ### prompt. {{{1
 # right_prompt for pwd and git.
@@ -110,6 +117,6 @@ abbr -a vdup 'vim -c "silent! call dein#update() | q"'
 set -g fish_key_bindings fish_vi_key_bindings
 
 ### Install. {{{1
-# Check go
-
+cli_install ghq motemen/ghq
+cli_install gomi b4b4r07/gomi
 
