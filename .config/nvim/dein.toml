@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/01/29 00:19:08.
+# Last Change : 2017/02/04 09:00:38.
 # =============================================================================
 
 [[plugins]]
@@ -1321,6 +1321,48 @@ on_ft = 'markdown'
 [[plugins]]
 repo = 'ekalinin/Dockerfile.vim'
 on_ft = 'Dockerfile'
+
+# ==================== Filetype (Rust) ===== {{{1
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'
+if = "executable('cargo')"
+hook_add = '''
+  let g:rustfmt_autosave = 1
+'''
+
+[[plugins]]
+repo = 'racer-rust/vim-racer'
+on_ft = 'rust'
+if = "executable('cargo')"
+hook_add = '''
+  let g:racer_experimental_completer = 1
+  setl completeopt=menu,preview
+  au MyAutoCmd FileType rust nmap <buffer> gd <Plug>(rust-def)
+  au MyAutoCmd FileType rust nmap <buffer> gs <Plug>(rust-def-split)
+  au MyAutoCmd FileType rust nmap <buffer> gx <Plug>(rust-def-vertical)
+  au MyAutoCmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
+'''
+
+
+# ==================== Filetype (Haskell) ===== {{{1
+[[plugins]]
+repo = 'eagletmt/ghcmod-vim'
+on_ft = 'haskell'
+if = "executable('stack')"
+build = 'stack install ghc-mod'
+
+[[plugins]]
+repo = 'eagletmt/neco-ghc'
+on_ft = 'haskell'
+
+[[plugins]]
+repo = 'itchyny/vim-haskell-indent'
+on_ft = 'haskell'
+
+[[plugins]]
+repo = 'itchyny/vim-haskell-sort-import'
+on_ft = 'haskell'
 
 # ==================== After ftplugin ============ {{{1
 [ftplugin]
