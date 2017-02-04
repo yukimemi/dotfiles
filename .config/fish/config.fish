@@ -14,12 +14,20 @@ set -x PAGER less
 set -x GOPATH ~/.ghq
 
 # PATH. {{{2
-set -U fish_user_paths ~/bin
-set -U fish_user_paths ~/bin/scripts $fish_user_paths
-set -U fish_user_paths $GOPATH/bin $fish_user_paths
-set -U fish_user_paths /usr/local/opt/coreutils/libexec/gnubin $fish_user_paths
+function __add_fish_user_paths -a addpath
+  if test -d $addpath
+    set -U fish_user_paths $addpath $fish_user_paths
+  end
+end
+
+set -U fish_user_paths
+__add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
+__add_fish_user_paths ~/bin/scripts
+__add_fish_user_paths ~/.local/bin
+__add_fish_user_paths $GOPATH/bin
+__add_fish_user_paths ~/.cargo/bin
 if which node > /dev/null; and which yarn > /dev/null
-  set -U fish_user_paths (yarn global bin) $fish_user_paths
+  __add_fish_user_paths (yarn global bin)
 end
 
 ### Util functions. {{{1
@@ -73,6 +81,7 @@ abbr -a fmvim __filter_command_mvim
 abbr -a ghl __filter_command_ghq
 abbr -a j __filter_command_z
 abbr -a r __filter_command_rm
+abbr -a rr __filter_command_rm_recurse
 abbr -a c __filter_command_cd
 abbr -a b bd
 abbr -a v nvim
