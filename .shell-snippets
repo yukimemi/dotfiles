@@ -367,7 +367,7 @@ curl -L git.io/gomi | bash
 curl https://sh.rustup.rs -sSf | sh
 
 # Install racer and rustfmt
-cargo install rustfmt; and cargo install racer
+cargo install --force rustfmt; and cargo install --force racer; and cargo install --force rusty-tags; and cargo install --force cargo-edit
 
 # Install stack for haskell.
 curl -sSL https://get.haskellstack.org/ | sh

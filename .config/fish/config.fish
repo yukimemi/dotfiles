@@ -1,8 +1,3 @@
-### Load my_functions. {{{1
-for func in ~/.config/fish/my_functions/*.fish
-  source $func
-end
-
 ### Environment. {{{1
 # Basic. {{{2
 set -x SHELL fish
@@ -26,7 +21,7 @@ __add_fish_user_paths ~/bin/scripts
 __add_fish_user_paths ~/.local/bin
 __add_fish_user_paths $GOPATH/bin
 __add_fish_user_paths ~/.cargo/bin
-if which node > /dev/null; and which yarn > /dev/null
+if type -q node; and type -q yarn
   __add_fish_user_paths (yarn global bin)
 end
 
@@ -48,17 +43,17 @@ end
 
 # Install func. {{{2
 function in
-  if which brew > /dev/null
+  if type -q brew
     brew $argv
-  else if which apt-get > /dev/null
+  else if type -q apt-get
     apt-get $argv
-  else if which yum > /dev/null
+  else if type -q yum
     yum $argv
   end
 end
 
 function cli_install -a cmd repo
-  if not which $cmd > /dev/null
+  if not type -q $cmd
     curl -L git.io/cli | env L=$repo sh
   end
 end
@@ -128,4 +123,10 @@ set -g fish_key_bindings fish_vi_key_bindings
 ### Install. {{{1
 cli_install ghq motemen/ghq
 cli_install gomi b4b4r07/gomi
+
+### Install plugin manager. {{{1
+if not test -f /tmp/__fresco_install.fish
+  curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o /tmp/__fresco_install.fish
+  cat /tmp/__fresco_install.fish | fish
+end
 
