@@ -58,6 +58,15 @@ function cli_install -a cmd repo
   end
 end
 
+# stack new. {{{2
+function stacknew -a name
+  if test (count $argv) -ne 1
+    echo "Set create project name."
+  else
+    stack new $name -p "author-email:yukimemi@gmail.com" -p "author-name:yukimemi" -p "category:Development" -p "copyright:(c) 2017, yukimemi" -p "github-username:yukimemi"
+  end
+end
+
 ### prompt. {{{1
 # right_prompt for pwd and git.
 function fish_right_prompt
@@ -69,6 +78,11 @@ end
 alias cp "cp -v"
 alias mv "mv -v"
 alias rm "gomi"
+alias ghc "stack ghc --"
+alias ghci "stack ghci"
+alias stackexec "stack exec"
+alias runghc "stack runghc --"
+alias runhaskell "stack runghc --"
 
 ### Abbr. {{{1
 abbr -a fv __filter_command_nvim
