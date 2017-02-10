@@ -18,9 +18,9 @@ end
 set -U fish_user_paths
 __add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
 __add_fish_user_paths ~/bin/scripts
-__add_fish_user_paths ~/.local/bin
 __add_fish_user_paths $GOPATH/bin
 __add_fish_user_paths ~/.cargo/bin
+__add_fish_user_paths ~/.local/bin
 if type -q node; and type -q yarn
   __add_fish_user_paths (yarn global bin)
 end
@@ -53,6 +53,9 @@ function in
 end
 
 function cli_install -a cmd repo
+  if not test -d ~/.local/bin
+    mkdir -p ~/.local/bin
+  end
   if not type -q $cmd
     curl -L git.io/cli | env L=$repo sh
   end
@@ -137,6 +140,7 @@ set -g fish_key_bindings fish_vi_key_bindings
 ### Install. {{{1
 cli_install ghq motemen/ghq
 cli_install gomi b4b4r07/gomi
+cli_install jvgrep mattn/jvgrep
 
 ### Install plugin manager. {{{1
 if not test -f /tmp/__fresco_install.fish
