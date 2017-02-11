@@ -18,12 +18,17 @@ rem Git
 doskey ga=git add $*
 doskey gci=git commit $*
 doskey gb=git branch $*
+doskey gba=git branch -a
+doskey gbd=git branch -d $*
 doskey gp=git pull --rebase $*
 doskey gpu=git push $*
 doskey gs=git status
 doskey gh=git show
 doskey gd=git diff
-doskey gk=git diff
+doskey gr=git rebase $*
+doskey gri=git rebase -i $*
+doskey gl=git log
+doskey glo=git log --oneline
 doskey gk=git log --graph --pretty
 doskey dup=vim -c "silent! call dein#update() | q"
 
