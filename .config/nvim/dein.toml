@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/02/04 09:00:38.
+# Last Change : 2017/02/11 16:57:00.
 # =============================================================================
 
 [[plugins]]
@@ -562,10 +562,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'itmammoth/doorboy.vim'
-
-[[plugins]]
-repo = 'mattn/vim-sqlfmt'
-on_ft = 'sql'
 
 [[plugins]]
 repo = 'w0rp/ale'
@@ -1363,6 +1359,14 @@ on_ft = 'haskell'
 [[plugins]]
 repo = 'itchyny/vim-haskell-sort-import'
 on_ft = 'haskell'
+
+# ==================== Filetype (SQL) ===== {{{1
+[[plugins]]
+repo = 'mattn/vim-sqlfmt'
+on_ft = 'sql'
+hook_add = '''
+  au MyAutoCmd BufWrite *.sql :SQLFmt
+'''
 
 # ==================== After ftplugin ============ {{{1
 [ftplugin]
