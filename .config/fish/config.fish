@@ -80,6 +80,7 @@ end
 ### Alias. {{{1
 alias cp "cp -v"
 alias mv "mv -v"
+alias l "ll"
 alias rm "gomi"
 alias ghc "stack ghc --"
 alias ghci "stack ghci"
