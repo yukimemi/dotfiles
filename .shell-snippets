@@ -373,3 +373,6 @@ cargo install --force rustfmt; and cargo install --force racer; and cargo instal
 # Install stack for haskell.
 curl -sSL https://get.haskellstack.org/ | sh
 
+# Install stack packages
+stack install ghc-mod ghc-modi hlint hoogle;
+
