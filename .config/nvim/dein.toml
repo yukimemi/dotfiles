@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/02/11 16:57:00.
+# Last Change : 2017/02/12 15:03:57.
 # =============================================================================
 
 [[plugins]]
@@ -1351,6 +1351,9 @@ build = 'stack install ghc-mod'
 [[plugins]]
 repo = 'eagletmt/neco-ghc'
 on_ft = 'haskell'
+hook_add = '''
+  au MyAutoCmd FileType haskell setl omnifunc=necoghc#omnifunc
+'''
 
 [[plugins]]
 repo = 'itchyny/vim-haskell-indent'
@@ -1359,6 +1362,23 @@ on_ft = 'haskell'
 [[plugins]]
 repo = 'itchyny/vim-haskell-sort-import'
 on_ft = 'haskell'
+hook_add = '''
+ au MyAutoCmd BufWritePre *.hs HaskellSortImport
+'''
+
+[[plugins]]
+repo = 'ujihisa/unite-haskellimport'
+depends = 'unite.vim'
+on_ft = 'haskell'
+hook_add = '''
+  nnoremap sui :<C-u>Unite haskellimport<CR>
+'''
+
+[[plugins]]
+repo = 'eagletmt/unite-haddock'
+depends = 'unite.vim'
+on_ft = 'haskell'
+
 
 # ==================== Filetype (SQL) ===== {{{1
 [[plugins]]
