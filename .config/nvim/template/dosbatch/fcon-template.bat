@@ -11,10 +11,26 @@ set cmdName=%~n0
 set cmdFileName=%~nx0
 REM ======================================================================
 
+set base=%cmdDir%..
+
 pushd "%cmdDir%"
 
-{{_cursor_}}
+set cfg=%base%\cfg
+set fcon=%base%\src\fcon.ps1
+
+rem ƒtƒ@ƒCƒ‹–¼‚æ‚ècfgFileName‚ÆtaskIdŽæ“¾
+for /f "tokens=1,2 delims=-" %%i in ("%cmdName%") do (
+  set cfgFileName=%%i.xml
+  set taskId=%%j
+)
+
+if "%taskId%"=="" set taskId=Startup
+
+echo powershell -ExecutionPolicy ByPass %fcon% %cfg%\%cfgFileName% %taskId%
+powershell -ExecutionPolicy ByPass %fcon% %cfg%\%cfgFileName% %taskId%
 set exitCode=%errorlevel%
+
+{{_cursor_}}
 
 echo Exit. [ExitCode: %exitCode%]
 
