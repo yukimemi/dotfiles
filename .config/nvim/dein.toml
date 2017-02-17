@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/02/13 11:39:34.
+# Last Change : 2017/02/14 11:00:30.
 # =============================================================================
 
 [[plugins]]
@@ -163,6 +163,11 @@ hook_source = '''
   " au MyAutoCmd InsertEnter * PreciousSwitch
   " au MyAutoCmd InsertLeave * PreciousReset
 '''
+
+[[plugins]]
+repo = 'taku-o/vim-zoom'
+if = "has('gui')"
+
 
 # ==================== Complement ================ {{{1
 [[plugins]]
@@ -333,7 +338,7 @@ repo = 't9md/vim-choosewin'
 on_map = '<Plug>'
 on_source = 'vimfiler.vim'
 hook_source = '''
-  nmap - <Plug>(choosewin)
+  " nmap - <Plug>(choosewin)
 
   let g:choosewin_overlay_enable = 1
   let g:choosewin_overlay_clear_multibyte = 1
@@ -616,6 +621,11 @@ hook_add = '''
   let QFixHowm_FileType = 'markdown'
   let QFixHowm_Title = '#'
 '''
+
+[[plugins]]
+repo = 'vitalk/vim-simple-todo'
+on_ft = 'markdown'
+
 
 # ==================== Unite ===================== {{{1
 [[plugins]]
