@@ -146,6 +146,7 @@ ghq get https://github.com/ashitani/golangtips
 ghq get https://github.com/rhysd/dogfiles
 ghq get https://github.com/yosisa/dotfiles
 ghq get https://github.com/itchyny/dotfiles
+ghq get https://github.com/Kayant/dotfiles
 
 # bitbucket
 ghq get https://bitbucket.org/yukimemi/haskell.git
@@ -374,5 +375,5 @@ cargo install --force rustfmt; and cargo install --force racer; and cargo instal
 curl -sSL https://get.haskellstack.org/ | sh
 
 # Install stack packages
-stack install ghc-mod ghc-modi hlint hoogle;
+stack install ghc-mod hlint hoogle hfmt;
 
