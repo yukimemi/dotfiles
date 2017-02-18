@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/02/14 11:00:30.
+# Last Change : 2017/02/16 06:55:30.
 # =============================================================================
 
 [[plugins]]
@@ -572,7 +572,8 @@ repo = 'itmammoth/doorboy.vim'
 repo = 'w0rp/ale'
 hook_add = '''
   let g:ale_linters = {
-        \ 'go': ['golint', 'go vet', 'goimports']
+        \ 'go': ['golint', 'go vet', 'goimports'],
+        \ 'haskell': ['hlint']
         \ }
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -658,7 +659,7 @@ hook_add = '''
   nnoremap sua :<C-u>Unite buffer neomru/file bookmark file file_rec/async<CR>
   " nnoremap suM :<C-u>Unite mapping<CR>
   nnoremap suR :<C-u>UniteResume<CR>
-  nnoremap sud :<C-u>Unite -default-action=lcd directory_mru<CR>
+  " nnoremap sud :<C-u>Unite -default-action=lcd directory_mru<CR>
   noremap sul :<C-u>Unite history/command<CR>
 
   " grep ~/.vim_junk
@@ -969,7 +970,7 @@ hook_add = '''
         \   "hook/output_command/log": 1,
         \   "hook/close_unite_quickfix/enable_hook_loaded": 1,
         \   "hook/unite_quickfix/enable_failure": 1,
-        \   "hook/close_quickfix/enable_exit": 1,
+        \   "hook/close_quickfix/enable_exit": 0,
         \   "hook/close_buffer/enable_failure": 1,
         \   "hook/close_buffer/enable_empty_data": 1,
         \   "hook/echo/enable": 1,
@@ -1402,6 +1403,13 @@ hook_add = '''
 [[plugins]]
 repo = 'eagletmt/unite-haddock'
 depends = 'unite.vim'
+on_ft = 'haskell'
+hook_add = '''
+  nnoremap sud :<C-u>Unite hoogle<CR>
+'''
+
+[[plugins]]
+repo = 'dan-t/vim-hsimport'
 on_ft = 'haskell'
 
 

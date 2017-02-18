@@ -20,10 +20,14 @@ __add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
 __add_fish_user_paths ~/bin/scripts
 __add_fish_user_paths $GOPATH/bin
 __add_fish_user_paths ~/.cargo/bin
-__add_fish_user_paths ~/.local/bin
 if type -q node; and type -q yarn
   __add_fish_user_paths (yarn global bin)
 end
+
+if not test -d ~/.local/bin
+  mkdir -p ~/.local/bin
+end
+__add_fish_user_paths ~/.local/bin
 
 ### Util functions. {{{1
 # cd and ls. {{{2
