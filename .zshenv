@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2017/02/18 22:58:53.
+# Last Change : 2017/02/18 23:35:56.
 # =============================================================================
 
 # Useful functions. {{{1
@@ -12,8 +12,6 @@ is_cygwin() { [[ $SHELL_PLATFORM == 'cygwin' ]]; }
 
 
 # Env setting {{{1
-echo "path: ${path}"
-echo "PATH: ${PATH}"
 
 # Basic envs. {{{2
 export LANG=ja_JP.UTF-8

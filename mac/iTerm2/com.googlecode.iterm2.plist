@@ -2085,7 +2085,7 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>410 382 620 392 0 0 1440 900 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>207 259 796 473 0 0 2304 1418 </string>
+	<string>442 377 796 473 0 0 2304 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 2304 1440 0 0 2304 1418 </string>
 	<key>NeverWarnAboutXterm256ColorTerminfo</key>
@@ -3110,7 +3110,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-02-17T13:18:00Z</date>
+	<date>2017-02-18T13:52:16Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -3127,6 +3127,8 @@
 	<integer>4</integer>
 	<key>SwitchWindowModifier</key>
 	<integer>6</integer>
+	<key>TabStyle</key>
+	<integer>1</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>ThreeFingerEmulates</key>

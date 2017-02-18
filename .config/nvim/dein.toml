@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/02/16 06:55:30.
+# Last Change : 2017/02/18 23:57:41.
 # =============================================================================
 
 [[plugins]]
@@ -1414,11 +1414,20 @@ on_ft = 'haskell'
 
 
 # ==================== Filetype (SQL) ===== {{{1
+# [[plugins]]
+# repo = 'mattn/vim-sqlfmt'
+# on_ft = 'sql'
+# hook_add = '''
+#   au MyAutoCmd BufWrite *.sql :SQLFmt
+# '''
+
 [[plugins]]
-repo = 'mattn/vim-sqlfmt'
+repo = 'b4b4r07/vim-sqlfmt'
 on_ft = 'sql'
+build = 'go get github.com/jackc/sqlfmt'
 hook_add = '''
-  au MyAutoCmd BufWrite *.sql :SQLFmt
+  let g:sqlfmt_command = "sqlformat"
+  let g:sqlfmt_options = "-r -k upper"
 '''
 
 # ==================== After ftplugin ============ {{{1
