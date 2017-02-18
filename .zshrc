@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/02/19 01:06:53.
+# Last Change : 2017/02/19 01:13:52.
 # =============================================================================
 
 # Use zplug. {{{1
@@ -98,6 +98,13 @@ alias b='cd ..'
 alias dup='nvim -c "silent! call dein#update() | q"'
 alias vdup='vim -c "silent! call dein#update() | q"'
 
+function snippets() {
+    BUFFER=$(grep -v "^#" ~/.shell-snippets | fzf-tmux)
+    zle clear-screen
+}
+zle -N snippets
+
+
 # history {{{1
 if [ -d ~/Dropbox ]; then
   HISTFILE=~/Dropbox/.zsh_history
@@ -123,6 +130,7 @@ show_buffer_stack() {
 zle -N show_buffer_stack
 setopt noflowcontrol
 bindkey '^Q' show_buffer_stack
+bindkey '^S' snippets
 
 # global alias.
 alias -g L=' | less'
