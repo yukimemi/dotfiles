@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2017/02/18 23:35:56.
+# Last Change : 2017/02/19 21:29:01.
 # =============================================================================
 
 # Useful functions. {{{1
@@ -100,4 +100,6 @@ fi
 if [ ! -f ~/.zshenv.zwc -o ~/.zshenv -nt ~/.zshenv.zwc ]; then
   zcompile ~/.zshenv
 fi
+
+# vim:fdm=marker expandtab fdc=3 ft=zsh:
 
