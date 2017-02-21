@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/02/21 06:51:31.
+# Last Change : 2017/02/21 19:16:57.
 # =============================================================================
 
 #
@@ -42,6 +42,9 @@ zplug "b4b4r07/ssh-keyreg", as:command, use:bin
 # zplug "subnixr/minimal", use:minimal.zsh
 # zplug "sepehr/sepshell", as:theme
 zplug "b4b4r07/ultimate", as:theme
+
+# zplug "mafredri/zsh-async"
+# zplug "sindresorhus/pure", use:pure.zsh, as:theme
 
 # enhancd. {{{2
 zplug "b4b4r07/enhancd", use:init.sh
@@ -192,7 +195,7 @@ setopt hist_verify
 #
 # bindkey -v
 
-bindkey '^Q' show_buffer_stack
+bindkey '^Q' show-buffer-stack
 bindkey '^S' shell-snippets
 
 # zsh-history. {{{2
