@@ -15,16 +15,16 @@ doskey tree=tree /f $b more
 doskey v=vim $*
 
 rem Git
-doskey ga=git add $*
+doskey s=git status
+doskey a=git add $*
+doskey d=git diff $*
 doskey gci=git commit $*
 doskey gb=git branch $*
 doskey gba=git branch -a
 doskey gbd=git branch -d $*
 doskey gp=git pull --rebase $*
 doskey gpu=git push $*
-doskey gs=git status
 doskey gh=git show
-doskey gd=git diff
 doskey gr=git rebase $*
 doskey gri=git rebase -i $*
 doskey gl=git log
