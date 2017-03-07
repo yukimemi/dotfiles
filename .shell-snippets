@@ -217,6 +217,7 @@ go get -u github.com/spf13/cobra/cobra
 go get -u github.com/b4b4r07/gomi
 go get -u github.com/jteeuwen/go-bindata/...
 go get -u github.com/syossan27/kirimori
+go get -u github.com/urfave/cli
 
 
 # gore

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/03/04 13:17:26.
+# Last Change : 2017/03/07 22:30:56.
 # =============================================================================
 
 #
@@ -35,6 +35,7 @@ zplug "Code-Hex/battery", as:command, from:gh-r
 zplug "yuroyoro/git-ignore", as:command, rename-to:gi
 zplug "mattn/files", as:command, hook-build:"go get -u github.com/mattn/files"
 zplug "mattn/jvgrep", as:command, hook-build:"go get -u github.com/mattn/jvgrep"
+zplug "mattn/memo", as:command, hook-build:"go get -u github.com/mattn/memo"
 zplug "b4b4r07/gomi", as:command, from:gh-r
 zplug "b4b4r07/ssh-keyreg", as:command, use:bin
 # zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi, on:"junegunn/fzf-bin"
@@ -197,10 +198,16 @@ alias glo='git log --oneline'
 alias gk='git log --graph --pretty'
 
 
+# Haskell stack. {{{3
+alias ghc="stack ghc --"
+alias ghci="stack ghci"
+
+
 # Filter aliases. {{{3
 alias ghl='ghq list -p | __filter cd'
 alias gho='ghq list -p | __filter gh-open'
 alias r='ls -a | __filter gomi'
+# alias r='(){ ls -ad $1/* | __filter gomi }'
 alias fv='files -A | __filter nvim'
 
 # global alias. {{{2
