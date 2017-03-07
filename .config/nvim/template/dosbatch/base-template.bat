@@ -16,7 +16,7 @@ pushd "%cmdDir%"
 {{_cursor_}}
 set exitCode=%errorlevel%
 
-echo Exit. [ExitCode: %exitCode%]
+echo Exit Code: [%exitCode%]
 
 pause
 popd
