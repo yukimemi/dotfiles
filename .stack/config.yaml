@@ -8,6 +8,7 @@
 # See https://docs.haskellstack.org/en/stable/yaml_configuration/#templates
 templates:
   params:
+    scm-init: git
     author-name: yukimemi
     author-email: yukimemi@gmail.com
     copyright: (c) 2017, yukimemi
