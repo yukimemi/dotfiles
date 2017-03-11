@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/03/07 22:30:56.
+# Last Change : 2017/03/11 19:01:35.
 # =============================================================================
 
 #
@@ -15,6 +15,7 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 # filter tools. {{{2
 zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
+# zplug "rcmdnk/sentaku", as:command, use:"bin/*"
 # zplug "jhawthorn/fzy", as:command, rename-to:fzy, hook-build:"make && sudo make install"
 export __FILTER_TOOL=fzf-tmux
 
@@ -24,9 +25,12 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search"
+zplug "tcnksm/docker-alias", use:zshrc
+zplug "rupa/z", use:z.sh
 zplug "b4b4r07/zsh-vimode-visual", defer:3
 zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
 # zplug "b4b4r07/zsh-history", use:init.zsh, hook-build:"make && sudo make install"
+
 
 # Commands. {{{2
 zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
@@ -52,9 +56,9 @@ zplug "mafredri/zsh-async"
 zplug "sindresorhus/pure", use:pure.zsh, as:theme
 
 # enhancd. {{{2
-zplug "b4b4r07/enhancd", use:init.sh
-export ENHANCD_COMMAND="j"
-export ENHANCD_HOOK_AFTER_CD="ls"
+# zplug "b4b4r07/enhancd", use:init.sh
+# export ENHANCD_COMMAND="j"
+# export ENHANCD_HOOK_AFTER_CD="ls"
 
 # prezto. {{{2
 # zplug "modules/syntax-highlighting", from:prezto, defer:2
@@ -118,6 +122,11 @@ function __filter() {
 # cd and ls. {{{2
 function chpwd() { ls -F }
 
+# z and filter cd. {{{2
+function __filter_z_cd() {
+  z -lt $1 | awk '{ print $2 }' | __filter cd
+}
+
 # Shell snippets. {{{2
 function shell-snippets() {
     BUFFER=$(grep -v "^#" ~/.shell-snippets | $__FILTER_TOOL)
@@ -146,6 +155,12 @@ function show-buffer-stack() {
 zle -N show-buffer-stack
 setopt noflowcontrol
 
+# show option for zsh. {{{2
+# http://qiita.com/mollifier/items/26c67347734f9fcda274
+function showoptions() {
+  set -o | sed -e 's/^no\(.*\)on$/\1  off/' -e 's/^no\(.*\)off$/\1  on/'
+}
+
 
 #
 # aliases. {{{1
@@ -162,8 +177,8 @@ alias g='git'
 alias s='git status --short --branch'
 alias d='git diff'
 alias a='git add .'
+alias j=__filter_z_cd
 
-alias rm='gomi'
 alias dup='nvim -c "silent! call dein#update() | q"'
 alias vdup='vim -c "silent! call dein#update() | q"'
 
@@ -227,14 +242,17 @@ if [ -d ~/Dropbox ]; then
 else
   HISTFILE=~/.zsh_history
 fi
-setopt share_history
-setopt append_history
-setopt hist_ignore_all_dups
-setopt hist_ignore_dups
-setopt hist_save_no_dups
-setopt extended_history
-setopt hist_ignore_space
-setopt hist_verify
+HISTSIZE=9999999
+SAVEHIST=9999999
+
+setopt sharehistory
+setopt appendhistory
+setopt histignorealldups
+setopt histignoredups
+setopt histsavenodups
+setopt extendedhistory
+setopt histignorespace
+setopt histverify
 
 
 #
@@ -266,6 +284,28 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
+#
+# setopt. {{{1
+#
+setopt magicequalsubst
+setopt printeightbit
+setopt completeinword
+
+#
+# zstyle. {{{1
+#
+zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path ~/.cache/zsh
+
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*:messages' format $YELLOW'%d'$DEFAULT
+zstyle ':completion:*:warnings' format $RED'No matches for:'$YELLOW' %d'$DEFAULT
+zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
+zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEFAULT
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*' group-name ''
 
 #
 # compile zshrc. {{{1
