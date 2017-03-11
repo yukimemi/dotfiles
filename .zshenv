@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2017/02/19 21:29:01.
+# Last Change : 2017/03/09 21:49:08.
 # =============================================================================
 
 # Useful functions. {{{1
@@ -23,6 +23,7 @@ export PAGER="less"
 
 # go. {{{2
 export GOPATH=$HOME/.ghq
+export GOROOT=$(go env GOROOT)
 
 # Unique path.
 typeset -gU cdpath fpath mailpath path
