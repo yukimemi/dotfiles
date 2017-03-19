@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2017/03/09 21:49:08.
+# Last Change : 2017/03/19 18:52:11.
 # =============================================================================
 
 # Useful functions. {{{1
@@ -49,7 +49,7 @@ path=(
   # normal.
   /usr/bin(N-/)
   /usr/sbin(N-/)
-  # sbin
+  /bin(N-/)
   /sbin(N-/)
   # yarn
   $(yarn global bin)(N-/)
@@ -86,6 +86,9 @@ sudo_path=(
 
 # Other. {{{2
 export XDG_CONFIG_HOME="$HOME/.config"
+
+export GSR_SHOW_AHEAD=1
+export GSR_SHOW_BEHIND=1
 
 # less settings. {{{2
 # export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
