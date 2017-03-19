@@ -13,6 +13,7 @@ doskey mv=move $*
 doskey pwd=echo %CD%
 doskey tree=tree /f $b more
 doskey v=vim $*
+doskey b=cd ..
 
 rem Git
 doskey s=git status
