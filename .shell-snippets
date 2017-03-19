@@ -378,3 +378,6 @@ curl -sSL https://get.haskellstack.org/ | sh
 # Install stack packages
 stack install ghc-mod hlint hoogle hfmt;
 
+# Git rebase user and email.
+git filter-branch -f --env-filter "GIT_AUTHOR_NAME='yukimemi'; GIT_AUTHOR_EMAIL='yukimemi@gmail.com'; GIT_COMMITTER_NAME='yukimemi'; GIT_COMMITTER_EMAIL='yukimemi@gmail.com';" HEAD
+
