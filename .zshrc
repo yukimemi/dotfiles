@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/03/11 19:01:35.
+# Last Change : 2017/03/19 00:22:46.
 # =============================================================================
 
 #
@@ -169,6 +169,7 @@ function showoptions() {
 alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -a'
+alias lla='ls -al'
 alias l='ll'
 alias e='nvim'
 alias b='cd ..'
@@ -219,10 +220,11 @@ alias ghci="stack ghci"
 
 
 # Filter aliases. {{{3
-alias ghl='ghq list -p | __filter cd'
+# alias ghl='ghq list -p | __filter cd'
+alias ghl='gsr --all | __filter cd'
+alias gsrl='gsr | __filter cd'
 alias gho='ghq list -p | __filter gh-open'
 alias r='ls -a | __filter gomi'
-# alias r='(){ ls -ad $1/* | __filter gomi }'
 alias fv='files -A | __filter nvim'
 
 # global alias. {{{2
