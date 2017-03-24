@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/03/19 00:22:46.
+# Last Change : 2017/03/21 11:10:17.
 # =============================================================================
 
 #
@@ -111,7 +111,7 @@ zplug load
 # functions. {{{1
 #
 # Filter function. {{{2
-function __filter() {
+function __filter_execute() {
   $__FILTER_TOOL | while read line
   do
     echo "Exec: [$@ $line]"
@@ -119,12 +119,26 @@ function __filter() {
   done
 }
 
+function __filter_select() {
+  $__FILTER_TOOL | while read line
+  do
+    print -z $line
+  done
+}
+
+# Filter history. {{{2
+function __filter_history() {
+  BUFFER=$(history -n 1 | $__FILTER_TOOL)
+  zle clear-screen
+}
+zle -N __filter_history
+
 # cd and ls. {{{2
 function chpwd() { ls -F }
 
 # z and filter cd. {{{2
 function __filter_z_cd() {
-  z -lt $1 | awk '{ print $2 }' | __filter cd
+  z -lt $1 | awk '{ print $2 }' | __filter_execute cd
 }
 
 # Shell snippets. {{{2
@@ -173,7 +187,7 @@ alias lla='ls -al'
 alias l='ll'
 alias e='nvim'
 alias b='cd ..'
-alias c='files -d | __filter cd'
+alias c='files -d | __filter_execute cd'
 alias g='git'
 alias s='git status --short --branch'
 alias d='git diff'
@@ -220,12 +234,12 @@ alias ghci="stack ghci"
 
 
 # Filter aliases. {{{3
-# alias ghl='ghq list -p | __filter cd'
-alias ghl='gsr --all | __filter cd'
-alias gsrl='gsr | __filter cd'
-alias gho='ghq list -p | __filter gh-open'
-alias r='ls -a | __filter gomi'
-alias fv='files -A | __filter nvim'
+# alias ghl='ghq list -p | __filter_execute cd'
+alias ghl='gsr --all | __filter_execute cd'
+alias gsrl='gsr | __filter_execute cd'
+alias gho='ghq list -p | __filter_execute gh-open'
+alias r='ls -a | __filter_execute gomi'
+alias fv='files -A | __filter_execute nvim'
 
 # global alias. {{{2
 alias -g L=' | less'
@@ -260,10 +274,12 @@ setopt histverify
 #
 # key bindings. {{{1
 #
-# bindkey -v
+bindkey -v
 
 bindkey '^Q' show-buffer-stack
 bindkey '^S' shell-snippets
+
+bindkey '^R' __filter_history
 
 # zsh-history. {{{2
 export ZSH_HISTORY_KEYBIND_GET_BY_DIR="^r"

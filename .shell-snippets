@@ -218,6 +218,8 @@ go get -u github.com/b4b4r07/gomi
 go get -u github.com/jteeuwen/go-bindata/...
 go get -u github.com/syossan27/kirimori
 go get -u github.com/urfave/cli
+go get -u github.com/motemen/gobump/cmd/gobump
+go get -u github.com/golang/dep/...
 
 
 # gore
@@ -380,4 +382,7 @@ stack install ghc-mod hlint hoogle hfmt;
 
 # Git rebase user and email.
 git filter-branch -f --env-filter "GIT_AUTHOR_NAME='yukimemi'; GIT_AUTHOR_EMAIL='yukimemi@gmail.com'; GIT_COMMITTER_NAME='yukimemi'; GIT_COMMITTER_EMAIL='yukimemi@gmail.com';" HEAD
+
+# Install glide.
+curl https://glide.sh/get | sh
 
