@@ -31,6 +31,7 @@ doskey gri=git rebase -i $*
 doskey gl=git log
 doskey glo=git log --oneline
 doskey gk=git log --graph --pretty
+doskey gco=git checkout $*
 doskey dup=vim -c "silent! call dein#update() | q"
 
 if "%CMD_INIT_SCRIPT_LOADED%" neq "" goto :eof
