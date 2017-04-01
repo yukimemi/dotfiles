@@ -220,6 +220,7 @@ go get -u github.com/syossan27/kirimori
 go get -u github.com/urfave/cli
 go get -u github.com/motemen/gobump/cmd/gobump
 go get -u github.com/golang/dep/...
+go get -u github.com/y13i/j2y
 
 
 # gore
