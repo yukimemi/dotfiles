@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/03/07 21:51:30.
+# Last Change : 2017/04/01 21:48:05.
 # =============================================================================
 
 [[plugins]]
@@ -1181,6 +1181,7 @@ hook_add = '''
 
   let g:go_metalinter_autosave = 1
   let g:go_fmt_autosave = 1
+  let g:go_gocode_unimported_packages = 1
   " au MyAutoCmd BufWritePost *.go GoMetaLinter
   " au MyAutoCmd BufWritePre *.go silent GoFmt
 
