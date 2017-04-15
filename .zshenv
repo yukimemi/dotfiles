@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2017/03/19 18:52:11.
+# Last Change : 2017/04/09 12:41:48.
 # =============================================================================
 
 # Useful functions. {{{1
@@ -21,10 +21,6 @@ export EDITOR=nvim
 export VISUAL=nvim
 export PAGER="less"
 
-# go. {{{2
-export GOPATH=$HOME/.ghq
-export GOROOT=$(go env GOROOT)
-
 # Unique path.
 typeset -gU cdpath fpath mailpath path
 
@@ -43,19 +39,29 @@ path=(
   /usr/local/bin(N-/)
   # cabal.
   $HOME/.cabal/bin(N-/)
-  # go.
-  $GOPATH/bin(N-/)
-  $GOROOT/bin(N-/)
   # normal.
   /usr/bin(N-/)
   /usr/sbin(N-/)
   /bin(N-/)
   /sbin(N-/)
+
+  $path
+)
+
+# go. {{{2
+export GOPATH=$HOME/.ghq
+export GOROOT=$(go env GOROOT)
+
+path=(
+  # go.
+  $GOPATH/bin(N-/)
+  $GOROOT/bin(N-/)
   # yarn
   $(yarn global bin)(N-/)
 
   $path
 )
+
 
 # Manpath. {{{2
 manpath=(

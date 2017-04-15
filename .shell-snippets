@@ -184,6 +184,8 @@ go get -u github.com/yukimemi/copybackup
 go get -u github.com/yukimemi/copybackup/cmd/copybackup
 go get -u github.com/yukimemi/makejscript
 go get -u github.com/yukimemi/spyrun/cmd/spyrun
+go get -u github.com/yukimemi/gsr
+go get -u github.com/yukimemi/anaperf
 # others
 go get -u github.com/jessevdk/go-flags
 go get -u github.com/umisama/golog
