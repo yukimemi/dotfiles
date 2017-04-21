@@ -190,6 +190,7 @@ go get -u github.com/yukimemi/anaperf
 go get -u github.com/jessevdk/go-flags
 go get -u github.com/umisama/golog
 go get -u github.com/smartystreets/goconvey
+go get -u github.com/fatih/color
 # go get -u github.com/mitchellh/gox && gox -build-toolchain
 go get -u github.com/mitchellh/gox
 go get -u github.com/laher/goxc
