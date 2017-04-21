@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/04/19 09:54:29.
+# Last Change : 2017/04/18 07:32:39.
 # =============================================================================
 
 [[plugins]]
@@ -1221,13 +1221,10 @@ on_ft = 'ps1'
 hook_source = '''
   function! s:addHeaderPs1(flg)
     let lines = []
-    if a:flg == 1
+    if a:flg
       call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
-    elseif a:flg == 2
-      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 3})-join\\\"`n\\\");&$s\" %*")
-      call add(lines, "@pause")
     else
-      call add(lines, "@set scriptPath=%~f0&@powershell -Version 2.0 -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
+      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
     endif
     call add(lines, "@exit /b %errorlevel%")
     call extend(lines, readfile(expand("%")))
@@ -1247,7 +1244,6 @@ hook_source = '''
   endfunction
   " au MyAutoCmd BufWritePost *.ps1 call <SID>addHeaderPs1(0)
   au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
-  au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>p <SID>addHeaderPs1(2)
   au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0)
 '''
 
@@ -1256,6 +1252,12 @@ hook_source = '''
 [[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
+
+
+# ==================== Filetype (yaml) =========== {{{1
+[[plugins]]
+repo = 'stephpy/vim-yaml'
+on_ft = 'yaml'
 
 
 # ==================== Filetype (plantuml) ======= {{{1
