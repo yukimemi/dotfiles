@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/03/21 11:10:17.
+# Last Change : 2017/05/03 00:04:02.
 # =============================================================================
 
 #
@@ -193,6 +193,7 @@ alias s='git status --short --branch'
 alias d='git diff'
 alias a='git add .'
 alias j=__filter_z_cd
+alias o='open'
 
 alias dup='nvim -c "silent! call dein#update() | q"'
 alias vdup='vim -c "silent! call dein#update() | q"'
