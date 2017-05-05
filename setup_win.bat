@@ -6,6 +6,7 @@ set tm=%time: =0%
 set TODAY=%date:~-10,4%%date:~-5,2%%date:~-2,2%_%tm:~0,2%%tm:~3,2%%tm:~6,2%%tm:~9,2%
 
 set GHQ_HOME=%USERPROFILE%\.ghq\src
+set BIN=%USERPROFILE%\bin
 
 echo THIS_FILE_PASS=[%THIS_FILE_PASS%]
 echo THIS_FILE_NAME=[%THIS_FILE_NAME%]
@@ -49,6 +50,13 @@ if exist "%USERPROFILE%\.vim" %RDCMD% "%USERPROFILE%\.vim"
 rem cmd {{{1
 if exist "%USERPROFILE%\.init.cmd" del "%USERPROFILE%\.init.cmd"
 %LINKCMD_F% "%USERPROFILE%\.init.cmd" "%THIS_FILE_PASS%win\cmd\init.cmd"
+
+mkdir %BIN% > nul 2>&1
+if exist "%BIN%\j.bat" del "%BIN%\j.bat"
+%LINKCMD_F% "%BIN%\j.bat" "%THIS_FILE_PASS%win\cmd\j.bat"
+
+if exist "%BIN%\ghl.bat" del "%BIN%\ghl.bat"
+%LINKCMD_F% "%BIN%\ghl.bat" "%THIS_FILE_PASS%win\cmd\ghl.bat"
 
 rem stack {{{1
 if exist "%USERPROFILE%\.stack" %RDCMD% "%USERPROFILE%\.stack"
