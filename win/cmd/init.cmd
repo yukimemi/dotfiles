@@ -11,7 +11,6 @@ doskey ls=dir /w
 doskey lv=more /E $*
 doskey mv=move $*
 doskey pwd=echo %CD%
-doskey tree=tree /f $b more
 doskey v=vim $*
 doskey e=gvim --remote-tab-silent $*
 doskey b=cd ..
