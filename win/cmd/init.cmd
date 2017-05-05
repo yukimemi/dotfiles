@@ -14,6 +14,7 @@ doskey pwd=echo %CD%
 doskey v=vim $*
 doskey e=gvim --remote-tab-silent $*
 doskey b=cd ..
+doskey o=start $*
 doskey dup=vim -c "silent! call dein#update() | q"
 
 rem Git
