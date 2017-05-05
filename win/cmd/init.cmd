@@ -13,7 +13,9 @@ doskey mv=move $*
 doskey pwd=echo %CD%
 doskey tree=tree /f $b more
 doskey v=vim $*
+doskey e=gvim --remote-tab-silent $*
 doskey b=cd ..
+doskey dup=vim -c "silent! call dein#update() | q"
 
 rem Git
 doskey s=git status
@@ -32,7 +34,6 @@ doskey gl=git log
 doskey glo=git log --oneline
 doskey gk=git log --graph --pretty
 doskey gco=git checkout $*
-doskey dup=vim -c "silent! call dein#update() | q"
 
 if "%CMD_INIT_SCRIPT_LOADED%" neq "" goto :eof
 set CMD_INIT_SCRIPT_LOADED=1
