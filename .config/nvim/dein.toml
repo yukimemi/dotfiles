@@ -540,7 +540,7 @@ repo = 'tyru/open-browser.vim'
 lazy = 1
 
 [[plugins]]
-repo = 'autodate.vim'
+repo = 'vim-scripts/autodate.vim'
 hook_add = '''
   let g:autodate_format = "%Y/%m/%d %H:%M:%S"
   let g:autodate_keyword_pre  = "Last Change *:"

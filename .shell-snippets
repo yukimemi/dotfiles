@@ -228,6 +228,8 @@ go get -u github.com/urfave/cli
 go get -u github.com/motemen/gobump/cmd/gobump
 go get -u github.com/golang/dep/...
 go get -u github.com/y13i/j2y
+go get -u github.com/atotto/clipboard/cmd/gopaste
+go get -u github.com/atotto/clipboard/cmd/gocopy
 
 
 # gore
