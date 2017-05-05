@@ -40,6 +40,8 @@ zplug "yuroyoro/git-ignore", as:command, rename-to:gi
 zplug "mattn/files", as:command, hook-build:"go get -u github.com/mattn/files"
 zplug "mattn/jvgrep", as:command, hook-build:"go get -u github.com/mattn/jvgrep"
 zplug "mattn/memo", as:command, hook-build:"go get -u github.com/mattn/memo"
+zplug "atotto/clipboard", as:command, hook-build:"go get -u github.com/atotto/clipboard/cmd/gocopy && go get -u github.com/atotto/clipboard/cmd/gopaste"
+
 zplug "b4b4r07/gomi", as:command, from:gh-r
 zplug "b4b4r07/ssh-keyreg", as:command, use:bin
 # zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi, on:"junegunn/fzf-bin"

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/01/29 00:17:56.
+" Last Change : 2017/05/04 23:11:14.
 " =============================================================================
 
 " Init: {{{1
@@ -185,11 +185,7 @@ set fileformat=unix
 set fileformats=unix,dos,mac
 
 " Clipboard.
-if has('unnamedplus')
-  set clipboard=unnamedplus,autoselect
-else
-  set clipboard& clipboard+=unnamed
-endif
+set clipboard+=unnamedplus
 
 " Indent.
 set autoindent
