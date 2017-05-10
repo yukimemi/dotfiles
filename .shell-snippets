@@ -231,6 +231,9 @@ go get -u github.com/y13i/j2y
 go get -u github.com/atotto/clipboard/cmd/gopaste
 go get -u github.com/atotto/clipboard/cmd/gocopy
 go get -u gopkg.in/go-playground/validator.v9
+go get -u github.com/gosuri/uilive
+go get -u github.com/gosuri/uiprogress
+go get -u github.com/gosuri/uitable
 
 
 # gore
