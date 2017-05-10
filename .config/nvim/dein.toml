@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/04/18 07:32:39.
+# Last Change : 2017/05/09 19:09:45.
 # =============================================================================
 
 [[plugins]]
@@ -321,8 +321,6 @@ hook_add = '''
 repo = 'thinca/vim-submode'
 hook_add = '''
   let g:submode_leave_with_key = 1
-'''
-hook_source = '''
   call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
   call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
   call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
