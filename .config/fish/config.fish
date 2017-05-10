@@ -76,10 +76,10 @@ end
 
 ### prompt. {{{1
 # right_prompt for pwd and git.
-function fish_right_prompt
-  prompt_pwd
-  __terlar_git_prompt
-end
+# function fish_right_prompt
+#   prompt_pwd
+#   __terlar_git_prompt
+# end
 
 ### Alias. {{{1
 alias cp "cp -v"
@@ -101,7 +101,7 @@ abbr -a r __filter_command_rm
 abbr -a rr __filter_command_rm_recurse
 abbr -a c __filter_command_cd
 abbr -a b bd
-abbr -a v nvim
+abbr -a e nvim
 
 # Git. {{{2
 # checkout
@@ -109,7 +109,7 @@ abbr -a gco 'git checkout'
 abbr -a gcot 'git checkout --theirs'
 abbr -a co __filter_command_git_select_branch
 # add
-abbr -a ga 'git add'
+abbr -a a 'git add'
 # commit
 abbr -a gci 'git commit'
 # branch
@@ -121,11 +121,11 @@ abbr -a gp 'git pull --rebase'
 # push
 abbr -a gpu 'git push'
 # status
-abbr -a gs 'git status'
+abbr -a s 'git status'
 # show
 abbr -a gh 'git show'
 # diff
-abbr -a gd 'git diff'
+abbr -a d 'git diff'
 # rebase
 abbr -a gr 'git rebase'
 abbr -a gri 'git rebase -i'
@@ -152,4 +152,9 @@ if not test -f /tmp/__fresco_install.fish
   curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o /tmp/__fresco_install.fish
   cat /tmp/__fresco_install.fish | fish
 end
+
+### Plugin settings. {{{1
+# pure {{{2
+set pure_symbol_prompt "→ "
+set pure_color_green (set_color "magenta")
 
