@@ -1,5 +1,7 @@
 function __filter_command
-  if which fzf > /dev/null
+  if which fzf-tmux > /dev/null
+    fzf-tmux
+  else if which fzf > /dev/null
     fzf
   else if which fzy > /dev/null
     fzy -l 200
