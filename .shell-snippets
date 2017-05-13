@@ -234,6 +234,7 @@ go get -u gopkg.in/go-playground/validator.v9
 go get -u github.com/gosuri/uilive
 go get -u github.com/gosuri/uiprogress
 go get -u github.com/gosuri/uitable
+go get -u github.com/Code-Hex/battery/cmd/battery
 
 
 # gore
