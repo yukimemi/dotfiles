@@ -75,6 +75,17 @@ function stacknew -a name
   end
 end
 
+
+# Enter hook.
+function done_enter --on-event fish_postexec
+  if test -z "$argv"
+    if git rev-parse --is-inside-work-tree > /dev/null ^&1
+      echo (set_color yellow)"--- git status ---"(set_color normal)
+      git status -sb
+    end
+  end
+end
+
 ### prompt. {{{1
 # right_prompt for pwd and git.
 # function fish_right_prompt
@@ -103,6 +114,7 @@ abbr -a rr __filter_command_rm_recurse
 abbr -a c __filter_command_cd
 abbr -a b bd
 abbr -a e nvim
+abbr -a v vim
 
 # Git. {{{2
 # checkout
