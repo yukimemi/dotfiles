@@ -34,6 +34,7 @@ __add_fish_user_paths ~/.local/bin
 function cd
   builtin cd $argv
   ls -a
+  __save_directory $PWD &
 end
 
 # Judge OS. {{{2
@@ -148,9 +149,15 @@ cli_install gomi b4b4r07/gomi
 cli_install jvgrep mattn/jvgrep
 
 ### Install plugin manager. {{{1
+# fresco.
 if not test -f /tmp/__fresco_install.fish
   curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o /tmp/__fresco_install.fish
   cat /tmp/__fresco_install.fish | fish
+end
+
+# fisherman.
+if not type -q fisher
+  # curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
 end
 
 ### Plugin settings. {{{1

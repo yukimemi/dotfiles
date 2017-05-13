@@ -1,6 +1,8 @@
 function __filter_command_z
-  z -lt | awk '{ print $2 }' | __filter_command | read -l line
-  and __echo "Change directory" $line
-  and cd $line
+  tac ~/.z | while read -l line
+    echo $line
+  end | __filter_command | read -l dir
+  and __echo "Change directory" $dir
+  and cd $dir
 end
 
