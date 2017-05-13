@@ -124,7 +124,7 @@ abbr -a co __filter_command_git_select_branch
 # add
 abbr -a a 'git add'
 # commit
-abbr -a gci 'git commit'
+abbr -a gci 'git commit -v'
 # branch
 abbr -a gb 'git branch'
 abbr -a gba 'git branch -a'
