@@ -400,3 +400,6 @@ git filter-branch -f --env-filter "GIT_AUTHOR_NAME='yukimemi'; GIT_AUTHOR_EMAIL=
 # Install glide.
 curl https://glide.sh/get | sh
 
+# Golang debugger.
+brew install go-delve/delve/delve
+
