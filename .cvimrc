@@ -1,7 +1,7 @@
 " option
 set smoothscroll
+set typelinkhints
 set noautofocus
-set autoupdategist
 set autohidecursor
 set cncpcompletion
 
@@ -10,7 +10,6 @@ let barposition = "bottom"
 let blacklists = ["*://mail.google.com/*","*://feedly.com/*","*://www.google.com/calendar/*"]
 let mapleader = ","
 let locale = "jp"
-
 let scrollstep = 100
 "let scrollduration = 40
 
@@ -87,3 +86,8 @@ let searchalias w = "wiki"
 site '*://twitter.com/*' {
   unmap j k ?
 }
+
+" Settings
+let configpath = '~/.ghq/src/github.com/yukimemi/dotfiles/.cvimrc'
+set localconfig
+
