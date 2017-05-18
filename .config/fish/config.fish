@@ -115,6 +115,7 @@ abbr -a c __filter_command_cd
 abbr -a b bd
 abbr -a e nvim
 abbr -a v vim
+abbr -a o open
 
 # Git. {{{2
 # checkout
