@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/05/06 11:40:32.
+" Last Change : 2017/05/12 09:19:56.
 " =============================================================================
 
 " Init: {{{1
@@ -338,8 +338,8 @@ au MyAutoCmd BufNewFile,BufRead *.fish setl ft=fish
 " inoremap %s/ %s/\v
 
 " Use space.
-nmap <Space> [Space]
-nnoremap [Space] <Nop>
+map <Space> [Space]
+noremap [Space] <Nop>
 
 inoremap <silent> jj <ESC>
 nnoremap j gj
