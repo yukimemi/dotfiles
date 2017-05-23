@@ -236,6 +236,7 @@ go get -u github.com/gosuri/uiprogress
 go get -u github.com/gosuri/uitable
 go get -u github.com/Code-Hex/battery/cmd/battery
 go get -u github.com/ulule/deepcopier
+go get -u github.com/github/hub
 
 
 # gore
