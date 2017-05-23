@@ -147,6 +147,7 @@ ghq get https://github.com/rhysd/dogfiles
 ghq get https://github.com/yosisa/dotfiles
 ghq get https://github.com/itchyny/dotfiles
 ghq get https://github.com/Kayant/dotfiles
+ghq get https://github.com/cocopon/dotfiles
 
 # bitbucket
 ghq get https://bitbucket.org/yukimemi/haskell.git
@@ -237,6 +238,7 @@ go get -u github.com/gosuri/uitable
 go get -u github.com/Code-Hex/battery/cmd/battery
 go get -u github.com/ulule/deepcopier
 go get -u github.com/github/hub
+go get -u github.com/monochromegane/the_platinum_searcher/...
 
 
 # gore
