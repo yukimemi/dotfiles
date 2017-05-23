@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/05/09 19:09:45.
+# Last Change : 2017/05/24 01:01:39.
 # =============================================================================
 
 [[plugins]]
@@ -305,6 +305,7 @@ hook_add = '''
 [[plugins]]
 repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
+if = "!has('python3')"
 on_map = '<Plug>'
 on_path = '.*'
 on_cmd = ['VimFiler', 'VimFilerBufferDir']
@@ -486,7 +487,6 @@ hook_add = '''
 [[plugins]]
 repo = 'mattn/sonictemplate-vim'
 on_cmd = 'Template'
-on_source = 'unite.vim'
 hook_add = '''
   nnoremap suT :<C-u>Unite sonictemplate<CR>
   let g:sonictemplate_vim_template_dir = '$HOME/.vim/template'
@@ -573,6 +573,10 @@ hook_add = '''
         \ 'go': ['golint', 'go vet', 'goimports'],
         \ 'haskell': ['hlint']
         \ }
+  let g:ale_lint_on_text_changed = 'never'
+  let g:ale_lint_on_enter = 0
+  let g:ale_lint_on_insert_leave = 1
+  let g:ale_lint_on_save = 1
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
 '''
@@ -630,6 +634,7 @@ on_ft = 'markdown'
 [[plugins]]
 repo = 'Shougo/unite.vim'
 on_cmd = 'Unite'
+if = "!has('python3')"
 hook_add = '''
   " Use plefix s
   nnoremap suc :<C-u>Unite colorscheme -auto-preview<CR>
@@ -709,56 +714,114 @@ hook_source = '''
 
 [[plugins]]
 repo = 'Shougo/neomru.vim'
+depends = 'unite.vim'
 on_source = 'unite.vim'
 
 [[plugins]]
 repo = 'Shougo/unite-outline'
+depends = 'unite.vim'
 on_source = 'unite.vim'
 
 [[plugins]]
 repo = 'thinca/vim-unite-history'
+depends = 'unite.vim'
 on_source = 'unite.vim'
 
 [[plugins]]
 repo = 'Shougo/unite-help'
+depends = 'unite.vim'
 on_source = 'unite.vim'
 
 [[plugins]]
 repo = 'tsukkee/unite-tag'
+depends = 'unite.vim'
 on_source = 'unite.vim'
 
 [[plugins]]
 repo = 'Shougo/junkfile.vim'
+depends = 'unite.vim'
 on_source = 'unite.vim'
 on_cmd = 'JunkfileOpen'
 
 [[plugins]]
 repo = 'Shougo/neoyank.vim'
+depends = 'unite.vim'
 on_source = 'unite.vim'
 
 [[plugins]]
 repo = 'thinca/vim-ref'
+depends = 'unite.vim'
 on_source = 'unite.vim'
 on_cmd = 'Ref'
 
 [[plugins]]
 repo = 'osyo-manga/unite-quickfix'
+depends = 'unite.vim'
 on_source = 'unite.vim'
 
 [[plugins]]
 repo = 'osyo-manga/unite-filetype'
+depends = 'unite.vim'
 on_source = 'unite.vim'
 
 [[plugins]]
 repo = 'sorah/unite-ghq'
+depends = 'unite.vim'
 on_source = 'unite.vim'
 
 [[plugins]]
 repo = 'ujihisa/unite-colorscheme'
+depends = 'unite.vim'
 on_source = 'unite.vim'
 
+
+# ==================== Denite ==================== {{{1
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+on_event = 'BufRead'
+if = "has('python3')"
+hook_add = '''
+  " Use plefix s
+  nnoremap suc :<C-u>Denite colorscheme -auto-preview<CR>
+  nnoremap sub :<C-u>Denite buffer<CR>
+  nnoremap suf :<C-u>Denite file<CR>
+  nnoremap suF :<C-u>Denite file_rec<CR>
+  nnoremap suu :<C-u>Denite buffer file_old<CR>
+  nnoremap suo :<C-u>Denite outline -no-quit -mode=normal<CR>
+  nnoremap suh :<C-u>Denite help<CR>
+  nnoremap sur :<C-u>Denite register<CR>
+  nnoremap su/ :<C-u>Denite line -no-quit<CR>
+  nnoremap sug :<C-u>Denite grep -no-quit<CR>
+  nnoremap suR :<C-u>Denite -resume<CR>
+
+  noremap sul :<C-u>Denite command_history<CR>
+
+  " Incremental search in cmdline history.
+  inoremap <C-l> <ESC>:<C-u>Denite command<CR>
+'''
+hook_post_source = '''
+  " Default options.
+	call denite#custom#option('default', {
+        \ 'prompt': '»',
+        \ 'cursor_wrap': v:true,
+        \ 'auto_resize': v:true,
+        \ 'highlight_mode_insert': 'WildMenu'
+        \ })
+  " jvgrep use.
+	call denite#custom#var('grep', 'command', ['jvgrep'])
+	call denite#custom#var('grep', 'default_opts', ['-i', '--color=never'])
+	call denite#custom#var('grep', 'recursive_opts', ['-R'])
+	" call denite#custom#var('grep', 'recursive_opts', [])
+	call denite#custom#var('grep', 'pattern_opt', [])
+	call denite#custom#var('grep', 'separator', ['--'])
+	call denite#custom#var('grep', 'final_opts', ['.'])
+  " custom mappings.
+  call denite#custom#map('insert', "<C-n>", '<denite:move_to_next_line>', 'noremap')
+  call denite#custom#map('insert', "<C-p>", '<denite:move_to_previous_line>', 'noremap')
+  " hightlight CursorLine.
+  hi CursorLine guifg=#E19972
+'''
+
 
 # ==================== Search ==================== {{{1
 [[plugins]]
