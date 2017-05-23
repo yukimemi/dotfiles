@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/05/24 01:01:39.
+# Last Change : 2017/05/24 08:05:47.
 # =============================================================================
 
 [[plugins]]
@@ -605,10 +605,30 @@ hook_add = '''
 [[plugins]]
 repo = 'cocopon/vaffle.vim'
 on_cmd = ['Vaffle']
+hook_add = '''
+  " nnoremap [Space]v :<C-u>Vaffle<CR>
+'''
+hook_post_source = '''
+  let g:loaded_netrw       = 1
+  let g:loaded_netrwPlugin = 1
+'''
 
 [[plugins]]
 repo = 'justinmk/vim-dirvish'
 on_cmd = ['Dirvish']
+hook_add = '''
+  " nnoremap [Space]v :<C-u>Dirvish<CR>
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+on_cmd = ['NERDTreeToggle', 'NERDTree']
+hook_add = '''
+  nnoremap [Space]v :NERDTreeToggle<CR>
+  au MyAutoCmd StdinReadPre * let s:std_in=1
+  au MyAutoCmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+'''
+
 
 # [[plugins]]
 # repo = 'fuenor/qfixhowm'
@@ -778,7 +798,7 @@ on_source = 'unite.vim'
 # ==================== Denite ==================== {{{1
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-on_event = 'BufRead'
+on_cmd = 'Denite'
 if = "has('python3')"
 hook_add = '''
   " Use plefix s
@@ -790,8 +810,8 @@ hook_add = '''
   nnoremap suo :<C-u>Denite outline -no-quit -mode=normal<CR>
   nnoremap suh :<C-u>Denite help<CR>
   nnoremap sur :<C-u>Denite register<CR>
+  nnoremap sug :<C-u>Denite grep -no-empty<CR>
   nnoremap su/ :<C-u>Denite line -no-quit<CR>
-  nnoremap sug :<C-u>Denite grep -no-quit<CR>
   nnoremap suR :<C-u>Denite -resume<CR>
 
   noremap sul :<C-u>Denite command_history<CR>
@@ -807,19 +827,21 @@ hook_post_source = '''
         \ 'auto_resize': v:true,
         \ 'highlight_mode_insert': 'WildMenu'
         \ })
-  " jvgrep use.
-	call denite#custom#var('grep', 'command', ['jvgrep'])
-	call denite#custom#var('grep', 'default_opts', ['-i', '--color=never'])
-	call denite#custom#var('grep', 'recursive_opts', ['-R'])
-	" call denite#custom#var('grep', 'recursive_opts', [])
-	call denite#custom#var('grep', 'pattern_opt', [])
-	call denite#custom#var('grep', 'separator', ['--'])
-	call denite#custom#var('grep', 'final_opts', ['.'])
+	" Pt command on grep source
+  if executable('pt')
+    call denite#custom#var('grep', 'command', ['pt'])
+    call denite#custom#var('grep', 'default_opts',
+          \ ['--nogroup', '--nocolor', '--smart-case'])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'pattern_opt', [])
+    call denite#custom#var('grep', 'separator', ['--'])
+    call denite#custom#var('grep', 'final_opts', [])
+  endif
   " custom mappings.
-  call denite#custom#map('insert', "<C-n>", '<denite:move_to_next_line>', 'noremap')
-  call denite#custom#map('insert', "<C-p>", '<denite:move_to_previous_line>', 'noremap')
-  " hightlight CursorLine.
-  hi CursorLine guifg=#E19972
+  call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+  call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+  call denite#custom#map('insert', '<C-[>', '<denite:enter_mode:normal>', 'noremap')
+  call denite#custom#map('normal', '<C-[>', '<denite:quit>', 'noremap')
 '''
 
 
