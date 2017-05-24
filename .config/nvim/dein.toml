@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/05/24 08:05:47.
+# Last Change : 2017/05/24 19:05:43.
 # =============================================================================
 
 [[plugins]]
@@ -89,10 +89,7 @@ hook_add = '''
 
   function! MyFilename()
     return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-          \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-          \  &ft == 'unite' ? unite#get_status_string() :
-          \  &ft == 'vimshell' ? vimshell#get_status_string() :
-          \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+          \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
           \ ('' != MyModified() ? ' ' . MyModified() : '')
   endfunction
 
@@ -148,7 +145,7 @@ repo = 'Yggdroot/indentLine'
 hook_add = '''
   let g:indentLine_faster = 1
   nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-  let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'unite', 'vimfiler', 'tweetvim']
+  let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'denite', 'vimfiler', 'tweetvim']
   au MyAutoCmd User PreciousFileType execute 'IndentLinesReset'
 '''
 
@@ -259,9 +256,6 @@ hook_source = '''
   if has('conceal')
     set conceallevel=2 concealcursor=i
   endif
-
-  " for unite
-  imap <C-s> <Plug>(neosnippet_start_unite_snippet)
 '''
 
 [[plugins]]
@@ -300,22 +294,6 @@ hook_add = '''
 repo = 'airblade/vim-rooter'
 hook_add = '''
   let g:rooter_use_lcd = 1
-'''
-
-[[plugins]]
-repo = 'Shougo/vimfiler.vim'
-depends = 'unite.vim'
-if = "!has('python3')"
-on_map = '<Plug>'
-on_path = '.*'
-on_cmd = ['VimFiler', 'VimFilerBufferDir']
-hook_add = '''
-  " let g:vimfiler_as_default_explorer = 1
-  let g:vimfiler_enable_auto_cd = 1
-  if g:is_windows
-    let g:unite_kind_file_use_trashbox = 1
-  endif
-  nnoremap <silent> [Space]v :<C-u>VimFilerBufferDir -explorer -find -create<CR>
 '''
 
 [[plugins]]
@@ -470,9 +448,6 @@ hook_add = '''
   call Mkdir(g:memolist_path)
 
   let g:memolist_memo_suffix = "md"
-  " let g:memolist_vimfiler = 1
-  let g:memolist_unite = 1
-  " let g:memolist_unite_source = "file_rec"
 
   " mappings
   nnoremap <Leader>mn :<C-u>MemoNew<CR>
@@ -488,7 +463,6 @@ hook_add = '''
 repo = 'mattn/sonictemplate-vim'
 on_cmd = 'Template'
 hook_add = '''
-  nnoremap suT :<C-u>Unite sonictemplate<CR>
   let g:sonictemplate_vim_template_dir = '$HOME/.vim/template'
   let g:sonictemplate_vim_vars = {
         \ '_': {
@@ -514,10 +488,7 @@ hook_add = '''
     nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
   endfunction
 
-  nnoremap [Space]ut :<C-u>Unite tweetvim<CR>
   nnoremap [Space]tu :<C-u>TweetVimUserStream<CR>
-  nnoremap [Space]tl :<C-u>Unite tweetvim<CR>
-  nnoremap [Space]ta :<C-u>Unite tweetvim/account<CR>
 
   let g:tweetvim_default_account = "yukimemi"
   let g:tweetvim_tweet_per_page = 100
@@ -649,152 +620,6 @@ hook_add = '''
 repo = 'vitalk/vim-simple-todo'
 on_ft = 'markdown'
 
-
-# ==================== Unite ===================== {{{1
-[[plugins]]
-repo = 'Shougo/unite.vim'
-on_cmd = 'Unite'
-if = "!has('python3')"
-hook_add = '''
-  " Use plefix s
-  nnoremap suc :<C-u>Unite colorscheme -auto-preview<CR>
-  nnoremap suy :<C-u>Unite history/yank<CR>
-  nnoremap sub :<C-u>Unite buffer<CR>
-  if g:is_windows
-    nnoremap suf :<C-u>Unite file_rec<CR>
-    nnoremap suF :<C-u>Unite file_rec<CR>
-  else
-    nnoremap suf :<C-u>Unite file_rec/async<CR>
-    nnoremap suF :<C-u>Unite file_rec/async<CR>
-  endif
-  nnoremap suB :<C-u>Unite bookmark -default-action=lcd<CR>
-  nnoremap suA :<C-u>UniteBookmarkAdd<CR>
-  nnoremap suo :<C-u>Unite outline -no-quit -no-start-insert -vertical -winwidth=40<CR>
-  nnoremap suq :<C-u>Unite quickfix -no-quit<CR>
-  nnoremap suh :<C-u>Unite help<CR>
-  nnoremap sur :<C-u>Unite register<CR>
-  " nnoremap sum :<C-u>Unite neomru/file -auto-preview<CR>
-  nnoremap su/ :<C-u>Unite line -no-quit<CR>
-  nnoremap sug :<C-u>Unite grep -no-quit -no-start-insert<CR>
-  nnoremap suG :<C-u>Unite grep/git -no-quit<CR>
-  nnoremap sut :<C-u>Unite tab<CR>
-  nnoremap suu :<C-u>Unite buffer neomru/file<CR>
-  nnoremap sua :<C-u>Unite buffer neomru/file bookmark file file_rec/async<CR>
-  " nnoremap suM :<C-u>Unite mapping<CR>
-  nnoremap suR :<C-u>UniteResume<CR>
-  " nnoremap sud :<C-u>Unite -default-action=lcd directory_mru<CR>
-  noremap sul :<C-u>Unite history/command<CR>
-
-  " grep ~/.vim_junk
-  nnoremap suj :<C-u>Unite grep:~/.cache/junkfile<CR>
-
-  " Incremental search in cmdline history.
-  " http://d.hatena.ne.jp/osyo-manga/20140825
-  inoremap <C-l> <ESC>:Unite history/command -start-insert -default-action=edit<CR>
-
-  " grep source setting
-  if executable('jvgrep')
-    let g:unite_source_grep_command = 'jvgrep'
-    let g:unite_source_grep_default_opts = '-i --color=never'
-    let g:unite_source_grep_recursive_opt = '-R'
-  elseif executable('pt')
-    let g:unite_source_grep_command = 'pt'
-    let g:unite_source_grep_default_opts = '--nogroup --nocolor'
-    let g:unite_source_grep_recursive_opt = ''
-  elseif executable('ag')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts = '--nocolor --nogroup --column'
-    let g:unite_source_grep_recursive_opt = ''
-  endif
-'''
-hook_source = '''
-  " Like ctrlp.vim settings.
-  let s:unite_default_context = {
-        \ 'start_insert': 1,
-        \ 'winheight': 10,
-        \ 'direction': 'botright'
-        \ }
-  call extend(s:unite_default_context, {
-        \ 'prompt': '» '
-        \ })
-  call unite#custom#profile('default', 'context', s:unite_default_context)
-
-  " use vimfiler to open directory
-  call unite#custom#default_action("source/bookmark/directory", "vimfiler")
-  call unite#custom#default_action("directory", "vimfiler")
-  call unite#custom#default_action("directory_mru", "vimfiler")
-
-  function! s:unite_settings()
-    nmap <buffer><nowait> <Esc> <Plug>(unite_exit)
-    nmap <buffer> <C-n> <Plug>(unite_select_next_line)
-    nmap <buffer> <C-p> <Plug>(unite_select_previous_line)
-  endfunction
-  au MyAutoCmd FileType unite call s:unite_settings()
-'''
-
-[[plugins]]
-repo = 'Shougo/neomru.vim'
-depends = 'unite.vim'
-on_source = 'unite.vim'
-
-[[plugins]]
-repo = 'Shougo/unite-outline'
-depends = 'unite.vim'
-on_source = 'unite.vim'
-
-[[plugins]]
-repo = 'thinca/vim-unite-history'
-depends = 'unite.vim'
-on_source = 'unite.vim'
-
-[[plugins]]
-repo = 'Shougo/unite-help'
-depends = 'unite.vim'
-on_source = 'unite.vim'
-
-[[plugins]]
-repo = 'tsukkee/unite-tag'
-depends = 'unite.vim'
-on_source = 'unite.vim'
-
-[[plugins]]
-repo = 'Shougo/junkfile.vim'
-depends = 'unite.vim'
-on_source = 'unite.vim'
-on_cmd = 'JunkfileOpen'
-
-[[plugins]]
-repo = 'Shougo/neoyank.vim'
-depends = 'unite.vim'
-on_source = 'unite.vim'
-
-[[plugins]]
-repo = 'thinca/vim-ref'
-depends = 'unite.vim'
-on_source = 'unite.vim'
-on_cmd = 'Ref'
-
-[[plugins]]
-repo = 'osyo-manga/unite-quickfix'
-depends = 'unite.vim'
-on_source = 'unite.vim'
-
-[[plugins]]
-repo = 'osyo-manga/unite-filetype'
-depends = 'unite.vim'
-on_source = 'unite.vim'
-
-[[plugins]]
-repo = 'sorah/unite-ghq'
-depends = 'unite.vim'
-on_source = 'unite.vim'
-
-[[plugins]]
-repo = 'ujihisa/unite-colorscheme'
-depends = 'unite.vim'
-on_source = 'unite.vim'
-
-
 # ==================== Denite ==================== {{{1
 [[plugins]]
 repo = 'Shougo/denite.nvim'
@@ -908,7 +733,7 @@ repo = 'itchyny/vim-cursorword'
 
 [[plugins]]
 repo = 'thinca/vim-qfreplace'
-on_ft = ['unite', 'quickfix']
+on_ft = ['quickfix']
 
 
 # ==================== Operators ================= {{{1
@@ -1051,8 +876,6 @@ hook_add = '''
         \ "_": {
         \   "hook/output_command/enable": 1,
         \   "hook/output_command/log": 1,
-        \   "hook/close_unite_quickfix/enable_hook_loaded": 1,
-        \   "hook/unite_quickfix/enable_failure": 1,
         \   "hook/close_quickfix/enable_exit": 0,
         \   "hook/close_buffer/enable_failure": 1,
         \   "hook/close_buffer/enable_empty_data": 1,
@@ -1488,22 +1311,6 @@ repo = 'itchyny/vim-haskell-sort-import'
 on_ft = 'haskell'
 hook_add = '''
  au MyAutoCmd BufWritePre *.hs HaskellSortImport
-'''
-
-[[plugins]]
-repo = 'ujihisa/unite-haskellimport'
-depends = 'unite.vim'
-on_ft = 'haskell'
-hook_add = '''
-  nnoremap sui :<C-u>Unite haskellimport<CR>
-'''
-
-[[plugins]]
-repo = 'eagletmt/unite-haddock'
-depends = 'unite.vim'
-on_ft = 'haskell'
-hook_add = '''
-  nnoremap sud :<C-u>Unite hoogle<CR>
 '''
 
 # [[plugins]]
