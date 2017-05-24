@@ -8,6 +8,10 @@ set -x PAGER less
 # GOPATH. {{{2
 set -x GOPATH ~/.ghq
 
+# GSR. {{{2
+set -x GSR_SHOW_AHEAD 1
+set -x GSR_SHOW_BEHIND 1
+
 # PATH. {{{2
 function __add_fish_user_paths -a addpath
   if test -d $addpath
