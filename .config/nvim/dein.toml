@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/05/24 19:05:43.
+# Last Change : 2017/05/24 22:48:09.
 # =============================================================================
 
 [[plugins]]
@@ -619,6 +619,19 @@ hook_add = '''
 [[plugins]]
 repo = 'vitalk/vim-simple-todo'
 on_ft = 'markdown'
+
+[[plugins]]
+repo = 'kassio/neoterm'
+on_cmd = ['T', 'Tnew']
+hook_add = '''
+  let g:neoterm_autoinsert = 1
+  nnoremap [Space]s :<C-u>terminal<CR>
+  tnoremap sj <C-\><C-n><C-w>j
+  tnoremap sk <C-\><C-n><C-w>k
+  tnoremap sl <C-\><C-n><C-w>l
+  tnoremap sh <C-\><C-n><C-w>h
+'''
+
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
