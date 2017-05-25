@@ -112,6 +112,7 @@ alias runhaskell "stack runghc --"
 abbr -a fv __filter_command_nvim
 abbr -a fmvim __filter_command_mvim
 abbr -a ghl __filter_command_ghq
+abbr -a gsrl __filter_command_gsr
 abbr -a j __filter_command_z
 abbr -a r __filter_command_rm
 abbr -a rr __filter_command_rm_recurse
