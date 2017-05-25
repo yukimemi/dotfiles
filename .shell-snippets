@@ -211,6 +211,7 @@ go get -u github.com/tcnksm/ghr
 go get -u github.com/yuya-takeyama/ggallin
 go get -u github.com/mattn/goemon/cmd/goemon
 go get -u github.com/mattn/memo
+go get -u github.com/mattn/go-shellwords
 go get -u github.com/Songmu/ghg/cmd/ghg
 # go get -u github.com/BurntSushi/toml
 go get -u github.com/naoina/toml
