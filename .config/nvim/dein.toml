@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/05/24 22:48:09.
+# Last Change : 2017/05/25 12:39:53.
 # =============================================================================
 
 [[plugins]]
@@ -622,6 +622,7 @@ on_ft = 'markdown'
 
 [[plugins]]
 repo = 'kassio/neoterm'
+if = "has('nvim')"
 on_cmd = ['T', 'Tnew']
 hook_add = '''
   let g:neoterm_autoinsert = 1
