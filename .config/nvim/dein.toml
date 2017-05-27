@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/05/25 12:39:53.
+# Last Change : 2017/05/26 14:06:46.
 # =============================================================================
 
 [[plugins]]
@@ -546,7 +546,7 @@ hook_add = '''
         \ }
   let g:ale_lint_on_text_changed = 'never'
   let g:ale_lint_on_enter = 0
-  let g:ale_lint_on_insert_leave = 1
+  let g:ale_lint_on_insert_leave = 0
   let g:ale_lint_on_save = 1
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
