@@ -88,6 +88,6 @@ site '*://twitter.com/*' {
 }
 
 " Settings
-let configpath = '~/.ghq/src/github.com/yukimemi/dotfiles/.cvimrc'
+let configpath = '/Users/yukimemi/.ghq/src/github.com/yukimemi/dotfiles/.cvimrc'
 set localconfig
 
