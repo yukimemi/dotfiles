@@ -388,8 +388,12 @@ brew tap jhawthorn/fzy; and brew install fzy
 # Install gomi
 curl -L git.io/gomi | bash
 
-# Install rust
+# Install rustup.
 curl https://sh.rustup.rs -sSf | sh
+# Fish completions.
+rustup completions fish > ~/.config/fish/completions/rustup.fish
+# Zsh completions.
+rustup completions zsh > ~/.zfunc/_rustup
 
 # Install racer and rustfmt
 cargo install --force rustfmt; and cargo install --force racer; and cargo install --force rusty-tags; and cargo install --force cargo-edit
