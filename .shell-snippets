@@ -80,6 +80,8 @@ ghq get https://github.com/yukimemi/golang-ghr.git
 ghq get https://github.com/liangxianzhe/oh-my-vim.git
 ghq get https://github.com/Shougo/shougo-s-github.git
 ghq get https://github.com/eagletmt/dotfiles.git
+ghq get https://github.com/antoyo/.dotfiles
+ghq get https://github.com/hinagishi/dotfiles
 ghq get https://github.com/supermomonga/dotfiles.git
 ghq get https://github.com/tcnksm/go-compile-scripts.git
 ghq get https://github.com/osyo-manga/cpp-vimrc.git
@@ -397,6 +399,9 @@ rustup completions zsh > ~/.zfunc/_rustup
 
 # Install racer and rustfmt
 cargo install --force rustfmt; and cargo install --force racer; and cargo install --force rusty-tags; and cargo install --force cargo-edit
+
+# Install rust-src component.
+rustup component add rust-src
 
 # Install stack for haskell.
 curl -sSL https://get.haskellstack.org/ | sh

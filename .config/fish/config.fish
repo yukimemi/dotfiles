@@ -8,6 +8,9 @@ set -x PAGER less
 # GOPATH. {{{2
 set -x GOPATH ~/.ghq
 
+# Rust. {{{2
+set -x RUST_SRC_PATH ~/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
+
 # GSR. {{{2
 set -x GSR_SHOW_AHEAD 1
 set -x GSR_SHOW_BEHIND 1
