@@ -34,9 +34,6 @@
       "terminal-plus"
       "language-javascript-jsx"
     ]
-    packagesWithKeymapsDisabled: [
-      "clipboard-plus"
-    ]
     telemetryConsent: "no"
     themes: [
       "atom-material-ui"
@@ -88,6 +85,9 @@
       "~/.ghq/src"
     ]
   "quick-highlight": {}
+  racer:
+    racerBinPath: "~/.cargo/bin/racer"
+    rustSrcPath: "$RUST_SRC_PATH"
   "recent-finder": {}
   "symbols-tree-view": {}
   "trailing-spaces":

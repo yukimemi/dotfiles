@@ -82,6 +82,7 @@ ghq get https://github.com/Shougo/shougo-s-github.git
 ghq get https://github.com/eagletmt/dotfiles.git
 ghq get https://github.com/antoyo/.dotfiles
 ghq get https://github.com/hinagishi/dotfiles
+ghq get https://github.com/t9md/dotfiles
 ghq get https://github.com/supermomonga/dotfiles.git
 ghq get https://github.com/tcnksm/go-compile-scripts.git
 ghq get https://github.com/osyo-manga/cpp-vimrc.git
