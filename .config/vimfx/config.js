@@ -1,9 +1,17 @@
-const {classes: Cc, interfaces: Ci, utils: Cu} = Components;
+const {
+  classes: Cc,
+  interfaces: Ci,
+  utils: Cu
+} = Components;
 const gClipboardHelper = Cc['@mozilla.org/widget/clipboardhelper;1']
-      .getService(Ci.nsIClipboardHelper);
-const {Preferences} = Cu.import('resource://gre/modules/Preferences.jsm', {});
+  .getService(Ci.nsIClipboardHelper);
+const {
+  Preferences
+} = Cu.import('resource://gre/modules/Preferences.jsm', {});
 
-const {sendKey} = Cu.import(`${__dirname}/shared.js?${Math.random()}`, {});
+const {
+  sendKey
+} = Cu.import(`${__dirname}/shared.js?${Math.random()}`, {});
 
 const FIREFOX_PREFS = {
   'browser.startup.page': 3,
@@ -44,83 +52,84 @@ const MAPPINGS = {
   'quote': 'i',
 
   'custom.mode.normal.search_selected_text': 's',
-  'custom.mode.normal.copy_selection_or_url': 'yy',
+  'custom.mode.normal.copy_url': 'yy',
   'custom.mode.normal.copy_as_markdown': 'ym',
   'custom.mode.normal.click_toolbar_pocket': 'mp',
   'custom.mode.normal.send_up': '<force><c-p>',
   'custom.mode.normal.send_down': '<force><c-n>',
 };
 
-const {commands} = vimfx.modes.normal;
+const {
+  commands
+} = vimfx.modes.normal;
 
-function _sendKey(key, {vim, event}) {
+function _sendKey(key, {
+  vim,
+  event
+}) {
   if (vim.isUIEvent(event)) {
     sendKey(vim.window, key);
   } else {
-    vimfx.send(vim, 'sendKey', {key});
+    vimfx.send(vim, 'sendKey', {
+      key
+    });
   }
 }
 
 const CUSTOM_COMMANDS = [
-  [
-    {
-      name: 'search_selected_text',
-      description: 'Search for the selected text'
-    }, ({vim}) => {
-      vimfx.send(vim, 'getSelection', true, selection => {
-        if (selection != '') {
-          vim.window.switchToTabHavingURI(`https://www.google.co.jp/search?q=${selection}`, true);
-        }
-      });
-    }
-  ],
-  [
-    {
-      name: 'copy_as_markdown',
-      description: 'Copy title and url as Markdown',
-      category: 'location',
-      order: commands.copy_current_url.order + 2
-    }, ({vim}) => {
-      let url = vim.window.gBrowser.selectedBrowser.currentURI.spec;
-      let title = vim.window.gBrowser.selectedBrowser.contentTitle;
-      let s = `[${title}](${url})`;
-      gClipboardHelper.copyString(s);
-      vim.notify(`Copied to clipboard: ${s}`);
-    }
-  ],
-  [
-    {
-      name: 'copy_selection_or_url',
-      description: 'Copy the selection or current url',
-      category: 'location',
-      order: commands.copy_current_url.order + 1
-    }, ({vim}) => {
-      vimfx.send(vim, 'getSelection', true, selection => {
-        if (selection == '') {
-          selection = vim.window.gBrowser.selectedBrowser.currentURI.spec;
-        }
-        gClipboardHelper.copyString(selection);
-        vim.notify(`Copied to clipboard: ${selection}`);
-      });
-    }
-  ],
-  [
-    {
-      name: 'click_toolbar_pocket',
-      description: 'Click toolbar button [Pocket]'
-    }, ({vim}) => {
-      vim.window.document.getElementById('pocket-button').click();
-    }
-  ],
-  [
-    {
+  [{
+    name: 'search_selected_text',
+    description: 'Search for the selected text'
+  }, ({
+    vim
+  }) => {
+    vimfx.send(vim, 'getSelection', true, selection => {
+      if (selection != '') {
+        vim.window.switchToTabHavingURI(`https://www.google.co.jp/search?q=${selection}`, true);
+      }
+    });
+  }],
+  [{
+    name: 'copy_as_markdown',
+    description: 'Copy title and url as Markdown',
+    category: 'location',
+    order: commands.copy_current_url.order + 2
+  }, ({
+    vim
+  }) => {
+    let url = vim.window.gBrowser.selectedBrowser.currentURI.spec;
+    let title = vim.window.gBrowser.selectedBrowser.contentTitle;
+    let s = `[${title}](${url})`;
+    gClipboardHelper.copyString(s);
+    vim.notify(`Copied to clipboard: ${s}`);
+  }],
+  [{
+    name: 'copy_url',
+    description: 'Copy the current url',
+    category: 'location',
+    order: commands.copy_current_url.order + 1
+  }, ({
+    vim
+  }) => {
+    let url = vim.window.gBrowser.selectedBrowser.currentURI.spec;
+    gClipboardHelper.copyString(url);
+    vim.notify(`Copied to clipboard: ${url}`);
+  }],
+  [{
+    name: 'click_toolbar_pocket',
+    description: 'Click toolbar button [Pocket]'
+  }, ({
+    vim
+  }) => {
+    vim.window.document.getElementById('pocket-button').click();
+  }],
+  [{
       name: 'send_up',
       description: 'Send the <up> key'
     },
     _sendKey.bind(null, 'up')
   ],
-  [
-    {
+  [{
       name: 'send_down',
       description: 'Send the <down> key'
     },
