@@ -139,24 +139,28 @@ else
   let s:cache_home = expand('~/.cache/vim')
 endif
 
+
 let s:plug_dir = s:cache_home . '/vim-plug'
 let s:vim_plug_dir = s:plug_dir . '/junegunn/vim-plug'
-if !isdirectory(s:plug_dir)
-  echo "Install vim-plug ..."
-  execute '!git clone https://github.com/junegunn/vim-plug.git ' . s:vim_plug_dir . '/autoload'
-endif
-
 if has('vim_starting')
+  if !isdirectory(s:vim_plug_dir)
+    echo "Install vim-plug ..."
+    execute '!git clone https://github.com/junegunn/vim-plug.git ' . s:vim_plug_dir . '/autoload'
+  endif
   execute 'set runtimepath^=' . fnamemodify(s:vim_plug_dir, ':p')
 endif
 
 call plug#begin(s:plug_dir)
 
-let s:plug_dict = {}
-let s:plug_dict.dir = fnamemodify(s:vim_plug_dir, ':p') . '/autoload'
-Plug 'junegunn/vim-plug', s:plug_dict
-"Plug 'junegunn/vim-plug', { 'dir': fnamemodify(s:vim_plug_dir, ':p') . '/autoload' }
 Plug 'joshdick/onedark.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-highlighturl'
+" Plug 'osyo-manga/vim-precious'
+Plug 'Shougo/context_filetype.vim'
+Plug 'airblade/vim-rooter'
+Plug 'Yggdroot/indentLine'
+Plug 'thinca/vim-submode'
+Plug 'Konfekt/FastFold'
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
 
@@ -165,6 +169,137 @@ call plug#end()
 " After dein.
 filetype plugin indent on
 syntax enable
+
+" Plugin settings: {{{1
+"" lightline. {{{2
+let g:lightline = {
+      \ 'colorscheme': 'onedark',
+      \ 'mode_map': {
+      \   'n' : 'N',
+      \   'i' : 'I',
+      \   'R' : 'R',
+      \   'v' : 'V',
+      \   'V' : 'V-L',
+      \   'c' : 'C',
+      \   "\<C-v>": 'V-B',
+      \   's' : 'S',
+      \   'S' : 'S-L',
+      \   "\<C-s>": 'S-B'
+      \   },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'anzu' ] ],
+      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'bomb', 'filetype' ],
+      \              [ 'absolutepath', 'charcode' ] ]
+      \ },
+      \ 'component': {
+      \   'charcode': '[%03.3b, 0x%02.2B]'
+      \ },
+      \ 'component_function': {
+      \   'modified': 'MyModified',
+      \   'readonly': 'MyReadonly',
+      \   'fugitive': 'MyFugitive',
+      \   'git_branch': 'MyGitBranch',
+      \   'git_traffic': 'MyGitTraffic',
+      \   'git_status': 'MyGitStatus',
+      \   'filename': 'MyFilename',
+      \   'fileformat': 'MyFileformat',
+      \   'filetype': 'MyFiletype',
+      \   'fileencoding': 'MyFileencoding',
+      \   'bomb': 'MyBomb',
+      \   'absolutepath': 'MyAbsolutePath',
+      \   'mode': 'MyMode',
+      \   'anzu': 'anzu#search_status',
+      \ }
+      \ }
+
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  if g:is_windows
+    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'R' : ''
+  else
+    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
+  endif
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyGitBranch()
+  return winwidth(0) > 70 ? gita#statusline#preset('branch_fancy') : ''
+endfunction
+function! MyGitTraffic()
+  return winwidth(0) > 70 ? gita#statusline#preset('traffic_fancy') : ''
+endfunction
+function! MyGitStatus()
+  return winwidth(0) > 70 ? gita#statusline#preset('status') : ''
+endfunction
+
+function! MyFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+    let _ = fugitive#head()
+    if g:is_windows
+      return strlen(_) ? '| '._ : ''
+    else
+      return strlen(_) ? '⭠ '._ : ''
+    endif
+  endif
+  return ''
+endfunction
+
+function! MyFileformat()
+  return winwidth('.') > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyBomb()
+  return &bomb ? 'b' : 'nb'
+endfunction
+
+function! MyMode()
+  return winwidth('.') > 60 ? lightline#mode() : ''
+endfunction
+
+function! MyAbsolutePath()
+  return (winwidth('.') - strlen(expand('%:p')) > 90) ? expand('%:p') : ((winwidth('.') - strlen(expand('%')) > 70) ? expand('%') : '')
+endfunction
+
+" indentLine. {{{2
+let g:indentLine_faster = 1
+nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'denite', 'tweetvim']
+au MyAutoCmd User PreciousFileType execute 'IndentLinesReset'
+
+
+" vim-rooter. {{{2
+let g:rooter_use_lcd = 1
+
+" vim-submode. {{{2
+let g:submode_leave_with_key = 1
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+
+" FastFold. {{{2
+let g:fastfold_savehook = 0
+
 
 " Basic: {{{1
 
