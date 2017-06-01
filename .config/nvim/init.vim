@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/05/12 09:19:56.
+" Last Change : 2017/06/02 00:30:37.
 " =============================================================================
 
 " Init: {{{1
@@ -132,36 +132,35 @@ function s:updateColorScheme() "{{{2
 endfunction
 
 " Plugin: {{{1
-" Use dein.
+" Use vim-plug.
 if has('nvim')
   let s:cache_home = expand('~/.cache/nvim')
 else
   let s:cache_home = expand('~/.cache/vim')
 endif
 
-let s:dein_dir = s:cache_home . '/dein'
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-if !isdirectory(s:dein_repo_dir)
-  execute '!git clone https://github.com/Shougo/dein.vim ' . s:dein_repo_dir
+let s:plug_dir = s:cache_home . '/vim-plug'
+let s:vim_plug_dir = s:plug_dir . '/junegunn/vim-plug'
+if !isdirectory(s:plug_dir)
+  echo "Install vim-plug ..."
+  execute '!git clone https://github.com/junegunn/vim-plug.git ' . s:vim_plug_dir . '/autoload'
 endif
-execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 
-let g:dein#install_max_processes = 16
-" let g:dein#install_progress_type = 'title'
-let g:dein#enable_notification = 1
-let s:toml_file = $VIM_PATH . '/dein.toml'
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir, [$MYVIMRC, s:toml_file])
-  call dein#load_toml(s:toml_file)
-  call dein#end()
-  call dein#save_state()
+if has('vim_starting')
+  execute 'set runtimepath^=' . fnamemodify(s:vim_plug_dir, ':p')
 endif
-" call dein#call_hook('source')
 
-" Check and install.
-if has('vim_starting') && dein#check_install()
-  call dein#install()
-endif
+call plug#begin(s:plug_dir)
+
+let s:plug_dict = {}
+let s:plug_dict.dir = fnamemodify(s:vim_plug_dir, ':p') . '/autoload'
+Plug 'junegunn/vim-plug', s:plug_dict
+"Plug 'junegunn/vim-plug', { 'dir': fnamemodify(s:vim_plug_dir, ':p') . '/autoload' }
+Plug 'joshdick/onedark.vim'
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle'] }
+Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
+
+call plug#end()
 
 " After dein.
 filetype plugin indent on
