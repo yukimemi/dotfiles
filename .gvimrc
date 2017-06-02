@@ -10,7 +10,6 @@ let s:is_linux = !s:is_windows && !s:is_cygwin && !s:is_darwin
 "{{{ ========== Appearance ============================================================
 " hide all
 set guioptions=none
-set guioptions+=a
 
 " color
 set background=dark

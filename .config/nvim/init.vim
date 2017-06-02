@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/02 12:41:38.
+" Last Change : 2017/06/02 13:27:51.
 " =============================================================================
 
 " Init: {{{1
@@ -194,14 +194,14 @@ Plug 'Konfekt/FastFold'
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
 Plug 'kana/vim-operator-user'
-Plug 'kana/vim-operator-replace'
-Plug 'rhysd/vim-operator-surround'
-Plug 'haya14busa/vim-operator-flashy'
+Plug 'kana/vim-operator-replace', { 'on': '<Plug>(operator-replace)' }
+Plug 'rhysd/vim-operator-surround', { 'on': ['<Plug>(operator-surround-append)', '<Plug>(operator-surround-delete)',  '<Plug>(operator-surround-replace)'] }
+Plug 'haya14busa/vim-operator-flashy', { 'on': '<Plug>(operator-flashy)' }
 Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-entire'
-Plug 'kana/vim-textobj-fold'
-Plug 'kana/vim-textobj-indent'
-Plug 'gilligan/textobj-lastpaste'
+Plug 'kana/vim-textobj-entire', { 'on': ['<Plug>(textobj-entire-a)', '<Plug>(textobj-entire-i)'] }
+Plug 'kana/vim-textobj-fold', { 'on': ['<Plug>(textobj-fold-a)', '<Plug>(textobj-fold-i)'] }
+Plug 'kana/vim-textobj-indent', { 'on': ['<Plug>(textobj-indent-a)', '<Plug>(textobj-indent-i)', '<Plug>(textobj-indent-same-a)', '<Plug>(textobj-indent-same-i)'] }
+Plug 'gilligan/textobj-lastpaste', { 'on': '<Plug>(textobj-lastpaste-i)' }
 Plug 'tyru/caw.vim'
 Plug 'LeafCage/yankround.vim'
 Plug 'cohama/agit.vim', { 'on': 'Agit' }
@@ -750,11 +750,7 @@ set fileformat=unix
 set fileformats=unix,dos,mac
 
 " Clipboard.
-if has('nvim')
-  set clipboard+=unnamedplus
-else
-  set clipboard+=unnamedplus,autoselectplus
-endif
+set clipboard+=unnamedplus
 
 " Indent.
 set autoindent
