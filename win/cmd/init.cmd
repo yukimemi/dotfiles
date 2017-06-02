@@ -15,7 +15,7 @@ doskey v=vim $*
 doskey e=gvim --remote-tab-silent $*
 doskey b=cd ..
 doskey o=start $*
-doskey dup=vim -c "silent! call dein#update() | q"
+doskey vup=vim -c "PlugUpdate | qa"
 
 rem Git
 doskey s=git status
