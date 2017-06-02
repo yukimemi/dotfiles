@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/02 13:27:51.
+" Last Change : 2017/06/02 21:25:34.
 " =============================================================================
 
 " Init: {{{1
@@ -38,16 +38,17 @@ let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
 
 " Set path. {{{2
 set shellslash
+let $CACHE = expand('~/.cache')
 if has('nvim')
   let $VIM_PATH = expand('~/.config/nvim')
   let $MYVIMRC = expand('~/.config/nvim/init.vim')
+  let $BACKUP_PATH = expand('$CACHE/nvim/back')
 else
   let $VIM_PATH = expand('~/.vim')
   let $MYVIMRC = expand('~/.vimrc')
   let $MYGVIMRC = expand('~/.gvimrc')
+  let $BACKUP_PATH = expand('$CACHE/vim/back')
 endif
-let $CACHE = expand('~/.cache')
-let $BACKUP_PATH = expand('$CACHE/vim/back')
 
 " Add runtimepath for windows.
 if g:is_windows
@@ -153,7 +154,8 @@ endif
 " Helper function.
 function! Cond(cond, ...)
   let opts = get(a:000, 0, {})
-  return a:cond ? opts : extend(opts, { 'on': [], 'for': [], 'do': '' })
+  " return a:cond ? opts : extend(opts, { 'on': [], 'for': [], 'do': '' })
+  return a:cond ? opts : { 'on': [], 'for': [] }
 endfunction
 
 call plug#begin(s:plug_dir)
@@ -191,7 +193,6 @@ Plug 'taku-o/vim-ro-when-swapfound'
 Plug 'tyru/capture.vim', { 'on': 'Capture' }
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
 Plug 'Konfekt/FastFold'
-Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
 Plug 'kana/vim-operator-user'
 Plug 'kana/vim-operator-replace', { 'on': '<Plug>(operator-replace)' }
@@ -224,12 +225,8 @@ Plug 'b4b4r07/vim-sqlfmt', { 'for': 'sql', 'do': 'go get github.com/jackc/sqlfmt
 
 call plug#end()
 
-" After dein.
-filetype plugin indent on
-syntax enable
-
 " Plugin settings: {{{1
-"" lightline. {{{2
+" lightline. {{{2
 let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'mode_map': {
@@ -750,7 +747,7 @@ set fileformat=unix
 set fileformats=unix,dos,mac
 
 " Clipboard.
-set clipboard+=unnamedplus
+set clipboard+=unnamed
 
 " Indent.
 set autoindent
@@ -960,8 +957,8 @@ vnoremap : q:A
 " Delete other line.
 nnoremap [Space]d :<C-u>call <SID>deleteOtherLine()<CR>
 
-" dein update.
-nnoremap [Space]du :<C-u>call dein#update()<CR>
+" vim-plug update.
+nnoremap [Space]du :<C-u>PlugUpdate \| PlugUpgrade<CR>
 
 " nohlsearch.
 nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
@@ -988,7 +985,7 @@ nnoremap st :<C-u>tabnew<CR>
 nnoremap ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
 nnoremap sq :<C-u>q<CR>
-nnoremap sQ :<C-u>bd<CR>
+nnoremap sQ :<C-u>qa<CR>
 nnoremap sbk :<C-u>bd!<CR>
 nnoremap sbq :<C-u>q!<CR>
 
