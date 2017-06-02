@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/02 00:30:37.
+" Last Change : 2017/06/02 12:41:38.
 " =============================================================================
 
 " Init: {{{1
@@ -141,28 +141,86 @@ endif
 
 
 let s:plug_dir = s:cache_home . '/vim-plug'
-let s:vim_plug_dir = s:plug_dir . '/junegunn/vim-plug'
+let s:vim_plug_dir = s:plug_dir . '/vim-plug'
 if has('vim_starting')
   if !isdirectory(s:vim_plug_dir)
     echo "Install vim-plug ..."
-    execute '!git clone https://github.com/junegunn/vim-plug.git ' . s:vim_plug_dir . '/autoload'
+    execute '!git clone --depth 1 https://github.com/junegunn/vim-plug.git ' . s:vim_plug_dir . '/autoload'
   endif
   execute 'set runtimepath^=' . fnamemodify(s:vim_plug_dir, ':p')
 endif
 
+" Helper function.
+function! Cond(cond, ...)
+  let opts = get(a:000, 0, {})
+  return a:cond ? opts : extend(opts, { 'on': [], 'for': [], 'do': '' })
+endfunction
+
 call plug#begin(s:plug_dir)
 
+let b:vim_plug_dir = s:vim_plug_dir . '/autoload'
+Plug 'junegunn/vim-plug', { 'dir': b:vim_plug_dir }
 Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-highlighturl'
+Plug 'itchyny/vim-parenmatch'
+Plug 'itchyny/vim-cursorword'
 " Plug 'osyo-manga/vim-precious'
+Plug 'osyo-manga/vim-anzu'
 Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/deoplete.nvim', Cond(has('nvim'))
+Plug 'Shougo/neocomplete.vim', Cond(!has('nvim'))
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/vimproc.vim', Cond(!has('kaoriya'), { 'do': 'make' })
+Plug 'Shougo/denite.nvim', { 'on': 'Denite' }
+Plug 'Shougo/neomru.vim'
 Plug 'airblade/vim-rooter'
+Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 Plug 'Yggdroot/indentLine'
+Plug 'glidenote/memolist.vim', { 'on': ['Memolist', 'MemoNew'] }
 Plug 'thinca/vim-submode'
+Plug 'vim-scripts/autodate.vim'
+Plug 'tpope/vim-repeat'
+Plug 'Chiel92/vim-autoformat'
+Plug 'w0rp/ale'
+Plug 'haya14busa/vim-asterisk'
+Plug 'haya14busa/incsearch.vim'
+Plug 't9md/vim-quickhl'
+Plug 'taku-o/vim-ro-when-swapfound'
+Plug 'tyru/capture.vim', { 'on': 'Capture' }
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
 Plug 'Konfekt/FastFold'
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
+Plug 'kana/vim-operator-user'
+Plug 'kana/vim-operator-replace'
+Plug 'rhysd/vim-operator-surround'
+Plug 'haya14busa/vim-operator-flashy'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-fold'
+Plug 'kana/vim-textobj-indent'
+Plug 'gilligan/textobj-lastpaste'
+Plug 'tyru/caw.vim'
+Plug 'LeafCage/yankround.vim'
+Plug 'cohama/agit.vim', { 'on': 'Agit' }
+Plug 'rhysd/committia.vim'
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
+Plug 'dzeban/vim-log-syntax', { 'for': 'log' }
+Plug 'posva/vim-vue', { 'for': 'vue' }
+Plug 'dag/vim-fish', { 'for': 'fish' }
+Plug 'rhysd/vim-gfm-syntax', { 'for': 'markdown' }
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+Plug 'rust-lang/rust.vim', Cond(executable('cargo'), { 'for': 'rust' })
+Plug 'racer-rust/vim-racer', Cond(executable('racer'), { 'for': 'rust' })
+Plug 'rhysd/rust-doc.vim', { 'for': 'rust' }
+Plug 'b4b4r07/vim-sqlfmt', { 'for': 'sql', 'do': 'go get github.com/jackc/sqlfmt' }
+
 
 call plug#end()
 
@@ -282,7 +340,6 @@ nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
 let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'denite', 'tweetvim']
 au MyAutoCmd User PreciousFileType execute 'IndentLinesReset'
 
-
 " vim-rooter. {{{2
 let g:rooter_use_lcd = 1
 
@@ -300,6 +357,371 @@ call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 " FastFold. {{{2
 let g:fastfold_savehook = 0
 
+" deoplete. {{{2
+let g:deoplete#enable_at_startup = 1
+
+" neocomplete. {{{2
+let g:neocomplete#enable_at_startup = 1
+
+" neosnippet. {{{2
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory = $VIM_PATH . '/snippets'
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" vim-easy-align. {{{2
+vmap <Enter> <Plug>(EasyAlign)
+
+let g:easy_align_delimiters = {
+      \ '>': {
+      \       'pattern': '>>\|=>\|>.\+',
+      \       'right_margin': 0,
+      \       'delimiter_align': 'l'
+      \   },
+      \ '/': {
+      \       'pattern': '//\+\|/\*\|\*/',
+      \       'delimiter_align': 'l',
+      \       'ignore_groups': ['!Comment']
+      \   },
+      \ ']': {
+      \       'pattern': '[[\]]',
+      \       'left_margin': 0,
+      \       'right_margin': 0,
+      \       'stick_to_left': 0
+      \   },
+      \ ')': {
+      \       'pattern': '[()]',
+      \       'left_margin': 0,
+      \       'right_margin': 0,
+      \       'stick_to_left': 0
+      \   },
+      \ 'd': {
+      \       'pattern': ' \(\S\+\s*[;=]\)\@=',
+      \       'left_margin': 0,
+      \       'right_margin': 0
+      \   },
+      \ 'p': {
+      \       'pattern': 'pos=\|size=',
+      \       'right_margin': 0
+      \   },
+      \ 's': {
+      \       'pattern': 'sys=\|Trns=',
+      \       'right_margin': 0
+      \   },
+      \ 'k': {
+      \       'pattern': 'key=\|cmt=',
+      \       'right_margin': 0
+      \   },
+      \ 'c': {
+      \       'pattern': 'cmt=',
+      \       'right_margin': 0
+      \   },
+      \ ':': {
+      \       'pattern': ':',
+      \       'left_margin': 1,
+      \       'right_margin': 1,
+      \       'stick_to_left': 0,
+      \       'ignore_groups': []
+      \   },
+      \ 't': {
+      \       'pattern': "\<tab>",
+      \       'left_margin': 0,
+      \       'right_margin': 0
+      \   }
+      \ }
+
+" memolist. {{{2
+if isdirectory($HOME . '/Dropbox')
+  let g:memolist_path = $HOME . '/Dropbox/memolist'
+else
+  let g:memolist_path = $HOME . '/.memolist'
+endif
+
+call Mkdir(g:memolist_path)
+
+let g:memolist_memo_suffix = "md"
+
+" mappings
+nnoremap <Leader>mn :<C-u>MemoNew<CR>
+nnoremap <Leader>ml :<C-u>MemoList<CR>
+nnoremap <Leader>mg :<C-u>MemoGrep<CR>
+
+" autodate. {{{2
+let g:autodate_format = "%Y/%m/%d %H:%M:%S"
+let g:autodate_keyword_pre  = "Last Change *:"
+let g:autodate_keyword_post = "."
+
+" vim-autoformat. {{{2
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 1
+au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
+au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
+nnoremap [Space]f :<C-u>Autoformat<CR>
+
+" ale. {{{2
+let g:ale_linters = {
+      \ 'go': ['golint', 'go vet', 'goimports'],
+      \ 'haskell': ['hlint']
+      \ }
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_save = 1
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" Rust.
+let g:ale_rust_ignore_error_codes = ['E0432', 'E0433']
+
+" vim-ro-when-swapfound. {{{2
+function! s:swapChoice() abort
+  ToggleSwapCheck
+  :e
+endfunction
+com! SwapChoice call s:swapChoice()
+
+" nerdtree. {{{2
+nnoremap [Space]v :NERDTreeToggle<CR>
+au MyAutoCmd StdinReadPre * let s:std_in=1
+au MyAutoCmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" denite. {{{2
+" Use plefix s
+nnoremap suc :<C-u>Denite colorscheme -auto-preview<CR>
+nnoremap sub :<C-u>Denite buffer<CR>
+nnoremap suf :<C-u>Denite file<CR>
+nnoremap suF :<C-u>Denite file_rec<CR>
+" nnoremap suu :<C-u>Denite buffer file_old<CR>
+nnoremap suu :<C-u>Denite buffer file_mru<CR>
+nnoremap suo :<C-u>Denite outline -no-quit -mode=normal<CR>
+nnoremap suh :<C-u>Denite help<CR>
+nnoremap sur :<C-u>Denite register<CR>
+nnoremap sug :<C-u>Denite grep -no-empty<CR>
+nnoremap su/ :<C-u>Denite line -no-quit<CR>
+nnoremap suR :<C-u>Denite -resume<CR>
+
+noremap sul :<C-u>Denite command_history<CR>
+
+" Incremental search in cmdline history.
+inoremap <C-l> <ESC>:<C-u>Denite command<CR>
+
+au! User denite.nvim call s:my_denite_settings()
+
+function! s:my_denite_settings() abort
+  " Default options.
+  call denite#custom#option('default', {
+        \ 'prompt': '»',
+        \ 'cursor_wrap': v:true,
+        \ 'auto_resize': v:true,
+        \ 'highlight_mode_insert': 'WildMenu'
+        \ })
+  " Pt command on grep source
+  if executable('pt')
+    call denite#custom#var('grep', 'command', ['pt'])
+    call denite#custom#var('grep', 'default_opts',
+          \ ['--nogroup', '--nocolor', '--smart-case'])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'pattern_opt', [])
+    call denite#custom#var('grep', 'separator', ['--'])
+    call denite#custom#var('grep', 'final_opts', [])
+  endif
+  " custom mappings.
+  call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+  call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+  call denite#custom#map('insert', '<C-[>', '<denite:enter_mode:normal>', 'noremap')
+  call denite#custom#map('normal', '<C-[>', '<denite:quit>', 'noremap')
+endfunction
+
+" incsearch. {{{2
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+let g:incsearch#auto_nohlsearch = 1
+map n <Plug>(incsearch-nohl)<Plug>(anzu-n)zv
+map N <Plug>(incsearch-nohl)<Plug>(anzu-N)zv
+map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)zv
+map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)zv
+map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)zv
+map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)zv
+
+map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
+map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
+map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
+map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
+
+" vim-quickhl. {{{2
+let g:quickhl_manual_enable_at_startup = 1
+
+nmap [Space]m <Plug>(quickhl-manual-this)
+xmap [Space]m <Plug>(quickhl-manual-this)
+nmap [Space]M <Plug>(quickhl-manual-reset)
+xmap [Space]M <Plug>(quickhl-manual-reset)
+
+let g:quickhl_manual_keywords = [
+      \ "失敗",
+      \ "警告",
+      \ "エラー",
+      \ "異常",
+      \ "warn",
+      \ "WARN",
+      \ "error",
+      \ "ERROR",
+      \ ]
+
+" vim-parenmatch. {{{2
+let g:loaded_matchparen = 1
+
+" vim-operator-replace. {{{2
+map _ <Plug>(operator-replace)
+
+" vim-operator-surround. {{{2
+map sA <Plug>(operator-surround-append)
+map sD <Plug>(operator-surround-delete)
+map sR <Plug>(operator-surround-replace)
+
+" vim-operator-flashy. {{{2
+map y <Plug>(operator-flashy)
+nmap Y <Plug>(operator-flashy)$
+
+" vim-textobj-entire. {{{2
+omap ae <Plug>(textobj-entire-a)
+xmap ae <Plug>(textobj-entire-a)
+omap ie <Plug>(textobj-entire-i)
+xmap ie <Plug>(textobj-entire-i)
+
+" vim-textobj-fold. {{{2
+omap az <Plug>(textobj-fold-a)
+xmap az <Plug>(textobj-fold-a)
+omap iz <Plug>(textobj-fold-i)
+xmap iz <Plug>(textobj-fold-i)
+
+" vim-textobj-indent. {{{2
+omap ai <Plug>(textobj-indent-a)
+xmap ai <Plug>(textobj-indent-a)
+omap ii <Plug>(textobj-indent-i)
+xmap ii <Plug>(textobj-indent-i)
+omap aI <Plug>(textobj-indent-same-a)
+xmap aI <Plug>(textobj-indent-same-a)
+omap iI <Plug>(textobj-indent-same-i)
+xmap iI <Plug>(textobj-indent-same-i)
+
+" textobj-lastpaste. {{{2
+omap iP <Plug>(textobj-lastpaste-i)
+xmap iP <Plug>(textobj-lastpaste-i)
+
+" caw. {{{2
+nmap gc <Plug>(caw:prefix)
+xmap gc <Plug>(caw:prefix)
+nmap gcc <Plug>(caw:hatpos:toggle)
+xmap gcc <Plug>(caw:hatpos:toggle)
+
+" yankround. {{[2
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+let g:yankround_max_history = 100
+
+" vim-go. {{{2
+let g:go_auto_type_info = 1
+let g:go_snippet_engine = "neosnippet"
+let g:go_fmt_command = "goimports"
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+let g:go_metalinter_autosave = 1
+let g:go_fmt_autosave = 0
+let g:go_gocode_unimported_packages = 1
+" au MyAutoCmd BufWritePost *.go GoMetaLinter
+let g:gofmt_command = "goimports"
+au MyAutoCmd BufWritePre *.go silent Fmt
+
+au MyAutoCmd BufNew,BufRead *.go call s:my_go_settings()
+
+function! s:my_go_settings() abort
+  setl foldmethod=syntax
+  setl tabstop=4
+  setl shiftwidth=4
+  setl softtabstop=0
+  setl noexpandtab
+
+  nmap <buffer> <Leader>gd <Plug>(go-doc)
+  nmap <buffer> <Leader>gs <Plug>(go-doc-split)
+  nmap <buffer> <Leader>gv <Plug>(go-doc-vertical)
+  nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
+  nmap <buffer> <Leader>gr <Plug>(go-rename)
+
+  " nmap <buffer> <Leader>r <Plug>(go-run)
+  nmap <buffer> <Leader>gb <Plug>(go-build)
+  nmap <buffer> <Leader>gt <Plug>(go-test)
+  nmap <buffer> <Leader>gc <Plug>(go-coverage)
+
+  nmap <buffer> <Leader>ds <Plug>(go-def-split)
+  nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
+  nmap <buffer> <Leader>dt <Plug>(go-def-tab)
+  nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
+
+  setl completeopt=menu,preview
+endfunction
+
+" vim-ps1. {{{2
+function! s:addHeaderPs1(flg)
+  let lines = []
+  if a:flg
+    call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
+  else
+    call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
+  endif
+  call add(lines, "@exit /b %errorlevel%")
+  call extend(lines, readfile(expand("%")))
+  let i = 0
+  for line in lines
+    if len(lines) != (i + 1)
+      let lines[i] .= "\r"
+    endif
+    let i += 1
+  endfor
+  " let s:basedir = expand("%:p:h") . "/../cmd/"
+  let s:basedir = expand("%:p:h") . "/"
+  let s:cmdFile = expand("%:p:t:r") . ".cmd"
+  call Mkdir(s:basedir)
+  call writefile(lines,  s:basedir . s:cmdFile, "b")
+  echo "Write " . s:basedir . expand("%:p:t:r") . ".cmd"
+endfunction
+" au MyAutoCmd BufWritePost *.ps1 call <SID>addHeaderPs1(0)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0)
+
+" rust. {{{2
+let g:rustfmt_autosave = 1
+
+" vim-racer. {{{2
+let g:racer_experimental_completer = 1
+setl completeopt=menu,preview
+au MyAutoCmd FileType rust nmap <buffer> gd <Plug>(rust-def)
+au MyAutoCmd FileType rust nmap <buffer> gs <Plug>(rust-def-split)
+au MyAutoCmd FileType rust nmap <buffer> gx <Plug>(rust-def-vertical)
+au MyAutoCmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
+
+" vim-sqlfmt. {{{2
+let g:sqlfmt_command = "sqlformat"
+let g:sqlfmt_options = "-r -k upper"
+
+
 
 " Basic: {{{1
 
@@ -307,11 +729,20 @@ let g:fastfold_savehook = 0
 set tags& tags-=tags tags+=./tags;
 
 " undo, swap.
-call Mkdir($BACKUP_PATH)
+let s:undo_dir = $BACKUP_PATH . '/undo'
+let s:backup_dir = $BACKUP_PATH . '/back'
+let s:directory = $BACKUP_PATH . '/dir'
+let s:view_dir = $BACKUP_PATH . '/view'
+call Mkdir(s:undo_dir)
+call Mkdir(s:backup_dir)
+call Mkdir(s:directory)
+call Mkdir(s:view_dir)
+
 set undofile
-set undodir=$BACKUP_PATH
-set backupdir=$BACKUP_PATH
-set directory=$BACKUP_PATH
+exe 'set undodir=' . s:undo_dir
+exe 'set backupdir=' . s:backup_dir
+exe 'set directory=' . s:directory
+exe 'set viewdir=' . s:view_dir
 
 " Encodings.
 set fileencodings=utf-8,cp932,utf-16le,utf-16
@@ -624,6 +1055,13 @@ au MyAutoCmd BufWritePost * call <SID>removeFileIf0Byte()
 
 " Restore last cursor position when open a file.
 au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+" Save and load fold settings.
+" http://vim-jp.org/vim-users-jp/2009/10/08/Hack-84.html
+au MyAutoCmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview! | endif
+au MyAutoCmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
+" Don't save options.
+set viewoptions-=options
 
 " For swap.
 " http://itchyny.hatenablog.com/entry/2014/12/25/090000
