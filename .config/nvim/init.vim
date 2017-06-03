@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/03 18:27:07.
+" Last Change : 2017/06/04 08:22:01.
 " =============================================================================
 
 " Init: {{{1
@@ -158,25 +158,59 @@ function! Cond(cond, ...)
   return a:cond ? opts : { 'on': [], 'for': [] }
 endfunction
 
+" Plugin list. {{{2
 call plug#begin(s:plug_dir)
 
 let b:vim_plug_dir = s:vim_plug_dir . '/autoload'
 
-" Plug 'osyo-manga/vim-precious'
-Plug 'Chiel92/vim-autoformat'
-Plug 'Konfekt/FastFold'
-Plug 'LeafCage/yankround.vim'
-Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
-Plug 'Shougo/context_filetype.vim'
-Plug 'Shougo/denite.nvim', { 'on': 'Denite' }
+
+" ==================== Visual ==================== {{{3
+Plug 'joshdick/onedark.vim'
+Plug 'aereal/vim-colors-japanesque'
+Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
+Plug 'cocopon/iceberg.vim'
+Plug 'endel/vim-github-colorscheme'
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-cursorword'
+Plug 'itchyny/vim-highlighturl'
+Plug 'itchyny/vim-parenmatch'
+Plug 'vim-scripts/matchit.zip'
+Plug 'vimtaku/hl_matchit.vim'
+Plug 'taku-o/vim-zoom', Cond(has('gui'))
+Plug 'Yggdroot/indentLine'
+
+
+" ==================== Completion ================ {{{3
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'))
 Plug 'Shougo/neocomplete.vim', Cond(!has('nvim'))
-Plug 'Shougo/neomru.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/vimproc.vim', Cond(!has('kaoriya'), { 'do': 'make' })
-Plug 'Yggdroot/indentLine'
+Plug 'Shougo/context_filetype.vim'
+Plug 'zchee/deoplete-go', Cond(has('nvim'), { 'for': 'go', 'do': 'make' })
+Plug 'carlitux/deoplete-ternjs', Cond(has('nvim'), { 'for': ['javascript', 'typescript'], 'do': 'npm install -g tern' })
+" Plug 'maralla/completor.vim', Cond(has('python'))
+
+
+" ==================== Utility =================== {{{3
 Plug 'airblade/vim-rooter'
+Plug 'thinca/vim-submode'
+Plug 't9md/vim-choosewin'
+Plug 'Konfekt/FastFold'
+Plug 'Shougo/vimproc.vim', Cond(!has('kaoriya'), { 'do': function('MakeVimproc') })
+Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
+Plug 'glidenote/memolist.vim', { 'on': ['Memolist', 'MemoNew'] }
+Plug 'mattn/sonictemplate-vim', { 'on': 'Templete' }
+Plug 'basyura/TweetVim', {'on': ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay'] }
+Plug 'basyura/twibill.vim', {'on': ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay'] }
+
+
+" Plug 'osyo-manga/vim-precious'
+Plug 'Chiel92/vim-autoformat'
+Plug 'LeafCage/yankround.vim'
+Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
+Plug 'Shougo/denite.nvim', { 'on': 'Denite' }
+Plug 'Shougo/neomru.vim'
 Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
 Plug 'b4b4r07/vim-sqlfmt', { 'for': 'sql', 'do': 'go get github.com/jackc/sqlfmt' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
@@ -186,16 +220,9 @@ Plug 'dzeban/vim-log-syntax', { 'for': 'log' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'gilligan/textobj-lastpaste', { 'on': '<Plug>(textobj-lastpaste-i)' }
-Plug 'glidenote/memolist.vim', { 'on': ['Memolist', 'MemoNew'] }
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/vim-asterisk'
 Plug 'haya14busa/vim-operator-flashy', { 'on': '<Plug>(operator-flashy)' }
-Plug 'itchyny/lightline.vim'
-Plug 'itchyny/vim-cursorword'
-Plug 'itchyny/vim-highlighturl'
-Plug 'itchyny/vim-parenmatch'
-Plug 'joshdick/onedark.vim'
-Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 Plug 'junegunn/vim-plug', { 'dir': b:vim_plug_dir }
 Plug 'kana/vim-operator-replace', { 'on': '<Plug>(operator-replace)' }
 Plug 'kana/vim-operator-user'
@@ -215,251 +242,418 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 't9md/vim-quickhl'
 Plug 'taku-o/vim-ro-when-swapfound'
-Plug 'thinca/vim-submode'
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
 Plug 'tpope/vim-repeat'
 Plug 'tyru/capture.vim', { 'on': 'Capture' }
 Plug 'tyru/caw.vim'
 Plug 'vim-scripts/autodate.vim'
 Plug 'w0rp/ale'
+
 call plug#end()
 
+
 " Plugin settings: {{{1
-" lightline. {{{2
-let g:lightline = {
-      \ 'colorscheme': 'onedark',
-      \ 'mode_map': {
-      \   'n' : 'N',
-      \   'i' : 'I',
-      \   'R' : 'R',
-      \   'v' : 'V',
-      \   'V' : 'V-L',
-      \   'c' : 'C',
-      \   "\<C-v>": 'V-B',
-      \   's' : 'S',
-      \   'S' : 'S-L',
-      \   "\<C-s>": 'S-B'
-      \   },
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'anzu' ] ],
-      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'bomb', 'filetype' ],
-      \              [ 'absolutepath', 'charcode' ] ]
-      \ },
-      \ 'component': {
-      \   'charcode': '[%03.3b, 0x%02.2B]'
-      \ },
-      \ 'component_function': {
-      \   'modified': 'MyModified',
-      \   'readonly': 'MyReadonly',
-      \   'fugitive': 'MyFugitive',
-      \   'git_branch': 'MyGitBranch',
-      \   'git_traffic': 'MyGitTraffic',
-      \   'git_status': 'MyGitStatus',
-      \   'filename': 'MyFilename',
-      \   'fileformat': 'MyFileformat',
-      \   'filetype': 'MyFiletype',
-      \   'fileencoding': 'MyFileencoding',
-      \   'bomb': 'MyBomb',
-      \   'absolutepath': 'MyAbsolutePath',
-      \   'mode': 'MyMode',
-      \   'anzu': 'anzu#search_status',
-      \ }
-      \ }
-
-function! MyModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+let s:p = { 'plugs': get(g:, 'plugs', {}) }
+function! s:p.is_installed(name) abort
+  return has_key(self.plugs, a:name) ? isdirectory(self.plugs[a:name].dir) : 0
 endfunction
 
-function! MyReadonly()
-  if g:is_windows
-    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'R' : ''
-  else
-    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
-  endif
-endfunction
+" ==================== Visual ==================== {{{2
+" lightline.vim {{{3
+if s:p.is_installed('lightline.vim')
+  let g:lightline = {
+        \ 'colorscheme': 'onedark',
+        \ 'mode_map': {
+        \   'n' : 'N',
+        \   'i' : 'I',
+        \   'R' : 'R',
+        \   'v' : 'V',
+        \   'V' : 'V-L',
+        \   'c' : 'C',
+        \   "\<C-v>": 'V-B',
+        \   's' : 'S',
+        \   'S' : 'S-L',
+        \   "\<C-s>": 'S-B'
+        \   },
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'anzu' ] ],
+        \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'bomb', 'filetype' ],
+        \              [ 'absolutepath', 'charcode' ] ]
+        \ },
+        \ 'component': {
+        \   'charcode': '[%03.3b, 0x%02.2B]'
+        \ },
+        \ 'component_function': {
+        \   'modified': 'MyModified',
+        \   'readonly': 'MyReadonly',
+        \   'fugitive': 'MyFugitive',
+        \   'git_branch': 'MyGitBranch',
+        \   'git_traffic': 'MyGitTraffic',
+        \   'git_status': 'MyGitStatus',
+        \   'filename': 'MyFilename',
+        \   'fileformat': 'MyFileformat',
+        \   'filetype': 'MyFiletype',
+        \   'fileencoding': 'MyFileencoding',
+        \   'bomb': 'MyBomb',
+        \   'absolutepath': 'MyAbsolutePath',
+        \   'mode': 'MyMode',
+        \   'anzu': 'anzu#search_status',
+        \ }
+        \ }
 
-function! MyFilename()
-  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != MyModified() ? ' ' . MyModified() : '')
-endfunction
+  function! MyModified()
+    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  endfunction
 
-function! MyGitBranch()
-  return winwidth(0) > 70 ? gita#statusline#preset('branch_fancy') : ''
-endfunction
-function! MyGitTraffic()
-  return winwidth(0) > 70 ? gita#statusline#preset('traffic_fancy') : ''
-endfunction
-function! MyGitStatus()
-  return winwidth(0) > 70 ? gita#statusline#preset('status') : ''
-endfunction
-
-function! MyFugitive()
-  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
-    let _ = fugitive#head()
+  function! MyReadonly()
     if g:is_windows
-      return strlen(_) ? '| '._ : ''
+      return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'R' : ''
     else
-      return strlen(_) ? '⭠ '._ : ''
+      return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
     endif
-  endif
-  return ''
-endfunction
+  endfunction
 
-function! MyFileformat()
-  return winwidth('.') > 70 ? &fileformat : ''
-endfunction
+  function! MyFilename()
+    return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+          \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+          \ ('' != MyModified() ? ' ' . MyModified() : '')
+  endfunction
 
-function! MyFiletype()
-  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
+  function! MyGitBranch()
+    return winwidth(0) > 70 ? gita#statusline#preset('branch_fancy') : ''
+  endfunction
+  function! MyGitTraffic()
+    return winwidth(0) > 70 ? gita#statusline#preset('traffic_fancy') : ''
+  endfunction
+  function! MyGitStatus()
+    return winwidth(0) > 70 ? gita#statusline#preset('status') : ''
+  endfunction
 
-function! MyFileencoding()
-  return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
+  function! MyFugitive()
+    if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+      let _ = fugitive#head()
+      if g:is_windows
+        return strlen(_) ? '| '._ : ''
+      else
+        return strlen(_) ? '⭠ '._ : ''
+      endif
+    endif
+    return ''
+  endfunction
 
-function! MyBomb()
-  return &bomb ? 'b' : 'nb'
-endfunction
+  function! MyFileformat()
+    return winwidth('.') > 70 ? &fileformat : ''
+  endfunction
 
-function! MyMode()
-  return winwidth('.') > 60 ? lightline#mode() : ''
-endfunction
+  function! MyFiletype()
+    return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+  endfunction
 
-function! MyAbsolutePath()
-  return (winwidth('.') - strlen(expand('%:p')) > 90) ? expand('%:p') : ((winwidth('.') - strlen(expand('%')) > 70) ? expand('%') : '')
-endfunction
+  function! MyFileencoding()
+    return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+  endfunction
 
-" indentLine. {{{2
-let g:indentLine_faster = 1
-nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'denite', 'tweetvim']
-au MyAutoCmd User PreciousFileType execute 'IndentLinesReset'
+  function! MyBomb()
+    return &bomb ? 'b' : 'nb'
+  endfunction
 
-" vim-rooter. {{{2
-let g:rooter_use_lcd = 1
+  function! MyMode()
+    return winwidth('.') > 60 ? lightline#mode() : ''
+  endfunction
 
-" vim-submode. {{{2
-let g:submode_leave_with_key = 1
-call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
-call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
-call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
-call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
-call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-call submode#map('bufmove', 'n', '', '<', '<C-w><')
-call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+  function! MyAbsolutePath()
+    return (winwidth('.') - strlen(expand('%:p')) > 90) ? expand('%:p') : ((winwidth('.') - strlen(expand('%')) > 70) ? expand('%') : '')
+  endfunction
+endif
 
-" FastFold. {{{2
-let g:fastfold_savehook = 0
 
-" deoplete. {{{2
-let g:deoplete#enable_at_startup = 1
+" vim-parenmatch {{{3
+if s:p.is_installed('vim-parenmatch')
+  let g:loaded_matchparen = 1
+endif
 
-" neocomplete. {{{2
-let g:neocomplete#enable_at_startup = 1
 
-" neosnippet. {{{2
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory = $VIM_PATH . '/snippets'
+" hl_matchit.vim {{{3
+if s:p.is_installed('hl_matchit.vim')
+  let g:hl_matchit_enable_on_vim_startup = 1
+  " let g:hl_matchit_hl_groupname = 'Search'
 
-" For snippet_complete marker.
-if has('conceal')
+  " If 1 is set, sometimes do not highlight.
+  " let g:hl_matchit_speed_level = 1
+endif
+
+
+" indentLine {{{3
+if s:p.is_installed('indentLine')
+  let g:indentLine_faster = 1
+  nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+  let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'denite', 'tweetvim']
+  au MyAutoCmd User PreciousFileType execute 'IndentLinesReset'
+endif
+
+
+" ==================== Completion ================ {{{2
+" deoplete.nvim {{{3
+if s:p.is_installed('deoplete.nvim')
+  let g:deoplete#enable_at_startup = 1
+endif
+
+
+" neocomplete.vim {{{3
+if s:p.is_installed('neocomplete.vim')
+  let g:neocomplete#enable_at_startup = 1
+endif
+
+
+" neosnippet.vim {{{3
+if s:p.is_installed('neosnippet.vim')
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+  " Tell Neosnippet about the other snippets
+  let g:neosnippet#snippets_directory = $VIM_PATH . '/snippets'
+
+  " For snippet_complete marker.
   set conceallevel=2 concealcursor=i
 endif
 
-" vim-easy-align. {{{2
-vmap <Enter> <Plug>(EasyAlign)
 
-let g:easy_align_delimiters = {
-      \ '>': {
-      \       'pattern': '>>\|=>\|>.\+',
-      \       'right_margin': 0,
-      \       'delimiter_align': 'l'
-      \   },
-      \ '/': {
-      \       'pattern': '//\+\|/\*\|\*/',
-      \       'delimiter_align': 'l',
-      \       'ignore_groups': ['!Comment']
-      \   },
-      \ ']': {
-      \       'pattern': '[[\]]',
-      \       'left_margin': 0,
-      \       'right_margin': 0,
-      \       'stick_to_left': 0
-      \   },
-      \ ')': {
-      \       'pattern': '[()]',
-      \       'left_margin': 0,
-      \       'right_margin': 0,
-      \       'stick_to_left': 0
-      \   },
-      \ 'd': {
-      \       'pattern': ' \(\S\+\s*[;=]\)\@=',
-      \       'left_margin': 0,
-      \       'right_margin': 0
-      \   },
-      \ 'p': {
-      \       'pattern': 'pos=\|size=',
-      \       'right_margin': 0
-      \   },
-      \ 's': {
-      \       'pattern': 'sys=\|Trns=',
-      \       'right_margin': 0
-      \   },
-      \ 'k': {
-      \       'pattern': 'key=\|cmt=',
-      \       'right_margin': 0
-      \   },
-      \ 'c': {
-      \       'pattern': 'cmt=',
-      \       'right_margin': 0
-      \   },
-      \ ':': {
-      \       'pattern': ':',
-      \       'left_margin': 1,
-      \       'right_margin': 1,
-      \       'stick_to_left': 0,
-      \       'ignore_groups': []
-      \   },
-      \ 't': {
-      \       'pattern': "\<tab>",
-      \       'left_margin': 0,
-      \       'right_margin': 0
-      \   }
-      \ }
-
-" memolist. {{{2
-if isdirectory($HOME . '/Dropbox')
-  let g:memolist_path = $HOME . '/Dropbox/memolist'
-else
-  let g:memolist_path = $HOME . '/.memolist'
+" deoplete-go {{{3
+if s:p.is_installed('deoplete-go')
+  let g:deoplete#sources#go#use_cache = 1
+  let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
+  let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+  let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 endif
 
-call Mkdir(g:memolist_path)
 
-let g:memolist_memo_suffix = "md"
+" ==================== Utility =================== {{{2
+" vim-rooter {{{3
+if s:p.is_installed('vim-rooter')
+  let g:rooter_use_lcd = 1
+endif
 
-" mappings
-nnoremap <Leader>mn :<C-u>MemoNew<CR>
-nnoremap <Leader>ml :<C-u>MemoList<CR>
-nnoremap <Leader>mg :<C-u>MemoGrep<CR>
+
+" vim-submode {{{3
+if s:p.is_installed('vim-submode')
+  let g:submode_leave_with_key = 1
+  call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+  call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+  call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+  call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+  call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+  call submode#map('bufmove', 'n', '', '<', '<C-w><')
+  call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+  call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+endif
+
+
+" vim-choosewin {{{3
+if s:p.is_installed('vim-choosewin')
+  " nmap - <Plug>(choosewin)
+
+  let g:choosewin_overlay_enable = 1
+  let g:choosewin_overlay_clear_multibyte = 1
+
+  " color like tmux
+  let g:choosewin_color_overlay = {
+        \ 'gui': ['DodgerBlue3', 'DodgerBlue3' ],
+        \ 'cterm': [ 25, 25 ]
+        \ }
+  let g:choosewin_color_overlay_current = {
+        \ 'gui': ['firebrick1', 'firebrick1' ],
+        \ 'cterm': [ 124, 124 ]
+        \ }
+
+  let g:choosewin_blink_on_land = 0
+  let g:choosewin_statusline_replace = 0
+  let g:choosewin_tabline_replace = 0
+endif
+
+
+" FastFold {{{3
+if s:p.is_installed('FastFold')
+  let g:fastfold_savehook = 0
+endif
+
+
+" vimproc.vim {{{3
+if s:p.is_installed('vimproc.vim')
+  function! MakeVimproc(info) abort
+    if a:info.status == 'updated' && g:is_windows && !has('kaoriya')
+      let g:vimproc#download_windows_dll = 1
+    endif
+    if !g:is_windows
+      !make
+    endif
+  endfunction
+endif
+
+
+" vim-easy-align {{{3
+if s:p.is_installed('vim-easy-align')
+  vmap <Enter> <Plug>(EasyAlign)
+
+  let g:easy_align_delimiters = {
+        \ '>': {
+        \       'pattern': '>>\|=>\|>.\+',
+        \       'right_margin': 0,
+        \       'delimiter_align': 'l'
+        \   },
+        \ '/': {
+        \       'pattern': '//\+\|/\*\|\*/',
+        \       'delimiter_align': 'l',
+        \       'ignore_groups': ['!Comment']
+        \   },
+        \ ']': {
+        \       'pattern': '[[\]]',
+        \       'left_margin': 0,
+        \       'right_margin': 0,
+        \       'stick_to_left': 0
+        \   },
+        \ ')': {
+        \       'pattern': '[()]',
+        \       'left_margin': 0,
+        \       'right_margin': 0,
+        \       'stick_to_left': 0
+        \   },
+        \ 'd': {
+        \       'pattern': ' \(\S\+\s*[;=]\)\@=',
+        \       'left_margin': 0,
+        \       'right_margin': 0
+        \   },
+        \ 'p': {
+        \       'pattern': 'pos=\|size=',
+        \       'right_margin': 0
+        \   },
+        \ 's': {
+        \       'pattern': 'sys=\|Trns=',
+        \       'right_margin': 0
+        \   },
+        \ 'k': {
+        \       'pattern': 'key=\|cmt=',
+        \       'right_margin': 0
+        \   },
+        \ 'c': {
+        \       'pattern': 'cmt=',
+        \       'right_margin': 0
+        \   },
+        \ ':': {
+        \       'pattern': ':',
+        \       'left_margin': 1,
+        \       'right_margin': 1,
+        \       'stick_to_left': 0,
+        \       'ignore_groups': []
+        \   },
+        \ 't': {
+        \       'pattern': "\<tab>",
+        \       'left_margin': 0,
+        \       'right_margin': 0
+        \   }
+        \ }
+endif
+
+
+" memolist.vim {{{3
+if s:p.is_installed('memolist.vim')
+  if isdirectory($HOME . '/Dropbox')
+    let g:memolist_path = $HOME . '/Dropbox/memolist'
+  else
+    let g:memolist_path = $HOME . '/.memolist'
+  endif
+
+  call Mkdir(g:memolist_path)
+
+  let g:memolist_memo_suffix = "md"
+
+  " mappings
+  nnoremap <Leader>mn :<C-u>MemoNew<CR>
+  nnoremap <Leader>ml :<C-u>MemoList<CR>
+  nnoremap <Leader>mg :<C-u>MemoGrep<CR>
+endif
+
+
+" sonictemplate_vim {{{3
+if s:p.is_installed('sonictemplate_vim')
+  let g:sonictemplate_vim_template_dir = '$HOME/.vim/template'
+  let g:sonictemplate_vim_vars = {
+        \ '_': {
+        \   'author': 'yukimemi',
+        \   'mail': 'yukimemi@gmail.com',
+        \ }
+        \ }
+endif
+
+
+" TweetVim {{{3
+if s:p.is_installed('TweetVim')
+  nnoremap [Space]tu :<C-u>TweetVimUserStream<CR>
+
+  let g:tweetvim_default_account = "yukimemi"
+  let g:tweetvim_tweet_per_page = 100
+  let g:tweetvim_cache_size = 50
+  "let g:tweetvim_display_username = 1
+  let g:tweetvim_display_source = 1
+  let g:tweetvim_display_time = 1
+  "let g:tweetvim_display_icon = 1
+  let g:tweetvim_async_post = 1
+
+  au MyAutoCmd FileType tweetvim call s:tweetvim_cfg()
+  function! s:tweetvim_cfg()
+    setl nowrap
+    nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
+  endfunction
+endif
+
+
+
+
+" vim-autoformat {{{3
+if s:p.is_installed('vim-autoformat')
+  let g:autoformat_autoindent = 0
+  let g:autoformat_retab = 0
+  let g:autoformat_remove_trailing_spaces = 1
+  au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
+  au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
+  nnoremap [Space]f :<C-u>Autoformat<CR>
+endif
+
+
+" vim-ps1 {{{2
+if s:p.is_installed('vim-ps1')
+  function! s:addHeaderPs1(flg)
+    let lines = []
+    if a:flg
+      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
+    else
+      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
+    endif
+    call add(lines, "@exit /b %errorlevel%")
+    call extend(lines, readfile(expand("%")))
+    let i = 0
+    for line in lines
+      if len(lines) != (i + 1)
+        let lines[i] .= "\r"
+      endif
+      let i += 1
+    endfor
+    " let s:basedir = expand("%:p:h") . "/../cmd/"
+    let s:basedir = expand("%:p:h") . "/"
+    let s:cmdFile = expand("%:p:t:r") . ".cmd"
+    call Mkdir(s:basedir)
+    call writefile(lines,  s:basedir . s:cmdFile, "b")
+    echo "Write " . s:basedir . expand("%:p:t:r") . ".cmd"
+  endfunction
+  " au MyAutoCmd BufWritePost *.ps1 call <SID>addHeaderPs1(0)
+  au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
+  au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0)
+endif
+
 
 " autodate. {{{2
 let g:autodate_format = "%Y/%m/%d %H:%M:%S"
 let g:autodate_keyword_pre  = "Last Change *:"
 let g:autodate_keyword_post = "."
-
-" vim-autoformat. {{{2
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 1
-au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
-au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
-nnoremap [Space]f :<C-u>Autoformat<CR>
 
 " ale. {{{2
 let g:ale_linters = {
@@ -572,9 +766,6 @@ let g:quickhl_manual_keywords = [
       \ "ERROR",
       \ ]
 
-" vim-parenmatch. {{{2
-let g:loaded_matchparen = 1
-
 " vim-operator-replace. {{{2
 map _ <Plug>(operator-replace)
 
@@ -673,34 +864,6 @@ function! s:my_go_settings() abort
 
   setl completeopt=menu,preview
 endfunction
-
-" vim-ps1. {{{2
-function! s:addHeaderPs1(flg)
-  let lines = []
-  if a:flg
-    call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
-  else
-    call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
-  endif
-  call add(lines, "@exit /b %errorlevel%")
-  call extend(lines, readfile(expand("%")))
-  let i = 0
-  for line in lines
-    if len(lines) != (i + 1)
-      let lines[i] .= "\r"
-    endif
-    let i += 1
-  endfor
-  " let s:basedir = expand("%:p:h") . "/../cmd/"
-  let s:basedir = expand("%:p:h") . "/"
-  let s:cmdFile = expand("%:p:t:r") . ".cmd"
-  call Mkdir(s:basedir)
-  call writefile(lines,  s:basedir . s:cmdFile, "b")
-  echo "Write " . s:basedir . expand("%:p:t:r") . ".cmd"
-endfunction
-" au MyAutoCmd BufWritePost *.ps1 call <SID>addHeaderPs1(0)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0)
 
 " rust. {{{2
 let g:rustfmt_autosave = 1
