@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/02 21:25:34.
+" Last Change : 2017/06/03 18:27:07.
 " =============================================================================
 
 " Init: {{{1
@@ -161,68 +161,67 @@ endfunction
 call plug#begin(s:plug_dir)
 
 let b:vim_plug_dir = s:vim_plug_dir . '/autoload'
-Plug 'junegunn/vim-plug', { 'dir': b:vim_plug_dir }
-Plug 'joshdick/onedark.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'itchyny/vim-highlighturl'
-Plug 'itchyny/vim-parenmatch'
-Plug 'itchyny/vim-cursorword'
+
 " Plug 'osyo-manga/vim-precious'
-Plug 'osyo-manga/vim-anzu'
+Plug 'Chiel92/vim-autoformat'
+Plug 'Konfekt/FastFold'
+Plug 'LeafCage/yankround.vim'
+Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
 Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/denite.nvim', { 'on': 'Denite' }
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'))
 Plug 'Shougo/neocomplete.vim', Cond(!has('nvim'))
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/vimproc.vim', Cond(!has('kaoriya'), { 'do': 'make' })
-Plug 'Shougo/denite.nvim', { 'on': 'Denite' }
 Plug 'Shougo/neomru.vim'
-Plug 'airblade/vim-rooter'
-Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/vimproc.vim', Cond(!has('kaoriya'), { 'do': 'make' })
 Plug 'Yggdroot/indentLine'
+Plug 'airblade/vim-rooter'
+Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
+Plug 'b4b4r07/vim-sqlfmt', { 'for': 'sql', 'do': 'go get github.com/jackc/sqlfmt' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'cohama/agit.vim', { 'on': 'Agit' }
+Plug 'dag/vim-fish', { 'for': 'fish' }
+Plug 'dzeban/vim-log-syntax', { 'for': 'log' }
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'gilligan/textobj-lastpaste', { 'on': '<Plug>(textobj-lastpaste-i)' }
 Plug 'glidenote/memolist.vim', { 'on': ['Memolist', 'MemoNew'] }
-Plug 'thinca/vim-submode'
-Plug 'vim-scripts/autodate.vim'
-Plug 'tpope/vim-repeat'
-Plug 'Chiel92/vim-autoformat'
-Plug 'w0rp/ale'
-Plug 'haya14busa/vim-asterisk'
 Plug 'haya14busa/incsearch.vim'
-Plug 't9md/vim-quickhl'
-Plug 'taku-o/vim-ro-when-swapfound'
-Plug 'tyru/capture.vim', { 'on': 'Capture' }
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
-Plug 'Konfekt/FastFold'
-Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
-Plug 'kana/vim-operator-user'
-Plug 'kana/vim-operator-replace', { 'on': '<Plug>(operator-replace)' }
-Plug 'rhysd/vim-operator-surround', { 'on': ['<Plug>(operator-surround-append)', '<Plug>(operator-surround-delete)',  '<Plug>(operator-surround-replace)'] }
+Plug 'haya14busa/vim-asterisk'
 Plug 'haya14busa/vim-operator-flashy', { 'on': '<Plug>(operator-flashy)' }
-Plug 'kana/vim-textobj-user'
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-cursorword'
+Plug 'itchyny/vim-highlighturl'
+Plug 'itchyny/vim-parenmatch'
+Plug 'joshdick/onedark.vim'
+Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
+Plug 'junegunn/vim-plug', { 'dir': b:vim_plug_dir }
+Plug 'kana/vim-operator-replace', { 'on': '<Plug>(operator-replace)' }
+Plug 'kana/vim-operator-user'
 Plug 'kana/vim-textobj-entire', { 'on': ['<Plug>(textobj-entire-a)', '<Plug>(textobj-entire-i)'] }
 Plug 'kana/vim-textobj-fold', { 'on': ['<Plug>(textobj-fold-a)', '<Plug>(textobj-fold-i)'] }
 Plug 'kana/vim-textobj-indent', { 'on': ['<Plug>(textobj-indent-a)', '<Plug>(textobj-indent-i)', '<Plug>(textobj-indent-same-a)', '<Plug>(textobj-indent-same-i)'] }
-Plug 'gilligan/textobj-lastpaste', { 'on': '<Plug>(textobj-lastpaste-i)' }
-Plug 'tyru/caw.vim'
-Plug 'LeafCage/yankround.vim'
-Plug 'cohama/agit.vim', { 'on': 'Agit' }
-Plug 'rhysd/committia.vim'
-Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
-Plug 'cespare/vim-toml', { 'for': 'toml' }
-Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
-Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
-Plug 'dzeban/vim-log-syntax', { 'for': 'log' }
+Plug 'kana/vim-textobj-user'
+Plug 'osyo-manga/vim-anzu'
 Plug 'posva/vim-vue', { 'for': 'vue' }
-Plug 'dag/vim-fish', { 'for': 'fish' }
-Plug 'rhysd/vim-gfm-syntax', { 'for': 'markdown' }
-Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
-Plug 'rust-lang/rust.vim', Cond(executable('cargo'), { 'for': 'rust' })
 Plug 'racer-rust/vim-racer', Cond(executable('racer'), { 'for': 'rust' })
+Plug 'rhysd/committia.vim'
 Plug 'rhysd/rust-doc.vim', { 'for': 'rust' }
-Plug 'b4b4r07/vim-sqlfmt', { 'for': 'sql', 'do': 'go get github.com/jackc/sqlfmt' }
-
-
+Plug 'rhysd/vim-gfm-syntax', { 'for': 'markdown' }
+Plug 'rhysd/vim-operator-surround', { 'on': ['<Plug>(operator-surround-append)', '<Plug>(operator-surround-delete)',  '<Plug>(operator-surround-replace)'] }
+Plug 'rust-lang/rust.vim', Cond(executable('cargo'), { 'for': 'rust' })
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
+Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 't9md/vim-quickhl'
+Plug 'taku-o/vim-ro-when-swapfound'
+Plug 'thinca/vim-submode'
+Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
+Plug 'tpope/vim-repeat'
+Plug 'tyru/capture.vim', { 'on': 'Capture' }
+Plug 'tyru/caw.vim'
+Plug 'vim-scripts/autodate.vim'
+Plug 'w0rp/ale'
 call plug#end()
 
 " Plugin settings: {{{1
@@ -1052,7 +1051,7 @@ au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 " Save and load fold settings.
 " http://vim-jp.org/vim-users-jp/2009/10/08/Hack-84.html
 au MyAutoCmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview! | endif
-au MyAutoCmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
+au MyAutoCmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent! loadview | endif
 " Don't save options.
 set viewoptions-=options
 
