@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/04 08:22:01.
+" Last Change : 2017/06/04 09:09:35.
 " =============================================================================
 
 " Init: {{{1
@@ -132,6 +132,16 @@ function s:updateColorScheme() "{{{2
   endif
 endfunction
 
+function! MakeVimproc(info) abort "{{{2
+  if a:info.status == 'updated' && g:is_windows && !has('kaoriya')
+    let g:vimproc#download_windows_dll = 1
+  endif
+  if !g:is_windows
+    !make
+  endif
+endfunction
+
+
 " Plugin: {{{1
 " Use vim-plug.
 if has('nvim')
@@ -198,19 +208,37 @@ Plug 'thinca/vim-submode'
 Plug 't9md/vim-choosewin'
 Plug 'Konfekt/FastFold'
 Plug 'Shougo/vimproc.vim', Cond(!has('kaoriya'), { 'do': function('MakeVimproc') })
-Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 Plug 'glidenote/memolist.vim', { 'on': ['Memolist', 'MemoNew'] }
 Plug 'mattn/sonictemplate-vim', { 'on': 'Templete' }
 Plug 'basyura/TweetVim', {'on': ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay'] }
-Plug 'basyura/twibill.vim', {'on': ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay'] }
+Plug 'basyura/twibill.vim', {'on': [] }
+Plug 'mattn/webapi-vim', {'on': [] }
+Plug 'tyru/open-browser.vim', {'on': [] }
+Plug 'vim-scripts/autodate.vim'
+Plug 'tpope/vim-repeat'
+Plug 'tyru/capture.vim', { 'on': 'Capture' }
+Plug 'taku-o/vim-ro-when-swapfound'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
+Plug 'kassio/neoterm', Cond(has('nvim'), { 'on': ['T', 'Tnew'] })
+
+
+" ==================== Linter/Formatter ========== {{{3
+Plug 'w0rp/ale'
+Plug 'Chiel92/vim-autoformat'
+Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
+
+
+" ==================== Search ==================== {{{3
+Plug 'haya14busa/vim-asterisk'
+
+" ==================== Denite ==================== {{{3
+Plug 'Shougo/denite.nvim', { 'on': 'Denite' }
+Plug 'Shougo/neomru.vim', { 'on': [] }
 
 
 " Plug 'osyo-manga/vim-precious'
-Plug 'Chiel92/vim-autoformat'
 Plug 'LeafCage/yankround.vim'
 Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
-Plug 'Shougo/denite.nvim', { 'on': 'Denite' }
-Plug 'Shougo/neomru.vim'
 Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
 Plug 'b4b4r07/vim-sqlfmt', { 'for': 'sql', 'do': 'go get github.com/jackc/sqlfmt' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
@@ -221,7 +249,6 @@ Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'gilligan/textobj-lastpaste', { 'on': '<Plug>(textobj-lastpaste-i)' }
 Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/vim-asterisk'
 Plug 'haya14busa/vim-operator-flashy', { 'on': '<Plug>(operator-flashy)' }
 Plug 'junegunn/vim-plug', { 'dir': b:vim_plug_dir }
 Plug 'kana/vim-operator-replace', { 'on': '<Plug>(operator-replace)' }
@@ -238,16 +265,10 @@ Plug 'rhysd/rust-doc.vim', { 'for': 'rust' }
 Plug 'rhysd/vim-gfm-syntax', { 'for': 'markdown' }
 Plug 'rhysd/vim-operator-surround', { 'on': ['<Plug>(operator-surround-append)', '<Plug>(operator-surround-delete)',  '<Plug>(operator-surround-replace)'] }
 Plug 'rust-lang/rust.vim', Cond(executable('cargo'), { 'for': 'rust' })
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 't9md/vim-quickhl'
-Plug 'taku-o/vim-ro-when-swapfound'
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
-Plug 'tpope/vim-repeat'
-Plug 'tyru/capture.vim', { 'on': 'Capture' }
 Plug 'tyru/caw.vim'
-Plug 'vim-scripts/autodate.vim'
-Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -367,6 +388,16 @@ if s:p.is_installed('lightline.vim')
 endif
 
 
+" vim-cursorword {{{3
+if s:p.is_installed('vim-cursorword')
+  function! s:ToggleCursorWord() abort
+    let b:cursorword = !get(b:, 'cursorword', 1)
+  endfunction
+
+  com! ToggleCursorWord call s:ToggleCursorWord()
+endif
+
+
 " vim-parenmatch {{{3
 if s:p.is_installed('vim-parenmatch')
   let g:loaded_matchparen = 1
@@ -477,17 +508,182 @@ if s:p.is_installed('FastFold')
 endif
 
 
-" vimproc.vim {{{3
-if s:p.is_installed('vimproc.vim')
-  function! MakeVimproc(info) abort
-    if a:info.status == 'updated' && g:is_windows && !has('kaoriya')
-      let g:vimproc#download_windows_dll = 1
+" memolist.vim {{{3
+if s:p.is_installed('memolist.vim')
+  if isdirectory($HOME . '/Dropbox')
+    let g:memolist_path = $HOME . '/Dropbox/memolist'
+  else
+    let g:memolist_path = $HOME . '/.memolist'
+  endif
+
+  call Mkdir(g:memolist_path)
+
+  let g:memolist_memo_suffix = "md"
+
+  " mappings
+  nnoremap <Leader>mn :<C-u>MemoNew<CR>
+  nnoremap <Leader>ml :<C-u>MemoList<CR>
+  nnoremap <Leader>mg :<C-u>MemoGrep<CR>
+endif
+
+
+" sonictemplate_vim {{{3
+if s:p.is_installed('sonictemplate_vim')
+  let g:sonictemplate_vim_template_dir = '$HOME/.vim/template'
+  let g:sonictemplate_vim_vars = {
+        \ '_': {
+        \   'author': 'yukimemi',
+        \   'mail': 'yukimemi@gmail.com',
+        \ }
+        \ }
+endif
+
+
+" TweetVim {{{3
+if s:p.is_installed('TweetVim')
+  nnoremap [Space]tu :<C-u>TweetVimUserStream<CR>
+
+  let g:tweetvim_default_account = "yukimemi"
+  let g:tweetvim_tweet_per_page = 100
+  let g:tweetvim_cache_size = 50
+  "let g:tweetvim_display_username = 1
+  let g:tweetvim_display_source = 1
+  let g:tweetvim_display_time = 1
+  "let g:tweetvim_display_icon = 1
+  let g:tweetvim_async_post = 1
+
+  au MyAutoCmd FileType tweetvim call s:tweetvim_cfg()
+  function! s:tweetvim_cfg()
+    setl nowrap
+    nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
+  endfunction
+
+  au! User TweetVim call plug#load('twibill.vim', 'webapi-vim', 'open-browser.vim')
+endif
+
+
+" autodate.vim {{{3
+if s:p.is_installed('autodate.vim')
+  let g:autodate_format = "%Y/%m/%d %H:%M:%S"
+  let g:autodate_keyword_pre  = "Last Change *:"
+  let g:autodate_keyword_post = "."
+endif
+
+
+" vim-ro-when-swapfound {{{3
+if s:p.is_installed('vim-ro-when-swapfound')
+  function! s:swapChoice() abort
+    ToggleSwapCheck
+    :e
+  endfunction
+  com! SwapChoice call s:swapChoice()
+endif
+
+
+" nerdtree {{{3
+if s:p.is_installed('nerdtree')
+  nnoremap [Space]v :NERDTreeToggle<CR>
+  au MyAutoCmd StdinReadPre * let s:std_in=1
+  au MyAutoCmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+endif
+
+
+" neoterm {{{3
+if s:p.is_installed('neoterm')
+  let g:neoterm_autoinsert = 1
+  nnoremap [Space]s :<C-u>terminal<CR>
+  tnoremap sj <C-\><C-n><C-w>j
+  tnoremap sk <C-\><C-n><C-w>k
+  tnoremap sl <C-\><C-n><C-w>l
+  tnoremap sh <C-\><C-n><C-w>h
+endif
+
+
+" ==================== Denite ==================== {{{2
+" denite.nvim {{{3
+if s:p.is_installed('denite.nvim')
+  " Use plefix s
+  nnoremap suc :<C-u>Denite colorscheme -auto-preview<CR>
+  nnoremap sub :<C-u>Denite buffer<CR>
+  nnoremap suf :<C-u>Denite file<CR>
+  nnoremap suF :<C-u>Denite file_rec<CR>
+  " nnoremap suu :<C-u>Denite buffer file_old<CR>
+  nnoremap suu :<C-u>Denite buffer file_mru<CR>
+  nnoremap suo :<C-u>Denite outline -no-quit -mode=normal<CR>
+  nnoremap suh :<C-u>Denite help<CR>
+  nnoremap sur :<C-u>Denite register<CR>
+  nnoremap sug :<C-u>Denite grep -no-empty<CR>
+  nnoremap su/ :<C-u>Denite line -no-quit<CR>
+  nnoremap suR :<C-u>Denite -resume<CR>
+
+  noremap sul :<C-u>Denite command_history<CR>
+
+  " Incremental search in cmdline history.
+  inoremap <C-l> <ESC>:<C-u>Denite command<CR>
+
+  au! User denite.nvim call s:denite_cfg()
+
+  function! s:denite_cfg() abort
+    " Load dependent plugins.
+    call plug#load('neomru.vim')
+    " Default options.
+    call denite#custom#option('default', {
+          \ 'prompt': '»',
+          \ 'cursor_wrap': v:true,
+          \ 'auto_resize': v:true,
+          \ 'highlight_mode_insert': 'WildMenu'
+          \ })
+    " Pt command on grep source
+    if executable('pt')
+      call denite#custom#var('grep', 'command', ['pt'])
+      call denite#custom#var('grep', 'default_opts',
+            \ ['--nogroup', '--nocolor', '--smart-case'])
+      call denite#custom#var('grep', 'recursive_opts', [])
+      call denite#custom#var('grep', 'pattern_opt', [])
+      call denite#custom#var('grep', 'separator', ['--'])
+      call denite#custom#var('grep', 'final_opts', [])
     endif
-    if !g:is_windows
-      !make
-    endif
+    " custom mappings.
+    call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+    call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+    call denite#custom#map('insert', '<C-[>', '<denite:enter_mode:normal>', 'noremap')
+    call denite#custom#map('normal', '<C-[>', '<denite:quit>', 'noremap')
   endfunction
 endif
+
+
+
+
+
+" ==================== Linter/Formatter ========== {{{2
+" ale {{{3
+if s:p.is_installed('ale')
+  let g:ale_linters = {
+        \ 'go': ['golint', 'go vet', 'goimports'],
+        \ 'haskell': ['hlint']
+        \ }
+  let g:ale_lint_on_text_changed = 'never'
+  let g:ale_lint_on_enter = 0
+  let g:ale_lint_on_insert_leave = 0
+  let g:ale_lint_on_save = 1
+  nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+  nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+  " Rust.
+  let g:ale_rust_ignore_error_codes = ['E0432', 'E0433']
+endif
+
+
+" vim-autoformat {{{3
+if s:p.is_installed('vim-autoformat')
+  let g:autoformat_autoindent = 0
+  let g:autoformat_retab = 0
+  let g:autoformat_remove_trailing_spaces = 1
+  au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
+  au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
+  nnoremap [Space]f :<C-u>Autoformat<CR>
+endif
+
 
 
 " vim-easy-align {{{3
@@ -554,69 +750,6 @@ if s:p.is_installed('vim-easy-align')
 endif
 
 
-" memolist.vim {{{3
-if s:p.is_installed('memolist.vim')
-  if isdirectory($HOME . '/Dropbox')
-    let g:memolist_path = $HOME . '/Dropbox/memolist'
-  else
-    let g:memolist_path = $HOME . '/.memolist'
-  endif
-
-  call Mkdir(g:memolist_path)
-
-  let g:memolist_memo_suffix = "md"
-
-  " mappings
-  nnoremap <Leader>mn :<C-u>MemoNew<CR>
-  nnoremap <Leader>ml :<C-u>MemoList<CR>
-  nnoremap <Leader>mg :<C-u>MemoGrep<CR>
-endif
-
-
-" sonictemplate_vim {{{3
-if s:p.is_installed('sonictemplate_vim')
-  let g:sonictemplate_vim_template_dir = '$HOME/.vim/template'
-  let g:sonictemplate_vim_vars = {
-        \ '_': {
-        \   'author': 'yukimemi',
-        \   'mail': 'yukimemi@gmail.com',
-        \ }
-        \ }
-endif
-
-
-" TweetVim {{{3
-if s:p.is_installed('TweetVim')
-  nnoremap [Space]tu :<C-u>TweetVimUserStream<CR>
-
-  let g:tweetvim_default_account = "yukimemi"
-  let g:tweetvim_tweet_per_page = 100
-  let g:tweetvim_cache_size = 50
-  "let g:tweetvim_display_username = 1
-  let g:tweetvim_display_source = 1
-  let g:tweetvim_display_time = 1
-  "let g:tweetvim_display_icon = 1
-  let g:tweetvim_async_post = 1
-
-  au MyAutoCmd FileType tweetvim call s:tweetvim_cfg()
-  function! s:tweetvim_cfg()
-    setl nowrap
-    nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
-  endfunction
-endif
-
-
-
-
-" vim-autoformat {{{3
-if s:p.is_installed('vim-autoformat')
-  let g:autoformat_autoindent = 0
-  let g:autoformat_retab = 0
-  let g:autoformat_remove_trailing_spaces = 1
-  au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
-  au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
-  nnoremap [Space]f :<C-u>Autoformat<CR>
-endif
 
 
 " vim-ps1 {{{2
@@ -649,85 +782,6 @@ if s:p.is_installed('vim-ps1')
   au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0)
 endif
 
-
-" autodate. {{{2
-let g:autodate_format = "%Y/%m/%d %H:%M:%S"
-let g:autodate_keyword_pre  = "Last Change *:"
-let g:autodate_keyword_post = "."
-
-" ale. {{{2
-let g:ale_linters = {
-      \ 'go': ['golint', 'go vet', 'goimports'],
-      \ 'haskell': ['hlint']
-      \ }
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_save = 1
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-" Rust.
-let g:ale_rust_ignore_error_codes = ['E0432', 'E0433']
-
-" vim-ro-when-swapfound. {{{2
-function! s:swapChoice() abort
-  ToggleSwapCheck
-  :e
-endfunction
-com! SwapChoice call s:swapChoice()
-
-" nerdtree. {{{2
-nnoremap [Space]v :NERDTreeToggle<CR>
-au MyAutoCmd StdinReadPre * let s:std_in=1
-au MyAutoCmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
-" denite. {{{2
-" Use plefix s
-nnoremap suc :<C-u>Denite colorscheme -auto-preview<CR>
-nnoremap sub :<C-u>Denite buffer<CR>
-nnoremap suf :<C-u>Denite file<CR>
-nnoremap suF :<C-u>Denite file_rec<CR>
-" nnoremap suu :<C-u>Denite buffer file_old<CR>
-nnoremap suu :<C-u>Denite buffer file_mru<CR>
-nnoremap suo :<C-u>Denite outline -no-quit -mode=normal<CR>
-nnoremap suh :<C-u>Denite help<CR>
-nnoremap sur :<C-u>Denite register<CR>
-nnoremap sug :<C-u>Denite grep -no-empty<CR>
-nnoremap su/ :<C-u>Denite line -no-quit<CR>
-nnoremap suR :<C-u>Denite -resume<CR>
-
-noremap sul :<C-u>Denite command_history<CR>
-
-" Incremental search in cmdline history.
-inoremap <C-l> <ESC>:<C-u>Denite command<CR>
-
-au! User denite.nvim call s:my_denite_settings()
-
-function! s:my_denite_settings() abort
-  " Default options.
-  call denite#custom#option('default', {
-        \ 'prompt': '»',
-        \ 'cursor_wrap': v:true,
-        \ 'auto_resize': v:true,
-        \ 'highlight_mode_insert': 'WildMenu'
-        \ })
-  " Pt command on grep source
-  if executable('pt')
-    call denite#custom#var('grep', 'command', ['pt'])
-    call denite#custom#var('grep', 'default_opts',
-          \ ['--nogroup', '--nocolor', '--smart-case'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-  endif
-  " custom mappings.
-  call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-  call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-  call denite#custom#map('insert', '<C-[>', '<denite:enter_mode:normal>', 'noremap')
-  call denite#custom#map('normal', '<C-[>', '<denite:quit>', 'noremap')
-endfunction
 
 " incsearch. {{{2
 map /  <Plug>(incsearch-forward)
