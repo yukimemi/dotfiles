@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/04 09:09:35.
+" Last Change : 2017/06/04 16:36:57.
 " =============================================================================
 
 " Init: {{{1
@@ -220,6 +220,7 @@ Plug 'tyru/capture.vim', { 'on': 'Capture' }
 Plug 'taku-o/vim-ro-when-swapfound'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
 Plug 'kassio/neoterm', Cond(has('nvim'), { 'on': ['T', 'Tnew'] })
+Plug 'thinca/vim-qfreplace', { 'on': 'Qfreplace' }
 
 
 " ==================== Linter/Formatter ========== {{{3
@@ -229,7 +230,39 @@ Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 
 
 " ==================== Search ==================== {{{3
-Plug 'haya14busa/vim-asterisk'
+Plug 'haya14busa/vim-asterisk', { 'on': ['<Plug>(asterisk-*)', '<Plug>(asterisk-g*)', '<Plug>(asterisk-#)', '<Plug>(asterisk-g#)', '<Plug>(asterisk-z*)', '<Plug>(asterisk-gz*)', '<Plug>(asterisk-z#)', '<Plug>(asterisk-gz#)'] }
+Plug 'osyo-manga/vim-anzu', { 'on': ['<Plug>(anzu-n)', '<Plug>(anzu-N)'] }
+Plug 'haya14busa/incsearch.vim'
+Plug 't9md/vim-quickhl'
+
+
+" ==================== Operators ================= {{{3
+Plug 'kana/vim-operator-user'
+Plug 'haya14busa/vim-operator-flashy', { 'on': '<Plug>(operator-flashy)' }
+Plug 'kana/vim-operator-replace', { 'on': '<Plug>(operator-replace)' }
+Plug 'rhysd/vim-operator-surround', { 'on': ['<Plug>(operator-surround-append)', '<Plug>(operator-surround-delete)',  '<Plug>(operator-surround-replace)'] }
+
+
+" ==================== Textobjs ================== {{{3
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire', { 'on': ['<Plug>(textobj-entire-a)', '<Plug>(textobj-entire-i)'] }
+Plug 'kana/vim-textobj-fold', { 'on': ['<Plug>(textobj-fold-a)', '<Plug>(textobj-fold-i)'] }
+Plug 'kana/vim-textobj-indent', { 'on': ['<Plug>(textobj-indent-a)', '<Plug>(textobj-indent-i)', '<Plug>(textobj-indent-same-a)', '<Plug>(textobj-indent-same-i)'] }
+Plug 'gilligan/textobj-lastpaste', { 'on': '<Plug>(textobj-lastpaste-i)' }
+
+
+" ==================== Comment =================== {{{3
+Plug 'tyru/caw.vim'
+
+
+" ==================== Yank/Paste ================ {{{3
+Plug 'LeafCage/yankround.vim'
+
+
+" ==================== Git ======================= {{{3
+Plug 'lambdalisue/gina.vim', { 'on': ['Gina-status', 'Gina-commit'] }
+
+
 
 " ==================== Denite ==================== {{{3
 Plug 'Shougo/denite.nvim', { 'on': 'Denite' }
@@ -237,7 +270,6 @@ Plug 'Shougo/neomru.vim', { 'on': [] }
 
 
 " Plug 'osyo-manga/vim-precious'
-Plug 'LeafCage/yankround.vim'
 Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
 Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
 Plug 'b4b4r07/vim-sqlfmt', { 'for': 'sql', 'do': 'go get github.com/jackc/sqlfmt' }
@@ -247,28 +279,15 @@ Plug 'dag/vim-fish', { 'for': 'fish' }
 Plug 'dzeban/vim-log-syntax', { 'for': 'log' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'gilligan/textobj-lastpaste', { 'on': '<Plug>(textobj-lastpaste-i)' }
-Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/vim-operator-flashy', { 'on': '<Plug>(operator-flashy)' }
 Plug 'junegunn/vim-plug', { 'dir': b:vim_plug_dir }
-Plug 'kana/vim-operator-replace', { 'on': '<Plug>(operator-replace)' }
-Plug 'kana/vim-operator-user'
-Plug 'kana/vim-textobj-entire', { 'on': ['<Plug>(textobj-entire-a)', '<Plug>(textobj-entire-i)'] }
-Plug 'kana/vim-textobj-fold', { 'on': ['<Plug>(textobj-fold-a)', '<Plug>(textobj-fold-i)'] }
-Plug 'kana/vim-textobj-indent', { 'on': ['<Plug>(textobj-indent-a)', '<Plug>(textobj-indent-i)', '<Plug>(textobj-indent-same-a)', '<Plug>(textobj-indent-same-i)'] }
-Plug 'kana/vim-textobj-user'
-Plug 'osyo-manga/vim-anzu'
 Plug 'posva/vim-vue', { 'for': 'vue' }
 Plug 'racer-rust/vim-racer', Cond(executable('racer'), { 'for': 'rust' })
 Plug 'rhysd/committia.vim'
 Plug 'rhysd/rust-doc.vim', { 'for': 'rust' }
 Plug 'rhysd/vim-gfm-syntax', { 'for': 'markdown' }
-Plug 'rhysd/vim-operator-surround', { 'on': ['<Plug>(operator-surround-append)', '<Plug>(operator-surround-delete)',  '<Plug>(operator-surround-replace)'] }
 Plug 'rust-lang/rust.vim', Cond(executable('cargo'), { 'for': 'rust' })
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
-Plug 't9md/vim-quickhl'
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
-Plug 'tyru/caw.vim'
 
 call plug#end()
 
@@ -599,60 +618,6 @@ if s:p.is_installed('neoterm')
 endif
 
 
-" ==================== Denite ==================== {{{2
-" denite.nvim {{{3
-if s:p.is_installed('denite.nvim')
-  " Use plefix s
-  nnoremap suc :<C-u>Denite colorscheme -auto-preview<CR>
-  nnoremap sub :<C-u>Denite buffer<CR>
-  nnoremap suf :<C-u>Denite file<CR>
-  nnoremap suF :<C-u>Denite file_rec<CR>
-  " nnoremap suu :<C-u>Denite buffer file_old<CR>
-  nnoremap suu :<C-u>Denite buffer file_mru<CR>
-  nnoremap suo :<C-u>Denite outline -no-quit -mode=normal<CR>
-  nnoremap suh :<C-u>Denite help<CR>
-  nnoremap sur :<C-u>Denite register<CR>
-  nnoremap sug :<C-u>Denite grep -no-empty<CR>
-  nnoremap su/ :<C-u>Denite line -no-quit<CR>
-  nnoremap suR :<C-u>Denite -resume<CR>
-
-  noremap sul :<C-u>Denite command_history<CR>
-
-  " Incremental search in cmdline history.
-  inoremap <C-l> <ESC>:<C-u>Denite command<CR>
-
-  au! User denite.nvim call s:denite_cfg()
-
-  function! s:denite_cfg() abort
-    " Load dependent plugins.
-    call plug#load('neomru.vim')
-    " Default options.
-    call denite#custom#option('default', {
-          \ 'prompt': '»',
-          \ 'cursor_wrap': v:true,
-          \ 'auto_resize': v:true,
-          \ 'highlight_mode_insert': 'WildMenu'
-          \ })
-    " Pt command on grep source
-    if executable('pt')
-      call denite#custom#var('grep', 'command', ['pt'])
-      call denite#custom#var('grep', 'default_opts',
-            \ ['--nogroup', '--nocolor', '--smart-case'])
-      call denite#custom#var('grep', 'recursive_opts', [])
-      call denite#custom#var('grep', 'pattern_opt', [])
-      call denite#custom#var('grep', 'separator', ['--'])
-      call denite#custom#var('grep', 'final_opts', [])
-    endif
-    " custom mappings.
-    call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-    call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-    call denite#custom#map('insert', '<C-[>', '<denite:enter_mode:normal>', 'noremap')
-    call denite#custom#map('normal', '<C-[>', '<denite:quit>', 'noremap')
-  endfunction
-endif
-
-
-
 
 
 " ==================== Linter/Formatter ========== {{{2
@@ -750,6 +715,191 @@ if s:p.is_installed('vim-easy-align')
 endif
 
 
+" ==================== Search ==================== {{{2
+" incsearch.vim {{{3
+if s:p.is_installed('incsearch.vim')
+  map /  <Plug>(incsearch-forward)
+  map ?  <Plug>(incsearch-backward)
+  map g/ <Plug>(incsearch-stay)
+
+  let g:incsearch#auto_nohlsearch = 1
+  map n <Plug>(incsearch-nohl)<Plug>(anzu-n)zv
+  map N <Plug>(incsearch-nohl)<Plug>(anzu-N)zv
+  map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)zv
+  map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)zv
+  map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)zv
+  map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)zv
+
+  map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
+  map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
+  map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
+  map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
+endif
+
+" vim-quickhl {{{3
+if s:p.is_installed('vim-quickhl')
+  let g:quickhl_manual_enable_at_startup = 1
+
+  nmap [Space]m <Plug>(quickhl-manual-this)
+  xmap [Space]m <Plug>(quickhl-manual-this)
+  nmap [Space]M <Plug>(quickhl-manual-reset)
+  xmap [Space]M <Plug>(quickhl-manual-reset)
+
+  let g:quickhl_manual_keywords = [
+        \ "失敗",
+        \ "警告",
+        \ "エラー",
+        \ "異常",
+        \ "warn",
+        \ "WARN",
+        \ "error",
+        \ "ERROR",
+        \ ]
+endif
+
+
+" ==================== Operators ================= {{{2
+" vim-operator-flashy {{{3
+if s:p.is_installed('vim-operator-flashy')
+  map y <Plug>(operator-flashy)
+  nmap Y <Plug>(operator-flashy)$
+endif
+
+
+" vim-operator-replace {{{3
+if s:p.is_installed('vim-operator-replace')
+  map _ <Plug>(operator-replace)
+endif
+
+
+" vim-operator-surround {{{3
+if s:p.is_installed('vim-operator-surround')
+  map sA <Plug>(operator-surround-append)
+  map sD <Plug>(operator-surround-delete)
+  map sR <Plug>(operator-surround-replace)
+endif
+
+
+" ==================== Textobjs ================== {{{2
+" vim-textobj-entire {{{3
+if s:p.is_installed('vim-textobj-entire')
+  omap ae <Plug>(textobj-entire-a)
+  xmap ae <Plug>(textobj-entire-a)
+  omap ie <Plug>(textobj-entire-i)
+  xmap ie <Plug>(textobj-entire-i)
+endif
+
+
+" vim-textobj-fold {{{3
+if s:p.is_installed('vim-textobj-fold')
+  omap az <Plug>(textobj-fold-a)
+  xmap az <Plug>(textobj-fold-a)
+  omap iz <Plug>(textobj-fold-i)
+  xmap iz <Plug>(textobj-fold-i)
+endif
+
+
+" vim-textobj-indent {{{3
+if s:p.is_installed('vim-textobj-indent')
+  omap ai <Plug>(textobj-indent-a)
+  xmap ai <Plug>(textobj-indent-a)
+  omap ii <Plug>(textobj-indent-i)
+  xmap ii <Plug>(textobj-indent-i)
+  omap aI <Plug>(textobj-indent-same-a)
+  xmap aI <Plug>(textobj-indent-same-a)
+  omap iI <Plug>(textobj-indent-same-i)
+  xmap iI <Plug>(textobj-indent-same-i)
+endif
+
+
+" textobj-lastpaste {{{3
+if s:p.is_installed('textobj-lastpaste')
+  omap iP <Plug>(textobj-lastpaste-i)
+  xmap iP <Plug>(textobj-lastpaste-i)
+endif
+
+
+" ==================== Comment =================== {{{2
+" caw.vim {{{3
+if s:p.is_installed('caw.vim')
+  nmap gc <Plug>(caw:prefix)
+  xmap gc <Plug>(caw:prefix)
+  nmap gcc <Plug>(caw:hatpos:toggle)
+  xmap gcc <Plug>(caw:hatpos:toggle)
+endif
+
+
+" ==================== Yank/Paste ================ {{{2
+" yankround.vim {{[3
+if s:p.is_installed('yankround.vim')
+  nmap p <Plug>(yankround-p)
+  nmap P <Plug>(yankround-P)
+  nmap <C-p> <Plug>(yankround-prev)
+  nmap <C-n> <Plug>(yankround-next)
+  let g:yankround_max_history = 100
+endif
+
+
+" ==================== Git ======================= {{{2
+" gina.vim {{{3
+if s:p.is_installed('gina.vim')
+
+
+
+" ==================== Denite ==================== {{{2
+" denite.nvim {{{3
+if s:p.is_installed('denite.nvim')
+  " Use plefix s
+  nnoremap suc :<C-u>Denite colorscheme -auto-preview<CR>
+  nnoremap sub :<C-u>Denite buffer<CR>
+  nnoremap suf :<C-u>Denite file<CR>
+  nnoremap suF :<C-u>Denite file_rec<CR>
+  " nnoremap suu :<C-u>Denite buffer file_old<CR>
+  nnoremap suu :<C-u>Denite buffer file_mru<CR>
+  nnoremap suo :<C-u>Denite outline -no-quit -mode=normal<CR>
+  nnoremap suh :<C-u>Denite help<CR>
+  nnoremap sur :<C-u>Denite register<CR>
+  nnoremap sug :<C-u>Denite grep -no-empty<CR>
+  nnoremap su/ :<C-u>Denite line -no-quit<CR>
+  nnoremap suR :<C-u>Denite -resume<CR>
+
+  noremap sul :<C-u>Denite command_history<CR>
+
+  " Incremental search in cmdline history.
+  inoremap <C-l> <ESC>:<C-u>Denite command<CR>
+
+  au! User denite.nvim call s:denite_cfg()
+
+  function! s:denite_cfg() abort
+    " Load dependent plugins.
+    call plug#load('neomru.vim')
+    " Default options.
+    call denite#custom#option('default', {
+          \ 'prompt': '»',
+          \ 'cursor_wrap': v:true,
+          \ 'auto_resize': v:true,
+          \ 'highlight_mode_insert': 'WildMenu'
+          \ })
+    " Pt command on grep source
+    if executable('pt')
+      call denite#custom#var('grep', 'command', ['pt'])
+      call denite#custom#var('grep', 'default_opts',
+            \ ['--nogroup', '--nocolor', '--smart-case'])
+      call denite#custom#var('grep', 'recursive_opts', [])
+      call denite#custom#var('grep', 'pattern_opt', [])
+      call denite#custom#var('grep', 'separator', ['--'])
+      call denite#custom#var('grep', 'final_opts', [])
+    endif
+    " custom mappings.
+    call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+    call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+    call denite#custom#map('insert', '<C-[>', '<denite:enter_mode:normal>', 'noremap')
+    call denite#custom#map('normal', '<C-[>', '<denite:quit>', 'noremap')
+  endfunction
+endif
+
+
+
 
 
 " vim-ps1 {{{2
@@ -782,94 +932,6 @@ if s:p.is_installed('vim-ps1')
   au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0)
 endif
 
-
-" incsearch. {{{2
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-
-let g:incsearch#auto_nohlsearch = 1
-map n <Plug>(incsearch-nohl)<Plug>(anzu-n)zv
-map N <Plug>(incsearch-nohl)<Plug>(anzu-N)zv
-map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)zv
-map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)zv
-map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)zv
-map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)zv
-
-map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
-map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
-map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
-map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
-
-" vim-quickhl. {{{2
-let g:quickhl_manual_enable_at_startup = 1
-
-nmap [Space]m <Plug>(quickhl-manual-this)
-xmap [Space]m <Plug>(quickhl-manual-this)
-nmap [Space]M <Plug>(quickhl-manual-reset)
-xmap [Space]M <Plug>(quickhl-manual-reset)
-
-let g:quickhl_manual_keywords = [
-      \ "失敗",
-      \ "警告",
-      \ "エラー",
-      \ "異常",
-      \ "warn",
-      \ "WARN",
-      \ "error",
-      \ "ERROR",
-      \ ]
-
-" vim-operator-replace. {{{2
-map _ <Plug>(operator-replace)
-
-" vim-operator-surround. {{{2
-map sA <Plug>(operator-surround-append)
-map sD <Plug>(operator-surround-delete)
-map sR <Plug>(operator-surround-replace)
-
-" vim-operator-flashy. {{{2
-map y <Plug>(operator-flashy)
-nmap Y <Plug>(operator-flashy)$
-
-" vim-textobj-entire. {{{2
-omap ae <Plug>(textobj-entire-a)
-xmap ae <Plug>(textobj-entire-a)
-omap ie <Plug>(textobj-entire-i)
-xmap ie <Plug>(textobj-entire-i)
-
-" vim-textobj-fold. {{{2
-omap az <Plug>(textobj-fold-a)
-xmap az <Plug>(textobj-fold-a)
-omap iz <Plug>(textobj-fold-i)
-xmap iz <Plug>(textobj-fold-i)
-
-" vim-textobj-indent. {{{2
-omap ai <Plug>(textobj-indent-a)
-xmap ai <Plug>(textobj-indent-a)
-omap ii <Plug>(textobj-indent-i)
-xmap ii <Plug>(textobj-indent-i)
-omap aI <Plug>(textobj-indent-same-a)
-xmap aI <Plug>(textobj-indent-same-a)
-omap iI <Plug>(textobj-indent-same-i)
-xmap iI <Plug>(textobj-indent-same-i)
-
-" textobj-lastpaste. {{{2
-omap iP <Plug>(textobj-lastpaste-i)
-xmap iP <Plug>(textobj-lastpaste-i)
-
-" caw. {{{2
-nmap gc <Plug>(caw:prefix)
-xmap gc <Plug>(caw:prefix)
-nmap gcc <Plug>(caw:hatpos:toggle)
-xmap gcc <Plug>(caw:hatpos:toggle)
-
-" yankround. {{[2
-nmap p <Plug>(yankround-p)
-nmap P <Plug>(yankround-P)
-nmap <C-p> <Plug>(yankround-prev)
-nmap <C-n> <Plug>(yankround-next)
-let g:yankround_max_history = 100
 
 " vim-go. {{{2
 let g:go_auto_type_info = 1
