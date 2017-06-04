@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/04 16:36:57.
+" Last Change : 2017/06/05 07:23:48.
 " =============================================================================
 
 " Init: {{{1
@@ -172,6 +172,7 @@ endfunction
 call plug#begin(s:plug_dir)
 
 let b:vim_plug_dir = s:vim_plug_dir . '/autoload'
+Plug 'junegunn/vim-plug', { 'dir': b:vim_plug_dir }
 
 
 " ==================== Visual ==================== {{{3
@@ -189,6 +190,7 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'vimtaku/hl_matchit.vim'
 Plug 'taku-o/vim-zoom', Cond(has('gui'))
 Plug 'Yggdroot/indentLine'
+" Plug 'osyo-manga/vim-precious'
 
 
 " ==================== Completion ================ {{{3
@@ -210,7 +212,7 @@ Plug 'Konfekt/FastFold'
 Plug 'Shougo/vimproc.vim', Cond(!has('kaoriya'), { 'do': function('MakeVimproc') })
 Plug 'glidenote/memolist.vim', { 'on': ['Memolist', 'MemoNew'] }
 Plug 'mattn/sonictemplate-vim', { 'on': 'Templete' }
-Plug 'basyura/TweetVim', {'on': ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay'] }
+Plug 'basyura/TweetVim', {'on': ['TweetVimHomeTimeline', 'TweetVimUserStream', 'TweetVimSay'] }
 Plug 'basyura/twibill.vim', {'on': [] }
 Plug 'mattn/webapi-vim', {'on': [] }
 Plug 'tyru/open-browser.vim', {'on': [] }
@@ -260,8 +262,9 @@ Plug 'LeafCage/yankround.vim'
 
 
 " ==================== Git ======================= {{{3
-Plug 'lambdalisue/gina.vim', { 'on': ['Gina-status', 'Gina-commit'] }
-
+Plug 'lambdalisue/gina.vim', { 'on': 'Gina' }
+Plug 'cohama/agit.vim', { 'on': 'Agit' }
+Plug 'rhysd/committia.vim', { 'for': 'gitcommit' }
 
 
 " ==================== Denite ==================== {{{3
@@ -269,25 +272,72 @@ Plug 'Shougo/denite.nvim', { 'on': 'Denite' }
 Plug 'Shougo/neomru.vim', { 'on': [] }
 
 
-" Plug 'osyo-manga/vim-precious'
-Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
-Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
-Plug 'b4b4r07/vim-sqlfmt', { 'for': 'sql', 'do': 'go get github.com/jackc/sqlfmt' }
-Plug 'cespare/vim-toml', { 'for': 'toml' }
-Plug 'cohama/agit.vim', { 'on': 'Agit' }
-Plug 'dag/vim-fish', { 'for': 'fish' }
-Plug 'dzeban/vim-log-syntax', { 'for': 'log' }
-Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+" ==================== Filetype (go) ============= {{{3
 Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'junegunn/vim-plug', { 'dir': b:vim_plug_dir }
-Plug 'posva/vim-vue', { 'for': 'vue' }
-Plug 'racer-rust/vim-racer', Cond(executable('racer'), { 'for': 'rust' })
-Plug 'rhysd/committia.vim'
-Plug 'rhysd/rust-doc.vim', { 'for': 'rust' }
-Plug 'rhysd/vim-gfm-syntax', { 'for': 'markdown' }
-Plug 'rust-lang/rust.vim', Cond(executable('cargo'), { 'for': 'rust' })
+
+
+" ==================== Filetype (ps1) ============ {{{3
+Plug 'PProvost/vim-ps1', { 'for': 'ps1' }
+
+
+" ==================== Filetype (toml) =========== {{{3
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+
+
+" ==================== Filetype (yaml) =========== {{{3
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
-Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
+
+
+" ==================== Filetype (plantuml) ======= {{{3
+Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
+
+
+" ==================== Filetype (log) ============ {{{3
+Plug 'dzeban/vim-log-syntax', { 'for': 'log' }
+
+
+" ==================== Filetype (Vue) ============ {{{3
+Plug 'posva/vim-vue', { 'for': 'vue' }
+
+
+" ==================== Filetype (javascript) ===== {{{3
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascript', 'javascript.jsx', 'typescript'] }
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx', 'typescript'] }
+Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx', 'typescript'] }
+Plug 'flowtype/vim-flow', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g flow-bin' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+
+
+" ==================== Filetype (fish-shell) ===== {{{3
+Plug 'dag/vim-fish', { 'for': 'fish' }
+
+
+" ==================== Filetype (markdown) ======= {{{3
+Plug 'rhysd/vim-gfm-syntax', { 'for': 'markdown' }
+
+
+" ==================== Filetype (Dockerfile) ===== {{{3
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+
+
+" ==================== Filetype (Rust) =========== {{{3
+Plug 'rhysd/rust-doc.vim', { 'for': 'rust' }
+Plug 'rust-lang/rust.vim', Cond(executable('cargo'), { 'for': 'rust' })
+Plug 'racer-rust/vim-racer', Cond(executable('racer'), { 'for': 'rust' })
+
+" ==================== Filetype (Haskell) ======== {{{3
+Plug 'eagletmt/ghcmod-vim', Cond(executable('stack'), { 'for': 'haskell', 'do': 'stack install ghc-mod' })
+Plug 'eagletmt/neco-ghc', Cond(executable('stack'), { 'for': 'haskell' })
+Plug 'itchyny/vim-haskell-indent', { 'for': 'haskell' }
+Plug 'itchyny/vim-haskell-sort-import', { 'for': 'haskell' }
+
+
+" ==================== Filetype (SQL) ============ {{{3
+Plug 'b4b4r07/vim-sqlfmt', { 'for': 'sql', 'do': 'go get github.com/jackc/sqlfmt' }
+
 
 call plug#end()
 
@@ -843,6 +893,13 @@ endif
 " ==================== Git ======================= {{{2
 " gina.vim {{{3
 if s:p.is_installed('gina.vim')
+  nnoremap [Space]gs :<C-u>Gina status<CR>
+  nnoremap [Space]gb :<C-u>Gina branch<CR>
+  nnoremap [Space]gg :<C-u>Gina grep<CR>
+  nnoremap [Space]gd :<C-u>Gina diff<CR>
+  nnoremap [Space]gl :<C-u>Gina ls-files<CR>
+  nnoremap [Space]gp :<C-u>Gina push<CR>
+endif
 
 
 
@@ -899,10 +956,60 @@ if s:p.is_installed('denite.nvim')
 endif
 
 
+" ==================== Filetype (go) ============= {{{2
+" vim-go {{{2
+if s:p.is_installed('vim-go')
+  let g:go_auto_type_info = 1
+  let g:go_snippet_engine = "neosnippet"
+  let g:go_fmt_command = "goimports"
+
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_interfaces = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_build_constraints = 1
+
+  let g:go_metalinter_autosave = 1
+  let g:go_fmt_autosave = 0
+  let g:go_gocode_unimported_packages = 1
+  " au MyAutoCmd BufWritePost *.go GoMetaLinter
+  let g:gofmt_command = "goimports"
+  au MyAutoCmd BufWritePre *.go silent Fmt
+
+  au MyAutoCmd BufNew,BufRead *.go call s:vim_go_cfg()
+
+  function! s:vim_go_cfg() abort
+    setl foldmethod=syntax
+    setl tabstop=4
+    setl shiftwidth=4
+    setl softtabstop=0
+    setl noexpandtab
+
+    nmap <buffer> <Leader>gd <Plug>(go-doc)
+    nmap <buffer> <Leader>gs <Plug>(go-doc-split)
+    nmap <buffer> <Leader>gv <Plug>(go-doc-vertical)
+    nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
+    nmap <buffer> <Leader>gr <Plug>(go-rename)
+
+    " nmap <buffer> <Leader>r <Plug>(go-run)
+    nmap <buffer> <Leader>gb <Plug>(go-build)
+    nmap <buffer> <Leader>gt <Plug>(go-test)
+    nmap <buffer> <Leader>gc <Plug>(go-coverage)
+
+    nmap <buffer> <Leader>ds <Plug>(go-def-split)
+    nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
+    nmap <buffer> <Leader>dt <Plug>(go-def-tab)
+    nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
+
+    setl completeopt=menu,preview
+  endfunction
+endif
 
 
-
-" vim-ps1 {{{2
+" ==================== Filetype (ps1) ============ {{{2
+" vim-ps1 {{{3
 if s:p.is_installed('vim-ps1')
   function! s:addHeaderPs1(flg)
     let lines = []
@@ -933,69 +1040,70 @@ if s:p.is_installed('vim-ps1')
 endif
 
 
-" vim-go. {{{2
-let g:go_auto_type_info = 1
-let g:go_snippet_engine = "neosnippet"
-let g:go_fmt_command = "goimports"
 
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
+" ==================== Filetype (javascript) ===== {{{2
+" vim-flow {{{3
+if s:p.is_installed('vim-flow')
+  let g:flow#autoclose = 1
+endif
 
-let g:go_metalinter_autosave = 1
-let g:go_fmt_autosave = 0
-let g:go_gocode_unimported_packages = 1
-" au MyAutoCmd BufWritePost *.go GoMetaLinter
-let g:gofmt_command = "goimports"
-au MyAutoCmd BufWritePre *.go silent Fmt
 
-au MyAutoCmd BufNew,BufRead *.go call s:my_go_settings()
+" tsuquyomi {{{3
+if s:p.is_installed('tsuquyomi')
+  au MyAutoCmd FileType typescript nnoremap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
+endif
 
-function! s:my_go_settings() abort
-  setl foldmethod=syntax
-  setl tabstop=4
-  setl shiftwidth=4
-  setl softtabstop=0
-  setl noexpandtab
 
-  nmap <buffer> <Leader>gd <Plug>(go-doc)
-  nmap <buffer> <Leader>gs <Plug>(go-doc-split)
-  nmap <buffer> <Leader>gv <Plug>(go-doc-vertical)
-  nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
-  nmap <buffer> <Leader>gr <Plug>(go-rename)
+" ==================== Filetype (Rust) =========== {{{2
+" rust.vim {{{3
+if s:p.is_installed('rust.vim')
+  let g:rustfmt_autosave = 1
+endif
 
-  " nmap <buffer> <Leader>r <Plug>(go-run)
-  nmap <buffer> <Leader>gb <Plug>(go-build)
-  nmap <buffer> <Leader>gt <Plug>(go-test)
-  nmap <buffer> <Leader>gc <Plug>(go-coverage)
 
-  nmap <buffer> <Leader>ds <Plug>(go-def-split)
-  nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
-  nmap <buffer> <Leader>dt <Plug>(go-def-tab)
-  nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
-
+" vim-racer {{{3
+if s:p.is_installed('vim-racer')
+  let g:racer_experimental_completer = 1
   setl completeopt=menu,preview
-endfunction
+  au MyAutoCmd FileType rust nmap <buffer> gd <Plug>(rust-def)
+  au MyAutoCmd FileType rust nmap <buffer> gs <Plug>(rust-def-split)
+  au MyAutoCmd FileType rust nmap <buffer> gx <Plug>(rust-def-vertical)
+  au MyAutoCmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
+endif
 
-" rust. {{{2
-let g:rustfmt_autosave = 1
 
-" vim-racer. {{{2
-let g:racer_experimental_completer = 1
-setl completeopt=menu,preview
-au MyAutoCmd FileType rust nmap <buffer> gd <Plug>(rust-def)
-au MyAutoCmd FileType rust nmap <buffer> gs <Plug>(rust-def-split)
-au MyAutoCmd FileType rust nmap <buffer> gx <Plug>(rust-def-vertical)
-au MyAutoCmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
 
-" vim-sqlfmt. {{{2
-let g:sqlfmt_command = "sqlformat"
-let g:sqlfmt_options = "-r -k upper"
+" ==================== Filetype (Haskell) ======== {{{2
+" ghcmod-vim {{{3
+if s:p.is_installed('ghcmod-vim')
+  au MyAutoCmd BufNew,BufRead *.hs call s:ghcmod_vim_cfg()
 
+  function! s:ghcmod_vim_cfg() abort
+    setl completeopt=menu,preview
+    nnoremap <buffer> K :<C-u>GhcModInfoPreview<CR>
+  endfunction
+endif
+
+
+" neco-ghc {{{3
+if s:p.is_installed('neco-ghc')
+  au MyAutoCmd FileType haskell setl omnifunc=necoghc#omnifunc
+endif
+
+
+" vim-haskell-sort-indent {{{3
+if s:p.is_installed('vim-haskell-sort-indent')
+  au MyAutoCmd BufWritePre *.hs HaskellSortImport
+endif
+
+
+
+" ==================== Filetype (SQL) ============ {{{2
+" vim-sqlfmt {{{3
+if s:p.is_installed('vim-sqlfmt')
+  let g:sqlfmt_command = "sqlformat"
+  let g:sqlfmt_options = "-r -k upper"
+endif
 
 
 " Basic: {{{1
