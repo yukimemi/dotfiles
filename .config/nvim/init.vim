@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/05 11:28:20.
+" Last Change : 2017/06/05 14:57:16.
 " =============================================================================
 
 " Init: {{{1
@@ -164,7 +164,6 @@ endif
 " Helper function.
 function! Cond(cond, ...)
   let opts = get(a:000, 0, {})
-  " return a:cond ? opts : extend(opts, { 'on': [], 'for': [], 'do': '' })
   return a:cond ? opts : { 'on': [], 'for': [] }
 endfunction
 
@@ -195,13 +194,15 @@ Plug 'Yggdroot/indentLine'
 
 " ==================== Completion ================ {{{3
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'))
-Plug 'Shougo/neocomplete.vim', Cond(!has('nvim'))
+" Plug 'Shougo/neocomplete.vim', Cond(!has('nvim'))
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'zchee/deoplete-go', Cond(has('nvim'), { 'for': 'go', 'do': 'make' })
 Plug 'carlitux/deoplete-ternjs', Cond(has('nvim'), { 'for': ['javascript', 'typescript'], 'do': 'npm install -g tern' })
-" Plug 'maralla/completor.vim', Cond(has('python'))
+Plug 'maralla/completor.vim'
+" Plug 'roxma/nvim-completion-manager'
+" Plug 'roxma/vim-hug-neovim-rpc', Cond(!has('nvim'))
 
 
 " ==================== Utility =================== {{{3
@@ -524,6 +525,12 @@ if s:p.is_installed('deoplete-go')
   let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
   let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
   let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+endif
+
+
+" completor.vim {{{3
+if s:p.is_installed('completor.vim')
+  let g:completor_racer_binary = '~/.cargo/bin/racer.exe'
 endif
 
 
