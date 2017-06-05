@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/05 07:23:48.
+" Last Change : 2017/06/05 11:28:20.
 " =============================================================================
 
 " Init: {{{1
@@ -659,12 +659,14 @@ endif
 
 " neoterm {{{3
 if s:p.is_installed('neoterm')
-  let g:neoterm_autoinsert = 1
-  nnoremap [Space]s :<C-u>terminal<CR>
-  tnoremap sj <C-\><C-n><C-w>j
-  tnoremap sk <C-\><C-n><C-w>k
-  tnoremap sl <C-\><C-n><C-w>l
-  tnoremap sh <C-\><C-n><C-w>h
+  if has('nvim')
+    let g:neoterm_autoinsert = 1
+    nnoremap [Space]s :<C-u>terminal<CR>
+    tnoremap sj <C-\><C-n><C-w>j
+    tnoremap sk <C-\><C-n><C-w>k
+    tnoremap sl <C-\><C-n><C-w>l
+    tnoremap sh <C-\><C-n><C-w>h
+  endif
 endif
 
 
