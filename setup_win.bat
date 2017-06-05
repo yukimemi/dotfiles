@@ -7,6 +7,7 @@ set TODAY=%date:~-10,4%%date:~-5,2%%date:~-2,2%_%tm:~0,2%%tm:~3,2%%tm:~6,2%%tm:~
 
 set GHQ_HOME=%USERPROFILE%\.ghq\src
 set BIN=%USERPROFILE%\bin
+set ICF=%USERPROFILE%\ICF_AutoCapsule_disabled
 
 echo THIS_FILE_PASS=[%THIS_FILE_PASS%]
 echo THIS_FILE_NAME=[%THIS_FILE_NAME%]
@@ -79,5 +80,13 @@ rem if exist "%CYGWIN_HOME%\.inputrc" rename "%CYGWIN_HOME%\.inputrc" ".inputrc.
 rem %LINKCMD_F% "%CYGWIN_HOME%\.inputrc" "%THIS_FILE_PASS%.inputrc"
 rem if exist "%CYGWIN_HOME%\.bashrc" rename "%CYGWIN_HOME%\.bashrc" ".bashrc.bak_%TODAY%"
 rem %LINKCMD_F% "%CYGWIN_HOME%\.bashrc" "%THIS_FILE_PASS%.bashrc"
+
+rem rust {{{1
+mkdir %ICF%\.rustup > nul 2>&1
+mkdir %ICF%\.cargo > nul 2>&1
+mkdir %ICF%\.multirust > nul 2>&1
+if not exist "%USERPROFILE%\.rustup" %LINKCMD_D% "%USERPROFILE%\.rustup" "%ICF%\.rustup"
+if not exist "%USERPROFILE%\.cargo" %LINKCMD_D% "%USERPROFILE%\.cargo" "%ICF%\.cargo"
+if not exist "%USERPROFILE%\.multirust" %LINKCMD_D% "%USERPROFILE%\.multirust" "%ICF%\.multirust"
 
 pause
