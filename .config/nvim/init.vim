@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/05 14:57:16.
+" Last Change : 2017/06/07 08:04:23.
 " =============================================================================
 
 " Init: {{{1
@@ -151,8 +151,8 @@ else
 endif
 
 
-let s:plug_dir = s:cache_home . '/vim-plug'
-let s:vim_plug_dir = s:plug_dir . '/vim-plug'
+let s:plug_dir = s:cache_home . '/plugs'
+let s:vim_plug_dir = s:cache_home . '/vim-plug'
 if has('vim_starting')
   if !isdirectory(s:vim_plug_dir)
     echo "Install vim-plug ..."
@@ -169,10 +169,6 @@ endfunction
 
 " Plugin list. {{{2
 call plug#begin(s:plug_dir)
-
-let b:vim_plug_dir = s:vim_plug_dir . '/autoload'
-Plug 'junegunn/vim-plug', { 'dir': b:vim_plug_dir }
-
 
 " ==================== Visual ==================== {{{3
 Plug 'joshdick/onedark.vim'
@@ -193,16 +189,18 @@ Plug 'Yggdroot/indentLine'
 
 
 " ==================== Completion ================ {{{3
-Plug 'Shougo/deoplete.nvim', Cond(has('nvim'))
-" Plug 'Shougo/neocomplete.vim', Cond(!has('nvim'))
+" Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': 'UpdateRemotePlugins' })
+Plug 'Shougo/neocomplete.vim', Cond(!has('nvim'))
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'zchee/deoplete-go', Cond(has('nvim'), { 'for': 'go', 'do': 'make' })
-Plug 'carlitux/deoplete-ternjs', Cond(has('nvim'), { 'for': ['javascript', 'typescript'], 'do': 'npm install -g tern' })
-Plug 'maralla/completor.vim'
-" Plug 'roxma/nvim-completion-manager'
+" Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
+" Plug 'carlitux/deoplete-ternjs', Cond(has('nvim'), { 'for': ['javascript', 'typescript'], 'do': 'npm install -g tern' })
+" Plug 'maralla/completor.vim'
+Plug 'roxma/nvim-completion-manager', Cond(has('nvim'))
 " Plug 'roxma/vim-hug-neovim-rpc', Cond(!has('nvim'))
+Plug 'roxma/nvim-cm-racer', Cond(has('nvim'), { 'for': 'rust' })
 
 
 " ==================== Utility =================== {{{3
@@ -228,7 +226,7 @@ Plug 'thinca/vim-qfreplace', { 'on': 'Qfreplace' }
 
 " ==================== Linter/Formatter ========== {{{3
 Plug 'w0rp/ale'
-Plug 'Chiel92/vim-autoformat'
+Plug 'sbdchd/neoformat'
 Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 
 
@@ -534,6 +532,13 @@ if s:p.is_installed('completor.vim')
 endif
 
 
+" deoplete-rust {{{3
+if s:p.is_installed('deoplete-rust')
+  let g:deoplete#sources#rust#racer_binary = expand('~/.cargo/bin/racer')
+  let g:deoplete#sources#rust#rust_source_path = expand('$RUST_SRC_PATH')
+endif
+
+
 " ==================== Utility =================== {{{2
 " vim-rooter {{{3
 if s:p.is_installed('vim-rooter')
@@ -698,16 +703,10 @@ if s:p.is_installed('ale')
 endif
 
 
-" vim-autoformat {{{3
-if s:p.is_installed('vim-autoformat')
-  let g:autoformat_autoindent = 0
-  let g:autoformat_retab = 0
-  let g:autoformat_remove_trailing_spaces = 1
-  au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
-  au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
-  nnoremap [Space]f :<C-u>Autoformat<CR>
+" neoformat {{{3
+if s:p.is_installed('neoformat')
+  " au MyAutoCmd BufWritePre * Neoformat
 endif
-
 
 
 " vim-easy-align {{{3
@@ -984,8 +983,8 @@ if s:p.is_installed('vim-go')
   let g:go_fmt_autosave = 0
   let g:go_gocode_unimported_packages = 1
   " au MyAutoCmd BufWritePost *.go GoMetaLinter
-  let g:gofmt_command = "goimports"
-  au MyAutoCmd BufWritePre *.go silent Fmt
+  " let g:gofmt_command = "goimports"
+  " au MyAutoCmd BufWritePre *.go silent Fmt
 
   au MyAutoCmd BufNew,BufRead *.go call s:vim_go_cfg()
 
