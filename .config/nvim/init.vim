@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/07 08:04:23.
+" Last Change : 2017/06/07 16:10:13.
 " =============================================================================
 
 " Init: {{{1
@@ -705,7 +705,7 @@ endif
 
 " neoformat {{{3
 if s:p.is_installed('neoformat')
-  " au MyAutoCmd BufWritePre * Neoformat
+  au MyAutoCmd BufWritePre * Neoformat
 endif
 
 
