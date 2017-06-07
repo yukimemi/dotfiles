@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/07 16:10:13.
+" Last Change : 2017/06/08 07:42:07.
 " =============================================================================
 
 " Init: {{{1
@@ -189,18 +189,18 @@ Plug 'Yggdroot/indentLine'
 
 
 " ==================== Completion ================ {{{3
-" Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': 'UpdateRemotePlugins' })
+Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': 'UpdateRemotePlugins' })
 Plug 'Shougo/neocomplete.vim', Cond(!has('nvim'))
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'zchee/deoplete-go', Cond(has('nvim'), { 'for': 'go', 'do': 'make' })
-" Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
-" Plug 'carlitux/deoplete-ternjs', Cond(has('nvim'), { 'for': ['javascript', 'typescript'], 'do': 'npm install -g tern' })
+Plug 'sebastianmarkow/deoplete-rust', { 'for': 'rust' }
+Plug 'carlitux/deoplete-ternjs', Cond(has('nvim'), { 'for': ['javascript', 'typescript'], 'do': 'npm install -g tern' })
 " Plug 'maralla/completor.vim'
-Plug 'roxma/nvim-completion-manager', Cond(has('nvim'))
+" Plug 'roxma/nvim-completion-manager', Cond(has('nvim'))
 " Plug 'roxma/vim-hug-neovim-rpc', Cond(!has('nvim'))
-Plug 'roxma/nvim-cm-racer', Cond(has('nvim'), { 'for': 'rust' })
+" Plug 'roxma/nvim-cm-racer', Cond(has('nvim'), { 'for': 'rust' })
 
 
 " ==================== Utility =================== {{{3
@@ -325,7 +325,7 @@ Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 " ==================== Filetype (Rust) =========== {{{3
 Plug 'rhysd/rust-doc.vim', { 'for': 'rust' }
 Plug 'rust-lang/rust.vim', Cond(executable('cargo'), { 'for': 'rust' })
-Plug 'racer-rust/vim-racer', Cond(executable('racer'), { 'for': 'rust' })
+" Plug 'racer-rust/vim-racer', Cond(executable('racer'), { 'for': 'rust' })
 
 " ==================== Filetype (Haskell) ======== {{{3
 Plug 'eagletmt/ghcmod-vim', Cond(executable('stack'), { 'for': 'haskell', 'do': 'stack install ghc-mod' })
@@ -965,7 +965,7 @@ endif
 
 
 " ==================== Filetype (go) ============= {{{2
-" vim-go {{{2
+" vim-go {{{3
 if s:p.is_installed('vim-go')
   let g:go_auto_type_info = 1
   let g:go_snippet_engine = "neosnippet"
@@ -1059,6 +1059,20 @@ endif
 " tsuquyomi {{{3
 if s:p.is_installed('tsuquyomi')
   au MyAutoCmd FileType typescript nnoremap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
+endif
+
+
+" ==================== Filetype (fish-shell) ===== {{{2
+" vim-fish {{{3
+if s:p.is_installed('vim-fish')
+  au MyAutoCmd BufNew,BufRead *.fish call s:vim_fish_cfg()
+
+  function! s:vim_fish_cfg() abort
+    compiler fish
+    setl tabstop=4
+    setl shiftwidth=4
+    setl softtabstop=0
+  endfunction
 endif
 
 
