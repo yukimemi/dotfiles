@@ -38,20 +38,16 @@ mkdir %BASE_C%\Documents > nul 2>&1
 mkdir %BASE_C%\Downloads > nul 2>&1
 mkdir %BASE_C%\Pictures > nul 2>&1
 mkdir %BASE_C%\Desktop > nul 2>&1
-if not exist "%USERPROFILE%\.cache" %LINKCMD_D% "%USERPROFILE%\.cache" "%BASE_C%\.cache"
-if not exist "%USERPROFILE%\.cargo" %LINKCMD_D% "%USERPROFILE%\.cargo" "%BASE_C%\.cargo"
-if not exist "%USERPROFILE%\.config" %LINKCMD_D% "%USERPROFILE%\.config" "%BASE_C%\.config"
-if not exist "%USERPROFILE%\.ghq" %LINKCMD_D% "%USERPROFILE%\.ghq" "%BASE_D%\.ghq"
-if not exist "%USERPROFILE%\.memolist" %LINKCMD_D% "%USERPROFILE%\.memolist" "%BASE_C%\.memolist"
-if not exist "%USERPROFILE%\.rustup" %LINKCMD_D% "%USERPROFILE%\.rustup" "%BASE_C%\.rustup"
-if not exist "%USERPROFILE%\.stack" %LINKCMD_D% "%USERPROFILE%\.stack" "%BASE_C%\.stack"
-if not exist "%USERPROFILE%\.vim" %LINKCMD_D% "%USERPROFILE%\.vim" "%BASE_C%\.vim"
-if not exist "%USERPROFILE%\app" %LINKCMD_D% "%USERPROFILE%\app" "%BASE_C%\app"
-if not exist "%USERPROFILE%\bin" %LINKCMD_D% "%USERPROFILE%\bin" "%BASE_C%\bin"
-ren "%USERPROFILE%\Documents" "Documents_" > nul 2>&1
-ren "%USERPROFILE%\Downloads" "Downloads_" > nul 2>&1
-ren "%USERPROFILE%\Pictures" "Pictures_" > nul 2>&1
-ren "%USERPROFILE%\Desktop" "Desktop_" > nul 2>&1
+%LINKCMD_D% "%USERPROFILE%\.cache" "%BASE_C%\.cache" > nul 2>&1
+%LINKCMD_D% "%USERPROFILE%\.cargo" "%BASE_C%\.cargo" > nul 2>&1
+%LINKCMD_D% "%USERPROFILE%\.config" "%BASE_C%\.config" > nul 2>&1
+%LINKCMD_D% "%USERPROFILE%\.ghq" "%BASE_D%\.ghq" > nul 2>&1
+%LINKCMD_D% "%USERPROFILE%\.memolist" "%BASE_C%\.memolist" > nul 2>&1
+%LINKCMD_D% "%USERPROFILE%\.rustup" "%BASE_C%\.rustup" > nul 2>&1
+%LINKCMD_D% "%USERPROFILE%\.stack" "%BASE_C%\.stack" > nul 2>&1
+%LINKCMD_D% "%USERPROFILE%\.vim" "%BASE_C%\.vim" > nul 2>&1
+%LINKCMD_D% "%USERPROFILE%\app" "%BASE_C%\app" > nul 2>&1
+%LINKCMD_D% "%USERPROFILE%\bin" "%BASE_C%\bin" > nul 2>&1
 %LINKCMD_D% "%USERPROFILE%\Documents" "%BASE_C%\Documents" > nul 2>&1
 %LINKCMD_D% "%USERPROFILE%\Downloads" "%BASE_C%\Downloads" > nul 2>&1
 %LINKCMD_D% "%USERPROFILE%\Pictures" "%BASE_C%\Pictures" > nul 2>&1
