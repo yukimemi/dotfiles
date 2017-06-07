@@ -17,9 +17,9 @@ set -x GSR_SHOW_BEHIND 1
 
 # PATH. {{{2
 function __add_fish_user_paths -a addpath
-  if test -d $addpath
-    set -U fish_user_paths $addpath $fish_user_paths
-  end
+    if test -d $addpath
+        set -U fish_user_paths $addpath $fish_user_paths
+    end
 end
 
 set -U fish_user_paths
@@ -27,70 +27,71 @@ __add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
 __add_fish_user_paths ~/bin/scripts
 __add_fish_user_paths $GOPATH/bin
 __add_fish_user_paths ~/.cargo/bin
-if type -q node; and type -q yarn
-  __add_fish_user_paths (yarn global bin)
+if type -q node
+    and type -q yarn
+    __add_fish_user_paths (yarn global bin)
 end
 
 if not test -d ~/.local/bin
-  mkdir -p ~/.local/bin
+    mkdir -p ~/.local/bin
 end
 __add_fish_user_paths ~/.local/bin
 
 ### Util functions. {{{1
 # cd and ls. {{{2
 function cd
-  builtin cd $argv
-  ls -a
-  __save_directory $PWD &
+    builtin cd $argv
+    ls -a
+    __save_directory $PWD &
 end
 
 # Judge OS. {{{2
 function isMac
-  return (test (uname) = "Darwin")
+    return (test (uname) = "Darwin")
 end
 
 function isLinux
-  return (test (uname) != "Darwin")
+    return (test (uname) != "Darwin")
 end
 
 # Install func. {{{2
 function in
-  if type -q brew
-    brew $argv
-  else if type -q apt-get
-    apt-get $argv
-  else if type -q yum
-    yum $argv
-  end
+    if type -q brew
+        brew $argv
+    else if type -q apt-get
+        apt-get $argv
+    else if type -q yum
+        yum $argv
+    end
 end
 
 function cli_install -a cmd repo
-  if not test -d ~/.local/bin
-    mkdir -p ~/.local/bin
-  end
-  if not type -q $cmd
-    curl -L git.io/cli | env L=$repo sh
-  end
+    if not test -d ~/.local/bin
+        mkdir -p ~/.local/bin
+    end
+    if not type -q $cmd
+        curl -L git.io/cli | env L=$repo sh
+    end
 end
 
 # stack new. {{{2
 function stacknew -a name
-  if test (count $argv) -ne 1
-    echo "Set create project name."
-  else
-    stack new $name -p "author-email:yukimemi@gmail.com" -p "author-name:yukimemi" -p "category:Development" -p "copyright:(c) 2017, yukimemi" -p "github-username:yukimemi"
-  end
+    if test (count $argv) -ne 1
+        echo "Set create project name."
+    else
+        stack new $name -p "author-email:yukimemi@gmail.com" -p "author-name:yukimemi" -p "category:Development" -p "copyright:(c) 2017, yukimemi" -p "github-username:yukimemi"
+    end
 end
 
 
 # Enter hook.
 function done_enter --on-event fish_postexec
-  if test -z "$argv"
-    if git rev-parse --is-inside-work-tree > /dev/null ^&1
-      echo (set_color yellow)"--- git status ---"(set_color normal)
-      git status -sb
+    if test -z "$argv"
+        if git rev-parse --is-inside-work-tree >/dev/null ^&1
+            echo (set_color yellow)"--- git status ---"(set_color normal)
+            git status -sb
+        end
     end
-  end
 end
 
 ### prompt. {{{1
@@ -171,18 +172,17 @@ cli_install jvgrep mattn/jvgrep
 
 ### Install plugin manager. {{{1
 # fresco.
-if not test -f /tmp/__fresco_install.fish
-  curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o /tmp/__fresco_install.fish
-  cat /tmp/__fresco_install.fish | fish
+if not test -f ~/.cache/fresco/__fresco_install.fish
+    curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o ~/.cache/fresco/__fresco_install.fish
+    cat ~/.cache/fresco/__fresco_install.fish | fish
 end
 
 # fisherman.
 if not type -q fisher
-  # curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
+    # curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
 end
 
 ### Plugin settings. {{{1
 # pure {{{2
 set pure_symbol_prompt "-»"
 set pure_color_green (set_color "white")
-
