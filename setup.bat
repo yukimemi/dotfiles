@@ -13,10 +13,9 @@ REM ======================================================================
 
 pushd "%cmdDir%"
 
+set /p BASE_C=BASE_C:
+set /p BASE_D=BASE_D:
 set exitCode=%errorlevel%
-set BASE_C=%USERPROFILE%\src\ProgramData
-set BASE_D=%BASE_C%
-if exist D: set BASE_D=D:\src\ProgramData
 
 rem set LINKCMD_F=mklink /h
 set LINKCMD_F=mklink
