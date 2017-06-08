@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/08 07:42:07.
+" Last Change : 2017/06/08 16:06:10.
 " =============================================================================
 
 " Init: {{{1
@@ -182,9 +182,10 @@ Plug 'itchyny/vim-cursorword'
 Plug 'itchyny/vim-highlighturl'
 Plug 'itchyny/vim-parenmatch'
 Plug 'vim-scripts/matchit.zip'
-Plug 'vimtaku/hl_matchit.vim'
+" Plug 'vimtaku/hl_matchit.vim'
 Plug 'taku-o/vim-zoom', Cond(has('gui'))
 Plug 'Yggdroot/indentLine'
+Plug 'kmtoki/lightline-colorscheme-simplicity'
 " Plug 'osyo-manga/vim-precious'
 
 
@@ -222,6 +223,8 @@ Plug 'taku-o/vim-ro-when-swapfound'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
 Plug 'kassio/neoterm', Cond(has('nvim'), { 'on': ['T', 'Tnew'] })
 Plug 'thinca/vim-qfreplace', { 'on': 'Qfreplace' }
+" Plug 'kannokanno/previm', { 'on': 'PrevimOpen' }
+Plug 'kannokanno/previm', { 'on': 'PrevimOpen', 'for': 'markdown' }
 
 
 " ==================== Linter/Formatter ========== {{{3
@@ -453,6 +456,10 @@ if s:p.is_installed('lightline.vim')
   function! MyAbsolutePath()
     return (winwidth('.') - strlen(expand('%:p')) > 90) ? expand('%:p') : ((winwidth('.') - strlen(expand('%')) > 70) ? expand('%') : '')
   endfunction
+
+  if g:is_windows && !has('gui')
+    let g:lightline.colorscheme = 'simplicity'
+  endif
 endif
 
 
@@ -487,7 +494,6 @@ if s:p.is_installed('indentLine')
   let g:indentLine_faster = 1
   nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
   let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'denite', 'tweetvim']
-  au MyAutoCmd User PreciousFileType execute 'IndentLinesReset'
 endif
 
 
@@ -682,6 +688,10 @@ if s:p.is_installed('neoterm')
 endif
 
 
+" previm {{{3
+if s:p.is_installed('previm')
+  au! User previm call plug#load('open-browser.vim')
+endif
 
 
 " ==================== Linter/Formatter ========== {{{2
@@ -1020,11 +1030,13 @@ endif
 " vim-ps1 {{{3
 if s:p.is_installed('vim-ps1')
   function! s:addHeaderPs1(flg)
+    setl fenc=cp932
+    setl ff=dos
     let lines = []
     if a:flg
-      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
+      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass -InputFormat None \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
     else
-      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
+      call add(lines, "@set scriptPath=%~f0&@powershell -Version 2.0 -NoProfile -ExecutionPolicy ByPass -InputFormat None \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
     endif
     call add(lines, "@exit /b %errorlevel%")
     call extend(lines, readfile(expand("%")))
@@ -1228,6 +1240,10 @@ set background=dark
 " colorscheme solarized8_dark
 colorscheme onedark
 " colorscheme iceberg
+
+if g:is_windows
+  colorscheme desert
+endif
 
 " hilight cursorline, cursorcolumn {{{2
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
