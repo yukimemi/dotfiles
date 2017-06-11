@@ -158,8 +158,8 @@ abbr -a glo 'git log --oneline'
 abbr -a gk 'git log --graph --pretty'
 
 # vim {{{2
-abbr -a dup 'nvim -c "PlugUpdate | PlugUpgrade"'
-abbr -a vdup 'vim -c "PlugUpdate | PlugUpgrade"'
+abbr -a vup 'nvim -c "PlugUpdate | PlugUpgrade"'
+abbr -a vvup 'vim -c "PlugUpdate | PlugUpgrade"'
 
 ### Options. {{{1
 # Use fish_vi_key_bindings.

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/08 16:06:10.
+" Last Change : 2017/06/11 18:43:41.
 " =============================================================================
 
 " Init: {{{1
@@ -223,14 +223,15 @@ Plug 'taku-o/vim-ro-when-swapfound'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
 Plug 'kassio/neoterm', Cond(has('nvim'), { 'on': ['T', 'Tnew'] })
 Plug 'thinca/vim-qfreplace', { 'on': 'Qfreplace' }
-" Plug 'kannokanno/previm', { 'on': 'PrevimOpen' }
 Plug 'kannokanno/previm', { 'on': 'PrevimOpen', 'for': 'markdown' }
+Plug 'simnalamburt/vim-mundo'
 
 
 " ==================== Linter/Formatter ========== {{{3
 Plug 'w0rp/ale'
 Plug 'sbdchd/neoformat'
 Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
+Plug 'lambdalisue/vim-findent', { 'on': 'Findent' }
 
 
 " ==================== Search ==================== {{{3
@@ -266,7 +267,7 @@ Plug 'LeafCage/yankround.vim'
 " ==================== Git ======================= {{{3
 Plug 'lambdalisue/gina.vim', { 'on': 'Gina' }
 Plug 'cohama/agit.vim', { 'on': 'Agit' }
-Plug 'rhysd/committia.vim', { 'for': 'gitcommit' }
+Plug 'rhysd/committia.vim'
 
 
 " ==================== Denite ==================== {{{3
@@ -339,6 +340,10 @@ Plug 'itchyny/vim-haskell-sort-import', { 'for': 'haskell' }
 
 " ==================== Filetype (SQL) ============ {{{3
 Plug 'b4b4r07/vim-sqlfmt', { 'for': 'sql', 'do': 'go get github.com/jackc/sqlfmt' }
+
+
+" ==================== Filetype (Tmux) =========== {{{3
+Plug 'tmux-plugins/vim-tmux'
 
 
 call plug#end()
@@ -934,7 +939,7 @@ if s:p.is_installed('denite.nvim')
   nnoremap suo :<C-u>Denite outline -no-quit -mode=normal<CR>
   nnoremap suh :<C-u>Denite help<CR>
   nnoremap sur :<C-u>Denite register<CR>
-  nnoremap sug :<C-u>Denite grep -no-empty<CR>
+  nnoremap sug :<C-u>Denite grep -no-empty -no-quit<CR>
   nnoremap su/ :<C-u>Denite line -no-quit<CR>
   nnoremap suR :<C-u>Denite -resume<CR>
 
@@ -955,8 +960,28 @@ if s:p.is_installed('denite.nvim')
           \ 'auto_resize': v:true,
           \ 'highlight_mode_insert': 'WildMenu'
           \ })
-    " Pt command on grep source
-    if executable('pt')
+
+    if executable('jvgrep')
+      " jvgrep command on grep source
+      call denite#custom#var('grep', 'command', ['jvgrep'])
+      call denite#custom#var('grep', 'default_opts', [])
+      call denite#custom#var('grep', 'recursive_opts', ['-R'])
+      call denite#custom#var('grep', 'pattern_opt', [])
+      call denite#custom#var('grep', 'separator', [])
+      call denite#custom#var('grep', 'final_opts', [])
+
+    elseif executable('rg')
+      " Ripgrep command on grep source
+      call denite#custom#var('grep', 'command', ['rg'])
+      call denite#custom#var('grep', 'default_opts',
+          \ ['--vimgrep', '--no-heading'])
+      call denite#custom#var('grep', 'recursive_opts', [])
+      call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+      call denite#custom#var('grep', 'separator', ['--'])
+      call denite#custom#var('grep', 'final_opts', [])
+
+    elseif executable('pt')
+      " Pt command on grep source
       call denite#custom#var('grep', 'command', ['pt'])
       call denite#custom#var('grep', 'default_opts',
             \ ['--nogroup', '--nocolor', '--smart-case'])
@@ -1080,7 +1105,6 @@ if s:p.is_installed('vim-fish')
   au MyAutoCmd BufNew,BufRead *.fish call s:vim_fish_cfg()
 
   function! s:vim_fish_cfg() abort
-    compiler fish
     setl tabstop=4
     setl shiftwidth=4
     setl softtabstop=0
