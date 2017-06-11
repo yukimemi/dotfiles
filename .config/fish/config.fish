@@ -84,7 +84,7 @@ function stacknew -a name
 end
 
 
-# Enter hook.
+# Enter hook. {{{2
 function done_enter --on-event fish_postexec
     if test -z "$argv"
         if git rev-parse --is-inside-work-tree >/dev/null ^&1
