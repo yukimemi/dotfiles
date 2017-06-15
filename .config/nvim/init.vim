@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/11 18:43:41.
+" Last Change : 2017/06/13 11:56:23.
 " =============================================================================
 
 " Init: {{{1
@@ -210,7 +210,7 @@ Plug 'thinca/vim-submode'
 Plug 't9md/vim-choosewin'
 Plug 'Konfekt/FastFold'
 Plug 'Shougo/vimproc.vim', Cond(!has('kaoriya'), { 'do': function('MakeVimproc') })
-Plug 'glidenote/memolist.vim', { 'on': ['Memolist', 'MemoNew'] }
+Plug 'glidenote/memolist.vim', { 'on': ['MemoList', 'MemoNew'] }
 Plug 'mattn/sonictemplate-vim', { 'on': 'Templete' }
 Plug 'basyura/TweetVim', {'on': ['TweetVimHomeTimeline', 'TweetVimUserStream', 'TweetVimSay'] }
 Plug 'basyura/twibill.vim', {'on': [] }
