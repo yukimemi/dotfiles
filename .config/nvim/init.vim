@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/13 11:56:23.
+" Last Change : 2017/06/17 00:22:54.
 " =============================================================================
 
 " Init: {{{1
@@ -202,6 +202,7 @@ Plug 'carlitux/deoplete-ternjs', Cond(has('nvim'), { 'for': ['javascript', 'type
 " Plug 'roxma/nvim-completion-manager', Cond(has('nvim'))
 " Plug 'roxma/vim-hug-neovim-rpc', Cond(!has('nvim'))
 " Plug 'roxma/nvim-cm-racer', Cond(has('nvim'), { 'for': 'rust' })
+" Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
 
 " ==================== Utility =================== {{{3
@@ -547,6 +548,21 @@ endif
 if s:p.is_installed('deoplete-rust')
   let g:deoplete#sources#rust#racer_binary = expand('~/.cargo/bin/racer')
   let g:deoplete#sources#rust#rust_source_path = expand('$RUST_SRC_PATH')
+endif
+
+
+" LanguageClient-neovim {{{3
+if s:p.is_installed('LanguageClient-neoivm')
+  let g:LanguageClient_serverCommands = {
+        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+        \ }
+
+  " Automatically start language servers.
+  let g:LanguageClient_autoStart = 1
+
+  nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+  nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+  nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 endif
 
 
