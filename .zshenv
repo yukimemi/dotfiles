@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2017/04/09 12:41:48.
+# Last Change : 2017/06/17 02:59:48.
 # =============================================================================
 
 # Useful functions. {{{1
@@ -39,6 +39,8 @@ path=(
   /usr/local/bin(N-/)
   # cabal.
   $HOME/.cabal/bin(N-/)
+  # cargo
+  $HOME/.cargo/bin(N-/)
   # normal.
   /usr/bin(N-/)
   /usr/sbin(N-/)
