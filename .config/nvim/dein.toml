@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/06/17 21:35:53.
+# Last Change : 2017/06/18 00:23:04.
 # =============================================================================
 
 [[plugins]]
@@ -1113,7 +1113,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'racer-rust/vim-racer'
-# depends = 'racer'
 on_ft = 'rust'
 if = "executable('cargo')"
 hook_add = '''
@@ -1124,10 +1123,6 @@ hook_add = '''
   au MyAutoCmd FileType rust nmap <buffer> gx <Plug>(rust-def-vertical)
   au MyAutoCmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
 '''
-
-# [[plugins]]
-# repo = 'phildawes/racer'
-# on_ft = 'rust'
 
 # [[plugins]]
 # repo = 'sebastianmarkow/deoplete-rust'

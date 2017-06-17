@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/06/17 14:24:54.
+# Last Change : 2017/06/17 22:41:53.
 # =============================================================================
 
 #
@@ -17,7 +17,8 @@ zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 # zplug "rcmdnk/sentaku", as:command, use:"bin/*"
 # zplug "jhawthorn/fzy", as:command, rename-to:fzy, hook-build:"make && sudo make install"
-export __FILTER_TOOL=fzf-tmux
+# export __FILTER_TOOL=fzf-tmux
+export __FILTER_TOOL=peco
 
 # zsh plugins. {{{2
 # zplug "momo-lab/zsh-abbrev-alias" # TODO: not work.
@@ -52,7 +53,6 @@ function pet-select() {
   zle redisplay
 }
 zle -N pet-select
-stty -ixon
 
 zplug "itchyny/fillin", from:gh-r, as:command
 
@@ -148,7 +148,7 @@ function chpwd() { ls -F }
 
 # z and filter cd. {{{2
 function __filter_z_cd() {
-  z -lt $1 | awk '{ print $2 }' | __filter_execute cd
+  z -t $1 | tac | awk '{ print $2 }' | __filter_execute cd
 }
 
 # Shell snippets. {{{2
@@ -205,8 +205,8 @@ alias a='git add .'
 alias j=__filter_z_cd
 alias o='open'
 
-alias dup='nvim -c "silent! call dein#update() | q"'
-alias vdup='vim -c "silent! call dein#update() | q"'
+alias dup='nvim -c "silent! call dein#update() | Capture Dein log"'
+alias vdup='vim -c "silent! call dein#update() | Capture Dein log"'
 
 # Git. {{{3
 # checkout
