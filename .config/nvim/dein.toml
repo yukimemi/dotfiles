@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/06/17 10:57:57.
+# Last Change : 2017/06/17 21:35:53.
 # =============================================================================
 
 [[plugins]]
@@ -525,16 +525,6 @@ hook_add = '''
 [[plugins]]
 repo = 'tyru/capture.vim'
 on_cmd = ['Capture']
-
-[[plugins]]
-repo = 'taku-o/vim-ro-when-swapfound'
-hook_add = '''
-  function! s:swapChoice() abort
-    ToggleSwapCheck
-    :e
-  endfunction
-  com! SwapChoice call s:swapChoice()
-'''
 
 [[plugins]]
 repo = 'cocopon/vaffle.vim'
