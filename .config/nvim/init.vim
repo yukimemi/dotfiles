@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/17 21:36:07.
+" Last Change : 2017/06/17 22:44:07.
 " =============================================================================
 
 " Init: {{{1
@@ -394,8 +394,9 @@ vnoremap : q:A
 " Delete other line.
 nnoremap [Space]d :<C-u>call <SID>deleteOtherLine()<CR>
 
-" vim-plug update.
-nnoremap [Space]du :<C-u>PlugUpdate \| PlugUpgrade<CR>
+" Update plugin.
+nnoremap [Space]pu :<C-u>PlugUpdate \| PlugUpgrade<CR>
+nnoremap [Space]du :<C-u>call dein#update() \| Dein log<CR>
 
 " nohlsearch.
 nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
