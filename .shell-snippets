@@ -228,6 +228,7 @@ go get -u github.com/mattn/files
 go get -u github.com/mattn/gom
 go get -u github.com/spf13/cobra/cobra
 go get -u github.com/b4b4r07/gomi
+go get -u github.com/b4b4r07/gist
 go get -u github.com/jteeuwen/go-bindata/...
 go get -u github.com/syossan27/kirimori
 go get -u github.com/urfave/cli
@@ -420,3 +421,5 @@ curl https://glide.sh/get | sh
 # Golang debugger.
 brew install go-delve/delve/delve
 
+# tmux plugin.
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
