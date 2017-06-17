@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/05/03 00:04:02.
+# Last Change : 2017/06/17 03:00:37.
 # =============================================================================
 
 #
@@ -29,7 +29,7 @@ zplug "tcnksm/docker-alias", use:zshrc
 zplug "rupa/z", use:z.sh
 zplug "b4b4r07/zsh-vimode-visual", defer:3
 zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
-# zplug "b4b4r07/zsh-history", use:init.zsh, hook-build:"make && sudo make install"
+# zplug "b4b4r07/history", use:misc/zsh/init.zsh, hook-build: "go get -u github.com/b4b4r07/history"
 
 
 # Commands. {{{2
@@ -41,19 +41,15 @@ zplug "mattn/files", as:command, hook-build:"go get -u github.com/mattn/files"
 zplug "mattn/jvgrep", as:command, hook-build:"go get -u github.com/mattn/jvgrep"
 zplug "mattn/memo", as:command, hook-build:"go get -u github.com/mattn/memo"
 zplug "atotto/clipboard", as:command, hook-build:"go get -u github.com/atotto/clipboard/cmd/gocopy && go get -u github.com/atotto/clipboard/cmd/gopaste"
+zplug "knqyf263/pet", from:gh-r, as:command
+zplug "itchyny/fillin", from:gh-r, as:command
 
 zplug "b4b4r07/gomi", as:command, from:gh-r
 zplug "b4b4r07/ssh-keyreg", as:command, use:bin
 # zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi, on:"junegunn/fzf-bin"
 
 # theme. {{{2
-# zplug "ginfuru/ZSH-BlackRain", as:theme
-# zplug "skylerlee/zeta-zsh-theme", as:theme
-# zplug "tylerreckart/hyperzsh", as:theme, as:theme
-# zplug "subnixr/minimal", use:minimal.zsh
-# zplug "sepehr/sepshell", as:theme
 # zplug "b4b4r07/ultimate", as:theme
-
 zplug "mafredri/zsh-async"
 zplug "sindresorhus/pure", use:pure.zsh, as:theme
 
@@ -284,12 +280,15 @@ bindkey '^S' shell-snippets
 
 bindkey '^R' __filter_history
 
-# zsh-history. {{{2
-export ZSH_HISTORY_KEYBIND_GET_BY_DIR="^r"
-export ZSH_HISTORY_KEYBIND_GET_ALL="^r^a"
-export ZSH_HISTORY_KEYBIND_SCREEN="^r^r"
-export ZSH_HISTORY_KEYBIND_ARROW_UP="^p"
-export ZSH_HISTORY_KEYBIND_ARROW_DOWN="^n"
+# history. {{{2
+if zplug check 'b4b4r07/history'; then
+  alias hs="command history"
+  export ZSH_HISTORY_KEYBIND_GET="^r"
+  export ZSH_HISTORY_FILTER_OPTIONS="--filter-branch --filter-dir"
+  export ZSH_HISTORY_KEYBIND_ARROW_UP="^p"
+  export ZSH_HISTORY_KEYBIND_ARROW_DOWN="^n"
+  export ZSH_HISTORY_AUTO_SYNC=true
+fi
 
 # histry-substring-search. {{{2
 bindkey '^P' history-substring-search-up

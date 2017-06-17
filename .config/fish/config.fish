@@ -184,5 +184,5 @@ end
 
 ### Plugin settings. {{{1
 # pure {{{2
-set pure_symbol_prompt "-»"
+set pure_symbol_prompt "→ "
 set pure_color_green (set_color "white")
