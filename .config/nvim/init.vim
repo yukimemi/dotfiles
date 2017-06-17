@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/17 03:28:06.
+" Last Change : 2017/06/17 21:36:07.
 " =============================================================================
 
 " Init: {{{1
@@ -495,7 +495,7 @@ set viewoptions-=options
 
 " For swap.
 " http://itchyny.hatenablog.com/entry/2014/12/25/090000
-" au MyAutoCmd SwapExists * let v:swapchoice = 'o'
+au MyAutoCmd SwapExists * let v:swapchoice = 'o'
 
 " Escape cmd win.
 au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<CR>

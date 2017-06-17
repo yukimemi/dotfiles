@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/06/17 03:00:37.
+# Last Change : 2017/06/17 14:24:54.
 # =============================================================================
 
 #
@@ -42,6 +42,18 @@ zplug "mattn/jvgrep", as:command, hook-build:"go get -u github.com/mattn/jvgrep"
 zplug "mattn/memo", as:command, hook-build:"go get -u github.com/mattn/memo"
 zplug "atotto/clipboard", as:command, hook-build:"go get -u github.com/atotto/clipboard/cmd/gocopy && go get -u github.com/atotto/clipboard/cmd/gopaste"
 zplug "knqyf263/pet", from:gh-r, as:command
+function prev() {
+  PREV=$(fc -lrn | head -n 1)
+  sh -c "pet new `printf %q "$PREV"`"
+}
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+stty -ixon
+
 zplug "itchyny/fillin", from:gh-r, as:command
 
 zplug "b4b4r07/gomi", as:command, from:gh-r
@@ -276,7 +288,8 @@ setopt histverify
 bindkey -v
 
 bindkey '^Q' show-buffer-stack
-bindkey '^S' shell-snippets
+# bindkey '^S' shell-snippets
+bindkey '^s' pet-select
 
 bindkey '^R' __filter_history
 
