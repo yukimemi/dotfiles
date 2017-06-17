@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2017/06/17 02:59:48.
+# Last Change : 2017/06/18 00:15:20.
 # =============================================================================
 
 # Useful functions. {{{1
@@ -53,6 +53,9 @@ path=(
 # go. {{{2
 export GOPATH=$HOME/.ghq
 export GOROOT=$(go env GOROOT)
+
+# rust. {{{2
+export RUST_SRC_PATH=~/.multirust/toolchains/$(rustup toolchain list | grep default | awk '{ print $1 }')/lib/rustlib/src/rust/src
 
 path=(
   # go.
