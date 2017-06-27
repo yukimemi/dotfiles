@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/06/18 00:23:04.
+# Last Change : 2017/06/27 12:18:02.
 # =============================================================================
 
 [[plugins]]
@@ -546,9 +546,10 @@ hook_add = '''
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
-on_cmd = ['NERDTreeToggle', 'NERDTree']
+on_cmd = ['NERDTreeToggle', 'NERDTree', 'NERDTreeFind']
 hook_add = '''
-  nnoremap [Space]v :NERDTreeToggle<CR>
+  " nnoremap [Space]v :NERDTreeToggle<CR>
+  nnoremap [Space]v :NERDTreeFind<CR>
   au MyAutoCmd StdinReadPre * let s:std_in=1
   au MyAutoCmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 '''
@@ -1199,5 +1200,100 @@ hook_add = '''
 [ftplugin]
 _ = '''
   set formatoptions-=ro
+'''
+
+dosbatch = '''
+  setl fenc=cp932 ff=dos
+'''
+
+html = '''
+  let g:html_indent_inctags = "html,body,head,tbody"
+  let g:html_syntax_folding = 1
+  setl noexpandtab
+  setl ts=4 sw=4 sts=0
+  setl foldmethod=syntax
+'''
+
+csv = '''
+  setl nowrap
+'''
+
+log = '''
+  setl nowrap
+'''
+
+mail = '''
+  setl ff=dos
+  setl fenc=cp932
+
+  colorscheme github
+'''
+
+markdown = '''
+  setl formatoptions+=t
+  " setl noexpandtab
+  setl conceallevel=0
+  setl foldmethod=syntax
+'''
+
+ps1 = '''
+  setl ts=2 sw=2 sts=0
+  setl foldmethod=syntax
+'''
+
+python = '''
+  setl cinwords=if,elif,else,for,while,try,except,finally,def,class
+  setl expandtab
+  setl ts=8 sw=4 sts=4
+  setl foldmethod=indent foldlevel=99
+'''
+
+scala = '''
+  " http://vim-users.jp/2013/02/vim-advent-calendar-2012-ujihisa-4/
+  function! s:ujihisa_start_sbt()"{{{
+    execute 'VimShellInteractive sbt'
+    stopinsert
+    let t:sbt_bufname = bufname('%')
+    if !has_key(t:, 'sbt_cmds')
+      let t:sbt_cmds = [input('t:sbt_cmds[0] = ')]
+    endif
+    wincmd p
+  endfunction
+
+  command! -nargs=0 StartSBT call <SID>ujihisa_start_sbt()
+  "}}}
+
+  function! s:sbt_run()"{{{
+    let cmds = get(t:, 'sbt_cmds', 'run')
+
+    let sbt_bufname = get(t:, 'sbt_bufname')
+    if sbt_bufname !=# ''
+      call vimshell#interactive#set_send_buffer(sbt_bufname)
+      call vimshell#interactive#send(cmds)
+    else
+      echoerr 'try StartSBT'
+    endif
+  endfunction
+  "}}}
+
+  function! s:vimrc_scala()"{{{
+    nnoremap <buffer> [Space]m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
+  endfunction
+  "}}}
+
+  augroup vimrc_scala"{{{
+    autocmd!
+    au FileType scala call s:vimrc_scala()
+    au FileType scala nnoremap <buffer> [Space]st :<C-u>StartSBT<Cr>
+  augroup END
+  "}}}
+'''
+
+xml = '''
+  setl noexpandtab
+  setl ts=4 sw=4 sts=0
+
+  let g:xml_syntax_folding = 1
+  setl foldmethod=syntax
 '''
 
