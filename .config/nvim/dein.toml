@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/06/27 12:18:02.
+# Last Change : 2017/06/24 14:27:15.
 # =============================================================================
 
 [[plugins]]
@@ -1093,7 +1093,7 @@ on_ft = 'coffee'
 repo = 'dag/vim-fish'
 on_ft = 'fish'
 
-# ==================== Filetype (markdown) ===== {{{1
+# ==================== Filetype (markdown) ======= {{{1
 [[plugins]]
 repo = 'rhysd/vim-gfm-syntax'
 on_ft = 'markdown'
@@ -1103,7 +1103,7 @@ on_ft = 'markdown'
 repo = 'ekalinin/Dockerfile.vim'
 on_ft = 'Dockerfile'
 
-# ==================== Filetype (Rust) ===== {{{1
+# ==================== Filetype (Rust) =========== {{{1
 [[plugins]]
 repo = 'rust-lang/rust.vim'
 on_ft = 'rust'
@@ -1141,7 +1141,7 @@ repo = 'rhysd/rust-doc.vim'
 on_ft = 'rust'
 
 
-# ==================== Filetype (Haskell) ===== {{{1
+# ==================== Filetype (Haskell) ======== {{{1
 [[plugins]]
 repo = 'eagletmt/ghcmod-vim'
 on_ft = 'haskell'
@@ -1179,7 +1179,7 @@ hook_add = '''
 # on_ft = 'haskell'
 
 
-# ==================== Filetype (SQL) ===== {{{1
+# ==================== Filetype (SQL) ============ {{{1
 # [[plugins]]
 # repo = 'mattn/vim-sqlfmt'
 # on_ft = 'sql'
@@ -1195,6 +1195,12 @@ hook_add = '''
   let g:sqlfmt_command = "sqlformat"
   let g:sqlfmt_options = "-r -k upper"
 '''
+
+# ==================== Filetype (apiblueprint) === {{{1
+[[plugins]]
+repo = 'kylef/apiblueprint.vim'
+on_ft = 'apiblueprint'
+
 
 # ==================== After ftplugin ============ {{{1
 [ftplugin]
