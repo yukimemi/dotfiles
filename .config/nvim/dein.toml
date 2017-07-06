@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/06/24 14:27:15.
+# Last Change : 2017/07/03 16:10:16.
 # =============================================================================
 
 [[plugins]]
@@ -1122,7 +1122,7 @@ hook_add = '''
   au MyAutoCmd FileType rust nmap <buffer> gd <Plug>(rust-def)
   au MyAutoCmd FileType rust nmap <buffer> gs <Plug>(rust-def-split)
   au MyAutoCmd FileType rust nmap <buffer> gx <Plug>(rust-def-vertical)
-  au MyAutoCmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
+  au MyAutoCmd FileType rust nmap <buffer> K <Plug>(rust-doc)
 '''
 
 # [[plugins]]
