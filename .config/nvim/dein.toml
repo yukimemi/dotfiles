@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/07/03 16:10:16.
+# Last Change : 2017/07/12 08:18:22.
 # =============================================================================
 
 [[plugins]]
@@ -570,9 +570,9 @@ hook_add = '''
 #   let QFixHowm_Title = '#'
 # '''
 
-[[plugins]]
-repo = 'vitalk/vim-simple-todo'
-on_ft = 'markdown'
+# [[plugins]]
+# repo = 'vitalk/vim-simple-todo'
+# on_ft = 'markdown'
 
 [[plugins]]
 repo = 'kassio/neoterm'
@@ -668,6 +668,12 @@ hook_post_source = '''
 [[plugins]]
 repo = 'Shougo/neomru.vim'
 on_source = 'denite.nvim'
+
+[[plugins]]
+repo = 'Shougo/junkfile.vim'
+on_source = 'denite.nvim'
+on_cmd = 'JunkfileOpen'
+
 
 # ==================== Search ==================== {{{1
 [[plugins]]
@@ -1237,7 +1243,6 @@ mail = '''
 
 markdown = '''
   setl formatoptions+=t
-  " setl noexpandtab
   setl conceallevel=0
   setl foldmethod=syntax
 '''
