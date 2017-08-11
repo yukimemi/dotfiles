@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2017/06/18 00:15:20.
+# Last Change : 2017/08/11 01:37:50.
 # =============================================================================
 
 # Useful functions. {{{1
@@ -57,12 +57,17 @@ export GOROOT=$(go env GOROOT)
 # rust. {{{2
 export RUST_SRC_PATH=~/.multirust/toolchains/$(rustup toolchain list | grep default | awk '{ print $1 }')/lib/rustlib/src/rust/src
 
+# npm
+export NPM_BIN_DIR=$(npm bin --global) > /dev/null 2>&1
+
 path=(
   # go.
   $GOPATH/bin(N-/)
   $GOROOT/bin(N-/)
   # yarn
   $(yarn global bin)(N-/)
+  # npm
+  ${NPM_BIN_DIR}(N-/)
 
   $path
 )
