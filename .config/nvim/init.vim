@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/06/19 13:07:20.
+" Last Change : 2017/08/11 00:17:04.
 " =============================================================================
 
 " Init: {{{1
@@ -451,7 +451,7 @@ omap s :normal vs<CR>
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
 " Format.
-" nnoremap [Space]f :<C-u>call <SID>format()<CR>
+nnoremap [Space]f :<C-u>call <SID>format()<CR>
 
 " Autocmd: {{{1
 au MyAutoCmd WinEnter,CursorHold * checktime
