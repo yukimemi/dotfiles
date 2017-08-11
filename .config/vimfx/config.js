@@ -55,6 +55,7 @@ const MAPPINGS = {
   'custom.mode.normal.copy_url': 'yy',
   'custom.mode.normal.copy_as_markdown': 'ym',
   'custom.mode.normal.click_toolbar_pocket': 'mp',
+  'custom.mode.normal.view_source': 'gf',
   'custom.mode.normal.send_up': '<force><c-p>',
   'custom.mode.normal.send_down': '<force><c-n>',
 };
@@ -123,6 +124,22 @@ const CUSTOM_COMMANDS = [
   }) => {
     vim.window.document.getElementById('pocket-button').click();
   }],
+  [
+    {
+      name: 'view_source',
+      description: 'View source'
+    },
+    ({ vim }) => {
+      let url = vim.window.gBrowser.selectedBrowser.currentURI.spec;
+      if (url.includes("view-source:")) {
+        url = url.replace(/^view-source:/, "");
+      } else {
+        url = `view-source:${url}`;
+      }
+      let location = new vim.window.URL(vim.browser.currentURI.spec);
+      vim.window.gBrowser.loadURI(`${url}`);
+    }
+  ],
   [{
       name: 'send_up',
       description: 'Send the <up> key'
