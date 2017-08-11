@@ -3,12 +3,11 @@ const gClipboardHelper = Cc["@mozilla.org/widget/clipboardhelper;1"].getService(
   Ci.nsIClipboardHelper
 );
 const { Preferences } = Cu.import("resource://gre/modules/Preferences.jsm", {});
-
 const { sendKey } = Cu.import(`${__dirname}/shared.js?${Math.random()}`, {});
 
 const FIREFOX_PREFS = {
   "browser.startup.page": 3,
-  "browser.tabs.animate": false,
+  "browser.tabs.animate": true,
   "browser.search.suggest.enabled": true,
   "browser.urlbar.suggest.searches": true,
   "browser.urlbar.maxRichResults": 20,
@@ -16,9 +15,7 @@ const FIREFOX_PREFS = {
   "dom.ipc.processCount": 4
 };
 
-const VIMFX_PREFS = {
-  prevent_autofocus: true
-};
+const VIMFX_PREFS = { prevent_autofocus: true };
 
 const MAPPINGS = {
   copy_current_url: "",
@@ -50,7 +47,9 @@ const MAPPINGS = {
   "custom.mode.normal.click_toolbar_pocket": "mp",
   "custom.mode.normal.view_source": "gf",
   "custom.mode.normal.send_up": "<force><c-p>",
-  "custom.mode.normal.send_down": "<force><c-n>"
+  "custom.mode.normal.send_down": "<force><c-n>",
+  "custom.mode.normal.tab_move_to_index": "gt",
+  "custom.mode.normal.search_tabs": "b"
 };
 
 const { commands } = vimfx.modes.normal;
@@ -148,6 +147,47 @@ const CUSTOM_COMMANDS = [
       description: "Send the <down> key"
     },
     _sendKey.bind(null, "down")
+  ],
+  [
+    {
+      name: "tab_move_to_index",
+      description: "Move tab to index",
+      category: "tabs",
+      order: commands.tab_move_forward.order + 1
+    },
+    ({ vim, count }) => {
+      if (count === undefined) {
+        vim.notify("Provide a count");
+        return;
+      }
+      let { window } = vim;
+      window.setTimeout(() => {
+        let { selectedTab } = window.gBrowser;
+        if (selectedTab.pinned) {
+          vim.notify("Run from a non-pinned tab");
+          return;
+        }
+        let newPosition = window.gBrowser._numPinnedTabs + count - 1;
+        window.gBrowser.moveTabTo(selectedTab, newPosition);
+      }, 0);
+    }
+  ],
+  [
+    {
+      name: "search_tabs",
+      description: "Search tabs",
+      category: "tabs",
+      order: commands.focus_location_bar.order + 1
+    },
+    args => {
+      let { vim } = args;
+      let { gURLBar } = vim.window;
+      gURLBar.value = "";
+      commands.focus_location_bar.run(args);
+      // Change the `*` on the text line to a `%` to search tabs instead of bookmarks.
+      gURLBar.value = "% ";
+      gURLBar.onInput(new vim.window.KeyboardEvent("input"));
+    }
   ]
 ];
 

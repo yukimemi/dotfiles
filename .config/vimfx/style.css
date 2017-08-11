@@ -10,7 +10,29 @@
 }
 
 statuspanel label.statuspanel-label {
-  background: linear-gradient(45deg, rgba(22, 22, 22, 0.9), rgba(99, 99, 99, 0.9)) !important;
+  background: linear-gradient(
+    45deg,
+    rgba(22, 22, 22, 0.9),
+    rgba(99, 99, 99, 0.9)
+  ) !important;
   color: whitesmoke !important;
   font-size: 14px !important;
+}
+
+#TabsToolbar {
+  counter-reset: tabs-counter;
+}
+
+.tab-close-button:not([pinned]) {
+  visibility: hidden;
+  display: block;
+  color: inherit;
+  counter-increment: tabs-counter;
+
+  &::before {
+    content: counter(tabs-counter);
+    visibility: visible;
+    font-weight: normal;
+    font-style: normal;
+  }
 }
