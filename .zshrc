@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/06/17 22:41:53.
+# Last Change : 2017/08/14 01:08:39.
 # =============================================================================
 
 #
@@ -151,6 +151,14 @@ function __filter_z_cd() {
   z -t $1 | tac | awk '{ print $2 }' | __filter_execute cd
 }
 
+# kill. {{{2
+function __filter_kill() {
+  line=$(ps -ef | $__FILTER_TOOL)
+  echo "Kill: [$line]"
+  kill -9 $(echo $line | awk '{ print $2 }')
+}
+zle -N __filter_kill
+
 # Shell snippets. {{{2
 function shell-snippets() {
     BUFFER=$(grep -v "^#" ~/.shell-snippets | $__FILTER_TOOL)
@@ -196,6 +204,7 @@ alias la='ls -a'
 alias lla='ls -al'
 alias l='ll'
 alias e='nvim'
+alias v='vim'
 alias b='cd ..'
 alias c='files -d | __filter_execute cd'
 alias g='git'
@@ -292,6 +301,7 @@ bindkey '^Q' show-buffer-stack
 bindkey '^s' pet-select
 
 bindkey '^R' __filter_history
+bindkey '^K' __filter_kill
 
 # history. {{{2
 if zplug check 'b4b4r07/history'; then
