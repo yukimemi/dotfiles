@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/08/14 01:08:39.
+# Last Change : 2017/08/19 17:09:46.
 # =============================================================================
 
 #
@@ -198,7 +198,11 @@ function showoptions() {
 # aliases. {{{1
 #
 # local alias. {{{2
-alias ls='ls --color=auto'
+if which exa > /dev/null 2>&1; then
+  alias ls='exa'
+else
+  alias ls='ls --color=auto'
+fi
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -al'
