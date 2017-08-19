@@ -207,3 +207,31 @@ Object.entries(MAPPINGS).forEach(([cmd, key]) => {
 });
 
 Preferences.set(FIREFOX_PREFS);
+
+// qmarks
+let categories = vimfx.get('categories');
+categories.qmarks = {
+  name: 'qmarks',
+  order: categories.misc.order - 1,
+};
+
+let quickmark = (val, shortcut, url) => {
+  vimfx.addCommand({
+    name: `quickmark_${val}`,
+    description: `Open quickmark ${val}`,
+    category: 'qmarks'
+  },
+  ({ vim }) => {
+    vim.window.gBrowser.loadURI(url);
+  });
+  vimfx.set(`custom.mode.normal.quickmark_${val}`, shortcut);
+};
+
+quickmark('twitter', 'got', 'https://twitter.com');
+quickmark('facebook', 'gof', 'https://facebook.com');
+quickmark('hatebu', 'goh', 'http://b.hatena.ne.jp');
+
+// Forcus out on tabselect.
+vimfx.on('TabSelect', ({ event }) => {
+  event.detail.previousTab.ownerDocument.activeElement.blur();
+});
