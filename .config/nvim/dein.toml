@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/08/11 15:24:36.
+# Last Change : 2017/08/19 17:04:53.
 # =============================================================================
 
 [[plugins]]
@@ -332,6 +332,9 @@ on_path = '.*'
 hokk_add = '''
   let g:fastfold_savehook = 0
 '''
+
+# [[plugins]]
+# repo = 'arecarn/vim-fold-cycle'
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
