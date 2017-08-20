@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/08/14 01:35:19.
+" Last Change : 2017/08/20 11:10:49.
 " =============================================================================
 
 " Init: {{{1
@@ -254,6 +254,7 @@ set background=dark
 " colorscheme molokai
 " colorscheme solarized8_dark
 colorscheme onedark
+" colorscheme tender
 " colorscheme iceberg
 
 if g:is_windows
@@ -428,6 +429,7 @@ nnoremap sq :<C-u>q<CR>
 nnoremap sQ :<C-u>qa<CR>
 nnoremap sbk :<C-u>bd!<CR>
 nnoremap sbq :<C-u>q!<CR>
+
 
 "  for git mergetool {{{2
 if &diff
