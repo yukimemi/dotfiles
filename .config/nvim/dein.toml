@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/08/20 11:11:45.
+# Last Change : 2017/08/30 11:40:32.
 # =============================================================================
 
 [[plugins]]
@@ -408,6 +408,13 @@ hook_add = '''
         \       'pattern': "\<tab>",
         \       'left_margin': 0,
         \       'right_margin': 0
+        \   },
+        \ ';': {
+        \       'pattern': ';',
+        \       'left_margin': 1,
+        \       'right_margin': 1,
+        \       'stick_to_left': 0,
+        \       'ignore_groups': []
         \   }
         \ }
 '''
@@ -440,7 +447,7 @@ hook_add = '''
 repo = 'mattn/sonictemplate-vim'
 on_cmd = 'Template'
 hook_add = '''
-  let g:sonictemplate_vim_template_dir = '$HOME/.vim/template'
+  let g:sonictemplate_vim_template_dir = $HOME . '/.vim/template'
   let g:sonictemplate_vim_vars = {
         \ '_': {
         \   'author': 'yukimemi',

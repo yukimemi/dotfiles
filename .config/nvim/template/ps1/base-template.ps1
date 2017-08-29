@@ -1,22 +1,21 @@
-# {{_name_}}
-param($hoge = $(Read-Host "{{_cursor_}}"))
+<#
+  .SYNOPSYS
+    {{_name_}}
+  .DESCRIPTION
+    {{_cursor_}}
+  .INPUTS
 
-$ErrorActionPreference = "stop"
-$DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
+  .Last Change : 2017/08/29 08:31:50.
+#>
 
-$commandPath = Split-Path -parent $myInvocation.MyCommand.path
-$commandName = Split-Path -leaf $myInvocation.MyCommand.path
-$commandBaseName = (gci $myInvocation.MyCommand.path).BaseName
-
-Set-Location $commandPath
-
-function main() {#{{{
-
-  trap { Write-Host "[main]: Error $($_)"; break }
-
-
-}#}}}
-
-# call main
-Measure-Command { main }
+$cmdFile = & {
+  if ($env:scriptPath) {
+    return [System.IO.Path]::GetFullPath($env:scriptPath)
+  } else {
+    return [System.IO.Path]::GetFullPath($script:MyInvocation.MyCommand.Path)
+  }
+}
+$cmdDir = [System.IO.Path]::GetDirectoryName($cmdFile)
+$cmdName = [System.IO.Path]::GetFileNameWithoutExtension($cmdFile)
+$cmdFileName = [System.IO.Path]::GetFileName($cmdFile)
 
