@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/08/19 17:09:46.
+# Last Change : 2017/09/09 23:07:53.
 # =============================================================================
 
 #
@@ -255,7 +255,6 @@ alias gk='git log --graph --pretty'
 # Haskell stack. {{{3
 alias ghc="stack ghc --"
 alias ghci="stack ghci"
-
 
 # Filter aliases. {{{3
 # alias ghl='ghq list -p | __filter_execute cd'

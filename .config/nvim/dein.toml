@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/08/30 11:40:32.
+# Last Change : 2017/09/16 15:39:08.
 # =============================================================================
 
 [[plugins]]
@@ -25,15 +25,15 @@ repo = 'jacoborus/tender.vim'
 lazy = 1
 
 [[plugins]]
-repo = 'joshdick/onedark.vim'
-
-[[plugins]]
 repo = 'aereal/vim-colors-japanesque'
 lazy = 1
 
 [[plugins]]
 repo = 'cocopon/iceberg.vim'
 lazy = 1
+
+[[plugins]]
+repo = 'joshdick/onedark.vim'
 
 [[plugins]]
 repo = 'endel/vim-github-colorscheme'
@@ -421,7 +421,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'glidenote/memolist.vim'
-on_cmd = ['Memolist', 'MemoNew']
+on_cmd = ['Memolist', 'MemoNew', 'MemoGrep']
 hook_add = '''
   if isdirectory($HOME . '/Dropbox')
     let g:memolist_path = $HOME . '/Dropbox/memolist'
@@ -506,6 +506,10 @@ if = "has('python')"
 
 [[plugins]]
 repo = 'simnalamburt/vim-mundo'
+on_cmd = 'MundoToggle'
+hook_add = '''
+  nnoremap [Space]u :MundoToggle<CR>
+'''
 
 [[plugins]]
 repo = 'tpope/vim-repeat'
@@ -609,7 +613,13 @@ on_cmd = 'Findent'
 
 [[plugins]]
 repo = 'haya14busa/dein-command.vim'
-oncmd = 'Dein'
+on_cmd = 'Dein'
+
+[[plugins]]
+repo = 'Shougo/echodoc.vim'
+hook_add = '''
+  let g:echodoc_enable_at_startup = 1
+'''
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
@@ -645,16 +655,9 @@ hook_post_source = '''
         \ 'auto_resize': v:true,
         \ 'highlight_mode_insert': 'WildMenu'
         \ })
-  if executable('jvgrep')
-    " jvgrep command on grep source
-    call denite#custom#var('grep', 'command', ['jvgrep'])
-    call denite#custom#var('grep', 'default_opts', [])
-    call denite#custom#var('grep', 'recursive_opts', ['-R'])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', [])
-    call denite#custom#var('grep', 'final_opts', [])
 
-  elseif executable('rg')
+
+  if executable('rg')
     " Ripgrep command on grep source
     call denite#custom#var('grep', 'command', ['rg'])
     call denite#custom#var('grep', 'default_opts',
@@ -662,6 +665,15 @@ hook_post_source = '''
     call denite#custom#var('grep', 'recursive_opts', [])
     call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
     call denite#custom#var('grep', 'separator', ['--'])
+    call denite#custom#var('grep', 'final_opts', [])
+
+  elseif executable('jvgrep')
+    " jvgrep command on grep source
+    call denite#custom#var('grep', 'command', ['jvgrep'])
+    call denite#custom#var('grep', 'default_opts', [])
+    call denite#custom#var('grep', 'recursive_opts', ['-R'])
+    call denite#custom#var('grep', 'pattern_opt', [])
+    call denite#custom#var('grep', 'separator', [])
     call denite#custom#var('grep', 'final_opts', [])
 
   elseif executable('pt')
@@ -1134,9 +1146,9 @@ repo = 'dag/vim-fish'
 on_ft = 'fish'
 
 # ==================== Filetype (markdown) ======= {{{1
-[[plugins]]
-repo = 'rhysd/vim-gfm-syntax'
-on_ft = 'markdown'
+# [[plugins]]
+# repo = 'rhysd/vim-gfm-syntax'
+# on_ft = 'markdown'
 
 # ==================== Filetype (Dockerfile) ===== {{{1
 [[plugins]]
@@ -1149,7 +1161,14 @@ repo = 'rust-lang/rust.vim'
 on_ft = 'rust'
 if = "executable('cargo')"
 hook_add = '''
+  let g:rust_bang_comment_leader = 1
+  let g:rust_conceal = 1
+  let g:rust_conceal_mod_path = 1
+  let g:rust_conceal_pub = 1
+  let g:rust_fold = 1
+  let g:rust_recommended_style = 1
   let g:rustfmt_autosave = 1
+  let g:rustfmt_fail_silently = 0
 '''
 
 [[plugins]]
