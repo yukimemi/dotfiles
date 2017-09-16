@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/08/20 11:10:49.
+" Last Change : 2017/09/16 15:47:42.
 " =============================================================================
 
 " Init: {{{1
@@ -318,16 +318,7 @@ com! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | difft
 com! Wsu w !sudo tee > /dev/null %
 
 " FileType: {{{1
-" au MyAutoCmd BufNewFile,BufRead *.toml setl ft=toml
 au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail
-au MyAutoCmd BufNewFile,BufRead *.js setl ft=javascript
-au MyAutoCmd BufNewFile,BufRead *.vim setl ft=vim
-au MyAutoCmd BufNewFile,BufRead *.md setl ft=markdown
-au MyAutoCmd BufNewFile,BufRead *.xml setl ft=xml
-au MyAutoCmd BufNewFile,BufRead *.bat setl ft=dosbatch
-au MyAutoCmd BufNewFile,BufRead *.html setl ft=html
-au MyAutoCmd BufNewFile,BufRead *.json setl ft=json
-au MyAutoCmd BufNewFile,BufRead *.fish setl ft=fish
 
 
 " Mapping: {{{1
