@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/09/17 22:27:53.
+# Last Change : 2017/09/17 23:02:20.
 # =============================================================================
 
 [[plugins]]
@@ -564,18 +564,20 @@ hook_post_source = '''
 repo = 'justinmk/vim-dirvish'
 on_cmd = ['Dirvish']
 hook_add = '''
-  " nnoremap [Space]v :<C-u>Dirvish<CR>
+  " Don't use netrw.
+  let g:loaded_netrwPlugin = 1
+  nnoremap [Space]v :<C-u>Dirvish<CR>
 '''
 
-[[plugins]]
-repo = 'scrooloose/nerdtree'
-on_cmd = ['NERDTreeToggle', 'NERDTree', 'NERDTreeFind']
-hook_add = '''
-  " nnoremap [Space]v :NERDTreeToggle<CR>
-  nnoremap [Space]v :NERDTreeFind<CR>
-  au MyAutoCmd StdinReadPre * let s:std_in=1
-  au MyAutoCmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-'''
+# [[plugins]]
+# repo = 'scrooloose/nerdtree'
+# on_cmd = ['NERDTreeToggle', 'NERDTree', 'NERDTreeFind']
+# hook_add = '''
+#   " nnoremap [Space]v :NERDTreeToggle<CR>
+#   nnoremap [Space]v :NERDTreeFind<CR>
+#   au MyAutoCmd StdinReadPre * let s:std_in=1
+#   au MyAutoCmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+# '''
 
 
 # [[plugins]]
