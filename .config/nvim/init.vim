@@ -1,12 +1,14 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/09/16 15:47:42.
+" Last Change : 2017/09/17 22:27:23.
 " =============================================================================
 
 " Init: {{{1
 set encoding=utf-8
 scriptencoding utf-8
+
+if &compatible | set nocompatible | endif
 
 " Release autogroup in MyAutoCmd.
 augroup MyAutoCmd
@@ -130,7 +132,7 @@ function! s:deleteOtherLine() "{{{2
   %g!//d
 endfunction
 
-function s:updateColorScheme() "{{{2
+function! s:updateColorScheme() "{{{2
   if &readonly && &buftype ==# ""
     colorscheme github
   endif
@@ -148,11 +150,14 @@ endfunction
 
 " Plugin: {{{1
 let s:use_dein = 1
+let s:use_vimplug = 0
 
 if s:use_dein
   runtime! dein.vim
-else
+elseif s:use_vimplug
   runtime! vimplug.vim
+else
+  runtime! minpac.vim
 endif
 
 " Basic: {{{1
@@ -222,6 +227,7 @@ set novisualbell
 set visualbell t_vb=
 set number
 set showmatch matchtime=1
+set noshowmode
 
 " Tab.
 set tabstop=2
@@ -250,10 +256,11 @@ set foldmethod=marker
 
 " Color: {{{1
 set background=dark
+colorscheme hybrid_material
+" colorscheme solarized8_dark
 " colorscheme japanesque
 " colorscheme molokai
-" colorscheme solarized8_dark
-colorscheme onedark
+" colorscheme onedark
 " colorscheme tender
 " colorscheme iceberg
 
@@ -319,6 +326,7 @@ com! Wsu w !sudo tee > /dev/null %
 
 " FileType: {{{1
 au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail
+au MyAutoCmd BufNewFile,BufRead *.toml setl ft=toml
 
 
 " Mapping: {{{1
@@ -365,7 +373,7 @@ vnoremap <C-p> "0p<CR>
 nnoremap [Space]cd :<C-u>call <SID>cd_buffer_dir()<CR>
 
 " Auto mkdir.
-au MyAutoCmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+au MyAutoCmd BufWritePre * call <SID>auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
 
 " Like emacs.
 cnoremap <C-b> <Left>
@@ -391,6 +399,7 @@ nnoremap [Space]d :<C-u>call <SID>deleteOtherLine()<CR>
 " Update plugin.
 nnoremap [Space]pu :<C-u>PlugUpdate \| PlugUpgrade<CR>
 nnoremap [Space]du :<C-u>call dein#update() \| Dein log<CR>
+nnoremap [Space]mu :<C-u>PackUpdate<CR>
 
 " nohlsearch.
 nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
@@ -475,7 +484,6 @@ au MyAutoCmd BufWritePost *.bin,*.dat set nomod | endif
 au MyAutoCmd FileType mail nnoremap <silent><buffer> [Space]q :<C-u>silent! call <SID>addQuote()<CR>
 
 "au MyAutoCmd BufWrite * call <SID>format()
-au FileType * setlocal formatoptions-=ro
 
 au MyAutoCmd BufWritePost * call <SID>removeFileIf0Byte()
 
