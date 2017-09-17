@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/09/17 22:23:24.
+" Last Change : 2017/09/17 23:17:17.
 " =============================================================================
 
 " Plugin:
@@ -555,12 +555,14 @@ let g:loaded_netrwPlugin = 1
 nnoremap [Space]v :<C-u>Dirvish<CR>
 
 " neoterm. {{{2
-let g:neoterm_autoinsert = 1
-nnoremap [Space]s :<C-u>terminal<CR>
-tnoremap sj <C-\><C-n><C-w>j
-tnoremap sk <C-\><C-n><C-w>k
-tnoremap sl <C-\><C-n><C-w>l
-tnoremap sh <C-\><C-n><C-w>h
+if has('nvim')
+  let g:neoterm_autoinsert = 1
+  nnoremap [Space]s :<C-u>terminal<CR>
+  tnoremap sj <C-\><C-n><C-w>j
+  tnoremap sk <C-\><C-n><C-w>k
+  tnoremap sl <C-\><C-n><C-w>l
+  tnoremap sh <C-\><C-n><C-w>h
+endif
 
 " vim-findent. {{{2
 au MyAutoCmd BufRead * Findent --no-warnings
@@ -909,10 +911,10 @@ au MyAutoCmd FileType apiblueprint packadd apiblueprint.vim
 " Define user commands for updating/cleaning the plugins. {{{1
 " Each of them loads minpac, reloads .vimrc to register the
 " information of plugins, then performs the task.
-com! PackUpdate    packadd minpac | source $MYVIMRC | call minpac#update()
 com! PackClean     packadd minpac | source $MYVIMRC | call minpac#clean()
-com! PackListStart packadd minpac | source $MYVIMRC | echo minpac#getpackages("", "start")
-com! PackListOpt   packadd minpac | source $MYVIMRC | echo minpac#getpackages("", "opt")
-com! PackNameStart packadd minpac | source $MYVIMRC | echo minpac#getpackages("", "start", "", 1)
-com! PackNameOpt   packadd minpac | source $MYVIMRC | echo minpac#getpackages("", "opt", "", 1)
+com! PackUpdate    packadd minpac | source $MYVIMRC | call minpac#clean() | call minpac#update()
+com! PackListStart packadd minpac | source $MYVIMRC | Capture echo minpac#getpackages("", "start")
+com! PackListOpt   packadd minpac | source $MYVIMRC | Capture echo minpac#getpackages("", "opt")
+com! PackNameStart packadd minpac | source $MYVIMRC | Capture echo minpac#getpackages("", "start", "", 1)
+com! PackNameOpt   packadd minpac | source $MYVIMRC | Capture echo minpac#getpackages("", "opt", "", 1)
 
