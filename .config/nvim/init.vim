@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/09/17 23:38:25.
+" Last Change : 2017/09/18 00:10:54.
 " =============================================================================
 
 " Init: {{{1
@@ -149,9 +149,9 @@ endfunction
 
 
 " Plugin: {{{1
-let s:use_dein = 1
+let s:use_dein = 0
 let s:use_vimplug = 0
-let s:use_minpac = 0
+let s:use_minpac = 1
 
 if s:use_dein
   runtime! dein.vim
@@ -331,6 +331,7 @@ com! Wsu w !sudo tee > /dev/null %
 " FileType: {{{1
 au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail
 au MyAutoCmd BufNewFile,BufRead *.toml setl ft=toml
+au MyAutoCmd BufNewFile,BufRead *.log setl ft=log
 
 
 " Mapping: {{{1
@@ -514,7 +515,6 @@ au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
 " Change colorscheme for readonly.
 " au MyAutoCmd BufReadPost,BufEnter * call s:updateColorScheme()
 
-" vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
-
 filetype plugin indent on
 
+" vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
