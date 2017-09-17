@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/09/17 23:02:20.
+# Last Change : 2017/09/17 23:41:20.
 # =============================================================================
 
 [[plugins]]
@@ -520,7 +520,8 @@ repo = 'tpope/vim-repeat'
 [[plugins]]
 repo = 'sbdchd/neoformat'
 hook_add = '''
-  au MyAutoCmd BufWritePre * Neoformat
+  let g:neoformat_only_msg_on_error = 1
+  " au MyAutoCmd BufWritePre * Neoformat
 '''
 
 [[plugins]]
