@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/09/17 23:48:50.
+" Last Change : 2017/09/18 00:06:06.
 " =============================================================================
 
 " Plugin:
@@ -133,13 +133,13 @@ if exists('*minpac#init')
     endfor
   endfunction
 
-  " start. {{{3
+  " start. {{{2
   call <SID>minpac_add(s:start_plugs)
 
-  " opt. {{{3
+  " opt. {{{2
   call <SID>minpac_add(s:opt_plugs)
 
-  " lazy. {{{3
+  " lazy. {{{2
   call <SID>minpac_add(s:lazy_plugs)
 
 endif
@@ -155,7 +155,7 @@ function! PackAddHandler(timer)
     exe 'packadd ' . name
   endif
   let s:idx += 1
-  doautocmd BufReadPost
+  " doautocmd BufReadPost
   au! lazy_load_bundle
 endfunction
 
