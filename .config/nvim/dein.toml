@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/09/16 15:39:08.
+# Last Change : 2017/09/17 22:27:53.
 # =============================================================================
 
 [[plugins]]
@@ -39,10 +39,13 @@ repo = 'joshdick/onedark.vim'
 repo = 'endel/vim-github-colorscheme'
 
 [[plugins]]
+repo = 'kristijanhusak/vim-hybrid-material'
+
+[[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
   let g:lightline = {
-        \ 'colorscheme': 'onedark',
+        \ 'colorscheme': 'jellybeans',
         \ 'mode_map': {
         \   'n' : 'N',
         \   'i' : 'I',
@@ -610,6 +613,9 @@ hook_add = '''
 [[plugins]]
 repo = 'lambdalisue/vim-findent'
 on_cmd = 'Findent'
+hook_add = '''
+  au MyAutoCmd BufRead * Findent --no-warnings
+'''
 
 [[plugins]]
 repo = 'haya14busa/dein-command.vim'
