@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/09/17 23:17:17.
+" Last Change : 2017/09/17 23:48:50.
 " =============================================================================
 
 " Plugin:
@@ -484,7 +484,8 @@ let g:autodate_keyword_post = "."
 nnoremap [Space]u :MundoToggle<CR>
 
 " neoformat. {{{2
-au MyAutoCmd BufWritePre * Neoformat
+let g:neoformat_only_msg_on_error = 1
+" au MyAutoCmd BufWritePre * Neoformat
 
 " vim-loadafterft. {{{2
 let g:execcmd_after_ftplugin = {

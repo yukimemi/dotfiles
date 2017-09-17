@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/09/17 23:14:42.
+# Last Change : 2017/09/17 23:31:16.
 # =============================================================================
 
 #
@@ -264,7 +264,8 @@ alias ghl='gsr --all | __filter_execute cd'
 alias gsrl='gsr | __filter_execute cd'
 alias gho='ghq list -p | __filter_execute gh-open'
 alias r='ls -a | __filter_execute gomi'
-alias fv='files -A | __filter_execute nvim'
+alias fe='files -A | __filter_execute nvim'
+alias fv='files -A | __filter_execute vim'
 
 # global alias. {{{2
 alias -g L=' | less'
