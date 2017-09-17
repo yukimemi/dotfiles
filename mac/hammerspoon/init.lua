@@ -1,9 +1,9 @@
 local function keyCode(key, modifiers)
   modifiers = modifiers or {}
   return function()
-    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), true):post()
+    hs.eventtap.event.newKeyEvent(modifiers, key, true):post()
     hs.timer.usleep(1000)
-    hs.eventtap.event.newKeyEvent(modifiers, string.lower(key), false):post()
+    hs.eventtap.event.newKeyEvent(modifiers, key, false):post()
   end
 end
 
@@ -19,9 +19,11 @@ local function remapKey(modifiers, key, keyCode)
   hs.hotkey.bind(modifiers, key, keyCode, nil, keyCode)
 end
 
+local eisuu = 0x66
+
 remapKey({ 'ctrl' }, ']',  keyCodeSet({
   keyCode('escape'),
-  keyCode(';', {'ctrl', 'shift'})
+  keyCode(eisuu)
 }))
 
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
