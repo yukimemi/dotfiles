@@ -8,7 +8,7 @@ set guioptions=none
 " color
 set background=dark
 " colorscheme molokai
-colorscheme onedark
+colorscheme hybrid_material
 
 " font
 if g:is_windows
