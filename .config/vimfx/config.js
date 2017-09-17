@@ -230,6 +230,7 @@ let quickmark = (val, shortcut, url) => {
 quickmark('twitter', 'got', 'https://twitter.com');
 quickmark('facebook', 'gof', 'https://facebook.com');
 quickmark('hatebu', 'goh', 'http://b.hatena.ne.jp');
+quickmark('githubio', 'gog', 'http://yukimemi.github.io');
 
 // Forcus out on tabselect.
 vimfx.on('TabSelect', ({ event }) => {
