@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/09/09 23:07:53.
+# Last Change : 2017/09/17 23:14:42.
 # =============================================================================
 
 #
@@ -220,6 +220,8 @@ alias o='open'
 
 alias dup='nvim -c "silent! call dein#update() | Capture Dein log"'
 alias vdup='vim -c "silent! call dein#update() | Capture Dein log"'
+alias mup='nvim -c "PackUpdate"'
+alias vmup='vim -c "PackUpdate"'
 
 # Git. {{{3
 # checkout
