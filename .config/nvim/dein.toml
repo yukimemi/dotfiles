@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/09/17 23:41:20.
+# Last Change : 2017/09/18 00:25:17.
 # =============================================================================
 
 [[plugins]]
@@ -563,7 +563,6 @@ hook_post_source = '''
 
 [[plugins]]
 repo = 'justinmk/vim-dirvish'
-on_cmd = ['Dirvish']
 hook_add = '''
   " Don't use netrw.
   let g:loaded_netrwPlugin = 1
