@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/09/17 22:27:23.
+" Last Change : 2017/09/17 23:25:18.
 " =============================================================================
 
 " Init: {{{1
@@ -151,13 +151,16 @@ endfunction
 " Plugin: {{{1
 let s:use_dein = 1
 let s:use_vimplug = 0
+let s:use_minpac = 0
 
 if s:use_dein
   runtime! dein.vim
 elseif s:use_vimplug
   runtime! vimplug.vim
-else
+elseif s:use_minpac
   runtime! minpac.vim
+else
+  echom "No use plugin manager !"
 endif
 
 " Basic: {{{1
@@ -255,6 +258,7 @@ set foldmethod=marker
 " set t_Co=256
 
 " Color: {{{1
+syntax enable
 set background=dark
 colorscheme hybrid_material
 " colorscheme solarized8_dark
@@ -511,4 +515,6 @@ au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
 " au MyAutoCmd BufReadPost,BufEnter * call s:updateColorScheme()
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
+
+filetype plugin indent on
 
