@@ -17,6 +17,7 @@ doskey b=cd ..
 doskey o=start $*
 doskey vup=vim -c "PlugUpdate"
 doskey dup=vim -c "silent! call dein#update() | Capture Dein log"
+doskey mup=vim -c "PackUpdate"
 
 rem Git
 doskey s=git status

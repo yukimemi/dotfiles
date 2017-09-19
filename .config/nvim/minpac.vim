@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/09/18 00:06:06.
+" Last Change : 2017/09/19 18:40:04.
 " =============================================================================
 
 " Plugin:
@@ -70,6 +70,7 @@ let s:opt_plugs = [
 " lazy load plugins. {{{2
 let s:lazy_plugs = [
       \ ['Konfekt/FastFold', {'type': 'opt'}],
+      \ ['qpkorr/vim-renamer', {'type': 'opt'}],
       \ ['LeafCage/yankround.vim', {'type': 'opt'}],
       \ ['Shougo/context_filetype.vim', {'type': 'opt'}],
       \ ['Shougo/denite.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins'}, has('python3')],
@@ -907,6 +908,9 @@ let g:sqlfmt_options = "-r -k upper"
 
 " apiblueprint.vim. {{{2
 au MyAutoCmd FileType apiblueprint packadd apiblueprint.vim
+
+" vim-renamer. {{{2
+nmap <Leader>r <Plug>RenamerStart
 
 
 " Define user commands for updating/cleaning the plugins. {{{1
