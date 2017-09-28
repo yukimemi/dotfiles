@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/09/19 18:40:04.
+" Last Change : 2017/09/28 20:10:38.
 " =============================================================================
 
 " Plugin:
@@ -38,7 +38,6 @@ let s:opt_plugs = [
       \ ['cespare/vim-toml', {'type': 'opt'}],
       \ ['cocopon/iceberg.vim', {'type': 'opt'}],
       \ ['dag/vim-fish', {'type': 'opt'}],
-      \ ['dzeban/vim-log-syntax', {'type': 'opt'}],
       \ ['eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod'}, executable('stack')],
       \ ['eagletmt/neco-ghc', {'type': 'opt'}],
       \ ['ekalinin/Dockerfile.vim', {'type': 'opt'}],
@@ -689,7 +688,7 @@ endfunction
 com! ToggleCursorWord call s:ToggleCursorWord()
 
 " vim-qfreplace. {{{2
-au MyAutoCmd FileType quickfix packadd vim-qfreplace
+au MyAutoCmd FileType quickfix,qf packadd vim-qfreplace
 
 " deoplete-go. {{{2
 au MyAutoCmd FileType go packadd deoplete-go
@@ -800,7 +799,7 @@ au MyAutoCmd FileType yaml packadd vim-yaml
 au MyAutoCmd FileType plantuml packadd plantuml-syntax
 
 " vim-log-syntax. {{{2
-au MyAutoCmd FileType log packadd vim-log-syntax
+" au MyAutoCmd FileType log packadd vim-log-syntax
 
 " vim-vue. {{{2
 au MyAutoCmd FileType vue packadd vim-vue
