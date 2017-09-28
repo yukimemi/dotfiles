@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/09/17 23:31:16.
+# Last Change : 2017/09/29 00:59:37.
 # =============================================================================
 
 #
@@ -15,6 +15,7 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 # filter tools. {{{2
 zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
+zplug "peco/peco", as:command, from:gh-r
 # zplug "rcmdnk/sentaku", as:command, use:"bin/*"
 # zplug "jhawthorn/fzy", as:command, rename-to:fzy, hook-build:"make && sudo make install"
 # export __FILTER_TOOL=fzf-tmux
