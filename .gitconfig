@@ -28,6 +28,6 @@
 [branch]
 	autosetuprebase = always
 [commit]
-	template = /Users/yukimemi/.ghq/src/gist.github.com/nownabe/85d8595fd142adc426fbfaf2bab015e0/.commit_template
+	template = /Users/yukimemi/.ghq/src/gist.github.com/mfks17/a2332594d4a7646e6bfa12fd66e33a6f/.gitmessage
 [fetch]
 	prune = true
