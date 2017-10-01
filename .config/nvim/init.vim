@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/09/19 17:09:24.
+" Last Change : 2017/10/01 17:32:46.
 " =============================================================================
 
 " Init: {{{1
@@ -271,6 +271,24 @@ colorscheme hybrid_material
 if g:is_windows
   colorscheme desert
 endif
+
+if has('gui_running')
+  if g:is_windows
+    set renderoptions=type:directx,renmode:5
+    set guifont=Ricty_Diminished:h13.5:cSHIFTJIS,MS_Gothic:h13
+  elseif g:is_mac
+    set guifont=Ricty\ Regular:h17
+    set macmeta
+    set transparency=10
+  endif
+elseif !has('nvim')
+  let &t_ti .= "\e[1 q"
+  let &t_SI .= "\e[5 q"
+  let &t_EI .= "\e[1 q"
+  let &t_te .= "\e[0 q"
+  let &t_SR .= "\e[3 q"
+endif
+
 
 " hilight cursorline, cursorcolumn {{{2
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
