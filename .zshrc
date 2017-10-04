@@ -1,13 +1,14 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/09/29 00:59:37.
+# Last Change : 2017/10/01 23:31:49.
 # =============================================================================
 
 #
 # Use zplug. {{{1
 #
 [ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
+
 source ~/.zplug/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
@@ -16,6 +17,7 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "peco/peco", as:command, from:gh-r
+zplug "giginet/peco-anyenv"
 # zplug "rcmdnk/sentaku", as:command, use:"bin/*"
 # zplug "jhawthorn/fzy", as:command, rename-to:fzy, hook-build:"make && sudo make install"
 # export __FILTER_TOOL=fzf-tmux
@@ -115,6 +117,7 @@ zplug "sindresorhus/pure", use:pure.zsh, as:theme
 
 # Then, source plugins and add commands to $PATH
 # zplug load --verbose
+
 zplug load
 
 
@@ -358,12 +361,20 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' group-name ''
 
 #
+# anyenv. {{{1
+#
+[ -d ~/.anyenv ] && eval "$(anyenv init -)"
+
+#
 # compile zshrc. {{{1
 #
 if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
   zcompile ~/.zshrc
 fi
 
+if (which zprof > /dev/null) ;then
+  zprof | less
+fi
 
 # vim:fdm=marker expandtab fdc=3 ft=zsh:
 
