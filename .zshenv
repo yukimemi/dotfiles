@@ -1,8 +1,11 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2017/09/29 01:03:06.
+# Last Change : 2017/10/01 23:28:28.
 # =============================================================================
+
+# For time. {{{1
+# zmodload zsh/zprof && zprof
 
 # Useful functions. {{{1
 is_linux() { [[ $SHELL_PLATFORM == 'linux' || $SHELL_PLATFORM == 'bsd' ]]; }
@@ -62,6 +65,8 @@ export NPM_BIN_DIR=$(npm bin --global) > /dev/null 2>&1
 export YARN_BIN_DIR=$(yarn global bin) > /dev/null 2>&1
 
 path=(
+  # anyenv
+  $HOME/.anyenv/bin(N-/)
   # go.
   $GOPATH/bin(N-/)
   $GOROOT/bin(N-/)
