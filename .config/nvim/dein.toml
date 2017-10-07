@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/10/07 21:30:36.
+# Last Change : 2017/10/07 22:10:23.
 # =============================================================================
 
 [[plugins]]
@@ -63,6 +63,16 @@ hook_add = '''
   if !exists('g:airline_symbols')
     let g:airline_symbols = {}
   endif
+
+  " powerline symbols
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = '☰'
+  let g:airline_symbols.maxlinenr = ''
 
   " unicode symbols
   let g:airline_left_sep = '»'
@@ -682,6 +692,13 @@ on_cmd = 'Dein'
 repo = 'Shougo/echodoc.vim'
 hook_add = '''
   let g:echodoc_enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+on_cmd = ['TagbarToggle']
+hook_add = '''
+  nnoremap <F8> :<C-u>TagbarToggle<CR>
 '''
 
 # ==================== Denite ==================== {{{1
