@@ -166,13 +166,14 @@ abbr -a vvup 'vim -c "PlugUpdate | PlugUpgrade"'
 set -g fish_key_bindings fish_vi_key_bindings
 
 ### Install. {{{1
-cli_install ghq motemen/ghq
-cli_install gomi b4b4r07/gomi
-cli_install jvgrep mattn/jvgrep
+# cli_install ghq motemen/ghq
+# cli_install gomi b4b4r07/gomi
+# cli_install jvgrep mattn/jvgrep
 
 ### Install plugin manager. {{{1
 # fresco.
 if not test -f ~/.cache/fresco/__fresco_install.fish
+    mkdir -p ~/.cache/fresco >/dev/null ^&1
     curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o ~/.cache/fresco/__fresco_install.fish
     cat ~/.cache/fresco/__fresco_install.fish | fish
 end
