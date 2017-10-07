@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/10/07 22:49:56.
+" Last Change : 2017/10/07 23:10:10.
 " =============================================================================
 
 " Plugin:
@@ -30,10 +30,10 @@ let s:start_plugs = [
       \ ['vim-airline/vim-airline', {}],
       \ ['vim-airline/vim-airline-themes', {}],
       \ ['ryanoasis/vim-devicons', {}],
-      \ ['mhinz/vim-startify', {}],
       \ ]
 
       " \ ['itchyny/lightline.vim', {}],
+      " \ ['mhinz/vim-startify', {}],
 
 " opt plugins. {{{2
 let s:opt_plugs = [
@@ -981,6 +981,15 @@ nmap <Leader>r <Plug>RenamerStart
 
 " tagbar. {{{2
 nnoremap <F8> :<C-u>packadd tagbar \| TagbarToggle<CR>
+
+" vim-startify. {{{2
+let g:startify_bookmarks = [
+      \ '~/.vimrc',
+      \ '~/.config/nvim/minpac.vim',
+      \ '~/.config/nvim/dein.toml',
+      \ '~/.zshrc',
+      \ '~/.zshenv',
+      \ ]
 
 
 " Define user commands for updating/cleaning the plugins. {{{1
