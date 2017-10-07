@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/09/28 20:10:38.
+" Last Change : 2017/10/07 21:39:09.
 " =============================================================================
 
 " Plugin:
@@ -19,7 +19,6 @@ endif
 " start plugins. {{{2
 let s:start_plugs = [
       \ ['Yggdroot/indentLine', {}],
-      \ ['itchyny/lightline.vim', {}],
       \ ['itchyny/vim-cursorword', {}],
       \ ['itchyny/vim-parenmatch', {}],
       \ ['justinmk/vim-dirvish', {}],
@@ -27,6 +26,9 @@ let s:start_plugs = [
       \ ['kana/vim-textobj-user', {}],
       \ ['lambdalisue/vim-findent', {}],
       \ ['rhysd/committia.vim', {}],
+      \ ['tpope/vim-fugitive', {}],
+      \ ['vim-airline/vim-airline', {}],
+      \ ['vim-airline/vim-airline-themes', {}],
       \ ]
 
 " opt plugins. {{{2
@@ -64,6 +66,7 @@ let s:opt_plugs = [
       \ ['thinca/vim-qfreplace', {'type': 'opt'}],
       \ ['zchee/deoplete-go', {'type': 'opt', 'do': 'silent! !make'}],
       \ ['kristijanhusak/vim-hybrid-material', {'type': 'opt'}],
+      \ ['majutsushi/tagbar', {'type': 'opt'}],
       \ ]
 
 " lazy load plugins. {{{2
@@ -116,6 +119,7 @@ let s:lazy_plugs = [
       \ ['vim-scripts/autodate.vim', {'type': 'opt'}],
       \ ['vim-scripts/matchit.zip', {'type': 'opt'}],
       \ ['w0rp/ale', {'type': 'opt'}],
+      \ ['iyuuya/denite-ale', {'type': 'opt'}],
       \ ]
 
 " minpac init. {{{1
@@ -268,6 +272,55 @@ endfunction
 function! MyAbsolutePath()
   return (winwidth('.') - strlen(expand('%:p')) > 90) ? expand('%:p') : ((winwidth('.') - strlen(expand('%')) > 70) ? expand('%') : '')
 endfunction
+
+" vim-airline. {{{2
+let g:airline_detect_iminsert = 1
+let g:airline_symbols_ascii = 0
+let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ '' : 'V',
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ '' : 'S',
+      \ }
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.maxlinenr = '㏑'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" extensions
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
+
+" theme
+let g:airline_theme = 'luna'
+
 
 " indentLine. {{{2
 let g:indentLine_faster = 1
@@ -910,6 +963,9 @@ au MyAutoCmd FileType apiblueprint packadd apiblueprint.vim
 
 " vim-renamer. {{{2
 nmap <Leader>r <Plug>RenamerStart
+
+" tagbar. {{{2
+nnoremap <F8> :<C-u>packadd tagbar \| TagbarToggle<CR>
 
 
 " Define user commands for updating/cleaning the plugins. {{{1
