@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/10/01 17:32:46.
+" Last Change : 2017/10/07 21:31:22.
 " =============================================================================
 
 " Init: {{{1
@@ -275,9 +275,9 @@ endif
 if has('gui_running')
   if g:is_windows
     set renderoptions=type:directx,renmode:5
-    set guifont=Ricty_Diminished:h13.5:cSHIFTJIS,MS_Gothic:h13
+    set gfn=Ricty_Diminished:h13.5:cSHIFTJIS,MS_Gothic:h13
   elseif g:is_mac
-    set guifont=Ricty\ Regular:h17
+    set gfn=Ricty_Diminished:h17
     set macmeta
     set transparency=10
   endif
