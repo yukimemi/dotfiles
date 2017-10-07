@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/10/07 21:39:09.
+" Last Change : 2017/10/07 22:09:26.
 " =============================================================================
 
 " Plugin:
@@ -274,6 +274,7 @@ function! MyAbsolutePath()
 endfunction
 
 " vim-airline. {{{2
+let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 1
 let g:airline_symbols_ascii = 0
 let g:airline_mode_map = {
@@ -293,6 +294,16 @@ let g:airline_mode_map = {
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
 
 " unicode symbols
 let g:airline_left_sep = '»'
