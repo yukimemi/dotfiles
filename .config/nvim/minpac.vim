@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/10/07 23:10:10.
+" Last Change : 2017/10/07 23:21:08.
 " =============================================================================
 
 " Plugin:
@@ -624,7 +624,7 @@ let g:loaded_netrwPlugin = 1
 nnoremap [Space]v :<C-u>Dirvish<CR>
 
 " neoterm. {{{2
-if has('nvim')
+if ! g:is_windows
   let g:neoterm_autoinsert = 1
   nnoremap [Space]s :<C-u>terminal<CR>
   tnoremap sj <C-\><C-n><C-w>j
