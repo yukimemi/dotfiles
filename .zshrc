@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/10/01 23:31:49.
+# Last Change : 2017/10/07 14:19:01.
 # =============================================================================
 
 #
@@ -14,9 +14,9 @@ source ~/.zplug/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # filter tools. {{{2
-zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
-zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
-zplug "peco/peco", as:command, from:gh-r
+# zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
+# zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
+# zplug "peco/peco", as:command, from:gh-r
 zplug "giginet/peco-anyenv"
 # zplug "rcmdnk/sentaku", as:command, use:"bin/*"
 # zplug "jhawthorn/fzy", as:command, rename-to:fzy, hook-build:"make && sudo make install"
@@ -29,23 +29,23 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search"
-zplug "tcnksm/docker-alias", use:zshrc
+# zplug "tcnksm/docker-alias", use:zshrc
 zplug "rupa/z", use:z.sh
-zplug "b4b4r07/zsh-vimode-visual", defer:3
-zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
+# zplug "b4b4r07/zsh-vimode-visual", defer:3
+# zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
 # zplug "b4b4r07/history", use:misc/zsh/init.zsh, hook-build: "go get -u github.com/b4b4r07/history"
 
 
 # Commands. {{{2
-zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
-zplug "motemen/ghq", as:command, from:gh-r
-zplug "Code-Hex/battery", as:command, from:gh-r
-zplug "yuroyoro/git-ignore", as:command, rename-to:gi
-zplug "mattn/files", as:command, hook-build:"go get -u github.com/mattn/files"
-zplug "mattn/jvgrep", as:command, hook-build:"go get -u github.com/mattn/jvgrep"
-zplug "mattn/memo", as:command, hook-build:"go get -u github.com/mattn/memo"
-zplug "atotto/clipboard", as:command, hook-build:"go get -u github.com/atotto/clipboard/cmd/gocopy && go get -u github.com/atotto/clipboard/cmd/gopaste"
-zplug "knqyf263/pet", from:gh-r, as:command
+# zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
+# zplug "motemen/ghq", as:command, from:gh-r
+# zplug "Code-Hex/battery", as:command, from:gh-r
+# zplug "yuroyoro/git-ignore", as:command, rename-to:gi
+# zplug "mattn/files", as:command, hook-build:"go get -u github.com/mattn/files"
+# zplug "mattn/jvgrep", as:command, hook-build:"go get -u github.com/mattn/jvgrep"
+# zplug "mattn/memo", as:command, hook-build:"go get -u github.com/mattn/memo"
+# zplug "atotto/clipboard", as:command, hook-build:"go get -u github.com/atotto/clipboard/cmd/gocopy && go get -u github.com/atotto/clipboard/cmd/gopaste"
+# zplug "knqyf263/pet", from:gh-r, as:command
 function prev() {
   PREV=$(fc -lrn | head -n 1)
   sh -c "pet new `printf %q "$PREV"`"
@@ -57,10 +57,10 @@ function pet-select() {
 }
 zle -N pet-select
 
-zplug "itchyny/fillin", from:gh-r, as:command
+# zplug "itchyny/fillin", from:gh-r, as:command
 
-zplug "b4b4r07/gomi", as:command, from:gh-r
-zplug "b4b4r07/ssh-keyreg", as:command, use:bin
+# zplug "b4b4r07/gomi", as:command, from:gh-r
+# zplug "b4b4r07/ssh-keyreg", as:command, use:bin
 # zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi, on:"junegunn/fzf-bin"
 
 # theme. {{{2
@@ -363,7 +363,7 @@ zstyle ':completion:*' group-name ''
 #
 # anyenv. {{{1
 #
-[ -d ~/.anyenv ] && eval "$(anyenv init -)"
+[ -d ~/.anyenv ] && eval "$(anyenv init - --no-rehash)"
 
 #
 # compile zshrc. {{{1
