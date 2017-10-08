@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/10/07 22:02:04.
+" Last Change : 2017/10/09 09:11:56.
 " =============================================================================
 
 " Init: {{{1
@@ -274,6 +274,8 @@ endif
 
 if has('gui_running')
   if g:is_windows
+    nnoremap [Space]r :<C-u>simalt ~r<CR>
+    nnoremap [Space]x :<C-u>simalt ~x<CR>
     set renderoptions=type:directx,renmode:5
     set gfn=Ricty_Diminished:h13.5:cSHIFTJIS,MS_Gothic:h13
   elseif g:is_mac
