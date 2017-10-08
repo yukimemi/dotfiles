@@ -10,21 +10,24 @@ set background=dark
 " colorscheme molokai
 colorscheme hybrid_material
 
+set renderoptions=type:directx,renmode:5
+set gfn=Ricty_Diminished_Discord:h10.5:cSHIFTJIS
+set gfw=Ricty_Diminished_Discord:h10.5:cSHIFTJIS
 " font
-if g:is_windows
-  " set gfn=MS_Gothic:h9:cSHIFTJIS
-  set gfn=MS_Gothic:h9
-  " set gfn=Ricty_Diminished:h9:cSHIFTJIS
-  " set gfn=RzRicty_Diminished_Discord:h9:cSHIFTJIS
-  " set gfw=MS_Gothic:h9:cSHIFTJIS
-  set gfw=MS_Gothic:h9
-  " set gfw=Ricty_Diminished:h9:cSHIFTJIS
-  " set gfw=Ricty_Diminished_Discord:h9:cSHIFTJIS
-  set rop=type:directx
-else
-  set gfn=Ricty\ Diminished\ Discord\ Regular:h18
-  set gfw=Ricty\ Diminished\ Discord\ Regular:h18
-endif
+" if g:is_windows
+"   " set gfn=MS_Gothic:h9:cSHIFTJIS
+"   set gfn=MS_Gothic:h9
+"   " set gfn=Ricty_Diminished:h9:cSHIFTJIS
+"   " set gfn=RzRicty_Diminished_Discord:h9:cSHIFTJIS
+"   " set gfw=MS_Gothic:h9:cSHIFTJIS
+"   set gfw=MS_Gothic:h9
+"   " set gfw=Ricty_Diminished:h9:cSHIFTJIS
+"   " set gfw=Ricty_Diminished_Discord:h9:cSHIFTJIS
+"   set rop=type:directx
+" else
+"   set gfn=Ricty\ Diminished\ Discord\ Regular:h18
+"   set gfw=Ricty\ Diminished\ Discord\ Regular:h18
+" endif
 
 " only mac
 if g:is_darwin
