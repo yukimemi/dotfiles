@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/10/07 23:21:08.
+" Last Change : 2017/10/09 11:16:57.
 " =============================================================================
 
 " Plugin:
@@ -29,7 +29,7 @@ let s:start_plugs = [
       \ ['tpope/vim-fugitive', {}],
       \ ['vim-airline/vim-airline', {}],
       \ ['vim-airline/vim-airline-themes', {}],
-      \ ['ryanoasis/vim-devicons', {}],
+      \ ['ryanoasis/vim-devicons', {}, !g:is_windows],
       \ ]
 
       " \ ['itchyny/lightline.vim', {}],
