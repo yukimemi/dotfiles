@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/10/09 11:16:57.
+" Last Change : 2017/10/11 20:55:26.
 " =============================================================================
 
 " Plugin:
@@ -281,19 +281,19 @@ endfunction
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 1
 let g:airline_symbols_ascii = 0
-let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'n'  : 'N',
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
-      \ 'c'  : 'C',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : 'V',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ }
+" let g:airline_mode_map = {
+"       \ '__' : '-',
+"       \ 'n'  : 'N',
+"       \ 'i'  : 'I',
+"       \ 'R'  : 'R',
+"       \ 'c'  : 'C',
+"       \ 'v'  : 'V',
+"       \ 'V'  : 'V',
+"       \ '' : 'V',
+"       \ 's'  : 'S',
+"       \ 'S'  : 'S',
+"       \ '' : 'S',
+"       \ }
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -334,7 +334,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
 
 " theme
-let g:airline_theme = 'luna'
+let g:airline_theme = 'zenburn'
 
 
 " indentLine. {{{2
@@ -926,7 +926,7 @@ au MyAutoCmd FileType Dockerfile packadd Dockerfile.vim
 au MyAutoCmd FileType rust packadd rust.vim
 let g:rust_bang_comment_leader = 1
 let g:rust_conceal = 1
-let g:rust_conceal_mod_path = 1
+let g:rust_conceal_mod_path = 0
 let g:rust_conceal_pub = 1
 let g:rust_fold = 1
 let g:rust_recommended_style = 1
