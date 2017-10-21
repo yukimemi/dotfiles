@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/10/07 14:19:01.
+# Last Change : 2017/10/15 11:54:43.
 # =============================================================================
 
 #
@@ -116,9 +116,9 @@ zplug "sindresorhus/pure", use:pure.zsh, as:theme
 # fi
 
 # Then, source plugins and add commands to $PATH
-# zplug load --verbose
+zplug load --verbose
 
-zplug load
+# zplug load
 
 
 #
