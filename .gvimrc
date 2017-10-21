@@ -10,8 +10,11 @@ set background=dark
 colorscheme hybrid_material
 
 " font
-set gfn=Ricty_Diminished_Discord:h10:cSHIFTJIS:qDRAFT
-set gfw=Ricty_Diminished_Discord:h10:cSHIFTJIS:qDRAFT
+set gfn=Cica:h10:cSHIFTJIS:qDRAFT
+set gfw=Cica:h10:cSHIFTJIS:qDRAFT
+set printfont=Cica:h8
+"set gfn=Ricty_Diminished_Discord:h10:cSHIFTJIS:qDRAFT
+"set gfw=Ricty_Diminished_Discord:h10:cSHIFTJIS:qDRAFT
 
 " only mac
 if g:is_darwin
