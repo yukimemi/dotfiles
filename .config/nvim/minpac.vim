@@ -28,7 +28,7 @@ let s:start_plugs = [
       \ ['rhysd/committia.vim', {}],
       \ ['tpope/vim-fugitive', {}],
       \ ['itchyny/lightline.vim', {}],
-      \ ['ryanoasis/vim-devicons', {}, !g:is_windows],
+      \ ['ryanoasis/vim-devicons', {}],
       \ ]
 
       " \ ['vim-airline/vim-airline', {}],
