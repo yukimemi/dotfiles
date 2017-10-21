@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/10/11 20:55:26.
+" Last Change : 2017/10/21 17:14:56.
 " =============================================================================
 
 " Plugin:
@@ -27,18 +27,18 @@ let s:start_plugs = [
       \ ['lambdalisue/vim-findent', {}],
       \ ['rhysd/committia.vim', {}],
       \ ['tpope/vim-fugitive', {}],
-      \ ['vim-airline/vim-airline', {}],
-      \ ['vim-airline/vim-airline-themes', {}],
+      \ ['itchyny/lightline.vim', {}],
       \ ['ryanoasis/vim-devicons', {}, !g:is_windows],
       \ ]
 
-      " \ ['itchyny/lightline.vim', {}],
+      " \ ['vim-airline/vim-airline', {}],
+      " \ ['vim-airline/vim-airline-themes', {}],
       " \ ['mhinz/vim-startify', {}],
+
 
 " opt plugins. {{{2
 let s:opt_plugs = [
       \ ['PProvost/vim-ps1', {'type': 'opt'}],
-      \ ['Quramy/tsuquyomi', {'type': 'opt'}],
       \ ['aklt/plantuml-syntax', {'type': 'opt'}],
       \ ['b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt'}],
       \ ['cespare/vim-toml', {'type': 'opt'}],
@@ -62,16 +62,24 @@ let s:opt_plugs = [
       \ ['pangloss/vim-javascript', {'type': 'opt'}],
       \ ['posva/vim-vue', {'type': 'opt'}],
       \ ['prettier/vim-prettier', {'type': 'opt'}],
-      \ ['racer-rust/vim-racer', {'type': 'opt'}, executable('cargo')],
       \ ['rhysd/rust-doc.vim', {'type': 'opt'}, executable('cargo')],
       \ ['rhysd/vim-gfm-syntax', {'type': 'opt'}],
       \ ['rust-lang/rust.vim', {'type': 'opt'}],
       \ ['stephpy/vim-yaml', {'type': 'opt'}],
       \ ['thinca/vim-qfreplace', {'type': 'opt'}],
-      \ ['zchee/deoplete-go', {'type': 'opt', 'do': 'silent! !make'}],
       \ ['kristijanhusak/vim-hybrid-material', {'type': 'opt'}],
       \ ['majutsushi/tagbar', {'type': 'opt'}],
+      \ ['kien/ctrlp.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-tscompletejob.vim', {'type': 'opt'}],
+      \ ['runoshun/tscompletejob', {'type': 'opt'}],
+      \ ['keremc/asyncomplete-racer.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-flow.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-gocode.vim', {'type': 'opt'}],
       \ ]
+
+      " \ ['racer-rust/vim-racer', {'type': 'opt'}, executable('cargo')],
+      " \ ['zchee/deoplete-go', {'type': 'opt', 'do': 'silent! !make'}],
+      " \ ['Quramy/tsuquyomi', {'type': 'opt'}],
 
 " lazy load plugins. {{{2
 let s:lazy_plugs = [
@@ -80,10 +88,8 @@ let s:lazy_plugs = [
       \ ['LeafCage/yankround.vim', {'type': 'opt'}],
       \ ['Shougo/context_filetype.vim', {'type': 'opt'}],
       \ ['Shougo/denite.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins'}, has('python3')],
-      \ ['Shougo/deoplete.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins'}, has('nvim')],
       \ ['Shougo/echodoc.vim', {'type': 'opt'}],
       \ ['Shougo/junkfile.vim', {'type': 'opt'}],
-      \ ['Shougo/neocomplete.vim', {'type': 'opt'}, !has('nvim')],
       \ ['Shougo/neomru.vim', {'type': 'opt'}],
       \ ['Shougo/neosnippet-snippets', {'type': 'opt'}],
       \ ['Shougo/neosnippet.vim', {'type': 'opt'}],
@@ -124,7 +130,22 @@ let s:lazy_plugs = [
       \ ['vim-scripts/matchit.zip', {'type': 'opt'}],
       \ ['w0rp/ale', {'type': 'opt'}],
       \ ['iyuuya/denite-ale', {'type': 'opt'}],
+      \ ['ludovicchabant/vim-gutentags', {'type': 'opt'}, executable('ctags')],
+      \ ['prabirshrestha/asyncomplete.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/async.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/vim-lsp', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-lsp.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-buffer.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-emoji.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-tags.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt'}],
+      \ ['yami-beta/asyncomplete-omni.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt'}],
       \ ]
+
+      " \ ['Shougo/neocomplete.vim', {'type': 'opt'}, !has('nvim')],
+      " \ ['Shougo/deoplete.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins'}, has('nvim')],
 
 " minpac init. {{{1
 if exists('*minpac#init')
@@ -188,146 +209,221 @@ let g:lightline = {
       \   "\<C-s>": 'S-B'
       \   },
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'anzu' ] ],
-      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'bomb', 'filetype' ],
-      \              [ 'absolutepath', 'charcode' ] ]
-      \ },
-      \ 'component': {
-      \   'charcode': '[%03.3b, 0x%02.2B]'
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'filename', 'anzu' ] ]
       \ },
       \ 'component_function': {
-      \   'modified': 'MyModified',
-      \   'readonly': 'MyReadonly',
-      \   'fugitive': 'MyFugitive',
-      \   'git_branch': 'MyGitBranch',
-      \   'git_traffic': 'MyGitTraffic',
-      \   'git_status': 'MyGitStatus',
-      \   'filename': 'MyFilename',
-      \   'fileformat': 'MyFileformat',
-      \   'filetype': 'MyFiletype',
-      \   'fileencoding': 'MyFileencoding',
-      \   'bomb': 'MyBomb',
-      \   'absolutepath': 'MyAbsolutePath',
-      \   'mode': 'MyMode',
+      \   'fugitive': 'LightLineFugitive',
+      \   'readonly': 'LightLineReadonly',
+      \   'modified': 'LightLineModified',
+      \   'filename': 'LightLineFilename',
+      \   'filetype': 'LightLineFiletype',
+      \   'fileformat': 'LightLineFileformat',
       \   'anzu': 'anzu#search_status',
-      \ }
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
-function! MyModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! MyReadonly()
-  if g:is_windows
-    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'R' : ''
+function! LightLineModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
   else
-    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
+    return ""
   endif
 endfunction
 
-function! MyFilename()
-  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != MyModified() ? ' ' . MyModified() : '')
+function! LightLineReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return ""
+  else
+    return ""
+  endif
 endfunction
 
-function! MyGitBranch()
-  return winwidth(0) > 70 ? gita#statusline#preset('branch_fancy') : ''
-endfunction
-function! MyGitTraffic()
-  return winwidth(0) > 70 ? gita#statusline#preset('traffic_fancy') : ''
-endfunction
-function! MyGitStatus()
-  return winwidth(0) > 70 ? gita#statusline#preset('status') : ''
-endfunction
-
-function! MyFugitive()
-  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+function! LightLineFugitive()
+  if exists("*fugitive#head")
     let _ = fugitive#head()
-    if g:is_windows
-      return strlen(_) ? '| '._ : ''
-    else
-      return strlen(_) ? '⭠ '._ : ''
-    endif
+    return strlen(_) ? ''._ : ''
   endif
   return ''
 endfunction
 
-function! MyFileformat()
-  return winwidth('.') > 70 ? &fileformat : ''
+function! LightLineFilename()
+  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
-function! MyFiletype()
-  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+function! LightLineFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
 
-function! MyFileencoding()
-  return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+function! LightLineFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
 
-function! MyBomb()
-  return &bomb ? 'b' : 'nb'
-endfunction
-
-function! MyMode()
-  return winwidth('.') > 60 ? lightline#mode() : ''
-endfunction
-
-function! MyAbsolutePath()
-  return (winwidth('.') - strlen(expand('%:p')) > 90) ? expand('%:p') : ((winwidth('.') - strlen(expand('%')) > 70) ? expand('%') : '')
-endfunction
+" let g:lightline = {
+"       \ 'colorscheme': 'jellybeans',
+"       \ 'mode_map': {
+"       \   'n' : 'N',
+"       \   'i' : 'I',
+"       \   'R' : 'R',
+"       \   'v' : 'V',
+"       \   'V' : 'V-L',
+"       \   'c' : 'C',
+"       \   "\<C-v>": 'V-B',
+"       \   's' : 'S',
+"       \   'S' : 'S-L',
+"       \   "\<C-s>": 'S-B'
+"       \   },
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'anzu' ] ],
+"       \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'bomb', 'filetype' ],
+"       \              [ 'absolutepath', 'charcode' ] ]
+"       \ },
+"       \ 'component': {
+"       \   'charcode': '[%03.3b, 0x%02.2B]'
+"       \ },
+"       \ 'component_function': {
+"       \   'modified': 'MyModified',
+"       \   'readonly': 'MyReadonly',
+"       \   'fugitive': 'MyFugitive',
+"       \   'git_branch': 'MyGitBranch',
+"       \   'git_traffic': 'MyGitTraffic',
+"       \   'git_status': 'MyGitStatus',
+"       \   'filename': 'MyFilename',
+"       \   'fileformat': 'MyFileformat',
+"       \   'filetype': 'MyFiletype',
+"       \   'fileencoding': 'MyFileencoding',
+"       \   'bomb': 'MyBomb',
+"       \   'absolutepath': 'MyAbsolutePath',
+"       \   'mode': 'MyMode',
+"       \   'anzu': 'anzu#search_status',
+"       \ }
+"       \ }
+" 
+" function! MyModified()
+"   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+" endfunction
+" 
+" function! MyReadonly()
+"   if g:is_windows
+"     return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'R' : ''
+"   else
+"     return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
+"   endif
+" endfunction
+" 
+" function! MyFilename()
+"   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+"         \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+"         \ ('' != MyModified() ? ' ' . MyModified() : '')
+" endfunction
+" 
+" function! MyGitBranch()
+"   return winwidth(0) > 70 ? gita#statusline#preset('branch_fancy') : ''
+" endfunction
+" function! MyGitTraffic()
+"   return winwidth(0) > 70 ? gita#statusline#preset('traffic_fancy') : ''
+" endfunction
+" function! MyGitStatus()
+"   return winwidth(0) > 70 ? gita#statusline#preset('status') : ''
+" endfunction
+" 
+" function! MyFugitive()
+"   if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+"     let _ = fugitive#head()
+"     if g:is_windows
+"       return strlen(_) ? '| '._ : ''
+"     else
+"       return strlen(_) ? '⭠ '._ : ''
+"     endif
+"   endif
+"   return ''
+" endfunction
+" 
+" function! MyFileformat()
+"   return winwidth('.') > 70 ? &fileformat : ''
+" endfunction
+" 
+" function! MyFiletype()
+"   return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+" endfunction
+" 
+" function! MyFileencoding()
+"   return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+" endfunction
+" 
+" function! MyBomb()
+"   return &bomb ? 'b' : 'nb'
+" endfunction
+" 
+" function! MyMode()
+"   return winwidth('.') > 60 ? lightline#mode() : ''
+" endfunction
+" 
+" function! MyAbsolutePath()
+"   return (winwidth('.') - strlen(expand('%:p')) > 90) ? expand('%:p') : ((winwidth('.') - strlen(expand('%')) > 70) ? expand('%') : '')
+" endfunction
 
 " vim-airline. {{{2
 let g:airline_powerline_fonts = 1
 let g:airline_detect_iminsert = 1
 let g:airline_symbols_ascii = 0
-" let g:airline_mode_map = {
-"       \ '__' : '-',
-"       \ 'n'  : 'N',
-"       \ 'i'  : 'I',
-"       \ 'R'  : 'R',
-"       \ 'c'  : 'C',
-"       \ 'v'  : 'V',
-"       \ 'V'  : 'V',
-"       \ '' : 'V',
-"       \ 's'  : 'S',
-"       \ 'S'  : 'S',
-"       \ '' : 'S',
-"       \ }
+let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ '' : 'V',
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ '' : 'S',
+      \ }
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
 " powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.maxlinenr = ''
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+" let g:airline_symbols.branch = ''
+" let g:airline_symbols.readonly = ''
+" let g:airline_symbols.linenr = '☰'
+" let g:airline_symbols.maxlinenr = ''
 
 " unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.maxlinenr = '㏑'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = '∄'
-let g:airline_symbols.whitespace = 'Ξ'
+" let g:airline_left_sep = '»'
+" let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '«'
+" let g:airline_right_sep = '◀'
+" let g:airline_symbols.crypt = '🔒'
+" let g:airline_symbols.linenr = '☰'
+" let g:airline_symbols.linenr = '␊'
+" let g:airline_symbols.linenr = '␤'
+" let g:airline_symbols.linenr = '¶'
+" let g:airline_symbols.maxlinenr = ''
+" let g:airline_symbols.maxlinenr = '㏑'
+" let g:airline_symbols.branch = '⎇'
+" let g:airline_symbols.paste = 'ρ'
+" let g:airline_symbols.paste = 'Þ'
+" let g:airline_symbols.paste = '∥'
+" let g:airline_symbols.spell = 'Ꞩ'
+" let g:airline_symbols.notexists = '∄'
+" let g:airline_symbols.whitespace = 'Ξ'
 
 " extensions
 let g:airline#extensions#tabline#enabled = 1
@@ -759,11 +855,11 @@ com! ToggleCursorWord call s:ToggleCursorWord()
 au MyAutoCmd FileType quickfix,qf packadd vim-qfreplace
 
 " deoplete-go. {{{2
-au MyAutoCmd FileType go packadd deoplete-go
-let g:deoplete#sources#go#use_cache = 1
-let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+" au MyAutoCmd FileType go packadd deoplete-go
+" let g:deoplete#sources#go#use_cache = 1
+" let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
+" let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+" let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
 " caw.vim. {{{2
 nmap gc <Plug>(caw:prefix)
@@ -907,8 +1003,8 @@ let g:prettier#config#parser = 'flow'
 au MyAutoCmd FileType typescript packadd typescript-vim
 
 " tsuquyomi. {{{2
-au MyAutoCmd FileType typescript packadd tsuquyomi
-au MyAutoCmd FileType typescript nnoremap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
+" au MyAutoCmd FileType typescript packadd tsuquyomi
+" au MyAutoCmd FileType typescript nnoremap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
 
 " vim-coffee-script. {{{2
 au MyAutoCmd FileType coffee packadd vim-coffee-script
@@ -925,16 +1021,16 @@ au MyAutoCmd FileType Dockerfile packadd Dockerfile.vim
 " rust.vim. {{{2
 au MyAutoCmd FileType rust packadd rust.vim
 let g:rust_bang_comment_leader = 1
-let g:rust_conceal = 1
+let g:rust_conceal = 0
 let g:rust_conceal_mod_path = 0
-let g:rust_conceal_pub = 1
+let g:rust_conceal_pub = 0
 let g:rust_fold = 1
 let g:rust_recommended_style = 1
 let g:rustfmt_autosave = 1
 let g:rustfmt_fail_silently = 0
 
 " vim-racer. {{{2
-au MyAutoCmd FileType rust call <SID>vim_racer_aft()
+" au MyAutoCmd FileType rust call <SID>vim_racer_aft()
 let g:racer_experimental_completer = 1
 
 function! s:vim_racer_aft() abort
@@ -981,6 +1077,20 @@ nmap <Leader>r <Plug>RenamerStart
 
 " tagbar. {{{2
 nnoremap <F8> :<C-u>packadd tagbar \| TagbarToggle<CR>
+let g:tagbar_type_rust = {
+      \ 'ctagstype' : 'rust',
+      \ 'kinds' : [
+      \ 'T:types,type definitions',
+      \ 'f:functions,function definitions',
+      \ 'g:enum,enumeration names',
+      \ 's:structure names',
+      \ 'm:modules,module names',
+      \ 'c:consts,static constants',
+      \ 't:traits',
+      \ 'i:impls,trait implementations',
+      \ ]
+      \ }
+
 
 " vim-startify. {{{2
 let g:startify_bookmarks = [
@@ -990,6 +1100,114 @@ let g:startify_bookmarks = [
       \ '~/.zshrc',
       \ '~/.zshenv',
       \ ]
+
+" ctrlp.vim. {{{2
+let g:ctrlp_map = '<nop>'
+nnoremap <Leader>e :<C-u>packadd ctrlp.vim \| CtrlP<CR>
+
+" vim-devicons. {{{2
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+
+" asyncomplete.vim. {{{2
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_remove_duplicates = 1
+let g:asyncomplete_force_refresh_on_context_changed = 1
+
+" asyncomplete-buffer.vim. {{{3
+au MyAutoCmd User asyncomplete_setup packadd asyncomplete-buffer.vim | call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+      \ 'name': 'buffer',
+      \ 'whitelist': ['*'],
+      \ 'blacklist': ['go'],
+      \ 'completor': function('asyncomplete#sources#buffer#completor'),
+      \ }))
+
+" asyncomplete-emoji.vim. {{{3
+au MyAutoCmd User asyncomplete_setup packadd asyncomplete-emoji.vim | call asyncomplete#register_source(asyncomplete#sources#emoji#get_source_options({
+      \ 'name': 'emoji',
+      \ 'whitelist': ['*'],
+      \ 'completor': function('asyncomplete#sources#emoji#completor'),
+      \ }))
+
+" asyncomplete-tags.vim. {{{3
+au MyAutoCmd User asyncomplete_setup packadd asyncomplete-tags.vim | call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+      \ 'name': 'tags',
+      \ 'whitelist': ['*'],
+      \ 'completor': function('asyncomplete#sources#tags#completor'),
+      \ 'config': {
+      \    'max_file_size': 20000000,
+      \ }
+      \ }))
+
+" asyncomplete-necovim.vim. {{{3
+au MyAutoCmd User asyncomplete_setup packadd asyncomplete-necovim.vim | call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
+      \ 'name': 'necovim',
+      \ 'whitelist': ['vim'],
+      \ 'completor': function('asyncomplete#sources#necovim#completor'),
+      \ }))
+
+" asyncomplete-necosyntax.vim. {{{3
+au MyAutoCmd User asyncomplete_setup packadd asyncomplete-necosyntax.vim | call asyncomplete#register_source(asyncomplete#sources#necosyntax#get_source_options({
+      \ 'name': 'necosyntax',
+      \ 'whitelist': ['*'],
+      \ 'completor': function('asyncomplete#sources#necosyntax#completor'),
+      \ }))
+
+" asyncomplete-tscompletejob.vim. {{{3
+au MyAutoCmd FileType typescript call <SID>asyncomplete_tscompletejob_aft()
+function! s:asyncomplete_tscompletejob_aft() abort
+  packadd asyncomplete-tscompletejob.vim
+  call asyncomplete#register_source(asyncomplete#sources#tscompletejob#get_source_options({
+        \ 'name': 'tscompletejob',
+        \ 'whitelist': ['typescript'],
+        \ 'completor': function('asyncomplete#sources#tscompletejob#completor'),
+        \ }))
+endfunction
+
+" asyncomplete-racer.vim. {{{3
+au MyAutoCmd FileType rust call <SID>asyncomplete_racer_aft()
+function! s:asyncomplete_racer_aft() abort
+  packadd asyncomplete-racer.vim
+  call asyncomplete#register_source(asyncomplete#sources#racer#get_source_options())
+endfunction
+
+" asyncomplete-flow.vim. {{{3
+au MyAutoCmd FileType javascript,json call <SID>asyncomplete_flow_aft()
+function! s:asyncomplete_flow_aft() abort
+  packadd asyncomplete-flow.vim
+  call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
+        \ 'name': 'flow',
+        \ 'whitelist': ['javascript'],
+        \ 'completor': function('asyncomplete#sources#flow#completor'),
+        \ 'config': {
+        \    'prefer_local': 1
+        \  },
+        \ }))
+endfunction
+
+" asyncomplete-omni.vim. {{{3
+au MyAutoCmd User asyncomplete_setup packadd asyncomplete-omni.vim | call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+      \ 'name': 'omni',
+      \ 'whitelist': ['*'],
+      \ 'completor': function('asyncomplete#sources#omni#completor')
+      \ }))
+
+" asyncomplete-neosnippet.vim. {{{3
+au MyAutoCmd User asyncomplete_setup packadd asyncomplete-neosnippet.vim | call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+      \ 'name': 'neosnippet',
+      \ 'whitelist': ['*'],
+      \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+      \ }))
+
+" asyncomplete-gocode.vim. {{{3
+au MyAutoCmd FileType go call <SID>asyncomplete_gocode_aft()
+function! s:asyncomplete_gocode_aft() abort
+  packadd asyncomplete-gocode.vim
+  call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
+        \ 'name': 'gocode',
+        \ 'whitelist': ['go'],
+        \ 'completor': function('asyncomplete#sources#gocode#completor'),
+        \ }))
+endfunction
 
 
 " Define user commands for updating/cleaning the plugins. {{{1
