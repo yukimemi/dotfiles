@@ -33,10 +33,14 @@ let qmark f = ["https://www.facebook.com/"]
 map <C-[> <ESC>
 map <C-b> scrollFullPageUp
 map <C-f> scrollFullPageDown
+map <C-u> scrollPageUp
+map <C-d> scrollPageDown
 
 " Navigation
 map <C-h> previousTab
 map <C-l> nextTab
+map d closeTab
+map u lastClosedTab
 map gh firstTab
 map gl lastTab
 map R reloadTabUncached
