@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/10/24 22:02:15.
+" Last Change : 2017/10/28 18:47:07.
 " =============================================================================
 
 " Plugin:
@@ -69,7 +69,7 @@ let s:opt_plugs = [
       \ ['thinca/vim-qfreplace', {'type': 'opt'}],
       \ ['kristijanhusak/vim-hybrid-material', {'type': 'opt'}],
       \ ['majutsushi/tagbar', {'type': 'opt'}],
-      \ ['kien/ctrlp.vim', {'type': 'opt'}],
+      \ ['ctrlpvim/ctrlp.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-tscompletejob.vim', {'type': 'opt'}],
       \ ['runoshun/tscompletejob', {'type': 'opt'}],
       \ ['keremc/asyncomplete-racer.vim', {'type': 'opt'}],
@@ -142,6 +142,9 @@ let s:lazy_plugs = [
       \ ['prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt'}],
       \ ['yami-beta/asyncomplete-omni.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt'}],
+      \ ['kaneshin/ctrlp-filetype', {'type': 'opt'}],
+      \ ['kaneshin/ctrlp-sonictemplate', {'type': 'opt'}],
+      \ ['kaneshin/ctrlp-memolist', {'type': 'opt'}],
       \ ]
 
       " \ ['Shougo/neocomplete.vim', {'type': 'opt'}, !has('nvim')],
@@ -625,9 +628,10 @@ endif
 call Mkdir(g:memolist_path)
 
 let g:memolist_memo_suffix = "md"
+let g:memolist_prompt_tags = 1
 
 nnoremap <Leader>mn :<C-u>MemoNew<CR>
-nnoremap <Leader>ml :<C-u>MemoList<CR>
+" nnoremap <Leader>ml :<C-u>MemoList<CR>
 nnoremap <Leader>mg :<C-u>MemoGrep<CR>
 
 " sonictemplate-vim. {{{2
@@ -1112,7 +1116,19 @@ let g:startify_bookmarks = [
 
 " ctrlp.vim. {{{2
 let g:ctrlp_map = '<nop>'
-nnoremap <Leader>e :<C-u>packadd ctrlp.vim \| CtrlP<CR>
+let g:ctrlp_use_caching = 1
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_lazy_update = 1
+let g:ctrlp_extensions = ['line', 'changes', 'mixed', 'bookmarkdir', 'memolist']
+nnoremap scp :<C-u>packadd ctrlp.vim \| CtrlP<CR>
+nnoremap scb :<C-u>packadd ctrlp.vim \| CtrlPBuffer<CR>
+nnoremap scm :<C-u>packadd ctrlp.vim \| CtrlPMRU<CR>
+nnoremap scl :<C-u>packadd ctrlp.vim \| CtrlPLine<CR>
+nnoremap scg :<C-u>packadd ctrlp.vim \| CtrlPChange<CR>
+nnoremap scc :<C-u>packadd ctrlp.vim \| CtrlPMixed<CR>
+nnoremap scf :<C-u>packadd ctrlp.vim \| CtrlPFiletype<CR>
+nnoremap <Leader>ml :<C-u>packadd ctrlp.vim \| CtrlPMemolist<CR>
 
 " vim-devicons. {{{2
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
