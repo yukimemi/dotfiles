@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2017/10/07 17:55:58.
+# Last Change : 2017/10/28 23:48:14.
 # =============================================================================
 
 # For time. {{{1
@@ -58,7 +58,7 @@ export GOPATH=$HOME/.ghq
 export GOROOT=$(go env GOROOT)
 
 # rust. {{{2
-export RUST_SRC_PATH=~/.multirust/toolchains/$(rustup toolchain list | grep default | awk '{ print $1 }')/lib/rustlib/src/rust/src > /dev/null 2>&1
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src" > /dev/null 2>&1
 
 # npm
 export NPM_BIN_DIR=$(npm bin --global) > /dev/null 2>&1
