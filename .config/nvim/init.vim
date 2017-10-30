@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/10/31 02:12:17.
+" Last Change : 2017/11/01 16:36:24.
 " =============================================================================
 
 " Init: {{{1
@@ -140,9 +140,9 @@ endfunction
 
 function! s:open_current_dir() abort
   if g:is_windows
-    exe "!start " . expand("%:h")
+    exe "!start \"" . expand("%:h") . "\""
   else
-    exe "!open " . expand("%:h")
+    exe "!open \"" . expand("%:h") . "\""
   endif
 endfunction
 
@@ -157,7 +157,7 @@ endfunction
 
 
 " Plugin: {{{1
-let s:use_dein = 0
+let s:use_dein = 1
 let s:use_vimplug = 0
 let s:use_minpac = 1
 
