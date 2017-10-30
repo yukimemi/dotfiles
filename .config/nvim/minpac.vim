@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/10/28 23:46:33.
+" Last Change : 2017/10/30 09:52:06.
 " =============================================================================
 
 " Plugin:
@@ -564,9 +564,9 @@ map sD <Plug>(operator-surround-delete)
 map sR <Plug>(operator-surround-replace)
 
 " vim-operator-blockwise. {{{2
-nmap YY <Plug>(operator-blockwise-yank-head)
-nmap DD <Plug>(operator-blockwise-delete-head)
-nmap CC <Plug>(operator-blockwise-change-head)
+" nmap YY <Plug>(operator-blockwise-yank-head)
+" nmap DD <Plug>(operator-blockwise-delete-head)
+" nmap CC <Plug>(operator-blockwise-change-head)
 
 " vim-operator-search. {{{2
 nmap [Space]/ <Plug>(operator-search)
@@ -626,12 +626,14 @@ endif
 
 call Mkdir(g:memolist_path)
 
+let g:memolist_denite = 1
 let g:memolist_memo_suffix = "md"
 let g:memolist_prompt_tags = 1
 
 nnoremap <Leader>mn :<C-u>MemoNew<CR>
 " nnoremap <Leader>ml :<C-u>MemoList<CR>
 nnoremap <Leader>mg :<C-u>MemoGrep<CR>
+
 
 " sonictemplate-vim. {{{2
 let g:sonictemplate_vim_template_dir = $HOME . '/.vim/template'
@@ -1128,6 +1130,7 @@ nnoremap scg :<C-u>packadd ctrlp.vim \| CtrlPChange<CR>
 nnoremap scc :<C-u>packadd ctrlp.vim \| CtrlPMixed<CR>
 nnoremap scf :<C-u>packadd ctrlp.vim \| CtrlPFiletype<CR>
 nnoremap <Leader>ml :<C-u>packadd ctrlp.vim \| CtrlPMemolist<CR>
+
 
 " vim-devicons. {{{2
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
