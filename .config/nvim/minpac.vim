@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/10/31 01:58:45.
+" Last Change : 2017/11/01 16:30:32.
 " =============================================================================
 
 " Plugin:
@@ -47,7 +47,6 @@ let s:opt_plugs = [
       \ ['eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod'}, executable('stack')],
       \ ['eagletmt/neco-ghc', {'type': 'opt'}],
       \ ['ekalinin/Dockerfile.vim', {'type': 'opt'}],
-      \ ['fatih/vim-go', {'type': 'opt'}],
       \ ['flowtype/vim-flow', {'type': 'opt', 'do': 'silent! !npm i -g flow-bin'}],
       \ ['itchyny/vim-haskell-indent', {'type': 'opt'}],
       \ ['itchyny/vim-haskell-sort-import', {'type': 'opt'}],
@@ -78,6 +77,7 @@ let s:opt_plugs = [
       \ ['keremc/asyncomplete-racer.vim', {'type': 'opt'}],
       \ ]
 
+      " \ ['fatih/vim-go', {'type': 'opt'}],
       " \ ['racer-rust/vim-racer', {'type': 'opt'}, executable('cargo')],
       " \ ['zchee/deoplete-go', {'type': 'opt', 'do': 'silent! !make'}],
       " \ ['Quramy/tsuquyomi', {'type': 'opt'}],
@@ -753,7 +753,7 @@ nnoremap suu :<C-u>Denite buffer file_mru<CR>
 nnoremap suo :<C-u>Denite outline -no-quit -mode=normal<CR>
 nnoremap suh :<C-u>Denite help<CR>
 nnoremap sur :<C-u>Denite register<CR>
-nnoremap sug :<C-u>Denite grep -no-empty<CR>
+nnoremap sug :<C-u>Denite -no-empty grep<CR>
 nnoremap su/ :<C-u>Denite line -no-quit<CR>
 nnoremap suR :<C-u>Denite -resume<CR>
 
@@ -901,7 +901,7 @@ let g:go_gocode_unimported_packages = 1
 " au MyAutoCmd BufWritePost *.go GoMetaLinter
 " au MyAutoCmd BufWritePre *.go silent GoFmt
 
-au MyAutoCmd BufNew,BufRead *.go call <SID>vim_go_cfg()
+" au MyAutoCmd BufNew,BufRead *.go call <SID>vim_go_cfg()
 
 function! s:vim_go_cfg() abort
   packadd vim-go
@@ -1126,6 +1126,7 @@ let g:ctrlp_lazy_update = 1
 let g:ctrlp_extensions = ['line', 'changes', 'mixed', 'bookmarkdir', 'memolist']
 nnoremap scp :<C-u>packadd ctrlp.vim \| CtrlP<CR>
 nnoremap scb :<C-u>packadd ctrlp.vim \| CtrlPBuffer<CR>
+nnoremap scd :<C-u>packadd ctrlp.vim \| CtrlPCurWD<CR>
 " nnoremap scm :<C-u>packadd ctrlp.vim \| CtrlPMRU<CR>
 nnoremap scm :<C-u>packadd ctrlp.vim \| CtrlPMark<CR>
 " nnoremap scl :<C-u>packadd ctrlp.vim \| CtrlPLine<CR>
@@ -1133,6 +1134,8 @@ nnoremap scg :<C-u>packadd ctrlp.vim \| CtrlPChange<CR>
 nnoremap scc :<C-u>packadd ctrlp.vim \| CtrlPMixed<CR>
 nnoremap scf :<C-u>packadd ctrlp.vim \| CtrlPFiletype<CR>
 nnoremap scl :<C-u>packadd ctrlp.vim \| CtrlPLauncher<CR>
+nnoremap sct :<C-u>packadd ctrlp.vim \| CtrlPSonictemplate<CR>
+
 nnoremap <Leader>ml :<C-u>packadd ctrlp.vim \| CtrlPMemolist<CR>
 
 if executable('rg')
@@ -1181,6 +1184,7 @@ au MyAutoCmd User asyncomplete_setup packadd asyncomplete-tags.vim | call asynco
 au MyAutoCmd User asyncomplete_setup packadd asyncomplete-omni.vim | call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
       \ 'name': 'omni',
       \ 'whitelist': ['*'],
+      \ 'blacklist': ['go'],
       \ 'priority': 3,
       \ 'completor': function('asyncomplete#sources#omni#completor')
       \ }))
