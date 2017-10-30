@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/10/28 23:50:47.
+" Last Change : 2017/10/31 02:12:17.
 " =============================================================================
 
 " Init: {{{1
@@ -135,6 +135,14 @@ endfunction
 function! s:updateColorScheme() "{{{2
   if &readonly && &buftype ==# ""
     colorscheme github
+  endif
+endfunction
+
+function! s:open_current_dir() abort
+  if g:is_windows
+    exe "!start " . expand("%:h")
+  else
+    exe "!open " . expand("%:h")
   endif
 endfunction
 
@@ -453,6 +461,7 @@ nnoremap sQ :<C-u>qa<CR>
 nnoremap sbk :<C-u>bd!<CR>
 nnoremap sbq :<C-u>q!<CR>
 
+nnoremap <Leader>o :<C-u>call <SID>open_current_dir()<CR>
 
 "  for git mergetool {{{2
 if &diff

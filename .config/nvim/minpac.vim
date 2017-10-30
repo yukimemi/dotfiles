@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/10/30 09:52:06.
+" Last Change : 2017/10/31 01:58:45.
 " =============================================================================
 
 " Plugin:
@@ -144,6 +144,8 @@ let s:lazy_plugs = [
       \ ['kaneshin/ctrlp-filetype', {'type': 'opt'}],
       \ ['kaneshin/ctrlp-sonictemplate', {'type': 'opt'}],
       \ ['kaneshin/ctrlp-memolist', {'type': 'opt'}],
+      \ ['mattn/ctrlp-launcher', {'type': 'opt'}],
+      \ ['mattn/ctrlp-mark', {'type': 'opt'}],
       \ ]
 
       " \ ['Shougo/neocomplete.vim', {'type': 'opt'}, !has('nvim')],
@@ -1124,12 +1126,19 @@ let g:ctrlp_lazy_update = 1
 let g:ctrlp_extensions = ['line', 'changes', 'mixed', 'bookmarkdir', 'memolist']
 nnoremap scp :<C-u>packadd ctrlp.vim \| CtrlP<CR>
 nnoremap scb :<C-u>packadd ctrlp.vim \| CtrlPBuffer<CR>
-nnoremap scm :<C-u>packadd ctrlp.vim \| CtrlPMRU<CR>
-nnoremap scl :<C-u>packadd ctrlp.vim \| CtrlPLine<CR>
+" nnoremap scm :<C-u>packadd ctrlp.vim \| CtrlPMRU<CR>
+nnoremap scm :<C-u>packadd ctrlp.vim \| CtrlPMark<CR>
+" nnoremap scl :<C-u>packadd ctrlp.vim \| CtrlPLine<CR>
 nnoremap scg :<C-u>packadd ctrlp.vim \| CtrlPChange<CR>
 nnoremap scc :<C-u>packadd ctrlp.vim \| CtrlPMixed<CR>
 nnoremap scf :<C-u>packadd ctrlp.vim \| CtrlPFiletype<CR>
+nnoremap scl :<C-u>packadd ctrlp.vim \| CtrlPLauncher<CR>
 nnoremap <Leader>ml :<C-u>packadd ctrlp.vim \| CtrlPMemolist<CR>
+
+if executable('rg')
+  let g:ctrlp_user_command ='rg -F --files %s'
+endif
+
 
 
 " vim-devicons. {{{2
