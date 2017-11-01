@@ -1,51 +1,52 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/11/01 16:56:07.
+# Last Change : 2017/11/02 00:22:31.
 # =============================================================================
 
 [[plugins]]
-repo = 'Shougo/dein.vim'
+repo = 'Shougo/dein.vim' # {{{1
 
 # ==================== Visual ==================== {{{1
 [[plugins]]
-repo = 'tomasr/molokai'
+repo = 'tomasr/molokai' # {{{1
 lazy = 1
 
 [[plugins]]
-repo = 'altercation/vim-colors-solarized'
+repo = 'altercation/vim-colors-solarized' # {{{1
 lazy = 1
 
 [[plugins]]
-repo = 'lifepillar/vim-solarized8'
+repo = 'lifepillar/vim-solarized8' # {{{1
 lazy = 1
 
 [[plugins]]
-repo = 'jacoborus/tender.vim'
+repo = 'jacoborus/tender.vim' # {{{1
 lazy = 1
 
 [[plugins]]
-repo = 'aereal/vim-colors-japanesque'
+repo = 'aereal/vim-colors-japanesque' # {{{1
 lazy = 1
 
 [[plugins]]
-repo = 'cocopon/iceberg.vim'
+repo = 'cocopon/iceberg.vim' # {{{1
 lazy = 1
 
 [[plugins]]
-repo = 'joshdick/onedark.vim'
+repo = 'joshdick/onedark.vim' # {{{1
+lazy = 1
 
 [[plugins]]
-repo = 'endel/vim-github-colorscheme'
+repo = 'endel/vim-github-colorscheme' # {{{1
 
 [[plugins]]
-repo = 'kristijanhusak/vim-hybrid-material'
+repo = 'kristijanhusak/vim-hybrid-material' # {{{1
 
 [[plugins]]
-repo = 'ryanoasis/vim-devicons'
+repo = 'ryanoasis/vim-devicons' # {{{1
 
 [[plugins]]
-repo = 'itchyny/lightline.vim'
+repo = 'itchyny/lightline.vim' # {{{1
 hook_add = '''
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',
@@ -124,99 +125,101 @@ endfunction
 '''
 
 [[plugins]]
-repo = 'Yggdroot/indentLine'
+repo = 'Yggdroot/indentLine' # {{{1
 hook_add = '''
-  let g:indentLine_faster = 1
-  nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-  let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'denite', 'vimfiler', 'tweetvim']
+let g:indentLine_faster = 1
+nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'denite', 'vimfiler', 'tweetvim']
 '''
 
 [[plugins]]
-repo = 'itchyny/vim-highlighturl'
+repo = 'itchyny/vim-highlighturl' # {{{1
 
 [[plugins]]
-repo = 'taku-o/vim-zoom'
+repo = 'taku-o/vim-zoom' # {{{1
 if = "has('gui')"
 
 [[plugins]]
-repo = 'vim-scripts/matchit.zip'
+repo = 'vim-scripts/matchit.zip' # {{{1
 
 # ==================== Complement ================ {{{1
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
+repo = 'Shougo/deoplete.nvim' # {{{1
 on_i = 1
 hook_add = '''
-  let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 '''
 
 [[plugins]]
-repo = 'roxma/nvim-yarp'
+repo = 'roxma/nvim-yarp' # {{{1
 if = "!has('nvim')"
 
 [[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
+repo = 'roxma/vim-hug-neovim-rpc' # {{{1
 if = "!has('nvim')"
 
 [[plugins]]
-repo = 'Shougo/neosnippet.vim'
+repo = 'Shougo/neosnippet.vim' # {{{1
 depends = ['neosnippet-snippets', 'context_filetype.vim']
 on_i = 1
 on_ft = 'snippet'
 hook_source = '''
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  smap <C-k> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k> <Plug>(neosnippet_expand_target)
-  " Tell Neosnippet about the other snippets
-  let g:neosnippet#snippets_directory = $VIM_PATH . '/snippets'
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory = $VIM_PATH . '/snippets'
 
-  " For snippet_complete marker.
-  if has('conceal')
-    set conceallevel=2 concealcursor=i
-  endif
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
 '''
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
+repo = 'Shougo/neosnippet-snippets' # {{{1
 on_i = 1
 
 [[plugins]]
-repo = 'Shougo/context_filetype.vim'
-
-[[plugins]]
-repo = 'zchee/deoplete-go'
-depends = 'deoplete.nvim'
-if = "has('nvim')"
-on_ft = 'go'
-build = 'make'
-hook_add = '''
-  let g:deoplete#sources#go#use_cache = 1
-  let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
-  let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-  let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-'''
+repo = 'Shougo/context_filetype.vim' # {{{1
 
 # [[plugins]]
-# repo = 'carlitux/deoplete-ternjs'
+# repo = 'zchee/deoplete-go' # {{{1
 # depends = 'deoplete.nvim'
 # if = "has('nvim')"
-# on_ft = ['javascript', 'typescript']
-# build = 'npm install -g tern'
-
-# [[plugins]]
-# repo = 'maralla/completor.vim'
-# if = "has('python')"
+# on_ft = 'go'
+# build = 'make'
+# hook_add = '''
+#   let g:deoplete#sources#go#use_cache = 1
+#   let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
+#   let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+#   let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+# '''
+#
+# # [[plugins]]
+# # repo = 'carlitux/deoplete-ternjs'
+# # depends = 'deoplete.nvim'
+# # if = "has('nvim')"
+# # on_ft = ['javascript', 'typescript']
+# # build = 'npm install -g tern'
+#
+# # [[plugins]]
+# # repo = 'maralla/completor.vim'
+# # if = "has('python')"
 
 # ==================== Utility =================== {{{1
 [[plugins]]
-repo = 'airblade/vim-rooter'
+repo = 'airblade/vim-rooter' # {{{1
 hook_add = '''
-  let g:rooter_use_lcd = 1
+let g:rooter_use_lcd = 1
 '''
 
 [[plugins]]
-repo = 'thinca/vim-submode'
+repo = 'thinca/vim-submode' # {{{1
 hook_add = '''
-  let g:submode_leave_with_key = 1
+let g:submode_leave_with_key = 1
+au MyAutoCmd VimEnter * call <SID>vim_submode_aft()
+function! s:vim_submode_aft() abort
   call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
   call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
   call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
@@ -225,238 +228,233 @@ hook_add = '''
   call submode#map('bufmove', 'n', '', '<', '<C-w><')
   call submode#map('bufmove', 'n', '', '+', '<C-w>+')
   call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+endfunction
 '''
 
 [[plugins]]
-repo = 't9md/vim-choosewin'
+repo = 't9md/vim-choosewin' # {{{1
 on_map = '<Plug>'
 on_source = 'vimfiler.vim'
 hook_source = '''
-  " nmap - <Plug>(choosewin)
+" nmap - <Plug>(choosewin)
 
-  let g:choosewin_overlay_enable = 1
-  let g:choosewin_overlay_clear_multibyte = 1
+let g:choosewin_overlay_enable = 1
+let g:choosewin_overlay_clear_multibyte = 1
 
-  " color like tmux
-  let g:choosewin_color_overlay = {
-        \ 'gui': ['DodgerBlue3', 'DodgerBlue3' ],
-        \ 'cterm': [ 25, 25 ]
-        \ }
-  let g:choosewin_color_overlay_current = {
-        \ 'gui': ['firebrick1', 'firebrick1' ],
-        \ 'cterm': [ 124, 124 ]
-        \ }
+" color like tmux
+let g:choosewin_color_overlay = {
+      \ 'gui': ['DodgerBlue3', 'DodgerBlue3' ],
+      \ 'cterm': [ 25, 25 ]
+      \ }
+let g:choosewin_color_overlay_current = {
+      \ 'gui': ['firebrick1', 'firebrick1' ],
+      \ 'cterm': [ 124, 124 ]
+      \ }
 
-  let g:choosewin_blink_on_land = 0
-  let g:choosewin_statusline_replace = 0
-  let g:choosewin_tabline_replace = 0
+let g:choosewin_blink_on_land = 0
+let g:choosewin_statusline_replace = 0
+let g:choosewin_tabline_replace = 0
 '''
 
 [[plugins]]
-repo = 'Konfekt/FastFold'
+repo = 'Konfekt/FastFold' # {{{1
 on_path = '.*'
 hokk_add = '''
-  let g:fastfold_savehook = 0
+let g:fastfold_savehook = 0
 '''
 
 # [[plugins]]
 # repo = 'arecarn/vim-fold-cycle'
 
 [[plugins]]
-repo = 'Shougo/vimproc.vim'
+repo = 'Shougo/vimproc.vim' # {{{1
 if = "!has('kaoriya')"
 build = 'make'
 
 [[plugins]]
-repo = 'junegunn/vim-easy-align'
+repo = 'junegunn/vim-easy-align' # {{{1
 on_map = '<Plug>(EasyAlign)'
 hook_add = '''
-  vmap <Enter> <Plug>(EasyAlign)
+vmap <Enter> <Plug>(EasyAlign)
 
-  let g:easy_align_delimiters = {
-        \ '>': {
-        \       'pattern': '>>\|=>\|>.\+',
-        \       'right_margin': 0,
-        \       'delimiter_align': 'l'
-        \   },
-        \ '/': {
-        \       'pattern': '//\+\|/\*\|\*/',
-        \       'delimiter_align': 'l',
-        \       'ignore_groups': ['!Comment']
-        \   },
-        \ ']': {
-        \       'pattern': '[[\]]',
-        \       'left_margin': 0,
-        \       'right_margin': 0,
-        \       'stick_to_left': 0
-        \   },
-        \ ')': {
-        \       'pattern': '[()]',
-        \       'left_margin': 0,
-        \       'right_margin': 0,
-        \       'stick_to_left': 0
-        \   },
-        \ 'd': {
-        \       'pattern': ' \(\S\+\s*[;=]\)\@=',
-        \       'left_margin': 0,
-        \       'right_margin': 0
-        \   },
-        \ 'p': {
-        \       'pattern': 'pos=\|size=',
-        \       'right_margin': 0
-        \   },
-        \ 's': {
-        \       'pattern': 'sys=\|Trns=',
-        \       'right_margin': 0
-        \   },
-        \ 'k': {
-        \       'pattern': 'key=\|cmt=',
-        \       'right_margin': 0
-        \   },
-        \ 'c': {
-        \       'pattern': 'cmt=',
-        \       'right_margin': 0
-        \   },
-        \ ':': {
-        \       'pattern': ':',
-        \       'left_margin': 1,
-        \       'right_margin': 1,
-        \       'stick_to_left': 0,
-        \       'ignore_groups': []
-        \   },
-        \ 't': {
-        \       'pattern': "\<tab>",
-        \       'left_margin': 0,
-        \       'right_margin': 0
-        \   },
-        \ ';': {
-        \       'pattern': ';',
-        \       'left_margin': 1,
-        \       'right_margin': 1,
-        \       'stick_to_left': 0,
-        \       'ignore_groups': []
-        \   }
-        \ }
+let g:easy_align_delimiters = {
+      \ '>': {
+      \       'pattern': '>>\|=>\|>.\+',
+      \       'right_margin': 0,
+      \       'delimiter_align': 'l'
+      \   },
+      \ '/': {
+      \       'pattern': '//\+\|/\*\|\*/',
+      \       'delimiter_align': 'l',
+      \       'ignore_groups': ['!Comment']
+      \   },
+      \ ']': {
+      \       'pattern': '[[\]]',
+      \       'left_margin': 0,
+      \       'right_margin': 0,
+      \       'stick_to_left': 0
+      \   },
+      \ ')': {
+      \       'pattern': '[()]',
+      \       'left_margin': 0,
+      \       'right_margin': 0,
+      \       'stick_to_left': 0
+      \   },
+      \ 'd': {
+      \       'pattern': ' \(\S\+\s*[;=]\)\@=',
+      \       'left_margin': 0,
+      \       'right_margin': 0
+      \   },
+      \ 'p': {
+      \       'pattern': 'pos=\|size=',
+      \       'right_margin': 0
+      \   },
+      \ 's': {
+      \       'pattern': 'sys=\|Trns=',
+      \       'right_margin': 0
+      \   },
+      \ 'k': {
+      \       'pattern': 'key=\|cmt=',
+      \       'right_margin': 0
+      \   },
+      \ 'c': {
+      \       'pattern': 'cmt=',
+      \       'right_margin': 0
+      \   },
+      \ ':': {
+      \       'pattern': ':',
+      \       'left_margin': 1,
+      \       'right_margin': 1,
+      \       'stick_to_left': 0,
+      \       'ignore_groups': []
+      \   },
+      \ 't': {
+      \       'pattern': "\<tab>",
+      \       'left_margin': 0,
+      \       'right_margin': 0
+      \   },
+      \ ';': {
+      \       'pattern': ';',
+      \       'left_margin': 1,
+      \       'right_margin': 1,
+      \       'stick_to_left': 0,
+      \       'ignore_groups': []
+      \   }
+      \ }
 '''
 
 [[plugins]]
-repo = 'glidenote/memolist.vim'
+repo = 'glidenote/memolist.vim' # {{{1
 on_cmd = ['Memolist', 'MemoNew', 'MemoGrep']
 hook_add = '''
-  if isdirectory($HOME . '/Dropbox')
-    let g:memolist_path = $HOME . '/Dropbox/memolist'
-  else
-    let g:memolist_path = $HOME . '/.memolist'
-  endif
+if isdirectory($HOME . '/Dropbox')
+  let g:memolist_path = $HOME . '/Dropbox/memolist'
+else
+  let g:memolist_path = $HOME . '/.memolist'
+endif
 
-  call Mkdir(g:memolist_path)
+call Mkdir(g:memolist_path)
 
-  let g:memolist_memo_suffix = "md"
+let g:memolist_denite = 1
+let g:memolist_memo_suffix = "md"
+let g:memolist_prompt_tags = 1
 
-  " mappings
-  nnoremap <Leader>mn :<C-u>MemoNew<CR>
-  nnoremap <Leader>ml :<C-u>MemoList<CR>
-  nnoremap <Leader>mg :<C-u>MemoGrep<CR>
-  " nmap <Leader>mf :exe "CtrlP" g:memolist_path<CR><F5>
-
-  " use various Ex commands (default '')
-  " let g:memolist_ex_cmd = 'CtrlP'
+" mappings
+nnoremap <Leader>mn :<C-u>MemoNew<CR>
+" nnoremap <Leader>ml :<C-u>MemoList<CR>
+nnoremap <Leader>mg :<C-u>MemoGrep<CR>
 '''
 
 [[plugins]]
-repo = 'mattn/sonictemplate-vim'
+repo = 'mattn/sonictemplate-vim' # {{{1
 on_cmd = 'Template'
 hook_add = '''
-  let g:sonictemplate_vim_template_dir = $HOME . '/.vim/template'
-  let g:sonictemplate_vim_vars = {
-        \ '_': {
-        \   'author': 'yukimemi',
-        \   'mail': 'yukimemi@gmail.com',
-        \ },
-        \ }
+let g:sonictemplate_vim_template_dir = $HOME . '/.vim/template'
+let g:sonictemplate_vim_vars = {
+      \ '_': {
+      \   'author': 'yukimemi',
+      \   'mail': 'yukimemi@gmail.com',
+      \ }
+      \ }
 '''
 
 [[plugins]]
-repo = 'basyura/twibill.vim'
+repo = 'basyura/twibill.vim' # {{{1
 lazy = 1
 
 [[plugins]]
-repo = 'basyura/TweetVim''
+repo = 'basyura/TweetVim' # {{{1
 depends = ['twibill.vim', 'open-browser.vim', 'bitly.vim', 'favstar-vim', 'webapi-vim']
 on_cmd = ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay']
 on_ft = 'tweetvim'
 hook_add = '''
-  au MyAutoCmd FileType tweetvim call s:my_tweetvim_mappings()
-  function! s:my_tweetvim_mappings()
-    setl nowrap
-    nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
-  endfunction
+au MyAutoCmd FileType tweetvim call s:my_tweetvim_mappings()
+function! s:my_tweetvim_mappings()
+  setl nowrap
+  nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
+endfunction
 
-  nnoremap [Space]tu :<C-u>TweetVimUserStream<CR>
+nnoremap [Space]tu :<C-u>TweetVimUserStream<CR>
 
-  let g:tweetvim_default_account = "yukimemi"
-  let g:tweetvim_tweet_per_page = 100
-  let g:tweetvim_cache_size = 50
-  "let g:tweetvim_display_username = 1
-  let g:tweetvim_display_source = 1
-  let g:tweetvim_display_time = 1
-  "let g:tweetvim_display_icon = 1
-  let g:tweetvim_async_post = 1
+let g:tweetvim_default_account = "yukimemi"
+let g:tweetvim_tweet_per_page = 100
+let g:tweetvim_cache_size = 50
+"let g:tweetvim_display_username = 1
+let g:tweetvim_display_source = 1
+let g:tweetvim_display_time = 1
+"let g:tweetvim_display_icon = 1
+let g:tweetvim_async_post = 1
 '''
 
 [[plugins]]
-repo = 'mattn/webapi-vim'
+repo = 'mattn/webapi-vim' # {{{1
 lazy = 1
 
 [[plugins]]
-repo = 'tyru/open-browser.vim'
+repo = 'tyru/open-browser.vim' # {{{1
 lazy = 1
 
 [[plugins]]
-repo = 'vim-scripts/autodate.vim'
+repo = 'vim-scripts/autodate.vim' # {{{1
 hook_add = '''
-  let g:autodate_format = "%Y/%m/%d %H:%M:%S"
-  let g:autodate_keyword_pre  = "Last Change *:"
-  let g:autodate_keyword_post = "."
+let g:autodate_format = "%Y/%m/%d %H:%M:%S"
+let g:autodate_keyword_pre  = "Last Change *:"
+let g:autodate_keyword_post = "."
 '''
 
 [[plugins]]
-repo = 'sjl/gundo.vim'
-if = "has('python')"
-
-[[plugins]]
-repo = 'simnalamburt/vim-mundo'
+repo = 'simnalamburt/vim-mundo' # {{{1
 on_cmd = 'MundoToggle'
 hook_add = '''
-  nnoremap [Space]u :MundoToggle<CR>
+nnoremap [Space]u :MundoToggle<CR>
 '''
 
 [[plugins]]
-repo = 'tpope/vim-repeat'
+repo = 'tpope/vim-repeat' # {{{1
 
 [[plugins]]
-repo = 'sbdchd/neoformat'
+repo = 'sbdchd/neoformat' # {{{1
 hook_add = '''
-  let g:neoformat_only_msg_on_error = 1
-  " au MyAutoCmd BufWritePre * Neoformat
+let g:neoformat_only_msg_on_error = 1
+" au MyAutoCmd BufWritePre * Neoformat
 '''
 
 [[plugins]]
-repo = 'w0rp/ale'
+repo = 'w0rp/ale' # {{{1
 hook_add = '''
-  let g:ale_linters = {
-        \ 'go': ['golint', 'go vet', 'goimports'],
-        \ 'haskell': ['hlint']
-        \ }
-  let g:ale_lint_on_text_changed = 'never'
-  let g:ale_lint_on_enter = 0
-  let g:ale_lint_on_insert_leave = 0
-  let g:ale_lint_on_save = 1
-  nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-  nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_linters = {
+      \ 'go': ['golint', 'go vet', 'goimports'],
+      \ 'haskell': ['hlint']
+      \ }
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_save = 1
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-  " Rust.
-  let g:ale_rust_ignore_error_codes = ['E0432', 'E0433']
+" Rust.
+let g:ale_rust_ignore_error_codes = ['E0432', 'E0433']
 '''
 
 
@@ -464,623 +462,596 @@ hook_add = '''
 # repo = 'yuttie/comfortable-motion.vim'
 
 [[plugins]]
-repo = 'tyru/capture.vim'
+repo = 'tyru/capture.vim' # {{{1
 on_cmd = ['Capture']
 
 [[plugins]]
-repo = 'cocopon/vaffle.vim'
+repo = 'cocopon/vaffle.vim' # {{{1
 on_cmd = ['Vaffle']
 hook_add = '''
-  " nnoremap [Space]v :<C-u>Vaffle<CR>
+" nnoremap [Space]v :<C-u>Vaffle<CR>
 '''
 hook_post_source = '''
-  let g:loaded_netrw       = 1
-  let g:loaded_netrwPlugin = 1
+let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 1
 '''
 
 [[plugins]]
-repo = 'justinmk/vim-dirvish'
+repo = 'justinmk/vim-dirvish' # {{{1
 hook_add = '''
-  " Don't use netrw.
-  let g:loaded_netrwPlugin = 1
-  nnoremap [Space]v :<C-u>Dirvish<CR>
+" Don't use netrw.
+let g:loaded_netrwPlugin = 1
+nnoremap [Space]v :<C-u>Dirvish<CR>
 '''
 
-# [[plugins]]
-# repo = 'scrooloose/nerdtree'
-# on_cmd = ['NERDTreeToggle', 'NERDTree', 'NERDTreeFind']
-# hook_add = '''
-#   " nnoremap [Space]v :NERDTreeToggle<CR>
-#   nnoremap [Space]v :NERDTreeFind<CR>
-#   au MyAutoCmd StdinReadPre * let s:std_in=1
-#   au MyAutoCmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-# '''
-
-
-# [[plugins]]
-# repo = 'fuenor/qfixhowm'
-# hook_add = '''
-#   let QFixHowm_Key = 'g'
-#   let howm_dir          = '~/.howm'
-#   let howm_filename     = '%Y/%m/%Y-%m-%d-%H%M%S.md'
-#   let howm_fileencoding = 'utf-8'
-#   let howm_fileformat   = 'unix'
-#
-#   let QFixWin_EnableMode = 1
-#   " Use markdown.
-#   let QFixHowm_FileType = 'markdown'
-#   let QFixHowm_Title = '#'
-# '''
-
-# [[plugins]]
-# repo = 'vitalk/vim-simple-todo'
-# on_ft = 'markdown'
+[[plugins]]
+repo = 'vitalk/vim-simple-todo'
+on_ft = 'markdown'
 
 [[plugins]]
-repo = 'kassio/neoterm'
+repo = 'kassio/neoterm' # {{{1
 if = "has('nvim')"
 on_cmd = ['T', 'Tnew']
 hook_add = '''
-  let g:neoterm_autoinsert = 1
-  nnoremap [Space]s :<C-u>terminal<CR>
-  tnoremap sj <C-\><C-n><C-w>j
-  tnoremap sk <C-\><C-n><C-w>k
-  tnoremap sl <C-\><C-n><C-w>l
-  tnoremap sh <C-\><C-n><C-w>h
+let g:neoterm_autoinsert = 1
+nnoremap [Space]s :<C-u>terminal<CR>
+tnoremap sj <C-\><C-n><C-w>j
+tnoremap sk <C-\><C-n><C-w>k
+tnoremap sl <C-\><C-n><C-w>l
+tnoremap sh <C-\><C-n><C-w>h
 '''
 
 [[plugins]]
-repo = 'lambdalisue/vim-findent'
+repo = 'lambdalisue/vim-findent' # {{{1
 on_cmd = 'Findent'
 hook_add = '''
-  au MyAutoCmd BufRead * Findent --no-warnings
+au MyAutoCmd BufRead * Findent --no-warnings
 '''
 
 [[plugins]]
-repo = 'haya14busa/dein-command.vim'
+repo = 'haya14busa/dein-command.vim' # {{{1
 on_cmd = 'Dein'
 
 [[plugins]]
-repo = 'Shougo/echodoc.vim'
+repo = 'Shougo/echodoc.vim' # {{{1
 hook_add = '''
-  let g:echodoc_enable_at_startup = 1
+let g:echodoc_enable_at_startup = 1
 '''
 
 [[plugins]]
-repo = 'majutsushi/tagbar'
+repo = 'majutsushi/tagbar' # {{{1
 on_cmd = ['TagbarToggle']
 hook_add = '''
-  nnoremap <F8> :<C-u>TagbarToggle<CR>
+nnoremap <F8> :<C-u>TagbarToggle<CR>
+let g:tagbar_type_rust = {
+      \ 'ctagstype' : 'rust',
+      \   'kinds' : [
+      \     'T:types,type definitions',
+      \     'f:functions,function definitions',
+      \     'g:enum,enumeration names',
+      \     's:structure names',
+      \     'm:modules,module names',
+      \     'c:consts,static constants',
+      \     't:traits',
+      \     'i:impls,trait implementations',
+      \   ]
+      \ }
+
+let g:tagbar_type_markdown = {
+      \ 'ctagstype' : 'markdown',
+      \   'kinds' : [
+      \     'h:Heading_L1',
+      \     'i:Heading_L2',
+      \     'k:Heading_L3'
+      \   ]
+      \ }
 '''
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
-repo = 'Shougo/denite.nvim'
+repo = 'Shougo/denite.nvim' # {{{1
 depends = 'neomru.vim'
 on_cmd = 'Denite'
 if = "has('python3')"
 hook_add = '''
-  " Use plefix s
-  nnoremap suc :<C-u>Denite colorscheme -auto-preview<CR>
-  nnoremap sub :<C-u>Denite buffer<CR>
-  nnoremap suf :<C-u>Denite file<CR>
-  nnoremap suF :<C-u>Denite file_rec<CR>
-  " nnoremap suu :<C-u>Denite buffer file_old<CR>
-  nnoremap suu :<C-u>Denite buffer file_mru<CR>
-  nnoremap suo :<C-u>Denite outline -no-quit -mode=normal<CR>
-  nnoremap suh :<C-u>Denite help<CR>
-  nnoremap sur :<C-u>Denite register<CR>
-  nnoremap sug :<C-u>Denite grep -no-empty<CR>
-  nnoremap su/ :<C-u>Denite line -no-quit<CR>
-  nnoremap suR :<C-u>Denite -resume<CR>
+" Use plefix s
+nnoremap suc :<C-u>Denite colorscheme -auto-preview<CR>
+nnoremap sub :<C-u>Denite buffer<CR>
+nnoremap suf :<C-u>Denite file<CR>
+nnoremap suF :<C-u>Denite file_rec<CR>
+" nnoremap suu :<C-u>Denite buffer file_old<CR>
+nnoremap suu :<C-u>Denite buffer file_mru<CR>
+nnoremap suo :<C-u>Denite outline -no-quit -mode=normal<CR>
+nnoremap suh :<C-u>Denite help<CR>
+nnoremap sur :<C-u>Denite register<CR>
+nnoremap sug :<C-u>Denite grep -no-empty<CR>
+nnoremap su/ :<C-u>Denite line -no-quit<CR>
+nnoremap suR :<C-u>Denite -resume<CR>
 
-  noremap sul :<C-u>Denite command_history<CR>
+noremap sul :<C-u>Denite command_history<CR>
 
-  " Incremental search in cmdline history.
-  inoremap <C-l> <ESC>:<C-u>Denite command<CR>
+" Incremental search in cmdline history.
+inoremap <C-l> <ESC>:<C-u>Denite command<CR>
 '''
 hook_post_source = '''
-  " Default options.
-	call denite#custom#option('default', {
-        \ 'prompt': '»',
-        \ 'cursor_wrap': v:true,
-        \ 'auto_resize': v:true,
-        \ 'highlight_mode_insert': 'WildMenu'
-        \ })
+" Default options.
+call denite#custom#option('default', {
+      \ 'prompt': '»',
+      \ 'cursor_wrap': v:true,
+      \ 'auto_resize': v:true,
+      \ 'highlight_mode_insert': 'WildMenu'
+      \ })
 
 
-  if executable('rg')
-    " Ripgrep command on grep source
-    call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts',
-        \ ['--vimgrep', '--no-heading'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
+if executable('rg')
+  " Ripgrep command on grep source
+  call denite#custom#var('grep', 'command', ['rg'])
+  call denite#custom#var('grep', 'default_opts',
+      \ ['--vimgrep', '--no-heading'])
+  call denite#custom#var('grep', 'recursive_opts', [])
+  call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+  call denite#custom#var('grep', 'separator', ['--'])
+  call denite#custom#var('grep', 'final_opts', [])
 
-  elseif executable('jvgrep')
-    " jvgrep command on grep source
-    call denite#custom#var('grep', 'command', ['jvgrep'])
-    call denite#custom#var('grep', 'default_opts', [])
-    call denite#custom#var('grep', 'recursive_opts', ['-R'])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', [])
-    call denite#custom#var('grep', 'final_opts', [])
+elseif executable('jvgrep')
+  " jvgrep command on grep source
+  call denite#custom#var('grep', 'command', ['jvgrep'])
+  call denite#custom#var('grep', 'default_opts', [])
+  call denite#custom#var('grep', 'recursive_opts', ['-R'])
+  call denite#custom#var('grep', 'pattern_opt', [])
+  call denite#custom#var('grep', 'separator', [])
+  call denite#custom#var('grep', 'final_opts', [])
 
-  elseif executable('pt')
-    " Pt command on grep source
-    call denite#custom#var('grep', 'command', ['pt'])
-    call denite#custom#var('grep', 'default_opts',
-          \ ['--nogroup', '--nocolor', '--smart-case'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-  endif
-  " custom mappings.
-  call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-  call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-  call denite#custom#map('insert', '<C-[>', '<denite:enter_mode:normal>', 'noremap')
-  call denite#custom#map('normal', '<C-[>', '<denite:quit>', 'noremap')
+elseif executable('pt')
+  " Pt command on grep source
+  call denite#custom#var('grep', 'command', ['pt'])
+  call denite#custom#var('grep', 'default_opts',
+        \ ['--nogroup', '--nocolor', '--smart-case'])
+  call denite#custom#var('grep', 'recursive_opts', [])
+  call denite#custom#var('grep', 'pattern_opt', [])
+  call denite#custom#var('grep', 'separator', ['--'])
+  call denite#custom#var('grep', 'final_opts', [])
+endif
+" custom mappings.
+call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+call denite#custom#map('insert', '<C-[>', '<denite:enter_mode:normal>', 'noremap')
+call denite#custom#map('normal', '<C-[>', '<denite:quit>', 'noremap')
 '''
 
 [[plugins]]
-repo = 'Shougo/neomru.vim'
+repo = 'Shougo/neomru.vim' # {{{1
 on_source = 'denite.nvim'
 
 [[plugins]]
-repo = 'Shougo/junkfile.vim'
+repo = 'Shougo/junkfile.vim' # {{{1
 on_source = 'denite.nvim'
 on_cmd = 'JunkfileOpen'
 
 [[plugins]]
-repo = 'iyuuya/denite-ale'
+repo = 'iyuuya/denite-ale' # {{{1
+on_source = 'denite.nvim'
 
 
 # ==================== Search ==================== {{{1
 [[plugins]]
-repo = 'haya14busa/vim-asterisk'
+repo = 'haya14busa/vim-asterisk' # {{{1
 on_map = '<Plug>'
 
 [[plugins]]
-repo = 'osyo-manga/vim-anzu'
+repo = 'osyo-manga/vim-anzu' # {{{1
 on_map = '<Plug>'
 
 [[plugins]]
-repo = 'haya14busa/incsearch.vim'
+repo = 'haya14busa/incsearch.vim' # {{{1
 depends = ['vim-asterisk', 'vim-anzu']
 on_map = '<Plug>'
 hook_add = '''
-  map /  <Plug>(incsearch-forward)
-  map ?  <Plug>(incsearch-backward)
-  map g/ <Plug>(incsearch-stay)
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
-  let g:incsearch#auto_nohlsearch = 1
-  map n <Plug>(incsearch-nohl)<Plug>(anzu-n)zv
-  map N <Plug>(incsearch-nohl)<Plug>(anzu-N)zv
-  map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)zv
-  map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)zv
-  map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)zv
-  map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)zv
+let g:incsearch#auto_nohlsearch = 1
+map n   <Plug>(incsearch-nohl)<Plug>(anzu-n)zv
+map N   <Plug>(incsearch-nohl)<Plug>(anzu-N)zv
+map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)zv
+map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)zv
+map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)zv
+map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)zv
 
-  map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
-  map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
-  map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
-  map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
+map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
+map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
+map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
+map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
 '''
 
 [[plugins]]
-repo = 't9md/vim-quickhl'
+repo = 't9md/vim-quickhl' # {{{1
 hook_add = '''
-  let g:quickhl_manual_enable_at_startup = 1
+let g:quickhl_manual_enable_at_startup = 1
 
-  nmap [Space]m <Plug>(quickhl-manual-this)
-  xmap [Space]m <Plug>(quickhl-manual-this)
-  nmap [Space]M <Plug>(quickhl-manual-reset)
-  xmap [Space]M <Plug>(quickhl-manual-reset)
+nmap [Space]m <Plug>(quickhl-manual-this)
+xmap [Space]m <Plug>(quickhl-manual-this)
+nmap [Space]M <Plug>(quickhl-manual-reset)
+xmap [Space]M <Plug>(quickhl-manual-reset)
 
-  let g:quickhl_manual_keywords = [
-        \ "失敗",
-        \ "警告",
-        \ "エラー",
-        \ "異常",
-        \ "warn",
-        \ "WARN",
-        \ "error",
-        \ "ERROR",
-        \ ]
+let g:quickhl_manual_keywords = [
+      \ "失敗",
+      \ "警告",
+      \ "エラー",
+      \ "異常",
+      \ "warn",
+      \ "WARN",
+      \ "error",
+      \ "ERROR",
+      \ ]
 '''
 
 [[plugins]]
-repo = 'itchyny/vim-parenmatch'
+repo = 'itchyny/vim-parenmatch' # {{{1
 hook_add = 'let g:loaded_matchparen = 1'
 
 [[plugins]]
-repo = 'itchyny/vim-cursorword'
+repo = 'itchyny/vim-cursorword' # {{{1
 hook_add = '''
-  function! s:ToggleCursorWord() abort
-    let b:cursorword = !get(b:, 'cursorword', 1)
-  endfunction
+function! s:ToggleCursorWord() abort
+  let b:cursorword = !get(b:, 'cursorword', 1)
+endfunction
 
-  com! ToggleCursorWord call s:ToggleCursorWord()
+com! ToggleCursorWord call s:ToggleCursorWord()
 '''
 
 [[plugins]]
-repo = 'thinca/vim-qfreplace'
+repo = 'thinca/vim-qfreplace' # {{{1
 on_ft = ['quickfix']
 
 
 # ==================== Operators ================= {{{1
 [[plugins]]
-repo = 'kana/vim-operator-user'
+repo = 'kana/vim-operator-user' # {{{1
 on_map = '<Plug>'
 
 [[plugins]]
-repo = 'kana/vim-operator-replace'
+repo = 'kana/vim-operator-replace' # {{{1
 depends = 'vim-operator-user'
 on_map = '<Plug>'
 hook_add = 'map _ <Plug>(operator-replace)'
 
 [[plugins]]
-repo = 'rhysd/vim-operator-surround'
+repo = 'rhysd/vim-operator-surround' # {{{1
 depends = 'vim-operator-user'
 on_map = '<Plug>'
 hook_add = '''
-  map sA <Plug>(operator-surround-append)
-  map sD <Plug>(operator-surround-delete)
-  map sR <Plug>(operator-surround-replace)
+map sA <Plug>(operator-surround-append)
+map sD <Plug>(operator-surround-delete)
+map sR <Plug>(operator-surround-replace)
 '''
 
 [[plugins]]
-repo = 'osyo-manga/vim-operator-blockwise'
+repo = 'osyo-manga/vim-operator-blockwise' # {{{1
 depends = 'vim-operator-user'
 on_map = '<Plug>'
 hook_add = '''
-  nmap YY <Plug>(operator-blockwise-yank-head)
-  nmap DD <Plug>(operator-blockwise-delete-head)
-  nmap CC <Plug>(operator-blockwise-change-head)
+" nmap YY <Plug>(operator-blockwise-yank-head)
+" nmap DD <Plug>(operator-blockwise-delete-head)
+" nmap CC <Plug>(operator-blockwise-change-head)
 '''
 
 [[plugins]]
-repo = 'osyo-manga/vim-operator-search'
+repo = 'osyo-manga/vim-operator-search' # {{{1
 depends = 'vim-operator-user'
 on_map = '<Plug>'
 hook_add = 'nmap [Space]/ <Plug>(operator-search)'
 
 [[plugins]]
-repo = 'haya14busa/vim-operator-flashy'
+repo = 'haya14busa/vim-operator-flashy' # {{{1
 depends = 'vim-operator-user'
 on_map = '<Plug>'
 hook_add = '''
-  map y <Plug>(operator-flashy)
-  nmap Y <Plug>(operator-flashy)$
+map y <Plug>(operator-flashy)
+nmap Y <Plug>(operator-flashy)$
 '''
 
 
 
 # ==================== Textobjs ================== {{{1
 [[plugins]]
-repo = 'kana/vim-textobj-user'
+repo = 'kana/vim-textobj-user' # {{{1
 on_map = '<Plug>'
 
 [[plugins]]
-repo = 'osyo-manga/vim-textobj-multiblock'
+repo = 'osyo-manga/vim-textobj-multiblock' # {{{1
 depends = 'vim-textobj-user'
 on_map = [['ox', '<Plug>']]
 hook_add = '''
-  omap ab <Plug>(textobj-multiblock-a)
-  omap ib <Plug>(textobj-multiblock-i)
-  xmap ab <Plug>(textobj-multiblock-a)
-  xmap ib <Plug>(textobj-multiblock-i)
+omap ab <Plug>(textobj-multiblock-a)
+omap ib <Plug>(textobj-multiblock-i)
+xmap ab <Plug>(textobj-multiblock-a)
+xmap ib <Plug>(textobj-multiblock-i)
 '''
 
 [[plugins]]
-repo = 'kana/vim-textobj-entire'
+repo = 'kana/vim-textobj-entire' # {{{1
 depends = 'vim-textobj-user'
 on_map = [['ox', '<Plug>']]
 hook_add = '''
-  omap ae <Plug>(textobj-entire-a)
-  xmap ae <Plug>(textobj-entire-a)
-  omap ie <Plug>(textobj-entire-i)
-  xmap ie <Plug>(textobj-entire-i)
+omap ae <Plug>(textobj-entire-a)
+xmap ae <Plug>(textobj-entire-a)
+omap ie <Plug>(textobj-entire-i)
+xmap ie <Plug>(textobj-entire-i)
 '''
 
 [[plugins]]
-repo = 'kana/vim-textobj-fold'
+repo = 'kana/vim-textobj-fold' # {{{1
 depends = 'vim-textobj-user'
 on_map = [['ox', '<Plug>']]
 hook_add = '''
-  omap az <Plug>(textobj-fold-a)
-  xmap az <Plug>(textobj-fold-a)
-  omap iz <Plug>(textobj-fold-i)
-  xmap iz <Plug>(textobj-fold-i)
+omap az <Plug>(textobj-fold-a)
+xmap az <Plug>(textobj-fold-a)
+omap iz <Plug>(textobj-fold-i)
+xmap iz <Plug>(textobj-fold-i)
 '''
 
 [[plugins]]
-repo = 'kana/vim-textobj-function'
+repo = 'kana/vim-textobj-function' # {{{1
 depends = 'vim-textobj-user'
 on_map = [['ox', '<Plug>']]
 hook_add = '''
-  omap af <Plug>(textobj-function-a)
-  xmap af <Plug>(textobj-function-a)
-  omap if <Plug>(textobj-function-i)
-  xmap if <Plug>(textobj-function-i)
-  omap aF <Plug>(textobj-function-A)
-  xmap aF <Plug>(textobj-function-A)
-  omap iF <Plug>(textobj-function-I)
-  xmap iF <Plug>(textobj-function-I)
+omap af <Plug>(textobj-function-a)
+xmap af <Plug>(textobj-function-a)
+omap if <Plug>(textobj-function-i)
+xmap if <Plug>(textobj-function-i)
+omap aF <Plug>(textobj-function-A)
+xmap aF <Plug>(textobj-function-A)
+omap iF <Plug>(textobj-function-I)
+xmap iF <Plug>(textobj-function-I)
 '''
 
 [[plugins]]
-repo = 'kana/vim-textobj-indent'
+repo = 'kana/vim-textobj-indent' # {{{1
 depends = 'vim-textobj-user'
 on_map = [['ox', '<Plug>']]
 hook_add = '''
-  omap ai <Plug>(textobj-indent-a)
-  xmap ai <Plug>(textobj-indent-a)
-  omap ii <Plug>(textobj-indent-i)
-  xmap ii <Plug>(textobj-indent-i)
-  omap aI <Plug>(textobj-indent-same-a)
-  xmap aI <Plug>(textobj-indent-same-a)
-  omap iI <Plug>(textobj-indent-same-i)
-  xmap iI <Plug>(textobj-indent-same-i)
+omap ai <Plug>(textobj-indent-a)
+xmap ai <Plug>(textobj-indent-a)
+omap ii <Plug>(textobj-indent-i)
+xmap ii <Plug>(textobj-indent-i)
+omap aI <Plug>(textobj-indent-same-a)
+xmap aI <Plug>(textobj-indent-same-a)
+omap iI <Plug>(textobj-indent-same-i)
+xmap iI <Plug>(textobj-indent-same-i)
 '''
 
 [[plugins]]
-repo = 'gilligan/textobj-lastpaste'
+repo = 'gilligan/textobj-lastpaste' # {{{1
 depends = 'vim-textobj-user'
 on_map = [['ox', '<Plug>']]
 hook_add = '''
-  omap iP <Plug>(textobj-lastpaste-i)
-  xmap iP <Plug>(textobj-lastpaste-i)
+omap iP <Plug>(textobj-lastpaste-i)
+xmap iP <Plug>(textobj-lastpaste-i)
 '''
 
 
 # ==================== Comment =================== {{{1
 [[plugins]]
-repo = 'tyru/caw.vim'
+repo = 'tyru/caw.vim' # {{{1
 on_map = '<Plug>'
 hook_add = '''
-  nmap gc <Plug>(caw:prefix)
-  xmap gc <Plug>(caw:prefix)
-  nmap gcc <Plug>(caw:hatpos:toggle)
-  xmap gcc <Plug>(caw:hatpos:toggle)
+nmap gc <Plug>(caw:prefix)
+xmap gc <Plug>(caw:prefix)
+nmap gcc <Plug>(caw:hatpos:toggle)
+xmap gcc <Plug>(caw:hatpos:toggle)
 '''
 
 
 # ==================== Yank/Paste ================ {{{1
 [[plugins]]
-repo = 'LeafCage/yankround.vim'
+repo = 'LeafCage/yankround.vim' # {{{1
 hook_add = '''
-  nmap p <Plug>(yankround-p)
-  nmap P <Plug>(yankround-P)
-  nmap <C-p> <Plug>(yankround-prev)
-  nmap <C-n> <Plug>(yankround-next)
-  let g:yankround_max_history = 100
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+let g:yankround_max_history = 100
 '''
 
 
 # ==================== Git ======================= {{{1
 [[plugins]]
-repo = 'tpope/vim-fugitive'
+repo = 'tpope/vim-fugitive' # {{{1
 
 [[plugins]]
-repo = 'lambdalisue/gina.vim'
+repo = 'lambdalisue/gina.vim' # {{{1
 on_cmd = 'Gina'
 hook_add = '''
-  nnoremap [Space]gs :<C-u>Gina status<CR>
-  nnoremap [Space]gb :<C-u>Gina branch<CR>
-  nnoremap [Space]gg :<C-u>Gina grep<CR>
-  nnoremap [Space]gd :<C-u>Gina diff<CR>
-  nnoremap [Space]gl :<C-u>Gina ls-files<CR>
-  nnoremap [Space]gp :<C-u>Gina push<CR>
+nnoremap [Space]gs :<C-u>Gina status<CR>
+nnoremap [Space]gb :<C-u>Gina branch<CR>
+nnoremap [Space]gg :<C-u>Gina grep<CR>
+nnoremap [Space]gd :<C-u>Gina diff<CR>
+nnoremap [Space]gl :<C-u>Gina ls-files<CR>
+nnoremap [Space]gp :<C-u>Gina push<CR>
 '''
 
 [[plugins]]
-repo = 'cohama/agit.vim'
+repo = 'cohama/agit.vim' # {{{1
 on_cmd = 'Agit'
 
 [[plugins]]
-repo = 'rhysd/committia.vim'
+repo = 'rhysd/committia.vim' # {{{1
 
 # ==================== Filetype (go) ============= {{{1
 [[plugins]]
-repo = 'fatih/vim-go'
+repo = 'fatih/vim-go' # {{{1
 on_ft = 'go'
 hook_add = '''
-  let g:go_auto_type_info = 1
-  let g:go_snippet_engine = "neosnippet"
-  let g:go_fmt_command = "goimports"
+let g:go_auto_type_info = 1
+let g:go_snippet_engine = "neosnippet"
+let g:go_fmt_command = "goimports"
 
-  let g:go_highlight_functions = 1
-  let g:go_highlight_methods = 1
-  let g:go_highlight_fields = 1
-  let g:go_highlight_structs = 1
-  let g:go_highlight_interfaces = 1
-  let g:go_highlight_operators = 1
-  let g:go_highlight_build_constraints = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
-  let g:go_metalinter_autosave = 1
-  let g:go_fmt_autosave = 0
-  let g:go_gocode_unimported_packages = 1
-  " au MyAutoCmd BufWritePost *.go GoMetaLinter
-  " au MyAutoCmd BufWritePre *.go silent GoFmt
+let g:go_metalinter_autosave = 1
+let g:go_fmt_autosave = 0
+let g:go_gocode_unimported_packages = 1
+" au MyAutoCmd BufWritePost *.go GoMetaLinter
+" au MyAutoCmd BufWritePre *.go silent GoFmt
 
-  au MyAutoCmd BufNew,BufRead *.go call s:vim_go_cfg()
+au MyAutoCmd BufNew,BufRead *.go call s:vim_go_cfg()
 
-  function! s:vim_go_cfg() abort
-    setl foldmethod=syntax
-    setl tabstop=4
-    setl shiftwidth=4
-    setl softtabstop=0
-    setl noexpandtab
+function! s:vim_go_cfg() abort
+  setl foldmethod=syntax
+  setl tabstop=4
+  setl shiftwidth=4
+  setl softtabstop=0
+  setl noexpandtab
 
-    nmap <buffer> <Leader>gd <Plug>(go-doc)
-    nmap <buffer> <Leader>gs <Plug>(go-doc-split)
-    nmap <buffer> <Leader>gv <Plug>(go-doc-vertical)
-    nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
-    nmap <buffer> <Leader>gr <Plug>(go-rename)
+  nmap <buffer> <Leader>gd <Plug>(go-doc)
+  nmap <buffer> <Leader>gs <Plug>(go-doc-split)
+  nmap <buffer> <Leader>gv <Plug>(go-doc-vertical)
+  nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
+  nmap <buffer> <Leader>gr <Plug>(go-rename)
 
-    " nmap <buffer> <Leader>r <Plug>(go-run)
-    nmap <buffer> <Leader>gb <Plug>(go-build)
-    nmap <buffer> <Leader>gt <Plug>(go-test)
-    nmap <buffer> <Leader>gc <Plug>(go-coverage)
+  " nmap <buffer> <Leader>r <Plug>(go-run)
+  nmap <buffer> <Leader>gb <Plug>(go-build)
+  nmap <buffer> <Leader>gt <Plug>(go-test)
+  nmap <buffer> <Leader>gc <Plug>(go-coverage)
 
-    nmap <buffer> <Leader>ds <Plug>(go-def-split)
-    nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
-    nmap <buffer> <Leader>dt <Plug>(go-def-tab)
-    nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
+  nmap <buffer> <Leader>ds <Plug>(go-def-split)
+  nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
+  nmap <buffer> <Leader>dt <Plug>(go-def-tab)
+  nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
 
-    setl completeopt=menu,preview
-  endfunction
+  setl completeopt=menu,preview
+endfunction
 '''
 
 # ==================== Filetype (ps1) ============ {{{1
 [[plugins]]
-repo = 'PProvost/vim-ps1'
+repo = 'PProvost/vim-ps1' # {{{1
 on_ft = 'ps1'
 hook_source = '''
-  function! s:addHeaderPs1(flg)
-    setl fenc=cp932
-    setl ff=dos
-    let lines = []
-    if a:flg
-      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass -InputFormat None \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
-    else
-      call add(lines, "@set scriptPath=%~f0&@powershell -Version 2.0 -NoProfile -ExecutionPolicy ByPass -InputFormat None \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
+function! s:addHeaderPs1(flg)
+  setl fenc=cp932
+  setl ff=dos
+  let lines = []
+  if a:flg
+    call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass -InputFormat None \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
+  else
+    call add(lines, "@set scriptPath=%~f0&@powershell -Version 2.0 -NoProfile -ExecutionPolicy ByPass -InputFormat None \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
+  endif
+  call add(lines, "@exit /b %errorlevel%")
+  call extend(lines, readfile(expand("%")))
+  let i = 0
+  for line in lines
+    if len(lines) != (i + 1)
+      let lines[i] .= "\r"
     endif
-    call add(lines, "@exit /b %errorlevel%")
-    call extend(lines, readfile(expand("%")))
-    let i = 0
-    for line in lines
-      if len(lines) != (i + 1)
-        let lines[i] .= "\r"
-      endif
-      let i += 1
-    endfor
-    " let s:basedir = expand("%:p:h") . "/../cmd/"
-    let s:basedir = expand("%:p:h") . "/"
-    let s:cmdFile = expand("%:p:t:r") . ".cmd"
-    call Mkdir(s:basedir)
-    call writefile(lines,  s:basedir . s:cmdFile, "b")
-    echo "Write " . s:basedir . expand("%:p:t:r") . ".cmd"
-  endfunction
-  " au MyAutoCmd BufWritePost *.ps1 call <SID>addHeaderPs1(0)
-  au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
-  au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0)
+    let i += 1
+  endfor
+  " let s:basedir = expand("%:p:h") . "/../cmd/"
+  let s:basedir = expand("%:p:h") . "/"
+  let s:cmdFile = expand("%:p:t:r") . ".cmd"
+  call Mkdir(s:basedir)
+  call writefile(lines,  s:basedir . s:cmdFile, "b")
+  echo "Write " . s:basedir . expand("%:p:t:r") . ".cmd"
+endfunction
+" au MyAutoCmd BufWritePost *.ps1 call <SID>addHeaderPs1(0)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0)
 '''
 
 
 # ==================== Filetype (toml) =========== {{{1
 [[plugins]]
-repo = 'cespare/vim-toml'
+repo = 'cespare/vim-toml' # {{{1
 on_ft = 'toml'
 
 
 # ==================== Filetype (yaml) =========== {{{1
 [[plugins]]
-repo = 'stephpy/vim-yaml'
+repo = 'stephpy/vim-yaml' # {{{1
 on_ft = 'yaml'
 
 
 # ==================== Filetype (plantuml) ======= {{{1
 [[plugins]]
-repo =  'aklt/plantuml-syntax'
+repo =  'aklt/plantuml-syntax' # {{{1
 on_ft = 'plantuml'
 
 
 # ==================== Filetype (log) ============ {{{1
 [[plugins]]
-repo = 'dzeban/vim-log-syntax'
+repo = 'dzeban/vim-log-syntax' # {{{1
 on_ft = 'log'
 
 # ==================== Filetype (Vue) ============ {{{1
 [[plugins]]
-repo = 'posva/vim-vue'
+repo = 'posva/vim-vue' # {{{1
 on_ft = 'vue'
 
 # ==================== Filetype (javascript) ===== {{{1
 [[plugins]]
-repo = 'pangloss/vim-javascript'
+repo = 'pangloss/vim-javascript' # {{{1
 on_ft = ['javascript', 'javascript.jsx']
 
-# [[plugins]]
-# repo = 'jason0x43/vim-js-indent'
-# on_ft = 'javascript'
-
-# [[plugins]]
-# repo = 'mxw/vim-jsx'
-# on_ft = ['javascript', 'javascript.jsx', 'typescript']
-
 [[plugins]]
-repo = 'maxmellon/vim-jsx-pretty'
-on_ft = ['javascript', 'javascript.jsx', 'typescript']
-
-# [[plugins]]
-# repo = 'othree/yajs.vim'
-# on_ft = ['javascript', 'javascript.jsx', 'typescript']
-
-[[plugins]]
-repo = 'othree/javascript-libraries-syntax.vim'
+repo = 'maxmellon/vim-jsx-pretty' # {{{1
 on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
 [[plugins]]
-repo = 'othree/es.next.syntax.vim'
+repo = 'othree/javascript-libraries-syntax.vim' # {{{1
 on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
 [[plugins]]
-repo = 'flowtype/vim-flow'
+repo = 'othree/es.next.syntax.vim' # {{{1
+on_ft = ['javascript', 'javascript.jsx', 'typescript']
+
+[[plugins]]
+repo = 'flowtype/vim-flow' # {{{1
 on_ft = ['javascript', 'javascript.jsx']
 build = 'npm install -g flow-bin'
 hook_add = '''
-  let g:flow#autoclose = 1
+let g:flow#autoclose = 1
 '''
 
-# [[plugins]]
-# repo = 'maksimr/vim-jsbeautify'
-# on_ft = ['javascript', 'javascript.jsx']
-# on_func = ['JsBeautify', 'HtmlBeautify', 'CSSBeautify']
-
 [[plugins]]
-repo = 'prettier/vim-prettier'
+repo = 'prettier/vim-prettier' # {{{1
 on_ft = ['javascript', 'javascript.jsx']
 hook_add = '''
-  let g:prettier#autoformat = 1
-  let g:prettier#quickfix_enabled = 1
-  let g:prettier#exec_cmd_async = 1
-  let g:prettier#config#print_width = 100
-  let g:prettier#config#tab_width = 2
-  let g:prettier#config#use_tabs = 'false'
-  let g:prettier#config#semi = 'true'
-  let g:prettier#config#single_quote = 'true'
-  let g:prettier#config#bracket_spacing = 'false'
-  let g:prettier#config#jsx_bracket_same_line = 'true'
-  let g:prettier#config#trailing_comma = 'all'
-  let g:prettier#config#parser = 'flow'
+let g:prettier#autoformat = 1
+let g:prettier#quickfix_enabled = 1
+let g:prettier#exec_cmd_async = 1
+let g:prettier#config#print_width = 100
+let g:prettier#config#tab_width = 2
+let g:prettier#config#use_tabs = 'false'
+let g:prettier#config#semi = 'true'
+let g:prettier#config#single_quote = 'true'
+let g:prettier#config#bracket_spacing = 'false'
+let g:prettier#config#jsx_bracket_same_line = 'true'
+let g:prettier#config#trailing_comma = 'all'
+let g:prettier#config#parser = 'flow'
 '''
 
 
 # ==================== Filetype (typescript) ===== {{{1
 [[plugins]]
-repo = 'leafgarland/typescript-vim'
+repo = 'leafgarland/typescript-vim' # {{{1
 on_ft = ['typescript']
-
-[[plugins]]
-repo = 'Quramy/tsuquyomi'
-on_ft = ['typescript']
-hook_add = '''
-  au MyAutoCmd FileType typescript nnoremap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
-'''
 
 # ==================== Filetype (coffee-script) == {{{1
 [[plugins]]
-repo = 'kchmck/vim-coffee-script'
+repo = 'kchmck/vim-coffee-script' # {{{1
 on_ft = 'coffee'
 
 # ==================== Filetype (fish-shell) ===== {{{1
 [[plugins]]
-repo = 'dag/vim-fish'
+repo = 'dag/vim-fish' # {{{1
 on_ft = 'fish'
 
 # ==================== Filetype (markdown) ======= {{{1
@@ -1090,79 +1061,63 @@ on_ft = 'fish'
 
 # ==================== Filetype (Dockerfile) ===== {{{1
 [[plugins]]
-repo = 'ekalinin/Dockerfile.vim'
+repo = 'ekalinin/Dockerfile.vim' # {{{1
 on_ft = 'Dockerfile'
 
 # ==================== Filetype (Rust) =========== {{{1
 [[plugins]]
-repo = 'rust-lang/rust.vim'
+repo = 'rust-lang/rust.vim' # {{{1
 on_ft = 'rust'
 if = "executable('cargo')"
 hook_add = '''
-  let g:rust_bang_comment_leader = 1
-  let g:rust_conceal = 1
-  let g:rust_conceal_mod_path = 1
-  let g:rust_conceal_pub = 1
-  let g:rust_fold = 1
-  let g:rust_recommended_style = 1
-  let g:rustfmt_autosave = 1
-  let g:rustfmt_fail_silently = 0
+let g:rust_bang_comment_leader = 1
+let g:rust_conceal = 0
+let g:rust_conceal_mod_path = 0
+let g:rust_conceal_pub = 0
+let g:rust_fold = 1
+let g:rust_recommended_style = 1
+let g:rustfmt_autosave = 1
+let g:rustfmt_fail_silently = 0
+
 '''
 
 [[plugins]]
-repo = 'racer-rust/vim-racer'
-on_ft = 'rust'
-if = "executable('cargo')"
-hook_add = '''
-  let g:racer_experimental_completer = 1
-  setl completeopt=menu,preview
-  au MyAutoCmd FileType rust nmap <buffer> gd <Plug>(rust-def)
-  au MyAutoCmd FileType rust nmap <buffer> gs <Plug>(rust-def-split)
-  au MyAutoCmd FileType rust nmap <buffer> gx <Plug>(rust-def-vertical)
-  au MyAutoCmd FileType rust nmap <buffer> K <Plug>(rust-doc)
-'''
-
-[[plugins]]
-repo = 'rhysd/rust-doc.vim'
+repo = 'rhysd/rust-doc.vim' # {{{1
 on_ft = 'rust'
 
 
 # ==================== Filetype (Haskell) ======== {{{1
 [[plugins]]
-repo = 'eagletmt/ghcmod-vim'
+repo = 'eagletmt/ghcmod-vim' # {{{1
 on_ft = 'haskell'
 if = "executable('stack')"
 build = 'stack install ghc-mod'
 hook_add = '''
-  au MyAutoCmd BufNew,BufRead *.hs call s:my_haskell_settings()
+au MyAutoCmd BufNew,BufRead *.hs call s:my_haskell_settings()
 
-  function! s:my_haskell_settings() abort
-    setl completeopt=menu,preview
-    nnoremap <buffer> K :<C-u>GhcModInfoPreview<CR>
-  endfunction
+function! s:my_haskell_settings() abort
+  setl completeopt=menu,preview
+  nnoremap <buffer> K :<C-u>GhcModInfoPreview<CR>
+endfunction
 '''
 
 [[plugins]]
-repo = 'eagletmt/neco-ghc'
+repo = 'eagletmt/neco-ghc' # {{{1
 on_ft = 'haskell'
 hook_add = '''
-  au MyAutoCmd FileType haskell setl omnifunc=necoghc#omnifunc
+au MyAutoCmd FileType haskell setl omnifunc=necoghc#omnifunc
 '''
 
 [[plugins]]
-repo = 'itchyny/vim-haskell-indent'
+repo = 'itchyny/vim-haskell-indent' # {{{1
 on_ft = 'haskell'
 
 [[plugins]]
-repo = 'itchyny/vim-haskell-sort-import'
+repo = 'itchyny/vim-haskell-sort-import' # {{{1
 on_ft = 'haskell'
 hook_add = '''
- au MyAutoCmd BufWritePre *.hs HaskellSortImport
+au MyAutoCmd BufWritePre *.hs HaskellSortImport
 '''
-
-# [[plugins]]
-# repo = 'dan-t/vim-hsimport'
-# on_ft = 'haskell'
 
 
 # ==================== Filetype (SQL) ============ {{{1
@@ -1174,117 +1129,113 @@ hook_add = '''
 # '''
 
 [[plugins]]
-repo = 'b4b4r07/vim-sqlfmt'
+repo = 'b4b4r07/vim-sqlfmt' # {{{1
 on_ft = 'sql'
 build = 'go get github.com/jackc/sqlfmt'
 hook_add = '''
-  let g:sqlfmt_command = "sqlformat"
-  let g:sqlfmt_options = "-r -k upper"
+let g:sqlfmt_command = "sqlformat"
+let g:sqlfmt_options = "-r -k upper"
 '''
 
 # ==================== Filetype (apiblueprint) === {{{1
 [[plugins]]
-repo = 'kylef/apiblueprint.vim'
+repo = 'kylef/apiblueprint.vim' # {{{1
 on_ft = 'apiblueprint'
 
 
 # ==================== After ftplugin ============ {{{1
 [ftplugin]
 _ = '''
-  set formatoptions-=ro
+set formatoptions-=ro
 '''
 
 dosbatch = '''
-  setl fenc=cp932 ff=dos
+setl fenc=cp932 ff=dos
 '''
 
 html = '''
-  let g:html_indent_inctags = "html,body,head,tbody"
-  let g:html_syntax_folding = 1
-  setl noexpandtab
-  setl ts=4 sw=4 sts=0
-  setl foldmethod=syntax
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_syntax_folding = 1
+setl noexpandtab
+setl ts=4 sw=4 sts=0
+setl foldmethod=syntax
 '''
 
 csv = '''
-  setl nowrap
+setl nowrap
 '''
 
 log = '''
-  setl nowrap
+setl nowrap
 '''
 
 mail = '''
-  setl ff=dos
-  setl fenc=cp932
+setl ff=dos
+setl fenc=cp932
 
-  colorscheme github
+colorscheme github
 '''
 
 markdown = '''
-  setl formatoptions+=t
-  setl conceallevel=0
-  setl foldmethod=syntax
+setl formatoptions+=t
+setl conceallevel=0
+setl foldmethod=syntax
 '''
 
 ps1 = '''
-  setl ts=2 sw=2 sts=0
-  setl foldmethod=syntax
+setl ts=2 sw=2 sts=0
+setl foldmethod=syntax
 '''
 
 python = '''
-  setl cinwords=if,elif,else,for,while,try,except,finally,def,class
-  setl expandtab
-  setl ts=8 sw=4 sts=4
-  setl foldmethod=indent foldlevel=99
+setl cinwords=if,elif,else,for,while,try,except,finally,def,class
+setl expandtab
+setl ts=8 sw=4 sts=4
+setl foldmethod=indent foldlevel=99
 '''
 
 scala = '''
-  " http://vim-users.jp/2013/02/vim-advent-calendar-2012-ujihisa-4/
-  function! s:ujihisa_start_sbt()"{{{
-    execute 'VimShellInteractive sbt'
-    stopinsert
-    let t:sbt_bufname = bufname('%')
-    if !has_key(t:, 'sbt_cmds')
-      let t:sbt_cmds = [input('t:sbt_cmds[0] = ')]
-    endif
-    wincmd p
-  endfunction
+" http://vim-users.jp/2013/02/vim-advent-calendar-2012-ujihisa-4/
+function! s:ujihisa_start_sbt() "{{{2
+  execute 'VimShellInteractive sbt'
+  stopinsert
+  let t:sbt_bufname = bufname('%')
+  if !has_key(t:, 'sbt_cmds')
+    let t:sbt_cmds = [input('t:sbt_cmds[0] = ')]
+  endif
+  wincmd p
+endfunction
 
-  command! -nargs=0 StartSBT call <SID>ujihisa_start_sbt()
-  "}}}
+command! -nargs=0 StartSBT call <SID>ujihisa_start_sbt()
 
-  function! s:sbt_run()"{{{
-    let cmds = get(t:, 'sbt_cmds', 'run')
+function! s:sbt_run() "{{{2
+  let cmds = get(t:, 'sbt_cmds', 'run')
 
-    let sbt_bufname = get(t:, 'sbt_bufname')
-    if sbt_bufname !=# ''
-      call vimshell#interactive#set_send_buffer(sbt_bufname)
-      call vimshell#interactive#send(cmds)
-    else
-      echoerr 'try StartSBT'
-    endif
-  endfunction
-  "}}}
+  let sbt_bufname = get(t:, 'sbt_bufname')
+  if sbt_bufname !=# ''
+    call vimshell#interactive#set_send_buffer(sbt_bufname)
+    call vimshell#interactive#send(cmds)
+  else
+    echoerr 'try StartSBT'
+  endif
+endfunction
 
-  function! s:vimrc_scala()"{{{
-    nnoremap <buffer> [Space]m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
-  endfunction
-  "}}}
+function! s:vimrc_scala() "{{{2
+  nnoremap <buffer> [Space]m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
+endfunction
 
-  augroup vimrc_scala"{{{
-    autocmd!
-    au FileType scala call s:vimrc_scala()
-    au FileType scala nnoremap <buffer> [Space]st :<C-u>StartSBT<Cr>
-  augroup END
-  "}}}
+augroup vimrc_scala "{{{2
+  autocmd!
+  au FileType scala call s:vimrc_scala()
+  au FileType scala nnoremap <buffer> [Space]st :<C-u>StartSBT<Cr>
+augroup END
 '''
 
 xml = '''
-  setl noexpandtab
-  setl ts=4 sw=4 sts=0
+setl noexpandtab
+setl ts=4 sw=4 sts=0
 
-  let g:xml_syntax_folding = 1
-  setl foldmethod=syntax
+let g:xml_syntax_folding = 1
+setl foldmethod=syntax
 '''
 
