@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/11/02 00:22:31.
+# Last Change : 2017/11/02 00:55:55.
 # =============================================================================
 
 [[plugins]]
@@ -10,14 +10,6 @@ repo = 'Shougo/dein.vim' # {{{1
 # ==================== Visual ==================== {{{1
 [[plugins]]
 repo = 'tomasr/molokai' # {{{1
-lazy = 1
-
-[[plugins]]
-repo = 'altercation/vim-colors-solarized' # {{{1
-lazy = 1
-
-[[plugins]]
-repo = 'lifepillar/vim-solarized8' # {{{1
 lazy = 1
 
 [[plugins]]
@@ -546,6 +538,52 @@ let g:tagbar_type_markdown = {
       \   ]
       \ }
 '''
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim' # {{{1
+on_cmd = 'CtrlP'
+hook_add = '''
+let g:ctrlp_map = '<nop>'
+let g:ctrlp_use_caching = 1
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_lazy_update = 1
+let g:ctrlp_extensions = ['line', 'changes', 'mixed', 'bookmarkdir', 'memolist']
+nnoremap scp :<C-u>CtrlP<CR>
+nnoremap scb :<C-u>CtrlPBuffer<CR>
+nnoremap scd :<C-u>CtrlPCurWD<CR>
+" nnoremap scm :<C-u>CtrlPMRU<CR>
+nnoremap scm :<C-u>CtrlPMark<CR>
+" nnoremap scl :<C-u>CtrlPLine<CR>
+nnoremap scg :<C-u>CtrlPChange<CR>
+nnoremap scc :<C-u>CtrlPMixed<CR>
+nnoremap scf :<C-u>CtrlPFiletype<CR>
+nnoremap scl :<C-u>CtrlPLauncher<CR>
+nnoremap sct :<C-u>CtrlPSonictemplate<CR>
+
+nnoremap <Leader>ml :<C-u>CtrlPMemolist<CR>
+
+if executable('rg')
+  let g:ctrlp_user_command ='rg -F --files %s'
+endif
+'''
+
+[[plugins]]
+repo = 'kaneshin/ctrlp-filetype'
+on_source = 'ctrlp.vim'
+[[plugins]]
+repo = 'kaneshin/ctrlp-sonictemplate'
+on_source = 'ctrlp.vim'
+[[plugins]]
+repo = 'kaneshin/ctrlp-memolist'
+on_source = 'ctrlp.vim'
+[[plugins]]
+repo = 'mattn/ctrlp-launcher'
+on_source = 'ctrlp.vim'
+[[plugins]]
+repo = 'mattn/ctrlp-mark'
+on_source = 'ctrlp.vim'
+
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
