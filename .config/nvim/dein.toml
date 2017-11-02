@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/11/02 00:55:55.
+# Last Change : 2017/11/02 15:56:49.
 # =============================================================================
 
 [[plugins]]
@@ -137,6 +137,7 @@ repo = 'vim-scripts/matchit.zip' # {{{1
 # ==================== Complement ================ {{{1
 [[plugins]]
 repo = 'Shougo/deoplete.nvim' # {{{1
+if = "has('nvim')"
 on_i = 1
 hook_add = '''
 let g:deoplete#enable_at_startup = 1
@@ -175,29 +176,82 @@ on_i = 1
 [[plugins]]
 repo = 'Shougo/context_filetype.vim' # {{{1
 
-# [[plugins]]
-# repo = 'zchee/deoplete-go' # {{{1
-# depends = 'deoplete.nvim'
-# if = "has('nvim')"
-# on_ft = 'go'
-# build = 'make'
-# hook_add = '''
-#   let g:deoplete#sources#go#use_cache = 1
-#   let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
-#   let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-#   let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-# '''
-#
-# # [[plugins]]
-# # repo = 'carlitux/deoplete-ternjs'
-# # depends = 'deoplete.nvim'
-# # if = "has('nvim')"
-# # on_ft = ['javascript', 'typescript']
-# # build = 'npm install -g tern'
-#
-# # [[plugins]]
-# # repo = 'maralla/completor.vim'
-# # if = "has('python')"
+[[plugins]]
+repo = 'ludovicchabant/vim-gutentags' # {{{1
+if = "executable('ctags')"
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp' # {{{1
+lazy = 1
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim' # {{{1
+lazy = 1
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim' # {{{1
+depends = ['vim-lsp', 'async.vim']
+if = "!has('nvim')"
+on_i = 1
+hook_add = '''
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_remove_duplicates = 1
+let g:asyncomplete_force_refresh_on_context_changed = 1
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-buffer.vim' # {{{1
+on_source = 'asyncomplete.vim'
+hook_add = '''
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+      \ 'name': 'buffer',
+      \ 'whitelist': ['*'],
+      \ 'blacklist': ['go'],
+      \ 'priority': 1,
+      \ 'completor': function('asyncomplete#sources#buffer#completor'),
+      \ }))
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-emoji.vim' # {{{1
+on_source = 'asyncomplete.vim'
+hook_add = '''
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#emoji#get_source_options({
+      \ 'name': 'emoji',
+      \ 'whitelist': ['*'],
+      \ 'priority': 1,
+      \ 'completor': function('asyncomplete#sources#emoji#completor'),
+      \ }))
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-tags.vim' # {{{1
+on_source = 'asyncomplete.vim'
+if = "executable('ctags')"
+hook_add = '''
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+      \ 'name': 'tags',
+      \ 'whitelist': ['*'],
+      \ 'priority': 2,
+      \ 'completor': function('asyncomplete#sources#tags#completor'),
+      \ 'config': {
+      \    'max_file_size': 20000000,
+      \ }
+      \ }))
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-neosnippet.vim' # {{{1
+on_source = 'asyncomplete.vim'
+hook_add = '''
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+      \ 'name': 'neosnippet',
+      \ 'whitelist': ['*'],
+      \ 'priority': 3,
+      \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+      \ }))
+'''
+
 
 # ==================== Utility =================== {{{1
 [[plugins]]
