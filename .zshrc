@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/10/15 11:54:43.
+# Last Change : 2017/11/05 14:07:56.
 # =============================================================================
 
 #
@@ -255,6 +255,7 @@ alias gri='git rebase -i'
 # log
 alias gl='git log'
 alias glo='git log --oneline'
+alias glp='git log -p'
 alias gk='git log --graph --pretty'
 
 
