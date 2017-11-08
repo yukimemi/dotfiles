@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/11/02 15:56:49.
+# Last Change : 2017/11/09 00:01:52.
 # =============================================================================
 
 [[plugins]]
@@ -530,9 +530,9 @@ let g:loaded_netrwPlugin = 1
 nnoremap [Space]v :<C-u>Dirvish<CR>
 '''
 
-[[plugins]]
-repo = 'vitalk/vim-simple-todo'
-on_ft = 'markdown'
+# [[plugins]]
+# repo = 'vitalk/vim-simple-todo'
+# on_ft = 'markdown'
 
 [[plugins]]
 repo = 'kassio/neoterm' # {{{1
@@ -637,6 +637,17 @@ on_source = 'ctrlp.vim'
 [[plugins]]
 repo = 'mattn/ctrlp-mark'
 on_source = 'ctrlp.vim'
+
+
+[[plugins]]
+repo = 'haya14busa/vim-open-googletranslate'
+if = "!has('nvim')"
+on_cmd = 'OpenGoogleTranslate'
+hook_add = '''
+if executable("electron-open")
+  let g:opengoogletranslate#openbrowsercmd = 'electron-open --without-focus'
+endif
+'''
 
 
 # ==================== Denite ==================== {{{1
@@ -957,7 +968,7 @@ repo = 'lambdalisue/gina.vim' # {{{1
 on_cmd = 'Gina'
 hook_add = '''
 nnoremap [Space]gs :<C-u>Gina status<CR>
-nnoremap [Space]gb :<C-u>Gina branch<CR>
+nnoremap [Space]gb :<C-u>Gina blame<CR>
 nnoremap [Space]gg :<C-u>Gina grep<CR>
 nnoremap [Space]gd :<C-u>Gina diff<CR>
 nnoremap [Space]gl :<C-u>Gina ls-files<CR>
@@ -1330,4 +1341,3 @@ setl ts=4 sw=4 sts=0
 let g:xml_syntax_folding = 1
 setl foldmethod=syntax
 '''
-
