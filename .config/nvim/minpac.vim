@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/11/11 08:04:46.
+" Last Change : 2017/11/11 08:08:51.
 " =============================================================================
 
 " Plugin:
@@ -1180,7 +1180,7 @@ au MyAutoCmd User asyncomplete_setup packadd asyncomplete-tags.vim | call asynco
 au MyAutoCmd User asyncomplete_setup packadd asyncomplete-omni.vim | call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
       \ 'name': 'omni',
       \ 'whitelist': ['*'],
-      \ 'blacklist': ['go'],
+      \ 'blacklist': ['go', 'rust'],
       \ 'priority': 3,
       \ 'completor': function('asyncomplete#sources#omni#completor')
       \ }))
