@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/11/02 08:54:58.
+" Last Change : 2017/11/10 22:16:25.
 " =============================================================================
 
 " Init: {{{1
@@ -157,7 +157,7 @@ endfunction
 
 
 " Plugin: {{{1
-let s:use_dein = 1
+let s:use_dein = 0
 let s:use_vimplug = 0
 let s:use_minpac = 1
 

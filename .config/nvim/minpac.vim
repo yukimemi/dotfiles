@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/11/01 16:30:32.
+" Last Change : 2017/11/11 08:04:46.
 " =============================================================================
 
 " Plugin:
@@ -19,6 +19,7 @@ endif
 " start plugins. {{{2
 let s:start_plugs = [
       \ ['Yggdroot/indentLine', {}],
+      \ ['itchyny/lightline.vim', {}],
       \ ['itchyny/vim-cursorword', {}],
       \ ['itchyny/vim-parenmatch', {}],
       \ ['justinmk/vim-dirvish', {}],
@@ -26,9 +27,8 @@ let s:start_plugs = [
       \ ['kana/vim-textobj-user', {}],
       \ ['lambdalisue/vim-findent', {}],
       \ ['rhysd/committia.vim', {}],
-      \ ['tpope/vim-fugitive', {}],
-      \ ['itchyny/lightline.vim', {}],
       \ ['ryanoasis/vim-devicons', {}],
+      \ ['tpope/vim-fugitive', {}],
       \ ]
 
       " \ ['vim-airline/vim-airline', {}],
@@ -67,16 +67,14 @@ let s:opt_plugs = [
       \ ['stephpy/vim-yaml', {'type': 'opt'}],
       \ ['thinca/vim-qfreplace', {'type': 'opt'}],
       \ ['kristijanhusak/vim-hybrid-material', {'type': 'opt'}],
-      \ ['majutsushi/tagbar', {'type': 'opt'}],
-      \ ['ctrlpvim/ctrlp.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-tscompletejob.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-flow.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-gocode.vim', {'type': 'opt'}],
       \ ['keremc/asyncomplete-racer.vim', {'type': 'opt'}],
       \ ]
 
+      " \ ['prabirshrestha/asyncomplete-gocode.vim', {'type': 'opt'}],
       " \ ['fatih/vim-go', {'type': 'opt'}],
       " \ ['racer-rust/vim-racer', {'type': 'opt'}, executable('cargo')],
       " \ ['zchee/deoplete-go', {'type': 'opt', 'do': 'silent! !make'}],
@@ -85,7 +83,6 @@ let s:opt_plugs = [
 " lazy load plugins. {{{2
 let s:lazy_plugs = [
       \ ['Konfekt/FastFold', {'type': 'opt'}],
-      \ ['qpkorr/vim-renamer', {'type': 'opt'}],
       \ ['LeafCage/yankround.vim', {'type': 'opt'}],
       \ ['Shougo/context_filetype.vim', {'type': 'opt'}],
       \ ['Shougo/denite.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins'}, has('python3')],
@@ -97,6 +94,7 @@ let s:lazy_plugs = [
       \ ['Shougo/vimproc.vim', {'type': 'opt', 'do': 'silent! !make'}],
       \ ['airblade/vim-rooter', {'type': 'opt'}],
       \ ['cohama/agit.vim', {'type': 'opt'}],
+      \ ['ctrlpvim/ctrlp.vim', {'type': 'opt'}],
       \ ['deris/vim-loadafterft', {'type': 'opt'}],
       \ ['gilligan/textobj-lastpaste', {'type': 'opt'}],
       \ ['glidenote/memolist.vim', {'type': 'opt'}],
@@ -104,20 +102,37 @@ let s:lazy_plugs = [
       \ ['haya14busa/vim-asterisk', {'type': 'opt'}],
       \ ['haya14busa/vim-operator-flashy', {'type': 'opt'}],
       \ ['itchyny/vim-highlighturl', {'type': 'opt'}],
+      \ ['iyuuya/denite-ale', {'type': 'opt'}],
       \ ['junegunn/vim-easy-align', {'type': 'opt'}],
       \ ['kana/vim-operator-replace', {'type': 'opt'}],
       \ ['kana/vim-textobj-entire', {'type': 'opt'}],
       \ ['kana/vim-textobj-fold', {'type': 'opt'}],
       \ ['kana/vim-textobj-function', {'type': 'opt'}],
       \ ['kana/vim-textobj-indent', {'type': 'opt'}],
+      \ ['kaneshin/ctrlp-filetype', {'type': 'opt'}],
+      \ ['kaneshin/ctrlp-memolist', {'type': 'opt'}],
+      \ ['kaneshin/ctrlp-sonictemplate', {'type': 'opt'}],
       \ ['kassio/neoterm', {'type': 'opt'}, has('nvim')],
       \ ['lambdalisue/gina.vim', {'type': 'opt'}],
+      \ ['ludovicchabant/vim-gutentags', {'type': 'opt'}, executable('ctags')],
+      \ ['majutsushi/tagbar', {'type': 'opt'}],
+      \ ['mattn/ctrlp-launcher', {'type': 'opt'}],
+      \ ['mattn/ctrlp-mark', {'type': 'opt'}],
       \ ['mattn/sonictemplate-vim', {'type': 'opt'}],
       \ ['mattn/webapi-vim', {'type': 'opt'}],
       \ ['osyo-manga/vim-anzu', {'type': 'opt'}],
       \ ['osyo-manga/vim-operator-blockwise', {'type': 'opt'}],
       \ ['osyo-manga/vim-operator-search', {'type': 'opt'}],
       \ ['osyo-manga/vim-textobj-multiblock', {'type': 'opt'}],
+      \ ['prabirshrestha/async.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-buffer.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-emoji.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-lsp.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-tags.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/vim-lsp', {'type': 'opt'}],
+      \ ['qpkorr/vim-renamer', {'type': 'opt'}],
       \ ['rhysd/vim-operator-surround', {'type': 'opt'}],
       \ ['sbdchd/neoformat', {'type': 'opt'}],
       \ ['simnalamburt/vim-mundo', {'type': 'opt'}],
@@ -130,22 +145,7 @@ let s:lazy_plugs = [
       \ ['vim-scripts/autodate.vim', {'type': 'opt'}],
       \ ['vim-scripts/matchit.zip', {'type': 'opt'}],
       \ ['w0rp/ale', {'type': 'opt'}],
-      \ ['iyuuya/denite-ale', {'type': 'opt'}],
-      \ ['ludovicchabant/vim-gutentags', {'type': 'opt'}, executable('ctags')],
-      \ ['prabirshrestha/vim-lsp', {'type': 'opt'}],
-      \ ['prabirshrestha/async.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-lsp.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-buffer.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-emoji.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-tags.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt'}],
       \ ['yami-beta/asyncomplete-omni.vim', {'type': 'opt'}],
-      \ ['kaneshin/ctrlp-filetype', {'type': 'opt'}],
-      \ ['kaneshin/ctrlp-sonictemplate', {'type': 'opt'}],
-      \ ['kaneshin/ctrlp-memolist', {'type': 'opt'}],
-      \ ['mattn/ctrlp-launcher', {'type': 'opt'}],
-      \ ['mattn/ctrlp-mark', {'type': 'opt'}],
       \ ]
 
       " \ ['Shougo/neocomplete.vim', {'type': 'opt'}, !has('nvim')],
@@ -184,7 +184,7 @@ function! PackAddHandler(timer)
   let name = split(plug[0], '/')[1]
   let cond = len(plug) > 2 ? plug[2] : 1
   if cond
-    " exe "echom 'packadd " . name . "'"
+    exe printf("echom 'packadd %s (%d)'", name, s:idx)
     exe 'packadd ' . name
   endif
   let s:idx += 1
@@ -1009,10 +1009,6 @@ let g:prettier#config#parser = 'flow'
 " typescript-vim. {{{2
 au MyAutoCmd FileType typescript packadd typescript-vim
 
-" tsuquyomi. {{{2
-" au MyAutoCmd FileType typescript packadd tsuquyomi
-" au MyAutoCmd FileType typescript nnoremap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
-
 " vim-coffee-script. {{{2
 au MyAutoCmd FileType coffee packadd vim-coffee-script
 
@@ -1083,7 +1079,7 @@ au MyAutoCmd FileType apiblueprint packadd apiblueprint.vim
 nmap <Leader>r <Plug>RenamerStart
 
 " tagbar. {{{2
-nnoremap <F8> :<C-u>packadd tagbar \| TagbarToggle<CR>
+nnoremap <F8> :<C-u>TagbarToggle<CR>
 let g:tagbar_type_rust = {
       \ 'ctagstype' : 'rust',
       \   'kinds' : [
@@ -1124,19 +1120,19 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_lazy_update = 1
 let g:ctrlp_extensions = ['line', 'changes', 'mixed', 'bookmarkdir', 'memolist']
-nnoremap scp :<C-u>packadd ctrlp.vim \| CtrlP<CR>
-nnoremap scb :<C-u>packadd ctrlp.vim \| CtrlPBuffer<CR>
-nnoremap scd :<C-u>packadd ctrlp.vim \| CtrlPCurWD<CR>
-" nnoremap scm :<C-u>packadd ctrlp.vim \| CtrlPMRU<CR>
-nnoremap scm :<C-u>packadd ctrlp.vim \| CtrlPMark<CR>
-" nnoremap scl :<C-u>packadd ctrlp.vim \| CtrlPLine<CR>
-nnoremap scg :<C-u>packadd ctrlp.vim \| CtrlPChange<CR>
-nnoremap scc :<C-u>packadd ctrlp.vim \| CtrlPMixed<CR>
-nnoremap scf :<C-u>packadd ctrlp.vim \| CtrlPFiletype<CR>
-nnoremap scl :<C-u>packadd ctrlp.vim \| CtrlPLauncher<CR>
-nnoremap sct :<C-u>packadd ctrlp.vim \| CtrlPSonictemplate<CR>
+nnoremap scp :<C-u>CtrlP<CR>
+nnoremap scb :<C-u>CtrlPBuffer<CR>
+nnoremap scd :<C-u>CtrlPCurWD<CR>
+" nnoremap scm :<C-u>CtrlPMRU<CR>
+nnoremap scm :<C-u>CtrlPMark<CR>
+" nnoremap scl :<C-u>CtrlPLine<CR>
+nnoremap scg :<C-u>CtrlPChange<CR>
+nnoremap scc :<C-u>CtrlPMixed<CR>
+nnoremap scf :<C-u>CtrlPFiletype<CR>
+nnoremap scl :<C-u>CtrlPLauncher<CR>
+nnoremap sct :<C-u>CtrlPSonictemplate<CR>
 
-nnoremap <Leader>ml :<C-u>packadd ctrlp.vim \| CtrlPMemolist<CR>
+nnoremap <Leader>ml :<C-u>CtrlPMemolist<CR>
 
 if executable('rg')
   let g:ctrlp_user_command ='rg -F --files %s'
@@ -1246,16 +1242,6 @@ if executable('flow-language-server')
         \ 'priority': 4,
         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
         \ 'whitelist': ['javascript'],
-        \ })
-endif
-
-" python. {{{4
-if executable('pyls')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'priority': 4,
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
         \ })
 endif
 
