@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/11/05 14:07:56.
+# Last Change : 2017/11/12 01:09:32.
 # =============================================================================
 
 #
@@ -228,6 +228,9 @@ alias mup='nvim -c "PackUpdate"'
 alias vmup='vim -c "PackUpdate"'
 
 # Git. {{{3
+if which hub > /dev/null 2>&1; then
+  eval "$(hub alias -s)"
+fi
 # checkout
 alias gco='git checkout'
 alias gcot='git checkout --theirs'
