@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/11/11 08:08:51.
+" Last Change : 2017/11/15 21:38:27.
 " =============================================================================
 
 " Plugin:
@@ -633,7 +633,7 @@ let g:memolist_memo_suffix = "md"
 let g:memolist_prompt_tags = 1
 
 nnoremap <Leader>mn :<C-u>MemoNew<CR>
-" nnoremap <Leader>ml :<C-u>MemoList<CR>
+nnoremap <Leader>ml :<C-u>MemoList<CR>
 nnoremap <Leader>mg :<C-u>MemoGrep<CR>
 
 
@@ -744,20 +744,20 @@ let g:echodoc_enable_at_startup = 1
 
 " denite.nvim {{{2
 " Use plefix s
-nnoremap suc :<C-u>Denite colorscheme -auto-preview<CR>
-nnoremap sub :<C-u>Denite buffer<CR>
-nnoremap suf :<C-u>Denite file<CR>
-nnoremap suF :<C-u>Denite file_rec<CR>
-" nnoremap suu :<C-u>Denite buffer file_old<CR>
-nnoremap suu :<C-u>Denite buffer file_mru<CR>
-nnoremap suo :<C-u>Denite outline -no-quit -mode=normal<CR>
-nnoremap suh :<C-u>Denite help<CR>
-nnoremap sur :<C-u>Denite register<CR>
-nnoremap sug :<C-u>Denite -no-empty grep<CR>
-nnoremap su/ :<C-u>Denite line -no-quit<CR>
-nnoremap suR :<C-u>Denite -resume<CR>
+nnoremap sdc :<C-u>Denite colorscheme -auto-preview<CR>
+nnoremap sdb :<C-u>Denite buffer<CR>
+nnoremap sdf :<C-u>Denite file<CR>
+nnoremap sdF :<C-u>Denite file_rec<CR>
+" nnoremap sdu :<C-u>Denite buffer file_old<CR>
+nnoremap sdd :<C-u>Denite buffer file_mru file_rec<CR>
+nnoremap sdo :<C-u>Denite outline -no-quit -mode=normal<CR>
+nnoremap sdh :<C-u>Denite help<CR>
+nnoremap sdr :<C-u>Denite register<CR>
+nnoremap sdg :<C-u>Denite -no-empty grep<CR>
+nnoremap sd/ :<C-u>Denite line -no-quit<CR>
+nnoremap sdR :<C-u>Denite -resume<CR>
 
-noremap sul :<C-u>Denite command_history<CR>
+noremap sdl :<C-u>Denite command_history<CR>
 
 " Incremental search in cmdline history.
 inoremap <C-l> <ESC>:<C-u>Denite command<CR>
@@ -931,6 +931,7 @@ function! s:vim_go_cfg() abort
 endfunction
 
 " vim-ps1. {{{2
+au MyAutoCmd BufNew,BufRead *.ps1 packadd vim-ps1
 function! s:addHeaderPs1(flg)
   setl fenc=cp932
   setl ff=dos
@@ -1132,7 +1133,7 @@ nnoremap scf :<C-u>CtrlPFiletype<CR>
 nnoremap scl :<C-u>CtrlPLauncher<CR>
 nnoremap sct :<C-u>CtrlPSonictemplate<CR>
 
-nnoremap <Leader>ml :<C-u>CtrlPMemolist<CR>
+" nnoremap <Leader>ml :<C-u>CtrlPMemolist<CR>
 
 if executable('rg')
   let g:ctrlp_user_command ='rg -F --files %s'
