@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/11/12 01:09:32.
+# Last Change : 2017/11/15 22:43:47.
 # =============================================================================
 
 #
@@ -268,6 +268,7 @@ alias ghci="stack ghci"
 
 # Filter aliases. {{{3
 # alias ghl='ghq list -p | __filter_execute cd'
+alias gsr='gsr --ahead --behind'
 alias ghl='gsr --all | __filter_execute cd'
 alias gsrl='gsr | __filter_execute cd'
 alias gho='ghq list -p | __filter_execute gh-open'
