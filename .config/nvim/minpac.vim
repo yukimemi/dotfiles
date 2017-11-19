@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/11/15 21:38:27.
+" Last Change : 2017/11/19 15:07:10.
 " =============================================================================
 
 " Plugin:
@@ -22,10 +22,13 @@ let s:start_plugs = [
       \ ['itchyny/lightline.vim', {}],
       \ ['itchyny/vim-cursorword', {}],
       \ ['itchyny/vim-parenmatch', {}],
-      \ ['justinmk/vim-dirvish', {}],
       \ ['kana/vim-operator-user', {}],
       \ ['kana/vim-textobj-user', {}],
       \ ['lambdalisue/vim-findent', {}],
+      \ ['prabirshrestha/async.vim', {}],
+      \ ['prabirshrestha/asyncomplete-lsp.vim', {}],
+      \ ['prabirshrestha/asyncomplete.vim', {}],
+      \ ['prabirshrestha/vim-lsp', {}],
       \ ['rhysd/committia.vim', {}],
       \ ['ryanoasis/vim-devicons', {}],
       \ ['tpope/vim-fugitive', {}],
@@ -50,6 +53,8 @@ let s:opt_plugs = [
       \ ['flowtype/vim-flow', {'type': 'opt', 'do': 'silent! !npm i -g flow-bin'}],
       \ ['itchyny/vim-haskell-indent', {'type': 'opt'}],
       \ ['itchyny/vim-haskell-sort-import', {'type': 'opt'}],
+      \ ['neovimhaskell/haskell-vim', {'type': 'opt'}],
+      \ ['alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent'}, executable('stack')],
       \ ['joshdick/onedark.vim', {'type': 'opt'}],
       \ ['kchmck/vim-coffee-script', {'type': 'opt'}],
       \ ['kylef/apiblueprint.vim', {'type': 'opt'}],
@@ -83,6 +88,7 @@ let s:opt_plugs = [
 " lazy load plugins. {{{2
 let s:lazy_plugs = [
       \ ['Konfekt/FastFold', {'type': 'opt'}],
+      \ ['justinmk/vim-dirvish', {'type': 'opt'}],
       \ ['LeafCage/yankround.vim', {'type': 'opt'}],
       \ ['Shougo/context_filetype.vim', {'type': 'opt'}],
       \ ['Shougo/denite.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins'}, has('python3')],
@@ -124,14 +130,10 @@ let s:lazy_plugs = [
       \ ['osyo-manga/vim-operator-blockwise', {'type': 'opt'}],
       \ ['osyo-manga/vim-operator-search', {'type': 'opt'}],
       \ ['osyo-manga/vim-textobj-multiblock', {'type': 'opt'}],
-      \ ['prabirshrestha/async.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-buffer.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-emoji.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-lsp.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-tags.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/vim-lsp', {'type': 'opt'}],
       \ ['qpkorr/vim-renamer', {'type': 'opt'}],
       \ ['rhysd/vim-operator-surround', {'type': 'opt'}],
       \ ['sbdchd/neoformat', {'type': 'opt'}],
@@ -1068,6 +1070,22 @@ au MyAutoCmd FileType haskell packadd vim-haskell-indent
 au MyAutoCmd FileType haskell packadd vim-haskell-sort-import
 au MyAutoCmd BufWritePre *.hs HaskellSortImport
 
+" haskell-vim. {{{2
+au MyAutoCmd FileType haskell,cabal packadd haskell-vim
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+
+" vim-hindent. {{{2
+au MyAutoCmd FileType haskell packadd vim-hindent
+let g:hindent_on_save = 1
+let g:hindent_indent_size = 2
+let g:hindent_line_length = 100
+
 " vim-sqlfmt. {{{2
 au MyAutoCmd FileType sql packadd vim-sqlfmt
 let g:sqlfmt_command = "sqlformat"
@@ -1271,13 +1289,15 @@ function! s:asyncomplete_necosyntax_aft() abort
 endfunction
 
 " asyncomplete-racer.vim. {{{3
-au MyAutoCmd FileType rust call <SID>asyncomplete_racer_aft()
-function! s:asyncomplete_racer_aft() abort
-  packadd asyncomplete-racer.vim
-  call asyncomplete#register_source(asyncomplete#sources#racer#get_source_options({
-        \ 'priority': 4,
-        \ }))
-endfunction
+if !executable('rls')
+  au MyAutoCmd FileType rust call <SID>asyncomplete_racer_aft()
+  function! s:asyncomplete_racer_aft() abort
+    packadd asyncomplete-racer.vim
+    call asyncomplete#register_source(asyncomplete#sources#racer#get_source_options({
+          \ 'priority': 4,
+          \ }))
+  endfunction
+endif
 
 " " asyncomplete-flow.vim. {{{3
 " au MyAutoCmd FileType javascript,json call <SID>asyncomplete_flow_aft()
