@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/11/19 15:07:10.
+" Last Change : 2017/11/21 09:42:07.
 " =============================================================================
 
 " Plugin:
@@ -32,6 +32,7 @@ let s:start_plugs = [
       \ ['rhysd/committia.vim', {}],
       \ ['ryanoasis/vim-devicons', {}],
       \ ['tpope/vim-fugitive', {}],
+      \ ['thinca/vim-singleton', {}],
       \ ]
 
       " \ ['vim-airline/vim-airline', {}],
@@ -1325,6 +1326,9 @@ endif
 "         \ 'completor': function('asyncomplete#sources#gocode#completor'),
 "         \ }))
 " endfunction
+
+" vim-singleton. {{{2
+packl | call singleton#enable()
 
 
 " Define user commands for updating/cleaning the plugins. {{{1
