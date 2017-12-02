@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/11/21 09:42:07.
+" Last Change : 2017/12/02 18:16:48.
 " =============================================================================
 
 " Plugin:
@@ -32,7 +32,7 @@ let s:start_plugs = [
       \ ['rhysd/committia.vim', {}],
       \ ['ryanoasis/vim-devicons', {}],
       \ ['tpope/vim-fugitive', {}],
-      \ ['thinca/vim-singleton', {}],
+      \ ['thinca/vim-singleton', {}, has('nvim')],
       \ ]
 
       " \ ['vim-airline/vim-airline', {}],
@@ -187,7 +187,7 @@ function! PackAddHandler(timer)
   let name = split(plug[0], '/')[1]
   let cond = len(plug) > 2 ? plug[2] : 1
   if cond
-    exe printf("echom 'packadd %s (%d)'", name, s:idx)
+    " exe printf("echom 'packadd %s (%d)'", name, s:idx)
     exe 'packadd ' . name
   endif
   let s:idx += 1
@@ -1328,7 +1328,9 @@ endif
 " endfunction
 
 " vim-singleton. {{{2
-packl | call singleton#enable()
+if !has('nvim')
+  packl | call singleton#enable()
+endif
 
 
 " Define user commands for updating/cleaning the plugins. {{{1
