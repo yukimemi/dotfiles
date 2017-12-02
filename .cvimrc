@@ -79,7 +79,7 @@ let searchalias w = "wiki"
 
 " Site-specific Configuration
 site '*://twitter.com/*' {
-  unmap j k ?
+  unmap j k ? o / . gu
 }
 
 " Code blocks (see below for more info)
