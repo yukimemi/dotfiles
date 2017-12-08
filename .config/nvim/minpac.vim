@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/12/02 18:16:48.
+" Last Change : 2017/12/07 15:16:15.
 " =============================================================================
 
 " Plugin:
@@ -32,7 +32,7 @@ let s:start_plugs = [
       \ ['rhysd/committia.vim', {}],
       \ ['ryanoasis/vim-devicons', {}],
       \ ['tpope/vim-fugitive', {}],
-      \ ['thinca/vim-singleton', {}, has('nvim')],
+      \ ['thinca/vim-singleton', {}, !has('nvim')],
       \ ]
 
       " \ ['vim-airline/vim-airline', {}],
@@ -78,6 +78,7 @@ let s:opt_plugs = [
       \ ['prabirshrestha/asyncomplete-tscompletejob.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-flow.vim', {'type': 'opt'}],
       \ ['keremc/asyncomplete-racer.vim', {'type': 'opt'}],
+      \ ['dhruvasagar/vim-table-mode', {'type': 'opt'}],
       \ ]
 
       " \ ['prabirshrestha/asyncomplete-gocode.vim', {'type': 'opt'}],
@@ -465,6 +466,8 @@ endif
 
 " vim-rooter. {{{2
 let g:rooter_use_lcd = 1
+let g:rooter_silent_chdir = 1
+let g:rooter_manual_only = 1
 
 " vim-submode. {{{2
 let g:submode_leave_with_key = 1
@@ -1143,7 +1146,7 @@ let g:ctrlp_extensions = ['line', 'changes', 'mixed', 'bookmarkdir', 'memolist']
 nnoremap scp :<C-u>CtrlP<CR>
 nnoremap scb :<C-u>CtrlPBuffer<CR>
 nnoremap scd :<C-u>CtrlPCurWD<CR>
-" nnoremap scm :<C-u>CtrlPMRU<CR>
+nnoremap scu :<C-u>CtrlPMRU<CR>
 nnoremap scm :<C-u>CtrlPMark<CR>
 " nnoremap scl :<C-u>CtrlPLine<CR>
 nnoremap scg :<C-u>CtrlPChange<CR>
@@ -1331,6 +1334,9 @@ endif
 if !has('nvim')
   packl | call singleton#enable()
 endif
+
+" vim-table-mode. {{{2
+au MyAutoCmd FileType markdown packadd vim-table-mode
 
 
 " Define user commands for updating/cleaning the plugins. {{{1
