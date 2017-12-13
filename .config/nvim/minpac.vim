@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/12/07 15:16:15.
+" Last Change : 2017/12/11 14:37:14.
 " =============================================================================
 
 " Plugin:
@@ -79,6 +79,7 @@ let s:opt_plugs = [
       \ ['prabirshrestha/asyncomplete-flow.vim', {'type': 'opt'}],
       \ ['keremc/asyncomplete-racer.vim', {'type': 'opt'}],
       \ ['dhruvasagar/vim-table-mode', {'type': 'opt'}],
+      \ ['kannokanno/previm', {'type': 'opt'}],
       \ ]
 
       " \ ['prabirshrestha/asyncomplete-gocode.vim', {'type': 'opt'}],
@@ -103,7 +104,6 @@ let s:lazy_plugs = [
       \ ['airblade/vim-rooter', {'type': 'opt'}],
       \ ['cohama/agit.vim', {'type': 'opt'}],
       \ ['ctrlpvim/ctrlp.vim', {'type': 'opt'}],
-      \ ['deris/vim-loadafterft', {'type': 'opt'}],
       \ ['gilligan/textobj-lastpaste', {'type': 'opt'}],
       \ ['glidenote/memolist.vim', {'type': 'opt'}],
       \ ['haya14busa/incsearch.vim', {'type': 'opt'}],
@@ -663,54 +663,6 @@ nnoremap [Space]u :MundoToggle<CR>
 " neoformat. {{{2
 let g:neoformat_only_msg_on_error = 1
 " au MyAutoCmd BufWritePre * Neoformat
-
-" vim-loadafterft. {{{2
-let g:execcmd_after_ftplugin = {
-      \ '_': [
-      \   'setl fo-=ro',
-      \ ],
-      \ 'dosbatch': [
-      \   'setl fenc=cp932 ff=dos',
-      \ ],
-      \ 'csv': [
-      \   'setl nowrap',
-      \ ],
-      \ 'log': [
-      \   'setl nowrap',
-      \ ],
-      \ 'mail': [
-      \   'setl fenc=cp932 ff=dos',
-      \   'colorscheme github',
-      \ ],
-      \ 'markdown': [
-      \   'setl fo+=t cole=0 fdm=syntax',
-      \ ],
-      \ 'ps1': [
-      \   'setl ts=2 sw=2 sts=0 fdm=syntax',
-      \ ],
-      \ 'python': [
-      \   'setl cinw=if,elif,else,for,while,try,except,finally,def,class',
-      \   'setl expandtab ts=8 sw=4 sts=4 fdm=indent foldlevel=99',
-      \ ],
-      \ 'xml': [
-      \   'let g:xml_syntax_folding = 1',
-      \   'setl noexpandtab ts=4 sw=4 sts=0 fdm=syntax',
-      \ ],
-      \ 'html': [
-      \   'setl fenc=cp932 ff=dos',
-      \   'let g:html_indent_inctags = "html,body,head,tbody"',
-      \   'let g:html_syntax_folding = 1',
-      \   'setl noexpandtab',
-      \   'setl ts=4 sw=4 sts=0',
-      \   'setl foldmethod=syntax',
-      \ ],
-      \ }
-
-let g:execcmd_after_indent = {
-      \ '_': [
-      \     'setl fo-=ro',
-      \ ],
-      \ }
 
 " ale. {{{2
 let g:ale_linters = {
@@ -1337,6 +1289,9 @@ endif
 
 " vim-table-mode. {{{2
 au MyAutoCmd FileType markdown packadd vim-table-mode
+
+" previm. {{{2
+au MyAutoCmd FileType markdown packadd previm
 
 
 " Define user commands for updating/cleaning the plugins. {{{1
