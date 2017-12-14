@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/12/11 14:37:14.
+" Last Change : 2017/12/14 12:30:07.
 " =============================================================================
 
 " Plugin:
@@ -91,6 +91,7 @@ let s:opt_plugs = [
 " lazy load plugins. {{{2
 let s:lazy_plugs = [
       \ ['Konfekt/FastFold', {'type': 'opt'}],
+      \ ['tyru/open-browser.vim', {'type': 'opt'}],
       \ ['justinmk/vim-dirvish', {'type': 'opt'}],
       \ ['LeafCage/yankround.vim', {'type': 'opt'}],
       \ ['Shougo/context_filetype.vim', {'type': 'opt'}],
@@ -1292,6 +1293,9 @@ au MyAutoCmd FileType markdown packadd vim-table-mode
 
 " previm. {{{2
 au MyAutoCmd FileType markdown packadd previm
+let g:previm_enable_realtime = 0
+let g:previm_disable_default_css = 1
+let g:previm_custom_css_path = "~/.ghq/src/github.com/tsuyoshiwada/dotfiles/templates/previm/markdown.css"
 
 
 " Define user commands for updating/cleaning the plugins. {{{1
