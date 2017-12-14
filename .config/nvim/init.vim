@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/12/11 14:50:40.
+" Last Change : 2017/12/14 12:12:31.
 " =============================================================================
 
 " Init: {{{1
@@ -140,9 +140,11 @@ endfunction
 
 function! s:open_current_dir() abort
   if g:is_windows
-    exe "!start \"" . expand("%:h") . "\""
+    setl noshellslash
+    exe printf("!start \"%s\"", expand("%:h"))
+    setl shellslash
   else
-    exe "!open \"" . expand("%:h") . "\""
+    exe printf("!open \"%s\"", expand("%:h"))
   endif
 endfunction
 
@@ -276,10 +278,6 @@ colorscheme hybrid_material
 " colorscheme onedark
 " colorscheme tender
 " colorscheme iceberg
-
-if g:is_windows
-  colorscheme desert
-endif
 
 if has('gui_running')
   if g:is_windows
