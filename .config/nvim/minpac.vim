@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/12/14 12:30:07.
+" Last Change : 2017/12/17 19:05:33.
 " =============================================================================
 
 " Plugin:
@@ -32,6 +32,8 @@ let s:start_plugs = [
       \ ['rhysd/committia.vim', {}],
       \ ['ryanoasis/vim-devicons', {}],
       \ ['tpope/vim-fugitive', {}],
+      \ ['haya14busa/vim-edgemotion', {}],
+      \ ['hotwatermorning/auto-git-diff', {}],
       \ ['thinca/vim-singleton', {}, !has('nvim')],
       \ ]
 
@@ -1296,6 +1298,10 @@ au MyAutoCmd FileType markdown packadd previm
 let g:previm_enable_realtime = 0
 let g:previm_disable_default_css = 1
 let g:previm_custom_css_path = "~/.ghq/src/github.com/tsuyoshiwada/dotfiles/templates/previm/markdown.css"
+
+" vim-edgemotion. {{{2
+map <C-j> <Plug>(edgemotion-j)
+map <C-k> <Plug>(edgemotion-k)
 
 
 " Define user commands for updating/cleaning the plugins. {{{1
