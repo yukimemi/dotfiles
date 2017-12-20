@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/12/14 12:12:31.
+" Last Change : 2017/12/19 22:20:46.
 " =============================================================================
 
 " Init: {{{1
@@ -241,6 +241,9 @@ set visualbell t_vb=
 set number
 set showmatch matchtime=1
 set noshowmode
+if has('nvim')
+  set inccommand=split
+endif
 
 " Tab.
 set tabstop=2
