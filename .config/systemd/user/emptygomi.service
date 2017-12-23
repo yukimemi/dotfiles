@@ -1,9 +1,0 @@
-[Unit]
-Description=Remove gomi folder
-
-[Service]
-ExecStart=/usr/bin/find ~/.gomi -mtime +30 -exec /bin/rm -f {} \;
-
-[Install]
-WantedBy=default.target
-
