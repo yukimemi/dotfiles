@@ -1,4 +1,0 @@
-if [ -x "$(which xbindkeys)" ]; then
-  xbindkeys &
-fi
-
