@@ -1,0 +1,17 @@
+#!/bin/sh
+# https://github.com/tyru/gittools/blob/master/git-shred
+
+usage () {
+    progname="`basename $0`"
+    cat <<EOM
+$progname - *Really* remove given files from git objects
+Usage: $progname <file>
+EOM
+    exit 1
+}
+
+
+[ $# -eq 0 ] && usage
+command git filter-branch \
+    -f --index-filter \
+    "git rm -r --cached --ignore-unmatch '$1'" -- --all
