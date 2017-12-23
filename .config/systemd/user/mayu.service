@@ -1,9 +1,0 @@
-[Unit]
-Description=mayu keyboard hack
-
-[Service]
-ExecStart=/usr/local/bin/mayu
-
-[Install]
-WantedBy=default.target
-
