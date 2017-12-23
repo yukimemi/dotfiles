@@ -14,6 +14,8 @@ deploy: ## Create symlink to home directory
 	@echo '==> Start to deploy dotfiles to home directory.'
 	@echo ''
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
+	@mkdir -p $(HOME)/.local/bin > /dev/null 2>&1
+	@ln -sfnv $(DOTPATH)/etc/scripts $(HOME)/.local/bin/scripts
 
 install: deploy ## Run make deploy
 	@exec $$SHELL
@@ -21,6 +23,7 @@ install: deploy ## Run make deploy
 clean: ## Remove the dot files
 	@echo 'Remove dot files in your home directory...'
 	@-$(foreach val, $(DOTFILES), rm -vrf $(HOME)/$(val);)
+	@-rm -vrf $(HOME)/.local/bin/scripts
 
 help: ## Self-documented Makefile
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
