@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2017/12/09 21:55:23.
+# Last Change : 2017/12/24 01:13:17.
 # =============================================================================
 
 # For time. {{{1
@@ -32,6 +32,7 @@ path=(
   # Home.
   $HOME/bin(N-/)
   $HOME/.local/bin(N-/)
+  $HOME/.local/bin/scripts(N-/)
   $HOME/bin/scripts(N-/)
   $HOME/local/bin(N-/)
   # coreutils.
