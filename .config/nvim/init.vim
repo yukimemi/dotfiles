@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/12/19 22:20:46.
+" Last Change : 2017/12/25 11:01:25.
 " =============================================================================
 
 " Init: {{{1
@@ -492,7 +492,7 @@ inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 nnoremap [Space]f :<C-u>call <SID>format()<CR>
 
 " Autocmd: {{{1
-au MyAutoCmd WinEnter,CursorHold * checktime
+au MyAutoCmd WinEnter,WinLeave,BufEnter * checktime
 " au MyAutoCmd CursorHold * setl nohlsearch
 au MyAutoCmd CmdwinEnter * :silent! 1,$-50 delete _ | call cursor("$", 1)
 
