@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/12/17 19:05:33.
+" Last Change : 2017/12/25 11:05:40.
 " =============================================================================
 
 " Plugin:
@@ -197,6 +197,9 @@ function! PackAddHandler(timer)
   let s:idx += 1
   " doautocmd BufReadPost
   au! lazy_load_bundle
+  if s:idx == len(s:lazy_plugs)
+    echom "lazy load done !"
+  endif
 endfunction
 
 aug lazy_load_bundle
