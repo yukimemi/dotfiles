@@ -11,7 +11,8 @@ set cmdName=%~n0
 set cmdFileName=%~nx0
 REM ======================================================================
 
-pushd "%cmdDir%"
+pushd "%cmdDir%.."
+set ROOT=%CD%\
 
 set /p BASE_C=BASE_C:
 set /p BASE_D=BASE_D:
@@ -54,27 +55,27 @@ mkdir %BASE_C%\Desktop > nul 2>&1
 
 rem VimFx {{{1
 if exist "%USERPROFILE%\.config\vimfx" %RDCMD% "%USERPROFILE%\.config\vimfx"
-%LINKCMD_D% "%USERPROFILE%\.config\vimfx" "%cmdDir%.config\vimfx"
+%LINKCMD_D% "%USERPROFILE%\.config\vimfx" "%ROOT%.config\vimfx"
 
 rem vim {{{1
 if exist "%USERPROFILE%\.vimrc" del "%USERPROFILE%\.vimrc"
-%LINKCMD_F% "%USERPROFILE%\.vimrc" "%cmdDir%.config\nvim\init.vim"
+%LINKCMD_F% "%USERPROFILE%\.vimrc" "%ROOT%.config\nvim\init.vim"
 if exist "%USERPROFILE%\.gvimrc" del "%USERPROFILE%\.gvimrc"
-%LINKCMD_F% "%USERPROFILE%\.gvimrc" "%cmdDir%.gvimrc"
+%LINKCMD_F% "%USERPROFILE%\.gvimrc" "%ROOT%.gvimrc"
 if exist "%USERPROFILE%\.vim" %RDCMD% "%USERPROFILE%\.vim"
-%LINKCMD_D% "%USERPROFILE%\.vim" "%cmdDir%.config\nvim"
+%LINKCMD_D% "%USERPROFILE%\.vim" "%ROOT%.config\nvim"
 
 rem cmd {{{1
 if exist "%USERPROFILE%\.init.cmd" del "%USERPROFILE%\.init.cmd"
-%LINKCMD_F% "%USERPROFILE%\.init.cmd" "%cmdDir%win\cmd\init.cmd"
+%LINKCMD_F% "%USERPROFILE%\.init.cmd" "%ROOT%win\cmd\init.cmd"
 if exist "%USERPROFILE%\bin\j.bat" del "%USERPROFILE%\bin\j.bat"
-%LINKCMD_F% "%USERPROFILE%\bin\j.bat" "%cmdDir%win\cmd\j.bat"
+%LINKCMD_F% "%USERPROFILE%\bin\j.bat" "%ROOT%win\cmd\j.bat"
 if exist "%USERPROFILE%\bin\ghl.bat" del "%USERPROFILE%\bin\ghl.bat"
-%LINKCMD_F% "%USERPROFILE%\bin\ghl.bat" "%cmdDir%win\cmd\ghl.bat"
+%LINKCMD_F% "%USERPROFILE%\bin\ghl.bat" "%ROOT%win\cmd\ghl.bat"
 
 rem stack {{{1
 if exist "%USERPROFILE%\.stack" %RDCMD% "%USERPROFILE%\.stack"
-%LINKCMD_D% "%USERPROFILE%\.stack" "%cmdDir%.stack"
+%LINKCMD_D% "%USERPROFILE%\.stack" "%ROOT%.stack"
 
 echo Exit Code: [%exitCode%]
 
