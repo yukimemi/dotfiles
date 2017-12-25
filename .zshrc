@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/11/15 22:43:47.
+# Last Change : 2017/12/25 09:35:47.
 # =============================================================================
 
 #
@@ -304,6 +304,7 @@ setopt histsavenodups
 setopt extendedhistory
 setopt histignorespace
 setopt histverify
+unsetopt bgnice
 
 
 #
