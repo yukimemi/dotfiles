@@ -19,6 +19,7 @@
 [core]
 	editor = nvim
 	autocrlf = false
+	filemode = false
 [ghq]
 	root = /Users/yukimemi/.ghq/src
 [credential]
@@ -27,7 +28,5 @@
 	tool = vimdiff
 [branch]
 	autosetuprebase = always
-[commit]
-	template = /Users/yukimemi/.ghq/src/gist.github.com/mfks17/a2332594d4a7646e6bfa12fd66e33a6f/.gitmessage
 [fetch]
 	prune = true

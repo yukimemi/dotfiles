@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2017/12/24 01:13:17.
+# Last Change : 2017/12/25 12:53:15.
 # =============================================================================
 
 # For time. {{{1
@@ -122,6 +122,10 @@ export GSR_SHOW_BEHIND=1
 # local conf {{{2
 if [ -e ~/.zshrc_private ]; then
   source ~/.zshrc_private
+fi
+
+if [ -e ~/.zshrc_local ]; then
+  source ~/.zshrc_local
 fi
 
 
