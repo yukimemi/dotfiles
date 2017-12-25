@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/12/25 11:05:40.
+" Last Change : 2017/12/25 16:32:29.
 " =============================================================================
 
 " Plugin:
@@ -45,43 +45,44 @@ let s:start_plugs = [
 " opt plugins. {{{2
 let s:opt_plugs = [
       \ ['PProvost/vim-ps1', {'type': 'opt'}],
+      \ ['Shougo/denite.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins'}, has('python3')],
       \ ['aklt/plantuml-syntax', {'type': 'opt'}],
+      \ ['alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent'}, executable('stack')],
       \ ['b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt'}],
       \ ['cespare/vim-toml', {'type': 'opt'}],
       \ ['cocopon/iceberg.vim', {'type': 'opt'}],
       \ ['dag/vim-fish', {'type': 'opt'}],
+      \ ['dhruvasagar/vim-table-mode', {'type': 'opt'}],
       \ ['eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod'}, executable('stack')],
       \ ['eagletmt/neco-ghc', {'type': 'opt'}],
       \ ['ekalinin/Dockerfile.vim', {'type': 'opt'}],
       \ ['flowtype/vim-flow', {'type': 'opt', 'do': 'silent! !npm i -g flow-bin'}],
       \ ['itchyny/vim-haskell-indent', {'type': 'opt'}],
       \ ['itchyny/vim-haskell-sort-import', {'type': 'opt'}],
-      \ ['neovimhaskell/haskell-vim', {'type': 'opt'}],
-      \ ['alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent'}, executable('stack')],
       \ ['joshdick/onedark.vim', {'type': 'opt'}],
+      \ ['kannokanno/previm', {'type': 'opt'}],
       \ ['kchmck/vim-coffee-script', {'type': 'opt'}],
+      \ ['keremc/asyncomplete-racer.vim', {'type': 'opt'}],
+      \ ['kristijanhusak/vim-hybrid-material', {'type': 'opt'}],
       \ ['kylef/apiblueprint.vim', {'type': 'opt'}],
       \ ['leafgarland/typescript-vim', {'type': 'opt'}],
       \ ['lifepillar/vim-solarized8', {'type': 'opt'}],
       \ ['maxmellon/vim-jsx-pretty', {'type': 'opt'}],
+      \ ['neovimhaskell/haskell-vim', {'type': 'opt'}],
       \ ['othree/es.next.syntax.vim', {'type': 'opt'}],
       \ ['othree/javascript-libraries-syntax.vim', {'type': 'opt'}],
       \ ['pangloss/vim-javascript', {'type': 'opt'}],
       \ ['posva/vim-vue', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-flow.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-tscompletejob.vim', {'type': 'opt'}],
       \ ['prettier/vim-prettier', {'type': 'opt'}],
       \ ['rhysd/rust-doc.vim', {'type': 'opt'}, executable('cargo')],
       \ ['rhysd/vim-gfm-syntax', {'type': 'opt'}],
       \ ['rust-lang/rust.vim', {'type': 'opt'}],
       \ ['stephpy/vim-yaml', {'type': 'opt'}],
       \ ['thinca/vim-qfreplace', {'type': 'opt'}],
-      \ ['kristijanhusak/vim-hybrid-material', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-tscompletejob.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-flow.vim', {'type': 'opt'}],
-      \ ['keremc/asyncomplete-racer.vim', {'type': 'opt'}],
-      \ ['dhruvasagar/vim-table-mode', {'type': 'opt'}],
-      \ ['kannokanno/previm', {'type': 'opt'}],
       \ ]
 
       " \ ['prabirshrestha/asyncomplete-gocode.vim', {'type': 'opt'}],
@@ -97,7 +98,6 @@ let s:lazy_plugs = [
       \ ['justinmk/vim-dirvish', {'type': 'opt'}],
       \ ['LeafCage/yankround.vim', {'type': 'opt'}],
       \ ['Shougo/context_filetype.vim', {'type': 'opt'}],
-      \ ['Shougo/denite.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins'}, has('python3')],
       \ ['Shougo/echodoc.vim', {'type': 'opt'}],
       \ ['Shougo/junkfile.vim', {'type': 'opt'}],
       \ ['Shougo/neomru.vim', {'type': 'opt'}],
