@@ -17,6 +17,9 @@ deploy: ## Create symlink to home directory
 	@mkdir -p $(HOME)/.local/bin > /dev/null 2>&1
 	@ln -sfnv $(DOTPATH)/etc/scripts $(HOME)/.local/bin/scripts
 
+init: ## Setup environment settings
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/init.sh
+
 install: deploy ## Run make deploy
 	@exec $$SHELL
 
