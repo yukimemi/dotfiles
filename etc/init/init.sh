@@ -33,10 +33,10 @@ install() {
     brew install $*
   elif has "apt"; then
     e_arrow "apt install $*"
-    apt install $*
+    apt install -y $*
   elif has "yum"; then
     e_arrow "yum install $*"
-    yum install $*
+    yum install -y $*
   fi
 }
 
@@ -47,4 +47,5 @@ init
 
 install zsh
 install tmux
+install gawk
 
