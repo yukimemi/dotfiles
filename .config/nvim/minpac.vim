@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/12/25 14:09:17.
+" Last Change : 2017/12/27 23:04:54.
 " =============================================================================
 
 " Plugin:
@@ -19,6 +19,8 @@ endif
 " start plugins. {{{2
 let s:start_plugs = [
       \ ['Yggdroot/indentLine', {}],
+      \ ['haya14busa/vim-edgemotion', {}],
+      \ ['hotwatermorning/auto-git-diff', {}],
       \ ['itchyny/lightline.vim', {}],
       \ ['itchyny/vim-cursorword', {}],
       \ ['itchyny/vim-parenmatch', {}],
@@ -31,10 +33,8 @@ let s:start_plugs = [
       \ ['prabirshrestha/vim-lsp', {}],
       \ ['rhysd/committia.vim', {}],
       \ ['ryanoasis/vim-devicons', {}],
-      \ ['tpope/vim-fugitive', {}],
-      \ ['haya14busa/vim-edgemotion', {}],
-      \ ['hotwatermorning/auto-git-diff', {}],
       \ ['thinca/vim-singleton', {}, !has('nvim')],
+      \ ['tpope/vim-fugitive', {}],
       \ ]
 
       " \ ['vim-airline/vim-airline', {}],
@@ -45,43 +45,46 @@ let s:start_plugs = [
 " opt plugins. {{{2
 let s:opt_plugs = [
       \ ['PProvost/vim-ps1', {'type': 'opt'}],
+      \ ['Shougo/denite.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins'}, has('python3')],
       \ ['aklt/plantuml-syntax', {'type': 'opt'}],
+      \ ['alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent'}, executable('stack')],
       \ ['b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt'}],
       \ ['cespare/vim-toml', {'type': 'opt'}],
       \ ['cocopon/iceberg.vim', {'type': 'opt'}],
       \ ['dag/vim-fish', {'type': 'opt'}],
+      \ ['dhruvasagar/vim-table-mode', {'type': 'opt'}],
       \ ['eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod'}, executable('stack')],
       \ ['eagletmt/neco-ghc', {'type': 'opt'}],
       \ ['ekalinin/Dockerfile.vim', {'type': 'opt'}],
+      \ ['euclio/vim-markdown-composer', {'type': 'opt', 'do': '!cargo build --release'}, executable('cargo') && has('nvim')],
+      \ ['euclio/vim-markdown-composer', {'type': 'opt', 'do': '!cargo build --release --no-default-features --features json-rpc'}, executable('cargo') && !has('nvim')],
       \ ['flowtype/vim-flow', {'type': 'opt', 'do': 'silent! !npm i -g flow-bin'}],
       \ ['itchyny/vim-haskell-indent', {'type': 'opt'}],
       \ ['itchyny/vim-haskell-sort-import', {'type': 'opt'}],
-      \ ['neovimhaskell/haskell-vim', {'type': 'opt'}],
-      \ ['alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent'}, executable('stack')],
       \ ['joshdick/onedark.vim', {'type': 'opt'}],
+      \ ['kannokanno/previm', {'type': 'opt'}],
       \ ['kchmck/vim-coffee-script', {'type': 'opt'}],
+      \ ['keremc/asyncomplete-racer.vim', {'type': 'opt'}],
+      \ ['kristijanhusak/vim-hybrid-material', {'type': 'opt'}],
       \ ['kylef/apiblueprint.vim', {'type': 'opt'}],
       \ ['leafgarland/typescript-vim', {'type': 'opt'}],
       \ ['lifepillar/vim-solarized8', {'type': 'opt'}],
       \ ['maxmellon/vim-jsx-pretty', {'type': 'opt'}],
+      \ ['neovimhaskell/haskell-vim', {'type': 'opt'}],
       \ ['othree/es.next.syntax.vim', {'type': 'opt'}],
       \ ['othree/javascript-libraries-syntax.vim', {'type': 'opt'}],
       \ ['pangloss/vim-javascript', {'type': 'opt'}],
       \ ['posva/vim-vue', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-flow.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-tscompletejob.vim', {'type': 'opt'}],
       \ ['prettier/vim-prettier', {'type': 'opt'}],
       \ ['rhysd/rust-doc.vim', {'type': 'opt'}, executable('cargo')],
       \ ['rhysd/vim-gfm-syntax', {'type': 'opt'}],
       \ ['rust-lang/rust.vim', {'type': 'opt'}],
       \ ['stephpy/vim-yaml', {'type': 'opt'}],
       \ ['thinca/vim-qfreplace', {'type': 'opt'}],
-      \ ['kristijanhusak/vim-hybrid-material', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-tscompletejob.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-flow.vim', {'type': 'opt'}],
-      \ ['keremc/asyncomplete-racer.vim', {'type': 'opt'}],
-      \ ['dhruvasagar/vim-table-mode', {'type': 'opt'}],
-      \ ['kannokanno/previm', {'type': 'opt'}],
       \ ]
 
       " \ ['prabirshrestha/asyncomplete-gocode.vim', {'type': 'opt'}],
@@ -93,11 +96,8 @@ let s:opt_plugs = [
 " lazy load plugins. {{{2
 let s:lazy_plugs = [
       \ ['Konfekt/FastFold', {'type': 'opt'}],
-      \ ['tyru/open-browser.vim', {'type': 'opt'}],
-      \ ['justinmk/vim-dirvish', {'type': 'opt'}],
       \ ['LeafCage/yankround.vim', {'type': 'opt'}],
       \ ['Shougo/context_filetype.vim', {'type': 'opt'}],
-      \ ['Shougo/denite.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins'}, has('python3')],
       \ ['Shougo/echodoc.vim', {'type': 'opt'}],
       \ ['Shougo/junkfile.vim', {'type': 'opt'}],
       \ ['Shougo/neomru.vim', {'type': 'opt'}],
@@ -115,6 +115,7 @@ let s:lazy_plugs = [
       \ ['itchyny/vim-highlighturl', {'type': 'opt'}],
       \ ['iyuuya/denite-ale', {'type': 'opt'}],
       \ ['junegunn/vim-easy-align', {'type': 'opt'}],
+      \ ['justinmk/vim-dirvish', {'type': 'opt'}],
       \ ['kana/vim-operator-replace', {'type': 'opt'}],
       \ ['kana/vim-textobj-entire', {'type': 'opt'}],
       \ ['kana/vim-textobj-fold', {'type': 'opt'}],
@@ -149,6 +150,7 @@ let s:lazy_plugs = [
       \ ['tpope/vim-repeat', {'type': 'opt'}],
       \ ['tyru/capture.vim', {'type': 'opt'}],
       \ ['tyru/caw.vim', {'type': 'opt'}],
+      \ ['tyru/open-browser.vim', {'type': 'opt'}],
       \ ['vim-scripts/autodate.vim', {'type': 'opt'}],
       \ ['vim-scripts/matchit.zip', {'type': 'opt'}],
       \ ['w0rp/ale', {'type': 'opt'}],
@@ -985,7 +987,7 @@ au MyAutoCmd FileType fish packadd vim-fish
 au MyAutoCmd FileType markdown packadd vim-gfm-syntax
 
 " Dockerfile.vim. {{{2
-au MyAutoCmd FileType Dockerfile packadd Dockerfile.vim
+au MyAutoCmd FileType dockerfile packadd Dockerfile.vim
 
 " rust.vim. {{{2
 au MyAutoCmd FileType rust packadd rust.vim
@@ -1254,40 +1256,44 @@ endfunction
 " asyncomplete-racer.vim. {{{3
 if !executable('rls')
   au MyAutoCmd FileType rust call <SID>asyncomplete_racer_aft()
-  function! s:asyncomplete_racer_aft() abort
-    packadd asyncomplete-racer.vim
-    call asyncomplete#register_source(asyncomplete#sources#racer#get_source_options({
-          \ 'priority': 4,
-          \ }))
-  endfunction
 endif
+function! s:asyncomplete_racer_aft() abort
+  packadd asyncomplete-racer.vim
+  call asyncomplete#register_source(asyncomplete#sources#racer#get_source_options({
+        \ 'priority': 4,
+        \ }))
+endfunction
 
 " " asyncomplete-flow.vim. {{{3
-" au MyAutoCmd FileType javascript,json call <SID>asyncomplete_flow_aft()
-" function! s:asyncomplete_flow_aft() abort
-"   packadd asyncomplete-flow.vim
-"   call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
-"         \ 'name': 'flow',
-"         \ 'whitelist': ['javascript'],
-"         \ 'priority': 4,
-"         \ 'completor': function('asyncomplete#sources#flow#completor'),
-"         \ 'config': {
-"         \    'prefer_local': 1
-"         \  },
-"         \ }))
-" endfunction
+if !executable('flow-language-server')
+  au MyAutoCmd FileType javascript,json call <SID>asyncomplete_flow_aft()
+endif
+function! s:asyncomplete_flow_aft() abort
+  packadd asyncomplete-flow.vim
+  call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
+        \ 'name': 'flow',
+        \ 'whitelist': ['javascript'],
+        \ 'priority': 4,
+        \ 'completor': function('asyncomplete#sources#flow#completor'),
+        \ 'config': {
+        \    'prefer_local': 1
+        \  },
+        \ }))
+endfunction
 
 " " asyncomplete-gocode.vim. {{{3
-" au MyAutoCmd FileType go call <SID>asyncomplete_gocode_aft()
-" function! s:asyncomplete_gocode_aft() abort
-"   packadd asyncomplete-gocode.vim
-"   call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
-"         \ 'name': 'gocode',
-"         \ 'whitelist': ['go'],
-"         \ 'priority': 4,
-"         \ 'completor': function('asyncomplete#sources#gocode#completor'),
-"         \ }))
-" endfunction
+if !executable('go-langserver')
+  au MyAutoCmd FileType go call <SID>asyncomplete_gocode_aft()
+endif
+function! s:asyncomplete_gocode_aft() abort
+  packadd asyncomplete-gocode.vim
+  call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
+        \ 'name': 'gocode',
+        \ 'whitelist': ['go'],
+        \ 'priority': 4,
+        \ 'completor': function('asyncomplete#sources#gocode#completor'),
+        \ }))
+endfunction
 
 " vim-singleton. {{{2
 if !has('nvim')
@@ -1298,14 +1304,20 @@ endif
 au MyAutoCmd FileType markdown packadd vim-table-mode
 
 " previm. {{{2
-au MyAutoCmd FileType markdown packadd previm
+if !executable('cargo')
+  au MyAutoCmd FileType markdown packadd previm
+endif
 let g:previm_enable_realtime = 0
 let g:previm_disable_default_css = 1
-let g:previm_custom_css_path = "~/.ghq/src/github.com/tsuyoshiwada/dotfiles/templates/previm/markdown.css"
 
 " vim-edgemotion. {{{2
 map <C-j> <Plug>(edgemotion-j)
 map <C-k> <Plug>(edgemotion-k)
+
+" vim-markdown-composer. {{{2
+if executable('cargo')
+  au MyAutoCmd FileType markdown packadd vim-markdown-composer
+endif
 
 
 " Define user commands for updating/cleaning the plugins. {{{1
