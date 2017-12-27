@@ -1,8 +1,9 @@
 FROM ubuntu
+MAINTAINER yukimemi <yukimemi@gmail.com>
 
 # Use next 2 steps.
 # docker build --tag yukimemi/dotfiles --build-arg USERNAME=yukimemi .
-# docker run -it -v ${PWD}:/home/yukimemi/.ghq/src/github.com/yukimemi/dotfiles:ro yukimemi/dotfiles
+# docker run --rm -it -v ${PWD}:/home/yukimemi/.ghq/src/github.com/yukimemi/dotfiles:ro yukimemi/dotfiles
 
 ARG USERNAME=yukimemi
 
