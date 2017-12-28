@@ -18,10 +18,10 @@ init() {
   if is_linux; then
     if has "apt"; then
       e_header "Upgrade apt"
-      apt update && apt upgrade
+      apt update && apt upgrade -y
     elif has "yum"; then
       e_header "Update yum"
-      yum update
+      yum update -y
     fi
   fi
 }
