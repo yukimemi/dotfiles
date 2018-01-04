@@ -46,6 +46,7 @@ e_header "Install necessary packages..."
 init
 
 install zsh
+install fish
 install tmux
 install gawk
 

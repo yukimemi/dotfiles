@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2017/12/27 23:04:54.
+" Last Change : 2018/01/04 14:19:45.
 " =============================================================================
 
 " Plugin:
@@ -981,6 +981,7 @@ au MyAutoCmd FileType typescript packadd typescript-vim
 au MyAutoCmd FileType coffee packadd vim-coffee-script
 
 " vim-fish. {{{2
+au MyAutoCmd BufNew,BufRead *.fish setl ft=fish
 au MyAutoCmd FileType fish packadd vim-fish
 
 " vim-gfm-syntax. {{{2
