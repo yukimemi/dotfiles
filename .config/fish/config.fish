@@ -94,6 +94,14 @@ function done_enter --on-event fish_postexec
     end
 end
 
+# History share. {{{2
+# https://qiita.com/yoshiori/items/f1c01dd94bb5f0489cf6
+function history-merge --on-event fish_preexec
+    history --save
+    history --merge
+end
+
+
 ### prompt. {{{1
 # right_prompt for pwd and git.
 # function fish_right_prompt
@@ -182,6 +190,7 @@ end
 if not type -q fisher
     # curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
 end
+
 
 ### Plugin settings. {{{1
 # pure {{{2

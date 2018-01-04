@@ -2097,7 +2097,7 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>842 786 620 392 0 0 2304 1440 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>578 509 796 473 0 0 2304 1440 </string>
+	<string>578 470 918 512 0 0 2304 1418 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 2304 1440 0 0 2304 1418 </string>
 	<key>NeverWarnAboutXterm256ColorTerminfo</key>
@@ -2387,7 +2387,7 @@
 			<key>Columns</key>
 			<integer>80</integer>
 			<key>Command</key>
-			<string>/usr/local/bin/zsh</string>
+			<string>/usr/local/bin/fish</string>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -3058,7 +3058,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-10-09T13:04:35Z</date>
+	<date>2017-12-27T11:37:37Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -3104,6 +3104,6 @@
 	<key>WordCharacters</key>
 	<string></string>
 	<key>iTerm Version</key>
-	<string>3.1.3.beta.1</string>
+	<string>3.1.4.beta.1</string>
 </dict>
 </plist>
