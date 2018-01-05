@@ -110,6 +110,9 @@ end
 # end
 
 ### Alias. {{{1
+if type -q exa
+    alias ls 'exa'
+end
 alias cp "cp -v"
 alias mv "mv -v"
 alias l "ll"
