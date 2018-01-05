@@ -135,6 +135,7 @@ abbr -a v vim
 abbr -a o open
 
 # Git. {{{2
+abbr -a g 'git'
 # checkout
 abbr -a gco 'git checkout'
 abbr -a gcot 'git checkout --theirs'
