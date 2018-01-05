@@ -22,7 +22,8 @@ function fish_user_key_bindings
 
   # filter command.
   bind -M insert \cr __filter_command_history_select
-  bind -M insert \cs __filter_command_shell_snippets
+  # bind -M insert \cs __filter_command_shell_snippets
+  bind -M insert \cs __filter_command_pets
   bind sul __filter_command_history_execute
   bind -M insert \ck __filter_command_kill
 

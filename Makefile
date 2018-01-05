@@ -23,6 +23,10 @@ init: ## Setup environment settings
 install: deploy ## Run make deploy
 	@exec $$SHELL
 
+private: ## Clone private repository and create symlink
+	@git clone https://github.com/yukimemi/private $(DOTPATH)/../private
+	@ln -sfnv $(DOTPATH)/../private/.config/pet $(HOME)/.config/pet
+
 clean: ## Remove the dot files
 	@echo 'Remove dot files in your home directory...'
 	@-$(foreach val, $(DOTFILES), rm -vrf $(HOME)/$(val);)
