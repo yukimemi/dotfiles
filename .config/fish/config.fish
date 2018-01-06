@@ -9,7 +9,7 @@ set -x PAGER less
 set -x GOPATH ~/.ghq
 
 # Rust. {{{2
-set -x RUST_SRC_PATH ~/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
+set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src >/dev/null ^&1
 
 # GSR. {{{2
 set -x GSR_SHOW_AHEAD 1
@@ -170,8 +170,8 @@ abbr -a glo 'git log --oneline'
 abbr -a gk 'git log --graph --pretty'
 
 # vim {{{2
-abbr -a vup 'nvim -c "PlugUpdate | PlugUpgrade"'
-abbr -a vvup 'vim -c "PlugUpdate | PlugUpgrade"'
+abbr -a mup 'nvim -c "PackUpdate"'
+abbr -a vup 'nvim -c "PackUpdate"'
 
 ### Options. {{{1
 # Use fish_vi_key_bindings.

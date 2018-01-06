@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/01/04 14:19:45.
+" Last Change : 2018/01/06 16:56:04.
 " =============================================================================
 
 " Plugin:
@@ -975,6 +975,7 @@ let g:prettier#config#trailing_comma = 'all'
 let g:prettier#config#parser = 'flow'
 
 " typescript-vim. {{{2
+au MyAutoCmd BufNew,BufRead *.ts setl ft=typescript
 au MyAutoCmd FileType typescript packadd typescript-vim
 
 " vim-coffee-script. {{{2
