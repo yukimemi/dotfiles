@@ -27,6 +27,7 @@ __add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
 __add_fish_user_paths ~/bin/scripts
 __add_fish_user_paths $GOPATH/bin
 __add_fish_user_paths ~/.cargo/bin
+__add_fish_user_paths ~/.yarn/bin
 if type -q node
     and type -q yarn
     __add_fish_user_paths (yarn global bin)
@@ -132,6 +133,7 @@ abbr -a j __filter_command_z
 abbr -a r __filter_command_rm
 abbr -a rr __filter_command_rm_recurse
 abbr -a c __filter_command_cd
+abbr -a fr __filter_command_fresco_remove
 abbr -a b bd
 abbr -a e nvim
 abbr -a v vim
@@ -200,3 +202,5 @@ end
 # pure {{{2
 set pure_symbol_prompt "→ "
 set pure_color_green (set_color "white")
+
+
