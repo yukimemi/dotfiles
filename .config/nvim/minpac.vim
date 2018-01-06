@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/01/06 21:52:12.
+" Last Change : 2018/01/07 16:47:06.
 " =============================================================================
 
 " Plugin:
@@ -69,7 +69,6 @@ let s:opt_plugs = [
       \ ['kylef/apiblueprint.vim', {'type': 'opt'}],
       \ ['leafgarland/typescript-vim', {'type': 'opt'}],
       \ ['lifepillar/vim-solarized8', {'type': 'opt'}],
-      \ ['maxmellon/vim-jsx-pretty', {'type': 'opt'}],
       \ ['neovimhaskell/haskell-vim', {'type': 'opt'}],
       \ ['othree/es.next.syntax.vim', {'type': 'opt'}],
       \ ['othree/javascript-libraries-syntax.vim', {'type': 'opt'}],
@@ -79,7 +78,6 @@ let s:opt_plugs = [
       \ ['prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-tscompletejob.vim', {'type': 'opt'}],
-      \ ['prettier/vim-prettier', {'type': 'opt'}],
       \ ['rhysd/rust-doc.vim', {'type': 'opt'}, executable('cargo')],
       \ ['rhysd/vim-gfm-syntax', {'type': 'opt'}],
       \ ['rust-lang/rust.vim', {'type': 'opt'}],
@@ -142,7 +140,6 @@ let s:lazy_plugs = [
       \ ['prabirshrestha/asyncomplete-tags.vim', {'type': 'opt'}],
       \ ['qpkorr/vim-renamer', {'type': 'opt'}],
       \ ['rhysd/vim-operator-surround', {'type': 'opt'}],
-      \ ['sbdchd/neoformat', {'type': 'opt'}],
       \ ['simnalamburt/vim-mundo', {'type': 'opt'}],
       \ ['t9md/vim-quickhl', {'type': 'opt'}],
       \ ['taku-o/vim-zoom', {'type': 'opt'}],
@@ -669,10 +666,6 @@ let g:autodate_keyword_post = "."
 " vim-mundo. {{{2
 nnoremap [Space]u :MundoToggle<CR>
 
-" neoformat. {{{2
-let g:neoformat_only_msg_on_error = 1
-" au MyAutoCmd BufWritePre * Neoformat
-
 " ale. {{{2
 let g:ale_linters = {
       \ 'go': ['golint', 'go vet', 'goimports'],
@@ -684,6 +677,14 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_save = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+      \ 'javascript': ['prettier'],
+      \ 'javascript.jsx': ['prettier'],
+      \ 'typescript': ['prettier'],
+      \ 'typescript.tsx': ['prettier'],
+      \ }
 
 " Rust.
 let g:ale_rust_ignore_error_codes = ['E0432', 'E0433']
@@ -948,8 +949,6 @@ au MyAutoCmd FileType vue packadd vim-vue
 " vim-javascript. {{{2
 au MyAutoCmd FileType javascript,javascript.jsx packadd vim-javascript
 
-" vim-jsx-pretty. {{{2
-au MyAutoCmd FileType javascript,javascript.jsx packadd vim-jsx-pretty
 
 " javascript-libraries-syntax.vim. {{{2
 au MyAutoCmd FileType javascript,javascript.jsx packadd javascript-libraries-syntax.vim
@@ -960,21 +959,6 @@ au MyAutoCmd FileType javascript,javascript.jsx packadd es.next.syntax.vim
 " vim-flow. {{{2
 au MyAutoCmd FileType javascript,javascript.jsx packadd vim-flow
 let g:flow#autoclose = 1
-
-" vim-prettier. {{{2
-au MyAutoCmd FileType javascript,javascript.jsx packadd vim-prettier
-let g:prettier#autoformat = 1
-let g:prettier#quickfix_enabled = 1
-let g:prettier#exec_cmd_async = 1
-let g:prettier#config#print_width = 100
-let g:prettier#config#tab_width = 2
-let g:prettier#config#use_tabs = 'false'
-let g:prettier#config#semi = 'true'
-let g:prettier#config#single_quote = 'true'
-let g:prettier#config#bracket_spacing = 'false'
-let g:prettier#config#jsx_bracket_same_line = 'true'
-let g:prettier#config#trailing_comma = 'all'
-let g:prettier#config#parser = 'flow'
 
 " typescript-vim. {{{2
 au MyAutoCmd BufNew,BufRead *.ts setl ft=typescript
@@ -1003,7 +987,6 @@ let g:rust_conceal_pub = 0
 let g:rust_fold = 1
 let g:rust_recommended_style = 1
 let g:rustfmt_autosave = 1
-let g:rustfmt_fail_silently = 0
 
 " vim-racer. {{{2
 " au MyAutoCmd FileType rust call <SID>vim_racer_aft()
@@ -1269,7 +1252,7 @@ function! s:asyncomplete_racer_aft() abort
         \ }))
 endfunction
 
-" " asyncomplete-flow.vim. {{{3
+" asyncomplete-flow.vim. {{{3
 if !executable('flow-language-server')
   au MyAutoCmd FileType javascript,json call <SID>asyncomplete_flow_aft()
 endif
@@ -1286,7 +1269,7 @@ function! s:asyncomplete_flow_aft() abort
         \ }))
 endfunction
 
-" " asyncomplete-gocode.vim. {{{3
+" asyncomplete-gocode.vim. {{{3
 if !executable('go-langserver')
   au MyAutoCmd FileType go call <SID>asyncomplete_gocode_aft()
 endif
