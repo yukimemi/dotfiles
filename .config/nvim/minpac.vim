@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/01/06 16:56:04.
+" Last Change : 2018/01/06 21:52:12.
 " =============================================================================
 
 " Plugin:
@@ -704,7 +704,9 @@ if ! g:is_windows
 endif
 
 " vim-findent. {{{2
-au MyAutoCmd BufRead * Findent --no-warnings
+let g:findent#enable_messages = 0
+let g:findent#enable_warnings = 0
+au MyAutoCmd BufRead * Findent
 
 " echodoc.vim {{{2
 let g:echodoc_enable_at_startup = 1
@@ -976,7 +978,8 @@ let g:prettier#config#parser = 'flow'
 
 " typescript-vim. {{{2
 au MyAutoCmd BufNew,BufRead *.ts setl ft=typescript
-au MyAutoCmd FileType typescript packadd typescript-vim
+au MyAutoCmd BufNew,BufRead *.tsx setl ft=typescript.tsx
+au MyAutoCmd FileType typescript,typescript.tsx packadd typescript-vim
 
 " vim-coffee-script. {{{2
 au MyAutoCmd FileType coffee packadd vim-coffee-script
@@ -1015,7 +1018,7 @@ function! s:vim_racer_aft() abort
   nmap <buffer> K <Plug>(rust-doc)
 endfunction
 
-" rust-doc.vim {{{2
+" rust-doc.vim. {{{2
 au MyAutoCmd FileType rust packadd rust-doc.vim
 
 " ghcmod-vim. {{{2
