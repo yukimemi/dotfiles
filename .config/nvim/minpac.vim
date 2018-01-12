@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/01/12 13:35:21.
+" Last Change : 2018/01/12 14:28:30.
 " =============================================================================
 
 " Plugin:
@@ -1302,7 +1302,7 @@ map <C-k> <Plug>(edgemotion-k)
 
 " vim-markdown-composer. {{{2
 if executable('cargo')
-  au MyAutoCmd FileType markdown packadd vim-markdown-composer
+  " au MyAutoCmd FileType markdown packadd vim-markdown-composer
 endif
 
 
