@@ -1,42 +1,14 @@
-# vim
-*.~
-*~
-.vimpos
-.vim/back
-.vim/tmp
-.vim/bundle
-.vim/miv
-.vim/save
-restart_session.vim
-.vim/dein.toml
-
-# zsh history
-.zsh_hist*
-
 # winmerge
 *.bak
 
 # tag
 tags
 
-# netrw
-.vim/.netrwhist
-
 # haskell
 *.hi
 *.o
 *.errors
 
-# BetterTouchTool
-mac/BetterTouchTool/Logs/
-
 # mac
 .DS_Store
-
-# atom
-blob-store/
-.atom/.apmrc
-
-# fish
-fishd.*
 
