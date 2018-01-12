@@ -48,6 +48,16 @@ else
   Run, %USERPROFILE%\app\cfiler\cfiler.exe, %USERPROFILE%\app\cfiler, Max
 return
 
+; for cmd.exe
+F12::
+Process,Exist,cmd.exe
+If ErrorLevel <> 0
+  WinActivate, ahk_pid %ErrorLevel%
+else
+  Run, cmd.exe
+return
+
+
 ; for rapture
 ;F9::
 ;Run, %USERPROFILE%\app\rapture\rapture.exe
