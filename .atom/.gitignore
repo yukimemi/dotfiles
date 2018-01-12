@@ -7,3 +7,5 @@ recovery
 .npm
 .node-gyp
 projects.cson
+blob-store/
+

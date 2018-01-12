@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/01/07 16:47:06.
+" Last Change : 2018/01/12 13:35:21.
 " =============================================================================
 
 " Plugin:
@@ -56,8 +56,6 @@ let s:opt_plugs = [
       \ ['eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod'}, executable('stack')],
       \ ['eagletmt/neco-ghc', {'type': 'opt'}],
       \ ['ekalinin/Dockerfile.vim', {'type': 'opt'}],
-      \ ['euclio/vim-markdown-composer', {'type': 'opt', 'do': '!cargo build --release'}, executable('cargo') && has('nvim')],
-      \ ['euclio/vim-markdown-composer', {'type': 'opt', 'do': '!cargo build --release --no-default-features --features json-rpc'}, executable('cargo') && !has('nvim')],
       \ ['flowtype/vim-flow', {'type': 'opt', 'do': 'silent! !npm i -g flow-bin'}],
       \ ['itchyny/vim-haskell-indent', {'type': 'opt'}],
       \ ['itchyny/vim-haskell-sort-import', {'type': 'opt'}],
@@ -90,6 +88,8 @@ let s:opt_plugs = [
       " \ ['racer-rust/vim-racer', {'type': 'opt'}, executable('cargo')],
       " \ ['zchee/deoplete-go', {'type': 'opt', 'do': 'silent! !make'}],
       " \ ['Quramy/tsuquyomi', {'type': 'opt'}],
+      " \ ['euclio/vim-markdown-composer', {'type': 'opt', 'do': '!cargo build --release'}, executable('cargo') && has('nvim')],
+      " \ ['euclio/vim-markdown-composer', {'type': 'opt', 'do': '!cargo build --release --no-default-features --features json-rpc'}, executable('cargo') && !has('nvim')],
 
 " lazy load plugins. {{{2
 let s:lazy_plugs = [
@@ -640,7 +640,7 @@ endif
 
 call Mkdir(g:memolist_path)
 
-let g:memolist_denite = 1
+let g:memolist_denite = 0
 let g:memolist_memo_suffix = "md"
 let g:memolist_prompt_tags = 1
 
@@ -1101,10 +1101,10 @@ nnoremap scm :<C-u>CtrlPMark<CR>
 nnoremap scg :<C-u>CtrlPChange<CR>
 nnoremap scc :<C-u>CtrlPMixed<CR>
 nnoremap scf :<C-u>CtrlPFiletype<CR>
-nnoremap scl :<C-u>CtrlPLauncher<CR>
+" nnoremap scl :<C-u>CtrlPLauncher<CR>
 nnoremap sct :<C-u>CtrlPSonictemplate<CR>
 
-" nnoremap <Leader>ml :<C-u>CtrlPMemolist<CR>
+nnoremap scl :<C-u>CtrlPMemolist<CR>
 
 if executable('rg')
   let g:ctrlp_user_command ='rg -F --files %s'
@@ -1292,9 +1292,7 @@ endif
 au MyAutoCmd FileType markdown packadd vim-table-mode
 
 " previm. {{{2
-if !executable('cargo')
-  au MyAutoCmd FileType markdown packadd previm
-endif
+au MyAutoCmd FileType markdown packadd previm
 let g:previm_enable_realtime = 0
 let g:previm_disable_default_css = 1
 
