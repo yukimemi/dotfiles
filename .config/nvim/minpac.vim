@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/01/12 14:28:30.
+" Last Change : 2018/01/13 18:13:21.
 " =============================================================================
 
 " Plugin:
@@ -167,7 +167,8 @@ if exists('*minpac#init')
     for plug in a:plugs
       let cond = len(plug) > 2 ? plug[2] : 1
       if cond
-        exe 'call minpac#add("' . plug[0] . '", ' . string(plug[1]) . ')'
+        " echom printf("call minpac#add('%s', %s)", plug[0], string(plug[1]))
+        exe printf("call minpac#add('%s', %s)", plug[0], string(plug[1]))
       endif
     endfor
   endfunction
