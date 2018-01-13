@@ -173,7 +173,7 @@ abbr -a gk 'git log --graph --pretty'
 
 # vim {{{2
 abbr -a mup 'nvim -c "PackUpdate"'
-abbr -a vup 'nvim -c "PackUpdate"'
+abbr -a vup 'vim -c "PackUpdate"'
 
 ### Options. {{{1
 # Use fish_vi_key_bindings.
