@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/01/13 18:13:21.
+" Last Change : 2018/01/15 22:49:31.
 " =============================================================================
 
 " Plugin:
@@ -1285,7 +1285,7 @@ function! s:asyncomplete_gocode_aft() abort
 endfunction
 
 " vim-singleton. {{{2
-if !has('nvim')
+if !has('nvim') && has('clientserver')
   packl | call singleton#enable()
 endif
 
