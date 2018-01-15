@@ -8,10 +8,11 @@ fi
 . ${DOTPATH}/etc/install
 
 if is_linux; then
-  sudo add-apt-repository ppa:gophers/archive
-  sudo apt update
-  sudo apt install -y golang-1.9-go
-  export PATH=/usr/lib/go-1.9/bin:$PATH
+  # sudo add-apt-repository ppa:gophers/archive
+  # sudo apt update
+  # sudo apt install -y golang-1.9-go
+  # export PATH=/usr/lib/go-1.9/bin:$PATH
+  snap install --classic go
 fi
 
 # Install glide.
