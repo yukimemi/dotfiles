@@ -16,6 +16,8 @@ deploy: ## Create symlink to home directory
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 	@mkdir -p $(HOME)/.local/bin > /dev/null 2>&1
 	@ln -sfnv $(DOTPATH)/etc/scripts $(HOME)/.local/bin/scripts
+	@ln -sfnv $(DOTPATH)/.config/nvim/init.vim $(HOME)/.vimrc
+	@ln -sfnv $(DOTPATH)/.config/nvim $(HOME)/.vim
 
 init: ## Setup environment settings
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/init.sh
@@ -31,6 +33,16 @@ clean: ## Remove the dot files
 	@echo 'Remove dot files in your home directory...'
 	@-$(foreach val, $(DOTFILES), rm -vrf $(HOME)/$(val);)
 	@-rm -vrf $(HOME)/.local/bin/scripts
+
+ubuntu-fish: ## Install fish on ubuntu
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/ubuntu/install-fish.sh
+ubuntu-neovim: ## Install neovim on ubuntu
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/ubuntu/install-neovim.sh
+ubuntu-vim: ## Install vim on ubuntu
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/ubuntu/install-vim.sh
+
+install-peco: ## Install peco
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/install-peco.sh
 
 help: ## Self-documented Makefile
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \

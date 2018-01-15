@@ -9,7 +9,9 @@ set -x PAGER less
 set -x GOPATH ~/.ghq
 
 # Rust. {{{2
-set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src >/dev/null ^&1
+if type -q rustc
+    set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src >/dev/null ^&1
+end
 
 # GSR. {{{2
 set -x GSR_SHOW_AHEAD 1
@@ -23,6 +25,7 @@ function __add_fish_user_paths -a addpath
 end
 
 set -U fish_user_paths
+__add_fish_user_paths /usr/lib/go-1.9/bin
 __add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
 __add_fish_user_paths ~/bin/scripts
 __add_fish_user_paths $GOPATH/bin
@@ -117,7 +120,9 @@ end
 alias cp "cp -v"
 alias mv "mv -v"
 alias l "ll"
-alias rm "gomi"
+if type -q gomi
+    alias rm "gomi"
+end
 alias ghc "stack ghc --"
 alias ghci "stack ghci"
 alias stackexec "stack exec"
