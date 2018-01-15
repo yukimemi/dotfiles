@@ -25,7 +25,6 @@ function __add_fish_user_paths -a addpath
 end
 
 set -U fish_user_paths
-__add_fish_user_paths /usr/lib/go-1.9/bin
 __add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
 __add_fish_user_paths ~/bin/scripts
 __add_fish_user_paths $GOPATH/bin
