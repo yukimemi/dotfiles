@@ -134,7 +134,11 @@ abbr -a fmvim __filter_command_mvim
 abbr -a ghl __filter_command_ghq
 abbr -a gsrl __filter_command_gsr
 abbr -a j __filter_command_z
-abbr -a r __filter_command_rm
+if type -q gomi
+    abbr -a r __filter_command_gomi
+else
+    abbr -a r __filter_command_rm
+end
 abbr -a rr __filter_command_rm_recurse
 abbr -a c __filter_command_cd
 abbr -a fr __filter_command_fresco_remove

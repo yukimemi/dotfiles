@@ -45,6 +45,8 @@ ubuntu-tmux: ## Install tmux on ubuntu
 
 install-peco: ## Install peco
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/install-peco.sh
+install-gomi: ## Install gomi
+	@curl -L git.io/gomi | bash
 
 help: ## Self-documented Makefile
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
