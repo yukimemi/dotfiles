@@ -12,7 +12,7 @@ if is_linux; then
   # sudo apt update
   # sudo apt install -y golang-1.9-go
   # export PATH=/usr/lib/go-1.9/bin:$PATH
-  snap install --classic go
+  sudo snap install --classic go
 fi
 
 # Install glide.
