@@ -40,6 +40,8 @@ ubuntu-neovim: ## Install neovim on ubuntu
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/ubuntu/install-neovim.sh
 ubuntu-vim: ## Install vim on ubuntu
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/ubuntu/install-vim.sh
+ubuntu-tmux: ## Install tmux on ubuntu
+	sudo snap install --classic tmux
 
 install-peco: ## Install peco
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/install-peco.sh
