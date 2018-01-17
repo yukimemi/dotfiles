@@ -44,7 +44,7 @@ root: ~/.ghq/src/bitbucket.org/yukimemi/r2
 
 windows:
   - editor:
-      layout: main-horizon
+      layout: 43b0,254x73,0,0[254x54,0,0,0,254x18,0,55{50x18,0,55,2,50x18,51,55,3,50x18,102,55,4,50x18,153,55,5,50x18,204,55,6}]
       panes:
         - npm start
         - tail -F reports/spreadStat.csv | awk '{ print $2, $13 }'
