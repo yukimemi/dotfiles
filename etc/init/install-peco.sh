@@ -15,6 +15,10 @@ if is_linux; then
   sudo snap install --classic go
 fi
 
+if is_osx; then
+  brew install go
+fi
+
 # Install glide.
 curl https://glide.sh/get | sh
 

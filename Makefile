@@ -43,6 +43,10 @@ ubuntu-vim: ## Install vim on ubuntu
 ubuntu-tmux: ## Install tmux on ubuntu
 	sudo snap install --classic tmux
 
+mac-homebrew: ## Install Homebrew
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/mac/install-homebrew.sh
+
+
 install-peco: ## Install peco
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/install-peco.sh
 install-gomi: ## Install gomi
