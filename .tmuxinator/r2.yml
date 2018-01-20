@@ -44,10 +44,12 @@ root: ~/.ghq/src/bitbucket.org/yukimemi/r2
 
 windows:
   - editor:
-      layout: 43b0,254x73,0,0[254x54,0,0,0,254x18,0,55{50x18,0,55,2,50x18,51,55,3,50x18,102,55,4,50x18,153,55,5,50x18,204,55,6}]
+      layout: b63b,254x73,0,0[254x54,0,0{127x54,0,0,0,126x54,128,0,10},254x18,0,55{41x18,0,55,2,41x18,42,55,3,41x18,84,55,4,41x18,126,55,5,41x18,168,55,6,44x18,210,55,7}]
       panes:
         - npm start
-        - tail -F reports/spreadStat.csv | awk '{ print $2, $13 }'
+        - date
+        - tail -F reports/spreadStat.csv | awk '{ print $2, $13, $24 }'
+        - tail -F logs/calcProfit_(date "+%Y%m%d").log
         - tail -F logs/logBalance_(date "+%Y%m%d").log
         - tail -F logs/getBalance_(date "+%Y%m%d").log | grep "Quoine, JPY, Margin"
         - tail -F logs/getBalance_(date "+%Y%m%d").log | grep "Coincheck, JPY, Margin"
