@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/01/15 22:49:31.
+" Last Change : 2018/01/21 00:40:23.
 " =============================================================================
 
 " Plugin:
@@ -56,6 +56,7 @@ let s:opt_plugs = [
       \ ['eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod'}, executable('stack')],
       \ ['eagletmt/neco-ghc', {'type': 'opt'}],
       \ ['ekalinin/Dockerfile.vim', {'type': 'opt'}],
+      \ ['fatih/vim-go', {'type': 'opt'}],
       \ ['flowtype/vim-flow', {'type': 'opt', 'do': 'silent! !npm i -g flow-bin'}],
       \ ['itchyny/vim-haskell-indent', {'type': 'opt'}],
       \ ['itchyny/vim-haskell-sort-import', {'type': 'opt'}],
@@ -67,6 +68,7 @@ let s:opt_plugs = [
       \ ['kylef/apiblueprint.vim', {'type': 'opt'}],
       \ ['leafgarland/typescript-vim', {'type': 'opt'}],
       \ ['lifepillar/vim-solarized8', {'type': 'opt'}],
+      \ ['morhetz/gruvbox', {'type': 'opt'}],
       \ ['neovimhaskell/haskell-vim', {'type': 'opt'}],
       \ ['othree/es.next.syntax.vim', {'type': 'opt'}],
       \ ['othree/javascript-libraries-syntax.vim', {'type': 'opt'}],
@@ -84,7 +86,6 @@ let s:opt_plugs = [
       \ ]
 
       " \ ['prabirshrestha/asyncomplete-gocode.vim', {'type': 'opt'}],
-      " \ ['fatih/vim-go', {'type': 'opt'}],
       " \ ['racer-rust/vim-racer', {'type': 'opt'}, executable('cargo')],
       " \ ['zchee/deoplete-go', {'type': 'opt', 'do': 'silent! !make'}],
       " \ ['Quramy/tsuquyomi', {'type': 'opt'}],
@@ -151,6 +152,7 @@ let s:lazy_plugs = [
       \ ['vim-scripts/autodate.vim', {'type': 'opt'}],
       \ ['vim-scripts/matchit.zip', {'type': 'opt'}],
       \ ['w0rp/ale', {'type': 'opt'}],
+      \ ['y0za/vim-reading-vimrc', {'type': 'opt'}],
       \ ['yami-beta/asyncomplete-omni.vim', {'type': 'opt'}],
       \ ]
 
@@ -872,7 +874,7 @@ let g:go_gocode_unimported_packages = 1
 " au MyAutoCmd BufWritePost *.go GoMetaLinter
 " au MyAutoCmd BufWritePre *.go silent GoFmt
 
-" au MyAutoCmd BufNew,BufRead *.go call <SID>vim_go_cfg()
+au MyAutoCmd BufNew,BufRead *.go call <SID>vim_go_cfg()
 
 function! s:vim_go_cfg() abort
   packadd vim-go
@@ -1306,6 +1308,12 @@ if executable('cargo')
   " au MyAutoCmd FileType markdown packadd vim-markdown-composer
 endif
 
+" vim-reading-vimrc. {{{2
+au MyAutoCmd CmdUndefined ReadingVimrc* packadd vim-reading-vimrc
+vmap <Leader><CR> <Plug>(reading_vimrc-update_clipboard)
+
+" gruvbox. {{{2
+let g:gruvbox_contrast_dark = "hard"
 
 " Define user commands for updating/cleaning the plugins. {{{1
 " Each of them loads minpac, reloads .vimrc to register the
