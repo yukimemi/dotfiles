@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2017/12/25 11:01:25.
+" Last Change : 2018/01/21 00:39:10.
 " =============================================================================
 
 " Init: {{{1
@@ -264,7 +264,7 @@ set cinoptions& cinoptions+=:0
 set title
 set cmdheight=2
 set laststatus=2
-set synmaxcol=150
+set synmaxcol=500
 set showcmd
 set display=lastline
 set foldmethod=marker
@@ -274,7 +274,8 @@ set foldmethod=marker
 " Color: {{{1
 syntax enable
 set background=dark
-colorscheme hybrid_material
+colorscheme gruvbox
+" colorscheme hybrid_material
 " colorscheme solarized8_dark
 " colorscheme japanesque
 " colorscheme molokai
@@ -298,8 +299,10 @@ elseif !has('nvim')
   let &t_SR .= "\e[3 q"
 endif
 
+" Highlight VCS conflict markers {{{2
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-" hilight cursorline, cursorcolumn {{{2
+" Hilight cursorline, cursorcolumn {{{2
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
 au MyAutoCmd CursorMoved,CursorMovedI * call s:auto_cursorline('CursorMoved')
 au MyAutoCmd CursorHold,CursorHoldI * call s:auto_cursorline('CursorHold')
