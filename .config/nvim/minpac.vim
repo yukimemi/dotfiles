@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/01/21 00:40:23.
+" Last Change : 2018/01/22 22:35:59.
 " =============================================================================
 
 " Plugin:
@@ -687,6 +687,7 @@ let g:ale_fixers = {
       \ 'javascript.jsx': ['prettier'],
       \ 'typescript': ['prettier'],
       \ 'typescript.tsx': ['prettier'],
+      \ 'sh': ['shfmt'],
       \ }
 
 " Rust.
