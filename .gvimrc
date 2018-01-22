@@ -7,7 +7,7 @@ set guioptions=
 
 " color
 set background=dark
-colorscheme hybrid_material
+colorscheme gruvbox
 
 " font
 set gfn=Cica:h10:cSHIFTJIS:qDRAFT
