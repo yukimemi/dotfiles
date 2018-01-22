@@ -26,6 +26,8 @@ end
 
 set -U fish_user_paths
 __add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
+__add_fish_user_paths /usr/local/opt/gnu-sed/libexec/gnubin
+
 __add_fish_user_paths ~/bin/scripts
 __add_fish_user_paths $GOPATH/bin
 __add_fish_user_paths ~/.cargo/bin
@@ -39,6 +41,11 @@ if not test -d ~/.local/bin
     mkdir -p ~/.local/bin
 end
 __add_fish_user_paths ~/.local/bin
+__add_fish_user_paths ~/.local/bin/scripts
+
+# MANPATH. {{{2
+set MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
+set MANPATH /usr/local/opt/gnu-sed/libexec/gnuman $MANPATH
 
 ### Util functions. {{{1
 # cd and ls. {{{2
