@@ -29,6 +29,8 @@ path=(
   $GOROOT/bin
   # anyenv.
   $HOME/.anyenv/bin
+  # cargo.
+  $HOME/.cargo/bin
 )
 
 export GOROOT=$(go env GOROOT)
