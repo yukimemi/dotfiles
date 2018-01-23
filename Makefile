@@ -51,6 +51,8 @@ install-peco: ## Install peco
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/install-peco.sh
 install-gomi: ## Install gomi
 	@curl -L git.io/gomi | bash
+install-rustfmt: ## Install rustfmt
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/install-rustfmt.sh
 
 help: ## Self-documented Makefile
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
