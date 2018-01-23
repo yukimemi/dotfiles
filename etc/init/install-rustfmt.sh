@@ -9,7 +9,9 @@ fi
 
 if ! has rustup; then
   curl https://sh.rustup.rs -sSf | sh
+  export PATH=${HOME}/.cargo/bin:${PATH}
 fi
 
+rustup install nightly
 rustup component add rustfmt-preview --toolchain=nightly
 
