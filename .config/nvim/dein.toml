@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2017/12/11 14:26:59.
+# Last Change : 2018/01/23 18:00:51.
 # =============================================================================
 
 [[plugins]]
@@ -29,10 +29,18 @@ repo = 'joshdick/onedark.vim' # {{{1
 lazy = 1
 
 [[plugins]]
+repo = 'morhetz/gruvbox' # {{{1
+hook_add = '''
+let g:gruvbox_contrast_dark = "hard"
+'''
+
+[[plugins]]
 repo = 'endel/vim-github-colorscheme' # {{{1
+lazy = 1
 
 [[plugins]]
 repo = 'kristijanhusak/vim-hybrid-material' # {{{1
+lazy = 1
 
 [[plugins]]
 repo = 'ryanoasis/vim-devicons' # {{{1
@@ -134,23 +142,16 @@ if = "has('gui')"
 [[plugins]]
 repo = 'vim-scripts/matchit.zip' # {{{1
 
-# ==================== Complement ================ {{{1
 [[plugins]]
-repo = 'Shougo/deoplete.nvim' # {{{1
-if = "has('nvim')"
-on_i = 1
+repo = 'osyo-manga/vim-precious' # {{{1
 hook_add = '''
-let g:deoplete#enable_at_startup = 1
+let g:precious_enable_switch_CursorMoved = { '*': 0, 'help': 1 }
+au MyAutoCmd InsertEnter * :PreciousSwitch
+au MyAutoCmd InsertLeave * :PreciousReset
 '''
 
-[[plugins]]
-repo = 'roxma/nvim-yarp' # {{{1
-if = "!has('nvim')"
 
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc' # {{{1
-if = "!has('nvim')"
-
+# ==================== Complement ================ {{{1
 [[plugins]]
 repo = 'Shougo/neosnippet.vim' # {{{1
 depends = ['neosnippet-snippets', 'context_filetype.vim']
@@ -182,16 +183,14 @@ if = "executable('ctags')"
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp' # {{{1
-lazy = 1
+on_i = 1
 
 [[plugins]]
 repo = 'prabirshrestha/async.vim' # {{{1
-lazy = 1
+on_i = 1
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim' # {{{1
-depends = ['vim-lsp', 'async.vim']
-if = "!has('nvim')"
 on_i = 1
 hook_add = '''
 let g:asyncomplete_auto_popup = 1
@@ -200,8 +199,64 @@ let g:asyncomplete_force_refresh_on_context_changed = 1
 '''
 
 [[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim' # {{{1
+depends = ['vim-lsp', 'async.vim', 'asyncomplete.vim']
+on_i = 1
+hook_add = '''
+" Docker. {{{2
+if executable('docker-langserver')
+  au MyAutoCmd User lsp_setup call lsp#register_server({
+        \ 'name': 'docker-langserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+        \ 'priority': 4,
+        \ 'whitelist': ['dockerfile'],
+        \ })
+endif
+
+" go. {{{2
+if executable('go-langserver')
+  au MyAutoCmd User lsp_setup call lsp#register_server({
+        \ 'name': 'go-langserver',
+        \ 'cmd': {server_info->['go-langserver', '-mode', 'stdio']},
+        \ 'priority': 4,
+        \ 'whitelist': ['go'],
+        \ })
+endif
+
+" python. {{{2
+if executable('pyls')
+  au MyAutoCmd User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'priority': 4,
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
+" rust. {{{2
+if executable('rls')
+  au MyAutoCmd User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+        \ 'priority': 4,
+        \ 'whitelist': ['rust'],
+        \ })
+endif
+
+" flow. {{{2
+if executable('flow-language-server')
+  au MyAutoCmd User lsp_setup call lsp#register_server({
+        \ 'name': 'flow-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'flow-language-server --stdio']},
+        \ 'priority': 4,
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+        \ 'whitelist': ['javascript'],
+        \ })
+endif
+'''
+
+[[plugins]]
 repo = 'prabirshrestha/asyncomplete-buffer.vim' # {{{1
-on_source = 'asyncomplete.vim'
 hook_add = '''
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
       \ 'name': 'buffer',
@@ -213,8 +268,18 @@ au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncompl
 '''
 
 [[plugins]]
+repo = 'prabirshrestha/asyncomplete-file.vim' # {{{1
+hook_add = '''
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+      \ 'name': 'file',
+      \ 'whitelist': ['*'],
+      \ 'priority': 1,
+      \ 'completor': function('asyncomplete#sources#file#completor'),
+      \ }))
+'''
+
+[[plugins]]
 repo = 'prabirshrestha/asyncomplete-emoji.vim' # {{{1
-on_source = 'asyncomplete.vim'
 hook_add = '''
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#emoji#get_source_options({
       \ 'name': 'emoji',
@@ -226,7 +291,6 @@ au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncompl
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-tags.vim' # {{{1
-on_source = 'asyncomplete.vim'
 if = "executable('ctags')"
 hook_add = '''
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
@@ -241,8 +305,19 @@ au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncompl
 '''
 
 [[plugins]]
+repo = 'yami-beta/asyncomplete-omni.vim' # {{{1
+hook_add = '''
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+      \ 'name': 'omni',
+      \ 'whitelist': ['*'],
+      \ 'blacklist': ['go', 'rust'],
+      \ 'priority': 3,
+      \ 'completor': function('asyncomplete#sources#omni#completor')
+      \ }))
+'''
+
+[[plugins]]
 repo = 'prabirshrestha/asyncomplete-neosnippet.vim' # {{{1
-on_source = 'asyncomplete.vim'
 hook_add = '''
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
       \ 'name': 'neosnippet',
@@ -252,6 +327,73 @@ au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncompl
       \ }))
 '''
 
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-necovim.vim' # {{{1
+depends = 'asyncomplete.vim'
+on_ft = 'vim'
+hook_source = '''
+call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
+      \ 'name': 'necovim',
+      \ 'whitelist': ['vim'],
+      \ 'priority': 4,
+      \ 'completor': function('asyncomplete#sources#necovim#completor'),
+      \ }))
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-necosyntax.vim' # {{{1
+depends = 'asyncomplete.vim'
+on_ft = 'vim'
+hook_source = '''
+call asyncomplete#register_source(asyncomplete#sources#necosyntax#get_source_options({
+      \ 'name': 'necosyntax',
+      \ 'whitelist': ['*'],
+      \ 'priority': 4,
+      \ 'completor': function('asyncomplete#sources#necosyntax#completor'),
+      \ }))
+'''
+
+[[plugins]]
+repo = 'keremc/asyncomplete-racer.vim' # {{{1
+depends = 'asyncomplete.vim'
+on_ft = 'rust'
+if = "!executable('rls') && executable('racer')"
+hook_source = '''
+call asyncomplete#register_source(asyncomplete#sources#racer#get_source_options({
+      \ 'priority': 4,
+      \ }))
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-flow.vim' # {{{1
+depends = 'asyncomplete.vim'
+on_ft = ['javascript', 'json']
+if = "!executable('flow-language-server') && executable('flow')"
+hook_source = '''
+call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
+      \ 'name': 'flow',
+      \ 'whitelist': ['javascript'],
+      \ 'priority': 4,
+      \ 'completor': function('asyncomplete#sources#flow#completor'),
+      \ 'config': {
+      \    'prefer_local': 1
+      \  },
+      \ }))
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-gocode.vim' # {{{1
+depends = 'asyncomplete.vim'
+on_ft = 'go'
+if = "!executable('go-langserver') && executable('gocode')"
+hook_source = '''
+call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
+      \ 'name': 'gocode',
+      \ 'whitelist': ['go'],
+      \ 'priority': 4,
+      \ 'completor': function('asyncomplete#sources#gocode#completor'),
+      \ }))
+'''
 
 # ==================== Utility =================== {{{1
 [[plugins]]
@@ -553,7 +695,9 @@ tnoremap sh <C-\><C-n><C-w>h
 repo = 'lambdalisue/vim-findent' # {{{1
 on_cmd = 'Findent'
 hook_add = '''
-au MyAutoCmd BufRead * Findent --no-warnings
+let g:findent#enable_messages = 0
+let g:findent#enable_warnings = 0
+au MyAutoCmd BufRead * Findent
 '''
 
 [[plugins]]
@@ -608,16 +752,16 @@ let g:ctrlp_extensions = ['line', 'changes', 'mixed', 'bookmarkdir', 'memolist']
 nnoremap scp :<C-u>CtrlP<CR>
 nnoremap scb :<C-u>CtrlPBuffer<CR>
 nnoremap scd :<C-u>CtrlPCurWD<CR>
-" nnoremap scm :<C-u>CtrlPMRU<CR>
+nnoremap scu :<C-u>CtrlPMRU<CR>
 nnoremap scm :<C-u>CtrlPMark<CR>
 " nnoremap scl :<C-u>CtrlPLine<CR>
 nnoremap scg :<C-u>CtrlPChange<CR>
 nnoremap scc :<C-u>CtrlPMixed<CR>
 nnoremap scf :<C-u>CtrlPFiletype<CR>
-nnoremap scl :<C-u>CtrlPLauncher<CR>
+" nnoremap scl :<C-u>CtrlPLauncher<CR>
 nnoremap sct :<C-u>CtrlPSonictemplate<CR>
 
-nnoremap <Leader>ml :<C-u>CtrlPMemolist<CR>
+nnoremap scl :<C-u>CtrlPMemolist<CR>
 
 if executable('rg')
   let g:ctrlp_user_command ='rg -F --files %s'
@@ -625,24 +769,24 @@ endif
 '''
 
 [[plugins]]
-repo = 'kaneshin/ctrlp-filetype'
+repo = 'kaneshin/ctrlp-filetype' # {{{1
 on_source = 'ctrlp.vim'
 [[plugins]]
-repo = 'kaneshin/ctrlp-sonictemplate'
+repo = 'kaneshin/ctrlp-sonictemplate' # {{{1
 on_source = 'ctrlp.vim'
 [[plugins]]
-repo = 'kaneshin/ctrlp-memolist'
+repo = 'kaneshin/ctrlp-memolist' # {{{1
 on_source = 'ctrlp.vim'
 [[plugins]]
-repo = 'mattn/ctrlp-launcher'
+repo = 'mattn/ctrlp-launcher' # {{{1
 on_source = 'ctrlp.vim'
 [[plugins]]
-repo = 'mattn/ctrlp-mark'
+repo = 'mattn/ctrlp-mark' # {{{1
 on_source = 'ctrlp.vim'
 
 
 [[plugins]]
-repo = 'haya14busa/vim-open-googletranslate'
+repo = 'haya14busa/vim-open-googletranslate' # {{{1
 if = "!has('nvim')"
 on_cmd = 'OpenGoogleTranslate'
 hook_add = '''
@@ -652,7 +796,7 @@ endif
 '''
 
 [[plugins]]
-repo = 'thinca/vim-singleton'
+repo = 'thinca/vim-singleton' # {{{1
 if = "!has('nvim')"
 hook_add = '''
 au MyAutoCmd VimEnter * call <SID>vim_singleton_aft()
@@ -673,7 +817,7 @@ nnoremap sdc :<C-u>Denite colorscheme -auto-preview<CR>
 nnoremap sdb :<C-u>Denite buffer<CR>
 nnoremap sdf :<C-u>Denite file<CR>
 nnoremap sdF :<C-u>Denite file_rec<CR>
-" nnoremap sdu :<C-u>Denite buffer file_old<CR>
+nnoremap sdu :<C-u>Denite file_mru<CR>
 nnoremap sdd :<C-u>Denite file_rec buffer file_mru<CR>
 nnoremap sdo :<C-u>Denite outline -no-quit -mode=normal<CR>
 nnoremap sdh :<C-u>Denite help<CR>

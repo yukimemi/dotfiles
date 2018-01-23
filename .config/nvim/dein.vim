@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2017/06/17 10:51:19.
+" Last Change : 2018/01/23 15:42:09.
 " =============================================================================
 
 " Plugin: {{{1
@@ -29,6 +29,3 @@ if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
 
-" After dein.
-filetype plugin indent on
-syntax enable

@@ -126,9 +126,6 @@ end
 alias cp "cp -v"
 alias mv "mv -v"
 alias l "ll"
-if type -q gomi
-    alias rm "gomi"
-end
 alias ghc "stack ghc --"
 alias ghci "stack ghci"
 alias stackexec "stack exec"
@@ -189,6 +186,8 @@ abbr -a gk 'git log --graph --pretty'
 # vim {{{2
 abbr -a mup 'nvim -c "PackUpdate"'
 abbr -a vup 'vim -c "PackUpdate"'
+abbr -a dup 'nvim -c "silent! call dein#update() | Capture Dein log"'
+abbr -a dvup 'vim -c "silent! call dein#update() | Capture Dein log"'
 
 ### Options. {{{1
 # Use fish_vi_key_bindings.
