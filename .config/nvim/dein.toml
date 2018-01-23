@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/01/23 20:09:24.
+# Last Change : 2018/01/23 23:32:35.
 # =============================================================================
 
 [[plugins]]
@@ -623,13 +623,6 @@ nnoremap [Space]u :MundoToggle<CR>
 repo = 'tpope/vim-repeat' # {{{1
 
 [[plugins]]
-repo = 'sbdchd/neoformat' # {{{1
-hook_add = '''
-let g:neoformat_only_msg_on_error = 1
-" au MyAutoCmd BufWritePre * Neoformat
-'''
-
-[[plugins]]
 repo = 'w0rp/ale' # {{{1
 hook_add = '''
 let g:ale_linters = {
@@ -642,6 +635,15 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_save = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+      \ 'javascript': ['prettier'],
+      \ 'javascript.jsx': ['prettier'],
+      \ 'typescript': ['prettier'],
+      \ 'typescript.tsx': ['prettier'],
+      \ 'sh': ['shfmt'],
+      \ }
 
 " Rust.
 let g:ale_rust_ignore_error_codes = ['E0432', 'E0433']
@@ -1266,10 +1268,6 @@ repo = 'pangloss/vim-javascript' # {{{1
 on_ft = ['javascript', 'javascript.jsx']
 
 [[plugins]]
-repo = 'maxmellon/vim-jsx-pretty' # {{{1
-on_ft = ['javascript', 'javascript.jsx', 'typescript']
-
-[[plugins]]
 repo = 'othree/javascript-libraries-syntax.vim' # {{{1
 on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
@@ -1284,25 +1282,6 @@ build = 'npm install -g flow-bin'
 hook_add = '''
 let g:flow#autoclose = 1
 '''
-
-[[plugins]]
-repo = 'prettier/vim-prettier' # {{{1
-on_ft = ['javascript', 'javascript.jsx']
-hook_add = '''
-let g:prettier#autoformat = 1
-let g:prettier#quickfix_enabled = 1
-let g:prettier#exec_cmd_async = 1
-let g:prettier#config#print_width = 100
-let g:prettier#config#tab_width = 2
-let g:prettier#config#use_tabs = 'false'
-let g:prettier#config#semi = 'true'
-let g:prettier#config#single_quote = 'true'
-let g:prettier#config#bracket_spacing = 'false'
-let g:prettier#config#jsx_bracket_same_line = 'true'
-let g:prettier#config#trailing_comma = 'all'
-let g:prettier#config#parser = 'flow'
-'''
-
 
 # ==================== Filetype (typescript) ===== {{{1
 [[plugins]]
