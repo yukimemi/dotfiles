@@ -217,4 +217,6 @@ end
 set pure_symbol_prompt "→ "
 set pure_color_green (set_color "white")
 
+# fenv {{{2
+fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 

@@ -2,7 +2,7 @@
 
 set -eu
 
-arch=32
+arch=${1:-32}
 
 getUrl() {
 	curl -sL "http://vim-jp.org/redirects/koron/vim-kaoriya/latest/win${arch}/" |
