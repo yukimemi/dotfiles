@@ -186,8 +186,8 @@ abbr -a gk 'git log --graph --pretty'
 # vim {{{2
 abbr -a mup 'nvim -c "PackUpdate"'
 abbr -a vup 'vim -c "PackUpdate"'
-abbr -a dup 'nvim -c "silent! call dein#update() | Capture Dein log"'
-abbr -a dvup 'vim -c "silent! call dein#update() | Capture Dein log"'
+abbr -a dup 'nvim -c "silent! call dein#update() | q"'
+abbr -a dvup 'vim -c "silent! call dein#update() | q"'
 
 ### Options. {{{1
 # Use fish_vi_key_bindings.

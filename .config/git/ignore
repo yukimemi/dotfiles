@@ -3,6 +3,8 @@
 
 # tag
 tags
+tags.lock
+tags.temp
 
 # haskell
 *.hi
