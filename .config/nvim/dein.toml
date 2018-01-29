@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/01/23 23:32:35.
+# Last Change : 2018/01/26 12:38:48.
 # =============================================================================
 
 [[plugins]]
@@ -801,10 +801,7 @@ endif
 repo = 'thinca/vim-singleton' # {{{1
 if = "!has('nvim')"
 hook_add = '''
-au MyAutoCmd VimEnter * call <SID>vim_singleton_aft()
-function! s:vim_singleton_aft()
-  call singleton#enable()
-endfunction
+call singleton#enable()
 '''
 
 [[plugins]]

@@ -31,7 +31,7 @@ return
 ; keystrokes and mouse clicks.  It also explains more about hotkeys.
 
 ; for gvim
-^F10::
+F10::
 Process,Exist,gvim.exe
 If ErrorLevel <> 0
   WinActivate, ahk_pid %ErrorLevel%
