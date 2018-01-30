@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/01/26 12:38:48.
+# Last Change : 2018/01/30 17:19:49.
 # =============================================================================
 
 [[plugins]]
@@ -30,13 +30,17 @@ lazy = 1
 
 [[plugins]]
 repo = 'morhetz/gruvbox' # {{{1
+lazy = 1
 hook_add = '''
 let g:gruvbox_contrast_dark = "hard"
 '''
 
 [[plugins]]
 repo = 'endel/vim-github-colorscheme' # {{{1
-lazy = 1
+# lazy = 1
+
+[[plugins]]
+repo = 'machakann/vim-colorscheme-imas' # {{[1
 
 [[plugins]]
 repo = 'kristijanhusak/vim-hybrid-material' # {{{1
