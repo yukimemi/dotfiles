@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/01/30 23:53:34.
+# Last Change : 2018/01/31 22:44:56.
 # =============================================================================
 
 [[plugins]]
@@ -43,6 +43,10 @@ repo = 'endel/vim-github-colorscheme' # {{{1
 # lazy = 1
 
 [[plugins]]
+repo = 'kmtoki/lightline-colorscheme-simplicity'
+
+
+[[plugins]]
 repo = 'kristijanhusak/vim-hybrid-material' # {{{1
 lazy = 1
 
@@ -53,7 +57,7 @@ repo = 'ryanoasis/vim-devicons' # {{{1
 repo = 'itchyny/lightline.vim' # {{{1
 hook_add = '''
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
+      \ 'colorscheme': 'simplicity',
       \ 'mode_map': {
       \   'n' : 'N',
       \   'i' : 'I',
@@ -577,6 +581,14 @@ repo = 'basyura/twibill.vim' # {{{1
 lazy = 1
 
 [[plugins]]
+repo = 'mattn/favstar-vim'
+lazy = 1
+
+[[plugins]]
+repo = 'basyura/bitly.vim'
+lazy = 1
+
+[[plugins]]
 repo = 'basyura/TweetVim' # {{{1
 depends = ['twibill.vim', 'open-browser.vim', 'bitly.vim', 'favstar-vim', 'webapi-vim']
 on_cmd = ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay']
@@ -598,6 +610,9 @@ let g:tweetvim_display_source = 1
 let g:tweetvim_display_time = 1
 "let g:tweetvim_display_icon = 1
 let g:tweetvim_async_post = 1
+let g:tweetvim_display_separator = 0
+let g:tweetvim_empty_separator = 1
+let g:tweetvim_align_right = 0
 '''
 
 [[plugins]]
