@@ -37,6 +37,7 @@ elseif g:is_windows
   if has("gui_running")
     nnoremap [Space]r :<C-u>simalt ~r<CR>
     nnoremap [Space]x :<C-u>simalt ~x<CR>
+    au MyAutoCmd GUIEnter * set lines=70 columns=100
   endif
 endif
 
