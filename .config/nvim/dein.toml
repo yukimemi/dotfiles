@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/02/05 07:47:16.
+# Last Change : 2018/02/06 12:31:34.
 # =============================================================================
 
 [[plugins]]
@@ -158,6 +158,9 @@ au MyAutoCmd InsertEnter * :PreciousSwitch
 au MyAutoCmd InsertLeave * :PreciousReset
 '''
 
+[[plugins]]
+repo = 'ntpeters/vim-better-whitespace' # {{{1
+
 
 # ==================== Complement ================ {{{1
 [[plugins]]
@@ -187,7 +190,7 @@ repo = 'Shougo/context_filetype.vim' # {{{1
 
 [[plugins]]
 repo = 'ludovicchabant/vim-gutentags' # {{{1
-if = "executable('ctags')"
+if = "executable('ctags') && !g:is_windows"
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp' # {{{1
