@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/02/06 12:31:34.
+# Last Change : 2018/02/10 14:10:21.
 # =============================================================================
 
 [[plugins]]
@@ -707,18 +707,18 @@ nnoremap [Space]v :<C-u>Dirvish<CR>
 # repo = 'vitalk/vim-simple-todo'
 # on_ft = 'markdown'
 
-[[plugins]]
-repo = 'kassio/neoterm' # {{{1
-if = "has('nvim')"
-on_cmd = ['T', 'Tnew']
-hook_add = '''
-let g:neoterm_autoinsert = 1
-nnoremap [Space]s :<C-u>terminal<CR>
-tnoremap sj <C-\><C-n><C-w>j
-tnoremap sk <C-\><C-n><C-w>k
-tnoremap sl <C-\><C-n><C-w>l
-tnoremap sh <C-\><C-n><C-w>h
-'''
+# [[plugins]]
+# repo = 'kassio/neoterm' # {{{1
+# if = "has('nvim')"
+# on_cmd = ['T', 'Tnew']
+# hook_add = '''
+# let g:neoterm_autoinsert = 1
+# nnoremap [Space]s :<C-u>terminal<CR>
+# tnoremap sj <C-\><C-n><C-w>j
+# tnoremap sk <C-\><C-n><C-w>k
+# tnoremap sl <C-\><C-n><C-w>l
+# tnoremap sh <C-\><C-n><C-w>h
+# '''
 
 [[plugins]]
 repo = 'lambdalisue/vim-findent' # {{{1
@@ -1290,6 +1290,21 @@ on_ft = 'vue'
 [[plugins]]
 repo = 'pangloss/vim-javascript' # {{{1
 on_ft = ['javascript', 'javascript.jsx']
+
+# [[plugins]]
+# repo = 'billyvg/tigris.nvim' # {{{1
+# if = '!g:is_windows'
+# on_ft = ['javascript', 'javascript.jsx']
+# depends = 'node-host'
+# build = './install.sh'
+# hook_add = '''
+# let g:tigris#enabled = 1
+# '''
+
+# [[plugins]]
+# repo = 'neovim/node-host'
+# lazy = 1
+# build = 'npm install'
 
 [[plugins]]
 repo = 'othree/javascript-libraries-syntax.vim' # {{{1
