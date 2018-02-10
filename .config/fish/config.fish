@@ -204,6 +204,14 @@ if not test -f ~/.cache/fresco/__fresco_install.fish
     mkdir -p ~/.cache/fresco >/dev/null ^&1
     curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o ~/.cache/fresco/__fresco_install.fish
     cat ~/.cache/fresco/__fresco_install.fish | fish
+
+    fresco fisherman/getopts
+    fresco fisherman/z
+    fresco 0rax/fish-bd
+    fresco rafaelrinaldi/pure
+    fresco masa0x80/replace_multiple_dots.fish
+    fresco oh-my-fish/plugin-foreign-env
+    exec fish -l
 end
 
 # fisherman.
@@ -218,5 +226,7 @@ set pure_symbol_prompt "→ "
 set pure_color_green (set_color "white")
 
 # fenv {{{2
-fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+if type -q fenv
+    fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+end
 
