@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/02/10 14:10:21.
+# Last Change : 2018/02/11 07:44:59.
 # =============================================================================
 
 [[plugins]]
@@ -668,6 +668,8 @@ let g:ale_fixers = {
       \ 'javascript': ['prettier'],
       \ 'javascript.jsx': ['prettier'],
       \ 'typescript': ['prettier'],
+      \ 'json': ['prettier'],
+      \ 'scss': ['prettier'],
       \ 'typescript.tsx': ['prettier'],
       \ 'sh': ['shfmt'],
       \ }
