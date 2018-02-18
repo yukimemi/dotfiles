@@ -32,6 +32,8 @@ __add_fish_user_paths ~/bin/scripts
 __add_fish_user_paths $GOPATH/bin
 __add_fish_user_paths ~/.cargo/bin
 __add_fish_user_paths ~/.yarn/bin
+__add_fish_user_paths ~/.linuxbrew/bin
+__add_fish_user_paths /home/linuxbrew/.linuxbrew/bin
 if type -q node
     and type -q yarn
     __add_fish_user_paths (yarn global bin)
