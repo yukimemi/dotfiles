@@ -39,13 +39,13 @@ else
   Run, %USERPROFILE%\app\vim\gvim.exe
 return
 
-; for cfiler
-^F11::
-Process,Exist,cfiler.exe
+; for chrome
+F11::
+Process,Exist,chrome.exe
 If ErrorLevel <> 0
   WinActivate, ahk_pid %ErrorLevel%
 else
-  Run, %USERPROFILE%\app\cfiler\cfiler.exe, %USERPROFILE%\app\cfiler, Max
+  Run, "C:\Program Files\Google\Chrome\Application\chrome.exe"
 return
 
 ; for cmd.exe
@@ -55,6 +55,15 @@ If ErrorLevel <> 0
   WinActivate, ahk_pid %ErrorLevel%
 else
   Run, cmd.exe
+return
+
+; for cfiler
+^F11::
+Process,Exist,cfiler.exe
+If ErrorLevel <> 0
+  WinActivate, ahk_pid %ErrorLevel%
+else
+  Run, %USERPROFILE%\app\cfiler\cfiler.exe, %USERPROFILE%\app\cfiler, Max
 return
 
 
