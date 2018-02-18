@@ -16,7 +16,7 @@ doskey e=gvim --remote-tab-silent $*
 doskey b=cd ..
 doskey o=start $*
 doskey vup=vim -c "PlugUpdate"
-doskey dup=vim -c "silent! call dein#update() | Capture Dein log"
+doskey dup=vim -c "silent! call dein#update() | q"
 doskey mup=vim -c "PackUpdate"
 
 rem Git
