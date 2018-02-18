@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/02/11 07:44:59.
+# Last Change : 2018/02/18 13:24:34.
 # =============================================================================
 
 [[plugins]]
@@ -839,6 +839,11 @@ hook_add = '''
 map <C-j> <Plug>(edgemotion-j)
 map <C-k> <Plug>(edgemotion-k)
 '''
+
+[[plugins]]
+repo = 'dhruvasagar/vim-table-mode'
+on_ft = 'markdown'
+
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
