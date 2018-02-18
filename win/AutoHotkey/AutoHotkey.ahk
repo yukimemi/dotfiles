@@ -30,6 +30,15 @@ return
 ; It explains how to perform common automation tasks such as sending
 ; keystrokes and mouse clicks.  It also explains more about hotkeys.
 
+; for Outlook
+F9::
+Process,Exist,OUTLOOK.EXE
+If ErrorLevel <> 0
+  WinActivate, ahk_pid %ErrorLevel%
+else
+  Run, "C:/Program Files/Microsoft Office/Office15/OUTLOOK.EXE"
+return
+
 ; for gvim
 F10::
 Process,Exist,gvim.exe
@@ -66,11 +75,6 @@ else
   Run, %USERPROFILE%\app\cfiler\cfiler.exe, %USERPROFILE%\app\cfiler, Max
 return
 
-
-; for rapture
-;F9::
-;Run, %USERPROFILE%\app\rapture\rapture.exe
-;return
 
 ; for vim
 ^[::Send {Esc}{vk1Dsc07B}
