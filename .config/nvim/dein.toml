@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/02/18 13:24:34.
+# Last Change : 2018/02/20 08:05:34.
 # =============================================================================
 
 [[plugins]]
@@ -791,6 +791,7 @@ nnoremap scc :<C-u>CtrlPMixed<CR>
 nnoremap scf :<C-u>CtrlPFiletype<CR>
 " nnoremap scl :<C-u>CtrlPLauncher<CR>
 nnoremap sct :<C-u>CtrlPSonictemplate<CR>
+nnoremap sch :<C-u>CtrlPCmdHistory<CR>
 
 nnoremap scl :<C-u>CtrlPMemolist<CR>
 
@@ -815,6 +816,9 @@ on_source = 'ctrlp.vim'
 repo = 'mattn/ctrlp-mark' # {{{1
 on_source = 'ctrlp.vim'
 
+[[plugins]]
+repo = 'ompugao/ctrlp-history' # {{{1
+on_source = 'ctrlp.vim'
 
 [[plugins]]
 repo = 'haya14busa/vim-open-googletranslate' # {{{1
@@ -1002,6 +1006,9 @@ com! ToggleCursorWord call s:ToggleCursorWord()
 [[plugins]]
 repo = 'thinca/vim-qfreplace' # {{{1
 on_ft = ['quickfix']
+
+[[plugins]]
+repo = 'haya14busa/vim-migemo' # {{{1
 
 
 # ==================== Operators ================= {{{1
@@ -1349,6 +1356,10 @@ on_ft = 'fish'
 # repo = 'rhysd/vim-gfm-syntax'
 # on_ft = 'markdown'
 
+[[plugins]]
+repo = 'nelstrom/vim-markdown-folding'
+on_ft = 'markdown'
+
 # ==================== Filetype (Dockerfile) ===== {{{1
 [[plugins]]
 repo = 'ekalinin/Dockerfile.vim' # {{{1
@@ -1469,7 +1480,7 @@ colorscheme github
 markdown = '''
 setl formatoptions+=t
 setl conceallevel=0
-setl foldmethod=syntax
+colorscheme github
 '''
 
 ps1 = '''
