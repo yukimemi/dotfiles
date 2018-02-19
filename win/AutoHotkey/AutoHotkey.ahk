@@ -33,7 +33,7 @@ return
 ; for Outlook
 F9::
 Process,Exist,OUTLOOK.EXE
-If ErrorLevel <> 0
+if ErrorLevel <> 0
   WinActivate, ahk_pid %ErrorLevel%
 else
   Run, "C:/Program Files/Microsoft Office/Office15/OUTLOOK.EXE"
@@ -42,25 +42,37 @@ return
 ; for gvim
 F10::
 Process,Exist,gvim.exe
-If ErrorLevel <> 0
+if ErrorLevel <> 0
   WinActivate, ahk_pid %ErrorLevel%
 else
   Run, %USERPROFILE%\app\vim\gvim.exe
 return
 
+; for sakura
+^F10::
+Process,Exist,sakura.exe
+if ErrorLevel <> 0
+  WinActivate, ahk_pid %ErrorLevel%
+else
+  Run, "C:\Program Files\sakura\sakura.exe"
+return
+
 ; for chrome
 F11::
 Process,Exist,chrome.exe
-If ErrorLevel <> 0
+if ErrorLevel <> 0
   WinActivate, ahk_pid %ErrorLevel%
 else
-  Run, "C:\Program Files\Google\Chrome\Application\chrome.exe"
+  if FileExist("C:\Program Files\Google\Chrome\Application\chrome.exe")
+    Run, "C:\Program Files\Google\Chrome\Application\chrome.exe"
+  else
+    Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 return
 
 ; for cmd.exe
 F12::
 Process,Exist,cmd.exe
-If ErrorLevel <> 0
+if ErrorLevel <> 0
   WinActivate, ahk_pid %ErrorLevel%
 else
   Run, cmd.exe
@@ -69,7 +81,7 @@ return
 ; for cfiler
 ^F11::
 Process,Exist,cfiler.exe
-If ErrorLevel <> 0
+if ErrorLevel <> 0
   WinActivate, ahk_pid %ErrorLevel%
 else
   Run, %USERPROFILE%\app\cfiler\cfiler.exe, %USERPROFILE%\app\cfiler, Max
