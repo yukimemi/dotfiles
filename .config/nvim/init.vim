@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/02/09 08:18:19.
+" Last Change : 2018/02/20 20:26:58.
 " =============================================================================
 
 " Init: {{{1
@@ -526,10 +526,9 @@ au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 
 " Save and load fold settings.
 " http://vim-jp.org/vim-users-jp/2009/10/08/Hack-84.html
-au MyAutoCmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview! | endif
-au MyAutoCmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent! loadview | endif
-" Don't save options.
-set viewoptions-=options
+" au MyAutoCmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview! | endif
+" au MyAutoCmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent! loadview | endif
+set viewoptions=cursor,folds
 
 " For swap.
 " http://itchyny.hatenablog.com/entry/2014/12/25/090000

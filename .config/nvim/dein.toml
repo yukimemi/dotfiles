@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/02/20 08:05:34.
+# Last Change : 2018/02/20 13:02:16.
 # =============================================================================
 
 [[plugins]]
@@ -838,16 +838,18 @@ call singleton#enable()
 '''
 
 [[plugins]]
-repo = 'haya14busa/vim-edgemotion'
+repo = 'haya14busa/vim-edgemotion' # {{{1
 hook_add = '''
 map <C-j> <Plug>(edgemotion-j)
 map <C-k> <Plug>(edgemotion-k)
 '''
 
 [[plugins]]
-repo = 'dhruvasagar/vim-table-mode'
+repo = 'dhruvasagar/vim-table-mode' # {{{1
 on_ft = 'markdown'
 
+[[plugins]]
+repo = 'kopischke/vim-stay' # {{{1
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
