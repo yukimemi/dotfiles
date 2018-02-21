@@ -37,8 +37,23 @@ elseif g:is_windows
   if has("gui_running")
     nnoremap [Space]r :<C-u>simalt ~r<CR>
     nnoremap [Space]x :<C-u>simalt ~x<CR>
-    au MyAutoCmd GUIEnter * set lines=70 columns=100
+    " au MyAutoCmd GUIEnter * set lines=70 columns=100
   endif
+endif
+
+let g:save_window_file = expand('$CACHE/.vimwinpos')
+au MyAutoCmd VimLeavePre * call s:save_window()
+function! s:save_window()
+  let options = [
+        \ 'set columns=' . &columns,
+        \ 'set lines=' . &lines,
+        \ 'winpos ' . getwinposx() . ' ' . getwinposy(),
+        \ ]
+  call writefile(options, g:save_window_file)
+endfunction
+
+if filereadable(g:save_window_file)
+  au MyAutoCmd GUIEnter * exe 'source' g:save_window_file
 endif
 
 set ambiwidth=double
