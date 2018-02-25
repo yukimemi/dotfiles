@@ -15,85 +15,56 @@
 
 #z::Run www.autohotkey.com
 
-^!n::
-IfWinExist Untitled - Notepad
-  WinActivate
-else
-  Run Notepad
-return
+Toggle(app) {
+  SplitPath, app, file
+  Process, Exist, %file%
+  if ErrorLevel <> 0
+    if WinActive("ahk_pid" . ErrorLevel)
+      WinMinimize, A
+    else
+      WinActivate, ahk_pid %ErrorLevel%
+  else
+    Run, %app%
+  return
+}
 
-
-; Note: From now on whenever you run AutoHotkey directly, this script
-; will be loaded.  So feel free to customize it to suit your needs.
-
-; Please read the QUICK-START TUTORIAL near the top of the help file.
-; It explains how to perform common automation tasks such as sending
-; keystrokes and mouse clicks.  It also explains more about hotkeys.
 
 ; for Outlook
 F9::
-Process,Exist,OUTLOOK.EXE
-if ErrorLevel <> 0
-  WinActivate, ahk_pid %ErrorLevel%
-else
-  Run, "C:/Program Files/Microsoft Office/Office15/OUTLOOK.EXE"
+Toggle("C:\Program Files\Microsoft Office\Office15\OUTLOOK.EXE")
 return
 
 ; for Excel
 ^F9::
-Process,Exist,excel.exe
-if ErrorLevel <> 0
-  WinActivate, ahk_pid %ErrorLevel%
-else
-  Run, "C:/Program Files/Microsoft Office/Office15/EXCEL.EXE"
+Toggle("C:\Program Files\Microsoft Office\Office15\EXCEL.EXE")
 return
 
 ; for gvim
 F10::
-Process,Exist,gvim.exe
-if ErrorLevel <> 0
-  WinActivate, ahk_pid %ErrorLevel%
-else
-  Run, %USERPROFILE%\app\vim\gvim.exe
+Toggle(USERPROFILE . "\app\vim\gvim.exe")
 return
 
 ; for sakura
 ^F10::
-Process,Exist,sakura.exe
-if ErrorLevel <> 0
-  WinActivate, ahk_pid %ErrorLevel%
-else
-  Run, "C:\Program Files\sakura\sakura.exe"
+Toggle("C:\Program Files\sakura\sakura.exe")
 return
 
 ; for chrome
 F11::
-Process,Exist,chrome.exe
-if ErrorLevel <> 0
-  WinActivate, ahk_pid %ErrorLevel%
+if FileExist("C:\Program Files\Google\Chrome\Application\chrome.exe")
+  Toggle("C:\Program Files\Google\Chrome\Application\chrome.exe")
 else
-  if FileExist("C:\Program Files\Google\Chrome\Application\chrome.exe")
-    Run, "C:\Program Files\Google\Chrome\Application\chrome.exe"
-  else
-    Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+  Toggle("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
 return
 
 ; for cmd.exe
 F12::
-Process,Exist,cmd.exe
-if ErrorLevel <> 0
-  WinActivate, ahk_pid %ErrorLevel%
-else
-  Run, cmd.exe
+Toggle(ComSpec)
 return
 
 ; for cfiler
 ^F11::
-Process,Exist,cfiler.exe
-if ErrorLevel <> 0
-  WinActivate, ahk_pid %ErrorLevel%
-else
-  Run, %USERPROFILE%\app\cfiler\cfiler.exe, %USERPROFILE%\app\cfiler, Max
+Toggle(USERPROFILE . "\app\cfiler\cfiler.exe")
 return
 
 
