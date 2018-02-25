@@ -39,6 +39,15 @@ else
   Run, "C:/Program Files/Microsoft Office/Office15/OUTLOOK.EXE"
 return
 
+; for Excel
+^F9::
+Process,Exist,excel.exe
+if ErrorLevel <> 0
+  WinActivate, ahk_pid %ErrorLevel%
+else
+  Run, "C:/Program Files/Microsoft Office/Office15/EXCEL.EXE"
+return
+
 ; for gvim
 F10::
 Process,Exist,gvim.exe
