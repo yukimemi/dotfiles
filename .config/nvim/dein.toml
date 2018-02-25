@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/02/20 13:02:16.
+# Last Change : 2018/02/25 12:54:11.
 # =============================================================================
 
 [[plugins]]
@@ -672,6 +672,7 @@ let g:ale_fixers = {
       \ 'scss': ['prettier'],
       \ 'typescript.tsx': ['prettier'],
       \ 'sh': ['shfmt'],
+      \ 'elm': ['elm-format'],
       \ }
 
 " Rust.
@@ -1320,7 +1321,7 @@ on_ft = ['javascript', 'javascript.jsx']
 # [[plugins]]
 # repo = 'neovim/node-host'
 # lazy = 1
-# build = 'npm install'
+# build = 'npm i'
 
 [[plugins]]
 repo = 'othree/javascript-libraries-syntax.vim' # {{{1
@@ -1333,10 +1334,17 @@ on_ft = ['javascript', 'javascript.jsx', 'typescript']
 [[plugins]]
 repo = 'flowtype/vim-flow' # {{{1
 on_ft = ['javascript', 'javascript.jsx']
-build = 'npm install -g flow-bin'
+build = 'npm i -g flow-bin'
 hook_add = '''
 let g:flow#autoclose = 1
 '''
+
+# ==================== Filetype (elm) ===== {{{1
+[[plugins]]
+repo = 'ElmCast/elm-vim' # {{{1
+build = 'npm i -g elm elm-test elm-oracle elm-format'
+on_ft = 'elm'
+
 
 # ==================== Filetype (typescript) ===== {{{1
 [[plugins]]
