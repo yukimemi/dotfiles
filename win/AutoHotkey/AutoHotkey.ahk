@@ -28,43 +28,52 @@ Toggle(app) {
   return
 }
 
+Activate(app) {
+  SplitPath, app, file
+  Process, Exist, %file%
+  if ErrorLevel <> 0
+      WinActivate, ahk_pid %ErrorLevel%
+    else
+      Run, %app%
+  return
+}
 
 ; for Outlook
-F9::
-Toggle("C:\Program Files\Microsoft Office\Office15\OUTLOOK.EXE")
+^F9::
+Activate("C:\Program Files\Microsoft Office\Office15\OUTLOOK.EXE")
 return
 
 ; for Excel
-^F9::
-Toggle("C:\Program Files\Microsoft Office\Office15\EXCEL.EXE")
+F9::
+Activate("C:\Program Files\Microsoft Office\Office15\EXCEL.EXE")
 return
 
 ; for gvim
 F10::
-Toggle(USERPROFILE . "\app\vim\gvim.exe")
+Activate(USERPROFILE . "\app\vim\gvim.exe")
 return
 
 ; for sakura
 ^F10::
-Toggle("C:\Program Files\sakura\sakura.exe")
+Activate("C:\Program Files\sakura\sakura.exe")
 return
 
 ; for chrome
 F11::
 if FileExist("C:\Program Files\Google\Chrome\Application\chrome.exe")
-  Toggle("C:\Program Files\Google\Chrome\Application\chrome.exe")
+  Activate("C:\Program Files\Google\Chrome\Application\chrome.exe")
 else
-  Toggle("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
+  Activate("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
 return
 
 ; for cmd.exe
 F12::
-Toggle(ComSpec)
+Activate(ComSpec)
 return
 
 ; for cfiler
 ^F11::
-Toggle(USERPROFILE . "\app\cfiler\cfiler.exe")
+Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
 return
 
 
