@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/03/06 08:35:13.
+" Last Change : 2018/03/11 18:12:17.
 " =============================================================================
 
 " Init: {{{1
@@ -542,6 +542,17 @@ au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
 
 " Change colorscheme for readonly.
 " au MyAutoCmd BufReadPost,BufEnter * call s:updateColorScheme()
+
+" Load settings for each location. {{{2
+" http://vim-jp.org/vim-users-jp/2009/12/27/Hack-112.html
+au MyAutoCmd BufNewFile,BufReadPost * call <SID>vimrc_local(expand('<afile>:p:h'))
+
+function! s:vimrc_local(loc)
+  let files = findfile('.vimrc.local', escape(a:loc, ' ') . ';', -1)
+  for i in reverse(filter(files, 'filereadable(v:val)'))
+    source `=i`
+  endfor
+endfunction
 
 filetype plugin indent on
 
