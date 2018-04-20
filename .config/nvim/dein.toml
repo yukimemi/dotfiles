@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/03/11 18:16:25.
+# Last Change : 2018/04/16 08:23:31.
 # =============================================================================
 
 [[plugins]]
@@ -831,12 +831,12 @@ if executable("electron-open")
 endif
 '''
 
-[[plugins]]
-repo = 'thinca/vim-singleton' # {{{1
-if = "!has('nvim')"
-hook_add = '''
-call singleton#enable()
-'''
+# [[plugins]]
+# repo = 'thinca/vim-singleton' # {{{1
+# if = "!has('nvim')"
+# hook_add = '''
+# call singleton#enable()
+# '''
 
 [[plugins]]
 repo = 'haya14busa/vim-edgemotion' # {{{1
