@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/04/16 08:23:31.
+# Last Change : 2018/04/27 17:48:54.
 # =============================================================================
 
 [[plugins]]
@@ -37,13 +37,18 @@ let g:gruvbox_contrast_dark = "hard"
 
 [[plugins]]
 repo = 'machakann/vim-colorscheme-imas' # {{{1
+lazy = 1
+
+[[plugins]]
+repo = 'NLKNguyen/papercolor-theme' # {{{1
 
 [[plugins]]
 repo = 'endel/vim-github-colorscheme' # {{{1
-# lazy = 1
+lazy = 1
 
 [[plugins]]
 repo = 'kmtoki/lightline-colorscheme-simplicity'
+lazy = 1
 
 
 [[plugins]]
@@ -57,7 +62,7 @@ repo = 'ryanoasis/vim-devicons' # {{{1
 repo = 'itchyny/lightline.vim' # {{{1
 hook_add = '''
 let g:lightline = {
-      \ 'colorscheme': 'simplicity',
+      \ 'colorscheme': 'PaperColor',
       \ 'mode_map': {
       \   'n' : 'N',
       \   'i' : 'I',
@@ -731,6 +736,9 @@ let g:findent#enable_messages = 0
 let g:findent#enable_warnings = 0
 au MyAutoCmd BufRead * Findent
 '''
+
+# [[plugins]]
+# repo = 'tpope/vim-sleuth' # {{{1
 
 [[plugins]]
 repo = 'haya14busa/dein-command.vim' # {{{1
