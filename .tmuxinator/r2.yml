@@ -43,15 +43,23 @@ root: ~/.ghq/src/bitbucket.org/yukimemi/r2
 # post: tmux -CC attach -t r2
 
 windows:
-  - editor:
-      layout: afb6,254x73,0,0[254x49,0,0{127x49,0,0,0,126x49,128,0[126x24,128,0,2,126x24,128,25,8]},254x23,0,50{50x23,0,50,3,50x23,51,50,4,50x23,102,50,5,50x23,153,50,6,50x23,204,50,7}]
+  - main:
+      # layout: 26a7,254x73,0,0{127x73,0,0,53,126x73,128,0[126x18,128,0,55,126x17,128,19,56,126x18,128,37,57,126x17,128,56,58]}
+      layout: d8a9,254x73,0,0[254x44,0,0{132x44,0,0,0,121x44,133,0[121x22,133,0,2,121x21,133,23,3]},254x28,0,45{50x28,0,45,4,40x28,51,45,5,40x28,92,45,6,40x28,133,45,7,40x28,174,45,8,39x28,215,45,9}]
+      # layout: main-horizontal
       panes:
-        - npm start
-        - watch "tail -600 ./reports/spreadStat.csv | xsv select 1,2,5,8,11,12,13,16,19,22,23 | sort -nr -k 7 | head -40 | xsv table"
-        - watch "tail -1200 ./reports/spreadStat.csv | xsv select 1,2,5,8,11,12,13,16,19,22,23 | sort -nr -k 12 | head -40 | xsv table"
-        - tail -F reports/spreadStat.csv | awk 'BEGIN { FS="," } { print $1, $11, $12, $22, $23 }'
+        - yarn start
+        # - watch "tail -600 ./reports/spreadStat.csv | xsv select 1,2,5,8,11,12,13,16,19,22,23 | sort -nr -k 7 | head -40 | xsv table"
+        - watch "tail -360 ./reports/spreadStat.csv | xsv select 1,2,3,6,9,12,13,14,17,20,23,24 | sort -nr -k 7 | head -40 | xsv table"
+        # - watch "tail -1200 ./reports/spreadStat.csv | xsv select 1,2,5,8,11,12,13,16,19,22,23 | sort -nr -k 12 | head -40 | xsv table"
+        - watch "tail -1200 ./reports/spreadStat.csv | xsv select 1,2,3,6,9,12,13,14,17,20,23,24 | sort -nr -k 12 | head -40 | xsv table"
+        # - tail -F reports/spreadStat.csv | awk 'BEGIN { FS="," } { print $1, $11, $12, $22, $23 }'
+        - tail -F reports/spreadStat.csv | awk 'BEGIN { FS="," } { print $1, $2, $12, $13, $23, $24 }'
+        - tail -F logs/getBalance_(date "+%Y%m%d").log
         - tail -F logs/calcProfit_(date "+%Y%m%d").log
         - tail -F logs/logBalance_(date "+%Y%m%d").log
-        - tail -F logs/getBalance_(date "+%Y%m%d").log | grep "Quoine, JPY, Margin"
-        - tail -F logs/getBalance_(date "+%Y%m%d").log | grep "Coincheck, JPY, Margin"
-  - server: date
+        # - tail -F logs/getBalance_(date "+%Y%m%d").log | grep "Quoine, JPY, Margin"
+        - cat logs/logBalance.log
+        # - tail -F logs/getBalance_(date "+%Y%m%d").log | grep "Coincheck, JPY, Cash"
+        - cat logs/calcProfit.log
+  - editor: date
