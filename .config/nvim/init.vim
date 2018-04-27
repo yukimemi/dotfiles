@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/03/11 18:12:17.
+" Last Change : 2018/04/27 17:23:51.
 " =============================================================================
 
 " Init: {{{1
@@ -274,7 +274,7 @@ set foldmethod=marker
 " Color: {{{1
 syntax enable
 set background=dark
-colorscheme imas
+colorscheme PaperColor
 
 if has('gui_running')
   if g:is_windows
