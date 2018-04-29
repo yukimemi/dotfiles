@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/04/27 17:48:54.
+# Last Change : 2018/04/29 08:28:08.
 # =============================================================================
 
 [[plugins]]
@@ -1462,6 +1462,16 @@ repo = 'kylef/apiblueprint.vim' # {{{1
 on_ft = 'apiblueprint'
 
 
+# ==================== Filetype (purescript) ===== {{{1
+[[plugins]]
+repo = 'FrigoEU/psc-ide-vim' # {{{1
+on_ft = 'purescript'
+
+[[plugins]]
+repo = 'purescript-contrib/purescript-vim' # {{{1
+on_ft = 'purescript'
+
+
 # ==================== After ftplugin ============ {{{1
 [ftplugin]
 _ = '''
@@ -1492,13 +1502,13 @@ mail = '''
 setl ff=dos
 setl fenc=cp932
 
-colorscheme github
+set background=light
 '''
 
 markdown = '''
 setl formatoptions+=t
 setl conceallevel=0
-colorscheme github
+set background=light
 '''
 
 ps1 = '''
