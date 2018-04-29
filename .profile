@@ -36,4 +36,3 @@ path=(
 export GOROOT=$(go env GOROOT)
 export GOPATH=$HOME/.ghq
 
-if [ -e /home/yukimemi/.nix-profile/etc/profile.d/nix.sh ]; then . /home/yukimemi/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

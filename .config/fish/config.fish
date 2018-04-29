@@ -152,6 +152,7 @@ abbr -a b bd
 abbr -a e nvim
 abbr -a v vim
 abbr -a o open
+abbr -a tree 'exa -T'
 
 # Git. {{{2
 abbr -a g 'git'
@@ -229,9 +230,5 @@ set pure_color_green (set_color "white")
 
 # fish-global-abbreviation. {{{2
 # https://qiita.com/ryotako/items/83812c2a703b965a02d9
-gabbr G '| grep'
-gabbr L '| less'
-
-gabbr --function B "git symbolic-ref --short HEAD"
-gabbr --function D "date +%Y%m%d"
+set -U gabbr_config ~/.config/fish/.gabbr.config
 
