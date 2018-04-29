@@ -21,7 +21,7 @@ set -x GSR_SHOW_BEHIND 1
 function __add_fish_user_paths -a addpath
     if test -d $addpath
         set -U fish_user_paths $addpath $fish_user_paths
-    end
+end
 end
 
 set -U fish_user_paths
@@ -70,29 +70,29 @@ end
 function in
     if type -q brew
         brew $argv
-    else if type -q apt-get
-        apt-get $argv
-    else if type -q yum
-        yum $argv
-    end
+else if type -q apt-get
+    apt-get $argv
+else if type -q yum
+    yum $argv
+end
 end
 
 function cli_install -a cmd repo
     if not test -d ~/.local/bin
         mkdir -p ~/.local/bin
-    end
-    if not type -q $cmd
-        curl -L git.io/cli | env L=$repo sh
-    end
+end
+if not type -q $cmd
+    curl -L git.io/cli | env L=$repo sh
+end
 end
 
 # stack new. {{{2
 function stacknew -a name
     if test (count $argv) -ne 1
         echo "Set create project name."
-    else
-        stack new $name -p "author-email:yukimemi@gmail.com" -p "author-name:yukimemi" -p "category:Development" -p "copyright:(c) 2017, yukimemi" -p "github-username:yukimemi"
-    end
+else
+    stack new $name -p "author-email:yukimemi@gmail.com" -p "author-name:yukimemi" -p "category:Development" -p "copyright:(c) 2017, yukimemi" -p "github-username:yukimemi"
+end
 end
 
 
@@ -102,8 +102,8 @@ function done_enter --on-event fish_postexec
         if git rev-parse --is-inside-work-tree >/dev/null ^&1
             echo (set_color yellow)"--- git status ---"(set_color normal)
             git status -sb
-        end
     end
+end
 end
 
 # History share. {{{2
@@ -212,7 +212,7 @@ if not test -f ~/.cache/fresco/__fresco_install.fish
     fresco 0rax/fish-bd
     fresco rafaelrinaldi/pure
     fresco masa0x80/replace_multiple_dots.fish
-    fresco oh-my-fish/plugin-foreign-env
+    fresco ryotako/fish-global-abbreviation
     exec fish -l
 end
 
@@ -227,8 +227,11 @@ end
 set pure_symbol_prompt "→ "
 set pure_color_green (set_color "white")
 
-# fenv {{{2
-if type -q fenv
-    fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-end
+# fish-global-abbreviation. {{{2
+# https://qiita.com/ryotako/items/83812c2a703b965a02d9
+gabbr G '| grep'
+gabbr L '| less'
+
+gabbr --function B "git symbolic-ref --short HEAD"
+gabbr --function D "date +%Y%m%d"
 
