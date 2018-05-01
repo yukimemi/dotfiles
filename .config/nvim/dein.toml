@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/04/29 08:28:08.
+# Last Change : 2018/05/01 00:29:45.
 # =============================================================================
 
 [[plugins]]
@@ -674,6 +674,7 @@ let g:ale_fixers = {
       \ 'javascript.jsx': ['prettier'],
       \ 'typescript': ['prettier'],
       \ 'json': ['prettier'],
+      \ 'markdown': ['prettier'],
       \ 'scss': ['prettier'],
       \ 'typescript.tsx': ['prettier'],
       \ 'sh': ['shfmt'],
@@ -859,6 +860,13 @@ on_ft = 'markdown'
 
 [[plugins]]
 repo = 'kopischke/vim-stay' # {{{1
+
+[[plugins]]
+repo = 'qpkorr/vim-renamer' # {{{1
+on_cmd = 'Renamer'
+hook_add = '''
+nnoremap <Leader>r :<C-u>Renamer<CR>
+'''
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
@@ -1508,7 +1516,11 @@ set background=light
 markdown = '''
 setl formatoptions+=t
 setl conceallevel=0
-set background=light
+" set background=light
+
+let b:autodate_format = "%Y-%m-%dT%H:%M:%S+09:00"
+let b:autodate_keyword_pre  = 'date: "'
+let b:autodate_keyword_post = '"'
 '''
 
 ps1 = '''
