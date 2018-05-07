@@ -7,7 +7,7 @@ set guioptions=
 
 " color
 set background=dark
-colorscheme imas
+colorscheme PaperColor
 
 " font
 set gfn=Cica:h10:cSHIFTJIS:qDRAFT
