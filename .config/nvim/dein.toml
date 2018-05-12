@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/05/01 00:29:45.
+# Last Change : 2018/05/08 22:18:23.
 # =============================================================================
 
 [[plugins]]
@@ -77,10 +77,10 @@ let g:lightline = {
       \   },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'filename', 'anzu' ] ]
+      \             [ 'gitbranch', 'filename', 'anzu' ] ]
       \ },
       \ 'component_function': {
-      \   'fugitive': 'LightLineFugitive',
+      \   'gitbranch': 'gitbranch#name',
       \   'readonly': 'LightLineReadonly',
       \   'modified': 'LightLineModified',
       \   'filename': 'LightLineFilename',
@@ -868,6 +868,15 @@ hook_add = '''
 nnoremap <Leader>r :<C-u>Renamer<CR>
 '''
 
+[[plugins]]
+repo = 'itchyny/vim-external' # {{{1
+on_map = '<Plug>'
+hook_add = '''
+map <Leader>e <Plug>(external-editor)
+map <Leader>n <Plug>(external-explorer)
+map <Leader>b <Plug>(external-browser)
+'''
+
 # ==================== Denite ==================== {{{1
 [[plugins]]
 repo = 'Shougo/denite.nvim' # {{{1
@@ -1181,8 +1190,11 @@ let g:yankround_max_history = 100
 
 
 # ==================== Git ======================= {{{1
+# [[plugins]]
+# repo = 'tpope/vim-fugitive' # {{{1
+
 [[plugins]]
-repo = 'tpope/vim-fugitive' # {{{1
+repo = 'itchyny/vim-gitbranch' # {{{1
 
 [[plugins]]
 repo = 'lambdalisue/gina.vim' # {{{1
