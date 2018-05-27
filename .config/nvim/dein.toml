@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/05/19 12:34:33.
+# Last Change : 2018/05/27 16:29:34.
 # =============================================================================
 
 [[plugins]]
@@ -1318,6 +1318,10 @@ on_ft = 'yaml'
 # ==================== Filetype (plantuml) ======= {{{1
 [[plugins]]
 repo =  'aklt/plantuml-syntax' # {{{1
+on_ft = 'plantuml'
+
+[[plugins]]
+repo = 'scrooloose/vim-slumlord' # {{{1
 on_ft = 'plantuml'
 
 
