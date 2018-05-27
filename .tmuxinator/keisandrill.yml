@@ -1,0 +1,7 @@
+# ~/.tmuxinator/keisandrill.yml
+
+name: keisandrill
+root: ~/.ghq/src/bitbucket.org/yukimemi/keisandrill
+
+windows:
+  - main: yarn start
