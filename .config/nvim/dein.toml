@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/05/08 22:18:23.
+# Last Change : 2018/05/19 12:34:33.
 # =============================================================================
 
 [[plugins]]
@@ -709,7 +709,7 @@ repo = 'justinmk/vim-dirvish' # {{{1
 hook_add = '''
 " Don't use netrw.
 let g:loaded_netrwPlugin = 1
-nnoremap [Space]v :<C-u>Dirvish<CR>
+nnoremap [Space]v :<C-u>Dirvish %<CR>
 '''
 
 # [[plugins]]
