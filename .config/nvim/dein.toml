@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/05/29 14:15:40.
+# Last Change : 2018/05/29 21:21:04.
 # =============================================================================
 
 [[plugins]]
@@ -1325,7 +1325,7 @@ on_ft = 'plantuml'
 repo = 'scrooloose/vim-slumlord' # {{{1
 on_ft = 'plantuml'
 hook_add = '''
-" let g:slumlord_separate_win = 1
+let g:slumlord_separate_win = 1
 '''
 
 
