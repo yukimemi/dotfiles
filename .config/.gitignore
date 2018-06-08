@@ -1,6 +1,9 @@
 configstore/
 vim/yankround/
 yarn/
-fish/conf.d/fresco.fish
+fish/conf.d/
+fish/completions/
+fisherman/
+fnm/
 pet
 cmus/

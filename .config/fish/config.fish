@@ -205,21 +205,14 @@ set -g fish_key_bindings fish_vi_key_bindings
 # fresco.
 if not test -f ~/.cache/fresco/__fresco_install.fish
     mkdir -p ~/.cache/fresco >/dev/null ^&1
-    curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o ~/.cache/fresco/__fresco_install.fish
-    cat ~/.cache/fresco/__fresco_install.fish | fish
-
-    fresco fisherman/getopts
-    fresco fisherman/z
-    fresco 0rax/fish-bd
-    fresco rafaelrinaldi/pure
-    fresco masa0x80/replace_multiple_dots.fish
-    fresco ryotako/fish-global-abbreviation
-    exec fish -l
+    # curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o ~/.cache/fresco/__fresco_install.fish
+    # cat ~/.cache/fresco/__fresco_install.fish | fish
+    # exec fish -l
 end
 
 # fisherman.
 if not type -q fisher
-    # curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
+    curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
 end
 
 
