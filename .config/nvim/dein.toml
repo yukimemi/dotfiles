@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/05/29 21:21:04.
+# Last Change : 2018/06/08 13:22:55.
 # =============================================================================
 
 [[plugins]]
@@ -141,8 +141,8 @@ endfunction
 repo = 'Yggdroot/indentLine' # {{{1
 hook_add = '''
 let g:indentLine_faster = 1
-nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
 let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'denite', 'vimfiler', 'tweetvim']
+nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
 '''
 
 [[plugins]]
@@ -842,10 +842,6 @@ endif
 '''
 
 # [[plugins]]
-# repo = 'thinca/vim-singleton' # {{{1
-# if = "!has('nvim')"
-# hook_add = '''
-# call singleton#enable()
 # '''
 
 [[plugins]]

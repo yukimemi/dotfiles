@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/01/22 22:35:59.
+" Last Change : 2018/06/08 15:12:01.
 " =============================================================================
 
 " Plugin:
@@ -24,6 +24,7 @@ let s:start_plugs = [
       \ ['itchyny/lightline.vim', {}],
       \ ['itchyny/vim-cursorword', {}],
       \ ['itchyny/vim-parenmatch', {}],
+      \ ['itchyny/vim-gitbranch', {}],
       \ ['kana/vim-operator-user', {}],
       \ ['kana/vim-textobj-user', {}],
       \ ['lambdalisue/vim-findent', {}],
@@ -33,14 +34,7 @@ let s:start_plugs = [
       \ ['prabirshrestha/vim-lsp', {}],
       \ ['rhysd/committia.vim', {}],
       \ ['ryanoasis/vim-devicons', {}],
-      \ ['thinca/vim-singleton', {}, !has('nvim')],
-      \ ['tpope/vim-fugitive', {}],
       \ ]
-
-      " \ ['vim-airline/vim-airline', {}],
-      " \ ['vim-airline/vim-airline-themes', {}],
-      " \ ['mhinz/vim-startify', {}],
-
 
 " opt plugins. {{{2
 let s:opt_plugs = [
@@ -83,18 +77,15 @@ let s:opt_plugs = [
       \ ['rust-lang/rust.vim', {'type': 'opt'}],
       \ ['stephpy/vim-yaml', {'type': 'opt'}],
       \ ['thinca/vim-qfreplace', {'type': 'opt'}],
+      \ ['NLKNguyen/papercolor-theme', {'type': 'opt'}],
+      \ ['scrooloose/vim-slumlord', {'type': 'opt'}],
+      \ ['nelstrom/vim-markdown-folding', {'type': 'opt'}],
       \ ]
-
-      " \ ['prabirshrestha/asyncomplete-gocode.vim', {'type': 'opt'}],
-      " \ ['racer-rust/vim-racer', {'type': 'opt'}, executable('cargo')],
-      " \ ['zchee/deoplete-go', {'type': 'opt', 'do': 'silent! !make'}],
-      " \ ['Quramy/tsuquyomi', {'type': 'opt'}],
-      " \ ['euclio/vim-markdown-composer', {'type': 'opt', 'do': '!cargo build --release'}, executable('cargo') && has('nvim')],
-      " \ ['euclio/vim-markdown-composer', {'type': 'opt', 'do': '!cargo build --release --no-default-features --features json-rpc'}, executable('cargo') && !has('nvim')],
 
 " lazy load plugins. {{{2
 let s:lazy_plugs = [
       \ ['Konfekt/FastFold', {'type': 'opt'}],
+      \ ['ctrlpvim/ctrlp.vim', {'type': 'opt'}],
       \ ['LeafCage/yankround.vim', {'type': 'opt'}],
       \ ['Shougo/context_filetype.vim', {'type': 'opt'}],
       \ ['Shougo/echodoc.vim', {'type': 'opt'}],
@@ -105,13 +96,13 @@ let s:lazy_plugs = [
       \ ['Shougo/vimproc.vim', {'type': 'opt', 'do': 'silent! !make'}],
       \ ['airblade/vim-rooter', {'type': 'opt'}],
       \ ['cohama/agit.vim', {'type': 'opt'}],
-      \ ['ctrlpvim/ctrlp.vim', {'type': 'opt'}],
       \ ['gilligan/textobj-lastpaste', {'type': 'opt'}],
       \ ['glidenote/memolist.vim', {'type': 'opt'}],
       \ ['haya14busa/incsearch.vim', {'type': 'opt'}],
       \ ['haya14busa/vim-asterisk', {'type': 'opt'}],
       \ ['haya14busa/vim-operator-flashy', {'type': 'opt'}],
       \ ['itchyny/vim-highlighturl', {'type': 'opt'}],
+      \ ['itchyny/vim-external', {'type': 'opt'}],
       \ ['iyuuya/denite-ale', {'type': 'opt'}],
       \ ['junegunn/vim-easy-align', {'type': 'opt'}],
       \ ['justinmk/vim-dirvish', {'type': 'opt'}],
@@ -123,6 +114,7 @@ let s:lazy_plugs = [
       \ ['kaneshin/ctrlp-filetype', {'type': 'opt'}],
       \ ['kaneshin/ctrlp-memolist', {'type': 'opt'}],
       \ ['kaneshin/ctrlp-sonictemplate', {'type': 'opt'}],
+      \ ['ompugao/ctrlp-history', {'type': 'opt'}],
       \ ['kassio/neoterm', {'type': 'opt'}, has('nvim')],
       \ ['lambdalisue/gina.vim', {'type': 'opt'}],
       \ ['ludovicchabant/vim-gutentags', {'type': 'opt'}, executable('ctags')],
@@ -136,6 +128,7 @@ let s:lazy_plugs = [
       \ ['osyo-manga/vim-operator-search', {'type': 'opt'}],
       \ ['osyo-manga/vim-textobj-multiblock', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-buffer.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-file.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-emoji.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-tags.vim', {'type': 'opt'}],
@@ -154,10 +147,11 @@ let s:lazy_plugs = [
       \ ['w0rp/ale', {'type': 'opt'}],
       \ ['y0za/vim-reading-vimrc', {'type': 'opt'}],
       \ ['yami-beta/asyncomplete-omni.vim', {'type': 'opt'}],
+      \ ['osyo-manga/vim-precious', {'type': 'opt'}],
+      \ ['ntpeters/vim-better-whitespace', {'type': 'opt'}],
+      \ ['kopischke/vim-stay', {'type': 'opt'}],
       \ ]
 
-      " \ ['Shougo/neocomplete.vim', {'type': 'opt'}, !has('nvim')],
-      " \ ['Shougo/deoplete.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins'}, has('nvim')],
 
 " minpac init. {{{1
 if exists('*minpac#init')
@@ -211,7 +205,7 @@ aug END
 " Plugin settings. {{{1
 " lightline. {{{2
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
+      \ 'colorscheme': 'PaperColor',
       \ 'mode_map': {
       \   'n' : 'N',
       \   'i' : 'I',
@@ -226,10 +220,10 @@ let g:lightline = {
       \   },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'filename', 'anzu' ] ]
+      \             [ 'gitbranch', 'filename', 'anzu' ] ]
       \ },
       \ 'component_function': {
-      \   'fugitive': 'LightLineFugitive',
+      \   'gitbranch': 'gitbranch#name',
       \   'readonly': 'LightLineReadonly',
       \   'modified': 'LightLineModified',
       \   'filename': 'LightLineFilename',
@@ -285,109 +279,6 @@ function! LightLineFileformat()
   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
 
-" let g:lightline = {
-"       \ 'colorscheme': 'jellybeans',
-"       \ 'mode_map': {
-"       \   'n' : 'N',
-"       \   'i' : 'I',
-"       \   'R' : 'R',
-"       \   'v' : 'V',
-"       \   'V' : 'V-L',
-"       \   'c' : 'C',
-"       \   "\<C-v>": 'V-B',
-"       \   's' : 'S',
-"       \   'S' : 'S-L',
-"       \   "\<C-s>": 'S-B'
-"       \   },
-"       \ 'active': {
-"       \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'anzu' ] ],
-"       \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'bomb', 'filetype' ],
-"       \              [ 'absolutepath', 'charcode' ] ]
-"       \ },
-"       \ 'component': {
-"       \   'charcode': '[%03.3b, 0x%02.2B]'
-"       \ },
-"       \ 'component_function': {
-"       \   'modified': 'MyModified',
-"       \   'readonly': 'MyReadonly',
-"       \   'fugitive': 'MyFugitive',
-"       \   'git_branch': 'MyGitBranch',
-"       \   'git_traffic': 'MyGitTraffic',
-"       \   'git_status': 'MyGitStatus',
-"       \   'filename': 'MyFilename',
-"       \   'fileformat': 'MyFileformat',
-"       \   'filetype': 'MyFiletype',
-"       \   'fileencoding': 'MyFileencoding',
-"       \   'bomb': 'MyBomb',
-"       \   'absolutepath': 'MyAbsolutePath',
-"       \   'mode': 'MyMode',
-"       \   'anzu': 'anzu#search_status',
-"       \ }
-"       \ }
-" 
-" function! MyModified()
-"   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-" endfunction
-" 
-" function! MyReadonly()
-"   if g:is_windows
-"     return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'R' : ''
-"   else
-"     return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
-"   endif
-" endfunction
-" 
-" function! MyFilename()
-"   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-"         \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-"         \ ('' != MyModified() ? ' ' . MyModified() : '')
-" endfunction
-" 
-" function! MyGitBranch()
-"   return winwidth(0) > 70 ? gita#statusline#preset('branch_fancy') : ''
-" endfunction
-" function! MyGitTraffic()
-"   return winwidth(0) > 70 ? gita#statusline#preset('traffic_fancy') : ''
-" endfunction
-" function! MyGitStatus()
-"   return winwidth(0) > 70 ? gita#statusline#preset('status') : ''
-" endfunction
-" 
-" function! MyFugitive()
-"   if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
-"     let _ = fugitive#head()
-"     if g:is_windows
-"       return strlen(_) ? '| '._ : ''
-"     else
-"       return strlen(_) ? '⭠ '._ : ''
-"     endif
-"   endif
-"   return ''
-" endfunction
-" 
-" function! MyFileformat()
-"   return winwidth('.') > 70 ? &fileformat : ''
-" endfunction
-" 
-" function! MyFiletype()
-"   return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-" endfunction
-" 
-" function! MyFileencoding()
-"   return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-" endfunction
-" 
-" function! MyBomb()
-"   return &bomb ? 'b' : 'nb'
-" endfunction
-" 
-" function! MyMode()
-"   return winwidth('.') > 60 ? lightline#mode() : ''
-" endfunction
-" 
-" function! MyAbsolutePath()
-"   return (winwidth('.') - strlen(expand('%:p')) > 90) ? expand('%:p') : ((winwidth('.') - strlen(expand('%')) > 70) ? expand('%') : '')
-" endfunction
 
 " vim-airline. {{{2
 let g:airline_powerline_fonts = 1
@@ -643,12 +534,14 @@ endif
 
 call Mkdir(g:memolist_path)
 
-let g:memolist_denite = 0
+let g:memolist_denite = 1
 let g:memolist_memo_suffix = "md"
 let g:memolist_prompt_tags = 1
 
+" mappings
 nnoremap <Leader>mn :<C-u>MemoNew<CR>
-nnoremap <Leader>ml :<C-u>MemoList<CR>
+" nnoremap <Leader>ml :<C-u>MemoList<CR>
+nnoremap <Leader>ml :<C-u>exe printf("Dirvish %s", g:memolist_path)<CR>
 nnoremap <Leader>mg :<C-u>MemoGrep<CR>
 
 
@@ -665,6 +558,12 @@ let g:sonictemplate_vim_vars = {
 let g:autodate_format = "%Y/%m/%d %H:%M:%S"
 let g:autodate_keyword_pre  = "Last Change *:"
 let g:autodate_keyword_post = "."
+au MyAutoCmd FileType markdown call <SID>autodate_aft()
+function! s:autodate_aft() abort
+  let b:autodate_format = "%Y-%m-%dT%H:%M:%S+09:00"
+  let b:autodate_keyword_pre  = 'date: "'
+  let b:autodate_keyword_post = '"'
+endfunction
 
 " vim-mundo. {{{2
 nnoremap [Space]u :MundoToggle<CR>
@@ -686,8 +585,12 @@ let g:ale_fixers = {
       \ 'javascript': ['prettier'],
       \ 'javascript.jsx': ['prettier'],
       \ 'typescript': ['prettier'],
+      \ 'json': ['prettier'],
+      \ 'markdown': ['prettier'],
+      \ 'scss': ['prettier'],
       \ 'typescript.tsx': ['prettier'],
       \ 'sh': ['shfmt'],
+      \ 'elm': ['elm-format'],
       \ }
 
 " Rust.
@@ -696,7 +599,7 @@ let g:ale_rust_ignore_error_codes = ['E0432', 'E0433']
 " vim-dirvish. {{{2
 " Don't use netrw.
 let g:loaded_netrwPlugin = 1
-nnoremap [Space]v :<C-u>Dirvish<CR>
+nnoremap [Space]v :<C-u>Dirvish %<CR>
 
 " neoterm. {{{2
 if ! g:is_windows
@@ -1107,13 +1010,13 @@ nnoremap scc :<C-u>CtrlPMixed<CR>
 nnoremap scf :<C-u>CtrlPFiletype<CR>
 " nnoremap scl :<C-u>CtrlPLauncher<CR>
 nnoremap sct :<C-u>CtrlPSonictemplate<CR>
+nnoremap sch :<C-u>CtrlPCmdHistory<CR>
 
 nnoremap scl :<C-u>CtrlPMemolist<CR>
 
 if executable('rg')
   let g:ctrlp_user_command ='rg -F --files %s'
 endif
-
 
 
 " vim-devicons. {{{2
@@ -1128,9 +1031,16 @@ let g:asyncomplete_force_refresh_on_context_changed = 1
 au MyAutoCmd User asyncomplete_setup packadd asyncomplete-buffer.vim | call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
       \ 'name': 'buffer',
       \ 'whitelist': ['*'],
-      \ 'blacklist': ['go'],
       \ 'priority': 1,
       \ 'completor': function('asyncomplete#sources#buffer#completor'),
+      \ }))
+
+" asyncomplete-file.vim. {{{3
+au MyAutoCmd User asyncomplete_setup packadd asyncomplete-file.vim | call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+      \ 'name': 'file',
+      \ 'whitelist': ['*'],
+      \ 'priority': 1,
+      \ 'completor': function('asyncomplete#sources#file#completor'),
       \ }))
 
 " asyncomplete-emoji.vim. {{{3
@@ -1168,58 +1078,6 @@ au MyAutoCmd User asyncomplete_setup packadd asyncomplete-neosnippet.vim | call 
       \ 'priority': 3,
       \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
       \ }))
-
-" vim-lsp. {{{3
-" Docker. {{{4
-if executable('docker-langserver')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'docker-langserver',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
-        \ 'priority': 4,
-        \ 'whitelist': ['dockerfile'],
-        \ })
-endif
-
-" go. {{{4
-if executable('go-langserver')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'go-langserver',
-        \ 'cmd': {server_info->['go-langserver', '-mode', 'stdio']},
-        \ 'priority': 4,
-        \ 'whitelist': ['go'],
-        \ })
-endif
-
-" python. {{{4
-if executable('pyls')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'priority': 4,
-        \ 'whitelist': ['python'],
-        \ })
-endif
-
-" rust. {{{4
-if executable('rls')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-        \ 'priority': 4,
-        \ 'whitelist': ['rust'],
-        \ })
-endif
-
-" flow. {{{4
-if executable('flow-language-server')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'flow-language-server',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'flow-language-server --stdio']},
-        \ 'priority': 4,
-        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-        \ 'whitelist': ['javascript'],
-        \ })
-endif
 
 " asyncomplete-necovim.vim. {{{3
 au MyAutoCmd FileType vim call <SID>asyncomplete_necovim_aft()
@@ -1287,10 +1145,58 @@ function! s:asyncomplete_gocode_aft() abort
         \ }))
 endfunction
 
-" vim-singleton. {{{2
-if !has('nvim') && has('clientserver')
-  packl | call singleton#enable()
+" vim-lsp. {{{3
+" Docker. {{{4
+if executable('docker-langserver')
+  au MyAutoCmd User lsp_setup call lsp#register_server({
+        \ 'name': 'docker-langserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+        \ 'priority': 4,
+        \ 'whitelist': ['dockerfile'],
+        \ })
 endif
+
+" go. {{{4
+if executable('go-langserver')
+  au MyAutoCmd User lsp_setup call lsp#register_server({
+        \ 'name': 'go-langserver',
+        \ 'cmd': {server_info->['go-langserver', '-mode', 'stdio']},
+        \ 'priority': 4,
+        \ 'whitelist': ['go'],
+        \ })
+endif
+
+" python. {{{4
+if executable('pyls')
+  au MyAutoCmd User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'priority': 4,
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
+" rust. {{{4
+if executable('rls')
+  au MyAutoCmd User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+        \ 'priority': 4,
+        \ 'whitelist': ['rust'],
+        \ })
+endif
+
+" flow. {{{4
+if executable('flow-language-server')
+  au MyAutoCmd User lsp_setup call lsp#register_server({
+        \ 'name': 'flow-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'flow-language-server --stdio']},
+        \ 'priority': 4,
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
+        \ 'whitelist': ['javascript'],
+        \ })
+endif
+
 
 " vim-table-mode. {{{2
 au MyAutoCmd FileType markdown packadd vim-table-mode
@@ -1315,6 +1221,23 @@ vmap <Leader><CR> <Plug>(reading_vimrc-update_clipboard)
 
 " gruvbox. {{{2
 let g:gruvbox_contrast_dark = "hard"
+
+" vim-precious. {{{2
+let g:precious_enable_switch_CursorMoved = { '*': 0, 'help': 1 }
+au MyAutoCmd InsertEnter * :PreciousSwitch
+au MyAutoCmd InsertLeave * :PreciousReset
+
+" vim-external. {{{2
+map <Leader>e <Plug>(external-editor)
+map <Leader>n <Plug>(external-explorer)
+map <Leader>b <Plug>(external-browser)
+
+" vim-slumlord. {{{2
+au MyAutoCmd FileType plantuml packadd vim-slumlord
+let g:slumlord_separate_win = 1
+
+" vim-markdown-folding. {{{2
+au MyAutoCmd FileType markdown packadd vim-markdown-folding
 
 " Define user commands for updating/cleaning the plugins. {{{1
 " Each of them loads minpac, reloads .vimrc to register the
