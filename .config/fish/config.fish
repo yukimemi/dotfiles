@@ -188,7 +188,7 @@ abbr -a gk 'git log --graph --pretty'
 
 # vim {{{2
 abbr -a mup 'nvim -c "PackUpdate"'
-abbr -a vup 'vim -c "PackUpdate"'
+abbr -a mvup 'vim -c "PackUpdate"'
 abbr -a dup 'nvim -c "silent! call dein#update() | q"'
 abbr -a dvup 'vim -c "silent! call dein#update() | q"'
 
