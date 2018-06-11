@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/06/08 15:12:01.
+" Last Change : 2018/06/11 22:16:24.
 " =============================================================================
 
 " Plugin:
@@ -34,6 +34,7 @@ let s:start_plugs = [
       \ ['prabirshrestha/vim-lsp', {}],
       \ ['rhysd/committia.vim', {}],
       \ ['ryanoasis/vim-devicons', {}],
+      \ ['kopischke/vim-stay', {}],
       \ ]
 
 " opt plugins. {{{2
@@ -149,7 +150,6 @@ let s:lazy_plugs = [
       \ ['yami-beta/asyncomplete-omni.vim', {'type': 'opt'}],
       \ ['osyo-manga/vim-precious', {'type': 'opt'}],
       \ ['ntpeters/vim-better-whitespace', {'type': 'opt'}],
-      \ ['kopischke/vim-stay', {'type': 'opt'}],
       \ ]
 
 
@@ -1114,23 +1114,6 @@ function! s:asyncomplete_racer_aft() abort
         \ }))
 endfunction
 
-" asyncomplete-flow.vim. {{{3
-if !executable('flow-language-server')
-  au MyAutoCmd FileType javascript,json call <SID>asyncomplete_flow_aft()
-endif
-function! s:asyncomplete_flow_aft() abort
-  packadd asyncomplete-flow.vim
-  call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
-        \ 'name': 'flow',
-        \ 'whitelist': ['javascript'],
-        \ 'priority': 4,
-        \ 'completor': function('asyncomplete#sources#flow#completor'),
-        \ 'config': {
-        \    'prefer_local': 1
-        \  },
-        \ }))
-endfunction
-
 " asyncomplete-gocode.vim. {{{3
 if !executable('go-langserver')
   au MyAutoCmd FileType go call <SID>asyncomplete_gocode_aft()
@@ -1186,17 +1169,15 @@ if executable('rls')
         \ })
 endif
 
-" flow. {{{4
-if executable('flow-language-server')
+" typescript. {{{4
+if executable('typescript-language-server')
   au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'flow-language-server',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'flow-language-server --stdio']},
-        \ 'priority': 4,
-        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-        \ 'whitelist': ['javascript'],
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+        \ 'whitelist': ['typescript', 'javascript', 'javascript.jsx']
         \ })
 endif
-
 
 " vim-table-mode. {{{2
 au MyAutoCmd FileType markdown packadd vim-table-mode
