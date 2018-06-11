@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/06/08 13:22:55.
+# Last Change : 2018/06/12 00:11:18.
 # =============================================================================
 
 [[plugins]]
@@ -188,7 +188,7 @@ endif
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets' # {{{1
-on_i = 1
+lazy = 1
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim' # {{{1
@@ -199,25 +199,21 @@ if = "executable('ctags') && !g:is_windows"
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp' # {{{1
-on_i = 1
 
 [[plugins]]
 repo = 'prabirshrestha/async.vim' # {{{1
-on_i = 1
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim' # {{{1
-on_i = 1
 hook_add = '''
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_remove_duplicates = 1
 let g:asyncomplete_force_refresh_on_context_changed = 1
+imap <c-space> <Plug>(asyncomplete_force_refresh)
 '''
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim' # {{{1
-depends = ['vim-lsp', 'async.vim', 'asyncomplete.vim']
-on_i = 1
 hook_add = '''
 " Docker. {{{2
 if executable('docker-langserver')
@@ -259,14 +255,13 @@ if executable('rls')
         \ })
 endif
 
-" flow. {{{2
-if executable('flow-language-server')
+" typescript. {{{2
+if executable('typescript-language-server')
   au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'flow-language-server',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'flow-language-server --stdio']},
-        \ 'priority': 4,
-        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-        \ 'whitelist': ['javascript'],
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+        \ 'whitelist': ['typescript', 'javascript', 'javascript.jsx']
         \ })
 endif
 '''
@@ -277,7 +272,6 @@ hook_add = '''
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
       \ 'name': 'buffer',
       \ 'whitelist': ['*'],
-      \ 'blacklist': ['go'],
       \ 'priority': 1,
       \ 'completor': function('asyncomplete#sources#buffer#completor'),
       \ }))
@@ -334,6 +328,7 @@ au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncompl
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-neosnippet.vim' # {{{1
+depends = ['neosnippet.vim']
 hook_add = '''
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
       \ 'name': 'neosnippet',
@@ -345,10 +340,9 @@ au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncompl
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-necovim.vim' # {{{1
-depends = 'asyncomplete.vim'
 on_ft = 'vim'
-hook_source = '''
-call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
+hook_add = '''
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
       \ 'name': 'necovim',
       \ 'whitelist': ['vim'],
       \ 'priority': 4,
@@ -358,10 +352,9 @@ call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_option
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-necosyntax.vim' # {{{1
-depends = 'asyncomplete.vim'
 on_ft = 'vim'
-hook_source = '''
-call asyncomplete#register_source(asyncomplete#sources#necosyntax#get_source_options({
+hook_add = '''
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#necosyntax#get_source_options({
       \ 'name': 'necosyntax',
       \ 'whitelist': ['*'],
       \ 'priority': 4,
@@ -371,39 +364,20 @@ call asyncomplete#register_source(asyncomplete#sources#necosyntax#get_source_opt
 
 [[plugins]]
 repo = 'keremc/asyncomplete-racer.vim' # {{{1
-depends = 'asyncomplete.vim'
 on_ft = 'rust'
 if = "!executable('rls') && executable('racer')"
-hook_source = '''
-call asyncomplete#register_source(asyncomplete#sources#racer#get_source_options({
+hook_add = '''
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#racer#get_source_options({
       \ 'priority': 4,
-      \ }))
-'''
-
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-flow.vim' # {{{1
-depends = 'asyncomplete.vim'
-on_ft = ['javascript', 'json']
-if = "!executable('flow-language-server') && executable('flow')"
-hook_source = '''
-call asyncomplete#register_source(asyncomplete#sources#flow#get_source_options({
-      \ 'name': 'flow',
-      \ 'whitelist': ['javascript'],
-      \ 'priority': 4,
-      \ 'completor': function('asyncomplete#sources#flow#completor'),
-      \ 'config': {
-      \    'prefer_local': 1
-      \  },
       \ }))
 '''
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-gocode.vim' # {{{1
-depends = 'asyncomplete.vim'
 on_ft = 'go'
 if = "!executable('go-langserver') && executable('gocode')"
-hook_source = '''
-call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
+hook_add = '''
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
       \ 'name': 'gocode',
       \ 'whitelist': ['go'],
       \ 'priority': 4,
@@ -440,7 +414,6 @@ endfunction
 [[plugins]]
 repo = 't9md/vim-choosewin' # {{{1
 on_map = '<Plug>'
-on_source = 'vimfiler.vim'
 hook_source = '''
 " nmap - <Plug>(choosewin)
 
@@ -576,7 +549,7 @@ nnoremap <Leader>mg :<C-u>MemoGrep<CR>
 repo = 'mattn/sonictemplate-vim' # {{{1
 on_cmd = 'Template'
 hook_add = '''
-let g:sonictemplate_vim_template_dir = $HOME . '/.vim/template'
+let g:sonictemplate_vim_template_dir = $VIM_PATH . '/template'
 let g:sonictemplate_vim_vars = {
       \ '_': {
       \   'author': 'yukimemi',
@@ -707,6 +680,7 @@ let g:loaded_netrwPlugin = 1
 
 [[plugins]]
 repo = 'justinmk/vim-dirvish' # {{{1
+on_cmd = ['Dirvish']
 hook_add = '''
 " Don't use netrw.
 let g:loaded_netrwPlugin = 1
@@ -745,6 +719,10 @@ au MyAutoCmd BufRead * Findent
 [[plugins]]
 repo = 'haya14busa/dein-command.vim' # {{{1
 on_cmd = 'Dein'
+
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim' # {{{1
+on_cmd = ['DeinUpdate']
 
 [[plugins]]
 repo = 'Shougo/echodoc.vim' # {{{1

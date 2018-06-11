@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/06/11 22:16:24.
+" Last Change : 2018/06/12 00:16:38.
 " =============================================================================
 
 " Plugin:
@@ -23,10 +23,11 @@ let s:start_plugs = [
       \ ['hotwatermorning/auto-git-diff', {}],
       \ ['itchyny/lightline.vim', {}],
       \ ['itchyny/vim-cursorword', {}],
-      \ ['itchyny/vim-parenmatch', {}],
       \ ['itchyny/vim-gitbranch', {}],
+      \ ['itchyny/vim-parenmatch', {}],
       \ ['kana/vim-operator-user', {}],
       \ ['kana/vim-textobj-user', {}],
+      \ ['kopischke/vim-stay', {}],
       \ ['lambdalisue/vim-findent', {}],
       \ ['prabirshrestha/async.vim', {}],
       \ ['prabirshrestha/asyncomplete-lsp.vim', {}],
@@ -34,11 +35,11 @@ let s:start_plugs = [
       \ ['prabirshrestha/vim-lsp', {}],
       \ ['rhysd/committia.vim', {}],
       \ ['ryanoasis/vim-devicons', {}],
-      \ ['kopischke/vim-stay', {}],
       \ ]
 
 " opt plugins. {{{2
 let s:opt_plugs = [
+      \ ['NLKNguyen/papercolor-theme', {'type': 'opt'}],
       \ ['PProvost/vim-ps1', {'type': 'opt'}],
       \ ['Shougo/denite.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins'}, has('python3')],
       \ ['aklt/plantuml-syntax', {'type': 'opt'}],
@@ -64,6 +65,7 @@ let s:opt_plugs = [
       \ ['leafgarland/typescript-vim', {'type': 'opt'}],
       \ ['lifepillar/vim-solarized8', {'type': 'opt'}],
       \ ['morhetz/gruvbox', {'type': 'opt'}],
+      \ ['nelstrom/vim-markdown-folding', {'type': 'opt'}],
       \ ['neovimhaskell/haskell-vim', {'type': 'opt'}],
       \ ['othree/es.next.syntax.vim', {'type': 'opt'}],
       \ ['othree/javascript-libraries-syntax.vim', {'type': 'opt'}],
@@ -76,17 +78,14 @@ let s:opt_plugs = [
       \ ['rhysd/rust-doc.vim', {'type': 'opt'}, executable('cargo')],
       \ ['rhysd/vim-gfm-syntax', {'type': 'opt'}],
       \ ['rust-lang/rust.vim', {'type': 'opt'}],
+      \ ['scrooloose/vim-slumlord', {'type': 'opt'}],
       \ ['stephpy/vim-yaml', {'type': 'opt'}],
       \ ['thinca/vim-qfreplace', {'type': 'opt'}],
-      \ ['NLKNguyen/papercolor-theme', {'type': 'opt'}],
-      \ ['scrooloose/vim-slumlord', {'type': 'opt'}],
-      \ ['nelstrom/vim-markdown-folding', {'type': 'opt'}],
       \ ]
 
 " lazy load plugins. {{{2
 let s:lazy_plugs = [
       \ ['Konfekt/FastFold', {'type': 'opt'}],
-      \ ['ctrlpvim/ctrlp.vim', {'type': 'opt'}],
       \ ['LeafCage/yankround.vim', {'type': 'opt'}],
       \ ['Shougo/context_filetype.vim', {'type': 'opt'}],
       \ ['Shougo/echodoc.vim', {'type': 'opt'}],
@@ -97,13 +96,14 @@ let s:lazy_plugs = [
       \ ['Shougo/vimproc.vim', {'type': 'opt', 'do': 'silent! !make'}],
       \ ['airblade/vim-rooter', {'type': 'opt'}],
       \ ['cohama/agit.vim', {'type': 'opt'}],
+      \ ['ctrlpvim/ctrlp.vim', {'type': 'opt'}],
       \ ['gilligan/textobj-lastpaste', {'type': 'opt'}],
       \ ['glidenote/memolist.vim', {'type': 'opt'}],
       \ ['haya14busa/incsearch.vim', {'type': 'opt'}],
       \ ['haya14busa/vim-asterisk', {'type': 'opt'}],
       \ ['haya14busa/vim-operator-flashy', {'type': 'opt'}],
-      \ ['itchyny/vim-highlighturl', {'type': 'opt'}],
       \ ['itchyny/vim-external', {'type': 'opt'}],
+      \ ['itchyny/vim-highlighturl', {'type': 'opt'}],
       \ ['iyuuya/denite-ale', {'type': 'opt'}],
       \ ['junegunn/vim-easy-align', {'type': 'opt'}],
       \ ['justinmk/vim-dirvish', {'type': 'opt'}],
@@ -115,7 +115,6 @@ let s:lazy_plugs = [
       \ ['kaneshin/ctrlp-filetype', {'type': 'opt'}],
       \ ['kaneshin/ctrlp-memolist', {'type': 'opt'}],
       \ ['kaneshin/ctrlp-sonictemplate', {'type': 'opt'}],
-      \ ['ompugao/ctrlp-history', {'type': 'opt'}],
       \ ['kassio/neoterm', {'type': 'opt'}, has('nvim')],
       \ ['lambdalisue/gina.vim', {'type': 'opt'}],
       \ ['ludovicchabant/vim-gutentags', {'type': 'opt'}, executable('ctags')],
@@ -124,13 +123,16 @@ let s:lazy_plugs = [
       \ ['mattn/ctrlp-mark', {'type': 'opt'}],
       \ ['mattn/sonictemplate-vim', {'type': 'opt'}],
       \ ['mattn/webapi-vim', {'type': 'opt'}],
+      \ ['ntpeters/vim-better-whitespace', {'type': 'opt'}],
+      \ ['ompugao/ctrlp-history', {'type': 'opt'}],
       \ ['osyo-manga/vim-anzu', {'type': 'opt'}],
       \ ['osyo-manga/vim-operator-blockwise', {'type': 'opt'}],
       \ ['osyo-manga/vim-operator-search', {'type': 'opt'}],
+      \ ['osyo-manga/vim-precious', {'type': 'opt'}],
       \ ['osyo-manga/vim-textobj-multiblock', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-buffer.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-file.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-emoji.vim', {'type': 'opt'}],
+      \ ['prabirshrestha/asyncomplete-file.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt'}],
       \ ['prabirshrestha/asyncomplete-tags.vim', {'type': 'opt'}],
       \ ['qpkorr/vim-renamer', {'type': 'opt'}],
@@ -148,8 +150,6 @@ let s:lazy_plugs = [
       \ ['w0rp/ale', {'type': 'opt'}],
       \ ['y0za/vim-reading-vimrc', {'type': 'opt'}],
       \ ['yami-beta/asyncomplete-omni.vim', {'type': 'opt'}],
-      \ ['osyo-manga/vim-precious', {'type': 'opt'}],
-      \ ['ntpeters/vim-better-whitespace', {'type': 'opt'}],
       \ ]
 
 
@@ -199,7 +199,7 @@ function! PackAddHandler(timer)
 endfunction
 
 aug lazy_load_bundle
-  au MyAutoCmd VimEnter * call timer_start(1, 'PackAddHandler', {'repeat': len(s:lazy_plugs)})
+  au MyAutoCmd VimEnter * call timer_start(0, 'PackAddHandler', {'repeat': len(s:lazy_plugs)})
 aug END
 
 " Plugin settings. {{{1
@@ -546,7 +546,7 @@ nnoremap <Leader>mg :<C-u>MemoGrep<CR>
 
 
 " sonictemplate-vim. {{{2
-let g:sonictemplate_vim_template_dir = $HOME . '/.vim/template'
+let g:sonictemplate_vim_template_dir = $VIM_PATH . '/template'
 let g:sonictemplate_vim_vars = {
       \ '_': {
       \   'author': 'yukimemi',
@@ -1026,6 +1026,7 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_remove_duplicates = 1
 let g:asyncomplete_force_refresh_on_context_changed = 1
+imap <c-space> <Plug>(asyncomplete_force_refresh)
 
 " asyncomplete-buffer.vim. {{{3
 au MyAutoCmd User asyncomplete_setup packadd asyncomplete-buffer.vim | call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
