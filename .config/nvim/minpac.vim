@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/06/12 00:16:38.
+" Last Change : 2018/06/13 22:53:20.
 " =============================================================================
 
 " Plugin:
@@ -15,181 +15,181 @@ if has('vim_starting')
   endif
 endif
 
-" pack list. {{{1
-" start plugins. {{{2
-let s:start_plugs = [
-      \ ['Yggdroot/indentLine', {}],
-      \ ['haya14busa/vim-edgemotion', {}],
-      \ ['hotwatermorning/auto-git-diff', {}],
-      \ ['itchyny/lightline.vim', {}],
-      \ ['itchyny/vim-cursorword', {}],
-      \ ['itchyny/vim-gitbranch', {}],
-      \ ['itchyny/vim-parenmatch', {}],
-      \ ['kana/vim-operator-user', {}],
-      \ ['kana/vim-textobj-user', {}],
-      \ ['kopischke/vim-stay', {}],
-      \ ['lambdalisue/vim-findent', {}],
-      \ ['prabirshrestha/async.vim', {}],
-      \ ['prabirshrestha/asyncomplete-lsp.vim', {}],
-      \ ['prabirshrestha/asyncomplete.vim', {}],
-      \ ['prabirshrestha/vim-lsp', {}],
-      \ ['rhysd/committia.vim', {}],
-      \ ['ryanoasis/vim-devicons', {}],
-      \ ]
-
-" opt plugins. {{{2
-let s:opt_plugs = [
-      \ ['NLKNguyen/papercolor-theme', {'type': 'opt'}],
-      \ ['PProvost/vim-ps1', {'type': 'opt'}],
-      \ ['Shougo/denite.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins'}, has('python3')],
-      \ ['aklt/plantuml-syntax', {'type': 'opt'}],
-      \ ['alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent'}, executable('stack')],
-      \ ['b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt'}],
-      \ ['cespare/vim-toml', {'type': 'opt'}],
-      \ ['cocopon/iceberg.vim', {'type': 'opt'}],
-      \ ['dag/vim-fish', {'type': 'opt'}],
-      \ ['dhruvasagar/vim-table-mode', {'type': 'opt'}],
-      \ ['eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod'}, executable('stack')],
-      \ ['eagletmt/neco-ghc', {'type': 'opt'}],
-      \ ['ekalinin/Dockerfile.vim', {'type': 'opt'}],
-      \ ['fatih/vim-go', {'type': 'opt'}],
-      \ ['flowtype/vim-flow', {'type': 'opt', 'do': 'silent! !npm i -g flow-bin'}],
-      \ ['itchyny/vim-haskell-indent', {'type': 'opt'}],
-      \ ['itchyny/vim-haskell-sort-import', {'type': 'opt'}],
-      \ ['joshdick/onedark.vim', {'type': 'opt'}],
-      \ ['kannokanno/previm', {'type': 'opt'}],
-      \ ['kchmck/vim-coffee-script', {'type': 'opt'}],
-      \ ['keremc/asyncomplete-racer.vim', {'type': 'opt'}],
-      \ ['kristijanhusak/vim-hybrid-material', {'type': 'opt'}],
-      \ ['kylef/apiblueprint.vim', {'type': 'opt'}],
-      \ ['leafgarland/typescript-vim', {'type': 'opt'}],
-      \ ['lifepillar/vim-solarized8', {'type': 'opt'}],
-      \ ['morhetz/gruvbox', {'type': 'opt'}],
-      \ ['nelstrom/vim-markdown-folding', {'type': 'opt'}],
-      \ ['neovimhaskell/haskell-vim', {'type': 'opt'}],
-      \ ['othree/es.next.syntax.vim', {'type': 'opt'}],
-      \ ['othree/javascript-libraries-syntax.vim', {'type': 'opt'}],
-      \ ['pangloss/vim-javascript', {'type': 'opt'}],
-      \ ['posva/vim-vue', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-flow.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-tscompletejob.vim', {'type': 'opt'}],
-      \ ['rhysd/rust-doc.vim', {'type': 'opt'}, executable('cargo')],
-      \ ['rhysd/vim-gfm-syntax', {'type': 'opt'}],
-      \ ['rust-lang/rust.vim', {'type': 'opt'}],
-      \ ['scrooloose/vim-slumlord', {'type': 'opt'}],
-      \ ['stephpy/vim-yaml', {'type': 'opt'}],
-      \ ['thinca/vim-qfreplace', {'type': 'opt'}],
-      \ ]
-
-" lazy load plugins. {{{2
-let s:lazy_plugs = [
-      \ ['Konfekt/FastFold', {'type': 'opt'}],
-      \ ['LeafCage/yankround.vim', {'type': 'opt'}],
-      \ ['Shougo/context_filetype.vim', {'type': 'opt'}],
-      \ ['Shougo/echodoc.vim', {'type': 'opt'}],
-      \ ['Shougo/junkfile.vim', {'type': 'opt'}],
-      \ ['Shougo/neomru.vim', {'type': 'opt'}],
-      \ ['Shougo/neosnippet-snippets', {'type': 'opt'}],
-      \ ['Shougo/neosnippet.vim', {'type': 'opt'}],
-      \ ['Shougo/vimproc.vim', {'type': 'opt', 'do': 'silent! !make'}],
-      \ ['airblade/vim-rooter', {'type': 'opt'}],
-      \ ['cohama/agit.vim', {'type': 'opt'}],
-      \ ['ctrlpvim/ctrlp.vim', {'type': 'opt'}],
-      \ ['gilligan/textobj-lastpaste', {'type': 'opt'}],
-      \ ['glidenote/memolist.vim', {'type': 'opt'}],
-      \ ['haya14busa/incsearch.vim', {'type': 'opt'}],
-      \ ['haya14busa/vim-asterisk', {'type': 'opt'}],
-      \ ['haya14busa/vim-operator-flashy', {'type': 'opt'}],
-      \ ['itchyny/vim-external', {'type': 'opt'}],
-      \ ['itchyny/vim-highlighturl', {'type': 'opt'}],
-      \ ['iyuuya/denite-ale', {'type': 'opt'}],
-      \ ['junegunn/vim-easy-align', {'type': 'opt'}],
-      \ ['justinmk/vim-dirvish', {'type': 'opt'}],
-      \ ['kana/vim-operator-replace', {'type': 'opt'}],
-      \ ['kana/vim-textobj-entire', {'type': 'opt'}],
-      \ ['kana/vim-textobj-fold', {'type': 'opt'}],
-      \ ['kana/vim-textobj-function', {'type': 'opt'}],
-      \ ['kana/vim-textobj-indent', {'type': 'opt'}],
-      \ ['kaneshin/ctrlp-filetype', {'type': 'opt'}],
-      \ ['kaneshin/ctrlp-memolist', {'type': 'opt'}],
-      \ ['kaneshin/ctrlp-sonictemplate', {'type': 'opt'}],
-      \ ['kassio/neoterm', {'type': 'opt'}, has('nvim')],
-      \ ['lambdalisue/gina.vim', {'type': 'opt'}],
-      \ ['ludovicchabant/vim-gutentags', {'type': 'opt'}, executable('ctags')],
-      \ ['majutsushi/tagbar', {'type': 'opt'}],
-      \ ['mattn/ctrlp-launcher', {'type': 'opt'}],
-      \ ['mattn/ctrlp-mark', {'type': 'opt'}],
-      \ ['mattn/sonictemplate-vim', {'type': 'opt'}],
-      \ ['mattn/webapi-vim', {'type': 'opt'}],
-      \ ['ntpeters/vim-better-whitespace', {'type': 'opt'}],
-      \ ['ompugao/ctrlp-history', {'type': 'opt'}],
-      \ ['osyo-manga/vim-anzu', {'type': 'opt'}],
-      \ ['osyo-manga/vim-operator-blockwise', {'type': 'opt'}],
-      \ ['osyo-manga/vim-operator-search', {'type': 'opt'}],
-      \ ['osyo-manga/vim-precious', {'type': 'opt'}],
-      \ ['osyo-manga/vim-textobj-multiblock', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-buffer.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-emoji.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-file.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt'}],
-      \ ['prabirshrestha/asyncomplete-tags.vim', {'type': 'opt'}],
-      \ ['qpkorr/vim-renamer', {'type': 'opt'}],
-      \ ['rhysd/vim-operator-surround', {'type': 'opt'}],
-      \ ['simnalamburt/vim-mundo', {'type': 'opt'}],
-      \ ['t9md/vim-quickhl', {'type': 'opt'}],
-      \ ['taku-o/vim-zoom', {'type': 'opt'}],
-      \ ['thinca/vim-submode', {'type': 'opt'}],
-      \ ['tpope/vim-repeat', {'type': 'opt'}],
-      \ ['tyru/capture.vim', {'type': 'opt'}],
-      \ ['tyru/caw.vim', {'type': 'opt'}],
-      \ ['tyru/open-browser.vim', {'type': 'opt'}],
-      \ ['vim-scripts/autodate.vim', {'type': 'opt'}],
-      \ ['vim-scripts/matchit.zip', {'type': 'opt'}],
-      \ ['w0rp/ale', {'type': 'opt'}],
-      \ ['y0za/vim-reading-vimrc', {'type': 'opt'}],
-      \ ['yami-beta/asyncomplete-omni.vim', {'type': 'opt'}],
-      \ ]
-
-
 " minpac init. {{{1
 if exists('*minpac#init')
   " minpac is loaded.
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
-
-  function! s:minpac_add(plugs)
-    for plug in a:plugs
-      let cond = len(plug) > 2 ? plug[2] : 1
-      if cond
-        " echom printf("call minpac#add('%s', %s)", plug[0], string(plug[1]))
-        exe printf("call minpac#add('%s', %s)", plug[0], string(plug[1]))
-      endif
-    endfor
-  endfunction
-
-  " start. {{{2
-  call <SID>minpac_add(s:start_plugs)
-
-  " opt. {{{2
-  call <SID>minpac_add(s:opt_plugs)
-
-  " lazy. {{{2
-  call <SID>minpac_add(s:lazy_plugs)
-
 endif
 
-" Async load lazy plugins. {{{1
+" minpac helper function. {{{1
+let s:lazy_plugs = []
+function! s:minpac_add(repo, ...) abort
+  let l:opts = get(a:000, 0, {})
+  if has_key(l:opts, 'if')
+    if ! l:opts.if
+      return
+    endif
+  endif
+
+  let l:name = substitute(a:repo, '^.*/', '', '')
+  " packadd on filetype.
+  if has_key(l:opts, 'ft')
+    let l:ft = type(l:opts.ft) == type([]) ? join(l:opts.ft, ',') : l:opts.ft
+    exe printf('au MyAutoCmd FileType %s packadd %s', l:ft, l:name)
+  endif
+
+  " packadd on cmd.
+  if has_key(l:opts, 'cmd')
+    let l:cmd = type(l:opts.cmd) == type([]) ? join(l:opts.cmd, ',') : l:opts.cmd
+    exe printf('au MyAutoCmd CmdUndefined %s packadd %s', l:cmd, l:name)
+  endif
+
+  if has_key(l:opts, 'lazy')
+    if l:opts.lazy
+      call add(s:lazy_plugs, l:name)
+    endif
+  endif
+
+  if exists('*minpac#init')
+    call minpac#add(a:repo, l:opts)
+  endif
+endfunction
+
+com! -nargs=+ Pac call <SID>minpac_add(<args>)
+
+" Plugin list. {{{1
+" start. {{{2
+Pac 'Yggdroot/indentLine'
+Pac 'haya14busa/vim-edgemotion'
+Pac 'hotwatermorning/auto-git-diff'
+Pac 'itchyny/lightline.vim'
+Pac 'itchyny/vim-cursorword'
+Pac 'itchyny/vim-gitbranch'
+Pac 'itchyny/vim-parenmatch'
+Pac 'kana/vim-operator-user'
+Pac 'kana/vim-textobj-user'
+Pac 'kopischke/vim-stay'
+Pac 'lambdalisue/vim-findent'
+Pac 'prabirshrestha/async.vim'
+Pac 'prabirshrestha/asyncomplete-lsp.vim'
+Pac 'prabirshrestha/asyncomplete.vim'
+Pac 'prabirshrestha/vim-lsp'
+Pac 'rhysd/committia.vim'
+Pac 'ryanoasis/vim-devicons'
+
+" opt. {{{2
+Pac 'NLKNguyen/papercolor-theme', {'type': 'opt'}
+Pac 'PProvost/vim-ps1', {'type': 'opt', 'ft': 'ps1'}
+Pac 'Shougo/denite.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins', 'if': has('python3'), 'cmd': 'Denite'}
+Pac 'Shougo/junkfile.vim', {'type': 'opt', 'cmd': 'JunkfileOpen'}
+Pac 'Shougo/neomru.vim', {'type': 'opt', 'cmd': 'Denite*'}
+Pac 'airblade/vim-rooter', {'type': 'opt', 'cmd': 'Rooter'}
+Pac 'aklt/plantuml-syntax', {'type': 'opt', 'ft': 'plantuml'}
+Pac 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'ft': 'haskell'}
+Pac 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt', 'ft': 'sql'}
+Pac 'cespare/vim-toml', {'type': 'opt', 'ft': 'toml'}
+Pac 'cocopon/iceberg.vim', {'type': 'opt'}
+Pac 'cohama/agit.vim', {'type': 'opt', 'cmd': 'Agit*'}
+Pac 'ctrlpvim/ctrlp.vim', {'type': 'opt', 'cmd': 'CtrlP*'}
+Pac 'dag/vim-fish', {'type': 'opt', 'ft': 'fish'}
+Pac 'dhruvasagar/vim-table-mode', {'type': 'opt', 'ft': 'markdown'}
+Pac 'eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod', 'if': executable('stack'), 'ft': 'haskell'}
+Pac 'eagletmt/neco-ghc', {'type': 'opt', 'ft': 'haskell'}
+Pac 'ekalinin/Dockerfile.vim', {'type': 'opt', 'ft': 'dockerfile'}
+Pac 'fatih/vim-go', {'type': 'opt', 'ft': 'go'}
+Pac 'glidenote/memolist.vim', {'type': 'opt', 'cmd': 'Memo*'}
+Pac 'itchyny/vim-haskell-indent', {'type': 'opt', 'ft': 'haskell'}
+Pac 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'ft': 'haskell'}
+Pac 'iyuuya/denite-ale', {'type': 'opt', 'cmd': 'Denite*'}
+Pac 'joshdick/onedark.vim', {'type': 'opt'}
+Pac 'justinmk/vim-dirvish', {'type': 'opt', 'cmd': 'Dirvish*'}
+Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'cmd': 'CtrlP*'}
+Pac 'kaneshin/ctrlp-memolist', {'type': 'opt', 'cmd': 'CtrlP*'}
+Pac 'kaneshin/ctrlp-sonictemplate', {'type': 'opt', 'cmd': 'CtrlP*'}
+Pac 'kannokanno/previm', {'type': 'opt', 'ft': 'markdown'}
+Pac 'kchmck/vim-coffee-script', {'type': 'opt', 'ft': 'coffee'}
+Pac 'keremc/asyncomplete-racer.vim', {'type': 'opt', 'ft': 'rust', 'if': !executable('rls')}
+Pac 'kristijanhusak/vim-hybrid-material', {'type': 'opt'}
+Pac 'kylef/apiblueprint.vim', {'type': 'opt', 'ft': 'apiblueprint'}
+Pac 'leafgarland/typescript-vim', {'type': 'opt', 'ft': ['typescript', 'typescript.tsx']}
+Pac 'lifepillar/vim-solarized8', {'type': 'opt'}
+Pac 'majutsushi/tagbar', {'type': 'opt', 'cmd': 'Tagbar*'}
+Pac 'mattn/ctrlp-launcher', {'type': 'opt', 'cmd': 'CtrlP*'}
+Pac 'mattn/ctrlp-mark', {'type': 'opt', 'cmd': 'CtrlP*'}
+Pac 'mattn/sonictemplate-vim', {'type': 'opt', 'cmd': 'Template*'}
+Pac 'morhetz/gruvbox', {'type': 'opt'}
+Pac 'nelstrom/vim-markdown-folding', {'type': 'opt', 'ft': 'markdown'}
+Pac 'neovimhaskell/haskell-vim', {'type': 'opt', 'ft': ['haskell', 'cabal']}
+Pac 'ompugao/ctrlp-history', {'type': 'opt', 'cmd': 'CtrlP*'}
+Pac 'othree/es.next.syntax.vim', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
+Pac 'othree/javascript-libraries-syntax.vim', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
+Pac 'pangloss/vim-javascript', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
+Pac 'posva/vim-vue', {'type': 'opt', 'ft': 'vue'}
+Pac 'prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt', 'ft': 'vim'}
+Pac 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'ft': 'vim'}
+Pac 'qpkorr/vim-renamer', {'type': 'opt', 'cmd': 'Renamer*'}
+Pac 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'ft': 'rust'}
+Pac 'rhysd/vim-gfm-syntax', {'type': 'opt', 'ft': 'markdown'}
+Pac 'rust-lang/rust.vim', {'type': 'opt', 'ft': 'rust'}
+Pac 'scrooloose/vim-slumlord', {'type': 'opt', 'ft': 'plantuml'}
+Pac 'simnalamburt/vim-mundo', {'type': 'opt', 'cmd': 'MundoToggle*'}
+Pac 'stephpy/vim-yaml', {'type': 'opt', 'ft': ['yml', 'yaml']}
+Pac 'thinca/vim-qfreplace', {'type': 'opt', 'ft': ['quickfix', 'qf']}
+Pac 'tyru/capture.vim', {'type': 'opt', 'cmd': 'Capture'}
+Pac 'y0za/vim-reading-vimrc', {'type': 'opt', 'cmd': 'ReadingVimrc*'}
+
+" lazy. {{{2
+Pac 'Konfekt/FastFold', {'type': 'opt', 'lazy': 1}
+Pac 'LeafCage/yankround.vim', {'type': 'opt', 'lazy': 1}
+Pac 'Shougo/context_filetype.vim', {'type': 'opt', 'lazy': 1}
+Pac 'Shougo/echodoc.vim', {'type': 'opt', 'lazy': 1}
+Pac 'Shougo/neosnippet-snippets', {'type': 'opt', 'lazy': 1}
+Pac 'Shougo/neosnippet.vim', {'type': 'opt', 'lazy': 1}
+Pac 'Shougo/vimproc.vim', {'type': 'opt', 'lazy': 1, 'do': 'silent! !make'}
+Pac 'gilligan/textobj-lastpaste', {'type': 'opt', 'lazy': 1}
+Pac 'haya14busa/incsearch.vim', {'type': 'opt', 'lazy': 1}
+Pac 'haya14busa/vim-asterisk', {'type': 'opt', 'lazy': 1}
+Pac 'haya14busa/vim-operator-flashy', {'type': 'opt', 'lazy': 1}
+Pac 'itchyny/vim-external', {'type': 'opt', 'lazy': 1}
+Pac 'itchyny/vim-highlighturl', {'type': 'opt', 'lazy': 1}
+Pac 'junegunn/vim-easy-align', {'type': 'opt', 'lazy': 1}
+Pac 'kana/vim-operator-replace', {'type': 'opt', 'lazy': 1}
+Pac 'kana/vim-textobj-entire', {'type': 'opt', 'lazy': 1}
+Pac 'kana/vim-textobj-fold', {'type': 'opt', 'lazy': 1}
+Pac 'kana/vim-textobj-function', {'type': 'opt', 'lazy': 1}
+Pac 'kana/vim-textobj-indent', {'type': 'opt', 'lazy': 1}
+Pac 'kassio/neoterm', {'type': 'opt', 'lazy': 1, 'if': has('nvim')}
+Pac 'lambdalisue/gina.vim', {'type': 'opt', 'lazy': 1}
+Pac 'ludovicchabant/vim-gutentags', {'type': 'opt', 'lazy': 1, 'if': executable('ctags')}
+Pac 'mattn/webapi-vim', {'type': 'opt', 'lazy': 1}
+Pac 'ntpeters/vim-better-whitespace', {'type': 'opt', 'lazy': 1}
+Pac 'osyo-manga/vim-anzu', {'type': 'opt', 'lazy': 1}
+Pac 'osyo-manga/vim-operator-blockwise', {'type': 'opt', 'lazy': 1}
+Pac 'osyo-manga/vim-operator-search', {'type': 'opt', 'lazy': 1}
+Pac 'osyo-manga/vim-precious', {'type': 'opt', 'lazy': 1}
+Pac 'osyo-manga/vim-textobj-multiblock', {'type': 'opt', 'lazy': 1}
+Pac 'prabirshrestha/asyncomplete-buffer.vim', {'type': 'opt', 'lazy': 1}
+Pac 'prabirshrestha/asyncomplete-emoji.vim', {'type': 'opt', 'lazy': 1}
+Pac 'prabirshrestha/asyncomplete-file.vim', {'type': 'opt', 'lazy': 1}
+Pac 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt', 'lazy': 1}
+Pac 'prabirshrestha/asyncomplete-tags.vim', {'type': 'opt', 'lazy': 1}
+Pac 'rhysd/vim-operator-surround', {'type': 'opt', 'lazy': 1}
+Pac 't9md/vim-quickhl', {'type': 'opt', 'lazy': 1}
+Pac 'taku-o/vim-zoom', {'type': 'opt', 'lazy': 1}
+Pac 'thinca/vim-submode', {'type': 'opt', 'lazy': 1}
+Pac 'tpope/vim-repeat', {'type': 'opt', 'lazy': 1}
+Pac 'tyru/caw.vim', {'type': 'opt', 'lazy': 1}
+Pac 'tyru/open-browser.vim', {'type': 'opt', 'lazy': 1}
+Pac 'vim-scripts/autodate.vim', {'type': 'opt', 'lazy': 1}
+Pac 'vim-scripts/matchit.zip', {'type': 'opt', 'lazy': 1}
+Pac 'w0rp/ale', {'type': 'opt', 'lazy': 1}
+Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
+
+" Load lazy plugins. {{{1
 let s:idx = 0
 function! PackAddHandler(timer)
-  let plug = s:lazy_plugs[s:idx]
-  let name = split(plug[0], '/')[1]
-  let cond = len(plug) > 2 ? plug[2] : 1
-  if cond
-    " exe printf("echom 'packadd %s (%d)'", name, s:idx)
-    exe 'packadd ' . name
-  endif
+  exe 'packadd ' . s:lazy_plugs[s:idx]
   let s:idx += 1
   " doautocmd BufReadPost
   au! lazy_load_bundle
@@ -201,6 +201,7 @@ endfunction
 aug lazy_load_bundle
   au MyAutoCmd VimEnter * call timer_start(0, 'PackAddHandler', {'repeat': len(s:lazy_plugs)})
 aug END
+
 
 " Plugin settings. {{{1
 " lightline. {{{2
@@ -640,7 +641,7 @@ noremap sdl :<C-u>Denite command_history<CR>
 inoremap <C-l> <ESC>:<C-u>Denite command<CR>
 
 " Load after settings.
-au MyAutoCmd VimEnter * call <SID>denite_aft()
+au MyAutoCmd CmdUndefined Denite* call <SID>denite_aft()
 function! s:denite_aft() abort
   packadd denite.nvim
   " Default options.
@@ -735,11 +736,7 @@ endfunction
 
 com! ToggleCursorWord call s:ToggleCursorWord()
 
-" vim-qfreplace. {{{2
-au MyAutoCmd FileType quickfix,qf packadd vim-qfreplace
-
 " deoplete-go. {{{2
-" au MyAutoCmd FileType go packadd deoplete-go
 " let g:deoplete#sources#go#use_cache = 1
 " let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
 " let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
@@ -808,7 +805,6 @@ function! s:vim_go_cfg() abort
 endfunction
 
 " vim-ps1. {{{2
-au MyAutoCmd BufNew,BufRead *.ps1 packadd vim-ps1
 function! s:addHeaderPs1(flg)
   setl fenc=cp932
   setl ff=dos
@@ -838,55 +834,14 @@ endfunction
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0)
 
-" vim-toml. {{{2
-au MyAutoCmd FileType toml packadd vim-toml
-
-" vim-yaml. {{{2
-au MyAutoCmd FileType yaml packadd vim-yaml
-
-" plantuml-syntax. {{{2
-au MyAutoCmd FileType plantuml packadd plantuml-syntax
-
-" vim-log-syntax. {{{2
-" au MyAutoCmd FileType log packadd vim-log-syntax
-
-" vim-vue. {{{2
-au MyAutoCmd FileType vue packadd vim-vue
-
-" vim-javascript. {{{2
-au MyAutoCmd FileType javascript,javascript.jsx packadd vim-javascript
-
-
-" javascript-libraries-syntax.vim. {{{2
-au MyAutoCmd FileType javascript,javascript.jsx packadd javascript-libraries-syntax.vim
-
-" es.next.syntax.vim. {{{2
-au MyAutoCmd FileType javascript,javascript.jsx packadd es.next.syntax.vim
-
-" vim-flow. {{{2
-au MyAutoCmd FileType javascript,javascript.jsx packadd vim-flow
-let g:flow#autoclose = 1
-
 " typescript-vim. {{{2
 au MyAutoCmd BufNew,BufRead *.ts setl ft=typescript
 au MyAutoCmd BufNew,BufRead *.tsx setl ft=typescript.tsx
-au MyAutoCmd FileType typescript,typescript.tsx packadd typescript-vim
-
-" vim-coffee-script. {{{2
-au MyAutoCmd FileType coffee packadd vim-coffee-script
 
 " vim-fish. {{{2
 au MyAutoCmd BufNew,BufRead *.fish setl ft=fish
-au MyAutoCmd FileType fish packadd vim-fish
-
-" vim-gfm-syntax. {{{2
-au MyAutoCmd FileType markdown packadd vim-gfm-syntax
-
-" Dockerfile.vim. {{{2
-au MyAutoCmd FileType dockerfile packadd Dockerfile.vim
 
 " rust.vim. {{{2
-au MyAutoCmd FileType rust packadd rust.vim
 let g:rust_bang_comment_leader = 1
 let g:rust_conceal = 0
 let g:rust_conceal_mod_path = 0
@@ -908,9 +863,6 @@ function! s:vim_racer_aft() abort
   nmap <buffer> K <Plug>(rust-doc)
 endfunction
 
-" rust-doc.vim. {{{2
-au MyAutoCmd FileType rust packadd rust-doc.vim
-
 " ghcmod-vim. {{{2
 au MyAutoCmd FileType haskell call <SID>ghcmod_vim_aft()
 
@@ -921,17 +873,12 @@ function! s:ghcmod_vim_aft() abort
 endfunction
 
 " neco-ghc. {{{2
-au MyAutoCmd FileType haskell packadd neco-ghc | setl omnifunc=necoghc#omnifunc
-
-" vim-haskell-indent. {{{2
-au MyAutoCmd FileType haskell packadd vim-haskell-indent
+au MyAutoCmd FileType haskell setl omnifunc=necoghc#omnifunc
 
 " vim-haskell-sort-import. {{{2
-au MyAutoCmd FileType haskell packadd vim-haskell-sort-import
 au MyAutoCmd BufWritePre *.hs HaskellSortImport
 
 " haskell-vim. {{{2
-au MyAutoCmd FileType haskell,cabal packadd haskell-vim
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
@@ -941,18 +888,13 @@ let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
 " vim-hindent. {{{2
-au MyAutoCmd FileType haskell packadd vim-hindent
 let g:hindent_on_save = 1
 let g:hindent_indent_size = 2
 let g:hindent_line_length = 100
 
 " vim-sqlfmt. {{{2
-au MyAutoCmd FileType sql packadd vim-sqlfmt
 let g:sqlfmt_command = "sqlformat"
 let g:sqlfmt_options = "-r -k upper"
-
-" apiblueprint.vim. {{{2
-au MyAutoCmd FileType apiblueprint packadd apiblueprint.vim
 
 " vim-renamer. {{{2
 nmap <Leader>r <Plug>RenamerStart
@@ -1017,7 +959,6 @@ nnoremap scl :<C-u>CtrlPMemolist<CR>
 if executable('rg')
   let g:ctrlp_user_command ='rg -F --files %s'
 endif
-
 
 " vim-devicons. {{{2
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
@@ -1180,11 +1121,7 @@ if executable('typescript-language-server')
         \ })
 endif
 
-" vim-table-mode. {{{2
-au MyAutoCmd FileType markdown packadd vim-table-mode
-
 " previm. {{{2
-au MyAutoCmd FileType markdown packadd previm
 let g:previm_enable_realtime = 0
 let g:previm_disable_default_css = 1
 
@@ -1198,7 +1135,6 @@ if executable('cargo')
 endif
 
 " vim-reading-vimrc. {{{2
-au MyAutoCmd CmdUndefined ReadingVimrc* packadd vim-reading-vimrc
 vmap <Leader><CR> <Plug>(reading_vimrc-update_clipboard)
 
 " gruvbox. {{{2
@@ -1206,8 +1142,8 @@ let g:gruvbox_contrast_dark = "hard"
 
 " vim-precious. {{{2
 let g:precious_enable_switch_CursorMoved = { '*': 0, 'help': 1 }
-au MyAutoCmd InsertEnter * :PreciousSwitch
-au MyAutoCmd InsertLeave * :PreciousReset
+au MyAutoCmd InsertEnter * :packadd vim-precious PreciousSwitch
+au MyAutoCmd InsertLeave * :packadd vim-precious PreciousReset
 
 " vim-external. {{{2
 map <Leader>e <Plug>(external-editor)
@@ -1215,11 +1151,7 @@ map <Leader>n <Plug>(external-explorer)
 map <Leader>b <Plug>(external-browser)
 
 " vim-slumlord. {{{2
-au MyAutoCmd FileType plantuml packadd vim-slumlord
 let g:slumlord_separate_win = 1
-
-" vim-markdown-folding. {{{2
-au MyAutoCmd FileType markdown packadd vim-markdown-folding
 
 " Define user commands for updating/cleaning the plugins. {{{1
 " Each of them loads minpac, reloads .vimrc to register the
