@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/06/13 22:53:20.
+" Last Change : 2018/06/14 23:03:12.
 " =============================================================================
 
 " Plugin:
@@ -77,13 +77,13 @@ Pac 'prabirshrestha/asyncomplete.vim'
 Pac 'prabirshrestha/vim-lsp'
 Pac 'rhysd/committia.vim'
 Pac 'ryanoasis/vim-devicons'
+Pac 'ctrlpvim/ctrlp.vim'
+Pac 'Shougo/denite.nvim', {'do': 'silent! UpdateRemotePlugins', 'if': has('python3')}
 
 " opt. {{{2
 Pac 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 Pac 'PProvost/vim-ps1', {'type': 'opt', 'ft': 'ps1'}
-Pac 'Shougo/denite.nvim', {'type': 'opt', 'do': 'silent! UpdateRemotePlugins', 'if': has('python3'), 'cmd': 'Denite'}
 Pac 'Shougo/junkfile.vim', {'type': 'opt', 'cmd': 'JunkfileOpen'}
-Pac 'Shougo/neomru.vim', {'type': 'opt', 'cmd': 'Denite*'}
 Pac 'airblade/vim-rooter', {'type': 'opt', 'cmd': 'Rooter'}
 Pac 'aklt/plantuml-syntax', {'type': 'opt', 'ft': 'plantuml'}
 Pac 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'ft': 'haskell'}
@@ -91,7 +91,6 @@ Pac 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jack
 Pac 'cespare/vim-toml', {'type': 'opt', 'ft': 'toml'}
 Pac 'cocopon/iceberg.vim', {'type': 'opt'}
 Pac 'cohama/agit.vim', {'type': 'opt', 'cmd': 'Agit*'}
-Pac 'ctrlpvim/ctrlp.vim', {'type': 'opt', 'cmd': 'CtrlP*'}
 Pac 'dag/vim-fish', {'type': 'opt', 'ft': 'fish'}
 Pac 'dhruvasagar/vim-table-mode', {'type': 'opt', 'ft': 'markdown'}
 Pac 'eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod', 'if': executable('stack'), 'ft': 'haskell'}
@@ -101,12 +100,8 @@ Pac 'fatih/vim-go', {'type': 'opt', 'ft': 'go'}
 Pac 'glidenote/memolist.vim', {'type': 'opt', 'cmd': 'Memo*'}
 Pac 'itchyny/vim-haskell-indent', {'type': 'opt', 'ft': 'haskell'}
 Pac 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'ft': 'haskell'}
-Pac 'iyuuya/denite-ale', {'type': 'opt', 'cmd': 'Denite*'}
 Pac 'joshdick/onedark.vim', {'type': 'opt'}
 Pac 'justinmk/vim-dirvish', {'type': 'opt', 'cmd': 'Dirvish*'}
-Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'cmd': 'CtrlP*'}
-Pac 'kaneshin/ctrlp-memolist', {'type': 'opt', 'cmd': 'CtrlP*'}
-Pac 'kaneshin/ctrlp-sonictemplate', {'type': 'opt', 'cmd': 'CtrlP*'}
 Pac 'kannokanno/previm', {'type': 'opt', 'ft': 'markdown'}
 Pac 'kchmck/vim-coffee-script', {'type': 'opt', 'ft': 'coffee'}
 Pac 'keremc/asyncomplete-racer.vim', {'type': 'opt', 'ft': 'rust', 'if': !executable('rls')}
@@ -115,13 +110,10 @@ Pac 'kylef/apiblueprint.vim', {'type': 'opt', 'ft': 'apiblueprint'}
 Pac 'leafgarland/typescript-vim', {'type': 'opt', 'ft': ['typescript', 'typescript.tsx']}
 Pac 'lifepillar/vim-solarized8', {'type': 'opt'}
 Pac 'majutsushi/tagbar', {'type': 'opt', 'cmd': 'Tagbar*'}
-Pac 'mattn/ctrlp-launcher', {'type': 'opt', 'cmd': 'CtrlP*'}
-Pac 'mattn/ctrlp-mark', {'type': 'opt', 'cmd': 'CtrlP*'}
 Pac 'mattn/sonictemplate-vim', {'type': 'opt', 'cmd': 'Template*'}
 Pac 'morhetz/gruvbox', {'type': 'opt'}
 Pac 'nelstrom/vim-markdown-folding', {'type': 'opt', 'ft': 'markdown'}
 Pac 'neovimhaskell/haskell-vim', {'type': 'opt', 'ft': ['haskell', 'cabal']}
-Pac 'ompugao/ctrlp-history', {'type': 'opt', 'cmd': 'CtrlP*'}
 Pac 'othree/es.next.syntax.vim', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
 Pac 'othree/javascript-libraries-syntax.vim', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
 Pac 'pangloss/vim-javascript', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
@@ -140,6 +132,14 @@ Pac 'tyru/capture.vim', {'type': 'opt', 'cmd': 'Capture'}
 Pac 'y0za/vim-reading-vimrc', {'type': 'opt', 'cmd': 'ReadingVimrc*'}
 
 " lazy. {{{2
+Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
+Pac 'kaneshin/ctrlp-memolist', {'type': 'opt', 'lazy': 1}
+Pac 'kaneshin/ctrlp-sonictemplate', {'type': 'opt', 'lazy': 1}
+Pac 'ompugao/ctrlp-history', {'type': 'opt', 'lazy': 1}
+Pac 'mattn/ctrlp-launcher', {'type': 'opt', 'lazy': 1}
+Pac 'mattn/ctrlp-mark', {'type': 'opt', 'lazy': 1}
+Pac 'Shougo/neomru.vim', {'type': 'opt', 'lazy': 1}
+Pac 'iyuuya/denite-ale', {'type': 'opt', 'lazy': 1}
 Pac 'Konfekt/FastFold', {'type': 'opt', 'lazy': 1}
 Pac 'LeafCage/yankround.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/context_filetype.vim', {'type': 'opt', 'lazy': 1}
@@ -641,9 +641,8 @@ noremap sdl :<C-u>Denite command_history<CR>
 inoremap <C-l> <ESC>:<C-u>Denite command<CR>
 
 " Load after settings.
-au MyAutoCmd CmdUndefined Denite* call <SID>denite_aft()
+au MyAutoCmd VimEnter * call <SID>denite_aft()
 function! s:denite_aft() abort
-  packadd denite.nvim
   " Default options.
   call denite#custom#option('default', {
         \ 'prompt': '»',
