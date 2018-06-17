@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/06/14 23:03:12.
+" Last Change : 2018/06/17 21:31:43.
 " =============================================================================
 
 " Plugin:
@@ -57,6 +57,22 @@ function! s:minpac_add(repo, ...) abort
 endfunction
 
 com! -nargs=+ Pac call <SID>minpac_add(<args>)
+
+" Load lazy plugins. {{{1
+let s:idx = 0
+function! PackAddHandler(timer)
+  exe 'packadd ' . s:lazy_plugs[s:idx]
+  let s:idx += 1
+  " doautocmd BufReadPost
+  au! lazy_load_bundle
+  if s:idx == len(s:lazy_plugs)
+    echom "lazy load done !"
+  endif
+endfunction
+
+aug lazy_load_bundle
+  au MyAutoCmd VimEnter * call timer_start(0, 'PackAddHandler', {'repeat': len(s:lazy_plugs)})
+aug END
 
 " Plugin list. {{{1
 " start. {{{2
@@ -185,23 +201,6 @@ Pac 'vim-scripts/autodate.vim', {'type': 'opt', 'lazy': 1}
 Pac 'vim-scripts/matchit.zip', {'type': 'opt', 'lazy': 1}
 Pac 'w0rp/ale', {'type': 'opt', 'lazy': 1}
 Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
-
-" Load lazy plugins. {{{1
-let s:idx = 0
-function! PackAddHandler(timer)
-  exe 'packadd ' . s:lazy_plugs[s:idx]
-  let s:idx += 1
-  " doautocmd BufReadPost
-  au! lazy_load_bundle
-  if s:idx == len(s:lazy_plugs)
-    echom "lazy load done !"
-  endif
-endfunction
-
-aug lazy_load_bundle
-  au MyAutoCmd VimEnter * call timer_start(0, 'PackAddHandler', {'repeat': len(s:lazy_plugs)})
-aug END
-
 
 " Plugin settings. {{{1
 " lightline. {{{2
@@ -559,8 +558,8 @@ let g:sonictemplate_vim_vars = {
 let g:autodate_format = "%Y/%m/%d %H:%M:%S"
 let g:autodate_keyword_pre  = "Last Change *:"
 let g:autodate_keyword_post = "."
-au MyAutoCmd FileType markdown call <SID>autodate_aft()
-function! s:autodate_aft() abort
+au MyAutoCmd FileType markdown call <SID>autodate_markdown()
+function! s:autodate_markdown() abort
   let b:autodate_format = "%Y-%m-%dT%H:%M:%S+09:00"
   let b:autodate_keyword_pre  = 'date: "'
   let b:autodate_keyword_post = '"'
@@ -1122,7 +1121,7 @@ endif
 
 " previm. {{{2
 let g:previm_enable_realtime = 0
-let g:previm_disable_default_css = 1
+" let g:previm_disable_default_css = 1
 
 " vim-edgemotion. {{{2
 map <C-j> <Plug>(edgemotion-j)
