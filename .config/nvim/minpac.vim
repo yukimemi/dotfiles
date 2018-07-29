@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/06/17 21:59:42.
+" Last Change : 2018/07/30 02:54:58.
 " =============================================================================
 
 " Plugin:
@@ -808,9 +808,9 @@ function! s:addHeaderPs1(flg)
   setl ff=dos
   let lines = []
   if a:flg
-    call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass -InputFormat None \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
+    call add(lines, "@set __SCRIPTPATH=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass -InputFormat None \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
   else
-    call add(lines, "@set scriptPath=%~f0&@powershell -Version 2.0 -NoProfile -ExecutionPolicy ByPass -InputFormat None \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
+    call add(lines, "@set __SCRIPTPATH=%~f0&@powershell -Version 2.0 -NoProfile -ExecutionPolicy ByPass -InputFormat None \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
   endif
   call add(lines, "@exit /b %errorlevel%")
   call extend(lines, readfile(expand("%")))
@@ -831,6 +831,7 @@ endfunction
 " au MyAutoCmd BufWritePost *.ps1 call <SID>addHeaderPs1(0)
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0)
+au MyAutoCmd BufNew,BufRead *.ps1 setl fdm=syntax
 
 " typescript-vim. {{{2
 au MyAutoCmd BufNew,BufRead *.ts setl ft=typescript
