@@ -30,3 +30,5 @@
 	autosetuprebase = always
 [fetch]
 	prune = true
+[ghq "https://bitbucket.org"]
+	vcs = git
