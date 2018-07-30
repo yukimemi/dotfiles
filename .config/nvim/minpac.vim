@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/07/30 02:54:58.
+" Last Change : 2018/07/30 14:17:40.
 " =============================================================================
 
 " Plugin:
@@ -146,6 +146,7 @@ Pac 'stephpy/vim-yaml', {'type': 'opt', 'ft': ['yml', 'yaml']}
 Pac 'thinca/vim-qfreplace', {'type': 'opt', 'ft': ['quickfix', 'qf']}
 Pac 'tyru/capture.vim', {'type': 'opt', 'cmd': 'Capture'}
 Pac 'y0za/vim-reading-vimrc', {'type': 'opt', 'cmd': 'ReadingVimrc*'}
+Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
 
 " lazy. {{{2
 Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
@@ -640,7 +641,9 @@ noremap sdl :<C-u>Denite command_history<CR>
 inoremap <C-l> <ESC>:<C-u>Denite command<CR>
 
 " Load after settings.
-au MyAutoCmd VimEnter * call <SID>denite_aft()
+if has('python3')
+  au MyAutoCmd VimEnter * call <SID>denite_aft()
+endif
 function! s:denite_aft() abort
   " Default options.
   call denite#custom#option('default', {
