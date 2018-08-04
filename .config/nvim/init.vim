@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/08/04 13:07:29.
+" Last Change : 2018/08/04 19:23:27.
 " =============================================================================
 
 " Init: {{{1
@@ -225,6 +225,7 @@ set scrolloff=3
 set mouse=a
 set keywordprg=:help
 set autoread
+set shortmess+=c
 
 " Search.
 set ignorecase

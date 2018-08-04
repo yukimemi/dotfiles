@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/08/04 13:07:33.
+" Last Change : 2018/08/04 19:25:15.
 " =============================================================================
 
 " Plugin:
@@ -970,7 +970,7 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_remove_duplicates = 1
 let g:asyncomplete_force_refresh_on_context_changed = 1
-imap <c-space> <Plug>(asyncomplete_force_refresh)
+imap <C-Space> <Plug>(asyncomplete_force_refresh)
 
 " asyncomplete-buffer.vim. {{{3
 au MyAutoCmd User asyncomplete_setup packadd asyncomplete-buffer.vim | call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
