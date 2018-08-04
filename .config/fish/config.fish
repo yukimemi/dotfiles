@@ -134,6 +134,10 @@ alias stackexec "stack exec"
 alias runghc "stack runghc --"
 alias runhaskell "stack runghc --"
 
+# chrome. {{{2
+alias twitter "open -na 'Google Chrome' --args '--app=https://mobile.twitter.com'"
+alias tweetdeck "open -na 'Google Chrome' --args '--app=https://tweetdeck.com'"
+
 ### Abbr. {{{1
 abbr -a fv __filter_command_nvim
 abbr -a fmvim __filter_command_mvim
@@ -192,6 +196,7 @@ abbr -a mvup 'vim -c "PackUpdate"'
 abbr -a dup 'nvim -c "silent! call dein#update() | q"'
 abbr -a dvup 'vim -c "silent! call dein#update() | q"'
 
+
 ### Options. {{{1
 # Use fish_vi_key_bindings.
 set -g fish_key_bindings fish_vi_key_bindings
@@ -214,7 +219,6 @@ end
 if not type -q fisher
     curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
 end
-
 
 ### Plugin settings. {{{1
 # pure {{{2

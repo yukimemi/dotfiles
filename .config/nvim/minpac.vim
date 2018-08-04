@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/07/30 14:17:40.
+" Last Change : 2018/08/04 13:07:33.
 " =============================================================================
 
 " Plugin:
@@ -147,6 +147,7 @@ Pac 'thinca/vim-qfreplace', {'type': 'opt', 'ft': ['quickfix', 'qf']}
 Pac 'tyru/capture.vim', {'type': 'opt', 'cmd': 'Capture'}
 Pac 'y0za/vim-reading-vimrc', {'type': 'opt', 'cmd': 'ReadingVimrc*'}
 Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
+Pac 'jremmen/vim-ripgrep', {'type': 'opt', 'cmd': 'Rg'}
 
 " lazy. {{{2
 Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
@@ -1154,6 +1155,54 @@ map <Leader>b <Plug>(external-browser)
 
 " vim-slumlord. {{{2
 let g:slumlord_separate_win = 1
+
+" Omnisharp-vim. {{{2
+let g:OmniSharp_selector_ui = 'ctrlp'
+if g:is_darwin
+  let g:OmniSharp_server_use_mono = 1
+endif
+" Show type information automatically when the cursor stops moving
+au MyAutoCmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+
+" The following commands are contextual, based on the cursor position.
+au MyAutoCmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
+
+" Finds members in the current buffer
+au MyAutoCmd FileType cs nnoremap <buffer> <Leader>fm :OmniSharpFindMembers<CR>
+
+au MyAutoCmd FileType cs nnoremap <buffer> <Leader>fx :OmniSharpFixUsings<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <Leader>tt :OmniSharpTypeLookup<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
+au MyAutoCmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
+
+" Navigate up and down by method/property/field
+au MyAutoCmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <C-j> :OmniSharpNavigateDown<CR>
+
+" Contextual code actions (uses fzf, CtrlP or unite.vim when available)
+nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
+" Run code actions with text selected in visual mode to extract method
+xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
+
+" Rename with dialog
+nnoremap <Leader>nm :OmniSharpRename<CR>
+nnoremap <F2> :OmniSharpRename<CR>
+" Rename without dialog - with cursor on the symbol to rename: `:Rename newname`
+command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
+
+nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
+
+" Start the omnisharp server for the current solution
+nnoremap <Leader>ss :OmniSharpStartServer<CR>
+nnoremap <Leader>sp :OmniSharpStopServer<CR>
+
+" Add syntax highlighting for types and interfaces
+nnoremap <Leader>th :OmniSharpHighlightTypes<CR>
+
 
 " Define user commands for updating/cleaning the plugins. {{{1
 " Each of them loads minpac, reloads .vimrc to register the

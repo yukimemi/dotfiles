@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/06/18 11:32:27.
+" Last Change : 2018/08/04 13:07:29.
 " =============================================================================
 
 " Init: {{{1
@@ -280,7 +280,7 @@ if has('gui_running')
   if g:is_windows
     nnoremap [Space]r :<C-u>simalt ~r<CR>
     nnoremap [Space]x :<C-u>simalt ~x<CR>
-  elseif g:is_mac
+  elseif g:is_darwin
     set macmeta
     set transparency=10
   endif
