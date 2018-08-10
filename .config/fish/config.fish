@@ -21,30 +21,29 @@ set -x GSR_SHOW_BEHIND 1
 function __add_fish_user_paths -a addpath
     if test -d $addpath
         set -U fish_user_paths $addpath $fish_user_paths
-end
+    end
 end
 
 set -U fish_user_paths
 __add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
 __add_fish_user_paths /usr/local/opt/gnu-sed/libexec/gnubin
-
 __add_fish_user_paths ~/bin/scripts
 __add_fish_user_paths $GOPATH/bin
 __add_fish_user_paths ~/.cargo/bin
 __add_fish_user_paths ~/.yarn/bin
 __add_fish_user_paths ~/.linuxbrew/bin
-__add_fish_user_paths ~/.ghq/src/bitbucket.org/yukimemi/scripts
+__add_fish_user_paths ~/.yarn/bin
+__add_fish_user_paths ~/.config/yarn/global/node_modules/.bin
 __add_fish_user_paths /home/linuxbrew/.linuxbrew/bin
-if type -q node
-    and type -q yarn
+__add_fish_user_paths ~/.local/bin
+__add_fish_user_paths ~/.local/bin/scripts
+if type -q node; and type -q yarn
     __add_fish_user_paths (yarn global bin)
 end
 
 if not test -d ~/.local/bin
     mkdir -p ~/.local/bin
 end
-__add_fish_user_paths ~/.local/bin
-__add_fish_user_paths ~/.local/bin/scripts
 
 # MANPATH. {{{2
 set MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
@@ -138,6 +137,7 @@ alias runhaskell "stack runghc --"
 # chrome. {{{2
 alias twitter "open -na 'Google Chrome' --args '--app=https://mobile.twitter.com'"
 alias tweetdeck "open -na 'Google Chrome' --args '--app=https://tweetdeck.com'"
+alias hangout "open -na open -na 'Google Chrome' --args '--app=https://hangouts.google.com/'"
 
 ### Abbr. {{{1
 abbr -a fv __filter_command_nvim
@@ -197,6 +197,8 @@ abbr -a mvup 'vim -c "PackUpdate"'
 abbr -a dup 'nvim -c "silent! call dein#update() | q"'
 abbr -a dvup 'vim -c "silent! call dein#update() | q"'
 
+# Chrome {{{2
+abbr -a chromeapp "open -na 'Google Chrome' --args '--app=https://"
 
 ### Options. {{{1
 # Use fish_vi_key_bindings.
