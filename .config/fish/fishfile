@@ -1,11 +1,12 @@
-0rax/fish-bd
 fisherman/await
+0rax/fish-bd
 fisherman/fnm
+oh-my-fish/plugin-foreign-env
 fisherman/get_file_age
 fisherman/getopts
+ryotako/fish-global-abbreviation
 fisherman/last_job_id
 fisherman/menu
-fisherman/z
-masa0x80/replace_multiple_dots.fish
 rafaelrinaldi/pure
-ryotako/fish-global-abbreviation
+masa0x80/replace_multiple_dots.fish
+fisherman/z

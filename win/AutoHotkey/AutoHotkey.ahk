@@ -38,6 +38,15 @@ Activate(app) {
   return
 }
 
+Activate2(app, cmd) {
+  Process, Exist, %app%
+  if ErrorLevel <> 0
+      WinActivate, ahk_pid %ErrorLevel%
+    else
+      Run, %cmd%
+  return
+}
+
 ; for Outlook
 ^F9::
 Activate("C:\Program Files\Microsoft Office\Office15\OUTLOOK.EXE")
@@ -67,8 +76,13 @@ return
 ; return
 
 ; for vivaldi
+; F11::
+; Activate(USERPROFILE . "\AppData\Local\Vivaldi\Application\vivaldi.exe")
+; return
+
+; for Edge
 F11::
-Activate(USERPROFILE . "\AppData\Local\Vivaldi\Application\vivaldi.exe")
+Activate2("MicrosoftEdge.exe", "shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge")
 return
 
 ; for cmd.exe

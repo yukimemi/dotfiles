@@ -9,7 +9,7 @@
 	<key>AdjustWindowForFontSizeChange</key>
 	<true/>
 	<key>AllowClipboardAccess</key>
-	<false/>
+	<true/>
 	<key>AnimateDimming</key>
 	<false/>
 	<key>AppleAntiAliasingThreshold</key>
@@ -2438,7 +2438,7 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>842 786 620 392 0 0 2304 1440 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>247 409 796 473 0 0 2304 1440 </string>
+	<string>105 312 796 486 0 0 2304 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 2304 1440 0 0 2304 1418 </string>
 	<key>NeverWarnAboutXterm256ColorTerminfo</key>
@@ -3307,7 +3307,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-02-19T02:55:35Z</date>
+	<date>2018-08-01T16:20:56Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -3353,6 +3353,6 @@
 	<key>WordCharacters</key>
 	<string></string>
 	<key>iTerm Version</key>
-	<string>3.1.5.beta.2</string>
+	<string>3.2.0beta7</string>
 </dict>
 </plist>
