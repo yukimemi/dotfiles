@@ -30,6 +30,7 @@ fenv.parse.after.fish
 fenv.parse.before.fish
 fenv.parse.diff.fish
 fenv.parse.divider.fish
+fish_mode_prompt.fish
 fish_greeting.fish
 fish_prompt.fish
 fish_right_prompt.fish
