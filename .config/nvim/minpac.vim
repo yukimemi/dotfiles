@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/08/04 19:25:15.
+" Last Change : 2018/08/12 21:16:21.
 " =============================================================================
 
 " Plugin:
@@ -148,6 +148,10 @@ Pac 'tyru/capture.vim', {'type': 'opt', 'cmd': 'Capture'}
 Pac 'y0za/vim-reading-vimrc', {'type': 'opt', 'cmd': 'ReadingVimrc*'}
 Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
 Pac 'jremmen/vim-ripgrep', {'type': 'opt', 'cmd': 'Rg'}
+Pac 'basyura/TweetVim', {'type': 'opt', 'cmd': ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay']}
+Pac 'basyura/twibill.vim', {'type': 'opt'}
+Pac 'basyura/bitly.vim', {'type': 'opt'}
+Pac 'mattn/favstar-vim', {'type': 'opt'}
 
 " lazy. {{{2
 Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
@@ -1202,6 +1206,28 @@ nnoremap <Leader>sp :OmniSharpStopServer<CR>
 
 " Add syntax highlighting for types and interfaces
 nnoremap <Leader>th :OmniSharpHighlightTypes<CR>
+
+" TweetVim. {{{2
+au MyAutoCmd FileType tweetvim call s:my_tweetvim_mappings()
+function! s:my_tweetvim_mappings()
+  setl nowrap
+  nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
+endfunction
+
+nnoremap [Space]tu :<C-u>packadd webapi-vim \| packadd open-browser.vim \| packadd twibill.vim \| packadd bitly.vim \| packadd favstar-vim \| TweetVimUserStream<CR>
+
+let g:tweetvim_default_account = "yukimemi"
+let g:tweetvim_tweet_per_page = 100
+let g:tweetvim_cache_size = 50
+"let g:tweetvim_display_username = 1
+let g:tweetvim_display_source = 1
+let g:tweetvim_display_time = 1
+"let g:tweetvim_display_icon = 1
+let g:tweetvim_async_post = 1
+let g:tweetvim_display_separator = 0
+let g:tweetvim_empty_separator = 1
+let g:tweetvim_align_right = 0
+
 
 
 " Define user commands for updating/cleaning the plugins. {{{1
