@@ -1,3 +1,4 @@
+__bass.py
 __fnm_index_update.fish
 __fnm_list.fish
 __fnm_mirror.fish
@@ -22,6 +23,7 @@ __z_add.fish
 __z_clean.fish
 __z_complete.fish
 await.fish
+bass.fish
 bd.fish
 fenv.apply.fish
 fenv.fish
@@ -30,8 +32,8 @@ fenv.parse.after.fish
 fenv.parse.before.fish
 fenv.parse.diff.fish
 fenv.parse.divider.fish
-fish_mode_prompt.fish
 fish_greeting.fish
+fish_mode_prompt.fish
 fish_prompt.fish
 fish_right_prompt.fish
 fish_title.fish
@@ -49,4 +51,3 @@ test.py
 z.awk
 zadd.awk
 zclean.awk
-
