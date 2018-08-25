@@ -212,7 +212,7 @@ set -g fish_key_bindings fish_vi_key_bindings
 ### Install plugin manager. {{{1
 # fresco.
 if not test -f ~/.cache/fresco/__fresco_install.fish
-    mkdir -p ~/.cache/fresco >/dev/null ^&1
+    # mkdir -p ~/.cache/fresco >/dev/null ^&1
     # curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o ~/.cache/fresco/__fresco_install.fish
     # cat ~/.cache/fresco/__fresco_install.fish | fish
     # exec fish -l
