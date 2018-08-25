@@ -200,6 +200,11 @@ abbr -a dvup 'vim -c "silent! call dein#update() | q"'
 # Chrome {{{2
 abbr -a chromeapp "open -na 'Google Chrome' --args '--app=https://"
 
+# Home-file {{{2
+if isMac
+    abbr -a br 'brew file'
+end
+
 ### Options. {{{1
 # Use fish_vi_key_bindings.
 set -g fish_key_bindings fish_vi_key_bindings
