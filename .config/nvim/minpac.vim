@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/08/12 21:16:21.
+" Last Change : 2018/08/24 07:31:15.
 " =============================================================================
 
 " Plugin:
@@ -154,6 +154,7 @@ Pac 'basyura/bitly.vim', {'type': 'opt'}
 Pac 'mattn/favstar-vim', {'type': 'opt'}
 
 " lazy. {{{2
+Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1}
 Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
 Pac 'kaneshin/ctrlp-memolist', {'type': 'opt', 'lazy': 1}
 Pac 'kaneshin/ctrlp-sonictemplate', {'type': 'opt', 'lazy': 1}
