@@ -38,14 +38,18 @@ cask font-hack
 cask font-ricty-diminished
 
 tap homebrew/cask-versions
+
 tap homebrew/dupes
+
 tap homebrew/cask
 cask appcleaner
+cask astro
 cask docker
 cask google-backup-and-sync
-cask hammerspoon
-cask iina
-cask virtualbox
+cask google-japanese-ime
+cask hyper
+cask iterm2
+cask vagrant
 
 tap knqyf263/pet
 brew pet
@@ -67,11 +71,10 @@ cask caffeine
 cask dropbox
 cask font-hack-nerd-font
 cask google-chrome
-cask google-japanese-ime
-cask hyper
-cask iterm2
+cask hammerspoon
+cask iina
 cask slack
-cask vagrant
+cask virtualbox
 
 # App Store applications
 appstore 549083868 Display Menu (2.2.3)

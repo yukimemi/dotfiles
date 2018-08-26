@@ -202,7 +202,8 @@ abbr -a chromeapp "open -na 'Google Chrome' --args '--app=https://"
 
 # Home-file {{{2
 if isMac
-    abbr -a br 'brew file'
+    abbr -a br 'brew-file brew'
+    abbr -a bre 'brew-file edit'
 end
 
 ### Options. {{{1
