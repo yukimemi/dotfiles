@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/08/24 07:31:15.
+" Last Change : 2018/08/26 15:16:17.
 " =============================================================================
 
 " Plugin:
@@ -154,7 +154,7 @@ Pac 'basyura/bitly.vim', {'type': 'opt'}
 Pac 'mattn/favstar-vim', {'type': 'opt'}
 
 " lazy. {{{2
-Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1}
+Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': '!g:is_windows'}
 Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
 Pac 'kaneshin/ctrlp-memolist', {'type': 'opt', 'lazy': 1}
 Pac 'kaneshin/ctrlp-sonictemplate', {'type': 'opt', 'lazy': 1}
@@ -631,13 +631,13 @@ let g:echodoc_enable_at_startup = 1
 nnoremap sdc :<C-u>Denite colorscheme -auto-preview<CR>
 nnoremap sdb :<C-u>Denite buffer<CR>
 nnoremap sdf :<C-u>Denite file<CR>
-nnoremap sdF :<C-u>Denite file_rec<CR>
+nnoremap sdF :<C-u>Denite -resume file_rec<CR>
 " nnoremap sdu :<C-u>Denite buffer file_old<CR>
-nnoremap sdd :<C-u>Denite buffer file_mru file_rec<CR>
+nnoremap sdd :<C-u>Denite -resume buffer file_mru file_rec<CR>
 nnoremap sdo :<C-u>Denite outline -no-quit -mode=normal<CR>
 nnoremap sdh :<C-u>Denite help<CR>
 nnoremap sdr :<C-u>Denite register<CR>
-nnoremap sdg :<C-u>Denite -no-empty grep<CR>
+nnoremap sdg :<C-u>Denite -resume -no-empty grep<CR>
 nnoremap sd/ :<C-u>Denite line -no-quit<CR>
 nnoremap sdR :<C-u>Denite -resume<CR>
 
