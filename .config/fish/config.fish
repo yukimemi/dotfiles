@@ -24,25 +24,27 @@ function __add_fish_user_paths -a addpath
     end
 end
 
-set -U fish_user_paths
-__add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
-__add_fish_user_paths /usr/local/opt/gnu-sed/libexec/gnubin
-__add_fish_user_paths ~/bin/scripts
-__add_fish_user_paths $GOPATH/bin
-__add_fish_user_paths ~/.cargo/bin
-__add_fish_user_paths ~/.yarn/bin
-__add_fish_user_paths ~/.linuxbrew/bin
-__add_fish_user_paths ~/.yarn/bin
-__add_fish_user_paths ~/.config/yarn/global/node_modules/.bin
-__add_fish_user_paths /home/linuxbrew/.linuxbrew/bin
-__add_fish_user_paths ~/.local/bin
-__add_fish_user_paths ~/.local/bin/scripts
-if type -q node; and type -q yarn
-    __add_fish_user_paths (yarn global bin)
-end
-
 if not test -d ~/.local/bin
     mkdir -p ~/.local/bin
+end
+
+if test (count $fish_user_paths) -eq 0
+    set -U fish_user_paths
+    __add_fish_user_paths /usr/local/bin
+    __add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
+    __add_fish_user_paths /usr/local/opt/gnu-sed/libexec/gnubin
+    __add_fish_user_paths /home/linuxbrew/.linuxbrew/bin
+    __add_fish_user_paths ~/.cargo/bin
+    __add_fish_user_paths ~/.yarn/bin
+    __add_fish_user_paths ~/.linuxbrew/bin
+    __add_fish_user_paths ~/.yarn/bin
+    __add_fish_user_paths ~/.config/yarn/global/node_modules/.bin
+    __add_fish_user_paths ~/.local/bin
+    __add_fish_user_paths ~/.local/bin/scripts
+    __add_fish_user_paths $GOPATH/bin
+    __add_fish_user_paths $PYENV_ROOT/shims
+    __add_fish_user_paths $RBENV_ROOT/shims
+    echo "Update fish_user_paths"
 end
 
 # MANPATH. {{{2
@@ -50,80 +52,12 @@ set MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
 set MANPATH /usr/local/opt/gnu-sed/libexec/gnuman $MANPATH
 
 ### Util functions. {{{1
-# cd and ls. {{{2
-function cd
-    builtin cd $argv
-    ls -a
-    __save_directory $PWD &
-end
-
-# Judge OS. {{{2
-function isMac
-    return (test (uname) = "Darwin")
-end
-
-function isLinux
-    return (test (uname) != "Darwin")
-end
-
-# Install func. {{{2
-function in
-    if type -q brew
-        brew $argv
-else if type -q apt-get
-    apt-get $argv
-else if type -q yum
-    yum $argv
-end
-end
-
-function cli_install -a cmd repo
-    if not test -d ~/.local/bin
-        mkdir -p ~/.local/bin
-end
-if not type -q $cmd
-    curl -L git.io/cli | env L=$repo sh
-end
-end
-
-# stack new. {{{2
-function stacknew -a name
-    if test (count $argv) -ne 1
-        echo "Set create project name."
-else
-    stack new $name -p "author-email:yukimemi@gmail.com" -p "author-name:yukimemi" -p "category:Development" -p "copyright:(c) 2017, yukimemi" -p "github-username:yukimemi"
-end
-end
-
-
-# Enter hook. {{{2
-function done_enter --on-event fish_postexec
-    if test -z "$argv"
-        if git rev-parse --is-inside-work-tree >/dev/null ^&1
-            echo (set_color yellow)"--- git status ---"(set_color normal)
-            git status -sb
-    end
-end
-end
-
-# History share. {{{2
-# https://qiita.com/yoshiori/items/f1c01dd94bb5f0489cf6
-function history-merge --on-event fish_preexec
-    history --save
-    history --merge
-end
-
-
-### prompt. {{{1
-# right_prompt for pwd and git.
-# function fish_right_prompt
-#   prompt_pwd
-#   __terlar_git_prompt
-# end
-
 ### Alias. {{{1
 if type -q exa
     alias ls 'exa'
+end
+if type -q bat
+    alias cat 'bat'
 end
 alias cp "cp -v"
 alias mv "mv -v"
@@ -201,9 +135,11 @@ abbr -a dvup 'vim -c "silent! call dein#update() | q"'
 abbr -a chromeapp "open -na 'Google Chrome' --args '--app=https://"
 
 # Home-file {{{2
-if isMac
+if __isMac
     abbr -a br 'brew-file brew'
     abbr -a bre 'brew-file edit'
+    abbr -a bri 'brew-file brew install'
+    abbr -a brs 'brew-file brew search'
 end
 
 ### Options. {{{1
@@ -211,9 +147,9 @@ end
 set -g fish_key_bindings fish_vi_key_bindings
 
 ### Install. {{{1
-# cli_install ghq motemen/ghq
-# cli_install gomi b4b4r07/gomi
-# cli_install jvgrep mattn/jvgrep
+# __cli_install ghq motemen/ghq
+# __cli_install gomi b4b4r07/gomi
+# __cli_install jvgrep mattn/jvgrep
 
 ### Install plugin manager. {{{1
 # fresco.

@@ -1,17 +1,19 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/08/26 15:16:17.
+" Last Change : 2018/09/02 00:53:15.
 " =============================================================================
 
 " Plugin:
 " Use minpac. {{{1
 set packpath^=$CACHE_HOME
 let s:minpac_dir = $CACHE_HOME . '/pack/minpac/opt/minpac'
+let s:minpac_init = 0
 if has('vim_starting')
   if !isdirectory(s:minpac_dir)
     echo "Install minpac ..."
     execute '!git clone --depth 1 https://github.com/k-takata/minpac ' . s:minpac_dir
+    let s:minpac_init = 1
   endif
 endif
 
@@ -98,12 +100,17 @@ Pac 'Shougo/denite.nvim', {'do': 'silent! UpdateRemotePlugins', 'if': has('pytho
 
 " opt. {{{2
 Pac 'NLKNguyen/papercolor-theme', {'type': 'opt'}
+Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
 Pac 'PProvost/vim-ps1', {'type': 'opt', 'ft': 'ps1'}
+Pac 'Shougo/defx.nvim', {'type': 'opt', 'cmd': 'Defx', 'do': 'silent! UpdateRemotePlugins'}
 Pac 'Shougo/junkfile.vim', {'type': 'opt', 'cmd': 'JunkfileOpen'}
 Pac 'airblade/vim-rooter', {'type': 'opt', 'cmd': 'Rooter'}
 Pac 'aklt/plantuml-syntax', {'type': 'opt', 'ft': 'plantuml'}
 Pac 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'ft': 'haskell'}
 Pac 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt', 'ft': 'sql'}
+Pac 'basyura/TweetVim', {'type': 'opt', 'cmd': ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay']}
+Pac 'basyura/bitly.vim', {'type': 'opt'}
+Pac 'basyura/twibill.vim', {'type': 'opt'}
 Pac 'cespare/vim-toml', {'type': 'opt', 'ft': 'toml'}
 Pac 'cocopon/iceberg.vim', {'type': 'opt'}
 Pac 'cohama/agit.vim', {'type': 'opt', 'cmd': 'Agit*'}
@@ -117,6 +124,7 @@ Pac 'glidenote/memolist.vim', {'type': 'opt', 'cmd': 'Memo*'}
 Pac 'itchyny/vim-haskell-indent', {'type': 'opt', 'ft': 'haskell'}
 Pac 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'ft': 'haskell'}
 Pac 'joshdick/onedark.vim', {'type': 'opt'}
+Pac 'jremmen/vim-ripgrep', {'type': 'opt', 'cmd': 'Rg'}
 Pac 'justinmk/vim-dirvish', {'type': 'opt', 'cmd': 'Dirvish*'}
 Pac 'kannokanno/previm', {'type': 'opt', 'ft': 'markdown'}
 Pac 'kchmck/vim-coffee-script', {'type': 'opt', 'ft': 'coffee'}
@@ -126,6 +134,7 @@ Pac 'kylef/apiblueprint.vim', {'type': 'opt', 'ft': 'apiblueprint'}
 Pac 'leafgarland/typescript-vim', {'type': 'opt', 'ft': ['typescript', 'typescript.tsx']}
 Pac 'lifepillar/vim-solarized8', {'type': 'opt'}
 Pac 'majutsushi/tagbar', {'type': 'opt', 'cmd': 'Tagbar*'}
+Pac 'mattn/favstar-vim', {'type': 'opt'}
 Pac 'mattn/sonictemplate-vim', {'type': 'opt', 'cmd': 'Template*'}
 Pac 'morhetz/gruvbox', {'type': 'opt'}
 Pac 'nelstrom/vim-markdown-folding', {'type': 'opt', 'ft': 'markdown'}
@@ -146,15 +155,10 @@ Pac 'stephpy/vim-yaml', {'type': 'opt', 'ft': ['yml', 'yaml']}
 Pac 'thinca/vim-qfreplace', {'type': 'opt', 'ft': ['quickfix', 'qf']}
 Pac 'tyru/capture.vim', {'type': 'opt', 'cmd': 'Capture'}
 Pac 'y0za/vim-reading-vimrc', {'type': 'opt', 'cmd': 'ReadingVimrc*'}
-Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
-Pac 'jremmen/vim-ripgrep', {'type': 'opt', 'cmd': 'Rg'}
-Pac 'basyura/TweetVim', {'type': 'opt', 'cmd': ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay']}
-Pac 'basyura/twibill.vim', {'type': 'opt'}
-Pac 'basyura/bitly.vim', {'type': 'opt'}
-Pac 'mattn/favstar-vim', {'type': 'opt'}
 
 " lazy. {{{2
-Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': '!g:is_windows'}
+" Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
+Pac 't9md/vim-quickhl', {'type': 'opt', 'lazy': 1}
 Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
 Pac 'kaneshin/ctrlp-memolist', {'type': 'opt', 'lazy': 1}
 Pac 'kaneshin/ctrlp-sonictemplate', {'type': 'opt', 'lazy': 1}
@@ -198,7 +202,6 @@ Pac 'prabirshrestha/asyncomplete-file.vim', {'type': 'opt', 'lazy': 1}
 Pac 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt', 'lazy': 1}
 Pac 'prabirshrestha/asyncomplete-tags.vim', {'type': 'opt', 'lazy': 1}
 Pac 'rhysd/vim-operator-surround', {'type': 'opt', 'lazy': 1}
-Pac 't9md/vim-quickhl', {'type': 'opt', 'lazy': 1}
 Pac 'taku-o/vim-zoom', {'type': 'opt', 'lazy': 1}
 Pac 'thinca/vim-submode', {'type': 'opt', 'lazy': 1}
 Pac 'tpope/vim-repeat', {'type': 'opt', 'lazy': 1}
@@ -948,7 +951,7 @@ let g:ctrlp_use_caching = 1
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_lazy_update = 1
-let g:ctrlp_extensions = ['line', 'changes', 'mixed', 'bookmarkdir', 'memolist']
+let g:ctrlp_extensions = ['line', 'changes', 'bookmarkdir', 'memolist']
 nnoremap scp :<C-u>CtrlP<CR>
 nnoremap scb :<C-u>CtrlPBuffer<CR>
 nnoremap scd :<C-u>CtrlPCurWD<CR>
@@ -956,7 +959,6 @@ nnoremap scu :<C-u>CtrlPMRU<CR>
 nnoremap scm :<C-u>CtrlPMark<CR>
 " nnoremap scl :<C-u>CtrlPLine<CR>
 nnoremap scg :<C-u>CtrlPChange<CR>
-nnoremap scc :<C-u>CtrlPMixed<CR>
 nnoremap scf :<C-u>CtrlPFiletype<CR>
 " nnoremap scl :<C-u>CtrlPLauncher<CR>
 nnoremap sct :<C-u>CtrlPSonictemplate<CR>
@@ -1241,3 +1243,7 @@ com! PackListOpt   packadd minpac | source $MYVIMRC | Capture echo minpac#getpac
 com! PackNameStart packadd minpac | source $MYVIMRC | Capture echo minpac#getpackages("", "start", "", 1)
 com! PackNameOpt   packadd minpac | source $MYVIMRC | Capture echo minpac#getpackages("", "opt", "", 1)
 
+" Install on initiall setup.
+if s:minpac_init
+  PackUpdate
+endif
