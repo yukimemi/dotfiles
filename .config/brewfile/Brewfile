@@ -4,12 +4,14 @@
 tap homebrew/core
 brew ansible
 brew autoconf
+brew bat
 brew coreutils
 brew direnv
 brew exiftool
 brew fd
 brew fish
 brew fontconfig
+brew fzf
 brew git
 brew git-now
 brew gnu-getopt
