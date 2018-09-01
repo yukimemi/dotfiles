@@ -51,3 +51,5 @@ test.py
 z.awk
 zadd.awk
 zclean.awk
+pyenv.fish
+rbenv.fish
