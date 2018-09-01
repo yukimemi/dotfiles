@@ -3,6 +3,7 @@
 
 tap homebrew/core
 brew ansible
+brew autoconf
 brew coreutils
 brew direnv
 brew exiftool
@@ -20,10 +21,16 @@ brew lua
 brew mas
 brew mosh
 brew neovim
+brew openssl
 brew p7zip
 brew peco
+brew pkg-config
+brew pyenv
+brew rbenv
+brew readline
 brew reattach-to-user-namespace
 brew ripgrep
+brew ruby-build
 brew source-highlight
 brew sqlite
 brew ssh-copy-id
