@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/09/02 00:53:15.
+" Last Change : 2018/09/02 21:37:59.
 " =============================================================================
 
 " Plugin:
@@ -78,7 +78,9 @@ aug END
 
 " Plugin list. {{{1
 " start. {{{2
+Pac 'Shougo/denite.nvim', {'do': 'silent! UpdateRemotePlugins', 'if': has('python3')}
 Pac 'Yggdroot/indentLine'
+Pac 'ctrlpvim/ctrlp.vim'
 Pac 'haya14busa/vim-edgemotion'
 Pac 'hotwatermorning/auto-git-diff'
 Pac 'itchyny/lightline.vim'
@@ -95,8 +97,7 @@ Pac 'prabirshrestha/asyncomplete.vim'
 Pac 'prabirshrestha/vim-lsp'
 Pac 'rhysd/committia.vim'
 Pac 'ryanoasis/vim-devicons'
-Pac 'ctrlpvim/ctrlp.vim'
-Pac 'Shougo/denite.nvim', {'do': 'silent! UpdateRemotePlugins', 'if': has('python3')}
+Pac 't9md/vim-quickhl'
 
 " opt. {{{2
 Pac 'NLKNguyen/papercolor-theme', {'type': 'opt'}
@@ -158,7 +159,8 @@ Pac 'y0za/vim-reading-vimrc', {'type': 'opt', 'cmd': 'ReadingVimrc*'}
 
 " lazy. {{{2
 " Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
-Pac 't9md/vim-quickhl', {'type': 'opt', 'lazy': 1}
+Pac 'tmux-plugins/vim-tmux-focus-events', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
+Pac 'roxma/vim-tmux-clipboard', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
 Pac 'kaneshin/ctrlp-memolist', {'type': 'opt', 'lazy': 1}
 Pac 'kaneshin/ctrlp-sonictemplate', {'type': 'opt', 'lazy': 1}
@@ -634,15 +636,15 @@ let g:echodoc_enable_at_startup = 1
 nnoremap sdc :<C-u>Denite colorscheme -auto-preview<CR>
 nnoremap sdb :<C-u>Denite buffer<CR>
 nnoremap sdf :<C-u>Denite file<CR>
-nnoremap sdF :<C-u>Denite -resume file_rec<CR>
+nnoremap sdF :<C-u>Denite file_rec<CR>
 " nnoremap sdu :<C-u>Denite buffer file_old<CR>
-nnoremap sdd :<C-u>Denite -resume buffer file_mru file_rec<CR>
+nnoremap sdd :<C-u>Denite buffer file_mru file_rec<CR>
 nnoremap sdo :<C-u>Denite outline -no-quit -mode=normal<CR>
 nnoremap sdh :<C-u>Denite help<CR>
 nnoremap sdr :<C-u>Denite register<CR>
-nnoremap sdg :<C-u>Denite -resume -no-empty grep<CR>
+nnoremap sdg :<C-u>Denite -no-empty grep<CR>
 nnoremap sd/ :<C-u>Denite line -no-quit<CR>
-nnoremap sdR :<C-u>Denite -resume<CR>
+nnoremap sdR :<C-u>Denite <CR>
 
 noremap sdl :<C-u>Denite command_history<CR>
 
@@ -1237,7 +1239,7 @@ let g:tweetvim_align_right = 0
 " Each of them loads minpac, reloads .vimrc to register the
 " information of plugins, then performs the task.
 com! PackClean     packadd minpac | source $MYVIMRC | call minpac#clean()
-com! PackUpdate    packadd minpac | source $MYVIMRC | call minpac#clean() | call minpac#update()
+com! PackUpdate    packadd minpac | source $MYVIMRC | call minpac#clean() | call minpac#update() | call minpac#status()
 com! PackListStart packadd minpac | source $MYVIMRC | Capture echo minpac#getpackages("", "start")
 com! PackListOpt   packadd minpac | source $MYVIMRC | Capture echo minpac#getpackages("", "opt")
 com! PackNameStart packadd minpac | source $MYVIMRC | Capture echo minpac#getpackages("", "start", "", 1)
