@@ -41,6 +41,7 @@ if test (count $fish_user_paths) -eq 0
     __add_fish_user_paths ~/.config/yarn/global/node_modules/.bin
     __add_fish_user_paths ~/.local/bin
     __add_fish_user_paths ~/.local/bin/scripts
+    __add_fish_user_paths ~/.ghq/src/bitbucket.org/yukimemi/scripts
     __add_fish_user_paths $GOPATH/bin
     __add_fish_user_paths $PYENV_ROOT/shims
     __add_fish_user_paths $RBENV_ROOT/shims
