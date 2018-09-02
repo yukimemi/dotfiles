@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/09/02 22:54:01.
+" Last Change : 2018/09/03 08:07:07.
 " =============================================================================
 
 " Plugin:
@@ -105,7 +105,7 @@ Pac 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pac 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
 Pac 'PProvost/vim-ps1', {'type': 'opt', 'ft': 'ps1'}
-Pac 'Shougo/defx.nvim', {'type': 'opt', 'cmd': 'Defx', 'do': 'silent! UpdateRemotePlugins'}
+Pac 'Shougo/defx.nvim', {'type': 'opt', 'cmd': 'Defx', 'do': 'silent! UpdateRemotePlugins', 'if': !g:is_windows}
 Pac 'Shougo/junkfile.vim', {'type': 'opt', 'cmd': 'JunkfileOpen'}
 Pac 'airblade/vim-rooter', {'type': 'opt', 'cmd': 'Rooter'}
 Pac 'aklt/plantuml-syntax', {'type': 'opt', 'ft': 'plantuml'}
@@ -613,7 +613,9 @@ let g:ale_rust_ignore_error_codes = ['E0432', 'E0433']
 " vim-dirvish. {{{2
 " Don't use netrw.
 let g:loaded_netrwPlugin = 1
-" nnoremap [Space]v :<C-u>Dirvish %<CR>
+if g:is_windows
+  nnoremap [Space]v :<C-u>Dirvish %<CR>
+endif
 
 " neoterm. {{{2
 if ! g:is_windows
@@ -1236,7 +1238,9 @@ let g:tweetvim_empty_separator = 1
 let g:tweetvim_align_right = 0
 
 " Defx. {{{2
-nnoremap [Space]v :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
+if !g:is_windows
+  nnoremap [Space]v :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
+endif
 au MyAutoCmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
