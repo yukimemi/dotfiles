@@ -175,3 +175,5 @@ set pure_color_green (set_color "white")
 # https://qiita.com/ryotako/items/83812c2a703b965a02d9
 set -U gabbr_config ~/.config/fish/.gabbr.config
 
+# Load functions. {{{1
+type -q __done_enter
