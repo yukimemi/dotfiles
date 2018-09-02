@@ -18,12 +18,6 @@ set -x GSR_SHOW_AHEAD 1
 set -x GSR_SHOW_BEHIND 1
 
 # PATH. {{{2
-function __add_fish_user_paths -a addpath
-    if test -d $addpath
-        set -U fish_user_paths $addpath $fish_user_paths
-    end
-end
-
 if not test -d ~/.local/bin
     mkdir -p ~/.local/bin
 end
@@ -53,6 +47,12 @@ set MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
 set MANPATH /usr/local/opt/gnu-sed/libexec/gnuman $MANPATH
 
 ### Util functions. {{{1
+function fish_right_prompt
+    __fnm_version
+    __pyenv_version
+    __rbenv_version
+end
+
 ### Alias. {{{1
 if type -q exa
     alias ls 'exa'

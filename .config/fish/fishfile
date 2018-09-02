@@ -1,8 +1,6 @@
 fisherman/await
-edc/bass
 0rax/fish-bd
 fisherman/fnm
-oh-my-fish/plugin-foreign-env
 fisherman/get_file_age
 fisherman/getopts
 ryotako/fish-global-abbreviation
@@ -12,4 +10,3 @@ rafaelrinaldi/pure
 fisherman/pyenv
 fisherman/rbenv
 masa0x80/replace_multiple_dots.fish
-fisherman/z

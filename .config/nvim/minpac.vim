@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/09/02 21:37:59.
+" Last Change : 2018/09/02 22:54:01.
 " =============================================================================
 
 " Plugin:
@@ -98,6 +98,8 @@ Pac 'prabirshrestha/vim-lsp'
 Pac 'rhysd/committia.vim'
 Pac 'ryanoasis/vim-devicons'
 Pac 't9md/vim-quickhl'
+Pac 'roxma/nvim-yarp', {'if': !has('nvim')}
+Pac 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 
 " opt. {{{2
 Pac 'NLKNguyen/papercolor-theme', {'type': 'opt'}
@@ -611,7 +613,7 @@ let g:ale_rust_ignore_error_codes = ['E0432', 'E0433']
 " vim-dirvish. {{{2
 " Don't use netrw.
 let g:loaded_netrwPlugin = 1
-nnoremap [Space]v :<C-u>Dirvish %<CR>
+" nnoremap [Space]v :<C-u>Dirvish %<CR>
 
 " neoterm. {{{2
 if ! g:is_windows
@@ -1233,6 +1235,29 @@ let g:tweetvim_display_separator = 0
 let g:tweetvim_empty_separator = 1
 let g:tweetvim_align_right = 0
 
+" Defx. {{{2
+nnoremap [Space]v :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
+au MyAutoCmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+  " Define mappings
+  nnoremap <silent><buffer><expr> <CR> defx#do_action('open')
+  nnoremap <silent><buffer><expr> l defx#do_action('open')
+  nnoremap <silent><buffer><expr> E defx#do_action('open', 'vsplit')
+  nnoremap <silent><buffer><expr> P defx#do_action('open', 'pedit')
+  nnoremap <silent><buffer><expr> K defx#do_action('new_directory')
+  nnoremap <silent><buffer><expr> N defx#do_action('new_file')
+  nnoremap <silent><buffer><expr> d defx#do_action('remove')
+  nnoremap <silent><buffer><expr> r defx#do_action('rename')
+  nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
+  nnoremap <silent><buffer><expr> ~ defx#do_action('cd')
+  nnoremap <silent><buffer><expr> q defx#do_action('quit')
+  nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
+  nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
+  nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
+  nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
+  nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
+  nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
+endfunction
 
 
 " Define user commands for updating/cleaning the plugins. {{{1
