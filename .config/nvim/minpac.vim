@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/09/03 08:07:07.
+" Last Change : 2018/09/10 07:23:22.
 " =============================================================================
 
 " Plugin:
@@ -102,6 +102,7 @@ Pac 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pac 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 
 " opt. {{{2
+Pac 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pac 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
 Pac 'PProvost/vim-ps1', {'type': 'opt', 'ft': 'ps1'}
@@ -219,7 +220,7 @@ Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
 " Plugin settings. {{{1
 " lightline. {{{2
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
+      \ 'colorscheme': 'material',
       \ 'mode_map': {
       \   'n' : 'N',
       \   'i' : 'I',
