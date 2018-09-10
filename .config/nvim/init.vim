@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/09/03 08:14:18.
+" Last Change : 2018/09/10 07:53:44.
 " =============================================================================
 
 " Init: {{{1
@@ -275,7 +275,8 @@ set foldmethod=marker
 " Color: {{{1
 syntax enable
 set background=dark
-colorscheme PaperColor
+" colorscheme PaperColor
+colorscheme spring-night
 
 if has('gui_running')
   if g:is_windows
@@ -353,7 +354,7 @@ com! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | difft
 com! Wsu w !sudo tee > /dev/null %
 
 " FileType: {{{1
-au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail background=light
+au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail
 au MyAutoCmd BufNewFile,BufRead *.toml setl ft=toml
 au MyAutoCmd BufNewFile,BufRead *.log setl ft=log
 au MyAutoCmd BufNewFile,BufRead *.ps1 setl ft=ps1
