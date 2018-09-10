@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/09/10 07:53:44.
+" Last Change : 2018/09/11 00:17:05.
 " =============================================================================
 
 " Init: {{{1
@@ -269,6 +269,7 @@ set synmaxcol=500
 set showcmd
 set display=lastline
 set foldmethod=marker
+set pumheight=13
 " set foldclose=all
 " set t_Co=256
 
