@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/09/10 07:23:22.
+" Last Change : 2018/09/11 05:52:08.
 " =============================================================================
 
 " Plugin:
@@ -1134,6 +1134,7 @@ if executable('typescript-language-server')
         \ 'name': 'typescript-language-server',
         \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
         \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+        \ 'priority': 4,
         \ 'whitelist': ['typescript', 'javascript', 'javascript.jsx']
         \ })
 endif
