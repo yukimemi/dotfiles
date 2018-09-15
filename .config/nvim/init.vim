@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/09/11 00:17:05.
+" Last Change : 2018/09/15 20:33:38.
 " =============================================================================
 
 " Init: {{{1
@@ -159,9 +159,9 @@ endfunction
 
 
 " Plugin: {{{1
-let s:use_dein = 0
+let s:use_dein = 1
 let s:use_vimplug = 0
-let s:use_minpac = 1
+let s:use_minpac = 0
 
 if s:use_dein
   runtime! dein.vim
@@ -435,7 +435,8 @@ nnoremap [Space]d :<C-u>call <SID>deleteOtherLine()<CR>
 
 " Update plugin.
 nnoremap [Space]pu :<C-u>PlugUpdate \| PlugUpgrade<CR>
-nnoremap [Space]du :<C-u>call dein#update() \| Dein log<CR>
+" nnoremap [Space]du :<C-u>call dein#update() \| Dein log<CR>
+nnoremap [Space]du :<C-u>DeinUpdate<CR>
 nnoremap [Space]mu :<C-u>PackUpdate<CR>
 
 " nohlsearch.
