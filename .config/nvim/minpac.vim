@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/09/11 05:52:08.
+" Last Change : 2018/09/16 11:16:45.
 " =============================================================================
 
 " Plugin:
@@ -180,7 +180,8 @@ Pac 'Shougo/neosnippet-snippets', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/neosnippet.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/vimproc.vim', {'type': 'opt', 'lazy': 1, 'do': 'silent! !make'}
 Pac 'gilligan/textobj-lastpaste', {'type': 'opt', 'lazy': 1}
-Pac 'haya14busa/incsearch.vim', {'type': 'opt', 'lazy': 1}
+" Pac 'haya14busa/incsearch.vim', {'type': 'opt', 'lazy': 1}
+Pac 'haya14busa/is.vim', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-asterisk', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-operator-flashy', {'type': 'opt', 'lazy': 1}
 Pac 'itchyny/vim-external', {'type': 'opt', 'lazy': 1}
@@ -705,24 +706,32 @@ function! s:denite_aft() abort
   call denite#custom#map('normal', '<C-[>', '<denite:quit>', 'noremap')
 endfunction
 
+" is.vim. {{{2
+map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)zv
+map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)zv
+
+map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)zv
+map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)zv
+map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)zv
+map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)zv
 
 " incsearch.vim. {{{2
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-
-let g:incsearch#auto_nohlsearch = 1
-map n   <Plug>(incsearch-nohl)<Plug>(anzu-n)zv
-map N   <Plug>(incsearch-nohl)<Plug>(anzu-N)zv
-map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)zv
-map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)zv
-map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)zv
-map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)zv
-
-map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
-map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
-map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
-map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
+" map /  <Plug>(incsearch-forward)
+" map ?  <Plug>(incsearch-backward)
+" map g/ <Plug>(incsearch-stay)
+"
+" let g:incsearch#auto_nohlsearch = 1
+" map n   <Plug>(incsearch-nohl)<Plug>(anzu-n)zv
+" map N   <Plug>(incsearch-nohl)<Plug>(anzu-N)zv
+" map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)zv
+" map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)zv
+" map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)zv
+" map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)zv
+"
+" map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
+" map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
+" map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
+" map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
 
 " vim-quickhl. {{{2
 let g:quickhl_manual_enable_at_startup = 1
@@ -1144,8 +1153,8 @@ let g:previm_enable_realtime = 0
 " let g:previm_disable_default_css = 1
 
 " vim-edgemotion. {{{2
-map <C-j> <Plug>(edgemotion-j)
-map <C-k> <Plug>(edgemotion-k)
+imap <C-j> <Plug>(edgemotion-j)
+imap <C-k> <Plug>(edgemotion-k)
 
 " vim-markdown-composer. {{{2
 if executable('cargo')
