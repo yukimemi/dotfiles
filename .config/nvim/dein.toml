@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/09/15 20:16:18.
+# Last Change : 2018/09/16 22:20:11.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -185,7 +185,7 @@ repo = 'Shougo/neosnippet.vim' # {{{2
 depends = ['neosnippet-snippets', 'context_filetype.vim']
 on_i = 1
 on_ft = 'snippet'
-hook_source = '''
+hook_add = '''
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
@@ -219,7 +219,7 @@ repo = 'prabirshrestha/async.vim' # {{{2
 repo = 'prabirshrestha/asyncomplete.vim' # {{{2
 hook_add = '''
 let g:asyncomplete_auto_popup = 1
-let g:asyncomplete_remove_duplicates = 1
+let g:asyncomplete_remove_duplicates = 0
 let g:asyncomplete_force_refresh_on_context_changed = 1
 imap <C-Space> <Plug>(asyncomplete_force_refresh)
 '''
@@ -834,8 +834,8 @@ endif
 [[plugins]]
 repo = 'haya14busa/vim-edgemotion' # {{{2
 hook_add = '''
-map <C-j> <Plug>(edgemotion-j)
-map <C-k> <Plug>(edgemotion-k)
+nmap <C-j> <Plug>(edgemotion-j)
+nmap <C-k> <Plug>(edgemotion-k)
 '''
 
 [[plugins]]
@@ -1003,27 +1003,41 @@ repo = 'osyo-manga/vim-anzu' # {{{2
 on_map = '<Plug>'
 
 [[plugins]]
-repo = 'haya14busa/incsearch.vim' # {{{2
+repo = 'haya14busa/is.vim' # {{{2
 depends = ['vim-asterisk', 'vim-anzu']
 on_map = '<Plug>'
 hook_add = '''
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
+map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)zv
+map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)zv
 
-let g:incsearch#auto_nohlsearch = 1
-map n   <Plug>(incsearch-nohl)<Plug>(anzu-n)zv
-map N   <Plug>(incsearch-nohl)<Plug>(anzu-N)zv
-map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)zv
-map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)zv
-map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)zv
-map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)zv
-
-map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
-map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
-map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
-map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
+map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)zv
+map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)zv
+map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)zv
+map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)zv
 '''
+
+# [[plugins]]
+# repo = 'haya14busa/incsearch.vim' # {{{2
+# depends = ['vim-asterisk', 'vim-anzu']
+# on_map = '<Plug>'
+# hook_add = '''
+# map /  <Plug>(incsearch-forward)
+# map ?  <Plug>(incsearch-backward)
+# map g/ <Plug>(incsearch-stay)
+#
+# let g:incsearch#auto_nohlsearch = 1
+# map n   <Plug>(incsearch-nohl)<Plug>(anzu-n)zv
+# map N   <Plug>(incsearch-nohl)<Plug>(anzu-N)zv
+# map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)zv
+# map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)zv
+# map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)zv
+# map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)zv
+#
+# map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
+# map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
+# map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
+# map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
+# '''
 
 [[plugins]]
 repo = 't9md/vim-quickhl' # {{{2
@@ -1397,14 +1411,6 @@ on_ft = ['javascript', 'javascript.jsx', 'typescript']
 repo = 'othree/es.next.syntax.vim' # {{{2
 on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
-[[plugins]]
-repo = 'flowtype/vim-flow' # {{{2
-on_ft = ['javascript', 'javascript.jsx']
-build = 'npm i -g flow-bin'
-hook_add = '''
-let g:flow#autoclose = 1
-'''
-
 # ==================== Filetype (elm) ===== {{{1
 [[plugins]]
 repo = 'ElmCast/elm-vim' # {{{2
@@ -1632,4 +1638,8 @@ setl foldmethod=syntax
 
 elm = '''
 setl ts=4 sw=4 sts=0
+'''
+
+javascript = '''
+setl foldmethod=syntax
 '''

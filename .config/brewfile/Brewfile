@@ -12,6 +12,7 @@ brew fd
 brew fish
 brew fontconfig
 brew fzf
+brew gdbm
 brew git
 brew git-now
 brew gnu-getopt
@@ -19,6 +20,7 @@ brew gnu-sed
 brew go
 brew grep
 brew imagemagick
+brew libyaml
 brew lua
 brew mas
 brew mosh
@@ -26,20 +28,24 @@ brew neovim
 brew openssl
 brew p7zip
 brew peco
+brew perl
 brew pkg-config
 brew pyenv
+brew python
 brew rbenv
 brew readline
 brew reattach-to-user-namespace
 brew ripgrep
+brew ruby
 brew ruby-build
 brew source-highlight
 brew sqlite
 brew ssh-copy-id
 brew tig
 brew tmux --HEAD
-brew vim --with-override-system-vi --with-gettext --with-client-server --with-lua --with-tcl --HEAD
+brew vim --with-client-server --with-gettext --with-lua --with-override-system-vi --with-tcl --HEAD
 brew watch
+brew xz
 brew youtube-dl
 
 tap homebrew/cask-fonts
