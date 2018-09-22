@@ -5,6 +5,9 @@ set -x EDITOR nvim
 set -x VISUAL nvim
 set -x PAGER less
 
+# less. {{{2
+set -x LESS "-iMR"
+
 # GOPATH. {{{2
 set -x GOPATH ~/.ghq
 
