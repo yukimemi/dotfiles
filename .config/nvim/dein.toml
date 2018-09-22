@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/09/18 08:30:07.
+# Last Change : 2018/09/22 18:31:24.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -1403,13 +1403,13 @@ on_ft = ['javascript', 'javascript.jsx']
 # lazy = 1
 # build = 'npm i'
 
-[[plugins]]
-repo = 'othree/javascript-libraries-syntax.vim' # {{{2
-on_ft = ['javascript', 'javascript.jsx', 'typescript']
+# [[plugins]]
+# repo = 'othree/javascript-libraries-syntax.vim' # {{{2
+# on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
-[[plugins]]
-repo = 'othree/es.next.syntax.vim' # {{{2
-on_ft = ['javascript', 'javascript.jsx', 'typescript']
+# [[plugins]]
+# repo = 'othree/es.next.syntax.vim' # {{{2
+# on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
 # ==================== Filetype (elm) ===== {{{1
 [[plugins]]
