@@ -20,6 +20,12 @@ end
 set -x GSR_SHOW_AHEAD 1
 set -x GSR_SHOW_BEHIND 1
 
+# pyenv. {{{2
+set -x PYENV_ROOT ~/.pyenv
+
+# rbenv. {{{2
+set -x RBENV_ROOT ~/.rbenv
+
 # PATH. {{{2
 if not test -d ~/.local/bin
     mkdir -p ~/.local/bin
@@ -38,9 +44,12 @@ if test (count $fish_user_paths) -eq 0
     __add_fish_user_paths ~/.config/yarn/global/node_modules/.bin
     __add_fish_user_paths ~/.local/bin
     __add_fish_user_paths ~/.local/bin/scripts
+    __add_fish_user_paths ~/.local/google-cloud-sdk/bin
     __add_fish_user_paths ~/.ghq/src/bitbucket.org/yukimemi/scripts
     __add_fish_user_paths $GOPATH/bin
+    __add_fish_user_paths $PYENV_ROOT/bin
     __add_fish_user_paths $PYENV_ROOT/shims
+    __add_fish_user_paths $RBENV_ROOT/bin
     __add_fish_user_paths $RBENV_ROOT/shims
     echo "Update fish_user_paths"
 end
