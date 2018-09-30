@@ -21,7 +21,7 @@ let qmark c = ["https://www.google.com/calendar"]
 let qmark F = ["http://cloud.feedly.com/#latest"]
 let qmark g = ["http://github.com/yukimemi"]
 let qmark h = ["http://b.hatena.ne.jp"]
-let qmark i = ["https://inbox.google.com"]
+let qmark i = ["https://www.instagram.com/?hl=ja"]
 let qmark l = ["http://www.google.com/language_tools"]
 let qmark m = ["https://mail.google.com"]
 let qmark p = ["http://getpocket.com/a/queue/"]
@@ -46,6 +46,10 @@ map gh firstTab
 map gl lastTab
 map R reloadTabUncached
 map <C-g> :execute vyP<CR>
+
+" next and previous pattern
+let previousmatchpattern = "((?!last)(prev(ious)?|newer|back|«|less|<|‹|前|前のページ| )+)"
+let nextmatchpattern = "((?!first)(next|older|more|>|›|»|forward|次|次のページ| )+)"
 
 " searchengine
 let searchengine duckduckgo = "https://duckduckgo.com/?q=%s"

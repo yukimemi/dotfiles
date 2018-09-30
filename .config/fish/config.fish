@@ -86,6 +86,10 @@ alias twitter "open -na 'Google Chrome' --args '--app=https://mobile.twitter.com
 alias tweetdeck "open -na 'Google Chrome' --args '--app=https://tweetdeck.com'"
 alias hangout "open -na open -na 'Google Chrome' --args '--app=https://hangouts.google.com/'"
 
+# docker. {{{2
+# alias gcloud-auth "docker run -ti --name gcloud-config google/cloud-sdk gcloud auth login"
+# alias gcloud "docker run --rm -ti --volumes-from gcloud-config google/cloud-sdk gcloud"
+
 ### Abbr. {{{1
 abbr -a fv __filter_command_nvim
 abbr -a fmvim __filter_command_mvim
@@ -105,6 +109,7 @@ abbr -a e nvim
 abbr -a v vim
 abbr -a o open
 abbr -a tree 'exa -T'
+abbr -a et 'exiftool -api largefilesupport=1'
 
 # Git. {{{2
 abbr -a g 'git'
@@ -189,3 +194,4 @@ set -U gabbr_config ~/.config/fish/.gabbr.config
 
 # Load functions. {{{1
 type -q __done_enter
+
