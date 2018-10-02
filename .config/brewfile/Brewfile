@@ -2,7 +2,6 @@
 # tap repositories and their packages
 
 tap homebrew/core
-brew ansible
 brew autoconf
 brew bat
 brew coreutils
@@ -60,11 +59,12 @@ tap homebrew/cask
 cask appcleaner
 cask astro
 cask docker
-cask google-backup-and-sync
-cask google-japanese-ime
-cask hyper
-cask iterm2
-cask vagrant
+cask geektool
+cask google-chrome
+cask hammerspoon
+cask iina
+cask slack
+cask virtualbox
 
 tap knqyf263/pet
 brew pet
@@ -85,11 +85,11 @@ cask appgrid
 cask caffeine
 cask dropbox
 cask font-hack-nerd-font
-cask google-chrome
-cask hammerspoon
-cask iina
-cask slack
-cask virtualbox
+cask google-backup-and-sync
+cask google-japanese-ime
+cask hyper
+cask iterm2
+cask vagrant
 
 # App Store applications
 appstore 549083868 Display Menu (2.2.3)
