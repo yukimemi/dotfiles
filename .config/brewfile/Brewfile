@@ -6,24 +6,29 @@ brew autoconf
 brew bat
 brew coreutils
 brew direnv
+brew exa
 brew exiftool
 brew fd
 brew fish
 brew fontconfig
 brew fzf
 brew gdbm
+brew ghq
 brew git
 brew git-now
 brew gnu-getopt
 brew gnu-sed
 brew go
 brew grep
+brew heroku
+brew icu4c
 brew imagemagick
-brew libyaml
 brew lua
+brew mackup
 brew mas
 brew mosh
 brew neovim
+brew node
 brew openssl
 brew p7zip
 brew peco
@@ -46,14 +51,13 @@ brew vim --with-client-server --with-gettext --with-lua --with-override-system-v
 brew watch
 brew xz
 brew youtube-dl
+brew zlib
 
 tap homebrew/cask-fonts
 cask font-hack
 cask font-ricty-diminished
 
 tap homebrew/cask-versions
-
-tap homebrew/dupes
 
 tap homebrew/cask
 cask appcleaner
@@ -90,6 +94,7 @@ cask google-japanese-ime
 cask hyper
 cask iterm2
 cask vagrant
+cask xquartz
 
 # App Store applications
 appstore 549083868 Display Menu (2.2.3)

@@ -36,3 +36,5 @@ path=(
 export GOROOT=$(go env GOROOT)
 export GOPATH=$HOME/.ghq
 
+
+export PATH="$HOME/.cargo/bin:$PATH"
