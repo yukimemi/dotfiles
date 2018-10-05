@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash
 # PLATFORM is the environment variable that
 # retrieves the name of the running platform
 export PLATFORM

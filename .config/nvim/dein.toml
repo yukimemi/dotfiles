@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/09/22 18:31:24.
+# Last Change : 2018/10/02 22:32:22.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -100,8 +100,6 @@ let g:lightline = {
       \   'fileformat': 'LightLineFileformat',
       \   'anzu': 'anzu#search_status',
       \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
 function! LightLineModified()
