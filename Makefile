@@ -18,6 +18,7 @@ deploy: ## Create symlink to home directory
 	@ln -sfnv $(DOTPATH)/etc/scripts $(HOME)/.local/bin/scripts
 	@ln -sfnv $(DOTPATH)/.config/nvim/init.vim $(HOME)/.vimrc
 	@ln -sfnv $(DOTPATH)/.config/nvim $(HOME)/.vim
+	@ln -sfnv ~/Dropbox/.fish_history ~/.local/share/fish/fish_history
 
 init: ## Setup environment settings
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/init.sh
