@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/10/02 22:32:22.
+# Last Change : 2018/10/07 23:21:06.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -176,6 +176,11 @@ au MyAutoCmd InsertLeave * :PreciousReset
 [[plugins]]
 repo = 'ntpeters/vim-better-whitespace' # {{{2
 
+[[plugins]]
+repo = 'luochen1990/rainbow' # {{{2
+hook_add = '''
+let g:rainbow_active = 1
+'''
 
 # ==================== Complement ================ {{{1
 [[plugins]]
@@ -697,7 +702,7 @@ on_cmd = ['Dirvish']
 hook_add = '''
 " Don't use netrw.
 let g:loaded_netrwPlugin = 1
-if g:is_windows
+if g:is_windows || !has('python3')
   nnoremap [Space]v :<C-u>Dirvish %<CR>
 endif
 '''
@@ -862,7 +867,7 @@ map <Leader>b <Plug>(external-browser)
 [[plugins]]
 repo = 'Shougo/defx.nvim' # {{{2
 on_cmd = ['Defx']
-if = '!g:is_windows'
+if = '!g:is_windows && has("python3")'
 hook_add = '''
 if !g:is_windows
   nnoremap [Space]v :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
@@ -1533,6 +1538,10 @@ on_ft = 'purescript'
 repo = 'purescript-contrib/purescript-vim' # {{{2
 on_ft = 'purescript'
 
+# ==================== Filetype (csv) ============ {{{1
+[[plugins]]
+repo = 'mechatroner/rainbow_csv' # {{{2
+on_ft = 'csv'
 
 # ==================== After ftplugin ============ {{{1
 [ftplugin]
