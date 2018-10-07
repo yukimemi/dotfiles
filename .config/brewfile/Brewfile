@@ -3,7 +3,9 @@
 
 tap homebrew/core
 brew autoconf
+brew automake
 brew bat
+brew boost
 brew coreutils
 brew direnv
 brew exa
@@ -11,11 +13,15 @@ brew exiftool
 brew fd
 brew fish
 brew fontconfig
+brew freetype
 brew fzf
+brew gawk
 brew gdbm
+brew gettext
 brew ghq
 brew git
 brew git-now
+brew gmp
 brew gnu-getopt
 brew gnu-sed
 brew go
@@ -23,19 +29,36 @@ brew grep
 brew heroku
 brew icu4c
 brew imagemagick
+brew jemalloc
+brew jpeg
+brew libevent
+brew libpng
+brew libtermkey
+brew libtiff
+brew libtool
+brew libuv
+brew libvterm
+brew libyaml
 brew lua
+brew luajit
 brew mackup
 brew mas
 brew mosh
+brew mpfr
+brew msgpack
 brew neovim
 brew node
 brew openssl
 brew p7zip
+brew pcre
+brew pcre2
 brew peco
 brew perl
 brew pkg-config
+brew protobuf
 brew pyenv
 brew python
+brew python@2
 brew rbenv
 brew readline
 brew reattach-to-user-namespace
@@ -47,6 +70,7 @@ brew sqlite
 brew ssh-copy-id
 brew tig
 brew tmux --HEAD
+brew unibilium
 brew vim --with-client-server --with-gettext --with-lua --with-override-system-vi --with-tcl --HEAD
 brew watch
 brew xz
@@ -69,6 +93,9 @@ cask hammerspoon
 cask iina
 cask slack
 cask virtualbox
+
+tap heroku/brew
+brew heroku-node
 
 tap knqyf263/pet
 brew pet
@@ -97,4 +124,5 @@ cask vagrant
 cask xquartz
 
 # App Store applications
+appstore 937984704 Amphetamine (4.0.2)
 appstore 549083868 Display Menu (2.2.3)
