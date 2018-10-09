@@ -93,6 +93,7 @@ cask hammerspoon
 cask iina
 cask slack
 cask virtualbox
+cask xquartz
 
 tap heroku/brew
 brew heroku-node
@@ -121,7 +122,7 @@ cask google-japanese-ime
 cask hyper
 cask iterm2
 cask vagrant
-cask xquartz
+cask vivaldi
 
 # App Store applications
 appstore 937984704 Amphetamine (4.0.2)
