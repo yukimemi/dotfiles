@@ -1,71 +1,16 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/10/07 23:21:06.
+# Last Change : 2018/10/20 23:30:06.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
 [[plugins]]
 repo = 'Shougo/dein.vim' # {{{2
 
-[[plugins]]
-repo = 'haya14busa/dein-command.vim' # {{{2
-on_cmd = 'Dein'
-
-[[plugins]]
-repo = 'wsdjeg/dein-ui.vim' # {{{2
-on_cmd = ['DeinUpdate']
-
 # ==================== Visual ==================== {{{1
 [[plugins]]
-repo = 'tomasr/molokai' # {{{2
-lazy = 1
-
-[[plugins]]
 repo = 'rhysd/vim-color-spring-night' # {{{2
-
-[[plugins]]
-repo = 'jacoborus/tender.vim' # {{{2
-lazy = 1
-
-[[plugins]]
-repo = 'aereal/vim-colors-japanesque' # {{{2
-lazy = 1
-
-[[plugins]]
-repo = 'cocopon/iceberg.vim' # {{{2
-lazy = 1
-
-[[plugins]]
-repo = 'joshdick/onedark.vim' # {{{2
-lazy = 1
-
-[[plugins]]
-repo = 'morhetz/gruvbox' # {{{2
-lazy = 1
-hook_add = '''
-let g:gruvbox_contrast_dark = "hard"
-'''
-
-[[plugins]]
-repo = 'machakann/vim-colorscheme-imas' # {{{2
-lazy = 1
-
-[[plugins]]
-repo = 'NLKNguyen/papercolor-theme' # {{{2
-
-[[plugins]]
-repo = 'endel/vim-github-colorscheme' # {{{2
-lazy = 1
-
-[[plugins]]
-repo = 'kmtoki/lightline-colorscheme-simplicity'
-lazy = 1
-
-
-[[plugins]]
-repo = 'kristijanhusak/vim-hybrid-material' # {{{2
-lazy = 1
 
 [[plugins]]
 repo = 'ryanoasis/vim-devicons' # {{{2
@@ -159,28 +104,10 @@ nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
 repo = 'itchyny/vim-highlighturl' # {{{2
 
 [[plugins]]
-repo = 'taku-o/vim-zoom' # {{{2
-if = "has('gui')"
-
-[[plugins]]
 repo = 'vim-scripts/matchit.zip' # {{{2
 
 [[plugins]]
-repo = 'osyo-manga/vim-precious' # {{{2
-hook_add = '''
-let g:precious_enable_switch_CursorMoved = { '*': 0, 'help': 1 }
-au MyAutoCmd InsertEnter * :PreciousSwitch
-au MyAutoCmd InsertLeave * :PreciousReset
-'''
-
-[[plugins]]
 repo = 'ntpeters/vim-better-whitespace' # {{{2
-
-[[plugins]]
-repo = 'luochen1990/rainbow' # {{{2
-hook_add = '''
-let g:rainbow_active = 1
-'''
 
 # ==================== Complement ================ {{{1
 [[plugins]]
@@ -207,10 +134,7 @@ lazy = 1
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim' # {{{2
-
-[[plugins]]
-repo = 'ludovicchabant/vim-gutentags' # {{{2
-if = "executable('ctags') && !g:is_windows"
+lazy = 1
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp' # {{{2
@@ -222,7 +146,7 @@ repo = 'prabirshrestha/async.vim' # {{{2
 repo = 'prabirshrestha/asyncomplete.vim' # {{{2
 hook_add = '''
 let g:asyncomplete_auto_popup = 1
-let g:asyncomplete_remove_duplicates = 0
+let g:asyncomplete_remove_duplicates = 1
 let g:asyncomplete_force_refresh_on_context_changed = 1
 imap <C-Space> <Plug>(asyncomplete_force_refresh)
 '''
@@ -230,7 +154,7 @@ imap <C-Space> <Plug>(asyncomplete_force_refresh)
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim' # {{{2
 hook_add = '''
-" Docker. {{{2
+" Docker. {{{3
 if executable('docker-langserver')
   au MyAutoCmd User lsp_setup call lsp#register_server({
         \ 'name': 'docker-langserver',
@@ -240,7 +164,7 @@ if executable('docker-langserver')
         \ })
 endif
 
-" go. {{{2
+" go. {{{3
 if executable('go-langserver')
   au MyAutoCmd User lsp_setup call lsp#register_server({
         \ 'name': 'go-langserver',
@@ -250,7 +174,7 @@ if executable('go-langserver')
         \ })
 endif
 
-" python. {{{2
+" python. {{{3
 if executable('pyls')
   au MyAutoCmd User lsp_setup call lsp#register_server({
         \ 'name': 'pyls',
@@ -260,7 +184,7 @@ if executable('pyls')
         \ })
 endif
 
-" rust. {{{2
+" rust. {{{3
 if executable('rls')
   au MyAutoCmd User lsp_setup call lsp#register_server({
         \ 'name': 'rls',
@@ -270,7 +194,7 @@ if executable('rls')
         \ })
 endif
 
-" typescript. {{{2
+" typescript. {{{3
 if executable('typescript-language-server')
   au MyAutoCmd User lsp_setup call lsp#register_server({
         \ 'name': 'typescript-language-server',
@@ -430,30 +354,6 @@ endfunction
 '''
 
 [[plugins]]
-repo = 't9md/vim-choosewin' # {{{2
-on_map = '<Plug>'
-hook_source = '''
-" nmap - <Plug>(choosewin)
-
-let g:choosewin_overlay_enable = 1
-let g:choosewin_overlay_clear_multibyte = 1
-
-" color like tmux
-let g:choosewin_color_overlay = {
-      \ 'gui': ['DodgerBlue3', 'DodgerBlue3' ],
-      \ 'cterm': [ 25, 25 ]
-      \ }
-let g:choosewin_color_overlay_current = {
-      \ 'gui': ['firebrick1', 'firebrick1' ],
-      \ 'cterm': [ 124, 124 ]
-      \ }
-
-let g:choosewin_blink_on_land = 0
-let g:choosewin_statusline_replace = 0
-let g:choosewin_tabline_replace = 0
-'''
-
-[[plugins]]
 repo = 'Konfekt/FastFold' # {{{2
 on_path = '.*'
 hokk_add = '''
@@ -564,71 +464,6 @@ nnoremap <Leader>mg :<C-u>MemoGrep<CR>
 '''
 
 [[plugins]]
-repo = 'mattn/sonictemplate-vim' # {{{2
-on_cmd = 'Template'
-hook_add = '''
-let g:sonictemplate_vim_template_dir = $VIM_PATH . '/template'
-let g:sonictemplate_vim_vars = {
-      \ '_': {
-      \   'author': 'yukimemi',
-      \   'mail': 'yukimemi@gmail.com',
-      \ }
-      \ }
-'''
-
-[[plugins]]
-repo = 'basyura/twibill.vim' # {{{2
-lazy = 1
-
-[[plugins]]
-repo = 'mattn/favstar-vim'
-lazy = 1
-
-[[plugins]]
-repo = 'basyura/bitly.vim'
-lazy = 1
-
-[[plugins]]
-repo = 'basyura/TweetVim' # {{{2
-depends = ['twibill.vim', 'open-browser.vim', 'bitly.vim', 'favstar-vim', 'webapi-vim']
-on_cmd = ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay']
-on_ft = 'tweetvim'
-hook_add = '''
-au MyAutoCmd FileType tweetvim call s:my_tweetvim_mappings()
-function! s:my_tweetvim_mappings()
-  setl nowrap
-  nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
-endfunction
-
-nnoremap [Space]tu :<C-u>TweetVimUserStream<CR>
-
-let g:tweetvim_default_account = "yukimemi"
-let g:tweetvim_tweet_per_page = 100
-let g:tweetvim_cache_size = 50
-"let g:tweetvim_display_username = 1
-let g:tweetvim_display_source = 1
-let g:tweetvim_display_time = 1
-"let g:tweetvim_display_icon = 1
-let g:tweetvim_async_post = 1
-let g:tweetvim_display_separator = 0
-let g:tweetvim_empty_separator = 1
-let g:tweetvim_align_right = 0
-'''
-
-[[plugins]]
-repo = 'mattn/webapi-vim' # {{{2
-lazy = 1
-
-[[plugins]]
-repo = 'tyru/open-browser.vim' # {{{2
-on_map = '<Plug>'
-hook_add = '''
-let g:netrw_nogx = 1 " disable netrw's gx mapping.
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
-'''
-
-[[plugins]]
 repo = 'vim-scripts/autodate.vim' # {{{2
 hook_add = '''
 let g:autodate_format = "%Y/%m/%d %H:%M:%S"
@@ -678,23 +513,9 @@ let g:ale_rust_ignore_error_codes = ['E0432', 'E0433']
 '''
 
 
-# [[plugins]]
-# repo = 'yuttie/comfortable-motion.vim' # {{{2
-
 [[plugins]]
 repo = 'tyru/capture.vim' # {{{2
 on_cmd = ['Capture']
-
-[[plugins]]
-repo = 'cocopon/vaffle.vim' # {{{2
-on_cmd = ['Vaffle']
-hook_add = '''
-" nnoremap [Space]v :<C-u>Vaffle<CR>
-'''
-hook_post_source = '''
-let g:loaded_netrw       = 1
-let g:loaded_netrwPlugin = 1
-'''
 
 [[plugins]]
 repo = 'justinmk/vim-dirvish' # {{{2
@@ -707,68 +528,12 @@ if g:is_windows || !has('python3')
 endif
 '''
 
-# [[plugins]]
-# repo = 'vitalk/vim-simple-todo'
-# on_ft = 'markdown'
-
-# [[plugins]]
-# repo = 'kassio/neoterm' # {{{2
-# if = "has('nvim')"
-# on_cmd = ['T', 'Tnew']
-# hook_add = '''
-# let g:neoterm_autoinsert = 1
-# nnoremap [Space]s :<C-u>terminal<CR>
-# tnoremap sj <C-\><C-n><C-w>j
-# tnoremap sk <C-\><C-n><C-w>k
-# tnoremap sl <C-\><C-n><C-w>l
-# tnoremap sh <C-\><C-n><C-w>h
-# '''
-
-[[plugins]]
-repo = 'lambdalisue/vim-findent' # {{{2
-on_cmd = 'Findent'
-hook_add = '''
-let g:findent#enable_messages = 0
-let g:findent#enable_warnings = 0
-au MyAutoCmd BufRead * Findent
-'''
-
-# [[plugins]]
-# repo = 'tpope/vim-sleuth' # {{{2
-
 [[plugins]]
 repo = 'Shougo/echodoc.vim' # {{{2
+depends = ['context_filetype.vim']
+on_i = 1
 hook_add = '''
 let g:echodoc_enable_at_startup = 1
-'''
-
-[[plugins]]
-repo = 'majutsushi/tagbar' # {{{2
-on_cmd = ['TagbarToggle']
-hook_add = '''
-nnoremap <F8> :<C-u>TagbarToggle<CR>
-let g:tagbar_type_rust = {
-      \ 'ctagstype' : 'rust',
-      \   'kinds' : [
-      \     'T:types,type definitions',
-      \     'f:functions,function definitions',
-      \     'g:enum,enumeration names',
-      \     's:structure names',
-      \     'm:modules,module names',
-      \     'c:consts,static constants',
-      \     't:traits',
-      \     'i:impls,trait implementations',
-      \   ]
-      \ }
-
-let g:tagbar_type_markdown = {
-      \ 'ctagstype' : 'markdown',
-      \   'kinds' : [
-      \     'h:Heading_L1',
-      \     'i:Heading_L2',
-      \     'k:Heading_L3'
-      \   ]
-      \ }
 '''
 
 [[plugins]]
@@ -805,9 +570,6 @@ endif
 repo = 'kaneshin/ctrlp-filetype' # {{{2
 on_source = 'ctrlp.vim'
 [[plugins]]
-repo = 'kaneshin/ctrlp-sonictemplate' # {{{2
-on_source = 'ctrlp.vim'
-[[plugins]]
 repo = 'kaneshin/ctrlp-memolist' # {{{2
 on_source = 'ctrlp.vim'
 [[plugins]]
@@ -816,30 +578,9 @@ on_source = 'ctrlp.vim'
 [[plugins]]
 repo = 'mattn/ctrlp-mark' # {{{2
 on_source = 'ctrlp.vim'
-
 [[plugins]]
 repo = 'ompugao/ctrlp-history' # {{{2
 on_source = 'ctrlp.vim'
-
-[[plugins]]
-repo = 'haya14busa/vim-open-googletranslate' # {{{2
-if = "!has('nvim')"
-on_cmd = 'OpenGoogleTranslate'
-hook_add = '''
-if executable("electron-open")
-  let g:opengoogletranslate#openbrowsercmd = 'electron-open --without-focus'
-endif
-'''
-
-# [[plugins]]
-# '''
-
-[[plugins]]
-repo = 'haya14busa/vim-edgemotion' # {{{2
-hook_add = '''
-nmap <C-j> <Plug>(edgemotion-j)
-nmap <C-k> <Plug>(edgemotion-k)
-'''
 
 [[plugins]]
 repo = 'dhruvasagar/vim-table-mode' # {{{2
@@ -911,91 +652,6 @@ if = '!has("nvim")'
 repo = 'roxma/vim-hug-neovim-rpc' # {{{2
 if = '!has("nvim")'
 
-# ==================== Denite ==================== {{{1
-[[plugins]]
-repo = 'Shougo/denite.nvim' # {{{2
-depends = 'neomru.vim'
-on_cmd = 'Denite'
-if = "has('python3')"
-hook_add = '''
-" Use plefix s
-nnoremap sdc :<C-u>Denite colorscheme -auto-preview<CR>
-nnoremap sdb :<C-u>Denite buffer<CR>
-nnoremap sdf :<C-u>Denite file<CR>
-nnoremap sdF :<C-u>Denite file_rec<CR>
-nnoremap sdu :<C-u>Denite file_mru<CR>
-nnoremap sdd :<C-u>Denite file_rec buffer file_mru<CR>
-nnoremap sdo :<C-u>Denite outline -no-quit -mode=normal<CR>
-nnoremap sdh :<C-u>Denite help<CR>
-nnoremap sdr :<C-u>Denite register<CR>
-nnoremap sdg :<C-u>Denite grep -no-empty<CR>
-nnoremap sd/ :<C-u>Denite line -no-quit<CR>
-nnoremap sdR :<C-u>Denite -resume<CR>
-
-noremap sdl :<C-u>Denite command_history<CR>
-
-" Incremental search in cmdline history.
-inoremap <C-l> <ESC>:<C-u>Denite command<CR>
-'''
-hook_post_source = '''
-" Default options.
-call denite#custom#option('default', {
-      \ 'prompt': '»',
-      \ 'cursor_wrap': v:true,
-      \ 'auto_resize': v:true,
-      \ 'highlight_mode_insert': 'WildMenu'
-      \ })
-
-if executable('rg')
-  " Ripgrep command on grep source
-  call denite#custom#var('grep', 'command', ['rg'])
-  call denite#custom#var('grep', 'default_opts',
-      \ ['--vimgrep', '--no-heading'])
-  call denite#custom#var('grep', 'recursive_opts', [])
-  call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-  call denite#custom#var('grep', 'separator', ['--'])
-  call denite#custom#var('grep', 'final_opts', [])
-
-elseif executable('jvgrep')
-  " jvgrep command on grep source
-  call denite#custom#var('grep', 'command', ['jvgrep'])
-  call denite#custom#var('grep', 'default_opts', [])
-  call denite#custom#var('grep', 'recursive_opts', ['-R'])
-  call denite#custom#var('grep', 'pattern_opt', [])
-  call denite#custom#var('grep', 'separator', [])
-  call denite#custom#var('grep', 'final_opts', [])
-
-elseif executable('pt')
-  " Pt command on grep source
-  call denite#custom#var('grep', 'command', ['pt'])
-  call denite#custom#var('grep', 'default_opts',
-        \ ['--nogroup', '--nocolor', '--smart-case'])
-  call denite#custom#var('grep', 'recursive_opts', [])
-  call denite#custom#var('grep', 'pattern_opt', [])
-  call denite#custom#var('grep', 'separator', ['--'])
-  call denite#custom#var('grep', 'final_opts', [])
-endif
-" custom mappings.
-call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', '<C-[>', '<denite:enter_mode:normal>', 'noremap')
-call denite#custom#map('normal', '<C-[>', '<denite:quit>', 'noremap')
-'''
-
-[[plugins]]
-repo = 'Shougo/neomru.vim' # {{{2
-on_source = 'denite.nvim'
-
-[[plugins]]
-repo = 'Shougo/junkfile.vim' # {{{2
-on_source = 'denite.nvim'
-on_cmd = 'JunkfileOpen'
-
-[[plugins]]
-repo = 'iyuuya/denite-ale' # {{{2
-on_source = 'denite.nvim'
-
-
 # ==================== Search ==================== {{{1
 [[plugins]]
 repo = 'haya14busa/vim-asterisk' # {{{2
@@ -1018,29 +674,6 @@ map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)zv
 map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)zv
 map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)zv
 '''
-
-# [[plugins]]
-# repo = 'haya14busa/incsearch.vim' # {{{2
-# depends = ['vim-asterisk', 'vim-anzu']
-# on_map = '<Plug>'
-# hook_add = '''
-# map /  <Plug>(incsearch-forward)
-# map ?  <Plug>(incsearch-backward)
-# map g/ <Plug>(incsearch-stay)
-#
-# let g:incsearch#auto_nohlsearch = 1
-# map n   <Plug>(incsearch-nohl)<Plug>(anzu-n)zv
-# map N   <Plug>(incsearch-nohl)<Plug>(anzu-N)zv
-# map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)zv
-# map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)zv
-# map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)zv
-# map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)zv
-#
-# map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
-# map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
-# map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
-# map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
-# '''
 
 [[plugins]]
 repo = 't9md/vim-quickhl' # {{{2
@@ -1082,9 +715,6 @@ com! ToggleCursorWord call s:ToggleCursorWord()
 repo = 'thinca/vim-qfreplace' # {{{2
 on_ft = ['quickfix']
 
-[[plugins]]
-repo = 'haya14busa/vim-migemo' # {{{2
-
 
 # ==================== Operators ================= {{{1
 [[plugins]]
@@ -1105,16 +735,6 @@ hook_add = '''
 map sA <Plug>(operator-surround-append)
 map sD <Plug>(operator-surround-delete)
 map sR <Plug>(operator-surround-replace)
-'''
-
-[[plugins]]
-repo = 'osyo-manga/vim-operator-blockwise' # {{{2
-depends = 'vim-operator-user'
-on_map = '<Plug>'
-hook_add = '''
-" nmap YY <Plug>(operator-blockwise-yank-head)
-" nmap DD <Plug>(operator-blockwise-delete-head)
-" nmap CC <Plug>(operator-blockwise-change-head)
 '''
 
 [[plugins]]
@@ -1139,16 +759,6 @@ nmap Y <Plug>(operator-flashy)$
 repo = 'kana/vim-textobj-user' # {{{2
 on_map = '<Plug>'
 
-[[plugins]]
-repo = 'osyo-manga/vim-textobj-multiblock' # {{{2
-depends = 'vim-textobj-user'
-on_map = [['ox', '<Plug>']]
-hook_add = '''
-omap ab <Plug>(textobj-multiblock-a)
-omap ib <Plug>(textobj-multiblock-i)
-xmap ab <Plug>(textobj-multiblock-a)
-xmap ib <Plug>(textobj-multiblock-i)
-'''
 
 [[plugins]]
 repo = 'kana/vim-textobj-entire' # {{{2
@@ -1211,7 +821,6 @@ omap iP <Plug>(textobj-lastpaste-i)
 xmap iP <Plug>(textobj-lastpaste-i)
 '''
 
-
 # ==================== Comment =================== {{{1
 [[plugins]]
 repo = 'tyru/caw.vim' # {{{2
@@ -1222,7 +831,6 @@ xmap gc <Plug>(caw:prefix)
 nmap gcc <Plug>(caw:hatpos:toggle)
 xmap gcc <Plug>(caw:hatpos:toggle)
 '''
-
 
 # ==================== Yank/Paste ================ {{{1
 [[plugins]]
@@ -1235,11 +843,7 @@ nmap <C-n> <Plug>(yankround-next)
 let g:yankround_max_history = 100
 '''
 
-
 # ==================== Git ======================= {{{1
-# [[plugins]]
-# repo = 'tpope/vim-fugitive' # {{{2
-
 [[plugins]]
 repo = 'itchyny/vim-gitbranch' # {{{2
 
@@ -1254,13 +858,6 @@ nnoremap [Space]gd :<C-u>Gina diff<CR>
 nnoremap [Space]gl :<C-u>Gina ls-files<CR>
 nnoremap [Space]gp :<C-u>Gina push<CR>
 '''
-
-[[plugins]]
-repo = 'cohama/agit.vim' # {{{2
-on_cmd = 'Agit'
-
-[[plugins]]
-repo = 'rhysd/committia.vim' # {{{2
 
 # ==================== Filetype (go) ============= {{{1
 [[plugins]]
@@ -1645,6 +1242,3 @@ elm = '''
 setl ts=4 sw=4 sts=0
 '''
 
-javascript = '''
-setl foldmethod=syntax
-'''
