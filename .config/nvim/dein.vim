@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2018/01/23 15:42:09.
+" Last Change : 2018/10/20 23:15:37.
 " =============================================================================
 
 " Plugin: {{{1
@@ -17,9 +17,11 @@ let g:dein#install_max_processes = 16
 let g:dein#enable_notification = 1
 let g:dein#types#git#clone_depth = 1
 let s:toml_file = $VIM_PATH . '/dein.toml'
+let s:toml_all_file = $VIM_PATH . '/dein_all.toml'
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir, [$MYVIMRC, s:toml_file])
   call dein#load_toml(s:toml_file)
+  " call dein#load_toml(s:toml_all_file)
   call dein#end()
   call dein#save_state()
 endif
