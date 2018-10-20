@@ -207,3 +207,7 @@ if type -q anyenv
     status --is-interactive; and source (anyenv init -|psub)
 end
 
+# Load direnv. {{{1
+if type -q direnv
+    eval (direnv hook fish)
+end
