@@ -83,8 +83,8 @@ tap homebrew/cask-versions
 
 tap homebrew/cask
 cask appcleaner
-cask astro
-cask docker
+cask caffeine
+cask dropbox
 cask geektool
 cask google-chrome
 cask hammerspoon
@@ -112,8 +112,8 @@ brew universal-ctags --HEAD
 
 # Other Cask applications
 cask appgrid
-cask caffeine
-cask dropbox
+cask astro
+cask docker
 cask font-hack-nerd-font
 cask google-backup-and-sync
 cask google-japanese-ime
