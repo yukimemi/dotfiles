@@ -21,10 +21,19 @@ set -x GSR_SHOW_AHEAD 1
 set -x GSR_SHOW_BEHIND 1
 
 # pyenv. {{{2
-set -x PYENV_ROOT ~/.pyenv
+# set -x PYENV_ROOT ~/.pyenv
 
 # rbenv. {{{2
-set -x RBENV_ROOT ~/.rbenv
+# set -x RBENV_ROOT ~/.rbenv
+
+# Install anyenv. {{{1
+if not test -d ~/.anyenv
+    git clone https://github.com/riywo/anyenv ~/.anyenv
+end
+if not test -d ~/.anyenv/plugins/anyenv-update
+    mkdir -p ~/.anyenv/plugins > /dev/null ^&1
+    git clone https://github.com/znz/anyenv-update ~/.anyenv/plugins/anyenv-update
+end
 
 # PATH. {{{2
 if not test -d ~/.local/bin
@@ -47,10 +56,7 @@ if test (count $fish_user_paths) -eq 0
     __add_fish_user_paths ~/.local/google-cloud-sdk/bin
     __add_fish_user_paths ~/.ghq/src/bitbucket.org/yukimemi/scripts
     __add_fish_user_paths $GOPATH/bin
-    __add_fish_user_paths $PYENV_ROOT/bin
-    __add_fish_user_paths $PYENV_ROOT/shims
-    __add_fish_user_paths $RBENV_ROOT/bin
-    __add_fish_user_paths $RBENV_ROOT/shims
+    __add_fish_user_paths ~/.anyenv/bin
     echo "Update fish_user_paths"
 end
 
@@ -60,7 +66,8 @@ set MANPATH /usr/local/opt/gnu-sed/libexec/gnuman $MANPATH
 
 ### Util functions. {{{1
 function fish_right_prompt
-    __fnm_version
+    __nodenv_version
+    __goenv_version
     __pyenv_version
     __rbenv_version
 end
@@ -194,4 +201,9 @@ set -U gabbr_config ~/.config/fish/.gabbr.config
 
 # Load functions. {{{1
 type -q __done_enter
+
+# Load anyenv. {{{1
+if type -q anyenv
+    status --is-interactive; and source (anyenv init -|psub)
+end
 

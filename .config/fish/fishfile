@@ -1,12 +1,5 @@
-fisherman/await
 0rax/fish-bd
-fisherman/fnm
-fisherman/get_file_age
 fisherman/getopts
 ryotako/fish-global-abbreviation
-fisherman/last_job_id
-fisherman/menu
 rafaelrinaldi/pure
-fisherman/pyenv
-fisherman/rbenv
 masa0x80/replace_multiple_dots.fish

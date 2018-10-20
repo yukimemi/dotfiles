@@ -56,10 +56,8 @@ brew peco
 brew perl
 brew pkg-config
 brew protobuf
-brew pyenv
 brew python
 brew python@2
-brew rbenv
 brew readline
 brew reattach-to-user-namespace
 brew ripgrep
