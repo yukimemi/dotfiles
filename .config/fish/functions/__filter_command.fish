@@ -1,5 +1,7 @@
 function __filter_command
-  if type -q sk
+  if type -q peco
+    peco
+  else if type -q sk
     sk
   else if type -q fzf-tmux
     fzf-tmux
@@ -7,8 +9,6 @@ function __filter_command
     fzf
   else if type -q fzy
     fzy -l 200
-  else if type -q peco
-    peco
   else
     echo "Filter command not found ! Please install sk/fzf/fzy/peco."
     return 1
