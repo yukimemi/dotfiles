@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/09/16 11:16:45.
+" Last Change : 2018/10/21 22:48:39.
 " =============================================================================
 
 " Plugin:
@@ -96,13 +96,12 @@ Pac 'prabirshrestha/asyncomplete-lsp.vim'
 Pac 'prabirshrestha/asyncomplete.vim'
 Pac 'prabirshrestha/vim-lsp'
 Pac 'rhysd/committia.vim'
-Pac 'ryanoasis/vim-devicons'
-Pac 't9md/vim-quickhl'
 Pac 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pac 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
+Pac 'ryanoasis/vim-devicons'
+Pac 't9md/vim-quickhl'
 
 " opt. {{{2
-Pac 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pac 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
 Pac 'PProvost/vim-ps1', {'type': 'opt', 'ft': 'ps1'}
@@ -151,6 +150,7 @@ Pac 'prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt', 'ft': 'vim'}
 Pac 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'ft': 'vim'}
 Pac 'qpkorr/vim-renamer', {'type': 'opt', 'cmd': 'Renamer*'}
 Pac 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'ft': 'rust'}
+Pac 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pac 'rhysd/vim-gfm-syntax', {'type': 'opt', 'ft': 'markdown'}
 Pac 'rust-lang/rust.vim', {'type': 'opt', 'ft': 'rust'}
 Pac 'scrooloose/vim-slumlord', {'type': 'opt', 'ft': 'plantuml'}
@@ -162,41 +162,38 @@ Pac 'y0za/vim-reading-vimrc', {'type': 'opt', 'cmd': 'ReadingVimrc*'}
 
 " lazy. {{{2
 " Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
-Pac 'tmux-plugins/vim-tmux-focus-events', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
-Pac 'roxma/vim-tmux-clipboard', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
-Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
-Pac 'kaneshin/ctrlp-memolist', {'type': 'opt', 'lazy': 1}
-Pac 'kaneshin/ctrlp-sonictemplate', {'type': 'opt', 'lazy': 1}
-Pac 'ompugao/ctrlp-history', {'type': 'opt', 'lazy': 1}
-Pac 'mattn/ctrlp-launcher', {'type': 'opt', 'lazy': 1}
-Pac 'mattn/ctrlp-mark', {'type': 'opt', 'lazy': 1}
-Pac 'Shougo/neomru.vim', {'type': 'opt', 'lazy': 1}
-Pac 'iyuuya/denite-ale', {'type': 'opt', 'lazy': 1}
 Pac 'Konfekt/FastFold', {'type': 'opt', 'lazy': 1}
 Pac 'LeafCage/yankround.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/context_filetype.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/echodoc.vim', {'type': 'opt', 'lazy': 1}
+Pac 'Shougo/neomru.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/neosnippet-snippets', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/neosnippet.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/vimproc.vim', {'type': 'opt', 'lazy': 1, 'do': 'silent! !make'}
 Pac 'gilligan/textobj-lastpaste', {'type': 'opt', 'lazy': 1}
-" Pac 'haya14busa/incsearch.vim', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/is.vim', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-asterisk', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-operator-flashy', {'type': 'opt', 'lazy': 1}
 Pac 'itchyny/vim-external', {'type': 'opt', 'lazy': 1}
 Pac 'itchyny/vim-highlighturl', {'type': 'opt', 'lazy': 1}
+Pac 'iyuuya/denite-ale', {'type': 'opt', 'lazy': 1}
 Pac 'junegunn/vim-easy-align', {'type': 'opt', 'lazy': 1}
 Pac 'kana/vim-operator-replace', {'type': 'opt', 'lazy': 1}
 Pac 'kana/vim-textobj-entire', {'type': 'opt', 'lazy': 1}
 Pac 'kana/vim-textobj-fold', {'type': 'opt', 'lazy': 1}
 Pac 'kana/vim-textobj-function', {'type': 'opt', 'lazy': 1}
 Pac 'kana/vim-textobj-indent', {'type': 'opt', 'lazy': 1}
+Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
+Pac 'kaneshin/ctrlp-memolist', {'type': 'opt', 'lazy': 1}
+Pac 'kaneshin/ctrlp-sonictemplate', {'type': 'opt', 'lazy': 1}
 Pac 'kassio/neoterm', {'type': 'opt', 'lazy': 1, 'if': has('nvim')}
 Pac 'lambdalisue/gina.vim', {'type': 'opt', 'lazy': 1}
 Pac 'ludovicchabant/vim-gutentags', {'type': 'opt', 'lazy': 1, 'if': executable('ctags')}
+Pac 'mattn/ctrlp-launcher', {'type': 'opt', 'lazy': 1}
+Pac 'mattn/ctrlp-mark', {'type': 'opt', 'lazy': 1}
 Pac 'mattn/webapi-vim', {'type': 'opt', 'lazy': 1}
 Pac 'ntpeters/vim-better-whitespace', {'type': 'opt', 'lazy': 1}
+Pac 'ompugao/ctrlp-history', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-anzu', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-operator-blockwise', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-operator-search', {'type': 'opt', 'lazy': 1}
@@ -208,8 +205,10 @@ Pac 'prabirshrestha/asyncomplete-file.vim', {'type': 'opt', 'lazy': 1}
 Pac 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt', 'lazy': 1}
 Pac 'prabirshrestha/asyncomplete-tags.vim', {'type': 'opt', 'lazy': 1}
 Pac 'rhysd/vim-operator-surround', {'type': 'opt', 'lazy': 1}
+Pac 'roxma/vim-tmux-clipboard', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'taku-o/vim-zoom', {'type': 'opt', 'lazy': 1}
 Pac 'thinca/vim-submode', {'type': 'opt', 'lazy': 1}
+Pac 'tmux-plugins/vim-tmux-focus-events', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'tpope/vim-repeat', {'type': 'opt', 'lazy': 1}
 Pac 'tyru/caw.vim', {'type': 'opt', 'lazy': 1}
 Pac 'tyru/open-browser.vim', {'type': 'opt', 'lazy': 1}
@@ -219,1061 +218,71 @@ Pac 'w0rp/ale', {'type': 'opt', 'lazy': 1}
 Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
 
 " Plugin settings. {{{1
-" lightline. {{{2
-let g:lightline = {
-      \ 'colorscheme': 'material',
-      \ 'mode_map': {
-      \   'n' : 'N',
-      \   'i' : 'I',
-      \   'R' : 'R',
-      \   'v' : 'V',
-      \   'V' : 'V-L',
-      \   'c' : 'C',
-      \   "\<C-v>": 'V-B',
-      \   's' : 'S',
-      \   'S' : 'S-L',
-      \   "\<C-s>": 'S-B'
-      \   },
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'filename', 'anzu' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name',
-      \   'readonly': 'LightLineReadonly',
-      \   'modified': 'LightLineModified',
-      \   'filename': 'LightLineFilename',
-      \   'filetype': 'LightLineFiletype',
-      \   'fileformat': 'LightLineFileformat',
-      \   'anzu': 'anzu#search_status',
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
-
-function! LightLineModified()
-  if &filetype == "help"
-    return ""
-  elseif &modified
-    return "+"
-  elseif &modifiable
-    return ""
-  else
-    return ""
-  endif
-endfunction
-
-function! LightLineReadonly()
-  if &filetype == "help"
-    return ""
-  elseif &readonly
-    return ""
-  else
-    return ""
-  endif
-endfunction
-
-function! LightLineFugitive()
-  if exists("*fugitive#head")
-    let _ = fugitive#head()
-    return strlen(_) ? ''._ : ''
-  endif
-  return ''
-endfunction
-
-function! LightLineFilename()
-  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
-
-function! LightLineFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
-
-function! LightLineFileformat()
-  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
-
-
-" vim-airline. {{{2
-let g:airline_powerline_fonts = 1
-let g:airline_detect_iminsert = 1
-let g:airline_symbols_ascii = 0
-let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'n'  : 'N',
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
-      \ 'c'  : 'C',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : 'V',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ }
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-" powerline symbols
-" let g:airline_left_sep = ''
-" let g:airline_left_alt_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_right_alt_sep = ''
-" let g:airline_symbols.branch = ''
-" let g:airline_symbols.readonly = ''
-" let g:airline_symbols.linenr = '☰'
-" let g:airline_symbols.maxlinenr = ''
-
-" unicode symbols
-" let g:airline_left_sep = '»'
-" let g:airline_left_sep = '▶'
-" let g:airline_right_sep = '«'
-" let g:airline_right_sep = '◀'
-" let g:airline_symbols.crypt = '🔒'
-" let g:airline_symbols.linenr = '☰'
-" let g:airline_symbols.linenr = '␊'
-" let g:airline_symbols.linenr = '␤'
-" let g:airline_symbols.linenr = '¶'
-" let g:airline_symbols.maxlinenr = ''
-" let g:airline_symbols.maxlinenr = '㏑'
-" let g:airline_symbols.branch = '⎇'
-" let g:airline_symbols.paste = 'ρ'
-" let g:airline_symbols.paste = 'Þ'
-" let g:airline_symbols.paste = '∥'
-" let g:airline_symbols.spell = 'Ꞩ'
-" let g:airline_symbols.notexists = '∄'
-" let g:airline_symbols.whitespace = 'Ξ'
-
-" extensions
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
-
-" theme
-let g:airline_theme = 'zenburn'
-
-
-" indentLine. {{{2
-let g:indentLine_faster = 1
-let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'denite', 'vimfiler', 'tweetvim']
-nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-
-" deoplete.nvim. {{{2
-let g:deoplete#enable_at_startup = 1
-
-" neocomplete.vim. {{{2
-let g:neocomplete#enable_at_startup = 1
-
-" neosnippet.vim {{{2
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory = $VIM_PATH . '/snippets'
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-" vim-rooter. {{{2
-let g:rooter_use_lcd = 1
-let g:rooter_silent_chdir = 1
-let g:rooter_manual_only = 1
-
-" vim-submode. {{{2
-let g:submode_leave_with_key = 1
-
-au MyAutoCmd VimEnter * call <SID>vim_submode_aft()
-function! s:vim_submode_aft() abort
-  packadd vim-submode
-  call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
-  call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
-  call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
-  call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
-  call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-  call submode#map('bufmove', 'n', '', '<', '<C-w><')
-  call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-  call submode#map('bufmove', 'n', '', '-', '<C-w>-')
-endfunction
-
-" FastFold. {{{2
-let g:fastfold_savehook = 0
-
-" vim-easy-align. {{{2
-vmap <Enter> <Plug>(EasyAlign)
-
-let g:easy_align_delimiters = {
-      \ '>': {
-      \       'pattern': '>>\|=>\|>.\+',
-      \       'right_margin': 0,
-      \       'delimiter_align': 'l'
-      \   },
-      \ '/': {
-      \       'pattern': '//\+\|/\*\|\*/',
-      \       'delimiter_align': 'l',
-      \       'ignore_groups': ['!Comment']
-      \   },
-      \ ']': {
-      \       'pattern': '[[\]]',
-      \       'left_margin': 0,
-      \       'right_margin': 0,
-      \       'stick_to_left': 0
-      \   },
-      \ ')': {
-      \       'pattern': '[()]',
-      \       'left_margin': 0,
-      \       'right_margin': 0,
-      \       'stick_to_left': 0
-      \   },
-      \ 'd': {
-      \       'pattern': ' \(\S\+\s*[;=]\)\@=',
-      \       'left_margin': 0,
-      \       'right_margin': 0
-      \   },
-      \ 'p': {
-      \       'pattern': 'pos=\|size=',
-      \       'right_margin': 0
-      \   },
-      \ 's': {
-      \       'pattern': 'sys=\|Trns=',
-      \       'right_margin': 0
-      \   },
-      \ 'k': {
-      \       'pattern': 'key=\|cmt=',
-      \       'right_margin': 0
-      \   },
-      \ 'c': {
-      \       'pattern': 'cmt=',
-      \       'right_margin': 0
-      \   },
-      \ ':': {
-      \       'pattern': ':',
-      \       'left_margin': 1,
-      \       'right_margin': 1,
-      \       'stick_to_left': 0,
-      \       'ignore_groups': []
-      \   },
-      \ 't': {
-      \       'pattern': "\<tab>",
-      \       'left_margin': 0,
-      \       'right_margin': 0
-      \   },
-      \ ';': {
-      \       'pattern': ';',
-      \       'left_margin': 1,
-      \       'right_margin': 1,
-      \       'stick_to_left': 0,
-      \       'ignore_groups': []
-      \   }
-      \ }
-
-" yankround.vim. {{{2
-nmap p <Plug>(yankround-p)
-nmap P <Plug>(yankround-P)
-nmap <C-p> <Plug>(yankround-prev)
-nmap <C-n> <Plug>(yankround-next)
-let g:yankround_max_history = 100
-
-" vim-operator-replace. {{{2
-map _ <Plug>(operator-replace)
-
-" vim-operator-surround. {{{2
-map sA <Plug>(operator-surround-append)
-map sD <Plug>(operator-surround-delete)
-map sR <Plug>(operator-surround-replace)
-
-" vim-operator-blockwise. {{{2
-" nmap YY <Plug>(operator-blockwise-yank-head)
-" nmap DD <Plug>(operator-blockwise-delete-head)
-" nmap CC <Plug>(operator-blockwise-change-head)
-
-" vim-operator-search. {{{2
-nmap [Space]/ <Plug>(operator-search)
-
-" vim-operator-flashy. {{{2
-map y <Plug>(operator-flashy)
-nmap Y <Plug>(operator-flashy)$
-
-" vim-textobj-multiblock. {{{2
-omap ab <Plug>(textobj-multiblock-a)
-omap ib <Plug>(textobj-multiblock-i)
-xmap ab <Plug>(textobj-multiblock-a)
-xmap ib <Plug>(textobj-multiblock-i)
-
-" vim-textobj-entire. {{{2
-omap ae <Plug>(textobj-entire-a)
-xmap ae <Plug>(textobj-entire-a)
-omap ie <Plug>(textobj-entire-i)
-xmap ie <Plug>(textobj-entire-i)
-
-" vim-textobj-fold. {{{2
-omap az <Plug>(textobj-fold-a)
-xmap az <Plug>(textobj-fold-a)
-omap iz <Plug>(textobj-fold-i)
-xmap iz <Plug>(textobj-fold-i)
-
-" vim-textobj-function. {{{2
-omap af <Plug>(textobj-function-a)
-xmap af <Plug>(textobj-function-a)
-omap if <Plug>(textobj-function-i)
-xmap if <Plug>(textobj-function-i)
-omap aF <Plug>(textobj-function-A)
-xmap aF <Plug>(textobj-function-A)
-omap iF <Plug>(textobj-function-I)
-xmap iF <Plug>(textobj-function-I)
-
-" vim-textobj-indent. {{{2
-omap ai <Plug>(textobj-indent-a)
-xmap ai <Plug>(textobj-indent-a)
-omap ii <Plug>(textobj-indent-i)
-xmap ii <Plug>(textobj-indent-i)
-omap aI <Plug>(textobj-indent-same-a)
-xmap aI <Plug>(textobj-indent-same-a)
-omap iI <Plug>(textobj-indent-same-i)
-xmap iI <Plug>(textobj-indent-same-i)
-
-" textobj-lastpaste. {{{2
-let g:textobj_comment_no_default_key_mappings = 1
-omap iP <Plug>(textobj-lastpaste-i)
-xmap iP <Plug>(textobj-lastpaste-i)
-
-" memolist.vim. {{{2
-if isdirectory($HOME . '/Dropbox')
-  let g:memolist_path = $HOME . '/Dropbox/memolist'
-else
-  let g:memolist_path = $HOME . '/.memolist'
-endif
-
-call Mkdir(g:memolist_path)
-
-let g:memolist_denite = 1
-let g:memolist_memo_suffix = "md"
-let g:memolist_prompt_tags = 1
-
-" mappings
-nnoremap <Leader>mn :<C-u>MemoNew<CR>
-" nnoremap <Leader>ml :<C-u>MemoList<CR>
-nnoremap <Leader>ml :<C-u>exe printf("Dirvish %s", g:memolist_path)<CR>
-nnoremap <Leader>mg :<C-u>MemoGrep<CR>
-
-
-" sonictemplate-vim. {{{2
-let g:sonictemplate_vim_template_dir = $VIM_PATH . '/template'
-let g:sonictemplate_vim_vars = {
-      \ '_': {
-      \   'author': 'yukimemi',
-      \   'mail': 'yukimemi@gmail.com',
-      \ }
-      \ }
-
-" autodate.vim {{{2
-let g:autodate_format = "%Y/%m/%d %H:%M:%S"
-let g:autodate_keyword_pre  = "Last Change *:"
-let g:autodate_keyword_post = "."
-au MyAutoCmd FileType markdown call <SID>autodate_markdown()
-function! s:autodate_markdown() abort
-  let b:autodate_format = "%Y-%m-%dT%H:%M:%S+09:00"
-  let b:autodate_keyword_pre  = 'date: "'
-  let b:autodate_keyword_post = '"'
-endfunction
-
-" vim-mundo. {{{2
-nnoremap [Space]u :MundoToggle<CR>
-
-" ale. {{{2
-let g:ale_linters = {
-      \ 'go': ['golint', 'go vet', 'goimports'],
-      \ 'haskell': ['hlint']
-      \ }
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_save = 1
-nmap <silent> z[ <Plug>(ale_previous_wrap)
-nmap <silent> z] <Plug>(ale_next_wrap)
-
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-      \ 'javascript': ['prettier'],
-      \ 'javascript.jsx': ['prettier'],
-      \ 'typescript': ['prettier'],
-      \ 'json': ['prettier'],
-      \ 'markdown': ['prettier'],
-      \ 'scss': ['prettier'],
-      \ 'typescript.tsx': ['prettier'],
-      \ 'sh': ['shfmt'],
-      \ 'elm': ['elm-format'],
-      \ }
-
-" Rust.
-let g:ale_rust_ignore_error_codes = ['E0432', 'E0433']
-
-" vim-dirvish. {{{2
-" Don't use netrw.
-let g:loaded_netrwPlugin = 1
-if g:is_windows
-  nnoremap [Space]v :<C-u>Dirvish %<CR>
-endif
-
-" neoterm. {{{2
-if ! g:is_windows
-  let g:neoterm_autoinsert = 1
-  nnoremap [Space]s :<C-u>terminal<CR>
-  tnoremap sj <C-\><C-n><C-w>j
-  tnoremap sk <C-\><C-n><C-w>k
-  tnoremap sl <C-\><C-n><C-w>l
-  tnoremap sh <C-\><C-n><C-w>h
-endif
-
-" vim-findent. {{{2
-let g:findent#enable_messages = 0
-let g:findent#enable_warnings = 0
-au MyAutoCmd BufRead * Findent
-
-" echodoc.vim {{{2
-let g:echodoc_enable_at_startup = 1
-
-" denite.nvim {{{2
-" Use plefix s
-nnoremap sdc :<C-u>Denite colorscheme -auto-preview<CR>
-nnoremap sdb :<C-u>Denite buffer<CR>
-nnoremap sdf :<C-u>Denite file<CR>
-nnoremap sdF :<C-u>Denite file_rec<CR>
-" nnoremap sdu :<C-u>Denite buffer file_old<CR>
-nnoremap sdd :<C-u>Denite buffer file_mru file_rec<CR>
-nnoremap sdo :<C-u>Denite outline -no-quit -mode=normal<CR>
-nnoremap sdh :<C-u>Denite help<CR>
-nnoremap sdr :<C-u>Denite register<CR>
-nnoremap sdg :<C-u>Denite -no-empty grep<CR>
-nnoremap sd/ :<C-u>Denite line -no-quit<CR>
-nnoremap sdR :<C-u>Denite <CR>
-
-noremap sdl :<C-u>Denite command_history<CR>
-
-" Incremental search in cmdline history.
-inoremap <C-l> <ESC>:<C-u>Denite command<CR>
-
-" Load after settings.
-if has('python3')
-  au MyAutoCmd VimEnter * call <SID>denite_aft()
-endif
-function! s:denite_aft() abort
-  " Default options.
-  call denite#custom#option('default', {
-        \ 'prompt': '»',
-        \ 'cursor_wrap': v:true,
-        \ 'auto_resize': v:true,
-        \ 'highlight_mode_insert': 'WildMenu'
-        \ })
-
-  if executable('rg')
-    " Ripgrep command on grep source
-    call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts',
-          \ ['--vimgrep', '--no-heading'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-
-  elseif executable('jvgrep')
-    " jvgrep command on grep source
-    call denite#custom#var('grep', 'command', ['jvgrep'])
-    call denite#custom#var('grep', 'default_opts', [])
-    call denite#custom#var('grep', 'recursive_opts', ['-R'])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', [])
-    call denite#custom#var('grep', 'final_opts', [])
-
-  elseif executable('pt')
-    " Pt command on grep source
-    call denite#custom#var('grep', 'command', ['pt'])
-    call denite#custom#var('grep', 'default_opts',
-          \ ['--nogroup', '--nocolor', '--smart-case'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-  endif
-  " custom mappings.
-  call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-  call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-  call denite#custom#map('insert', '<C-[>', '<denite:enter_mode:normal>', 'noremap')
-  call denite#custom#map('normal', '<C-[>', '<denite:quit>', 'noremap')
-endfunction
-
-" is.vim. {{{2
-map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)zv
-map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)zv
-
-map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)zv
-map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)zv
-map #  <Plug>(asterisk-z#)<Plug>(is-nohl-1)zv
-map g# <Plug>(asterisk-gz#)<Plug>(is-nohl-1)zv
-
-" incsearch.vim. {{{2
-" map /  <Plug>(incsearch-forward)
-" map ?  <Plug>(incsearch-backward)
-" map g/ <Plug>(incsearch-stay)
-"
-" let g:incsearch#auto_nohlsearch = 1
-" map n   <Plug>(incsearch-nohl)<Plug>(anzu-n)zv
-" map N   <Plug>(incsearch-nohl)<Plug>(anzu-N)zv
-" map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)zv
-" map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)zv
-" map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)zv
-" map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)zv
-"
-" map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
-" map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
-" map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
-" map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
-
-" vim-quickhl. {{{2
-let g:quickhl_manual_enable_at_startup = 1
-
-nmap [Space]m <Plug>(quickhl-manual-this)
-xmap [Space]m <Plug>(quickhl-manual-this)
-nmap [Space]M <Plug>(quickhl-manual-reset)
-xmap [Space]M <Plug>(quickhl-manual-reset)
-
-let g:quickhl_manual_keywords = [
-      \ "失敗",
-      \ "警告",
-      \ "エラー",
-      \ "異常",
-      \ "warn",
-      \ "WARN",
-      \ "error",
-      \ "ERROR",
-      \ ]
-
-" vim-parenmatch. {{{2
-let g:loaded_matchparen = 1
-
-" vim-cursorword. {{{2
-function! s:ToggleCursorWord() abort
-  let b:cursorword = !get(b:, 'cursorword', 1)
-endfunction
-
-com! ToggleCursorWord call s:ToggleCursorWord()
-
-" deoplete-go. {{{2
-" let g:deoplete#sources#go#use_cache = 1
-" let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
-" let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-" let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-
-" caw.vim. {{{2
-nmap gc <Plug>(caw:prefix)
-xmap gc <Plug>(caw:prefix)
-nmap gcc <Plug>(caw:hatpos:toggle)
-xmap gcc <Plug>(caw:hatpos:toggle)
-
-" gina.vim. {{{2
-nnoremap [Space]gs :<C-u>Gina status<CR>
-nnoremap [Space]gb :<C-u>Gina branch<CR>
-nnoremap [Space]gg :<C-u>Gina grep<CR>
-nnoremap [Space]gd :<C-u>Gina diff<CR>
-nnoremap [Space]gl :<C-u>Gina ls-files<CR>
-nnoremap [Space]gp :<C-u>Gina push<CR>
-
-" vim-go. {{{2
-let g:go_auto_type_info = 1
-let g:go_snippet_engine = "neosnippet"
-let g:go_fmt_command = "goimports"
-
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
-let g:go_metalinter_autosave = 1
-let g:go_fmt_autosave = 0
-let g:go_gocode_unimported_packages = 1
-" au MyAutoCmd BufWritePost *.go GoMetaLinter
-" au MyAutoCmd BufWritePre *.go silent GoFmt
-
-au MyAutoCmd BufNew,BufRead *.go call <SID>vim_go_cfg()
-
-function! s:vim_go_cfg() abort
-  packadd vim-go
-  setl foldmethod=syntax
-  setl tabstop=4
-  setl shiftwidth=4
-  setl softtabstop=0
-  setl noexpandtab
-
-  nmap <buffer> <Leader>gd <Plug>(go-doc)
-  nmap <buffer> <Leader>gs <Plug>(go-doc-split)
-  nmap <buffer> <Leader>gv <Plug>(go-doc-vertical)
-  nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
-  nmap <buffer> <Leader>gr <Plug>(go-rename)
-
-  " nmap <buffer> <Leader>r <Plug>(go-run)
-  nmap <buffer> <Leader>gb <Plug>(go-build)
-  nmap <buffer> <Leader>gt <Plug>(go-test)
-  nmap <buffer> <Leader>gc <Plug>(go-coverage)
-
-  nmap <buffer> <Leader>ds <Plug>(go-def-split)
-  nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
-  nmap <buffer> <Leader>dt <Plug>(go-def-tab)
-  nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
-
-  setl completeopt=menu,preview
-endfunction
-
-" vim-ps1. {{{2
-function! s:addHeaderPs1(flg)
-  setl fenc=cp932
-  setl ff=dos
-  let lines = []
-  if a:flg
-    call add(lines, "@set __SCRIPTPATH=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass -InputFormat None \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
-  else
-    call add(lines, "@set __SCRIPTPATH=%~f0&@powershell -Version 2.0 -NoProfile -ExecutionPolicy ByPass -InputFormat None \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
-  endif
-  call add(lines, "@exit /b %errorlevel%")
-  call extend(lines, readfile(expand("%")))
-  let i = 0
-  for line in lines
-    if len(lines) != (i + 1)
-      let lines[i] .= "\r"
-    endif
-    let i += 1
-  endfor
-  " let s:basedir = expand("%:p:h") . "/../cmd/"
-  let s:basedir = expand("%:p:h") . "/"
-  let s:cmdFile = expand("%:p:t:r") . ".cmd"
-  call Mkdir(s:basedir)
-  call writefile(lines,  s:basedir . s:cmdFile, "b")
-  echo "Write " . s:basedir . expand("%:p:t:r") . ".cmd"
-endfunction
-" au MyAutoCmd BufWritePost *.ps1 call <SID>addHeaderPs1(0)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0)
-au MyAutoCmd BufNew,BufRead *.ps1 setl fdm=syntax
-
-" typescript-vim. {{{2
-au MyAutoCmd BufNew,BufRead *.ts setl ft=typescript
-au MyAutoCmd BufNew,BufRead *.tsx setl ft=typescript.tsx
-
-" vim-fish. {{{2
-au MyAutoCmd BufNew,BufRead *.fish setl ft=fish
-
-" rust.vim. {{{2
-let g:rust_bang_comment_leader = 1
-let g:rust_conceal = 0
-let g:rust_conceal_mod_path = 0
-let g:rust_conceal_pub = 0
-let g:rust_fold = 1
-let g:rust_recommended_style = 1
-let g:rustfmt_autosave = 1
-
-" vim-racer. {{{2
-" au MyAutoCmd FileType rust call <SID>vim_racer_aft()
-let g:racer_experimental_completer = 1
-
-function! s:vim_racer_aft() abort
-  packadd vim-racer
-  setl completeopt=menu,preview
-  nmap <buffer> gd <Plug>(rust-def)
-  nmap <buffer> gs <Plug>(rust-def-split)
-  nmap <buffer> gx <Plug>(rust-def-vertical)
-  nmap <buffer> K <Plug>(rust-doc)
-endfunction
-
-" ghcmod-vim. {{{2
-au MyAutoCmd FileType haskell call <SID>ghcmod_vim_aft()
-
-function! s:ghcmod_vim_aft() abort
-  packadd ghcmod-vim
-  setl completeopt=menu,preview
-  nnoremap <buffer> K :<C-u>GhcModInfoPreview<CR>
-endfunction
-
-" neco-ghc. {{{2
-au MyAutoCmd FileType haskell setl omnifunc=necoghc#omnifunc
-
-" vim-haskell-sort-import. {{{2
-au MyAutoCmd BufWritePre *.hs HaskellSortImport
-
-" haskell-vim. {{{2
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
-
-" vim-hindent. {{{2
-let g:hindent_on_save = 1
-let g:hindent_indent_size = 2
-let g:hindent_line_length = 100
-
-" vim-sqlfmt. {{{2
-let g:sqlfmt_command = "sqlformat"
-let g:sqlfmt_options = "-r -k upper"
-
-" vim-renamer. {{{2
-nmap <Leader>r <Plug>RenamerStart
-
-" tagbar. {{{2
-nnoremap <F8> :<C-u>TagbarToggle<CR>
-let g:tagbar_type_rust = {
-      \ 'ctagstype' : 'rust',
-      \   'kinds' : [
-      \     'T:types,type definitions',
-      \     'f:functions,function definitions',
-      \     'g:enum,enumeration names',
-      \     's:structure names',
-      \     'm:modules,module names',
-      \     'c:consts,static constants',
-      \     't:traits',
-      \     'i:impls,trait implementations',
-      \   ]
-      \ }
-
-let g:tagbar_type_markdown = {
-      \ 'ctagstype' : 'markdown',
-      \   'kinds' : [
-      \     'h:Heading_L1',
-      \     'i:Heading_L2',
-      \     'k:Heading_L3'
-      \   ]
-      \ }
-
-
-" vim-startify. {{{2
-let g:startify_bookmarks = [
-      \ '~/.vimrc',
-      \ '~/.config/nvim/minpac.vim',
-      \ '~/.config/nvim/dein.toml',
-      \ '~/.zshrc',
-      \ '~/.zshenv',
-      \ ]
-
-" ctrlp.vim. {{{2
-let g:ctrlp_map = '<nop>'
-let g:ctrlp_use_caching = 1
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_lazy_update = 1
-let g:ctrlp_extensions = ['line', 'changes', 'bookmarkdir', 'memolist']
-nnoremap scp :<C-u>CtrlP<CR>
-nnoremap scb :<C-u>CtrlPBuffer<CR>
-nnoremap scd :<C-u>CtrlPCurWD<CR>
-nnoremap scu :<C-u>CtrlPMRU<CR>
-nnoremap scm :<C-u>CtrlPMark<CR>
-" nnoremap scl :<C-u>CtrlPLine<CR>
-nnoremap scg :<C-u>CtrlPChange<CR>
-nnoremap scf :<C-u>CtrlPFiletype<CR>
-" nnoremap scl :<C-u>CtrlPLauncher<CR>
-nnoremap sct :<C-u>CtrlPSonictemplate<CR>
-nnoremap sch :<C-u>CtrlPCmdHistory<CR>
-
-nnoremap scl :<C-u>CtrlPMemolist<CR>
-
-if executable('rg')
-  let g:ctrlp_user_command ='rg -F --files %s'
-endif
-
-" vim-devicons. {{{2
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-
-" asyncomplete.vim. {{{2
-let g:asyncomplete_auto_popup = 1
-let g:asyncomplete_remove_duplicates = 1
-let g:asyncomplete_force_refresh_on_context_changed = 1
-imap <C-Space> <Plug>(asyncomplete_force_refresh)
-
-" asyncomplete-buffer.vim. {{{3
-au MyAutoCmd User asyncomplete_setup packadd asyncomplete-buffer.vim | call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-      \ 'name': 'buffer',
-      \ 'whitelist': ['*'],
-      \ 'priority': 1,
-      \ 'completor': function('asyncomplete#sources#buffer#completor'),
-      \ }))
-
-" asyncomplete-file.vim. {{{3
-au MyAutoCmd User asyncomplete_setup packadd asyncomplete-file.vim | call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-      \ 'name': 'file',
-      \ 'whitelist': ['*'],
-      \ 'priority': 1,
-      \ 'completor': function('asyncomplete#sources#file#completor'),
-      \ }))
-
-" asyncomplete-emoji.vim. {{{3
-au MyAutoCmd User asyncomplete_setup packadd asyncomplete-emoji.vim | call asyncomplete#register_source(asyncomplete#sources#emoji#get_source_options({
-      \ 'name': 'emoji',
-      \ 'whitelist': ['*'],
-      \ 'priority': 1,
-      \ 'completor': function('asyncomplete#sources#emoji#completor'),
-      \ }))
-
-" asyncomplete-tags.vim. {{{3
-au MyAutoCmd User asyncomplete_setup packadd asyncomplete-tags.vim | call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
-      \ 'name': 'tags',
-      \ 'whitelist': ['*'],
-      \ 'priority': 2,
-      \ 'completor': function('asyncomplete#sources#tags#completor'),
-      \ 'config': {
-      \    'max_file_size': 20000000,
-      \ }
-      \ }))
-
-" asyncomplete-omni.vim. {{{3
-au MyAutoCmd User asyncomplete_setup packadd asyncomplete-omni.vim | call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-      \ 'name': 'omni',
-      \ 'whitelist': ['*'],
-      \ 'blacklist': ['go', 'rust'],
-      \ 'priority': 3,
-      \ 'completor': function('asyncomplete#sources#omni#completor')
-      \ }))
-
-" asyncomplete-neosnippet.vim. {{{3
-au MyAutoCmd User asyncomplete_setup packadd asyncomplete-neosnippet.vim | call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
-      \ 'name': 'neosnippet',
-      \ 'whitelist': ['*'],
-      \ 'priority': 3,
-      \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
-      \ }))
-
-" asyncomplete-necovim.vim. {{{3
-au MyAutoCmd FileType vim call <SID>asyncomplete_necovim_aft()
-function! s:asyncomplete_necovim_aft() abort
-  packadd asyncomplete-necovim.vim
-  call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
-        \ 'name': 'necovim',
-        \ 'whitelist': ['vim'],
-        \ 'priority': 4,
-        \ 'completor': function('asyncomplete#sources#necovim#completor'),
-        \ }))
-endfunction
-
-" asyncomplete-necosyntax.vim. {{{3
-au MyAutoCmd FileType vim call <SID>asyncomplete_necosyntax_aft()
-function! s:asyncomplete_necosyntax_aft() abort
-  packadd asyncomplete-necosyntax.vim
-  call asyncomplete#register_source(asyncomplete#sources#necosyntax#get_source_options({
-        \ 'name': 'necosyntax',
-        \ 'whitelist': ['*'],
-        \ 'priority': 4,
-        \ 'completor': function('asyncomplete#sources#necosyntax#completor'),
-        \ }))
-endfunction
-
-" asyncomplete-racer.vim. {{{3
-if !executable('rls')
-  au MyAutoCmd FileType rust call <SID>asyncomplete_racer_aft()
-endif
-function! s:asyncomplete_racer_aft() abort
-  packadd asyncomplete-racer.vim
-  call asyncomplete#register_source(asyncomplete#sources#racer#get_source_options({
-        \ 'priority': 4,
-        \ }))
-endfunction
-
-" asyncomplete-gocode.vim. {{{3
-if !executable('go-langserver')
-  au MyAutoCmd FileType go call <SID>asyncomplete_gocode_aft()
-endif
-function! s:asyncomplete_gocode_aft() abort
-  packadd asyncomplete-gocode.vim
-  call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
-        \ 'name': 'gocode',
-        \ 'whitelist': ['go'],
-        \ 'priority': 4,
-        \ 'completor': function('asyncomplete#sources#gocode#completor'),
-        \ }))
-endfunction
-
-" vim-lsp. {{{3
-" Docker. {{{4
-if executable('docker-langserver')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'docker-langserver',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
-        \ 'priority': 4,
-        \ 'whitelist': ['dockerfile'],
-        \ })
-endif
-
-" go. {{{4
-if executable('go-langserver')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'go-langserver',
-        \ 'cmd': {server_info->['go-langserver', '-mode', 'stdio']},
-        \ 'priority': 4,
-        \ 'whitelist': ['go'],
-        \ })
-endif
-
-" python. {{{4
-if executable('pyls')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'priority': 4,
-        \ 'whitelist': ['python'],
-        \ })
-endif
-
-" rust. {{{4
-if executable('rls')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-        \ 'priority': 4,
-        \ 'whitelist': ['rust'],
-        \ })
-endif
-
-" typescript. {{{4
-if executable('typescript-language-server')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'typescript-language-server',
-        \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
-        \ 'priority': 4,
-        \ 'whitelist': ['typescript', 'javascript', 'javascript.jsx']
-        \ })
-endif
-
-" previm. {{{2
-let g:previm_enable_realtime = 0
-" let g:previm_disable_default_css = 1
-
-" vim-edgemotion. {{{2
-imap <C-j> <Plug>(edgemotion-j)
-imap <C-k> <Plug>(edgemotion-k)
-
-" vim-markdown-composer. {{{2
-if executable('cargo')
-  " au MyAutoCmd FileType markdown packadd vim-markdown-composer
-endif
-
-" vim-reading-vimrc. {{{2
-vmap <Leader><CR> <Plug>(reading_vimrc-update_clipboard)
-
-" gruvbox. {{{2
-let g:gruvbox_contrast_dark = "hard"
-
-" vim-precious. {{{2
-let g:precious_enable_switch_CursorMoved = { '*': 0, 'help': 1 }
-au MyAutoCmd InsertEnter * :packadd vim-precious PreciousSwitch
-au MyAutoCmd InsertLeave * :packadd vim-precious PreciousReset
-
-" vim-external. {{{2
-map <Leader>e <Plug>(external-editor)
-map <Leader>n <Plug>(external-explorer)
-map <Leader>b <Plug>(external-browser)
-
-" vim-slumlord. {{{2
-let g:slumlord_separate_win = 1
-
-" Omnisharp-vim. {{{2
-let g:OmniSharp_selector_ui = 'ctrlp'
-if g:is_darwin
-  let g:OmniSharp_server_use_mono = 1
-endif
-" Show type information automatically when the cursor stops moving
-au MyAutoCmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
-
-" The following commands are contextual, based on the cursor position.
-au MyAutoCmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
-au MyAutoCmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
-au MyAutoCmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
-au MyAutoCmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
-
-" Finds members in the current buffer
-au MyAutoCmd FileType cs nnoremap <buffer> <Leader>fm :OmniSharpFindMembers<CR>
-
-au MyAutoCmd FileType cs nnoremap <buffer> <Leader>fx :OmniSharpFixUsings<CR>
-au MyAutoCmd FileType cs nnoremap <buffer> <Leader>tt :OmniSharpTypeLookup<CR>
-au MyAutoCmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
-au MyAutoCmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
-au MyAutoCmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
-
-" Navigate up and down by method/property/field
-au MyAutoCmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
-au MyAutoCmd FileType cs nnoremap <buffer> <C-j> :OmniSharpNavigateDown<CR>
-
-" Contextual code actions (uses fzf, CtrlP or unite.vim when available)
-nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
-" Run code actions with text selected in visual mode to extract method
-xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
-
-" Rename with dialog
-nnoremap <Leader>nm :OmniSharpRename<CR>
-nnoremap <F2> :OmniSharpRename<CR>
-" Rename without dialog - with cursor on the symbol to rename: `:Rename newname`
-command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
-
-nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
-
-" Start the omnisharp server for the current solution
-nnoremap <Leader>ss :OmniSharpStartServer<CR>
-nnoremap <Leader>sp :OmniSharpStopServer<CR>
-
-" Add syntax highlighting for types and interfaces
-nnoremap <Leader>th :OmniSharpHighlightTypes<CR>
-
-" TweetVim. {{{2
-au MyAutoCmd FileType tweetvim call s:my_tweetvim_mappings()
-function! s:my_tweetvim_mappings()
-  setl nowrap
-  nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
-endfunction
-
-nnoremap [Space]tu :<C-u>packadd webapi-vim \| packadd open-browser.vim \| packadd twibill.vim \| packadd bitly.vim \| packadd favstar-vim \| TweetVimUserStream<CR>
-
-let g:tweetvim_default_account = "yukimemi"
-let g:tweetvim_tweet_per_page = 100
-let g:tweetvim_cache_size = 50
-"let g:tweetvim_display_username = 1
-let g:tweetvim_display_source = 1
-let g:tweetvim_display_time = 1
-"let g:tweetvim_display_icon = 1
-let g:tweetvim_async_post = 1
-let g:tweetvim_display_separator = 0
-let g:tweetvim_empty_separator = 1
-let g:tweetvim_align_right = 0
-
-" Defx. {{{2
-if !g:is_windows
-  nnoremap [Space]v :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
-endif
-au MyAutoCmd FileType defx call s:defx_my_settings()
-function! s:defx_my_settings() abort
-  " Define mappings
-  nnoremap <silent><buffer><expr> <CR> defx#do_action('open')
-  nnoremap <silent><buffer><expr> l defx#do_action('open')
-  nnoremap <silent><buffer><expr> E defx#do_action('open', 'vsplit')
-  nnoremap <silent><buffer><expr> P defx#do_action('open', 'pedit')
-  nnoremap <silent><buffer><expr> K defx#do_action('new_directory')
-  nnoremap <silent><buffer><expr> N defx#do_action('new_file')
-  nnoremap <silent><buffer><expr> d defx#do_action('remove')
-  nnoremap <silent><buffer><expr> r defx#do_action('rename')
-  nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> ~ defx#do_action('cd')
-  nnoremap <silent><buffer><expr> q defx#do_action('quit')
-  nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
-  nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
-  nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
-  nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
-  nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
-  nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
-endfunction
-
+source $VIM_PATH/rc/lightline.vim
+source $VIM_PATH/rc/indentLine.vim
+source $VIM_PATH/rc/deoplete.vim
+" source $VIM_PATH/rc/neocomplete.vim
+source $VIM_PATH/rc/neosnippet.vim
+source $VIM_PATH/rc/vim-rooter.vim
+source $VIM_PATH/rc/vim-submode.vim
+source $VIM_PATH/rc/FastFold.vim
+source $VIM_PATH/rc/vim-easy-align.vim
+source $VIM_PATH/rc/yankround.vim
+source $VIM_PATH/rc/vim-operator-replace.vim
+source $VIM_PATH/rc/vim-operator-surround.vim
+" source $VIM_PATH/rc/vim-operator-blockwise.vim
+source $VIM_PATH/rc/vim-operator-search.vim
+source $VIM_PATH/rc/vim-operator-flashy.vim
+source $VIM_PATH/rc/vim-textobj-multiblock.vim
+source $VIM_PATH/rc/vim-textobj-entire.vim
+source $VIM_PATH/rc/vim-textobj-fold.vim
+source $VIM_PATH/rc/vim-textobj-function.vim
+source $VIM_PATH/rc/vim-textobj-indent.vim
+source $VIM_PATH/rc/textobj-lastpaste.vim
+source $VIM_PATH/rc/memolist.vim
+source $VIM_PATH/rc/sonictemplate-vim.vim
+source $VIM_PATH/rc/autodate.vim
+source $VIM_PATH/rc/vim-mundo.vim
+source $VIM_PATH/rc/ale.vim
+source $VIM_PATH/rc/vim-dirvish.vim
+source $VIM_PATH/rc/neoterm.vim
+source $VIM_PATH/rc/vim-findent.vim
+source $VIM_PATH/rc/echodoc.vim
+source $VIM_PATH/rc/is.vim
+source $VIM_PATH/rc/vim-quickhl.vim
+source $VIM_PATH/rc/vim-parenmatch.vim
+source $VIM_PATH/rc/vim-cursorword.vim
+source $VIM_PATH/rc/caw.vim
+source $VIM_PATH/rc/gina.vim
+source $VIM_PATH/rc/vim-go.vim
+source $VIM_PATH/rc/vim-ps1.vim
+source $VIM_PATH/rc/typescript-vim.vim
+source $VIM_PATH/rc/vim-fish.vim
+source $VIM_PATH/rc/rust.vim
+source $VIM_PATH/rc/vim-racer.vim
+source $VIM_PATH/rc/ghcmod-vim.vim
+source $VIM_PATH/rc/neco-ghc.vim
+source $VIM_PATH/rc/vim-haskell-sort-import.vim
+source $VIM_PATH/rc/haskell-vim.vim
+source $VIM_PATH/rc/vim-hindent.vim
+source $VIM_PATH/rc/vim-sqlfmt.vim
+source $VIM_PATH/rc/vim-renamer.vim
+source $VIM_PATH/rc/tagbar.vim
+source $VIM_PATH/rc/vim-startify.vim
+source $VIM_PATH/rc/ctrlp.vim
+source $VIM_PATH/rc/vim-devicons.vim
+source $VIM_PATH/rc/asyncomplete.vim
+source $VIM_PATH/rc/previm.vim
+source $VIM_PATH/rc/vim-edgemotion.vim
+" source $VIM_PATH/rc/vim-markdown-composer.vim
+source $VIM_PATH/rc/vim-reading-vimrc.vim
+source $VIM_PATH/rc/gruvbox.vim
+source $VIM_PATH/rc/vim-precious.vim
+source $VIM_PATH/rc/vim-external.vim
+source $VIM_PATH/rc/vim-slumlord.vim
+source $VIM_PATH/rc/Omnisharp-vim.vim
+source $VIM_PATH/rc/TweetVim.vim
+source $VIM_PATH/rc/defx.vim
 
 " Define user commands for updating/cleaning the plugins. {{{1
 " Each of them loads minpac, reloads .vimrc to register the
