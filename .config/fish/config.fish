@@ -156,6 +156,7 @@ abbr -a mvup 'vim -c "PackUpdate"'
 abbr -a dup 'nvim -c "silent! call dein#update() | q"'
 abbr -a dvup 'vim -c "silent! call dein#update() | q"'
 
+
 # Chrome {{{2
 abbr -a chromeapp "open -na 'Google Chrome' --args '--app=https://"
 
@@ -166,6 +167,9 @@ if __isMac
     abbr -a bri 'brew-file brew install'
     abbr -a brs 'brew-file brew search'
 end
+
+# docker {{{2
+# abbr -a de "docker run --rm -it -v $PWD:/root/(basename $PWD) -w /root/(basename $PWD) yukimemi/neovim"
 
 ### Options. {{{1
 # Use fish_vi_key_bindings.
