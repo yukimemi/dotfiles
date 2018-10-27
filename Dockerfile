@@ -25,7 +25,7 @@ RUN apt-get install -y sudo git curl build-essential
 RUN ln -snvf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 # clean up
-RUN apt-get upgrade -y && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* 
+RUN apt-get upgrade -y && apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 # adduser ${USERNAME}:${USERNAME} with password '${USERNAME}'
 RUN groupadd -g 1000 ${USERNAME} \

@@ -3,6 +3,9 @@ CANDIDATES := $(wildcard .??*)
 EXCLUSIONS := .DS_Store .git .gitmodules .travis.yml
 DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
 USERID     := $(shell id -u)
+GROUPID    := $(shell id -g)
+USERNAME   := $(shell id -un)
+GROUPNAME  := $(shell id -gn)
 
 .DEFAULT_GOAL := help
 
@@ -59,7 +62,7 @@ install-rustfmt: ## Install rustfmt
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/install-rustfmt.sh
 
 docker-neovim: ## Build neovim docker image
-	@docker build --tag yukimemi/neovim --build-arg USERID=$(USERID) --build-arg USERNAME=${USER} --build-arg HOMEPATH=${HOME} -f ./docker/neovim/Dockerfile .
+	docker build --tag yukimemi/neovim --build-arg USERID=$(USERID) --build-arg USERNAME=$(USERNAME) --build-arg GROUPID=$(GROUPID) --build-arg GROUPNAME=$(GROUPNAME) --build-arg HOMEPATH=${HOME} -f ./docker/neovim/Dockerfile .
 
 help: ## Self-documented Makefile
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
