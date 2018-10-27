@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/10/27 16:36:16.
+" Last Change : 2018/10/27 20:43:08.
 " =============================================================================
 
 " Plugin:
@@ -98,7 +98,7 @@ Pac 'prabirshrestha/vim-lsp'
 Pac 'rhysd/committia.vim'
 Pac 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pac 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
-Pac 'ryanoasis/vim-devicons', {'if': !g:is_linux}
+Pac 'ryanoasis/vim-devicons'
 Pac 't9md/vim-quickhl'
 
 " opt. {{{2
