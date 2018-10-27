@@ -3,6 +3,7 @@ MAINTAINER yukimemi <yukimemi@gmail.com>
 
 ARG USERNAME=yukimemi
 ARG HOMEPATH=/Users/yukimemi
+ARG USERID=1000
 
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
 
@@ -25,7 +26,7 @@ ENV LANG="ja_JP.UTF-8" LANGUAGE="ja_JP:ja" LC_ALL="ja_JP.UTF-8"
 
 RUN pip3 install --upgrade pip neovim
 RUN mkdir -p ${HOMEPATH}
-RUN adduser -D -S ${USERNAME} -h ${HOMEPATH}
+RUN adduser -D -S -u ${USERID} -h ${HOMEPATH} ${USERNAME}
 RUN chown -R ${USERNAME} ${HOMEPATH}
 
 USER ${USERNAME}

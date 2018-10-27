@@ -1,3 +1,3 @@
-imap <C-j> <Plug>(edgemotion-j)
-imap <C-k> <Plug>(edgemotion-k)
+nmap <C-j> <Plug>(edgemotion-j)
+nmap <C-k> <Plug>(edgemotion-k)
 
