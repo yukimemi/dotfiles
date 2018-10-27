@@ -57,6 +57,9 @@ install-rustup: ## Install rustup
 install-rustfmt: ## Install rustfmt
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/install-rustfmt.sh
 
+docker-neovim: ## Build neovim docker image
+	@docker build --tag yukimemi/neovim --build-arg USERNAME=yukimemi -f ./docker/neovim/Dockerfile .
+
 help: ## Self-documented Makefile
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 		| sort \

@@ -6,6 +6,7 @@ brew autoconf
 brew automake
 brew bat
 brew boost
+brew cmake
 brew coreutils
 brew direnv
 brew exa
@@ -26,7 +27,6 @@ brew gnu-getopt
 brew gnu-sed
 brew go
 brew grep
-brew heroku
 brew icu4c
 brew imagemagick
 brew jemalloc
@@ -94,6 +94,7 @@ cask virtualbox
 cask xquartz
 
 tap heroku/brew
+brew heroku
 brew heroku-node
 
 tap knqyf263/pet
