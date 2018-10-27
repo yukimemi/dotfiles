@@ -1,7 +1,8 @@
 FROM alpine:edge
-
 MAINTAINER yukimemi <yukimemi@gmail.com>
+
 ARG USERNAME=yukimemi
+ARG HOMEPATH=/Users/yukimemi
 
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
 
@@ -23,9 +24,15 @@ RUN apk update && \
 ENV LANG="ja_JP.UTF-8" LANGUAGE="ja_JP:ja" LC_ALL="ja_JP.UTF-8"
 
 RUN pip3 install --upgrade pip neovim
+RUN mkdir -p ${HOMEPATH}
+RUN adduser -D -S ${USERNAME} -h ${HOMEPATH}
+RUN chown -R ${USERNAME} ${HOMEPATH}
 
-COPY .config /root/.config
+USER ${USERNAME}
+WORKDIR ${HOMEPATH}
 
-RUN nvim +PackUpdate +UpdateRemotePlugins +qa
+COPY .config ${HOMEPATH}/.config
+
+RUN nvim +UpdateRemotePlugins +qa
 
 ENTRYPOINT ["nvim"]
