@@ -12,6 +12,7 @@ brew direnv
 brew exa
 brew exiftool
 brew fd
+brew ffmpeg
 brew fish
 brew fontconfig
 brew freetype
@@ -31,12 +32,16 @@ brew icu4c
 brew imagemagick
 brew jemalloc
 brew jpeg
+brew lame
 brew libevent
+brew libogg
 brew libpng
 brew libtermkey
 brew libtiff
 brew libtool
 brew libuv
+brew libvorbis
+brew libvpx
 brew libvterm
 brew libyaml
 brew lua
@@ -49,6 +54,7 @@ brew msgpack
 brew neovim
 brew node
 brew openssl
+brew opus
 brew p7zip
 brew pcre
 brew pcre2
@@ -63,14 +69,20 @@ brew reattach-to-user-namespace
 brew ripgrep
 brew ruby
 brew ruby-build
+brew sdl2
+brew snappy
 brew source-highlight
 brew sqlite
 brew ssh-copy-id
+brew theora
 brew tig
 brew tmux --HEAD
 brew unibilium
 brew vim --with-client-server --with-gettext --with-lua --with-override-system-vi --with-tcl --HEAD
 brew watch
+brew x264
+brew x265
+brew xvid
 brew xz
 brew youtube-dl
 brew zlib
@@ -91,7 +103,7 @@ cask hammerspoon
 cask iina
 cask slack
 cask virtualbox
-cask xquartz
+cask vlc
 
 tap heroku/brew
 brew heroku
@@ -115,6 +127,7 @@ brew universal-ctags --HEAD
 cask appgrid
 cask astro
 cask docker
+cask firefox
 cask font-hack-nerd-font
 cask google-backup-and-sync
 cask google-japanese-ime
@@ -122,6 +135,7 @@ cask hyper
 cask iterm2
 cask vagrant
 cask vivaldi
+cask xquartz
 
 # App Store applications
 appstore 937984704 Amphetamine (4.0.2)
