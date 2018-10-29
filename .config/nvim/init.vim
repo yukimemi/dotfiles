@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/10/21 23:40:36.
+" Last Change : 2018/10/22 21:28:05.
 " =============================================================================
 
 " Init: {{{1
@@ -356,7 +356,7 @@ com! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | difft
 com! Wsu w !sudo tee > /dev/null %
 
 " FileType: {{{1
-au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail
+au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail fenc=cp932 ff=dos
 au MyAutoCmd BufNewFile,BufRead *.toml setl ft=toml
 au MyAutoCmd BufNewFile,BufRead *.log setl ft=log
 au MyAutoCmd BufNewFile,BufRead *.ps1 setl ft=ps1
