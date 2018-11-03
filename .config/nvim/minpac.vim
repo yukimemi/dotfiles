@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/11/03 21:51:20.
+" Last Change : 2018/11/03 22:52:17.
 " =============================================================================
 
 " Plugin:
@@ -158,8 +158,10 @@ Pac 'scrooloose/vim-slumlord', {'type': 'opt', 'ft': 'plantuml'}
 Pac 'simnalamburt/vim-mundo', {'type': 'opt', 'cmd': 'MundoToggle*'}
 Pac 'stephpy/vim-yaml', {'type': 'opt', 'ft': ['yml', 'yaml']}
 Pac 'thinca/vim-qfreplace', {'type': 'opt', 'ft': ['quickfix', 'qf']}
+Pac 'twitvim/twitvim', {'type': 'opt', 'cmd': '*Twitter'}
 Pac 'tyru/capture.vim', {'type': 'opt', 'cmd': 'Capture'}
 Pac 'y0za/vim-reading-vimrc', {'type': 'opt', 'cmd': 'ReadingVimrc*'}
+
 
 " lazy. {{{2
 " Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
@@ -208,6 +210,7 @@ Pac 'prabirshrestha/asyncomplete-emoji.vim', {'type': 'opt', 'lazy': 1}
 Pac 'prabirshrestha/asyncomplete-file.vim', {'type': 'opt', 'lazy': 1}
 Pac 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt', 'lazy': 1}
 Pac 'prabirshrestha/asyncomplete-tags.vim', {'type': 'opt', 'lazy': 1}
+Pac 'rhysd/clever-f.vim', {'type': 'opt', 'lazy': 1}
 Pac 'rhysd/vim-operator-surround', {'type': 'opt', 'lazy': 1}
 Pac 'roxma/vim-tmux-clipboard', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'taku-o/vim-zoom', {'type': 'opt', 'lazy': 1}
@@ -232,6 +235,7 @@ source $VIM_PATH/rc/ale.vim
 source $VIM_PATH/rc/asyncomplete.vim
 source $VIM_PATH/rc/autodate.vim
 source $VIM_PATH/rc/caw.vim
+source $VIM_PATH/rc/clever-f.vim
 source $VIM_PATH/rc/ctrlp.vim
 source $VIM_PATH/rc/defx.vim
 source $VIM_PATH/rc/denite.vim
@@ -253,6 +257,7 @@ source $VIM_PATH/rc/rust.vim
 source $VIM_PATH/rc/sonictemplate-vim.vim
 source $VIM_PATH/rc/tagbar.vim
 source $VIM_PATH/rc/textobj-lastpaste.vim
+source $VIM_PATH/rc/twitvim.vim
 source $VIM_PATH/rc/typescript-vim.vim
 source $VIM_PATH/rc/vim-cursorword.vim
 source $VIM_PATH/rc/vim-devicons.vim
