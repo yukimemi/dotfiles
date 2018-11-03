@@ -45,13 +45,15 @@ brew libvpx
 brew libvterm
 brew libyaml
 brew lua
+brew lua@5.1
 brew luajit
+brew luarocks
 brew mackup
 brew mas
 brew mosh
 brew mpfr
 brew msgpack
-brew neovim
+brew neovim --HEAD
 brew node
 brew openssl
 brew opus
@@ -78,7 +80,7 @@ brew theora
 brew tig
 brew tmux --HEAD
 brew unibilium
-brew vim --with-client-server --with-gettext --with-lua --with-override-system-vi --with-tcl --HEAD
+brew vim --with-client-server --with-gettext --with-lua --with-override-system-vi --HEAD
 brew watch
 brew x264
 brew x265
@@ -138,5 +140,5 @@ cask vivaldi
 cask xquartz
 
 # App Store applications
-appstore 937984704 Amphetamine (4.0.2)
+appstore 937984704 Amphetamine (4.0.4)
 appstore 549083868 Display Menu (2.2.3)

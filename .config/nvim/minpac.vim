@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/10/28 02:53:14.
+" Last Change : 2018/11/03 21:51:20.
 " =============================================================================
 
 " Plugin:
@@ -138,6 +138,7 @@ Pac 'leafgarland/typescript-vim', {'type': 'opt', 'ft': ['typescript', 'typescri
 Pac 'lifepillar/vim-solarized8', {'type': 'opt'}
 Pac 'majutsushi/tagbar', {'type': 'opt', 'cmd': 'Tagbar*'}
 Pac 'mattn/favstar-vim', {'type': 'opt'}
+Pac 'mattn/qiita-vim', {'type': 'opt', 'cmd': 'Qiita'}
 Pac 'mattn/sonictemplate-vim', {'type': 'opt', 'cmd': 'Template*'}
 Pac 'morhetz/gruvbox', {'type': 'opt'}
 Pac 'nelstrom/vim-markdown-folding', {'type': 'opt', 'ft': 'markdown'}
@@ -171,6 +172,7 @@ Pac 'Shougo/neomru.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/neosnippet-snippets', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/neosnippet.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/vimproc.vim', {'type': 'opt', 'lazy': 1, 'do': 'silent! !make'}
+Pac 'andymass/vim-matchup', {'type': 'opt', 'lazy': 1}
 Pac 'gilligan/textobj-lastpaste', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/is.vim', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-asterisk', {'type': 'opt', 'lazy': 1}
@@ -184,6 +186,7 @@ Pac 'kana/vim-textobj-entire', {'type': 'opt', 'lazy': 1}
 Pac 'kana/vim-textobj-fold', {'type': 'opt', 'lazy': 1}
 Pac 'kana/vim-textobj-function', {'type': 'opt', 'lazy': 1}
 Pac 'kana/vim-textobj-indent', {'type': 'opt', 'lazy': 1}
+Pac 'kana/vim-textobj-line', {'type': 'opt', 'lazy': 1}
 Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
 Pac 'kaneshin/ctrlp-memolist', {'type': 'opt', 'lazy': 1}
 Pac 'kaneshin/ctrlp-sonictemplate', {'type': 'opt', 'lazy': 1}
@@ -231,6 +234,7 @@ source $VIM_PATH/rc/autodate.vim
 source $VIM_PATH/rc/caw.vim
 source $VIM_PATH/rc/ctrlp.vim
 source $VIM_PATH/rc/defx.vim
+source $VIM_PATH/rc/denite.vim
 source $VIM_PATH/rc/deoplete.vim
 source $VIM_PATH/rc/echodoc.vim
 source $VIM_PATH/rc/ghcmod-vim.vim
