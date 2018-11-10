@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/11/03 22:52:17.
+" Last Change : 2018/11/04 18:33:42.
 " =============================================================================
 
 " Plugin:
@@ -118,6 +118,7 @@ Pac 'cespare/vim-toml', {'type': 'opt', 'ft': 'toml'}
 Pac 'cocopon/iceberg.vim', {'type': 'opt'}
 Pac 'cohama/agit.vim', {'type': 'opt', 'cmd': 'Agit*'}
 Pac 'dag/vim-fish', {'type': 'opt', 'ft': 'fish'}
+Pac 'davidhalter/jedi-vim', {'type': 'opt', 'ft': ['python']}
 Pac 'dhruvasagar/vim-table-mode', {'type': 'opt', 'ft': 'markdown'}
 Pac 'eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod', 'if': executable('stack'), 'ft': 'haskell'}
 Pac 'eagletmt/neco-ghc', {'type': 'opt', 'ft': 'haskell'}
