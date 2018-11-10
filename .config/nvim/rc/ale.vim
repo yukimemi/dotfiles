@@ -20,6 +20,7 @@ let g:ale_fixers = {
       \ 'typescript.tsx': ['prettier'],
       \ 'sh': ['shfmt'],
       \ 'elm': ['elm-format'],
+			\ 'python': ['autopep8', 'black', 'isort'],
       \ }
 
 " Rust.
