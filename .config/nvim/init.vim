@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/10/22 21:28:05.
+" Last Change : 2018/11/10 19:05:25.
 " =============================================================================
 
 " Init: {{{1
@@ -162,6 +162,7 @@ endfunction
 let s:use_dein = 0
 let s:use_vimplug = 0
 let s:use_minpac = 1
+let s:use_volt = 0
 
 if s:use_dein
   runtime! dein.vim
@@ -169,6 +170,8 @@ elseif s:use_vimplug
   runtime! vimplug.vim
 elseif s:use_minpac
   runtime! minpac.vim
+elseif s:use_volt
+  runtime! volt.vim
 else
   echom "No use plugin manager !"
 endif

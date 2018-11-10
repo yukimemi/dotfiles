@@ -20,6 +20,9 @@ end
 set -x GSR_SHOW_AHEAD 1
 set -x GSR_SHOW_BEHIND 1
 
+# volt. {{{2
+set -x VOLTPATH ~/.volt
+
 # pyenv. {{{2
 # set -x PYENV_ROOT ~/.pyenv
 
