@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/11/10 19:05:25.
+" Last Change : 2018/11/10 21:59:39.
 " =============================================================================
 
 " Init: {{{1
@@ -161,7 +161,8 @@ endfunction
 " Plugin: {{{1
 let s:use_dein = 0
 let s:use_vimplug = 0
-let s:use_minpac = 1
+let s:use_minpac = 0
+let s:use_packager = 1
 let s:use_volt = 0
 
 if s:use_dein
@@ -170,6 +171,8 @@ elseif s:use_vimplug
   runtime! vimplug.vim
 elseif s:use_minpac
   runtime! minpac.vim
+elseif s:use_packager
+  runtime! packager.vim
 elseif s:use_volt
   runtime! volt.vim
 else
@@ -438,10 +441,11 @@ vnoremap : q:A
 nnoremap [Space]d :<C-u>call <SID>deleteOtherLine()<CR>
 
 " Update plugin.
-nnoremap [Space]pu :<C-u>PlugUpdate \| PlugUpgrade<CR>
+" nnoremap [Space]pu :<C-u>PlugUpdate \| PlugUpgrade<CR>
 nnoremap [Space]du :<C-u>call dein#update()<CR>
 " nnoremap [Space]du :<C-u>DeinUpdate<CR>
 nnoremap [Space]mu :<C-u>PackUpdate<CR>
+nnoremap [Space]pu :<C-u>PackagerUpdate<CR>
 
 " nohlsearch.
 nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
