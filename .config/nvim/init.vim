@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/11/10 21:59:39.
+" Last Change : 2018/11/11 20:12:05.
 " =============================================================================
 
 " Init: {{{1
@@ -161,8 +161,8 @@ endfunction
 " Plugin: {{{1
 let s:use_dein = 0
 let s:use_vimplug = 0
-let s:use_minpac = 0
-let s:use_packager = 1
+let s:use_minpac = 1
+let s:use_packager = 0
 let s:use_volt = 0
 
 if s:use_dein
@@ -202,7 +202,6 @@ exe 'set viewdir=' . s:view_dir
 
 " Encodings.
 set fileencodings=utf-8,cp932,utf-16le,utf-16
-set fileformat=unix
 set fileformats=unix,dos,mac
 
 " Clipboard.
