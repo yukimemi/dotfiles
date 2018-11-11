@@ -32,4 +32,7 @@ function fish_user_key_bindings
     bind -M insert '(' '__gabbr_expand; commandline -i "("'
     bind -M insert ')' '__gabbr_expand; commandline -i ")"'
 
+    ### global-abbreviation ###
+    bind ' ' '__gabbr_expand; commandline -i " "'
+    ### global-abbreviation ###
 end
