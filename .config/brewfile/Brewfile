@@ -28,6 +28,7 @@ brew gnu-getopt
 brew gnu-sed
 brew go
 brew grep
+brew hadolint
 brew icu4c
 brew imagemagick
 brew jemalloc
@@ -76,6 +77,7 @@ brew snappy
 brew source-highlight
 brew sqlite
 brew ssh-copy-id
+brew ta-lib
 brew theora
 brew tig
 brew tmux --HEAD

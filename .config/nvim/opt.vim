@@ -3,6 +3,7 @@ Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
 Pac 'PProvost/vim-ps1', {'type': 'opt', 'ft': 'ps1'}
 Pac 'Shougo/defx.nvim', {'type': 'opt', 'cmd': 'Defx', 'do': 'silent! UpdateRemotePlugins', 'if': !g:is_windows}
 Pac 'Shougo/junkfile.vim', {'type': 'opt', 'cmd': 'JunkfileOpen'}
+Pac 'Vimjas/vim-python-pep8-indent', {'type': 'opt', 'ft': 'python'}
 Pac 'airblade/vim-rooter', {'type': 'opt', 'cmd': 'Rooter'}
 Pac 'aklt/plantuml-syntax', {'type': 'opt', 'ft': 'plantuml'}
 Pac 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'ft': 'haskell'}
@@ -58,4 +59,3 @@ Pac 'thinca/vim-qfreplace', {'type': 'opt', 'ft': ['quickfix', 'qf']}
 Pac 'twitvim/twitvim', {'type': 'opt', 'cmd': '*Twitter'}
 Pac 'tyru/capture.vim', {'type': 'opt', 'cmd': 'Capture'}
 Pac 'y0za/vim-reading-vimrc', {'type': 'opt', 'cmd': 'ReadingVimrc*'}
-

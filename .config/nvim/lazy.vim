@@ -9,6 +9,7 @@ Pac 'Shougo/neosnippet-snippets', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/neosnippet.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/vimproc.vim', {'type': 'opt', 'lazy': 1, 'do': 'silent! !make'}
 Pac 'andymass/vim-matchup', {'type': 'opt', 'lazy': 1}
+Pac 'cohama/lexima.vim', {'type': 'opt', 'lazy': 1}
 Pac 'gilligan/textobj-lastpaste', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/is.vim', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-asterisk', {'type': 'opt', 'lazy': 1}
@@ -57,4 +58,3 @@ Pac 'vim-scripts/autodate.vim', {'type': 'opt', 'lazy': 1}
 Pac 'vim-scripts/matchit.zip', {'type': 'opt', 'lazy': 1}
 Pac 'w0rp/ale', {'type': 'opt', 'lazy': 1}
 Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
-
