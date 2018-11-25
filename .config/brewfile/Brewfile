@@ -105,8 +105,9 @@ cask geektool
 cask google-chrome
 cask hammerspoon
 cask iina
-cask slack
-cask virtualbox
+cask powershell
+cask vagrant
+cask visual-studio-code
 cask vlc
 
 tap heroku/brew
@@ -137,7 +138,8 @@ cask google-backup-and-sync
 cask google-japanese-ime
 cask hyper
 cask iterm2
-cask vagrant
+cask slack
+cask virtualbox
 cask vivaldi
 cask xquartz
 

@@ -193,8 +193,10 @@ if not test -f ~/.cache/fresco/__fresco_install.fish
 end
 
 # fisherman.
-if not type -q fisher
-    curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
+if not functions -q fisher
+    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+    curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+    fish -c fisher
 end
 
 ### Plugin settings. {{{1
@@ -217,4 +219,10 @@ end
 # Load direnv. {{{1
 if type -q direnv
     eval (direnv hook fish)
+end
+
+# Base16 Shell. {{{1
+if status --is-interactive
+    set BASE16_SHELL "$HOME/.config/base16-shell/"
+    source "$BASE16_SHELL/profile_helper.fish"
 end

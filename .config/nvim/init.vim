@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/11/11 20:12:05.
+" Last Change : 2018/11/26 00:01:59.
 " =============================================================================
 
 " Init: {{{1
@@ -554,6 +554,12 @@ au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
 
 " Change colorscheme for readonly.
 " au MyAutoCmd BufReadPost,BufEnter * call s:updateColorScheme()
+
+" base16-shell.
+if filereadable(expand("~/.vimrc_background"))
+  " let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 " Load settings for each location. {{{2
 " http://vim-jp.org/vim-users-jp/2009/12/27/Hack-112.html

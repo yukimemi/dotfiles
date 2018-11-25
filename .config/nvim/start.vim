@@ -1,5 +1,6 @@
 Pac 'Shougo/denite.nvim', {'do': 'silent! UpdateRemotePlugins', 'if': has('python3')}
 Pac 'Yggdroot/indentLine'
+Pac 'chriskempson/base16-vim'
 Pac 'ctrlpvim/ctrlp.vim'
 Pac 'haya14busa/vim-edgemotion'
 Pac 'hotwatermorning/auto-git-diff'
@@ -20,4 +21,3 @@ Pac 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pac 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pac 'ryanoasis/vim-devicons'
 Pac 't9md/vim-quickhl'
-

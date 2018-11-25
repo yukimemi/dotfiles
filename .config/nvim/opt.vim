@@ -36,6 +36,7 @@ Pac 'leafgarland/typescript-vim', {'type': 'opt', 'ft': ['typescript', 'typescri
 Pac 'lifepillar/vim-solarized8', {'type': 'opt'}
 Pac 'majutsushi/tagbar', {'type': 'opt', 'cmd': 'Tagbar*'}
 Pac 'mattn/favstar-vim', {'type': 'opt'}
+Pac 'mattn/gist-vim', {'type': 'opt', 'cmd': 'Gist'}
 Pac 'mattn/qiita-vim', {'type': 'opt', 'cmd': 'Qiita'}
 Pac 'mattn/sonictemplate-vim', {'type': 'opt', 'cmd': 'Template*'}
 Pac 'morhetz/gruvbox', {'type': 'opt'}
