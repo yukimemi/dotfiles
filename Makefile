@@ -50,7 +50,9 @@ ubuntu-tmux: ## Install tmux on ubuntu
 
 mac-homebrew: ## Install Homebrew
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/mac/install-homebrew.sh
-
+mac-keyhac: ## Deploy keyhac settings
+	@ln -sfnv $(DOTPATH)/mac/keyhac/config.py $(HOME)/Library/Application\ Support/Keyhac/config.py
+	@ln -sfnv $(DOTPATH)/mac/keyhac/keyhac.ini $(HOME)/Library/Application\ Support/Keyhac/keyhac.ini
 
 install-peco: ## Install peco
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/install-peco.sh

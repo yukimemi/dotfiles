@@ -35,8 +35,10 @@ fenv.parse.divider.fish
 fish_greeting.fish
 fish_mode_prompt.fish
 fish_prompt.fish
+fish_right_prompt.fish
 fish_title.fish
 fisher.fish
+fisher.fish.*
 fnm.fish
 gabbr.fish
 get_file_age.fish
@@ -46,10 +48,9 @@ last_job_id.fish
 menu.fish
 node.fish
 npm.fish
+pyenv.fish
+rbenv.fish
 test.py
 z.awk
 zadd.awk
 zclean.awk
-pyenv.fish
-rbenv.fish
-fisher.fish.*
