@@ -76,18 +76,18 @@ return
 ; return
 
 ; for vivaldi
-F11::
-Activate(USERPROFILE . "\AppData\Local\Vivaldi\Application\vivaldi.exe")
-return
-
-; for Edge
-; F11::
-; Activate2("MicrosoftEdge.exe", "shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge")
-; return
+;F11::
+;Activate(USERPROFILE . "\AppData\Local\Vivaldi\Application\vivaldi.exe")
+;return
 
 ; for cmd.exe
 F12::
 Activate(ComSpec)
+return
+
+; for Edge
+F11::
+Activate2("MicrosoftEdge.exe", "shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge")
 return
 
 ; for cfiler
