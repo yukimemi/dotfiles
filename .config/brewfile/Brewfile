@@ -2,41 +2,62 @@
 # tap repositories and their packages
 
 tap homebrew/core
+brew adwaita-icon-theme
+brew atk
 brew autoconf
 brew automake
 brew bat
 brew boost
+brew cairo
 brew cmake
 brew coreutils
 brew direnv
+brew easy-tag
 brew exa
 brew exiftool
 brew fd
 brew ffmpeg
 brew fish
+brew flac
 brew fontconfig
 brew freetype
+brew fribidi
+brew fx
 brew fzf
 brew gawk
 brew gdbm
+brew gdk-pixbuf
 brew gettext
 brew ghq
 brew git
 brew git-now
+brew glib
 brew gmp
 brew gnu-getopt
 brew gnu-sed
 brew go
+brew graphite2
 brew grep
+brew gsettings-desktop-schemas
+brew gtk+3
 brew hadolint
+brew harfbuzz
+brew hicolor-icon-theme
 brew icu4c
+brew id3lib
 brew imagemagick
 brew jemalloc
 brew jpeg
+brew jq
 brew lame
+brew libcroco
+brew libepoxy
 brew libevent
+brew libffi
+brew libid3tag
 brew libogg
 brew libpng
+brew librsvg
 brew libtermkey
 brew libtiff
 brew libtool
@@ -56,13 +77,16 @@ brew mpfr
 brew msgpack
 brew neovim --HEAD
 brew node
+brew oniguruma
 brew openssl
 brew opus
 brew p7zip
+brew pango
 brew pcre
 brew pcre2
 brew peco
 brew perl
+brew pixman
 brew pkg-config
 brew protobuf
 brew python
@@ -75,15 +99,18 @@ brew ruby-build
 brew sdl2
 brew snappy
 brew source-highlight
+brew speex
 brew sqlite
 brew ssh-copy-id
 brew ta-lib
+brew taglib
 brew theora
 brew tig
 brew tmux --HEAD
 brew unibilium
 brew vim --with-client-server --with-gettext --with-lua --with-override-system-vi --HEAD
 brew watch
+brew wavpack
 brew x264
 brew x265
 brew xvid
@@ -105,10 +132,11 @@ cask geektool
 cask google-chrome
 cask hammerspoon
 cask iina
-cask powershell
-cask vagrant
-cask visual-studio-code
-cask vlc
+cask lyrics-master
+cask slack
+cask virtualbox
+cask vivaldi
+cask xquartz
 
 tap heroku/brew
 brew heroku
@@ -138,10 +166,10 @@ cask google-backup-and-sync
 cask google-japanese-ime
 cask hyper
 cask iterm2
-cask slack
-cask virtualbox
-cask vivaldi
-cask xquartz
+cask powershell
+cask vagrant
+cask visual-studio-code
+cask vlc
 
 # App Store applications
 appstore 937984704 Amphetamine (4.0.4)
