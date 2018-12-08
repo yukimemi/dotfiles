@@ -5,6 +5,7 @@ function! s:my_tweetvim_mappings()
 endfunction
 
 nnoremap <silent> [Space]tu :<C-u>silent! packadd webapi-vim \| packadd open-browser.vim \| packadd twibill.vim \| packadd bitly.vim \| packadd favstar-vim \| TweetVimUserStream<CR>
+nnoremap <silent> [Space]th :<C-u>silent! packadd webapi-vim \| packadd open-browser.vim \| packadd twibill.vim \| packadd bitly.vim \| packadd favstar-vim \| TweetVimHomeTimeline<CR>
 
 let g:tweetvim_default_account = "yukimemi"
 let g:tweetvim_tweet_per_page = 100
