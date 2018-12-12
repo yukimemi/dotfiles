@@ -39,6 +39,7 @@ Pac 'mattn/favstar-vim', {'type': 'opt'}
 Pac 'mattn/gist-vim', {'type': 'opt', 'cmd': 'Gist'}
 Pac 'mattn/qiita-vim', {'type': 'opt', 'cmd': 'Qiita'}
 Pac 'mattn/sonictemplate-vim', {'type': 'opt', 'cmd': 'Template*'}
+Pac 'mechatroner/rainbow_csv', {'type': 'opt', 'ft': 'csv'}
 Pac 'morhetz/gruvbox', {'type': 'opt'}
 Pac 'nelstrom/vim-markdown-folding', {'type': 'opt', 'ft': 'markdown'}
 Pac 'neovimhaskell/haskell-vim', {'type': 'opt', 'ft': ['haskell', 'cabal']}
