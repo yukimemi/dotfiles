@@ -30,7 +30,16 @@ function! s:denite_aft() abort
         \ 'highlight_mode_insert': 'WildMenu'
         \ })
 
-  if executable('rg')
+  if executable('jvgrep')
+    " jvgrep command on grep source
+    call denite#custom#var('grep', 'command', ['jvgrep'])
+    call denite#custom#var('grep', 'default_opts', [])
+    call denite#custom#var('grep', 'recursive_opts', ['-R'])
+    call denite#custom#var('grep', 'pattern_opt', [])
+    call denite#custom#var('grep', 'separator', [])
+    call denite#custom#var('grep', 'final_opts', [])
+
+  elseif executable('rg')
     " Ripgrep command on grep source
     call denite#custom#var('grep', 'command', ['rg'])
     call denite#custom#var('grep', 'default_opts',
@@ -38,15 +47,6 @@ function! s:denite_aft() abort
     call denite#custom#var('grep', 'recursive_opts', [])
     call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
     call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-
-  elseif executable('jvgrep')
-    " jvgrep command on grep source
-    call denite#custom#var('grep', 'command', ['jvgrep'])
-    call denite#custom#var('grep', 'default_opts', [])
-    call denite#custom#var('grep', 'recursive_opts', ['-R'])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', [])
     call denite#custom#var('grep', 'final_opts', [])
 
   elseif executable('pt')
