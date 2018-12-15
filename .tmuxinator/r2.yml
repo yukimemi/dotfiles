@@ -52,7 +52,7 @@ windows:
         # - watch "tail -600 ./reports/spreadStat.csv | xsv select 1,2,5,8,11,12,13,16,19,22,23 | sort -nr -k 7 | head -40 | xsv table"
         - watch "tail -360 ./reports/spreadStat.csv | xsv select 1,2,3,6,9,12,13,14,17,20,23,24 | sort -nr -k 7 | head -40 | xsv table"
         # - watch "tail -1200 ./reports/spreadStat.csv | xsv select 1,2,5,8,11,12,13,16,19,22,23 | sort -nr -k 12 | head -40 | xsv table"
-        - watch "tail -1200 ./reports/spreadStat.csv | xsv select 1,2,3,6,9,12,13,14,17,20,23,24 | sort -nr -k 12 | head -40 | xsv table"
+        - watch "tail -6000 ./reports/spreadStat.csv | xsv select 1,2,3,6,9,12,13,14,17,20,23,24 | sort -nr -k 12 | head -40 | xsv table"
         # - tail -F reports/spreadStat.csv | awk 'BEGIN { FS="," } { print $1, $11, $12, $22, $23 }'
         - tail -F reports/spreadStat.csv | awk 'BEGIN { FS="," } { print $1, $2, $12, $13, $23, $24 }'
         - tail -F logs/getBalance_(date "+%Y%m%d").log
