@@ -31,7 +31,11 @@ path=(
   $HOME/.anyenv/bin
   # cargo.
   $HOME/.cargo/bin
+  # linuxbrew
+  /home/linuxbrew/.linuxbrew/bin
 )
+
+export PATH=${PATH}:/home/linuxbrew/.linuxbrew/bin:/usr/local/bin
 
 export GOROOT=$(go env GOROOT)
 export GOPATH=$HOME/.ghq
