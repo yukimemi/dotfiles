@@ -17,6 +17,7 @@ let g:ale_fixers = {
 			\ 'typescript': ['prettier'],
 			\ 'json': ['prettier'],
 			\ 'markdown': ['prettier'],
+			\ 'html': ['prettier'],
 			\ 'scss': ['prettier'],
 			\ 'typescript.tsx': ['prettier'],
 			\ 'sh': ['shfmt'],
