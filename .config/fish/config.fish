@@ -163,6 +163,10 @@ abbr -a dvup 'vim -c "silent! call dein#update() | q"'
 # Chrome {{{2
 abbr -a chromeapp "open -na 'Google Chrome' --args '--app=https://"
 
+# youtube-dl {{{2
+abbr -a yt "youtube-dl -i"
+abbr -a ytm "youtube-dl -ix --audio-format mp3"
+
 # Home-file {{{2
 if __isMac
     abbr -a br 'brew-file brew'
