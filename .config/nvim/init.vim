@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/11/26 00:01:59.
+" Last Change : 2018/12/23 19:04:59.
 " =============================================================================
 
 " Init: {{{1
@@ -232,6 +232,12 @@ set mouse=a
 set keywordprg=:help
 set autoread
 set shortmess+=c
+set splitbelow
+set splitright
+set lazyredraw
+if !has('nvim')
+  set ttyfast
+endif
 
 " Search.
 set ignorecase
