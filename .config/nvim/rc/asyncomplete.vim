@@ -106,6 +106,16 @@ function! s:asyncomplete_gocode_aft() abort
 endfunction
 
 " vim-lsp. {{{2
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+
+nnoremap <silent> <Leader>d :<C-u>LspDefinition<CR>
+nnoremap <silent> <Leader>p :<C-u>LspHover<CR>
+nnoremap <silent> <Leader>r :<C-u>LspReferences<CR>
+nnoremap <silent> <Leader>i :<C-u>LspImplementation<CR>
+nnoremap <silent> <Leader>s :<C-u>split \| :LspDefinition<CR>
+nnoremap <silent> <Leader>v :<C-u>vsplit \| :LspDefinition<CR>
+
 " Docker. {{{3
 if executable('docker-langserver')
   au MyAutoCmd User lsp_setup call lsp#register_server({

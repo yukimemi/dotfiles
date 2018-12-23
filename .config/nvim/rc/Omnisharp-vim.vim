@@ -25,22 +25,22 @@ au MyAutoCmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
 au MyAutoCmd FileType cs nnoremap <buffer> <C-j> :OmniSharpNavigateDown<CR>
 
 " Contextual code actions (uses fzf, CtrlP or unite.vim when available)
-nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <Leader><Space> :OmniSharpGetCodeActions<CR>
 " Run code actions with text selected in visual mode to extract method
-xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
+au MyAutoCmd FileType cs xnoremap <buffer> <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
 
 " Rename with dialog
-nnoremap <Leader>nm :OmniSharpRename<CR>
-nnoremap <F2> :OmniSharpRename<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <Leader>nm :OmniSharpRename<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <F2> :OmniSharpRename<CR>
 " Rename without dialog - with cursor on the symbol to rename: `:Rename newname`
-command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
+au MyAutoCmd FileType cs command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
 
-nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <Leader>cf :OmniSharpCodeFormat<CR>
 
 " Start the omnisharp server for the current solution
-nnoremap <Leader>ss :OmniSharpStartServer<CR>
-nnoremap <Leader>sp :OmniSharpStopServer<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <Leader>ss :OmniSharpStartServer<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <Leader>sp :OmniSharpStopServer<CR>
 
 " Add syntax highlighting for types and interfaces
-nnoremap <Leader>th :OmniSharpHighlightTypes<CR>
+au MyAutoCmd FileType cs nnoremap <buffer> <Leader>th :OmniSharpHighlightTypes<CR>
 
