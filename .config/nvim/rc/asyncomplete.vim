@@ -106,7 +106,7 @@ function! s:asyncomplete_gocode_aft() abort
 endfunction
 
 " vim-lsp. {{{2
-let g:lsp_signs_enabled = 1
+" let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 
 nnoremap <silent> <Leader>d :<C-u>LspDefinition<CR>

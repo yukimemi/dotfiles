@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/12/23 19:04:59.
+" Last Change : 2018/12/24 09:38:36.
 " =============================================================================
 
 " Init: {{{1
@@ -232,7 +232,7 @@ set mouse=a
 set keywordprg=:help
 set autoread
 set shortmess+=c
-set splitbelow
+" set splitbelow
 set splitright
 set lazyredraw
 if !has('nvim')
@@ -569,14 +569,14 @@ endif
 
 " Load settings for each location. {{{2
 " http://vim-jp.org/vim-users-jp/2009/12/27/Hack-112.html
-au MyAutoCmd BufNewFile,BufReadPost * call <SID>vimrc_local(expand('<afile>:p:h'))
-
-function! s:vimrc_local(loc)
-  let files = findfile('.vimrc.local', escape(a:loc, ' ') . ';', -1)
-  for i in reverse(filter(files, 'filereadable(v:val)'))
-    source `=i`
-  endfor
-endfunction
+" au MyAutoCmd BufNewFile,BufReadPost * call <SID>vimrc_local(expand('<afile>:p:h'))
+"
+" function! s:vimrc_local(loc)
+"   let files = findfile('.vimrc.local', escape(a:loc, ' ') . ';', -1)
+"   for i in reverse(filter(files, 'filereadable(v:val)'))
+"     source `=i`
+"   endfor
+" endfunction
 
 filetype plugin indent on
 
