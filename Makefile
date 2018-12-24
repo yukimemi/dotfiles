@@ -33,6 +33,11 @@ install: deploy ## Run make deploy
 private: ## Clone private repository and create symlink
 	@git clone https://github.com/yukimemi/private $(DOTPATH)/../private
 	@ln -sfnv $(DOTPATH)/../private/.config/pet $(HOME)/.config/pet
+	@ln -sfnv $(DOTPATH)/../private/.slack-term $(HOME)/.slack-term
+
+private-link: ## Create symlink private config
+	@ln -sfnv $(DOTPATH)/../private/.config/pet $(HOME)/.config/pet
+	@ln -sfnv $(DOTPATH)/../private/.slack-term $(HOME)/.slack-term
 
 clean: ## Remove the dot files
 	@echo 'Remove dot files in your home directory...'

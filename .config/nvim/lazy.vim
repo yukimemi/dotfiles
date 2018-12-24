@@ -49,6 +49,7 @@ Pac 'rhysd/clever-f.vim', {'type': 'opt', 'lazy': 1}
 Pac 'rhysd/vim-operator-surround', {'type': 'opt', 'lazy': 1}
 Pac 'roxma/vim-tmux-clipboard', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'taku-o/vim-zoom', {'type': 'opt', 'lazy': 1}
+Pac 'thinca/vim-localrc', {'type': 'opt', 'lazy': 1}
 Pac 'thinca/vim-submode', {'type': 'opt', 'lazy': 1}
 Pac 'tmux-plugins/vim-tmux-focus-events', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'tpope/vim-repeat', {'type': 'opt', 'lazy': 1}

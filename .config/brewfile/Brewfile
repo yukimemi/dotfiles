@@ -7,6 +7,7 @@ brew atk
 brew autoconf
 brew automake
 brew bat
+brew bdw-gc
 brew boost
 brew cairo
 brew cmake
@@ -110,6 +111,7 @@ brew tig
 brew tmux --HEAD
 brew unibilium
 brew vim --with-client-server --with-gettext --with-lua --with-override-system-vi --HEAD
+brew w3m
 brew watch
 brew wavpack
 brew x264
