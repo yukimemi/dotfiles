@@ -44,6 +44,7 @@ brew gtk+3
 brew hadolint
 brew harfbuzz
 brew hicolor-icon-theme
+brew hub
 brew icu4c
 brew id3lib
 brew imagemagick

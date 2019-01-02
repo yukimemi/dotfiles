@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2018/11/11 14:08:48.
+" Last Change : 2019/01/02 22:30:22.
 " =============================================================================
 
 " Plugin:
@@ -98,6 +98,8 @@ com! PackListStart call PackInit() | Capture echo minpac#getpackages("", "start"
 com! PackListOpt   call PackInit() | Capture echo minpac#getpackages("", "opt")
 com! PackNameStart call PackInit() | Capture echo minpac#getpackages("", "start", "", 1)
 com! PackNameOpt   call PackInit() | Capture echo minpac#getpackages("", "opt", "", 1)
+" Quit Vim immediately after all updates are finished.
+com! PackUpdateQuit call PackInit() | call minpac#update('', {'do': 'quit'})
 
 " Install on initiall setup.
 if s:minpac_download
