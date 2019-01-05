@@ -130,7 +130,7 @@ tap homebrew/cask-versions
 
 tap homebrew/cask
 cask alacritty
-cask appgrid
+cask appcleaner
 cask caffeine
 cask dropbox
 cask geektool
@@ -162,7 +162,8 @@ tap universal-ctags/universal-ctags
 brew universal-ctags --HEAD
 
 # Other Cask applications
-cask appcleaner
+cask amazon-music
+cask appgrid
 cask astro
 cask docker
 cask firefox
