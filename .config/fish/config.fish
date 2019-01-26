@@ -205,7 +205,6 @@ end
 
 ### Plugin settings. {{{1
 # pure {{{2
-set pure_symbol_prompt "→ "
 set pure_color_green (set_color "white")
 
 # fish-global-abbreviation. {{{2
@@ -225,8 +224,3 @@ if type -q direnv
     eval (direnv hook fish)
 end
 
-# Base16 Shell. {{{1
-if status --is-interactive
-    set BASE16_SHELL "$HOME/.config/base16-shell/"
-    source "$BASE16_SHELL/profile_helper.fish"
-end
