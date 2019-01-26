@@ -92,7 +92,7 @@ function! s:asyncomplete_racer_aft() abort
 endfunction
 
 " asyncomplete-gocode.vim {{{2
-if !executable('go-langserver')
+if !executable('gopls') && executable('gocode')
   au MyAutoCmd FileType go call <SID>asyncomplete_gocode_aft()
 endif
 function! s:asyncomplete_gocode_aft() abort
@@ -106,32 +106,43 @@ function! s:asyncomplete_gocode_aft() abort
 endfunction
 
 " vim-lsp. {{{2
+let g:lsp_async_completion = 1
 " let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 
-nnoremap <silent> <Leader>d :<C-u>LspDefinition<CR>
-nnoremap <silent> <Leader>p :<C-u>LspHover<CR>
-nnoremap <silent> <Leader>r :<C-u>LspReferences<CR>
-nnoremap <silent> <Leader>i :<C-u>LspImplementation<CR>
-nnoremap <silent> <Leader>s :<C-u>split \| :LspDefinition<CR>
-nnoremap <silent> <Leader>v :<C-u>vsplit \| :LspDefinition<CR>
+au MyAutoCmd FileType go,rust,python,typescript,javascript call <SID>lsp_settings()
+
+function! s:lsp_settings() abort
+  nmap <silent> gd <plug>(lsp-definition)
+  nmap <silent> gp <plug>(lsp-hover)
+  nmap <silent> gr <plug>(lsp-references)
+  nmap <silent> gi <plug>(lsp-implementation)
+  nmap <silent> <Leader>s :<C-u>split \| :LspDefinition<CR>
+  nmap <silent> <Leader>v :<C-u>vsplit \| :LspDefinition<CR>
+  setl omnifunc=lsp#complete
+  setl completeopt+=preview
+endfunction
 
 " Docker. {{{3
 if executable('docker-langserver')
   au MyAutoCmd User lsp_setup call lsp#register_server({
         \ 'name': 'docker-langserver',
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
-        \ 'priority': 4,
         \ 'whitelist': ['dockerfile'],
         \ })
 endif
 
 " go. {{{3
-if executable('go-langserver')
+if executable('bingo')
   au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'go-langserver',
-        \ 'cmd': {server_info->['go-langserver', '-mode', 'stdio']},
-        \ 'priority': 4,
+        \ 'name': 'bingo',
+        \ 'cmd': {server_info->['bingo', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+elseif executable('gopls')
+  au MyAutoCmd User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
         \ 'whitelist': ['go'],
         \ })
 endif
@@ -141,7 +152,6 @@ if executable('pyls')
   au MyAutoCmd User lsp_setup call lsp#register_server({
         \ 'name': 'pyls',
         \ 'cmd': {server_info->['pyls']},
-        \ 'priority': 4,
         \ 'whitelist': ['python'],
         \ })
 endif
@@ -151,7 +161,6 @@ if executable('rls')
   au MyAutoCmd User lsp_setup call lsp#register_server({
         \ 'name': 'rls',
         \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-        \ 'priority': 4,
         \ 'whitelist': ['rust'],
         \ })
 endif
@@ -162,8 +171,18 @@ if executable('typescript-language-server')
         \ 'name': 'typescript-language-server',
         \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
         \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
-        \ 'priority': 4,
         \ 'whitelist': ['typescript', 'javascript', 'javascript.jsx']
         \ })
+endif
+
+
+" debug. {{{1
+if 0
+  call Mkdir(expand('~/.log/vim'))
+  let g:lsp_log_verbose = 1
+  let g:lsp_log_file = expand('~/.log/vim/vim-lsp.log')
+
+  " for asyncomplete.vim log
+  let g:asyncomplete_log_file = expand('~/.log/vim/asyncomplete.log')
 endif
 

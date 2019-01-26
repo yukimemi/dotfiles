@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2018/12/24 09:38:36.
+" Last Change : 2019/01/26 22:28:49.
 " =============================================================================
 
 " Init: {{{1
@@ -288,7 +288,6 @@ set pumheight=13
 " Color: {{{1
 syntax enable
 set background=dark
-" colorscheme PaperColor
 colorscheme spring-night
 
 if has('gui_running')
@@ -564,7 +563,7 @@ au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
 " base16-shell.
 if filereadable(expand("~/.vimrc_background"))
   " let base16colorspace=256
-  source ~/.vimrc_background
+  " source ~/.vimrc_background
 endif
 
 " Load settings for each location. {{{2

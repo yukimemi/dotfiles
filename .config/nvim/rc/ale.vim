@@ -23,5 +23,7 @@ let g:ale_fixers = {
 			\ 'sh': ['shfmt'],
 			\ 'elm': ['elm-format'],
 			\ 'python': ['autopep8', 'yapf', 'isort'],
+			\ 'rust': ['rustfmt'],
+			\ 'go': ['gofmt', 'goimports']
 			\ }
 

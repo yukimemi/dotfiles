@@ -1,3 +1,4 @@
+" source $VIM_PATH/rc/lightline.vim
 " source $VIM_PATH/rc/neocomplete.vim
 " source $VIM_PATH/rc/vim-markdown-composer.vim
 " source $VIM_PATH/rc/vim-operator-blockwise.vim
@@ -20,7 +21,6 @@ source $VIM_PATH/rc/gruvbox.vim
 source $VIM_PATH/rc/haskell-vim.vim
 source $VIM_PATH/rc/indentLine.vim
 source $VIM_PATH/rc/is.vim
-source $VIM_PATH/rc/lightline.vim
 source $VIM_PATH/rc/memolist.vim
 source $VIM_PATH/rc/neco-ghc.vim
 source $VIM_PATH/rc/neosnippet.vim
@@ -32,6 +32,7 @@ source $VIM_PATH/rc/tagbar.vim
 source $VIM_PATH/rc/textobj-lastpaste.vim
 source $VIM_PATH/rc/twitvim.vim
 source $VIM_PATH/rc/typescript-vim.vim
+source $VIM_PATH/rc/vim-airline.vim
 source $VIM_PATH/rc/vim-cursorword.vim
 source $VIM_PATH/rc/vim-devicons.vim
 source $VIM_PATH/rc/vim-dirvish.vim
@@ -43,6 +44,7 @@ source $VIM_PATH/rc/vim-fish.vim
 source $VIM_PATH/rc/vim-go.vim
 source $VIM_PATH/rc/vim-haskell-sort-import.vim
 source $VIM_PATH/rc/vim-hindent.vim
+source $VIM_PATH/rc/vim-localsearch.vim
 source $VIM_PATH/rc/vim-mundo.vim
 source $VIM_PATH/rc/vim-operator-flashy.vim
 source $VIM_PATH/rc/vim-operator-replace.vim
@@ -67,4 +69,3 @@ source $VIM_PATH/rc/vim-textobj-function.vim
 source $VIM_PATH/rc/vim-textobj-indent.vim
 source $VIM_PATH/rc/vim-textobj-multiblock.vim
 source $VIM_PATH/rc/yankround.vim
-

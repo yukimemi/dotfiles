@@ -1,3 +1,9 @@
+function! Markdown_preview_do(hooktype, name) abort
+  echom a:hooktype
+  packadd markdown-preview.nvim
+  call mkdp#util#install()
+endfunction
+
 Pac 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
 Pac 'PProvost/vim-ps1', {'type': 'opt', 'ft': 'ps1'}
@@ -22,6 +28,7 @@ Pac 'eagletmt/neco-ghc', {'type': 'opt', 'ft': 'haskell'}
 Pac 'ekalinin/Dockerfile.vim', {'type': 'opt', 'ft': 'dockerfile'}
 Pac 'fatih/vim-go', {'type': 'opt', 'ft': 'go'}
 Pac 'glidenote/memolist.vim', {'type': 'opt', 'cmd': 'Memo*'}
+Pac 'iamcco/markdown-preview.nvim', {'type': 'opt', 'ft': 'markdown', 'cmd': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 Pac 'itchyny/vim-haskell-indent', {'type': 'opt', 'ft': 'haskell'}
 Pac 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'ft': 'haskell'}
 Pac 'joshdick/onedark.vim', {'type': 'opt'}
@@ -51,7 +58,6 @@ Pac 'prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt', 'ft': 'vim'}
 Pac 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'ft': 'vim'}
 Pac 'qpkorr/vim-renamer', {'type': 'opt', 'cmd': 'Renamer*'}
 Pac 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'ft': 'rust'}
-Pac 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pac 'rhysd/vim-gfm-syntax', {'type': 'opt', 'ft': 'markdown'}
 Pac 'rust-lang/rust.vim', {'type': 'opt', 'ft': 'rust'}
 Pac 'scrooloose/vim-slumlord', {'type': 'opt', 'ft': 'plantuml'}
@@ -61,3 +67,4 @@ Pac 'thinca/vim-qfreplace', {'type': 'opt', 'ft': ['quickfix', 'qf']}
 Pac 'twitvim/twitvim', {'type': 'opt', 'cmd': '*Twitter'}
 Pac 'tyru/capture.vim', {'type': 'opt', 'cmd': 'Capture'}
 Pac 'y0za/vim-reading-vimrc', {'type': 'opt', 'cmd': 'ReadingVimrc*'}
+
