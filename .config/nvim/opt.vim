@@ -26,7 +26,7 @@ Pac 'dhruvasagar/vim-table-mode', {'type': 'opt', 'ft': 'markdown'}
 Pac 'eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod', 'if': executable('stack'), 'ft': 'haskell'}
 Pac 'eagletmt/neco-ghc', {'type': 'opt', 'ft': 'haskell'}
 Pac 'ekalinin/Dockerfile.vim', {'type': 'opt', 'ft': 'dockerfile'}
-Pac 'fatih/vim-go', {'type': 'opt', 'ft': 'go'}
+" Pac 'fatih/vim-go', {'type': 'opt', 'ft': 'go'}
 Pac 'glidenote/memolist.vim', {'type': 'opt', 'cmd': 'Memo*'}
 Pac 'iamcco/markdown-preview.nvim', {'type': 'opt', 'ft': 'markdown', 'cmd': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 Pac 'itchyny/vim-haskell-indent', {'type': 'opt', 'ft': 'haskell'}
