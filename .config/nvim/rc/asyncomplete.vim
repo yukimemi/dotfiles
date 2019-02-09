@@ -107,8 +107,9 @@ function! s:asyncomplete_gocode_aft() abort
 endfunction
 
 " vim-lsp. {{{2
-let g:lsp_async_completion = 1
 " let g:lsp_signs_enabled = 1
+let g:lsp_async_completion = 1
+let g:lsp_diagnostics_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1
 
 au MyAutoCmd FileType go,rust,python,typescript,javascript call <SID>lsp_settings()
@@ -168,6 +169,7 @@ if executable('rls')
   au MyAutoCmd User lsp_setup call lsp#register_server({
         \ 'name': 'rls',
         \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'Cargo.toml'))},
         \ 'whitelist': ['rust'],
         \ })
 endif
