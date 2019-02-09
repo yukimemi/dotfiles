@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2018/10/21 23:35:36.
+# Last Change : 2019/02/10 03:15:12.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -15,10 +15,16 @@ repo = 'rhysd/vim-color-spring-night' # {{{2
 [[plugins]]
 repo = 'ryanoasis/vim-devicons' # {{{2
 
+# [[plugins]]
+# repo = 'itchyny/lightline.vim' # {{{2
+# hook_add = '''
+# source $VIM_PATH/rc/lightline.vim
+# '''
+
 [[plugins]]
-repo = 'itchyny/lightline.vim' # {{{2
+repo = 'vim-airline/vim-airline'
 hook_add = '''
-source $VIM_PATH/rc/lightline.vim
+source $VIM_PATH/rc/vim-airline.vim
 '''
 
 [[plugins]]
@@ -76,8 +82,8 @@ repo = 'prabirshrestha/asyncomplete-emoji.vim' # {{{2
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-tags.vim' # {{{2
 if = "executable('ctags')"
-[[plugins]]
-repo = 'yami-beta/asyncomplete-omni.vim' # {{{2
+# [[plugins]]
+# repo = 'yami-beta/asyncomplete-omni.vim' # {{{2
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-neosnippet.vim' # {{{2
 depends = ['neosnippet.vim']
@@ -87,14 +93,6 @@ on_ft = 'vim'
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-necosyntax.vim' # {{{2
 on_ft = 'vim'
-[[plugins]]
-repo = 'keremc/asyncomplete-racer.vim' # {{{2
-on_ft = 'rust'
-if = "!executable('rls') && executable('racer')"
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-gocode.vim' # {{{2
-on_ft = 'go'
-if = "!executable('go-langserver') && executable('gocode')"
 # ==================== Utility =================== {{{1
 [[plugins]]
 repo = 'airblade/vim-rooter' # {{{2
@@ -125,7 +123,7 @@ build = 'make'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align' # {{{2
-on_map = '<Plug>(EasyAlign)'
+on_map = {v = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-easy-align.vim
 '''
@@ -231,6 +229,9 @@ source $VIM_PATH/rc/defx.vim
 '''
 
 [[plugins]]
+repo = 'lambdalisue/vim-findent' # {{{2
+
+[[plugins]]
 repo = 'tmux-plugins/vim-tmux-focus-events' # {{{2
 if  = '!g:is_windows'
 
@@ -245,6 +246,30 @@ if = '!has("nvim")'
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc' # {{{2
 if = '!has("nvim")'
+
+# ==================== Denite ==================== {{{1
+[[plugins]]
+repo = 'Shougo/denite.nvim' # {{{2
+depends = 'neomru.vim'
+on_cmd = 'Denite'
+if = "has('python3')"
+hook_add = '''
+source $VIM_PATH/rc/denite.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/neomru.vim' # {{{2
+on_source = 'denite.nvim'
+
+[[plugins]]
+repo = 'Shougo/junkfile.vim' # {{{2
+on_source = 'denite.nvim'
+on_cmd = 'JunkfileOpen'
+
+[[plugins]]
+repo = 'iyuuya/denite-ale' # {{{2
+on_source = 'denite.nvim'
+
 
 # ==================== Search ==================== {{{1
 [[plugins]]
@@ -285,6 +310,12 @@ source $VIM_PATH/rc/vim-cursorword.vim
 repo = 'thinca/vim-qfreplace' # {{{2
 on_ft = ['quickfix']
 
+[[plugins]]
+repo = 'mox-mox/vim-localsearch' # {{{2
+on_map = {n = '<Plug>'}
+hook_add = '''
+source $VIM_PATH/rc/vim-localsearch.vim
+'''
 
 # ==================== Operators ================= {{{1
 [[plugins]]
@@ -332,7 +363,7 @@ on_map = '<Plug>'
 [[plugins]]
 repo = 'kana/vim-textobj-entire' # {{{2
 depends = 'vim-textobj-user'
-on_map = [['ox', '<Plug>']]
+on_map = {ox = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-entire.vim
 '''
@@ -340,7 +371,7 @@ source $VIM_PATH/rc/vim-textobj-entire.vim
 [[plugins]]
 repo = 'kana/vim-textobj-fold' # {{{2
 depends = 'vim-textobj-user'
-on_map = [['ox', '<Plug>']]
+on_map = {ox = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-fold.vim
 '''
@@ -348,7 +379,7 @@ source $VIM_PATH/rc/vim-textobj-fold.vim
 [[plugins]]
 repo = 'kana/vim-textobj-function' # {{{2
 depends = 'vim-textobj-user'
-on_map = [['ox', '<Plug>']]
+on_map = {ox = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-function.vim
 '''
@@ -356,7 +387,7 @@ source $VIM_PATH/rc/vim-textobj-function.vim
 [[plugins]]
 repo = 'kana/vim-textobj-indent' # {{{2
 depends = 'vim-textobj-user'
-on_map = [['ox', '<Plug>']]
+on_map = {ox = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-indent.vim
 '''
@@ -364,7 +395,7 @@ source $VIM_PATH/rc/vim-textobj-indent.vim
 [[plugins]]
 repo = 'gilligan/textobj-lastpaste' # {{{2
 depends = 'vim-textobj-user'
-on_map = [['ox', '<Plug>']]
+on_map = {ox = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/textobj-lastpaste.vim
 '''
@@ -385,8 +416,8 @@ source $VIM_PATH/rc/yankround.vim
 '''
 
 # ==================== Git ======================= {{{1
-[[plugins]]
-repo = 'itchyny/vim-gitbranch' # {{{2
+# [[plugins]]
+# repo = 'itchyny/vim-gitbranch' # {{{2
 
 [[plugins]]
 repo = 'lambdalisue/gina.vim' # {{{2
@@ -395,39 +426,22 @@ hook_add = '''
 source $VIM_PATH/rc/gina.vim
 '''
 
-# ==================== Filetype (go) ============= {{{1
+# ==================== Filetype (all) ============= {{{1
 [[plugins]]
-repo = 'fatih/vim-go' # {{{2
-on_ft = 'go'
+repo = 'sheerun/vim-polyglot'
 hook_add = '''
-source $VIM_PATH/rc/vim-go.vim
+source $VIM_PATH/rc/vim-polyglot.vim
 '''
 
-# ==================== Filetype (ps1) ============ {{{1
-[[plugins]]
-repo = 'PProvost/vim-ps1' # {{{2
-on_ft = 'ps1'
-hook_source = '''
-source $VIM_PATH/rc/vim-ps1.vim
-'''
-
-# ==================== Filetype (toml) =========== {{{1
-[[plugins]]
-repo = 'cespare/vim-toml' # {{{2
-on_ft = 'toml'
-
-
-# ==================== Filetype (yaml) =========== {{{1
-[[plugins]]
-repo = 'stephpy/vim-yaml' # {{{2
-on_ft = 'yaml'
-
+# ==================== Filetype (go) ============= {{{1
+# [[plugins]]
+# repo = 'fatih/vim-go' # {{{2
+# on_ft = 'go'
+# hook_add = '''
+# source $VIM_PATH/rc/vim-go.vim
+# '''
 
 # ==================== Filetype (plantuml) ======= {{{1
-[[plugins]]
-repo =  'aklt/plantuml-syntax' # {{{2
-on_ft = 'plantuml'
-
 [[plugins]]
 repo = 'scrooloose/vim-slumlord' # {{{2
 on_ft = 'plantuml'
@@ -440,15 +454,11 @@ source $VIM_PATH/rc/vim-slumlord.vim
 repo = 'dzeban/vim-log-syntax' # {{{2
 on_ft = 'log'
 
-# ==================== Filetype (Vue) ============ {{{1
-[[plugins]]
-repo = 'posva/vim-vue' # {{{2
-on_ft = 'vue'
 
 # ==================== Filetype (javascript) ===== {{{1
-[[plugins]]
-repo = 'pangloss/vim-javascript' # {{{2
-on_ft = ['javascript', 'javascript.jsx']
+# [[plugins]]
+# repo = 'pangloss/vim-javascript' # {{{2
+# on_ft = ['javascript', 'javascript.jsx']
 
 # [[plugins]]
 # repo = 'billyvg/tigris.nvim' # {{{2
@@ -473,41 +483,21 @@ on_ft = ['javascript', 'javascript.jsx']
 # repo = 'othree/es.next.syntax.vim' # {{{2
 # on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
-# ==================== Filetype (elm) ===== {{{1
-[[plugins]]
-repo = 'ElmCast/elm-vim' # {{{2
-build = 'npm i -g elm elm-test elm-oracle elm-format'
-on_ft = 'elm'
-
-
-# ==================== Filetype (typescript) ===== {{{1
-[[plugins]]
-repo = 'leafgarland/typescript-vim' # {{{2
-on_ft = ['typescript']
-
-# ==================== Filetype (coffee-script) == {{{1
-[[plugins]]
-repo = 'kchmck/vim-coffee-script' # {{{2
-on_ft = 'coffee'
-
-# ==================== Filetype (fish-shell) ===== {{{1
-[[plugins]]
-repo = 'dag/vim-fish' # {{{2
-on_ft = 'fish'
-
 # ==================== Filetype (markdown) ======= {{{1
 # [[plugins]]
 # repo = 'rhysd/vim-gfm-syntax'
 # on_ft = 'markdown'
 
 [[plugins]]
-repo = 'nelstrom/vim-markdown-folding'
+repo = 'nelstrom/vim-markdown-folding' # {{{2
 on_ft = 'markdown'
 
-# ==================== Filetype (Dockerfile) ===== {{{1
 [[plugins]]
-repo = 'ekalinin/Dockerfile.vim' # {{{2
-on_ft = 'Dockerfile'
+repo = 'iamcco/markdown-preview.nvim' # {{{2
+on_ft = 'markdown'
+on_cmd = 'MarkdownPreview'
+build = 'call mkdp#util#install()'
+
 
 # ==================== Filetype (Rust) =========== {{{1
 [[plugins]]
@@ -568,20 +558,11 @@ hook_add = '''
 source $VIM_PATH/rc/vim-sqlfmt.vim
 '''
 
-# ==================== Filetype (apiblueprint) === {{{1
-[[plugins]]
-repo = 'kylef/apiblueprint.vim' # {{{2
-on_ft = 'apiblueprint'
-
-
 # ==================== Filetype (purescript) ===== {{{1
 [[plugins]]
 repo = 'FrigoEU/psc-ide-vim' # {{{2
 on_ft = 'purescript'
 
-[[plugins]]
-repo = 'purescript-contrib/purescript-vim' # {{{2
-on_ft = 'purescript'
 
 # ==================== Filetype (csv) ============ {{{1
 [[plugins]]
@@ -629,9 +610,14 @@ let b:autodate_keyword_pre  = 'date: "'
 let b:autodate_keyword_post = '"'
 '''
 
+go = '''
+setl completeopt+=preview
+'''
+
 ps1 = '''
 setl ts=2 sw=2 sts=0
 setl foldmethod=syntax
+source $VIM_PATH/rc/vim-ps1.vim
 '''
 
 python = '''
