@@ -1,5 +1,6 @@
 " asyncomplete.vim {{{1
 let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_smart_completion = 1
 let g:asyncomplete_remove_duplicates = 1
 let g:asyncomplete_force_refresh_on_context_changed = 1
 imap <C-Space> <Plug>(asyncomplete_force_refresh)
@@ -40,13 +41,13 @@ au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-tags.vim | cal
       \ }))
 
 " asyncomplete-omni.vim {{{2
-au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-omni.vim | call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-      \ 'name': 'omni',
-      \ 'whitelist': ['*'],
-      \ 'blacklist': ['go', 'rust'],
-      \ 'priority': 3,
-      \ 'completor': function('asyncomplete#sources#omni#completor')
-      \ }))
+" au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-omni.vim | call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+"      \ 'name': 'omni',
+"      \ 'whitelist': ['*'],
+"      \ 'blacklist': ['go', 'rust'],
+"      \ 'priority': 3,
+"      \ 'completor': function('asyncomplete#sources#omni#completor')
+"      \ }))
 
 " asyncomplete-neosnippet.vim {{{2
 au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-neosnippet.vim | call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
@@ -133,16 +134,22 @@ if executable('docker-langserver')
 endif
 
 " go. {{{3
-if executable('bingo')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'bingo',
-        \ 'cmd': {server_info->['bingo', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-elseif executable('gopls')
+if executable('gopls')
   au MyAutoCmd User lsp_setup call lsp#register_server({
         \ 'name': 'gopls',
         \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+elseif executable('go-langserver')
+  au MyAutoCmd User lsp_setup call lsp#register_server({
+        \ 'name': 'go-langserver',
+        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
+        \ 'whitelist': ['go'],
+        \ })
+elseif executable('bingo')
+  au MyAutoCmd User lsp_setup call lsp#register_server({
+        \ 'name': 'bingo',
+        \ 'cmd': {server_info->['bingo', '-mode', 'stdio']},
         \ 'whitelist': ['go'],
         \ })
 endif

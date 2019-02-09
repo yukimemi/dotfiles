@@ -41,7 +41,7 @@ source $VIM_PATH/rc/vim-edgemotion.vim
 source $VIM_PATH/rc/vim-external.vim
 source $VIM_PATH/rc/vim-findent.vim
 source $VIM_PATH/rc/vim-fish.vim
-source $VIM_PATH/rc/vim-go.vim
+" source $VIM_PATH/rc/vim-go.vim
 source $VIM_PATH/rc/vim-haskell-sort-import.vim
 source $VIM_PATH/rc/vim-hindent.vim
 source $VIM_PATH/rc/vim-localsearch.vim

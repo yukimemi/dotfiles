@@ -58,4 +58,4 @@ Pac 'tyru/open-browser.vim', {'type': 'opt', 'lazy': 1}
 Pac 'vim-scripts/autodate.vim', {'type': 'opt', 'lazy': 1}
 Pac 'vim-scripts/matchit.zip', {'type': 'opt', 'lazy': 1}
 Pac 'w0rp/ale', {'type': 'opt', 'lazy': 1}
-Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
+" Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
