@@ -384,3 +384,6 @@ fi
 
 # vim:fdm=marker expandtab fdc=3 ft=zsh:
 
+
+# added by travis gem
+[ -f /Users/yukimemi/.travis/travis.sh ] && source /Users/yukimemi/.travis/travis.sh

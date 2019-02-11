@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2019/02/10 01:43:11.
+" Last Change : 2019/02/12 00:53:41.
 " =============================================================================
 
 " Init: {{{1
@@ -379,23 +379,23 @@ au MyAutoCmd FileType csv setl nowrap
 " inoremap %s/ %s/\v
 
 " Use space.
-map <Space> [Space]
-noremap [Space] <Nop>
+map <silent> <Space> [Space]
+noremap <silent> [Space] <Nop>
 
 inoremap <silent> jj <ESC>
-nnoremap j gj
-nnoremap k gk
-xnoremap j gj
-xnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up>   gk
-nnoremap h <Left>
-nnoremap l <Right>
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+xnoremap <silent> j gj
+xnoremap <silent> k gk
+nnoremap <silent> <Down> gj
+nnoremap <silent> <Up>   gk
+nnoremap <silent> h <Left>
+nnoremap <silent> l <Right>
 " Open folding in "l"
 nnoremap <expr> l foldlevel(line('.')) ? "\<Right>zo" : "\<Right>"
 
-noremap gh ^
-noremap gl $
+noremap <silent> gh ^
+noremap <silent> gl $
 
 " For buffer.
 nnoremap <Tab> :<C-u>bn<CR>
@@ -438,8 +438,8 @@ nnoremap <silent> [Space]ev  :<C-u>tabedit $MYVIMRC<CR>
 nnoremap <silent> [Space]eg  :<C-u>tabedit $MYGVIMRC<CR>
 
 " Cmdwin.
-nnoremap : q:i
-vnoremap : q:A
+nnoremap <silent> : q:i
+vnoremap <silent> : q:A
 
 " Delete other line.
 nnoremap [Space]d :<C-u>call <SID>deleteOtherLine()<CR>
@@ -455,30 +455,30 @@ nnoremap [Space]pu :<C-u>PackagerUpdate<CR>
 nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
 
 " Use prefix s.
-nnoremap s <Nop>
-nnoremap sj <C-w>j
-nnoremap sk <C-w>k
-nnoremap sl <C-w>l
-nnoremap sh <C-w>h
-nnoremap sJ <C-w>J
-nnoremap sK <C-w>K
-nnoremap sL <C-w>L
-nnoremap sH <C-w>H
-nnoremap sr <C-w>r
-nnoremap s= <C-w>=
-nnoremap sw <C-w>w
-nnoremap so <C-w>_<C-w>|
-nnoremap s0 :<C-u>only<CR>
-nnoremap sO :<C-u>tabonly<CR>
-nnoremap sn :<C-u>bn<CR>
-nnoremap sp :<C-u>bp<CR>
-nnoremap st :<C-u>tabnew<CR>
-nnoremap ss :<C-u>sp<CR>
-nnoremap sv :<C-u>vs<CR>
-nnoremap sq :<C-u>q<CR>
-nnoremap sQ :<C-u>qa<CR>
-nnoremap sbk :<C-u>bd!<CR>
-nnoremap sbq :<C-u>q!<CR>
+nnoremap <silent> s <Nop>
+nnoremap <silent> sj <C-w>j
+nnoremap <silent> sk <C-w>k
+nnoremap <silent> sl <C-w>l
+nnoremap <silent> sh <C-w>h
+nnoremap <silent> sJ <C-w>J
+nnoremap <silent> sK <C-w>K
+nnoremap <silent> sL <C-w>L
+nnoremap <silent> sH <C-w>H
+nnoremap <silent> sr <C-w>r
+nnoremap <silent> s= <C-w>=
+nnoremap <silent> sw <C-w>w
+nnoremap <silent> so <C-w>_<C-w>|
+nnoremap <silent> s0 :<C-u>only<CR>
+nnoremap <silent> sO :<C-u>tabonly<CR>
+nnoremap <silent> sn :<C-u>bn<CR>
+nnoremap <silent> sp :<C-u>bp<CR>
+nnoremap <silent> st :<C-u>tabnew<CR>
+nnoremap <silent> ss :<C-u>sp<CR>
+nnoremap <silent> sv :<C-u>vs<CR>
+nnoremap <silent> sq :<C-u>q<CR>
+nnoremap <silent> sQ :<C-u>qa<CR>
+nnoremap <silent> sbk :<C-u>bd!<CR>
+nnoremap <silent> sbq :<C-u>q!<CR>
 
 nnoremap <Leader>o :<C-u>call <SID>open_current_dir()<CR>
 

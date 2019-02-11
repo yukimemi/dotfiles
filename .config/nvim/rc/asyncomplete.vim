@@ -25,6 +25,7 @@ au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-file.vim | cal
 au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-emoji.vim | call asyncomplete#register_source(asyncomplete#sources#emoji#get_source_options({
       \ 'name': 'emoji',
       \ 'whitelist': ['*'],
+      \ 'blacklist': ['rust'],
       \ 'priority': 1,
       \ 'completor': function('asyncomplete#sources#emoji#completor'),
       \ }))
@@ -168,7 +169,7 @@ endif
 if executable('rls')
   au MyAutoCmd User lsp_setup call lsp#register_server({
         \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'Cargo.toml'))},
         \ 'whitelist': ['rust'],
         \ })

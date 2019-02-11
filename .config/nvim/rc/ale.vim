@@ -27,3 +27,7 @@ let g:ale_fixers = {
 			\ 'go': ['gofmt', 'goimports']
 			\ }
 
+" rust
+let g:ale_rust_rls_toolchain = 'stable'
+let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
+
