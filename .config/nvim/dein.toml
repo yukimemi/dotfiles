@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2019/02/10 03:15:12.
+# Last Change : 2019/02/10 05:15:56.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -41,6 +41,9 @@ repo = 'vim-scripts/matchit.zip' # {{{2
 
 [[plugins]]
 repo = 'ntpeters/vim-better-whitespace' # {{{2
+
+[[plugins]]
+repo = 'kshenoy/vim-signature'
 
 # ==================== Complement ================ {{{1
 [[plugins]]
@@ -198,6 +201,9 @@ on_source = 'ctrlp.vim'
 [[plugins]]
 repo = 'ompugao/ctrlp-history' # {{{2
 on_source = 'ctrlp.vim'
+
+# [[plugins]]
+# repo = 'yuttie/comfortable-motion.vim' # {{{2
 
 [[plugins]]
 repo = 'dhruvasagar/vim-table-mode' # {{{2
@@ -496,7 +502,7 @@ on_ft = 'markdown'
 repo = 'iamcco/markdown-preview.nvim' # {{{2
 on_ft = 'markdown'
 on_cmd = 'MarkdownPreview'
-build = 'call mkdp#util#install()'
+hook_source = 'call mkdp#util#install()'
 
 
 # ==================== Filetype (Rust) =========== {{{1

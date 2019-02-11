@@ -11,3 +11,6 @@ if [ -e ~/.bashrc_local ]; then
   source ~/.bashrc_local
 fi
 
+
+# added by travis gem
+[ -f /Users/yukimemi/.travis/travis.sh ] && source /Users/yukimemi/.travis/travis.sh
