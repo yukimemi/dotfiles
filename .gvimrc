@@ -7,9 +7,7 @@ set guioptions=
 
 " color
 set background=dark
-" colorscheme PaperColor
-" colorscheme spring-night
-colorscheme base16-github
+colorscheme spring-night
 
 " font
 set gfn=Cica:h10:cSHIFTJIS:qDRAFT
