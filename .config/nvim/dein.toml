@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2019/02/10 05:15:56.
+# Last Change : 2019/02/16 18:59:08.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -502,7 +502,10 @@ on_ft = 'markdown'
 repo = 'iamcco/markdown-preview.nvim' # {{{2
 on_ft = 'markdown'
 on_cmd = 'MarkdownPreview'
-hook_source = 'call mkdp#util#install()'
+hook_post_update = '''
+call dein#source('markdown-preview.nvim')
+call mkdp#util#install()
+'''
 
 
 # ==================== Filetype (Rust) =========== {{{1

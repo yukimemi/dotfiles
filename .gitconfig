@@ -4,7 +4,7 @@
 [github]
 	user = yukimemi
 [push]
-	default = simple
+	default = current
 [color]
 	diff = auto
 [alias]
