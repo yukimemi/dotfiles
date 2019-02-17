@@ -31,15 +31,17 @@ au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-emoji.vim | ca
       \ }))
 
 " asyncomplete-tags.vim {{{2
-au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-tags.vim | call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
-      \ 'name': 'tags',
-      \ 'whitelist': ['*'],
-      \ 'priority': 2,
-      \ 'completor': function('asyncomplete#sources#tags#completor'),
-      \ 'config': {
-      \    'max_file_size': 20000000,
-      \ }
-      \ }))
+if executable('ctags')
+  au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-tags.vim | call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+        \ 'name': 'tags',
+        \ 'whitelist': ['*'],
+        \ 'priority': 2,
+        \ 'completor': function('asyncomplete#sources#tags#completor'),
+        \ 'config': {
+        \    'max_file_size': 20000000,
+        \ }
+        \ }))
+endif
 
 " asyncomplete-omni.vim {{{2
 " au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-omni.vim | call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
