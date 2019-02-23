@@ -1,2 +1,2 @@
-map R <Plug>(operator-replace)
+map _ <Plug>(operator-replace)
 
