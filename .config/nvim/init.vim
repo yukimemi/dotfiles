@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2019/02/12 09:27:46.
+" Last Change : 2019/02/23 23:57:55.
 " =============================================================================
 
 " Init: {{{1
@@ -232,6 +232,7 @@ set mouse=a
 set keywordprg=:help
 set autoread
 set shortmess+=c
+set nofixeol
 " set splitbelow
 set splitright
 set lazyredraw
