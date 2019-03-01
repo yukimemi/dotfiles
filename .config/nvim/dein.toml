@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2019/02/28 01:51:41.
+# Last Change : 2019/03/01 20:25:12.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -206,6 +206,11 @@ on_source = 'ctrlp.vim'
 repo = 'mattn/ctrlp-mark' # {{{2
 on_source = 'ctrlp.vim'
 [[plugins]]
+repo = 'mattn/ctrlp-vimhelpjp' # {{{2
+depends = 'webapi-vim'
+on_source = 'ctrlp.vim'
+on_cmd = 'VimHelpJp'
+[[plugins]]
 repo = 'ompugao/ctrlp-history' # {{{2
 on_source = 'ctrlp.vim'
 
@@ -259,6 +264,10 @@ if = '!has("nvim")'
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc' # {{{2
 if = '!has("nvim")'
+
+[[plugins]]
+repo = 'mattn/webapi-vim' # {{{2
+lazy = 1
 
 # ==================== Denite ==================== {{{1
 [[plugins]]

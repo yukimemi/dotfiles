@@ -1,3 +1,4 @@
+" Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'Konfekt/FastFold', {'type': 'opt', 'lazy': 1}
 Pac 'LeafCage/yankround.vim', {'type': 'opt', 'lazy': 1}
@@ -32,6 +33,7 @@ Pac 'lambdalisue/gina.vim', {'type': 'opt', 'lazy': 1}
 Pac 'ludovicchabant/vim-gutentags', {'type': 'opt', 'lazy': 1, 'if': executable('ctags')}
 Pac 'mattn/ctrlp-launcher', {'type': 'opt', 'lazy': 1}
 Pac 'mattn/ctrlp-mark', {'type': 'opt', 'lazy': 1}
+Pac 'mattn/ctrlp-vimhelpjp', {'type': 'opt', 'lazy': 1}
 Pac 'mattn/webapi-vim', {'type': 'opt', 'lazy': 1}
 Pac 'ntpeters/vim-better-whitespace', {'type': 'opt', 'lazy': 1}
 Pac 'ompugao/ctrlp-history', {'type': 'opt', 'lazy': 1}
@@ -58,4 +60,3 @@ Pac 'tyru/open-browser.vim', {'type': 'opt', 'lazy': 1}
 Pac 'vim-scripts/autodate.vim', {'type': 'opt', 'lazy': 1}
 Pac 'vim-scripts/matchit.zip', {'type': 'opt', 'lazy': 1}
 Pac 'w0rp/ale', {'type': 'opt', 'lazy': 1}
-" Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
