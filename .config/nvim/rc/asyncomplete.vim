@@ -107,6 +107,8 @@ endfunction
 
 " vim-lsp. {{{2
 " let g:lsp_signs_enabled = 1
+let g:lsp_auto_enable = 1
+let g:lsp_insert_text_enabled = 1
 let g:lsp_async_completion = 1
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1

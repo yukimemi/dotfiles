@@ -3,7 +3,10 @@ let g:ctrlp_use_caching = 1
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_lazy_update = 1
+let g:ctrlp_key_loop = 1
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:100'
 let g:ctrlp_extensions = ['line', 'changes', 'bookmarkdir', 'memolist']
+let g:ctrlp_line_prefix = '» '
 nnoremap scp :<C-u>CtrlP<CR>
 nnoremap scb :<C-u>CtrlPBuffer<CR>
 nnoremap scd :<C-u>CtrlPCurWD<CR>
