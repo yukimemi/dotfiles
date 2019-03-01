@@ -4,11 +4,14 @@ function! Markdown_preview_do(hooktype, name) abort
   call mkdp#util#install()
 endfunction
 
+" Pac 'fatih/vim-go', {'type': 'opt', 'ft': 'go'}
 Pac 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
 Pac 'PProvost/vim-ps1', {'type': 'opt', 'ft': 'ps1'}
 Pac 'Shougo/defx.nvim', {'type': 'opt', 'cmd': 'Defx', 'do': 'silent! UpdateRemotePlugins', 'if': !g:is_windows}
+Pac 'Shougo/denite.nvim', {'type': 'opt', 'cmd': 'Denite', 'do': 'silent! UpdateRemotePlugins', 'if': has('python3')}
 Pac 'Shougo/junkfile.vim', {'type': 'opt', 'cmd': 'JunkfileOpen'}
+Pac 'Shougo/neco-vim', {'type': 'opt', 'ft': 'vim'}
 Pac 'Vimjas/vim-python-pep8-indent', {'type': 'opt', 'ft': 'python'}
 Pac 'airblade/vim-rooter', {'type': 'opt', 'cmd': 'Rooter'}
 Pac 'aklt/plantuml-syntax', {'type': 'opt', 'ft': 'plantuml'}
@@ -26,7 +29,6 @@ Pac 'dhruvasagar/vim-table-mode', {'type': 'opt', 'ft': 'markdown'}
 Pac 'eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod', 'if': executable('stack'), 'ft': 'haskell'}
 Pac 'eagletmt/neco-ghc', {'type': 'opt', 'ft': 'haskell'}
 Pac 'ekalinin/Dockerfile.vim', {'type': 'opt', 'ft': 'dockerfile'}
-" Pac 'fatih/vim-go', {'type': 'opt', 'ft': 'go'}
 Pac 'glidenote/memolist.vim', {'type': 'opt', 'cmd': 'Memo*'}
 Pac 'iamcco/markdown-preview.nvim', {'type': 'opt', 'ft': 'markdown', 'cmd': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 Pac 'itchyny/vim-haskell-indent', {'type': 'opt', 'ft': 'haskell'}
@@ -67,4 +69,3 @@ Pac 'thinca/vim-qfreplace', {'type': 'opt', 'ft': ['quickfix', 'qf']}
 Pac 'twitvim/twitvim', {'type': 'opt', 'cmd': '*Twitter'}
 Pac 'tyru/capture.vim', {'type': 'opt', 'cmd': 'Capture'}
 Pac 'y0za/vim-reading-vimrc', {'type': 'opt', 'cmd': 'ReadingVimrc*'}
-
