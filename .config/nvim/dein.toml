@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2019/02/16 18:59:08.
+# Last Change : 2019/02/28 01:51:41.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -62,6 +62,12 @@ lazy = 1
 [[plugins]]
 repo = 'Shougo/context_filetype.vim' # {{{2
 lazy = 1
+[[plugins]]
+repo = 'Shougo/neco-syntax' # {{{2
+lazy = 1
+[[plugins]]
+repo = 'Shougo/neco-vim' # {{{2
+on_ft = 'vim'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp' # {{{2
@@ -85,6 +91,9 @@ repo = 'prabirshrestha/asyncomplete-emoji.vim' # {{{2
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-tags.vim' # {{{2
 if = "executable('ctags')"
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-necosyntax.vim' # {{{2
+depends = ['neco-syntax']
 # [[plugins]]
 # repo = 'yami-beta/asyncomplete-omni.vim' # {{{2
 [[plugins]]
@@ -93,9 +102,7 @@ depends = ['neosnippet.vim']
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-necovim.vim' # {{{2
 on_ft = 'vim'
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-necosyntax.vim' # {{{2
-on_ft = 'vim'
+depends = ['neco-vim']
 # ==================== Utility =================== {{{1
 [[plugins]]
 repo = 'airblade/vim-rooter' # {{{2

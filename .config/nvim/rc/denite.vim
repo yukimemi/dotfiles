@@ -19,7 +19,8 @@ inoremap <C-l> <ESC>:<C-u>Denite command<CR>
 
 " Load after settings.
 if has('python3')
-  au MyAutoCmd VimEnter * call <SID>denite_aft()
+  " au MyAutoCmd VimEnter * call <SID>denite_aft()
+  au MyAutoCmd CmdUndefined Denite call <SID>denite_aft()
 endif
 function! s:denite_aft() abort
   " Default options.

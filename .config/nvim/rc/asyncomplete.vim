@@ -60,6 +60,14 @@ au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-neosnippet.vim
       \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
       \ }))
 
+" asyncomplete-necosyntax.vim {{{2
+au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-necosyntax.vim | call asyncomplete#register_source(asyncomplete#sources#necosyntax#get_source_options({
+      \ 'name': 'necosyntax',
+      \ 'whitelist': ['*'],
+      \ 'priority': 4,
+      \ 'completor': function('asyncomplete#sources#necosyntax#completor'),
+      \ }))
+
 " asyncomplete-necovim.vim {{{2
 au MyAutoCmd FileType vim call <SID>asyncomplete_necovim_aft()
 function! s:asyncomplete_necovim_aft() abort
@@ -69,18 +77,6 @@ function! s:asyncomplete_necovim_aft() abort
         \ 'whitelist': ['vim'],
         \ 'priority': 4,
         \ 'completor': function('asyncomplete#sources#necovim#completor'),
-        \ }))
-endfunction
-
-" asyncomplete-necosyntax.vim {{{2
-au MyAutoCmd FileType vim call <SID>asyncomplete_necosyntax_aft()
-function! s:asyncomplete_necosyntax_aft() abort
-  silent! packadd asyncomplete-necosyntax.vim
-  call asyncomplete#register_source(asyncomplete#sources#necosyntax#get_source_options({
-        \ 'name': 'necosyntax',
-        \ 'whitelist': ['*'],
-        \ 'priority': 4,
-        \ 'completor': function('asyncomplete#sources#necosyntax#completor'),
         \ }))
 endfunction
 
