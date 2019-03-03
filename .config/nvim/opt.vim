@@ -41,6 +41,7 @@ Pac 'kchmck/vim-coffee-script', {'type': 'opt', 'ft': 'coffee'}
 Pac 'keremc/asyncomplete-racer.vim', {'type': 'opt', 'ft': 'rust', 'if': !executable('rls')}
 Pac 'kristijanhusak/vim-hybrid-material', {'type': 'opt'}
 Pac 'kylef/apiblueprint.vim', {'type': 'opt', 'ft': 'apiblueprint'}
+Pac 'lambdalisue/fila.vim', {'type': 'opt', 'cmd': 'Fila'}
 Pac 'leafgarland/typescript-vim', {'type': 'opt', 'ft': ['typescript', 'typescript.tsx']}
 Pac 'lifepillar/vim-solarized8', {'type': 'opt'}
 Pac 'majutsushi/tagbar', {'type': 'opt', 'cmd': 'Tagbar*'}

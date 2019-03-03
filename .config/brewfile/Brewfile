@@ -77,6 +77,7 @@ brew mas
 brew mosh
 brew mpfr
 brew msgpack
+brew ncurses
 brew neovim --HEAD
 brew node
 brew oniguruma
@@ -152,6 +153,9 @@ brew pet
 
 tap loadimpact/k6
 brew k6
+
+tap mananapr/cfiles
+brew cfiles
 
 tap neovim/neovim
 
