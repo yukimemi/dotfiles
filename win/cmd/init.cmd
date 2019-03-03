@@ -3,14 +3,14 @@
 doskey alias=if "$1"=="" (doskey /macros) else (doskey $*)
 doskey unalias=doskey $*=
 REM doskey cat=type $*
-doskey cat=bat
+doskey cat=bat $*
 doskey cp=copy $*
 doskey h=doskey /history
 doskey history=doskey /history
-doskey ll=dir /ad
-doskey la=dir
-doskey l=dir
-doskey ls=dir /w
+doskey ll=dir /ad $*
+doskey la=dir $*
+doskey l=dir $*
+doskey ls=dir /w $*
 doskey lv=more /E $*
 doskey mv=move $*
 doskey pwd=echo %CD%
