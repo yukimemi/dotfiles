@@ -16,6 +16,7 @@ source $VIM_PATH/rc/defx.vim
 source $VIM_PATH/rc/denite.vim
 source $VIM_PATH/rc/deoplete.vim
 source $VIM_PATH/rc/echodoc.vim
+source $VIM_PATH/rc/fila.vim
 source $VIM_PATH/rc/ghcmod-vim.vim
 source $VIM_PATH/rc/gina.vim
 source $VIM_PATH/rc/gruvbox.vim

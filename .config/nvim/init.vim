@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2019/03/01 22:24:03.
+" Last Change : 2019/03/03 19:18:25.
 " =============================================================================
 
 " Init: {{{1
@@ -205,8 +205,11 @@ set fileencodings=utf-8,cp932,utf-16le,utf-16
 set fileformats=unix,dos,mac
 
 " Clipboard.
-set clipboard=unnamed
-set clipboard+=unnamedplus
+if g:is_windows || g:is_darwin
+  set clipboard=unnamed
+else
+  set clipboard=unnamed,unnamedplus
+endif
 
 " Indent.
 set autoindent
@@ -371,7 +374,8 @@ au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail fenc=cp932 ff=dos
 au MyAutoCmd BufNewFile,BufRead *.toml setl ft=toml
 au MyAutoCmd BufNewFile,BufRead *.log setl ft=log
 au MyAutoCmd BufNewFile,BufRead *.ps1 setl ft=ps1
-au MyAutoCmd FileType csv setl nowrap
+au MyAutoCmd BufNewFile,BufRead *.hash setl nowrap
+au MyAutoCmd FileType csv,log setl nowrap
 
 
 " Mapping: {{{1
@@ -566,6 +570,14 @@ if filereadable(expand("~/.vimrc_background"))
   " let base16colorspace=256
   " source ~/.vimrc_background
 endif
+
+" reload filetype on save. {{{2
+" https://lambdalisue.hatenablog.com/entry/2017/12/24/165759
+au MyAutoCmd BufWritePost *
+      \ if &filetype ==# '' && exists('b:ftdetect') |
+      \   unlet! b:ftdetect |
+      \   filetype detect |
+      \ endif
 
 " Load settings for each location. {{{2
 " http://vim-jp.org/vim-users-jp/2009/12/27/Hack-112.html
