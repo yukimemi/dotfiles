@@ -57,7 +57,6 @@ Pac 'othree/es.next.syntax.vim', {'type': 'opt', 'ft': ['javascript', 'javascrip
 Pac 'othree/javascript-libraries-syntax.vim', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
 Pac 'pangloss/vim-javascript', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
 Pac 'posva/vim-vue', {'type': 'opt', 'ft': 'vue'}
-Pac 'prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt', 'ft': 'vim'}
 Pac 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'ft': 'vim'}
 Pac 'qpkorr/vim-renamer', {'type': 'opt', 'cmd': 'Renamer*'}
 Pac 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'ft': 'rust'}

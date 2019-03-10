@@ -1,9 +1,10 @@
+" Pac 'MaxMEllon/vim-shiny', {'type': 'opt', 'lazy': 1}
 " Pac 'TaDaa/vimade', {'type': 'opt', 'lazy': 1}
+" Pac 'thinca/vim-localrc', {'type': 'opt', 'lazy': 1}
 " Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'Konfekt/FastFold', {'type': 'opt', 'lazy': 1}
 Pac 'LeafCage/yankround.vim', {'type': 'opt', 'lazy': 1}
-" Pac 'MaxMEllon/vim-shiny', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/context_filetype.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/echodoc.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/neomru.vim', {'type': 'opt', 'lazy': 1}
@@ -47,12 +48,11 @@ Pac 'prabirshrestha/asyncomplete-buffer.vim', {'type': 'opt', 'lazy': 1}
 Pac 'prabirshrestha/asyncomplete-emoji.vim', {'type': 'opt', 'lazy': 1}
 Pac 'prabirshrestha/asyncomplete-file.vim', {'type': 'opt', 'lazy': 1}
 Pac 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt', 'lazy': 1}
-Pac 'prabirshrestha/asyncomplete-tags.vim', {'type': 'opt', 'lazy': 1}
+Pac 'prabirshrestha/asyncomplete-tags.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'rhysd/clever-f.vim', {'type': 'opt', 'lazy': 1}
 Pac 'rhysd/vim-operator-surround', {'type': 'opt', 'lazy': 1}
 Pac 'roxma/vim-tmux-clipboard', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'taku-o/vim-zoom', {'type': 'opt', 'lazy': 1}
-Pac 'thinca/vim-localrc', {'type': 'opt', 'lazy': 1}
 Pac 'thinca/vim-submode', {'type': 'opt', 'lazy': 1}
 Pac 'tmux-plugins/vim-tmux-focus-events', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'tpope/vim-repeat', {'type': 'opt', 'lazy': 1}
