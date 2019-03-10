@@ -76,7 +76,9 @@ function fish_right_prompt
 end
 
 ### Alias. {{{1
-if type -q exa
+if type -q lsd
+    alias ls 'lsd'
+else if type -q exa
     alias ls 'exa'
 end
 if type -q bat
@@ -84,6 +86,8 @@ if type -q bat
 end
 alias cp "cp -v"
 alias mv "mv -v"
+alias ll "ls -l"
+alias la "ls -la"
 alias l "ll"
 alias ghc "stack ghc --"
 alias ghci "stack ghci"
@@ -118,7 +122,11 @@ abbr -a b bd
 abbr -a e nvim
 abbr -a v vim
 abbr -a o open
-abbr -a tree 'exa -T'
+if type -q lsd
+    abbr -a tree 'lsd --tree'
+else if typq -q exa
+    abbr -a tree 'exa -T'
+end
 abbr -a et 'exiftool -api largefilesupport=1'
 
 # Git. {{{2
