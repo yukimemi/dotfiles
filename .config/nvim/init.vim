@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2019/03/03 19:18:25.
+" Last Change : 2019/03/10 22:21:02.
 " =============================================================================
 
 " Init: {{{1
@@ -374,6 +374,7 @@ au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail fenc=cp932 ff=dos
 au MyAutoCmd BufNewFile,BufRead *.toml setl ft=toml
 au MyAutoCmd BufNewFile,BufRead *.log setl ft=log
 au MyAutoCmd BufNewFile,BufRead *.ps1 setl ft=ps1
+au MyAutoCmd BufNewFile,BufRead *.csv setl ft=csv
 au MyAutoCmd BufNewFile,BufRead *.hash setl nowrap
 au MyAutoCmd FileType csv,log setl nowrap
 
