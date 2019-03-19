@@ -59,6 +59,7 @@ Pac 'pangloss/vim-javascript', {'type': 'opt', 'ft': ['javascript', 'javascript.
 Pac 'posva/vim-vue', {'type': 'opt', 'ft': 'vue'}
 Pac 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'ft': 'vim'}
 Pac 'qpkorr/vim-renamer', {'type': 'opt', 'cmd': 'Renamer*'}
+Pac 'rhysd/reply.vim', {'type': 'opt', 'cmd': 'Repl*'}
 Pac 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'ft': 'rust'}
 Pac 'rhysd/vim-gfm-syntax', {'type': 'opt', 'ft': 'markdown'}
 Pac 'rust-lang/rust.vim', {'type': 'opt', 'ft': 'rust'}
