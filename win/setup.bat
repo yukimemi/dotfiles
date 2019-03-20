@@ -30,6 +30,7 @@ mkdir %BASE_C%\.memolist > nul 2>&1
 mkdir %BASE_C%\.rustup > nul 2>&1
 mkdir %BASE_C%\.stack > nul 2>&1
 mkdir %BASE_C%\.vim > nul 2>&1
+mkdir %BASE_C%\.SpaceVim > nul 2>&1
 mkdir %BASE_C%\app > nul 2>&1
 mkdir %BASE_C%\app\bin > nul 2>&1
 mkdir %BASE_C%\Desktop > nul 2>&1
@@ -47,6 +48,8 @@ mkdir %BASE_D%\Pictures > nul 2>&1
 %LINKCMD_D% "%USERPROFILE%\.rustup" "%BASE_C%\.rustup" > nul 2>&1
 %LINKCMD_D% "%USERPROFILE%\.stack" "%BASE_C%\.stack" > nul 2>&1
 %LINKCMD_D% "%USERPROFILE%\.vim" "%BASE_C%\.vim" > nul 2>&1
+%LINKCMD_D% "%USERPROFILE%\.SpaceVim" "%BASE_C%\.SpaceVim" > nul 2>&1
+%LINKCMD_D% "%USERPROFILE%\.SpaceVim.d" "%BASE_C%\.SpaceVim.d" > nul 2>&1
 %LINKCMD_D% "%USERPROFILE%\app" "%BASE_C%\app" > nul 2>&1
 %LINKCMD_D% "%USERPROFILE%\app\bin" "%BASE_C%\app\bin" > nul 2>&1
 %LINKCMD_D% "%USERPROFILE%\Documents" "%BASE_C%\Documents" > nul 2>&1
