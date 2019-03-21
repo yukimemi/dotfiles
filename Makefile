@@ -20,6 +20,7 @@ deploy: ## Create symlink to home directory
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 	@mkdir -p $(HOME)/.local/bin > /dev/null 2>&1
 	@ln -sfnv $(DOTPATH)/etc/scripts $(HOME)/.local/bin/scripts
+	@mkdir -p $(HOME)/.local/share/fish > /dev/null 2>&1
 	@ln -sfnv ~/Dropbox/.fish_history ~/.local/share/fish/fish_history
 
 init: ## Setup environment settings
