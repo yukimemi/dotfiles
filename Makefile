@@ -20,8 +20,6 @@ deploy: ## Create symlink to home directory
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 	@mkdir -p $(HOME)/.local/bin > /dev/null 2>&1
 	@ln -sfnv $(DOTPATH)/etc/scripts $(HOME)/.local/bin/scripts
-	@ln -sfnv $(DOTPATH)/.config/nvim/init.vim $(HOME)/.vimrc
-	@ln -sfnv $(DOTPATH)/.config/nvim $(HOME)/.vim
 	@ln -sfnv ~/Dropbox/.fish_history ~/.local/share/fish/fish_history
 
 init: ## Setup environment settings
