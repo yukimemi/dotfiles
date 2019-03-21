@@ -8,33 +8,85 @@
 
 # All SpaceVim option below [option] section
 [options]
-    # set spacevim theme. by default colorscheme layer is not loaded,
-    # if you want to use more colorscheme, please load the colorscheme
-    # layer
-    colorscheme = "gruvbox"
-    colorscheme_bg = "dark"
-    # Disable guicolors in basic mode, many terminal do not support 24bit
-    # true colors
-    enable_guicolors = true
-    # Disable statusline separator, if you want to use other value, please
-    # install nerd fonts
-    statusline_separator = "arrow"
-    statusline_inactive_separator = "arrow"
-    buffer_index_type = 4
-    enable_tabline_filetype_icon = true
-    enable_statusline_mode = false
+automatic_update = false
+bootstrap_after = "init#after"
+bootstrap_before = "init#before"
+checkinstall = true
+colorscheme = "spring-night"
+colorscheme_bg = "dark"
+disabled_plugins = []
+enable_ale = true
+enable_cursorcolumn = false
+enable_cursorline = true
+enable_guicolors = true
+enable_language_specific_leader = false
+enable_neomake = false
+enable_os_fileformat_icon = true
+enable_statusline_mode = true
+enable_tabline_filetype_icon = true
+filemanager = "vimfiler"
+filetree_direction = "left"
+github_username = "yukimemi"
+relativenumber = false
+simple_mode = true
+statusline_separator = "arrow"
+windows_index_type = 1
 
 # Enable autocomplete layer
 [[layers]]
-name = 'autocomplete'
+name = "autocomplete"
 auto-completion-return-key-behavior = "complete"
 auto-completion-tab-key-behavior = "smart"
 
 [[layers]]
-name = 'shell'
-default_position = 'top'
+name = "shell"
+default_position = "top"
 default_height = 30
 
+[[layers]]
+name = "tools"
+[[layers]]
+name = "denite"
+[[layers]]
+name = "ctrlp"
+[[layers]]
+name = "VersionControl"
+[[layers]]
+name = "git"
+[[layers]]
+name = "lsp"
+[[layers]]
+name = "sudo"
+[[layers]]
+name = "tmux"
+[[layers]]
+name = "operator"
+[[layers]]
+name = "lang#toml"
+[[layers]]
+name = "lang#vim"
+[[layers]]
+name = "lang#rust"
+[[layers]]
+name = "lang#autohotkey"
+[[layers]]
+name = "lang#go"
+[[layers]]
+name = "lang#plantuml"
+[[layers]]
+name = "lang#ps1"
+[[layers]]
+name = "lang#python"
+[[layers]]
+name = "lang#javascript"
+[[layers]]
+name = "lang#json"
+
 [[custom_plugins]]
-name = 'rhysd/vim-color-spring-night'
+name = "itchyny/vim-cursorword"
+[[custom_plugins]]
+name = "rhysd/vim-color-spring-night"
+hook_add = '''
+source $SPACE_VIM/rc/vim-airline.vim
+'''
 
