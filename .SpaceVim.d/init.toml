@@ -48,6 +48,8 @@ name = "tools"
 [[layers]]
 name = "denite"
 [[layers]]
+name = "unite"
+[[layers]]
 name = "ctrlp"
 [[layers]]
 name = "VersionControl"
@@ -81,12 +83,43 @@ name = "lang#python"
 name = "lang#javascript"
 [[layers]]
 name = "lang#json"
+[[layers]]
+name = "exprfold"
 
+# custom_plugins. {{{1
 [[custom_plugins]]
-name = "itchyny/vim-cursorword"
+name = "itchyny/vim-cursorword" # {{{2
 [[custom_plugins]]
-name = "rhysd/vim-color-spring-night"
+name = "rhysd/vim-color-spring-night" # {{{2
 hook_add = '''
 source $SPACE_VIM/rc/vim-airline.vim
 '''
-
+[[custom_plugins]]
+name = "kaneshin/ctrlp-filetype" # {{{2
+on_cmd = ["CtrlPFiletype"]
+hook_add = '''
+source $SPACE_VIM/rc/ctrlp.vim
+'''
+[[custom_plugins]]
+name = "kaneshin/ctrlp-memolist" # {{{2
+on_cmd = ["CtrlPMemolist"]
+[[custom_plugins]]
+name = "mattn/ctrlp-launcher" # {{{2
+on_cmd = ["CtrlPLauncher"]
+[[custom_plugins]]
+name = "ompugao/ctrlp-history" # {{{2
+on_cmd = ["CtrlPCmdHistory"]
+[[custom_plugins]]
+name = "tyru/capture.vim" # {{{2
+on_cmd = ["Capture"]
+[[custom_plugins]]
+name = "vim-scripts/autodate.vim" # {{{2
+hook_add = '''
+source $SPACE_VIM/rc/autodate.vim
+'''
+[[custom_plugins]]
+name = 'glidenote/memolist.vim' # {{{2
+on_cmd = ['Memolist', 'MemoNew', 'MemoGrep']
+hook_add = '''
+source $SPACE_VIM/rc/memolist.vim
+'''
