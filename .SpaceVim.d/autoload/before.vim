@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : before.vim
 " Author      : yukimemi
-" Last Change : 2019/03/10 22:21:02.
+" Last Change : 2019/03/23 13:36:35.
 " =============================================================================
 
 " Init: {{{1
@@ -30,5 +30,13 @@ let g:is_windows = has('win16') || has('win32') || has('win64')
 let g:is_cygwin = has('win32unix')
 let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
 let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
+
+" Functions: {{{1
+function! Mkdir(dir) "{{{2
+  if !isdirectory(a:dir)
+    call mkdir(a:dir, "p")
+  endif
+endfunction
+
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

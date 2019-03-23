@@ -67,6 +67,7 @@ noremap <silent> gh ^
 noremap <silent> gl $
 
 nnoremap <silent> <Leader>o :<C-u>call <SID>open_current_dir()<CR>
+inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
 " Autocmd: {{{1
 " https://lambdalisue.hatenablog.com/entry/2017/12/24/165759
@@ -76,5 +77,11 @@ au MyAutoCmd BufWritePost *
       \   filetype detect |
       \ endif
 
+" For swap.
+" http://itchyny.hatenablog.com/entry/2014/12/25/090000
+au MyAutoCmd SwapExists * let v:swapchoice = 'o'
+
+" Escape cmd win.
+au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<CR>
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

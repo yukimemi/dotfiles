@@ -12,8 +12,7 @@ let g:memolist_prompt_tags = 1
 
 " mappings
 nnoremap <Leader>mn :<C-u>MemoNew<CR>
-" nnoremap <Leader>ml :<C-u>MemoList<CR>
-nnoremap <Leader>ml :<C-u>exe printf("Dirvish %s", g:memolist_path)<CR>
+nnoremap <Leader>ml :<C-u>MemoList<CR>
 nnoremap <Leader>mg :<C-u>MemoGrep<CR>
 
 
