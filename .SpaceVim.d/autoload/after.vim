@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/03/10 22:21:02.
+" Last Change : 2019/03/23 20:12:25.
 " =============================================================================
 
 " Functions: {{{1
@@ -83,5 +83,11 @@ au MyAutoCmd SwapExists * let v:swapchoice = 'o'
 
 " Escape cmd win.
 au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<CR>
+
+" Plugins: {{{1
+source $SPACE_VIM/rc/ale.vim
+source $SPACE_VIM/rc/clever-f.vim
+source $SPACE_VIM/rc/ctrlp.vim
+source $SPACE_VIM/rc/vim-airline.vim
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
