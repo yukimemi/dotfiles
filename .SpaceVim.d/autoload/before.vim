@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : before.vim
 " Author      : yukimemi
-" Last Change : 2019/03/23 13:36:35.
+" Last Change : 2019/03/24 03:20:29.
 " =============================================================================
 
 " Init: {{{1
@@ -22,14 +22,22 @@ let mapleader = ','
 let maplocalleader = ','
 
 " PATH.
-let $SPACE_VIM = expand('~/.SpaceVim.d')
+let $SPACE_VIM = expand("~/.SpaceVim.d")
 
 " Utility: {{{1
 " Judge os type. {{{2
-let g:is_windows = has('win16') || has('win32') || has('win64')
-let g:is_cygwin = has('win32unix')
-let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
+let g:is_windows = has("win16") || has("win32") || has("win64")
+let g:is_cygwin = has("win32unix")
+let g:is_darwin = has("mac") || has("macunix") || has("gui_macvim")
 let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
+
+" SpaceVim config. {{{2
+if g:is_windows
+  let g:spacevim_disabled_plugins = ["denite.nvim"]
+endif
+if !g:is_windows
+  let g:spacevim_disabled_plugins = ["unite.vim"]
+endif
 
 " Functions: {{{1
 function! Mkdir(dir) "{{{2

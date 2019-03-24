@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/03/23 20:12:25.
+" Last Change : 2019/03/24 21:12:27.
 " =============================================================================
 
 " Functions: {{{1
@@ -17,13 +17,15 @@ endfunction
 
 
 " Basic: {{{1
-" Clipboard {{{2
+" Clipboard. {{{2
 if g:is_windows || g:is_darwin
   set clipboard=unnamed
 else
   set clipboard=unnamed,unnamedplus
 endif
 
+" encode. {{{2
+set fileencodings=ucs-bom,utf-8,utf-16le,cp932,iso-8859-15
 
 " Mappings: {{{1
 nnoremap <silent> <Leader><Leader> :<C-u>update<CR>
