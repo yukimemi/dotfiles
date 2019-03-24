@@ -14,7 +14,6 @@ bootstrap_before = "init#before"
 checkinstall = true
 colorscheme = "spring-night"
 colorscheme_bg = "dark"
-disabled_plugins = []
 enable_ale = true
 enable_cursorcolumn = false
 enable_cursorline = true
@@ -24,6 +23,7 @@ enable_neomake = true
 enable_os_fileformat_icon = true
 enable_statusline_mode = true
 enable_tabline_filetype_icon = true
+enable_vimfiler_welcome = false
 filemanager = "vimfiler"
 filetree_direction = "left"
 github_username = "yukimemi"
@@ -47,6 +47,8 @@ default_height = 30
 name = "tools"
 [[layers]]
 name = "denite"
+[[layers]]
+name = "unite"
 [[layers]]
 name = "ctrlp"
 [[layers]]
@@ -94,20 +96,20 @@ hook_add = '''
 source $SPACE_VIM/rc/autodate.vim
 '''
 [[custom_plugins]]
-name = 'glidenote/memolist.vim' # {{{2
-on_cmd = ['Memolist', 'MemoNew', 'MemoGrep']
+name = "glidenote/memolist.vim" # {{{2
+on_cmd = ["Memolist", "MemoNew", "MemoGrep"]
 hook_add = '''
 source $SPACE_VIM/rc/memolist.vim
 '''
 [[custom_plugins]]
-name = 'kana/vim-operator-replace' # {{{2
-depends = 'vim-operator-user'
+name = "kana/vim-operator-replace" # {{{2
+depends = "vim-operator-user"
 on_map = '<Plug>'
 hook_add = '''
 source $SPACE_VIM/rc/vim-operator-replace.vim
 '''
 [[custom_plugins]]
-name = 'sheerun/vim-polyglot' # {{{2
+name = "sheerun/vim-polyglot" # {{{2
 hook_add = '''
 source $SPACE_VIM/rc/vim-polyglot.vim
 '''
