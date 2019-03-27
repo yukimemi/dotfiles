@@ -97,7 +97,7 @@ source $SPACE_VIM/rc/autodate.vim
 '''
 [[custom_plugins]]
 name = "glidenote/memolist.vim" # {{{2
-on_cmd = ["Memolist", "MemoNew", "MemoGrep"]
+on_cmd = ["MemoList", "MemoNew", "MemoGrep"]
 hook_add = '''
 source $SPACE_VIM/rc/memolist.vim
 '''
