@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/03/24 21:12:27.
+" Last Change : 2019/03/29 09:05:39.
 " =============================================================================
 
 " Functions: {{{1
@@ -18,11 +18,7 @@ endfunction
 
 " Basic: {{{1
 " Clipboard. {{{2
-if g:is_windows || g:is_darwin
-  set clipboard=unnamed
-else
-  set clipboard=unnamed,unnamedplus
-endif
+set clipboard=unnamed,unnamedplus
 
 " encode. {{{2
 set fileencodings=ucs-bom,utf-8,utf-16le,cp932,iso-8859-15
@@ -85,6 +81,9 @@ au MyAutoCmd SwapExists * let v:swapchoice = 'o'
 
 " Escape cmd win.
 au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<CR>
+
+" Escape E211.
+au MyAutoCmd FileChangedShell * execute
 
 " Plugins: {{{1
 source $SPACE_VIM/rc/ale.vim
