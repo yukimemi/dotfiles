@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/03/29 09:05:39.
+" Last Change : 2019/03/31 13:13:27.
 " =============================================================================
 
 " Functions: {{{1
@@ -21,7 +21,42 @@ endfunction
 set clipboard=unnamed,unnamedplus
 
 " encode. {{{2
-set fileencodings=ucs-bom,utf-8,utf-16le,cp932,iso-8859-15
+set fileencodings=ucs-bom,utf-8,cp932,utf-16le,iso-8859-15
+
+" Hilight cursorline, cursorcolumn {{{2
+" http://d.hatena.ne.jp/thinca/20090530/1243615055
+au MyAutoCmd CursorMoved,CursorMovedI * call s:auto_cursorline('CursorMoved')
+au MyAutoCmd CursorHold,CursorHoldI * call s:auto_cursorline('CursorHold')
+au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * call s:auto_cursorline('WinEnter,BufEnter,CmdwinLeave')
+au MyAutoCmd WinLeave * call s:auto_cursorline('WinLeave')
+
+let s:cursorline_lock = 0
+function! s:auto_cursorline(event)
+  if a:event ==# 'WinEnter,BufEnter,CmdwinLeave'
+    setlocal cursorline
+    setlocal cursorcolumn
+    let s:cursorline_lock = 2
+  elseif a:event ==# 'WinLeave'
+    setlocal nocursorline
+    setlocal nocursorcolumn
+  elseif a:event ==# 'CursorMoved'
+    if s:cursorline_lock
+      if 1 < s:cursorline_lock
+        let s:cursorline_lock = 1
+      else
+        setlocal nocursorline
+        setlocal nocursorcolumn
+        let s:cursorline_lock = 0
+      endif
+    endif
+  elseif a:event ==# 'CursorHold'
+    if &updatetime >= 4000
+      setlocal cursorline
+      setlocal cursorcolumn
+    endif
+    let s:cursorline_lock = 1
+  endif
+endfunction
 
 " Mappings: {{{1
 nnoremap <silent> <Leader><Leader> :<C-u>update<CR>

@@ -1,3 +1,5 @@
+" let g:is#do_default_mappings = 0
+
 map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)zv
 map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)zv
 

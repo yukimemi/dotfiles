@@ -16,7 +16,7 @@ colorscheme = "spring-night"
 colorscheme_bg = "dark"
 enable_ale = true
 enable_cursorcolumn = false
-enable_cursorline = true
+enable_cursorline = false
 enable_guicolors = true
 enable_language_specific_leader = false
 enable_neomake = true
@@ -56,6 +56,8 @@ name = "VersionControl"
 [[layers]]
 name = "git"
 [[layers]]
+name = "github"
+[[layers]]
 name = "lsp"
 [[layers]]
 name = "sudo"
@@ -64,7 +66,7 @@ name = "tmux"
 [[layers]]
 name = "operator"
 [[layers]]
-name = "lang#rust"
+name = "tags"
 
 [[layers]]
 name = "format"
@@ -73,6 +75,11 @@ enable = false
 # custom_plugins. {{{1
 [[custom_plugins]]
 name = "itchyny/vim-cursorword" # {{{2
+[[custom_plugins]]
+name = "itchyny/vim-parenmatch" # {{{2
+hook_add = '''
+source $SPACE_VIM/rc/vim-parenmatch.vim
+'''
 [[custom_plugins]]
 name = "rhysd/vim-color-spring-night" # {{{2
 [[custom_plugins]]
@@ -104,12 +111,34 @@ source $SPACE_VIM/rc/memolist.vim
 [[custom_plugins]]
 name = "kana/vim-operator-replace" # {{{2
 depends = "vim-operator-user"
-on_map = '<Plug>'
+on_map = "<Plug>(operator-replace"
 hook_add = '''
 source $SPACE_VIM/rc/vim-operator-replace.vim
+'''
+[[custom_plugins]]
+name = "haya14busa/vim-asterisk" # {{{2
+on_map = "<Plug>(asterisk-"
+[[custom_plugins]]
+name = "osyo-manga/vim-anzu" # {{{2
+on_map = "<Plug>(anzu-"
+[[custom_plugins]]
+name = "haya14busa/is.vim" # {{{2
+depends = ["haya14busa/vim-asterisk", "osyo-manga/vim-anzu"]
+on_map = "<Plug>(is-"
+hook_add = '''
+source $SPACE_VIM/rc/is.vim
 '''
 [[custom_plugins]]
 name = "sheerun/vim-polyglot" # {{{2
 hook_add = '''
 source $SPACE_VIM/rc/vim-polyglot.vim
 '''
+[[custom_plugins]]
+name = "haya14busa/dein-command.vim" # {{{2
+on_cmd = "Dein"
+[[custom_plugins]]
+name = "rhysd/committia.vim" # {{{2
+# [[custom_plugins]]
+# name = "weirongxu/plantuml-previewer.vim" # {{{2
+# depends = ["open-browser.vim"]
+# on_ft = "plantuml"
