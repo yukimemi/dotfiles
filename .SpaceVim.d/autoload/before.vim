@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : before.vim
 " Author      : yukimemi
-" Last Change : 2019/03/24 03:20:29.
+" Last Change : 2019/03/31 09:06:23.
 " =============================================================================
 
 " Init: {{{1
@@ -34,9 +34,6 @@ let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
 " SpaceVim config. {{{2
 if g:is_windows
   let g:spacevim_disabled_plugins = ["denite.nvim"]
-endif
-if !g:is_windows
-  let g:spacevim_disabled_plugins = ["unite.vim"]
 endif
 
 " Functions: {{{1
