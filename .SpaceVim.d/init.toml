@@ -1,18 +1,18 @@
-#=============================================================================
-# dark_powered.toml --- dark powered configuration example for SpaceVim
-# Copyright (c) 2016-2017 Wang Shidong & Contributors
-# Author: Wang Shidong < wsdjeg at 163.com >
-# URL: https://spacevim.org
-# License: GPLv3
-#=============================================================================
+# =============================================================================
+# File        : init.toml
+# Author      : yukimemi <yukimemi@gmail.com>
+# Last Change : 2019/04/02 23:52:45.
+# =============================================================================
 
 # All SpaceVim option below [option] section
 [options]
+autocomplete_method = "coc"
 automatic_update = false
 bootstrap_after = "init#after"
 bootstrap_before = "init#before"
 checkinstall = true
-colorscheme = "spring-night"
+colorscheme = "SpaceVim"
+# colorscheme = "spring-night"
 colorscheme_bg = "dark"
 enable_ale = true
 enable_cursorcolumn = false
@@ -32,7 +32,7 @@ simple_mode = true
 statusline_separator = "arrow"
 windows_index_type = 1
 
-# Enable autocomplete layer
+# layers. {{{1
 [[layers]]
 name = "autocomplete"
 auto-completion-return-key-behavior = "complete"
@@ -138,7 +138,13 @@ name = "haya14busa/dein-command.vim" # {{{2
 on_cmd = "Dein"
 [[custom_plugins]]
 name = "rhysd/committia.vim" # {{{2
-# [[custom_plugins]]
-# name = "weirongxu/plantuml-previewer.vim" # {{{2
-# depends = ["open-browser.vim"]
-# on_ft = "plantuml"
+[[custom_plugins]]
+name = "iamcco/markdown-preview.nvim" # {{{2
+depends = "open-browser.vim"
+on_ft = "markdown"
+on_cmd = "MarkdownPreview"
+build = "cd app & yarn install"
+# hook_post_update = '''
+# call dein#source('markdown-preview.nvim')
+# call mkdp#util#install()
+# '''
