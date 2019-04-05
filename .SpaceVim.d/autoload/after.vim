@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/03/31 13:13:27.
+" Last Change : 2019/04/03 00:26:26.
 " =============================================================================
 
 " Functions: {{{1
@@ -17,6 +17,9 @@ endfunction
 
 
 " Basic: {{{1
+" Options. {{{2
+set cmdheight=2
+
 " Clipboard. {{{2
 set clipboard=unnamed,unnamedplus
 
@@ -124,6 +127,5 @@ au MyAutoCmd FileChangedShell * execute
 source $SPACE_VIM/rc/ale.vim
 source $SPACE_VIM/rc/clever-f.vim
 source $SPACE_VIM/rc/ctrlp.vim
-source $SPACE_VIM/rc/vim-airline.vim
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

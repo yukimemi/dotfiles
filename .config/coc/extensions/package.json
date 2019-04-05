@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "coc-json": "^1.0.13"
+  }
+}
