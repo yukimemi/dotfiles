@@ -8,6 +8,7 @@
 [options]
 autocomplete_method = "coc"
 automatic_update = false
+# autocomplete_method = "coc"
 bootstrap_after = "init#after"
 bootstrap_before = "init#before"
 checkinstall = true
