@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/04/06 18:09:14.
+" Last Change : 2019/04/07 07:48:29.
 " =============================================================================
 
 " Functions: {{{1
@@ -128,6 +128,16 @@ source $SPACE_VIM/rc/ale.vim
 source $SPACE_VIM/rc/coc.vim
 source $SPACE_VIM/rc/clever-f.vim
 source $SPACE_VIM/rc/ctrlp.vim
+source $SPACE_VIM/rc/vim-ps1.vim
 
+" FileType: {{{1
+" xml {{{2
+let g:xml_syntax_folding = 1
+au MyAutoCmd BufNewFile,BufRead *.xml call <SID>filetype_xml()
+function! s:filetype_xml() abort
+  setl noexpandtab
+  setl ts=4 sw=4 sts=0
+  setl foldmethod=syntax
+endfunction
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
