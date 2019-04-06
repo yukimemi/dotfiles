@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/04/03 00:26:26.
+" Last Change : 2019/04/06 18:09:14.
 " =============================================================================
 
 " Functions: {{{1
@@ -125,7 +125,9 @@ au MyAutoCmd FileChangedShell * execute
 
 " Plugins: {{{1
 source $SPACE_VIM/rc/ale.vim
+source $SPACE_VIM/rc/coc.vim
 source $SPACE_VIM/rc/clever-f.vim
 source $SPACE_VIM/rc/ctrlp.vim
+
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

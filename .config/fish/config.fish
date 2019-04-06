@@ -82,7 +82,8 @@ else if type -q exa
     alias ls 'exa'
 end
 if type -q bat
-    alias cat 'bat'
+    # alias cat 'bat'
+    abbr -a cat bat
 end
 alias cp "cp -v"
 alias mv "mv -v"

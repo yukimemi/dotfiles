@@ -1,5 +1,8 @@
 " let g:is#do_default_mappings = 0
 
+set ignorecase
+set smartcase
+
 map n <Plug>(is-nohl)<Plug>(anzu-n-with-echo)zv
 map N <Plug>(is-nohl)<Plug>(anzu-N-with-echo)zv
 
