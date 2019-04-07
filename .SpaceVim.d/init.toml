@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/04/07 11:04:36.
+# Last Change : 2019/04/07 23:32:34.
 # =============================================================================
 
 # All SpaceVim option below [option] section
@@ -12,8 +12,8 @@ automatic_update = false
 bootstrap_after = "init#after"
 bootstrap_before = "init#before"
 checkinstall = true
-colorscheme = "SpaceVim"
-# colorscheme = "spring-night"
+# colorscheme = "SpaceVim"
+colorscheme = "spring-night"
 colorscheme_bg = "dark"
 disabled_plugins = ["neopairs.vim"]
 enable_ale = true
@@ -153,4 +153,12 @@ build = "cd app & yarn install"
 [[custom_plugins]]
 name = "dhruvasagar/vim-table-mode" # {{{2
 on_ft = "markdown"
-
+[[custom_plugins]]
+name = "thinca/vim-qfreplace" # {{{2
+on_ft = ["quickfix", "qf"]
+[[custom_plugins]]
+name = "qpkorr/vim-renamer" # {{{2
+on_cmd = "Renamer"
+hook_add = '''
+source $SPACE_VIM/rc/vim-renamer.vim
+'''

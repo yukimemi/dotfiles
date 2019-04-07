@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/04/07 07:48:29.
+" Last Change : 2019/04/07 15:55:17.
 " =============================================================================
 
 " Functions: {{{1
@@ -25,6 +25,11 @@ set clipboard=unnamed,unnamedplus
 
 " encode. {{{2
 set fileencodings=ucs-bom,utf-8,cp932,utf-16le,iso-8859-15
+
+" grep. {{{2
+if executable("jvgrep")
+  set grepprg=jvgrep
+endif
 
 " Hilight cursorline, cursorcolumn {{{2
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
@@ -122,6 +127,9 @@ au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<CR>
 
 " Escape E211.
 au MyAutoCmd FileChangedShell * execute
+
+au MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
+
 
 " Plugins: {{{1
 source $SPACE_VIM/rc/ale.vim
