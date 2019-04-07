@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/04/05 20:55:34.
+# Last Change : 2019/04/07 11:04:36.
 # =============================================================================
 
 # All SpaceVim option below [option] section
@@ -150,3 +150,7 @@ build = "cd app & yarn install"
 # call dein#source('markdown-preview.nvim')
 # call mkdp#util#install()
 # '''
+[[custom_plugins]]
+name = "dhruvasagar/vim-table-mode" # {{{2
+on_ft = "markdown"
+
