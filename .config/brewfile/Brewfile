@@ -51,6 +51,7 @@ brew imagemagick
 brew jemalloc
 brew jpeg
 brew jq
+brew jvgrep
 brew lame
 brew libcroco
 brew libepoxy
