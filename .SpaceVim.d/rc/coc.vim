@@ -56,7 +56,7 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use `:Format` for format current buffer
 command! -nargs=0 Format :call CocAction('format')
-au MyAutoCmd BufWritePre *.js,*.json,*.ts silent call CocAction('format')
+au MyAutoCmd BufWritePre *.js,*.json,*.ts,*.css silent call CocAction('format')
 
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
