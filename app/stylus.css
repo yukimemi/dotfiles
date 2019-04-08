@@ -1,0 +1,15 @@
+/* ==UserStyle==
+@name           vimvixen
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    A new userstyle
+@author         Me
+==/UserStyle== */
+
+.vimvixen-hint {
+  font-size: 17px;
+}
+
+.vimvixen-console-frame {
+  ime-mode: inactive !important;
+}

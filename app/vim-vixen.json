@@ -10,8 +10,8 @@
     "W": { "type": "command.show.winopen", "alter": true },
     "b": { "type": "command.show.buffer" },
     "a": { "type": "command.show.addbookmark", "alter": true },
-    "k": { "type": "scroll.vertically", "count": -5 },
-    "j": { "type": "scroll.vertically", "count": 5 },
+    "k": { "type": "scroll.vertically", "count": -3 },
+    "j": { "type": "scroll.vertically", "count": 3 },
     "h": { "type": "scroll.horizonally", "count": -1 },
     "l": { "type": "scroll.horizonally", "count": 1 },
     "<C-U>": { "type": "scroll.pages", "count": -0.5 },
@@ -77,5 +77,5 @@
     "smoothscroll": true,
     "complete": "sbh"
   },
-  "blacklist": []
+  "blacklist": ["twitter.com"]
 }
