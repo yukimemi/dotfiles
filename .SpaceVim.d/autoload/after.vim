@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/04/07 15:55:17.
+" Last Change : 2019/04/13 21:23:42.
 " =============================================================================
 
 " Functions: {{{1
@@ -128,7 +128,11 @@ au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<CR>
 " Escape E211.
 au MyAutoCmd FileChangedShell * execute
 
+" Auto open quickfix.
 au MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
+
+" For all filetype.
+au MyAutoCmd FileType * setlocal fo-=t fo-=c fo-=r fo-=o
 
 
 " Plugins: {{{1

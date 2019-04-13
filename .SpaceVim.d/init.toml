@@ -1,18 +1,16 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/04/13 10:53:20.
+# Last Change : 2019/04/13 22:09:29.
 # =============================================================================
 
 # All SpaceVim option below [option] section
 [options]
 autocomplete_method = "coc"
 automatic_update = false
-# autocomplete_method = "coc"
 bootstrap_after = "init#after"
 bootstrap_before = "init#before"
 checkinstall = true
-# colorscheme = "SpaceVim"
 colorscheme = "spring-night"
 colorscheme_bg = "dark"
 disabled_plugins = ["neopairs.vim"]
@@ -144,21 +142,6 @@ name = "sheerun/vim-polyglot" # {{{2
 hook_add = '''
 source $SPACE_VIM/rc/vim-polyglot.vim
 '''
-[[custom_plugins]]
-name = "haya14busa/dein-command.vim" # {{{2
-on_cmd = "Dein"
-[[custom_plugins]]
-name = "rhysd/committia.vim" # {{{2
-# [[custom_plugins]]
-# name = "iamcco/markdown-preview.nvim" # {{{2
-# depends = "open-browser.vim"
-# on_ft = "markdown"
-# on_cmd = "MarkdownPreview"
-# build = "cd app & yarn install"
-# hook_post_update = '''
-# call dein#source('markdown-preview.nvim')
-# call mkdp#util#install()
-# '''
 [[custom_plugins]]
 name = "dhruvasagar/vim-table-mode" # {{{2
 on_ft = "markdown"
