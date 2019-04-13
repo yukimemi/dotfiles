@@ -3,7 +3,7 @@
     "coc-css": "^1.0.7",
     "coc-highlight": "^1.0.5",
     "coc-html": "^1.0.7",
-    "coc-json": "^1.0.13",
+    "coc-json": "^1.0.14",
     "coc-pairs": "^1.2.4",
     "coc-prettier": "^1.1.0",
     "coc-pyls": "^1.0.6",

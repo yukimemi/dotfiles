@@ -504,17 +504,16 @@ coc-html@^1.0.7:
     vscode-languageserver-types "^3.14.0"
     vscode-uri "^1.0.6"
 
-coc-json@^1.0.13:
-  version "1.0.13"
-  resolved "https://registry.yarnpkg.com/coc-json/-/coc-json-1.0.13.tgz#d34e2b4a54c61c173ec5da0a68e421dfa60db14b"
-  integrity sha512-UWBmib/7AhaHC+OqxjMu3cCHux85AekDrjH5z8ZmdhBm2binDadmXZkYVMcWyzloXbldjBVaJtWtz4IZ68kLFg==
+coc-json@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/coc-json/-/coc-json-1.0.14.tgz#521dc6447204e8c71a2f53496c89bd11522c699c"
+  integrity sha512-cIIq8n7ajxMU43TYonDBanG8uBeugNFgI/MHidVJbrYtQnXUsHSqXNHUbgIzjnOYVOFwCXd0LacLZOiD6z2K1Q==
   dependencies:
     find-up "^3.0.0"
     request-light "^0.2.4"
     tslib "^1.9.3"
     vscode-json-languageservice "^3.3.0-next.6"
     vscode-languageserver "^5.3.0-next.2"
-    vscode-nls "^4.0.0"
     vscode-uri "^1.0.6"
 
 coc-pairs@^1.2.4:

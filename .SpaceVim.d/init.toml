@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/04/07 23:32:34.
+# Last Change : 2019/04/13 10:20:31.
 # =============================================================================
 
 # All SpaceVim option below [option] section
@@ -69,6 +69,9 @@ name = "tmux"
 name = "operator"
 [[layers]]
 name = "tags"
+
+[[layers]]
+name = "lang#markdown"
 
 [[layers]]
 name = "format"
@@ -140,12 +143,12 @@ name = "haya14busa/dein-command.vim" # {{{2
 on_cmd = "Dein"
 [[custom_plugins]]
 name = "rhysd/committia.vim" # {{{2
-[[custom_plugins]]
-name = "iamcco/markdown-preview.nvim" # {{{2
-depends = "open-browser.vim"
-on_ft = "markdown"
-on_cmd = "MarkdownPreview"
-build = "cd app & yarn install"
+# [[custom_plugins]]
+# name = "iamcco/markdown-preview.nvim" # {{{2
+# depends = "open-browser.vim"
+# on_ft = "markdown"
+# on_cmd = "MarkdownPreview"
+# build = "cd app & yarn install"
 # hook_post_update = '''
 # call dein#source('markdown-preview.nvim')
 # call mkdp#util#install()
