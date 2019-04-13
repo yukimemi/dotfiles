@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/04/13 10:20:31.
+# Last Change : 2019/04/13 10:53:20.
 # =============================================================================
 
 # All SpaceVim option below [option] section
@@ -54,6 +54,8 @@ name = "unite"
 [[layers]]
 name = "ctrlp"
 [[layers]]
+name = "fzf"
+[[layers]]
 name = "VersionControl"
 [[layers]]
 name = "git"
@@ -72,6 +74,10 @@ name = "tags"
 
 [[layers]]
 name = "lang#markdown"
+[[layers]]
+name = "lang#html"
+[[layers]]
+name = "lang#dockerfile"
 
 [[layers]]
 name = "format"
