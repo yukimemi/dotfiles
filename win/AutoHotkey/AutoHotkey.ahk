@@ -76,8 +76,13 @@ return
 ; return
 
 ; for vivaldi
+; F11::
+; Activate(USERPROFILE . "\AppData\Local\Vivaldi\Application\vivaldi.exe")
+; return
+
+; for firefox
 F11::
-Activate(USERPROFILE . "\AppData\Local\Vivaldi\Application\vivaldi.exe")
+Activate("C:\Program Files\Mozilla Firefox\firefox.exe")
 return
 
 ; for cmd.exe
