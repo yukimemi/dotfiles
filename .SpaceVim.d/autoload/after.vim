@@ -19,6 +19,7 @@ endfunction
 " Basic: {{{1
 " Options. {{{2
 set cmdheight=2
+set virtualedit+=block
 
 " Clipboard. {{{2
 set clipboard=unnamed,unnamedplus
