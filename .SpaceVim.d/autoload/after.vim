@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/04/13 21:23:42.
+" Last Change : 2019/04/14 20:56:49.
 " =============================================================================
 
 " Functions: {{{1
@@ -151,5 +151,8 @@ function! s:filetype_xml() abort
   setl ts=4 sw=4 sts=0
   setl foldmethod=syntax
 endfunction
+
+" GUI: {{{1
+let g:spacevim_guifont = "Cica:h10"
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
