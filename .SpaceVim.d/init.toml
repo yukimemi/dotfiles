@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/04/13 22:09:29.
+# Last Change : 2019/04/14 16:35:09.
 # =============================================================================
 
 # All SpaceVim option below [option] section
@@ -69,6 +69,8 @@ name = "tmux"
 name = "operator"
 [[layers]]
 name = "tags"
+[[layers]]
+name = "lang#markdown"
 
 [[layers]]
 name = "lang#markdown"
