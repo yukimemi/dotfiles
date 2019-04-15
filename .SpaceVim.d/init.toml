@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/04/14 16:42:41.
+# Last Change : 2019/04/15 15:35:36.
 # =============================================================================
 
 # All SpaceVim option below [option] section
@@ -51,8 +51,8 @@ name = "denite"
 name = "unite"
 [[layers]]
 name = "ctrlp"
-[[layers]]
-name = "fzf"
+# [[layers]]
+# name = "fzf"
 [[layers]]
 name = "VersionControl"
 [[layers]]

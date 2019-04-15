@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : before.vim
 " Author      : yukimemi
-" Last Change : 2019/03/31 09:06:23.
+" Last Change : 2019/04/15 07:59:02.
 " =============================================================================
 
 " Init: {{{1
@@ -34,6 +34,7 @@ let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
 " SpaceVim config. {{{2
 if g:is_windows
   let g:spacevim_disabled_plugins = ["denite.nvim"]
+  let g:spacevim_autocomplete_method = "neocomplete"
 endif
 
 " Functions: {{{1
