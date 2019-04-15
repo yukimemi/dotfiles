@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/04/14 20:56:49.
+" Last Change : 2019/04/15 08:53:05.
 " =============================================================================
 
 " Functions: {{{1
@@ -138,10 +138,15 @@ au MyAutoCmd FileType * setlocal fo-=t fo-=c fo-=r fo-=o
 
 " Plugins: {{{1
 source $SPACE_VIM/rc/ale.vim
-source $SPACE_VIM/rc/coc.vim
 source $SPACE_VIM/rc/clever-f.vim
 source $SPACE_VIM/rc/ctrlp.vim
 source $SPACE_VIM/rc/vim-ps1.vim
+
+if g:is_windows
+  " source $SPACE_VIM/rc/asyncomplete.vim
+else
+  source $SPACE_VIM/rc/coc.vim
+endif
 
 " FileType: {{{1
 " xml {{{2
