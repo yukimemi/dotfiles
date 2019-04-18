@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/04/15 08:53:05.
+" Last Change : 2019/04/17 14:27:41.
 " =============================================================================
 
 " Functions: {{{1
@@ -110,6 +110,9 @@ noremap <silent> gl $
 
 nnoremap <silent> <Leader>o :<C-u>call <SID>open_current_dir()<CR>
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
 " Autocmd: {{{1
 " https://lambdalisue.hatenablog.com/entry/2017/12/24/165759
