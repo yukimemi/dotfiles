@@ -22,6 +22,7 @@ brew fish
 brew flac
 brew fontconfig
 brew freetype
+brew frei0r
 brew fribidi
 brew fx
 brew fzf
@@ -37,6 +38,7 @@ brew gmp
 brew gnu-getopt
 brew gnu-sed
 brew go
+brew gobject-introspection
 brew graphite2
 brew grep
 brew gsettings-desktop-schemas
@@ -53,14 +55,17 @@ brew jpeg
 brew jq
 brew jvgrep
 brew lame
+brew libass
 brew libcroco
 brew libepoxy
 brew libevent
 brew libffi
 brew libid3tag
 brew libogg
+brew libomp
 brew libpng
 brew librsvg
+brew libssh2
 brew libtermkey
 brew libtiff
 brew libtool
@@ -69,19 +74,23 @@ brew libvorbis
 brew libvpx
 brew libvterm
 brew libyaml
+brew little-cms2
 brew lua
 brew lua@5.1
 brew luajit
 brew luarocks
 brew mackup
+brew make
 brew mas
 brew mosh
 brew mpfr
 brew msgpack
 brew ncurses
-brew neovim --HEAD
+brew neovim
 brew node
 brew oniguruma
+brew opencore-amr
+brew openjpeg
 brew openssl
 brew opus
 brew p7zip
@@ -99,8 +108,10 @@ brew ranger
 brew readline
 brew reattach-to-user-namespace
 brew ripgrep
+brew rtmpdump
 brew ruby
 brew ruby-build
+brew rust
 brew sdl2
 brew snappy
 brew source-highlight
@@ -112,12 +123,14 @@ brew taglib
 brew theora
 brew tig
 brew tmux --HEAD
+brew tree
 brew unibilium
 brew vim --with-client-server --with-gettext --with-lua --with-override-system-vi --HEAD
 brew w3m
 brew watch
 brew watchexec
 brew wavpack
+brew webp
 brew x264
 brew x265
 brew xvid
@@ -125,6 +138,7 @@ brew xz
 brew youtube-dl
 brew zlib
 brew zola
+brew zsh
 
 tap homebrew/cask-fonts
 cask font-hack
@@ -186,5 +200,5 @@ cask vlc
 cask xquartz
 
 # App Store applications
-appstore 937984704 Amphetamine (4.0.5)
+appstore 937984704 Amphetamine (4.1.6)
 appstore 549083868 Display Menu (2.2.3)

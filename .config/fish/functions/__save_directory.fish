@@ -1,14 +1,12 @@
 function __save_directory -a dir
   echo $dir >> ~/.z
-  tac ~/.z | uq | tac >> ~/.z.tmp
-  command mv -f ~/.z.tmp ~/.z
+  if type -q uq
+    tac ~/.z | uq | tac >> ~/.z.tmp
+  else
+    tac ~/.z | awk '!a[$0]++' | tac >> ~/.z.tmp
+  end
 
-  # cat ~/.z | while read -l line
-  #   if test $dir = $line
-  #     return
-  #   end
-  # end
-  # echo $dir >> ~/.z
+  command mv -f ~/.z.tmp ~/.z
 end
 
 

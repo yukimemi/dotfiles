@@ -66,6 +66,8 @@ install-rustup: ## Install rustup
 	@curl https://sh.rustup.rs -sSf | sh
 install-rustfmt: ## Install rustfmt
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/install-rustfmt.sh
+install-spacevim: ## Install spacevim
+	@curl -sLf https://spacevim.org/install.sh | bash
 
 docker-neovim: ## Build neovim docker image
 	docker build --tag yukimemi/neovim --build-arg USERID=$(USERID) --build-arg USERNAME=$(USERNAME) --build-arg GROUPID=$(GROUPID) --build-arg GROUPNAME=$(GROUPNAME) --build-arg HOMEPATH=${HOME} -f ./docker/neovim/Dockerfile .
