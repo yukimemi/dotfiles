@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/04/18 16:01:54.
+# Last Change : 2019/04/20 11:49:25.
 # =============================================================================
 
 # All SpaceVim option below [option] section
@@ -156,7 +156,15 @@ source $SPACE_VIM/rc/vim-renamer.vim
 '''
 [[custom_plugins]]
 name = "thinca/vim-singleton" # {{{2
+if = "has('clientserver')"
 hook_add = '''
 call singleton#enable()
 '''
-
+[[custom_plugins]]
+name = "rhysd/git-messenger.vim" # {{{2
+on_cmd = "GitMessenger"
+on_map = "<Plug>(git-messenger"
+[[custom_plugins]]
+name = "rhysd/vim-healthcheck" # {{{2
+if = "!has('nvim')"
+on_cmd = "CheckHealth"
