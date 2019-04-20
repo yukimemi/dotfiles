@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/04/17 14:27:41.
+" Last Change : 2019/04/21 00:22:55.
 " =============================================================================
 
 " Functions: {{{1
@@ -138,11 +138,9 @@ au MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
 " For all filetype.
 au MyAutoCmd FileType * setlocal fo-=t fo-=c fo-=r fo-=o
 
-
 " Plugins: {{{1
 source $SPACE_VIM/rc/ale.vim
 source $SPACE_VIM/rc/clever-f.vim
-source $SPACE_VIM/rc/ctrlp.vim
 source $SPACE_VIM/rc/vim-ps1.vim
 
 if g:is_windows

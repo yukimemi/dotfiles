@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/04/20 11:49:25.
+# Last Change : 2019/04/21 00:23:30.
 # =============================================================================
 
 # All SpaceVim option below [option] section
@@ -168,3 +168,9 @@ on_map = "<Plug>(git-messenger"
 name = "rhysd/vim-healthcheck" # {{{2
 if = "!has('nvim')"
 on_cmd = "CheckHealth"
+[[custom_plugins]]
+name = "LeafCage/yankround.vim" # {{{2
+hook_add = '''
+source $SPACE_VIM/rc/yankround.vim
+'''
+
