@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/04/21 00:23:30.
+# Last Change : 2019/04/22 08:16:20.
 # =============================================================================
 
 # All SpaceVim option below [option] section
@@ -74,6 +74,8 @@ name = "tags"
 name = "lang#markdown"
 [[layers]]
 name = "lang#html"
+[[layers]]
+name = "lang#javascript"
 [[layers]]
 name = "lang#dockerfile"
 
