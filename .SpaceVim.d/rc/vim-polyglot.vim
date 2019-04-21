@@ -1,1 +1,1 @@
-" let g:polyglot_disabled = ['rust']
+" let g:polyglot_disabled = ['javascript', 'rust']
