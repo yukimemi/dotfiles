@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : before.vim
 " Author      : yukimemi
-" Last Change : 2019/04/21 00:22:46.
+" Last Change : 2019/04/29 09:38:41.
 " =============================================================================
 
 " Init: {{{1
@@ -45,6 +45,7 @@ function! Mkdir(dir) "{{{2
 endfunction
 
 " Plugins: {{{1
+source $SPACE_VIM/rc/csv.vim
 source $SPACE_VIM/rc/ctrlp.vim
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

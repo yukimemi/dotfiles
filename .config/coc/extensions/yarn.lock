@@ -516,10 +516,10 @@ coc-json@^1.0.14:
     vscode-languageserver "^5.3.0-next.2"
     vscode-uri "^1.0.6"
 
-coc-pairs@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/coc-pairs/-/coc-pairs-1.2.4.tgz#b1c7dbe96ba8037988e56694eb0227f310e3021a"
-  integrity sha512-5/3musjbJBp+UBblUSAVwcEZUWmDZC4vX/tcs0Xc8KHMpWkNUMWXDJsj/kwZNhbnzrQsE6ZfmsxU5gvmUEsxKw==
+coc-pairs@^1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/coc-pairs/-/coc-pairs-1.2.7.tgz#7a1142490cc739d9c5659d9759c43a76c4b2f56e"
+  integrity sha512-/YDBBpwuDiaSsoCCrvmhaLJzpy1/vmwowsoK71j7qLnAzSybAI5gBlQ8cKQT5bm4wgJl/K7K/UJ5A/nGKStC4g==
   dependencies:
     tslib "^1.9.3"
 
@@ -556,10 +556,10 @@ coc-rls@^1.0.11:
     vscode-languageserver-protocol "^3.13.0"
     vscode-uri "^1.0.6"
 
-coc-snippets@^2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/coc-snippets/-/coc-snippets-2.0.8.tgz#300fe45f5988ec3ebab92deac4006ddc68e4b686"
-  integrity sha512-0kq/sNyLgx9mXkR7sTP6+RpZ4qXTm3oIZ4ZqabQAX5MmA2wMPC0ogvIsAK2TxBGsVTR7yQJXxEwekPUgns/D6Q==
+coc-snippets@^2.0.10:
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/coc-snippets/-/coc-snippets-2.0.10.tgz#557c86027eb7d1e545290da675ccff17e7b5fe63"
+  integrity sha512-1/XuDOD7KpJDxeGiUQZvC6KfNXZOKaBw45ZSgjYPm+olxynx8RoT5Sn+Ar/o6KGpoNQraYEUtATndumdkhA+MA==
   dependencies:
     jsonc-parser "^2.0.3"
     pify "^4.0.1"

@@ -125,6 +125,7 @@ brew tig
 brew tmux --HEAD
 brew tree
 brew unibilium
+brew vagrant-completion
 brew vim --with-client-server --with-gettext --with-lua --with-override-system-vi --HEAD
 brew w3m
 brew watch
