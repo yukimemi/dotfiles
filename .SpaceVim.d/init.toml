@@ -23,7 +23,7 @@ enable_neomake = false
 enable_os_fileformat_icon = true
 enable_statusline_mode = true
 enable_tabline_filetype_icon = true
-enable_vimfiler_welcome = false
+enable_vimfiler_welcome = true
 filemanager = "vimfiler"
 filetree_direction = "left"
 github_username = "yukimemi"
@@ -78,6 +78,8 @@ name = "lang#html"
 name = "lang#javascript"
 [[layers]]
 name = "lang#dockerfile"
+[[layers]]
+name = "lang#rust"
 
 [[layers]]
 name = "format"
@@ -157,12 +159,6 @@ hook_add = '''
 source $SPACE_VIM/rc/vim-renamer.vim
 '''
 [[custom_plugins]]
-name = "thinca/vim-singleton" # {{{2
-if = "has('clientserver')"
-hook_add = '''
-call singleton#enable()
-'''
-[[custom_plugins]]
 name = "rhysd/git-messenger.vim" # {{{2
 on_cmd = "GitMessenger"
 on_map = "<Plug>(git-messenger"
@@ -175,4 +171,10 @@ name = "LeafCage/yankround.vim" # {{{2
 hook_add = '''
 source $SPACE_VIM/rc/yankround.vim
 '''
+[[custom_plugins]]
+name = "junegunn/goyo.vim" # {{{2
+on_cmd = ["Goyo"]
+[[custom_plugins]]
+name = "rhysd/reply.vim" # {{{2
+on_cmd = ["Repl", "ReplAuto"]
 
