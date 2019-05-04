@@ -22,7 +22,9 @@ nnoremap sch :<C-u>CtrlPCmdHistory<CR>
 nnoremap scl :<C-u>CtrlPMemolist<CR>
 
 if executable('rg')
-  let g:ctrlp_user_command ='rg -F --files %s'
+  " let g:ctrlp_user_command ='rg -F --files %s'
+  " let g:ctrlp_user_command = 'fd -t f -c never %s'
+  let g:ctrlp_user_command = 'fd -t f -c never'
 endif
 
 if g:is_windows
