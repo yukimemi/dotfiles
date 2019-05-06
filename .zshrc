@@ -1,51 +1,73 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2017/12/25 16:33:10.
+# Last Change : 2019/05/06 22:56:55.
 # =============================================================================
 
 #
-# Use zplug. {{{1
+# Use zplugin. {{{1
 #
-[ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug ~/.zplug
+[ ! -d ~/.zplugin ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+source ~/.zplugin/bin/zplugin.zsh
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-source ~/.zplug/init.zsh
+#
+# plugin list. {{{2
+#
+zplugin ice wait'0' lucid blockf
+zplugin light zsh-users/zsh-completions
 
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplugin ice wait'0' lucid atload'_zsh_autosuggest_start'
+zplugin light zsh-users/zsh-autosuggestions
 
-# filter tools. {{{2
-# zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
-# zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
-# zplug "peco/peco", as:command, from:gh-r
-zplug "giginet/peco-anyenv"
-# zplug "rcmdnk/sentaku", as:command, use:"bin/*"
-# zplug "jhawthorn/fzy", as:command, rename-to:fzy, hook-build:"make && sudo make install"
-# export __FILTER_TOOL=fzf-tmux
-export __FILTER_TOOL=peco
+zplugin ice wait'0' lucid atinit'zpcompinit; zpcdreplay'
+zplugin light zdharma/fast-syntax-highlighting
 
-# zsh plugins. {{{2
-# zplug "momo-lab/zsh-abbrev-alias" # TODO: not work.
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-history-substring-search"
-# zplug "tcnksm/docker-alias", use:zshrc
-zplug "rupa/z", use:z.sh
-# zplug "b4b4r07/zsh-vimode-visual", defer:3
-# zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
-# zplug "b4b4r07/history", use:misc/zsh/init.zsh, hook-build: "go get -u github.com/b4b4r07/history"
+zplugin light zsh-users/zsh-history-substring-search
+zplugin light rupa/z
 
+zplugin ice wait '0' lucid as'program' make'!' atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' src'zhook.zsh'
+zplugin light direnv/direnv
 
-# Commands. {{{2
-# zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
-# zplug "motemen/ghq", as:command, from:gh-r
-# zplug "Code-Hex/battery", as:command, from:gh-r
-# zplug "yuroyoro/git-ignore", as:command, rename-to:gi
-# zplug "mattn/files", as:command, hook-build:"go get -u github.com/mattn/files"
-# zplug "mattn/jvgrep", as:command, hook-build:"go get -u github.com/mattn/jvgrep"
-# zplug "mattn/memo", as:command, hook-build:"go get -u github.com/mattn/memo"
-# zplug "atotto/clipboard", as:command, hook-build:"go get -u github.com/atotto/clipboard/cmd/gocopy && go get -u github.com/atotto/clipboard/cmd/gopaste"
-# zplug "knqyf263/pet", from:gh-r, as:command
+zplugin ice wait '0' lucid as'program' pick'bin/anyenv' atclone'bin/anyenv init; echo ''eval "$(bin/anyenv init -)" > zhook.zsh''' atpull'!git reset --hard; %atclone' src'zhook.zsh'
+zplugin light anyenv/anyenv
+
+#
+# for git. {{{2
+#
+zplugin ice wait'1' lucid as'program' pick'bin/git-dsf'
+zplugin light zdharma/zsh-diff-so-fancy
+zplugin ice wait'1' lucid as'program' pick'$ZPFX/bin/git-now' make'prefix=$ZPFX install'
+zplugin light iwata/git-now
+zplugin ice wait'1' lucid as'program' pick'$ZPFX/bin/git-alias' make'PREFIX=$ZPFX' nocompile
+zplugin light tj/git-extras
+zplugin ice wait'1' lucid as'program' atclone'perl Makefile.PL PREFIX=$ZPFX' atpull'%atclone' \
+            make'install' pick'$ZPFX/bin/git-cal'
+zplugin light k4rthik/git-cal
+
+#
+# theme. {{{1
+#
+# Load the pure theme, with zsh-async library that's bundled with it
+zplugin ice pick'async.zsh' src'pure.zsh'
+zplugin light sindresorhus/pure
+
+# Load OMZ Git library
+# zplugin snippet OMZ::lib/git.zsh
+
+# Load Git plugin from OMZ
+# zplugin snippet OMZ::plugins/git/git.plugin.zsh
+# zplugin cdclear -q # <- forget completions provided up to this moment
+
+# setopt promptsubst
+
+# Load theme from OMZ
+# zplugin snippet OMZ::themes/sorin.zsh-theme
+
+#
+# functions. {{{1
+#
 function prev() {
   PREV=$(fc -lrn | head -n 1)
   sh -c "pet new `printf %q "$PREV"`"
@@ -57,73 +79,6 @@ function pet-select() {
 }
 zle -N pet-select
 
-# zplug "itchyny/fillin", from:gh-r, as:command
-
-# zplug "b4b4r07/gomi", as:command, from:gh-r
-# zplug "b4b4r07/ssh-keyreg", as:command, use:bin
-# zplug "b4b4r07/zsh-gomi", as:command, use:bin/gomi, on:"junegunn/fzf-bin"
-
-# theme. {{{2
-# zplug "b4b4r07/ultimate", as:theme
-zplug "mafredri/zsh-async"
-zplug "sindresorhus/pure", use:pure.zsh, as:theme
-
-# enhancd. {{{2
-# zplug "b4b4r07/enhancd", use:init.sh
-# export ENHANCD_COMMAND="j"
-# export ENHANCD_HOOK_AFTER_CD="ls"
-
-# prezto. {{{2
-# zplug "modules/syntax-highlighting", from:prezto, defer:2
-# zplug "modules/autosuggestions", from:prezto
-# zplug "modules/history-substring-search", from:prezto
-# zplug "modules/completion", from:prezto
-# zplug "modules/directory", from:prezto
-# zplug "modules/editor", from:prezto
-# zplug "modules/rsync", from:prezto
-# zplug "modules/helper", from:prezto
-# zplug "modules/environment", from:prezto
-# zplug "modules/git", from:prezto
-# zplug "modules/tmux", from:prezto
-# zplug "modules/spectrum", from:prezto
-# zplug "modules/terminal", from:prezto
-# zplug 'modules/utility', from:prezto
-# zplug "modules/prompt", from:prezto
-
-# zplug "modules/osx", from:prezto, if:"[[ $OSTYPE == *darwin* ]]"
-# zplug "modules/homebrew", from:prezto, if:"[[ $OSTYPE == *darwin* ]]"
-
-# zstyle settings. {{{2
-# zstyle ':prezto:*:*' color 'yes'
-# zstyle ':prezto:module:editor' key-bindings 'vi'
-# zstyle ':prezto:module:prompt' theme 'sorin'
-# zstyle ':prezto:module:prompt' theme 'pure'
-# zstyle ':prezto:module:prompt' theme 'random'
-
-# zstyle ':prezto:module:syntax-highlighting' highlighters \
-#   'main' \
-#   'brackets' \
-#   'pattern' \
-#   'cursor' \
-#   'root'
-
-# Check and install plugins. {{{2
-# if ! zplug check --verbose; then
-#   printf "Install? [y/N]: "
-#   if read -q; then
-#     echo; zplug install
-#   fi
-# fi
-
-# Then, source plugins and add commands to $PATH
-zplug load --verbose
-
-# zplug load
-
-
-#
-# functions. {{{1
-#
 # Filter function. {{{2
 function __filter_execute() {
   $__FILTER_TOOL | while read line
@@ -148,11 +103,18 @@ function __filter_history() {
 zle -N __filter_history
 
 # cd and ls. {{{2
+if which lsd > /dev/null 2>&1; then
+  alias ls='lsd'
+elif which exa > /dev/null 2>&1; then
+  alias ls='exa'
+else
+  alias ls='ls --color=auto'
+fi
 function chpwd() { ls -F }
 
 # z and filter cd. {{{2
 function __filter_z_cd() {
-  z -t $1 | tac | awk '{ print $2 }' | __filter_execute cd
+  z -t $1 | tac | awk '{ $1=""; print }' | __filter_execute cd
 }
 
 # kill. {{{2
@@ -202,11 +164,6 @@ function showoptions() {
 # aliases. {{{1
 #
 # local alias. {{{2
-if which exa > /dev/null 2>&1; then
-  alias ls='exa'
-else
-  alias ls='ls --color=auto'
-fi
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -al'
@@ -319,16 +276,6 @@ bindkey '^s' pet-select
 bindkey '^R' __filter_history
 bindkey '^K' __filter_kill
 
-# history. {{{2
-if zplug check 'b4b4r07/history'; then
-  alias hs="command history"
-  export ZSH_HISTORY_KEYBIND_GET="^r"
-  export ZSH_HISTORY_FILTER_OPTIONS="--filter-branch --filter-dir"
-  export ZSH_HISTORY_KEYBIND_ARROW_UP="^p"
-  export ZSH_HISTORY_KEYBIND_ARROW_DOWN="^n"
-  export ZSH_HISTORY_AUTO_SYNC=true
-fi
-
 # histry-substring-search. {{{2
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
@@ -366,24 +313,17 @@ zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEF
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' group-name ''
 
-#
-# anyenv. {{{1
-#
-[ -d ~/.anyenv ] && eval "$(anyenv init - --no-rehash)"
 
 #
 # compile zshrc. {{{1
 #
-if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
-  zcompile ~/.zshrc
-fi
+# if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
+  # zcompile ~/.zshrc
+# fi
 
-if (which zprof > /dev/null) ;then
-  zprof | less
-fi
+# if (which zprof > /dev/null) ;then
+  # zprof | less
+# fi
 
 # vim:fdm=marker expandtab fdc=3 ft=zsh:
 
-
-# added by travis gem
-[ -f /Users/yukimemi/.travis/travis.sh ] && source /Users/yukimemi/.travis/travis.sh
