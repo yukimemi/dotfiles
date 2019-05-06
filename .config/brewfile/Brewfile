@@ -139,7 +139,7 @@ brew xz
 brew youtube-dl
 brew zlib
 brew zola
-brew zsh
+brew zsh --HEAD
 
 tap homebrew/cask-fonts
 cask font-hack

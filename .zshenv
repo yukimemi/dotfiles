@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2017/12/25 12:53:15.
+# Last Change : 2019/05/06 23:01:40.
 # =============================================================================
 
 # For time. {{{1
@@ -115,6 +115,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export GSR_SHOW_AHEAD=1
 export GSR_SHOW_BEHIND=1
 
+export __FILTER_TOOL=peco
+
 # less settings. {{{2
 # export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
 # export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
@@ -129,10 +131,10 @@ if [ -e ~/.zshrc_local ]; then
 fi
 
 
-# Compile zshrc. {{{1
-if [ ! -f ~/.zshenv.zwc -o ~/.zshenv -nt ~/.zshenv.zwc ]; then
-  zcompile ~/.zshenv
-fi
+# Compile zshenv. {{{1
+# if [ ! -f ~/.zshenv.zwc -o ~/.zshenv -nt ~/.zshenv.zwc ]; then
+  # zcompile ~/.zshenv
+# fi
 
 # vim:fdm=marker expandtab fdc=3 ft=zsh:
 
