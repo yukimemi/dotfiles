@@ -120,6 +120,7 @@ brew sqlite
 brew ssh-copy-id
 brew ta-lib
 brew taglib
+brew terminal-notifier
 brew theora
 brew tig
 brew tmux --HEAD
