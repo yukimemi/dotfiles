@@ -1,5 +1,5 @@
-if isdirectory($HOME . '/Dropbox')
-  let g:memolist_path = $HOME . '/Dropbox/memolist'
+if isdirectory($HOME . '/GoogleDrive')
+  let g:memolist_path = $HOME . '/GoogleDrive/.memolist'
 else
   let g:memolist_path = $HOME . '/.memolist'
 endif
