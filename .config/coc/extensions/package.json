@@ -1,9 +1,9 @@
 {
   "dependencies": {
     "coc-css": "^1.0.7",
-    "coc-highlight": "^1.0.5",
+    "coc-highlight": "^1.1.2",
     "coc-html": "^1.0.7",
-    "coc-json": "^1.0.15",
+    "coc-json": "^1.0.17",
     "coc-pairs": "^1.2.8",
     "coc-prettier": "^1.1.0",
     "coc-pyls": "^1.0.6",

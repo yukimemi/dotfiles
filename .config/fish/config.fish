@@ -68,12 +68,12 @@ set MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH
 set MANPATH /usr/local/opt/gnu-sed/libexec/gnuman $MANPATH
 
 ### Util functions. {{{1
-function fish_right_prompt
-    __nodenv_version
-    __goenv_version
-    __pyenv_version
-    __rbenv_version
-end
+# function fish_right_prompt
+    # __nodenv_version
+    # __goenv_version
+    # __pyenv_version
+    # __rbenv_version
+# end
 
 ### Alias. {{{1
 if type -q lsd
@@ -214,7 +214,10 @@ end
 
 ### Plugin settings. {{{1
 # pure {{{2
-set pure_color_green (set_color "white")
+# set pure_color_green (set_color "white")
+
+# spacefish {{{2
+set SPACEFISH_CHAR_SYMBOL "→ "
 
 # fish-global-abbreviation. {{{2
 # https://qiita.com/ryotako/items/83812c2a703b965a02d9
@@ -222,6 +225,7 @@ set -U gabbr_config ~/.config/fish/.gabbr.config
 
 # Load functions. {{{1
 type -q __done_enter
+type -q __history_sync
 
 # Load anyenv. {{{1
 if type -q anyenv
