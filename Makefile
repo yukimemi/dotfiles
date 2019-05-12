@@ -22,6 +22,7 @@ deploy: ## Create symlink to home directory
 	@ln -sfnv $(DOTPATH)/etc/scripts $(HOME)/.local/bin/scripts
 	@mkdir -p $(HOME)/.local/share/fish > /dev/null 2>&1
 	@ln -sfnv ~/GoogleDrive/.local/share/fish/fish_history ~/.local/share/fish/fish_history
+	@ln -sfnv ~/GoogleDrive/.z ~/.z
 
 init: ## Setup environment settings
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/init.sh
