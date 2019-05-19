@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/04/22 08:16:20.
+# Last Change : 2019/05/16 21:45:09.
 # =============================================================================
 
 # All SpaceVim option below [option] section
@@ -177,4 +177,11 @@ on_cmd = ["Goyo"]
 [[custom_plugins]]
 name = "rhysd/reply.vim" # {{{2
 on_cmd = ["Repl", "ReplAuto"]
-
+[[custom_plugins]]
+name = "simeji/winresizer" # {{{2
+[[custom_plugins]]
+name = "terryma/vim-expand-region" # {{{2
+on_map = "<Plug>(expand_region"
+hook_add = '''
+source $SPACE_VIM/rc/vim-expand-region.vim
+'''

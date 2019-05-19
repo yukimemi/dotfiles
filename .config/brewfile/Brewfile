@@ -158,10 +158,11 @@ cask google-chrome
 cask hammerspoon
 cask iina
 cask lyrics-master
-cask slack
-cask virtualbox
-cask vivaldi
-cask wkhtmltopdf
+cask powershell
+cask vagrant
+cask visual-studio-code
+cask vlc
+cask xquartz
 
 tap heroku/brew
 brew heroku
@@ -195,11 +196,11 @@ cask google-backup-and-sync
 cask google-japanese-ime
 cask hyper
 cask iterm2
-cask powershell
-cask vagrant
-cask visual-studio-code
-cask vlc
-cask xquartz
+cask mp3tag
+cask slack
+cask virtualbox
+cask vivaldi
+cask wkhtmltopdf
 
 # App Store applications
 appstore 937984704 Amphetamine (4.1.6)
