@@ -516,10 +516,10 @@ coc-json@^1.0.17:
     vscode-languageserver "^5.3.0-next.6"
     vscode-uri "^1.0.6"
 
-coc-pairs@^1.2.8:
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/coc-pairs/-/coc-pairs-1.2.8.tgz#df65f3d3a9f8f8f097ae40ecdf03e0d59ebac422"
-  integrity sha512-Irbaks83ANmSRw9ptShyIep0a/GPtL4HFeOIsaNmhMzby0oNI1QwZB32O2N4LFUmUoJjmyoHTqa6Pt4UqFWdHg==
+coc-pairs@^1.2.10:
+  version "1.2.10"
+  resolved "https://registry.yarnpkg.com/coc-pairs/-/coc-pairs-1.2.10.tgz#b5b678a3d217caf576142735ec6a8fa0f00c5c67"
+  integrity sha512-f0rssKDisMbW4GWNGf5krCkFBTMDEj+bPGA4caNOkcXhvSsvgPynyuKeDzFJryZ0ao0cnv+wBv9MZAA6KDeySw==
   dependencies:
     tslib "^1.9.3"
 

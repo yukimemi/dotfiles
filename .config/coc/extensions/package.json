@@ -4,7 +4,7 @@
     "coc-highlight": "^1.1.2",
     "coc-html": "^1.0.7",
     "coc-json": "^1.0.17",
-    "coc-pairs": "^1.2.8",
+    "coc-pairs": "^1.2.10",
     "coc-prettier": "^1.1.1",
     "coc-pyls": "^1.0.6",
     "coc-rls": "^1.1.0",

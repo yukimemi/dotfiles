@@ -130,6 +130,8 @@ else if typq -q exa
 end
 abbr -a et 'exiftool -api largefilesupport=1'
 
+abbr -a rs 'rsync -av8 --progress'
+
 # Git. {{{2
 abbr -a g 'git'
 # checkout
