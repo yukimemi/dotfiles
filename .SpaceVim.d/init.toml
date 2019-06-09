@@ -63,8 +63,8 @@ name = "github"
 name = "lsp"
 [[layers]]
 name = "sudo"
-[[layers]]
-name = "tmux"
+#[[layers]]
+#name = "tmux"
 [[layers]]
 name = "operator"
 [[layers]]
