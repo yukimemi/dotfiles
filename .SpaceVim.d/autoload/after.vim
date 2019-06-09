@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : after.vim
 " Author      : yukimemi
-" Last Change : 2019/04/29 09:38:40.
+" Last Change : 2019/05/30 19:01:25.
 " =============================================================================
 
 " Functions: {{{1
@@ -158,6 +158,19 @@ function! s:filetype_xml() abort
   setl ts=4 sw=4 sts=0
   setl foldmethod=syntax
 endfunction
+
+" markdown {{{2
+let g:markdown_fenced_languages = [
+      \  'coffee',
+      \  'css',
+      \  'erb=eruby',
+      \  'javascript',
+      \  'js=javascript',
+      \  'json=javascript',
+      \  'ruby',
+      \  'sass',
+      \  'xml',
+      \ ]
 
 " GUI: {{{1
 let g:spacevim_guifont = "Cica:h10"
