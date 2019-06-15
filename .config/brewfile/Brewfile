@@ -150,7 +150,8 @@ tap homebrew/cask-versions
 
 tap homebrew/cask
 cask alacritty
-cask appcleaner
+cask amazon-music
+cask appgrid
 cask caffeine
 cask dropbox
 cask geektool
@@ -163,6 +164,9 @@ cask vagrant
 cask visual-studio-code
 cask vlc
 cask xquartz
+
+tap goodwithtech/dockle
+brew dockle
 
 tap heroku/brew
 brew heroku
@@ -186,8 +190,8 @@ tap universal-ctags/universal-ctags
 brew universal-ctags --HEAD
 
 # Other Cask applications
-cask amazon-music
-cask appgrid
+cask alfred
+cask appcleaner
 cask astro
 cask docker
 cask firefox

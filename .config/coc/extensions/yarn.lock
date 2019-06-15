@@ -569,18 +569,16 @@ coc-snippets@^2.0.16:
     vscode-uri "^1.0.6"
     which "^1.3.1"
 
-coc-tsserver@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/coc-tsserver/-/coc-tsserver-1.2.6.tgz#ce4ea843467609ed7625691c39cabf92272893e2"
-  integrity sha512-vhFEZ1/GzHXgb2QLonowj7AuVVZjPrUIY0lSGGyF66nYYcpZfWNakKLL8UI33hrI69MQKjt8YlY/eKqvVlvF7g==
+coc-tsserver@^1.3.7:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/coc-tsserver/-/coc-tsserver-1.3.7.tgz#4579e7165d9a23cea049e2c8a651b392dab88e68"
+  integrity sha512-uofi7fNF17PBKbfTTnaOMFd5kg93+mpWf1xx6mp/t1MFv4KVsh1CeC6geD6CpLTSrgglCspME3zZC3livE9a/g==
   dependencies:
     fast-diff "^1.2.0"
-    find-up "^3.0.0"
-    semver "^6.0.0"
+    semver "^6.1.1"
     tslib "^1.9.3"
-    typescript "3.3.4000"
-    vscode-languageserver-protocol "^3.15.0-next.1"
-    vscode-uri "^1.0.6"
+    typescript "3.5.1"
+    vscode-languageserver-protocol "^3.15.0-next.5"
     which "^1.3.1"
 
 coc-yaml@^1.0.1:
@@ -3210,10 +3208,10 @@ semver@5.5.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
   integrity sha512-4SJ3dm0WAwWy/NVeioZh5AntkdJoWKxHxcmyP622fOkgHa4z3R0TdBJICINyaSDE6uNwVc8gZr+ZinwZAH4xIA==
 
-semver@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-6.0.0.tgz#05e359ee571e5ad7ed641a6eec1e547ba52dea65"
-  integrity sha512-0UewU+9rFapKFnlbirLi3byoOuhrSsli/z/ihNnvM24vgF+8sNBiI1LZPBSH9wJKUwaUbw+s3hToDLCXkrghrQ==
+semver@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-6.1.1.tgz#53f53da9b30b2103cd4f15eab3a18ecbcb210c9b"
+  integrity sha512-rWYq2e5iYW+fFe/oPPtYJxYgjBm8sC4rmoGdUOgBB7VnwKt6HrL793l2voH1UlsyYZpJ4g0wfjnTEO1s1NP2eQ==
 
 set-blocking@^2.0.0:
   version "2.0.0"
@@ -3737,10 +3735,10 @@ typescript-eslint-parser@^16.0.0:
     lodash.unescape "4.0.1"
     semver "5.5.0"
 
-typescript@3.3.4000:
-  version "3.3.4000"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.4000.tgz#76b0f89cfdbf97827e1112d64f283f1151d6adf0"
-  integrity sha512-jjOcCZvpkl2+z7JFn0yBOoLQyLoIkNZAs/fYJkUG6VKy6zLPHJGfQJYFHzibB6GJaF/8QrcECtlQ5cpvRHSMEA==
+typescript@3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.1.tgz#ba72a6a600b2158139c5dd8850f700e231464202"
+  integrity sha512-64HkdiRv1yYZsSe4xC1WVgamNigVYjlssIoaH2HcZF0+ijsk5YK2g0G34w9wJkze8+5ow4STd22AynfO6ZYYLw==
 
 typescript@^2.5.1:
   version "2.9.2"
