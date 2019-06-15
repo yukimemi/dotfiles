@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : tridactylrc
 " Author      : yukimemi
-" Last Change : 2019/04/08 19:04:04.
+" Last Change : 2019/06/15 21:20:28.
 " =============================================================================
 
 "
@@ -20,12 +20,14 @@ set theme dark
 " tab
 bind <C-h> tabprev
 bind <C-l> tabnext
+bind sO tabonly
 
 " GitHub pull request checkout command to clipboard (only works if you're a collaborator or above)
 bind yp composite js document.getElementById("clone-help-step-1").textContent.replace("git checkout -b", "git checkout -B").replace("git pull ", "git fetch ") + "git reset --hard " + document.getElementById("clone-help-step-1").textContent.split(" ")[3].replace("-","/") | yank
 
 " Git{Hub,Lab} git clone via SSH yank
-bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+" bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+bind yg composite js "ghq get " + document.location.href.replace(/$/,".git") | clipboard yank
 
 " I like wikiwand but I don't like the way it changes URLs
 bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.com/en","wikipedia.org/wiki") | clipboard yank
@@ -96,6 +98,7 @@ quickmark n https://yukimemi.netlify.com
 quickmark p https://getpocket.com/a/queue/
 quickmark q https://qiita.com/
 quickmark t https://mail.google.com/tasks/canvas
+quickmark y https://youtube.com
 
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/06/10 08:12:22.
+# Last Change : 2019/06/15 22:14:00.
 # =============================================================================
 
 # All SpaceVim option below [option] section
@@ -185,3 +185,6 @@ on_map = "<Plug>(expand_region"
 hook_add = '''
 source $SPACE_VIM/rc/vim-expand-region.vim
 '''
+[[custom_plugins]]
+name = "skanehira/translate.vim" # {{{2
+on_cmd = ["Translate"]
