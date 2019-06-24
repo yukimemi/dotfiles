@@ -49,12 +49,12 @@ Activate2(app, cmd) {
 
 ; for Outlook
 ^F9::
-Activate("C:\Program Files\Microsoft Office\Office15\OUTLOOK.EXE")
+Activate("C:\Program Files (x86)\Microsoft Office\Office16\OUTLOOK.EXE")
 return
 
 ; for Excel
 F9::
-Activate("C:\Program Files\Microsoft Office\Office15\EXCEL.EXE")
+Activate("C:\Program Files (x86)\Microsoft Office\Office16\EXCEL.EXE")
 return
 
 ; for gvim
@@ -86,8 +86,13 @@ Activate("C:\Program Files\Mozilla Firefox\firefox.exe")
 return
 
 ; for cmd.exe
+; F12::
+; Activate(ComSpec)
+; return
+
+; for Hyper
 F12::
-Activate(ComSpec)
+Activate(USERPROFILE . "\AppData\Local\hyper\Hyper.exe")
 return
 
 ; for Edge
