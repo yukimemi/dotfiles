@@ -31,6 +31,7 @@ brew gdbm
 brew gdk-pixbuf
 brew gettext
 brew ghq
+brew giflib
 brew git
 brew git-now
 brew glib
@@ -55,6 +56,7 @@ brew jpeg
 brew jq
 brew jvgrep
 brew lame
+brew leptonica
 brew libass
 brew libcroco
 brew libepoxy
@@ -79,6 +81,7 @@ brew lua
 brew lua@5.1
 brew luajit
 brew luarocks
+brew lzo
 brew mackup
 brew make
 brew mas
@@ -88,12 +91,15 @@ brew msgpack
 brew ncurses
 brew neovim
 brew node
+brew nspr
+brew nss
 brew oniguruma
 brew opencore-amr
 brew openjpeg
 brew openssl
 brew opus
 brew p7zip
+brew pandoc
 brew pango
 brew pcre
 brew pcre2
@@ -101,9 +107,11 @@ brew peco
 brew perl
 brew pixman
 brew pkg-config
+brew poppler
 brew protobuf
 brew python
 brew python@2
+brew qt
 brew ranger
 brew readline
 brew reattach-to-user-namespace
@@ -121,6 +129,7 @@ brew ssh-copy-id
 brew ta-lib
 brew taglib
 brew terminal-notifier
+brew tesseract
 brew theora
 brew tig
 brew tmux --HEAD
