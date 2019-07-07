@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/06/18 08:49:05.
+# Last Change : 2019/07/06 12:40:53.
 # =============================================================================
 
 # All SpaceVim option below [option] section
@@ -29,6 +29,7 @@ filetree_direction = "left"
 github_username = "yukimemi"
 relativenumber = false
 simple_mode = true
+spacevim_search_tools = ["pt", "rg", "ag", "ack", "grep", "findstr"]
 statusline_separator = "arrow"
 windows_index_type = 1
 

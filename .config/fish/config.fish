@@ -15,6 +15,7 @@ set -x GOPATH ~/.ghq
 if type -q rustc
     set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src >/dev/null ^&1
 end
+set -x RUST_LOG info
 
 # GSR. {{{2
 set -x GSR_SHOW_AHEAD 1

@@ -55,6 +55,7 @@ brew jemalloc
 brew jpeg
 brew jq
 brew jvgrep
+brew k6
 brew lame
 brew leptonica
 brew libass
@@ -185,7 +186,6 @@ tap knqyf263/pet
 brew pet
 
 tap loadimpact/k6
-brew k6
 
 tap mananapr/cfiles
 brew cfiles
@@ -197,6 +197,9 @@ brew brew-file
 
 tap universal-ctags/universal-ctags
 brew universal-ctags --HEAD
+
+# Other Homebrew packages
+brew pt
 
 # Other Cask applications
 cask alfred
