@@ -24,6 +24,9 @@ set -x GSR_SHOW_BEHIND 1
 # volt. {{{2
 set -x VOLTPATH ~/.volt
 
+# pkg_config. {{{2
+# set -gx PKG_CONFIG_PATH "/usr/local/opt/libffi/lib/pkgconfig"
+
 # pyenv. {{{2
 # set -x PYENV_ROOT ~/.pyenv
 
