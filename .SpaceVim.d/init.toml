@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : init.toml
 # Author      : yukimemi <yukimemi@gmail.com>
-# Last Change : 2019/07/06 12:40:53.
+# Last Change : 2019/07/14 18:32:31.
 # =============================================================================
 
 # All SpaceVim option below [option] section
@@ -189,6 +189,3 @@ source $SPACE_VIM/rc/vim-expand-region.vim
 [[custom_plugins]]
 name = "skanehira/translate.vim" # {{{2
 on_cmd = ["Translate"]
-[[custom_plugins]]
-name = "skanehira/train.vim" # {{{2
-on_cmd = ["TrainLateInfo", "TrainSearchRoute"]
