@@ -27,6 +27,7 @@ brew fribidi
 brew fx
 brew fzf
 brew gawk
+brew gd
 brew gdbm
 brew gdk-pixbuf
 brew gettext
@@ -35,15 +36,22 @@ brew giflib
 brew git
 brew git-now
 brew glib
+brew glib-networking
 brew gmp
 brew gnu-getopt
 brew gnu-sed
+brew gnutls
 brew go
 brew gobject-introspection
 brew graphite2
+brew graphviz
 brew grep
 brew gsettings-desktop-schemas
+brew gst-plugins-base
+brew gst-plugins-good
+brew gstreamer
 brew gtk+3
+brew gts
 brew hadolint
 brew harfbuzz
 brew hicolor-icon-theme
@@ -51,6 +59,7 @@ brew hub
 brew icu4c
 brew id3lib
 brew imagemagick
+brew jasper
 brew jemalloc
 brew jpeg
 brew jq
@@ -64,14 +73,20 @@ brew libepoxy
 brew libevent
 brew libffi
 brew libid3tag
+brew libidn2
 brew libogg
 brew libomp
 brew libpng
+brew libpsl
 brew librsvg
+brew libshout
+brew libsoup
 brew libssh2
+brew libtasn1
 brew libtermkey
 brew libtiff
 brew libtool
+brew libunistring
 brew libuv
 brew libvorbis
 brew libvpx
@@ -91,6 +106,8 @@ brew mpfr
 brew msgpack
 brew ncurses
 brew neovim
+brew netpbm
+brew nettle
 brew node
 brew nspr
 brew nss
@@ -99,6 +116,8 @@ brew opencore-amr
 brew openjpeg
 brew openssl
 brew opus
+brew orc
+brew p11-kit
 brew p7zip
 brew pandoc
 brew pango
@@ -135,8 +154,10 @@ brew theora
 brew tig
 brew tmux --HEAD
 brew tree
+brew unbound
 brew unibilium
 brew vagrant-completion
+brew vala
 brew vim --with-client-server --with-gettext --with-lua --with-override-system-vi --HEAD
 brew w3m
 brew watch
