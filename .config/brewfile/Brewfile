@@ -8,6 +8,7 @@ brew autoconf
 brew automake
 brew bat
 brew bdw-gc
+brew bitwarden-cli
 brew boost
 brew cairo
 brew cmake
