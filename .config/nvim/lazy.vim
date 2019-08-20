@@ -37,7 +37,7 @@ Pac 'mattn/ctrlp-launcher', {'type': 'opt', 'lazy': 1}
 Pac 'mattn/ctrlp-mark', {'type': 'opt', 'lazy': 1}
 Pac 'mattn/ctrlp-vimhelpjp', {'type': 'opt', 'lazy': 1}
 Pac 'mattn/webapi-vim', {'type': 'opt', 'lazy': 1}
-Pac 'neoclide/coc.nvim', {'type': 'opt', 'lazy': 1}
+Pac 'neoclide/coc.nvim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'ntpeters/vim-better-whitespace', {'type': 'opt', 'lazy': 1}
 Pac 'ompugao/ctrlp-history', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-anzu', {'type': 'opt', 'lazy': 1}
