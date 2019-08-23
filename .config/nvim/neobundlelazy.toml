@@ -1,0 +1,765 @@
+# ======================================================================
+# Unite {{{
+# ======================================================================
+[[plugins]]
+repository = 'Shougo/unite.vim'
+depends = 'Shougo/neomru.vim'
+  [plugins.on_cmd]
+  name = 'Unite'
+  complete = 'customlist,unite#complete_source'
+
+[[plugins]]
+repository = 'Shougo/neomru.vim'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'Shougo/unite-outline'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'thinca/vim-unite-history'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'Shougo/unite-help'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'tsukkee/unite-tag'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'Shougo/junkfile.vim'
+on_source = 'unite.vim'
+on_cmd = 'JunkfileOpen'
+
+[[plugins]]
+repository = 'Shougo/neoyank.vim'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'thinca/vim-ref'
+on_source = 'unite.vim'
+  [plugins.on_cmd]
+  name = 'Ref'
+  complete = 'customlist,ref#complete'
+
+[[plugins]]
+repository = 'osyo-manga/unite-quickfix'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'osyo-manga/unite-filetype'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'sorah/unite-ghq'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'ujihisa/unite-colorscheme'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'mattn/unite-vim_advent-calendar'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'mattn/unite-advent_calendar'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'rhysd/unite-codic.vim'
+depends = 'koron/codic-vim'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'lambdalisue/unite-grep-vcs'
+on_source = 'unite.vim'
+
+[[plugins]]
+repository = 'Shougo/neossh.vim'
+on_source = 'unite.vim'
+# }}}
+
+# ======================================================================
+# Complement {{{
+# ======================================================================
+[[plugins]]
+repository = 'Shougo/neocomplete.vim'
+depends = 'Shougo/context_filetype.vim'
+on_i = 1
+
+[[plugins]]
+repository = 'Shougo/neco-syntax'
+depends = 'Shougo/neocomplete.vim'
+on_i = 1
+
+# [[plugins]]
+# repository = 'ujihisa/neco-look'
+# depends = 'Shougo/neocomplete.vim'
+# on_i = 1
+
+[[plugins]]
+repository = 'Shougo/neco-vim'
+depends = 'Shougo/neocomplete.vim'
+on_ft = 'vim'
+
+[[plugins]]
+repository = 'Shougo/neosnippet.vim'
+depends = ['Shougo/neosnippet-snippets', 'Shougo/context_filetype.vim']
+on_i = 1
+on_ft = 'snippet'
+
+# }}}
+
+# ======================================================================
+# Search {{{
+# ======================================================================
+[[plugins]]
+repository = 'thinca/vim-visualstar'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 't9md/vim-quickhl'
+on_map = '<Plug>'
+
+# [[plugins]]
+# repository = 'osyo-manga/vim-over'
+# on_map = '<Plug>'
+# }}}
+
+# ======================================================================
+# QuickRun {{{
+# ======================================================================
+[[plugins]]
+repository = 'thinca/vim-quickrun'
+on_map = '<Plug>'
+on_cmd = 'QuickRun'
+on_source = 'osyo-manga/vim-watchdogs'
+
+[[plugins]]
+repository = 'osyo-manga/shabadou.vim'
+depends = 'thinca/vim-quickrun'
+on_source = ['thinca/vim-quickrun', 'osyo-manga/vim-watchdogs']
+
+[[plugins]]
+repository = 'osyo-manga/vim-watchdogs'
+on_ft = 'all'
+depends = 'thinca/vim-quickrun'
+# }}}
+
+# ======================================================================
+# Comment {{{
+# ======================================================================
+[[plugins]]
+repository = 'tyru/caw.vim'
+on_ft = 'all'
+# }}}
+
+# ======================================================================
+# Visual {{{
+# ======================================================================
+[[plugins]]
+repository = 'Yggdroot/indentLine'
+# on_ft = ['javascript', 'ruby', 'go', 'haskell', 'markdown', 'vim', 'ps1']
+on_ft = 'all'
+
+# [[plugins]]
+# repository = 'nathanaelkane/vim-indent-guides'
+# on_ft = ['javascript', 'ruby', 'go', 'haskell', 'markdown', 'vim']
+
+# [[plugins]]
+# repository = 'kien/rainbow_parentheses.vim'
+# on_cmd = 'RainbowParenthesesToggle'
+
+[[plugins]]
+repository = 'ntpeters/vim-better-whitespace'
+on_ft = 'all'
+
+# }}}
+
+# ======================================================================
+# Session {{{
+# ======================================================================
+[[plugins]]
+repository = 'osyo-manga/vim-reanimate'
+on_source = 'unite.vim'
+  [plugins.on_cmd]
+  name = ['ReanimateLoad']
+  complete = 'customlist,s:save_point_completelist'
+# }}}
+
+# ======================================================================
+# Operators {{{
+# ======================================================================
+[[plugins]]
+repository = 'kana/vim-operator-user'
+on_ft = 'all'
+
+[[plugins]]
+repository = 'kana/vim-operator-replace'
+depends = 'kana/vim-operator-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'rhysd/vim-operator-surround'
+depends = 'kana/vim-operator-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'chikatoike/concealedyank.vim'
+depends = 'kana/vim-operator-user'
+on_ft = 'vimshell'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'osyo-manga/vim-operator-blockwise'
+depends = 'kana/vim-operator-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'rhysd/vim-operator-trailingspace-killer'
+depends = 'kana/vim-operator-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'rhysd/vim-clang-format'
+depends = 'kana/vim-operator-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'osyo-manga/vim-operator-search'
+depends = 'kana/vim-operator-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'tyru/operator-star.vim'
+depends = ['kana/vim-operator-user', 'thinca/vim-visualstar']
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'haya14busa/vim-operator-flashy'
+depends = ['kana/vim-operator-user']
+on_map = '<Plug>'
+# }}}
+
+# ======================================================================
+# Textobjs {{{
+# ======================================================================
+[[plugins]]
+repository = 'kana/vim-textobj-user'
+on_ft = 'all'
+
+[[plugins]]
+repository = 'osyo-manga/vim-textobj-multiblock'
+depends = 'kana/vim-textobj-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'kana/vim-textobj-entire'
+depends = 'kana/vim-textobj-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'kana/vim-textobj-fold'
+depends = 'kana/vim-textobj-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'kana/vim-textobj-function'
+depends = 'kana/vim-textobj-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'kana/vim-textobj-indent'
+depends = 'kana/vim-textobj-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'gilligan/textobj-lastpaste'
+depends = 'kana/vim-textobj-user'
+on_map = '<Plug>'
+# }}}
+
+# ======================================================================
+# Git {{{
+# ======================================================================
+[[plugins]]
+repository = 'tpope/vim-fugitive'
+on_ft = 'all'
+
+[[plugins]]
+repository = 'gregsexton/gitv'
+on_cmd = 'Gitv'
+
+[[plugins]]
+repository = 'rhysd/github-complete.vim'
+on_ft = 'gitcommit'
+
+# [[plugins]]
+# repository = 'airblade/vim-gitgutter'
+# on_ft = 'all'
+# }}}
+
+# ======================================================================
+# Filetype (haskell) {{{
+# ======================================================================
+[[plugins]]
+repository = 'itchyny/vim-haskell-indent'
+on_ft = 'haskell'
+
+[[plugins]]
+repository = 'nbouscal/vim-stylish-haskell'
+on_ft = 'haskell'
+
+[[plugins]]
+repository = 'eagletmt/neco-ghc'
+on_ft = 'haskell'
+
+[[plugins]]
+repository = 'kana/vim-filetype-haskell'
+on_ft = 'haskell'
+
+[[plugins]]
+repository = 'eagletmt/ghcmod-vim'
+on_ft = 'haskell'
+# }}}
+
+# ======================================================================
+# Filetype (css) {{{
+# ======================================================================
+[[plugins]]
+repository = 'hail2u/vim-css3-syntax'
+on_ft = 'css'
+# }}}
+
+# ======================================================================
+# Filetype (ruby) {{{
+# ======================================================================
+[[plugins]]
+repository = 'vim-ruby/vim-ruby'
+on_ft = 'ruby'
+
+[[plugins]]
+repository = 'todesking/ruby_hl_lvar.vim'
+on_ft = 'ruby'
+
+[[plugins]]
+repository = 'osyo-manga/vim-monster'
+on_ft = 'ruby'
+# }}}
+
+# ======================================================================
+# Filetype (vim) {{{
+# ======================================================================
+[[plugins]]
+repository = 'thinca/vim-themis'
+on_ft = 'vim'
+# }}}
+
+# ======================================================================
+# Filetype (vimperator) {{{
+# ======================================================================
+[[plugins]]
+repository = 'superbrothers/vim-vimperator'
+on_ft = 'vimperator'
+# }}}
+
+# ======================================================================
+# Filetype (markdown) {{{
+# ======================================================================
+[[plugins]]
+repository = 'rcmdnk/vim-markdown'
+on_ft = ['markdown', 'mkd']
+
+[[plugins]]
+repository = 'mattn/vim-maketable'
+on_cmd = 'MakeTable'
+# }}}
+
+# ======================================================================
+# Filetype (html) {{{
+# ======================================================================
+[[plugins]]
+repository = 'mattn/emmet-vim'
+on_ft = ['html', 'markdown', 'xml']
+# }}}
+
+# ======================================================================
+# Filetype (javascript) {{{
+# ======================================================================
+# [[plugins]]
+# repository = 'jiangmiao/simple-javascript-indenter'
+# on_ft = 'javascript'
+
+# [[plugins]]
+# repository = 'jelera/vim-javascript-syntax'
+# on_ft = 'javascript'
+
+# [[plugins]]
+# repository = 'jason0x43/vim-js-indent'
+# on_ft = ['javascript', 'typescript']
+
+[[plugins]]
+repository = 'pangloss/vim-javascript'
+on_ft = 'javascript'
+
+[[plugins]]
+repository = 'mxw/vim-jsx'
+on_ft = ['javascript', 'jsx']
+
+# [[plugins]]
+# repository = 'mephux/vim-jsfmt'
+# on_ft = ['javascript', 'jsx']
+
+[[plugins]]
+repository = 'maksimr/vim-jsbeautify'
+on_func = ['JsBeautify', 'HtmlBeautify', 'CSSBeautify']
+# }}}
+
+# ======================================================================
+# Filetype (coffee-script) {{{
+# ======================================================================
+[[plugins]]
+repository = 'kchmck/vim-coffee-script'
+on_ft = 'coffee'
+
+# [[plugins]]
+# repository = 'marijnh/tern_for_vim'
+# on_ft = ['javascript', 'coffee']
+# on_func = 'tern'
+# }}}
+
+# ======================================================================
+# Filetype (typescript) {{{
+# ======================================================================
+[[plugins]]
+repository = 'leafgarland/typescript-vim'
+on_ft = 'typescript'
+
+[[plugins]]
+repository = 'Quramy/tsuquyomi'
+on_ft = 'typescript'
+# }}}
+
+# ======================================================================
+# Filetype (python) {{{
+# ======================================================================
+[[plugins]]
+repository = 'hynek/vim-python-pep8-indent'
+on_ft = 'python'
+
+[[plugins]]
+repository = 'davidhalter/jedi-vim'
+on_ft = 'python'
+# }}}
+
+# ======================================================================
+# Filetype (cpp) {{{
+# ======================================================================
+[[plugins]]
+repository = 'vim-jp/cpp-vim'
+on_ft = 'cpp'
+
+[[plugins]]
+repository =  'osyo-manga/vim-marching'
+on_ft = 'cpp'
+
+[[plugins]]
+repository = 'rhysd/wandbox-vim'
+on_ft = 'cpp'
+# }}}
+
+# ======================================================================
+# Filetype (go) {{{
+# ======================================================================
+[[plugins]]
+repository = 'fatih/vim-go'
+on_ft = 'go'
+# }}}
+
+# ======================================================================
+# Filetype (ps1) {{{
+# ======================================================================
+[[plugins]]
+repository = 'PProvost/vim-ps1'
+on_ft = 'ps1'
+
+# [[plugins]]
+# repository = 'vim-scripts/Windows-PowerShell-indent-enhanced.git'
+# on_ft = 'ps1'
+
+# }}}
+
+# ======================================================================
+# Filetype (rst) {{{
+# ======================================================================
+[[plugins]]
+repository = 'Rykka/riv.vim'
+on_ft = 'rst'
+# }}}
+
+# ======================================================================
+# Filetype (clojure) {{{
+# ======================================================================
+[[plugins]]
+repository =  'tpope/vim-fireplace'
+depends = ['tpope/vim-classpath', 'guns/vim-clojure-static']
+on_ft = 'clojure'
+
+# [[plugins]]
+# repository = 'thinca/vim-ft-clojure'
+# on_ft = 'clojure'
+
+[[plugins]]
+repository = 'guns/vim-clojure-static'
+on_ft = 'clojure'
+# }}}
+
+# ======================================================================
+# Filetype (toml) {{{
+# ======================================================================
+[[plugins]]
+repository = 'cespare/vim-toml'
+on_ft = 'toml'
+# }}}
+
+# ======================================================================
+# Filetype (plantuml) {{{
+# ======================================================================
+[[plugins]]
+repository =  'aklt/plantuml-syntax'
+on_ft = 'plantuml'
+# }}}
+
+# ======================================================================
+# Filetype (diff) {{{
+# ======================================================================
+[[plugins]]
+repository = 'thinca/vim-ft-diff_fold'
+on_ft = 'diff'
+# }}}
+
+# ======================================================================
+# Filetype (json) {{{
+# ======================================================================
+[[plugins]]
+repository = 'elzr/vim-json'
+on_ft = 'json'
+# }}}
+
+# ======================================================================
+# Filetype (help) {{{
+# ======================================================================
+[[plugins]]
+repository = 'vim-jp/vimdoc-ja'
+on_ft = 'help'
+
+[[plugins]]
+repository = 'thinca/vim-ft-help_fold'
+on_ft = 'help'
+# }}}
+
+# ======================================================================
+# Application {{{
+# ======================================================================
+[[plugins]]
+repository = 'basyura/J6uil.vim'
+on_func = 'J6uil'
+on_source = 'unite.vim'
+depends = 'mattn/webapi-vim'
+  [plugins.on_cmd]
+  name = 'J6uil'
+  complete = 'custom,J6uil#complete#room'
+
+[[plugins]]
+repository =  'basyura/TweetVim''
+depends = ['basyura/twibill.vim', 'tyru/open-browser.vim', 'basyura/bitly.vim', 'mattn/favstar-vim', 'mattn/webapi-vim']
+on_source = 'unite.vim'
+on_cmd = ['TweetVim', 'TweetVimUserStream','TweetVimSay']
+on_ft = 'tweetvim'
+
+[[plugins]]
+repository = 'supermomonga/jazzradio.vim'
+on_source = 'unite.vim'
+  [plugins.on_cmd]
+  name = 'JazzradioPlay'
+  complete = 'customlist,Jazzradio#channel_key_complete'
+# }}}
+
+# ======================================================================
+# Others {{{
+# ======================================================================
+[[plugins]]
+repository = 'rhysd/clever-f.vim'
+on_map = '<Plug>'
+
+# [[plugins]]
+# repository = 'rhysd/accelerated-jk'
+# on_map = '<Plug>'
+
+[[plugins]]
+repository = 'Shougo/vimfiler.vim'
+depends = 'Shougo/unite.vim'
+on_map = '<Plug>'
+explorer = 1
+  [plugins.on_cmd]
+  name = ['VimFiler']
+  complete = 'customlist,vimfiler#complete'
+
+[[plugins]]
+repository = 'Shougo/vimshell.vim'
+on_map = '<Plug>'
+  [plugins.on_cmd]
+  name = 'VimShell'
+  complete = 'customlist,vimshell#complete'
+
+[[plugins]]
+repository = 'supermomonga/vimshell-pure.vim'
+depends = 'Shougo/vimshell.vim'
+on_source = 'Shougo/vimshell.vim'
+
+[[plugins]]
+repository = 'yomi322/vim-gitcomplete'
+on_ft = 'vimshell'
+
+[[plugins]]
+repository = 'Shougo/vinarise.vim'
+  [plugins.on_cmd]
+  name = 'Vinarise'
+  complete = 'file'
+
+[[plugins]]
+repository = 'vim-jp/vital.vim'
+on_cmd = 'Vitalize'
+
+[[plugins]]
+repository = 'ctrlpvim/ctrlp.vim'
+on_cmd = 'CtrlP'
+
+# [[plugins]]
+# repository = 'thinca/vim-fontzoom'
+# gui = 1
+# on_map = '<Plug>'
+
+[[plugins]]
+repository = 'thinca/vim-qfreplace'
+on_ft = ['unite', 'quickfix']
+on_cmd = 'Qfreplace'
+
+# [[plugins]]
+# repository = 'itchyny/vim-external'
+# on_map = '<Plug>'
+
+[[plugins]]
+repository = 'tyru/restart.vim'
+gui = 1
+on_cmd = 'Restart'
+
+# [[plugins]]
+# repository = 'tyru/winmove.vim'
+# depends = 'thinca/vim-submode'
+# on_map = '<Plug>'
+# gui = 1
+# augroup = 'winmove'
+
+[[plugins]]
+repository = 'matchit.zip'
+on_map = [['nxo', '%', 'g%']]
+
+[[plugins]]
+repository = 't9md/vim-choosewin'
+on_map = '<Plug>'
+on_cmd = ['FontReview', 'FontPerfSmall', 'ChooseWin', 'FontPerfLarge']
+
+# [[plugins]]
+# repository = 'lambdalisue/vim-fullscreen'
+# gui = 1
+# on_map = '<Plug>'
+
+[[plugins]]
+repository = 'syngan/vim-vimlint'
+depends = 'ynkdir/vim-vimlparser'
+on_func = 'vimlint'
+
+[[plugins]]
+repository = 'osyo-manga/vim-jplus'
+on_map = '<Plug>'
+
+[[plugins]]
+repository = 'lambdalisue/vim-gista'
+on_cmd = 'Gista'
+on_map = '<Plug>'
+on_source = 'unite.vim'
+
+# [[plugins]]
+# repository = 'kana/vim-niceblock'
+# on_map = '<Plug>'
+
+[[plugins]]
+repository = 'junegunn/vim-easy-align'
+on_map = '<Plug>(EasyAlign)'
+
+[[plugins]]
+repository = 'tyru/capture.vim'
+  [plugins.on_cmd]
+  name = 'Capture'
+  complete = 'command'
+
+[[plugins]]
+repository = 'thinca/vim-prettyprint'
+  [plugins.on_cmd]
+  name = 'PP'
+  complete = 'expression'
+
+[[plugins]]
+repository = 'itchyny/thumbnail.vim'
+  [plugins.on_cmd]
+  name = 'Thumbnail'
+  complete = 'customlist,thumbnail#complete'
+
+[[plugins]]
+repository = 'mattn/vimplenote-vim'
+on_cmd = 'VimpleNote'
+
+[[plugins]]
+repository = 'koron/codic-vim'
+  [plugins.on_cmd]
+  name = 'Codic'
+  complete = 'customlist,codic#complete'
+
+[[plugins]]
+repository = 'soramugi/auto-ctags.vim'
+on_cmd = 'Ctags'
+
+# [[plugins]]
+# repository = 'yassu/todo-env.vim'
+# on_ft = 'todo'
+
+[[plugins]]
+repository = 'fuenor/qfixhowm'
+depends = 'fuenor/qfixgrep'
+on_func = 'qfixmemo'
+
+[[plugins]]
+repository = 'mattn/benchvimrc-vim'
+on_cmd = 'BenchVimrc'
+
+# [[plugins]]
+# repository = 'seletskiy/vim-autosurround'
+# on_func = 'AutoSurround'
+
+[[plugins]]
+repository = 'Chiel92/vim-autoformat'
+on_cmd = 'Autoformat'
+
+[[plugins]]
+repository = 'glidenote/memolist.vim'
+on_cmd = ['MemoNew', 'MemoList', 'MemoGrep']
+
+[[plugins]]
+repository ='ujihisa/vimshell-ssh'
+on_source = 'vimshell.vim'
+# }}}
+

@@ -1,0 +1,1302 @@
+# =============================================================================
+# File        : dein.toml
+# Author      : yukimemi
+# Last Change : 2016/06/25 15:02:03.
+# =============================================================================
+
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# ==================== Window ==================== {{{1
+[[plugins]]
+repo = 'thinca/vim-submode'
+hook_source = '''
+  let g:submode_leave_with_key = 1
+
+  call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+  call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+  call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+  call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+  call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+  call submode#map('bufmove', 'n', '', '<', '<C-w><')
+  call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+  call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-automatic'
+# Setting in vimrc.
+
+[[plugins]]
+repo = 'kana/vim-tabpagecd'
+
+[[plugins]]
+repo = 't9md/vim-choosewin'
+on_map = '<Plug>'
+on_source = 'vimfiler.vim'
+hook_source = '''
+  nmap - <Plug>(choosewin)
+
+  let g:choosewin_overlay_enable = 1
+  let g:choosewin_overlay_clear_multibyte = 1
+
+  " color like tmux
+  let g:choosewin_color_overlay = {
+        \ 'gui': ['DodgerBlue3', 'DodgerBlue3' ],
+        \ 'cterm': [ 25, 25 ]
+        \ }
+  let g:choosewin_color_overlay_current = {
+        \ 'gui': ['firebrick1', 'firebrick1' ],
+        \ 'cterm': [ 124, 124 ]
+        \ }
+
+  let g:choosewin_blink_on_land = 0
+  let g:choosewin_statusline_replace = 0
+  let g:choosewin_tabline_replace = 0
+'''
+
+[[plugins]]
+repo = 'itchyny/thumbnail.vim'
+on_cmd = 'Thumbnail'
+hook_add = '''
+  nnoremap [Space]t :<C-u>Thumbnail<CR>
+'''
+
+
+# ==================== Complement ================ {{{1
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+depends = 'context_filetype.vim'
+on_i = 1
+hook_add = '''
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_smart_case = 1
+  let g:neocomplete#enable_camel_case = 1
+  let g:neocomplete#enable_fuzzy_completion = 1
+  let g:neocomplete#auto_completion_start_length = 2
+  let g:neocomplete#manual_completion_start_length = 0
+  let g:neocomplete#min_keyword_length = 3
+  let g:neocomplete#enable_auto_delimiter = 1
+  " let g:neocomplete#sources#syntax#min_keyword_length = 1
+  " let g:neocomplete#skip_auto_completion_time = 5
+  " let g:neocomplete#enable_auto_close_preview = 0
+  " Define dictionary.
+  let g:neocomplete#sources#dictionary#dictionaries = {
+        \ 'default': '',
+        \ 'vimshell': $HOME . '/.vimshell_hist',
+        \ 'scheme': $HOME . '/.gosh_completions',
+        \ 'coffee': $VIM_PATH . '/dict/coffee.dict',
+        \ 'vbs': $VIM_PATH . '/dict/vbs.dict',
+        \ 'dosbatch': $VIM_PATH . '/dict/dosbatch.dict',
+        \ 'scala': $VIM_PATH . '/dict/scala.dict',
+        \ 'ps1': $VIM_PATH . '/dict/ps1.dict',
+        \ 'javascript': $VIM_PATH . '/dict/wsh.dict',
+        \ 'ruby': $VIM_PATH . '/dict/ruby.dict'
+        \ }
+
+  " Define keyword.
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+  " Enable omni completion.
+  au MyAutoCmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  au MyAutoCmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  au MyAutoCmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  au MyAutoCmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  au MyAutoCmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+  " Enable heavy omni completion.
+  if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+  endif
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+
+  " SQL
+  " let g:neocomplete#sources#omni#functions.sql = 'sqlcomplete#Complete'
+  " typescript
+  " let g:neocomplete#sources#omni#functions.typescript = 'TSScompleteFunc'
+
+  let g:neocomplete#force_omni_input_patterns.typescript = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+  let g:neocomplete#force_omni_input_patterns.go = '[^. *\t]\.\w*\|\h\w*::'
+'''
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'
+depends = 'neocomplete.vim'
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/neco-vim'
+depends = 'neocomplete.vim'
+on_ft = 'vim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+depends = ['neosnippet-snippets', 'context_filetype.vim']
+on_i = 1
+on_ft = 'snippet'
+hook_source = '''
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+  " Tell Neosnippet about the other snippets
+  let g:neosnippet#snippets_directory = $VIM_PATH . '/snippets'
+
+  " For snippet_complete marker.
+  if has('conceal')
+    set conceallevel=2 concealcursor=i
+  endif
+
+  " for unite
+  imap <C-s> <Plug>(neosnippet_start_unite_snippet)
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'koron/codic-vim'
+lazy = 1
+
+
+# ==================== Visual ==================== {{{1
+# [[plugins]]
+# repo = 'altercation/vim-colors-solarized'
+
+[[plugins]]
+repo = 'aereal/vim-colors-japanesque'
+# Setting in vimrc.
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+# Setting in vimrc.
+
+[[plugins]]
+repo = 'LeafCage/foldCC'
+hook_add = '''
+  set foldtext=FoldCCtext()
+  set fillchars=vert:\|
+  nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
+  nnoremap <silent><C-_> :<C-u>call <SID>smart_foldcloser()<CR>
+  function! s:smart_foldcloser()
+    if foldlevel('.') == 0
+      norm! zM
+      return
+    endif
+
+    let foldc_lnum = foldclosed('.')
+    norm! zc
+    if foldc_lnum == -1
+      return
+    endif
+
+    if foldclosed('.') != foldc_lnum
+      return
+    endif
+    norm! zM
+  endfunction
+
+  nnoremap  z[   :<C-u>call <SID>put_foldmarker(0)<CR>
+  nnoremap  z]   :<C-u>call <SID>put_foldmarker(1)<CR>
+  function! s:put_foldmarker(foldclose_p)
+    let crrstr = getline('.')
+    let padding = crrstr=='' ? '' : crrstr=~'\s$' ? '' : ' '
+    let [cms_start, cms_end] = ['', '']
+    let outside_a_comment_p = synIDattr(synID(line('.'), col('$')-1, 1), 'name') !~? 'comment'
+    if outside_a_comment_p
+      let cms_start = matchstr(&cms,'\V\s\*\zs\.\+\ze%s')
+      let cms_end = matchstr(&cms,'\V%s\zs\.\+')
+    endif
+    let fmr = split(&fmr, ',')[a:foldclose_p]. (v:count ? v:count : '')
+    exe 'norm! A'. padding. cms_start. fmr. cms_end
+  endfunction
+
+  nnoremap <silent>z<C-_>  zMzvzc
+  nnoremap <silent>z0  :<C-u>set foldlevel=<C-r>=foldlevel('.')<CR><CR>
+  noremap [Space]j zj
+  noremap [Space]k zk
+'''
+
+[[plugins]]
+repo = 'Konfekt/FastFold'
+on_path = '.*'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+  let g:indentLine_faster = 1
+  nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+  let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'unite', 'vimfiler']
+  au MyAutoCmd User PreciousFileType execute 'IndentLinesReset'
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-highlighturl'
+
+# ==================== Search ==================== {{{1
+[[plugins]]
+repo = 'haya14busa/vim-asterisk'
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'haya14busa/incsearch.vim'
+depends = ['vim-asterisk', 'vim-anzu']
+on_map = '<Plug>'
+hook_add = '''
+  map /  <Plug>(incsearch-forward)
+  map ?  <Plug>(incsearch-backward)
+  map g/ <Plug>(incsearch-stay)
+
+  let g:incsearch#auto_nohlsearch = 1
+  map n <Plug>(incsearch-nohl)<Plug>(anzu-n)zv
+  map N <Plug>(incsearch-nohl)<Plug>(anzu-N)zv
+  map *   <Plug>(incsearch-nohl)<Plug>(asterisk-*)zv
+  map g*  <Plug>(incsearch-nohl)<Plug>(asterisk-g*)zv
+  map #   <Plug>(incsearch-nohl)<Plug>(asterisk-#)zv
+  map g#  <Plug>(incsearch-nohl)<Plug>(asterisk-g#)zv
+
+  map z*  <Plug>(incsearch-nohl0)<Plug>(asterisk-z*)
+  map gz* <Plug>(incsearch-nohl0)<Plug>(asterisk-gz*)
+  map z#  <Plug>(incsearch-nohl0)<Plug>(asterisk-z#)
+  map gz# <Plug>(incsearch-nohl0)<Plug>(asterisk-gz#)
+'''
+
+[[plugins]]
+repo = 't9md/vim-quickhl'
+hook_add = '''
+  let g:quickhl_manual_enable_at_startup = 1
+
+  nmap [Space]m <Plug>(quickhl-manual-this)
+  xmap [Space]m <Plug>(quickhl-manual-this)
+  nmap [Space]M <Plug>(quickhl-manual-reset)
+  xmap [Space]M <Plug>(quickhl-manual-reset)
+
+  let g:quickhl_manual_keywords = [
+        \ "失敗",
+        \ "警告",
+        \ "エラー",
+        \ "異常",
+        \ "warn",
+        \ "WARN",
+        \ "error",
+        \ "ERROR",
+        \ ]
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-parenmatch'
+hook_add = 'let g:loaded_matchparen = 1'
+
+[[plugins]]
+repo = 'itchyny/vim-cursorword'
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
+on_ft = ['unite', 'quickfix']
+
+
+# ==================== Operators ================= {{{1
+[[plugins]]
+repo = 'kana/vim-operator-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'kana/vim-operator-replace'
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = 'map _ <Plug>(operator-replace)'
+
+[[plugins]]
+repo = 'rhysd/vim-operator-surround'
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = '''
+  map sA <Plug>(operator-surround-append)
+  map sD <Plug>(operator-surround-delete)
+  map sR <Plug>(operator-surround-replace)
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-operator-blockwise'
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = '''
+  nmap YY <Plug>(operator-blockwise-yank-head)
+  nmap DD <Plug>(operator-blockwise-delete-head)
+  nmap CC <Plug>(operator-blockwise-change-head)
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-operator-search'
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = 'nmap [Space]/ <Plug>(operator-search)'
+
+[[plugins]]
+repo = 'haya14busa/vim-operator-flashy'
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = '''
+  map y <Plug>(operator-flashy)
+  nmap Y <Plug>(operator-flashy)$
+'''
+
+
+
+# ==================== Textobjs ================== {{{1
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'osyo-manga/vim-textobj-multiblock'
+depends = 'vim-textobj-user'
+on_map = '<Plug>'
+hook_add = '''
+  omap ab <Plug>(textobj-multiblock-a)
+  omap ib <Plug>(textobj-multiblock-i)
+  xmap ab <Plug>(textobj-multiblock-a)
+  xmap ib <Plug>(textobj-multiblock-i)
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-entire'
+depends = 'vim-textobj-user'
+on_map = '<Plug>'
+hook_add = '''
+  map ae <Plug>(textobj-entire-a)
+  nunmap ae
+  map ie <Plug>(textobj-entire-i)
+  nunmap ie
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-fold'
+depends = 'vim-textobj-user'
+on_map = '<Plug>'
+hook_add = '''
+  map az <Plug>(textobj-fold-a)
+  nunmap az
+  map iz <Plug>(textobj-fold-i)
+  nunmap iz
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-function'
+depends = 'vim-textobj-user'
+on_map = '<Plug>'
+hook_add = '''
+  map af <Plug>(textobj-function-a)
+  nunmap af
+  map if <Plug>(textobj-function-i)
+  nunmap if
+  map aF <Plug>(textobj-function-A)
+  nunmap aF
+  map iF <Plug>(textobj-function-I)
+  nunmap iF
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-indent'
+depends = 'vim-textobj-user'
+on_map = '<Plug>'
+hook_add = '''
+  map ai <Plug>(textobj-indent-a)
+  nunmap ai
+  map ii <Plug>(textobj-indent-i)
+  nunmap ii
+  map aI <Plug>(textobj-indent-same-a)
+  nunmap aI
+  map iI <Plug>(textobj-indent-same-i)
+  nunmap iI
+'''
+
+[[plugins]]
+repo = 'gilligan/textobj-lastpaste'
+depends = 'vim-textobj-user'
+on_map = '<Plug>'
+hook_add = '''
+  map iP <Plug>(textobj-lastpaste-i)
+  nunmap iP
+'''
+
+
+# ==================== QuickRun ================== {{{1
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_map = '<Plug>'
+hook_add = '''
+  nmap <Leader>r <Plug>(quickrun)
+  nnoremap <Leader>a :<C-u>QuickRun<Space>-args<Space>
+
+  let g:quickrun_config = {}
+  let g:quickrun_config = {
+        \ "_": {
+        \   "hook/output_command/enable": 1,
+        \   "hook/output_command/log": 1,
+        \   "hook/close_unite_quickfix/enable_hook_loaded": 1,
+        \   "hook/unite_quickfix/enable_failure": 1,
+        \   "hook/close_quickfix/enable_exit": 1,
+        \   "hook/close_buffer/enable_failure": 1,
+        \   "hook/close_buffer/enable_empty_data": 1,
+        \   "hook/echo/enable": 1,
+        \   "hook/echo/output_success": "success!!!",
+        \   "hook/echo/output_failure": "failure...",
+        \   "hook/neco/enable": 1,
+        \   "outputter/buffer/split": ":botright 18sp",
+        \   "runner": "vimproc",
+        \   "runner/vimproc/updatetime": 40,
+        \ },
+        \ "typescript": {
+        \     "command": "tsc",
+        \     "cmdopt": "--nolib --out",
+        \     "exec"  : "%c %s _lib.ts %o %s:p:r.js",
+        \     "hook/typescript_compile/enable": 1,
+        \     "hook/js2cmd/enable": 1,
+        \     "hook/output_command/log": 1,
+        \ },
+        \ "plantuml": {
+        \     "command": "java",
+        \     "cmdopt": "-jar ../bin/plantuml.jar -tpng",
+        \     "exec": "%c %o %s",
+        \ },
+        \ "mermaid": {
+        \     "command": "mermaid",
+        \     "exec": "%c %s",
+        \ },
+        \ "blockdiag": {
+        \     "command": "blockdiag",
+        \     "cmdopt": "-Tsvg",
+        \     "exec": "%c %o %s",
+        \ },
+        \ "rst": {
+        \     "command": "make",
+        \     "cmdopt": "html",
+        \     "exec": "%c %o",
+        \ },
+        \ "ps1": {
+        \     'hook/output_encode/enable': 1,
+        \     'hook/output_encode/encoding': "cp932",
+        \ },
+        \ "markdown": {
+        \     "type": "markdown/pandoc",
+        \     "outputter": "browser",
+        \ },
+        \ "ruby": {
+        \     "command": "ruby",
+        \     "cmdopt": "bundle exec",
+        \     "exec": "%o %c %s",
+        \ },
+        \ }
+'''
+hook_source = '''
+  " echo quickrun command output
+  " http://d.hatena.ne.jp/osyo-manga/searchdiary?word=quickrun
+  let s:hook = {
+        \   "name": "output_command",
+        \   "kind": "hook",
+        \   "config": {
+        \     "enable": 0,
+        \     "log": 0
+        \   }
+        \ }
+
+  function! s:hook.on_ready(session, context)
+    " HierClear
+    for command in a:session.commands
+      execute self.config.log ? "echom command" : "echo command"
+    endfor
+  endfunction
+
+  call quickrun#module#register(s:hook, 1)
+  unlet s:hook
+
+  " Stop quickrun
+  nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+'''
+
+[[plugins]]
+repo = 'osyo-manga/shabadou.vim'
+depends = 'vim-quickrun'
+on_source = ['vim-quickrun', 'vim-watchdogs']
+
+[[plugins]]
+repo = 'osyo-manga/vim-watchdogs'
+depends = ['vim-quickrun', 'shabadou.vim']
+on_idle = 1
+hook_source = '''
+  let g:watchdogs_config = get(g:, 'watchdogs_config', {})
+  let g:watchdogs_config = {
+        \ "cpp/wandbox": {
+        \   "runner": "wandbox",
+        \   "runner/wandbox/compiler": "clang-head",
+        \   "runner/wandbox/options": "warning,c++1y,boost-1.55",
+        \ },
+        \
+        \ "cpp/g++": {
+        \   "cmdopt": "-std=c++0x -Wall",
+        \ },
+        \
+        \ "cpp/clang++": {
+        \   "cmdopt": "-std=c++0x -Wall",
+        \ },
+        \
+        \ "cpp/watchdogs_checker": {
+        \   "type": "watchdogs_checker/clang++",
+        \ },
+        \
+        \ "watchdogs_checker/g++": {
+        \   "cmdopt": "-Wall",
+        \ },
+        \
+        \ "watchdogs_checker/clang++": {
+        \   "cmdopt": "-Wall",
+        \ },
+        \ "xml/watchdogs_checker": {
+        \   "type": "watchdogs_checker/xmllint",
+        \ },
+        \ "watchdogs_checker/xmllint": {
+        \   "command": "xmllint",
+        \   "cmdopt": "--recover",
+        \   "exec": "%c %o %s",
+        \ },
+        \ "go/watchdogs_checker": {
+        \   "type": "watchdogs_checker/golint",
+        \ },
+        \ "watchdogs_checker/golint": {
+        \   "command": "golint",
+        \   "exec": "%c %s",
+        \ },
+        \ }
+
+  " auto check at save
+  let g:watchdogs_check_BufWritePost_enable = 1
+
+  let g:watchdogs_check_BufWritePost_enables = {
+        \ "xml": 0,
+        \ }
+
+  call extend(g:quickrun_config, g:watchdogs_config)
+'''
+hook_post_source = 'call watchdogs#setup(g:quickrun_config)'
+
+[[plugins]]
+repo = 'cohama/vim-hier'
+on_source = 'vim-watchdogs'
+
+# ==================== Comment =================== {{{1
+[[plugins]]
+repo = 'tyru/caw.vim'
+on_map = '<Plug>'
+hook_add = '''
+  nmap gc <Plug>(caw:prefix)
+  xmap gc <Plug>(caw:prefix)
+  nmap gcc <Plug>(caw:hatpos:toggle)
+  xmap gcc <Plug>(caw:hatpos:toggle)
+'''
+
+
+# ==================== Yank/Paste ================ {{{1
+[[plugins]]
+repo = 'LeafCage/yankround.vim'
+hook_add = '''
+  nmap p <Plug>(yankround-p)
+  nmap P <Plug>(yankround-P)
+  nmap <C-p> <Plug>(yankround-prev)
+  nmap <C-n> <Plug>(yankround-next)
+  let g:yankround_max_history = 100
+'''
+
+
+# ==================== Git ======================= {{{1
+[[plugins]]
+repo = 'lambdalisue/vim-gita'
+hook_add = '''
+  nnoremap [Space]gs :<C-u>Gita status<CR>
+  nnoremap [Space]gb :<C-u>Gita branch<CR>
+  nnoremap [Space]gg :<C-u>Gita grep<CR>
+  nnoremap [Space]gd :<C-u>Gita diff<CR>
+  nnoremap [Space]gl :<C-u>Gita ls-files<CR>
+  nnoremap [Space]gp :<C-u>Gita push<CR>
+'''
+
+
+# ==================== Utility =================== {{{1
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+hook_add = '''
+  if g:is_windows
+    if !glob($CACHE . '/dein/lib/vimproc_win*')
+      let g:vimproc#download_windows_dll = 1
+    endif
+  endif
+'''
+
+[[plugins]]
+repo = 'airblade/vim-rooter'
+hook_add = '''
+  let g:rooter_use_lcd = 1
+'''
+
+[[plugins]]
+repo = 'mattn/webapi-vim'
+lazy = 1
+
+[[plugins]]
+repo = 'rhysd/committia.vim'
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+hook_add = '''
+  let g:EasyMotion_use_upper = 1
+  let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+  map <Leader> <Plug>(easymotion-prefix)
+
+  " map f <Plug>(easymotion-fl)
+  " map t <Plug>(easymotion-tl)
+  " map F <Plug>(easymotion-Fl)
+  " map T <Plug>(easymotion-Tl)
+
+  let g:EasyMotion_startofline = 0
+  "let g:EasyMotion_verbose = 0
+'''
+
+[[plugins]]
+repo = 'Shougo/vimfiler.vim'
+depends = 'unite.vim'
+on_map = '<Plug>'
+on_path = '.*'
+hook_add = '''
+  let g:vimfiler_as_default_explorer = 1
+  let g:vimfiler_enable_auto_cd = 1
+  if g:is_windows
+    let g:unite_kind_file_use_trashbox = 1
+  endif
+  nnoremap <silent> [Space]v :<C-u>VimFilerBufferDir -explorer -find<CR>
+'''
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_map = '<Plug>(EasyAlign)'
+hook_add = '''
+  vmap <Enter> <Plug>(EasyAlign)
+
+  let g:easy_align_delimiters = {
+        \ '>': {
+        \       'pattern': '>>\|=>\|>.\+',
+        \       'right_margin': 0,
+        \       'delimiter_align': 'l'
+        \   },
+        \ '/': {
+        \       'pattern': '//\+\|/\*\|\*/',
+        \       'delimiter_align': 'l',
+        \       'ignore_groups': ['!Comment']
+        \   },
+        \ ']': {
+        \       'pattern': '[[\]]',
+        \       'left_margin': 0,
+        \       'right_margin': 0,
+        \       'stick_to_left': 0
+        \   },
+        \ ')': {
+        \       'pattern': '[()]',
+        \       'left_margin': 0,
+        \       'right_margin': 0,
+        \       'stick_to_left': 0
+        \   },
+        \ 'd': {
+        \       'pattern': ' \(\S\+\s*[;=]\)\@=',
+        \       'left_margin': 0,
+        \       'right_margin': 0
+        \   },
+        \ 'p': {
+        \       'pattern': 'pos=\|size=',
+        \       'right_margin': 0
+        \   },
+        \ 's': {
+        \       'pattern': 'sys=\|Trns=',
+        \       'right_margin': 0
+        \   },
+        \ 'k': {
+        \       'pattern': 'key=\|cmt=',
+        \       'right_margin': 0
+        \   },
+        \ 'c': {
+        \       'pattern': 'cmt=',
+        \       'right_margin': 0
+        \   },
+        \ ':': {
+        \       'pattern': ':',
+        \       'left_margin': 1,
+        \       'right_margin': 1,
+        \       'stick_to_left': 0,
+        \       'ignore_groups': []
+        \   }
+        \ }
+'''
+
+[[plugins]]
+repo = 'tyru/capture.vim'
+on_cmd = 'Capture'
+
+[[plugins]]
+repo = 'thinca/vim-prettyprint'
+on_cmd = 'PP'
+
+[[plugins]]
+repo = 'ntpeters/vim-better-whitespace'
+hook_add = '''
+  let g:better_whitespace_filetypes_blacklist = ['unite', 'vimfiler', 'tweetvim']
+  " au MyAutoCmd BufWritePre * StripWhitespace
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-external'
+on_map = '<Plug>'
+hook_add = '''
+  map <Leader>e <Plug>(external-editor)
+  map <Leader>n <Plug>(external-explorer)
+  map <Leader>b <Plug>(external-browser)
+'''
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+lazy = 1
+
+[[plugins]]
+repo = 'mattn/sonictemplate-vim'
+on_cmd = 'Template'
+on_source = 'unite.vim'
+hook_add = '''
+  nnoremap suT :<C-u>Unite sonictemplate<CR>
+  let g:sonictemplate_vim_template_dir = '$HOME/.vim/template'
+  let g:sonictemplate_vim_vars = {
+        \ '_': {
+        \   'author': 'yukimemi',
+        \   'mail': 'yukimemi@gmail.com',
+        \ },
+        \ }
+'''
+
+[[plugins]]
+repo = 'autodate.vim'
+hook_add = '''
+  let g:autodate_format = "%Y/%m/%d %H:%M:%S"
+  let g:autodate_keyword_pre  = "Last Change *:"
+  let g:autodate_keyword_post = "."
+'''
+
+[[plugins]]
+repo = 'sjl/gundo.vim'
+if = "has('python')"
+
+[[plugins]]
+repo = 'machakann/vim-swap'
+
+[[plugins]]
+repo = 'kannokanno/previm'
+depends = 'open-browser.vim'
+on_cmd = 'PrevimOpen'
+
+[[plugins]]
+repo = 'mattn/vimplenote-vim.git'
+depends = 'webapi-vim'
+on_cmd = 'VimpleNote'
+hook_add = '''
+  nnoremap <Leader>vl :<C-u>VimpleNote -l<CR>
+  nnoremap <Leader>vs :<C-u>VimpleNote -s<CR>
+  nnoremap <Leader>vd :<C-u>VimpleNote -d<CR>
+  nnoremap <Leader>vu :<C-u>VimpleNote -u<CR>
+  nnoremap <Leader>vn :<C-u>VimpleNote -n<CR>
+  nnoremap <Leader>vt :<C-u>VimpleNote -t<CR>
+  nnoremap <Leader>vl :<C-u>VimpleNote -l<CR>
+  nnoremap <Leader>vD :<C-u>VimpleNote -D<CR>
+'''
+
+[[plugins]]
+repo = 'khadiwala/wundervim'
+if = "has('python')"
+
+[[plugins]]
+repo = 'itchyny/calendar.vim'
+on_cmd = 'Calendar'
+hook_add = '''
+  nnoremap [Space]cl :<C-u>Calendar<CR>
+  let g:calendar_google_calendar = 1
+  let g:calendar_google_task = 1
+  let g:calendar_frame = 'default'
+  let g:calendar_first_day = 'monday'
+  let g:calendar_task = 1
+'''
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+[[plugins]]
+repo = 'glidenote/memolist.vim'
+on_cmd = ['Memolist', 'MemoNew']
+hook_add = '''
+  if isdirectory($HOME . '/Dropbox')
+    let g:memolist_path = $HOME . '/Dropbox/memolist'
+  else
+    let g:memolist_path = $HOME . '/.memolist'
+  endif
+
+  call Mkdir(g:memolist_path)
+
+  let g:memolist_memo_suffix = "md"
+  " let g:memolist_vimfiler = 1
+  let g:memolist_unite = 1
+  " let g:memolist_unite_source = "file_rec"
+
+  " mappings
+  nnoremap <Leader>mn :<C-u>MemoNew<CR>
+  nnoremap <Leader>ml :<C-u>MemoList<CR>
+  nnoremap <Leader>mg :<C-u>MemoGrep<CR>
+  " nmap <Leader>mf :exe "CtrlP" g:memolist_path<CR><F5>
+
+  " use various Ex commands (default '')
+  " let g:memolist_ex_cmd = 'CtrlP'
+'''
+
+[[plugins]]
+repo = 'Chiel92/vim-autoformat'
+hook_add = '''
+  " let g:autoformat_autoindent = 0
+  " let g:autoformat_retab = 0
+  " let g:autoformat_remove_trailing_spaces = 0
+  " au MyAutoCmd BufWrite *.js,*.jsx :Autoformat
+  " au MyAutoCmd FileType vim,toml let b:autoformat_autoindent = 0
+  nnoremap [Space]f :<C-u>Autoformat<CR>
+'''
+
+[[plugins]]
+repo = 'thinca/vim-singleton'
+hook_add = '''
+  call singleton#enable()
+'''
+
+[[plugins]]
+repo = 'itmammoth/doorboy.vim'
+
+# ==================== Unite ===================== {{{1
+[[plugins]]
+repo = 'Shougo/unite.vim'
+lazy = 1
+hook_add = '''
+  " Use plefix s
+  nnoremap suc :<C-u>Unite colorscheme -auto-preview<CR>
+  nnoremap suy :<C-u>Unite history/yank<CR>
+  nnoremap sub :<C-u>Unite buffer<CR>
+  if g:is_windows
+    nnoremap suf :<C-u>Unite file_rec<CR>
+    nnoremap suF :<C-u>Unite file_rec<CR>
+  else
+    nnoremap suf :<C-u>Unite file_rec/async<CR>
+    nnoremap suF :<C-u>Unite file_rec/async<CR>
+  endif
+  nnoremap suB :<C-u>Unite bookmark -default-action=lcd<CR>
+  nnoremap suA :<C-u>UniteBookmarkAdd<CR>
+  nnoremap suo :<C-u>Unite outline -no-quit -no-start-insert -vertical -winwidth=40<CR>
+  nnoremap suq :<C-u>Unite quickfix -no-quit<CR>
+  nnoremap suh :<C-u>Unite help<CR>
+  nnoremap sur :<C-u>Unite register<CR>
+  " nnoremap sum :<C-u>Unite neomru/file -auto-preview<CR>
+  nnoremap su/ :<C-u>Unite line -no-quit<CR>
+  nnoremap sug :<C-u>Unite grep -no-quit -no-start-insert<CR>
+  nnoremap suG :<C-u>Unite grep/git -no-quit<CR>
+  nnoremap sut :<C-u>Unite tab<CR>
+  nnoremap suu :<C-u>Unite buffer neomru/file<CR>
+  nnoremap sua :<C-u>Unite buffer neomru/file bookmark file file_rec/async<CR>
+  " nnoremap suM :<C-u>Unite mapping<CR>
+  nnoremap suR :<C-u>UniteResume<CR>
+  nnoremap sud :<C-u>Unite -default-action=lcd directory_mru<CR>
+  nnoremap sul :<C-u>Unite history/command<CR>
+
+  " grep ~/.vim_junk
+  nnoremap suj :<C-u>Unite grep:~/.cache/junkfile<CR>
+
+  " Incremental search in cmdline history.
+  " http://d.hatena.ne.jp/osyo-manga/20140825
+  inoremap <C-l> <ESC>:Unite history/command -start-insert -default-action=edit<CR>
+
+  " grep source setting
+  if executable('jvgrep')
+    let g:unite_source_grep_command = 'jvgrep'
+    let g:unite_source_grep_default_opts = '-i --color=never'
+    let g:unite_source_grep_recursive_opt = '-R'
+  elseif executable('pt')
+    let g:unite_source_grep_command = 'pt'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+    let g:unite_source_grep_recursive_opt = ''
+  elseif executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nocolor --nogroup --column'
+    let g:unite_source_grep_recursive_opt = ''
+  endif
+'''
+hook_source = '''
+  " Like ctrlp.vim settings.
+  let s:unite_default_context = {
+        \ 'start_insert': 1,
+        \ 'winheight': 10,
+        \ 'direction': 'botright'
+        \ }
+  call extend(s:unite_default_context, {
+        \ 'prompt': '» '
+        \ })
+  call unite#custom#profile('default', 'context', s:unite_default_context)
+
+  " use vimfiler to open directory
+  call unite#custom#default_action("source/bookmark/directory", "vimfiler")
+  call unite#custom#default_action("directory", "vimfiler")
+  call unite#custom#default_action("directory_mru", "vimfiler")
+
+  function! s:unite_settings()
+    nmap <buffer> <Esc> <Plug>(unite_exit)
+    nmap <buffer> <C-n> <Plug>(unite_select_next_line)
+    nmap <buffer> <C-p> <Plug>(unite_select_previous_line)
+  endfunction
+  au MyAutoCmd FileType unite call <SID>unite_settings()
+'''
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'Shougo/unite-outline'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'thinca/vim-unite-history'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'Shougo/unite-help'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'tsukkee/unite-tag'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'Shougo/junkfile.vim'
+on_source = 'unite.vim'
+on_cmd = 'JunkfileOpen'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+on_source = 'unite.vim'
+on_cmd = 'Ref'
+
+[[plugins]]
+repo = 'osyo-manga/unite-quickfix'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'osyo-manga/unite-filetype'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'sorah/unite-ghq'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'ujihisa/unite-colorscheme'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'mattn/unite-vim_advent-calendar'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'mattn/unite-advent_calendar'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'rhysd/unite-codic.vim'
+depends = 'codic-vim'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'lambdalisue/unite-grep-vcs'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'Shougo/neossh.vim'
+on_source = 'unite.vim'
+
+
+# ==================== FileType ================== {{{1
+# [[plugins]]
+# repo = 'editorconfig/editorconfig-vim'
+# if = "has('python')"
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = 'context_filetype.vim'
+hook_source = '''
+  " let g:precious_enable_switch_CursorMoved = { '*': 0 }
+  " au MyAutoCmd InsertEnter * PreciousSwitch
+  " au MyAutoCmd InsertLeave * PreciousReset
+'''
+
+# ==================== Filetype (haskell) ======== {{{1
+[[plugins]]
+repo = 'itchyny/vim-haskell-indent'
+on_ft = 'haskell'
+
+[[plugins]]
+repo = 'nbouscal/vim-stylish-haskell'
+on_ft = 'haskell'
+
+[[plugins]]
+repo = 'eagletmt/neco-ghc'
+on_ft = 'haskell'
+
+[[plugins]]
+repo = 'kana/vim-filetype-haskell'
+on_ft = 'haskell'
+
+[[plugins]]
+repo = 'eagletmt/ghcmod-vim'
+on_ft = 'haskell'
+
+# ==================== Filetype (css) ============ {{{1
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+on_ft = 'css'
+
+# ==================== Filetype (ruby) =========== {{{1
+[[plugins]]
+repo = 'vim-ruby/vim-ruby'
+on_ft = 'ruby'
+
+[[plugins]]
+repo = 'todesking/ruby_hl_lvar.vim'
+on_ft = 'ruby'
+
+[[plugins]]
+repo = 'osyo-manga/vim-monster'
+on_ft = 'ruby'
+
+# ==================== Filetype (vim) ============ {{{1
+[[plugins]]
+repo = 'thinca/vim-themis'
+on_ft = 'vim'
+
+# ==================== Filetype (vimperator) ===== {{{1
+[[plugins]]
+repo = 'superbrothers/vim-vimperator'
+on_ft = 'vimperator'
+
+# ==================== Filetype (markdown) ======= {{{1
+[[plugins]]
+repo = 'rcmdnk/vim-markdown'
+on_ft = ['markdown', 'mkd']
+
+[[plugins]]
+repo = 'mattn/vim-maketable'
+on_cmd = 'MakeTable'
+
+# ==================== Filetype (html) =========== {{{1
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_ft = ['html', 'markdown', 'xml']
+
+# ==================== Filetype (javascript) ===== {{{1
+# [[plugins]]
+# repo = 'pangloss/vim-javascript'
+# on_ft = ['javascript', 'javascript.jsx']
+
+[[plugins]]
+repo = 'jason0x43/vim-js-indent'
+on_ft = 'javascript'
+
+[[plugins]]
+repo = 'mxw/vim-jsx'
+on_ft = ['javascript', 'javascript.jsx']
+
+# [[plugins]]
+# repo = 'maksimr/vim-jsbeautify'
+# on_ft = ['javascript', 'javascript.jsx']
+# on_func = ['JsBeautify', 'HtmlBeautify', 'CSSBeautify']
+
+# ==================== Filetype (coffee-script) === {{1
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+on_ft = 'coffee'
+
+# ==================== Filetype (typescript) ===== {{{1
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+on_ft = 'typescript'
+
+[[plugins]]
+repo = 'Quramy/tsuquyomi'
+on_ft = 'typescript'
+
+# ==================== Filetype (python) ========= {{{1
+[[plugins]]
+repo = 'hynek/vim-python-pep8-indent'
+on_ft = 'python'
+
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+on_ft = 'python'
+
+# ==================== Filetype (cpp) ============ {{{1
+[[plugins]]
+repo = 'vim-jp/cpp-vim'
+on_ft = 'cpp'
+
+[[plugins]]
+repo =  'osyo-manga/vim-marching'
+on_ft = 'cpp'
+
+[[plugins]]
+repo = 'rhysd/wandbox-vim'
+on_ft = 'cpp'
+
+# ==================== Filetype (go) ============= {{{1
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
+hook_add = '''
+  let g:go_auto_type_info = 1
+  let g:go_snippet_engine = "neosnippet"
+  let g:go_fmt_command = "goimports"
+
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_interfaces = 1
+  let g:go_highlight_operators = 1
+  let g:go_highlight_build_constraints = 1
+
+  au MyAutoCmd BufNew,BufRead *.go call s:my_go_settings()
+
+  function! s:my_go_settings() abort
+    nmap <buffer> <Leader>gd <Plug>(go-doc)
+    nmap <buffer> <Leader>gs <Plug>(go-doc-split)
+    nmap <buffer> <Leader>gv <Plug>(go-doc-vertical)
+    nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
+    nmap <buffer> <Leader>gr <Plug>(go-rename)
+
+    " nmap <buffer> <Leader>r <Plug>(go-run)
+    nmap <buffer> <Leader>gb <Plug>(go-build)
+    nmap <buffer> <Leader>gt <Plug>(go-test)
+    nmap <buffer> <Leader>gc <Plug>(go-coverage)
+
+    nmap <buffer> <Leader>ds <Plug>(go-def-split)
+    nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
+    nmap <buffer> <Leader>dt <Plug>(go-def-tab)
+    nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
+
+    setl completeopt=menu,preview
+  endfunction
+'''
+
+
+# ==================== Filetype (ps1) ============ {{{1
+[[plugins]]
+repo = 'PProvost/vim-ps1'
+on_ft = 'ps1'
+hook_source = '''
+  function! s:addHeaderPs1(flg)
+    let lines = []
+    if a:flg
+      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*")
+    else
+      call add(lines, "@set scriptPath=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass \"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*&@ping -n 30 localhost>nul")
+    endif
+    call add(lines, "@exit /b %errorlevel%")
+    call extend(lines, readfile(expand("%")))
+    let i = 0
+    for line in lines
+      if len(lines) != (i + 1)
+        let lines[i] .= "\r"
+      endif
+      let i += 1
+    endfor
+    let s:basedir = expand("%:p:h") . "/../cmd/"
+    let s:cmdFile = expand("%:p:t:r") . ".cmd"
+    call Mkdir(s:basedir)
+    call writefile(lines,  s:basedir . s:cmdFile, "b")
+    echo "Write " . s:basedir . expand("%:p:t:r") . ".cmd"
+  endfunction
+  " au MyAutoCmd BufWritePost *.ps1 call <SID>addHeaderPs1(0)
+  au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1)
+'''
+
+
+# ==================== Filetype (rst) ============ {{{1
+[[plugins]]
+repo = 'Rykka/riv.vim'
+on_ft = 'rst'
+
+# ==================== Filetype (clojure) ======== {{{1
+[[plugins]]
+repo =  'tpope/vim-fireplace'
+depends = ['vim-classpath', 'vim-clojure-static']
+on_ft = 'clojure'
+
+[[plugins]]
+repo = 'guns/vim-clojure-static'
+on_ft = 'clojure'
+
+# ==================== Filetype (toml) =========== {{{1
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+# ==================== Filetype (plantuml) ====== {{{1
+[[plugins]]
+repo =  'aklt/plantuml-syntax'
+on_ft = 'plantuml'
+
+# ==================== Filetype (diff) =========== {{{1
+[[plugins]]
+repo = 'thinca/vim-ft-diff_fold'
+on_ft = 'diff'
+
+# ==================== Filetype (json) =========== {{{1
+[[plugins]]
+repo = 'elzr/vim-json'
+on_ft = 'json'
+
+# ==================== Filetype (help) =========== {{{1
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+on_ft = 'help'
+
+[[plugins]]
+repo = 'thinca/vim-ft-help_fold'
+on_ft = 'help'
+
+
+# ==================== Filetype (log) =========== {{{1
+[[plugins]]
+repo = 'dzeban/vim-log-syntax'
+on_ft = 'log'
+

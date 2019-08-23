@@ -185,7 +185,8 @@ cask alacritty
 cask amazon-music
 cask appgrid
 cask caffeine
-cask dropbox
+cask docker
+cask firefox
 cask geektool
 cask google-chrome
 cask hammerspoon
@@ -227,8 +228,8 @@ brew pt
 cask alfred
 cask appcleaner
 cask astro
-cask docker
-cask firefox
+cask comparemerge
+cask dropbox
 cask font-hack-nerd-font
 cask google-backup-and-sync
 cask google-japanese-ime
