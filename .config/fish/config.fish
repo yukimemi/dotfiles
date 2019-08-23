@@ -180,7 +180,7 @@ abbr -a chromeapp "open -na 'Google Chrome' --args '--app=https://"
 
 # youtube-dl {{{2
 abbr -a yt "youtube-dl -i"
-abbr -a ytm "youtube-dl -ix --audio-format mp3"
+abbr -a ytm "youtube-dl -ixk --audio-format mp3"
 
 # Home-file {{{2
 if __isMac

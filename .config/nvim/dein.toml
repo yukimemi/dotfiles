@@ -1,0 +1,710 @@
+# =============================================================================
+# File        : dein.toml
+# Author      : yukimemi
+# Last Change : 2019/03/02 17:54:02.
+# =============================================================================
+
+# ==================== Dein ====================== {{{1
+[[plugins]]
+repo = 'Shougo/dein.vim' # {{{2
+
+# ==================== Visual ==================== {{{1
+[[plugins]]
+repo = 'rhysd/vim-color-spring-night' # {{{2
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons' # {{{2
+
+# [[plugins]]
+# repo = 'itchyny/lightline.vim' # {{{2
+# hook_add = '''
+# source $VIM_PATH/rc/lightline.vim
+# '''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+hook_add = '''
+source $VIM_PATH/rc/vim-airline.vim
+'''
+
+[[plugins]]
+repo = 'Yggdroot/indentLine' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/indentLine.vim
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-highlighturl' # {{{2
+
+[[plugins]]
+repo = 'vim-scripts/matchit.zip' # {{{2
+
+[[plugins]]
+repo = 'ntpeters/vim-better-whitespace' # {{{2
+
+[[plugins]]
+repo = 'kshenoy/vim-signature'
+
+# ==================== Complement ================ {{{1
+[[plugins]]
+repo = 'Shougo/neosnippet.vim' # {{{2
+depends = ['neosnippet-snippets', 'context_filetype.vim']
+on_i = 1
+on_ft = 'snippet'
+hook_add = '''
+source $VIM_PATH/rc/neosnippet.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets' # {{{2
+lazy = 1
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim' # {{{2
+lazy = 1
+[[plugins]]
+repo = 'Shougo/neco-syntax' # {{{2
+lazy = 1
+[[plugins]]
+repo = 'Shougo/neco-vim' # {{{2
+on_ft = 'vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp' # {{{2
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim' # {{{2
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/asyncomplete.vim
+'''
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim' # {{{2
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-buffer.vim' # {{{2
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-file.vim' # {{{2
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-emoji.vim' # {{{2
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-tags.vim' # {{{2
+if = "executable('ctags')"
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-necosyntax.vim' # {{{2
+depends = ['neco-syntax']
+# [[plugins]]
+# repo = 'yami-beta/asyncomplete-omni.vim' # {{{2
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-neosnippet.vim' # {{{2
+depends = ['neosnippet.vim']
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-necovim.vim' # {{{2
+on_ft = 'vim'
+depends = ['neco-vim']
+# ==================== Utility =================== {{{1
+[[plugins]]
+repo = 'airblade/vim-rooter' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/vim-rooter.vim
+'''
+
+[[plugins]]
+repo = 'thinca/vim-submode' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/vim-submode.vim
+'''
+
+[[plugins]]
+repo = 'Konfekt/FastFold' # {{{2
+on_path = '.*'
+hokk_add = '''
+source $VIM_PATH/rc/FastFold.vim
+'''
+
+# [[plugins]]
+# repo = 'arecarn/vim-fold-cycle'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim' # {{{2
+if = "!has('kaoriya')"
+build = 'make'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align' # {{{2
+on_map = {v = '<Plug>'}
+hook_add = '''
+source $VIM_PATH/rc/vim-easy-align.vim
+'''
+
+[[plugins]]
+repo = 'glidenote/memolist.vim' # {{{2
+on_cmd = ['Memolist', 'MemoNew', 'MemoGrep']
+hook_add = '''
+source $VIM_PATH/rc/memolist.vim
+'''
+
+[[plugins]]
+repo = 'vim-scripts/autodate.vim' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/autodate.vim
+'''
+
+[[plugins]]
+repo = 'simnalamburt/vim-mundo' # {{{2
+on_cmd = 'MundoToggle'
+hook_add = '''
+source $VIM_PATH/rc/vim-mundo.vim
+'''
+
+[[plugins]]
+repo = 'tpope/vim-repeat' # {{{2
+
+[[plugins]]
+repo = 'w0rp/ale' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/ale.vim
+'''
+
+[[plugins]]
+repo = 'tyru/capture.vim' # {{{2
+on_cmd = ['Capture']
+
+[[plugins]]
+repo = 'justinmk/vim-dirvish' # {{{2
+on_cmd = ['Dirvish']
+hook_add = '''
+source $VIM_PATH/rc/vim-dirvish.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/echodoc.vim' # {{{2
+depends = ['context_filetype.vim']
+on_i = 1
+hook_add = '''
+source $VIM_PATH/rc/echodoc.vim
+'''
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim' # {{{2
+on_cmd = 'CtrlP'
+hook_add = '''
+source $VIM_PATH/rc/ctrlp.vim
+'''
+
+[[plugins]]
+repo = 'kaneshin/ctrlp-filetype' # {{{2
+on_source = 'ctrlp.vim'
+[[plugins]]
+repo = 'kaneshin/ctrlp-memolist' # {{{2
+on_source = 'ctrlp.vim'
+[[plugins]]
+repo = 'mattn/ctrlp-launcher' # {{{2
+on_source = 'ctrlp.vim'
+[[plugins]]
+repo = 'mattn/ctrlp-mark' # {{{2
+on_source = 'ctrlp.vim'
+[[plugins]]
+repo = 'mattn/ctrlp-vimhelpjp' # {{{2
+depends = 'webapi-vim'
+on_source = 'ctrlp.vim'
+on_cmd = 'VimHelpJp'
+[[plugins]]
+repo = 'ompugao/ctrlp-history' # {{{2
+on_source = 'ctrlp.vim'
+
+# [[plugins]]
+# repo = 'yuttie/comfortable-motion.vim' # {{{2
+
+[[plugins]]
+repo = 'dhruvasagar/vim-table-mode' # {{{2
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'kopischke/vim-stay' # {{{2
+
+[[plugins]]
+repo = 'qpkorr/vim-renamer' # {{{2
+on_cmd = 'Renamer'
+hook_add = '''
+source $VIM_PATH/rc/vim-renamer.vim
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-external' # {{{2
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-external.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/defx.nvim' # {{{2
+on_cmd = ['Defx']
+if = '!g:is_windows && has("python3")'
+hook_add = '''
+source $VIM_PATH/rc/defx.vim
+'''
+
+[[plugins]]
+repo = 'lambdalisue/vim-findent' # {{{2
+
+[[plugins]]
+repo = 'tmux-plugins/vim-tmux-focus-events' # {{{2
+if  = '!g:is_windows'
+
+[[plugins]]
+repo = 'roxma/vim-tmux-clipboard' # {{{2
+if  = '!g:is_windows'
+
+[[plugins]]
+repo = 'roxma/nvim-yarp' # {{{2
+if = '!has("nvim")'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc' # {{{2
+if = '!has("nvim")'
+
+[[plugins]]
+repo = 'mattn/webapi-vim' # {{{2
+lazy = 1
+
+[[plugins]]
+repo = 'lambdalisue/fila.vim' # {{{2
+on_cmd = 'Fila'
+hook_add = '''
+source $VIM_PATH/rc/fila.vim
+'''
+
+# ==================== Denite ==================== {{{1
+[[plugins]]
+repo = 'Shougo/denite.nvim' # {{{2
+depends = 'neomru.vim'
+on_cmd = 'Denite'
+if = "has('python3')"
+hook_add = '''
+source $VIM_PATH/rc/denite.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/neomru.vim' # {{{2
+on_source = 'denite.nvim'
+
+[[plugins]]
+repo = 'Shougo/junkfile.vim' # {{{2
+on_source = 'denite.nvim'
+on_cmd = 'JunkfileOpen'
+
+[[plugins]]
+repo = 'iyuuya/denite-ale' # {{{2
+on_source = 'denite.nvim'
+
+
+# ==================== Search ==================== {{{1
+[[plugins]]
+repo = 'haya14busa/vim-asterisk' # {{{2
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'osyo-manga/vim-anzu' # {{{2
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'haya14busa/is.vim' # {{{2
+depends = ['vim-asterisk', 'vim-anzu']
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/is.vim
+'''
+
+[[plugins]]
+repo = 't9md/vim-quickhl' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/vim-quickhl.vim
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-parenmatch' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/vim-parenmatch.vim
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-cursorword' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/vim-cursorword.vim
+'''
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace' # {{{2
+on_ft = ['quickfix']
+
+[[plugins]]
+repo = 'mox-mox/vim-localsearch' # {{{2
+on_map = {n = '<Plug>'}
+hook_add = '''
+source $VIM_PATH/rc/vim-localsearch.vim
+'''
+
+# ==================== Operators ================= {{{1
+[[plugins]]
+repo = 'kana/vim-operator-user' # {{{2
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'kana/vim-operator-replace' # {{{2
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-operator-replace.vim
+'''
+
+[[plugins]]
+repo = 'rhysd/vim-operator-surround' # {{{2
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-operator-surround.vim
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-operator-search' # {{{2
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-operator-search.vim
+'''
+
+[[plugins]]
+repo = 'haya14busa/vim-operator-flashy' # {{{2
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-operator-flashy.vim
+'''
+
+# ==================== Textobjs ================== {{{1
+[[plugins]]
+repo = 'kana/vim-textobj-user' # {{{2
+on_map = '<Plug>'
+
+
+[[plugins]]
+repo = 'kana/vim-textobj-entire' # {{{2
+depends = 'vim-textobj-user'
+on_map = {ox = '<Plug>'}
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-entire.vim
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-fold' # {{{2
+depends = 'vim-textobj-user'
+on_map = {ox = '<Plug>'}
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-fold.vim
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-function' # {{{2
+depends = 'vim-textobj-user'
+on_map = {ox = '<Plug>'}
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-function.vim
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-indent' # {{{2
+depends = 'vim-textobj-user'
+on_map = {ox = '<Plug>'}
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-indent.vim
+'''
+
+[[plugins]]
+repo = 'gilligan/textobj-lastpaste' # {{{2
+depends = 'vim-textobj-user'
+on_map = {ox = '<Plug>'}
+hook_add = '''
+source $VIM_PATH/rc/textobj-lastpaste.vim
+'''
+
+# ==================== Comment =================== {{{1
+[[plugins]]
+repo = 'tyru/caw.vim' # {{{2
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/caw.vim
+'''
+
+# ==================== Yank/Paste ================ {{{1
+[[plugins]]
+repo = 'LeafCage/yankround.vim' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/yankround.vim
+'''
+
+# ==================== Git ======================= {{{1
+# [[plugins]]
+# repo = 'itchyny/vim-gitbranch' # {{{2
+
+[[plugins]]
+repo = 'lambdalisue/gina.vim' # {{{2
+on_cmd = 'Gina'
+hook_add = '''
+source $VIM_PATH/rc/gina.vim
+'''
+
+# ==================== Filetype (all) ============= {{{1
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+hook_add = '''
+source $VIM_PATH/rc/vim-polyglot.vim
+'''
+
+# ==================== Filetype (go) ============= {{{1
+# [[plugins]]
+# repo = 'fatih/vim-go' # {{{2
+# on_ft = 'go'
+# hook_add = '''
+# source $VIM_PATH/rc/vim-go.vim
+# '''
+
+# ==================== Filetype (plantuml) ======= {{{1
+[[plugins]]
+repo = 'scrooloose/vim-slumlord' # {{{2
+on_ft = 'plantuml'
+hook_add = '''
+source $VIM_PATH/rc/vim-slumlord.vim
+'''
+
+# ==================== Filetype (log) ============ {{{1
+[[plugins]]
+repo = 'dzeban/vim-log-syntax' # {{{2
+on_ft = 'log'
+
+
+# ==================== Filetype (javascript) ===== {{{1
+# [[plugins]]
+# repo = 'pangloss/vim-javascript' # {{{2
+# on_ft = ['javascript', 'javascript.jsx']
+
+# [[plugins]]
+# repo = 'billyvg/tigris.nvim' # {{{2
+# if = '!g:is_windows'
+# on_ft = ['javascript', 'javascript.jsx']
+# depends = 'node-host'
+# build = './install.sh'
+# hook_add = '''
+# let g:tigris#enabled = 1
+# '''
+
+# [[plugins]]
+# repo = 'neovim/node-host'
+# lazy = 1
+# build = 'npm i'
+
+# [[plugins]]
+# repo = 'othree/javascript-libraries-syntax.vim' # {{{2
+# on_ft = ['javascript', 'javascript.jsx', 'typescript']
+
+# [[plugins]]
+# repo = 'othree/es.next.syntax.vim' # {{{2
+# on_ft = ['javascript', 'javascript.jsx', 'typescript']
+
+# ==================== Filetype (markdown) ======= {{{1
+# [[plugins]]
+# repo = 'rhysd/vim-gfm-syntax'
+# on_ft = 'markdown'
+
+[[plugins]]
+repo = 'nelstrom/vim-markdown-folding' # {{{2
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim' # {{{2
+on_ft = 'markdown'
+on_cmd = 'MarkdownPreview'
+hook_post_update = '''
+call dein#source('markdown-preview.nvim')
+call mkdp#util#install()
+'''
+
+
+# ==================== Filetype (Rust) =========== {{{1
+[[plugins]]
+repo = 'rust-lang/rust.vim' # {{{2
+on_ft = 'rust'
+if = "executable('cargo')"
+hook_add = '''
+source $VIM_PATH/rc/rust.vim
+'''
+
+[[plugins]]
+repo = 'rhysd/rust-doc.vim' # {{{2
+on_ft = 'rust'
+
+
+# ==================== Filetype (Haskell) ======== {{{1
+[[plugins]]
+repo = 'eagletmt/ghcmod-vim' # {{{2
+on_ft = 'haskell'
+if = "executable('stack')"
+build = 'stack install ghc-mod'
+hook_add = '''
+source $VIM_PATH/rc/ghcmod-vim.vim
+'''
+
+[[plugins]]
+repo = 'eagletmt/neco-ghc' # {{{2
+on_ft = 'haskell'
+hook_add = '''
+source $VIM_PATH/rc/neco-ghc.vim
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-haskell-indent' # {{{2
+on_ft = 'haskell'
+
+[[plugins]]
+repo = 'itchyny/vim-haskell-sort-import' # {{{2
+on_ft = 'haskell'
+hook_add = '''
+source $VIM_PATH/rc/vim-haskell-sort-import.vim
+'''
+
+
+# ==================== Filetype (SQL) ============ {{{1
+# [[plugins]]
+# repo = 'mattn/vim-sqlfmt'
+# on_ft = 'sql'
+# hook_add = '''
+#   au MyAutoCmd BufWrite *.sql :SQLFmt
+# '''
+
+[[plugins]]
+repo = 'b4b4r07/vim-sqlfmt' # {{{2
+on_ft = 'sql'
+build = 'go get github.com/jackc/sqlfmt'
+hook_add = '''
+source $VIM_PATH/rc/vim-sqlfmt.vim
+'''
+
+# ==================== Filetype (purescript) ===== {{{1
+[[plugins]]
+repo = 'FrigoEU/psc-ide-vim' # {{{2
+on_ft = 'purescript'
+
+
+# ==================== Filetype (csv) ============ {{{1
+[[plugins]]
+repo = 'mechatroner/rainbow_csv' # {{{2
+on_ft = 'csv'
+
+# ==================== After ftplugin ============ {{{1
+[ftplugin]
+_ = '''
+set formatoptions-=ro
+'''
+
+dosbatch = '''
+setl fenc=cp932 ff=dos
+'''
+
+html = '''
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_syntax_folding = 1
+setl noexpandtab
+setl ts=4 sw=4 sts=0
+setl foldmethod=syntax
+'''
+
+csv = '''
+setl nowrap
+'''
+
+log = '''
+setl nowrap
+'''
+
+mail = '''
+setl ff=dos
+setl fenc=cp932
+'''
+
+markdown = '''
+setl formatoptions+=t
+setl conceallevel=0
+" set background=light
+
+let b:autodate_format = "%Y-%m-%dT%H:%M:%S+09:00"
+let b:autodate_keyword_pre  = 'date: "'
+let b:autodate_keyword_post = '"'
+'''
+
+go = '''
+setl completeopt+=preview
+'''
+
+ps1 = '''
+setl ts=2 sw=2 sts=0
+setl foldmethod=syntax
+source $VIM_PATH/rc/vim-ps1.vim
+'''
+
+python = '''
+setl cinwords=if,elif,else,for,while,try,except,finally,def,class
+setl expandtab
+setl ts=8 sw=4 sts=4
+setl foldmethod=indent foldlevel=99
+'''
+
+scala = '''
+" http://vim-users.jp/2013/02/vim-advent-calendar-2012-ujihisa-4/
+function! s:ujihisa_start_sbt() "{{{2
+  execute 'VimShellInteractive sbt'
+  stopinsert
+  let t:sbt_bufname = bufname('%')
+  if !has_key(t:, 'sbt_cmds')
+    let t:sbt_cmds = [input('t:sbt_cmds[0] = ')]
+  endif
+  wincmd p
+endfunction
+
+command! -nargs=0 StartSBT call <SID>ujihisa_start_sbt()
+
+function! s:sbt_run() "{{{2
+  let cmds = get(t:, 'sbt_cmds', 'run')
+
+  let sbt_bufname = get(t:, 'sbt_bufname')
+  if sbt_bufname !=# ''
+    call vimshell#interactive#set_send_buffer(sbt_bufname)
+    call vimshell#interactive#send(cmds)
+  else
+    echoerr 'try StartSBT'
+  endif
+endfunction
+
+function! s:vimrc_scala() "{{{2
+  nnoremap <buffer> [Space]m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
+endfunction
+
+augroup vimrc_scala "{{{2
+  autocmd!
+  au FileType scala call s:vimrc_scala()
+  au FileType scala nnoremap <buffer> [Space]st :<C-u>StartSBT<Cr>
+augroup END
+'''
+
+xml = '''
+setl noexpandtab
+setl ts=4 sw=4 sts=0
+
+let g:xml_syntax_folding = 1
+setl foldmethod=syntax
+'''
+
+elm = '''
+setl ts=4 sw=4 sts=0
+'''
+
