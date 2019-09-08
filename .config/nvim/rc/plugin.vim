@@ -70,3 +70,4 @@ source $VIM_PATH/rc/vim-textobj-function.vim
 source $VIM_PATH/rc/vim-textobj-indent.vim
 source $VIM_PATH/rc/vim-textobj-multiblock.vim
 source $VIM_PATH/rc/yankround.vim
+source $VIM_PATH/rc/coc.vim
