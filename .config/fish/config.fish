@@ -239,3 +239,8 @@ if type -q direnv
     eval (direnv hook fish)
 end
 
+# Load starship. {{{1
+if type -q starship
+    eval (starship init fish)
+end
+

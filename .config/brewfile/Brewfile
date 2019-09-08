@@ -116,6 +116,7 @@ brew oniguruma
 brew opencore-amr
 brew openjpeg
 brew openssl
+brew openssl@1.1
 brew opus
 brew orc
 brew p11-kit
@@ -147,6 +148,7 @@ brew source-highlight
 brew speex
 brew sqlite
 brew ssh-copy-id
+brew starship
 brew ta-lib
 brew taglib
 brew terminal-notifier
