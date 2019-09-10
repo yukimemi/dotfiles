@@ -1,7 +1,13 @@
 " Pac 'MaxMEllon/vim-shiny', {'type': 'opt', 'lazy': 1}
 " Pac 'TaDaa/vimade', {'type': 'opt', 'lazy': 1}
 " Pac 'cohama/lexima.vim', {'type': 'opt', 'lazy': 1}
+" Pac 'prabirshrestha/asyncomplete-buffer.vim', {'type': 'opt', 'lazy': 1}
+" Pac 'prabirshrestha/asyncomplete-emoji.vim', {'type': 'opt', 'lazy': 1}
+" Pac 'prabirshrestha/asyncomplete-file.vim', {'type': 'opt', 'lazy': 1}
+" Pac 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt', 'lazy': 1}
+" Pac 'prabirshrestha/asyncomplete-tags.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 " Pac 'thinca/vim-localrc', {'type': 'opt', 'lazy': 1}
+" Pac 'w0rp/ale', {'type': 'opt', 'lazy': 1}
 " Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'Konfekt/FastFold', {'type': 'opt', 'lazy': 1}
@@ -37,7 +43,7 @@ Pac 'mattn/ctrlp-launcher', {'type': 'opt', 'lazy': 1}
 Pac 'mattn/ctrlp-mark', {'type': 'opt', 'lazy': 1}
 Pac 'mattn/ctrlp-vimhelpjp', {'type': 'opt', 'lazy': 1}
 Pac 'mattn/webapi-vim', {'type': 'opt', 'lazy': 1}
-Pac 'neoclide/coc.nvim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
+Pac 'neoclide/coc.nvim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows, 'branch': 'release'}
 Pac 'ntpeters/vim-better-whitespace', {'type': 'opt', 'lazy': 1}
 Pac 'ompugao/ctrlp-history', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-anzu', {'type': 'opt', 'lazy': 1}
@@ -45,11 +51,6 @@ Pac 'osyo-manga/vim-operator-blockwise', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-operator-search', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-precious', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-textobj-multiblock', {'type': 'opt', 'lazy': 1}
-Pac 'prabirshrestha/asyncomplete-buffer.vim', {'type': 'opt', 'lazy': 1}
-Pac 'prabirshrestha/asyncomplete-emoji.vim', {'type': 'opt', 'lazy': 1}
-Pac 'prabirshrestha/asyncomplete-file.vim', {'type': 'opt', 'lazy': 1}
-Pac 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt', 'lazy': 1}
-Pac 'prabirshrestha/asyncomplete-tags.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'rhysd/clever-f.vim', {'type': 'opt', 'lazy': 1}
 Pac 'rhysd/vim-operator-surround', {'type': 'opt', 'lazy': 1}
 Pac 'roxma/vim-tmux-clipboard', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
@@ -61,4 +62,3 @@ Pac 'tyru/caw.vim', {'type': 'opt', 'lazy': 1}
 Pac 'tyru/open-browser.vim', {'type': 'opt', 'lazy': 1}
 Pac 'vim-scripts/autodate.vim', {'type': 'opt', 'lazy': 1}
 Pac 'vim-scripts/matchit.zip', {'type': 'opt', 'lazy': 1}
-Pac 'w0rp/ale', {'type': 'opt', 'lazy': 1}
