@@ -1,3 +1,6 @@
+" source $VIM_PATH/rc/ale.vim
+" source $VIM_PATH/rc/asyncomplete.vim
+" source $VIM_PATH/rc/deoplete.vim
 " source $VIM_PATH/rc/lightline.vim
 " source $VIM_PATH/rc/neocomplete.vim
 " source $VIM_PATH/rc/vim-go.vim
@@ -6,15 +9,13 @@
 source $VIM_PATH/rc/FastFold.vim
 source $VIM_PATH/rc/Omnisharp-vim.vim
 source $VIM_PATH/rc/TweetVim.vim
-source $VIM_PATH/rc/ale.vim
-source $VIM_PATH/rc/asyncomplete.vim
 source $VIM_PATH/rc/autodate.vim
 source $VIM_PATH/rc/caw.vim
 source $VIM_PATH/rc/clever-f.vim
+source $VIM_PATH/rc/coc.vim
 source $VIM_PATH/rc/ctrlp.vim
 source $VIM_PATH/rc/defx.vim
 source $VIM_PATH/rc/denite.vim
-source $VIM_PATH/rc/deoplete.vim
 source $VIM_PATH/rc/echodoc.vim
 source $VIM_PATH/rc/fila.vim
 source $VIM_PATH/rc/ghcmod-vim.vim
@@ -70,4 +71,3 @@ source $VIM_PATH/rc/vim-textobj-function.vim
 source $VIM_PATH/rc/vim-textobj-indent.vim
 source $VIM_PATH/rc/vim-textobj-multiblock.vim
 source $VIM_PATH/rc/yankround.vim
-source $VIM_PATH/rc/coc.vim
