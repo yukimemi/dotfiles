@@ -473,10 +473,10 @@ coc-css@^1.2.2:
   resolved "https://registry.yarnpkg.com/coc-css/-/coc-css-1.2.2.tgz#9b62ac96a9db8c687396ab4648c0c67dc3897a2f"
   integrity sha512-JvZnKZZJZemS70o972OEjfnMGGO2sLpJA3iX1OT3CXmaymPb8CmufboyCVnzGMDMbFL/qHgfjbdw9kOg5ZtzzQ==
 
-coc-highlight@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/coc-highlight/-/coc-highlight-1.2.2.tgz#9d8dae16f3c6100c3b1b14d27b2cc68d041375f3"
-  integrity sha512-ujZ+7KYd5agMvYNpUrLsEVwWlyczyK+uYHSB733BUF6BtdaVbYP5dJo2R1fIfwEdSKgLWSfHvPXDFT1CWC/DYg==
+coc-highlight@>=1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/coc-highlight/-/coc-highlight-1.2.4.tgz#6d13863667e3316eafc68880ddeb06fd7cf6ae1d"
+  integrity sha512-UmifdyFoazaG1AUkB4UXAgPPfm6kH6SAcjOHhY4hG+B6xeqJvdYWbTyxUvVrn3M+1p1geHO0uWE5Qb+jbDAWgg==
 
 coc-html@^1.2.1:
   version "1.2.1"
@@ -485,20 +485,20 @@ coc-html@^1.2.1:
   dependencies:
     typescript "^3"
 
-coc-json@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/coc-json/-/coc-json-1.2.2.tgz#f499f583a4831e1a362d8c37e547245605ccd32e"
-  integrity sha512-H3Xk1D4Y40VMkwM4UDjedFMelRZWGzEBuU4r2iYE07gepYPVGzqzTlqCSWqOLeH4CXY52gF/QkWrOn7AY6CFaw==
+coc-json@>=1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/coc-json/-/coc-json-1.2.3.tgz#74fd20ce91387086fdc864011e28348b90063c2b"
+  integrity sha512-JlM2CqVuDcxHAxVRcCTd2PsEzAU6jCwJ3N8jaszD3m2HSjq5I796Y7zFmoW6TK/7IOqAiYWCq1l+1yqjTSBedQ==
 
-coc-pairs@^1.2.12:
-  version "1.2.12"
-  resolved "https://registry.yarnpkg.com/coc-pairs/-/coc-pairs-1.2.12.tgz#9708f09a8afe74dda6aec8166e0b28c4267eb732"
-  integrity sha512-fPN+6/uwjgSJmBNxPYyxvAj8Zbod0a75j9s9gXLRJDpwJufg5nA+4phlydYQ/C2F03kny6FGCChQF1GluuqlGA==
+coc-pairs@>=1.2.18:
+  version "1.2.18"
+  resolved "https://registry.yarnpkg.com/coc-pairs/-/coc-pairs-1.2.18.tgz#932409311b2400f036ef3bdf3d2c13044bfaf967"
+  integrity sha512-8E0BTcMdymLUp/Ln0Ph90W5jVFaOOctoIxYTDO6X0gwA1RiYlKiJsmcT46lTN00MdGbt8Uf8mc7ccJUKb5dEbw==
 
-coc-prettier@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/coc-prettier/-/coc-prettier-1.1.4.tgz#dc67355c058e7a00b5ca254c8e075631a74fba47"
-  integrity sha512-4FhdzrQqolEa1kbODkuPSgFZ7WcE4w3j+S8eE96SslyoZmPogYqq/I6ASPEm4Y2eTAcJyN0lhdsmxBogilZiUw==
+coc-prettier@>=1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/coc-prettier/-/coc-prettier-1.1.6.tgz#59161a50b3a3dd7b10b277f2af7e07e37cd00239"
+  integrity sha512-MGX0AnRQKnl99xGWyqSTChjO9xxRE3mkTwiVsiXb3mikzlqz5fR6HgUkQ7G1karelZAS/57+NcVm+j34P/LImQ==
   dependencies:
     prettier "^1.17.1"
     prettier-eslint "^8.8.2"
@@ -518,17 +518,17 @@ coc-rls@^1.1.2:
   resolved "https://registry.yarnpkg.com/coc-rls/-/coc-rls-1.1.2.tgz#d9853a1a26790c305def086b91d2c1816a602d7e"
   integrity sha512-+srC3IcThFUvKChqnx/JwAUs0OJMrjjPXtjgLmrlUOZF211LHq8oYxxQQaf7mDAMDyDEyMgWQ615mJZP7s/3EQ==
 
-coc-snippets@^2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/coc-snippets/-/coc-snippets-2.1.4.tgz#597831c536efa2fe8b211e9b77977194a922d2e2"
-  integrity sha512-830ck/Tt8V5TYbDPKlsueHHu0KFV7e56FhukimtwToida6TpOWwN4yvXsC/ySsoGnmvH7yTWNPgVJvorJUVkWQ==
+coc-snippets@>=2.1.11:
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/coc-snippets/-/coc-snippets-2.1.11.tgz#97813f52478bb05e520cf31690b65737202fdcd9"
+  integrity sha512-TIbB4miHDzQ+b/mg+3VG20wBTf9WjjuhAZ9NSchD65nfdbz+2Y/PfDEcOCWyglfZN91ogVhcncDbuFp12I8bKA==
 
-coc-tsserver@^1.3.12:
-  version "1.3.12"
-  resolved "https://registry.yarnpkg.com/coc-tsserver/-/coc-tsserver-1.3.12.tgz#bdeef41d9811c5558ea58d8228313dacfadd7cdc"
-  integrity sha512-xYu2UVh6Gns2MN2s5AOdxJ2njuT8yB+RZrXlmBlws3JIP2HNSErQ/MjET0nRQ6sVm2cQjjCTwvIRh3MIiYUOTw==
+coc-tsserver@>=1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/coc-tsserver/-/coc-tsserver-1.4.0.tgz#f447469402bd21132529be608b68f25d499ef2a0"
+  integrity sha512-gNacvUZN3Izh+TeycEALbKkNV4HR3Etvj+C6tWsLS9MvpyBB6VXaXPRwtg0EqfHDPo682cQxG6g2hY6dvBu2Jg==
   dependencies:
-    typescript "3.5.1"
+    typescript "3.6.2"
 
 coc-yaml@^1.0.2:
   version "1.0.2"
@@ -2155,9 +2155,9 @@ minimist@^1.1.3, minimist@^1.2.0:
   integrity sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
 
 mixin-deep@^1.2.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.1.tgz#a49e7268dce1a0d9698e45326c5626df3543d0fe"
-  integrity sha512-8ZItLHeEgaqEvd5lYBXfm4EZSFCX29Jb9K+lAHhDKzReKBQKj3R+7NOF6tjqYi9t4oI8VUfaWITJQm86wnXGNQ==
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.2.tgz#1120b43dc359a785dce65b55b82e257ccf479566"
+  integrity sha512-WRoDn//mXBiJ1H40rqa3vH0toePwSsGb45iInWlTySa+Uu4k3tYUSxa2v1KqAiLtvlrSzaExqS1gtk96A9zvEA==
   dependencies:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
@@ -3573,10 +3573,10 @@ typescript-eslint-parser@^16.0.0:
     lodash.unescape "4.0.1"
     semver "5.5.0"
 
-typescript@3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.1.tgz#ba72a6a600b2158139c5dd8850f700e231464202"
-  integrity sha512-64HkdiRv1yYZsSe4xC1WVgamNigVYjlssIoaH2HcZF0+ijsk5YK2g0G34w9wJkze8+5ow4STd22AynfO6ZYYLw==
+typescript@3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.2.tgz#105b0f1934119dde543ac8eb71af3a91009efe54"
+  integrity sha512-lmQ4L+J6mnu3xweP8+rOrUwzmN+MRAj7TgtJtDaXE5PMyX2kCrklhg3rvOsOIfNeAWMQWO2F1GPc1kMD2vLAfw==
 
 typescript@^2.5.1:
   version "2.9.2"
