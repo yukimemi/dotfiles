@@ -25,3 +25,7 @@ if executable('rg')
   let g:ctrlp_user_command ='rg -F --files %s'
 endif
 
+if executable('jvgrep')
+  let g:ctrlp_user_command = 'cd %s && jvgrep "" -i -r --no-color -l ./**/*'
+endif
+

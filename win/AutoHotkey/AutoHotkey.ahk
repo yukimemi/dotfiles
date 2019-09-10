@@ -91,9 +91,14 @@ return
 ; return
 
 ; for Hyper
-F12::
-Activate(USERPROFILE . "\AppData\Local\hyper\Hyper.exe")
-return
+; F12::
+; Activate(USERPROFILE . "\AppData\Local\hyper\Hyper.exe")
+; return
+
+; for terminus
+; F12::
+; Activate2("Terminus.exe", USERPROFILE . "\app\terminus\terminus-portable.exe")
+; return
 
 ; for Edge
 ; F11::
@@ -101,14 +106,14 @@ return
 ; return
 
 ; for cfiler
-; ^F11::
-; Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
-; return
+F11::
+Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
+return
 
 ; for AFxW
-F11::
-Activate(USERPROFILE . "\app\afxw\AFXW.EXE")
-return
+; F11::
+; Activate(USERPROFILE . "\app\afxw\AFXW.EXE")
+; return
 
 
 ; for vim

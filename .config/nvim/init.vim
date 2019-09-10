@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2019/08/20 23:05:50.
+" Last Change : 2019/09/06 08:15:45.
 " =============================================================================
 
 " Init: {{{1
@@ -228,8 +228,8 @@ set nofixeol
 set nrformats& nrformats-=octal
 set pastetoggle=
 set scrolloff=3
-set shortmess+=c
-set switchbuf=useopen
+set shortmess=a
+" set switchbuf=useopen
 set textwidth=0
 set timeoutlen=3500
 set virtualedit=block
