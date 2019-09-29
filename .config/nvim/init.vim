@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2019/09/06 08:15:45.
+" Last Change : 2019/09/29 21:45:56.
 " =============================================================================
 
 " Init: {{{1
@@ -493,6 +493,10 @@ nnoremap <silent> sbk :<C-u>bd!<CR>
 nnoremap <silent> sbq :<C-u>q!<CR>
 
 nnoremap <Leader>o :<C-u>call <SID>open_current_dir()<CR>
+
+" terminal
+tnoremap <Esc> <C-\><C-n>
+
 
 "  for git mergetool {{{2
 if &diff
