@@ -17,6 +17,8 @@ Pac 'itchyny/vim-parenmatch'
 Pac 'kana/vim-operator-user'
 Pac 'kana/vim-textobj-user'
 Pac 'lambdalisue/vim-findent'
+Pac 'mattn/transparency-windows-vim', {'if': g:is_windows}
+Pac 'mattn/vimtweak', {'if': g:is_windows}
 Pac 'mox-mox/vim-localsearch'
 Pac 'rhysd/committia.vim'
 Pac 'rhysd/vim-color-spring-night'

@@ -36,6 +36,7 @@ source $VIM_PATH/rc/textobj-lastpaste.vim
 source $VIM_PATH/rc/twitvim.vim
 source $VIM_PATH/rc/typescript-vim.vim
 source $VIM_PATH/rc/vim-airline.vim
+source $VIM_PATH/rc/vim-clap.vim
 source $VIM_PATH/rc/vim-cursorword.vim
 source $VIM_PATH/rc/vim-devicons.vim
 source $VIM_PATH/rc/vim-dirvish.vim

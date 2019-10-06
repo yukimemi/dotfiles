@@ -16,7 +16,7 @@ set printfont=Cica:h8
 
 gui
 set rop=type:directx,renmode:5
-set transparency=240
+" set transparency=240
 
 nnoremap <Leader>r :<C-u>simalt ~r<CR>
 nnoremap <Leader>x :<C-u>simalt ~x<CR>

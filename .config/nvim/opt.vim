@@ -45,6 +45,7 @@ Pac 'kylef/apiblueprint.vim', {'type': 'opt', 'ft': 'apiblueprint'}
 Pac 'lambdalisue/fila.vim', {'type': 'opt', 'cmd': 'Fila'}
 Pac 'leafgarland/typescript-vim', {'type': 'opt', 'ft': ['typescript', 'typescript.tsx']}
 Pac 'lifepillar/vim-solarized8', {'type': 'opt'}
+Pac 'liuchengxu/vim-clap', {'type': 'opt', 'cmd': 'Clap'}
 Pac 'majutsushi/tagbar', {'type': 'opt', 'cmd': 'Tagbar*'}
 Pac 'mattn/favstar-vim', {'type': 'opt'}
 Pac 'mattn/gist-vim', {'type': 'opt', 'cmd': 'Gist'}
@@ -62,6 +63,7 @@ Pac 'qpkorr/vim-renamer', {'type': 'opt', 'cmd': 'Renamer*'}
 Pac 'rhysd/reply.vim', {'type': 'opt', 'cmd': 'Repl*'}
 Pac 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'ft': 'rust'}
 Pac 'rhysd/vim-gfm-syntax', {'type': 'opt', 'ft': 'markdown'}
+Pac 'rhysd/vim-healthcheck', {'type': 'opt', 'cmd': 'CheckHealth'}
 Pac 'rust-lang/rust.vim', {'type': 'opt', 'ft': 'rust'}
 Pac 'scrooloose/vim-slumlord', {'type': 'opt', 'ft': 'plantuml'}
 Pac 'simnalamburt/vim-mundo', {'type': 'opt', 'cmd': 'MundoToggle*'}

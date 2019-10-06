@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2019/09/29 21:45:56.
+" Last Change : 2019/10/06 21:50:22.
 " =============================================================================
 
 " Init: {{{1
@@ -528,7 +528,7 @@ nnoremap [Space]f :<C-u>call <SID>format()<CR>
 " Auto mkdir.
 au MyAutoCmd BufWritePre * call <SID>auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
 
-au MyAutoCmd WinEnter,WinLeave,BufEnter * checktime
+" au MyAutoCmd WinEnter,WinLeave,BufEnter * checktime
 " au MyAutoCmd CursorHold * setl nohlsearch
 au MyAutoCmd CmdwinEnter * :silent! 1,$-50 delete _ | call cursor("$", 1)
 

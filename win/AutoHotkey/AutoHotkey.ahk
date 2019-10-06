@@ -59,7 +59,7 @@ return
 
 ; for gvim
 F10::
-Activate(USERPROFILE . "\app\vim\gvim.exe")
+Activate("C:\tools\vim\vim81\gvim.exe")
 return
 
 ; for sakura
@@ -81,7 +81,7 @@ return
 ; return
 
 ; for firefox
-^F11::
+F11::
 Activate("C:\Program Files\Mozilla Firefox\firefox.exe")
 return
 
@@ -106,7 +106,7 @@ return
 ; return
 
 ; for cfiler
-F11::
+^F11::
 Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
 return
 
@@ -144,7 +144,7 @@ file.Write(Clipboard)
 file.Close()
 Clipboard := saveclip
 
-RunWait "%USERPROFILE%\app\vim\gvim.exe" "--cmd" "let g:singleton#disable=1" %tempfile%
+RunWait "C:/tools/vim/vim81/gvim.exe" "--cmd" "let g:singleton#disable=1" %tempfile%
 ;RunWait "%USERPROFILE%\app\Atom\atom.exe" %tempfile%
 
 file := FileOpen(tempfile, "r")
