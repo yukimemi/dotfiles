@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2019/10/06 13:13:19.
+# Last Change : 2019/10/06 23:45:16.
 # =============================================================================
 
 #
@@ -245,8 +245,8 @@ alias -g F=' | $__FILTER_TOOL'
 #
 # history. {{{1
 #
-if [ -d ~/Dropbox ]; then
-  HISTFILE=~/Dropbox/.zsh_history
+if [ -d ~/GoogleDrive ]; then
+  HISTFILE=~/GoogleDrive/.zsh_history
 else
   HISTFILE=~/.zsh_history
 fi
