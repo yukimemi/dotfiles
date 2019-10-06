@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2019/05/06 22:56:55.
+# Last Change : 2019/10/06 13:13:19.
 # =============================================================================
 
 #
@@ -50,8 +50,8 @@ zplugin light k4rthik/git-cal
 # theme. {{{1
 #
 # Load the pure theme, with zsh-async library that's bundled with it
-zplugin ice pick'async.zsh' src'pure.zsh'
-zplugin light sindresorhus/pure
+# zplugin ice pick'async.zsh' src'pure.zsh'
+# zplugin light sindresorhus/pure
 
 # Load OMZ Git library
 # zplugin snippet OMZ::lib/git.zsh
@@ -313,6 +313,12 @@ zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEF
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' group-name ''
 
+#
+# starship. {{{1
+#
+if (which starship > /dev/null) ;then
+  eval "$(starship init zsh)"
+fi
 
 #
 # compile zshrc. {{{1
