@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2019/10/06 23:45:16.
+# Last Change : 2019/10/07 00:10:03.
 # =============================================================================
 
 #
@@ -183,6 +183,12 @@ alias dup='nvim -c "silent! call dein#update() | Capture Dein log"'
 alias vdup='vim -c "silent! call dein#update() | Capture Dein log"'
 alias mup='nvim -c "PackUpdate"'
 alias vmup='vim -c "PackUpdate"'
+
+# brew. {{{2
+alias br='brew-file brew'
+alias bre='brew-file edit'
+alias bri='brew-file brew install'
+alias brs='brew-file brew search'
 
 # Git. {{{3
 if which hub > /dev/null 2>&1; then

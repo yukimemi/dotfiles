@@ -213,7 +213,6 @@ brew pet
 tap loadimpact/k6
 
 tap mananapr/cfiles
-brew cfiles
 
 tap neovim/neovim
 
