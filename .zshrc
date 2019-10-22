@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2019/10/07 00:10:03.
+# Last Change : 2019/10/22 09:27:34.
 # =============================================================================
 
 #
@@ -159,6 +159,13 @@ function showoptions() {
   set -o | sed -e 's/^no\(.*\)on$/\1  off/' -e 's/^no\(.*\)off$/\1  on/'
 }
 
+# reboot wifi. {{{2
+function rebootwifi() {
+  networksetup -setairportpower en0 off
+  sleep 5
+  networksetup -setairportpower en0 on
+  networksetup -setdhcp Wi-Fi
+}
 
 #
 # aliases. {{{1
