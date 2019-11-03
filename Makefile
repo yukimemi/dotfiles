@@ -38,6 +38,7 @@ private: ## Clone private repository and create symlink
 private-link: ## Create symlink private config
 	@ln -sfnv $(DOTPATH)/../private/.config/pet $(HOME)/.config/pet
 	@ln -sfnv $(DOTPATH)/../private/.slack-term $(HOME)/.slack-term
+	@ln -sfnv $(DOTPATH)/../private/.zshrc_local $(HOME)/.zshrc_local
 
 clean: ## Remove the dot files
 	@echo 'Remove dot files in your home directory...'

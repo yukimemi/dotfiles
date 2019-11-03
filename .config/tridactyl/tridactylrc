@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : tridactylrc
 " Author      : yukimemi
-" Last Change : 2019/06/15 21:20:28.
+" Last Change : 2019/11/03 21:18:59.
 " =============================================================================
 
 "
@@ -36,8 +36,8 @@ bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.co
 bindurl reddit.com gu urlparent 4
 
 " Only hint search results on Google
-bindurl www.google.com f hint -Jc .rc > .r > a
-bindurl www.google.com F hint -Jtc .rc>.r>a
+" bindurl www.google.com f hint -Jc .rc > .r > a
+" bindurl www.google.com F hint -Jtc .rc>.r>a
 
 " Allow Ctrl-a to select all in the commandline
 " unbind --mode=ex <C-a>
