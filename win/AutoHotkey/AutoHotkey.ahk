@@ -86,9 +86,9 @@ Activate("C:\Program Files\Mozilla Firefox\firefox.exe")
 return
 
 ; for cmd.exe
-; F12::
-; Activate(ComSpec)
-; return
+F12::
+Activate(ComSpec)
+return
 
 ; for Hyper
 ; F12::

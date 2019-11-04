@@ -7,7 +7,7 @@
 " Pac 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'prabirshrestha/asyncomplete-tags.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 " Pac 'thinca/vim-localrc', {'type': 'opt', 'lazy': 1}
-" Pac 'w0rp/ale', {'type': 'opt', 'lazy': 1}
+" Pac 'dense-analysis/ale', {'type': 'opt', 'lazy': 1}
 " Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'Konfekt/FastFold', {'type': 'opt', 'lazy': 1}
