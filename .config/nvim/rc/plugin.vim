@@ -29,6 +29,7 @@ source $VIM_PATH/rc/neco-ghc.vim
 source $VIM_PATH/rc/neosnippet.vim
 source $VIM_PATH/rc/neoterm.vim
 source $VIM_PATH/rc/previm.vim
+source $VIM_PATH/rc/qfixhowm.vim
 source $VIM_PATH/rc/rust.vim
 source $VIM_PATH/rc/sonictemplate-vim.vim
 source $VIM_PATH/rc/tagbar.vim
