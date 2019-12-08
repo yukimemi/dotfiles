@@ -6,4 +6,5 @@ let g:qfixmemo_fileencoding = 'utf-8'
 let g:qfixmemo_fileformat = 'unix'
 let g:qfixmemo_filetype  = 'markdown'
 let g:qfixmemo_title = '#'
+let g:QFixHowm_Autoformat = 0
 

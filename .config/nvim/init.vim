@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2019/10/06 21:50:22.
+" Last Change : 2019/12/01 12:14:17.
 " =============================================================================
 
 " Init: {{{1
@@ -385,6 +385,39 @@ let g:markdown_fenced_languages = [
       \ 'xml',
       \ 'vim',
       \ ]
+
+" JScript {{{2
+function! s:addHeaderJScript(flg)
+  setl fenc=cp932
+  setl ff=dos
+  let lines = []
+  call add(lines, "@set @junk=1 /*")
+  call add(lines, "@cscript //nologo //e:jscript \"%~f0\" %*")
+  if a:flg == 0
+    call add(lines, "@ping -n 30 localhost > nul")
+  elseif a:flg == 2
+    call add(lines, "@pause")
+  endif
+  call add(lines, "@exit /b %errorlevel%")
+  call add(lines, "*/")
+  call extend(lines, readfile(expand("%")))
+  let i = 0
+  for line in lines
+    if len(lines) != (i + 1)
+      let lines[i] .= "\r"
+    endif
+    let i += 1
+  endfor
+  " let s:basedir = expand("%:p:h") . "/../cmd/"
+  let s:basedir = expand("%:p:h") . "/"
+  let s:cmdFile = expand("%:p:t:r") . ".cmd"
+  call Mkdir(s:basedir)
+  call writefile(lines,  s:basedir . s:cmdFile, "b")
+  echo "Write " . s:basedir . expand("%:p:t:r") . ".cmd"
+endfunction
+au MyAutoCmd FileType javascript nnoremap <buffer> <expr><Leader>b <SID>addHeaderJScript(0)
+au MyAutoCmd FileType javascript nnoremap <buffer> <expr><Leader>m <SID>addHeaderJScript(1)
+au MyAutoCmd FileType javascript nnoremap <buffer> <expr><Leader>p <SID>addHeaderJScript(2)
 
 
 " Mapping: {{{1

@@ -14,13 +14,13 @@ nnoremap scd :<C-u>CtrlPCurFile<CR>
 nnoremap scu :<C-u>CtrlPMRU<CR>
 nnoremap scm :<C-u>CtrlPMark<CR>
 " nnoremap scl :<C-u>CtrlPLine<CR>
-nnoremap scg :<C-u>CtrlPChange<CR>
+" nnoremap scg :<C-u>CtrlPChange<CR>
 nnoremap scf :<C-u>CtrlPFiletype<CR>
 " nnoremap scl :<C-u>CtrlPLauncher<CR>
 nnoremap sct :<C-u>CtrlPSonictemplate<CR>
 nnoremap sch :<C-u>CtrlPCmdHistory<CR>
-
 nnoremap scl :<C-u>CtrlPMemolist<CR>
+nnoremap scg :<C-u>CtrlP ~/.ghq/src<CR>
 
 if executable('rg')
   let g:ctrlp_user_command ='rg -F --files %s'

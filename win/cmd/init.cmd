@@ -23,6 +23,7 @@ doskey dup=gvim -c "silent! call dein#update() | q"
 doskey mup=gvim -c "PackUpdate | q"
 
 rem Git
+doskey g=git $*
 doskey s=git status
 doskey a=git add $*
 doskey d=git diff $*
