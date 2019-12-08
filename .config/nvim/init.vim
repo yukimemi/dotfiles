@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2019/12/01 12:14:17.
+" Last Change : 2019/12/09 00:08:34.
 " =============================================================================
 
 " Init: {{{1
@@ -314,39 +314,45 @@ endif
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Hilight cursorline, cursorcolumn {{{2
+" https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472
+let s:cur_f = 0
+au MyAutoCmd WinEnter * setlocal cursorline cursorcolumn | let s:cur_f = 0
+au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn
+au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
+au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | endif
 " http://d.hatena.ne.jp/thinca/20090530/1243615055
-au MyAutoCmd CursorMoved,CursorMovedI * call s:auto_cursorline('CursorMoved')
-au MyAutoCmd CursorHold,CursorHoldI * call s:auto_cursorline('CursorHold')
-au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * call s:auto_cursorline('WinEnter,BufEnter,CmdwinLeave')
-au MyAutoCmd WinLeave * call s:auto_cursorline('WinLeave')
-
-let s:cursorline_lock = 0
-function! s:auto_cursorline(event)
-  if a:event ==# 'WinEnter,BufEnter,CmdwinLeave'
-    setlocal cursorline
-    setlocal cursorcolumn
-    let s:cursorline_lock = 2
-  elseif a:event ==# 'WinLeave'
-    setlocal nocursorline
-    setlocal nocursorcolumn
-  elseif a:event ==# 'CursorMoved'
-    if s:cursorline_lock
-      if 1 < s:cursorline_lock
-        let s:cursorline_lock = 1
-      else
-        setlocal nocursorline
-        setlocal nocursorcolumn
-        let s:cursorline_lock = 0
-      endif
-    endif
-  elseif a:event ==# 'CursorHold'
-    if &updatetime >= 4000
-      setlocal cursorline
-      setlocal cursorcolumn
-    endif
-    let s:cursorline_lock = 1
-  endif
-endfunction
+" au MyAutoCmd CursorMoved,CursorMovedI * call s:auto_cursorline('CursorMoved')
+" au MyAutoCmd CursorHold,CursorHoldI * call s:auto_cursorline('CursorHold')
+" au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * call s:auto_cursorline('WinEnter,BufEnter,CmdwinLeave')
+" au MyAutoCmd WinLeave * call s:auto_cursorline('WinLeave')
+"
+" let s:cursorline_lock = 0
+" function! s:auto_cursorline(event)
+"   if a:event ==# 'WinEnter,BufEnter,CmdwinLeave'
+"     setlocal cursorline
+"     setlocal cursorcolumn
+"     let s:cursorline_lock = 2
+"   elseif a:event ==# 'WinLeave'
+"     setlocal nocursorline
+"     setlocal nocursorcolumn
+"   elseif a:event ==# 'CursorMoved'
+"     if s:cursorline_lock
+"       if 1 < s:cursorline_lock
+"         let s:cursorline_lock = 1
+"       else
+"         setlocal nocursorline
+"         setlocal nocursorcolumn
+"         let s:cursorline_lock = 0
+"       endif
+"     endif
+"   elseif a:event ==# 'CursorHold'
+"     if &updatetime >= 4000
+"       setlocal cursorline
+"       setlocal cursorcolumn
+"     endif
+"     let s:cursorline_lock = 1
+"   endif
+" endfunction
 
 " Command: {{{1
 " Diff original.
