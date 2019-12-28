@@ -80,7 +80,7 @@ let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 
 nmap <silent> gd <plug>(lsp-definition)
-nmap <silent> gp <plug>(lsp-hover)
+nmap <silent> K <plug>(lsp-hover)
 nmap <silent> gr <plug>(lsp-references)
 nmap <silent> gi <plug>(lsp-implementation)
 nmap <silent> <Leader>s :<C-u>split \| :LspDefinition<CR>
