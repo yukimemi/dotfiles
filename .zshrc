@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2019/10/22 09:27:34.
+# Last Change : 2019/12/28 22:23:18.
 # =============================================================================
 
 #
@@ -25,7 +25,8 @@ zplugin ice wait'0' lucid atinit'zpcompinit; zpcdreplay'
 zplugin light zdharma/fast-syntax-highlighting
 
 zplugin light zsh-users/zsh-history-substring-search
-zplugin light rupa/z
+# zplugin light rupa/z
+zplugin light agkozak/zsh-z
 
 zplugin ice wait '0' lucid as'program' make'!' atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' src'zhook.zsh'
 zplugin light direnv/direnv
