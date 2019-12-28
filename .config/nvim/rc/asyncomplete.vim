@@ -86,6 +86,10 @@ nmap <silent> gi <plug>(lsp-implementation)
 nmap <silent> <Leader>s :<C-u>split \| :LspDefinition<CR>
 nmap <silent> <Leader>v :<C-u>vsplit \| :LspDefinition<CR>
 
+set foldmethod=expr
+  \ foldexpr=lsp#ui#vim#folding#foldexpr()
+  \ foldtext=lsp#ui#vim#folding#foldtext()
+
 " debug. {{{1
 if 0
   call Mkdir(expand('~/.log/vim'))
