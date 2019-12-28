@@ -43,15 +43,6 @@ if executable('ctags')
         \ }))
 endif
 
-" asyncomplete-omni.vim {{{2
-" au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-omni.vim | call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-"      \ 'name': 'omni',
-"      \ 'whitelist': ['*'],
-"      \ 'blacklist': ['go', 'rust'],
-"      \ 'priority': 3,
-"      \ 'completor': function('asyncomplete#sources#omni#completor')
-"      \ }))
-
 " asyncomplete-neosnippet.vim {{{2
 au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-neosnippet.vim | call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
       \ 'name': 'neosnippet',
@@ -80,31 +71,6 @@ function! s:asyncomplete_necovim_aft() abort
         \ }))
 endfunction
 
-" asyncomplete-racer.vim {{{2
-if !executable('rls')
-  au MyAutoCmd FileType rust call <SID>asyncomplete_racer_aft()
-endif
-function! s:asyncomplete_racer_aft() abort
-  silent! packadd asyncomplete-racer.vim
-  call asyncomplete#register_source(asyncomplete#sources#racer#get_source_options({
-        \ 'priority': 4,
-        \ }))
-endfunction
-
-" asyncomplete-gocode.vim {{{2
-if !executable('gopls') && executable('gocode')
-  au MyAutoCmd FileType go call <SID>asyncomplete_gocode_aft()
-endif
-function! s:asyncomplete_gocode_aft() abort
-  silent! packadd asyncomplete-gocode.vim
-  call asyncomplete#register_source(asyncomplete#sources#gocode#get_source_options({
-        \ 'name': 'gocode',
-        \ 'whitelist': ['go'],
-        \ 'priority': 4,
-        \ 'completor': function('asyncomplete#sources#gocode#completor'),
-        \ }))
-endfunction
-
 " vim-lsp. {{{2
 let g:lsp_signs_enabled = 1
 let g:lsp_auto_enable = 1
@@ -113,78 +79,12 @@ let g:lsp_async_completion = 1
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 
-au MyAutoCmd FileType go,rust,python,typescript,javascript call <SID>lsp_settings()
-
-function! s:lsp_settings() abort
-  nmap <silent> gd <plug>(lsp-definition)
-  nmap <silent> gp <plug>(lsp-hover)
-  nmap <silent> gr <plug>(lsp-references)
-  nmap <silent> gi <plug>(lsp-implementation)
-  nmap <silent> <Leader>s :<C-u>split \| :LspDefinition<CR>
-  nmap <silent> <Leader>v :<C-u>vsplit \| :LspDefinition<CR>
-  setl omnifunc=lsp#complete
-  setl completeopt+=preview
-endfunction
-
-" Docker. {{{3
-if executable('docker-langserver')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'docker-langserver',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
-        \ 'whitelist': ['dockerfile'],
-        \ })
-endif
-
-" go. {{{3
-if executable('gopls')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-elseif executable('go-langserver')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'go-langserver',
-        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
-        \ 'whitelist': ['go'],
-        \ })
-elseif executable('bingo')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'bingo',
-        \ 'cmd': {server_info->['bingo', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-endif
-
-" python. {{{3
-if executable('pyls')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
-
-" rust. {{{3
-if executable('rls')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'Cargo.toml'))},
-        \ 'whitelist': ['rust'],
-        \ })
-endif
-
-" typescript. {{{3
-if executable('typescript-language-server')
-  au MyAutoCmd User lsp_setup call lsp#register_server({
-        \ 'name': 'typescript-language-server',
-        \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
-        \ 'whitelist': ['typescript', 'javascript', 'javascript.jsx']
-        \ })
-endif
-
+nmap <silent> gd <plug>(lsp-definition)
+nmap <silent> gp <plug>(lsp-hover)
+nmap <silent> gr <plug>(lsp-references)
+nmap <silent> gi <plug>(lsp-implementation)
+nmap <silent> <Leader>s :<C-u>split \| :LspDefinition<CR>
+nmap <silent> <Leader>v :<C-u>vsplit \| :LspDefinition<CR>
 
 " debug. {{{1
 if 0

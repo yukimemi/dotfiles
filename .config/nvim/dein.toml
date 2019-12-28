@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2019/03/02 17:54:02.
+# Last Change : 2019/12/28 22:52:42.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -26,6 +26,8 @@ repo = 'vim-airline/vim-airline'
 hook_add = '''
 source $VIM_PATH/rc/vim-airline.vim
 '''
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
 repo = 'Yggdroot/indentLine' # {{{2
@@ -37,13 +39,14 @@ source $VIM_PATH/rc/indentLine.vim
 repo = 'itchyny/vim-highlighturl' # {{{2
 
 [[plugins]]
-repo = 'vim-scripts/matchit.zip' # {{{2
+repo = 'andymass/vim-matchup' # {{{2
 
 [[plugins]]
 repo = 'ntpeters/vim-better-whitespace' # {{{2
 
 [[plugins]]
-repo = 'kshenoy/vim-signature'
+repo = 'kshenoy/vim-signature' # {{{2
+
 
 # ==================== Complement ================ {{{1
 [[plugins]]
@@ -70,9 +73,6 @@ repo = 'Shougo/neco-vim' # {{{2
 on_ft = 'vim'
 
 [[plugins]]
-repo = 'prabirshrestha/vim-lsp' # {{{2
-
-[[plugins]]
 repo = 'prabirshrestha/async.vim' # {{{2
 
 [[plugins]]
@@ -82,6 +82,10 @@ source $VIM_PATH/rc/asyncomplete.vim
 '''
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim' # {{{2
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp' # {{{2
+[[plugins]]
+repo = 'mattn/vim-lsp-settings' # {{{2
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-buffer.vim' # {{{2
 [[plugins]]
@@ -103,6 +107,7 @@ depends = ['neosnippet.vim']
 repo = 'prabirshrestha/asyncomplete-necovim.vim' # {{{2
 on_ft = 'vim'
 depends = ['neco-vim']
+
 # ==================== Utility =================== {{{1
 [[plugins]]
 repo = 'airblade/vim-rooter' # {{{2
@@ -161,11 +166,11 @@ source $VIM_PATH/rc/vim-mundo.vim
 [[plugins]]
 repo = 'tpope/vim-repeat' # {{{2
 
-[[plugins]]
-repo = 'w0rp/ale' # {{{2
-hook_add = '''
-source $VIM_PATH/rc/ale.vim
-'''
+# [[plugins]]
+# repo = 'w0rp/ale' # {{{2
+# hook_add = '''
+# source $VIM_PATH/rc/ale.vim
+# '''
 
 [[plugins]]
 repo = 'tyru/capture.vim' # {{{2
@@ -295,9 +300,9 @@ repo = 'Shougo/junkfile.vim' # {{{2
 on_source = 'denite.nvim'
 on_cmd = 'JunkfileOpen'
 
-[[plugins]]
-repo = 'iyuuya/denite-ale' # {{{2
-on_source = 'denite.nvim'
+# [[plugins]]
+# repo = 'iyuuya/denite-ale' # {{{2
+# on_source = 'denite.nvim'
 
 
 # ==================== Search ==================== {{{1
