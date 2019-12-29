@@ -21,9 +21,12 @@
 " Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'LeafCage/yankround.vim', {'type': 'opt', 'lazy': 1}
 Pac 'RRethy/vim-illuminate', {'type': 'opt', 'lazy': 1}
+Pac 'haya14busa/vim-edgemotion', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/context_filetype.vim', {'type': 'opt', 'lazy': 1}
+Pac 'hotwatermorning/auto-git-diff', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/echodoc.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/neosnippet-snippets', {'type': 'opt', 'lazy': 1}
+Pac 'prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/neosnippet.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/vimproc.vim', {'type': 'opt', 'lazy': 1, 'do': 'silent! !make'}
 Pac 'andymass/vim-matchup', {'type': 'opt', 'lazy': 1}

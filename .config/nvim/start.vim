@@ -6,8 +6,6 @@
 Pac 'Shougo/neco-syntax'
 Pac 'Yggdroot/indentLine'
 Pac 'editorconfig/editorconfig-vim'
-Pac 'haya14busa/vim-edgemotion'
-Pac 'hotwatermorning/auto-git-diff'
 Pac 'itchyny/vim-cursorword'
 Pac 'itchyny/vim-parenmatch'
 Pac 'kana/vim-operator-user'
@@ -19,11 +17,9 @@ Pac 'mattn/vimtweak', {'if': g:is_windows}
 Pac 'mox-mox/vim-localsearch'
 Pac 'prabirshrestha/async.vim'
 Pac 'prabirshrestha/asyncomplete-lsp.vim'
-Pac 'prabirshrestha/asyncomplete-necosyntax.vim'
 Pac 'prabirshrestha/asyncomplete.vim'
 Pac 'prabirshrestha/vim-lsp'
 Pac 'rhysd/committia.vim'
-Pac 'rhysd/vim-color-spring-night'
 Pac 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pac 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pac 'ryanoasis/vim-devicons'

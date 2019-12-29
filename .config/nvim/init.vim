@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2019/12/29 19:35:31.
+" Last Change : 2019/12/29 23:54:25.
 " =============================================================================
 
 " Init: {{{1
@@ -320,39 +320,6 @@ au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | 
 au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn
 au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
 au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | endif
-" http://d.hatena.ne.jp/thinca/20090530/1243615055
-" au MyAutoCmd CursorMoved,CursorMovedI * call s:auto_cursorline('CursorMoved')
-" au MyAutoCmd CursorHold,CursorHoldI * call s:auto_cursorline('CursorHold')
-" au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * call s:auto_cursorline('WinEnter,BufEnter,CmdwinLeave')
-" au MyAutoCmd WinLeave * call s:auto_cursorline('WinLeave')
-"
-" let s:cursorline_lock = 0
-" function! s:auto_cursorline(event)
-"   if a:event ==# 'WinEnter,BufEnter,CmdwinLeave'
-"     setlocal cursorline
-"     setlocal cursorcolumn
-"     let s:cursorline_lock = 2
-"   elseif a:event ==# 'WinLeave'
-"     setlocal nocursorline
-"     setlocal nocursorcolumn
-"   elseif a:event ==# 'CursorMoved'
-"     if s:cursorline_lock
-"       if 1 < s:cursorline_lock
-"         let s:cursorline_lock = 1
-"       else
-"         setlocal nocursorline
-"         setlocal nocursorcolumn
-"         let s:cursorline_lock = 0
-"       endif
-"     endif
-"   elseif a:event ==# 'CursorHold'
-"     if &updatetime >= 4000
-"       setlocal cursorline
-"       setlocal cursorcolumn
-"     endif
-"     let s:cursorline_lock = 1
-"   endif
-" endfunction
 
 " Command: {{{1
 " Diff original.

@@ -71,6 +71,7 @@ Pac 'rbtnn/vim-coloredit', {'type': 'opt', 'cmd': 'ColorEdit'}
 Pac 'rhysd/git-messenger.vim', {'type': 'opt', 'cmd': 'GitMessenger'}
 Pac 'rhysd/reply.vim', {'type': 'opt', 'cmd': 'Repl*'}
 Pac 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'ft': 'rust'}
+Pac 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pac 'rhysd/vim-healthcheck', {'type': 'opt', 'cmd': 'CheckHealth'}
 Pac 'scrooloose/vim-slumlord', {'type': 'opt', 'ft': 'plantuml'}
 Pac 'thinca/vim-qfreplace', {'type': 'opt', 'ft': ['quickfix', 'qf']}
