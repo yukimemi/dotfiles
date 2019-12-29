@@ -4,6 +4,7 @@ let g:asyncomplete_smart_completion = 1
 let g:asyncomplete_remove_duplicates = 1
 let g:asyncomplete_force_refresh_on_context_changed = 1
 imap <C-Space> <Plug>(asyncomplete_force_refresh)
+inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
 " asyncomplete-buffer.vim {{{2
 au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-buffer.vim | call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({

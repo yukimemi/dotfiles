@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2019/12/28 22:23:18.
+# Last Change : 2019/12/29 19:48:31.
 # =============================================================================
 
 #
@@ -115,7 +115,8 @@ function chpwd() { ls -F }
 
 # z and filter cd. {{{2
 function __filter_z_cd() {
-  z -t $1 | tac | awk '{ $1=""; print }' | __filter_execute cd
+  z -t $1 | awk '{ $1=""; print }' | __filter_execute cd
+  # z -t $1 | tac | awk '{ $1=""; print }' | __filter_execute cd
 }
 
 # kill. {{{2

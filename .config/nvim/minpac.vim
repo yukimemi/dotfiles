@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2019/01/02 22:30:22.
+" Last Change : 2019/12/29 19:24:38.
 " =============================================================================
 
 " Plugin:
@@ -60,6 +60,13 @@ function! s:minpac_add(repo, ...) abort
     endif
   endif
 
+  " Load plugi config if exist.
+  if filereadable($VIM_PATH . '/rc/' . l:name)
+    exe printf('source %s/rc/%s', $VIM_PATH, l:name)
+  elseif filereadable($VIM_PATH . '/rc/' . l:name . '.vim')
+    exe printf('source %s/rc/%s.vim', $VIM_PATH, l:name)
+  endif
+
   call add(s:plugins, [a:repo, l:opts])
 endfunction
 
@@ -85,9 +92,6 @@ aug END
 source $VIM_PATH/start.vim
 source $VIM_PATH/opt.vim
 source $VIM_PATH/lazy.vim
-
-" Plugin settings. {{{1
-source $VIM_PATH/rc/plugin.vim
 
 " Define user commands for updating/cleaning the plugins. {{{1
 " Each of them loads minpac, reloads .vimrc to register the

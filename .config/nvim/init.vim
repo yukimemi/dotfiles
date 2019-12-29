@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2019/12/29 17:46:03.
+" Last Change : 2019/12/29 19:35:31.
 " =============================================================================
 
 " Init: {{{1
@@ -316,7 +316,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " Hilight cursorline, cursorcolumn {{{2
 " https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472
 let s:cur_f = 0
-au MyAutoCmd WinEnter * setlocal cursorline cursorcolumn | let s:cur_f = 0
+au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
 au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn
 au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
 au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | endif
