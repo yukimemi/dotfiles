@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2019/12/28 23:16:03.
+# Last Change : 2019/12/29 17:41:16.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -47,6 +47,9 @@ repo = 'ntpeters/vim-better-whitespace' # {{{2
 [[plugins]]
 repo = 'kshenoy/vim-signature' # {{{2
 
+[[plugins]]
+repo = 'jeffkreeftmeijer/vim-numbertoggle' # {{{2
+
 
 # ==================== Complement ================ {{{1
 [[plugins]]
@@ -84,8 +87,10 @@ source $VIM_PATH/rc/asyncomplete.vim
 repo = 'prabirshrestha/asyncomplete-lsp.vim' # {{{2
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp' # {{{2
+merged = 0
 [[plugins]]
 repo = 'mattn/vim-lsp-settings' # {{{2
+merged = 0
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-buffer.vim' # {{{2
 [[plugins]]
@@ -121,12 +126,12 @@ hook_add = '''
 source $VIM_PATH/rc/vim-submode.vim
 '''
 
-[[plugins]]
-repo = 'Konfekt/FastFold' # {{{2
-on_path = '.*'
-hokk_add = '''
-source $VIM_PATH/rc/FastFold.vim
-'''
+# [[plugins]]
+# repo = 'Konfekt/FastFold' # {{{2
+# on_path = '.*'
+# hokk_add = '''
+# source $VIM_PATH/rc/FastFold.vim
+# '''
 
 # [[plugins]]
 # repo = 'arecarn/vim-fold-cycle'
@@ -156,12 +161,20 @@ hook_add = '''
 source $VIM_PATH/rc/autodate.vim
 '''
 
+# [[plugins]]
+# repo = 'simnalamburt/vim-mundo' # {{{2
+# on_cmd = 'MundoToggle'
+# hook_add = '''
+# source $VIM_PATH/rc/vim-mundo.vim
+# '''
+
 [[plugins]]
-repo = 'simnalamburt/vim-mundo' # {{{2
-on_cmd = 'MundoToggle'
+repo = 'mbbill/undotree' # {{{2
+on_cmd = 'UndotreeToggle'
 hook_add = '''
-source $VIM_PATH/rc/vim-mundo.vim
+source $VIM_PATH/rc/undotree.vim
 '''
+
 
 [[plugins]]
 repo = 'tpope/vim-repeat' # {{{2
@@ -191,11 +204,21 @@ hook_add = '''
 source $VIM_PATH/rc/echodoc.vim
 '''
 
+# [[plugins]]
+# repo = 'ctrlpvim/ctrlp.vim' # {{{2
+# on_cmd = 'CtrlP'
+# hook_add = '''
+# source $VIM_PATH/rc/ctrlp.vim
+# '''
+
 [[plugins]]
-repo = 'ctrlpvim/ctrlp.vim' # {{{2
-on_cmd = 'CtrlP'
+repo = 'liuchengxu/vim-clap' # {{{2
+on_cmd = ['Clap']
 hook_add = '''
-source $VIM_PATH/rc/ctrlp.vim
+source $VIM_PATH/rc/vim-clap.vim
+'''
+hook_post_update = '''
+call clap#helper#build_all()
 '''
 
 [[plugins]]
@@ -226,8 +249,12 @@ on_source = 'ctrlp.vim'
 repo = 'dhruvasagar/vim-table-mode' # {{{2
 on_ft = 'markdown'
 
+# [[plugins]]
+# repo = 'kopischke/vim-stay' # {{{2
+
 [[plugins]]
-repo = 'kopischke/vim-stay' # {{{2
+repo = 'tpope/vim-obsession' # {{{2
+
 
 [[plugins]]
 repo = 'qpkorr/vim-renamer' # {{{2
@@ -284,6 +311,19 @@ source $VIM_PATH/rc/fila.vim
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim' # {{{2
 
+[[plugins]]
+repo = 'lambdalisue/suda.vim' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/suda.vim
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-jplus' # {{{2
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-jplus.vim
+'''
+
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
@@ -331,6 +371,12 @@ repo = 't9md/vim-quickhl' # {{{2
 hook_add = '''
 source $VIM_PATH/rc/vim-quickhl.vim
 '''
+[[plugins]]
+repo = 'unblevable/quick-scope' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/quick-scope.vim
+'''
+
 
 [[plugins]]
 repo = 'itchyny/vim-parenmatch' # {{{2
@@ -345,6 +391,12 @@ source $VIM_PATH/rc/vim-cursorword.vim
 '''
 
 [[plugins]]
+repo = 'RRethy/vim-illuminate' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/vim-illuminate.vim
+'''
+
+[[plugins]]
 repo = 'thinca/vim-qfreplace' # {{{2
 on_ft = ['quickfix']
 
@@ -353,6 +405,14 @@ repo = 'mox-mox/vim-localsearch' # {{{2
 on_map = {n = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-localsearch.vim
+'''
+
+[[plugins]]
+repo = 'mhinz/vim-grepper' # {{{2
+on_cmd = 'Grepper'
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-grepper.vim
 '''
 
 # ==================== Operators ================= {{{1
@@ -463,6 +523,15 @@ on_cmd = 'Gina'
 hook_add = '''
 source $VIM_PATH/rc/gina.vim
 '''
+
+[[plugins]]
+repo = 'rhysd/git-messenger.vim' # {{{2
+on_cmd = 'GitMessenger'
+on_map = '<Plug>(git-messenger'
+hook_add = '''
+source $VIM_PATH/rc/git-messenger.vim
+'''
+
 
 # ==================== Filetype (all) ============= {{{1
 [[plugins]]
