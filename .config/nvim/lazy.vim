@@ -30,6 +30,7 @@ Pac 'andymass/vim-matchup', {'type': 'opt', 'lazy': 1}
 Pac 'fuenor/qfixgrep', {'type': 'opt', 'lazy': 1}
 Pac 'fuenor/qfixhowm', {'type': 'opt', 'lazy': 1}
 Pac 'gilligan/textobj-lastpaste', {'type': 'opt', 'lazy': 1}
+Pac 'gko/vim-coloresque', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/is.vim', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-asterisk', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-operator-flashy', {'type': 'opt', 'lazy': 1}
@@ -48,6 +49,7 @@ Pac 'lambdalisue/gina.vim', {'type': 'opt', 'lazy': 1}
 Pac 'lambdalisue/suda.vim', {'type': 'opt', 'lazy': 1}
 Pac 'ludovicchabant/vim-gutentags', {'type': 'opt', 'lazy': 1, 'if': executable('ctags')}
 Pac 'mattn/webapi-vim', {'type': 'opt', 'lazy': 1}
+Pac 'mhinz/vim-grepper', {'type': 'opt', 'lazy': 1}
 Pac 'ntpeters/vim-better-whitespace', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-anzu', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-jplus', {'type': 'opt', 'lazy': 1}

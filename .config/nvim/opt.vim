@@ -65,9 +65,9 @@ Pac 'majutsushi/tagbar', {'type': 'opt', 'cmd': 'Tagbar*'}
 Pac 'mattn/sonictemplate-vim', {'type': 'opt', 'cmd': 'Template*'}
 Pac 'mbbill/undotree', {'type': 'opt', 'cmd': 'UndotreeToggle'}
 Pac 'mechatroner/rainbow_csv', {'type': 'opt', 'ft': 'csv'}
-Pac 'mhinz/vim-grepper', {'type': 'opt', 'cmd': 'Grepper'}
 Pac 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'ft': 'vim'}
 Pac 'qpkorr/vim-renamer', {'type': 'opt', 'cmd': 'Renamer*'}
+Pac 'rbtnn/vim-coloredit', {'type': 'opt', 'cmd': 'ColorEdit'}
 Pac 'rhysd/git-messenger.vim', {'type': 'opt', 'cmd': 'GitMessenger'}
 Pac 'rhysd/reply.vim', {'type': 'opt', 'cmd': 'Repl*'}
 Pac 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'ft': 'rust'}
