@@ -59,7 +59,7 @@ return
 
 ; for gvim
 F10::
-Activate("C:\tools\vim\vim81\gvim.exe")
+Activate("C:\tools\vim\vim82\gvim.exe")
 return
 
 ; for sakura
@@ -86,8 +86,13 @@ Activate("C:\Program Files\Mozilla Firefox\firefox.exe")
 return
 
 ; for cmd.exe
+; F12::
+; Activate(ComSpec)
+; return
+
+; for PowerShell.exe
 F12::
-Activate(ComSpec)
+Activate("C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe")
 return
 
 ; for Hyper
@@ -144,7 +149,7 @@ file.Write(Clipboard)
 file.Close()
 Clipboard := saveclip
 
-RunWait "C:/tools/vim/vim81/gvim.exe" "--cmd" "let g:singleton#disable=1" %tempfile%
+RunWait "C:/tools/vim/vim82/gvim.exe" "--cmd" "let g:singleton#disable=1" %tempfile%
 ;RunWait "%USERPROFILE%\app\Atom\atom.exe" %tempfile%
 
 file := FileOpen(tempfile, "r")

@@ -8,6 +8,7 @@ endfunction
 " Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
 " Pac 'Shougo/defx.nvim', {'type': 'opt', 'cmd': 'Defx', 'do': 'silent! UpdateRemotePlugins', 'if': !g:is_windows}
 " Pac 'Shougo/denite.nvim', {'type': 'opt', 'cmd': 'Denite', 'do': 'silent! UpdateRemotePlugins', 'if': has('python3')}
+" Pac 'Shougo/neco-vim', {'type': 'opt', 'ft': 'vim'}
 " Pac 'Vimjas/vim-python-pep8-indent', {'type': 'opt', 'ft': 'python'}
 " Pac 'aklt/plantuml-syntax', {'type': 'opt', 'ft': 'plantuml'}
 " Pac 'basyura/TweetVim', {'type': 'opt', 'cmd': ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay']}
@@ -50,7 +51,6 @@ endfunction
 " Pac 'y0za/vim-reading-vimrc', {'type': 'opt', 'cmd': 'ReadingVimrc*'}
 Pac 'PProvost/vim-ps1', {'type': 'opt', 'ft': 'ps1'}
 Pac 'Shougo/junkfile.vim', {'type': 'opt', 'cmd': 'JunkfileOpen'}
-Pac 'Shougo/neco-vim', {'type': 'opt', 'ft': 'vim'}
 Pac 'airblade/vim-rooter', {'type': 'opt', 'cmd': 'Rooter'}
 Pac 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'ft': 'haskell'}
 Pac 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt', 'ft': 'sql'}
@@ -73,6 +73,7 @@ Pac 'rhysd/reply.vim', {'type': 'opt', 'cmd': 'Repl*'}
 Pac 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'ft': 'rust'}
 Pac 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pac 'rhysd/vim-healthcheck', {'type': 'opt', 'cmd': 'CheckHealth'}
+Pac 'scrooloose/nerdtree', {'type': 'opt', 'cmd': ['NERDTreeToggle', 'NERDTreeFind']}
 Pac 'scrooloose/vim-slumlord', {'type': 'opt', 'ft': 'plantuml'}
 Pac 'thinca/vim-qfreplace', {'type': 'opt', 'ft': ['quickfix', 'qf']}
 Pac 'twitvim/twitvim', {'type': 'opt', 'cmd': '*Twitter'}
