@@ -44,6 +44,7 @@ endfunction
 " Pac 'othree/javascript-libraries-syntax.vim', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
 " Pac 'pangloss/vim-javascript', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
 " Pac 'posva/vim-vue', {'type': 'opt', 'ft': 'vue'}
+" Pac 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'ft': 'vim'}
 " Pac 'rhysd/vim-gfm-syntax', {'type': 'opt', 'ft': 'markdown'}
 " Pac 'rust-lang/rust.vim', {'type': 'opt', 'ft': 'rust'}
 " Pac 'simnalamburt/vim-mundo', {'type': 'opt', 'cmd': 'MundoToggle*'}
@@ -65,7 +66,6 @@ Pac 'majutsushi/tagbar', {'type': 'opt', 'cmd': 'Tagbar*'}
 Pac 'mattn/sonictemplate-vim', {'type': 'opt', 'cmd': 'Template*'}
 Pac 'mbbill/undotree', {'type': 'opt', 'cmd': 'UndotreeToggle'}
 Pac 'mechatroner/rainbow_csv', {'type': 'opt', 'ft': 'csv'}
-Pac 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'ft': 'vim'}
 Pac 'qpkorr/vim-renamer', {'type': 'opt', 'cmd': 'Renamer*'}
 Pac 'rbtnn/vim-coloredit', {'type': 'opt', 'cmd': 'ColorEdit'}
 Pac 'rhysd/git-messenger.vim', {'type': 'opt', 'cmd': 'GitMessenger'}
