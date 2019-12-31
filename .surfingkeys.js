@@ -2,6 +2,11 @@
 settings.smoothScroll = true;
 settings.scrollStepSize = 140;
 
+// mappings.
+// History
+map("H", "S");
+map("L", "D");
+
 // an example to create a new mapping `ctrl-y`
 mapkey("<Ctrl-y>", "Show me the money", function() {
   Front.showPopup(
@@ -32,6 +37,56 @@ mapkey("yM", "Copy URL as markdown", () => {
 });
 
 Hints.style("font-size: 13pt;");
+
+// --- Site-specific mappings ---//
+const Hint = (selector, action = Hints.dispatchMouseClick) => () =>
+  Hints.create(selector, action);
+const siteleader = ",";
+
+function mapsitekey(domainRegex, key, desc, f, opts = {}) {
+  const o = Object.assign(
+    {},
+    {
+      leader: siteleader
+    },
+    opts
+  );
+  mapkey(`${o.leader}${key}`, desc, f, { domain: domainRegex });
+}
+
+function mapsitekeys(d, maps, opts = {}) {
+  const domain = d.replace(".", "\\.");
+  const domainRegex = new RegExp(
+    `^http(s)?://(([a-zA-Z0-9-_]+\\.)*)(${domain})(/.*)?`
+  );
+  maps.forEach(map => {
+    const [key, desc, f, subOpts = {}] = map;
+    mapsitekey(domainRegex, key, desc, f, Object.assign({}, opts, subOpts));
+  });
+}
+
+// YouTube.
+const ytFullscreen = () =>
+  document.querySelector(".ytp-fullscreen-button.ytp-button").click();
+
+mapsitekeys(
+  "youtube.com",
+  [
+    ["A", "Open video", Hint("*[id='video-title']")],
+    ["C", "Open channel", Hint("*[id='byline']")],
+    [
+      "gH",
+      "Goto homepage",
+      () =>
+        window.location.assign(
+          "https://www.youtube.com/feed/subscriptions?flow=2"
+        )
+    ],
+    ["F", "Toggle fullscreen", ytFullscreen],
+    ["<Space>", "Play/pause", Hint(".ytp-play-button")]
+  ],
+  { leader: "" }
+);
 
 // set theme
 settings.theme = `
