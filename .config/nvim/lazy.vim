@@ -1,6 +1,8 @@
 " Pac 'Konfekt/FastFold', {'type': 'opt', 'lazy': 1}
 " Pac 'MaxMEllon/vim-shiny', {'type': 'opt', 'lazy': 1}
 " Pac 'Shougo/neomru.vim', {'type': 'opt', 'lazy': 1}
+" Pac 'Shougo/neosnippet-snippets', {'type': 'opt', 'lazy': 1}
+" Pac 'Shougo/neosnippet.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'TaDaa/vimade', {'type': 'opt', 'lazy': 1}
 " Pac 'cohama/lexima.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'dense-analysis/ale', {'type': 'opt', 'lazy': 1}
@@ -28,8 +30,6 @@ Pac 'LeafCage/yankround.vim', {'type': 'opt', 'lazy': 1}
 Pac 'RRethy/vim-illuminate', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/context_filetype.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/echodoc.vim', {'type': 'opt', 'lazy': 1}
-Pac 'Shougo/neosnippet-snippets', {'type': 'opt', 'lazy': 1}
-Pac 'Shougo/neosnippet.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/vimproc.vim', {'type': 'opt', 'lazy': 1, 'do': 'silent! !make'}
 Pac 'andymass/vim-matchup', {'type': 'opt', 'lazy': 1}
 Pac 'fuenor/qfixgrep', {'type': 'opt', 'lazy': 1}
