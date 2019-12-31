@@ -37,6 +37,7 @@ mapkey("yM", "Copy URL as markdown", () => {
 });
 
 Hints.style("font-size: 13pt;");
+Hints.style("font-size: 13pt;", "text");
 
 // --- Site-specific mappings ---//
 const Hint = (selector, action = Hints.dispatchMouseClick) => () =>

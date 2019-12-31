@@ -75,6 +75,7 @@ Pac 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pac 'rhysd/vim-healthcheck', {'type': 'opt', 'cmd': 'CheckHealth'}
 Pac 'scrooloose/nerdtree', {'type': 'opt', 'cmd': ['NERDTreeToggle', 'NERDTreeFind']}
 Pac 'scrooloose/vim-slumlord', {'type': 'opt', 'ft': 'plantuml'}
+Pac 'skanehira/translate.vim', {'type': 'opt', 'cmd': 'Translate', 'if': 'gtran'}
 Pac 'thinca/vim-qfreplace', {'type': 'opt', 'ft': ['quickfix', 'qf']}
 Pac 'twitvim/twitvim', {'type': 'opt', 'cmd': '*Twitter'}
 Pac 'tyru/capture.vim', {'type': 'opt', 'cmd': 'Capture'}
