@@ -33,6 +33,7 @@ Pac 'Shougo/context_filetype.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/echodoc.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/vimproc.vim', {'type': 'opt', 'lazy': 1, 'do': 'silent! !make'}
 Pac 'andymass/vim-matchup', {'type': 'opt', 'lazy': 1}
+Pac 'editorconfig/editorconfig-vim', {'type': 'opt', 'lazy': 1}
 Pac 'fuenor/qfixgrep', {'type': 'opt', 'lazy': 1}
 Pac 'fuenor/qfixhowm', {'type': 'opt', 'lazy': 1}
 Pac 'gilligan/textobj-lastpaste', {'type': 'opt', 'lazy': 1}
@@ -43,6 +44,7 @@ Pac 'haya14busa/vim-edgemotion', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-operator-flashy', {'type': 'opt', 'lazy': 1}
 Pac 'honza/vim-snippets', {'type': 'opt', 'lazy': 1}
 Pac 'hotwatermorning/auto-git-diff', {'type': 'opt', 'lazy': 1}
+Pac 'itchyny/vim-cursorword', {'type': 'opt', 'lazy': 1}
 Pac 'itchyny/vim-external', {'type': 'opt', 'lazy': 1}
 Pac 'itchyny/vim-highlighturl', {'type': 'opt', 'lazy': 1}
 Pac 'junegunn/vim-easy-align', {'type': 'opt', 'lazy': 1}
@@ -58,6 +60,7 @@ Pac 'lambdalisue/suda.vim', {'type': 'opt', 'lazy': 1}
 Pac 'ludovicchabant/vim-gutentags', {'type': 'opt', 'lazy': 1, 'if': executable('ctags')}
 Pac 'mattn/webapi-vim', {'type': 'opt', 'lazy': 1}
 Pac 'mhinz/vim-grepper', {'type': 'opt', 'lazy': 1}
+Pac 'mox-mox/vim-localsearch', {'type': 'opt', 'lazy': 1}
 Pac 'neoclide/coc.nvim', {'type': 'opt', 'lazy': 1, 'branch': 'release'}
 Pac 'ntpeters/vim-better-whitespace', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-anzu', {'type': 'opt', 'lazy': 1}

@@ -3,23 +3,20 @@
 " Pac 'ctrlpvim/ctrlp.vim'
 " Pac 'itchyny/lightline.vim'
 " Pac 'itchyny/vim-gitbranch'
+" Pac 'itchyny/vim-parenmatch'
 " Pac 'kopischke/vim-stay'
 " Pac 'mattn/vim-lsp-settings'
 " Pac 'prabirshrestha/async.vim'
 " Pac 'prabirshrestha/asyncomplete-lsp.vim'
 " Pac 'prabirshrestha/asyncomplete.vim'
 " Pac 'prabirshrestha/vim-lsp'
+" Pac 'rhysd/committia.vim'
 Pac 'Yggdroot/indentLine'
-Pac 'editorconfig/editorconfig-vim'
-Pac 'itchyny/vim-cursorword'
-Pac 'itchyny/vim-parenmatch'
 Pac 'kana/vim-operator-user'
 Pac 'kana/vim-textobj-user'
 Pac 'lambdalisue/vim-findent'
 Pac 'mattn/transparency-windows-vim', {'if': g:is_windows}
 Pac 'mattn/vimtweak', {'if': g:is_windows}
-Pac 'mox-mox/vim-localsearch'
-Pac 'rhysd/committia.vim'
 Pac 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pac 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pac 'ryanoasis/vim-devicons'
