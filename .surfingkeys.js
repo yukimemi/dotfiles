@@ -3,15 +3,17 @@ settings.smoothScroll = true;
 settings.scrollStepSize = 140;
 
 // an example to create a new mapping `ctrl-y`
-mapkey('<Ctrl-y>', 'Show me the money', function() {
-  Front.showPopup('a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).');
+mapkey("<Ctrl-y>", "Show me the money", function() {
+  Front.showPopup(
+    "a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close)."
+  );
 });
 
 // an example to replace `T` with `gt`, click `Default mappings` to see how `T` works.
-map('gt', 'T');
+map("gt", "T");
 
 // an example to remove mapkey `Ctrl-i`
-unmap('<Ctrl-i>');
+unmap("<Ctrl-i>");
 
 // https://www.ncaq.net/2018/12/09/16/13/27/
 mapkey("<Ctrl-g>", "google translate", () => {
@@ -28,6 +30,8 @@ mapkey("<Ctrl-g>", "google translate", () => {
 mapkey("yM", "Copy URL as markdown", () => {
   Clipboard.write(`[${document.title}](${window.location.href})`);
 });
+
+Hints.style("font-size: 13pt;");
 
 // set theme
 settings.theme = `
@@ -67,4 +71,3 @@ settings.theme = `
 #sk_status, #sk_find {
     font-size: 20pt;
 }`;
-
