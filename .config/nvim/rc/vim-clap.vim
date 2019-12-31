@@ -11,4 +11,4 @@ nnoremap scC :<C-u>Clap commits<CR>
 nnoremap scj :<C-u>Clap jumps<CR>
 nnoremap scw :<C-u>Clap windows<CR>
 nnoremap scg :<C-u>Clap grep<CR>
-
+nnoremap scM :<C-u>execute printf("Clap files --hidden %s", g:memolist_path)<CR>
