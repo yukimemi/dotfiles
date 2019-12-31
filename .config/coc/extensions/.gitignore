@@ -1,3 +1,7 @@
 *.log
 db.json
 node_modules/
+coc-yank-data/
+coc-tabnine-data/
+coc-bookmark-data/
+coc-todolist-data/

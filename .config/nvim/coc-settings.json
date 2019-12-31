@@ -1,1 +1,7 @@
-{ "diagnostic.refreshAfterSave": true }
+{
+  "diagnostic.refreshAfterSave": true,
+  "list.insertMappings": {
+    "<C-j>": "normal:j",
+    "<C-k>": "normal:k"
+  }
+}

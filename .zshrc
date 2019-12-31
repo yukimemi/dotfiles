@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2019/12/29 19:48:31.
+# Last Change : 2019/12/31 18:22:06.
 # =============================================================================
 
 #
@@ -184,7 +184,7 @@ alias c='files -d | __filter_execute cd'
 alias g='git'
 alias s='git status --short --branch'
 alias d='git diff'
-alias a='git add .'
+alias a='git add'
 alias j=__filter_z_cd
 alias o='open'
 

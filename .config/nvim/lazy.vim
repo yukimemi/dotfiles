@@ -11,6 +11,7 @@
 " Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
 " Pac 'kaneshin/ctrlp-memolist', {'type': 'opt', 'lazy': 1}
 " Pac 'kaneshin/ctrlp-sonictemplate', {'type': 'opt', 'lazy': 1}
+" Pac 'kassio/neoterm', {'type': 'opt', 'lazy': 1, 'if': has('nvim')}
 " Pac 'mattn/ctrlp-launcher', {'type': 'opt', 'lazy': 1}
 " Pac 'mattn/ctrlp-mark', {'type': 'opt', 'lazy': 1}
 " Pac 'mattn/ctrlp-vimhelpjp', {'type': 'opt', 'lazy': 1}
@@ -40,6 +41,7 @@ Pac 'haya14busa/is.vim', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-asterisk', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-edgemotion', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-operator-flashy', {'type': 'opt', 'lazy': 1}
+Pac 'honza/vim-snippets', {'type': 'opt', 'lazy': 1}
 Pac 'hotwatermorning/auto-git-diff', {'type': 'opt', 'lazy': 1}
 Pac 'itchyny/vim-external', {'type': 'opt', 'lazy': 1}
 Pac 'itchyny/vim-highlighturl', {'type': 'opt', 'lazy': 1}
@@ -50,7 +52,6 @@ Pac 'kana/vim-textobj-fold', {'type': 'opt', 'lazy': 1}
 Pac 'kana/vim-textobj-function', {'type': 'opt', 'lazy': 1}
 Pac 'kana/vim-textobj-indent', {'type': 'opt', 'lazy': 1}
 Pac 'kana/vim-textobj-line', {'type': 'opt', 'lazy': 1}
-Pac 'kassio/neoterm', {'type': 'opt', 'lazy': 1, 'if': has('nvim')}
 Pac 'kshenoy/vim-signature', {'type': 'opt', 'lazy': 1}
 Pac 'lambdalisue/gina.vim', {'type': 'opt', 'lazy': 1}
 Pac 'lambdalisue/suda.vim', {'type': 'opt', 'lazy': 1}
