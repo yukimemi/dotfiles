@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2019/12/31 16:10:42.
+" Last Change : 2020/01/01 02:07:16.
 " =============================================================================
 
 " Init: {{{1
@@ -492,7 +492,7 @@ nnoremap [Space]d :<C-u>call <SID>deleteOtherLine()<CR>
 " nnoremap [Space]pu :<C-u>PlugUpdate \| PlugUpgrade<CR>
 nnoremap [Space]du :<C-u>call dein#update()<CR>
 " nnoremap [Space]du :<C-u>DeinUpdate<CR>
-nnoremap [Space]mu :<C-u>PackUpdate<CR>
+nnoremap [Space]mu :<C-u>PacUpdate<CR>
 nnoremap [Space]pu :<C-u>PackagerUpdate<CR>
 
 " nohlsearch.
