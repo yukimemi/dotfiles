@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/01 02:07:16.
+" Last Change : 2020/01/02 01:39:24.
 " =============================================================================
 
 " Init: {{{1
@@ -318,7 +318,7 @@ set pumheight=13
 " Color: {{{1
 syntax enable
 set background=dark
-colorscheme spring-night
+colorscheme solarized8
 
 if has('gui_running')
   if g:is_windows

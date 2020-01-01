@@ -1,5 +1,6 @@
 " Pac 'Konfekt/FastFold', {'type': 'opt', 'lazy': 1}
 " Pac 'MaxMEllon/vim-shiny', {'type': 'opt', 'lazy': 1}
+" Pac 'RRethy/vim-illuminate', {'type': 'opt', 'lazy': 1}
 " Pac 'Shougo/neomru.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'Shougo/neosnippet-snippets', {'type': 'opt', 'lazy': 1}
 " Pac 'Shougo/neosnippet.vim', {'type': 'opt', 'lazy': 1}
@@ -30,7 +31,6 @@
 " Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'LeafCage/yankround.vim', {'type': 'opt', 'lazy': 1}
-Pac 'RRethy/vim-illuminate', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/context_filetype.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/echodoc.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/vimproc.vim', {'type': 'opt', 'lazy': 1, 'do': 'silent! !make'}

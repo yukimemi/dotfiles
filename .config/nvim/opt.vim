@@ -33,7 +33,6 @@ endfunction
 " Pac 'kylef/apiblueprint.vim', {'type': 'opt', 'ft': 'apiblueprint'}
 " Pac 'lambdalisue/fila.vim', {'type': 'opt', 'on': 'Fila'}
 " Pac 'leafgarland/typescript-vim', {'type': 'opt', 'ft': ['typescript', 'typescript.tsx']}
-" Pac 'lifepillar/vim-solarized8', {'type': 'opt'}
 " Pac 'mattn/favstar-vim', {'type': 'opt'}
 " Pac 'mattn/gist-vim', {'type': 'opt', 'on': 'Gist'}
 " Pac 'mattn/qiita-vim', {'type': 'opt', 'on': 'Qiita'}
@@ -61,6 +60,7 @@ Pac 'itchyny/vim-haskell-indent', {'type': 'opt', 'ft': 'haskell'}
 Pac 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'ft': 'haskell'}
 Pac 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
 Pac 'lambdalisue/gina.vim', {'type': 'opt', 'on': 'Gina'}
+Pac 'lifepillar/vim-solarized8', {'type': 'opt'}
 Pac 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap'}
 Pac 'majutsushi/tagbar', {'type': 'opt', 'on': 'TagbarToggle'}
 Pac 'mattn/sonictemplate-vim', {'type': 'opt', 'on': 'Template'}
