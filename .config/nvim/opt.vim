@@ -73,7 +73,7 @@ Pac 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
 Pac 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
 Pac 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'ft': 'rust'}
 Pac 'rhysd/vim-color-spring-night', {'type': 'opt'}
-Pac 'rhysd/vim-healthcheck', {'type': 'opt', 'on': 'CheckHealth'}
+Pac 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
 Pac 'scrooloose/nerdtree', {'type': 'opt', 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Pac 'scrooloose/vim-slumlord', {'type': 'opt', 'ft': 'plantuml'}
 Pac 'skanehira/translate.vim', {'type': 'opt', 'on': ['AutoTranslateModeToggle', '<Plug>(VTranslate)', '<Plug>(VTranslateBang)'], 'if': executable('gtran') && !has('nvim')}
