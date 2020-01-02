@@ -2,6 +2,39 @@
 " always show signcolumns
 set signcolumn=yes
 
+" extensions
+let g:coc_global_extensions = [
+      \ "coc-bookmark",
+      \ "coc-calc",
+      \ "coc-css",
+      \ "coc-docker",
+      \ "coc-explorer",
+      \ "coc-fish",
+      \ "coc-git",
+      \ "coc-gitignore",
+      \ "coc-html",
+      \ "coc-json",
+      \ "coc-lists",
+      \ "coc-lua",
+      \ "coc-pairs",
+      \ "coc-powershell",
+      \ "coc-prettier",
+      \ "coc-pyls",
+      \ "coc-python",
+      \ "coc-rls",
+      \ "coc-sh",
+      \ "coc-snippets",
+      \ "coc-sql",
+      \ "coc-terminal",
+      \ "coc-tsserver",
+      \ "coc-utils",
+      \ "coc-vimlsp",
+      \ "coc-word",
+      \ "coc-xml",
+      \ "coc-yaml",
+      \ "coc-yank",
+      \ ]
+
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
