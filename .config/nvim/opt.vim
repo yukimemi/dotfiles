@@ -8,6 +8,7 @@ endfunction
 
 " Pac 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 " Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
+" Pac 'PProvost/vim-ps1', {'type': 'opt', 'ft': 'ps1'}
 " Pac 'Shougo/defx.nvim', {'type': 'opt', 'on': 'Defx', 'do': 'silent! UpdateRemotePlugins', 'if': !g:is_windows}
 " Pac 'Shougo/denite.nvim', {'type': 'opt', 'on': 'Denite', 'do': 'silent! UpdateRemotePlugins', 'if': has('python3')}
 " Pac 'Shougo/neco-vim', {'type': 'opt', 'ft': 'vim'}
@@ -47,7 +48,6 @@ endfunction
 " Pac 'rhysd/vim-gfm-syntax', {'type': 'opt', 'ft': 'markdown'}
 " Pac 'rust-lang/rust.vim', {'type': 'opt', 'ft': 'rust'}
 " Pac 'stephpy/vim-yaml', {'type': 'opt', 'ft': ['yml', 'yaml']}
-Pac 'PProvost/vim-ps1', {'type': 'opt', 'ft': 'ps1'}
 Pac 'Shougo/junkfile.vim', {'type': 'opt', 'on': 'JunkfileOpen'}
 Pac 'airblade/vim-rooter', {'type': 'opt', 'on': 'Rooter'}
 Pac 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'ft': 'haskell'}
@@ -77,6 +77,7 @@ Pac 'rhysd/vim-healthcheck', {'type': 'opt', 'on': 'CheckHealth'}
 Pac 'scrooloose/nerdtree', {'type': 'opt', 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Pac 'scrooloose/vim-slumlord', {'type': 'opt', 'ft': 'plantuml'}
 Pac 'skanehira/translate.vim', {'type': 'opt', 'on': ['AutoTranslateModeToggle', '<Plug>(VTranslate)', '<Plug>(VTranslateBang)'], 'if': executable('gtran') && !has('nvim')}
+Pac 't9md/vim-choosewin', {'type': 'opt', 'on': ['<Plug>(choosewin)']}
 Pac 'thinca/vim-qfreplace', {'type': 'opt', 'ft': ['quickfix', 'qf']}
 Pac 'twitvim/twitvim', {'type': 'opt', 'on': ['PosttoTwitter', 'CPosttoTwitter', 'BPosttoTwitter', 'FriendsTwitter', 'UserTwitter', 'MentionsTwitter', 'PublicTwitter', 'DMTwitter', 'SearchTwitter']}
 Pac 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}

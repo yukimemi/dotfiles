@@ -4,6 +4,7 @@
 " Pac 'itchyny/lightline.vim'
 " Pac 'itchyny/vim-gitbranch'
 " Pac 'kopischke/vim-stay'
+" Pac 'lambdalisue/vim-findent'
 " Pac 'mattn/vim-lsp-settings'
 " Pac 'prabirshrestha/async.vim'
 " Pac 'prabirshrestha/asyncomplete-lsp.vim'
@@ -14,7 +15,6 @@ Pac 'Yggdroot/indentLine'
 Pac 'itchyny/vim-parenmatch'
 Pac 'kana/vim-operator-user'
 Pac 'kana/vim-textobj-user'
-Pac 'lambdalisue/vim-findent'
 Pac 'mattn/transparency-windows-vim', {'if': g:is_windows}
 Pac 'mattn/vimtweak', {'if': g:is_windows}
 Pac 'roxma/nvim-yarp', {'if': !has('nvim')}
