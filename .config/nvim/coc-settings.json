@@ -1,7 +1,11 @@
 {
   "diagnostic.refreshAfterSave": true,
+  "list.autoResize": true,
+  "list.source.files.args": ["--hidden", "--files"],
   "list.insertMappings": {
     "<C-j>": "normal:j",
     "<C-k>": "normal:k"
-  }
+  },
+  "explorer.icon.enableNerdfont": false,
+  "explorer.file.autoReveal": true
 }

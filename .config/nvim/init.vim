@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/03 01:28:16.
+" Last Change : 2020/01/03 14:59:24.
 " =============================================================================
 
 " Init: {{{1
@@ -343,9 +343,9 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472
 let s:cur_f = 0
 au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
-au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn
+au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
 au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
-au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | endif
+au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
 
 " Command: {{{1
 " Diff original.

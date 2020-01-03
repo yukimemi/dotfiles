@@ -64,7 +64,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-au MyAutoCmd CursorHold * silent call CocActionAsync('highlight')
+" au MyAutoCmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -94,6 +94,8 @@ au MyAutoCmd BufWritePre *.js,*.json,*.ts,*.css,*.rs silent call CocAction('form
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
+" coc-list {{{1
+nnoremap <silent> <Space><Space> :<C-u>CocList<CR>
 
 " coc-snippet {{{1
 " Use <C-l> for trigger snippet expand.

@@ -37,6 +37,7 @@
 " Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
 Pac 'Shougo/context_filetype.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/echodoc.vim', {'type': 'opt', 'lazy': 1}
+Pac 'airblade/vim-rooter', {'type': 'opt', 'lazy': 1}
 Pac 'andymass/vim-matchup', {'type': 'opt', 'lazy': 1}
 Pac 'bfredl/nvim-miniyank', {'type': 'opt', 'lazy': 1}
 Pac 'editorconfig/editorconfig-vim', {'type': 'opt', 'lazy': 1}

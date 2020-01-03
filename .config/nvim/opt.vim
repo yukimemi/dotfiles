@@ -49,7 +49,6 @@ endfunction
 " Pac 'rust-lang/rust.vim', {'type': 'opt', 'ft': 'rust'}
 " Pac 'stephpy/vim-yaml', {'type': 'opt', 'ft': ['yml', 'yaml']}
 Pac 'Shougo/junkfile.vim', {'type': 'opt', 'on': 'JunkfileOpen'}
-Pac 'airblade/vim-rooter', {'type': 'opt', 'on': 'Rooter'}
 Pac 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'ft': 'haskell'}
 Pac 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt', 'ft': 'sql'}
 Pac 'dhruvasagar/vim-table-mode', {'type': 'opt', 'ft': 'markdown'}
