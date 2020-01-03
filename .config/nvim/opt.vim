@@ -55,6 +55,7 @@ Pac 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jack
 Pac 'dhruvasagar/vim-table-mode', {'type': 'opt', 'ft': 'markdown'}
 Pac 'dzeban/vim-log-syntax', {'type': 'opt', 'ft': 'log'}
 Pac 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
+Pac 'https://github.com/kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
 Pac 'iamcco/markdown-preview.nvim', {'type': 'opt', 'ft': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 Pac 'itchyny/vim-haskell-indent', {'type': 'opt', 'ft': 'haskell'}
 Pac 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'ft': 'haskell'}
