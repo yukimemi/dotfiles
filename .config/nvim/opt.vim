@@ -37,7 +37,6 @@ endfunction
 " Pac 'mattn/favstar-vim', {'type': 'opt'}
 " Pac 'mattn/gist-vim', {'type': 'opt', 'on': 'Gist'}
 " Pac 'mattn/qiita-vim', {'type': 'opt', 'on': 'Qiita'}
-" Pac 'morhetz/gruvbox', {'type': 'opt'}
 " Pac 'nelstrom/vim-markdown-folding', {'type': 'opt', 'ft': 'markdown'}
 " Pac 'neovimhaskell/haskell-vim', {'type': 'opt', 'ft': ['haskell', 'cabal']}
 " Pac 'othree/es.next.syntax.vim', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
@@ -54,7 +53,7 @@ Pac 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jack
 Pac 'dhruvasagar/vim-table-mode', {'type': 'opt', 'ft': 'markdown'}
 Pac 'dzeban/vim-log-syntax', {'type': 'opt', 'ft': 'log'}
 Pac 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
-Pac 'https://github.com/kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
+Pac 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
 Pac 'iamcco/markdown-preview.nvim', {'type': 'opt', 'ft': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 Pac 'itchyny/vim-haskell-indent', {'type': 'opt', 'ft': 'haskell'}
 Pac 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'ft': 'haskell'}
@@ -67,6 +66,7 @@ Pac 'mattn/sonictemplate-vim', {'type': 'opt', 'on': 'Template'}
 Pac 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
 Pac 'mechatroner/rainbow_csv', {'type': 'opt', 'ft': 'csv'}
 Pac 'mhinz/vim-grepper', {'type': 'opt', 'on': ['Grepper', '<Plug>(GrepperOperator)']}
+Pac 'morhetz/gruvbox', {'type': 'opt'}
 Pac 'qpkorr/vim-renamer', {'type': 'opt', 'on': 'Renamer'}
 Pac 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
 Pac 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}

@@ -9,6 +9,7 @@
 " Pac 'TaDaa/vimade', {'type': 'opt', 'lazy': 1}
 " Pac 'cohama/lexima.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'dense-analysis/ale', {'type': 'opt', 'lazy': 1}
+" Pac 'gko/vim-coloresque', {'type': 'opt', 'lazy': 1}
 " Pac 'iyuuya/denite-ale', {'type': 'opt', 'lazy': 1}
 " Pac 'jeffkreeftmeijer/vim-numbertoggle', {'type': 'opt', 'lazy': 1}
 " Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
@@ -44,7 +45,6 @@ Pac 'editorconfig/editorconfig-vim', {'type': 'opt', 'lazy': 1}
 Pac 'fuenor/qfixgrep', {'type': 'opt', 'lazy': 1}
 Pac 'fuenor/qfixhowm', {'type': 'opt', 'lazy': 1}
 Pac 'gilligan/textobj-lastpaste', {'type': 'opt', 'lazy': 1}
-Pac 'gko/vim-coloresque', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/is.vim', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-asterisk', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-edgemotion', {'type': 'opt', 'lazy': 1}
@@ -64,7 +64,7 @@ Pac 'kshenoy/vim-signature', {'type': 'opt', 'lazy': 1}
 Pac 'lambdalisue/suda.vim', {'type': 'opt', 'lazy': 1}
 Pac 'ludovicchabant/vim-gutentags', {'type': 'opt', 'lazy': 1, 'if': executable('ctags')}
 Pac 'mattn/webapi-vim', {'type': 'opt', 'lazy': 1}
-Pac 'neoclide/coc.nvim', {'type': 'opt', 'lazy': 1, 'branch': 'release'}
+Pac 'neoclide/coc.nvim', {'type': 'opt', 'lazy': 1, 'branch': 'release', 'on': ['CocList', 'CocListResume']}
 Pac 'ntpeters/vim-better-whitespace', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-anzu', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-operator-blockwise', {'type': 'opt', 'lazy': 1}

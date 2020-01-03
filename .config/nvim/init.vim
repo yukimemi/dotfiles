@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/03 14:59:24.
+" Last Change : 2020/01/03 16:10:09.
 " =============================================================================
 
 " Init: {{{1
@@ -318,7 +318,7 @@ set pumheight=13
 " Color: {{{1
 syntax enable
 set background=dark
-colorscheme solarized8
+colorscheme gruvbox
 
 if has('gui_running')
   if g:is_windows

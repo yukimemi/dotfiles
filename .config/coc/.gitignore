@@ -1,5 +1,6 @@
 commands
 history.json
-snippets-mru
-mru
 lists
+memos.json
+mru
+snippets-mru
