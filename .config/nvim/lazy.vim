@@ -73,7 +73,6 @@ Pac 'osyo-manga/vim-precious', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-textobj-multiblock', {'type': 'opt', 'lazy': 1}
 Pac 'rhysd/vim-operator-surround', {'type': 'opt', 'lazy': 1}
 Pac 'roxma/vim-tmux-clipboard', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
-Pac 'sheerun/vim-polyglot', {'type': 'opt', 'lazy': 1}
 Pac 'thinca/vim-submode', {'type': 'opt', 'lazy': 1}
 Pac 'tmux-plugins/vim-tmux-focus-events', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows && !has('nvim')}
 Pac 'tpope/vim-obsession', {'type': 'opt', 'lazy': 1}

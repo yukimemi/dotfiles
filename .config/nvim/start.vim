@@ -21,6 +21,7 @@ Pac 'mattn/vimtweak', {'if': g:is_windows}
 Pac 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pac 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pac 'ryanoasis/vim-devicons'
+Pac 'sheerun/vim-polyglot'
 Pac 't9md/vim-quickhl'
 Pac 'vim-airline/vim-airline'
 Pac 'vim-airline/vim-airline-themes'
