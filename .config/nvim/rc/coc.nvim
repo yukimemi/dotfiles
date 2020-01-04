@@ -12,6 +12,7 @@ let g:coc_global_extensions = [
       \ "coc-fish",
       \ "coc-git",
       \ "coc-gitignore",
+      \ "coc-go",
       \ "coc-highlight",
       \ "coc-html",
       \ "coc-json",
@@ -23,12 +24,15 @@ let g:coc_global_extensions = [
       \ "coc-pyls",
       \ "coc-python",
       \ "coc-rls",
+      \ "coc-rust-analyzer",
       \ "coc-sh",
       \ "coc-snippets",
+      \ "coc-solargraph",
       \ "coc-sql",
       \ "coc-terminal",
       \ "coc-tsserver",
       \ "coc-utils",
+      \ "coc-vetur",
       \ "coc-vimlsp",
       \ "coc-word",
       \ "coc-xml",
@@ -97,6 +101,7 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " coc-list {{{1
 nnoremap <silent> <Space><Space> :<C-u>CocList<CR>
+nnoremap <silent> [Space]cg :<C-u>CocList files --hidden ~/.ghq/src<CR>
 nnoremap <silent> [Space]r :<C-u>CocListResume<CR>
 
 

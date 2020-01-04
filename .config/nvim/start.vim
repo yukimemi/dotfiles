@@ -6,6 +6,7 @@
 " Pac 'kopischke/vim-stay'
 " Pac 'lambdalisue/vim-findent'
 " Pac 'mattn/vim-lsp-settings'
+" Pac 'neoclide/coc.nvim', {'branch': 'release'}
 " Pac 'prabirshrestha/async.vim'
 " Pac 'prabirshrestha/asyncomplete-lsp.vim'
 " Pac 'prabirshrestha/asyncomplete.vim'

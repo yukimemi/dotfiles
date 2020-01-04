@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/01/03 10:10:40.
+# Last Change : 2020/01/03 20:02:52.
 # =============================================================================
 
 #
@@ -193,6 +193,10 @@ alias vdup='vim -c "silent! call dein#update() | Capture Dein log"'
 alias mup='nvim -c "PackUpdate"'
 alias vmup='vim -c "PackUpdate"'
 
+if (which bat > /dev/null); then
+  alias cat='bat'
+fi
+
 # brew. {{{2
 alias br='brew-file brew'
 alias bre='brew-file edit'
@@ -239,10 +243,10 @@ alias ghc="stack ghc --"
 alias ghci="stack ghci"
 
 # Chrome apps. {{{3
-alias twitter="open -na 'Google Chrome' --args '--app=https://mobile.twitter.com'"
-alias tweetdeck="open -na 'Google Chrome' --args '--app=https://tweetdeck.com'"
-alias hangout="open -na 'Google Chrome' --args '--app=https://hangouts.google.com/'"
-alias misskey="open -na 'Google Chrome' --args '--app=https://misskey.dev'"
+alias twitter="open -na 'Vivaldi' --args '--app=https://mobile.twitter.com'"
+alias tweetdeck="open -na 'Vivaldi' --args '--app=https://tweetdeck.com'"
+alias hangout="open -na 'Vivaldi' --args '--app=https://hangouts.google.com/'"
+alias misskey="open -na 'Vivaldi' --args '--app=https://misskey.dev'"
 
 
 # Filter aliases. {{{3
