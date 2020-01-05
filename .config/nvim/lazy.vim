@@ -1,5 +1,4 @@
 " Pac 'Konfekt/FastFold', {'type': 'opt', 'lazy': 1}
-" Pac 'LeafCage/yankround.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'MaxMEllon/vim-shiny', {'type': 'opt', 'lazy': 1}
 " Pac 'RRethy/vim-illuminate', {'type': 'opt', 'lazy': 1}
 " Pac 'Shougo/neomru.vim', {'type': 'opt', 'lazy': 1}
@@ -7,9 +6,11 @@
 " Pac 'Shougo/neosnippet.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'Shougo/vimproc.vim', {'type': 'opt', 'lazy': 1, 'do': 'silent! !make'}
 " Pac 'TaDaa/vimade', {'type': 'opt', 'lazy': 1}
+" Pac 'bfredl/nvim-miniyank', {'type': 'opt', 'lazy': 1}
 " Pac 'cohama/lexima.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'dense-analysis/ale', {'type': 'opt', 'lazy': 1}
 " Pac 'gko/vim-coloresque', {'type': 'opt', 'lazy': 1}
+" Pac 'hotwatermorning/auto-git-diff', {'type': 'opt', 'lazy': 1}
 " Pac 'iyuuya/denite-ale', {'type': 'opt', 'lazy': 1}
 " Pac 'jeffkreeftmeijer/vim-numbertoggle', {'type': 'opt', 'lazy': 1}
 " Pac 'kaneshin/ctrlp-filetype', {'type': 'opt', 'lazy': 1}
@@ -22,6 +23,7 @@
 " Pac 'mox-mox/vim-localsearch', {'type': 'opt', 'lazy': 1}
 " Pac 'ompugao/ctrlp-history', {'type': 'opt', 'lazy': 1}
 " Pac 'osyo-manga/vim-jplus', {'type': 'opt', 'lazy': 1}
+" Pac 'osyo-manga/vim-precious', {'type': 'opt', 'lazy': 1}
 " Pac 'prabirshrestha/asyncomplete-buffer.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'prabirshrestha/asyncomplete-emoji.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'prabirshrestha/asyncomplete-file.vim', {'type': 'opt', 'lazy': 1}
@@ -36,11 +38,11 @@
 " Pac 'vim-scripts/matchit.zip', {'type': 'opt', 'lazy': 1}
 " Pac 'yami-beta/asyncomplete-omni.vim', {'type': 'opt', 'lazy': 1}
 " Pac 'yuttie/comfortable-motion.vim', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}
+Pac 'LeafCage/yankround.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/context_filetype.vim', {'type': 'opt', 'lazy': 1}
 Pac 'Shougo/echodoc.vim', {'type': 'opt', 'lazy': 1}
 Pac 'airblade/vim-rooter', {'type': 'opt', 'lazy': 1}
 Pac 'andymass/vim-matchup', {'type': 'opt', 'lazy': 1}
-Pac 'bfredl/nvim-miniyank', {'type': 'opt', 'lazy': 1}
 Pac 'editorconfig/editorconfig-vim', {'type': 'opt', 'lazy': 1}
 Pac 'fuenor/qfixgrep', {'type': 'opt', 'lazy': 1}
 Pac 'fuenor/qfixhowm', {'type': 'opt', 'lazy': 1}
@@ -50,7 +52,6 @@ Pac 'haya14busa/vim-asterisk', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-edgemotion', {'type': 'opt', 'lazy': 1}
 Pac 'haya14busa/vim-operator-flashy', {'type': 'opt', 'lazy': 1}
 Pac 'honza/vim-snippets', {'type': 'opt', 'lazy': 1}
-Pac 'hotwatermorning/auto-git-diff', {'type': 'opt', 'lazy': 1}
 Pac 'itchyny/vim-cursorword', {'type': 'opt', 'lazy': 1}
 Pac 'itchyny/vim-external', {'type': 'opt', 'lazy': 1}
 Pac 'itchyny/vim-highlighturl', {'type': 'opt', 'lazy': 1}
@@ -69,7 +70,6 @@ Pac 'ntpeters/vim-better-whitespace', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-anzu', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-operator-blockwise', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-operator-search', {'type': 'opt', 'lazy': 1}
-Pac 'osyo-manga/vim-precious', {'type': 'opt', 'lazy': 1}
 Pac 'osyo-manga/vim-textobj-multiblock', {'type': 'opt', 'lazy': 1}
 Pac 'rhysd/vim-operator-surround', {'type': 'opt', 'lazy': 1}
 Pac 'roxma/vim-tmux-clipboard', {'type': 'opt', 'lazy': 1, 'if': !g:is_windows}

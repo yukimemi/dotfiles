@@ -4,7 +4,7 @@ set guioptions=
 
 " color
 set background=dark
-colorscheme spring-night
+colorscheme gruvbox
 " colorscheme SpaceVim
 
 " font
@@ -14,7 +14,7 @@ set printfont=Cica:h8
 "set gfn=Ricty_Diminished_Discord:h10:cSHIFTJIS:qDRAFT
 "set gfw=Ricty_Diminished_Discord:h10:cSHIFTJIS:qDRAFT
 
-gui
+" gui
 set rop=type:directx,renmode:5
 " set transparency=240
 
