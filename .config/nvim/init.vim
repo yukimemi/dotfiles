@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/03 16:10:09.
+" Last Change : 2020/01/11 21:42:56.
 " =============================================================================
 
 " Init: {{{1
@@ -11,9 +11,7 @@ scriptencoding utf-8
 if &compatible | set nocompatible | endif
 
 " Release autogroup in MyAutoCmd.
-augroup MyAutoCmd
-  autocmd!
-augroup END
+augroup MyAutoCmd | autocmd! | augroup END
 
 " Echo startup time on start.
 if has('vim_starting') && has('reltime')
@@ -54,10 +52,6 @@ let g:did_install_default_menus = 1
 let g:skip_loading_mswin        = 1
 let g:did_install_syntax_menu   = 1
 let g:loaded_2html_plugin       = 1
-
-if $HOME != $USERPROFILE && $GIT_EXEC_PATH != ''
-  finish
-end
 
 " Utility: {{{1
 " Judge os type. {{{2
@@ -184,26 +178,6 @@ function! MakeVimproc(info) abort "{{{2
 endfunction
 
 
-" Plugin: {{{1
-let s:use_dein = 0
-let s:use_vimplug = 0
-let s:use_minpac = 1
-let s:use_packager = 0
-let s:use_volt = 0
-
-if s:use_dein
-  runtime! dein.vim
-elseif s:use_vimplug
-  runtime! vimplug.vim
-elseif s:use_minpac
-  runtime! minpac.vim
-elseif s:use_packager
-  runtime! packager.vim
-elseif s:use_volt
-  runtime! volt.vim
-else
-  echom "No use plugin manager !"
-endif
 
 " Basic: {{{1
 
@@ -314,38 +288,6 @@ set foldmethod=marker
 set pumheight=13
 " set foldclose=all
 " set t_Co=256
-
-" Color: {{{1
-syntax enable
-set background=dark
-colorscheme gruvbox
-
-if has('gui_running')
-  if g:is_windows
-    nnoremap [Space]r :<C-u>simalt ~r<CR>
-    nnoremap [Space]x :<C-u>simalt ~x<CR>
-  elseif g:is_darwin
-    set macmeta
-    set transparency=10
-  endif
-elseif !has('nvim')
-  let &t_ti .= "\e[1 q"
-  let &t_SI .= "\e[5 q"
-  let &t_EI .= "\e[1 q"
-  let &t_te .= "\e[0 q"
-  let &t_SR .= "\e[3 q"
-endif
-
-" Highlight VCS conflict markers {{{2
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-" Hilight cursorline, cursorcolumn {{{2
-" https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472
-let s:cur_f = 0
-au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
-au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
-au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
-au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
 
 " Command: {{{1
 " Diff original.
@@ -617,6 +559,33 @@ if filereadable(expand("~/.vimrc_background"))
   " source ~/.vimrc_background
 endif
 
+if has('gui_running')
+  if g:is_windows
+    nnoremap [Space]r :<C-u>simalt ~r<CR>
+    nnoremap [Space]x :<C-u>simalt ~x<CR>
+  elseif g:is_darwin
+    set macmeta
+    set transparency=10
+  endif
+elseif !has('nvim')
+  let &t_ti .= "\e[1 q"
+  let &t_SI .= "\e[5 q"
+  let &t_EI .= "\e[1 q"
+  let &t_te .= "\e[0 q"
+  let &t_SR .= "\e[3 q"
+endif
+
+" Highlight VCS conflict markers {{{2
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" Hilight cursorline, cursorcolumn {{{2
+" https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472
+let s:cur_f = 0
+au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
+au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
+au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
+au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
+
 " reload filetype on save. {{{2
 " https://lambdalisue.hatenablog.com/entry/2017/12/24/165759
 au MyAutoCmd BufWritePost *
@@ -636,6 +605,35 @@ au MyAutoCmd BufWritePost *
 "   endfor
 " endfunction
 
-filetype plugin indent on
+" if windows no plugins for git.
+if $HOME != $USERPROFILE && $GIT_EXEC_PATH != ''
+  finish
+end
+
+" Plugin: {{{1
+let s:use_dein = 0
+let s:use_vimplug = 0
+let s:use_minpac = 1
+let s:use_packager = 0
+let s:use_volt = 0
+
+if s:use_dein
+  runtime! dein.vim
+elseif s:use_vimplug
+  runtime! vimplug.vim
+elseif s:use_minpac
+  runtime! minpac.vim
+elseif s:use_packager
+  runtime! packager.vim
+elseif s:use_volt
+  runtime! volt.vim
+else
+  echom "No use plugin manager !"
+endif
+
+" Color: {{{1
+syntax enable
+set background=dark
+colorscheme gruvbox
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

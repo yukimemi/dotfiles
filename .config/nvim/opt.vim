@@ -53,11 +53,11 @@ Pack 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jac
 Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
 Pack 'dzeban/vim-log-syntax', {'type': 'opt', 'for': 'log'}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
-Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
 Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
+Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
 Pack 'lambdalisue/gina.vim', {'type': 'opt', 'on': 'Gina'}
 Pack 'lifepillar/vim-solarized8', {'type': 'opt'}
 Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap'}

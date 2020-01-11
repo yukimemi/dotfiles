@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/01/03 20:02:52.
+# Last Change : 2020/01/11 20:44:48.
 # =============================================================================
 
 #
@@ -243,10 +243,10 @@ alias ghc="stack ghc --"
 alias ghci="stack ghci"
 
 # Chrome apps. {{{3
-alias twitter="open -na 'Vivaldi' --args '--app=https://mobile.twitter.com'"
-alias tweetdeck="open -na 'Vivaldi' --args '--app=https://tweetdeck.com'"
-alias hangout="open -na 'Vivaldi' --args '--app=https://hangouts.google.com/'"
-alias misskey="open -na 'Vivaldi' --args '--app=https://misskey.dev'"
+alias twitter="open -na 'Google Chrome' --args '--app=https://mobile.twitter.com'"
+alias tweetdeck="open -na 'Google Chrome' --args '--app=https://tweetdeck.com'"
+alias hangout="open -na 'Google Chrome' --args '--app=https://hangouts.google.com/'"
+alias misskey="open -na 'Google Chrome' --args '--app=https://misskey.dev'"
 
 
 # Filter aliases. {{{3
