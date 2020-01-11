@@ -1,4 +1,4 @@
-Pac 'k-takata/minpac', {'type': 'opt'}
+Pack 'k-takata/minpac', {'type': 'opt'}
 
 function! Markdown_preview_do(hooktype, name) abort
   echom a:hooktype
@@ -6,79 +6,79 @@ function! Markdown_preview_do(hooktype, name) abort
   call mkdp#util#install()
 endfunction
 
-" Pac 'NLKNguyen/papercolor-theme', {'type': 'opt'}
-" Pac 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'ft': 'cs'}
-" Pac 'PProvost/vim-ps1', {'type': 'opt', 'ft': 'ps1'}
-" Pac 'Shougo/defx.nvim', {'type': 'opt', 'on': 'Defx', 'do': 'silent! UpdateRemotePlugins', 'if': !g:is_windows}
-" Pac 'Shougo/denite.nvim', {'type': 'opt', 'on': 'Denite', 'do': 'silent! UpdateRemotePlugins', 'if': has('python3')}
-" Pac 'Shougo/neco-vim', {'type': 'opt', 'ft': 'vim'}
-" Pac 'Vimjas/vim-python-pep8-indent', {'type': 'opt', 'ft': 'python'}
-" Pac 'aklt/plantuml-syntax', {'type': 'opt', 'ft': 'plantuml'}
-" Pac 'basyura/TweetVim', {'type': 'opt', 'on': ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay']}
-" Pac 'basyura/bitly.vim', {'type': 'opt'}
-" Pac 'basyura/twibill.vim', {'type': 'opt'}
-" Pac 'cespare/vim-toml', {'type': 'opt', 'ft': 'toml'}
-" Pac 'cocopon/iceberg.vim', {'type': 'opt'}
-" Pac 'dag/vim-fish', {'type': 'opt', 'ft': 'fish'}
-" Pac 'davidhalter/jedi-vim', {'type': 'opt', 'ft': ['python']}
-" Pac 'eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod', 'if': executable('stack'), 'ft': 'haskell'}
-" Pac 'eagletmt/neco-ghc', {'type': 'opt', 'ft': 'haskell'}
-" Pac 'ekalinin/Dockerfile.vim', {'type': 'opt', 'ft': 'dockerfile'}
-" Pac 'fatih/vim-go', {'type': 'opt', 'ft': 'go'}
-" Pac 'joshdick/onedark.vim', {'type': 'opt'}
-" Pac 'jremmen/vim-ripgrep', {'type': 'opt', 'on': 'Rg'}
-" Pac 'kannokanno/previm', {'type': 'opt', 'ft': 'markdown'}
-" Pac 'kchmck/vim-coffee-script', {'type': 'opt', 'ft': 'coffee'}
-" Pac 'keremc/asyncomplete-racer.vim', {'type': 'opt', 'ft': 'rust', 'if': !executable('rls')}
-" Pac 'kristijanhusak/vim-hybrid-material', {'type': 'opt'}
-" Pac 'kylef/apiblueprint.vim', {'type': 'opt', 'ft': 'apiblueprint'}
-" Pac 'lambdalisue/fila.vim', {'type': 'opt', 'on': 'Fila'}
-" Pac 'leafgarland/typescript-vim', {'type': 'opt', 'ft': ['typescript', 'typescript.tsx']}
-" Pac 'mattn/favstar-vim', {'type': 'opt'}
-" Pac 'mattn/gist-vim', {'type': 'opt', 'on': 'Gist'}
-" Pac 'mattn/qiita-vim', {'type': 'opt', 'on': 'Qiita'}
-" Pac 'nelstrom/vim-markdown-folding', {'type': 'opt', 'ft': 'markdown'}
-" Pac 'neovimhaskell/haskell-vim', {'type': 'opt', 'ft': ['haskell', 'cabal']}
-" Pac 'othree/es.next.syntax.vim', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
-" Pac 'othree/javascript-libraries-syntax.vim', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
-" Pac 'pangloss/vim-javascript', {'type': 'opt', 'ft': ['javascript', 'javascript.jsx']}
-" Pac 'posva/vim-vue', {'type': 'opt', 'ft': 'vue'}
-" Pac 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'ft': 'vim'}
-" Pac 'rhysd/vim-gfm-syntax', {'type': 'opt', 'ft': 'markdown'}
-" Pac 'rust-lang/rust.vim', {'type': 'opt', 'ft': 'rust'}
-" Pac 'stephpy/vim-yaml', {'type': 'opt', 'ft': ['yml', 'yaml']}
-Pac 'Shougo/junkfile.vim', {'type': 'opt', 'on': 'JunkfileOpen'}
-Pac 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'ft': 'haskell'}
-Pac 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt', 'ft': 'sql'}
-Pac 'dhruvasagar/vim-table-mode', {'type': 'opt', 'ft': 'markdown'}
-Pac 'dzeban/vim-log-syntax', {'type': 'opt', 'ft': 'log'}
-Pac 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
-Pac 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
-Pac 'iamcco/markdown-preview.nvim', {'type': 'opt', 'ft': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
-Pac 'itchyny/vim-haskell-indent', {'type': 'opt', 'ft': 'haskell'}
-Pac 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'ft': 'haskell'}
-Pac 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
-Pac 'lambdalisue/gina.vim', {'type': 'opt', 'on': 'Gina'}
-Pac 'lifepillar/vim-solarized8', {'type': 'opt'}
-Pac 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap'}
-Pac 'majutsushi/tagbar', {'type': 'opt', 'on': 'TagbarToggle'}
-Pac 'mattn/sonictemplate-vim', {'type': 'opt', 'on': 'Template'}
-Pac 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
-Pac 'mechatroner/rainbow_csv', {'type': 'opt', 'ft': 'csv'}
-Pac 'mhinz/vim-grepper', {'type': 'opt', 'on': ['Grepper', '<Plug>(GrepperOperator)']}
-Pac 'morhetz/gruvbox', {'type': 'opt'}
-Pac 'qpkorr/vim-renamer', {'type': 'opt', 'on': 'Renamer'}
-Pac 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
-Pac 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
-Pac 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
-Pac 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'ft': 'rust'}
-Pac 'rhysd/vim-color-spring-night', {'type': 'opt'}
-Pac 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
-Pac 'scrooloose/nerdtree', {'type': 'opt', 'on': ['NERDTreeToggle', 'NERDTreeFind']}
-Pac 'scrooloose/vim-slumlord', {'type': 'opt', 'ft': 'plantuml'}
-Pac 'skanehira/translate.vim', {'type': 'opt', 'on': ['AutoTranslateModeToggle', '<Plug>(VTranslate)', '<Plug>(VTranslateBang)'], 'if': executable('gtran') && !has('nvim')}
-Pac 't9md/vim-choosewin', {'type': 'opt', 'on': ['<Plug>(choosewin)']}
-Pac 'thinca/vim-qfreplace', {'type': 'opt', 'ft': ['quickfix', 'qf']}
-Pac 'twitvim/twitvim', {'type': 'opt', 'on': ['PosttoTwitter', 'CPosttoTwitter', 'BPosttoTwitter', 'FriendsTwitter', 'UserTwitter', 'MentionsTwitter', 'PublicTwitter', 'DMTwitter', 'SearchTwitter']}
-Pac 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
-Pac 'tyru/caw.vim', {'type': 'opt', 'on': ['<Plug>(caw:prefix)', '<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)', '<Plug>(caw:hatpos:toggle)']}
+" Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
+" Pack 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'for': 'cs'}
+" Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
+" Pack 'Shougo/defx.nvim', {'type': 'opt', 'on': 'Defx', 'do': 'silent! UpdateRemotePlugins', 'if': !g:is_windows}
+" Pack 'Shougo/denite.nvim', {'type': 'opt', 'on': 'Denite', 'do': 'silent! UpdateRemotePlugins', 'if': has('python3')}
+" Pack 'Shougo/neco-vim', {'type': 'opt', 'for': 'vim'}
+" Pack 'Vimjas/vim-python-pep8-indent', {'type': 'opt', 'for': 'python'}
+" Pack 'aklt/plantuml-syntax', {'type': 'opt', 'for': 'plantuml'}
+" Pack 'basyura/TweetVim', {'type': 'opt', 'on': ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay']}
+" Pack 'basyura/bitly.vim', {'type': 'opt'}
+" Pack 'basyura/twibill.vim', {'type': 'opt'}
+" Pack 'cespare/vim-toml', {'type': 'opt', 'for': 'toml'}
+" Pack 'cocopon/iceberg.vim', {'type': 'opt'}
+" Pack 'dag/vim-fish', {'type': 'opt', 'for': 'fish'}
+" Pack 'davidhalter/jedi-vim', {'type': 'opt', 'for': ['python']}
+" Pack 'eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod', 'if': executable('stack'), 'for': 'haskell'}
+" Pack 'eagletmt/neco-ghc', {'type': 'opt', 'for': 'haskell'}
+" Pack 'ekalinin/Dockerfile.vim', {'type': 'opt', 'for': 'dockerfile'}
+" Pack 'fatih/vim-go', {'type': 'opt', 'for': 'go'}
+" Pack 'joshdick/onedark.vim', {'type': 'opt'}
+" Pack 'jremmen/vim-ripgrep', {'type': 'opt', 'on': 'Rg'}
+" Pack 'kannokanno/previm', {'type': 'opt', 'for': 'markdown'}
+" Pack 'kchmck/vim-coffee-script', {'type': 'opt', 'for': 'coffee'}
+" Pack 'keremc/asyncomplete-racer.vim', {'type': 'opt', 'for': 'rust', 'if': !executable('rls')}
+" Pack 'kristijanhusak/vim-hybrid-material', {'type': 'opt'}
+" Pack 'kylef/apiblueprint.vim', {'type': 'opt', 'for': 'apiblueprint'}
+" Pack 'lambdalisue/fila.vim', {'type': 'opt', 'on': 'Fila'}
+" Pack 'leafgarland/typescript-vim', {'type': 'opt', 'for': ['typescript', 'typescript.tsx']}
+" Pack 'mattn/favstar-vim', {'type': 'opt'}
+" Pack 'mattn/gist-vim', {'type': 'opt', 'on': 'Gist'}
+" Pack 'mattn/qiita-vim', {'type': 'opt', 'on': 'Qiita'}
+" Pack 'nelstrom/vim-markdown-folding', {'type': 'opt', 'for': 'markdown'}
+" Pack 'neovimhaskell/haskell-vim', {'type': 'opt', 'for': ['haskell', 'cabal']}
+" Pack 'othree/es.next.syntax.vim', {'type': 'opt', 'for': ['javascript', 'javascript.jsx']}
+" Pack 'othree/javascript-libraries-syntax.vim', {'type': 'opt', 'for': ['javascript', 'javascript.jsx']}
+" Pack 'pangloss/vim-javascript', {'type': 'opt', 'for': ['javascript', 'javascript.jsx']}
+" Pack 'posva/vim-vue', {'type': 'opt', 'for': 'vue'}
+" Pack 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'for': 'vim'}
+" Pack 'rhysd/vim-gfm-syntax', {'type': 'opt', 'for': 'markdown'}
+" Pack 'rust-lang/rust.vim', {'type': 'opt', 'for': 'rust'}
+" Pack 'stephpy/vim-yaml', {'type': 'opt', 'for': ['yml', 'yaml']}
+Pack 'Shougo/junkfile.vim', {'type': 'opt', 'on': 'JunkfileOpen'}
+Pack 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'for': 'haskell'}
+Pack 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt', 'for': 'sql'}
+Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
+Pack 'dzeban/vim-log-syntax', {'type': 'opt', 'for': 'log'}
+Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
+Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
+Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
+Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
+Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
+Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
+Pack 'lambdalisue/gina.vim', {'type': 'opt', 'on': 'Gina'}
+Pack 'lifepillar/vim-solarized8', {'type': 'opt'}
+Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap'}
+Pack 'majutsushi/tagbar', {'type': 'opt', 'on': 'TagbarToggle'}
+Pack 'mattn/sonictemplate-vim', {'type': 'opt', 'on': 'Template'}
+Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
+Pack 'mechatroner/rainbow_csv', {'type': 'opt', 'for': 'csv'}
+Pack 'mhinz/vim-grepper', {'type': 'opt', 'on': ['Grepper', '<Plug>(GrepperOperator)']}
+Pack 'morhetz/gruvbox', {'type': 'opt'}
+Pack 'qpkorr/vim-renamer', {'type': 'opt', 'on': 'Renamer'}
+Pack 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
+Pack 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
+Pack 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
+Pack 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'for': 'rust'}
+Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
+Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
+Pack 'scrooloose/nerdtree', {'type': 'opt', 'on': ['NERDTreeToggle', 'NERDTreeFind']}
+Pack 'scrooloose/vim-slumlord', {'type': 'opt', 'for': 'plantuml'}
+Pack 'skanehira/translate.vim', {'type': 'opt', 'on': ['AutoTranslateModeToggle', '<Plug>(VTranslate)', '<Plug>(VTranslateBang)'], 'if': executable('gtran') && !has('nvim')}
+Pack 't9md/vim-choosewin', {'type': 'opt', 'on': ['<Plug>(choosewin)']}
+Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
+Pack 'twitvim/twitvim', {'type': 'opt', 'on': ['PosttoTwitter', 'CPosttoTwitter', 'BPosttoTwitter', 'FriendsTwitter', 'UserTwitter', 'MentionsTwitter', 'PublicTwitter', 'DMTwitter', 'SearchTwitter']}
+Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
+Pack 'tyru/caw.vim', {'type': 'opt', 'on': ['<Plug>(caw:prefix)', '<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)', '<Plug>(caw:hatpos:toggle)']}
