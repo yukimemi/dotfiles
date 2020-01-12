@@ -77,6 +77,7 @@ Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
 Pack 'scrooloose/nerdtree', {'type': 'opt', 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Pack 'scrooloose/vim-slumlord', {'type': 'opt', 'for': 'plantuml'}
+Pack 'skanehira/preview-markdown.vim', {'type': 'opt', 'on': 'PreviewMarkdown', 'if': executable('mdr') && !has('nvim')}
 Pack 'skanehira/translate.vim', {'type': 'opt', 'on': ['AutoTranslateModeToggle', '<Plug>(VTranslate)', '<Plug>(VTranslateBang)'], 'if': executable('gtran') && !has('nvim')}
 Pack 't9md/vim-choosewin', {'type': 'opt', 'on': ['<Plug>(choosewin)']}
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
