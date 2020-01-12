@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/12 12:19:57.
+" Last Change : 2020/01/12 12:37:52.
 " =============================================================================
 
 " Init: {{{1
@@ -576,6 +576,9 @@ elseif !has('nvim')
   let &t_SR .= "\e[3 q"
 endif
 
+" Color: {{{1
+silent! syntax enable
+
 " Highlight VCS conflict markers {{{2
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
@@ -632,8 +635,7 @@ else
   echom "No use plugin manager !"
 endif
 
-" Color: {{{1
-silent! syntax enable
+" Colorscheme: {{{1
 set background=dark
 silent! colorscheme gruvbox
 
