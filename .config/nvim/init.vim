@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/12 12:08:38.
+" Last Change : 2020/01/12 12:19:57.
 " =============================================================================
 
 " Init: {{{1
@@ -633,8 +633,8 @@ else
 endif
 
 " Color: {{{1
-syntax enable
+silent! syntax enable
 set background=dark
-colorscheme gruvbox
+silent! colorscheme gruvbox
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

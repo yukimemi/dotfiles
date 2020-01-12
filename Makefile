@@ -21,6 +21,8 @@ deploy: ## Create symlink to home directory
 	@mkdir -p $(HOME)/.local/bin > /dev/null 2>&1
 	@ln -sfnv $(DOTPATH)/etc/scripts $(HOME)/.local/bin/scripts
 	@mkdir -p $(HOME)/.local/share/fish > /dev/null 2>&1
+	@ln -sfnv $(DOTPATH)/.config/nvim ~/.vim
+	@ln -sfnv $(DOTPATH)/.config/nvim/init.vim ~/.vimrc
 	@ln -sfnv ~/GoogleDrive/.local/share/fish/fish_history ~/.local/share/fish/fish_history
 	@ln -sfnv ~/GoogleDrive/.z ~/.z
 
