@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/11 21:42:56.
+" Last Change : 2020/01/12 12:08:38.
 " =============================================================================
 
 " Init: {{{1
@@ -509,6 +509,7 @@ au MyAutoCmd CmdwinEnter * :silent! 1,$-50 delete _ | call cursor("$", 1)
 " Reload .vimrc automatically.
 au MyAutoCmd BufWritePost $MYVIMRC silent! nested source $MYVIMRC | redraw
 au MyAutoCmd BufWritePost $MYGVIMRC silent! nested source $MYGVIMRC | redraw
+au MyAutoCmd BufWritePost *.vim silent! nested source $MYVIMRC | redraw
 
 " Auto open cwindow.
 au MyAutoCmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) != 0 | copen | endif

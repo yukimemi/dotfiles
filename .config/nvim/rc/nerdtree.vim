@@ -1,1 +1,1 @@
-nnoremap [Space]v :<C-u>NERDTreeFind<CR>
+nnoremap [Space]v :<C-u>silent! NERDTreeFind<CR>

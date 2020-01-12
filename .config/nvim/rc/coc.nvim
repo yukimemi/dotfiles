@@ -128,7 +128,7 @@ nmap <Leader>bb <Plug>(coc-bookmark-toggle)
 nnoremap <Leader>bl :<C-u>CocList bookmark<CR>
 
 " coc-explorer {{{1
-nnoremap ge :<C-u>CocCommand explorer<CR>
+" nnoremap ge :<C-u>CocCommand explorer<CR>
 
 " coc-terminal {{{1
 nmap [Space]s <Plug>(coc-terminal-toggle)
