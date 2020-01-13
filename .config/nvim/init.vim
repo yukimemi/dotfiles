@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/13 22:15:43.
+" Last Change : 2020/01/14 01:19:26.
 " =============================================================================
 
 " Init: {{{1
@@ -575,7 +575,7 @@ endif
 silent! syntax enable
 
 " Highlight VCS conflict markers {{{2
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+" match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Hilight cursorline, cursorcolumn {{{2
 " https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472

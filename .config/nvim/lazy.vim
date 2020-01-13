@@ -1,5 +1,4 @@
 " Pack 'Konfekt/FastFold', {'type': 'lazy'}
-" Pack 'MaxMEllon/vim-shiny', {'type': 'lazy'}
 " Pack 'RRethy/vim-illuminate', {'type': 'lazy'}
 " Pack 'Shougo/neomru.vim', {'type': 'lazy'}
 " Pack 'Shougo/neosnippet-snippets', {'type': 'lazy'}
@@ -40,8 +39,8 @@
 " Pack 'unblevable/quick-scope', {'type': 'lazy'}
 " Pack 'vim-scripts/matchit.zip', {'type': 'lazy'}
 " Pack 'yami-beta/asyncomplete-omni.vim', {'type': 'lazy'}
-" Pack 'yuttie/comfortable-motion.vim', {'type': 'lazy', 'if': !g:is_windows}
 Pack 'LeafCage/yankround.vim', {'type': 'lazy'}
+Pack 'MaxMEllon/vim-shiny', {'type': 'lazy'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazy'}
 Pack 'Shougo/echodoc.vim', {'type': 'lazy'}
 Pack 'airblade/vim-rooter', {'type': 'lazy'}
@@ -71,6 +70,7 @@ Pack 'ntpeters/vim-better-whitespace', {'type': 'lazy'}
 Pack 'osyo-manga/vim-operator-blockwise', {'type': 'lazy'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazy'}
 Pack 'osyo-manga/vim-textobj-multiblock', {'type': 'lazy'}
+Pack 'rhysd/accelerated-jk', {'type': 'lazy'}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazy'}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazy', 'if': !g:is_windows}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
@@ -79,3 +79,4 @@ Pack 'tpope/vim-obsession', {'type': 'lazy'}
 Pack 'tpope/vim-repeat', {'type': 'lazy'}
 Pack 'tyru/open-browser.vim', {'type': 'lazy'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazy'}
+Pack 'yuttie/comfortable-motion.vim', {'type': 'lazy'}
