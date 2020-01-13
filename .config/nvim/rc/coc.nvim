@@ -1,3 +1,7 @@
+if !IsInstalled("autoload/coc.vim")
+  finish
+endif
+
 " coc {{{1
 " always show signcolumns
 set signcolumn=yes
@@ -8,6 +12,7 @@ let g:coc_global_extensions = [
       \ "coc-calc",
       \ "coc-css",
       \ "coc-docker",
+      \ "coc-emoji",
       \ "coc-explorer",
       \ "coc-fish",
       \ "coc-git",
@@ -29,6 +34,8 @@ let g:coc_global_extensions = [
       \ "coc-snippets",
       \ "coc-solargraph",
       \ "coc-sql",
+      \ "coc-syntax",
+      \ "coc-tag",
       \ "coc-terminal",
       \ "coc-tsserver",
       \ "coc-utils",
@@ -122,10 +129,10 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-k> <Plug>(coc-snippets-expand-jump)
 
 " coc-bookmark {{{1
-nmap <Leader>bj <Plug>(coc-bookmark-next)
-nmap <Leader>bk <Plug>(coc-bookmark-prev)
-nmap <Leader>bb <Plug>(coc-bookmark-toggle)
-nnoremap <Leader>bl :<C-u>CocList bookmark<CR>
+nmap [Space]bj <Plug>(coc-bookmark-next)
+nmap [Space]bk <Plug>(coc-bookmark-prev)
+nmap [Space]bb <Plug>(coc-bookmark-toggle)
+nnoremap [Space]bl :<C-u>CocList bookmark<CR>
 
 " coc-explorer {{{1
 " nnoremap ge :<C-u>CocCommand explorer<CR>

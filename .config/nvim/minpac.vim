@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2020/01/12 11:37:24.
+" Last Change : 2020/01/14 00:18:23.
 " =============================================================================
 
 " Plugin:
@@ -23,7 +23,12 @@ if has('vim_starting')
   endif
   execute 'set runtimepath^=' . fnamemodify(s:plugpac_dir, ':p')
   let g:plugpac_cfg_path = $VIM_PATH . '/rc'
+  let g:plugpac_lazy_source = 1
 endif
+
+function! IsInstalled(name) abort
+  return !empty(globpath(&pp, "pack/minpac/*/*/" . a:name))
+endfunction
 
 " Plugin list. {{{1
 call plugpac#begin()

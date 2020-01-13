@@ -1,6 +1,10 @@
+if !IsInstalled("autoload/yankround.vim")
+  finish
+endif
+
 nmap p <Plug>(yankround-p)
 nmap P <Plug>(yankround-P)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
-let g:yankround_max_history = 100
+let g:yankround_max_history = 1000
 

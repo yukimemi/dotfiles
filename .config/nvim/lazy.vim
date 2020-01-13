@@ -10,6 +10,8 @@
 " Pack 'cohama/lexima.vim', {'type': 'lazy'}
 " Pack 'dense-analysis/ale', {'type': 'lazy'}
 " Pack 'gko/vim-coloresque', {'type': 'lazy'}
+" Pack 'haya14busa/is.vim', {'type': 'lazy'}
+" Pack 'haya14busa/vim-operator-flashy', {'type': 'lazy'}
 " Pack 'hotwatermorning/auto-git-diff', {'type': 'lazy'}
 " Pack 'iyuuya/denite-ale', {'type': 'lazy'}
 " Pack 'jeffkreeftmeijer/vim-numbertoggle', {'type': 'lazy'}
@@ -22,6 +24,7 @@
 " Pack 'mattn/ctrlp-vimhelpjp', {'type': 'lazy'}
 " Pack 'mox-mox/vim-localsearch', {'type': 'lazy'}
 " Pack 'ompugao/ctrlp-history', {'type': 'lazy'}
+" Pack 'osyo-manga/vim-anzu', {'type': 'lazy'}
 " Pack 'osyo-manga/vim-jplus', {'type': 'lazy'}
 " Pack 'osyo-manga/vim-precious', {'type': 'lazy'}
 " Pack 'prabirshrestha/asyncomplete-buffer.vim', {'type': 'lazy'}
@@ -47,10 +50,8 @@ Pack 'editorconfig/editorconfig-vim', {'type': 'lazy'}
 Pack 'fuenor/qfixgrep', {'type': 'lazy'}
 Pack 'fuenor/qfixhowm', {'type': 'lazy'}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazy'}
-Pack 'haya14busa/is.vim', {'type': 'lazy'}
 Pack 'haya14busa/vim-asterisk', {'type': 'lazy'}
 Pack 'haya14busa/vim-edgemotion', {'type': 'lazy'}
-Pack 'haya14busa/vim-operator-flashy', {'type': 'lazy'}
 Pack 'honza/vim-snippets', {'type': 'lazy'}
 Pack 'itchyny/vim-cursorword', {'type': 'lazy'}
 Pack 'itchyny/vim-external', {'type': 'lazy'}
@@ -67,7 +68,6 @@ Pack 'ludovicchabant/vim-gutentags', {'type': 'lazy', 'if': executable('ctags')}
 Pack 'mattn/webapi-vim', {'type': 'lazy'}
 Pack 'neoclide/coc.nvim', {'type': 'lazy', 'branch': 'release', 'on': ['CocList', 'CocListResume']}
 Pack 'ntpeters/vim-better-whitespace', {'type': 'lazy'}
-Pack 'osyo-manga/vim-anzu', {'type': 'lazy'}
 Pack 'osyo-manga/vim-operator-blockwise', {'type': 'lazy'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazy'}
 Pack 'osyo-manga/vim-textobj-multiblock', {'type': 'lazy'}

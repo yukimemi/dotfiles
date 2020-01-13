@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/12 12:50:51.
+" Last Change : 2020/01/13 22:15:43.
 " =============================================================================
 
 " Init: {{{1
@@ -385,6 +385,8 @@ nnoremap <expr> l foldlevel(line('.')) ? "\<Right>zo" : "\<Right>"
 noremap <silent> gh ^
 noremap <silent> gl $
 
+nnoremap <silent> Y y$
+
 " For buffer.
 nnoremap <Tab> :<C-u>bn<CR>
 nnoremap <S-Tab> :<C-u>bp<CR>
@@ -429,13 +431,6 @@ vnoremap <silent> : q:A
 
 " Delete other line.
 nnoremap [Space]d :<C-u>call <SID>deleteOtherLine()<CR>
-
-" Update plugin.
-" nnoremap [Space]pu :<C-u>PlugUpdate \| PlugUpgrade<CR>
-nnoremap [Space]du :<C-u>call dein#update()<CR>
-" nnoremap [Space]du :<C-u>DeinUpdate<CR>
-nnoremap [Space]mu :<C-u>PackUpdate<CR>
-nnoremap [Space]pu :<C-u>PackagerUpdate<CR>
 
 " nohlsearch.
 nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
