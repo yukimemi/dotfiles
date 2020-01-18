@@ -10,11 +10,11 @@
 " Pack 'dense-analysis/ale', {'type': 'lazy'}
 " Pack 'gko/vim-coloresque', {'type': 'lazy'}
 " Pack 'haya14busa/is.vim', {'type': 'lazy'}
-" Pack 'haya14busa/vim-operator-flashy', {'type': 'lazy'}
 " Pack 'hotwatermorning/auto-git-diff', {'type': 'lazy'}
 " Pack 'iyuuya/denite-ale', {'type': 'lazy'}
 " Pack 'jeffkreeftmeijer/vim-numbertoggle', {'type': 'lazy'}
 " Pack 'kassio/neoterm', {'type': 'lazy', 'if': has('nvim')}
+" Pack 'machakann/vim-highlightedyank', {'type': 'lazy'}
 " Pack 'mox-mox/vim-localsearch', {'type': 'lazy'}
 " Pack 'osyo-manga/vim-anzu', {'type': 'lazy'}
 " Pack 'osyo-manga/vim-jplus', {'type': 'lazy'}
@@ -38,6 +38,7 @@ Pack 'fuenor/qfixhowm', {'type': 'lazy'}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazy'}
 Pack 'haya14busa/vim-asterisk', {'type': 'lazy'}
 Pack 'haya14busa/vim-edgemotion', {'type': 'lazy'}
+Pack 'haya14busa/vim-operator-flashy', {'type': 'lazy'}
 Pack 'honza/vim-snippets', {'type': 'lazy'}
 Pack 'itchyny/vim-cursorword', {'type': 'lazy'}
 Pack 'itchyny/vim-external', {'type': 'lazy'}
@@ -51,6 +52,7 @@ Pack 'kana/vim-textobj-line', {'type': 'lazy'}
 Pack 'kshenoy/vim-signature', {'type': 'lazy'}
 Pack 'lambdalisue/suda.vim', {'type': 'lazy'}
 Pack 'ludovicchabant/vim-gutentags', {'type': 'lazy', 'if': executable('ctags')}
+Pack 'markonm/traces.vim', {'type': 'lazy'}
 Pack 'mattn/webapi-vim', {'type': 'lazy'}
 Pack 'ntpeters/vim-better-whitespace', {'type': 'lazy'}
 Pack 'osyo-manga/vim-operator-blockwise', {'type': 'lazy'}
@@ -80,6 +82,7 @@ if 1
   Pack 'prabirshrestha/asyncomplete-buffer.vim'
   Pack 'prabirshrestha/asyncomplete-emoji.vim'
   Pack 'prabirshrestha/asyncomplete-file.vim'
+  Pack 'tsufeki/asyncomplete-fuzzy-match', {'do': '!cargo build --release', 'if': executable('cargo')}
   " Pack 'prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'lazy'}
   " Pack 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'lazy'}
   " Pack 'prabirshrestha/asyncomplete-tags.vim', {'type': 'lazy', 'if': !g:is_windows}

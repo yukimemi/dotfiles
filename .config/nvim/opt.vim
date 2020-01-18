@@ -61,6 +61,7 @@ Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(alt
 Pack 'lambdalisue/fila.vim', {'type': 'opt', 'on': 'Fila'}
 Pack 'lambdalisue/gina.vim', {'type': 'opt', 'on': 'Gina'}
 Pack 'lifepillar/vim-solarized8', {'type': 'opt'}
+Pack 'machakann/vim-colorscheme-snowtrek', {'type': 'opt'}
 Pack 'majutsushi/tagbar', {'type': 'opt', 'on': 'TagbarToggle'}
 Pack 'mattn/sonictemplate-vim', {'type': 'opt', 'on': 'Template'}
 Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
