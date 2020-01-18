@@ -1,103 +1,55 @@
-" asyncomplete.vim {{{1
-let g:asyncomplete_auto_popup = 1
-let g:asyncomplete_smart_completion = 1
-let g:asyncomplete_remove_duplicates = 1
-let g:asyncomplete_force_refresh_on_context_changed = 1
-imap <C-Space> <Plug>(asyncomplete_force_refresh)
-inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+if !IsInstalled("autoload/asyncomplete.vim")
+  finish
+endif
 
-" asyncomplete-buffer.vim {{{2
-au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-buffer.vim | call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+" asyncomplete-buffer.
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
       \ 'name': 'buffer',
       \ 'whitelist': ['*'],
-      \ 'priority': 1,
       \ 'completor': function('asyncomplete#sources#buffer#completor'),
+      \ 'config': {
+      \    'max_buffer_size': 5000000,
+      \  },
       \ }))
 
-" asyncomplete-file.vim {{{2
-au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-file.vim | call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+" asyncomplete-file.
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
       \ 'name': 'file',
       \ 'whitelist': ['*'],
-      \ 'priority': 1,
-      \ 'completor': function('asyncomplete#sources#file#completor'),
+      \ 'completor': function('asyncomplete#sources#file#completor')
       \ }))
 
-" asyncomplete-emoji.vim {{{2
-au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-emoji.vim | call asyncomplete#register_source(asyncomplete#sources#emoji#get_source_options({
+" asyncomplete-emoji.
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#emoji#get_source_options({
       \ 'name': 'emoji',
       \ 'whitelist': ['*'],
-      \ 'blacklist': ['rust'],
-      \ 'priority': 1,
       \ 'completor': function('asyncomplete#sources#emoji#completor'),
       \ }))
 
-" asyncomplete-tags.vim {{{2
-if executable('ctags')
-  au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-tags.vim | call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
-        \ 'name': 'tags',
-        \ 'whitelist': ['*'],
-        \ 'priority': 2,
-        \ 'completor': function('asyncomplete#sources#tags#completor'),
-        \ 'config': {
-        \    'max_file_size': 20000000,
-        \ }
-        \ }))
-endif
+let g:asyncomplete_auto_completeopt = 1
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_popup_delay = 200
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_text_edit_enabled = 1
 
-" asyncomplete-neosnippet.vim {{{2
-au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-neosnippet.vim | call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
-      \ 'name': 'neosnippet',
-      \ 'whitelist': ['*'],
-      \ 'priority': 3,
-      \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
-      \ }))
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
 
-" asyncomplete-necosyntax.vim {{{2
-au MyAutoCmd User asyncomplete_setup silent! packadd asyncomplete-necosyntax.vim | call asyncomplete#register_source(asyncomplete#sources#necosyntax#get_source_options({
-      \ 'name': 'necosyntax',
-      \ 'whitelist': ['*'],
-      \ 'priority': 4,
-      \ 'completor': function('asyncomplete#sources#necosyntax#completor'),
-      \ }))
-
-" asyncomplete-necovim.vim {{{2
-au MyAutoCmd FileType vim call <SID>asyncomplete_necovim_aft()
-function! s:asyncomplete_necovim_aft() abort
-  silent! packadd asyncomplete-necovim.vim
-  call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
-        \ 'name': 'necovim',
-        \ 'whitelist': ['vim'],
-        \ 'priority': 4,
-        \ 'completor': function('asyncomplete#sources#necovim#completor'),
-        \ }))
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+  setlocal completeopt+=preview
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <silent> gr <plug>(lsp-references)
+  nmap <silent> gi <plug>(lsp-implementation)
+  nmap <silent> K <plug>(lsp-hover)
+  nmap <silent> <Leader>s :<C-u>split \| :LspDefinition<CR>
+  nmap <silent> <Leader>v :<C-u>vsplit \| :LspDefinition<CR>
+  nmap <buffer> <f2> <plug>(lsp-rename)
 endfunction
 
-" vim-lsp. {{{2
-let g:lsp_signs_enabled = 1
-let g:lsp_auto_enable = 1
-let g:lsp_insert_text_enabled = 1
-let g:lsp_async_completion = 1
-let g:lsp_diagnostics_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1
+au MyAutoCmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 
-nmap <silent> gd <plug>(lsp-definition)
-nmap <silent> K <plug>(lsp-hover)
-nmap <silent> gr <plug>(lsp-references)
-nmap <silent> gi <plug>(lsp-implementation)
-nmap <silent> <Leader>s :<C-u>split \| :LspDefinition<CR>
-nmap <silent> <Leader>v :<C-u>vsplit \| :LspDefinition<CR>
-
-set foldmethod=expr
-  \ foldexpr=lsp#ui#vim#folding#foldexpr()
-  \ foldtext=lsp#ui#vim#folding#foldtext()
-
-" debug. {{{1
-if 0
-  call Mkdir(expand('~/.log/vim'))
-  let g:lsp_log_verbose = 1
-  let g:lsp_log_file = expand('~/.log/vim/vim-lsp.log')
-
-  " for asyncomplete.vim log
-  let g:asyncomplete_log_file = expand('~/.log/vim/asyncomplete.log')
-endif
+command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log') | let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 

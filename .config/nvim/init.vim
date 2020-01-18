@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/16 08:48:39.
+" Last Change : 2020/01/18 20:48:44.
 " =============================================================================
 
 " Init: {{{1
@@ -229,6 +229,7 @@ set nrformats& nrformats-=octal
 set pastetoggle=
 set scrolloff=3
 set shortmess=a
+set shortmess+=c
 " set switchbuf=useopen
 set textwidth=0
 set timeoutlen=3500
@@ -250,7 +251,9 @@ set infercase
 set wrapscan
 set incsearch
 set hlsearch
-set grepprg=jvgrep
+if executable('jvgrep')
+  set grepprg=jvgrep
+endif
 
 set noerrorbells
 set novisualbell

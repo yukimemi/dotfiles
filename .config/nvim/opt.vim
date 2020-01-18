@@ -61,7 +61,6 @@ Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(alt
 Pack 'lambdalisue/fila.vim', {'type': 'opt', 'on': 'Fila'}
 Pack 'lambdalisue/gina.vim', {'type': 'opt', 'on': 'Gina'}
 Pack 'lifepillar/vim-solarized8', {'type': 'opt'}
-Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap'}
 Pack 'majutsushi/tagbar', {'type': 'opt', 'on': 'TagbarToggle'}
 Pack 'mattn/sonictemplate-vim', {'type': 'opt', 'on': 'Template'}
 Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
@@ -84,3 +83,24 @@ Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'twitvim/twitvim', {'type': 'opt', 'on': ['PosttoTwitter', 'CPosttoTwitter', 'BPosttoTwitter', 'FriendsTwitter', 'UserTwitter', 'MentionsTwitter', 'PublicTwitter', 'DMTwitter', 'SearchTwitter']}
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
 Pack 'tyru/caw.vim', {'type': 'opt', 'on': ['<Plug>(caw:prefix)', '<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)', '<Plug>(caw:hatpos:toggle)']}
+
+
+if 0
+  Pack 'ctrlpvim/ctrlp.vim'
+  Pack 'kaneshin/ctrlp-filetype', {'type': 'opt', 'on': 'CtrlPFiletype'}
+  Pack 'kaneshin/ctrlp-memolist', {'type': 'opt', 'on': 'CtrlPMemolist'}
+  Pack 'kaneshin/ctrlp-sonictemplate', {'type': 'opt', 'on': 'CtrlPSonictemplate'}
+  Pack 'mattn/ctrlp-launcher', {'type': 'opt', 'on': 'CtrlPLauncher'}
+  Pack 'mattn/ctrlp-mark', {'type': 'opt', 'on': 'CtrlPMark'}
+  Pack 'mattn/ctrlp-vimhelpjp', {'type': 'opt', 'on': 'VimHelpJp'}
+  Pack 'mattn/ctrlp-ghq', {'type': 'opt', 'on': 'CtrlPGhq'}
+  Pack 'ompugao/ctrlp-history', {'type': 'opt', 'on': 'CtrlPCmdHistory'}
+  Pack 'FelikZ/ctrlp-py-matcher'
+elseif 0
+  Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap'}
+else
+  Pack 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all', 'if': !g:is_windows}
+  Pack 'junegunn/fzf', {'dir': '~/.fzf', 'if': g:is_windows}
+  Pack 'junegunn/fzf.vim'
+endif
+

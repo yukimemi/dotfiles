@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2019/05/06 23:01:40.
+# Last Change : 2020/01/18 20:51:55.
 # =============================================================================
 
 # For time. {{{1
@@ -115,7 +115,14 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export GSR_SHOW_AHEAD=1
 export GSR_SHOW_BEHIND=1
 
-export __FILTER_TOOL=peco
+export __FILTER_TOOL=fzf
+
+# fzf. {{{2
+if which fd > /dev/null 2>&1; then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+elif which rg > /dev/null 2>&1; then
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+fi
 
 # less settings. {{{2
 # export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
