@@ -14,3 +14,5 @@ fi
 
 # added by travis gem
 [ -f /Users/yukimemi/.travis/travis.sh ] && source /Users/yukimemi/.travis/travis.sh
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

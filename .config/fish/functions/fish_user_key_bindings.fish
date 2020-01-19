@@ -36,3 +36,5 @@ function fish_user_key_bindings
     bind ' ' '__gabbr_expand; commandline -i " "'
     ### global-abbreviation ###
 end
+
+fzf_key_bindings

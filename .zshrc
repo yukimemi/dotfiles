@@ -367,3 +367,5 @@ fi
 
 # vim:fdm=marker expandtab fdc=3 ft=zsh:
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

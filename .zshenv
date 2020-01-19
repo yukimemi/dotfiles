@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2020/01/19 10:39:32.
+# Last Change : 2020/01/19 14:49:09.
 # =============================================================================
 
 # For time. {{{1
@@ -114,6 +114,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 export GSR_SHOW_AHEAD=1
 export GSR_SHOW_BEHIND=1
+
+export VIM_CONFIG_PATH="${HOME}/.config/pack"
 
 export __FILTER_TOOL=fzf
 
