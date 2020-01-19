@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/01/18 18:02:00.
+# Last Change : 2020/01/19 10:41:26.
 # =============================================================================
 
 #
@@ -34,8 +34,8 @@ zplugin load junegunn/fzf-bin
 zplugin ice wait '0' lucid as'program' make'!' atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' src'zhook.zsh'
 zplugin light direnv/direnv
 
-zplugin ice wait '0' lucid as'program' pick'bin/anyenv' atclone'bin/anyenv init; echo ''eval "$(bin/anyenv init -)" > zhook.zsh''' atpull'!git reset --hard; %atclone' src'zhook.zsh'
-zplugin light anyenv/anyenv
+# zplugin ice wait '0' lucid as'program' pick'bin/anyenv' atclone'bin/anyenv init; echo ''eval "$(bin/anyenv init -)" > zhook.zsh''' atpull'!git reset --hard; %atclone' src'zhook.zsh'
+# zplugin light anyenv/anyenv
 
 #
 # for git. {{{2
@@ -341,6 +341,11 @@ zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
 zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEFAULT
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' group-name ''
+
+#
+# anyenv. {{{1
+#
+eval "$(anyenv init -)"
 
 #
 # starship. {{{1

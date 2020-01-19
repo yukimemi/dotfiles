@@ -51,6 +51,7 @@ Pack 'kana/vim-textobj-indent', {'type': 'lazy'}
 Pack 'kana/vim-textobj-line', {'type': 'lazy'}
 Pack 'kshenoy/vim-signature', {'type': 'lazy'}
 Pack 'lambdalisue/suda.vim', {'type': 'lazy'}
+" Pack 'lambdalisue/vim-pyenv', {'type': 'lazy'}
 Pack 'ludovicchabant/vim-gutentags', {'type': 'lazy', 'if': executable('ctags')}
 Pack 'markonm/traces.vim', {'type': 'lazy'}
 Pack 'mattn/webapi-vim', {'type': 'lazy'}

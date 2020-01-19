@@ -13,7 +13,7 @@ set -x GOPATH ~/.ghq
 
 # Rust. {{{2
 if type -q rustc
-    set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src >/dev/null ^&1
+  set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src >/dev/null ^&1
 end
 set -x RUST_LOG info
 
@@ -35,36 +35,36 @@ set -x VOLTPATH ~/.volt
 
 # Install anyenv. {{{1
 if not test -d ~/.anyenv
-    git clone https://github.com/riywo/anyenv ~/.anyenv
+  git clone https://github.com/riywo/anyenv ~/.anyenv
 end
 if not test -d ~/.anyenv/plugins/anyenv-update
-    mkdir -p ~/.anyenv/plugins > /dev/null ^&1
-    git clone https://github.com/znz/anyenv-update ~/.anyenv/plugins/anyenv-update
+  mkdir -p ~/.anyenv/plugins > /dev/null ^&1
+  git clone https://github.com/znz/anyenv-update ~/.anyenv/plugins/anyenv-update
 end
 
 # PATH. {{{2
 if not test -d ~/.local/bin
-    mkdir -p ~/.local/bin
+  mkdir -p ~/.local/bin
 end
 
 if test (count $fish_user_paths) -eq 0
-    set -U fish_user_paths
-    __add_fish_user_paths /usr/local/bin
-    __add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
-    __add_fish_user_paths /usr/local/opt/gnu-sed/libexec/gnubin
-    __add_fish_user_paths /home/linuxbrew/.linuxbrew/bin
-    __add_fish_user_paths ~/.cargo/bin
-    __add_fish_user_paths ~/.yarn/bin
-    __add_fish_user_paths ~/.linuxbrew/bin
-    __add_fish_user_paths ~/.yarn/bin
-    __add_fish_user_paths ~/.config/yarn/global/node_modules/.bin
-    __add_fish_user_paths ~/.local/bin
-    __add_fish_user_paths ~/.local/bin/scripts
-    __add_fish_user_paths ~/.local/google-cloud-sdk/bin
-    __add_fish_user_paths ~/.ghq/src/bitbucket.org/yukimemi/scripts
-    __add_fish_user_paths $GOPATH/bin
-    __add_fish_user_paths ~/.anyenv/bin
-    echo "Update fish_user_paths"
+  set -U fish_user_paths
+  __add_fish_user_paths /usr/local/bin
+  __add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
+  __add_fish_user_paths /usr/local/opt/gnu-sed/libexec/gnubin
+  __add_fish_user_paths /home/linuxbrew/.linuxbrew/bin
+  __add_fish_user_paths ~/.cargo/bin
+  __add_fish_user_paths ~/.yarn/bin
+  __add_fish_user_paths ~/.linuxbrew/bin
+  __add_fish_user_paths ~/.yarn/bin
+  __add_fish_user_paths ~/.config/yarn/global/node_modules/.bin
+  __add_fish_user_paths ~/.local/bin
+  __add_fish_user_paths ~/.local/bin/scripts
+  __add_fish_user_paths ~/.local/google-cloud-sdk/bin
+  __add_fish_user_paths ~/.ghq/src/bitbucket.org/yukimemi/scripts
+  __add_fish_user_paths $GOPATH/bin
+  __add_fish_user_paths ~/.anyenv/bin
+  echo "Update fish_user_paths"
 end
 
 # MANPATH. {{{2
@@ -73,21 +73,21 @@ set MANPATH /usr/local/opt/gnu-sed/libexec/gnuman $MANPATH
 
 ### Util functions. {{{1
 # function fish_right_prompt
-    # __nodenv_version
-    # __goenv_version
-    # __pyenv_version
-    # __rbenv_version
+# __nodenv_version
+# __goenv_version
+# __pyenv_version
+# __rbenv_version
 # end
 
 ### Alias. {{{1
 if type -q lsd
-    alias ls 'lsd'
+  alias ls 'lsd'
 else if type -q exa
-    alias ls 'exa'
+  alias ls 'exa'
 end
 if type -q bat
-    # alias cat 'bat'
-    abbr -a cat bat
+  # alias cat 'bat'
+  abbr -a cat bat
 end
 alias cp "cp -v"
 alias mv "mv -v"
@@ -116,9 +116,9 @@ abbr -a ghl __filter_command_ghq
 abbr -a gsrl __filter_command_gsr
 abbr -a j __filter_command_z
 if type -q gomi
-    abbr -a r __filter_command_gomi
+  abbr -a r __filter_command_gomi
 else
-    abbr -a r __filter_command_rm
+  abbr -a r __filter_command_rm
 end
 abbr -a rr __filter_command_rm_recurse
 abbr -a c __filter_command_cd
@@ -128,9 +128,9 @@ abbr -a e nvim
 abbr -a v vim
 abbr -a o open
 if type -q lsd
-    abbr -a tree 'lsd --tree'
+  abbr -a tree 'lsd --tree'
 else if typq -q exa
-    abbr -a tree 'exa -T'
+  abbr -a tree 'exa -T'
 end
 abbr -a et 'exiftool -api largefilesupport=1'
 
@@ -184,10 +184,10 @@ abbr -a ytm "youtube-dl -ixk --audio-format mp3"
 
 # Home-file {{{2
 if __isMac
-    abbr -a br 'brew-file brew'
-    abbr -a bre 'brew-file edit'
-    abbr -a bri 'brew-file brew install'
-    abbr -a brs 'brew-file brew search'
+  abbr -a br 'brew-file brew'
+  abbr -a bre 'brew-file edit'
+  abbr -a bri 'brew-file brew install'
+  abbr -a brs 'brew-file brew search'
 end
 
 # docker {{{2
@@ -205,17 +205,17 @@ set -g fish_key_bindings fish_vi_key_bindings
 ### Install plugin manager. {{{1
 # fresco.
 if not test -f ~/.cache/fresco/__fresco_install.fish
-    # mkdir -p ~/.cache/fresco >/dev/null ^&1
-    # curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o ~/.cache/fresco/__fresco_install.fish
-    # cat ~/.cache/fresco/__fresco_install.fish | fish
-    # exec fish -l
+  # mkdir -p ~/.cache/fresco >/dev/null ^&1
+  # curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o ~/.cache/fresco/__fresco_install.fish
+  # cat ~/.cache/fresco/__fresco_install.fish | fish
+  # exec fish -l
 end
 
 # fisherman.
 if not functions -q fisher
-    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
-    curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
-    fish -c fisher
+  set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+  curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+  fish -c fisher
 end
 
 ### Plugin settings. {{{1
@@ -231,16 +231,16 @@ set -U gabbr_config ~/.config/fish/.gabbr.config
 
 # Load anyenv. {{{1
 if type -q anyenv
-    status --is-interactive; and source (anyenv init -|psub)
+  status --is-interactive; and source (anyenv init -|psub)
 end
 
 # Load direnv. {{{1
 if type -q direnv
-    eval (direnv hook fish)
+  eval (direnv hook fish)
 end
 
 # Load starship. {{{1
 if type -q starship
-    eval (starship init fish)
+  starship init fish | source
 end
 
