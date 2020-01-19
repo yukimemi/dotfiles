@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/19 14:50:02.
+" Last Change : 2020/01/19 16:14:10.
 " =============================================================================
 
 " Init: {{{1
@@ -611,10 +611,10 @@ end
 " Plugin: {{{1
 let s:use_dein = 0
 let s:use_vimplug = 0
-let s:use_minpac = 0
+let s:use_minpac = 1
 let s:use_packager = 0
 let s:use_volt = 0
-let s:use_pack = 1
+let s:use_pack = 0
 
 if s:use_dein
   runtime! dein.vim
