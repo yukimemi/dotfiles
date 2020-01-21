@@ -68,11 +68,16 @@ Activate("C:\Program Files\sakura\sakura.exe")
 return
 
 ; for chrome
+; F11::
+; if FileExist("C:\Program Files\Google\Chrome\Application\chrome.exe")
+;   Activate("C:\Program Files\Google\Chrome\Application\chrome.exe")
+; else
+;   Activate("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
+; return
+
+; for Edge
 F11::
-if FileExist("C:\Program Files\Google\Chrome\Application\chrome.exe")
-  Activate("C:\Program Files\Google\Chrome\Application\chrome.exe")
-else
-  Activate("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
+Activate("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
 return
 
 ; for vivaldi
