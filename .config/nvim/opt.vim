@@ -44,6 +44,7 @@ endfunction
 " Pack 'pangloss/vim-javascript', {'type': 'opt', 'for': ['javascript', 'javascript.jsx']}
 " Pack 'posva/vim-vue', {'type': 'opt', 'for': 'vue'}
 " Pack 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'for': 'vim'}
+" Pack 'qpkorr/vim-renamer', {'type': 'opt', 'on': ['Renamer', '<Plug>RenamerStart']}
 " Pack 'rhysd/vim-gfm-syntax', {'type': 'opt', 'for': 'markdown'}
 " Pack 'rust-lang/rust.vim', {'type': 'opt', 'for': 'rust'}
 " Pack 'stephpy/vim-yaml', {'type': 'opt', 'for': ['yml', 'yaml']}
@@ -68,7 +69,6 @@ Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
 Pack 'mechatroner/rainbow_csv', {'type': 'opt', 'for': 'csv'}
 Pack 'mhinz/vim-grepper', {'type': 'opt', 'on': ['Grepper', '<Plug>(GrepperOperator)']}
 Pack 'morhetz/gruvbox', {'type': 'opt'}
-Pack 'qpkorr/vim-renamer', {'type': 'opt', 'on': 'Renamer'}
 Pack 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
 Pack 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
 Pack 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}

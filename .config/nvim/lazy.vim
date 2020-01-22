@@ -14,6 +14,7 @@
 " Pack 'iyuuya/denite-ale', {'type': 'lazy'}
 " Pack 'jeffkreeftmeijer/vim-numbertoggle', {'type': 'lazy'}
 " Pack 'kassio/neoterm', {'type': 'lazy', 'if': has('nvim')}
+" Pack 'lambdalisue/vim-pyenv', {'type': 'lazy'}
 " Pack 'machakann/vim-highlightedyank', {'type': 'lazy'}
 " Pack 'mox-mox/vim-localsearch', {'type': 'lazy'}
 " Pack 'osyo-manga/vim-anzu', {'type': 'lazy'}
@@ -51,7 +52,8 @@ Pack 'kana/vim-textobj-indent', {'type': 'lazy'}
 Pack 'kana/vim-textobj-line', {'type': 'lazy'}
 Pack 'kshenoy/vim-signature', {'type': 'lazy'}
 Pack 'lambdalisue/suda.vim', {'type': 'lazy'}
-" Pack 'lambdalisue/vim-pyenv', {'type': 'lazy'}
+Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazy'}
+Pack 'liuchengxu/vista.vim', {'type': 'lazy'}
 Pack 'ludovicchabant/vim-gutentags', {'type': 'lazy', 'if': executable('ctags')}
 Pack 'markonm/traces.vim', {'type': 'lazy'}
 Pack 'mattn/webapi-vim', {'type': 'lazy'}
@@ -62,6 +64,7 @@ Pack 'osyo-manga/vim-textobj-multiblock', {'type': 'lazy'}
 Pack 'rhysd/accelerated-jk', {'type': 'lazy'}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazy'}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazy', 'if': !g:is_windows}
+Pack 'thinca/vim-quickrun', {'type': 'lazy'}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
 Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazy', 'if': !g:is_windows && !has('nvim')}
 Pack 'tpope/vim-obsession', {'type': 'lazy'}
@@ -69,7 +72,6 @@ Pack 'tpope/vim-repeat', {'type': 'lazy'}
 Pack 'tyru/open-browser.vim', {'type': 'lazy'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazy'}
 Pack 'yuttie/comfortable-motion.vim', {'type': 'lazy'}
-
 
 if 1
   Pack 'prabirshrestha/async.vim'
