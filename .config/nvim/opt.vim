@@ -53,6 +53,7 @@ Pack 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent
 Pack 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt', 'for': 'sql'}
 Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
 Pack 'dzeban/vim-log-syntax', {'type': 'opt', 'for': 'log'}
+" Pack 'edkolev/tmuxline.vim', {'type': 'opt', 'on': ['Tmuxline', 'TmuxlineSnapshot']}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
@@ -84,7 +85,6 @@ Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'twitvim/twitvim', {'type': 'opt', 'on': ['PosttoTwitter', 'CPosttoTwitter', 'BPosttoTwitter', 'FriendsTwitter', 'UserTwitter', 'MentionsTwitter', 'PublicTwitter', 'DMTwitter', 'SearchTwitter']}
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
 Pack 'tyru/caw.vim', {'type': 'opt', 'on': ['<Plug>(caw:prefix)', '<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)', '<Plug>(caw:hatpos:toggle)']}
-
 
 if 0
   Pack 'ctrlpvim/ctrlp.vim'
