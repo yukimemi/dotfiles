@@ -4,6 +4,7 @@
 " Pack 'itchyny/vim-gitbranch'
 " Pack 'kopischke/vim-stay'
 " Pack 'lambdalisue/vim-findent'
+" Pack 'machakann/vim-colorscheme-kemonofriends'
 " Pack 'rhysd/committia.vim'
 Pack 'Yggdroot/indentLine'
 Pack 'itchyny/vim-parenmatch'

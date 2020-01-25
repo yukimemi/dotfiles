@@ -23,6 +23,7 @@ endfunction
 " Pack 'davidhalter/jedi-vim', {'type': 'opt', 'for': ['python']}
 " Pack 'eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod', 'if': executable('stack'), 'for': 'haskell'}
 " Pack 'eagletmt/neco-ghc', {'type': 'opt', 'for': 'haskell'}
+" Pack 'edkolev/tmuxline.vim', {'type': 'opt', 'on': ['Tmuxline', 'TmuxlineSnapshot']}
 " Pack 'ekalinin/Dockerfile.vim', {'type': 'opt', 'for': 'dockerfile'}
 " Pack 'fatih/vim-go', {'type': 'opt', 'for': 'go'}
 " Pack 'joshdick/onedark.vim', {'type': 'opt'}
@@ -45,15 +46,18 @@ endfunction
 " Pack 'posva/vim-vue', {'type': 'opt', 'for': 'vue'}
 " Pack 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'for': 'vim'}
 " Pack 'qpkorr/vim-renamer', {'type': 'opt', 'on': ['Renamer', '<Plug>RenamerStart']}
+" Pack 'rafi/awesome-vim-colorschemes', {'type': 'opt'}
 " Pack 'rhysd/vim-gfm-syntax', {'type': 'opt', 'for': 'markdown'}
 " Pack 'rust-lang/rust.vim', {'type': 'opt', 'for': 'rust'}
 " Pack 'stephpy/vim-yaml', {'type': 'opt', 'for': ['yml', 'yaml']}
 Pack 'Shougo/junkfile.vim', {'type': 'opt', 'on': 'JunkfileOpen'}
+Pack 'aereal/vim-colors-japanesque', {'type': 'opt'}
 Pack 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'for': 'haskell'}
+Pack 'arcticicestudio/nord-vim', {'type': 'opt'}
 Pack 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt', 'for': 'sql'}
+Pack 'cormacrelf/vim-colors-github', {'type': 'opt'}
 Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
 Pack 'dzeban/vim-log-syntax', {'type': 'opt', 'for': 'log'}
-" Pack 'edkolev/tmuxline.vim', {'type': 'opt', 'on': ['Tmuxline', 'TmuxlineSnapshot']}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
