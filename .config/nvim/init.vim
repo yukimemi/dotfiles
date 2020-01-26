@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/25 18:49:59.
+" Last Change : 2020/01/25 23:23:38.
 " =============================================================================
 
 " Init: {{{1
@@ -348,16 +348,93 @@ function! s:addHeaderJScript(flg)
     endif
     let i += 1
   endfor
-  " let s:basedir = expand("%:p:h") . "/../cmd/"
-  let s:basedir = expand("%:p:h") . "/"
-  let s:cmdFile = expand("%:p:t:r") . ".cmd"
-  call Mkdir(s:basedir)
-  call writefile(lines,  s:basedir . s:cmdFile, "b")
-  echo "Write " . s:basedir . expand("%:p:t:r") . ".cmd"
+  " let l:baseDir = expand("%:p:h") . "/../cmd/"
+  let l:baseDir = expand("%:p:h") . "/"
+  let l:cmdFile = expand("%:p:t:r") . ".cmd"
+  call Mkdir(l:baseDir)
+  call writefile(lines,  l:baseDir . l:cmdFile, "b")
+  echo "Write " . l:baseDir . expand("%:p:t:r") . ".cmd"
 endfunction
 au MyAutoCmd FileType javascript nnoremap <buffer> <expr><Leader>b <SID>addHeaderJScript(0)
 au MyAutoCmd FileType javascript nnoremap <buffer> <expr><Leader>m <SID>addHeaderJScript(1)
 au MyAutoCmd FileType javascript nnoremap <buffer> <expr><Leader>p <SID>addHeaderJScript(2)
+
+" PowerShell {{{2
+function! s:addHeaderPs1(pattern, verb)
+  setl fenc=cp932
+  setl ff=dos
+  let l:lines = []
+  if a:verb == 1
+    call add(l:lines, "@openfiles > nul 2>&1")
+    call add(l:lines, "@if %errorlevel% equ 0 goto :ALREADY_ADMIN_PRIVILEGE")
+    call add(l:lines, "@powershell.exe -Command Start-Process \"%~f0\" %* -verb runas")
+    call add(l:lines, "@exit /b %errorlevel%")
+    call add(l:lines, ":ALREADY_ADMIN_PRIVILEGE")
+  endif
+
+  let l:line = "@set __SCRIPTPATH=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass -InputFormat None "
+  if a:verb == 1
+    let l:line = l:line . "\"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 7})-join\\\"`n\\\");&$s\" %*"
+  else
+    let l:line = l:line . "\"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*"
+  endif
+  if a:pattern == 1
+  elseif a:pattern == 2
+    let l:line = l:line . "&@pause"
+  else
+    let l:line = l:line . "&@ping -n 30 localhost>nul"
+  endif
+  call add(l:lines, l:line)
+  call add(l:lines, "@exit /b %errorlevel%")
+  call extend(l:lines, readfile(expand("%")))
+  let i = 0
+  for line in l:lines
+    if len(l:lines) != (i + 1)
+      let l:lines[i] .= "\r"
+    endif
+    let i += 1
+  endfor
+  let l:baseDir = expand("%:p:h") . "/"
+  let l:cmdFile = expand("%:p:t:r") . ".cmd"
+  call Mkdir(l:baseDir)
+  call writefile(l:lines,  l:baseDir . l:cmdFile, "b")
+  echo "Write " . l:baseDir . l:cmdFile
+endfunction
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0, 0)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1, 0)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>p <SID>addHeaderPs1(2, 0)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>ab <SID>addHeaderPs1(0, 1)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>am <SID>addHeaderPs1(1, 1)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>ap <SID>addHeaderPs1(2, 1)
+au MyAutoCmd BufNew,BufRead *.ps1 setl fdm=syntax
+
+" dosbatch {{{2
+function! s:addHeaderBat(pattern, verb)
+  setl fenc=cp932
+  setl ff=dos
+  let l:lines = []
+  if a:verb == 1
+    call add(l:lines, "@openfiles > nul 2>&1")
+    call add(l:lines, "@if %errorlevel% equ 0 goto :ALREADY_ADMIN_PRIVILEGE")
+    call add(l:lines, "@powershell.exe -Command Start-Process \"%~f0\" %* -verb runas")
+    call add(l:lines, "@exit /b %errorlevel%")
+    call add(l:lines, ":ALREADY_ADMIN_PRIVILEGE")
+  endif
+  call extend(l:lines, readfile(expand("%")))
+  let i = 0
+  for line in l:lines
+    if len(l:lines) != (i + 1)
+      let l:lines[i] .= "\r"
+    endif
+    let i += 1
+  endfor
+  let l:baseDir = expand("%:p:h") . "/"
+  let l:cmdFile = expand("%:p:t:r") . "_admin." . expand("%:e")
+  call Mkdir(l:baseDir)
+  call writefile(l:lines,  l:baseDir . l:cmdFile, "b")
+  echo "Write " . l:baseDir . l:cmdFile
+endfunction
+au MyAutoCmd FileType dosbatch nnoremap <buffer> <expr><Leader>a <SID>addHeaderBat(0, 1)
 
 
 " Mapping: {{{1

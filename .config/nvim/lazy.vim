@@ -74,7 +74,7 @@ Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
 Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 
-if 1
+if 0
   Pack 'prabirshrestha/async.vim'
   Pack 'prabirshrestha/asyncomplete-lsp.vim'
   Pack 'prabirshrestha/asyncomplete.vim'
