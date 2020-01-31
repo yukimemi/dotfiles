@@ -22,7 +22,6 @@ let g:airline#extensions#tabline#switch_buffers_and_tabs = 0
 let g:airline#extensions#whitespace#enabled = 1
 
 " theme
-" let g:airline_theme = 'spring_night'
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'spring_night'
 let g:airline_solarized_bg = 'dark'
 

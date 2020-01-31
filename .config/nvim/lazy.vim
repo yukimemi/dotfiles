@@ -69,7 +69,7 @@ Pack 'rhysd/accelerated-jk', {'type': 'lazyall'}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'thinca/vim-quickrun', {'type': 'lazyall'}
-Pack 'thinca/vim-submode', {'type': 'lazyall'}
+Pack 'thinca/vim-submode', {'type': 'lazy'}
 Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windows && !has('nvim')}
 Pack 'tpope/vim-obsession', {'type': 'lazyall'}
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}

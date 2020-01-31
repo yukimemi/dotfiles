@@ -78,7 +78,8 @@ Pack 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
 Pack 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
 Pack 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
 Pack 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'for': 'rust'}
-Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
+" Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
+Pack 'rhysd/vim-color-spring-night'
 Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
 Pack 'scrooloose/vim-slumlord', {'type': 'opt', 'for': 'plantuml'}
 Pack 'skanehira/preview-markdown.vim', {'type': 'opt', 'on': 'PreviewMarkdown', 'if': executable('mdr') && !has('nvim')}
