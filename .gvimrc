@@ -4,8 +4,7 @@ set guioptions=
 
 " color
 set background=dark
-colorscheme gruvbox
-" colorscheme SpaceVim
+colorscheme spring-night
 
 " font
 set gfn=Cica:h10:cSHIFTJIS:qDRAFT

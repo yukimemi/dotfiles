@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/30 15:43:31.
+" Last Change : 2020/02/01 04:41:47.
 " =============================================================================
 
 " Init: {{{1
@@ -295,10 +295,6 @@ set pumheight=13
 set viminfo='1000
 
 " terminal {{{2
-if g:is_windows
-  set termencoding=cp932
-endif
-
 
 " Command: {{{1
 " Diff original.
