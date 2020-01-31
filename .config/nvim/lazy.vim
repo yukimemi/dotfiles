@@ -29,6 +29,7 @@
 " Pack 'thinca/vim-localrc', {'type': 'lazyall'}
 " Pack 'unblevable/quick-scope', {'type': 'lazyall'}
 " Pack 'vim-scripts/matchit.zip', {'type': 'lazyall'}
+" Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
@@ -57,11 +58,13 @@ Pack 'lambdalisue/suda.vim', {'type': 'lazyall'}
 Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
+Pack 'mattn/vim-lexiv', {'type': 'lazyall'}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'ntpeters/vim-better-whitespace', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-blockwise', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-textobj-multiblock', {'type': 'lazyall'}
+Pack 'psliwka/vim-smoothie', {'type': 'lazyall'}
 Pack 'rhysd/accelerated-jk', {'type': 'lazyall'}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
@@ -72,7 +75,7 @@ Pack 'tpope/vim-obsession', {'type': 'lazyall'}
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
-Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
+Pack 'wellle/context.vim', {'type': 'lazyall'}
 
 if 1
   Pack 'prabirshrestha/async.vim'

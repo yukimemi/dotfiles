@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/01/25 23:23:38.
+" Last Change : 2020/01/30 15:43:31.
 " =============================================================================
 
 " Init: {{{1
@@ -292,6 +292,14 @@ set pumheight=13
 " set foldclose=all
 " set t_Co=256
 
+set viminfo='1000
+
+" terminal {{{2
+if g:is_windows
+  set termencoding=cp932
+endif
+
+
 " Command: {{{1
 " Diff original.
 com! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
@@ -473,8 +481,8 @@ nnoremap <silent><C-h> gT
 
 " Benri scroll.
 " http://itchyny.hatenablog.com/entry/2016/02/02/210000
-noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('.') < 1         + winheight(0) ? 'H' : 'L')
-noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('.') > line('$') - winheight(0) ? 'L' : 'H')
+" noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('.') < 1         + winheight(0) ? 'H' : 'L')
+" noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('.') > line('$') - winheight(0) ? 'L' : 'H')
 noremap <expr> <C-y> (line('w0') <= 1         ? 'k' : "\<C-y>")
 noremap <expr> <C-e> (line('w$') >= line('$') ? 'j' : "\<C-e>")
 
