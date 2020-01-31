@@ -31,10 +31,10 @@ function fish_user_key_bindings
     bind -M insert '<' '__gabbr_expand; commandline -i "<"'
     bind -M insert '(' '__gabbr_expand; commandline -i "("'
     bind -M insert ')' '__gabbr_expand; commandline -i ")"'
+    bind -M insert \cj '__gabbr_expand; commandline -f execute'
+    bind -M insert \cm '__gabbr_expand; commandline -f execute'
+    bind -M insert \r  '__gabbr_expand; commandline -f execute'
 
-    ### global-abbreviation ###
-    bind ' ' '__gabbr_expand; commandline -i " "'
-    ### global-abbreviation ###
 end
 
 fzf_key_bindings
