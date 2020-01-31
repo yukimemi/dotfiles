@@ -20,6 +20,7 @@ set -x RUST_LOG info
 # GSR. {{{2
 set -x GSR_SHOW_AHEAD 1
 set -x GSR_SHOW_BEHIND 1
+set -x FZF_DEFAULT_OPTS "--no-sort"
 
 # volt. {{{2
 set -x VOLTPATH ~/.volt
@@ -231,8 +232,13 @@ set SPACEFISH_CHAR_SYMBOL "→ "
 set -U gabbr_config ~/.config/fish/.gabbr.config
 
 # Load anyenv. {{{1
-if type -q anyenv
-  status --is-interactive; and source (anyenv init -|psub)
+# if type -q anyenv
+  # status --is-interactive; and source (anyenv init -|psub)
+# end
+
+# Load asdf. {{{1
+if test -d ~/.asdf
+  source ~/.asdf/asdf.fish
 end
 
 # Load direnv. {{{1

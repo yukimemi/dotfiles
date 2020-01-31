@@ -16,6 +16,7 @@
 " Pack 'jeffkreeftmeijer/vim-numbertoggle', {'type': 'lazyall'}
 " Pack 'kassio/neoterm', {'type': 'lazyall', 'if': has('nvim')}
 " Pack 'lambdalisue/vim-pyenv', {'type': 'lazyall'}
+" Pack 'ludovicchabant/vim-gutentags', {'type': 'lazyall', 'if': executable('ctags')}
 " Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
 " Pack 'mox-mox/vim-localsearch', {'type': 'lazyall'}
 " Pack 'osyo-manga/vim-anzu', {'type': 'lazyall'}
@@ -55,7 +56,6 @@ Pack 'kshenoy/vim-signature', {'type': 'lazyall'}
 Pack 'lambdalisue/suda.vim', {'type': 'lazyall'}
 Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
-Pack 'ludovicchabant/vim-gutentags', {'type': 'lazyall', 'if': executable('ctags')}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'ntpeters/vim-better-whitespace', {'type': 'lazyall'}
@@ -74,7 +74,7 @@ Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
 Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 
-if 0
+if 1
   Pack 'prabirshrestha/async.vim'
   Pack 'prabirshrestha/asyncomplete-lsp.vim'
   Pack 'prabirshrestha/asyncomplete.vim'

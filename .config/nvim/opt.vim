@@ -33,7 +33,6 @@ endfunction
 " Pack 'keremc/asyncomplete-racer.vim', {'type': 'opt', 'for': 'rust', 'if': !executable('rls')}
 " Pack 'kristijanhusak/vim-hybrid-material', {'type': 'opt'}
 " Pack 'kylef/apiblueprint.vim', {'type': 'opt', 'for': 'apiblueprint'}
-" Pack 'lambdalisue/fila.vim', {'type': 'opt', 'on': 'Fila'}
 " Pack 'leafgarland/typescript-vim', {'type': 'opt', 'for': ['typescript', 'typescript.tsx']}
 " Pack 'mattn/favstar-vim', {'type': 'opt'}
 " Pack 'mattn/gist-vim', {'type': 'opt', 'on': 'Gist'}
@@ -49,6 +48,7 @@ endfunction
 " Pack 'rafi/awesome-vim-colorschemes', {'type': 'opt'}
 " Pack 'rhysd/vim-gfm-syntax', {'type': 'opt', 'for': 'markdown'}
 " Pack 'rust-lang/rust.vim', {'type': 'opt', 'for': 'rust'}
+" Pack 'scrooloose/nerdtree', {'type': 'opt', 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 " Pack 'stephpy/vim-yaml', {'type': 'opt', 'for': ['yml', 'yaml']}
 Pack 'Shougo/junkfile.vim', {'type': 'opt', 'on': 'JunkfileOpen'}
 Pack 'aereal/vim-colors-japanesque', {'type': 'opt'}
@@ -64,7 +64,7 @@ Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
 Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
 Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
-Pack 'lambdalisue/fila.vim', {'type': 'opt', 'on': 'Fila'}
+Pack 'lambdalisue/fern.vim', {'type': 'opt', 'on': 'Fern'}
 Pack 'lambdalisue/gina.vim', {'type': 'opt', 'on': 'Gina'}
 Pack 'lifepillar/vim-solarized8', {'type': 'opt'}
 Pack 'machakann/vim-colorscheme-snowtrek', {'type': 'opt'}
@@ -80,7 +80,6 @@ Pack 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
 Pack 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'for': 'rust'}
 Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
-Pack 'scrooloose/nerdtree', {'type': 'opt', 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Pack 'scrooloose/vim-slumlord', {'type': 'opt', 'for': 'plantuml'}
 Pack 'skanehira/preview-markdown.vim', {'type': 'opt', 'on': 'PreviewMarkdown', 'if': executable('mdr') && !has('nvim')}
 Pack 'skanehira/translate.vim', {'type': 'opt', 'on': ['AutoTranslateModeToggle', '<Plug>(VTranslate)', '<Plug>(VTranslateBang)'], 'if': executable('gtran') && !has('nvim')}
