@@ -6,6 +6,7 @@
 " Pack 'Shougo/neosnippet.vim', {'type': 'lazyall'}
 " Pack 'Shougo/vimproc.vim', {'type': 'lazyall', 'do': 'silent! !make'}
 " Pack 'TaDaa/vimade', {'type': 'lazyall'}
+" Pack 'airblade/vim-rooter', {'type': 'lazyall'}
 " Pack 'bfredl/nvim-miniyank', {'type': 'lazyall'}
 " Pack 'cohama/lexima.vim', {'type': 'lazyall'}
 " Pack 'dense-analysis/ale', {'type': 'lazyall'}
@@ -34,7 +35,6 @@ Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
 Pack 'airblade/vim-gitgutter', {'type': 'lazyall'}
-Pack 'airblade/vim-rooter', {'type': 'lazyall'}
 Pack 'andymass/vim-matchup', {'type': 'lazyall'}
 Pack 'editorconfig/editorconfig-vim', {'type': 'lazyall'}
 Pack 'fuenor/qfixgrep', {'type': 'lazyall'}
@@ -54,10 +54,14 @@ Pack 'kana/vim-textobj-function', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kshenoy/vim-signature', {'type': 'lazyall'}
+Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
+Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
+Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
 Pack 'lambdalisue/suda.vim', {'type': 'lazyall'}
 Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
+Pack 'mattn/vim-findroot', {'type': 'lazyall'}
 Pack 'mattn/vim-lexiv', {'type': 'lazyall'}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'ntpeters/vim-better-whitespace', {'type': 'lazyall'}

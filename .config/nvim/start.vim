@@ -10,6 +10,7 @@ Pack 'Yggdroot/indentLine'
 Pack 'itchyny/vim-parenmatch'
 Pack 'kana/vim-operator-user'
 Pack 'kana/vim-textobj-user'
+Pack 'lambdalisue/fern.vim'
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'roxma/nvim-yarp', {'if': !has('nvim')}

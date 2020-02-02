@@ -35,7 +35,6 @@ endfunction
 " Pack 'kylef/apiblueprint.vim', {'type': 'opt', 'for': 'apiblueprint'}
 " Pack 'leafgarland/typescript-vim', {'type': 'opt', 'for': ['typescript', 'typescript.tsx']}
 " Pack 'mattn/favstar-vim', {'type': 'opt'}
-" Pack 'mattn/gist-vim', {'type': 'opt', 'on': 'Gist'}
 " Pack 'mattn/qiita-vim', {'type': 'opt', 'on': 'Qiita'}
 " Pack 'nelstrom/vim-markdown-folding', {'type': 'opt', 'for': 'markdown'}
 " Pack 'neovimhaskell/haskell-vim', {'type': 'opt', 'for': ['haskell', 'cabal']}
@@ -46,6 +45,7 @@ endfunction
 " Pack 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'for': 'vim'}
 " Pack 'qpkorr/vim-renamer', {'type': 'opt', 'on': ['Renamer', '<Plug>RenamerStart']}
 " Pack 'rafi/awesome-vim-colorschemes', {'type': 'opt'}
+" Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 " Pack 'rhysd/vim-gfm-syntax', {'type': 'opt', 'for': 'markdown'}
 " Pack 'rust-lang/rust.vim', {'type': 'opt', 'for': 'rust'}
 " Pack 'scrooloose/nerdtree', {'type': 'opt', 'on': ['NERDTreeToggle', 'NERDTreeFind']}
@@ -64,12 +64,12 @@ Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
 Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
 Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
-Pack 'lambdalisue/fern.vim', {'type': 'opt', 'on': 'Fern'}
 Pack 'lambdalisue/gina.vim', {'type': 'opt', 'on': 'Gina'}
 Pack 'lifepillar/vim-solarized8', {'type': 'opt'}
 Pack 'machakann/vim-colorscheme-snowtrek', {'type': 'opt'}
 Pack 'majutsushi/tagbar', {'type': 'opt', 'on': 'TagbarToggle'}
-Pack 'mattn/sonictemplate-vim', {'type': 'opt', 'on': 'Template'}
+Pack 'mattn/vim-gist', {'type': 'opt', 'on': 'Gist'}
+Pack 'mattn/vim-sonictemplate', {'type': 'opt', 'on': 'Template'}
 Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
 Pack 'mechatroner/rainbow_csv', {'type': 'opt', 'for': 'csv'}
 Pack 'mhinz/vim-grepper', {'type': 'opt', 'on': ['Grepper', '<Plug>(GrepperOperator)']}
@@ -78,7 +78,6 @@ Pack 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
 Pack 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
 Pack 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
 Pack 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'for': 'rust'}
-" Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pack 'rhysd/vim-color-spring-night'
 Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
 Pack 'scrooloose/vim-slumlord', {'type': 'opt', 'for': 'plantuml'}
