@@ -16,7 +16,6 @@ endfunction
 " Pack 'aklt/plantuml-syntax', {'type': 'opt', 'for': 'plantuml'}
 " Pack 'basyura/TweetVim', {'type': 'opt', 'on': ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay']}
 " Pack 'basyura/bitly.vim', {'type': 'opt'}
-" Pack 'basyura/twibill.vim', {'type': 'opt'}
 " Pack 'cespare/vim-toml', {'type': 'opt', 'for': 'toml'}
 " Pack 'cocopon/iceberg.vim', {'type': 'opt'}
 " Pack 'dag/vim-fish', {'type': 'opt', 'for': 'fish'}
@@ -85,7 +84,6 @@ Pack 'skanehira/preview-markdown.vim', {'type': 'opt', 'on': 'PreviewMarkdown', 
 Pack 'skanehira/translate.vim', {'type': 'opt', 'on': ['AutoTranslateModeToggle', '<Plug>(VTranslate)', '<Plug>(VTranslateBang)'], 'if': executable('gtran') && !has('nvim')}
 Pack 't9md/vim-choosewin', {'type': 'opt', 'on': ['<Plug>(choosewin)']}
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
-Pack 'twitvim/twitvim', {'type': 'opt', 'on': ['PosttoTwitter', 'CPosttoTwitter', 'BPosttoTwitter', 'FriendsTwitter', 'UserTwitter', 'MentionsTwitter', 'PublicTwitter', 'DMTwitter', 'SearchTwitter']}
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
 Pack 'tyru/caw.vim', {'type': 'opt', 'on': ['<Plug>(caw:prefix)', '<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)', '<Plug>(caw:hatpos:toggle)']}
 

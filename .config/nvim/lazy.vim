@@ -7,6 +7,7 @@
 " Pack 'Shougo/vimproc.vim', {'type': 'lazyall', 'do': 'silent! !make'}
 " Pack 'TaDaa/vimade', {'type': 'lazyall'}
 " Pack 'airblade/vim-rooter', {'type': 'lazyall'}
+" Pack 'basyura/twibill.vim', {'type': 'lazyall'}
 " Pack 'bfredl/nvim-miniyank', {'type': 'lazyall'}
 " Pack 'cohama/lexima.vim', {'type': 'lazyall'}
 " Pack 'dense-analysis/ale', {'type': 'lazyall'}
@@ -77,6 +78,7 @@ Pack 'thinca/vim-submode', {'type': 'lazy'}
 Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windows && !has('nvim')}
 Pack 'tpope/vim-obsession', {'type': 'lazyall'}
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}
+Pack 'twitvim/twitvim', {'type': 'lazyall'}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
 Pack 'wellle/context.vim', {'type': 'lazyall'}
