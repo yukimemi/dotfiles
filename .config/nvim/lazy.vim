@@ -59,7 +59,7 @@ Pack 'kshenoy/vim-signature', {'type': 'lazyall'}
 Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
 Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
 Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
-Pack 'lambdalisue/suda.vim', {'type': 'lazyall'}
+Pack 'lambdalisue/suda.vim', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
