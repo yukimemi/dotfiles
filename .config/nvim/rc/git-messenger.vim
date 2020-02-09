@@ -1,1 +1,1 @@
-nmap [Space]gm <Plug>(git-messenger)
+nmap <space>gm <Plug>(git-messenger)

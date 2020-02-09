@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2019/12/29 17:41:16.
+# Last Change : 2020/02/09 18:24:19.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -764,13 +764,13 @@ function! s:sbt_run() "{{{2
 endfunction
 
 function! s:vimrc_scala() "{{{2
-  nnoremap <buffer> [Space]m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
+  nnoremap <buffer> <space>m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
 endfunction
 
 augroup vimrc_scala "{{{2
   autocmd!
   au FileType scala call s:vimrc_scala()
-  au FileType scala nnoremap <buffer> [Space]st :<C-u>StartSBT<Cr>
+  au FileType scala nnoremap <buffer> <space>st :<C-u>StartSBT<Cr>
 augroup END
 '''
 

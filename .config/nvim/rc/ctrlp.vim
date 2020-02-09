@@ -16,30 +16,20 @@ nnoremap <silent> scm :<C-u>CtrlPMark<CR>
 " nnoremap <silent> scl :<C-u>CtrlPLine<CR>
 " nnoremap <silent> scg :<C-u>CtrlPChange<CR>
 nnoremap <silent> scf :<C-u>CtrlPFiletype<CR>
-" nnoremap <silent> scl :<C-u>CtrlPLauncher<CR>
+nnoremap <silent> scc :<C-u>CtrlPLauncher<CR>
 nnoremap <silent> sct :<C-u>packadd sonictemplate-vim \| CtrlPSonictemplate<CR>
 nnoremap <silent> sch :<C-u>CtrlPCmdHistory<CR>
 nnoremap <silent> scl :<C-u>CtrlPMemolist<CR>
 nnoremap <silent> scg :<C-u>CtrlP ~/.ghq/src<CR>
-
-" if executable('rg')
-"   let g:ctrlp_user_command ='rg -F --files %s'
-" endif
-
-" if executable('jvgrep')
-"   let g:ctrlp_user_command = 'cd %s && jvgrep "" -i -r --no-color -l ./**/*'
-" endif
+nnoremap <silent> scG :<C-u>CtrlPGhq<CR>
 
 if executable('files')
-  let g:ctrlp_user_command = 'files -A -a %s'
+  let g:ctrlp_user_command = 'files -a %s'
 endif
 
-if has('python') || has('python2') || has('python3')
-  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-endif
+" if has('python') || has('python2') || has('python3')
+"   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+" endif
 
-" ctrlp ghq.
-let g:ctrlp_ghq_actions = [
-      \ {"label": "Open", "action": "e", "path": 1},
-      \ {"label": "Look", "action": "!ghq look", "path": 0},
-      \ ]
+" ctrlp-ghq
+let g:ctrlp_ghq_cache_enabled = 1

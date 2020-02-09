@@ -107,8 +107,8 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " coc-list {{{1
 nnoremap <silent> <Space><Space> :<C-u>CocList<CR>
-nnoremap <silent> [Space]cg :<C-u>CocList files --hidden ~/.ghq/src<CR>
-nnoremap <silent> [Space]r :<C-u>CocListResume<CR>
+nnoremap <silent> <space>cg :<C-u>CocList files --hidden ~/.ghq/src<CR>
+nnoremap <silent> <space>r :<C-u>CocListResume<CR>
 
 
 " coc-snippet {{{1
@@ -128,18 +128,18 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-k> <Plug>(coc-snippets-expand-jump)
 
 " coc-bookmark {{{1
-nmap [Space]bj <Plug>(coc-bookmark-next)
-nmap [Space]bk <Plug>(coc-bookmark-prev)
-nmap [Space]bb <Plug>(coc-bookmark-toggle)
-nnoremap [Space]bl :<C-u>CocList bookmark<CR>
+nmap <space>bj <Plug>(coc-bookmark-next)
+nmap <space>bk <Plug>(coc-bookmark-prev)
+nmap <space>bb <Plug>(coc-bookmark-toggle)
+nnoremap <space>bl :<C-u>CocList bookmark<CR>
 
 " coc-explorer {{{1
 " nnoremap ge :<C-u>CocCommand explorer<CR>
 
 " coc-terminal {{{1
-nmap [Space]s <Plug>(coc-terminal-toggle)
+nmap <space>s <Plug>(coc-terminal-toggle)
 
 " coc-yank {{{1
-nnoremap <silent> [Space]y :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

@@ -1,6 +1,6 @@
 if !g:is_windows && has("python3")
-  " nnoremap [Space]v :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
-  " nnoremap <silent> [Space]v :<C-u>Defx -listed -resume -buffer-name=tab`tabpagenr()`<CR>
+  " nnoremap <space>v :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
+  " nnoremap <silent> <space>v :<C-u>Defx -listed -resume -buffer-name=tab`tabpagenr()`<CR>
 endif
 au MyAutoCmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort

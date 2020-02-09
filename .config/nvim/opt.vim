@@ -10,7 +10,6 @@ endfunction
 " Pack 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'for': 'cs'}
 " Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
 " Pack 'Shougo/defx.nvim', {'type': 'opt', 'on': 'Defx', 'do': 'silent! UpdateRemotePlugins', 'if': !g:is_windows}
-" Pack 'Shougo/denite.nvim', {'type': 'opt', 'on': 'Denite', 'do': 'silent! UpdateRemotePlugins', 'if': has('python3')}
 " Pack 'Shougo/neco-vim', {'type': 'opt', 'for': 'vim'}
 " Pack 'Vimjas/vim-python-pep8-indent', {'type': 'opt', 'for': 'python'}
 " Pack 'aklt/plantuml-syntax', {'type': 'opt', 'for': 'plantuml'}
@@ -67,6 +66,7 @@ Pack 'lambdalisue/gina.vim', {'type': 'opt', 'on': 'Gina'}
 Pack 'lifepillar/vim-solarized8', {'type': 'opt'}
 Pack 'machakann/vim-colorscheme-snowtrek', {'type': 'opt'}
 Pack 'majutsushi/tagbar', {'type': 'opt', 'on': 'TagbarToggle'}
+Pack 'mattn/benchvimrc-vim', {'type': 'opt', 'on': 'BenchVimrc'}
 Pack 'mattn/vim-gist', {'type': 'opt', 'on': 'Gist'}
 Pack 'mattn/vim-sonictemplate', {'type': 'opt', 'on': 'Template'}
 Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
@@ -97,12 +97,24 @@ if 0
   Pack 'mattn/ctrlp-vimhelpjp', {'type': 'opt', 'on': 'VimHelpJp'}
   Pack 'mattn/ctrlp-ghq', {'type': 'opt', 'on': 'CtrlPGhq'}
   Pack 'ompugao/ctrlp-history', {'type': 'opt', 'on': 'CtrlPCmdHistory'}
-  Pack 'FelikZ/ctrlp-py-matcher'
+  " Pack 'FelikZ/ctrlp-py-matcher'
 elseif 0
   Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap'}
-else
+elseif 0
   Pack 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all', 'if': !g:is_windows}
   Pack 'junegunn/fzf', {'dir': '~/.fzf', 'if': g:is_windows}
   Pack 'junegunn/fzf.vim'
+  Pack 'yuki-ycino/fzf-preview.vim'
+  Pack 'MattesGroeger/vim-bookmarks', {'type': 'lazyall'}
+  Pack 'Shougo/neomru.vim'
+  Pack 'bogado/file-line', {'type': 'lazyall'}
+elseif 0
+  Pack 'mattn/vim-fz', {'do': '!go get github.com/mattn/gof'}
+  Pack 'mattn/vim-fz-launcher'
+else
+  Pack 'Shougo/denite.nvim', {'type': 'opt', 'on': ['Denite']}
+  Pack 'Jagua/vim-denite-ghq', {'type': 'lazyall'}
+  Pack 'pocari/vim-denite-gists', {'type': 'lazyall'}
+  Pack 'pocari/vim-denite-kind-open-browser', {'type': 'lazyall'}
 endif
 

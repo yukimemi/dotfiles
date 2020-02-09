@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : vimplug.vim
 " Author      : yukimemi
-" Last Change : 2017/06/17 03:26:22.
+" Last Change : 2020/02/09 18:24:18.
 " =============================================================================
 
 " Plugin: {{{1
@@ -503,7 +503,7 @@ endif
 
 " TweetVim {{{3
 if s:p.is_installed('TweetVim')
-  nnoremap [Space]tu :<C-u>TweetVimUserStream<CR>
+  nnoremap <space>tu :<C-u>TweetVimUserStream<CR>
 
   let g:tweetvim_default_account = "yukimemi"
   let g:tweetvim_tweet_per_page = 100
@@ -517,7 +517,7 @@ if s:p.is_installed('TweetVim')
   au MyAutoCmd FileType tweetvim call s:tweetvim_cfg()
   function! s:tweetvim_cfg()
     setl nowrap
-    nnoremap <buffer> [Space]s :<C-u>TweetVimSay<CR>
+    nnoremap <buffer> <space>s :<C-u>TweetVimSay<CR>
   endfunction
 
   au! User TweetVim call plug#load('twibill.vim', 'webapi-vim', 'open-browser.vim')
@@ -544,7 +544,7 @@ endif
 
 " nerdtree {{{3
 if s:p.is_installed('nerdtree')
-  nnoremap [Space]v :NERDTreeToggle<CR>
+  nnoremap <space>v :NERDTreeToggle<CR>
   au MyAutoCmd StdinReadPre * let s:std_in=1
   au MyAutoCmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 endif
@@ -554,7 +554,7 @@ endif
 if s:p.is_installed('neoterm')
   if has('nvim')
     let g:neoterm_autoinsert = 1
-    nnoremap [Space]s :<C-u>terminal<CR>
+    nnoremap <space>s :<C-u>terminal<CR>
     tnoremap sj <C-\><C-n><C-w>j
     tnoremap sk <C-\><C-n><C-w>k
     tnoremap sl <C-\><C-n><C-w>l
@@ -683,10 +683,10 @@ endif
 if s:p.is_installed('vim-quickhl')
   let g:quickhl_manual_enable_at_startup = 1
 
-  nmap [Space]m <Plug>(quickhl-manual-this)
-  xmap [Space]m <Plug>(quickhl-manual-this)
-  nmap [Space]M <Plug>(quickhl-manual-reset)
-  xmap [Space]M <Plug>(quickhl-manual-reset)
+  nmap <space>m <Plug>(quickhl-manual-this)
+  xmap <space>m <Plug>(quickhl-manual-this)
+  nmap <space>M <Plug>(quickhl-manual-reset)
+  xmap <space>M <Plug>(quickhl-manual-reset)
 
   let g:quickhl_manual_keywords = [
         \ "失敗",
@@ -786,12 +786,12 @@ endif
 " ==================== Git ======================= {{{2
 " gina.vim {{{3
 if s:p.is_installed('gina.vim')
-  nnoremap [Space]gs :<C-u>Gina status<CR>
-  nnoremap [Space]gb :<C-u>Gina branch<CR>
-  nnoremap [Space]gg :<C-u>Gina grep<CR>
-  nnoremap [Space]gd :<C-u>Gina diff<CR>
-  nnoremap [Space]gl :<C-u>Gina ls-files<CR>
-  nnoremap [Space]gp :<C-u>Gina push<CR>
+  nnoremap <space>gs :<C-u>Gina status<CR>
+  nnoremap <space>gb :<C-u>Gina branch<CR>
+  nnoremap <space>gg :<C-u>Gina grep<CR>
+  nnoremap <space>gd :<C-u>Gina diff<CR>
+  nnoremap <space>gl :<C-u>Gina ls-files<CR>
+  nnoremap <space>gp :<C-u>Gina push<CR>
 endif
 
 

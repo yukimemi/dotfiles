@@ -1,1 +1,1 @@
-nmap [Space]/ <Plug>(operator-search)
+nmap <space>/ <Plug>(operator-search)

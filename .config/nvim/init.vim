@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/02/03 00:07:54.
+" Last Change : 2020/02/09 18:24:44.
 " =============================================================================
 
 " Init: {{{1
@@ -446,10 +446,6 @@ au MyAutoCmd FileType dosbatch nnoremap <buffer> <expr><Leader>a <SID>addHeaderB
 " nnoremap / /\v
 " inoremap %s/ %s/\v
 
-" Use space.
-map <silent> <Space> [Space]
-noremap <silent> [Space] <Nop>
-
 inoremap <silent> jj <ESC>
 nnoremap <silent> j gj
 nnoremap <silent> k gk
@@ -489,7 +485,7 @@ nnoremap <silent> <Leader><Leader> :<C-u>update<CR>
 vnoremap <C-p> "0p<CR>
 
 " Change current directory.
-nnoremap [Space]cd :<C-u>call <SID>cd_buffer_dir()<CR>
+nnoremap <space>cd :<C-u>call <SID>cd_buffer_dir()<CR>
 
 " Like emacs.
 cnoremap <C-b> <Left>
@@ -502,15 +498,15 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
 " Vim-users.jp - Hack #74: http://vim-users.jp/2009/09/hack74/
-nnoremap <silent> [Space]ev  :<C-u>tabedit $MYVIMRC<CR>
-nnoremap <silent> [Space]eg  :<C-u>tabedit $MYGVIMRC<CR>
+nnoremap <silent> <space>ev  :<C-u>tabedit $MYVIMRC<CR>
+nnoremap <silent> <space>eg  :<C-u>tabedit $MYGVIMRC<CR>
 
 " Cmdwin.
 nnoremap <silent> : q:i
 vnoremap <silent> : q:A
 
 " Delete other line.
-nnoremap [Space]d :<C-u>call <SID>deleteOtherLine()<CR>
+nnoremap <space>d :<C-u>call <SID>deleteOtherLine()<CR>
 
 " nohlsearch.
 nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
@@ -571,7 +567,7 @@ omap s :normal vs<CR>
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
 " Format.
-nnoremap [Space]f :<C-u>call <SID>format()<CR>
+nnoremap <space>f :<C-u>call <SID>format()<CR>
 
 " Autocmd: {{{1
 " Auto mkdir.
@@ -601,7 +597,7 @@ au MyAutoCmd BufWritePre *.bin,*.dat endif
 au MyAutoCmd BufWritePost *.bin,*.dat if &bin | %!xxd
 au MyAutoCmd BufWritePost *.bin,*.dat set nomod | endif
 
-au MyAutoCmd FileType mail nnoremap <silent><buffer> [Space]q :<C-u>silent! call <SID>addQuote()<CR>
+au MyAutoCmd FileType mail nnoremap <silent><buffer> <space>q :<C-u>silent! call <SID>addQuote()<CR>
 
 "au MyAutoCmd BufWrite * call <SID>format()
 
@@ -637,8 +633,8 @@ endif
 
 if has('gui_running')
   if g:is_windows
-    nnoremap [Space]r :<C-u>simalt ~r<CR>
-    nnoremap [Space]x :<C-u>simalt ~x<CR>
+    nnoremap <space>r :<C-u>simalt ~r<CR>
+    nnoremap <space>x :<C-u>simalt ~x<CR>
   elseif g:is_darwin
     set macmeta
     set transparency=10

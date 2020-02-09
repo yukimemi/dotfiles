@@ -1,1 +1,1 @@
-nnoremap [Space]u :MundoToggle<CR>
+nnoremap <space>u :MundoToggle<CR>

@@ -20,6 +20,7 @@
 " Pack 'lambdalisue/vim-pyenv', {'type': 'lazyall'}
 " Pack 'ludovicchabant/vim-gutentags', {'type': 'lazyall', 'if': executable('ctags')}
 " Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
+" Pack 'mattn/vim-lexiv', {'type': 'lazyall'}
 " Pack 'mox-mox/vim-localsearch', {'type': 'lazyall'}
 " Pack 'osyo-manga/vim-anzu', {'type': 'lazyall'}
 " Pack 'osyo-manga/vim-jplus', {'type': 'lazyall'}
@@ -63,7 +64,6 @@ Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
 Pack 'mattn/vim-findroot', {'type': 'lazyall'}
-Pack 'mattn/vim-lexiv', {'type': 'lazyall'}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'ntpeters/vim-better-whitespace', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-blockwise', {'type': 'lazyall'}

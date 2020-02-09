@@ -9,12 +9,13 @@ command! -bang FilesBufferDir call fzf#vim#files(fnamemodify(expand('%'), ':p:h'
 command! -bang FilesMemolist call fzf#vim#files(expand(g:memolist_path), <bang>0)
 command! -bang FilesGhq call fzf#vim#files(expand('~/.ghq/src'), <bang>0)
 
+
 nnoremap <silent> scp :<C-u>Files<CR>
-nnoremap <silent> scb :<C-u>Buffers<CR>
-nnoremap <silent> scd :<C-u>FilesBufferDir<CR>
-nnoremap <silent> scu :<C-u>History<CR>
-nnoremap <silent> scm :<C-u>Marks<CR>
-nnoremap <silent> scf :<C-u>Filetypes<CR>
+" nnoremap <silent> scb :<C-u>Buffers<CR>
+" nnoremap <silent> scd :<C-u>FilesBufferDir<CR>
+" nnoremap <silent> scu :<C-u>History<CR>
+" nnoremap <silent> scm :<C-u>Marks<CR>
+nnoremap <silent> scF :<C-u>Filetypes<CR>
 nnoremap <silent> sch :<C-u>History:<CR>
 nnoremap <silent> scl :<C-u>FilesMemolist<CR>
 nnoremap <silent> scg :<C-u>FilesGhq<CR>
