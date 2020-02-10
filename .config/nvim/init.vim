@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/02/09 18:24:44.
+" Last Change : 2020/02/10 23:42:41.
 " =============================================================================
 
 " Init: {{{1
@@ -464,110 +464,110 @@ noremap <silent> gl $
 nnoremap <silent> Y y$
 
 " For buffer.
-nnoremap <Tab> :<C-u>bn<CR>
-nnoremap <S-Tab> :<C-u>bp<CR>
+nnoremap <Tab> :<c-u>bn<cr>
+nnoremap <S-Tab> :<c-u>bp<cr>
 
 " For tab.
-nnoremap <silent><C-l> gt
-nnoremap <silent><C-h> gT
+nnoremap <silent><c-l> gt
+nnoremap <silent><c-h> gT
 
 " Benri scroll.
 " http://itchyny.hatenablog.com/entry/2016/02/02/210000
-" noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('.') < 1         + winheight(0) ? 'H' : 'L')
-" noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('.') > line('$') - winheight(0) ? 'L' : 'H')
-noremap <expr> <C-y> (line('w0') <= 1         ? 'k' : "\<C-y>")
-noremap <expr> <C-e> (line('w$') >= line('$') ? 'j' : "\<C-e>")
+" noremap <expr> <c-b> max([winheight(0) - 2, 1]) . "\<c-u>" . (line('.') < 1         + winheight(0) ? 'H' : 'L')
+" noremap <expr> <c-f> max([winheight(0) - 2, 1]) . "\<c-d>" . (line('.') > line('$') - winheight(0) ? 'L' : 'H')
+noremap <expr> <c-y> (line('w0') <= 1         ? 'k' : "\<c-y>")
+noremap <expr> <c-e> (line('w$') >= line('$') ? 'j' : "\<c-e>")
 
 " Useful save mappings.
-nnoremap <silent> <Leader><Leader> :<C-u>update<CR>
+nnoremap <silent> <Leader><Leader> :<c-u>update<cr>
 
 " Paste continuously.
-vnoremap <C-p> "0p<CR>
+vnoremap <c-p> "0p<cr>
 
 " Change current directory.
-nnoremap <space>cd :<C-u>call <SID>cd_buffer_dir()<CR>
+nnoremap <space>cd :<c-u>call <SID>cd_buffer_dir()<cr>
 
 " Like emacs.
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-d> <Del>
-cnoremap <C-y> <C-r>
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
+cnoremap <c-b> <Left>
+cnoremap <c-f> <Right>
+cnoremap <c-a> <Home>
+cnoremap <c-e> <End>
+cnoremap <c-d> <Del>
+cnoremap <c-y> <c-r>
+cnoremap <c-p> <Up>
+cnoremap <c-n> <Down>
 
 " Vim-users.jp - Hack #74: http://vim-users.jp/2009/09/hack74/
-nnoremap <silent> <space>ev  :<C-u>tabedit $MYVIMRC<CR>
-nnoremap <silent> <space>eg  :<C-u>tabedit $MYGVIMRC<CR>
+nnoremap <silent> <space>ev  :<c-u>tabedit $MYVIMRC<cr>
+nnoremap <silent> <space>eg  :<c-u>tabedit $MYGVIMRC<cr>
 
 " Cmdwin.
 nnoremap <silent> : q:i
 vnoremap <silent> : q:A
 
 " Delete other line.
-nnoremap <space>d :<C-u>call <SID>deleteOtherLine()<CR>
+nnoremap <space>d :<c-u>call <SID>deleteOtherLine()<cr>
 
 " nohlsearch.
-nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
+nnoremap <silent> <ESC><ESC> :<c-u>nohlsearch<cr>
 
 " Use prefix s.
 nnoremap <silent> s <Nop>
-nnoremap <silent> sj <C-w>j
-nnoremap <silent> sk <C-w>k
-nnoremap <silent> sl <C-w>l
-nnoremap <silent> sh <C-w>h
-nnoremap <silent> sJ <C-w>J
-nnoremap <silent> sK <C-w>K
-nnoremap <silent> sL <C-w>L
-nnoremap <silent> sH <C-w>H
-nnoremap <silent> sr <C-w>r
-nnoremap <silent> s= <C-w>=
-nnoremap <silent> sw <C-w>w
-nnoremap <silent> so <C-w>_<C-w>|
-nnoremap <silent> s0 :<C-u>only<CR>
-nnoremap <silent> sO :<C-u>tabonly<CR>
-nnoremap <silent> sn :<C-u>bn<CR>
-nnoremap <silent> sp :<C-u>bp<CR>
-nnoremap <silent> st :<C-u>tabnew<CR>
-nnoremap <silent> ss :<C-u>sp<CR>
-nnoremap <silent> sv :<C-u>vs<CR>
-nnoremap <silent> sq :<C-u>q<CR>
-nnoremap <silent> sQ :<C-u>qa<CR>
-nnoremap <silent> sbk :<C-u>bd!<CR>
-nnoremap <silent> sbq :<C-u>q!<CR>
+nnoremap <silent> sj <c-w>j
+nnoremap <silent> sk <c-w>k
+nnoremap <silent> sl <c-w>l
+nnoremap <silent> sh <c-w>h
+nnoremap <silent> sJ <c-w>J
+nnoremap <silent> sK <c-w>K
+nnoremap <silent> sL <c-w>L
+nnoremap <silent> sH <c-w>H
+nnoremap <silent> sr <c-w>r
+nnoremap <silent> s= <c-w>=
+nnoremap <silent> sw <c-w>w
+nnoremap <silent> so <c-w>_<c-w>|
+nnoremap <silent> s0 :<c-u>only<cr>
+nnoremap <silent> sO :<c-u>tabonly<cr>
+nnoremap <silent> sn :<c-u>bn<cr>
+nnoremap <silent> sp :<c-u>bp<cr>
+nnoremap <silent> st :<c-u>tabnew<cr>
+nnoremap <silent> ss :<c-u>sp<cr>
+nnoremap <silent> sv :<c-u>vs<cr>
+nnoremap <silent> sq :<c-u>q<cr>
+nnoremap <silent> sQ :<c-u>qa<cr>
+nnoremap <silent> sbk :<c-u>bd!<cr>
+nnoremap <silent> sbq :<c-u>q!<cr>
 
-nnoremap <Leader>o :<C-u>call <SID>open_current_dir()<CR>
+nnoremap <Leader>o :<c-u>call <SID>open_current_dir()<cr>
 
 " terminal
-tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc> <c-\><c-n>
 
 
 "  for git mergetool {{{2
 if &diff
-  nnoremap <Leader>1 :diffget LOCAL<CR>
-  nnoremap <Leader>2 :diffget BASE<CR>
-  nnoremap <Leader>3 :diffget REMOTE<CR>
-  nnoremap <Leader>u :<C-u>diffupdate<CR>
+  nnoremap <Leader>1 :diffget LOCAL<cr>
+  nnoremap <Leader>2 :diffget BASE<cr>
+  nnoremap <Leader>3 :diffget REMOTE<cr>
+  nnoremap <Leader>u :<c-u>diffupdate<cr>
 endif
 
 " hilight over 100 column {{{2
 " http://blog.remora.cx/2013/06/source-in-80-columns-2.html
 noremap <Plug>(ToggleColorColumn)
       \ :<c-u>let &colorcolumn = len(&colorcolumn) > 0 ? '' :
-      \   join(range(101, 9999), ',')<CR>
+      \   join(range(101, 9999), ',')<cr>
 
 nmap <silent> cc <Plug>(ToggleColorColumn)
 
 " http://postd.cc/how-to-boost-your-vim-productivity/
-vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
-      \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
-omap s :normal vs<CR>
+vnoremap <silent> s //e<c-r>=&selection=='exclusive'?'+1':''<cr><cr>
+      \:<c-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<cr>gv
+omap s :normal vs<cr>
 
-inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+inoremap <silent> <ESC> <ESC>:set iminsert=0<cr>
 
 " Format.
-nnoremap <space>f :<C-u>call <SID>format()<CR>
+nnoremap <space>f :<c-u>call <SID>format()<cr>
 
 " Autocmd: {{{1
 " Auto mkdir.
@@ -597,7 +597,7 @@ au MyAutoCmd BufWritePre *.bin,*.dat endif
 au MyAutoCmd BufWritePost *.bin,*.dat if &bin | %!xxd
 au MyAutoCmd BufWritePost *.bin,*.dat set nomod | endif
 
-au MyAutoCmd FileType mail nnoremap <silent><buffer> <space>q :<C-u>silent! call <SID>addQuote()<CR>
+au MyAutoCmd FileType mail nnoremap <silent><buffer> <space>q :<c-u>silent! call <SID>addQuote()<cr>
 
 "au MyAutoCmd BufWrite * call <SID>format()
 
@@ -617,7 +617,7 @@ set viewoptions=cursor,folds
 au MyAutoCmd SwapExists * let v:swapchoice = 'o'
 
 " Escape cmd win.
-au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<CR>
+au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<cr>
 
 " For git commit.
 au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
@@ -633,8 +633,8 @@ endif
 
 if has('gui_running')
   if g:is_windows
-    nnoremap <space>r :<C-u>simalt ~r<CR>
-    nnoremap <space>x :<C-u>simalt ~x<CR>
+    nnoremap <space>r :<c-u>simalt ~r<cr>
+    nnoremap <space>x :<c-u>simalt ~x<cr>
   elseif g:is_darwin
     set macmeta
     set transparency=10

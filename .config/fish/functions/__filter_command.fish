@@ -1,5 +1,7 @@
 function __filter_command
-  if type -q peco
+  if type -q gof
+    gof
+  else if type -q peco
     peco
   else if type -q sk
     sk

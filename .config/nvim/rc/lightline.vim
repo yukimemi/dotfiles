@@ -7,10 +7,10 @@ let g:lightline = {
       \   'v' : 'V',
       \   'V' : 'V-L',
       \   'c' : 'C',
-      \   "\<C-v>": 'V-B',
+      \   "\<c-v>": 'V-B',
       \   's' : 'S',
       \   'S' : 'S-L',
-      \   "\<C-s>": 'S-B'
+      \   "\<c-s>": 'S-B'
       \   },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],

@@ -10,15 +10,15 @@ command! -bang FilesMemolist call fzf#vim#files(expand(g:memolist_path), <bang>0
 command! -bang FilesGhq call fzf#vim#files(expand('~/.ghq/src'), <bang>0)
 
 
-nnoremap <silent> scp :<C-u>Files<CR>
-" nnoremap <silent> scb :<C-u>Buffers<CR>
-" nnoremap <silent> scd :<C-u>FilesBufferDir<CR>
-" nnoremap <silent> scu :<C-u>History<CR>
-" nnoremap <silent> scm :<C-u>Marks<CR>
-nnoremap <silent> scF :<C-u>Filetypes<CR>
-nnoremap <silent> sch :<C-u>History:<CR>
-nnoremap <silent> scl :<C-u>FilesMemolist<CR>
-nnoremap <silent> scg :<C-u>FilesGhq<CR>
+nnoremap <silent> scp :<c-u>Files<cr>
+" nnoremap <silent> scb :<c-u>Buffers<cr>
+" nnoremap <silent> scd :<c-u>FilesBufferDir<cr>
+" nnoremap <silent> scu :<c-u>History<cr>
+" nnoremap <silent> scm :<c-u>Marks<cr>
+nnoremap <silent> scF :<c-u>Filetypes<cr>
+nnoremap <silent> sch :<c-u>History:<cr>
+nnoremap <silent> scl :<c-u>FilesMemolist<cr>
+nnoremap <silent> scg :<c-u>FilesGhq<cr>
 
 " An action can be a reference to a function that processes selected lines
 function! s:build_quickfix_list(lines) abort

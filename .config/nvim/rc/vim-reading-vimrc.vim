@@ -1,2 +1,2 @@
-vmap <Leader><CR> <Plug>(reading_vimrc-update_clipboard)
+vmap <Leader><cr> <Plug>(reading_vimrc-update_clipboard)
 

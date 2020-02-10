@@ -8,20 +8,20 @@ let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
 let g:ctrlp_line_prefix = '» '
 let g:ctrlp_mruf_max = 100000
-nnoremap <silent> scp :<C-u>CtrlP<CR>
-nnoremap <silent> scb :<C-u>CtrlPBuffer<CR>
-nnoremap <silent> scd :<C-u>CtrlPCurFile<CR>
-nnoremap <silent> scu :<C-u>CtrlPMRU<CR>
-nnoremap <silent> scm :<C-u>CtrlPMark<CR>
-" nnoremap <silent> scl :<C-u>CtrlPLine<CR>
-" nnoremap <silent> scg :<C-u>CtrlPChange<CR>
-nnoremap <silent> scf :<C-u>CtrlPFiletype<CR>
-nnoremap <silent> scc :<C-u>CtrlPLauncher<CR>
-nnoremap <silent> sct :<C-u>packadd sonictemplate-vim \| CtrlPSonictemplate<CR>
-nnoremap <silent> sch :<C-u>CtrlPCmdHistory<CR>
-nnoremap <silent> scl :<C-u>CtrlPMemolist<CR>
-nnoremap <silent> scg :<C-u>CtrlP ~/.ghq/src<CR>
-nnoremap <silent> scG :<C-u>CtrlPGhq<CR>
+nnoremap <silent> scp :<c-u>CtrlP<cr>
+nnoremap <silent> scb :<c-u>CtrlPBuffer<cr>
+nnoremap <silent> scd :<c-u>CtrlPCurFile<cr>
+nnoremap <silent> scu :<c-u>CtrlPMRU<cr>
+nnoremap <silent> scm :<c-u>CtrlPMark<cr>
+" nnoremap <silent> scl :<c-u>CtrlPLine<cr>
+" nnoremap <silent> scg :<c-u>CtrlPChange<cr>
+nnoremap <silent> scf :<c-u>CtrlPFiletype<cr>
+nnoremap <silent> scc :<c-u>CtrlPLauncher<cr>
+nnoremap <silent> sct :<c-u>packadd sonictemplate-vim \| CtrlPSonictemplate<cr>
+nnoremap <silent> sch :<c-u>CtrlPCmdHistory<cr>
+nnoremap <silent> scl :<c-u>CtrlPMemolist<cr>
+nnoremap <silent> scg :<c-u>CtrlP ~/.ghq/src<cr>
+nnoremap <silent> scG :<c-u>CtrlPGhq<cr>
 
 if executable('files')
   let g:ctrlp_user_command = 'files -a %s'

@@ -1,11 +1,11 @@
 if !g:is_windows && has("python3")
-  " nnoremap <space>v :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
-  " nnoremap <silent> <space>v :<C-u>Defx -listed -resume -buffer-name=tab`tabpagenr()`<CR>
+  " nnoremap <space>v :<c-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<cr>
+  " nnoremap <silent> <space>v :<c-u>Defx -listed -resume -buffer-name=tab`tabpagenr()`<cr>
 endif
 au MyAutoCmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
-  nnoremap <silent><buffer><expr> <CR> defx#async_action('drop')
+  nnoremap <silent><buffer><expr> <cr> defx#async_action('drop')
   nnoremap <silent><buffer><expr> c defx#do_action('copy')
   nnoremap <silent><buffer><expr> ! defx#do_action('execute_command')
   nnoremap <silent><buffer><expr> m defx#do_action('move')
@@ -32,9 +32,9 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
   nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
   nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
-  nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
-  nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
-  nnoremap <silent><buffer><expr> <Tab> winnr('$') != 1 ?  ':<C-u>wincmd w<CR>' : ':<C-u>Defx -buffer-name=temp -split=vertical<CR>'
+  nnoremap <silent><buffer><expr> <c-l> defx#do_action('redraw')
+  nnoremap <silent><buffer><expr> <c-g> defx#do_action('print')
+  nnoremap <silent><buffer><expr> <Tab> winnr('$') != 1 ?  ':<c-u>wincmd w<cr>' : ':<c-u>Defx -buffer-name=temp -split=vertical<cr>'
 endfunction
 
 

@@ -49,9 +49,9 @@ let g:coc_global_extensions = [
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Use <cr> for confirm completion, `<c-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
 
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -64,7 +64,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call <SID>show_documentation()<cr>
 
 function! s:show_documentation()
   if &filetype == 'vim'
@@ -106,40 +106,40 @@ au MyAutoCmd BufWritePre *.js,*.json,*.ts,*.css,*.rs silent call CocAction('form
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " coc-list {{{1
-nnoremap <silent> <Space><Space> :<C-u>CocList<CR>
-nnoremap <silent> <space>cg :<C-u>CocList files --hidden ~/.ghq/src<CR>
-nnoremap <silent> <space>r :<C-u>CocListResume<CR>
+nnoremap <silent> <Space><Space> :<c-u>CocList<cr>
+nnoremap <silent> <space>cg :<c-u>CocList files --hidden ~/.ghq/src<cr>
+nnoremap <silent> <space>r :<c-u>CocListResume<cr>
 
 
 " coc-snippet {{{1
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
+" Use <c-l> for trigger snippet expand.
+imap <c-l> <Plug>(coc-snippets-expand)
 
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+" Use <c-j> for select text for visual placeholder of snippet.
+vmap <c-j> <Plug>(coc-snippets-select)
 
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+" Use <c-j> for jump to next placeholder, it's default of coc.nvim
 let g:coc_snippet_next = '<c-j>'
 
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+" Use <c-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
 
-" Use <C-k> for both expand and jump (make expand higher priority.)
-imap <C-k> <Plug>(coc-snippets-expand-jump)
+" Use <c-k> for both expand and jump (make expand higher priority.)
+imap <c-k> <Plug>(coc-snippets-expand-jump)
 
 " coc-bookmark {{{1
 nmap <space>bj <Plug>(coc-bookmark-next)
 nmap <space>bk <Plug>(coc-bookmark-prev)
 nmap <space>bb <Plug>(coc-bookmark-toggle)
-nnoremap <space>bl :<C-u>CocList bookmark<CR>
+nnoremap <space>bl :<c-u>CocList bookmark<cr>
 
 " coc-explorer {{{1
-" nnoremap ge :<C-u>CocCommand explorer<CR>
+" nnoremap ge :<c-u>CocCommand explorer<cr>
 
 " coc-terminal {{{1
 nmap <space>s <Plug>(coc-terminal-toggle)
 
 " coc-yank {{{1
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> <space>y :<c-u>CocList -A --normal yank<cr>
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

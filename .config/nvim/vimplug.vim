@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : vimplug.vim
 " Author      : yukimemi
-" Last Change : 2020/02/09 18:24:18.
+" Last Change : 2020/02/10 23:42:43.
 " =============================================================================
 
 " Plugin: {{{1
@@ -222,10 +222,10 @@ if s:p.is_installed('lightline.vim')
         \   'v' : 'V',
         \   'V' : 'V-L',
         \   'c' : 'C',
-        \   "\<C-v>": 'V-B',
+        \   "\<c-v>": 'V-B',
         \   's' : 'S',
         \   'S' : 'S-L',
-        \   "\<C-s>": 'S-B'
+        \   "\<c-s>": 'S-B'
         \   },
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'anzu' ] ],
@@ -352,7 +352,7 @@ endif
 " indentLine {{{3
 if s:p.is_installed('indentLine')
   let g:indentLine_faster = 1
-  nnoremap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+  nnoremap <silent><Leader>i :<c-u>IndentLinesToggle<cr>
   let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'denite', 'tweetvim']
 endif
 
@@ -372,9 +372,9 @@ endif
 
 " neosnippet.vim {{{3
 if s:p.is_installed('neosnippet.vim')
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  smap <C-k> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k> <Plug>(neosnippet_expand_target)
+  imap <c-k> <Plug>(neosnippet_expand_or_jump)
+  smap <c-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <c-k> <Plug>(neosnippet_expand_target)
   " Tell Neosnippet about the other snippets
   let g:neosnippet#snippets_directory = $VIM_PATH . '/snippets'
 
@@ -414,9 +414,9 @@ if s:p.is_installed('LanguageClient-neoivm')
   " Automatically start language servers.
   let g:LanguageClient_autoStart = 1
 
-  nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-  nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-  nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+  nnoremap <silent> K :call LanguageClient_textDocument_hover()<cr>
+  nnoremap <silent> gd :call LanguageClient_textDocument_definition()<cr>
+  nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<cr>
 endif
 
 
@@ -430,14 +430,14 @@ endif
 " vim-submode {{{3
 if s:p.is_installed('vim-submode')
   let g:submode_leave_with_key = 1
-  call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
-  call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
-  call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
-  call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
-  call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-  call submode#map('bufmove', 'n', '', '<', '<C-w><')
-  call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-  call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+  call submode#enter_with('bufmove', 'n', '', 's>', '<c-w>>')
+  call submode#enter_with('bufmove', 'n', '', 's<', '<c-w><')
+  call submode#enter_with('bufmove', 'n', '', 's+', '<c-w>+')
+  call submode#enter_with('bufmove', 'n', '', 's-', '<c-w>-')
+  call submode#map('bufmove', 'n', '', '>', '<c-w>>')
+  call submode#map('bufmove', 'n', '', '<', '<c-w><')
+  call submode#map('bufmove', 'n', '', '+', '<c-w>+')
+  call submode#map('bufmove', 'n', '', '-', '<c-w>-')
 endif
 
 
@@ -483,9 +483,9 @@ if s:p.is_installed('memolist.vim')
   let g:memolist_memo_suffix = "md"
 
   " mappings
-  nnoremap <Leader>mn :<C-u>MemoNew<CR>
-  nnoremap <Leader>ml :<C-u>MemoList<CR>
-  nnoremap <Leader>mg :<C-u>MemoGrep<CR>
+  nnoremap <Leader>mn :<c-u>MemoNew<cr>
+  nnoremap <Leader>ml :<c-u>MemoList<cr>
+  nnoremap <Leader>mg :<c-u>MemoGrep<cr>
 endif
 
 
@@ -503,7 +503,7 @@ endif
 
 " TweetVim {{{3
 if s:p.is_installed('TweetVim')
-  nnoremap <space>tu :<C-u>TweetVimUserStream<CR>
+  nnoremap <space>tu :<c-u>TweetVimUserStream<cr>
 
   let g:tweetvim_default_account = "yukimemi"
   let g:tweetvim_tweet_per_page = 100
@@ -517,7 +517,7 @@ if s:p.is_installed('TweetVim')
   au MyAutoCmd FileType tweetvim call s:tweetvim_cfg()
   function! s:tweetvim_cfg()
     setl nowrap
-    nnoremap <buffer> <space>s :<C-u>TweetVimSay<CR>
+    nnoremap <buffer> <space>s :<c-u>TweetVimSay<cr>
   endfunction
 
   au! User TweetVim call plug#load('twibill.vim', 'webapi-vim', 'open-browser.vim')
@@ -544,7 +544,7 @@ endif
 
 " nerdtree {{{3
 if s:p.is_installed('nerdtree')
-  nnoremap <space>v :NERDTreeToggle<CR>
+  nnoremap <space>v :NERDTreeToggle<cr>
   au MyAutoCmd StdinReadPre * let s:std_in=1
   au MyAutoCmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 endif
@@ -554,11 +554,11 @@ endif
 if s:p.is_installed('neoterm')
   if has('nvim')
     let g:neoterm_autoinsert = 1
-    nnoremap <space>s :<C-u>terminal<CR>
-    tnoremap sj <C-\><C-n><C-w>j
-    tnoremap sk <C-\><C-n><C-w>k
-    tnoremap sl <C-\><C-n><C-w>l
-    tnoremap sh <C-\><C-n><C-w>h
+    nnoremap <space>s :<c-u>terminal<cr>
+    tnoremap sj <c-\><c-n><c-w>j
+    tnoremap sk <c-\><c-n><c-w>k
+    tnoremap sl <c-\><c-n><c-w>l
+    tnoremap sh <c-\><c-n><c-w>h
   endif
 endif
 
@@ -580,8 +580,8 @@ if s:p.is_installed('ale')
   let g:ale_lint_on_enter = 0
   let g:ale_lint_on_insert_leave = 0
   let g:ale_lint_on_save = 1
-  nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-  nmap <silent> <C-j> <Plug>(ale_next_wrap)
+  nmap <silent> <c-k> <Plug>(ale_previous_wrap)
+  nmap <silent> <c-j> <Plug>(ale_next_wrap)
 
   " Rust.
   let g:ale_rust_ignore_error_codes = ['E0432', 'E0433']
@@ -777,8 +777,8 @@ endif
 if s:p.is_installed('yankround.vim')
   nmap p <Plug>(yankround-p)
   nmap P <Plug>(yankround-P)
-  nmap <C-p> <Plug>(yankround-prev)
-  nmap <C-n> <Plug>(yankround-next)
+  nmap <c-p> <Plug>(yankround-prev)
+  nmap <c-n> <Plug>(yankround-next)
   let g:yankround_max_history = 100
 endif
 
@@ -786,12 +786,12 @@ endif
 " ==================== Git ======================= {{{2
 " gina.vim {{{3
 if s:p.is_installed('gina.vim')
-  nnoremap <space>gs :<C-u>Gina status<CR>
-  nnoremap <space>gb :<C-u>Gina branch<CR>
-  nnoremap <space>gg :<C-u>Gina grep<CR>
-  nnoremap <space>gd :<C-u>Gina diff<CR>
-  nnoremap <space>gl :<C-u>Gina ls-files<CR>
-  nnoremap <space>gp :<C-u>Gina push<CR>
+  nnoremap <space>gs :<c-u>Gina status<cr>
+  nnoremap <space>gb :<c-u>Gina branch<cr>
+  nnoremap <space>gg :<c-u>Gina grep<cr>
+  nnoremap <space>gd :<c-u>Gina diff<cr>
+  nnoremap <space>gl :<c-u>Gina ls-files<cr>
+  nnoremap <space>gp :<c-u>Gina push<cr>
 endif
 
 
@@ -800,23 +800,23 @@ endif
 " denite.nvim {{{3
 if s:p.is_installed('denite.nvim')
   " Use plefix s
-  nnoremap suc :<C-u>Denite colorscheme -auto-preview<CR>
-  nnoremap sub :<C-u>Denite buffer<CR>
-  nnoremap suf :<C-u>Denite file<CR>
-  nnoremap suF :<C-u>Denite file_rec<CR>
-  " nnoremap suu :<C-u>Denite buffer file_old<CR>
-  nnoremap suu :<C-u>Denite buffer file_mru<CR>
-  nnoremap suo :<C-u>Denite outline -no-quit -mode=normal<CR>
-  nnoremap suh :<C-u>Denite help<CR>
-  nnoremap sur :<C-u>Denite register<CR>
-  nnoremap sug :<C-u>Denite grep -no-empty -no-quit<CR>
-  nnoremap su/ :<C-u>Denite line -no-quit<CR>
-  nnoremap suR :<C-u>Denite -resume<CR>
+  nnoremap suc :<c-u>Denite colorscheme -auto-preview<cr>
+  nnoremap sub :<c-u>Denite buffer<cr>
+  nnoremap suf :<c-u>Denite file<cr>
+  nnoremap suF :<c-u>Denite file_rec<cr>
+  " nnoremap suu :<c-u>Denite buffer file_old<cr>
+  nnoremap suu :<c-u>Denite buffer file_mru<cr>
+  nnoremap suo :<c-u>Denite outline -no-quit -mode=normal<cr>
+  nnoremap suh :<c-u>Denite help<cr>
+  nnoremap sur :<c-u>Denite register<cr>
+  nnoremap sug :<c-u>Denite grep -no-empty -no-quit<cr>
+  nnoremap su/ :<c-u>Denite line -no-quit<cr>
+  nnoremap suR :<c-u>Denite -resume<cr>
 
-  noremap sul :<C-u>Denite command_history<CR>
+  noremap sul :<c-u>Denite command_history<cr>
 
   " Incremental search in cmdline history.
-  inoremap <C-l> <ESC>:<C-u>Denite command<CR>
+  inoremap <c-l> <ESC>:<c-u>Denite command<cr>
 
   au! User denite.nvim call s:denite_cfg()
 
@@ -861,10 +861,10 @@ if s:p.is_installed('denite.nvim')
       call denite#custom#var('grep', 'final_opts', [])
     endif
     " custom mappings.
-    call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-    call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-    call denite#custom#map('insert', '<C-[>', '<denite:enter_mode:normal>', 'noremap')
-    call denite#custom#map('normal', '<C-[>', '<denite:quit>', 'noremap')
+    call denite#custom#map('insert', '<c-n>', '<denite:move_to_next_line>', 'noremap')
+    call denite#custom#map('insert', '<c-p>', '<denite:move_to_previous_line>', 'noremap')
+    call denite#custom#map('insert', '<c-[>', '<denite:enter_mode:normal>', 'noremap')
+    call denite#custom#map('normal', '<c-[>', '<denite:quit>', 'noremap')
   endfunction
 endif
 
@@ -914,7 +914,7 @@ if s:p.is_installed('vim-go')
     nmap <buffer> <Leader>ds <Plug>(go-def-split)
     nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
     nmap <buffer> <Leader>dt <Plug>(go-def-tab)
-    nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
+    nnoremap <buffer> <Leader>gi :<c-u>GoImport<Space>
 
     setl completeopt=menu,preview
   endfunction
@@ -965,7 +965,7 @@ endif
 
 " tsuquyomi {{{3
 if s:p.is_installed('tsuquyomi')
-  au MyAutoCmd FileType typescript nnoremap <buffer> <Leader>t :<C-u>echo tsuquyomi#hint()<CR>
+  au MyAutoCmd FileType typescript nnoremap <buffer> <Leader>t :<c-u>echo tsuquyomi#hint()<cr>
 endif
 
 
@@ -1008,7 +1008,7 @@ if s:p.is_installed('ghcmod-vim')
 
   function! s:ghcmod_vim_cfg() abort
     setl completeopt=menu,preview
-    nnoremap <buffer> K :<C-u>GhcModInfoPreview<CR>
+    nnoremap <buffer> K :<c-u>GhcModInfoPreview<cr>
   endfunction
 endif
 

@@ -1,11 +1,11 @@
 au MyAutoCmd FileType tweetvim call s:my_tweetvim_mappings()
 function! s:my_tweetvim_mappings()
   setl nowrap
-  nnoremap <buffer> <space>s :<C-u>TweetVimSay<CR>
+  nnoremap <buffer> <space>s :<c-u>TweetVimSay<cr>
 endfunction
 
-nnoremap <silent> <space>tu :<C-u>silent! packadd webapi-vim \| packadd open-browser.vim \| packadd twibill.vim \| packadd bitly.vim \| packadd favstar-vim \| TweetVimUserStream<CR>
-nnoremap <silent> <space>th :<C-u>silent! packadd webapi-vim \| packadd open-browser.vim \| packadd twibill.vim \| packadd bitly.vim \| packadd favstar-vim \| TweetVimHomeTimeline<CR>
+nnoremap <silent> <space>tu :<c-u>silent! packadd webapi-vim \| packadd open-browser.vim \| packadd twibill.vim \| packadd bitly.vim \| packadd favstar-vim \| TweetVimUserStream<cr>
+nnoremap <silent> <space>th :<c-u>silent! packadd webapi-vim \| packadd open-browser.vim \| packadd twibill.vim \| packadd bitly.vim \| packadd favstar-vim \| TweetVimHomeTimeline<cr>
 
 let g:tweetvim_default_account = "yukimemi"
 let g:tweetvim_tweet_per_page = 100

@@ -40,7 +40,7 @@ function! s:vim_go_cfg() abort
   nmap <buffer> <Leader>ds <Plug>(go-def-split)
   nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
   nmap <buffer> <Leader>dt <Plug>(go-def-tab)
-  nnoremap <buffer> <Leader>gi :<C-u>GoImport<Space>
+  nnoremap <buffer> <Leader>gi :<c-u>GoImport<Space>
 
   setl completeopt=menu,preview
 endfunction

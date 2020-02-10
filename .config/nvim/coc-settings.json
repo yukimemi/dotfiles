@@ -4,8 +4,8 @@
   "list.maxHeight": 30,
   "list.source.files.args": ["--hidden", "--files"],
   "list.insertMappings": {
-    "<C-j>": "normal:j",
-    "<C-k>": "normal:k"
+    "<c-j>": "normal:j",
+    "<c-k>": "normal:k"
   },
   "explorer.icon.enableNerdfont": false,
   "explorer.file.autoReveal": true

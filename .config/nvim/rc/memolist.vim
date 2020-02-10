@@ -10,8 +10,8 @@ let g:memolist_memo_suffix = "md"
 let g:memolist_prompt_tags = 1
 
 " mappings
-nnoremap <Leader>mn :<C-u>MemoNew<CR>
-nnoremap <Leader>ml :<C-u>MemoList<CR>
-nnoremap <Leader>mg :<C-u>MemoGrep<CR>
+nnoremap <Leader>mn :<c-u>MemoNew<cr>
+nnoremap <Leader>ml :<c-u>MemoList<cr>
+nnoremap <Leader>mg :<c-u>MemoGrep<cr>
 
 

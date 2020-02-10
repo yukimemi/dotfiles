@@ -1,4 +1,4 @@
-nnoremap <F8> :<C-u>TagbarToggle<CR>
+nnoremap <F8> :<c-u>TagbarToggle<cr>
 let g:tagbar_type_rust = {
       \ 'ctagstype' : 'rust',
       \   'kinds' : [

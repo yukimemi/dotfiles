@@ -10,8 +10,8 @@ colorscheme spring-night
 GuiFont! Cica:h12
 set printfont=Cica:h8
 
-nnoremap <Leader>r :<C-u>simalt ~r<CR>
-nnoremap <Leader>x :<C-u>simalt ~x<CR>
+nnoremap <Leader>r :<c-u>simalt ~r<cr>
+nnoremap <Leader>x :<c-u>simalt ~x<cr>
 " au MyAutoCmd GUIEnter * set lines=70 columns=100
 
 let g:save_window_file = expand("~/.nvimwinpos")

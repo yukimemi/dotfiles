@@ -15,7 +15,7 @@ nnoremap sdF :<c-u>Denite filetype<cr>
 nnoremap sdh :<c-u>Denite command_history<cr>
 
 " Incremental search in cmdline history.
-inoremap <C-l> <esc>:<c-u>Denite command<cr>
+inoremap <c-l> <esc>:<c-u>Denite command<cr>
 
 " Load after settings.
 if has('python3')
@@ -81,8 +81,8 @@ endfunction
 function! s:denite_filter_my_settings() abort
   imap <silent><buffer> <esc> <Plug>(denite_filter_quit)
   inoremap <silent><buffer><nowait><expr> <cr> denite#do_map('do_action')
-  inoremap <silent><buffer> <C-j> <esc><c-w>p:call cursor(line('.')+1,0)<cr><c-w>pA
-  inoremap <silent><buffer> <C-k> <esc><c-w>p:call cursor(line('.')-1,0)<cr><c-w>pA
+  inoremap <silent><buffer> <c-j> <esc><c-w>p:call cursor(line('.')+1,0)<cr><c-w>pA
+  inoremap <silent><buffer> <c-k> <esc><c-w>p:call cursor(line('.')-1,0)<cr><c-w>pA
 endfunction
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

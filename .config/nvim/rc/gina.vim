@@ -1,7 +1,7 @@
-nnoremap <space>gs :<C-u>Gina status<CR>
-nnoremap <space>gb :<C-u>Gina branch<CR>
-nnoremap <space>gg :<C-u>Gina grep<CR>
-nnoremap <space>gd :<C-u>Gina diff<CR>
-nnoremap <space>gl :<C-u>Gina ls-files<CR>
-nnoremap <space>gp :<C-u>Gina push<CR>
+nnoremap <space>gs :<c-u>Gina status<cr>
+nnoremap <space>gb :<c-u>Gina branch<cr>
+nnoremap <space>gg :<c-u>Gina grep<cr>
+nnoremap <space>gd :<c-u>Gina diff<cr>
+nnoremap <space>gl :<c-u>Gina ls-files<cr>
+nnoremap <space>gp :<c-u>Gina push<cr>
 

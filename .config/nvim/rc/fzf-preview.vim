@@ -3,9 +3,9 @@ if !IsInstalled('autoload/fzf_preview.vim') || exists('g:loaded_fzf_preview_cfg'
 endif
 let g:loaded_fzf_preview_cfg = 1
 
-nnoremap <silent> scf :<C-u>FzfPreviewProjectFiles<CR>
-nnoremap <silent> scb :<C-u>FzfPreviewBuffers<CR>
-nnoremap <silent> scd :<C-u>FzfPreviewDirectoryFiles<CR>
-nnoremap <silent> scu :<C-u>FzfPreviewMruFiles<CR>
-nnoremap <silent> scm :<C-u>FzfPreviewBookmarks<CR>
+nnoremap <silent> scf :<c-u>FzfPreviewProjectFiles<cr>
+nnoremap <silent> scb :<c-u>FzfPreviewBuffers<cr>
+nnoremap <silent> scd :<c-u>FzfPreviewDirectoryFiles<cr>
+nnoremap <silent> scu :<c-u>FzfPreviewMruFiles<cr>
+nnoremap <silent> scm :<c-u>FzfPreviewBookmarks<cr>
 
