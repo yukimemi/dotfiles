@@ -1,2 +1,6 @@
-let g:lexima_nvim_accept_pum_with_enter = 1
+if !IsInstalled("autoload/lexima.vim")
+  finish
+endif
+
+au MyAutoCmd InsertEnter * inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : lexima#expand('<cr>', 'i')
 

@@ -9,7 +9,6 @@
 " Pack 'airblade/vim-rooter', {'type': 'lazyall'}
 " Pack 'basyura/twibill.vim', {'type': 'lazyall'}
 " Pack 'bfredl/nvim-miniyank', {'type': 'lazyall'}
-" Pack 'cohama/lexima.vim', {'type': 'lazyall'}
 " Pack 'dense-analysis/ale', {'type': 'lazyall'}
 " Pack 'gko/vim-coloresque', {'type': 'lazyall'}
 " Pack 'haya14busa/is.vim', {'type': 'lazyall'}
@@ -38,6 +37,7 @@ Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
 Pack 'airblade/vim-gitgutter', {'type': 'lazyall'}
 Pack 'andymass/vim-matchup', {'type': 'lazyall'}
+Pack 'cohama/lexima.vim', {'type': 'lazyall'}
 Pack 'editorconfig/editorconfig-vim', {'type': 'lazyall'}
 Pack 'fuenor/qfixgrep', {'type': 'lazyall'}
 Pack 'fuenor/qfixhowm', {'type': 'lazyall'}
