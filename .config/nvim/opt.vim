@@ -98,8 +98,8 @@ if 0
   Pack 'mattn/ctrlp-ghq', {'type': 'opt', 'on': 'CtrlPGhq'}
   Pack 'ompugao/ctrlp-history', {'type': 'opt', 'on': 'CtrlPCmdHistory'}
   " Pack 'FelikZ/ctrlp-py-matcher'
-elseif 0
-  Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap'}
+elseif 1
+  Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap', 'do': 'Clap install-binary!'}
 elseif 0
   Pack 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all', 'if': !g:is_windows}
   Pack 'junegunn/fzf', {'dir': '~/.fzf', 'if': g:is_windows}
