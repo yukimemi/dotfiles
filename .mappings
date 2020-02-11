@@ -21,7 +21,7 @@
 "win/link/tools"                       = "C:/tools"
 "win/link/Python38"                    = "C:/Python38"
 
-[macos]
+[darwin]
 ".profile"                             = "~/.profile"
 ".tmux.conf"                           = "~/.tmux.conf"
 ".zshenv"                              = "~/.zshenv"
