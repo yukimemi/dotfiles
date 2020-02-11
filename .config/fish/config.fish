@@ -160,7 +160,7 @@ abbr -a gpu 'git push'
 # status
 abbr -a s 'git status'
 # show
-abbr -a gh 'git show'
+abbr -a h 'git show'
 # diff
 abbr -a d 'git diff'
 # rebase
