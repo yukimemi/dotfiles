@@ -16,6 +16,4 @@ includes = [
 ]
 
 # Patterns to ignore repositories.
-excludes = [
-  "~/.cache/**/*",
-]
+excludes = []
