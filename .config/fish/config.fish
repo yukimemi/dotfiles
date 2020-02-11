@@ -115,6 +115,7 @@ alias misskey "open -na 'Google Chrome' --args '--app=https://misskey.dev'"
 abbr -a fv __filter_command_nvim
 abbr -a fmvim __filter_command_mvim
 abbr -a ghl __filter_command_ghq
+abbr -a rhl __filter_command_rhq
 abbr -a gsrl __filter_command_gsr
 abbr -a j __filter_command_z
 if type -q gomi
