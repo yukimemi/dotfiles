@@ -18,5 +18,6 @@ Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pack 'ryanoasis/vim-devicons'
 Pack 'sheerun/vim-polyglot'
 Pack 't9md/vim-quickhl'
+Pack 'tsuyoshicho/vim-fg'
 Pack 'vim-airline/vim-airline'
 Pack 'vim-airline/vim-airline-themes'

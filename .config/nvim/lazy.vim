@@ -33,6 +33,7 @@
 " Pack 'vim-scripts/matchit.zip', {'type': 'lazyall'}
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
+Pack 'LumaKernel/vim-messages-qf', {'type': 'lazy'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
 Pack 'airblade/vim-gitgutter', {'type': 'lazyall'}
