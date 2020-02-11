@@ -1,0 +1,21 @@
+# vim: ft=toml ts=2 sw=2 et :
+
+# The path of root directory to manage cloned repositories.
+root = "~/.rhq"
+
+# Patterns to search local repositories.
+includes = [
+  "~/.rhq",
+  "~/.ghq",
+  "~/.go/src",
+  "~/.vim/plugged",
+  "~/.zplug/repos",
+  "~/.dotfiles",
+  "~/.cache/vim/pack",
+  "~/.cache/nvim/pack",
+]
+
+# Patterns to ignore repositories.
+excludes = [
+  "~/.cache/**/*",
+]
