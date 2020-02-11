@@ -9,7 +9,7 @@ set -x PAGER less
 set -x LESS "-iMR"
 
 # GOPATH. {{{2
-set -x GOPATH ~/.ghq
+set -x GOPATH ~/.go
 
 # Rust. {{{2
 if type -q rustc

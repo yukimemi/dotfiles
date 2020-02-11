@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2020/01/19 14:49:09.
+# Last Change : 2020/02/11 21:35:27.
 # =============================================================================
 
 # For time. {{{1
@@ -57,7 +57,7 @@ path=(
 )
 
 # go. {{{2
-export GOPATH=$HOME/.ghq
+export GOPATH=$HOME/.go
 export GOROOT=$(go env GOROOT)
 
 # rust. {{{2
