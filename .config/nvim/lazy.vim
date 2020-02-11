@@ -56,6 +56,7 @@ Pack 'kana/vim-textobj-function', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kshenoy/vim-signature', {'type': 'lazyall'}
+Pack 'lambdalisue/edita.vim', {'type': 'lazyall'}
 Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
 Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
 Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
