@@ -86,6 +86,7 @@ Pack 't9md/vim-choosewin', {'type': 'opt', 'on': ['<Plug>(choosewin)']}
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
 Pack 'tyru/caw.vim', {'type': 'opt', 'on': ['<Plug>(caw:prefix)', '<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)', '<Plug>(caw:hatpos:toggle)']}
+Pack 'wadackel/vim-dogrun'
 
 if 0
   Pack 'ctrlpvim/ctrlp.vim'
@@ -108,13 +109,13 @@ elseif 0
   Pack 'MattesGroeger/vim-bookmarks', {'type': 'lazyall'}
   Pack 'Shougo/neomru.vim'
   Pack 'bogado/file-line', {'type': 'lazyall'}
-elseif 1
+elseif 0
   Pack 'mattn/vim-fz', {'do': '!go get github.com/mattn/gof'}
   Pack 'mattn/vim-fz-launcher'
 else
-  Pack 'Shougo/denite.nvim', {'type': 'opt', 'on': ['Denite']}
-  Pack 'Jagua/vim-denite-ghq', {'type': 'lazyall'}
-  Pack 'pocari/vim-denite-gists', {'type': 'lazyall'}
-  Pack 'pocari/vim-denite-kind-open-browser', {'type': 'lazyall'}
+  Pack 'Shougo/denite.nvim', {'type': 'opt', 'on': ['Denite'], 'if': has('nvim')}
+  Pack 'Jagua/vim-denite-ghq', {'type': 'lazyall', 'if': has('nvim')}
+  Pack 'pocari/vim-denite-gists', {'type': 'lazyall', 'if': has('nvim')}
+  Pack 'pocari/vim-denite-kind-open-browser', {'type': 'lazyall', 'if': has('nvim')}
 endif
 

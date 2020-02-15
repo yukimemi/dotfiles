@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/02/10 23:42:41.
+" Last Change : 2020/02/15 16:14:39.
 " =============================================================================
 
 " Init: {{{1
@@ -258,7 +258,7 @@ endif
 set noerrorbells
 set novisualbell
 set visualbell t_vb=
-set number
+set number relativenumber
 set showmatch matchtime=1
 set noshowmode
 if has('nvim')
@@ -711,6 +711,6 @@ endif
 
 " Colorscheme: {{{1
 set background=light
-silent! colorscheme spring-night
+silent! colorscheme dogrun
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

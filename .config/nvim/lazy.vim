@@ -102,5 +102,5 @@ if 0
   " Pack 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'lazyall'}
   " Pack 'prabirshrestha/asyncomplete-tags.vim', {'type': 'lazyall', 'if': !g:is_windows}
 else
-  Pack 'neoclide/coc.nvim', {'type': 'lazyall', 'branch': 'release', 'on': ['CocList', 'CocListResume']}
+  Pack 'neoclide/coc.nvim', {'branch': 'release'}
 endif

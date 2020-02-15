@@ -1,12 +1,19 @@
 {
   "diagnostic.refreshAfterSave": true,
+  "suggest.enablePreview": true,
   "list.autoResize": true,
   "list.maxHeight": 30,
   "list.source.files.args": ["--hidden", "--files"],
-  "list.insertMappings": {
-    "<c-j>": "normal:j",
-    "<c-k>": "normal:k"
-  },
-  "explorer.icon.enableNerdfont": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "typescript",
+    "json",
+    "markdown",
+    "html",
+    "css",
+    "xml"
+  ],
+  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.previewAutoClose": false,
+  "explorer.icon.enableNerdfont": true,
   "explorer.file.autoReveal": true
 }
