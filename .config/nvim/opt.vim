@@ -98,7 +98,7 @@ if 0
   Pack 'mattn/ctrlp-ghq', {'type': 'opt', 'on': 'CtrlPGhq'}
   Pack 'ompugao/ctrlp-history', {'type': 'opt', 'on': 'CtrlPCmdHistory'}
   " Pack 'FelikZ/ctrlp-py-matcher'
-elseif 1
+elseif 0
   Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap', 'do': 'Clap install-binary!'}
 elseif 0
   Pack 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all', 'if': !g:is_windows}
@@ -108,7 +108,7 @@ elseif 0
   Pack 'MattesGroeger/vim-bookmarks', {'type': 'lazyall'}
   Pack 'Shougo/neomru.vim'
   Pack 'bogado/file-line', {'type': 'lazyall'}
-elseif 0
+elseif 1
   Pack 'mattn/vim-fz', {'do': '!go get github.com/mattn/gof'}
   Pack 'mattn/vim-fz-launcher'
 else

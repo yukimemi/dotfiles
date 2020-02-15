@@ -6,7 +6,6 @@
 " Pack 'Shougo/neosnippet.vim', {'type': 'lazyall'}
 " Pack 'Shougo/vimproc.vim', {'type': 'lazyall', 'do': 'silent! !make'}
 " Pack 'TaDaa/vimade', {'type': 'lazyall'}
-" Pack 'airblade/vim-rooter', {'type': 'lazyall'}
 " Pack 'basyura/twibill.vim', {'type': 'lazyall'}
 " Pack 'bfredl/nvim-miniyank', {'type': 'lazyall'}
 " Pack 'dense-analysis/ale', {'type': 'lazyall'}
@@ -19,6 +18,7 @@
 " Pack 'lambdalisue/vim-pyenv', {'type': 'lazyall'}
 " Pack 'ludovicchabant/vim-gutentags', {'type': 'lazyall', 'if': executable('ctags')}
 " Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
+" Pack 'mattn/vim-findroot', {'type': 'lazyall'}
 " Pack 'mattn/vim-lexiv', {'type': 'lazyall'}
 " Pack 'mox-mox/vim-localsearch', {'type': 'lazyall'}
 " Pack 'osyo-manga/vim-anzu', {'type': 'lazyall'}
@@ -37,6 +37,7 @@ Pack 'LumaKernel/vim-messages-qf', {'type': 'lazy'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
 Pack 'airblade/vim-gitgutter', {'type': 'lazyall'}
+Pack 'airblade/vim-rooter', {'type': 'lazyall'}
 Pack 'andymass/vim-matchup', {'type': 'lazyall'}
 Pack 'cohama/lexima.vim', {'type': 'lazyall'}
 Pack 'editorconfig/editorconfig-vim', {'type': 'lazyall'}
@@ -65,7 +66,6 @@ Pack 'lambdalisue/suda.vim', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
-Pack 'mattn/vim-findroot', {'type': 'lazyall'}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'ntpeters/vim-better-whitespace', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-blockwise', {'type': 'lazyall'}
@@ -85,7 +85,7 @@ Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
 Pack 'wellle/context.vim', {'type': 'lazyall'}
 
-if 1
+if 0
   Pack 'prabirshrestha/async.vim'
   Pack 'prabirshrestha/asyncomplete-lsp.vim'
   Pack 'prabirshrestha/asyncomplete.vim'
