@@ -16,6 +16,7 @@
 "win/link/.memolist"                   = "~/.memolist"
 "win/link/.rhq"                        = "~/.rhq"
 "win/link/app"                         = "~/app"
+"win/link/archives"                    = "~/archives"
 "win/link/scoop"                       = "~/scoop"
 "win/link/Go"                          = "C:/Go"
 "win/link/tools"                       = "C:/tools"
