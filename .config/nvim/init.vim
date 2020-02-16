@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/02/15 16:14:39.
+" Last Change : 2020/02/17 00:46:00.
 " =============================================================================
 
 " Init: {{{1
@@ -650,6 +650,9 @@ endif
 " Color: {{{1
 silent! syntax enable
 
+au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
+au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
+
 " Highlight VCS conflict markers {{{2
 " match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
@@ -710,7 +713,7 @@ else
 endif
 
 " Colorscheme: {{{1
-set background=light
+set background=dark
 silent! colorscheme dogrun
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
