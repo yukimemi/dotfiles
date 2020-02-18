@@ -114,6 +114,7 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 nnoremap <silent> <space><space> :<c-u>CocList<cr>
 nnoremap <silent> <space>cr :<c-u>CocList files --hidden ~/.rhq<cr>
 nnoremap <silent> <space>cf :<c-u>CocList files --hidden ~/.dotfiles<cr>
+nnoremap <silent> <space>cv :<c-u>CocList files --hidden ~/.cache<cr>
 nnoremap <silent> <space>cb :<c-u>CocList buffers<cr>
 nnoremap <silent> <space>ch :<c-u>CocList cmdhistory<cr>
 nnoremap <silent> <space>cu :<c-u>CocList mru<cr>

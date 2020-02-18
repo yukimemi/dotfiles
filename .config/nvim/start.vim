@@ -3,8 +3,6 @@
 " Pack 'kopischke/vim-stay'
 " Pack 'lambdalisue/vim-findent'
 " Pack 'machakann/vim-colorscheme-kemonofriends'
-" Pack 'mattn/transparency-windows-vim', {'if': g:is_windows}
-" Pack 'mattn/vimtweak', {'if': g:is_windows}
 " Pack 'rhysd/committia.vim'
 " Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
 " Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
@@ -17,7 +15,10 @@ Pack 'itchyny/vim-parenmatch'
 Pack 'jeffkreeftmeijer/vim-numbertoggle'
 Pack 'kana/vim-operator-user'
 Pack 'kana/vim-textobj-user'
+Pack 'kmtoki/lightline-colorscheme-simplicity'
 Pack 'lambdalisue/fern.vim'
+Pack 'mattn/transparency-windows-vim', {'if': g:is_windows}
+Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'ryanoasis/vim-devicons'
 Pack 'sheerun/vim-polyglot'
 Pack 't9md/vim-quickhl'

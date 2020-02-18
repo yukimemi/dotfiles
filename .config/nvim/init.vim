@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/02/17 00:46:00.
+" Last Change : 2020/02/17 16:13:04.
 " =============================================================================
 
 " Init: {{{1
@@ -658,11 +658,12 @@ au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 
 " Hilight cursorline, cursorcolumn {{{2
 " https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472
-let s:cur_f = 0
-au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
-au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
-au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
-au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
+" let s:cur_f = 0
+" au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
+" au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
+" au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
+" au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
+set cursorline
 
 " reload filetype on save. {{{2
 " https://lambdalisue.hatenablog.com/entry/2017/12/24/165759
@@ -714,6 +715,6 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-silent! colorscheme dogrun
+silent! colorscheme spring-night
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

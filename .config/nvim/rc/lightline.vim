@@ -1,5 +1,5 @@
 let g:lightline = {
-      \ 'colorscheme': 'dogrun',
+      \ 'colorscheme': 'simplicity',
       \ 'mode_map': {
       \   'n' : 'N',
       \   'i' : 'I',
@@ -14,7 +14,7 @@ let g:lightline = {
       \   },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'filename', 'anzu' ] ]
+      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'gitbranch#name',
@@ -23,9 +23,12 @@ let g:lightline = {
       \   'filename': 'LightLineFilename',
       \   'filetype': 'LightLineFiletype',
       \   'fileformat': 'LightLineFileformat',
-      \   'anzu': 'anzu#search_status',
+      \   'cocstatus': 'coc#status'
       \ },
       \ }
+
+" Use auocmd to force lightline update.
+au MyAutoCmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 function! LightLineModified()
   if &filetype == "help"

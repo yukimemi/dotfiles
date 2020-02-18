@@ -4,7 +4,7 @@ set guioptions=
 
 " color
 set background=dark
-colorscheme dogrun
+colorscheme spring-night
 
 " font
 set gfn=Cica:h10:cSHIFTJIS:qDRAFT
