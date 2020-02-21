@@ -13,7 +13,7 @@ set -x GOPATH ~/.go
 
 # Rust. {{{2
 if type -q rustc
-  set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src >/dev/null ^&1
+  set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src >/dev/null 2>&1
 end
 set -x RUST_LOG info
 
@@ -39,7 +39,7 @@ if not test -d ~/.anyenv
   git clone https://github.com/riywo/anyenv ~/.anyenv
 end
 if not test -d ~/.anyenv/plugins/anyenv-update
-  mkdir -p ~/.anyenv/plugins > /dev/null ^&1
+  mkdir -p ~/.anyenv/plugins > /dev/null 2>&1
   git clone https://github.com/znz/anyenv-update ~/.anyenv/plugins/anyenv-update
 end
 
@@ -208,7 +208,7 @@ set -g fish_key_bindings fish_vi_key_bindings
 ### Install plugin manager. {{{1
 # fresco.
 if not test -f ~/.cache/fresco/__fresco_install.fish
-  # mkdir -p ~/.cache/fresco >/dev/null ^&1
+  # mkdir -p ~/.cache/fresco >/dev/null 2>&1
   # curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o ~/.cache/fresco/__fresco_install.fish
   # cat ~/.cache/fresco/__fresco_install.fish | fish
   # exec fish -l

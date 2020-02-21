@@ -14,7 +14,7 @@ let g:lightline = {
       \   },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename' ] ]
+      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'bomb' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'gitbranch#name',
@@ -23,6 +23,7 @@ let g:lightline = {
       \   'filename': 'LightLineFilename',
       \   'filetype': 'LightLineFiletype',
       \   'fileformat': 'LightLineFileformat',
+      \   'bomb': 'LightLineBomb',
       \   'cocstatus': 'coc#status'
       \ },
       \ }
@@ -81,4 +82,9 @@ function! LightLineFileformat()
     return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
   endif
 endfunction
+
+function! LightLineBomb() abort
+  return &bomb ? 'bomb' : ''
+endfunction
+
 
