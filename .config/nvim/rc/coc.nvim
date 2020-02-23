@@ -12,6 +12,7 @@ let g:coc_global_extensions = [
       \ "coc-bookmark",
       \ "coc-calc",
       \ "coc-css",
+      \ "coc-diagnostic",
       \ "coc-docker",
       \ "coc-emoji",
       \ "coc-fish",

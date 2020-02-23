@@ -105,7 +105,7 @@ alias runhaskell "stack runghc --"
 alias twitter "open -na 'Google Chrome' --args '--app=https://mobile.twitter.com'"
 alias tweetdeck "open -na 'Google Chrome' --args '--app=https://tweetdeck.com'"
 alias hangout "open -na open -na 'Google Chrome' --args '--app=https://hangouts.google.com/'"
-alias misskey "open -na 'Google Chrome' --args '--app=https://misskey.dev'"
+alias misskey "open -na 'Google Chrome' --args '--app=https://misskey.io'"
 
 # docker. {{{2
 # alias gcloud-auth "docker run -ti --name gcloud-config google/cloud-sdk gcloud auth login"
