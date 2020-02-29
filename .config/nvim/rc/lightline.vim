@@ -14,17 +14,19 @@ let g:lightline = {
       \   },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'bomb' ] ]
+      \             [ 'gitbranch', 'ginastatus', 'cocstatus', 'readonly', 'filename', 'bomb', 'reanimate' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'gitbranch#name',
+      \   'ginastatus': 'GinaStatus',
       \   'readonly': 'LightLineReadonly',
       \   'modified': 'LightLineModified',
       \   'filename': 'LightLineFilename',
       \   'filetype': 'LightLineFiletype',
       \   'fileformat': 'LightLineFileformat',
       \   'bomb': 'LightLineBomb',
-      \   'cocstatus': 'coc#status'
+      \   'cocstatus': 'coc#status',
+      \   'reanimate': 'LightLineReanimate'
       \ },
       \ }
 
@@ -87,4 +89,23 @@ function! LightLineBomb() abort
   return &bomb ? 'bomb' : ''
 endfunction
 
+function! LightLineReanimate()
+  return reanimate#is_saved() ? reanimate#last_point() : "no save"
+endfunction
+
+function! GinaStatus() abort
+  if IsInstalled("autoload/gina.vim")
+    let staged = gina#component#status#staged() ? gina#component#status#staged() : 0
+    let unstaged = gina#component#status#unstaged() ? gina#component#status#unstaged() : 0
+    let conflicted = gina#component#status#conflicted() ? gina#component#status#conflicted() : 0
+    return printf(
+          \ 'suc: [%s, %s, %s]',
+          \ staged,
+          \ unstaged,
+          \ conflicted,
+          \)
+  else
+    return ""
+  endif
+endfunction
 

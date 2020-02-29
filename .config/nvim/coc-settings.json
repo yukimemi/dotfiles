@@ -3,6 +3,7 @@
   "suggest.enablePreview": true,
   "list.autoResize": true,
   "list.maxHeight": 30,
+  "list.source.lists.defaultOptions": ["--no-sort"],
   "list.source.files.args": ["--hidden", "--files"],
   "coc.preferences.formatOnSaveFiletypes": [
     "typescript",

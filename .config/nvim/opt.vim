@@ -48,6 +48,7 @@ endfunction
 " Pack 'rust-lang/rust.vim', {'type': 'opt', 'for': 'rust'}
 " Pack 'scrooloose/nerdtree', {'type': 'opt', 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 " Pack 'stephpy/vim-yaml', {'type': 'opt', 'for': ['yml', 'yaml']}
+" Pack 'tpope/vim-commentary', {'type': 'opt', 'on': ['<Plug>Commentary', '<Plug>CommentaryLine']}
 Pack 'Shougo/junkfile.vim', {'type': 'opt', 'on': 'JunkfileOpen'}
 Pack 'aereal/vim-colors-japanesque', {'type': 'opt'}
 Pack 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'for': 'haskell'}
@@ -57,12 +58,12 @@ Pack 'cormacrelf/vim-colors-github', {'type': 'opt'}
 Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
 Pack 'dzeban/vim-log-syntax', {'type': 'opt', 'for': 'log'}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
+Pack 'hiroakis/cyberspace.vim', {'type': 'opt'}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
 Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
 Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
-Pack 'lambdalisue/gina.vim', {'type': 'opt', 'on': 'Gina'}
 Pack 'lifepillar/vim-solarized8', {'type': 'opt'}
 Pack 'machakann/vim-colorscheme-snowtrek', {'type': 'opt'}
 Pack 'majutsushi/tagbar', {'type': 'opt', 'on': 'TagbarToggle'}
@@ -77,7 +78,7 @@ Pack 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
 Pack 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
 Pack 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
 Pack 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'for': 'rust'}
-Pack 'rhysd/vim-color-spring-night'
+Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
 Pack 'scrooloose/vim-slumlord', {'type': 'opt', 'for': 'plantuml'}
 Pack 'skanehira/preview-markdown.vim', {'type': 'opt', 'on': 'PreviewMarkdown', 'if': executable('mdr') && !has('nvim')}
@@ -86,7 +87,7 @@ Pack 't9md/vim-choosewin', {'type': 'opt', 'on': ['<Plug>(choosewin)']}
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
 Pack 'tyru/caw.vim', {'type': 'opt', 'on': ['<Plug>(caw:prefix)', '<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)', '<Plug>(caw:hatpos:toggle)']}
-Pack 'wadackel/vim-dogrun'
+Pack 'wadackel/vim-dogrun', {'type': 'opt'}
 
 if 0
   Pack 'ctrlpvim/ctrlp.vim'

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/02/17 16:13:04.
+" Last Change : 2020/02/26 00:28:41.
 " =============================================================================
 
 " Init: {{{1
@@ -610,7 +610,7 @@ au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 " http://vim-jp.org/vim-users-jp/2009/10/08/Hack-84.html
 " au MyAutoCmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview! | endif
 " au MyAutoCmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent! loadview | endif
-set viewoptions=cursor,folds
+" set viewoptions=cursor,folds
 
 " For swap.
 " http://itchyny.hatenablog.com/entry/2014/12/25/090000
@@ -715,6 +715,6 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-silent! colorscheme spring-night
+silent! colorscheme cyberspace
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

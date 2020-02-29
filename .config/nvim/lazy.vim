@@ -8,6 +8,8 @@
 " Pack 'TaDaa/vimade', {'type': 'lazyall'}
 " Pack 'basyura/twibill.vim', {'type': 'lazyall'}
 " Pack 'bfredl/nvim-miniyank', {'type': 'lazyall'}
+" Pack 'camspiers/animate.vim', {'type': 'lazyall'}
+" Pack 'camspiers/lens.vim', {'type': 'lazyall'}
 " Pack 'dense-analysis/ale', {'type': 'lazyall'}
 " Pack 'gko/vim-coloresque', {'type': 'lazyall'}
 " Pack 'haya14busa/is.vim', {'type': 'lazyall'}
@@ -59,9 +61,9 @@ Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kshenoy/vim-signature', {'type': 'lazyall'}
 Pack 'lambdalisue/edita.vim', {'type': 'lazyall'}
-Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
-Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
-Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
+" Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
+" Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
+" Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
 Pack 'lambdalisue/suda.vim', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
@@ -83,6 +85,7 @@ Pack 'tpope/vim-repeat', {'type': 'lazyall'}
 Pack 'twitvim/twitvim', {'type': 'lazyall'}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
+Pack 'voldikss/vim-floaterm', {'type': 'lazyall'}
 Pack 'wellle/context.vim', {'type': 'lazyall'}
 
 if 0
