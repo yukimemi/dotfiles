@@ -17,6 +17,10 @@
 " Pack 'iyuuya/denite-ale', {'type': 'lazyall'}
 " Pack 'jeffkreeftmeijer/vim-numbertoggle', {'type': 'lazyall'}
 " Pack 'kassio/neoterm', {'type': 'lazyall', 'if': has('nvim')}
+" Pack 'lambdalisue/edita.vim', {'type': 'lazyall'}
+" Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
+" Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
+" Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
 " Pack 'lambdalisue/vim-pyenv', {'type': 'lazyall'}
 " Pack 'ludovicchabant/vim-gutentags', {'type': 'lazyall', 'if': executable('ctags')}
 " Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
@@ -31,8 +35,11 @@
 " Pack 'svermeulen/vim-yoink', {'type': 'lazyall'}
 " Pack 'taku-o/vim-zoom', {'type': 'lazyall'}
 " Pack 'thinca/vim-localrc', {'type': 'lazyall'}
+" Pack 'tpope/vim-obsession', {'type': 'lazyall'}
 " Pack 'unblevable/quick-scope', {'type': 'lazyall'}
 " Pack 'vim-scripts/matchit.zip', {'type': 'lazyall'}
+" Pack 'voldikss/vim-floaterm', {'type': 'lazyall'}
+" Pack 'wellle/context.vim', {'type': 'lazyall'}
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'LumaKernel/vim-messages-qf', {'type': 'lazy'}
@@ -60,10 +67,6 @@ Pack 'kana/vim-textobj-function', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kshenoy/vim-signature', {'type': 'lazyall'}
-Pack 'lambdalisue/edita.vim', {'type': 'lazyall'}
-" Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
-" Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
-" Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
 Pack 'lambdalisue/suda.vim', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
@@ -80,13 +83,10 @@ Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'thinca/vim-quickrun', {'type': 'lazyall'}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
 Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windows && !has('nvim')}
-Pack 'tpope/vim-obsession', {'type': 'lazyall'}
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}
 Pack 'twitvim/twitvim', {'type': 'lazyall'}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
-Pack 'voldikss/vim-floaterm', {'type': 'lazyall'}
-Pack 'wellle/context.vim', {'type': 'lazyall'}
 
 if 0
   Pack 'prabirshrestha/async.vim'

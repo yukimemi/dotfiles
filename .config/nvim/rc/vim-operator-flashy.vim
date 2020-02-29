@@ -1,4 +1,4 @@
-if !IsInstalled("autoload/operator/flashy.vim")
+if !IsInstalled("vim-operator-flashy")
   finish
 endif
 

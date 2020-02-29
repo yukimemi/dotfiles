@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/02/26 00:28:41.
+" Last Change : 2020/03/01 04:24:34.
 " =============================================================================
 
 " Init: {{{1
@@ -690,12 +690,20 @@ if $HOME != $USERPROFILE && $GIT_EXEC_PATH != ''
 end
 
 " Plugin: {{{1
-let s:use_dein = 0
+let s:use_dein = 1
 let s:use_vimplug = 0
-let s:use_minpac = 1
+let s:use_minpac = 0
 let s:use_packager = 0
 let s:use_volt = 0
 let s:use_pack = 0
+
+function! IsInstalled(name) abort
+  if s:use_dein
+    return !dein#check_install(a:name)
+  elseif s:use_minpac
+    return !empty(globpath(&pp, "pack/minpac/*/" . a:name))
+  endif
+endfunction
 
 if s:use_dein
   runtime! dein.vim

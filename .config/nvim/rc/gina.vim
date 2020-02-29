@@ -1,4 +1,4 @@
-if !IsInstalled("autoload/gina.vim")
+if !IsInstalled("gina.vim")
   finish
 endif
 

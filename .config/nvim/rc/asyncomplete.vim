@@ -1,4 +1,4 @@
-if !IsInstalled("autoload/asyncomplete.vim")
+if !IsInstalled("asyncomplete.vim")
   finish
 endif
 

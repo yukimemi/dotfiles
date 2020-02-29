@@ -90,11 +90,15 @@ function! LightLineBomb() abort
 endfunction
 
 function! LightLineReanimate()
-  return reanimate#is_saved() ? reanimate#last_point() : "no save"
+  if IsInstalled("vim-reanimate")
+    return reanimate#is_saved() ? reanimate#last_point() : "no save"
+  else
+    return ""
+  endif
 endfunction
 
 function! GinaStatus() abort
-  if IsInstalled("autoload/gina.vim")
+  if IsInstalled("gina.vim")
     let staged = gina#component#status#staged() ? gina#component#status#staged() : 0
     let unstaged = gina#component#status#unstaged() ? gina#component#status#unstaged() : 0
     let conflicted = gina#component#status#conflicted() ? gina#component#status#conflicted() : 0

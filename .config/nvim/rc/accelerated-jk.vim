@@ -1,4 +1,4 @@
-if !IsInstalled("plugin/accelerated-jk.vim")
+if !IsInstalled("accelerated-jk")
   finish
 endif
 

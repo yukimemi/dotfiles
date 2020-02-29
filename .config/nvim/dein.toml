@@ -1,33 +1,47 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/02/10 23:39:31.
+# Last Change : 2020/03/01 04:21:00.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
 [[plugins]]
 repo = 'Shougo/dein.vim' # {{{2
 
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim' # {{{2
+
 # ==================== Visual ==================== {{{1
 [[plugins]]
 repo = 'rhysd/vim-color-spring-night' # {{{2
+lazy = 1
+
+[[plugins]]
+repo =  'hiroakis/cyberspace.vim' # {{{2
 
 [[plugins]]
 repo = 'ryanoasis/vim-devicons' # {{{2
 
-# [[plugins]]
-# repo = 'itchyny/lightline.vim' # {{{2
-# hook_add = '''
-# source $VIM_PATH/rc/lightline.vim
-# '''
+[[plugins]]
+repo = 'itchyny/lightline.vim' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/lightline.vim
+'''
+if = "g:dein_use_lightline"
 
 [[plugins]]
-repo = 'vim-airline/vim-airline'
+repo = 'kmtoki/lightline-colorscheme-simplicity' # {{{2
+if = "g:dein_use_lightline"
+
+[[plugins]]
+repo = 'vim-airline/vim-airline' # {{{2
 hook_add = '''
 source $VIM_PATH/rc/vim-airline.vim
 '''
+if = 'g:dein_use_airline'
 [[plugins]]
-repo = 'vim-airline/vim-airline-themes'
+repo = 'vim-airline/vim-airline-themes' # {{{2
+if = 'g:dein_use_airline'
 
 [[plugins]]
 repo = 'Yggdroot/indentLine' # {{{2
@@ -37,81 +51,78 @@ source $VIM_PATH/rc/indentLine.vim
 
 [[plugins]]
 repo = 'itchyny/vim-highlighturl' # {{{2
+on_event = "CursorHold"
 
 [[plugins]]
 repo = 'andymass/vim-matchup' # {{{2
+on_event = "CursorHold"
 
 [[plugins]]
 repo = 'ntpeters/vim-better-whitespace' # {{{2
-
-[[plugins]]
-repo = 'kshenoy/vim-signature' # {{{2
+on_event = "CursorHold"
 
 [[plugins]]
 repo = 'jeffkreeftmeijer/vim-numbertoggle' # {{{2
+on_event = ["CursorHold", "WinEnter"]
 
-
-# ==================== Complement ================ {{{1
 [[plugins]]
-repo = 'Shougo/neosnippet.vim' # {{{2
-depends = ['neosnippet-snippets', 'context_filetype.vim']
-on_i = 1
-on_ft = 'snippet'
+repo = 'mattn/transparency-windows-vim'
+if = "g:is_windows"
 hook_add = '''
-source $VIM_PATH/rc/neosnippet.vim
+source $VIM_PATH/rc/transparency-windows-vim.vim
 '''
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets' # {{{2
-lazy = 1
+repo = 'mattn/vimtweak'
+if = "g:is_windows"
 
+# ==================== Complement ================ {{{1
 [[plugins]]
 repo = 'Shougo/context_filetype.vim' # {{{2
 lazy = 1
-[[plugins]]
-repo = 'Shougo/neco-syntax' # {{{2
-lazy = 1
-[[plugins]]
-repo = 'Shougo/neco-vim' # {{{2
-on_ft = 'vim'
 
 [[plugins]]
 repo = 'prabirshrestha/async.vim' # {{{2
-
+if = 'g:dein_use_asyncomplete'
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim' # {{{2
 hook_add = '''
 source $VIM_PATH/rc/asyncomplete.vim
 '''
+if = 'g:dein_use_asyncomplete'
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim' # {{{2
+if = 'g:dein_use_asyncomplete'
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp' # {{{2
 merged = 0
+if = 'g:dein_use_asyncomplete'
 [[plugins]]
 repo = 'mattn/vim-lsp-settings' # {{{2
 merged = 0
+if = 'g:dein_use_asyncomplete'
+
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-buffer.vim' # {{{2
+if = 'g:dein_use_asyncomplete'
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-file.vim' # {{{2
+if = 'g:dein_use_asyncomplete'
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-emoji.vim' # {{{2
+if = 'g:dein_use_asyncomplete'
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-tags.vim' # {{{2
-if = "executable('ctags')"
+if = "executable('ctags') && g:dein_use_asyncomplete"
+
 [[plugins]]
-repo = 'prabirshrestha/asyncomplete-necosyntax.vim' # {{{2
-depends = ['neco-syntax']
-# [[plugins]]
-# repo = 'yami-beta/asyncomplete-omni.vim' # {{{2
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-neosnippet.vim' # {{{2
-depends = ['neosnippet.vim']
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-necovim.vim' # {{{2
-on_ft = 'vim'
-depends = ['neco-vim']
+repo = "neoclide/coc.nvim" # {{{2
+rev = "release"
+if = "g:dein_use_coc"
+hook_add = '''
+source $VIM_PATH/rc/coc.nvim
+'''
+
 
 # ==================== Utility =================== {{{1
 [[plugins]]
@@ -137,11 +148,6 @@ source $VIM_PATH/rc/vim-submode.vim
 # repo = 'arecarn/vim-fold-cycle'
 
 [[plugins]]
-repo = 'Shougo/vimproc.vim' # {{{2
-if = "!has('kaoriya')"
-build = 'make'
-
-[[plugins]]
 repo = 'junegunn/vim-easy-align' # {{{2
 on_map = {v = '<Plug>'}
 hook_add = '''
@@ -161,13 +167,6 @@ hook_add = '''
 source $VIM_PATH/rc/autodate.vim
 '''
 
-# [[plugins]]
-# repo = 'simnalamburt/vim-mundo' # {{{2
-# on_cmd = 'MundoToggle'
-# hook_add = '''
-# source $VIM_PATH/rc/vim-mundo.vim
-# '''
-
 [[plugins]]
 repo = 'mbbill/undotree' # {{{2
 on_cmd = 'UndotreeToggle'
@@ -179,22 +178,9 @@ source $VIM_PATH/rc/undotree.vim
 [[plugins]]
 repo = 'tpope/vim-repeat' # {{{2
 
-# [[plugins]]
-# repo = 'w0rp/ale' # {{{2
-# hook_add = '''
-# source $VIM_PATH/rc/ale.vim
-# '''
-
 [[plugins]]
 repo = 'tyru/capture.vim' # {{{2
 on_cmd = ['Capture']
-
-[[plugins]]
-repo = 'justinmk/vim-dirvish' # {{{2
-on_cmd = ['Dirvish']
-hook_add = '''
-source $VIM_PATH/rc/vim-dirvish.vim
-'''
 
 [[plugins]]
 repo = 'Shougo/echodoc.vim' # {{{2
@@ -204,12 +190,13 @@ hook_add = '''
 source $VIM_PATH/rc/echodoc.vim
 '''
 
-# [[plugins]]
-# repo = 'ctrlpvim/ctrlp.vim' # {{{2
-# on_cmd = 'CtrlP'
-# hook_add = '''
-# source $VIM_PATH/rc/ctrlp.vim
-# '''
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim' # {{{2
+on_cmd = 'CtrlP'
+hook_add = '''
+source $VIM_PATH/rc/ctrlp.vim
+'''
+if = "g:dein_use_ctrlp"
 
 [[plugins]]
 repo = 'liuchengxu/vim-clap' # {{{2
@@ -220,6 +207,7 @@ source $VIM_PATH/rc/vim-clap.vim
 hook_post_update = '''
 call clap#helper#build_all()
 '''
+if = "g:dein_use_clap"
 
 [[plugins]]
 repo = 'kaneshin/ctrlp-filetype' # {{{2
@@ -251,10 +239,6 @@ on_ft = 'markdown'
 
 # [[plugins]]
 # repo = 'kopischke/vim-stay' # {{{2
-
-[[plugins]]
-repo = 'tpope/vim-obsession' # {{{2
-
 
 [[plugins]]
 repo = 'qpkorr/vim-renamer' # {{{2
@@ -301,12 +285,12 @@ if = '!has("nvim")'
 repo = 'mattn/webapi-vim' # {{{2
 lazy = 1
 
-[[plugins]]
-repo = 'lambdalisue/fila.vim' # {{{2
-on_cmd = 'Fila'
-hook_add = '''
-source $VIM_PATH/rc/fila.vim
-'''
+# [[plugins]]
+# repo = 'lambdalisue/fern.vim' # {{{2
+# on_cmd = 'Fern'
+# hook_add = '''
+# source $VIM_PATH/rc/fern.vim
+# '''
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim' # {{{2
@@ -316,14 +300,20 @@ repo = 'lambdalisue/suda.vim' # {{{2
 hook_add = '''
 source $VIM_PATH/rc/suda.vim
 '''
+if = "g:is_windows"
+
+# [[plugins]]
+# repo = 'osyo-manga/vim-jplus' # {{{2
+# on_map = '<Plug>'
+# hook_add = '''
+# source $VIM_PATH/rc/vim-jplus.vim
+# '''
 
 [[plugins]]
-repo = 'osyo-manga/vim-jplus' # {{{2
-on_map = '<Plug>'
+repo = 'osyo-manga/vim-reanimate' # {{{2
 hook_add = '''
-source $VIM_PATH/rc/vim-jplus.vim
+source $VIM_PATH/rc/vim-reanimate.vim
 '''
-
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
@@ -332,7 +322,7 @@ depends = 'neomru.vim'
 on_cmd = 'Denite'
 if = "has('python3')"
 hook_add = '''
-source $VIM_PATH/rc/denite.vim
+source $VIM_PATH/rc/denite.nvim
 '''
 
 [[plugins]]
@@ -344,27 +334,10 @@ repo = 'Shougo/junkfile.vim' # {{{2
 on_source = 'denite.nvim'
 on_cmd = 'JunkfileOpen'
 
-# [[plugins]]
-# repo = 'iyuuya/denite-ale' # {{{2
-# on_source = 'denite.nvim'
-
-
 # ==================== Search ==================== {{{1
 [[plugins]]
 repo = 'haya14busa/vim-asterisk' # {{{2
 on_map = '<Plug>'
-
-[[plugins]]
-repo = 'osyo-manga/vim-anzu' # {{{2
-on_map = '<Plug>'
-
-[[plugins]]
-repo = 'haya14busa/is.vim' # {{{2
-depends = ['vim-asterisk', 'vim-anzu']
-on_map = '<Plug>'
-hook_add = '''
-source $VIM_PATH/rc/is.vim
-'''
 
 [[plugins]]
 repo = 't9md/vim-quickhl' # {{{2
@@ -376,7 +349,6 @@ repo = 'unblevable/quick-scope' # {{{2
 hook_add = '''
 source $VIM_PATH/rc/quick-scope.vim
 '''
-
 
 [[plugins]]
 repo = 'itchyny/vim-parenmatch' # {{{2
@@ -414,6 +386,10 @@ on_map = '<Plug>'
 hook_add = '''
 source $VIM_PATH/rc/vim-grepper.vim
 '''
+
+[[plugins]]
+repo = 'tsuyoshicho/vim-fg'
+on_cmd = ['Fg']
 
 # ==================== Operators ================= {{{1
 [[plugins]]
@@ -514,12 +490,11 @@ source $VIM_PATH/rc/yankround.vim
 '''
 
 # ==================== Git ======================= {{{1
-# [[plugins]]
-# repo = 'itchyny/vim-gitbranch' # {{{2
+[[plugins]]
+repo = 'itchyny/vim-gitbranch' # {{{2
 
 [[plugins]]
 repo = 'lambdalisue/gina.vim' # {{{2
-on_cmd = 'Gina'
 hook_add = '''
 source $VIM_PATH/rc/gina.vim
 '''
@@ -532,21 +507,12 @@ hook_add = '''
 source $VIM_PATH/rc/git-messenger.vim
 '''
 
-
 # ==================== Filetype (all) ============= {{{1
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
 hook_add = '''
 source $VIM_PATH/rc/vim-polyglot.vim
 '''
-
-# ==================== Filetype (go) ============= {{{1
-# [[plugins]]
-# repo = 'fatih/vim-go' # {{{2
-# on_ft = 'go'
-# hook_add = '''
-# source $VIM_PATH/rc/vim-go.vim
-# '''
 
 # ==================== Filetype (plantuml) ======= {{{1
 [[plugins]]
@@ -560,35 +526,6 @@ source $VIM_PATH/rc/vim-slumlord.vim
 [[plugins]]
 repo = 'dzeban/vim-log-syntax' # {{{2
 on_ft = 'log'
-
-
-# ==================== Filetype (javascript) ===== {{{1
-# [[plugins]]
-# repo = 'pangloss/vim-javascript' # {{{2
-# on_ft = ['javascript', 'javascript.jsx']
-
-# [[plugins]]
-# repo = 'billyvg/tigris.nvim' # {{{2
-# if = '!g:is_windows'
-# on_ft = ['javascript', 'javascript.jsx']
-# depends = 'node-host'
-# build = './install.sh'
-# hook_add = '''
-# let g:tigris#enabled = 1
-# '''
-
-# [[plugins]]
-# repo = 'neovim/node-host'
-# lazy = 1
-# build = 'npm i'
-
-# [[plugins]]
-# repo = 'othree/javascript-libraries-syntax.vim' # {{{2
-# on_ft = ['javascript', 'javascript.jsx', 'typescript']
-
-# [[plugins]]
-# repo = 'othree/es.next.syntax.vim' # {{{2
-# on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
 # ==================== Filetype (markdown) ======= {{{1
 # [[plugins]]
@@ -608,15 +545,14 @@ call dein#source('markdown-preview.nvim')
 call mkdp#util#install()
 '''
 
-
 # ==================== Filetype (Rust) =========== {{{1
-[[plugins]]
-repo = 'rust-lang/rust.vim' # {{{2
-on_ft = 'rust'
-if = "executable('cargo')"
-hook_add = '''
-source $VIM_PATH/rc/rust.vim
-'''
+# [[plugins]]
+# repo = 'rust-lang/rust.vim' # {{{2
+# on_ft = 'rust'
+# if = "executable('cargo')"
+# hook_add = '''
+# source $VIM_PATH/rc/rust.vim
+# '''
 
 [[plugins]]
 repo = 'rhysd/rust-doc.vim' # {{{2
@@ -727,7 +663,6 @@ setl completeopt+=preview
 ps1 = '''
 setl ts=2 sw=2 sts=0
 setl foldmethod=syntax
-source $VIM_PATH/rc/vim-ps1.vim
 '''
 
 python = '''

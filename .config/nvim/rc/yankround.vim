@@ -1,4 +1,4 @@
-if !IsInstalled("autoload/yankround.vim")
+if !IsInstalled("yankround.vim")
   finish
 endif
 
