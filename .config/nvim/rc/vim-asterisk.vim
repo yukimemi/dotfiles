@@ -1,4 +1,4 @@
-if !IsInstalled("autoload/asterisk.vim")
+if !IsInstalled("vim-asterisk")
   finish
 endif
 

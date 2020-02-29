@@ -1,7 +1,7 @@
 " Use plefix s
 nnoremap sdb :<c-u>Denite buffer<cr>
 nnoremap sdf :<c-u>Denite file/rec<cr>
-nnoremap sdG :<c-u>Denite -path='~/.ghq/src' file/rec<cr>
+nnoremap sdG :<c-u>Denite -path='~/.rhq' file/rec<cr>
 nnoremap sdu :<c-u>Denite buffer file/old<cr>
 nnoremap sda :<c-u>Denite buffer file/old file/rec<cr>
 nnoremap sdd :<c-u>DeniteBufferDir file/rec<cr>
@@ -68,7 +68,6 @@ function! s:denite_aft() abort
 endfunction
 
 function! s:denite_my_settings() abort
-
   nnoremap <silent><buffer><nowait><expr> <cr> denite#do_map('do_action')
   nnoremap <silent><buffer><nowait><expr> d denite#do_map('do_action', 'delete')
   nnoremap <silent><buffer><nowait><expr> p denite#do_map('do_action', 'preview')

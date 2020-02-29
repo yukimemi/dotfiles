@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/03/01 04:21:00.
+# Last Change : 2020/03/01 04:57:55.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -66,15 +66,26 @@ repo = 'jeffkreeftmeijer/vim-numbertoggle' # {{{2
 on_event = ["CursorHold", "WinEnter"]
 
 [[plugins]]
-repo = 'mattn/transparency-windows-vim'
+repo = 'mattn/transparency-windows-vim' # {{{2
 if = "g:is_windows"
 hook_add = '''
 source $VIM_PATH/rc/transparency-windows-vim.vim
 '''
 
 [[plugins]]
-repo = 'mattn/vimtweak'
+repo = 'mattn/vimtweak' # {{{2
 if = "g:is_windows"
+
+[[plugins]]
+repo = 'rhysd/accelerated-jk' # {{{2
+on_event = ['CursorMoved']
+hook_add = '''
+source $VIM_PATH/rc/accelerated-jk.vim
+'''
+
+[[plugins]]
+repo = 'psliwka/vim-smoothie' # {{{2
+on_event = ['CursorMoved']
 
 # ==================== Complement ================ {{{1
 [[plugins]]
@@ -174,7 +185,6 @@ hook_add = '''
 source $VIM_PATH/rc/undotree.vim
 '''
 
-
 [[plugins]]
 repo = 'tpope/vim-repeat' # {{{2
 
@@ -185,7 +195,7 @@ on_cmd = ['Capture']
 [[plugins]]
 repo = 'Shougo/echodoc.vim' # {{{2
 depends = ['context_filetype.vim']
-on_i = 1
+on_event = "InsertEnter"
 hook_add = '''
 source $VIM_PATH/rc/echodoc.vim
 '''
@@ -315,6 +325,13 @@ hook_add = '''
 source $VIM_PATH/rc/vim-reanimate.vim
 '''
 
+[[plugins]]
+repo = 'haya14busa/vim-edgemotion' # {{{2
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-edgemotion.vim
+'''
+
 # ==================== Denite ==================== {{{1
 [[plugins]]
 repo = 'Shougo/denite.nvim' # {{{2
@@ -338,6 +355,9 @@ on_cmd = 'JunkfileOpen'
 [[plugins]]
 repo = 'haya14busa/vim-asterisk' # {{{2
 on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-asterisk.vim
+'''
 
 [[plugins]]
 repo = 't9md/vim-quickhl' # {{{2
@@ -388,7 +408,7 @@ source $VIM_PATH/rc/vim-grepper.vim
 '''
 
 [[plugins]]
-repo = 'tsuyoshicho/vim-fg'
+repo = 'tsuyoshicho/vim-fg' # {{{2
 on_cmd = ['Fg']
 
 # ==================== Operators ================= {{{1
@@ -523,9 +543,9 @@ source $VIM_PATH/rc/vim-slumlord.vim
 '''
 
 # ==================== Filetype (log) ============ {{{1
-[[plugins]]
-repo = 'dzeban/vim-log-syntax' # {{{2
-on_ft = 'log'
+# [[plugins]]
+# repo = 'dzeban/vim-log-syntax' # {{{2
+# on_ft = 'log'
 
 # ==================== Filetype (markdown) ======= {{{1
 # [[plugins]]
