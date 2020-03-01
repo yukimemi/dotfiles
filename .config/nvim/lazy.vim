@@ -6,6 +6,7 @@
 " Pack 'Shougo/neosnippet.vim', {'type': 'lazyall'}
 " Pack 'Shougo/vimproc.vim', {'type': 'lazyall', 'do': 'silent! !make'}
 " Pack 'TaDaa/vimade', {'type': 'lazyall'}
+" Pack 'airblade/vim-gitgutter', {'type': 'lazyall'}
 " Pack 'basyura/twibill.vim', {'type': 'lazyall'}
 " Pack 'bfredl/nvim-miniyank', {'type': 'lazyall'}
 " Pack 'camspiers/animate.vim', {'type': 'lazyall'}
@@ -17,6 +18,7 @@
 " Pack 'iyuuya/denite-ale', {'type': 'lazyall'}
 " Pack 'jeffkreeftmeijer/vim-numbertoggle', {'type': 'lazyall'}
 " Pack 'kassio/neoterm', {'type': 'lazyall', 'if': has('nvim')}
+" Pack 'kshenoy/vim-signature', {'type': 'lazyall'}
 " Pack 'lambdalisue/edita.vim', {'type': 'lazyall'}
 " Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
 " Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
@@ -45,7 +47,6 @@ Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'LumaKernel/vim-messages-qf', {'type': 'lazy'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
-Pack 'airblade/vim-gitgutter', {'type': 'lazyall'}
 Pack 'airblade/vim-rooter', {'type': 'lazyall'}
 Pack 'andymass/vim-matchup', {'type': 'lazyall'}
 Pack 'cohama/lexima.vim', {'type': 'lazyall'}
@@ -66,7 +67,6 @@ Pack 'kana/vim-textobj-fold', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-function', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
-Pack 'kshenoy/vim-signature', {'type': 'lazyall'}
 Pack 'lambdalisue/suda.vim', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}

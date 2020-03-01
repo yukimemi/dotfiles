@@ -56,7 +56,7 @@ Pack 'arcticicestudio/nord-vim', {'type': 'opt'}
 Pack 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt', 'for': 'sql'}
 Pack 'cormacrelf/vim-colors-github', {'type': 'opt'}
 Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
-Pack 'dzeban/vim-log-syntax', {'type': 'opt', 'for': 'log'}
+" Pack 'dzeban/vim-log-syntax', {'type': 'opt', 'for': 'log'}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pack 'hiroakis/cyberspace.vim', {'type': 'opt'}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/03/01 04:57:55.
+# Last Change : 2020/03/01 11:12:11.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -134,6 +134,13 @@ hook_add = '''
 source $VIM_PATH/rc/coc.nvim
 '''
 
+[[plugins]]
+repo = 'cohama/lexima.vim' # {{{2
+on_event = ['InsertEnter']
+
+[[plugins]]
+repo = 'honza/vim-snippets' # {{{2
+on_event = ['InsertEnter']
 
 # ==================== Utility =================== {{{1
 [[plugins]]
@@ -312,15 +319,9 @@ source $VIM_PATH/rc/suda.vim
 '''
 if = "g:is_windows"
 
-# [[plugins]]
-# repo = 'osyo-manga/vim-jplus' # {{{2
-# on_map = '<Plug>'
-# hook_add = '''
-# source $VIM_PATH/rc/vim-jplus.vim
-# '''
-
 [[plugins]]
 repo = 'osyo-manga/vim-reanimate' # {{{2
+lazy = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-reanimate.vim
 '''
@@ -331,6 +332,32 @@ on_map = '<Plug>'
 hook_add = '''
 source $VIM_PATH/rc/vim-edgemotion.vim
 '''
+
+[[plugins]]
+repo = 'LumaKernel/vim-messages-qf' # {{{2
+on_cmd = ['MessagesQF']
+hook_add = '''
+source $VIM_PATH/rc/vim-messages-qf.vim
+'''
+
+[[plugins]]
+repo = 'thinca/vim-quickrun' # {{{2
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-quickrun.vim
+'''
+
+[[plugins]]
+repo = 'lambdalisue/vim-quickrun-neovim-job' # {{{2
+on_source = 'vim-quickrun'
+
+[[plugins]]
+repo = 'twitvim/twitvim' # {{{2
+on_cmd = ['FriendsTwitter', 'UserTwitter', 'RepliesTwitter', 'DMTwitter']
+
+[[plugins]]
+repo = 'tyru/open-browser.vim' # {{{2
+on_source = ['twitvim']
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
@@ -493,6 +520,11 @@ on_map = {ox = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/textobj-lastpaste.vim
 '''
+
+[[plugins]]
+repo = 'kana/vim-textobj-line' # {{{2
+depends = 'vim-textobj-user'
+on_map = {ox = '<Plug>'}
 
 # ==================== Comment =================== {{{1
 [[plugins]]
@@ -669,11 +701,7 @@ setl fenc=cp932
 markdown = '''
 setl formatoptions+=t
 setl conceallevel=0
-" set background=light
-
-let b:autodate_format = "%Y-%m-%dT%H:%M:%S+09:00"
-let b:autodate_keyword_pre  = 'date: "'
-let b:autodate_keyword_post = '"'
+set background=light
 '''
 
 go = '''
@@ -690,43 +718,6 @@ setl cinwords=if,elif,else,for,while,try,except,finally,def,class
 setl expandtab
 setl ts=8 sw=4 sts=4
 setl foldmethod=indent foldlevel=99
-'''
-
-scala = '''
-" http://vim-users.jp/2013/02/vim-advent-calendar-2012-ujihisa-4/
-function! s:ujihisa_start_sbt() "{{{2
-  execute 'VimShellInteractive sbt'
-  stopinsert
-  let t:sbt_bufname = bufname('%')
-  if !has_key(t:, 'sbt_cmds')
-    let t:sbt_cmds = [input('t:sbt_cmds[0] = ')]
-  endif
-  wincmd p
-endfunction
-
-command! -nargs=0 StartSBT call <SID>ujihisa_start_sbt()
-
-function! s:sbt_run() "{{{2
-  let cmds = get(t:, 'sbt_cmds', 'run')
-
-  let sbt_bufname = get(t:, 'sbt_bufname')
-  if sbt_bufname !=# ''
-    call vimshell#interactive#set_send_buffer(sbt_bufname)
-    call vimshell#interactive#send(cmds)
-  else
-    echoerr 'try StartSBT'
-  endif
-endfunction
-
-function! s:vimrc_scala() "{{{2
-  nnoremap <buffer> <space>m :<c-u>write<Cr>:call <SID>sbt_run()<Cr>
-endfunction
-
-augroup vimrc_scala "{{{2
-  autocmd!
-  au FileType scala call s:vimrc_scala()
-  au FileType scala nnoremap <buffer> <space>st :<c-u>StartSBT<Cr>
-augroup END
 '''
 
 xml = '''
