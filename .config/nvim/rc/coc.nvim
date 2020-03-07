@@ -15,19 +15,27 @@ let g:coc_global_extensions = [
       \ "coc-diagnostic",
       \ "coc-docker",
       \ "coc-emoji",
+      \ "coc-eslint",
       \ "coc-explorer",
       \ "coc-fish",
       \ "coc-floaterm",
+      \ "coc-fs-lists",
+      \ "coc-fsharp",
       \ "coc-git",
+      \ "coc-github",
       \ "coc-gitignore",
       \ "coc-go",
       \ "coc-highlight",
       \ "coc-html",
+      \ "coc-imselect",
       \ "coc-json",
       \ "coc-lists",
       \ "coc-lua",
+      \ "coc-markmap",
+      \ "coc-pairs",
       \ "coc-powershell",
       \ "coc-prettier",
+      \ "coc-project",
       \ "coc-pyls",
       \ "coc-python",
       \ "coc-rls",
@@ -39,6 +47,8 @@ let g:coc_global_extensions = [
       \ "coc-syntax",
       \ "coc-tag",
       \ "coc-terminal",
+      \ "coc-todolist",
+      \ "coc-translate",
       \ "coc-tsserver",
       \ "coc-utils",
       \ "coc-vetur",
@@ -54,11 +64,16 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> for confirm completion, `<c-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-" inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
+if has('patch8.1.1068')
+  " Use `complete_info` if your (Neo)Vim version supports it.
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<c-y>" : "\<c-g>u\<cr>"
+else
+  imap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
+endif
 
-" Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -122,6 +137,7 @@ nnoremap <silent> <space>cb :<c-u>CocList buffers<cr>
 nnoremap <silent> <space>ch :<c-u>CocList cmdhistory<cr>
 nnoremap <silent> <space>cu :<c-u>CocList mru<cr>
 nnoremap <silent> <space>cs :<c-u>CocList -I symbols<cr>
+nnoremap <silent> <space>cF :<c-u>CocList filetypes<cr>
 nnoremap <silent> <space>r :<c-u>CocListResume<cr>
 
 " coc-snippet {{{1

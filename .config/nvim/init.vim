@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/03/01 04:24:34.
+" Last Change : 2020/03/07 20:28:26.
 " =============================================================================
 
 " Init: {{{1
@@ -650,8 +650,8 @@ endif
 " Color: {{{1
 silent! syntax enable
 
-au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
-au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
+" au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
+" au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 
 " Highlight VCS conflict markers {{{2
 " match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -663,7 +663,6 @@ au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 " au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
 " au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
 " au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
-set cursorline
 
 " reload filetype on save. {{{2
 " https://lambdalisue.hatenablog.com/entry/2017/12/24/165759

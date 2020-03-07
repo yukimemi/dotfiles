@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/03/01 11:12:11.
+# Last Change : 2020/03/06 13:10:50.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -14,7 +14,6 @@ repo = 'wsdjeg/dein-ui.vim' # {{{2
 # ==================== Visual ==================== {{{1
 [[plugins]]
 repo = 'rhysd/vim-color-spring-night' # {{{2
-lazy = 1
 
 [[plugins]]
 repo =  'hiroakis/cyberspace.vim' # {{{2
@@ -134,9 +133,9 @@ hook_add = '''
 source $VIM_PATH/rc/coc.nvim
 '''
 
-[[plugins]]
-repo = 'cohama/lexima.vim' # {{{2
-on_event = ['InsertEnter']
+# [[plugins]]
+# repo = 'cohama/lexima.vim' # {{{2
+# on_event = ['InsertEnter']
 
 [[plugins]]
 repo = 'honza/vim-snippets' # {{{2
