@@ -29,9 +29,9 @@ function gp {
 # editor.
 function e {
   if ($args.length -eq 0) {
-    gvim
+    nvim
   } else {
-    gvim --remote-silent $args
+    nvim --remote-silent $args
   }
 }
 
