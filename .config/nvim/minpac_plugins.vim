@@ -46,7 +46,7 @@ endfunction
 " Pack 'haya14busa/is.vim', {'type': 'lazyall'}
 " Pack 'hotwatermorning/auto-git-diff', {'type': 'lazyall'}
 " Pack 'iyuuya/denite-ale', {'type': 'lazyall'}
-" Pack 'jeffkreeftmeijer/vim-numbertoggle', {'type': 'lazyall'}
+" Pack 'jeffkreeftmeijer/vim-numbertoggle'
 " Pack 'joshdick/onedark.vim', {'type': 'opt'}
 " Pack 'jremmen/vim-ripgrep', {'type': 'opt', 'on': 'Rg'}
 " Pack 'kannokanno/previm', {'type': 'opt', 'for': 'markdown'}
@@ -141,7 +141,6 @@ Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
 Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
 Pack 'itchyny/vim-highlighturl', {'type': 'lazyall'}
 Pack 'itchyny/vim-parenmatch'
-Pack 'jeffkreeftmeijer/vim-numbertoggle'
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
 Pack 'k-takata/minpac', {'type': 'opt'}
 Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
