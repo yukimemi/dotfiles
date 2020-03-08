@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/03/07 20:28:26.
+" Last Change : 2020/03/08 13:01:54.
 " =============================================================================
 
 " Init: {{{1
@@ -261,9 +261,6 @@ set visualbell t_vb=
 set number relativenumber
 set showmatch matchtime=1
 set noshowmode
-if has('nvim')
-  set inccommand=split
-endif
 
 " Tab.
 set tabstop=2
@@ -689,9 +686,9 @@ if $HOME != $USERPROFILE && $GIT_EXEC_PATH != ''
 end
 
 " Plugin: {{{1
-let s:use_dein = 1
+let s:use_dein = 0
 let s:use_vimplug = 0
-let s:use_minpac = 0
+let s:use_minpac = 1
 let s:use_packager = 0
 let s:use_volt = 0
 let s:use_pack = 0

@@ -34,7 +34,7 @@ let g:lsp_diagnostics_enabled = 1
 let g:lsp_text_edit_enabled = 1
 
 imap <c-space> <Plug>(asyncomplete_force_refresh)
-" inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete

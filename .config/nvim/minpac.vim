@@ -27,9 +27,7 @@ endif
 
 " Plugin list. {{{1
 call plugpac#begin()
-source $VIM_PATH/start.vim
-source $VIM_PATH/opt.vim
-source $VIM_PATH/lazy.vim
+source $VIM_PATH/minpac_plugins.vim
 call plugpac#end()
 
 " Install on initiall setup.
