@@ -9,7 +9,7 @@
 ".surfingkeys.js"                      = "~/.surfingkeys.js"
 
 [windows]
-".config/nvim/init.vim"                = "~/AppData/Local/nvim/init.vim" 
+".config/nvim/init.vim"                = "~/AppData/Local/nvim/init.vim"
 "win/Microsoft.PowerShell_profile.ps1" = "~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1"
 "win/cmd/init.cmd"                     = "~/.init.cmd"
 "win/link/.cache"                      = "~/.cache"
