@@ -26,15 +26,6 @@ function gp {
   git pull --rebase
 }
 
-# editor.
-function e {
-  if ($args.length -eq 0) {
-    nvim
-  } else {
-    nvim --remote-silent $args
-  }
-}
-
 # rhq.
 function rhl {
   rhq list | gof | cd
@@ -42,17 +33,19 @@ function rhl {
 
 # Alias. {{{1
 Set-Alias o Start-Process
+Set-Alias e nvim.exe
 
 
 # Readline setting. {{{1
 Set-PSReadLineOption -EditMode Vi
 
-Set-PSReadlineKeyHandler -Key 'Ctrl+u' -Function BackwardDeleteLine
-Set-PSReadlineKeyHandler -Key 'Ctrl+b' -Function BackwardChar
-Set-PSReadlineKeyHandler -Key 'Ctrl+f' -Function ForwardChar
-Set-PSReadlineKeyHandler -Key 'Ctrl+d' -Function DeleteChar
-Set-PSReadlineKeyHandler -Key 'Ctrl+h' -Function BackwardDeleteChar
-Set-PSReadlineKeyHandler -Key 'Ctrl+p' -Function HistorySearchBackward
-Set-PSReadlineKeyHandler -Key 'Ctrl+n' -Function HistorySearchForward
 Set-PSReadlineKeyHandler -Key 'Ctrl+a' -Function BeginningOfLine
+Set-PSReadlineKeyHandler -Key 'Ctrl+b' -Function BackwardChar
+Set-PSReadlineKeyHandler -Key 'Ctrl+d' -Function DeleteChar
 Set-PSReadlineKeyHandler -Key 'Ctrl+e' -Function EndOfLine
+Set-PSReadlineKeyHandler -Key 'Ctrl+f' -Function ForwardChar
+Set-PSReadlineKeyHandler -Key 'Ctrl+h' -Function BackwardDeleteChar
+Set-PSReadlineKeyHandler -Key 'Ctrl+l' -Function ClearScreen
+Set-PSReadlineKeyHandler -Key 'Ctrl+n' -Function HistorySearchForward
+Set-PSReadlineKeyHandler -Key 'Ctrl+p' -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key 'Ctrl+u' -Function BackwardDeleteLine
