@@ -58,8 +58,12 @@ Activate("C:\Program Files (x86)\Microsoft Office\Office16\EXCEL.EXE")
 return
 
 ; for gvim
+; F10::
+; Activate("C:\tools\vim\vim82\gvim.exe")
+; return
+; for neovim
 F10::
-Activate("C:\tools\vim\vim82\gvim.exe")
+Activate(USERPROFILE . "\scoop\apps\neovim\current\bin\nvim.exe")
 return
 
 ; for sakura
