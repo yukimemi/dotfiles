@@ -7,51 +7,49 @@ endif
 set signcolumn=yes
 
 " extensions
-if !g:is_windows
-  let g:coc_global_extensions = [
-        \ "coc-actions",
-        \ "coc-bookmark",
-        \ "coc-calc",
-        \ "coc-css",
-        \ "coc-diagnostic",
-        \ "coc-docker",
-        \ "coc-emoji",
-        \ "coc-explorer",
-        \ "coc-fish",
-        \ "coc-fsharp",
-        \ "coc-git",
-        \ "coc-gitignore",
-        \ "coc-go",
-        \ "coc-highlight",
-        \ "coc-html",
-        \ "coc-json",
-        \ "coc-lists",
-        \ "coc-lua",
-        \ "coc-markmap",
-        \ "coc-pairs",
-        \ "coc-powershell",
-        \ "coc-prettier",
-        \ "coc-pyls",
-        \ "coc-python",
-        \ "coc-rls",
-        \ "coc-rust-analyzer",
-        \ "coc-sh",
-        \ "coc-snippets",
-        \ "coc-solargraph",
-        \ "coc-sql",
-        \ "coc-syntax",
-        \ "coc-tag",
-        \ "coc-terminal",
-        \ "coc-tsserver",
-        \ "coc-utils",
-        \ "coc-vetur",
-        \ "coc-vimlsp",
-        \ "coc-word",
-        \ "coc-xml",
-        \ "coc-yaml",
-        \ "coc-yank",
-        \ ]
-endif
+let g:coc_global_extensions = [
+      \ "coc-bookmark",
+      \ "coc-calc",
+      \ "coc-css",
+      \ "coc-diagnostic",
+      \ "coc-docker",
+      \ "coc-emoji",
+      \ "coc-explorer",
+      \ "coc-fish",
+      \ "coc-fsharp",
+      \ "coc-git",
+      \ "coc-gitignore",
+      \ "coc-go",
+      \ "coc-highlight",
+      \ "coc-html",
+      \ "coc-json",
+      \ "coc-lists",
+      \ "coc-lua",
+      \ "coc-markmap",
+      \ "coc-pairs",
+      \ "coc-powershell",
+      \ "coc-prettier",
+      \ "coc-pyls",
+      \ "coc-python",
+      \ "coc-rls",
+      \ "coc-rust-analyzer",
+      \ "coc-sh",
+      \ "coc-snippets",
+      \ "coc-solargraph",
+      \ "coc-sql",
+      \ "coc-syntax",
+      \ "coc-tag",
+      \ "coc-terminal",
+      \ "coc-tsserver",
+      \ "coc-utils",
+      \ "coc-vetur",
+      \ "coc-vimlsp",
+      \ "coc-word",
+      \ "coc-xml",
+      \ "coc-yaml",
+      \ "coc-yank",
+      \ "coc-actions",
+      \ ]
 
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -122,6 +120,7 @@ nnoremap <silent> <space><space> :<c-u>CocList<cr>
 nnoremap <silent> <space>cr :<c-u>CocList files --hidden ~/.rhq<cr>
 nnoremap <silent> <space>cf :<c-u>CocList files --hidden ~/.dotfiles<cr>
 nnoremap <silent> <space>cv :<c-u>CocList files --hidden ~/.cache<cr>
+nnoremap <silent> <space>cm :<c-u>CocList files --hidden ~/.memolist<cr>
 nnoremap <silent> <space>cb :<c-u>CocList buffers<cr>
 nnoremap <silent> <space>ch :<c-u>CocList cmdhistory<cr>
 nnoremap <silent> <space>cu :<c-u>CocList mru<cr>

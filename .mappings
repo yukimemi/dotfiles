@@ -9,19 +9,21 @@
 ".surfingkeys.js"                      = "~/.surfingkeys.js"
 
 [windows]
+".config/nvim/coc-settings.json"       = "~/AppData/Local/nvim/coc-settings.json"
 ".config/nvim/init.vim"                = "~/AppData/Local/nvim/init.vim"
-"win/Microsoft.PowerShell_profile.ps1" = "~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1"
+"win/Microsoft.PowerShell_profile.ps1" = "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1"
+# "win/Microsoft.PowerShell_profile.ps1" = "~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1"
 "win/cmd/init.cmd"                     = "~/.init.cmd"
 "win/link/.cache"                      = "~/.cache"
 "win/link/.cargo"                      = "~/.cargo"
 "win/link/.memolist"                   = "~/.memolist"
 "win/link/.rhq"                        = "~/.rhq"
+"win/link/Go"                          = "C:/Go"
+"win/link/Python38"                    = "C:/Python38"
 "win/link/app"                         = "~/app"
 "win/link/archives"                    = "~/archives"
 "win/link/scoop"                       = "~/scoop"
-"win/link/Go"                          = "C:/Go"
 "win/link/tools"                       = "C:/tools"
-"win/link/Python38"                    = "C:/Python38"
 
 [darwin]
 ".profile"                             = "~/.profile"

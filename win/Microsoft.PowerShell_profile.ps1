@@ -1,3 +1,6 @@
+# module
+# Install-Module -Scope CurrentUser -AllowClobber z
+
 Invoke-Expression (&starship init powershell)
 
 # functions. {{{1

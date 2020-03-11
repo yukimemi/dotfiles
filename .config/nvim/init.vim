@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/03/08 16:19:07.
+" Last Change : 2020/03/09 16:15:17.
 " =============================================================================
 
 " Init: {{{1
@@ -719,6 +719,6 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-silent! colorscheme solarized8
+silent! colorscheme spring-night
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

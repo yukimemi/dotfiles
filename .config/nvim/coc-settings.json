@@ -4,7 +4,7 @@
   "list.autoResize": true,
   "list.maxHeight": 30,
   "list.source.lists.defaultOptions": ["--no-sort"],
-  "list.source.files.args": ["--hidden", "--files"],
+  "list.source.files.args": ["--hidden", "--no-ignore-vcs", "--files"],
   "coc.preferences.formatOnSaveFiletypes": [
     "typescript",
     "json",
