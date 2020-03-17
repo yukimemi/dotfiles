@@ -134,7 +134,7 @@ Pack 'hiroakis/cyberspace.vim', {'type': 'opt'}
 Pack 'honza/vim-snippets', {'type': 'lazyall'}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 Pack 'itchyny/lightline.vim'
-Pack 'itchyny/vim-cursorword', {'type': 'lazyall'}
+" Pack 'itchyny/vim-cursorword', {'type': 'lazyall'}
 Pack 'itchyny/vim-external', {'type': 'lazyall'}
 Pack 'itchyny/vim-gitbranch'
 Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}

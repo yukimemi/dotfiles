@@ -125,9 +125,9 @@ return
 ; return
 
 ; for cfiler
-; ^F11::
-; Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
-; return
+F11::
+Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
+return
 
 ; for AFxW
 ; F11::
@@ -135,9 +135,9 @@ return
 ; return
 
 ; for NynFi
-F11::
-Activate(USERPROFILE . "\app\nyanfi64\NyanFi.exe")
-return
+; F11::
+; Activate(USERPROFILE . "\app\nyanfi64\NyanFi.exe")
+; return
 
 
 ; for vim
