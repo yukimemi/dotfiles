@@ -8,7 +8,6 @@ endfunction
 " Plugins: {{{1
 " Pack 'Konfekt/FastFold', {'type': 'lazyall'}
 " Pack 'MaxMEllon/vim-shiny', {'type': 'lazyall'}
-" Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 " Pack 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'for': 'cs'}
 " Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
 " Pack 'RRethy/vim-illuminate', {'type': 'lazyall'}
@@ -45,9 +44,9 @@ endfunction
 " Pack 'gko/vim-coloresque', {'type': 'lazyall'}
 " Pack 'haya14busa/is.vim', {'type': 'lazyall'}
 " Pack 'hotwatermorning/auto-git-diff', {'type': 'lazyall'}
+" Pack 'itchyny/vim-cursorword', {'type': 'lazyall'}
 " Pack 'iyuuya/denite-ale', {'type': 'lazyall'}
 " Pack 'jeffkreeftmeijer/vim-numbertoggle'
-" Pack 'joshdick/onedark.vim', {'type': 'opt'}
 " Pack 'jremmen/vim-ripgrep', {'type': 'opt', 'on': 'Rg'}
 " Pack 'kannokanno/previm', {'type': 'opt', 'for': 'markdown'}
 " Pack 'kassio/neoterm', {'type': 'lazyall', 'if': has('nvim')}
@@ -110,6 +109,8 @@ endfunction
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'LumaKernel/vim-messages-qf', {'type': 'lazy'}
+Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
+Pack 'Rigellute/rigel', {'type': 'opt'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
 Pack 'Shougo/junkfile.vim', {'type': 'opt', 'on': 'JunkfileOpen'}
@@ -134,13 +135,13 @@ Pack 'hiroakis/cyberspace.vim', {'type': 'opt'}
 Pack 'honza/vim-snippets', {'type': 'lazyall'}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 Pack 'itchyny/lightline.vim'
-" Pack 'itchyny/vim-cursorword', {'type': 'lazyall'}
 Pack 'itchyny/vim-external', {'type': 'lazyall'}
 Pack 'itchyny/vim-gitbranch'
 Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
 Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
 Pack 'itchyny/vim-highlighturl', {'type': 'lazyall'}
 Pack 'itchyny/vim-parenmatch'
+Pack 'joshdick/onedark.vim', {'type': 'opt'}
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
 Pack 'k-takata/minpac', {'type': 'opt'}
 Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
@@ -177,6 +178,7 @@ Pack 'osyo-manga/vim-reanimate'
 Pack 'osyo-manga/vim-textobj-multiblock', {'type': 'lazyall'}
 Pack 'psliwka/vim-smoothie', {'type': 'lazyall'}
 Pack 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
+Pack 'reedes/vim-colors-pencil', {'type': 'opt'}
 Pack 'rhysd/accelerated-jk', {'type': 'lazyall'}
 Pack 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
 Pack 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
@@ -186,6 +188,7 @@ Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'ryanoasis/vim-devicons'
+Pack 'sainnhe/gruvbox-material', {'type': 'opt'}
 Pack 'scrooloose/vim-slumlord', {'type': 'opt', 'for': 'plantuml'}
 Pack 'sheerun/vim-polyglot'
 Pack 'skanehira/preview-markdown.vim', {'type': 'opt', 'on': 'PreviewMarkdown', 'if': executable('mdr') && !has('nvim')}
@@ -204,6 +207,7 @@ Pack 'tyru/caw.vim', {'type': 'opt', 'on': ['<Plug>(caw:prefix)', '<Plug>(caw:pr
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
 Pack 'wadackel/vim-dogrun', {'type': 'opt'}
+Pack 'wimstefan/vim-artesanal', {'type': 'opt'}
 
 
 " Fuzzy: {{{1
