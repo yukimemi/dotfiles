@@ -5,9 +5,11 @@ endif
 " coc {{{1
 " always show signcolumns
 set signcolumn=yes
+set tagfunc=CocTagFunc
 
 " extensions
 let g:coc_global_extensions = [
+      \ "coc-actions",
       \ "coc-bookmark",
       \ "coc-calc",
       \ "coc-css",
@@ -40,6 +42,7 @@ let g:coc_global_extensions = [
       \ "coc-syntax",
       \ "coc-tag",
       \ "coc-terminal",
+      \ "coc-translator",
       \ "coc-tsserver",
       \ "coc-utils",
       \ "coc-vetur",
@@ -48,7 +51,6 @@ let g:coc_global_extensions = [
       \ "coc-xml",
       \ "coc-yaml",
       \ "coc-yank",
-      \ "coc-actions",
       \ ]
 
 " Use <c-space> for trigger completion.
@@ -158,5 +160,10 @@ nmap <space>s <Plug>(coc-terminal-toggle)
 
 " coc-yank {{{1
 nnoremap <silent> <space>y :<c-u>CocList -A --normal yank<cr>
+
+" coc-translator {{{1
+" popup
+nmap <leader>t <Plug>(coc-translator-p)
+vmap <leader>t <Plug>(coc-translator-pv)
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

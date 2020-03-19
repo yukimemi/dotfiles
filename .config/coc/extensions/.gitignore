@@ -1,9 +1,11 @@
 *.log
 db.json
 package.json
-node_modules/
-coc-yank-data/
-coc-tabnine-data/
 coc-bookmark-data/
-coc-todolist-data/
 coc-go-data/
+coc-tabnine-data/
+coc-tabnine-data/
+coc-todolist-data/
+coc-translator-data/
+coc-yank-data/
+node_modules/
