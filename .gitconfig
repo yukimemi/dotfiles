@@ -21,7 +21,7 @@
 	autocrlf = false
 	filemode = false
 [ghq]
-	root = ~/.ghq/src
+	root = ~/.ghq
 [credential]
 	helper = store
 [merge]
