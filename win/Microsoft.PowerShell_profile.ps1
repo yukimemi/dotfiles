@@ -11,6 +11,9 @@ function b {
 function l {
   Get-ChildItem $args
 }
+function la {
+  Get-ChildItem -Force $args
+}
 
 # git commands.
 function g {
