@@ -34,3 +34,5 @@
 	vcs = git
 [http]
 	sslVerify = false
+[hub]
+	protocol = https
