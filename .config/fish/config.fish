@@ -102,10 +102,10 @@ alias runghc "stack runghc --"
 alias runhaskell "stack runghc --"
 
 # chrome. {{{2
-alias twitter "open -na 'Google Chrome' --args '--app=https://mobile.twitter.com'"
-alias tweetdeck "open -na 'Google Chrome' --args '--app=https://tweetdeck.com'"
-alias hangout "open -na open -na 'Google Chrome' --args '--app=https://hangouts.google.com/'"
-alias misskey "open -na 'Google Chrome' --args '--app=https://misskey.io'"
+alias twitter "open -na 'Microsoft Edge' --args '--app=https://mobile.twitter.com'"
+alias tweetdeck "open -na 'Microsoft Edge' --args '--app=https://tweetdeck.com'"
+alias hangout "open -na open -na 'Microsoft Edge' --args '--app=https://hangouts.google.com/'"
+alias misskey "open -na 'Microsoft Edge' --args '--app=https://misskey.io'"
 
 # docker. {{{2
 # alias gcloud-auth "docker run -ti --name gcloud-config google/cloud-sdk gcloud auth login"
@@ -233,9 +233,9 @@ set SPACEFISH_CHAR_SYMBOL "→ "
 set -U gabbr_config ~/.config/fish/.gabbr.config
 
 # Load anyenv. {{{1
-# if type -q anyenv
-  # status --is-interactive; and source (anyenv init -|psub)
-# end
+if type -q anyenv
+  status --is-interactive; and source (anyenv init -|psub)
+end
 
 # Load asdf. {{{1
 if test -d ~/.asdf

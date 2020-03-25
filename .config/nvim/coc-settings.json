@@ -7,6 +7,7 @@
   "list.source.files.args": ["--hidden", "--no-ignore-vcs", "--files"],
   "coc.preferences.formatOnSaveFiletypes": [
     "typescript",
+    "javascript",
     "json",
     "markdown",
     "html",

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/03/20 01:07:27.
+" Last Change : 2020/03/22 16:22:44.
 " =============================================================================
 
 " Init: {{{1
@@ -284,7 +284,7 @@ set laststatus=2
 set synmaxcol=500
 set showcmd
 set display=lastline
-set foldmethod=marker
+" set foldmethod=marker
 set pumheight=13
 " set foldclose=all
 " set t_Co=256
