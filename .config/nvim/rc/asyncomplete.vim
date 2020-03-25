@@ -2,6 +2,14 @@ if !IsInstalled("asyncomplete.vim")
   finish
 endif
 
+" asyncomplete-nextword.
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#nextword#get_source_options({
+      \ 'name': 'nextword',
+      \ 'whitelist': ['*'],
+      \ 'args': ['-n', '10000'],
+      \ 'completor': function('asyncomplete#sources#nextword#completor')
+      \ }))
+
 " asyncomplete-buffer.
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
       \ 'name': 'buffer',

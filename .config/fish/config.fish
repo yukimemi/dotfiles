@@ -22,6 +22,9 @@ set -x GSR_SHOW_AHEAD 1
 set -x GSR_SHOW_BEHIND 1
 set -x FZF_DEFAULT_OPTS "--no-sort"
 
+# nextword. {{{2
+set -x NEXTWORD_DATA_PATH "$HOME/.config/nextword/nextword-data-large"
+
 # volt. {{{2
 set -x VOLTPATH ~/.volt
 
