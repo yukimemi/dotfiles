@@ -35,6 +35,7 @@
 ".tmux.conf"                           = "~/.tmux.conf"
 ".zshenv"                              = "~/.zshenv"
 ".zshrc"                               = "~/.zshrc"
+"win/Microsoft.PowerShell_profile.ps1" = "~/.config/PowerShell/Microsoft.PowerShell_profile.ps1"
 
 [linux]
 ".inputrc"                             = "~/.inputrc"

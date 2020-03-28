@@ -1,18 +1,38 @@
 # module
 # Install-Module -Scope CurrentUser -AllowClobber z
+# Install-Module ZLocation -Scope CurrentUser
 
+# starship
 Invoke-Expression (&starship init powershell)
 
-# functions. {{{1
+# ZLocation
+Import-Module ZLocation
+
+# functions.
 # OS commands.
 function b {
   cd ..
 }
+function ls {
+  if (Get-Command lsd -ErrorAction SilentlyContinue) {
+    lsd $args
+  } else {
+    Get-ChildItem $args
+  }
+}
 function l {
-  Get-ChildItem $args
+  if (Get-Command lsd -ErrorAction SilentlyContinue) {
+    lsd -l $args
+  } else {
+    Get-ChildItem $args
+  }
 }
 function la {
-  Get-ChildItem -Force $args
+  if (Get-Command lsd -ErrorAction SilentlyContinue) {
+    ls -la $args
+  } else {
+    ls -Force $args
+  }
 }
 
 # git commands.
@@ -43,15 +63,24 @@ Function gig {
 
 # rhq.
 function rhl {
-  rhq list | gof | cd
+  rhq list | __FILTER | cd
 }
 
-# Alias. {{{1
+# Alias.
 Set-Alias o Start-Process
-Set-Alias e nvim.exe
+Set-Alias e nvim
+# filter tool.
+if (Get-Command fzf -ErrorAction SilentlyContinue) {
+  Set-Alias __FILTER fzf
+}
+if (Get-Command peco -ErrorAction SilentlyContinue) {
+  Set-Alias __FILTER peco
+}
+if (Get-Command gof -ErrorAction SilentlyContinue) {
+  Set-Alias __FILTER gof
+}
 
-
-# Readline setting. {{{1
+# Readline setting.
 Set-PSReadLineOption -EditMode Vi
 
 Set-PSReadlineKeyHandler -Key 'Ctrl+a' -Function BeginningOfLine
@@ -64,3 +93,10 @@ Set-PSReadlineKeyHandler -Key 'Ctrl+l' -Function ClearScreen
 Set-PSReadlineKeyHandler -Key 'Ctrl+n' -Function HistorySearchForward
 Set-PSReadlineKeyHandler -Key 'Ctrl+p' -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key 'Ctrl+u' -Function BackwardDeleteLine
+
+Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.Count) locations.`n"
+
+# z.
+function j {
+  z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | cd
+}
