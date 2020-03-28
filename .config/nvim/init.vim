@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/03/22 16:22:44.
+" Last Change : 2020/03/28 17:11:32.
 " =============================================================================
 
 " Init: {{{1
@@ -681,9 +681,9 @@ au MyAutoCmd BufWritePost *
 " endfunction
 
 " if windows no plugins for git.
-if $HOME != $USERPROFILE && $GIT_EXEC_PATH != ''
-  finish
-end
+" if $HOME != $USERPROFILE && $GIT_EXEC_PATH != ''
+"   finish
+" end
 
 " Plugin: {{{1
 let s:use_dein = 0
