@@ -1,7 +1,16 @@
 # module
-# Install-Module -Scope CurrentUser -AllowClobber z
-# Install-Module -Scope CurrentUser ZLocation
-# Install-Module -Scope CurrentUser -AllowClobber Get-ChildItemColor
+# Install-Module -Force -Scope CurrentUser core
+# Install-Module -Force -Scope CurrentUser ZLocation
+# Install-Module -Force -Scope CurrentUser -AllowClobber Get-ChildItemColor
+# Install-Module -Force -Scope CurrentUser PendingReboot
+# Install-Module -Force -Scope CurrentUser VSSetup
+# Install-Module -Force -Scope CurrentUser Pester
+# Install-Module -Force -Scope CurrentUser MicrosoftTeams
+# Install-Module -Force -Scope CurrentUser VcRedist
+# Install-Module -Force -Scope CurrentUser -AllowClobber Pscx
+# Install-Module -Force -Scope CurrentUser PSReadLine
+# Install-Module -Force -Scope CurrentUser PowerHTML
+# Install-Module -Force -Scope CurrentUser ComputerManagementDsc; Get-DscResource -Module ComputerManagementDsc
 
 # starship
 Invoke-Expression (&starship init powershell)
@@ -54,6 +63,7 @@ function rhl {
 # Alias.
 Set-Alias o Start-Process
 Set-Alias e nvim
+Set-Alias which Get-Command
 # filter tool.
 if (Get-Command fzf -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER fzf
