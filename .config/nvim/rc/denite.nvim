@@ -1,18 +1,20 @@
 " Use plefix s
-nnoremap sdb :<c-u>Denite buffer<cr>
-nnoremap sdf :<c-u>Denite file/rec<cr>
+nnoremap sd/ :<c-u>Denite -post-action=open line<cr>
+nnoremap sdD :<c-u>Denite -path='~/.dotfiles' file/rec<cr>
+nnoremap sdm :<c-u>Denite -path='~/.memolist' file/rec<cr>
+nnoremap sdF :<c-u>Denite filetype<cr>
 nnoremap sdG :<c-u>Denite -path='~/.rhq' file/rec<cr>
-nnoremap sdu :<c-u>Denite buffer file/old<cr>
-nnoremap sda :<c-u>Denite buffer file/old file/rec<cr>
-nnoremap sdd :<c-u>DeniteBufferDir file/rec<cr>
-nnoremap sdo :<c-u>Denite outline<cr>
 nnoremap sdH :<c-u>Denite help<cr>
 nnoremap sdR :<c-u>Denite register<cr>
+nnoremap sda :<c-u>Denite buffer file/old file/rec<cr>
+nnoremap sdb :<c-u>Denite buffer<cr>
+nnoremap sdd :<c-u>DeniteBufferDir file/rec<cr>
+nnoremap sdf :<c-u>Denite file/rec<cr>
 nnoremap sdg :<c-u>Denite -post-action=open -no-empty grep<cr>
-nnoremap sd/ :<c-u>Denite -post-action=open line<cr>
-nnoremap sdr :<c-u>Denite -resume<cr>
-nnoremap sdF :<c-u>Denite filetype<cr>
 nnoremap sdh :<c-u>Denite command_history<cr>
+nnoremap sdo :<c-u>Denite outline<cr>
+nnoremap sdr :<c-u>Denite -resume<cr>
+nnoremap sdu :<c-u>Denite buffer file/old<cr>
 
 " Incremental search in cmdline history.
 inoremap <c-l> <esc>:<c-u>Denite command<cr>
