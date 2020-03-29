@@ -1,12 +1,15 @@
 # module
 # Install-Module -Scope CurrentUser -AllowClobber z
-# Install-Module ZLocation -Scope CurrentUser
+# Install-Module -Scope CurrentUser ZLocation
+# Install-Module -Scope CurrentUser -AllowClobber Get-ChildItemColor
 
 # starship
 Invoke-Expression (&starship init powershell)
 
 # ZLocation
 Import-Module ZLocation
+# Get-ChildItemColor
+Import-Module Get-ChildItemColor
 
 # functions.
 function Is-Windows {
