@@ -29,6 +29,7 @@ let g:coc_global_extensions = [
       \ "coc-lists",
       \ "coc-lua",
       \ "coc-markmap",
+      \ "coc-nextword",
       \ "coc-pairs",
       \ "coc-powershell",
       \ "coc-prettier",
@@ -144,8 +145,8 @@ let g:coc_snippet_next = '<c-j>'
 " Use <c-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
 
-" Use <c-k> for both expand and jump (make expand higher priority.)
-imap <c-k> <Plug>(coc-snippets-expand-jump)
+" Use <c-j> for both expand and jump (make expand higher priority.)
+imap <c-j> <Plug>(coc-snippets-expand-jump)
 
 " coc-bookmark {{{1
 nmap <space>bj <Plug>(coc-bookmark-next)
