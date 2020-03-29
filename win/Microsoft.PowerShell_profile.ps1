@@ -9,30 +9,12 @@ Invoke-Expression (&starship init powershell)
 Import-Module ZLocation
 
 # functions.
+function Is-Windows {
+  $PSVersionTable.Platform -eq "Win32NT"
+}
 # OS commands.
 function b {
   cd ..
-}
-function ls {
-  if (Get-Command lsd -ErrorAction SilentlyContinue) {
-    lsd $args
-  } else {
-    Get-ChildItem $args
-  }
-}
-function l {
-  if (Get-Command lsd -ErrorAction SilentlyContinue) {
-    lsd -l $args
-  } else {
-    Get-ChildItem $args
-  }
-}
-function la {
-  if (Get-Command lsd -ErrorAction SilentlyContinue) {
-    ls -la $args
-  } else {
-    ls -Force $args
-  }
 }
 
 # git commands.
@@ -78,6 +60,15 @@ if (Get-Command peco -ErrorAction SilentlyContinue) {
 }
 if (Get-Command gof -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER gof
+}
+if (Is-Windows) {
+  Set-Alias ls Get-ChildItem
+  function l { ls $args }
+  function la { ls -Force $args }
+} else {
+  Set-Alias ls lsd
+  function l { ls -l $args }
+  function la { ls -a $args }
 }
 
 # Readline setting.
