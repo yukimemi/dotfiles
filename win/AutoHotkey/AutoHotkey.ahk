@@ -80,7 +80,7 @@ return
 ; return
 
 ; for Edge
-^F11::
+F11::
 Activate("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
 return
 
@@ -125,9 +125,9 @@ return
 ; return
 
 ; for cfiler
-F11::
-Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
-return
+; F11::
+; Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
+; return
 
 ; for AFxW
 ; F11::
