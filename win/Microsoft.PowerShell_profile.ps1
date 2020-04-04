@@ -69,9 +69,57 @@ function cd-ls {
   ls
 }
 
+function RemoveTo-Trash {
+  # https://qiita.com/Zuishin/items/1fa77bccd111b55f7bf6
+  [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Path')]
+  Param (
+    [SupportsWildCards()]
+    [Parameter(
+      Mandatory = $true,
+      Position = 0,
+      ParameterSetName = 'Path',
+      ValueFromPipeline = $true,
+      ValueFromPipelineByPropertyName = $true
+    )]
+    [string[]]$Path,
+
+    [Alias('LP')]
+    [Alias('PSPath')]
+    [Parameter(
+      Mandatory = $true,
+      Position = 0,
+      ParameterSetName = 'LiteralPath',
+      ValueFromPipeline = $false,
+      ValueFromPipelineByPropertyName = $true
+    )]
+    [string[]]$LiteralPath
+  )
+  Begin {
+    $shell = New-Object -ComObject Shell.Application
+    $trash = $shell.NameSpace(10)
+  }
+  Process {
+    if ($PSBoundParameters.ContainsKey('Path')) {
+      $targets = Convert-Path $Path
+    } else {
+      $targets = Convert-Path -LiteralPath $LiteralPath
+    }
+    $targets | % {
+      if ($PSCmdlet.ShouldProcess($_)) {
+        $trash.MoveHere($_)
+      }
+    }
+  }
+}
+
 # rhq.
 function rhl {
   rhq list | __FILTER | cd
+}
+
+Remove-Alias r
+function r {
+  Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER | RemoveTo-Trash
 }
 
 # Alias.
