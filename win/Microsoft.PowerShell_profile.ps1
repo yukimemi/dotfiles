@@ -117,7 +117,8 @@ function rhl {
   rhq list | __FILTER | cd
 }
 
-Remove-Alias r
+# Remove-Alias r
+Remove-Item alias:r
 function r {
   Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER | RemoveTo-Trash
 }
@@ -127,7 +128,8 @@ Set-Alias o Start-Process
 Set-Alias e nvim
 Set-Alias which Get-Command
 # Remove-Item alias:cd
-Remove-Alias cd
+# Remove-Alias cd
+Remove-Item alias:cd
 Set-Alias cd cd-ls
 # filter tool.
 if (Get-Command fzf -ErrorAction SilentlyContinue) {
@@ -139,6 +141,8 @@ if (Get-Command peco -ErrorAction SilentlyContinue) {
 if (Get-Command gof -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER gof
 }
+# Remove-Alias ls
+Remove-Item alias:ls
 if (Is-Windows) {
   Set-Alias ls Get-ChildItem
   function l { ls $args }

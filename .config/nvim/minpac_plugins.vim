@@ -46,7 +46,6 @@ endfunction
 " Pack 'hotwatermorning/auto-git-diff', {'type': 'lazyall'}
 " Pack 'itchyny/vim-cursorword', {'type': 'lazyall'}
 " Pack 'iyuuya/denite-ale', {'type': 'lazyall'}
-" Pack 'jeffkreeftmeijer/vim-numbertoggle'
 " Pack 'jremmen/vim-ripgrep', {'type': 'opt', 'on': 'Rg'}
 " Pack 'kannokanno/previm', {'type': 'opt', 'for': 'markdown'}
 " Pack 'kassio/neoterm', {'type': 'lazyall', 'if': has('nvim')}
@@ -59,8 +58,6 @@ endfunction
 " Pack 'lambdalisue/edita.vim', {'type': 'lazyall'}
 " Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
 " Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
-" Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
-" Pack 'lambdalisue/fern.vim'
 " Pack 'lambdalisue/vim-findent'
 " Pack 'lambdalisue/vim-pyenv', {'type': 'lazyall'}
 " Pack 'leafgarland/typescript-vim', {'type': 'opt', 'for': ['typescript', 'typescript.tsx']}
@@ -141,6 +138,7 @@ Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
 Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
 Pack 'itchyny/vim-highlighturl', {'type': 'lazyall'}
 Pack 'itchyny/vim-parenmatch'
+Pack 'jeffkreeftmeijer/vim-numbertoggle'
 Pack 'joshdick/onedark.vim', {'type': 'opt'}
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
 Pack 'k-takata/minpac', {'type': 'opt'}
@@ -154,6 +152,8 @@ Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-user'
 Pack 'kmtoki/lightline-colorscheme-simplicity'
+Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
+Pack 'lambdalisue/fern.vim'
 Pack 'lambdalisue/gina.vim'
 Pack 'lambdalisue/suda.vim', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
