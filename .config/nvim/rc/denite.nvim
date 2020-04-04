@@ -22,7 +22,7 @@ inoremap <c-l> <esc>:<c-u>Denite command<cr>
 " Load after settings.
 if has('python3')
   if g:is_windows
-    let g:python3_host_prog = "C:/Python38/python.exe"
+    " let g:python3_host_prog = "C:/Python38/python.exe"
   endif
   au MyAutoCmd VimEnter * call <SID>denite_aft()
   au MyAutoCmd FileType denite call <SID>denite_my_settings()

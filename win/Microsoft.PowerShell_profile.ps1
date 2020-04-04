@@ -19,6 +19,8 @@ Invoke-Expression (&starship init powershell)
 Import-Module ZLocation
 # Get-ChildItemColor
 Import-Module Get-ChildItemColor
+# Pscx
+Import-Module Pscx
 
 # functions.
 function Is-Windows {
@@ -46,13 +48,25 @@ function gp {
   git pull --rebase
 }
 # git ignore for PowerShell v3
-Function gig {
+function gig {
   param(
     [Parameter(Mandatory=$true)]
     [string[]]$list
   )
   $params = ($list | ForEach-Object { [uri]::EscapeDataString($_) }) -join ","
   Invoke-WebRequest -Uri "https://www.gitignore.io/api/$params" | select -ExpandProperty content | Out-File -FilePath $(Join-Path -path $pwd -ChildPath ".gitignore") -Encoding ascii
+}
+
+# Auto ls on cd.
+function cd-ls {
+  [CmdletBinding()]
+  param(
+    [Parameter(ValueFromPipeline=$true)]
+    [string]$path
+  )
+  trap { $_ }
+  Set-Location $path -ea Stop
+  ls
 }
 
 # rhq.
@@ -64,6 +78,9 @@ function rhl {
 Set-Alias o Start-Process
 Set-Alias e nvim
 Set-Alias which Get-Command
+# Remove-Item alias:cd
+Remove-Alias cd
+Set-Alias cd cd-ls
 # filter tool.
 if (Get-Command fzf -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER fzf

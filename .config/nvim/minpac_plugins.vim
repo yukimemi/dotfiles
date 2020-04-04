@@ -244,7 +244,7 @@ endif
 
 
 " Completion: {{{1
-if 0
+if 1
   Pack 'prabirshrestha/async.vim'
   Pack 'prabirshrestha/asyncomplete-lsp.vim'
   Pack 'prabirshrestha/asyncomplete.vim'
@@ -253,7 +253,7 @@ if 0
   Pack 'mattn/vim-lsp-settings'
   Pack 'hrsh7th/vim-vsnip'
   Pack 'hrsh7th/vim-vsnip-integ'
-  Pack 'high-moctane/asyncomplete-nextword.vim', {'do': '!go get -u github.com/high-moctane/nextword', 'if': executable('go')}
+  Pack 'high-moctane/asyncomplete-nextword.vim', {'do': '!go get -u github.com/high-moctane/nextword', 'if': executable('go') && !g:is_windows}
   Pack 'prabirshrestha/asyncomplete-buffer.vim'
   Pack 'prabirshrestha/asyncomplete-emoji.vim'
   Pack 'prabirshrestha/asyncomplete-file.vim'
