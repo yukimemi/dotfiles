@@ -251,6 +251,7 @@ if 1
   Pack 'prabirshrestha/vim-lsp'
   Pack 'mattn/vim-lsp-icons'
   Pack 'mattn/vim-lsp-settings'
+  Pack 'tsuyoshicho/vim-efm-langserver-settings'
   Pack 'hrsh7th/vim-vsnip'
   Pack 'hrsh7th/vim-vsnip-integ'
   Pack 'high-moctane/asyncomplete-nextword.vim', {'do': '!go get -u github.com/high-moctane/nextword', 'if': executable('go') && !g:is_windows}
