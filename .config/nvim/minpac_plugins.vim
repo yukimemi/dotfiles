@@ -7,6 +7,7 @@ endfunction
 
 " Plugins: {{{1
 " Pack 'Konfekt/FastFold', {'type': 'lazyall'}
+" Pack 'LumaKernel/vim-messages-qf', {'type': 'lazy'}
 " Pack 'MaxMEllon/vim-shiny', {'type': 'lazyall'}
 " Pack 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'for': 'cs'}
 " Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
@@ -105,7 +106,6 @@ endfunction
 " Pack 'wellle/context.vim', {'type': 'lazyall'}
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
-Pack 'LumaKernel/vim-messages-qf', {'type': 'lazy'}
 Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 Pack 'Rigellute/rigel', {'type': 'opt'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
