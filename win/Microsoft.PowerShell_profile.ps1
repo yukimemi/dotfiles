@@ -15,17 +15,20 @@
 # starship
 Invoke-Expression (&starship init powershell)
 
+# Utility functions.
+function Is-Windows {
+  $PSVersionTable.Platform -eq "Win32NT"
+}
+
 # ZLocation
 Import-Module ZLocation
 # Get-ChildItemColor
 Import-Module Get-ChildItemColor
 # Pscx
-Import-Module Pscx
-
-# functions.
-function Is-Windows {
-  $PSVersionTable.Platform -eq "Win32NT"
+if (Is-Windows) {
+  Import-Module Pscx
 }
+
 # OS commands.
 function b {
   cd ..
@@ -142,7 +145,9 @@ if (Get-Command gof -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER gof
 }
 # Remove-Alias ls
-Remove-Item alias:ls
+if (Is-Windows) {
+  Remove-Item alias:ls
+}
 if (Is-Windows) {
   Set-Alias ls Get-ChildItem
   function l { ls $args }
