@@ -17,7 +17,7 @@ Invoke-Expression (&starship init powershell)
 
 # Utility functions.
 function Is-Windows {
-  $PSVersionTable.Platform -eq "Win32NT"
+  ($PSVersionTable.PSVersion.Major -eq 5) -or ($PSVersionTable.Platform -eq "Win32NT")
 }
 
 # ZLocation
