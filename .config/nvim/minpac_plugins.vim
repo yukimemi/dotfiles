@@ -258,7 +258,7 @@ if 1
   Pack 'prabirshrestha/asyncomplete-buffer.vim'
   Pack 'prabirshrestha/asyncomplete-emoji.vim'
   Pack 'prabirshrestha/asyncomplete-file.vim'
-  Pack 'tsufeki/asyncomplete-fuzzy-match', {'do': '!cargo build --release', 'if': executable('cargo')}
+  Pack 'tsufeki/asyncomplete-fuzzy-match', {'do': '!cargo build --release', 'if': executable('cargo') && !g:is_windows}
   " Pack 'prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'lazyall'}
   " Pack 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'lazyall'}
   " Pack 'prabirshrestha/asyncomplete-tags.vim', {'type': 'lazyall', 'if': !g:is_windows}
