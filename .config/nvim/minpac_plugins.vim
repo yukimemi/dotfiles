@@ -138,7 +138,7 @@ Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
 Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
 Pack 'itchyny/vim-highlighturl', {'type': 'lazyall'}
 Pack 'itchyny/vim-parenmatch'
-Pack 'jeffkreeftmeijer/vim-numbertoggle'
+Pack 'jeffkreeftmeijer/vim-numbertoggle', {'if': !g:is_windows}
 Pack 'joshdick/onedark.vim', {'type': 'opt'}
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
 Pack 'k-takata/minpac', {'type': 'opt'}
