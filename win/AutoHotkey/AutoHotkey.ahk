@@ -57,6 +57,11 @@ F9::
 Activate("C:\Program Files (x86)\Microsoft Office\Office16\EXCEL.EXE")
 return
 
+; for Teams
+^F11::
+Activate(APPDATA . "Local\Microsoft\Teams\current\Teams.exe")
+return
+
 ; for gvim
 ; F10::
 ; Activate("C:\tools\vim\vim82\gvim.exe")
