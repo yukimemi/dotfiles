@@ -262,6 +262,7 @@ if 1
   " Pack 'prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'lazyall'}
   " Pack 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'lazyall'}
   " Pack 'prabirshrestha/asyncomplete-tags.vim', {'type': 'lazyall', 'if': !g:is_windows}
+  Pack 'voldikss/vim-translator'
 else
   Pack 'neoclide/coc.nvim', {'branch': 'release', 'do': '!go get -u github.com/high-moctane/nextword', 'if': executable('go')}
 endif

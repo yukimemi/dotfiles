@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/03/28 21:09:39.
+" Last Change : 2020/04/08 22:58:36.
 " =============================================================================
 
 " Init: {{{1
@@ -720,5 +720,11 @@ endif
 set background=dark
 " silent! colorscheme PaperColor
 silent! colorscheme gruvbox-material
+
+" Neovide: {{{1
+let g:neovide_transparency = 0.9
+" let g:neovide_fullscreen  = v:true
+let g:neovide_cursor_vfx_mode = "railgun"
+
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
