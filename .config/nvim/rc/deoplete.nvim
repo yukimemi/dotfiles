@@ -1,0 +1,7 @@
+if !IsInstalled("deoplete.nvim")
+  finish
+endif
+
+let g:deoplete#enable_at_startup = 1
+
+" vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

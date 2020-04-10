@@ -248,7 +248,7 @@ endif
 
 
 " Completion: {{{1
-if g:is_windows
+if 0
   Pack 'prabirshrestha/async.vim'
   Pack 'prabirshrestha/asyncomplete-lsp.vim'
   Pack 'prabirshrestha/asyncomplete.vim'
@@ -269,6 +269,19 @@ if g:is_windows
   Pack 'voldikss/vim-translator'
   Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern.vim'
-else
+elseif 0
   Pack 'neoclide/coc.nvim', {'branch': 'release', 'do': '!go get -u github.com/high-moctane/nextword', 'if': executable('go')}
+else
+  Pack 'Shougo/deoplete.nvim', {'do': '!pip install -U msgpack'}
+  Pack 'lighttiger2505/deoplete-vim-lsp'
+  Pack 'hrsh7th/vim-vsnip'
+  Pack 'hrsh7th/vim-vsnip-integ'
+  Pack 'mattn/vim-lsp-icons'
+  Pack 'mattn/vim-lsp-settings'
+  Pack 'prabirshrestha/async.vim'
+  Pack 'prabirshrestha/vim-lsp'
+  Pack 'tsuyoshicho/vim-efm-langserver-settings'
+  Pack 'voldikss/vim-translator'
+  Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
+  Pack 'lambdalisue/fern.vim'
 endif
