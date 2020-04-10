@@ -1,10 +1,10 @@
 function __filter_command
-  if type -q gof
+  if type -q sk
+    sk
+  else if type -q gof
     gof
   else if type -q peco
     peco
-  else if type -q sk
-    sk
   else if type -q fzf-tmux
     fzf-tmux
   else if type -q fzf
