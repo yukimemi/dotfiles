@@ -177,8 +177,10 @@ Pack 'osyo-manga/vim-operator-blockwise', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-reanimate'
 Pack 'osyo-manga/vim-textobj-multiblock', {'type': 'lazyall'}
+Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
 Pack 'psliwka/vim-smoothie', {'type': 'lazyall'}
 Pack 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
+Pack 'rbtnn/vim-vimscript_lasterror', {'type': 'opt', 'on': ['VimscriptLastError']}
 Pack 'reedes/vim-colors-pencil', {'type': 'opt'}
 Pack 'rhysd/accelerated-jk', {'type': 'lazyall'}
 Pack 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
