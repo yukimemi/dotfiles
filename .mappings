@@ -11,6 +11,7 @@
 [windows]
 ".config/nvim/coc-settings.json"       = "~/AppData/Local/nvim/coc-settings.json"
 ".config/nvim/init.vim"                = "~/AppData/Local/nvim/init.vim"
+"win/terminus/config.yaml"             = "~/AppData/Roaming/terminus/config.yaml"
 "win/Microsoft.PowerShell_profile.ps1" = "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1"
 "win/cmd/init.cmd"                     = "~/.init.cmd"
 "win/link/.cache"                      = "~/.cache"
