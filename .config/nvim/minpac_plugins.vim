@@ -248,7 +248,7 @@ endif
 
 
 " Completion: {{{1
-if 0
+if 1
   Pack 'prabirshrestha/async.vim'
   Pack 'prabirshrestha/asyncomplete-lsp.vim'
   Pack 'prabirshrestha/asyncomplete.vim'

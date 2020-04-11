@@ -12,6 +12,10 @@
 # Install-Module -Force -Scope CurrentUser PowerHTML
 # Install-Module -Force -Scope CurrentUser ComputerManagementDsc; Get-DscResource -Module ComputerManagementDsc
 
+# Use utf-8
+chcp 65001
+$OutputEncoding = [Console]::OutputEncoding
+
 # starship
 Invoke-Expression (&starship init powershell)
 
