@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/08 22:58:36.
+" Last Change : 2020/04/11 11:25:42.
 " =============================================================================
 
 " Init: {{{1
@@ -720,6 +720,9 @@ endif
 set background=dark
 " silent! colorscheme PaperColor
 silent! colorscheme gruvbox-material
+" for alacritty transparency.
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 
 " Neovide: {{{1
 let g:neovide_transparency = 0.9
