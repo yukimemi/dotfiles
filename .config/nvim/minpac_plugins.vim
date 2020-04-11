@@ -211,6 +211,7 @@ Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
 Pack 'wadackel/vim-dogrun', {'type': 'opt'}
 Pack 'wimstefan/vim-artesanal', {'type': 'opt'}
+Pack 'yssl/QFEnter', {'type': 'lazyall'}
 
 
 " Fuzzy: {{{1
