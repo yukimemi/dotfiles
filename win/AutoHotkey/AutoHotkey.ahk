@@ -110,8 +110,13 @@ return
 ; return
 
 ; for pwsh.exe
+; F12::
+; Activate(USERPROFILE . "\scoop\shims\pwsh.exe")
+; return
+
+; for Terminus
 F12::
-Activate(USERPROFILE . "\scoop\shims\pwsh.exe")
+Toggle(USERPROFILE . "\AppData\Local\Programs\Terminus\Terminus.exe")
 return
 
 ; for Hyper
