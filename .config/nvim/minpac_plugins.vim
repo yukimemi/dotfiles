@@ -266,7 +266,7 @@ if 1
   " Pack 'prabirshrestha/asyncomplete-necosyntax.vim', {'type': 'lazyall'}
   " Pack 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'lazyall'}
   " Pack 'prabirshrestha/asyncomplete-tags.vim', {'type': 'lazyall', 'if': !g:is_windows}
-  Pack 'voldikss/vim-translator'
+  Pack 'voldikss/vim-translator', {'type': 'opt', 'on': ['<Plug>Translate', '<Plug>TranslateV', '<Plug>TranslateW', '<Plug>TranslateWV', '<Plug>TranslateR', '<Plug>TranslateRV']}
   Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern.vim'
 elseif 0
@@ -281,7 +281,7 @@ else
   Pack 'prabirshrestha/async.vim'
   Pack 'prabirshrestha/vim-lsp'
   Pack 'tsuyoshicho/vim-efm-langserver-settings'
-  Pack 'voldikss/vim-translator'
+  Pack 'voldikss/vim-translator', {'type': 'opt', 'on': ['<Plug>Translate', '<Plug>TranslateV', '<Plug>TranslateW', '<Plug>TranslateWV', '<Plug>TranslateR', '<Plug>TranslateRV']}
   Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern.vim'
 endif
