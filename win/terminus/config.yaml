@@ -27,7 +27,7 @@ terminal:
   bell: 'off'
   customShell: pwsh
   cursorBlink: false
-  fontSize: 16
+  fontSize: 15
 hotkeys:
   profile: {}
   shell: {}
@@ -37,7 +37,7 @@ serial: {}
 ssh: {}
 appearance:
   vibrancy: false
-  opacity: 0.9
+  opacity: 0.95
   vibrancyType: blur
   frame: thin
   dock: top

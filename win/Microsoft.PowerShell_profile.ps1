@@ -175,6 +175,7 @@ Set-PSReadlineKeyHandler -Key 'Ctrl+l' -Function ClearScreen
 Set-PSReadlineKeyHandler -Key 'Ctrl+n' -Function HistorySearchForward
 Set-PSReadlineKeyHandler -Key 'Ctrl+p' -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key 'Ctrl+u' -Function BackwardDeleteLine
+Set-PSReadlineKeyHandler -Key 'Ctrl+w' -Function BackwardDeleteWord
 
 Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.Count) locations.`n"
 
