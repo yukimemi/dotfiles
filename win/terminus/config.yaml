@@ -40,7 +40,7 @@ appearance:
   opacity: 0.95
   vibrancyType: blur
   frame: thin
-  dock: top
+  dock: 'off'
   dockFill: 1
   theme: Compact
 enableAnalytics: false
