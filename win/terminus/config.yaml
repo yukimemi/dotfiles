@@ -48,3 +48,5 @@ enableWelcomeTab: false
 pluginBlacklist:
   - ssh
   - serial
+titleControl:
+  replacePattern: \cmd - \cwd (\scmd)
