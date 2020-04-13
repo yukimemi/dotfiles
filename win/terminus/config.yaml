@@ -23,7 +23,7 @@ terminal:
       - '#e6d4a3'
   font: Cica Regular
   environment: {}
-  profile: default-(powershell)
+  profile: powershell
   bell: 'off'
   customShell: pwsh
   cursorBlink: false

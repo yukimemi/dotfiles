@@ -116,7 +116,7 @@ return
 
 ; for Terminus
 F12::
-Toggle(USERPROFILE . "\AppData\Local\Programs\Terminus\Terminus.exe")
+Toggle(USERPROFILE . "\scoop\apps\terminus\current\Terminus.exe")
 return
 
 ; for Hyper
