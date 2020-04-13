@@ -119,6 +119,10 @@ function RemoveTo-Trash {
   }
 }
 
+function Get-DriveInfo {
+  Get-PSDrive | ? { $_.Provider.Name -eq "Filesystem" } | ? { $_.Used } | ? { $_.Name -ne "Temp" } | Sort-Object Name
+}
+
 # rhq.
 function rhl {
   rhq list | __FILTER | cd
