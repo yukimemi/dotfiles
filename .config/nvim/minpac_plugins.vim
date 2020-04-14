@@ -85,7 +85,6 @@ endfunction
 " Pack 'qpkorr/vim-renamer', {'type': 'opt', 'on': ['Renamer', '<Plug>RenamerStart']}
 " Pack 'rafi/awesome-vim-colorschemes', {'type': 'opt'}
 " Pack 'rhysd/clever-f.vim', {'type': 'lazyall'}
-" Pack 'rhysd/committia.vim'
 " Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 " Pack 'rhysd/vim-gfm-syntax', {'type': 'opt', 'for': 'markdown'}
 " Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
@@ -175,6 +174,7 @@ Pack 'morhetz/gruvbox', {'type': 'opt'}
 Pack 'ntpeters/vim-better-whitespace', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-blockwise', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
+Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-reanimate'
 Pack 'osyo-manga/vim-textobj-multiblock', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
@@ -183,6 +183,7 @@ Pack 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
 Pack 'rbtnn/vim-vimscript_lasterror', {'type': 'opt', 'on': ['VimscriptLastError']}
 Pack 'reedes/vim-colors-pencil', {'type': 'opt'}
 Pack 'rhysd/accelerated-jk', {'type': 'lazyall'}
+Pack 'rhysd/committia.vim', {'if': !g:is_windows}
 Pack 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
 Pack 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
 Pack 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'for': 'rust'}
@@ -248,7 +249,7 @@ endif
 
 
 " Completion: {{{1
-if 1
+if 0
   Pack 'prabirshrestha/async.vim'
   Pack 'prabirshrestha/asyncomplete-lsp.vim'
   Pack 'prabirshrestha/asyncomplete.vim'
@@ -269,7 +270,7 @@ if 1
   Pack 'voldikss/vim-translator', {'type': 'opt', 'on': ['<Plug>Translate', '<Plug>TranslateV', '<Plug>TranslateW', '<Plug>TranslateWV', '<Plug>TranslateR', '<Plug>TranslateRV']}
   Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern.vim'
-elseif 0
+elseif 1
   Pack 'neoclide/coc.nvim', {'branch': 'release', 'do': '!go get -u github.com/high-moctane/nextword', 'if': executable('go')}
 else
   Pack 'Shougo/deoplete.nvim', {'do': '!pip install -U msgpack'}

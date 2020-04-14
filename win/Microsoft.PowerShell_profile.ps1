@@ -120,7 +120,11 @@ function RemoveTo-Trash {
 }
 
 function Get-DriveInfo {
-  Get-PSDrive | ? { $_.Provider.Name -eq "Filesystem" } | ? { $_.Used } | ? { $_.Name -ne "Temp" } | Sort-Object Name
+  Get-PSDrive -PSProvider FileSystem | ? { $_.Used } | ? { $_.Name -ne "Temp" } | Sort-Object Name
+}
+
+function Get-DriveInfoView {
+  Get-DriveInfo | Format-Table -AutoSize
 }
 
 # rhq.
