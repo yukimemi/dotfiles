@@ -58,7 +58,7 @@ Activate("C:\Program Files (x86)\Microsoft Office\Office16\EXCEL.EXE")
 return
 
 ; for Teams
-^F11::
+^F12::
 Activate(APPDATA . "Local\Microsoft\Teams\current\Teams.exe")
 return
 
@@ -73,7 +73,7 @@ return
 
 ; for sakura
 ^F10::
-Activate("C:\Program Files\sakura\sakura.exe")
+Activate("C:\Program Files (x86)\sakura\sakura.exe")
 return
 
 ; for chrome
@@ -135,9 +135,9 @@ return
 ; return
 
 ; for cfiler
-; F11::
-; Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
-; return
+^F11::
+Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
+return
 
 ; for AFxW
 ; F11::
