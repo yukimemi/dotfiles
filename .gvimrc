@@ -4,7 +4,10 @@ set guioptions=
 
 " color
 set background=dark
-colorscheme spring-night
+silent! colorscheme gruvbox-material
+if g:no_plugin
+  colorscheme desert
+endif
 
 " font
 set gfn=Cica:h10:cSHIFTJIS:qDRAFT

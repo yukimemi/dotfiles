@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/11 18:27:44.
+" Last Change : 2020/04/15 20:58:06.
 " =============================================================================
 
 " Init: {{{1
@@ -52,6 +52,7 @@ let g:did_install_default_menus = 1
 let g:skip_loading_mswin        = 1
 let g:did_install_syntax_menu   = 1
 let g:loaded_2html_plugin       = 1
+let g:loaded_matchparen         = 1
 
 " Utility: {{{1
 " Judge os type. {{{2
@@ -700,20 +701,23 @@ function! IsInstalled(name) abort
   endif
 endfunction
 
-if s:use_dein
-  runtime! dein.vim
-elseif s:use_vimplug
-  runtime! vimplug.vim
-elseif s:use_minpac
-  runtime! minpac.vim
-elseif s:use_packager
-  runtime! packager.vim
-elseif s:use_volt
-  runtime! volt.vim
-elseif s:use_pack
-  runtime! pack.vim
-else
-  echom "No use plugin manager !"
+let g:no_plugin = get(g:, 'no_plugin', 0)
+if !g:no_plugin
+  if s:use_dein
+    runtime! dein.vim
+  elseif s:use_vimplug
+    runtime! vimplug.vim
+  elseif s:use_minpac
+    runtime! minpac.vim
+  elseif s:use_packager
+    runtime! packager.vim
+  elseif s:use_volt
+    runtime! volt.vim
+  elseif s:use_pack
+    runtime! pack.vim
+  else
+    echom "No use plugin manager !"
+  endif
 endif
 
 " Colorscheme: {{{1

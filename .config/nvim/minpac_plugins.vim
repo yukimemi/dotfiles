@@ -44,6 +44,7 @@ endfunction
 " Pack 'fatih/vim-go', {'type': 'opt', 'for': 'go'}
 " Pack 'gko/vim-coloresque', {'type': 'lazyall'}
 " Pack 'haya14busa/is.vim', {'type': 'lazyall'}
+" Pack 'haya14busa/vim-edgemotion', {'type': 'lazyall'}
 " Pack 'hotwatermorning/auto-git-diff', {'type': 'lazyall'}
 " Pack 'itchyny/vim-cursorword', {'type': 'lazyall'}
 " Pack 'iyuuya/denite-ale', {'type': 'lazyall'}
@@ -128,7 +129,6 @@ Pack 'fuenor/qfixhowm', {'type': 'lazyall'}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
-Pack 'haya14busa/vim-edgemotion', {'type': 'lazyall'}
 Pack 'haya14busa/vim-operator-flashy', {'type': 'lazyall'}
 Pack 'hiroakis/cyberspace.vim', {'type': 'opt'}
 Pack 'honza/vim-snippets', {'type': 'lazyall'}
@@ -160,6 +160,7 @@ Pack 'lifepillar/vim-solarized8', {'type': 'opt'}
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'luochen1990/rainbow', {'type': 'lazyall'}
 Pack 'machakann/vim-colorscheme-snowtrek', {'type': 'opt'}
+Pack 'machakann/vim-highlightedundo', {'type': 'lazyall', 'if': executable('diff')}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
 Pack 'mattn/benchvimrc-vim', {'type': 'opt', 'on': 'BenchVimrc'}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows}
@@ -208,6 +209,7 @@ Pack 'tsuyoshicho/vim-fg'
 Pack 'twitvim/twitvim', {'type': 'lazyall'}
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
 Pack 'tyru/caw.vim', {'type': 'opt', 'on': ['<Plug>(caw:prefix)', '<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)', '<Plug>(caw:hatpos:toggle)']}
+Pack 'tyru/columnskip.vim', {'type': 'opt', 'on': ['<Plug>(columnskip-j)', '<Plug>(columnskip-k)']}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
 Pack 'wadackel/vim-dogrun', {'type': 'opt'}
