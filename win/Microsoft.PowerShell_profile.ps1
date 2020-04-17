@@ -138,6 +138,10 @@ function r {
   Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER | RemoveTo-Trash
 }
 
+function v {
+  gvim --remote-silent $args
+}
+
 # Alias.
 Set-Alias gomi RemoveTo-Trash
 Set-Alias o Start-Process

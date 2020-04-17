@@ -107,43 +107,43 @@ endfunction
 " Pack 'wellle/context.vim', {'type': 'lazyall'}
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
-Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
-Pack 'Rigellute/rigel', {'type': 'opt'}
+" Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
+" Pack 'Rigellute/rigel', {'type': 'opt'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
-Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
-Pack 'Shougo/junkfile.vim', {'type': 'opt', 'on': 'JunkfileOpen'}
-Pack 'Yggdroot/indentLine'
-Pack 'aereal/vim-colors-japanesque', {'type': 'opt'}
-Pack 'airblade/vim-rooter', {'type': 'lazyall'}
-Pack 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'for': 'haskell'}
-Pack 'andymass/vim-matchup', {'type': 'lazyall'}
-Pack 'arcticicestudio/nord-vim', {'type': 'opt'}
-Pack 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt', 'for': 'sql'}
-Pack 'cormacrelf/vim-colors-github', {'type': 'opt'}
-Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
+" Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
+" Pack 'Shougo/junkfile.vim', {'type': 'opt', 'on': 'JunkfileOpen'}
+" Pack 'Yggdroot/indentLine'
+" Pack 'aereal/vim-colors-japanesque', {'type': 'opt'}
+" Pack 'airblade/vim-rooter', {'type': 'lazyall'}
+" Pack 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'for': 'haskell'}
+" Pack 'andymass/vim-matchup', {'type': 'lazyall'}
+" Pack 'arcticicestudio/nord-vim', {'type': 'opt'}
+" Pack 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !silent go get github.com/jackc/sqlfmt', 'for': 'sql'}
+" Pack 'cormacrelf/vim-colors-github', {'type': 'opt'}
+" Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
 Pack 'dkarter/bullets.vim', {'type': 'lazyall'}
 Pack 'editorconfig/editorconfig-vim', {'type': 'lazyall'}
-Pack 'eugen0329/vim-esearch', {'type': 'lazyall'}
-Pack 'fuenor/qfixgrep', {'type': 'lazyall'}
-Pack 'fuenor/qfixhowm', {'type': 'lazyall'}
+" Pack 'eugen0329/vim-esearch', {'type': 'lazyall'}
+" Pack 'fuenor/qfixgrep', {'type': 'lazyall'}
+" Pack 'fuenor/qfixhowm', {'type': 'lazyall'}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
 Pack 'haya14busa/vim-operator-flashy', {'type': 'lazyall'}
-Pack 'hiroakis/cyberspace.vim', {'type': 'opt'}
+" Pack 'hiroakis/cyberspace.vim', {'type': 'opt'}
 Pack 'honza/vim-snippets', {'type': 'lazyall'}
-Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
+" Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 Pack 'itchyny/lightline.vim'
-Pack 'itchyny/vim-external', {'type': 'lazyall'}
+" Pack 'itchyny/vim-external', {'type': 'lazyall'}
 Pack 'itchyny/vim-gitbranch'
-Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
-Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
+" Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
+" Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
 Pack 'itchyny/vim-highlighturl', {'type': 'lazyall'}
 Pack 'itchyny/vim-parenmatch'
-Pack 'joshdick/onedark.vim', {'type': 'opt'}
+" Pack 'joshdick/onedark.vim', {'type': 'opt'}
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
 Pack 'k-takata/minpac', {'type': 'opt'}
-Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
+" Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
 Pack 'kana/vim-operator-replace', {'type': 'lazyall'}
 Pack 'kana/vim-operator-user'
 Pack 'kana/vim-textobj-entire', {'type': 'lazyall'}
@@ -152,69 +152,69 @@ Pack 'kana/vim-textobj-function', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-user'
-Pack 'kmtoki/lightline-colorscheme-simplicity'
+" Pack 'kmtoki/lightline-colorscheme-simplicity'
 Pack 'lambdalisue/gina.vim'
-Pack 'lambdalisue/suda.vim', {'type': 'lazyall', 'if': !g:is_windows}
-Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
-Pack 'lifepillar/vim-solarized8', {'type': 'opt'}
-Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
-Pack 'luochen1990/rainbow', {'type': 'lazyall'}
-Pack 'machakann/vim-colorscheme-snowtrek', {'type': 'opt'}
-Pack 'machakann/vim-highlightedundo', {'type': 'lazyall', 'if': executable('diff')}
-Pack 'markonm/traces.vim', {'type': 'lazyall'}
-Pack 'mattn/benchvimrc-vim', {'type': 'opt', 'on': 'BenchVimrc'}
+" Pack 'lambdalisue/suda.vim', {'type': 'lazyall', 'if': !g:is_windows}
+" Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
+" Pack 'lifepillar/vim-solarized8', {'type': 'opt'}
+" Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
+" Pack 'luochen1990/rainbow', {'type': 'lazyall'}
+" Pack 'machakann/vim-colorscheme-snowtrek', {'type': 'opt'}
+" Pack 'machakann/vim-highlightedundo', {'type': 'lazyall', 'if': executable('diff')}
+" Pack 'markonm/traces.vim', {'type': 'lazyall'}
+" Pack 'mattn/benchvimrc-vim', {'type': 'opt', 'on': 'BenchVimrc'}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows}
-Pack 'mattn/vim-gist', {'type': 'opt', 'on': 'Gist'}
-Pack 'mattn/vim-sonictemplate', {'type': 'opt', 'on': 'Template'}
+" Pack 'mattn/vim-gist', {'type': 'opt', 'on': 'Gist'}
+" Pack 'mattn/vim-sonictemplate', {'type': 'opt', 'on': 'Template'}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
-Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
-Pack 'mechatroner/rainbow_csv', {'type': 'opt', 'for': 'csv'}
-Pack 'mhinz/vim-grepper', {'type': 'opt', 'on': ['Grepper', '<Plug>(GrepperOperator)']}
-Pack 'morhetz/gruvbox', {'type': 'opt'}
+" Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
+" Pack 'mechatroner/rainbow_csv', {'type': 'opt', 'for': 'csv'}
+" Pack 'mhinz/vim-grepper', {'type': 'opt', 'on': ['Grepper', '<Plug>(GrepperOperator)']}
+" Pack 'morhetz/gruvbox', {'type': 'opt'}
 Pack 'ntpeters/vim-better-whitespace', {'type': 'lazyall'}
-Pack 'osyo-manga/vim-operator-blockwise', {'type': 'lazyall'}
+" Pack 'osyo-manga/vim-operator-blockwise', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
-Pack 'osyo-manga/vim-reanimate'
-Pack 'osyo-manga/vim-textobj-multiblock', {'type': 'lazyall'}
+" Pack 'osyo-manga/vim-reanimate'
+" Pack 'osyo-manga/vim-textobj-multiblock', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
 Pack 'psliwka/vim-smoothie', {'type': 'lazyall'}
-Pack 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
+" Pack 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
 Pack 'rbtnn/vim-vimscript_lasterror', {'type': 'opt', 'on': ['VimscriptLastError']}
-Pack 'reedes/vim-colors-pencil', {'type': 'opt'}
+" Pack 'reedes/vim-colors-pencil', {'type': 'opt'}
 Pack 'rhysd/accelerated-jk', {'type': 'lazyall'}
 Pack 'rhysd/committia.vim', {'if': !g:is_windows}
-Pack 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
-Pack 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
-Pack 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'for': 'rust'}
+" Pack 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
+" Pack 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
+" Pack 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'for': 'rust'}
 Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
-Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
+" Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'ryanoasis/vim-devicons'
 Pack 'sainnhe/gruvbox-material'
-Pack 'scrooloose/vim-slumlord', {'type': 'opt', 'for': 'plantuml'}
+" Pack 'scrooloose/vim-slumlord', {'type': 'opt', 'for': 'plantuml'}
 Pack 'sheerun/vim-polyglot'
-Pack 'skanehira/preview-markdown.vim', {'type': 'opt', 'on': 'PreviewMarkdown', 'if': executable('mdr') && !has('nvim')}
-Pack 'skanehira/translate.vim', {'type': 'opt', 'on': ['AutoTranslateModeToggle', '<Plug>(VTranslate)', '<Plug>(VTranslateBang)'], 'if': executable('gtran') && !has('nvim')}
-Pack 't9md/vim-choosewin', {'type': 'opt', 'on': ['<Plug>(choosewin)']}
+" Pack 'skanehira/preview-markdown.vim', {'type': 'opt', 'on': 'PreviewMarkdown', 'if': executable('mdr') && !has('nvim')}
+" Pack 'skanehira/translate.vim', {'type': 'opt', 'on': ['AutoTranslateModeToggle', '<Plug>(VTranslate)', '<Plug>(VTranslateBang)'], 'if': executable('gtran') && !has('nvim')}
+" Pack 't9md/vim-choosewin', {'type': 'opt', 'on': ['<Plug>(choosewin)']}
 Pack 't9md/vim-quickhl'
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
-Pack 'thinca/vim-quickrun', {'type': 'lazyall'}
+" Pack 'thinca/vim-quickrun', {'type': 'lazyall'}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
 Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windows && !has('nvim')}
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}
 Pack 'tsuyoshicho/vim-fg'
-Pack 'twitvim/twitvim', {'type': 'lazyall'}
+" Pack 'twitvim/twitvim', {'type': 'lazyall'}
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
 Pack 'tyru/caw.vim', {'type': 'opt', 'on': ['<Plug>(caw:prefix)', '<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)', '<Plug>(caw:hatpos:toggle)']}
 Pack 'tyru/columnskip.vim', {'type': 'opt', 'on': ['<Plug>(columnskip-j)', '<Plug>(columnskip-k)']}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
-Pack 'wadackel/vim-dogrun', {'type': 'opt'}
-Pack 'wimstefan/vim-artesanal', {'type': 'opt'}
-Pack 'yssl/QFEnter', {'type': 'lazyall'}
+" Pack 'wadackel/vim-dogrun', {'type': 'opt'}
+" Pack 'wimstefan/vim-artesanal', {'type': 'opt'}
+" Pack 'yssl/QFEnter', {'type': 'lazyall'}
 
 
 " Fuzzy: {{{1
@@ -240,7 +240,7 @@ elseif 0
   Pack 'Shougo/neomru.vim'
   Pack 'bogado/file-line', {'type': 'lazyall'}
 elseif 0
-  Pack 'mattn/vim-fz', {'do': '!go get github.com/mattn/gof'}
+  Pack 'mattn/vim-fz', {'do': '!silent go get github.com/mattn/gof'}
   Pack 'mattn/vim-fz-launcher'
 else
   Pack 'Shougo/denite.nvim', {'type': 'opt', 'on': ['Denite'], 'if': has('nvim')}
@@ -261,7 +261,7 @@ if 0
   Pack 'tsuyoshicho/vim-efm-langserver-settings'
   Pack 'hrsh7th/vim-vsnip'
   Pack 'hrsh7th/vim-vsnip-integ'
-  Pack 'high-moctane/asyncomplete-nextword.vim', {'do': '!go get -u github.com/high-moctane/nextword', 'if': executable('go') && !g:is_windows}
+  Pack 'high-moctane/asyncomplete-nextword.vim', {'do': '!silent go get -u github.com/high-moctane/nextword', 'if': executable('go') && !g:is_windows}
   Pack 'prabirshrestha/asyncomplete-buffer.vim'
   Pack 'prabirshrestha/asyncomplete-emoji.vim'
   Pack 'prabirshrestha/asyncomplete-file.vim'
@@ -273,7 +273,7 @@ if 0
   Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern.vim'
 elseif 1
-  Pack 'neoclide/coc.nvim', {'branch': 'release', 'do': '!go get -u github.com/high-moctane/nextword', 'if': executable('go')}
+  Pack 'neoclide/coc.nvim', {'branch': 'release', 'do': '!silent go get -u github.com/high-moctane/nextword', 'if': executable('go')}
 else
   Pack 'Shougo/deoplete.nvim', {'do': '!pip install -U msgpack'}
   Pack 'lighttiger2505/deoplete-vim-lsp'

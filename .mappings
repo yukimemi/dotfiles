@@ -10,7 +10,8 @@
 ".qutebrowser"                         = "~/.qutebrowser"
 
 [windows]
-".config/nvim/coc-settings.json"       = "~/AppData/Local/nvim/coc-settings.json"
+# ".config/nvim/coc-settings.json"       = "~/AppData/Local/nvim/coc-settings.json"
+".config/nvim/coc-settings.json"       = "~/vimfiles/coc-settings.json"
 ".config/nvim/init.vim"                = "~/AppData/Local/nvim/init.vim"
 ".qutebrowser"                         = "~/AppData/Roaming/qutebrowser/config"
 "win/terminus/config.yaml"             = "~/AppData/Roaming/terminus/config.yaml"
