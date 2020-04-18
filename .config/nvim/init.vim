@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/18 17:56:26.
+" Last Change : 2020/04/18 18:03:10.
 " =============================================================================
 
 " Init: {{{1
@@ -513,5 +513,6 @@ let g:neovide_transparency = 0.9
 " let g:neovide_fullscreen  = v:true
 let g:neovide_cursor_vfx_mode = "railgun"
 
+filetype plugin indent on
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

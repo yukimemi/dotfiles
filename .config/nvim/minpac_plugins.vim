@@ -126,6 +126,7 @@ endfunction
 " Pack 'pangloss/vim-javascript', {'type': 'opt', 'for': ['javascript', 'javascript.jsx']}
 " Pack 'posva/vim-vue', {'type': 'opt', 'for': 'vue'}
 " Pack 'prabirshrestha/asyncomplete-necovim.vim', {'type': 'opt', 'for': 'vim'}
+" Pack 'preservim/nerdcommenter', {'type': 'lazyall'}
 " Pack 'psliwka/vim-smoothie', {'type': 'lazyall'}
 " Pack 'qpkorr/vim-renamer', {'type': 'opt', 'on': ['Renamer', '<Plug>RenamerStart']}
 " Pack 'rafi/awesome-vim-colorschemes', {'type': 'opt'}
@@ -155,10 +156,9 @@ endfunction
 " Pack 'taku-o/vim-zoom', {'type': 'lazyall'}
 " Pack 'thinca/vim-localrc', {'type': 'lazyall'}
 " Pack 'thinca/vim-quickrun', {'type': 'lazyall'}
-" Pack 'tpope/vim-commentary', {'type': 'opt', 'on': ['<Plug>Commentary', '<Plug>CommentaryLine']}
 " Pack 'tpope/vim-obsession', {'type': 'lazyall'}
 " Pack 'twitvim/twitvim', {'type': 'lazyall'}
-" Pack 'tyru/caw.vim'
+" Pack 'tyru/caw.vim', {'type': 'lazyall'}
 " Pack 'unblevable/quick-scope', {'type': 'lazyall'}
 " Pack 'vim-airline/vim-airline'
 " Pack 'vim-airline/vim-airline-themes'
@@ -200,7 +200,6 @@ Pack 'ntpeters/vim-better-whitespace', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
-Pack 'preservim/nerdcommenter', {'type': 'lazyall'}
 Pack 'rbtnn/vim-vimscript_lasterror', {'type': 'opt', 'on': ['VimscriptLastError']}
 Pack 'rhysd/committia.vim', {'if': !g:is_windows}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
@@ -211,6 +210,7 @@ Pack 't9md/vim-quickhl'
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
 Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windows && !has('nvim')}
+Pack 'tpope/vim-commentary'
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}
 Pack 'tsuyoshicho/vim-fg'
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
