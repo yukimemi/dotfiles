@@ -250,44 +250,38 @@ font:
 
 # [alacritty-colorscheme/README.md at master · toggle-corp/alacritty-colorscheme](https://github.com/toggle-corp/alacritty-colorscheme/blob/master/README.md)
 # color_start
-# base16-gruvbox-dark-pale.yml
-# Base16 Gruvbox dark, pale - alacritty color config
-# Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
+# hyper.yaml
+# Colors (Hyper)
 colors:
   # Default colors
   primary:
-    background: '0x262626'
-    foreground: '0xdab997'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
+    background: '0x000000'
+    foreground: '0xffffff'
   cursor:
-    text: '0x262626'
-    cursor: '0xdab997'
+    text: '0xF81CE5'
+    cursor: '0xffffff'
 
   # Normal colors
   normal:
-    black:   '0x262626'
-    red:     '0xd75f5f'
-    green:   '0xafaf00'
-    yellow:  '0xffaf00'
-    blue:    '0x83adad'
-    magenta: '0xd485ad'
-    cyan:    '0x85ad85'
-    white:   '0xdab997'
+    black:   '0x000000'
+    red:     '0xfe0100'
+    green:   '0x33ff00'
+    yellow:  '0xfeff00'
+    blue:    '0x0066ff'
+    magenta: '0xcc00ff'
+    cyan:    '0x00ffff'
+    white:   '0xd0d0d0'
 
   # Bright colors
   bright:
-    black:   '0x8a8a8a'
-    red:     '0xff8700'
-    green:   '0x3a3a3a'
-    yellow:  '0x4e4e4e'
-    blue:    '0x949494'
-    magenta: '0xd5c4a1'
-    cyan:    '0xd65d0e'
-    white:   '0xebdbb2'
-
-draw_bold_text_with_bright_colors: false
-
+    black:   '0x808080'
+    red:     '0xfe0100'
+    green:   '0x33ff00'
+    yellow:  '0xfeff00'
+    blue:    '0x0066ff'
+    magenta: '0xcc00ff'
+    cyan:    '0x00ffff'
+    white:   '0xFFFFFF'
 # color_end
 
 # Visual Bell
