@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:rolling
 LABEL maintainer "yukimemi <yukimemi@gmail.com>"
 
 # Use next 2 steps.
