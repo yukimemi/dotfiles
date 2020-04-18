@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/19 07:48:53.
+" Last Change : 2020/04/19 08:20:27.
 " =============================================================================
 
 " Init: {{{1
@@ -140,6 +140,8 @@ set showmatch matchtime=1
 set noerrorbells novisualbell t_vb=
 set virtualedit=block
 set synmaxcol=500
+set smarttab
+set iminsert=0 imsearch=-1
 if executable('jvgrep')
   set grepprg=jvgrep
 endif
@@ -515,7 +517,5 @@ hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 let g:neovide_transparency = 0.9
 " let g:neovide_fullscreen  = v:true
 let g:neovide_cursor_vfx_mode = "railgun"
-
-filetype plugin indent on
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
