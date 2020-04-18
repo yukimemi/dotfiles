@@ -32,7 +32,7 @@ endfunction
 " Pack 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'for': 'haskell'}
 " Pack 'andymass/vim-matchup', {'type': 'lazyall'}
 " Pack 'arcticicestudio/nord-vim', {'type': 'opt'}
-" Pack 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !silent go get github.com/jackc/sqlfmt', 'for': 'sql'}
+" Pack 'b4b4r07/vim-sqlfmt', {'type': 'opt', 'do': 'silent! !go get github.com/jackc/sqlfmt', 'for': 'sql'}
 " Pack 'basyura/TweetVim', {'type': 'opt', 'on': ['TweetVimHomeTimeline', 'TweetVimUserStream','TweetVimSay']}
 " Pack 'basyura/bitly.vim', {'type': 'opt'}
 " Pack 'basyura/twibill.vim', {'type': 'lazyall'}
@@ -165,7 +165,7 @@ endfunction
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
-Pack 'Shougo/defx.nvim', {'type': 'opt', 'on': ['Defx'], 'do': 'silent! UpdateRemotePlugins'}
+" Pack 'Shougo/defx.nvim', {'type': 'opt', 'on': ['Defx'], 'do': 'silent! UpdateRemotePlugins'}
 Pack 'dkarter/bullets.vim', {'type': 'lazyall'}
 Pack 'editorconfig/editorconfig-vim', {'type': 'lazyall'}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
@@ -187,7 +187,7 @@ Pack 'kana/vim-textobj-function', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-user'
-Pack 'kristijanhusak/defx-icons', {'type': 'opt'}
+" Pack 'kristijanhusak/defx-icons', {'type': 'opt'}
 Pack 'lambdalisue/gina.vim'
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
@@ -201,11 +201,11 @@ Pack 'rhysd/committia.vim', {'if': !g:is_windows}
 Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
 Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
-Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
-Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
+" Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
+" Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'ryanoasis/vim-devicons'
 Pack 'sainnhe/gruvbox-material'
-Pack 'sheerun/vim-polyglot'
+" Pack 'sheerun/vim-polyglot'
 Pack 't9md/vim-quickhl'
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
@@ -233,19 +233,14 @@ if 0
   " Pack 'FelikZ/ctrlp-py-matcher'
 elseif 0
   Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap', 'do': 'Clap install-binary!'}
-elseif 0
-  Pack 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all', 'if': !g:is_windows}
-  Pack 'junegunn/fzf', {'dir': '~/.fzf', 'if': g:is_windows}
-  Pack 'junegunn/fzf.vim'
+elseif 1
   Pack 'yuki-ycino/fzf-preview.vim'
   Pack 'MattesGroeger/vim-bookmarks', {'type': 'lazyall'}
-  Pack 'Shougo/neomru.vim'
-  Pack 'bogado/file-line', {'type': 'lazyall'}
 elseif 0
-  Pack 'mattn/vim-fz', {'do': '!silent go get github.com/mattn/gof'}
+  Pack 'mattn/vim-fz', {'do': 'silent! !go get github.com/mattn/gof'}
   Pack 'mattn/vim-fz-launcher'
 else
-  Pack 'Shougo/denite.nvim', {'type': 'opt', 'on': ['Denite'], 'if': has('nvim'), 'do': 'silent! UpdateRemotePlugins'}
+  Pack 'Shougo/denite.nvim', {'type': 'opt', 'on': ['Denite'], 'do': 'silent! UpdateRemotePlugins'}
   " Pack 'Jagua/vim-denite-ghq', {'type': 'lazyall', 'if': has('nvim')}
   Pack 'pocari/vim-denite-gists', {'type': 'lazyall', 'if': has('nvim')}
   Pack 'pocari/vim-denite-kind-open-browser', {'type': 'lazyall', 'if': has('nvim')}
@@ -253,7 +248,7 @@ endif
 
 
 " Completion: {{{1
-if 1
+if 0
   Pack 'prabirshrestha/async.vim'
   Pack 'prabirshrestha/asyncomplete-lsp.vim'
   Pack 'prabirshrestha/asyncomplete.vim'
@@ -263,7 +258,7 @@ if 1
   Pack 'tsuyoshicho/vim-efm-langserver-settings'
   Pack 'hrsh7th/vim-vsnip'
   Pack 'hrsh7th/vim-vsnip-integ'
-  Pack 'high-moctane/asyncomplete-nextword.vim', {'do': '!silent go get -u github.com/high-moctane/nextword', 'if': executable('go') && !g:is_windows}
+  Pack 'high-moctane/asyncomplete-nextword.vim', {'do': 'silent !go get -u github.com/high-moctane/nextword', 'if': executable('go') && !g:is_windows}
   Pack 'prabirshrestha/asyncomplete-buffer.vim'
   Pack 'prabirshrestha/asyncomplete-emoji.vim'
   Pack 'prabirshrestha/asyncomplete-file.vim'
@@ -275,7 +270,7 @@ if 1
   " Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
   " Pack 'lambdalisue/fern.vim'
 elseif 1
-  Pack 'neoclide/coc.nvim', {'branch': 'release', 'do': '!silent go get -u github.com/high-moctane/nextword', 'if': executable('go')}
+  Pack 'neoclide/coc.nvim', {'branch': 'release', 'do': 'silent !go get -u github.com/high-moctane/nextword', 'if': executable('go')}
 else
   Pack 'Shougo/deoplete.nvim', {'do': '!pip install -U msgpack'}
   Pack 'lighttiger2505/deoplete-vim-lsp'

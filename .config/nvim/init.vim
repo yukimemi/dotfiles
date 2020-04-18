@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/15 20:58:06.
+" Last Change : 2020/04/18 12:54:05.
 " =============================================================================
 
 " Init: {{{1
@@ -61,6 +61,7 @@ let g:is_cygwin = has('win32unix')
 let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
 let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
 
+
 " Set path. {{{2
 set shellslash
 let $CACHE = expand('~/.cache')
@@ -82,6 +83,12 @@ if g:is_windows
   execute 'set runtimepath+=' . $VIM_PATH
   execute 'set runtimepath+=' . $VIM_PATH . '/after'
 endif
+
+" python program path.
+if !g:is_windows
+  let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+endif
+
 
 " Functions: {{{1
 function! Mkdir(dir) "{{{2
