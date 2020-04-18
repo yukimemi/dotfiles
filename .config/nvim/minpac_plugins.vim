@@ -14,6 +14,7 @@ endfunction
 " Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
 " Pack 'RRethy/vim-illuminate', {'type': 'lazyall'}
 " Pack 'Rigellute/rigel', {'type': 'opt'}
+" Pack 'Shougo/defx.nvim', {'type': 'opt', 'on': ['Defx'], 'do': 'silent! UpdateRemotePlugins'}
 " Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
 " Pack 'Shougo/junkfile.vim', {'type': 'opt', 'on': 'JunkfileOpen'}
 " Pack 'Shougo/neco-syntax'
@@ -78,6 +79,7 @@ endfunction
 " Pack 'keremc/asyncomplete-racer.vim', {'type': 'opt', 'for': 'rust', 'if': !executable('rls')}
 " Pack 'kmtoki/lightline-colorscheme-simplicity'
 " Pack 'kopischke/vim-stay'
+" Pack 'kristijanhusak/defx-icons', {'type': 'opt'}
 " Pack 'kristijanhusak/vim-hybrid-material', {'type': 'opt'}
 " Pack 'kshenoy/vim-signature', {'type': 'lazyall'}
 " Pack 'kylef/apiblueprint.vim', {'type': 'opt', 'for': 'apiblueprint'}
@@ -135,11 +137,15 @@ endfunction
 " Pack 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
 " Pack 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'for': 'rust'}
 " Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
+" Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 " Pack 'rhysd/vim-gfm-syntax', {'type': 'opt', 'for': 'markdown'}
 " Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
+" Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
+" Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 " Pack 'rust-lang/rust.vim', {'type': 'opt', 'for': 'rust'}
 " Pack 'scrooloose/nerdtree', {'type': 'opt', 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 " Pack 'scrooloose/vim-slumlord', {'type': 'opt', 'for': 'plantuml'}
+" Pack 'sheerun/vim-polyglot'
 " Pack 'skanehira/preview-markdown.vim', {'type': 'opt', 'on': 'PreviewMarkdown', 'if': executable('mdr') && !has('nvim')}
 " Pack 'skanehira/translate.vim', {'type': 'opt', 'on': ['AutoTranslateModeToggle', '<Plug>(VTranslate)', '<Plug>(VTranslateBang)'], 'if': executable('gtran') && !has('nvim')}
 " Pack 'skywind3000/vim-quickui', {'type': 'lazyall'}
@@ -165,7 +171,6 @@ endfunction
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
-" Pack 'Shougo/defx.nvim', {'type': 'opt', 'on': ['Defx'], 'do': 'silent! UpdateRemotePlugins'}
 Pack 'dkarter/bullets.vim', {'type': 'lazyall'}
 Pack 'editorconfig/editorconfig-vim', {'type': 'lazyall'}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
@@ -187,7 +192,6 @@ Pack 'kana/vim-textobj-function', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-user'
-" Pack 'kristijanhusak/defx-icons', {'type': 'opt'}
 Pack 'lambdalisue/gina.vim'
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
@@ -198,14 +202,10 @@ Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
 Pack 'rbtnn/vim-vimscript_lasterror', {'type': 'opt', 'on': ['VimscriptLastError']}
 Pack 'rhysd/committia.vim', {'if': !g:is_windows}
-Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
-Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
-" Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
-" Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
+Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'ryanoasis/vim-devicons'
 Pack 'sainnhe/gruvbox-material'
-" Pack 'sheerun/vim-polyglot'
 Pack 't9md/vim-quickhl'
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
@@ -233,10 +233,10 @@ if 0
   " Pack 'FelikZ/ctrlp-py-matcher'
 elseif 0
   Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap', 'do': 'Clap install-binary!'}
-elseif 1
+elseif 0
   Pack 'yuki-ycino/fzf-preview.vim'
   Pack 'MattesGroeger/vim-bookmarks', {'type': 'lazyall'}
-elseif 0
+elseif 1
   Pack 'mattn/vim-fz', {'do': 'silent! !go get github.com/mattn/gof'}
   Pack 'mattn/vim-fz-launcher'
 else

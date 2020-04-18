@@ -5,7 +5,7 @@ endif
 " coc {{{1
 " always show signcolumns
 set signcolumn=yes
-" set tagfunc=CocTagFunc
+set tagfunc=CocTagFunc
 
 " extensions
 if !g:is_windows
