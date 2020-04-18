@@ -196,6 +196,7 @@ Pack 'lambdalisue/gina.vim'
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
+Pack 'nathanaelkane/vim-indent-guides'
 Pack 'ntpeters/vim-better-whitespace', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
