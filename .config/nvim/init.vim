@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/18 18:03:10.
+" Last Change : 2020/04/19 07:48:53.
 " =============================================================================
 
 " Init: {{{1
@@ -126,6 +126,7 @@ endif
 set number
 set ambiwidth=double
 set history=10000
+set nofixeol
 set hidden autoread
 set viminfo='1000
 set cmdheight=2
@@ -135,6 +136,8 @@ set wildmenu wildmode=longest:full,full
 set autoindent smartindent breakindent
 set incsearch hlsearch wrapscan
 set ignorecase smartcase infercase
+set showmatch matchtime=1
+set noerrorbells novisualbell t_vb=
 set virtualedit=block
 set synmaxcol=500
 if executable('jvgrep')
