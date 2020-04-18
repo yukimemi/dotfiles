@@ -1,14 +1,12 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/18 12:54:05.
+" Last Change : 2020/04/18 17:56:26.
 " =============================================================================
 
 " Init: {{{1
 set encoding=utf-8
 scriptencoding utf-8
-
-if &compatible | set nocompatible | endif
 
 " Release autogroup in MyAutoCmd.
 augroup MyAutoCmd | autocmd! | augroup END
@@ -78,91 +76,12 @@ else
   let $BACKUP_PATH = expand('$CACHE/vim/back')
 endif
 
-" Add runtimepath for windows.
-if g:is_windows
-  execute 'set runtimepath+=' . $VIM_PATH
-  execute 'set runtimepath+=' . $VIM_PATH . '/after'
-endif
-
-" python program path.
-if !g:is_windows
-  let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
-endif
-
-
 " Functions: {{{1
-function! Mkdir(dir) "{{{2
-  if !isdirectory(a:dir)
-    call mkdir(a:dir, "p")
-  endif
-endfunction
-
-function! s:str2byte(str) "{{{2
-  return map(range(len(a:str)), 'char2nr(a:str[v:val])')
-endfunction
-
-function! s:byte2hex(bytes) "{{{2
-  return join(map(copy(a:bytes), 'printf("%02X", v:val)'), '')
-endfunction
-
 function! s:auto_mkdir(dir, force) "{{{2
   " Hack #202: http://vim-users.jp/2011/02/hack202/
   if !isdirectory(a:dir) && (a:force ||
         \ input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
     call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-  endif
-endfunction
-
-function! s:format() "{{{2
-  " auto indent format
-  let save_view = winsaveview()
-  normal gg=G
-  call winrestview(save_view)
-endfunction
-
-function! s:addQuote() "{{{2
-  normal gg2dd
-  20,$s/^/> /
-  normal gg
-endfunction
-
-function! s:cd_buffer_dir() "{{{2
-  let filetype = getbufvar(bufnr('%'), '&filetype')
-  if filetype ==# 'vimfiler'
-    let dir = getbufvar(bufnr('%'), 'vimfiler').current_dir
-  elseif filetype ==# 'vimshell'
-    let dir = getbufvar(bufnr('%'), 'vimshell').save_dir
-  else
-    let dir = isdirectory(bufname('%')) ? bufname('%') : fnamemodify(bufname('%'), ':p:h')
-  endif
-
-  cd `=dir`
-endfunction
-
-function! s:removeFileIf0Byte() "{{{2
-  " Remove file if 0 byte.
-  " http://qiita.com/hykw/items/6dbb43bdcd8874a0daf7
-  let filename = expand('%:p')
-  if getfsize(filename) > 0
-    " do nothing
-    return
-  endif
-
-  let msg = printf("\n%s is empty, remove?(y/N)", filename)
-  if input(msg) == 'y'
-    call delete(filename)
-    bdelete
-  endif
-endfunction
-
-function! s:deleteOtherLine() "{{{2
-" Delete other line
-  %g!//d
-endfunction
-
-function! s:updateColorScheme() "{{{2
-  if &readonly && &buftype ==# ""
-    colorscheme github
   endif
 endfunction
 
@@ -176,31 +95,16 @@ function! s:open_current_dir() abort "{{{2
   endif
 endfunction
 
-function! MakeVimproc(info) abort "{{{2
-  if a:info.status == 'updated' && g:is_windows && !has('kaoriya')
-    let g:vimproc#download_windows_dll = 1
-  endif
-  if !g:is_windows
-    !make
-  endif
-endfunction
-
-
-
 " Basic: {{{1
-
-" ctags.
-set tags& tags-=tags tags+=./tags;
-
 " undo, swap.
 let s:undo_dir = $BACKUP_PATH . '/undo'
 let s:backup_dir = $BACKUP_PATH . '/back'
 let s:directory = $BACKUP_PATH . '/dir'
 let s:view_dir = $BACKUP_PATH . '/view'
-call Mkdir(s:undo_dir)
-call Mkdir(s:backup_dir)
-call Mkdir(s:directory)
-call Mkdir(s:view_dir)
+silent! call mkdir(s:undo_dir, 'p')
+silent! call mkdir(s:backup_dir, 'p')
+silent! call mkdir(s:directory, 'p')
+silent! call mkdir(s:view_dir, 'p')
 
 set undofile
 exe 'set undodir=' . s:undo_dir
@@ -219,99 +123,25 @@ else
   set clipboard=unnamed,unnamedplus
 endif
 
-" Indent.
-set autoindent
-set smartindent
-set breakindent
-
+set number
 set ambiwidth=double
-set autoread
-set backspace=indent,eol,start
-set formatoptions& formatoptions+=mM
-set hidden
 set history=10000
-set keywordprg=:help
-set mouse=a
-set nofixeol
-set nrformats& nrformats-=octal
-set pastetoggle=
+set hidden autoread
+set viminfo='1000
+set cmdheight=2
 set scrolloff=3
-set shortmess=a
-set shortmess+=c
-" set switchbuf=useopen
-set textwidth=0
-set timeoutlen=3500
+set laststatus=2
+set wildmenu wildmode=longest:full,full
+set autoindent smartindent breakindent
+set incsearch hlsearch wrapscan
+set ignorecase smartcase infercase
 set virtualedit=block
-set whichwrap=b,s,[,],<,>
-set wildmenu
-set wildmode=longest:full,full
-" set splitbelow
-set splitright
-set lazyredraw
-if !has('nvim')
-  set ttyfast
-endif
-
-" Search.
-set ignorecase
-set smartcase
-set infercase
-set wrapscan
-set incsearch
-set hlsearch
+set synmaxcol=500
 if executable('jvgrep')
   set grepprg=jvgrep
 endif
 
-set noerrorbells
-set novisualbell
-set visualbell t_vb=
-set number
-set showmatch matchtime=1
-set noshowmode
-
-" Tab.
-set tabstop=2
-set shiftwidth=2
-set softtabstop=0
-set expandtab
-
-set list
-if g:is_windows
-  set listchars=tab:\|\ ,trail:-,extends:>,precedes:<
-else
-  set listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
-endif
-set smarttab
-set iminsert=0
-set imsearch=-1
-set cinoptions& cinoptions+=:0
-set title
-set cmdheight=2
-set laststatus=2
-set synmaxcol=500
-set showcmd
-set display=lastline
-" set foldmethod=marker
-set pumheight=13
-" set foldclose=all
-" set t_Co=256
-
-set viminfo='1000
-
 " terminal {{{2
-
-" Command: {{{1
-" Diff original.
-com! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
-
-" Save as root.
-com! Wsu w !sudo tee > /dev/null %
-
-" FileType: {{{1
-au MyAutoCmd BufNewFile,BufRead *.eml setl ft=mail fenc=cp932 ff=dos
-au MyAutoCmd BufNewFile,BufRead *.hash setl nowrap
-au MyAutoCmd FileType csv,log setl nowrap
 
 " xml {{{2
 let g:xml_syntax_folding = 1
@@ -360,7 +190,7 @@ function! s:addHeaderJScript(flg)
   " let l:baseDir = expand("%:p:h") . "/../cmd/"
   let l:baseDir = expand("%:p:h") . "/"
   let l:cmdFile = expand("%:p:t:r") . ".cmd"
-  call Mkdir(l:baseDir)
+  silent! call mkdir(l:baseDir, 'p')
   call writefile(lines,  l:baseDir . l:cmdFile, "b")
   echo "Write " . l:baseDir . expand("%:p:t:r") . ".cmd"
 endfunction
@@ -405,7 +235,7 @@ function! s:addHeaderPs1(pattern, verb)
   endfor
   let l:baseDir = expand("%:p:h") . "/"
   let l:cmdFile = expand("%:p:t:r") . ".cmd"
-  call Mkdir(l:baseDir)
+  silent! call mkdir(l:baseDir, 'p')
   call writefile(l:lines,  l:baseDir . l:cmdFile, "b")
   echo "Write " . l:baseDir . l:cmdFile
 endfunction
@@ -563,15 +393,8 @@ noremap <Plug>(ToggleColorColumn)
 
 nmap <silent> cc <Plug>(ToggleColorColumn)
 
-" http://postd.cc/how-to-boost-your-vim-productivity/
-vnoremap <silent> s //e<c-r>=&selection=='exclusive'?'+1':''<cr><cr>
-      \:<c-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<cr>gv
-omap s :normal vs<cr>
-
 inoremap <silent> <ESC> <ESC>:set iminsert=0<cr>
 
-" Format.
-nnoremap <space>f :<c-u>call <SID>format()<cr>
 
 " Autocmd: {{{1
 " Auto mkdir.
@@ -592,29 +415,8 @@ au MyAutoCmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) != 0 | copen 
 " Auto change dir.
 " au MyAutoCmd BufEnter * execute ":silent! lcd " . escape(expand("%:p:h"), ' ')
 
-" For binary.
-au MyAutoCmd BufReadPre  *.bin,*.dat let &bin=1
-au MyAutoCmd BufReadPost *.bin,*.dat if &bin | %!xxd
-au MyAutoCmd BufReadPost *.bin,*.dat set ft=xxd | endif
-au MyAutoCmd BufWritePre *.bin,*.dat if &bin | %!xxd -r
-au MyAutoCmd BufWritePre *.bin,*.dat endif
-au MyAutoCmd BufWritePost *.bin,*.dat if &bin | %!xxd
-au MyAutoCmd BufWritePost *.bin,*.dat set nomod | endif
-
-au MyAutoCmd FileType mail nnoremap <silent><buffer> <space>q :<c-u>silent! call <SID>addQuote()<cr>
-
-"au MyAutoCmd BufWrite * call <SID>format()
-
-au MyAutoCmd BufWritePost * call <SID>removeFileIf0Byte()
-
 " Restore last cursor position when open a file.
 au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-
-" Save and load fold settings.
-" http://vim-jp.org/vim-users-jp/2009/10/08/Hack-84.html
-" au MyAutoCmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview! | endif
-" au MyAutoCmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent! loadview | endif
-" set viewoptions=cursor,folds
 
 " For swap.
 " http://itchyny.hatenablog.com/entry/2014/12/25/090000
@@ -625,15 +427,6 @@ au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<cr>
 
 " For git commit.
 au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
-
-" Change colorscheme for readonly.
-" au MyAutoCmd BufReadPost,BufEnter * call s:updateColorScheme()
-
-" base16-shell.
-if filereadable(expand("~/.vimrc_background"))
-  " let base16colorspace=256
-  " source ~/.vimrc_background
-endif
 
 if has('gui_running')
   if g:is_windows
@@ -654,11 +447,8 @@ endif
 " Color: {{{1
 silent! syntax enable
 
-" au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
-" au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
-
 " Highlight VCS conflict markers {{{2
-" match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Hilight cursorline, cursorcolumn {{{2
 " https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472
@@ -675,22 +465,6 @@ au MyAutoCmd BufWritePost *
       \   unlet! b:ftdetect |
       \   filetype detect |
       \ endif
-
-" Load settings for each location. {{{2
-" http://vim-jp.org/vim-users-jp/2009/12/27/Hack-112.html
-" au MyAutoCmd BufNewFile,BufReadPost * call <SID>vimrc_local(expand('<afile>:p:h'))
-"
-" function! s:vimrc_local(loc)
-"   let files = findfile('.vimrc.local', escape(a:loc, ' ') . ';', -1)
-"   for i in reverse(filter(files, 'filereadable(v:val)'))
-"     source `=i`
-"   endfor
-" endfunction
-
-" if windows no plugins for git.
-" if $HOME != $USERPROFILE && $GIT_EXEC_PATH != ''
-"   finish
-" end
 
 " Plugin: {{{1
 let s:use_dein = 0
@@ -729,7 +503,6 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-" silent! colorscheme PaperColor
 silent! colorscheme gruvbox-material
 " for alacritty transparency.
 hi! Normal ctermbg=NONE guibg=NONE

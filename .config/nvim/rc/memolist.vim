@@ -4,7 +4,7 @@ else
   let g:memolist_path = $HOME . '/.memolist'
 endif
 
-call Mkdir(g:memolist_path)
+silent! call mkdir(g:memolist_path, 'p')
 
 let g:memolist_memo_suffix = "md"
 let g:memolist_prompt_tags = 1

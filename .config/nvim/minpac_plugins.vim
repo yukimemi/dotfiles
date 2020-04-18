@@ -49,12 +49,12 @@ endfunction
 " Pack 'davidhalter/jedi-vim', {'type': 'opt', 'for': ['python']}
 " Pack 'dense-analysis/ale', {'type': 'lazyall'}
 " Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
+" Pack 'dkarter/bullets.vim', {'type': 'lazyall'}
 " Pack 'dzeban/vim-log-syntax', {'type': 'opt', 'for': 'log'}
 " Pack 'eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod', 'if': executable('stack'), 'for': 'haskell'}
 " Pack 'eagletmt/neco-ghc', {'type': 'opt', 'for': 'haskell'}
 " Pack 'edkolev/tmuxline.vim', {'type': 'opt', 'on': ['Tmuxline', 'TmuxlineSnapshot']}
 " Pack 'ekalinin/Dockerfile.vim', {'type': 'opt', 'for': 'dockerfile'}
-" Pack 'eugen0329/vim-esearch', {'type': 'lazyall'}
 " Pack 'fatih/vim-go', {'type': 'opt', 'for': 'go'}
 " Pack 'fuenor/qfixgrep', {'type': 'lazyall'}
 " Pack 'fuenor/qfixhowm', {'type': 'lazyall'}
@@ -69,7 +69,7 @@ endfunction
 " Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
 " Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
 " Pack 'iyuuya/denite-ale', {'type': 'lazyall'}
-" Pack 'jeffkreeftmeijer/vim-numbertoggle', {'if': !g:is_windows}
+" Pack 'jeffkreeftmeijer/vim-numbertoggle'
 " Pack 'joshdick/onedark.vim', {'type': 'opt'}
 " Pack 'jremmen/vim-ripgrep', {'type': 'opt', 'on': 'Rg'}
 " Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
@@ -158,7 +158,7 @@ endfunction
 " Pack 'tpope/vim-commentary', {'type': 'opt', 'on': ['<Plug>Commentary', '<Plug>CommentaryLine']}
 " Pack 'tpope/vim-obsession', {'type': 'lazyall'}
 " Pack 'twitvim/twitvim', {'type': 'lazyall'}
-" Pack 'tyru/caw.vim', {'type': 'opt', 'on': ['<Plug>(caw:prefix)', '<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)', '<Plug>(caw:hatpos:toggle)']}
+" Pack 'tyru/caw.vim'
 " Pack 'unblevable/quick-scope', {'type': 'lazyall'}
 " Pack 'vim-airline/vim-airline'
 " Pack 'vim-airline/vim-airline-themes'
@@ -171,8 +171,8 @@ endfunction
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
-Pack 'dkarter/bullets.vim', {'type': 'lazyall'}
 Pack 'editorconfig/editorconfig-vim', {'type': 'lazyall'}
+Pack 'eugen0329/vim-esearch', {'type': 'lazyall'}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
@@ -200,6 +200,7 @@ Pack 'ntpeters/vim-better-whitespace', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
+Pack 'preservim/nerdcommenter', {'type': 'lazyall'}
 Pack 'rbtnn/vim-vimscript_lasterror', {'type': 'opt', 'on': ['VimscriptLastError']}
 Pack 'rhysd/committia.vim', {'if': !g:is_windows}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
@@ -213,7 +214,6 @@ Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windo
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}
 Pack 'tsuyoshicho/vim-fg'
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
-Pack 'tyru/caw.vim'
 Pack 'tyru/columnskip.vim', {'type': 'opt', 'on': ['<Plug>(columnskip-j)', '<Plug>(columnskip-k)']}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
