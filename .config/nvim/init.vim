@@ -73,11 +73,12 @@ else
   if g:is_windows
     let $VIM_PATH = expand('~/vimfiles')
     let $MYVIMRC = expand('~/_vimrc')
+    let $MYGVIMRC = expand('~/_gvimrc')
   else
     let $VIM_PATH = expand('~/.vim')
     let $MYVIMRC = expand('~/.vimrc')
+    let $MYGVIMRC = expand('~/.gvimrc')
   endif
-  let $MYGVIMRC = expand('~/.gvimrc')
   let $BACKUP_PATH = expand('$CACHE/vim/back')
 endif
 

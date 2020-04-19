@@ -24,20 +24,18 @@ set rop=type:directx,renmode:5
 " nnoremap <Leader>x :<C-u>simalt ~x<CR>
 " au MyAutoCmd GUIEnter * set lines=70 columns=100
 
-" let g:save_window_file = expand("~/.vimwinpos")
-" au MyAutoCmd VimLeavePre * call s:save_window()
-" function! s:save_window() abort
-"   let options = [
-"         \ 'set columns=' . &columns,
-"         \ 'set lines=' . &lines,
-"         \ 'winpos ' . getwinposx() . ' ' . getwinposy(),
-"         \ ]
-"   call writefile(options, g:save_window_file)
-" endfunction
+let g:save_window_file = expand("~/.vimwinpos")
+au MyAutoCmd VimLeavePre * call s:save_window()
+function! s:save_window() abort
+  let options = [
+        \ 'set columns=' . &columns,
+        \ 'set lines=' . &lines,
+        \ 'winpos ' . getwinposx() . ' ' . getwinposy(),
+        \ ]
+  call writefile(options, g:save_window_file)
+endfunction
 
-" if filereadable(g:save_window_file)
-"   au MyAutoCmd GUIEnter * exe 'source' g:save_window_file
-" endif
-
-" set ambiwidth=double
+if filereadable(g:save_window_file)
+  au MyAutoCmd GUIEnter * exe 'source' g:save_window_file
+endif
 
