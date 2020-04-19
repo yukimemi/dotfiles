@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2020/04/19 08:22:11.
+" Last Change : 2020/04/19 20:47:59.
 " =============================================================================
 
 " Plugin:
@@ -35,5 +35,4 @@ if s:minpac_download
   PackInstall
 endif
 
-filetype plugin indent on
 

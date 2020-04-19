@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2020/04/19 12:27:01.
+" Last Change : 2020/04/19 20:47:49.
 " =============================================================================
 
 " Plugin: {{{1
@@ -41,6 +41,4 @@ call dein#save_state()
 if has('vim_starting') && dein#check_install() && !g:is_windows
   call dein#install()
 endif
-
-filetype plugin indent on
 
