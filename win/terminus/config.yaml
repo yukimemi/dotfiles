@@ -21,13 +21,13 @@ terminal:
       - '#a04b73'
       - '#578e57'
       - '#e6d4a3'
-  font: Cica Regular
+  font: Utatane Regular
   environment: {}
   profile: powershell
   bell: 'off'
   customShell: pwsh
   cursorBlink: false
-  fontSize: 15
+  fontSize: 13
 hotkeys:
   profile: {}
   shell: {}

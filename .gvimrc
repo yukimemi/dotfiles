@@ -10,9 +10,9 @@ if g:no_plugin
 endif
 
 " font
-set gfn=Cica:h10:cSHIFTJIS:qDRAFT
-set gfw=Cica:h10:cSHIFTJIS:qDRAFT
-set printfont=Cica:h8
+set gfn=Utatane:h12:cSHIFTJIS:qDRAFT
+set gfw=Utatane:h12:cSHIFTJIS:qDRAFT
+set printfont=Utatane:h8
 "set gfn=Ricty_Diminished_Discord:h10:cSHIFTJIS:qDRAFT
 "set gfw=Ricty_Diminished_Discord:h10:cSHIFTJIS:qDRAFT
 
