@@ -73,7 +73,11 @@ function! LightLineFiletype()
   if g:is_linux
     return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
   else
-    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+    if IsInstalled('vim-devicons')
+      return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+    else
+      return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+    endif
   endif
 endfunction
 
@@ -81,7 +85,11 @@ function! LightLineFileformat()
   if g:is_linux
     return winwidth(0) > 70 ? &fileformat : ''
   else
-    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+    if IsInstalled('vim-devicons')
+      return winwidth(0) > 70 ? &fileformat . ' ' . WebDevIconsGetFileFormatSymbol() : ''
+    else
+      return winwidth(0) > 70 ? &fileformat : ''
+    endif
   endif
 endfunction
 

@@ -70,8 +70,13 @@ if has('nvim')
   let $BACKUP_PATH = expand('$CACHE/nvim/back')
 else
   let $CACHE_HOME = expand('$CACHE/vim')
-  let $VIM_PATH = expand('~/.vim')
-  let $MYVIMRC = expand('~/.vimrc')
+  if g:is_windows
+    let $VIM_PATH = expand('~/vimfiles')
+    let $MYVIMRC = expand('~/_vimrc')
+  else
+    let $VIM_PATH = expand('~/.vim')
+    let $MYVIMRC = expand('~/.vimrc')
+  endif
   let $MYGVIMRC = expand('~/.gvimrc')
   let $BACKUP_PATH = expand('$CACHE/vim/back')
 endif

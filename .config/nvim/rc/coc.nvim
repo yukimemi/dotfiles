@@ -5,7 +5,9 @@ endif
 " coc {{{1
 " always show signcolumns
 set signcolumn=yes
-set tagfunc=CocTagFunc
+if !g:is_windows
+  set tagfunc=CocTagFunc
+endif
 set shortmess+=c
 set updatetime=500
 

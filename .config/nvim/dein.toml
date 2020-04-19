@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/04/19 16:13:37.
+# Last Change : 2020/04/19 16:55:15.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -68,9 +68,9 @@ on_event = "CursorHold"
 repo = 'ntpeters/vim-better-whitespace' # {{{2
 on_event = "CursorHold"
 
-[[plugins]]
-repo = 'jeffkreeftmeijer/vim-numbertoggle' # {{{2
-on_event = ["CursorHold", "WinEnter"]
+# [[plugins]]
+# repo = 'jeffkreeftmeijer/vim-numbertoggle' # {{{2
+# on_event = ["CursorHold", "WinEnter"]
 
 [[plugins]]
 repo = 'mattn/transparency-windows-vim' # {{{2
@@ -104,7 +104,6 @@ on_event = ['CursorMoved']
 # ==================== Complement ================ {{{1
 [[plugins]]
 repo = 'Shougo/context_filetype.vim' # {{{2
-lazy = 1
 
 [[plugins]]
 repo = 'prabirshrestha/async.vim' # {{{2

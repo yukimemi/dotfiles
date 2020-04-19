@@ -27,7 +27,8 @@ terminal:
   bell: 'off'
   customShell: pwsh
   cursorBlink: false
-  fontSize: 13
+  fontSize: 15
+  ligatures: false
 hotkeys:
   profile: {}
   shell: {}
