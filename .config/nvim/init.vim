@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/19 21:37:15.
+" Last Change : 2020/04/19 21:51:29.
 " =============================================================================
 
 " Init: {{{1
@@ -138,6 +138,7 @@ set viminfo='1000
 set cmdheight=2
 set scrolloff=3
 set laststatus=2
+set backspace=indent,eol,start
 set wildmenu wildmode=longest:full,full
 set autoindent smartindent breakindent
 set incsearch hlsearch wrapscan
