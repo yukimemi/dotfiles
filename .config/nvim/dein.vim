@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2020/02/29 21:19:25.
+" Last Change : 2020/04/19 12:27:01.
 " =============================================================================
 
 " Plugin: {{{1
@@ -13,6 +13,8 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 
+let g:dein#auto_recache = 1
+let g:dein#enable_notification = 1
 let g:dein#install_max_processes = 16
 let g:dein#enable_notification = 1
 let g:dein#types#git#clone_depth = 1

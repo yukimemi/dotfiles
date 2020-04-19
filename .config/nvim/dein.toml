@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/03/06 13:10:50.
+# Last Change : 2020/04/19 16:13:37.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -12,11 +12,14 @@ repo = 'Shougo/dein.vim' # {{{2
 repo = 'wsdjeg/dein-ui.vim' # {{{2
 
 # ==================== Visual ==================== {{{1
-[[plugins]]
-repo = 'rhysd/vim-color-spring-night' # {{{2
+# [[plugins]]
+# repo = 'rhysd/vim-color-spring-night' # {{{2
 
 [[plugins]]
-repo =  'hiroakis/cyberspace.vim' # {{{2
+repo = 'sainnhe/gruvbox-material' # {{{2
+
+# [[plugins]]
+# repo =  'hiroakis/cyberspace.vim' # {{{2
 
 [[plugins]]
 repo = 'ryanoasis/vim-devicons' # {{{2
@@ -28,9 +31,9 @@ source $VIM_PATH/rc/lightline.vim
 '''
 if = "g:dein_use_lightline"
 
-[[plugins]]
-repo = 'kmtoki/lightline-colorscheme-simplicity' # {{{2
-if = "g:dein_use_lightline"
+# [[plugins]]
+# repo = 'kmtoki/lightline-colorscheme-simplicity' # {{{2
+# if = "g:dein_use_lightline"
 
 [[plugins]]
 repo = 'vim-airline/vim-airline' # {{{2
@@ -42,10 +45,15 @@ if = 'g:dein_use_airline'
 repo = 'vim-airline/vim-airline-themes' # {{{2
 if = 'g:dein_use_airline'
 
+# [[plugins]]
+# repo = 'Yggdroot/indentLine' # {{{2
+# hook_add = '''
+# source $VIM_PATH/rc/indentLine.vim
+# '''
 [[plugins]]
-repo = 'Yggdroot/indentLine' # {{{2
+repo = 'nathanaelkane/vim-indent-guides' # {{{2
 hook_add = '''
-source $VIM_PATH/rc/indentLine.vim
+source $VIM_PATH/rc/vim-indent-guides.vim
 '''
 
 [[plugins]]
@@ -75,16 +83,23 @@ source $VIM_PATH/rc/transparency-windows-vim.vim
 repo = 'mattn/vimtweak' # {{{2
 if = "g:is_windows"
 
-[[plugins]]
-repo = 'rhysd/accelerated-jk' # {{{2
-on_event = ['CursorMoved']
-hook_add = '''
-source $VIM_PATH/rc/accelerated-jk.vim
-'''
+# [[plugins]]
+# repo = 'rhysd/accelerated-jk' # {{{2
+# on_event = ['CursorMoved']
+# hook_add = '''
+# source $VIM_PATH/rc/accelerated-jk.vim
+# '''
 
 [[plugins]]
 repo = 'psliwka/vim-smoothie' # {{{2
 on_event = ['CursorMoved']
+
+# [[plugins]]
+# repo = 'yuttie/comfortable-motion.vim' # {{{2
+# on_event = ['CursorMoved']
+# hook_add = '''
+# source $VIM_PATH/rc/comfortable-motion.vim
+# '''
 
 # ==================== Complement ================ {{{1
 [[plugins]]
@@ -246,9 +261,6 @@ on_cmd = 'VimHelpJp'
 repo = 'ompugao/ctrlp-history' # {{{2
 on_source = 'ctrlp.vim'
 
-# [[plugins]]
-# repo = 'yuttie/comfortable-motion.vim' # {{{2
-
 [[plugins]]
 repo = 'dhruvasagar/vim-table-mode' # {{{2
 on_ft = 'markdown'
@@ -273,9 +285,9 @@ source $VIM_PATH/rc/vim-external.vim
 [[plugins]]
 repo = 'Shougo/defx.nvim' # {{{2
 on_cmd = ['Defx']
-if = '!g:is_windows && has("python3")'
+if = 'has("nvim")'
 hook_add = '''
-source $VIM_PATH/rc/defx.vim
+source $VIM_PATH/rc/defx.nvim
 '''
 
 [[plugins]]
@@ -311,25 +323,32 @@ lazy = 1
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim' # {{{2
 
-[[plugins]]
-repo = 'lambdalisue/suda.vim' # {{{2
-hook_add = '''
-source $VIM_PATH/rc/suda.vim
-'''
-if = "g:is_windows"
+# [[plugins]]
+# repo = 'lambdalisue/suda.vim' # {{{2
+# hook_add = '''
+# source $VIM_PATH/rc/suda.vim
+# '''
+# if = "g:is_windows"
+
+# [[plugins]]
+# repo = 'osyo-manga/vim-reanimate' # {{{2
+# lazy = 1
+# hook_add = '''
+# source $VIM_PATH/rc/vim-reanimate.vim
+# '''
+
+# [[plugins]]
+# repo = 'haya14busa/vim-edgemotion' # {{{2
+# on_map = '<Plug>'
+# hook_add = '''
+# source $VIM_PATH/rc/vim-edgemotion.vim
+# '''
 
 [[plugins]]
-repo = 'osyo-manga/vim-reanimate' # {{{2
-lazy = 1
-hook_add = '''
-source $VIM_PATH/rc/vim-reanimate.vim
-'''
-
-[[plugins]]
-repo = 'haya14busa/vim-edgemotion' # {{{2
+repo = 'tyru/columnskip.vim' # {{{2
 on_map = '<Plug>'
 hook_add = '''
-source $VIM_PATH/rc/vim-edgemotion.vim
+source $VIM_PATH/rc/columnskip.vim
 '''
 
 [[plugins]]
@@ -353,10 +372,14 @@ on_source = 'vim-quickrun'
 [[plugins]]
 repo = 'twitvim/twitvim' # {{{2
 on_cmd = ['FriendsTwitter', 'UserTwitter', 'RepliesTwitter', 'DMTwitter']
+hook_add = '''
+source $VIM_PATH/rc/twitvim.vim
+'''
 
 [[plugins]]
 repo = 'tyru/open-browser.vim' # {{{2
 on_source = ['twitvim']
+on_ft = ['markdown']
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
@@ -392,6 +415,7 @@ source $VIM_PATH/rc/vim-quickhl.vim
 '''
 [[plugins]]
 repo = 'unblevable/quick-scope' # {{{2
+on_event  = ['CursorHold']
 hook_add = '''
 source $VIM_PATH/rc/quick-scope.vim
 '''
@@ -410,6 +434,7 @@ source $VIM_PATH/rc/vim-cursorword.vim
 
 [[plugins]]
 repo = 'RRethy/vim-illuminate' # {{{2
+on_event  = ['CursorHold']
 hook_add = '''
 source $VIM_PATH/rc/vim-illuminate.vim
 '''
@@ -418,12 +443,12 @@ source $VIM_PATH/rc/vim-illuminate.vim
 repo = 'thinca/vim-qfreplace' # {{{2
 on_ft = ['quickfix']
 
-[[plugins]]
-repo = 'mox-mox/vim-localsearch' # {{{2
-on_map = {n = '<Plug>'}
-hook_add = '''
-source $VIM_PATH/rc/vim-localsearch.vim
-'''
+# [[plugins]]
+# repo = 'mox-mox/vim-localsearch' # {{{2
+# on_map = {n = '<Plug>'}
+# hook_add = '''
+# source $VIM_PATH/rc/vim-localsearch.vim
+# '''
 
 [[plugins]]
 repo = 'mhinz/vim-grepper' # {{{2
@@ -435,12 +460,15 @@ source $VIM_PATH/rc/vim-grepper.vim
 
 [[plugins]]
 repo = 'tsuyoshicho/vim-fg' # {{{2
-on_cmd = ['Fg']
+on_cmd = ['Fg', 'FgRipGrep', 'FgPt']
+
+[[plugins]]
+repo = 'eugen0329/vim-esearch'
+on_map = '<Plug>'
 
 # ==================== Operators ================= {{{1
 [[plugins]]
 repo = 'kana/vim-operator-user' # {{{2
-on_map = '<Plug>'
 
 [[plugins]]
 repo = 'kana/vim-operator-replace' # {{{2
@@ -477,13 +505,11 @@ source $VIM_PATH/rc/vim-operator-flashy.vim
 # ==================== Textobjs ================== {{{1
 [[plugins]]
 repo = 'kana/vim-textobj-user' # {{{2
-on_map = '<Plug>'
-
 
 [[plugins]]
 repo = 'kana/vim-textobj-entire' # {{{2
 depends = 'vim-textobj-user'
-on_map = {ox = '<Plug>'}
+on_map = {nox = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-entire.vim
 '''
@@ -491,7 +517,7 @@ source $VIM_PATH/rc/vim-textobj-entire.vim
 [[plugins]]
 repo = 'kana/vim-textobj-fold' # {{{2
 depends = 'vim-textobj-user'
-on_map = {ox = '<Plug>'}
+on_map = {nox = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-fold.vim
 '''
@@ -499,7 +525,7 @@ source $VIM_PATH/rc/vim-textobj-fold.vim
 [[plugins]]
 repo = 'kana/vim-textobj-function' # {{{2
 depends = 'vim-textobj-user'
-on_map = {ox = '<Plug>'}
+on_map = {nox = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-function.vim
 '''
@@ -507,7 +533,7 @@ source $VIM_PATH/rc/vim-textobj-function.vim
 [[plugins]]
 repo = 'kana/vim-textobj-indent' # {{{2
 depends = 'vim-textobj-user'
-on_map = {ox = '<Plug>'}
+on_map = {nox = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-indent.vim
 '''
@@ -515,7 +541,7 @@ source $VIM_PATH/rc/vim-textobj-indent.vim
 [[plugins]]
 repo = 'gilligan/textobj-lastpaste' # {{{2
 depends = 'vim-textobj-user'
-on_map = {ox = '<Plug>'}
+on_map = {nox = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/textobj-lastpaste.vim
 '''
@@ -523,15 +549,21 @@ source $VIM_PATH/rc/textobj-lastpaste.vim
 [[plugins]]
 repo = 'kana/vim-textobj-line' # {{{2
 depends = 'vim-textobj-user'
-on_map = {ox = '<Plug>'}
+on_map = {nox = '<Plug>(textobj-line-'}
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-line.vim
+'''
 
 # ==================== Comment =================== {{{1
+# [[plugins]]
+# repo = 'tyru/caw.vim' # {{{2
+# on_map = '<Plug>'
+# hook_add = '''
+# source $VIM_PATH/rc/caw.vim
+# '''
+
 [[plugins]]
-repo = 'tyru/caw.vim' # {{{2
-on_map = '<Plug>'
-hook_add = '''
-source $VIM_PATH/rc/caw.vim
-'''
+repo = 'tpope/vim-commentary'
 
 # ==================== Yank/Paste ================ {{{1
 [[plugins]]
@@ -731,3 +763,4 @@ elm = '''
 setl ts=4 sw=4 sts=0
 '''
 
+# vim:fdm=marker fdc=3:

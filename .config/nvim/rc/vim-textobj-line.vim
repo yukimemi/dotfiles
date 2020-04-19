@@ -1,0 +1,6 @@
+nmap al <Plug>(textobj-line-a)
+nmap il <Plug>(textobj-line-i)
+xmap al <Plug>(textobj-line-a)
+xmap il <Plug>(textobj-line-i)
+omap al <Plug>(textobj-line-a)
+omap il <Plug>(textobj-line-i)

@@ -8,4 +8,5 @@ endif
 nmap gs <Plug>(GrepperOperator)
 xmap gs <Plug>(GrepperOperator)
 
-au MyAutoCmd VimEnter * packadd vim-grepper | let g:grepper.tools = ['git', 'ag', 'ack', 'ack-grep', 'grep', 'rg', 'pt', 'sift', 'findstr']
+let g:grepper = get(g:, 'grepper', {})
+let g:grepper.tools = ['git', 'ag', 'ack', 'ack-grep', 'grep', 'rg', 'pt', 'sift', 'findstr']

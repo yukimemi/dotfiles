@@ -28,7 +28,6 @@ endfunction
 " Pack 'Yggdroot/indentLine'
 " Pack 'aereal/vim-colors-japanesque', {'type': 'opt'}
 " Pack 'airblade/vim-gitgutter', {'type': 'lazyall'}
-" Pack 'airblade/vim-rooter', {'type': 'lazyall'}
 " Pack 'aklt/plantuml-syntax', {'type': 'opt', 'for': 'plantuml'}
 " Pack 'alx741/vim-hindent', {'type': 'opt', 'do': 'silent! !stack install hindent', 'if': executable('stack'), 'for': 'haskell'}
 " Pack 'andymass/vim-matchup', {'type': 'lazyall'}
@@ -171,6 +170,7 @@ endfunction
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
+Pack 'airblade/vim-rooter'
 Pack 'editorconfig/editorconfig-vim', {'type': 'lazyall'}
 Pack 'eugen0329/vim-esearch', {'type': 'lazyall'}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}

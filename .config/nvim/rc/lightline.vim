@@ -14,7 +14,7 @@ let g:lightline = {
       \   },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'bomb', 'reanimate' ] ]
+      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'bomb' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'gitbranch#name',
