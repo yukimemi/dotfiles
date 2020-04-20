@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/19 21:51:29.
+" Last Change : 2020/04/20 17:32:10.
 " =============================================================================
 
 " Init: {{{1
@@ -149,6 +149,7 @@ set virtualedit=block
 set synmaxcol=500
 set smarttab
 set iminsert=0 imsearch=-1
+set list listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
 if executable('jvgrep')
   set grepprg=jvgrep
 endif
@@ -331,7 +332,7 @@ nnoremap <silent> <Leader><Leader> :<c-u>update<cr>
 vnoremap <c-p> "0p<cr>
 
 " Change current directory.
-nnoremap <space>cd :<c-u>call <SID>cd_buffer_dir()<cr>
+nnoremap <space>cd :<c-u>execute ":tcd " . expand("%:p:h")<cr>
 
 " Like emacs.
 cnoremap <c-b> <Left>
@@ -350,9 +351,6 @@ nnoremap <silent> <space>eg  :<c-u>tabedit $MYGVIMRC<cr>
 " Cmdwin.
 nnoremap <silent> : q:i
 vnoremap <silent> : q:A
-
-" Delete other line.
-nnoremap <space>d :<c-u>call <SID>deleteOtherLine()<cr>
 
 " nohlsearch.
 nnoremap <silent> <ESC><ESC> :<c-u>nohlsearch<cr>
@@ -425,7 +423,7 @@ au MyAutoCmd BufWritePost *.vim silent! nested source $MYVIMRC | redraw
 au MyAutoCmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) != 0 | copen | endif
 
 " Auto change dir.
-" au MyAutoCmd BufEnter * execute ":silent! lcd " . escape(expand("%:p:h"), ' ')
+" au MyAutoCmd BufEnter * execute ":silent! tcd " . escape(expand("%:p:h"), ' ')
 
 " Restore last cursor position when open a file.
 au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
