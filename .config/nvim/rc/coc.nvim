@@ -20,6 +20,7 @@ let g:coc_global_extensions = [
      \ "coc-diagnostic",
      \ "coc-docker",
      \ "coc-emoji",
+     \ "coc-eslint",
      \ "coc-explorer",
      \ "coc-fish",
      \ "coc-fsharp",
@@ -32,6 +33,7 @@ let g:coc_global_extensions = [
      \ "coc-lists",
      \ "coc-lua",
      \ "coc-markdownlint",
+     \ "coc-marketplace",
      \ "coc-markmap",
      \ "coc-nextword",
      \ "coc-pairs",
@@ -45,10 +47,12 @@ let g:coc_global_extensions = [
      \ "coc-snippets",
      \ "coc-solargraph",
      \ "coc-sql",
+     \ "coc-stylelint",
      \ "coc-syntax",
      \ "coc-tag",
      \ "coc-terminal",
      \ "coc-translator",
+     \ "coc-tslint-plugin",
      \ "coc-tsserver",
      \ "coc-utils",
      \ "coc-vetur",
@@ -139,7 +143,7 @@ nnoremap <silent> <space>r :<c-u>CocListResume<cr>
 
 " coc-snippet {{{1
 " Use <c-l> for trigger snippet expand.
-imap <c-l> <Plug>(coc-snippets-expand)
+" imap <c-l> <Plug>(coc-snippets-expand)
 
 " Use <c-j> for select text for visual placeholder of snippet.
 vmap <c-j> <Plug>(coc-snippets-select)

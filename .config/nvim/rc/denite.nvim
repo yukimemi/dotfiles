@@ -17,7 +17,7 @@ nnoremap sdr :<c-u>Denite -resume<cr>
 nnoremap sdu :<c-u>Denite buffer file/old<cr>
 
 " Incremental search in cmdline history.
-inoremap <c-l> <esc>:<c-u>Denite command<cr>
+" inoremap <c-l> <esc>:<c-u>Denite command<cr>
 
 " Load after settings.
 if has('python3')

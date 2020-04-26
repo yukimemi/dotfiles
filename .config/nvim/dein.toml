@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/04/19 21:44:21.
+# Last Change : 2020/04/26 23:37:53.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -281,13 +281,13 @@ hook_add = '''
 source $VIM_PATH/rc/vim-external.vim
 '''
 
-[[plugins]]
-repo = 'Shougo/defx.nvim' # {{{2
-on_cmd = ['Defx']
-if = 'has("nvim")'
-hook_add = '''
-source $VIM_PATH/rc/defx.nvim
-'''
+# [[plugins]]
+# repo = 'Shougo/defx.nvim' # {{{2
+# on_cmd = ['Defx']
+# if = 'has("nvim")'
+# hook_add = '''
+# source $VIM_PATH/rc/defx.nvim
+# '''
 
 [[plugins]]
 repo = 'lambdalisue/vim-findent' # {{{2
@@ -759,6 +759,15 @@ setl foldmethod=syntax
 
 elm = '''
 setl ts=4 sw=4 sts=0
+'''
+
+javascript = '''
+'''
+
+css = '''
+'''
+
+rust = '''
 '''
 
 # vim:fdm=marker fdc=3:

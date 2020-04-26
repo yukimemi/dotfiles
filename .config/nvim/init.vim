@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/20 17:32:10.
+" Last Change : 2020/04/26 23:01:55.
 " =============================================================================
 
 " Init: {{{1
@@ -302,6 +302,7 @@ nnoremap <silent> <Down> gj
 nnoremap <silent> <Up>   gk
 nnoremap <silent> h <Left>
 nnoremap <silent> l <Right>
+inoremap <silent> <C-l> <C-g>U<Right>
 " Open folding in "l"
 nnoremap <expr> l foldlevel(line('.')) ? "\<Right>zo" : "\<Right>"
 
