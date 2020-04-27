@@ -107,6 +107,7 @@ function RemoveTo-Trash {
   }
   Process {
     if ($PSBoundParameters.ContainsKey('Path')) {
+      $Path | ? { ![string]::IsNullOrWhiteSpace($_) } | Set-Variable Path
       $targets = Convert-Path $Path
     } else {
       $targets = Convert-Path -LiteralPath $LiteralPath

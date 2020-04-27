@@ -22,6 +22,9 @@ repo = 'sainnhe/gruvbox-material' # {{{2
 # repo =  'hiroakis/cyberspace.vim' # {{{2
 
 [[plugins]]
+repo = 'NLKNguyen/papercolor-theme' # {{{2
+
+[[plugins]]
 repo = 'ryanoasis/vim-devicons' # {{{2
 
 [[plugins]]
@@ -180,7 +183,7 @@ source $VIM_PATH/rc/vim-submode.vim
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align' # {{{2
-on_map = {v = '<Plug>'}
+on_map = {v = '<Plug>(EasyAlign)'}
 hook_add = '''
 source $VIM_PATH/rc/vim-easy-align.vim
 '''
@@ -200,7 +203,7 @@ source $VIM_PATH/rc/autodate.vim
 
 [[plugins]]
 repo = 'mbbill/undotree' # {{{2
-on_cmd = 'UndotreeToggle'
+on_cmd = ['UndotreeToggle']
 hook_add = '''
 source $VIM_PATH/rc/undotree.vim
 '''
@@ -379,6 +382,10 @@ source $VIM_PATH/rc/twitvim.vim
 repo = 'tyru/open-browser.vim' # {{{2
 on_source = ['twitvim']
 on_ft = ['markdown']
+
+[[plugins]]
+repo = 'rickhowe/diffchar.vim' # {{{2
+on_if = '&diff'
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
@@ -627,6 +634,13 @@ call dein#source('markdown-preview.nvim')
 call mkdp#util#install()
 '''
 
+[[plugins]]
+repo = 'dkarter/bullets.vim'
+on_ft = 'markdown'
+hook_add = '''
+source $VIM_PATH/rc/bullets.vim
+'''
+
 # ==================== Filetype (Rust) =========== {{{1
 # [[plugins]]
 # repo = 'rust-lang/rust.vim' # {{{2
@@ -739,6 +753,7 @@ setl completeopt+=preview
 
 ps1 = '''
 setl ts=2 sw=2 sts=0
+setl expandtab
 setl foldmethod=syntax
 '''
 
@@ -768,6 +783,14 @@ css = '''
 '''
 
 rust = '''
+'''
+
+text = '''
+setl noexpandtab
+setl ts=4 sw=4 sts=0
+set background=light
+colorscheme PaperColor
+let g:lightline.colorscheme = 'PaperColor'
 '''
 
 # vim:fdm=marker fdc=3:
