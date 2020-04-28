@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2020/04/28 13:26:49.
+" Last Change : 2020/04/28 22:40:00.
 " =============================================================================
 
 " Plugin: {{{1
@@ -29,6 +29,10 @@ call dein#begin(s:dein_dir, [$MYVIMRC, s:toml_file])
 call dein#load_toml(s:toml_file)
 call dein#end()
 call dein#save_state()
+
+function! IsInstalled(name) abort
+  return !dein#check_install(a:name)
+endfunction
 
 " Check and install.
 if has('vim_starting') && dein#check_install() && !g:is_windows

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/28 21:17:16.
+" Last Change : 2020/04/28 22:41:05.
 " =============================================================================
 
 " Init: {{{1
@@ -488,8 +488,8 @@ let s:use_packager = 0
 let s:use_volt = 0
 let s:use_pack = 0
 
-let g:plugin_use_lightline = 0
-let g:plugin_use_airline = 1
+let g:plugin_use_lightline = 1
+let g:plugin_use_airline = 0
 
 let g:plugin_use_coc = 1
 let g:plugin_use_asyncomplete = 0
@@ -500,14 +500,6 @@ let g:plugin_use_clap = 0
 let g:plugin_use_fzf = 0
 let g:plugin_use_fz = 0
 let g:plugin_use_denite = 1
-
-function! IsInstalled(name) abort
-  if s:use_dein
-    return !dein#check_install(a:name)
-  elseif s:use_minpac
-    return !empty(globpath(&pp, "pack/minpac/*/" . a:name))
-  endif
-endfunction
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 if !g:no_plugin

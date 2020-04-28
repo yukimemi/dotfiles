@@ -51,16 +51,6 @@
 - 
   category: default
   local: false
-  name: fuenor/qfixgrep
-  opt: false
-- 
-  category: default
-  local: false
-  name: fuenor/qfixhowm
-  opt: false
-- 
-  category: default
-  local: false
   name: "gilligan/textobj-lastpaste"
   opt: false
 - 
@@ -308,10 +298,10 @@
   name: "ryanoasis/vim-devicons"
   opt: false
 - 
-  category: default
+  category: ""
   local: false
   name: "sheerun/vim-polyglot"
-  opt: false
+  opt: true
 - 
   category: default
   local: false

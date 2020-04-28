@@ -132,7 +132,6 @@ endfunction
 " Pack 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
 " Pack 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
 " Pack 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'for': 'rust'}
-Pack 'rhysd/vim-color-spring-night'
 " Pack 'rhysd/vim-gfm-syntax', {'type': 'opt', 'for': 'markdown'}
 " Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
 " Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
@@ -140,7 +139,6 @@ Pack 'rhysd/vim-color-spring-night'
 " Pack 'rust-lang/rust.vim', {'type': 'opt', 'for': 'rust'}
 " Pack 'scrooloose/nerdtree', {'type': 'opt', 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 " Pack 'scrooloose/vim-slumlord', {'type': 'opt', 'for': 'plantuml'}
-" Pack 'sheerun/vim-polyglot'
 " Pack 'skanehira/preview-markdown.vim', {'type': 'opt', 'on': 'PreviewMarkdown', 'if': executable('mdr') && !has('nvim')}
 " Pack 'skanehira/translate.vim', {'type': 'opt', 'on': ['AutoTranslateModeToggle', '<Plug>(VTranslate)', '<Plug>(VTranslateBang)'], 'if': executable('gtran') && !has('nvim')}
 " Pack 'skywind3000/vim-quickui', {'type': 'lazyall'}
@@ -198,10 +196,12 @@ Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
 Pack 'rbtnn/vim-vimscript_lasterror', {'type': 'opt', 'on': ['VimscriptLastError']}
 Pack 'rhysd/committia.vim', {'if': !g:is_windows}
+Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'ryanoasis/vim-devicons'
 Pack 'sainnhe/gruvbox-material'
+Pack 'sheerun/vim-polyglot', {'type': 'lazyall'}
 Pack 't9md/vim-quickhl'
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'thinca/vim-submode', {'type': 'lazy'}

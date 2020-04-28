@@ -25,6 +25,9 @@ set -x GSR_SHOW_AHEAD 1
 set -x GSR_SHOW_BEHIND 1
 set -x FZF_DEFAULT_OPTS "--no-sort"
 
+# pack
+set -x VIM_CONFIG_PATH "$HOME/.config/pack"
+
 # nextword. {{{2
 set -x NEXTWORD_DATA_PATH "$HOME/.config/nextword/nextword-data-large"
 
