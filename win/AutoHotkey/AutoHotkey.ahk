@@ -135,8 +135,13 @@ return
 ; return
 
 ; for cfiler
+; ^F11::
+; Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
+; return
+
+; for slack
 ^F11::
-Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
+Activate("C:\Program Files\Slack\Slack.exe")
 return
 
 ; for AFxW
