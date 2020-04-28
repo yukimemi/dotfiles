@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/28 14:42:23.
+" Last Change : 2020/04/28 21:17:16.
 " =============================================================================
 
 " Init: {{{1
@@ -488,8 +488,8 @@ let s:use_packager = 0
 let s:use_volt = 0
 let s:use_pack = 0
 
-let g:plugin_use_lightline = 1
-let g:plugin_use_airline = 0
+let g:plugin_use_lightline = 0
+let g:plugin_use_airline = 1
 
 let g:plugin_use_coc = 1
 let g:plugin_use_asyncomplete = 0
@@ -530,7 +530,7 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-silent! colorscheme gruvbox-material
+silent! colorscheme spring-night
 " for alacritty transparency.
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE

@@ -12,7 +12,6 @@ endfunction
 " Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 " Pack 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'for': 'cs'}
 " Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
-Pack 'RRethy/vim-illuminate', {'type': 'lazyall'}
 " Pack 'Rigellute/rigel', {'type': 'opt'}
 " Pack 'Shougo/defx.nvim', {'type': 'opt', 'on': ['Defx'], 'do': 'silent! UpdateRemotePlugins'}
 " Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
@@ -62,9 +61,6 @@ Pack 'RRethy/vim-illuminate', {'type': 'lazyall'}
 " Pack 'haya14busa/vim-edgemotion', {'type': 'lazyall'}
 " Pack 'hiroakis/cyberspace.vim', {'type': 'opt'}
 " Pack 'hotwatermorning/auto-git-diff', {'type': 'lazyall'}
-Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
-Pack 'itchyny/vim-cursorword', {'type': 'lazyall'}
-Pack 'itchyny/vim-external', {'type': 'lazyall'}
 " Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
 " Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
 " Pack 'iyuuya/denite-ale', {'type': 'lazyall'}
@@ -136,8 +132,7 @@ Pack 'itchyny/vim-external', {'type': 'lazyall'}
 " Pack 'rhysd/git-messenger.vim', {'type': 'opt', 'on': 'GitMessenger'}
 " Pack 'rhysd/reply.vim', {'type': 'opt', 'on': 'Repl'}
 " Pack 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'for': 'rust'}
-" Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
-" Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
+Pack 'rhysd/vim-color-spring-night'
 " Pack 'rhysd/vim-gfm-syntax', {'type': 'opt', 'for': 'markdown'}
 " Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
 " Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
@@ -158,9 +153,6 @@ Pack 'itchyny/vim-external', {'type': 'lazyall'}
 " Pack 'tpope/vim-obsession', {'type': 'lazyall'}
 " Pack 'twitvim/twitvim', {'type': 'lazyall'}
 " Pack 'tyru/caw.vim', {'type': 'lazyall'}
-Pack 'unblevable/quick-scope', {'type': 'lazyall'}
-" Pack 'vim-airline/vim-airline'
-" Pack 'vim-airline/vim-airline-themes'
 " Pack 'vim-scripts/matchit.zip', {'type': 'lazyall'}
 " Pack 'voldikss/vim-floaterm', {'type': 'lazyall'}
 " Pack 'wadackel/vim-dogrun', {'type': 'opt'}
@@ -169,6 +161,7 @@ Pack 'unblevable/quick-scope', {'type': 'lazyall'}
 " Pack 'yssl/QFEnter', {'type': 'lazyall'}
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
+Pack 'RRethy/vim-illuminate', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'airblade/vim-rooter'
 Pack 'editorconfig/editorconfig-vim', {'type': 'lazyall'}
@@ -178,7 +171,9 @@ Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'Me
 Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
 Pack 'haya14busa/vim-operator-flashy', {'type': 'lazyall'}
 Pack 'honza/vim-snippets', {'type': 'lazyall'}
-Pack 'itchyny/lightline.vim'
+Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
+Pack 'itchyny/vim-cursorword'
+Pack 'itchyny/vim-external', {'type': 'lazyall'}
 Pack 'itchyny/vim-gitbranch'
 Pack 'itchyny/vim-highlighturl', {'type': 'lazyall'}
 Pack 'itchyny/vim-parenmatch'
@@ -217,6 +212,7 @@ Pack 'tsuyoshicho/vim-fg'
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
 Pack 'tyru/columnskip.vim', {'type': 'opt', 'on': ['<Plug>(columnskip-j)', '<Plug>(columnskip-k)']}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
+Pack 'unblevable/quick-scope', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
 
 
@@ -253,6 +249,16 @@ if g:plugin_use_denite
   " Pack 'Jagua/vim-denite-ghq', {'type': 'lazyall', 'if': has('nvim')}
   Pack 'pocari/vim-denite-gists', {'type': 'lazyall', 'if': has('nvim')}
   Pack 'pocari/vim-denite-kind-open-browser', {'type': 'lazyall', 'if': has('nvim')}
+endif
+
+
+if g:plugin_use_lightline
+  Pack 'itchyny/lightline.vim'
+endif
+
+if g:plugin_use_airline
+  Pack 'vim-airline/vim-airline'
+  Pack 'vim-airline/vim-airline-themes'
 endif
 
 " Completion: {{{1
