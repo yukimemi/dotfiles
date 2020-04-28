@@ -1,12 +1,15 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/26 23:01:55.
+" Last Change : 2020/04/28 14:42:23.
 " =============================================================================
 
 " Init: {{{1
 set encoding=utf-8
 scriptencoding utf-8
+
+filetype off
+filetype plugin indent off
 
 " Release autogroup in MyAutoCmd.
 augroup MyAutoCmd | autocmd! | augroup END
@@ -281,7 +284,7 @@ function! s:addHeaderBat(pattern, verb)
   endfor
   let l:baseDir = expand("%:p:h") . "/"
   let l:cmdFile = expand("%:p:t:r") . "_admin." . expand("%:e")
-  call Mkdir(l:baseDir)
+  silent! call mkdir(l:baseDir, 'p')
   call writefile(l:lines,  l:baseDir . l:cmdFile, "b")
   echo "Write " . l:baseDir . l:cmdFile
 endfunction
@@ -478,12 +481,25 @@ au MyAutoCmd BufWritePost *
       \ endif
 
 " Plugin: {{{1
-let s:use_dein = 1
+let s:use_dein = 0
 let s:use_vimplug = 0
 let s:use_minpac = 1
 let s:use_packager = 0
 let s:use_volt = 0
 let s:use_pack = 0
+
+let g:plugin_use_lightline = 1
+let g:plugin_use_airline = 0
+
+let g:plugin_use_coc = 1
+let g:plugin_use_asyncomplete = 0
+let g:plugin_use_deoplete = 0
+
+let g:plugin_use_ctrlp = 0
+let g:plugin_use_clap = 0
+let g:plugin_use_fzf = 0
+let g:plugin_use_fz = 0
+let g:plugin_use_denite = 1
 
 function! IsInstalled(name) abort
   if s:use_dein

@@ -30,7 +30,7 @@ if has('python3')
 endif
 
 function! s:denite_aft() abort
-  packadd denite.nvim
+  silent! packadd denite.nvim
   " Default options.
   call denite#custom#option('_', {
         \ 'prompt': '»',

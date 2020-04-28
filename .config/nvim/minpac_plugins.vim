@@ -12,7 +12,7 @@ endfunction
 " Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 " Pack 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'for': 'cs'}
 " Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
-" Pack 'RRethy/vim-illuminate', {'type': 'lazyall'}
+Pack 'RRethy/vim-illuminate', {'type': 'lazyall'}
 " Pack 'Rigellute/rigel', {'type': 'opt'}
 " Pack 'Shougo/defx.nvim', {'type': 'opt', 'on': ['Defx'], 'do': 'silent! UpdateRemotePlugins'}
 " Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
@@ -62,9 +62,9 @@ endfunction
 " Pack 'haya14busa/vim-edgemotion', {'type': 'lazyall'}
 " Pack 'hiroakis/cyberspace.vim', {'type': 'opt'}
 " Pack 'hotwatermorning/auto-git-diff', {'type': 'lazyall'}
-" Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
-" Pack 'itchyny/vim-cursorword', {'type': 'lazyall'}
-" Pack 'itchyny/vim-external', {'type': 'lazyall'}
+Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
+Pack 'itchyny/vim-cursorword', {'type': 'lazyall'}
+Pack 'itchyny/vim-external', {'type': 'lazyall'}
 " Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
 " Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
 " Pack 'iyuuya/denite-ale', {'type': 'lazyall'}
@@ -158,7 +158,7 @@ endfunction
 " Pack 'tpope/vim-obsession', {'type': 'lazyall'}
 " Pack 'twitvim/twitvim', {'type': 'lazyall'}
 " Pack 'tyru/caw.vim', {'type': 'lazyall'}
-" Pack 'unblevable/quick-scope', {'type': 'lazyall'}
+Pack 'unblevable/quick-scope', {'type': 'lazyall'}
 " Pack 'vim-airline/vim-airline'
 " Pack 'vim-airline/vim-airline-themes'
 " Pack 'vim-scripts/matchit.zip', {'type': 'lazyall'}
@@ -221,7 +221,7 @@ Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
 
 
 " Fuzzy: {{{1
-if 0
+if g:plugin_use_ctrlp
   Pack 'ctrlpvim/ctrlp.vim'
   Pack 'kaneshin/ctrlp-filetype', {'type': 'opt', 'on': 'CtrlPFiletype'}
   Pack 'kaneshin/ctrlp-memolist', {'type': 'opt', 'on': 'CtrlPMemolist'}
@@ -232,24 +232,31 @@ if 0
   Pack 'mattn/ctrlp-ghq', {'type': 'opt', 'on': 'CtrlPGhq'}
   Pack 'ompugao/ctrlp-history', {'type': 'opt', 'on': 'CtrlPCmdHistory'}
   " Pack 'FelikZ/ctrlp-py-matcher'
-elseif 0
+endif
+
+if g:plugin_use_clap
   Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap', 'do': 'Clap install-binary!'}
-elseif 0
+endif
+
+if g:plugin_use_fzf
   Pack 'yuki-ycino/fzf-preview.vim'
   Pack 'MattesGroeger/vim-bookmarks', {'type': 'lazyall'}
-elseif 1
+endif
+
+if g:plugin_use_fz
   Pack 'mattn/vim-fz', {'do': 'silent! !go get github.com/mattn/gof'}
   Pack 'mattn/vim-fz-launcher'
-else
+endif
+
+if g:plugin_use_denite
   Pack 'Shougo/denite.nvim', {'type': 'opt', 'on': ['Denite'], 'do': 'silent! UpdateRemotePlugins'}
   " Pack 'Jagua/vim-denite-ghq', {'type': 'lazyall', 'if': has('nvim')}
   Pack 'pocari/vim-denite-gists', {'type': 'lazyall', 'if': has('nvim')}
   Pack 'pocari/vim-denite-kind-open-browser', {'type': 'lazyall', 'if': has('nvim')}
 endif
 
-
 " Completion: {{{1
-if 0
+if g:plugin_use_asyncomplete
   Pack 'prabirshrestha/async.vim'
   Pack 'prabirshrestha/asyncomplete-lsp.vim'
   Pack 'prabirshrestha/asyncomplete.vim'
@@ -270,9 +277,13 @@ if 0
   Pack 'voldikss/vim-translator', {'type': 'opt', 'on': ['<Plug>Translate', '<Plug>TranslateV', '<Plug>TranslateW', '<Plug>TranslateWV', '<Plug>TranslateR', '<Plug>TranslateRV']}
   " Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
   " Pack 'lambdalisue/fern.vim'
-elseif 1
+endif
+
+if g:plugin_use_coc
   Pack 'neoclide/coc.nvim', {'branch': 'release', 'do': 'silent !go get -u github.com/high-moctane/nextword', 'if': executable('go')}
-else
+endif
+
+if g:plugin_use_deoplete
   Pack 'Shougo/deoplete.nvim', {'do': '!pip install -U msgpack'}
   Pack 'lighttiger2505/deoplete-vim-lsp'
   Pack 'hrsh7th/vim-vsnip'
