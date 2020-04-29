@@ -1,0 +1,451 @@
+{
+  "version": 2,
+  "current_profile_name": "default",
+  "repos": [
+    {
+      "type": "git",
+      "path": "github.com/LeafCage/yankround.vim",
+      "version": "9dca96ed35b09de9fe5474de40da323d75fa3204"
+    },
+    {
+      "type": "git",
+      "path": "github.com/RRethy/vim-illuminate",
+      "version": "80dafb9b0e7b9f4ce7c843d4104f455c8c5b1f42"
+    },
+    {
+      "type": "git",
+      "path": "github.com/Shougo/context_filetype.vim",
+      "version": "a96f74ac35b77ebe2c5788ca31e66d87ab239adb"
+    },
+    {
+      "type": "git",
+      "path": "github.com/airblade/vim-rooter",
+      "version": "d64f3e04df9914e784508019a1a1f291cbb40bd4"
+    },
+    {
+      "type": "git",
+      "path": "github.com/editorconfig/editorconfig-vim",
+      "version": "8aff78a03357bf573abcec407a543762f281b7d3"
+    },
+    {
+      "type": "git",
+      "path": "github.com/eugen0329/vim-esearch",
+      "version": "8fb96c5e59b9e89d812b7e17a0aa5caf4099c2cb"
+    },
+    {
+      "type": "git",
+      "path": "github.com/gilligan/textobj-lastpaste",
+      "version": "29fe0fed7e70b6153ca272ecfd10b54490e46327"
+    },
+    {
+      "type": "git",
+      "path": "github.com/glidenote/memolist.vim",
+      "version": "74f547a1bfbc8df784e0a440e2fe127f9d4db478"
+    },
+    {
+      "type": "git",
+      "path": "github.com/haya14busa/vim-asterisk",
+      "version": "77e97061d6691637a034258cc415d98670698459"
+    },
+    {
+      "type": "git",
+      "path": "github.com/haya14busa/vim-operator-flashy",
+      "version": "b24673a9b0d5d60b26d202deb13d4ebf90d7a2ae"
+    },
+    {
+      "type": "git",
+      "path": "github.com/high-moctane/asyncomplete-nextword.vim",
+      "version": "21b909f8e832b8d0d849cacf7e6fcc67e1c432e2"
+    },
+    {
+      "type": "git",
+      "path": "github.com/honza/vim-snippets",
+      "version": "5332d404e48d1f90f1dff52f0c8fa53161612b9d"
+    },
+    {
+      "type": "git",
+      "path": "github.com/hrsh7th/vim-vsnip",
+      "version": "c9280f11339d45d84b4886c5ebf469bda2c976eb"
+    },
+    {
+      "type": "git",
+      "path": "github.com/hrsh7th/vim-vsnip-integ",
+      "version": "dc2a04141aa69cd4eefd6e1602b386d8428ac9de"
+    },
+    {
+      "type": "git",
+      "path": "github.com/iamcco/markdown-preview.nvim",
+      "version": "3d3b177c95c282cbfd89350d281a5f7a280311d3"
+    },
+    {
+      "type": "git",
+      "path": "github.com/itchyny/lightline.vim",
+      "version": "b8976d2e549b417e5d1c1594fb9034b749976cc0"
+    },
+    {
+      "type": "git",
+      "path": "github.com/itchyny/vim-cursorword",
+      "version": "b5f8a4b148b566626210d0c1f6b63036b62322bb"
+    },
+    {
+      "type": "git",
+      "path": "github.com/itchyny/vim-external",
+      "version": "21b77d5aa1f50ec055292fd923466083289b5b6a"
+    },
+    {
+      "type": "git",
+      "path": "github.com/itchyny/vim-gitbranch",
+      "version": "8118dc1cdd387bd609852be4bf350360ce881193"
+    },
+    {
+      "type": "git",
+      "path": "github.com/itchyny/vim-highlighturl",
+      "version": "70b5c9280786072202f2585a02e28497d4c8c5a0"
+    },
+    {
+      "type": "git",
+      "path": "github.com/itchyny/vim-parenmatch",
+      "version": "c8d40849789dec0055cfc046b866fb6a60db3340"
+    },
+    {
+      "type": "git",
+      "path": "github.com/junegunn/vim-easy-align",
+      "version": "12dd6316974f71ce333e360c0260b4e1f81169c3"
+    },
+    {
+      "type": "git",
+      "path": "github.com/k-takata/minpac",
+      "version": "544f2e642e55a764d144e97e8fb040cebef14948"
+    },
+    {
+      "type": "git",
+      "path": "github.com/kana/vim-operator-replace",
+      "version": "1345a556a321a092716e149d4765a5e17c0e9f0f"
+    },
+    {
+      "type": "git",
+      "path": "github.com/kana/vim-operator-user",
+      "version": "c3dfd41c1ed516b4b901c97562e644de62c367aa"
+    },
+    {
+      "type": "git",
+      "path": "github.com/kana/vim-textobj-entire",
+      "version": "64a856c9dff3425ed8a863b9ec0a21dbaee6fb3a"
+    },
+    {
+      "type": "git",
+      "path": "github.com/kana/vim-textobj-fold",
+      "version": "78bfa22163133b0ca6cda63b5b5015ed4409b2ee"
+    },
+    {
+      "type": "git",
+      "path": "github.com/kana/vim-textobj-function",
+      "version": "adb50f38499b1f558cbd58845e3e91117e4538cf"
+    },
+    {
+      "type": "git",
+      "path": "github.com/kana/vim-textobj-indent",
+      "version": "deb76867c302f933c8f21753806cbf2d8461b548"
+    },
+    {
+      "type": "git",
+      "path": "github.com/kana/vim-textobj-line",
+      "version": "0a78169a33c7ea7718b9fa0fad63c11c04727291"
+    },
+    {
+      "type": "git",
+      "path": "github.com/kana/vim-textobj-user",
+      "version": "41a675ddbeefd6a93664a4dc52f302fe3086a933"
+    },
+    {
+      "type": "git",
+      "path": "github.com/lambdalisue/gina.vim",
+      "version": "dd5340ea5ed7ec377d11c0d8b2eae547c49d8be4"
+    },
+    {
+      "type": "git",
+      "path": "github.com/liuchengxu/vim-clap",
+      "version": "2a328faa57f86ca9b894568a8eeaba876961f0d8"
+    },
+    {
+      "type": "git",
+      "path": "github.com/mattn/transparency-windows-vim",
+      "version": "8443739fb7200e9d05c455004610b15c73b817c5"
+    },
+    {
+      "type": "git",
+      "path": "github.com/mattn/vim-lsp-icons",
+      "version": "223dfa513ea431dec6c29841e5acdb22dab8c800"
+    },
+    {
+      "type": "git",
+      "path": "github.com/mattn/vim-lsp-settings",
+      "version": "a136637787e44317254d011b031b8c9f4a5f2a65"
+    },
+    {
+      "type": "git",
+      "path": "github.com/mattn/vimtweak",
+      "version": "67986ea092087a51196b938711947de09bc3d282"
+    },
+    {
+      "type": "git",
+      "path": "github.com/mattn/webapi-vim",
+      "version": "10b8e926d85a3ab689c2966a3df1139bcb4e197f"
+    },
+    {
+      "type": "git",
+      "path": "github.com/nathanaelkane/vim-indent-guides",
+      "version": "54d889a63716ee2f1818aa2ec5082db47147147b"
+    },
+    {
+      "type": "git",
+      "path": "github.com/ntpeters/vim-better-whitespace",
+      "version": "8cf4b2175dd61416c2fe7d3234324a6c59d678de"
+    },
+    {
+      "type": "git",
+      "path": "github.com/osyo-manga/vim-operator-search",
+      "version": "62c92d47d049c08abd29a224bb345082c2016480"
+    },
+    {
+      "type": "git",
+      "path": "github.com/osyo-manga/vim-operator-stay-cursor",
+      "version": "a1e0bde4a86c421e0a7c834c13b7b04a7df94206"
+    },
+    {
+      "type": "git",
+      "path": "github.com/pechorin/any-jump.vim",
+      "version": "5b9c291130f65d8f68dc405aec18b10a1c55e323"
+    },
+    {
+      "type": "git",
+      "path": "github.com/prabirshrestha/async.vim",
+      "version": "42371b5fb2cc07254295ff6beb3ca7cf235b7ede"
+    },
+    {
+      "type": "git",
+      "path": "github.com/prabirshrestha/asyncomplete-buffer.vim",
+      "version": "b88179d74be97de5b2515693bcac5d31c4c207e9"
+    },
+    {
+      "type": "git",
+      "path": "github.com/prabirshrestha/asyncomplete-emoji.vim",
+      "version": "4bceaf71e2e010185b761d380506234e1ffb78f0"
+    },
+    {
+      "type": "git",
+      "path": "github.com/prabirshrestha/asyncomplete-file.vim",
+      "version": "3bd17842d89d663bd5df57baa192dc0681b3ff98"
+    },
+    {
+      "type": "git",
+      "path": "github.com/prabirshrestha/asyncomplete-lsp.vim",
+      "version": "a7a6af2b86fdcc10f012ced3ed57c51d5df32f23"
+    },
+    {
+      "type": "git",
+      "path": "github.com/prabirshrestha/asyncomplete.vim",
+      "version": "5713fa6a1ee8de62ff8f1b5f03823f1daa824ac4"
+    },
+    {
+      "type": "git",
+      "path": "github.com/prabirshrestha/vim-lsp",
+      "version": "386ee33c3ca9ae8c365ceb00b025b259d2fbe097"
+    },
+    {
+      "type": "git",
+      "path": "github.com/rbtnn/vim-vimscript_lasterror",
+      "version": "d4f6d82aa8e73b905b2e7c7eaf15f1dc64c83308"
+    },
+    {
+      "type": "git",
+      "path": "github.com/rhysd/committia.vim",
+      "version": "d367190c7ffe95f4ac5d30b2e9da4cd9898579b9"
+    },
+    {
+      "type": "git",
+      "path": "github.com/rhysd/vim-color-spring-night",
+      "version": "7cf4acb5d2dbceb497d512fb4cfbdb072882d6aa"
+    },
+    {
+      "type": "git",
+      "path": "github.com/rhysd/vim-operator-surround",
+      "version": "80337a40a829cfc77b065a71d8a609e2ad7d2c8b"
+    },
+    {
+      "type": "git",
+      "path": "github.com/roxma/vim-tmux-clipboard",
+      "version": "47187740b88f9dab213f44678800cc797223808e"
+    },
+    {
+      "type": "git",
+      "path": "github.com/ryanoasis/vim-devicons",
+      "version": "2e235265482acb5f3815e01675c9868f3a2b8626"
+    },
+    {
+      "type": "git",
+      "path": "github.com/sainnhe/gruvbox-material",
+      "version": "d4d4f16cf6fd1985cb297bd6e4e20a55281693c4"
+    },
+    {
+      "type": "git",
+      "path": "github.com/sheerun/vim-polyglot",
+      "version": "c7b5826d53f3f4fe31e8168e1d8c6d7b19e60f4b"
+    },
+    {
+      "type": "git",
+      "path": "github.com/t9md/vim-quickhl",
+      "version": "9df53aacbff2709049b787109102b45163190c82"
+    },
+    {
+      "type": "git",
+      "path": "github.com/thinca/vim-qfreplace",
+      "version": "89e64ae24fb4b8e2402ba6d84971c06606f4adf4"
+    },
+    {
+      "type": "git",
+      "path": "github.com/thinca/vim-submode",
+      "version": "be74a7aabe44492432a86f4c954ba3b14a757b10"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tmux-plugins/vim-tmux-focus-events",
+      "version": "e80960715c09aef8ab9204848ed1683805a93a33"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tpope/vim-commentary",
+      "version": "f8238d70f873969fb41bf6a6b07ca63a4c0b82b1"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tpope/vim-repeat",
+      "version": "c947ad2b6a16983724a0153bdf7f66d7a80a32ca"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tsufeki/asyncomplete-fuzzy-match",
+      "version": "00a29382604dbd15256f781d829f7114c6ea79fc"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tsuyoshicho/vim-efm-langserver-settings",
+      "version": "e6db2f81e5b92fd062a8b11fe8952b02a37aac8d"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tsuyoshicho/vim-fg",
+      "version": "9bd0c22f43d96b2c16d6d45a96bc874a8cdd6cf4"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tyru/capture.vim",
+      "version": "857ee11cfe1193948d3d45dcb8d511fded8533fb"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tyru/columnskip.vim",
+      "version": "ba9e17fc931c339a157f78352198b0870f725cbe"
+    },
+    {
+      "type": "git",
+      "path": "github.com/tyru/open-browser.vim",
+      "version": "57b894d0aa5f800220d25fdeeccf28d8a7f6ac89"
+    },
+    {
+      "type": "git",
+      "path": "github.com/unblevable/quick-scope",
+      "version": "ac80025b868bb6e52b9dda893246ee5f992612de"
+    },
+    {
+      "type": "git",
+      "path": "github.com/vim-scripts/autodate.vim",
+      "version": "32c272063f2602d57882c83fea2cd7496776eb83"
+    },
+    {
+      "type": "git",
+      "path": "github.com/voldikss/vim-translator",
+      "version": "e0462cbad3fa7dbad8d55109ebb64773743132a6"
+    }
+  ],
+  "profiles": [
+    {
+      "name": "default",
+      "repos_path": [
+        "github.com/LeafCage/yankround.vim",
+        "github.com/RRethy/vim-illuminate",
+        "github.com/Shougo/context_filetype.vim",
+        "github.com/airblade/vim-rooter",
+        "github.com/editorconfig/editorconfig-vim",
+        "github.com/eugen0329/vim-esearch",
+        "github.com/gilligan/textobj-lastpaste",
+        "github.com/glidenote/memolist.vim",
+        "github.com/haya14busa/vim-asterisk",
+        "github.com/haya14busa/vim-operator-flashy",
+        "github.com/high-moctane/asyncomplete-nextword.vim",
+        "github.com/honza/vim-snippets",
+        "github.com/hrsh7th/vim-vsnip",
+        "github.com/hrsh7th/vim-vsnip-integ",
+        "github.com/iamcco/markdown-preview.nvim",
+        "github.com/itchyny/lightline.vim",
+        "github.com/itchyny/vim-cursorword",
+        "github.com/itchyny/vim-external",
+        "github.com/itchyny/vim-gitbranch",
+        "github.com/itchyny/vim-highlighturl",
+        "github.com/itchyny/vim-parenmatch",
+        "github.com/junegunn/vim-easy-align",
+        "github.com/k-takata/minpac",
+        "github.com/kana/vim-operator-replace",
+        "github.com/kana/vim-operator-user",
+        "github.com/kana/vim-textobj-entire",
+        "github.com/kana/vim-textobj-fold",
+        "github.com/kana/vim-textobj-function",
+        "github.com/kana/vim-textobj-indent",
+        "github.com/kana/vim-textobj-line",
+        "github.com/kana/vim-textobj-user",
+        "github.com/lambdalisue/gina.vim",
+        "github.com/liuchengxu/vim-clap",
+        "github.com/mattn/transparency-windows-vim",
+        "github.com/mattn/vim-lsp-icons",
+        "github.com/mattn/vim-lsp-settings",
+        "github.com/mattn/vimtweak",
+        "github.com/mattn/webapi-vim",
+        "github.com/nathanaelkane/vim-indent-guides",
+        "github.com/ntpeters/vim-better-whitespace",
+        "github.com/osyo-manga/vim-operator-search",
+        "github.com/osyo-manga/vim-operator-stay-cursor",
+        "github.com/pechorin/any-jump.vim",
+        "github.com/prabirshrestha/async.vim",
+        "github.com/prabirshrestha/asyncomplete-buffer.vim",
+        "github.com/prabirshrestha/asyncomplete-emoji.vim",
+        "github.com/prabirshrestha/asyncomplete-file.vim",
+        "github.com/prabirshrestha/asyncomplete-lsp.vim",
+        "github.com/prabirshrestha/asyncomplete.vim",
+        "github.com/prabirshrestha/vim-lsp",
+        "github.com/rbtnn/vim-vimscript_lasterror",
+        "github.com/rhysd/committia.vim",
+        "github.com/rhysd/vim-color-spring-night",
+        "github.com/rhysd/vim-operator-surround",
+        "github.com/roxma/vim-tmux-clipboard",
+        "github.com/ryanoasis/vim-devicons",
+        "github.com/sainnhe/gruvbox-material",
+        "github.com/sheerun/vim-polyglot",
+        "github.com/t9md/vim-quickhl",
+        "github.com/thinca/vim-qfreplace",
+        "github.com/thinca/vim-submode",
+        "github.com/tmux-plugins/vim-tmux-focus-events",
+        "github.com/tpope/vim-commentary",
+        "github.com/tpope/vim-repeat",
+        "github.com/tsufeki/asyncomplete-fuzzy-match",
+        "github.com/tsuyoshicho/vim-efm-langserver-settings",
+        "github.com/tsuyoshicho/vim-fg",
+        "github.com/tyru/capture.vim",
+        "github.com/tyru/columnskip.vim",
+        "github.com/tyru/open-browser.vim",
+        "github.com/unblevable/quick-scope",
+        "github.com/vim-scripts/autodate.vim",
+        "github.com/voldikss/vim-translator"
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/28 22:41:05.
+" Last Change : 2020/04/28 23:46:00.
 " =============================================================================
 
 " Init: {{{1
@@ -531,6 +531,8 @@ hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 let g:neovide_transparency = 0.9
 " let g:neovide_fullscreen  = v:true
 let g:neovide_cursor_vfx_mode = "railgun"
+set guifont=Utatane
+set guifontwide=Utatane
 
 filetype plugin indent on
 

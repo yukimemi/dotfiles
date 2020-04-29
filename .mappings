@@ -5,6 +5,7 @@
 ".stack"                               = "~/.stack"
 ".surfingkeys.js"                      = "~/.surfingkeys.js"
 ".qutebrowser"                         = "~/.qutebrowser"
+".volt"                                = "~/.volt"
 
 [windows]
 # ".config/nvim"                         = "~/AppData/Local/nvim"
