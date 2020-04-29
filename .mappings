@@ -1,6 +1,5 @@
 [general]
 ".config"                              = "~/.config"
-".gitconfig"                           = "~/.gitconfig"
 ".hyper.js"                            = "~/.hyper.js"
 ".stack"                               = "~/.stack"
 ".surfingkeys.js"                      = "~/.surfingkeys.js"
