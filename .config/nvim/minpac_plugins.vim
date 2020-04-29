@@ -149,7 +149,6 @@ endfunction
 " Pack 'thinca/vim-localrc', {'type': 'lazyall'}
 " Pack 'thinca/vim-quickrun', {'type': 'lazyall'}
 " Pack 'tpope/vim-obsession', {'type': 'lazyall'}
-" Pack 'twitvim/twitvim', {'type': 'lazyall'}
 " Pack 'tyru/caw.vim', {'type': 'lazyall'}
 " Pack 'vim-scripts/matchit.zip', {'type': 'lazyall'}
 " Pack 'voldikss/vim-floaterm', {'type': 'lazyall'}
@@ -209,6 +208,7 @@ Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windo
 Pack 'tpope/vim-commentary'
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}
 Pack 'tsuyoshicho/vim-fg'
+Pack 'twitvim/twitvim', {'type': 'lazyall'}
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
 Pack 'tyru/columnskip.vim', {'type': 'opt', 'on': ['<Plug>(columnskip-j)', '<Plug>(columnskip-k)']}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
