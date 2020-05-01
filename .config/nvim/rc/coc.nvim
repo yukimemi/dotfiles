@@ -36,6 +36,7 @@ let g:coc_global_extensions = [
      \ "coc-marketplace",
      \ "coc-markmap",
      \ "coc-nextword",
+     \ "coc-omni",
      \ "coc-pairs",
      \ "coc-postfix",
      \ "coc-powershell",

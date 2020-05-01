@@ -200,7 +200,7 @@ Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'ryanoasis/vim-devicons'
 Pack 'sainnhe/gruvbox-material'
-Pack 'sheerun/vim-polyglot', {'type': 'lazyall'}
+Pack 'sheerun/vim-polyglot'
 Pack 't9md/vim-quickhl'
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
