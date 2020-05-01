@@ -12,7 +12,7 @@ module.exports = {
     fontSize: 18,
 
     // font family with optional fallbacks
-    fontFamily: "Cica",
+    fontFamily: "Utatane",
 
     // default font weight: 'normal' or 'bold'
     fontWeight: "normal",
@@ -82,7 +82,7 @@ module.exports = {
       lightBlue: "#6A76FB",
       lightMagenta: "#FD7CFC",
       lightCyan: "#68FDFE",
-      lightWhite: "#FFFFFF"
+      lightWhite: "#FFFFFF",
     },
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
@@ -97,7 +97,7 @@ module.exports = {
     //
     // PowerShell on Windows
     // - Example: `C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe`
-    shell: "/usr/local/bin/zsh",
+    shell: "/usr/local/bin/fish",
 
     // for setting shell arguments (i.e. for using interactive shellArgs: `['-i']`)
     // by default `['--login']` will be used
@@ -126,37 +126,24 @@ module.exports = {
 
     // transparent-dynamic
     hyperTransparentDynamic: {
-      alpha: 0.8 // default 50%
-    },
-
-    // visor
-    visor: {
-      hotkey: "F12"
+      alpha: 0.8, // default 50%
     },
 
     // summon
     summon: {
       hideDock: true,
       hideOnBlur: true,
-      hotkey: "F12"
     },
 
     // transparent
     hyperTransparent: {
       // backgroundColor: "#4b4",
       opacity: 0.9,
-      vibrancy: "" // ['', 'dark', 'medium-light', 'ultra-dark']
-    },
-
-    StarWarsTheme: {
-      character: "random",
-      lightsaber: "true",
-      unibody: "false",
-      avatar: "true"
+      vibrancy: "", // ['', 'dark', 'medium-light', 'ultra-dark']
     },
 
     // opacity
-    opacity: 0.9
+    opacity: 0.9,
   },
 
   // a list of plugins to fetch and install from npm
@@ -168,9 +155,8 @@ module.exports = {
   plugins: [
     "hyperfull",
     "hyperminimal",
-    "hyperterm-visor",
     "hyper-opacity",
-    "hyper-material-theme"
+    "hyper-material-theme",
   ],
 
   // in development, you can create a directory under
@@ -180,6 +166,6 @@ module.exports = {
 
   keymaps: {
     // Example
-    "window:devtools": "cmd+alt+o"
-  }
+    "window:devtools": "cmd+alt+o",
+  },
 };
