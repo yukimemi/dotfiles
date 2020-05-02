@@ -43,7 +43,7 @@ module.exports = {
 
     // terminal background color
     // opacity is only supported on macOS
-    backgroundColor: "#000",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
 
     // terminal selection color
     selectionColor: "rgba(248,28,229,0.3)",
@@ -130,26 +130,14 @@ module.exports = {
 
     // for advanced config flags please refer to https://hyper.is/#cfg
 
-    // transparent-dynamic
-    hyperTransparentDynamic: {
-      alpha: 0.8, // default 50%
-    },
-
-    // summon
-    summon: {
-      hideDock: true,
-      hideOnBlur: true,
-    },
-
-    // transparent
-    hyperTransparent: {
-      // backgroundColor: "#4b4",
-      opacity: 0.9,
-      vibrancy: "", // ['', 'dark', 'medium-light', 'ultra-dark']
-    },
-
     // opacity
     opacity: 0.9,
+
+    // hyper-background-image
+    backgroundImage: {
+      folder: "/Users/yukimemi/GoogleDrive/sync/hyper/bg",
+      colorOpacity: 0.3,
+    },
   },
 
   // a list of plugins to fetch and install from npm
@@ -159,10 +147,16 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
+    "hyper-material-theme",
+    "hyper-opacity",
     "hyperfull",
     "hyperminimal",
-    "hyper-opacity",
-    "hyper-material-theme",
+    // "hyper-background-image",
+    // "hyper-ink-badge",
+    // "hyper-relaxed",
+    // "hyper-statusline",
+    // "hyperpower",
+    // "verminal",
   ],
 
   // in development, you can create a directory under

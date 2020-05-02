@@ -14,7 +14,8 @@ let g:lightline = {
       \   },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'bomb' ] ]
+      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'bomb' ],
+      \             [ 'vista'] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'gitbranch#name',
@@ -26,6 +27,7 @@ let g:lightline = {
       \   'fileformat': 'LightLineFileformat',
       \   'bomb': 'LightLineBomb',
       \   'cocstatus': 'coc#status',
+      \   'vista': 'NearestMethodOrFunction',
       \   'reanimate': 'LightLineReanimate'
       \ },
       \ }
@@ -121,3 +123,10 @@ function! GinaStatus() abort
   endif
 endfunction
 
+function! NearestMethodOrFunction() abort
+  if IsInstalled('vista.vim')
+    return get(b:, 'vista_nearest_method_or_function', '')
+  else
+    return ""
+  endif
+endfunction

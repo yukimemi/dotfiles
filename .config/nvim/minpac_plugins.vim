@@ -87,7 +87,6 @@ endfunction
 " Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
 " Pack 'leafgarland/typescript-vim', {'type': 'opt', 'for': ['typescript', 'typescript.tsx']}
 " Pack 'lifepillar/vim-solarized8', {'type': 'opt'}
-" Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 " Pack 'ludovicchabant/vim-gutentags', {'type': 'lazyall', 'if': executable('ctags')}
 " Pack 'luochen1990/rainbow', {'type': 'lazyall'}
 " Pack 'machakann/vim-colorscheme-kemonofriends'
@@ -148,8 +147,8 @@ endfunction
 " Pack 'taku-o/vim-zoom', {'type': 'lazyall'}
 " Pack 'thinca/vim-localrc', {'type': 'lazyall'}
 " Pack 'thinca/vim-quickrun', {'type': 'lazyall'}
+" Pack 'tpope/vim-commentary'
 " Pack 'tpope/vim-obsession', {'type': 'lazyall'}
-" Pack 'tyru/caw.vim', {'type': 'lazyall'}
 " Pack 'vim-scripts/matchit.zip', {'type': 'lazyall'}
 " Pack 'voldikss/vim-floaterm', {'type': 'lazyall'}
 " Pack 'wadackel/vim-dogrun', {'type': 'opt'}
@@ -185,6 +184,7 @@ Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-user'
 Pack 'lambdalisue/gina.vim'
+Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
@@ -205,11 +205,11 @@ Pack 't9md/vim-quickhl'
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
 Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windows && !has('nvim')}
-Pack 'tpope/vim-commentary'
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}
 Pack 'tsuyoshicho/vim-fg'
 Pack 'twitvim/twitvim', {'type': 'lazyall'}
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
+Pack 'tyru/caw.vim'
 Pack 'tyru/columnskip.vim', {'type': 'opt', 'on': ['<Plug>(columnskip-j)', '<Plug>(columnskip-k)']}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'unblevable/quick-scope', {'type': 'lazyall'}
