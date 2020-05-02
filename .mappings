@@ -1,6 +1,5 @@
 [general]
 ".config"                              = "~/.config"
-".hyper.js"                            = "~/.hyper.js"
 ".stack"                               = "~/.stack"
 ".surfingkeys.js"                      = "~/.surfingkeys.js"
 ".qutebrowser"                         = "~/.qutebrowser"
@@ -12,6 +11,7 @@
 ".config/nvim/init.vim"                = "~/_vimrc"
 ".gvimrc"                              = "~/_gvimrc"
 ".qutebrowser"                         = "~/AppData/Roaming/qutebrowser/config"
+".hyper.js"                            = "~/AppData/Roaming/Hyper/.hyper.js"
 "win/terminus/config.yaml"             = "~/AppData/Roaming/terminus/config.yaml"
 "win/Microsoft.PowerShell_profile.ps1" = "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1"
 "win/cmd/init.cmd"                     = "~/.init.cmd"
@@ -41,6 +41,7 @@
 ".config/nvim"                         = "~/.vim"
 ".config/nvim/init.vim"                = "~/.vimrc"
 ".gvimrc"                              = "~/.gvimrc"
+".hyper.js"                            = "~/.hyper.js"
 
 [linux]
 ".inputrc"                             = "~/.inputrc"
@@ -48,5 +49,6 @@
 ".config/nvim"                         = "~/.vim"
 ".config/nvim/init.vim"                = "~/.vimrc"
 ".gvimrc"                              = "~/.gvimrc"
+".hyper.js"                            = "~/.hyper.js"
 
 # vim: ft=toml:
