@@ -85,14 +85,14 @@ return
 ; return
 
 ; for Edge
-F11::
-Activate("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
-return
+; F11::
+; Activate("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
+; return
 
 ; for vivaldi
-; F11::
-; Activate(USERPROFILE . "\AppData\Local\Vivaldi\Application\vivaldi.exe")
-; return
+F11::
+Activate(USERPROFILE . "\scoop\apps\vivaldi\current\Application\vivaldi.exe")
+return
 
 ; for firefox
 ; F11::
