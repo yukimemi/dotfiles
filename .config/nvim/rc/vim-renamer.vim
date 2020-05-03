@@ -1,2 +1,2 @@
-nmap <Leader>r <Plug>RenamerStart
+nmap <leader>r <Plug>RenamerStart
 

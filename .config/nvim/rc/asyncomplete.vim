@@ -55,8 +55,8 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <silent> gr <plug>(lsp-references)
   nmap <silent> gi <plug>(lsp-implementation)
   nmap <silent> K <plug>(lsp-hover)
-  nmap <silent> <Leader>s :<c-u>split \| :LspDefinition<cr>
-  nmap <silent> <Leader>v :<c-u>vsplit \| :LspDefinition<cr>
+  nmap <silent> <leader>s :<c-u>split \| :LspDefinition<cr>
+  nmap <silent> <leader>v :<c-u>vsplit \| :LspDefinition<cr>
   nmap <buffer> <f2> <plug>(lsp-rename)
 endfunction
 

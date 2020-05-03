@@ -1,4 +1,4 @@
-map <Leader>e <Plug>(external-editor)
-map <Leader>n <Plug>(external-explorer)
-map <Leader>b <Plug>(external-browser)
+map <leader>e <Plug>(external-editor)
+map <leader>n <Plug>(external-explorer)
+map <leader>b <Plug>(external-browser)
 

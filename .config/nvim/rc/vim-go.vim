@@ -26,21 +26,21 @@ function! s:vim_go_cfg() abort
   setl softtabstop=0
   setl noexpandtab
 
-  nmap <buffer> <Leader>gd <Plug>(go-doc)
-  nmap <buffer> <Leader>gs <Plug>(go-doc-split)
-  nmap <buffer> <Leader>gv <Plug>(go-doc-vertical)
-  nmap <buffer> <Leader>gb <Plug>(go-doc-browser)
-  nmap <buffer> <Leader>gr <Plug>(go-rename)
+  nmap <buffer> <leader>gd <Plug>(go-doc)
+  nmap <buffer> <leader>gs <Plug>(go-doc-split)
+  nmap <buffer> <leader>gv <Plug>(go-doc-vertical)
+  nmap <buffer> <leader>gb <Plug>(go-doc-browser)
+  nmap <buffer> <leader>gr <Plug>(go-rename)
 
-  " nmap <buffer> <Leader>r <Plug>(go-run)
-  nmap <buffer> <Leader>gb <Plug>(go-build)
-  nmap <buffer> <Leader>gt <Plug>(go-test)
-  nmap <buffer> <Leader>gc <Plug>(go-coverage)
+  " nmap <buffer> <leader>r <Plug>(go-run)
+  nmap <buffer> <leader>gb <Plug>(go-build)
+  nmap <buffer> <leader>gt <Plug>(go-test)
+  nmap <buffer> <leader>gc <Plug>(go-coverage)
 
-  nmap <buffer> <Leader>ds <Plug>(go-def-split)
-  nmap <buffer> <Leader>dv <Plug>(go-def-vertical)
-  nmap <buffer> <Leader>dt <Plug>(go-def-tab)
-  nnoremap <buffer> <Leader>gi :<c-u>GoImport<Space>
+  nmap <buffer> <leader>ds <Plug>(go-def-split)
+  nmap <buffer> <leader>dv <Plug>(go-def-vertical)
+  nmap <buffer> <leader>dt <Plug>(go-def-tab)
+  nnoremap <buffer> <leader>gi :<c-u>GoImport<Space>
 
   setl completeopt=menu,preview
 endfunction

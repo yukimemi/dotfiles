@@ -58,7 +58,6 @@ endfunction
 " Pack 'fuenor/qfixhowm', {'type': 'lazyall'}
 " Pack 'gko/vim-coloresque', {'type': 'lazyall'}
 " Pack 'haya14busa/is.vim', {'type': 'lazyall'}
-" Pack 'haya14busa/vim-edgemotion', {'type': 'lazyall'}
 " Pack 'hiroakis/cyberspace.vim', {'type': 'opt'}
 " Pack 'hotwatermorning/auto-git-diff', {'type': 'lazyall'}
 " Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
@@ -149,6 +148,7 @@ endfunction
 " Pack 'thinca/vim-quickrun', {'type': 'lazyall'}
 " Pack 'tpope/vim-commentary'
 " Pack 'tpope/vim-obsession', {'type': 'lazyall'}
+" Pack 'tyru/columnskip.vim', {'type': 'lazyall'}
 " Pack 'vim-scripts/matchit.zip', {'type': 'lazyall'}
 " Pack 'voldikss/vim-floaterm', {'type': 'lazyall'}
 " Pack 'wadackel/vim-dogrun', {'type': 'opt'}
@@ -165,6 +165,7 @@ Pack 'eugen0329/vim-esearch', {'type': 'lazyall'}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
+Pack 'haya14busa/vim-edgemotion', {'type': 'lazyall'}
 Pack 'haya14busa/vim-operator-flashy', {'type': 'lazyall'}
 Pack 'honza/vim-snippets', {'type': 'lazyall'}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
@@ -184,6 +185,7 @@ Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-user'
 Pack 'lambdalisue/gina.vim'
+Pack 'liuchengxu/vim-which-key'
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
@@ -210,7 +212,6 @@ Pack 'tsuyoshicho/vim-fg'
 Pack 'twitvim/twitvim', {'type': 'lazyall'}
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
 Pack 'tyru/caw.vim'
-Pack 'tyru/columnskip.vim', {'type': 'opt', 'on': ['<Plug>(columnskip-j)', '<Plug>(columnskip-k)']}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'unblevable/quick-scope', {'type': 'lazyall'}
 Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
@@ -281,8 +282,8 @@ if g:plugin_use_asyncomplete
   " Pack 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'lazyall'}
   " Pack 'prabirshrestha/asyncomplete-tags.vim', {'type': 'lazyall', 'if': !g:is_windows}
   Pack 'voldikss/vim-translator', {'type': 'opt', 'on': ['<Plug>Translate', '<Plug>TranslateV', '<Plug>TranslateW', '<Plug>TranslateWV', '<Plug>TranslateR', '<Plug>TranslateRV']}
-  " Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
-  " Pack 'lambdalisue/fern.vim'
+  Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
+  Pack 'lambdalisue/fern.vim'
 endif
 
 if g:plugin_use_coc
@@ -300,6 +301,6 @@ if g:plugin_use_deoplete
   Pack 'prabirshrestha/vim-lsp'
   Pack 'tsuyoshicho/vim-efm-langserver-settings'
   Pack 'voldikss/vim-translator', {'type': 'opt', 'on': ['<Plug>Translate', '<Plug>TranslateV', '<Plug>TranslateW', '<Plug>TranslateWV', '<Plug>TranslateR', '<Plug>TranslateRV']}
-  " Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
-  " Pack 'lambdalisue/fern.vim'
+  Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
+  Pack 'lambdalisue/fern.vim'
 endif

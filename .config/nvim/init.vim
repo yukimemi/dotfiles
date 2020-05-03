@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/04/29 12:36:30.
+" Last Change : 2020/05/03 22:34:22.
 " =============================================================================
 
 " Init: {{{1
@@ -29,7 +29,7 @@ if !has('nvim')
 endif
 
 " Set mapleader.
-let g:mapleader = ','
+let g:mapleader = "\<space>"
 let g:maplocalleader = ','
 
 " Unload default plugins.
@@ -210,9 +210,9 @@ function! s:addHeaderJScript(flg)
   call writefile(lines,  l:baseDir . l:cmdFile, "b")
   echo "Write " . l:baseDir . expand("%:p:t:r") . ".cmd"
 endfunction
-au MyAutoCmd FileType javascript nnoremap <buffer> <expr><Leader>b <SID>addHeaderJScript(0)
-au MyAutoCmd FileType javascript nnoremap <buffer> <expr><Leader>m <SID>addHeaderJScript(1)
-au MyAutoCmd FileType javascript nnoremap <buffer> <expr><Leader>p <SID>addHeaderJScript(2)
+au MyAutoCmd FileType javascript nnoremap <buffer> <expr><localleader>b <SID>addHeaderJScript(0)
+au MyAutoCmd FileType javascript nnoremap <buffer> <expr><localleader>m <SID>addHeaderJScript(1)
+au MyAutoCmd FileType javascript nnoremap <buffer> <expr><localleader>p <SID>addHeaderJScript(2)
 
 " PowerShell {{{2
 function! s:addHeaderPs1(pattern, verb)
@@ -255,12 +255,12 @@ function! s:addHeaderPs1(pattern, verb)
   call writefile(l:lines,  l:baseDir . l:cmdFile, "b")
   echo "Write " . l:baseDir . l:cmdFile
 endfunction
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>b <SID>addHeaderPs1(0, 0)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>m <SID>addHeaderPs1(1, 0)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>p <SID>addHeaderPs1(2, 0)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>ab <SID>addHeaderPs1(0, 1)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>am <SID>addHeaderPs1(1, 1)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><Leader>ap <SID>addHeaderPs1(2, 1)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>b <SID>addHeaderPs1(0, 0)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>m <SID>addHeaderPs1(1, 0)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>p <SID>addHeaderPs1(2, 0)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>ab <SID>addHeaderPs1(0, 1)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>am <SID>addHeaderPs1(1, 1)
+au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>ap <SID>addHeaderPs1(2, 1)
 
 " dosbatch {{{2
 function! s:addHeaderBat(pattern, verb)
@@ -288,7 +288,7 @@ function! s:addHeaderBat(pattern, verb)
   call writefile(l:lines,  l:baseDir . l:cmdFile, "b")
   echo "Write " . l:baseDir . l:cmdFile
 endfunction
-au MyAutoCmd FileType dosbatch nnoremap <buffer> <expr><Leader>a <SID>addHeaderBat(0, 1)
+au MyAutoCmd FileType dosbatch nnoremap <buffer> <expr><localleader>a <SID>addHeaderBat(0, 1)
 
 
 " Mapping: {{{1
@@ -330,7 +330,7 @@ noremap <expr> <c-y> (line('w0') <= 1         ? 'k' : "\<c-y>")
 noremap <expr> <c-e> (line('w$') >= line('$') ? 'j' : "\<c-e>")
 
 " Useful save mappings.
-nnoremap <silent> <Leader><Leader> :<c-u>update<cr>
+nnoremap <silent> <localleader><localleader> :<c-u>update<cr>
 
 " Paste continuously.
 vnoremap <c-p> "0p<cr>
@@ -385,7 +385,7 @@ nnoremap <silent> sQ :<c-u>qa<cr>
 nnoremap <silent> sbk :<c-u>bd!<cr>
 nnoremap <silent> sbq :<c-u>q!<cr>
 
-nnoremap <Leader>o :<c-u>call <SID>open_current_dir()<cr>
+nnoremap <localleader>o :<c-u>call <SID>open_current_dir()<cr>
 
 " terminal
 tnoremap <Esc> <c-\><c-n>
@@ -393,10 +393,10 @@ tnoremap <Esc> <c-\><c-n>
 
 "  for git mergetool {{{2
 if &diff
-  nnoremap <Leader>1 :diffget LOCAL<cr>
-  nnoremap <Leader>2 :diffget BASE<cr>
-  nnoremap <Leader>3 :diffget REMOTE<cr>
-  nnoremap <Leader>u :<c-u>diffupdate<cr>
+  nnoremap <localleader>1 :diffget LOCAL<cr>
+  nnoremap <localleader>2 :diffget BASE<cr>
+  nnoremap <localleader>3 :diffget REMOTE<cr>
+  nnoremap <localleader>u :<c-u>diffupdate<cr>
 endif
 
 " hilight over 100 column {{{2
@@ -491,15 +491,15 @@ let s:use_pack = 0
 let g:plugin_use_lightline = 1
 let g:plugin_use_airline = 0
 
-let g:plugin_use_coc = 1
-let g:plugin_use_asyncomplete = 0
+let g:plugin_use_coc = 0
+let g:plugin_use_asyncomplete = 1
 let g:plugin_use_deoplete = 0
 
 let g:plugin_use_ctrlp = 0
-let g:plugin_use_clap = 0
+let g:plugin_use_clap = 1
 let g:plugin_use_fzf = 0
 let g:plugin_use_fz = 0
-let g:plugin_use_denite = 1
+let g:plugin_use_denite = 0
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 if !g:no_plugin

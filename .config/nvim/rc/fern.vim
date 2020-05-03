@@ -1,6 +1,10 @@
 " Don't use netrw.
 let g:loaded_netrwPlugin = 1
-nnoremap <silent> ge :<c-u>Fern . -drawer -reveal=%<cr>
+if g:is_windows
+  nnoremap ge :<c-u>exe printf("Fern file:///%s -drawer -reveal=%s", expand("%:p:h"), expand("%:t"))<cr>
+else
+  nnoremap ge :<c-u>exe printf("Fern file://%s -drawer -reveal=%s", expand("%:p:h"), expand("%:t"))<cr>
+endif
 
 " fern-bookmark.vim
 " let g:fern#mapping#bookmark#disable_default_mappings = 0
