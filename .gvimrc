@@ -4,7 +4,7 @@ set guioptions=
 
 " color
 set background=dark
-silent! colorscheme gruvbox-material
+silent! colorscheme spring-night
 if g:no_plugin
   colorscheme desert
 endif
