@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/05/04 12:21:18.
+" Last Change : 2020/05/04 21:42:39.
 " =============================================================================
 
 " Init: {{{1
@@ -353,8 +353,8 @@ nnoremap <silent> <leader>ev  :<c-u>tabedit $MYVIMRC<cr>
 nnoremap <silent> <leader>eg  :<c-u>tabedit $MYGVIMRC<cr>
 
 " Cmdwin.
-nnoremap <silent> : q:i
-vnoremap <silent> : q:A
+" nnoremap <silent> : q:i
+" vnoremap <silent> : q:A
 
 " nohlsearch.
 nnoremap <silent> <ESC><ESC> :<c-u>nohlsearch<cr>

@@ -93,7 +93,6 @@ endfunction
 " Pack 'machakann/vim-highlightedundo', {'type': 'lazyall', 'if': executable('diff')}
 " Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
 " Pack 'majutsushi/tagbar', {'type': 'opt', 'on': 'TagbarToggle'}
-" Pack 'markonm/traces.vim', {'type': 'lazyall'}
 " Pack 'mattn/benchvimrc-vim', {'type': 'opt', 'on': 'BenchVimrc'}
 " Pack 'mattn/favstar-vim', {'type': 'opt'}
 " Pack 'mattn/qiita-vim', {'type': 'opt', 'on': 'Qiita'}
@@ -187,6 +186,7 @@ Pack 'kana/vim-textobj-user'
 Pack 'lambdalisue/gina.vim'
 Pack 'liuchengxu/vim-which-key'
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
+Pack 'markonm/traces.vim', {'type': 'lazyall'}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
@@ -272,10 +272,10 @@ if g:plugin_use_asyncomplete
   Pack 'prabirshrestha/vim-lsp'
   Pack 'mattn/vim-lsp-icons'
   Pack 'mattn/vim-lsp-settings'
-  Pack 'tsuyoshicho/vim-efm-langserver-settings'
+  Pack 'tsuyoshicho/vim-efm-langserver-settings', {'do': 'silent! !go get github.com/mattn/efm-langserver'}
   Pack 'hrsh7th/vim-vsnip'
   Pack 'hrsh7th/vim-vsnip-integ'
-  Pack 'high-moctane/asyncomplete-nextword.vim', {'do': 'silent !go get -u github.com/high-moctane/nextword', 'if': executable('go') && !g:is_windows}
+  Pack 'high-moctane/asyncomplete-nextword.vim', {'do': 'silent! !go get -u github.com/high-moctane/nextword', 'if': executable('go') && !g:is_windows}
   Pack 'prabirshrestha/asyncomplete-buffer.vim'
   Pack 'prabirshrestha/asyncomplete-emoji.vim'
   Pack 'prabirshrestha/asyncomplete-file.vim'
@@ -289,7 +289,7 @@ if g:plugin_use_asyncomplete
 endif
 
 if g:plugin_use_coc
-  Pack 'neoclide/coc.nvim', {'branch': 'release', 'do': 'silent !go get -u github.com/high-moctane/nextword', 'if': executable('go')}
+  Pack 'neoclide/coc.nvim', {'branch': 'release', 'do': 'silent! !go get -u github.com/high-moctane/nextword', 'if': executable('go')}
 endif
 
 if g:plugin_use_deoplete
@@ -301,7 +301,7 @@ if g:plugin_use_deoplete
   Pack 'mattn/vim-lsp-settings'
   Pack 'prabirshrestha/async.vim'
   Pack 'prabirshrestha/vim-lsp'
-  Pack 'tsuyoshicho/vim-efm-langserver-settings'
+  Pack 'tsuyoshicho/vim-efm-langserver-settings', {'do': 'silent! !go get github.com/mattn/efm-langserver'}
   Pack 'voldikss/vim-translator', {'type': 'opt', 'on': ['<Plug>Translate', '<Plug>TranslateV', '<Plug>TranslateW', '<Plug>TranslateWV', '<Plug>TranslateR', '<Plug>TranslateRV']}
   Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern.vim'
