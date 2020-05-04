@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/05/04 21:42:39.
+" Last Change : 2020/05/04 23:16:02.
 " =============================================================================
 
 " Init: {{{1
@@ -491,8 +491,8 @@ let s:use_pack = 0
 let g:plugin_use_lightline = 1
 let g:plugin_use_airline = 0
 
-let g:plugin_use_coc = 0
-let g:plugin_use_asyncomplete = 1
+let g:plugin_use_coc = 1
+let g:plugin_use_asyncomplete = 0
 let g:plugin_use_deoplete = 0
 
 let g:plugin_use_ctrlp = 0
@@ -500,6 +500,8 @@ let g:plugin_use_clap = 1
 let g:plugin_use_fzf = 0
 let g:plugin_use_fz = 0
 let g:plugin_use_denite = 0
+
+let g:plugin_use_fern = 1
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 if !g:no_plugin

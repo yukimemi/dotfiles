@@ -78,8 +78,6 @@ endfunction
 " Pack 'kshenoy/vim-signature', {'type': 'lazyall'}
 " Pack 'kylef/apiblueprint.vim', {'type': 'opt', 'for': 'apiblueprint'}
 " Pack 'lambdalisue/edita.vim', {'type': 'lazyall'}
-" Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
-" Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
 " Pack 'lambdalisue/suda.vim', {'type': 'lazyall', 'if': !g:is_windows}
 " Pack 'lambdalisue/vim-findent'
 " Pack 'lambdalisue/vim-pyenv', {'type': 'lazyall'}
@@ -264,6 +262,13 @@ if g:plugin_use_airline
   Pack 'vim-airline/vim-airline-themes'
 endif
 
+if g:plugin_use_fern
+  Pack 'lambdalisue/fern.vim'
+  Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
+  Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
+  Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
+endif
+
 " Completion: {{{1
 if g:plugin_use_asyncomplete
   Pack 'prabirshrestha/async.vim'
@@ -284,8 +289,6 @@ if g:plugin_use_asyncomplete
   " Pack 'prabirshrestha/asyncomplete-neosnippet.vim', {'type': 'lazyall'}
   " Pack 'prabirshrestha/asyncomplete-tags.vim', {'type': 'lazyall', 'if': !g:is_windows}
   Pack 'voldikss/vim-translator', {'type': 'opt', 'on': ['<Plug>Translate', '<Plug>TranslateV', '<Plug>TranslateW', '<Plug>TranslateWV', '<Plug>TranslateR', '<Plug>TranslateRV']}
-  Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
-  Pack 'lambdalisue/fern.vim'
 endif
 
 if g:plugin_use_coc
@@ -303,6 +306,4 @@ if g:plugin_use_deoplete
   Pack 'prabirshrestha/vim-lsp'
   Pack 'tsuyoshicho/vim-efm-langserver-settings', {'do': 'silent! !go get github.com/mattn/efm-langserver'}
   Pack 'voldikss/vim-translator', {'type': 'opt', 'on': ['<Plug>Translate', '<Plug>TranslateV', '<Plug>TranslateW', '<Plug>TranslateWV', '<Plug>TranslateR', '<Plug>TranslateRV']}
-  Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
-  Pack 'lambdalisue/fern.vim'
 endif

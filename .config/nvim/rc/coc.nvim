@@ -21,7 +21,6 @@ let g:coc_global_extensions = [
      \ "coc-docker",
      \ "coc-emoji",
      \ "coc-eslint",
-     \ "coc-explorer",
      \ "coc-fish",
      \ "coc-fsharp",
      \ "coc-git",
@@ -165,7 +164,7 @@ nmap <space>bb <Plug>(coc-bookmark-toggle)
 nnoremap <space>bl :<c-u>CocList bookmark<cr>
 
 " coc-explorer {{{1
-nnoremap ge :<c-u>CocCommand explorer<cr>
+" nnoremap ge :<c-u>CocCommand explorer<cr>
 
 " coc-terminal {{{1
 nmap <space>s <Plug>(coc-terminal-toggle)
