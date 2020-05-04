@@ -1,9 +1,9 @@
 " Don't use netrw.
 let g:loaded_netrwPlugin = 1
 if g:is_windows
-  nnoremap ge :<c-u>exe printf("Fern file:///%s -drawer -reveal=%s", expand("%:p:h"), expand("%:t"))<cr>
+  nnoremap <silent> ge :<c-u>exe printf("Fern file:///%s -drawer -reveal=%s", expand("%:p:h"), expand("%:t"))<cr>
 else
-  nnoremap ge :<c-u>exe printf("Fern file://%s -drawer -reveal=%s", expand("%:p:h"), expand("%:t"))<cr>
+  nnoremap <silent> ge :<c-u>exe printf("Fern file://%s -drawer -reveal=%s", expand("%:p:h"), expand("%:t"))<cr>
 endif
 
 " fern-bookmark.vim

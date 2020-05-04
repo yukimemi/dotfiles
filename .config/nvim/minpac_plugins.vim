@@ -204,6 +204,7 @@ Pack 'ryanoasis/vim-devicons'
 Pack 'sainnhe/gruvbox-material'
 Pack 'sheerun/vim-polyglot'
 Pack 't9md/vim-quickhl'
+Pack 'thinca/vim-ambicmd', {'type': 'lazyall'}
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
 Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windows && !has('nvim')}
@@ -232,7 +233,8 @@ if g:plugin_use_ctrlp
 endif
 
 if g:plugin_use_clap
-  Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap', 'do': 'Clap install-binary!'}
+  " Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap', 'do': 'Clap install-binary!'}
+  Pack 'liuchengxu/vim-clap', {'type': 'opt', 'on': 'Clap'}
 endif
 
 if g:plugin_use_fzf

@@ -7,6 +7,7 @@ nnoremap scr :<c-u>Clap! files --hidden ~/.rhq<cr>
 nnoremap scd :<c-u>Clap! files --hidden ~/.dotfiles<cr>
 nnoremap scF :<c-u>Clap! filetypes<cr>
 nnoremap sch :<c-u>Clap! command_history<cr>
+nnoremap scH :<c-u>Clap! help_tags<cr>
 nnoremap scu :<c-u>Clap! history<cr>
 nnoremap scC :<c-u>Clap! commits<cr>
 nnoremap scj :<c-u>Clap! jumps<cr>

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/05/03 22:34:22.
+" Last Change : 2020/05/04 12:21:18.
 " =============================================================================
 
 " Init: {{{1
@@ -336,7 +336,7 @@ nnoremap <silent> <localleader><localleader> :<c-u>update<cr>
 vnoremap <c-p> "0p<cr>
 
 " Change current directory.
-nnoremap <space>cd :<c-u>execute ":tcd " . expand("%:p:h")<cr>
+nnoremap <leader>cd :<c-u>execute ":tcd " . expand("%:p:h")<cr>
 
 " Like emacs.
 cnoremap <c-b> <Left>
@@ -349,8 +349,8 @@ cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
 
 " Vim-users.jp - Hack #74: http://vim-users.jp/2009/09/hack74/
-nnoremap <silent> <space>ev  :<c-u>tabedit $MYVIMRC<cr>
-nnoremap <silent> <space>eg  :<c-u>tabedit $MYGVIMRC<cr>
+nnoremap <silent> <leader>ev  :<c-u>tabedit $MYVIMRC<cr>
+nnoremap <silent> <leader>eg  :<c-u>tabedit $MYGVIMRC<cr>
 
 " Cmdwin.
 nnoremap <silent> : q:i
@@ -444,8 +444,8 @@ au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
 
 if has('gui_running')
   if g:is_windows
-    nnoremap <space>r :<c-u>simalt ~r<cr>
-    nnoremap <space>x :<c-u>simalt ~x<cr>
+    nnoremap <leader>r :<c-u>simalt ~r<cr>
+    nnoremap <leader>x :<c-u>simalt ~x<cr>
   elseif g:is_darwin
     set macmeta
     set transparency=10
