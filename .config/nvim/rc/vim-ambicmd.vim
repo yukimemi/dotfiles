@@ -1,3 +1,7 @@
+if !IsInstalled("vim-ambicmd")
+  finish
+endif
+
 let g:ambicmd#show_completion_menu = 1
 
 cnoremap <expr> <space> ambicmd#expand("\<space>")
