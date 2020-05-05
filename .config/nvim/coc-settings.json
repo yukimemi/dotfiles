@@ -17,5 +17,6 @@
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.previewAutoClose": false,
   "translator.toLang": "ja",
-  "translator.engines": ["google", "bing"]
+  "translator.engines": ["google", "bing"],
+  "eslint.autoFixOnSave":true
 }

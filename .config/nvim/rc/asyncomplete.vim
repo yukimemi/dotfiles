@@ -40,8 +40,19 @@ let g:asyncomplete_auto_completeopt = 1
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_popup_delay = 200
 let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_diagnostics_float_cursor= 1
+let g:lsp_fold_enabled = 1
+let g:lsp_highlight_references_enabled = 1
+let g:lsp_highlights_enabled = 1
+let g:lsp_hover_conceal = 1
+let g:lsp_signature_help_enabled = 1
+let g:lsp_signs_enabled = 1
 let g:lsp_text_edit_enabled = 1
+let g:lsp_textprop_enabled = 1
+let g:lsp_use_event_queue = 1
+let g:lsp_virtual_text_enabled = 1
 
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<c-g>u\<cr>"
