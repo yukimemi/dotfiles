@@ -234,6 +234,11 @@ if not functions -q fisher
   fish -c fisher
 end
 
+# load local config. {{{1
+if test -f ~/.config_local.fish
+  source ~/.config_local.fish
+end
+
 ### Plugin settings. {{{1
 # pure {{{2
 # set pure_color_green (set_color "white")
@@ -265,7 +270,8 @@ if type -q starship
   starship init fish | source
 end
 
-# Load zoxide
+# Load zoxide. {{{1
 if type -q zoxide
   zoxide init fish | source
 end
+

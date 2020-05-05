@@ -16,10 +16,6 @@
   ],
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.previewAutoClose": false,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.file.autoReveal": true,
-  "explorer.previewAction.onHover": false,
-  "explorer.file.showHiddenFiles": true,
   "translator.toLang": "ja",
   "translator.engines": ["google", "bing"]
 }
