@@ -13,6 +13,15 @@ __fnm_version_query.fish
 __fnm_version_validate.fish
 __fnm_version_which.fish
 __format_time.fish
+__fzf_cd.fish
+__fzf_complete.fish
+__fzf_complete_preview.fish
+__fzf_find_file.fish
+__fzf_get_dir.fish
+__fzf_open.fish
+__fzf_parse_commandline.fish
+__fzf_reverse_isearch.fish
+__fzfcmd.fish
 __gabbr_expand.fish
 __parse_current_folder.fish
 __parse_git_branch.fish

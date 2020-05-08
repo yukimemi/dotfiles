@@ -34,6 +34,12 @@ set -x NEXTWORD_DATA_PATH "$HOME/.config/nextword/nextword-data-large"
 # volt. {{{2
 set -x VOLTPATH ~/.volt
 
+# jethrokuan/fzf. {{{2
+set -U FZF_LEGACY_KEYBINDINGS 0
+set -U FZF_TMUX 0
+set -U FZF_ENABLE_OPEN_PREVIEW 1
+set -U FZF_COMPLETE 1
+
 # pkg_config. {{{2
 # set -gx PKG_CONFIG_PATH "/usr/local/opt/libffi/lib/pkgconfig"
 
@@ -111,10 +117,10 @@ alias runghc "stack runghc --"
 alias runhaskell "stack runghc --"
 
 # chrome. {{{2
-alias twitter "open -na 'Microsoft Edge' --args '--app=https://mobile.twitter.com'"
-alias tweetdeck "open -na 'Microsoft Edge' --args '--app=https://tweetdeck.com'"
-alias hangout "open -na open -na 'Microsoft Edge' --args '--app=https://hangouts.google.com/'"
-alias misskey "open -na 'Microsoft Edge' --args '--app=https://misskey.io'"
+alias twitter "open -na 'Vivaldi' --args '--app=https://mobile.twitter.com'"
+alias tweetdeck "open -na 'Vivaldi' --args '--app=https://tweetdeck.com'"
+alias hangout "open -na open -na 'Vivaldi' --args '--app=https://hangouts.google.com/'"
+alias misskey "open -na 'Vivaldi' --args '--app=https://misskey.io'"
 
 # docker. {{{2
 # alias gcloud-auth "docker run -ti --name gcloud-config google/cloud-sdk gcloud auth login"
@@ -196,7 +202,7 @@ abbr -a chromeapp "open -na 'Google Chrome' --args '--app=https://"
 
 # youtube-dl {{{2
 abbr -a yt "youtube-dl -i"
-abbr -a ytm "youtube-dl -ixk --audio-format mp3"
+abbr -a ytm "youtube-dl -ix --no-post-overwrites --download-archive ./__downloaded --audio-format mp3"
 
 # Home-file {{{2
 if __isMac
