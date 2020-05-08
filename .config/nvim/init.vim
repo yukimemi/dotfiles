@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/05/04 23:16:02.
+" Last Change : 2020/05/09 00:15:25.
 " =============================================================================
 
 " Init: {{{1
@@ -181,6 +181,7 @@ let g:markdown_fenced_languages = [
       \ 'vim',
       \ ]
 
+" FileType: {{{1
 " JScript {{{2
 function! s:addHeaderJScript(flg)
   setl fenc=cp932
@@ -289,6 +290,9 @@ function! s:addHeaderBat(pattern, verb)
   echo "Write " . l:baseDir . l:cmdFile
 endfunction
 au MyAutoCmd FileType dosbatch nnoremap <buffer> <expr><localleader>a <SID>addHeaderBat(0, 1)
+
+" vim {{{2
+au MyAutoCmd FileType vim setl ts=2 sw=2 sts=0 expandtab
 
 
 " Mapping: {{{1
@@ -496,7 +500,7 @@ let g:plugin_use_asyncomplete = 0
 let g:plugin_use_deoplete = 0
 
 let g:plugin_use_ctrlp = 0
-let g:plugin_use_clap = 1
+let g:plugin_use_clap = 0
 let g:plugin_use_fzf = 0
 let g:plugin_use_fz = 0
 let g:plugin_use_denite = 0

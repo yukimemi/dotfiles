@@ -10,6 +10,8 @@
     "javascript",
     "json",
     "markdown",
+    "rust",
+    "vim",
     "html",
     "css",
     "xml"
@@ -18,5 +20,5 @@
   "coc.preferences.previewAutoClose": false,
   "translator.toLang": "ja",
   "translator.engines": ["google", "bing"],
-  "eslint.autoFixOnSave":true
+  "eslint.autoFixOnSave": true
 }

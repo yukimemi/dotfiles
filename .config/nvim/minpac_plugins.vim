@@ -154,23 +154,23 @@ endfunction
 " Pack 'yssl/QFEnter', {'type': 'lazyall'}
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
-Pack 'RRethy/vim-illuminate', {'type': 'lazyall'}
+Pack 'RRethy/vim-illuminate', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
-Pack 'airblade/vim-rooter'
+Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
 Pack 'editorconfig/editorconfig-vim', {'type': 'lazyall'}
-Pack 'eugen0329/vim-esearch', {'type': 'lazyall'}
+Pack 'eugen0329/vim-esearch', {'type': 'opt', 'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
 Pack 'haya14busa/vim-edgemotion', {'type': 'lazyall'}
 Pack 'haya14busa/vim-operator-flashy', {'type': 'lazyall'}
-Pack 'honza/vim-snippets', {'type': 'lazyall'}
+Pack 'honza/vim-snippets', {'type': 'opt', 'event': 'InsertEnter'}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
-Pack 'itchyny/vim-cursorword'
+Pack 'itchyny/vim-cursorword', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'itchyny/vim-external', {'type': 'lazyall'}
 Pack 'itchyny/vim-gitbranch'
-Pack 'itchyny/vim-highlighturl', {'type': 'lazyall'}
-Pack 'itchyny/vim-parenmatch'
+Pack 'itchyny/vim-highlighturl', {'type': 'opt', 'event': 'CursorHold'}
+Pack 'itchyny/vim-parenmatch', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
 Pack 'k-takata/minpac', {'type': 'opt'}
 Pack 'kana/vim-operator-replace', {'type': 'lazyall'}
@@ -189,7 +189,7 @@ Pack 'mattn/transparency-windows-vim', {'if': g:is_windows}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'nathanaelkane/vim-indent-guides'
-Pack 'ntpeters/vim-better-whitespace', {'type': 'lazyall'}
+Pack 'ntpeters/vim-better-whitespace', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
@@ -207,13 +207,13 @@ Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
 Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windows && !has('nvim')}
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}
-Pack 'tsuyoshicho/vim-fg'
+Pack 'tsuyoshicho/vim-fg', {'type': 'opt', 'event': 'CmdlineEnter'}
 Pack 'twitvim/twitvim', {'type': 'lazyall'}
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
-Pack 'tyru/caw.vim'
+Pack 'tyru/caw.vim', {'type': 'opt', 'event': 'InsertEnter'}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
-Pack 'unblevable/quick-scope', {'type': 'lazyall'}
-Pack 'vim-scripts/autodate.vim', {'type': 'lazyall'}
+Pack 'unblevable/quick-scope', {'type': 'opt', 'event': 'CursorHold'}
+Pack 'vim-scripts/autodate.vim', {'type': 'opt', 'event': 'InsertEnter'}
 
 
 " Fuzzy: {{{1
