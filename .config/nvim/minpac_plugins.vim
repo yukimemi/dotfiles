@@ -157,7 +157,7 @@ Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'RRethy/vim-illuminate', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
-Pack 'editorconfig/editorconfig-vim', {'type': 'lazyall'}
+Pack 'editorconfig/editorconfig-vim'
 Pack 'eugen0329/vim-esearch', {'type': 'opt', 'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
@@ -210,7 +210,7 @@ Pack 'tpope/vim-repeat', {'type': 'lazyall'}
 Pack 'tsuyoshicho/vim-fg', {'type': 'opt', 'event': 'CmdlineEnter'}
 Pack 'twitvim/twitvim', {'type': 'lazyall'}
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
-Pack 'tyru/caw.vim', {'type': 'opt', 'event': 'InsertEnter'}
+Pack 'tyru/caw.vim', {'type': 'opt', 'event': 'CursorMoved'}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'unblevable/quick-scope', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'vim-scripts/autodate.vim', {'type': 'opt', 'event': 'InsertEnter'}
