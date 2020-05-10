@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/05/09 00:15:25.
+" Last Change : 2020/05/07 09:22:26.
 " =============================================================================
 
 " Init: {{{1
@@ -159,6 +159,7 @@ endif
 
 " terminal {{{2
 
+" Filetype: {{{1
 " xml {{{2
 let g:xml_syntax_folding = 1
 au MyAutoCmd BufNewFile,BufRead *.xml call <SID>filetype_xml()
@@ -292,7 +293,9 @@ endfunction
 au MyAutoCmd FileType dosbatch nnoremap <buffer> <expr><localleader>a <SID>addHeaderBat(0, 1)
 
 " vim {{{2
-au MyAutoCmd FileType vim setl ts=2 sw=2 sts=0 expandtab
+au MyAutoCmd FileType vim setl expandtab ts=2 sw=2 sts=0
+" markdown {{{2
+au MyAutoCmd FileType markdown setl expandtab ts=2 sw=2 sts=0
 
 
 " Mapping: {{{1
