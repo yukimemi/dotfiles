@@ -8,10 +8,10 @@ silent! call mkdir(g:memolist_path, 'p')
 
 let g:memolist_memo_suffix = "md"
 let g:memolist_prompt_tags = 1
+let g:memolist_ex_cmd = 'Clap files'
 
 " mappings
-nnoremap <leader>mn :<c-u>MemoNew<cr>
-nnoremap <leader>ml :<c-u>MemoList<cr>
-nnoremap <leader>mg :<c-u>MemoGrep<cr>
-
+nnoremap <localleader>mn :<c-u>MemoNew<cr>
+nnoremap <localleader>ml :<c-u>MemoList<cr>
+nnoremap <localleader>mg :<c-u>MemoGrep<cr>
 

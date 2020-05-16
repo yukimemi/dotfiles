@@ -13,3 +13,9 @@ let g:fern#renderer = "devicons"
 " fern-comparator-lexical.vim
 " let g:fern#comparator = "lexical"
 
+
+function! s:init_fern() abort
+  nmap <buffer> s <Nop>
+endfunction
+
+au MyAutoCmd FileType fern call s:init_fern()

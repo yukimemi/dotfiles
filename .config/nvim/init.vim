@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/05/07 09:22:26.
+" Last Change : 2020/05/16 16:54:23.
 " =============================================================================
 
 " Init: {{{1
@@ -503,7 +503,7 @@ let g:plugin_use_asyncomplete = 0
 let g:plugin_use_deoplete = 0
 
 let g:plugin_use_ctrlp = 0
-let g:plugin_use_clap = 0
+let g:plugin_use_clap = 1
 let g:plugin_use_fzf = 0
 let g:plugin_use_fz = 0
 let g:plugin_use_denite = 0
@@ -531,7 +531,7 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-silent! colorscheme spring-night
+silent! colorscheme iceberg
 " for alacritty transparency.
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE

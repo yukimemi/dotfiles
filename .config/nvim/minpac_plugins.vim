@@ -40,7 +40,6 @@ endfunction
 " Pack 'camspiers/lens.vim', {'type': 'lazyall'}
 " Pack 'cespare/vim-toml', {'type': 'opt', 'for': 'toml'}
 " Pack 'chriskempson/base16-vim'
-" Pack 'cocopon/iceberg.vim', {'type': 'opt'}
 " Pack 'cohama/lexima.vim', {'type': 'lazyall'}
 " Pack 'cormacrelf/vim-colors-github', {'type': 'opt'}
 " Pack 'dag/vim-fish', {'type': 'opt', 'for': 'fish'}
@@ -154,9 +153,11 @@ Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'RRethy/vim-illuminate', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
+Pack 'cocopon/iceberg.vim', {'type': 'opt'}
 Pack 'editorconfig/editorconfig-vim'
 Pack 'eugen0329/vim-esearch', {'type': 'opt', 'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
+Pack 'gkeep/iceberg-dark'
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
 Pack 'haya14busa/vim-edgemotion', {'type': 'lazyall'}
