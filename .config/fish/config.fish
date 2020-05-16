@@ -34,6 +34,9 @@ set -x NEXTWORD_DATA_PATH "$HOME/.config/nextword/nextword-data-large"
 # volt. {{{2
 set -x VOLTPATH ~/.volt
 
+# Deno. {{{2
+set -x DENO_INSTALL "$HOME/.deno"
+
 # jethrokuan/fzf. {{{2
 set -U FZF_LEGACY_KEYBINDINGS 0
 set -U FZF_TMUX 0
@@ -80,6 +83,7 @@ if test (count $fish_user_paths) -eq 0
   __add_fish_user_paths ~/.ghq/src/bitbucket.org/yukimemi/scripts
   __add_fish_user_paths $GOPATH/bin
   __add_fish_user_paths ~/.anyenv/bin
+  __add_fish_user_paths $DENO_INSTALL/bin
   echo "Update fish_user_paths"
 end
 

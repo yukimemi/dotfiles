@@ -66,7 +66,6 @@ endfunction
 " Pack 'jeffkreeftmeijer/vim-numbertoggle'
 " Pack 'joshdick/onedark.vim', {'type': 'opt'}
 " Pack 'jremmen/vim-ripgrep', {'type': 'opt', 'on': 'Rg'}
-" Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
 " Pack 'kannokanno/previm', {'type': 'opt', 'for': 'markdown'}
 " Pack 'kassio/neoterm', {'type': 'lazyall', 'if': has('nvim')}
 " Pack 'kchmck/vim-coffee-script', {'type': 'opt', 'for': 'coffee'}
@@ -88,7 +87,6 @@ endfunction
 " Pack 'luochen1990/rainbow', {'type': 'lazyall'}
 " Pack 'machakann/vim-colorscheme-kemonofriends'
 " Pack 'machakann/vim-colorscheme-snowtrek', {'type': 'opt'}
-" Pack 'machakann/vim-highlightedundo', {'type': 'lazyall', 'if': executable('diff')}
 " Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
 " Pack 'majutsushi/tagbar', {'type': 'opt', 'on': 'TagbarToggle'}
 " Pack 'mattn/benchvimrc-vim', {'type': 'opt', 'on': 'BenchVimrc'}
@@ -98,9 +96,7 @@ endfunction
 " Pack 'mattn/vim-gist', {'type': 'opt', 'on': 'Gist'}
 " Pack 'mattn/vim-lexiv', {'type': 'lazyall'}
 " Pack 'mattn/vim-sonictemplate', {'type': 'opt', 'on': 'Template'}
-" Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
 " Pack 'mechatroner/rainbow_csv', {'type': 'opt', 'for': 'csv'}
-" Pack 'mhinz/vim-grepper', {'type': 'opt', 'on': ['Grepper', '<Plug>(GrepperOperator)']}
 " Pack 'morhetz/gruvbox', {'type': 'opt'}
 " Pack 'mox-mox/vim-localsearch', {'type': 'lazyall'}
 " Pack 'nelstrom/vim-markdown-folding', {'type': 'opt', 'for': 'markdown'}
@@ -153,6 +149,7 @@ endfunction
 " Pack 'wimstefan/vim-artesanal', {'type': 'opt'}
 " Pack 'yssl/QFEnter', {'type': 'lazyall'}
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
+Pack 'AndrewRadev/linediff.vim', {'type': 'opt', 'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'RRethy/vim-illuminate', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
@@ -173,6 +170,7 @@ Pack 'itchyny/vim-highlighturl', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'itchyny/vim-parenmatch', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
 Pack 'k-takata/minpac', {'type': 'opt'}
+Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
 Pack 'kana/vim-operator-replace', {'type': 'lazyall'}
 Pack 'kana/vim-operator-user'
 Pack 'kana/vim-textobj-entire', {'type': 'lazyall'}
@@ -184,10 +182,16 @@ Pack 'kana/vim-textobj-user'
 Pack 'lambdalisue/gina.vim'
 Pack 'liuchengxu/vim-which-key'
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
+Pack 'machakann/vim-highlightedundo', {'type': 'lazyall', 'if': executable('diff'), 'on': ['<Plug>(highlightedundo-undo)', '<Plug>(highlightedundo-redo)', '<Plug>(highlightedundo-Undo)', '<Plug>(highlightedundo-gminus)', '<Plug>(highlightedundo-gplus)']}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows}
+Pack 'mattn/vim-textobj-url', {'type': 'lazyall'}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
+Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
+Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
+Pack 'mhinz/vim-grepper', {'type': 'lazyall'}
+Pack 'mhinz/vim-startify'
 Pack 'nathanaelkane/vim-indent-guides'
 Pack 'ntpeters/vim-better-whitespace', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
@@ -197,10 +201,12 @@ Pack 'rbtnn/vim-vimscript_lasterror', {'type': 'opt', 'on': ['VimscriptLastError
 Pack 'rhysd/committia.vim', {'if': !g:is_windows}
 Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
+Pack 'romainl/vim-qf', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'ryanoasis/vim-devicons'
 Pack 'sainnhe/gruvbox-material'
 Pack 'sheerun/vim-polyglot'
+Pack 'svermeulen/vim-macrobatics', {'type': 'lazyall'}
 Pack 't9md/vim-quickhl'
 Pack 'thinca/vim-ambicmd', {'type': 'lazyall'}
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
@@ -214,6 +220,7 @@ Pack 'tyru/caw.vim', {'type': 'opt', 'event': 'CursorMoved'}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'unblevable/quick-scope', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'vim-scripts/autodate.vim', {'type': 'opt', 'event': 'InsertEnter'}
+Pack 'yegappan/mru', {'type': 'opt', 'on': ['MRU']}
 
 
 " Fuzzy: {{{1
