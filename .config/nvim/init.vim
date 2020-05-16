@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/05/16 16:54:23.
+" Last Change : 2020/05/16 22:24:57.
 " =============================================================================
 
 " Init: {{{1
@@ -531,7 +531,7 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-silent! colorscheme iceberg
+silent! colorscheme spring-night
 " for alacritty transparency.
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE

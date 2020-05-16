@@ -65,11 +65,11 @@ endfunction
 " Pack 'jeffkreeftmeijer/vim-numbertoggle'
 " Pack 'joshdick/onedark.vim', {'type': 'opt'}
 " Pack 'jremmen/vim-ripgrep', {'type': 'opt', 'on': 'Rg'}
+" Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
 " Pack 'kannokanno/previm', {'type': 'opt', 'for': 'markdown'}
 " Pack 'kassio/neoterm', {'type': 'lazyall', 'if': has('nvim')}
 " Pack 'kchmck/vim-coffee-script', {'type': 'opt', 'for': 'coffee'}
 " Pack 'keremc/asyncomplete-racer.vim', {'type': 'opt', 'for': 'rust', 'if': !executable('rls')}
-" Pack 'kmtoki/lightline-colorscheme-simplicity'
 " Pack 'kopischke/vim-stay'
 " Pack 'kristijanhusak/defx-icons', {'type': 'opt'}
 " Pack 'kristijanhusak/vim-hybrid-material', {'type': 'opt'}
@@ -133,6 +133,7 @@ endfunction
 " Pack 'skanehira/translate.vim', {'type': 'opt', 'on': ['AutoTranslateModeToggle', '<Plug>(VTranslate)', '<Plug>(VTranslateBang)'], 'if': executable('gtran') && !has('nvim')}
 " Pack 'skywind3000/vim-quickui', {'type': 'lazyall'}
 " Pack 'stephpy/vim-yaml', {'type': 'opt', 'for': ['yml', 'yaml']}
+" Pack 'svermeulen/vim-macrobatics', {'type': 'lazyall'}
 " Pack 'svermeulen/vim-yoink', {'type': 'lazyall'}
 " Pack 't9md/vim-choosewin', {'type': 'opt', 'on': ['<Plug>(choosewin)']}
 " Pack 'taku-o/vim-zoom', {'type': 'lazyall'}
@@ -153,6 +154,7 @@ Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'RRethy/vim-illuminate', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
+Pack 'chamindra/marvim', {'type': 'lazyall'}
 Pack 'cocopon/iceberg.vim', {'type': 'opt'}
 Pack 'editorconfig/editorconfig-vim'
 Pack 'eugen0329/vim-esearch', {'type': 'opt', 'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
@@ -171,7 +173,6 @@ Pack 'itchyny/vim-highlighturl', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'itchyny/vim-parenmatch', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
 Pack 'k-takata/minpac', {'type': 'opt'}
-Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
 Pack 'kana/vim-operator-replace', {'type': 'lazyall'}
 Pack 'kana/vim-operator-user'
 Pack 'kana/vim-textobj-entire', {'type': 'lazyall'}
@@ -200,14 +201,12 @@ Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
 Pack 'rbtnn/vim-vimscript_lasterror', {'type': 'opt', 'on': ['VimscriptLastError']}
 Pack 'rhysd/committia.vim', {'if': !g:is_windows}
-Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
 Pack 'romainl/vim-qf', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'ryanoasis/vim-devicons'
 Pack 'sainnhe/gruvbox-material'
 Pack 'sheerun/vim-polyglot'
-Pack 'svermeulen/vim-macrobatics', {'type': 'lazyall'}
 Pack 't9md/vim-quickhl'
 Pack 'thinca/vim-ambicmd', {'type': 'lazyall'}
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
@@ -263,11 +262,14 @@ endif
 
 if g:plugin_use_lightline
   Pack 'itchyny/lightline.vim'
+  Pack 'kmtoki/lightline-colorscheme-simplicity'
+  Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 endif
 
 if g:plugin_use_airline
   Pack 'vim-airline/vim-airline'
   Pack 'vim-airline/vim-airline-themes'
+  Pack 'rhysd/vim-color-spring-night'
 endif
 
 if g:plugin_use_fern
