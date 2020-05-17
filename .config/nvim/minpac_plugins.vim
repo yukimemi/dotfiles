@@ -59,6 +59,7 @@ endfunction
 " Pack 'haya14busa/is.vim', {'type': 'lazyall'}
 " Pack 'hiroakis/cyberspace.vim', {'type': 'opt'}
 " Pack 'hotwatermorning/auto-git-diff', {'type': 'lazyall'}
+" Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 " Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
 " Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
 " Pack 'iyuuya/denite-ale', {'type': 'lazyall'}
@@ -154,6 +155,7 @@ Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'RRethy/vim-illuminate', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
+Pack 'aiya000/aho-bakaup.vim', {'type': 'opt', 'event': 'BufWritePre'}
 Pack 'chamindra/marvim', {'type': 'lazyall'}
 Pack 'cocopon/iceberg.vim', {'type': 'opt'}
 Pack 'editorconfig/editorconfig-vim'
@@ -165,7 +167,6 @@ Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
 Pack 'haya14busa/vim-edgemotion', {'type': 'lazyall'}
 Pack 'haya14busa/vim-operator-flashy', {'type': 'lazyall'}
 Pack 'honza/vim-snippets', {'type': 'opt', 'event': 'InsertEnter'}
-" Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': '!cd app & yarn install'}
 Pack 'itchyny/vim-cursorword', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'itchyny/vim-external', {'type': 'lazyall'}
@@ -194,7 +195,7 @@ Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
 Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
 Pack 'mhinz/vim-grepper', {'type': 'lazyall'}
-Pack 'mhinz/vim-startify'
+Pack 'mhinz/vim-startify', {'if': !g:is_windows}
 Pack 'nathanaelkane/vim-indent-guides'
 Pack 'ntpeters/vim-better-whitespace', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
