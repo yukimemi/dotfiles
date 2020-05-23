@@ -46,7 +46,6 @@ endfunction
 " Pack 'davidhalter/jedi-vim', {'type': 'opt', 'for': ['python']}
 " Pack 'dense-analysis/ale', {'type': 'lazyall'}
 " Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
-" Pack 'dkarter/bullets.vim', {'type': 'lazyall'}
 " Pack 'dzeban/vim-log-syntax', {'type': 'opt', 'for': 'log'}
 " Pack 'eagletmt/ghcmod-vim', {'type': 'opt', 'do': 'silent! !stack install ghc-mod', 'if': executable('stack'), 'for': 'haskell'}
 " Pack 'eagletmt/neco-ghc', {'type': 'opt', 'for': 'haskell'}
@@ -158,6 +157,7 @@ Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
 Pack 'aiya000/aho-bakaup.vim', {'type': 'opt', 'event': 'BufWritePre'}
 Pack 'chamindra/marvim', {'type': 'lazyall'}
 Pack 'cocopon/iceberg.vim', {'type': 'opt'}
+Pack 'dkarter/bullets.vim', {'type': 'opt', 'for': 'markdown'}
 Pack 'editorconfig/editorconfig-vim'
 Pack 'eugen0329/vim-esearch', {'type': 'opt', 'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
