@@ -155,6 +155,7 @@ Pack 'RRethy/vim-illuminate', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
 Pack 'aiya000/aho-bakaup.vim', {'type': 'opt', 'event': 'BufWritePre'}
+Pack 'aserebryakov/vim-todo-lists', {'type': 'opt', 'for': ['markdown']}
 Pack 'chamindra/marvim', {'type': 'lazyall'}
 Pack 'cocopon/iceberg.vim', {'type': 'opt'}
 Pack 'dkarter/bullets.vim', {'type': 'opt', 'for': 'markdown'}
