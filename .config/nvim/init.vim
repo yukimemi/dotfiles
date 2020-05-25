@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/05/16 22:24:57.
+" Last Change : 2020/05/26 00:34:16.
 " =============================================================================
 
 " Init: {{{1
@@ -142,7 +142,7 @@ set cmdheight=2
 set scrolloff=3
 set laststatus=2
 set backspace=indent,eol,start
-set wildmenu wildmode=longest:full,full
+set wildmenu wildignorecase wildmode=longest:full,full
 set autoindent smartindent breakindent
 set incsearch hlsearch wrapscan
 set ignorecase smartcase infercase
@@ -182,7 +182,6 @@ let g:markdown_fenced_languages = [
       \ 'vim',
       \ ]
 
-" FileType: {{{1
 " JScript {{{2
 function! s:addHeaderJScript(flg)
   setl fenc=cp932
@@ -342,6 +341,9 @@ nnoremap <silent> <localleader><localleader> :<c-u>update<cr>
 " Paste continuously.
 vnoremap <c-p> "0p<cr>
 
+vnoremap < <gv
+vnoremap > >gv|
+
 " Change current directory.
 nnoremap <leader>cd :<c-u>execute ":tcd " . expand("%:p:h")<cr>
 
@@ -498,12 +500,12 @@ let s:use_pack = 0
 let g:plugin_use_lightline = 1
 let g:plugin_use_airline = 0
 
-let g:plugin_use_coc = 1
-let g:plugin_use_asyncomplete = 0
+let g:plugin_use_coc = 0
+let g:plugin_use_asyncomplete = 1
 let g:plugin_use_deoplete = 0
 
-let g:plugin_use_ctrlp = 0
-let g:plugin_use_clap = 1
+let g:plugin_use_ctrlp = 1
+let g:plugin_use_clap = 0
 let g:plugin_use_fzf = 0
 let g:plugin_use_fz = 0
 let g:plugin_use_denite = 0

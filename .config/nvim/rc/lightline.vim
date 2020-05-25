@@ -1,5 +1,5 @@
 let g:lightline = {
-      \ 'colorscheme': 'simplicity',
+      \ 'colorscheme': 'gruvbox_material',
       \ 'mode_map': {
       \   'n' : 'N',
       \   'i' : 'I',
@@ -13,10 +13,18 @@ let g:lightline = {
       \   "\<c-s>": 'S-B'
       \   },
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
+      \   'left': [ [ 'mode', 'spell', 'paste' ],
       \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'bomb' ],
-      \             [ 'vista'] ]
+      \             [ 'vista'] ],
+      \   'right': [
+      \     ['lineinfo'],
+      \     ['filetype', 'fileencoding', 'fileformat'],
+      \     ['linter_ok', 'linter_informations', 'linter_warnings', 'linter_errors'],
+      \   ],
       \ },
+      \ 'component': {
+      \   'spell': "%{&spell ? 'SPELL' : ''}",
+      \  },
       \ 'component_function': {
       \   'gitbranch': 'gitbranch#name',
       \   'ginastatus': 'GinaStatus',
@@ -30,6 +38,20 @@ let g:lightline = {
       \   'vista': 'NearestMethodOrFunction',
       \   'reanimate': 'LightLineReanimate'
       \ },
+      \ 'component_type': {
+      \   'linter_errors':       'error',
+      \   'linter_warnings':     'warning',
+      \   'linter_informations': 'information',
+      \   'linter_ok':           'ok',
+      \ },
+      \ 'component_expand': {
+      \   'linter_errors':       'LightlineCocErrors',
+      \   'linter_warnings':     'LightlineCocWarnings',
+      \   'linter_informations': 'LightlineCocInformation',
+      \   'linter_ok':           'LightlineCocOk',
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
 " Use auocmd to force lightline update.
@@ -106,6 +128,26 @@ function! LightLineReanimate()
     return ""
   endif
 endfunction
+
+function! LightLineCocErrors() abort
+  return b:coc_diagnostic_info['error'] != 0 ? ' ' . b:coc_diagnostic_info['error'] : ''
+endfunction
+
+function! LightLineCocWarnings() abort
+  return b:coc_diagnostic_info['warning'] != 0 ? ' ' . b:coc_diagnostic_info['warning'] : ''
+endfunction
+
+function! LightLineCocInformation() abort
+  return b:coc_diagnostic_info['information'] != 0 ? ' ' . b:coc_diagnostic_info['information'] : ''
+endfunction
+
+function! LightlineCocOk() abort
+  return b:coc_diagnostic_info['error'] == 0 &&
+  \ b:coc_diagnostic_info['warning'] == 0 &&
+  \ b:coc_diagnostic_info['information'] == 0 ?
+  \ ' ' : ''
+endfunction
+
 
 function! GinaStatus() abort
   if IsInstalled("gina.vim")
