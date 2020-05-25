@@ -96,6 +96,7 @@ endfunction
 " Pack 'mattn/vim-lexiv', {'type': 'lazyall'}
 " Pack 'mattn/vim-sonictemplate', {'type': 'opt', 'on': 'Template'}
 " Pack 'mechatroner/rainbow_csv', {'type': 'opt', 'for': 'csv'}
+" Pack 'mhinz/vim-startify', {'if': !g:is_windows}
 " Pack 'morhetz/gruvbox', {'type': 'opt'}
 " Pack 'mox-mox/vim-localsearch', {'type': 'lazyall'}
 " Pack 'nelstrom/vim-markdown-folding', {'type': 'opt', 'for': 'markdown'}
@@ -197,7 +198,6 @@ Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
 Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
 Pack 'mhinz/vim-grepper', {'type': 'lazyall'}
-Pack 'mhinz/vim-startify', {'if': !g:is_windows}
 Pack 'nathanaelkane/vim-indent-guides'
 Pack 'ntpeters/vim-better-whitespace', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
