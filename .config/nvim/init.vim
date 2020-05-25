@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/05/26 00:34:16.
+" Last Change : 2020/05/24 07:25:27.
 " =============================================================================
 
 " Init: {{{1
@@ -317,7 +317,6 @@ nnoremap <expr> l foldlevel(line('.')) ? "\<Right>zo" : "\<Right>"
 
 noremap <silent> gh ^
 noremap <silent> gl $
-
 nnoremap <silent> Y y$
 
 " For buffer.

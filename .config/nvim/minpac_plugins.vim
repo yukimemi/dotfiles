@@ -11,7 +11,6 @@ endfunction
 " Pack 'MaxMEllon/vim-shiny', {'type': 'lazyall'}
 " Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 " Pack 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'for': 'cs'}
-" Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
 " Pack 'Rigellute/rigel', {'type': 'opt'}
 " Pack 'Shougo/defx.nvim', {'type': 'opt', 'on': ['Defx'], 'do': 'silent! UpdateRemotePlugins'}
 " Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
@@ -149,6 +148,7 @@ endfunction
 Pack 'AndrewRadev/linediff.vim', {'type': 'opt', 'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
 Pack 'LeafCage/foldCC.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
+Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
 Pack 'RRethy/vim-illuminate', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
@@ -296,7 +296,7 @@ if g:plugin_use_asyncomplete
   Pack 'prabirshrestha/vim-lsp'
   Pack 'mattn/vim-lsp-icons'
   Pack 'mattn/vim-lsp-settings'
-  Pack 'tsuyoshicho/vim-efm-langserver-settings', {'do': 'silent! !go get github.com/mattn/efm-langserver'}
+  Pack 'tsuyoshicho/vim-efm-langserver-settings'
   Pack 'hrsh7th/vim-vsnip'
   Pack 'hrsh7th/vim-vsnip-integ'
   Pack 'high-moctane/asyncomplete-nextword.vim', {'do': 'silent! !go get -u github.com/high-moctane/nextword', 'if': executable('go') && !g:is_windows}
@@ -323,6 +323,6 @@ if g:plugin_use_deoplete
   Pack 'mattn/vim-lsp-settings'
   Pack 'prabirshrestha/async.vim'
   Pack 'prabirshrestha/vim-lsp'
-  Pack 'tsuyoshicho/vim-efm-langserver-settings', {'do': 'silent! !go get github.com/mattn/efm-langserver'}
+  Pack 'tsuyoshicho/vim-efm-langserver-settings'
   Pack 'voldikss/vim-translator', {'type': 'opt', 'on': ['<Plug>Translate', '<Plug>TranslateV', '<Plug>TranslateW', '<Plug>TranslateWV', '<Plug>TranslateR', '<Plug>TranslateRV']}
 endif
