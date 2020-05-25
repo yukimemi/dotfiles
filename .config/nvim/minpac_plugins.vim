@@ -158,6 +158,7 @@ Pack 'aiya000/aho-bakaup.vim', {'type': 'opt', 'event': 'BufWritePre'}
 Pack 'aserebryakov/vim-todo-lists', {'type': 'opt', 'for': ['markdown']}
 Pack 'chamindra/marvim', {'type': 'lazyall'}
 Pack 'cocopon/iceberg.vim', {'type': 'opt'}
+Pack 'da-x/name-assign.vim', {'type': 'opt', 'on': ['<plug>NameAssign']}
 Pack 'dkarter/bullets.vim', {'type': 'opt', 'for': 'markdown'}
 Pack 'editorconfig/editorconfig-vim'
 Pack 'eugen0329/vim-esearch', {'type': 'opt', 'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
