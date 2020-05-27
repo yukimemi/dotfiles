@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/05/26 11:31:56.
+" Last Change : 2020/05/27 19:47:13.
 " =============================================================================
 
 " Init: {{{1
@@ -497,18 +497,18 @@ let s:use_packager = 0
 let s:use_volt = 0
 let s:use_pack = 0
 
-let g:plugin_use_lightline = 1
-let g:plugin_use_airline = 0
+let g:plugin_use_lightline = 0
+let g:plugin_use_airline = 1
 
 let g:plugin_use_coc = 0
 let g:plugin_use_asyncomplete = 1
 let g:plugin_use_deoplete = 0
 
-let g:plugin_use_ctrlp = 1
+let g:plugin_use_ctrlp = 0
 let g:plugin_use_clap = 0
 let g:plugin_use_fzf = 0
 let g:plugin_use_fz = 0
-let g:plugin_use_denite = 0
+let g:plugin_use_denite = 1
 
 let g:plugin_use_fern = 1
 
@@ -533,10 +533,7 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-silent! colorscheme spring-night
-" for alacritty transparency.
-" hi! Normal ctermbg=NONE guibg=NONE
-" hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+silent! colorscheme nightfly
 
 " Neovide: {{{1
 let g:neovide_transparency = 0.9

@@ -20,7 +20,8 @@ nnoremap <silent> scc :<c-u>CtrlPLauncher<cr>
 nnoremap <silent> sct :<c-u>packadd sonictemplate-vim \| CtrlPSonictemplate<cr>
 nnoremap <silent> sch :<c-u>CtrlPCmdHistory<cr>
 nnoremap <silent> scl :<c-u>CtrlPMemolist<cr>
-nnoremap <silent> scg :<c-u>CtrlP ~/.ghq/src<cr>
+nnoremap <silent> scr :<c-u>CtrlP ~/.rhq<cr>
+nnoremap <silent> scD :<c-u>CtrlP ~/.dotfiles<cr>
 nnoremap <silent> scG :<c-u>CtrlPGhq<cr>
 
 if executable('files')

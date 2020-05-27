@@ -58,9 +58,9 @@ endfunction
 " Pack 'hiroakis/cyberspace.vim', {'type': 'opt'}
 " Pack 'hotwatermorning/auto-git-diff', {'type': 'lazyall'}
 " Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': function('Markdown_preview_do')}
+" Pack 'itchyny/vim-gitbranch'
 " Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
 " Pack 'itchyny/vim-haskell-sort-import', {'type': 'opt', 'for': 'haskell'}
-" Pack 'iyuuya/denite-ale', {'type': 'lazyall'}
 " Pack 'jeffkreeftmeijer/vim-numbertoggle'
 " Pack 'jremmen/vim-ripgrep', {'type': 'opt', 'on': 'Rg'}
 " Pack 'kana/vim-altr', {'type': 'opt', 'on': ['<Plug>(altr-forward)', '<Plug>(altr-back)']}
@@ -120,8 +120,6 @@ endfunction
 " Pack 'rhysd/rust-doc.vim', {'type': 'opt', 'if': executable('cargo'), 'for': 'rust'}
 " Pack 'rhysd/vim-gfm-syntax', {'type': 'opt', 'for': 'markdown'}
 " Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
-" Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
-" Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 " Pack 'rust-lang/rust.vim', {'type': 'opt', 'for': 'rust'}
 " Pack 'scrooloose/nerdtree', {'type': 'opt', 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 " Pack 'scrooloose/vim-slumlord', {'type': 'opt', 'for': 'plantuml'}
@@ -143,6 +141,7 @@ endfunction
 " Pack 'wadackel/vim-dogrun', {'type': 'opt'}
 " Pack 'wellle/context.vim', {'type': 'lazyall'}
 " Pack 'wimstefan/vim-artesanal', {'type': 'opt'}
+" Pack 'wting/gitsessions.vim'
 " Pack 'yssl/QFEnter', {'type': 'lazyall'}
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'AndrewRadev/linediff.vim', {'type': 'opt', 'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
@@ -170,7 +169,6 @@ Pack 'honza/vim-snippets', {'type': 'opt', 'event': 'InsertEnter'}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': '!cd app & yarn install'}
 Pack 'itchyny/vim-cursorword', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'itchyny/vim-external', {'type': 'lazyall'}
-Pack 'itchyny/vim-gitbranch'
 Pack 'itchyny/vim-highlighturl', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'itchyny/vim-parenmatch', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'joshdick/onedark.vim', {'type': 'opt'}
@@ -211,6 +209,8 @@ Pack 'rhysd/committia.vim', {'if': !g:is_windows}
 Pack 'rhysd/conflict-marker.vim', {'type': 'lazyall'}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
 Pack 'romainl/vim-qf', {'type': 'opt', 'for': ['quickfix', 'qf']}
+Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
+Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'ryanoasis/vim-devicons'
 Pack 'sainnhe/gruvbox-material'
@@ -229,7 +229,6 @@ Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'unblevable/quick-scope', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'vim-scripts/autodate.vim', {'type': 'opt', 'event': 'InsertEnter'}
 Pack 'wesQ3/vim-windowswap', {'type': 'opt', 'event': ['WinEnter']}
-Pack 'wting/gitsessions.vim', {'if': !g:is_windows}
 Pack 'yegappan/mru', {'type': 'opt', 'on': ['MRU']}
 
 
@@ -264,22 +263,25 @@ endif
 
 if g:plugin_use_denite
   Pack 'Shougo/denite.nvim', {'type': 'opt', 'on': ['Denite'], 'do': 'silent! UpdateRemotePlugins'}
-  " Pack 'Jagua/vim-denite-ghq', {'type': 'lazyall', 'if': has('nvim')}
   Pack 'pocari/vim-denite-gists', {'type': 'lazyall', 'if': has('nvim')}
   Pack 'pocari/vim-denite-kind-open-browser', {'type': 'lazyall', 'if': has('nvim')}
+  " Pack 'Jagua/vim-denite-ghq', {'type': 'lazyall', 'if': has('nvim')}
+  " Pack 'iyuuya/denite-ale', {'type': 'lazyall'}
 endif
 
 
 if g:plugin_use_lightline
   Pack 'itchyny/lightline.vim'
   Pack 'kmtoki/lightline-colorscheme-simplicity'
-  Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
+  " Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
+  Pack 'bluz71/vim-nightfly-guicolors'
 endif
 
 if g:plugin_use_airline
   Pack 'vim-airline/vim-airline'
   Pack 'vim-airline/vim-airline-themes'
-  Pack 'rhysd/vim-color-spring-night'
+  " Pack 'rhysd/vim-color-spring-night'
+  Pack 'bluz71/vim-nightfly-guicolors'
 endif
 
 if g:plugin_use_fern
