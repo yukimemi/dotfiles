@@ -185,6 +185,7 @@ Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-user'
 Pack 'lambdalisue/gina.vim'
+Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
 Pack 'liuchengxu/vim-which-key'
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'luochen1990/rainbow', {'type': 'lazyall'}

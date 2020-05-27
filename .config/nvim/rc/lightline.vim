@@ -15,7 +15,7 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'spell', 'paste' ],
       \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'bomb' ],
-      \             [ 'vista'] ],
+      \             [ 'vista', 'quickfix_title' ] ],
       \   'right': [
       \     ['lineinfo'],
       \     ['filetype', 'fileencoding', 'fileformat'],
@@ -34,6 +34,7 @@ let g:lightline = {
       \   'filetype': 'LightLineFiletype',
       \   'fileformat': 'LightLineFileformat',
       \   'bomb': 'LightLineBomb',
+      \   'quickfix_title': 'LightLineQuickfixTitle',
       \   'cocstatus': 'coc#status',
       \   'vista': 'NearestMethodOrFunction',
       \   'reanimate': 'LightLineReanimate'
@@ -148,6 +149,9 @@ function! LightlineCocOk() abort
   \ ' ' : ''
 endfunction
 
+function! LightLineQuickfixTitle() abort
+  return exists("w:quickfix_title") ? w:quickfix_title : ""
+endfunction
 
 function! GinaStatus() abort
   if IsInstalled("gina.vim")

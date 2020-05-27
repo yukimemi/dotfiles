@@ -535,8 +535,8 @@ endif
 set background=dark
 silent! colorscheme spring-night
 " for alacritty transparency.
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+" hi! Normal ctermbg=NONE guibg=NONE
+" hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 
 " Neovide: {{{1
 let g:neovide_transparency = 0.9
