@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/05/24 07:25:27.
+" Last Change : 2020/05/26 11:31:56.
 " =============================================================================
 
 " Init: {{{1
@@ -147,6 +147,7 @@ set autoindent smartindent breakindent
 set incsearch hlsearch wrapscan
 set ignorecase smartcase infercase
 set showmatch matchtime=1
+set belloff=all
 set noerrorbells novisualbell t_vb=
 set virtualedit=block
 set synmaxcol=500

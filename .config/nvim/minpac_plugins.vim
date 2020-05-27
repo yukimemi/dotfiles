@@ -228,7 +228,7 @@ Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'unblevable/quick-scope', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'vim-scripts/autodate.vim', {'type': 'opt', 'event': 'InsertEnter'}
 Pack 'wesQ3/vim-windowswap', {'type': 'opt', 'event': ['WinEnter']}
-Pack 'wting/gitsessions.vim'
+Pack 'wting/gitsessions.vim', {'if': !g:is_windows}
 Pack 'yegappan/mru', {'type': 'opt', 'on': ['MRU']}
 
 
