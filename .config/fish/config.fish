@@ -217,7 +217,7 @@ if __isMac
 end
 
 # docker {{{2
-# abbr -a de "docker run --rm -it -v $PWD:/root/(basename $PWD) -w /root/(basename $PWD) yukimemi/neovim"
+abbr -a de "docker run --rm -it -v $PWD:/root/(basename $PWD) -w /root/(basename $PWD) yukimemi/neovim"
 
 ### Options. {{{1
 # Use fish_vi_key_bindings.
