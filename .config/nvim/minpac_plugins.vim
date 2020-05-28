@@ -154,6 +154,7 @@ Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
 Pack 'aiya000/aho-bakaup.vim', {'type': 'opt', 'event': 'BufWritePre'}
 Pack 'andymass/vim-matchup', {'type': 'lazyall'}
 Pack 'aserebryakov/vim-todo-lists', {'type': 'opt', 'for': ['markdown']}
+Pack 'bluz71/vim-nightfly-guicolors', {'type': 'opt'}
 Pack 'chamindra/marvim', {'type': 'lazyall'}
 Pack 'cocopon/iceberg.vim', {'type': 'opt'}
 Pack 'da-x/name-assign.vim', {'type': 'opt', 'on': ['<plug>NameAssign']}
@@ -161,7 +162,7 @@ Pack 'dkarter/bullets.vim', {'type': 'opt', 'for': 'markdown'}
 Pack 'editorconfig/editorconfig-vim'
 Pack 'eugen0329/vim-esearch', {'type': 'opt', 'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
-Pack 'gkeep/iceberg-dark'
+Pack 'gkeep/iceberg-dark', {'type': 'opt'}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
 Pack 'haya14busa/vim-edgemotion', {'type': 'lazyall'}
@@ -207,15 +208,16 @@ Pack 'previm/previm', {'type': 'opt', 'for': 'markdown'}
 Pack 'rbtnn/vim-vimscript_lasterror', {'type': 'opt', 'on': ['VimscriptLastError']}
 Pack 'rhysd/committia.vim', {'if': !g:is_windows}
 Pack 'rhysd/conflict-marker.vim', {'type': 'lazyall'}
+Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
 Pack 'romainl/vim-qf', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'ryanoasis/vim-devicons'
-Pack 'sainnhe/gruvbox-material'
+Pack 'sainnhe/gruvbox-material', {'type': 'opt'}
 Pack 'sheerun/vim-polyglot'
-Pack 't9md/vim-quickhl'
+Pack 't9md/vim-quickhl', {'type': 'lazyall'}
 Pack 'thinca/vim-ambicmd', {'type': 'lazyall'}
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
@@ -273,15 +275,11 @@ endif
 if g:plugin_use_lightline
   Pack 'itchyny/lightline.vim'
   Pack 'kmtoki/lightline-colorscheme-simplicity'
-  " Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
-  Pack 'bluz71/vim-nightfly-guicolors'
 endif
 
 if g:plugin_use_airline
   Pack 'vim-airline/vim-airline'
   Pack 'vim-airline/vim-airline-themes'
-  " Pack 'rhysd/vim-color-spring-night'
-  Pack 'bluz71/vim-nightfly-guicolors'
 endif
 
 if g:plugin_use_fern
