@@ -1,18 +1,14 @@
-" ========== Appearance ========================== {{{1
 " hide all
 set guioptions=
 
 " color
 set background=dark
-colorscheme spring-night
+colorscheme gruvbox-material
 
 " font
-GuiFont! Cica:h12
-set printfont=Cica:h8
-
-nnoremap <Leader>r :<c-u>simalt ~r<cr>
-nnoremap <Leader>x :<c-u>simalt ~x<cr>
-" au MyAutoCmd GUIEnter * set lines=70 columns=100
+GuiFont! Utatane:h13
+" set guifont=Utatane:h13
+" set guifontwide=Utatane:h13
 
 let g:save_window_file = expand("~/.nvimwinpos")
 au MyAutoCmd VimLeavePre * call <SID>save_window()

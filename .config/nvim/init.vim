@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/05/28 22:46:59.
+" Last Change : 2020/05/30 09:27:32.
 " =============================================================================
 
 " Init: {{{1
@@ -139,7 +139,7 @@ set nofixeol
 set hidden autoread
 set viminfo='1000
 set cmdheight=2
-set scrolloff=3
+set scrolloff=5
 set laststatus=2
 set backspace=indent,eol,start
 set wildmenu wildignorecase wildmode=longest:full,full
@@ -504,11 +504,11 @@ let g:plugin_use_coc = 0
 let g:plugin_use_asyncomplete = 1
 let g:plugin_use_deoplete = 0
 
-let g:plugin_use_ctrlp = 0
+let g:plugin_use_ctrlp = !has('nvim')
 let g:plugin_use_clap = 0
 let g:plugin_use_fzf = 0
 let g:plugin_use_fz = 0
-let g:plugin_use_denite = 1
+let g:plugin_use_denite = has('nvim')
 
 let g:plugin_use_fern = 1
 
@@ -540,8 +540,8 @@ silent! colorscheme gruvbox-material
 let g:neovide_transparency = 0.9
 " let g:neovide_fullscreen  = v:true
 let g:neovide_cursor_vfx_mode = "railgun"
-set guifont=Utatane
-set guifontwide=Utatane
+" set guifont=Utatane
+" set guifontwide=Utatane
 
 filetype plugin indent on
 
