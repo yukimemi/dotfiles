@@ -8,5 +8,13 @@ endif
 nmap gs <Plug>(GrepperOperator)
 xmap gs <Plug>(GrepperOperator)
 
-let g:grepper = get(g:, 'grepper', {})
-let g:grepper.tools = ['git', 'ag', 'ack', 'ack-grep', 'grep', 'rg', 'pt', 'sift', 'findstr']
+au MyAutoCmd VimEnter * call <SID>grepper_aft()
+
+function! s:grepper_aft() abort
+  silent! packadd vim-grepper
+  let g:grepper = get(g:, 'grepper', {})
+  let g:grepper.tools = ['git', 'pt', 'rg', 'sift', 'findstr']
+  let g:grepper.rg.grepprg = 'rg -H -i --no-heading --vimgrep --hidden --no-ignore'
+  let g:grepper.pt.grepprg = 'pt --nogroup -i --nocolor --smart-case --skip-vcs-ignores --hidden'
+endfunction
+
