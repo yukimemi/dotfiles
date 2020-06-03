@@ -341,9 +341,6 @@ nnoremap <silent> <localleader><localleader> :<c-u>update<cr>
 " Paste continuously.
 vnoremap <c-p> "0p<cr>
 
-vnoremap < <gv
-vnoremap > >gv|
-
 " Change current directory.
 nnoremap <leader>cd :<c-u>execute ":tcd " . expand("%:p:h")<cr>
 

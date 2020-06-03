@@ -1,2 +1,2 @@
-xmap <leader>t <Plug>(VTranslate)
-xmap <leader>T <Plug>(VTranslateBang)
+xmap <localleader>t <Plug>(VTranslate)
+xmap <localleader>T <Plug>(VTranslateBang)

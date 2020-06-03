@@ -6,13 +6,11 @@
 ".volt"                                = "~/.volt"
 
 [windows]
-# ".config/nvim"                         = "~/AppData/Local/nvim"
 ".config/nvim"                         = "~/vimfiles"
 ".config/nvim/init.vim"                = "~/_vimrc"
 ".gvimrc"                              = "~/_gvimrc"
-".qutebrowser"                         = "~/AppData/Roaming/qutebrowser/config"
 ".hyper.js"                            = "~/AppData/Roaming/Hyper/.hyper.js"
-"win/terminus/config.yaml"             = "~/AppData/Roaming/terminus/config.yaml"
+".qutebrowser"                         = "~/AppData/Roaming/qutebrowser/config"
 "win/Microsoft.PowerShell_profile.ps1" = "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1"
 "win/cmd/init.cmd"                     = "~/.init.cmd"
 "win/link/.cache"                      = "~/.cache"
@@ -20,6 +18,7 @@
 "win/link/.dotnet"                     = "~/.dotnet"
 "win/link/.ghq"                        = "~/.ghq"
 "win/link/.go"                         = "~/.go"
+"win/link/.local"                      = "~/.local"
 "win/link/.memolist"                   = "~/.memolist"
 "win/link/.nuget"                      = "~/.nuget"
 "win/link/.rhq"                        = "~/.rhq"
@@ -30,6 +29,8 @@
 "win/link/archives"                    = "~/archives"
 "win/link/scoop"                       = "~/scoop"
 "win/link/tools"                       = "C:/tools"
+"win/terminus/config.yaml"             = "~/AppData/Roaming/terminus/config.yaml"
+# ".config/nvim"                         = "~/AppData/Local/nvim"
 # "win/Microsoft.PowerShell_profile.ps1" = "~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1"
 
 [darwin]
