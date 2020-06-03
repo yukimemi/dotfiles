@@ -28,6 +28,10 @@ if executable('files')
   let g:ctrlp_user_command = 'files -a %s'
 endif
 
+if executable('rg')
+  let g:ctrlp_grep_command = 'rg -i --vimgrep --no-heading --hidden --no-ignore --regexp'
+endif
+
 " if has('python') || has('python2') || has('python3')
 "   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " endif

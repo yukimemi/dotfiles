@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/05/30 09:27:32.
+" Last Change : 2020/06/02 22:17:38.
 " =============================================================================
 
 " Init: {{{1
@@ -425,7 +425,7 @@ au MyAutoCmd BufWritePre * call <SID>auto_mkdir(expand('<afile>:p:h'), v:cmdbang
 
 " au MyAutoCmd WinEnter,WinLeave,BufEnter * checktime
 " au MyAutoCmd CursorHold * setl nohlsearch
-au MyAutoCmd CmdwinEnter * :silent! 1,$-50 delete _ | call cursor("$", 1)
+" au MyAutoCmd CmdwinEnter * :silent! 1,$-50 delete _ | call cursor("$", 1)
 
 " Reload .vimrc automatically.
 au MyAutoCmd BufWritePost $MYVIMRC silent! nested source $MYVIMRC | redraw
@@ -504,11 +504,11 @@ let g:plugin_use_coc = 0
 let g:plugin_use_asyncomplete = 1
 let g:plugin_use_deoplete = 0
 
-let g:plugin_use_ctrlp = !has('nvim')
+let g:plugin_use_ctrlp = 1
 let g:plugin_use_clap = 0
 let g:plugin_use_fzf = 0
 let g:plugin_use_fz = 0
-let g:plugin_use_denite = has('nvim')
+let g:plugin_use_denite = 0
 
 let g:plugin_use_fern = 1
 

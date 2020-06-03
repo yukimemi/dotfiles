@@ -247,6 +247,7 @@ if g:plugin_use_ctrlp
   Pack 'mattn/ctrlp-vimhelpjp', {'type': 'opt', 'on': 'VimHelpJp'}
   Pack 'mattn/ctrlp-ghq', {'type': 'opt', 'on': 'CtrlPGhq'}
   Pack 'ompugao/ctrlp-history', {'type': 'opt', 'on': 'CtrlPCmdHistory'}
+  " Pack 'lucerion/ctrlp-grep', {'type': 'opt', 'on': 'CtrlPGrep'}
   " Pack 'FelikZ/ctrlp-py-matcher'
 endif
 
