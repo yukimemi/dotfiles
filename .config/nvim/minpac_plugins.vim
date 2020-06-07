@@ -186,6 +186,7 @@ Pack 'liuchengxu/vim-which-key'
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'luochen1990/rainbow', {'type': 'lazyall'}
 Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
+Pack 'machakann/vim-textobj-delimited', {'type': 'lazyall'}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
 Pack 'mattn/vim-textobj-url', {'type': 'lazyall'}
