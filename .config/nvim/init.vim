@@ -263,6 +263,7 @@ au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>p <SID>addHeaderP
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>ab <SID>addHeaderPs1(0, 1)
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>am <SID>addHeaderPs1(1, 1)
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>ap <SID>addHeaderPs1(2, 1)
+au MyAutoCmd FileType ps1 setl expandtab ts=2 sw=2 sts=0
 
 " dosbatch {{{2
 function! s:addHeaderBat(pattern, verb)
