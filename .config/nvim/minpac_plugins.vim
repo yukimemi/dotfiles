@@ -188,6 +188,7 @@ Pack 'luochen1990/rainbow', {'type': 'lazyall'}
 Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
 Pack 'machakann/vim-textobj-delimited', {'type': 'lazyall'}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
+Pack 'mattn/emmet-vim', {'type': 'opt', 'for': ['html']}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
 Pack 'mattn/vim-textobj-url', {'type': 'lazyall'}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
