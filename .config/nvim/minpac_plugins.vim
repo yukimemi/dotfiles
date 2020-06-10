@@ -82,7 +82,6 @@
 " Pack 'mattn/vim-findroot', {'type': 'lazyall'}
 " Pack 'mattn/vim-gist', {'type': 'opt', 'on': 'Gist'}
 " Pack 'mattn/vim-lexiv', {'type': 'lazyall'}
-" Pack 'mattn/vim-sonictemplate', {'type': 'opt', 'on': 'Template'}
 " Pack 'mechatroner/rainbow_csv', {'type': 'opt', 'for': 'csv'}
 " Pack 'mhinz/vim-startify', {'if': !g:is_windows}
 " Pack 'morhetz/gruvbox', {'type': 'opt'}
@@ -190,6 +189,7 @@ Pack 'machakann/vim-textobj-delimited', {'type': 'lazyall'}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
 Pack 'mattn/emmet-vim', {'type': 'opt', 'for': ['html']}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
+Pack 'mattn/vim-sonictemplate', {'type': 'opt', 'on': ['Template']}
 Pack 'mattn/vim-textobj-url', {'type': 'lazyall'}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
