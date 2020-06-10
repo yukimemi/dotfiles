@@ -242,7 +242,8 @@ if g:plugin_use_ctrlp
   Pack 'mattn/ctrlp-mark', {'type': 'opt', 'on': 'CtrlPMark'}
   Pack 'mattn/ctrlp-vimhelpjp', {'type': 'opt', 'on': 'VimHelpJp'}
   Pack 'mattn/ctrlp-ghq', {'type': 'opt', 'on': 'CtrlPGhq'}
-  Pack 'ompugao/ctrlp-history', {'type': 'opt', 'on': 'CtrlPCmdHistory'}
+  Pack 'ompugao/ctrlp-history', {'type': 'opt', 'on': ['CtrlPCmdHistory', 'CtrlPSearchHistory']}
+  Pack 'suy/vim-ctrlp-commandline', {'type': 'lazyall'}
   " Pack 'lucerion/ctrlp-grep', {'type': 'opt', 'on': 'CtrlPGrep'}
   " Pack 'FelikZ/ctrlp-py-matcher'
 endif
