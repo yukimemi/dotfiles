@@ -51,6 +51,7 @@ let g:coc_global_extensions = [
      \ "coc-syntax",
      \ "coc-tag",
      \ "coc-terminal",
+     \ "coc-todolist",
      \ "coc-translator",
      \ "coc-tslint-plugin",
      \ "coc-tsserver",
@@ -137,6 +138,7 @@ nnoremap <silent> <leader>cb :<c-u>CocList buffers<cr>
 nnoremap <silent> <leader>ch :<c-u>CocList cmdhistory<cr>
 nnoremap <silent> <leader>cH :<c-u>CocList helptags<cr>
 nnoremap <silent> <leader>cu :<c-u>CocList mru<cr>
+nnoremap <silent> <leader>ct :<c-u>CocList todolist<cr>
 nnoremap <silent> <leader>cs :<c-u>CocList -I symbols<cr>
 nnoremap <silent> <leader>cF :<c-u>CocList filetypes<cr>
 nnoremap <silent> <leader>r :<c-u>CocListResume<cr>

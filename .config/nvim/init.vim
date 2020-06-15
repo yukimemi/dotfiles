@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/06/07 14:15:08.
+" Last Change : 2020/06/13 23:45:14.
 " =============================================================================
 
 " Init: {{{1
@@ -298,6 +298,8 @@ au MyAutoCmd FileType vim setl expandtab ts=2 sw=2 sts=0
 " markdown {{{2
 au MyAutoCmd FileType markdown setl expandtab ts=2 sw=2 sts=0
 
+" log {{{2
+au MyAutoCmd FileType log setl nowrap
 
 " Mapping: {{{1
 " Use verymagic.

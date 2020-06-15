@@ -4,6 +4,7 @@
 " Pack 'MaxMEllon/vim-shiny', {'type': 'lazyall'}
 " Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 " Pack 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'for': 'cs'}
+" Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
 " Pack 'Rigellute/rigel', {'type': 'opt'}
 " Pack 'Shougo/defx.nvim', {'type': 'opt', 'on': ['Defx'], 'do': 'silent! UpdateRemotePlugins'}
 " Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
@@ -142,7 +143,6 @@
 Pack 'AndrewRadev/linediff.vim', {'type': 'opt', 'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
 Pack 'LeafCage/foldCC.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
-Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
 Pack 'RRethy/vim-illuminate', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
@@ -226,6 +226,7 @@ Pack 'twitvim/twitvim', {'type': 'lazyall'}
 Pack 'tyru/capture.vim', {'type': 'opt', 'on': 'Capture'}
 Pack 'tyru/caw.vim', {'type': 'opt', 'event': 'CursorMoved'}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
+Pack 'tyru/restart.vim', {'type': 'opt', 'on': ['Restart']}
 Pack 'unblevable/quick-scope', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'vim-scripts/autodate.vim', {'type': 'opt', 'event': 'InsertEnter'}
 Pack 'wesQ3/vim-windowswap', {'type': 'opt', 'event': ['WinEnter']}
