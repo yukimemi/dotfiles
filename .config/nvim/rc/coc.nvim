@@ -168,6 +168,9 @@ nnoremap <space>bl :<c-u>CocList bookmark<cr>
 " coc-explorer {{{1
 " nnoremap ge :<c-u>CocCommand explorer<cr>
 
+" coc-todolist {{{1
+nnoremap <leader>l :<c-u>CocCommand todolist.create<cr>
+
 " coc-terminal {{{1
 nmap <space>s <Plug>(coc-terminal-toggle)
 
