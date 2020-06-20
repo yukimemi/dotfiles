@@ -158,6 +158,7 @@ Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
 Pack 'dkarter/bullets.vim', {'type': 'opt', 'for': 'markdown'}
 Pack 'editorconfig/editorconfig-vim'
 Pack 'eugen0329/vim-esearch', {'type': 'opt', 'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
+Pack 'ghifarit53/tokyonight.vim', {'type': 'opt'}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
 Pack 'gkeep/iceberg-dark', {'type': 'opt'}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
@@ -210,6 +211,7 @@ Pack 'rhysd/conflict-marker.vim', {'type': 'lazyall'}
 Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
 Pack 'romainl/vim-qf', {'type': 'opt', 'for': ['quickfix', 'qf']}
+Pack 'romgrk/github-light.vim', {'type': 'opt'}
 Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
