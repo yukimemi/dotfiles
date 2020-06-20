@@ -66,6 +66,7 @@
 " Pack 'kshenoy/vim-signature', {'type': 'lazyall'}
 " Pack 'kylef/apiblueprint.vim', {'type': 'opt', 'for': 'apiblueprint'}
 " Pack 'lambdalisue/edita.vim', {'type': 'lazyall'}
+" Pack 'lambdalisue/reword.vim', {'type': 'lazyall'}
 " Pack 'lambdalisue/suda.vim', {'type': 'lazyall', 'if': !g:is_windows}
 " Pack 'lambdalisue/vim-findent'
 " Pack 'lambdalisue/vim-pyenv', {'type': 'lazyall'}
@@ -216,7 +217,7 @@ Pack 'ryanoasis/vim-devicons'
 Pack 'sainnhe/gruvbox-material', {'type': 'opt'}
 Pack 'sheerun/vim-polyglot'
 Pack 't9md/vim-quickhl', {'type': 'lazyall'}
-Pack 'thinca/vim-ambicmd', {'type': 'lazyall'}
+Pack 'thinca/vim-ambicmd'
 Pack 'thinca/vim-prettyprint', {'type': 'opt', 'on': 'PP'}
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
