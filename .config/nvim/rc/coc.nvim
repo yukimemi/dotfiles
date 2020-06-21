@@ -128,19 +128,35 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " coc-list {{{1
-nnoremap <silent> <leader><leader> :<c-u>CocList<cr>
-nnoremap <silent> <leader>cr :<c-u>CocList files --hidden ~/.rhq<cr>
-nnoremap <silent> <leader>cf :<c-u>CocList files --hidden ~/.dotfiles<cr>
-nnoremap <silent> <leader>cv :<c-u>CocList files --hidden ~/.cache<cr>
-nnoremap <silent> <leader>cm :<c-u>CocList files --hidden ~/.memolist<cr>
-nnoremap <silent> <leader>cb :<c-u>CocList buffers<cr>
-nnoremap <silent> <leader>ch :<c-u>CocList cmdhistory<cr>
-nnoremap <silent> <leader>cH :<c-u>CocList helptags<cr>
-nnoremap <silent> <leader>cu :<c-u>CocList mru<cr>
-nnoremap <silent> <leader>ct :<c-u>CocList todolist<cr>
-nnoremap <silent> <leader>cs :<c-u>CocList -I symbols<cr>
-nnoremap <silent> <leader>cF :<c-u>CocList filetypes<cr>
-nnoremap <silent> <leader>r :<c-u>CocListResume<cr>
+if g:plugin_use_cocfzf
+  nnoremap <silent> <leader><leader> :<c-u>CocFzfList<cr>
+  nnoremap <silent> <leader>cr :<c-u>CocFzfList files --hidden ~/.rhq<cr>
+  nnoremap <silent> <leader>cf :<c-u>CocFzfList files --hidden ~/.dotfiles<cr>
+  nnoremap <silent> <leader>cv :<c-u>CocFzfList files --hidden ~/.cache<cr>
+  nnoremap <silent> <leader>cm :<c-u>CocFzfList files --hidden ~/.memolist<cr>
+  nnoremap <silent> <leader>cb :<c-u>CocFzfList buffers<cr>
+  nnoremap <silent> <leader>ch :<c-u>CocFzfList cmdhistory<cr>
+  nnoremap <silent> <leader>cH :<c-u>CocFzfList helptags<cr>
+  nnoremap <silent> <leader>cu :<c-u>CocFzfList mru<cr>
+  nnoremap <silent> <leader>ct :<c-u>CocFzfList todolist<cr>
+  nnoremap <silent> <leader>cs :<c-u>CocFzfList -I symbols<cr>
+  nnoremap <silent> <leader>cF :<c-u>CocFzfList filetypes<cr>
+  nnoremap <silent> <leader>r :<c-u>CocFzfListResume<cr>
+else
+  nnoremap <silent> <leader><leader> :<c-u>CocList<cr>
+  nnoremap <silent> <leader>cr :<c-u>CocList files --hidden ~/.rhq<cr>
+  nnoremap <silent> <leader>cf :<c-u>CocList files --hidden ~/.dotfiles<cr>
+  nnoremap <silent> <leader>cv :<c-u>CocList files --hidden ~/.cache<cr>
+  nnoremap <silent> <leader>cm :<c-u>CocList files --hidden ~/.memolist<cr>
+  nnoremap <silent> <leader>cb :<c-u>CocList buffers<cr>
+  nnoremap <silent> <leader>ch :<c-u>CocList cmdhistory<cr>
+  nnoremap <silent> <leader>cH :<c-u>CocList helptags<cr>
+  nnoremap <silent> <leader>cu :<c-u>CocList mru<cr>
+  nnoremap <silent> <leader>ct :<c-u>CocList todolist<cr>
+  nnoremap <silent> <leader>cs :<c-u>CocList -I symbols<cr>
+  nnoremap <silent> <leader>cF :<c-u>CocList filetypes<cr>
+  nnoremap <silent> <leader>r :<c-u>CocListResume<cr>
+endif
 
 " coc-snippet {{{1
 " Use <c-l> for trigger snippet expand.

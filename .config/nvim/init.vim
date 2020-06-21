@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/06/20 18:29:54.
+" Last Change : 2020/06/21 23:04:39.
 " =============================================================================
 
 " Init: {{{1
@@ -157,6 +157,10 @@ set list listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
 if executable('jvgrep')
   set grepprg=jvgrep
 endif
+if has('nvim')
+  set pumblend=10
+  set winblend=10
+endif
 
 " terminal {{{2
 
@@ -300,6 +304,14 @@ au MyAutoCmd FileType markdown setl expandtab ts=2 sw=2 sts=0
 
 " log {{{2
 au MyAutoCmd FileType log setl nowrap
+
+" Commands: {{{1
+" VimShowHlGroup: Show highlight group name under a cursor
+" https://rcmdnk.com/blog/2013/12/01/computer-vim/
+command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
+" VimShowHlItem: Show highlight item name under a cursor
+command! VimShowHlItem echo synIDattr(synID(line("."), col("."), 1), "name")
+
 
 " Mapping: {{{1
 " Use verymagic.
@@ -507,6 +519,7 @@ let g:plugin_use_deoplete = 0
 let g:plugin_use_ctrlp = 1
 let g:plugin_use_clap = 0
 let g:plugin_use_fzf = 0
+let g:plugin_use_cocfzf = 0
 let g:plugin_use_fz = 0
 let g:plugin_use_denite = 0
 

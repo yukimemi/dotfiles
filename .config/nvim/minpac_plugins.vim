@@ -106,7 +106,6 @@
 " Pack 'psliwka/vim-smoothie', {'type': 'lazyall'}
 " Pack 'qpkorr/vim-renamer', {'type': 'opt', 'on': ['Renamer', '<Plug>RenamerStart']}
 " Pack 'rafi/awesome-vim-colorschemes', {'type': 'opt'}
-" Pack 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
 " Pack 'reedes/vim-colors-pencil', {'type': 'opt'}
 " Pack 'rhysd/accelerated-jk', {'type': 'lazyall'}
 " Pack 'rhysd/clever-f.vim', {'type': 'lazyall'}
@@ -130,6 +129,7 @@
 " Pack 'thinca/vim-quickrun', {'type': 'lazyall'}
 " Pack 'tpope/vim-commentary'
 " Pack 'tpope/vim-obsession', {'type': 'lazyall'}
+" Pack 'tsuyoshicho/transparency.vim'
 " Pack 'tsuyoshicho/vim-fg'
 " Pack 'tsuyoshicho/vim-fg', {'type': 'opt', 'event': 'CmdlineEnter'}
 " Pack 'tsuyoshicho/vim-fg', {'type': 'opt', 'event': 'CmdlineEnter'}
@@ -147,6 +147,7 @@ Pack 'AndrewRadev/linediff.vim', {'type': 'opt', 'on': ['Linediff', 'LinediffRes
 Pack 'LeafCage/foldCC.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
+Pack 'Shougo/deol.nvim', {'type': 'opt', 'on': ['Deol', 'DeolCd', 'DeolEdit'], 'do': 'silent! UpdateRemotePlugins'}
 Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
 Pack 'aiya000/aho-bakaup.vim', {'type': 'opt', 'event': 'BufWritePre'}
 Pack 'andymass/vim-matchup', {'type': 'lazyall'}
@@ -206,6 +207,7 @@ Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
 Pack 'previm/previm', {'type': 'opt', 'for': 'markdown'}
+Pack 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
 Pack 'rbtnn/vim-vimscript_lasterror', {'type': 'opt', 'on': ['VimscriptLastError']}
 Pack 'rhysd/committia.vim', {'if': !g:is_windows}
 Pack 'rhysd/conflict-marker.vim', {'type': 'lazyall'}
@@ -233,6 +235,7 @@ Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'tyru/restart.vim', {'type': 'opt', 'on': ['Restart']}
 Pack 'vim-scripts/autodate.vim', {'type': 'opt', 'event': 'InsertEnter'}
 Pack 'wesQ3/vim-windowswap', {'type': 'opt', 'event': ['WinEnter']}
+Pack 'yasukotelin/shirotelin', {'type': 'opt'}
 Pack 'yegappan/mru', {'type': 'opt', 'on': ['MRU']}
 
 
@@ -260,6 +263,15 @@ endif
 if g:plugin_use_fzf
   Pack 'yuki-ycino/fzf-preview.vim'
   Pack 'MattesGroeger/vim-bookmarks', {'type': 'lazyall'}
+endif
+
+if g:plugin_use_cocfzf
+  if !g:plugin_use_coc
+    Pack 'coc.nvim'
+  endif
+  Pack 'junegunn/fzf'
+  Pack 'junegunn/fzf.vim'
+  Pack 'antoinemadec/coc-fzf'
 endif
 
 if g:plugin_use_fz
@@ -331,3 +343,5 @@ if g:plugin_use_deoplete
   Pack 'tsuyoshicho/vim-efm-langserver-settings'
   Pack 'voldikss/vim-translator', {'type': 'opt', 'on': ['<Plug>Translate', '<Plug>TranslateV', '<Plug>TranslateW', '<Plug>TranslateWV', '<Plug>TranslateR', '<Plug>TranslateRV']}
 endif
+
+" vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
