@@ -46,10 +46,10 @@ let g:lightline = {
       \   'linter_ok':           'ok',
       \ },
       \ 'component_expand': {
-      \   'linter_errors':       'LightlineCocErrors',
-      \   'linter_warnings':     'LightlineCocWarnings',
-      \   'linter_informations': 'LightlineCocInformation',
-      \   'linter_ok':           'LightlineCocOk',
+      \   'linter_errors':       'LightLineCocErrors',
+      \   'linter_warnings':     'LightLineCocWarnings',
+      \   'linter_informations': 'LightLineCocInformation',
+      \   'linter_ok':           'LightLineCocOk',
       \ },
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' }
@@ -142,7 +142,7 @@ function! LightLineCocInformation() abort
   return b:coc_diagnostic_info['information'] != 0 ? ' ' . b:coc_diagnostic_info['information'] : ''
 endfunction
 
-function! LightlineCocOk() abort
+function! LightLineCocOk() abort
   return b:coc_diagnostic_info['error'] == 0 &&
   \ b:coc_diagnostic_info['warning'] == 0 &&
   \ b:coc_diagnostic_info['information'] == 0 ?
