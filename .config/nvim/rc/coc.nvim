@@ -26,7 +26,6 @@ let g:coc_global_extensions = [
      \ "coc-git",
      \ "coc-gitignore",
      \ "coc-go",
-     \ "coc-highlight",
      \ "coc-html",
      \ "coc-json",
      \ "coc-lists",
@@ -92,7 +91,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-au MyAutoCmd CursorHold * silent call CocActionAsync('highlight')
+" au MyAutoCmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
