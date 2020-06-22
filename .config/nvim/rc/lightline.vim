@@ -50,9 +50,7 @@ let g:lightline = {
       \   'linter_warnings':     'LightLineCocWarnings',
       \   'linter_informations': 'LightLineCocInformation',
       \   'linter_ok':           'LightLineCocOk',
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
       \ }
 
 " Use auocmd to force lightline update.
