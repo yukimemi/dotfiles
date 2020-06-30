@@ -22,5 +22,6 @@
   "coc.preferences.previewAutoClose": false,
   "translator.toLang": "ja",
   "translator.engines": ["google", "bing"],
-  "eslint.autoFixOnSave": true
+  "eslint.autoFixOnSave": true,
+  "suggest.asciiCharactersOnly": true
 }

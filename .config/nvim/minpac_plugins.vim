@@ -1,5 +1,6 @@
 " Plugins: {{{1
 " Pack 'Konfekt/FastFold', {'type': 'lazyall'}
+" Pack 'LeafCage/foldCC.vim', {'type': 'lazyall'}
 " Pack 'LumaKernel/vim-messages-qf', {'type': 'lazy'}
 " Pack 'MaxMEllon/vim-shiny', {'type': 'lazyall'}
 " Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
@@ -144,7 +145,6 @@
 " Pack 'yssl/QFEnter', {'type': 'lazyall'}
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'AndrewRadev/linediff.vim', {'type': 'opt', 'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
-Pack 'LeafCage/foldCC.vim', {'type': 'lazyall'}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/deol.nvim', {'type': 'opt', 'on': ['Deol', 'DeolCd', 'DeolEdit'], 'do': 'silent! UpdateRemotePlugins'}
@@ -184,6 +184,7 @@ Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-user'
 Pack 'lambdalisue/gina.vim'
+Pack 'lambdalisue/readablefold.vim'
 Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
 Pack 'liuchengxu/vim-which-key'
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
