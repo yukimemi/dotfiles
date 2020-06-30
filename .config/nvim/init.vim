@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/06/30 00:02:43.
+" Last Change : 2020/06/30 21:29:15.
 " =============================================================================
 
 " Init: {{{1
@@ -267,7 +267,7 @@ au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>p <SID>addHeaderP
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>ab <SID>addHeaderPs1(0, 1)
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>am <SID>addHeaderPs1(1, 1)
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>ap <SID>addHeaderPs1(2, 1)
-au MyAutoCmd FileType ps1 setl expandtab ts=2 sw=2 sts=0
+au MyAutoCmd FileType ps1 setl expandtab ts=2 sw=2 sts=0 foldmethod=syntax
 
 " dosbatch {{{2
 function! s:addHeaderBat(pattern, verb)
