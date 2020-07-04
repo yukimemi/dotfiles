@@ -1,8 +1,9 @@
 [general]
 ".config"                              = "~/.config"
+".editorconfig"                        = "~/.editorconfig"
+".qutebrowser"                         = "~/.qutebrowser"
 ".stack"                               = "~/.stack"
 ".surfingkeys.js"                      = "~/.surfingkeys.js"
-".qutebrowser"                         = "~/.qutebrowser"
 ".volt"                                = "~/.volt"
 
 [windows]

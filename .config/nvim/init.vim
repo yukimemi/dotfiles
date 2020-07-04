@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/06/30 21:29:15.
+" Last Change : 2020/07/05 02:56:14.
 " =============================================================================
 
 " Init: {{{1
@@ -96,9 +96,13 @@ endfunction
 
 function! s:open_current_dir() abort "{{{2
   if g:is_windows
-    setl noshellslash
-    exe printf("!start \"%s\"", expand("%:h"))
-    setl shellslash
+    if !has('nvim')
+      setl noshellslash
+      exe printf("!start \"%s\"", expand("%:h"))
+      setl shellslash
+    else
+      exe printf("!explorer \"%s\"", expand("%:h"))
+    endif
   else
     exe printf("!open \"%s\"", expand("%:h"))
   endif
@@ -160,6 +164,7 @@ endif
 if has('nvim')
   set pumblend=10
   set winblend=10
+  set inccommand=split
 endif
 
 " terminal {{{2
@@ -463,6 +468,10 @@ au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<cr>
 " For git commit.
 au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
 
+if has('nvim')
+  au MyAutoCmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
+endif
+
 if has('gui_running')
   if g:is_windows
     nnoremap <leader>r :<c-u>simalt ~r<cr>
@@ -521,7 +530,7 @@ let g:plugin_use_clap = 0
 let g:plugin_use_fzf = 0
 let g:plugin_use_cocfzf = 0
 let g:plugin_use_fz = 0
-let g:plugin_use_denite = 0
+let g:plugin_use_denite = 1
 
 let g:plugin_use_fern = 1
 
@@ -555,6 +564,14 @@ let g:neovide_transparency = 0.9
 let g:neovide_cursor_vfx_mode = "railgun"
 " set guifont=Utatane
 " set guifontwide=Utatane
+
+" lua: {{{1
+if has('nvim') && !g:is_windows
+  packadd nvim-treesitter
+lua << EOF
+  require('init')
+EOF
+endif
 
 filetype plugin indent on
 

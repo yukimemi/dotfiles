@@ -160,7 +160,6 @@ Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
 Pack 'dkarter/bullets.vim', {'type': 'opt', 'for': 'markdown'}
 Pack 'editorconfig/editorconfig-vim'
 Pack 'eugen0329/vim-esearch', {'type': 'opt', 'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
-Pack 'ghifarit53/tokyonight.vim', {'type': 'opt'}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
 Pack 'gkeep/iceberg-dark', {'type': 'opt'}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
@@ -189,7 +188,7 @@ Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
 Pack 'liuchengxu/vim-which-key'
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'luochen1990/rainbow', {'type': 'lazyall'}
-Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
+Pack 'machakann/vim-highlightedyank', {'type': 'lazyall', 'if': !has('nvim')}
 Pack 'machakann/vim-textobj-delimited', {'type': 'lazyall'}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
 Pack 'mattn/emmet-vim', {'type': 'opt', 'for': ['html']}
@@ -204,6 +203,7 @@ Pack 'mhinz/vim-grepper'
 Pack 'mopp/smartnumber.vim', {'type': 'lazyall'}
 Pack 'nathanaelkane/vim-indent-guides'
 Pack 'ntpeters/vim-better-whitespace', {'type': 'opt', 'event': 'CursorHold'}
+Pack 'nvim-treesitter/nvim-treesitter', {'if': has('nvim') && !g:is_windows}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
