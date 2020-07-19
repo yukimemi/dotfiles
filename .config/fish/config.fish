@@ -174,6 +174,7 @@ abbr -a a 'git add'
 abbr -a gci 'git commit -v'
 # branch
 abbr -a gb 'git branch'
+abbr -a gr 'cd (git rev-parse --show-cdup)'
 abbr -a gba 'git branch -a'
 abbr -a gbd 'git branch -d'
 # pull
@@ -187,7 +188,7 @@ abbr -a h 'git show'
 # diff
 abbr -a d 'git diff'
 # rebase
-abbr -a gr 'git rebase'
+# abbr -a gr 'git rebase'
 abbr -a gri 'git rebase -i'
 # log
 abbr -a gl 'git log'
