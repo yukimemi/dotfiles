@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2020/04/28 22:40:00.
+" Last Change : 2020/07/19 18:16:44.
 " =============================================================================
 
 " Plugin: {{{1
@@ -13,11 +13,15 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 
-let g:dein#auto_recache = 1
+let g:dein#auto_recache = 0
 let g:dein#enable_notification = 1
 let g:dein#install_max_processes = 16
 let g:dein#enable_notification = 1
 let g:dein#types#git#clone_depth = 1
+
+function! IsInstalled(name) abort
+  return !dein#check_install(a:name)
+endfunction
 
 if !dein#load_state(s:dein_dir)
   finish
@@ -29,10 +33,6 @@ call dein#begin(s:dein_dir, [$MYVIMRC, s:toml_file])
 call dein#load_toml(s:toml_file)
 call dein#end()
 call dein#save_state()
-
-function! IsInstalled(name) abort
-  return !dein#check_install(a:name)
-endfunction
 
 " Check and install.
 if has('vim_starting') && dein#check_install() && !g:is_windows

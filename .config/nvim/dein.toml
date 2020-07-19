@@ -1,15 +1,15 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/04/28 12:24:07.
+# Last Change : 2020/07/19 17:49:23.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
 [[plugins]]
 repo = 'Shougo/dein.vim' # {{{2
 
-[[plugins]]
-repo = 'wsdjeg/dein-ui.vim' # {{{2
+# [[plugins]]
+# repo = 'wsdjeg/dein-ui.vim' # {{{2
 
 # ==================== Visual ==================== {{{1
 # [[plugins]]
@@ -33,6 +33,7 @@ hook_add = '''
 source $VIM_PATH/rc/lightline.vim
 '''
 if = "g:plugin_use_lightline"
+depends = ['vista.vim', 'vim-devicons']
 
 # [[plugins]]
 # repo = 'kmtoki/lightline-colorscheme-simplicity' # {{{2
@@ -61,23 +62,30 @@ source $VIM_PATH/rc/vim-indent-guides.vim
 
 [[plugins]]
 repo = 'itchyny/vim-highlighturl' # {{{2
-on_event = "CursorHold"
+on_event = ["CursorHold"]
 
 [[plugins]]
 repo = 'andymass/vim-matchup' # {{{2
-on_event = "CursorHold"
+on_event = ["CursorHold"]
 
 [[plugins]]
 repo = 'ntpeters/vim-better-whitespace' # {{{2
-on_event = "CursorHold"
+on_event = ["CursorHold"]
 
 # [[plugins]]
 # repo = 'jeffkreeftmeijer/vim-numbertoggle' # {{{2
 # on_event = ["CursorHold", "WinEnter"]
 
 [[plugins]]
+repo = 'mopp/smartnumber.vim'
+hook_add = '''
+source $VIM_PATH/rc/smartnumber.vim
+'''
+on_event = ["WinEnter"]
+
+[[plugins]]
 repo = 'mattn/transparency-windows-vim' # {{{2
-if = "g:is_windows"
+if = "g:is_windows && has('gui')"
 hook_add = '''
 source $VIM_PATH/rc/transparency-windows-vim.vim
 '''
@@ -103,6 +111,14 @@ on_event = ['CursorMoved']
 # hook_add = '''
 # source $VIM_PATH/rc/comfortable-motion.vim
 # '''
+
+[[plugins]]
+repo = 'lambdalisue/readablefold.vim'
+on_event  = ['CursorHold']
+
+[[plugins]]
+repo = 'lambdalisue/seethrough.vim'
+if = "!has('gui')"
 
 # ==================== Complement ================ {{{1
 [[plugins]]
@@ -154,9 +170,9 @@ source $VIM_PATH/rc/coc.nvim
 # repo = 'cohama/lexima.vim' # {{{2
 # on_event = ['InsertEnter']
 
-[[plugins]]
-repo = 'honza/vim-snippets' # {{{2
-on_event = ['InsertEnter']
+# [[plugins]]
+# repo = 'honza/vim-snippets' # {{{2
+# on_event = ['InsertEnter']
 
 # ==================== Utility =================== {{{1
 [[plugins]]
@@ -218,18 +234,46 @@ on_cmd = ['Capture']
 [[plugins]]
 repo = 'Shougo/echodoc.vim' # {{{2
 depends = ['context_filetype.vim']
-on_event = "InsertEnter"
+on_event = ["InsertEnter"]
 hook_add = '''
 source $VIM_PATH/rc/echodoc.vim
 '''
 
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim' # {{{2
-on_cmd = 'CtrlP'
+on_cmd = ['CtrlP', 'CtrlPBuffer', 'CtrlPCurFile', 'CtrlPMRU']
 hook_add = '''
 source $VIM_PATH/rc/ctrlp.vim
 '''
 if = "g:plugin_use_ctrlp"
+[[plugins]]
+repo = 'kaneshin/ctrlp-filetype' # {{{2
+depends = ['ctrlp.vim']
+on_cmd = ['CtrlPFiletype']
+[[plugins]]
+repo = 'kaneshin/ctrlp-memolist' # {{{2
+depends = ['ctrlp.vim']
+on_cmd = ['CtrlPMemolist']
+[[plugins]]
+repo = 'mattn/ctrlp-launcher' # {{{2
+depends = ['ctrlp.vim']
+on_cmd = ['CtrlPLauncher']
+[[plugins]]
+repo = 'mattn/ctrlp-mark' # {{{2
+depends = ['ctrlp.vim']
+on_cmd = ['CtrlPMark']
+[[plugins]]
+repo = 'mattn/ctrlp-vimhelpjp' # {{{2
+depends = ['ctrlp.vim', 'webapi-vim']
+on_cmd = 'VimHelpJp'
+[[plugins]]
+repo = 'suy/vim-ctrlp-commandline' # {{{2
+depends = ['ctrlp.vim']
+on_cmd = ['CtrlPCommandLine']
+[[plugins]]
+repo = 'ompugao/ctrlp-history' # {{{2
+depends = ['ctrlp.vim']
+on_cmd = ['CtrlPCmdHistory', 'CtrlPSearchHistory']
 
 [[plugins]]
 repo = 'liuchengxu/vim-clap' # {{{2
@@ -241,27 +285,6 @@ hook_post_update = '''
 call clap#helper#build_all()
 '''
 if = "g:plugin_use_clap"
-
-[[plugins]]
-repo = 'kaneshin/ctrlp-filetype' # {{{2
-on_source = 'ctrlp.vim'
-[[plugins]]
-repo = 'kaneshin/ctrlp-memolist' # {{{2
-on_source = 'ctrlp.vim'
-[[plugins]]
-repo = 'mattn/ctrlp-launcher' # {{{2
-on_source = 'ctrlp.vim'
-[[plugins]]
-repo = 'mattn/ctrlp-mark' # {{{2
-on_source = 'ctrlp.vim'
-[[plugins]]
-repo = 'mattn/ctrlp-vimhelpjp' # {{{2
-depends = 'webapi-vim'
-on_source = 'ctrlp.vim'
-on_cmd = 'VimHelpJp'
-[[plugins]]
-repo = 'ompugao/ctrlp-history' # {{{2
-on_source = 'ctrlp.vim'
 
 [[plugins]]
 repo = 'dhruvasagar/vim-table-mode' # {{{2
@@ -315,12 +338,23 @@ if = '!has("nvim")'
 repo = 'mattn/webapi-vim' # {{{2
 lazy = 1
 
-# [[plugins]]
-# repo = 'lambdalisue/fern.vim' # {{{2
-# on_cmd = 'Fern'
-# hook_add = '''
-# source $VIM_PATH/rc/fern.vim
-# '''
+[[plugins]]
+repo = 'lambdalisue/fern.vim' # {{{2
+depends = ['fern-bookmark.vim', 'fern-comparator-lexical.vim', 'fern-renderer-devicons.vim']
+on_cmd = 'Fern'
+hook_add = '''
+source $VIM_PATH/rc/fern.vim
+'''
+if = "g:plugin_use_fern"
+[[plugins]]
+repo = 'lambdalisue/fern-bookmark.vim'
+lazy = 1
+[[plugins]]
+repo = 'lambdalisue/fern-comparator-lexical.vim'
+lazy = 1
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-devicons.vim'
+lazy = 1
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim' # {{{2
@@ -339,26 +373,26 @@ repo = 'editorconfig/editorconfig-vim' # {{{2
 # source $VIM_PATH/rc/vim-reanimate.vim
 # '''
 
-# [[plugins]]
-# repo = 'haya14busa/vim-edgemotion' # {{{2
-# on_map = '<Plug>'
-# hook_add = '''
-# source $VIM_PATH/rc/vim-edgemotion.vim
-# '''
-
 [[plugins]]
-repo = 'tyru/columnskip.vim' # {{{2
+repo = 'haya14busa/vim-edgemotion' # {{{2
 on_map = '<Plug>'
 hook_add = '''
-source $VIM_PATH/rc/columnskip.vim
+source $VIM_PATH/rc/vim-edgemotion.vim
 '''
 
-[[plugins]]
-repo = 'LumaKernel/vim-messages-qf' # {{{2
-on_cmd = ['MessagesQF']
-hook_add = '''
-source $VIM_PATH/rc/vim-messages-qf.vim
-'''
+# [[plugins]]
+# repo = 'tyru/columnskip.vim' # {{{2
+# on_map = '<Plug>'
+# hook_add = '''
+# source $VIM_PATH/rc/columnskip.vim
+# '''
+
+# [[plugins]]
+# repo = 'LumaKernel/vim-messages-qf' # {{{2
+# on_cmd = ['MessagesQF']
+# hook_add = '''
+# source $VIM_PATH/rc/vim-messages-qf.vim
+# '''
 
 [[plugins]]
 repo = 'thinca/vim-quickrun' # {{{2
@@ -386,6 +420,14 @@ on_ft = ['markdown']
 [[plugins]]
 repo = 'rickhowe/diffchar.vim' # {{{2
 on_if = '&diff'
+
+[[plugins]]
+repo = 'liuchengxu/vim-which-key' # {{{2
+on_event  = ['CursorHold']
+
+[[plugins]]
+repo = 'liuchengxu/vista.vim' # {{{2
+
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
@@ -419,12 +461,12 @@ repo = 't9md/vim-quickhl' # {{{2
 hook_add = '''
 source $VIM_PATH/rc/vim-quickhl.vim
 '''
-[[plugins]]
-repo = 'unblevable/quick-scope' # {{{2
-on_event  = ['CursorHold']
-hook_add = '''
-source $VIM_PATH/rc/quick-scope.vim
-'''
+# [[plugins]]
+# repo = 'unblevable/quick-scope' # {{{2
+# on_event  = ['CursorHold']
+# hook_add = '''
+# source $VIM_PATH/rc/quick-scope.vim
+# '''
 
 [[plugins]]
 repo = 'itchyny/vim-parenmatch' # {{{2
@@ -438,12 +480,12 @@ hook_add = '''
 source $VIM_PATH/rc/vim-cursorword.vim
 '''
 
-[[plugins]]
-repo = 'RRethy/vim-illuminate' # {{{2
-on_event  = ['CursorHold']
-hook_add = '''
-source $VIM_PATH/rc/vim-illuminate.vim
-'''
+# [[plugins]]
+# repo = 'RRethy/vim-illuminate' # {{{2
+# on_event  = ['CursorHold']
+# hook_add = '''
+# source $VIM_PATH/rc/vim-illuminate.vim
+# '''
 
 [[plugins]]
 repo = 'thinca/vim-qfreplace' # {{{2
@@ -460,17 +502,20 @@ on_ft = ['quickfix']
 repo = 'mhinz/vim-grepper' # {{{2
 on_cmd = 'Grepper'
 on_map = '<Plug>'
-hook_add = '''
+hook_source = '''
 source $VIM_PATH/rc/vim-grepper.vim
 '''
 
-[[plugins]]
-repo = 'tsuyoshicho/vim-fg' # {{{2
-on_cmd = ['Fg', 'FgRipGrep', 'FgPt']
+# [[plugins]]
+# repo = 'tsuyoshicho/vim-fg' # {{{2
+# on_cmd = ['Fg', 'FgRipGrep', 'FgPt']
 
 [[plugins]]
 repo = 'eugen0329/vim-esearch'
-on_event = ['WinEnter']
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-esearch.vim
+'''
 
 # ==================== Operators ================= {{{1
 [[plugins]]
@@ -561,15 +606,15 @@ source $VIM_PATH/rc/vim-textobj-line.vim
 '''
 
 # ==================== Comment =================== {{{1
-# [[plugins]]
-# repo = 'tyru/caw.vim' # {{{2
-# on_map = '<Plug>'
-# hook_add = '''
-# source $VIM_PATH/rc/caw.vim
-# '''
-
 [[plugins]]
-repo = 'tpope/vim-commentary'
+repo = 'tyru/caw.vim' # {{{2
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/caw.vim
+'''
+
+# [[plugins]]
+# repo = 'tpope/vim-commentary'
 
 # ==================== Yank/Paste ================ {{{1
 [[plugins]]
@@ -579,8 +624,8 @@ source $VIM_PATH/rc/yankround.vim
 '''
 
 # ==================== Git ======================= {{{1
-[[plugins]]
-repo = 'itchyny/vim-gitbranch' # {{{2
+# [[plugins]]
+# repo = 'itchyny/vim-gitbranch' # {{{2
 
 [[plugins]]
 repo = 'lambdalisue/gina.vim' # {{{2
@@ -588,13 +633,13 @@ hook_add = '''
 source $VIM_PATH/rc/gina.vim
 '''
 
-[[plugins]]
-repo = 'rhysd/git-messenger.vim' # {{{2
-on_cmd = 'GitMessenger'
-on_map = '<Plug>(git-messenger'
-hook_add = '''
-source $VIM_PATH/rc/git-messenger.vim
-'''
+# [[plugins]]
+# repo = 'rhysd/git-messenger.vim' # {{{2
+# on_cmd = 'GitMessenger'
+# on_map = '<Plug>(git-messenger'
+# hook_add = '''
+# source $VIM_PATH/rc/git-messenger.vim
+# '''
 
 # ==================== Filetype (all) ============= {{{1
 [[plugins]]
@@ -621,9 +666,9 @@ source $VIM_PATH/rc/vim-slumlord.vim
 # repo = 'rhysd/vim-gfm-syntax'
 # on_ft = 'markdown'
 
-[[plugins]]
-repo = 'nelstrom/vim-markdown-folding' # {{{2
-on_ft = 'markdown'
+# [[plugins]]
+# repo = 'nelstrom/vim-markdown-folding' # {{{2
+# on_ft = 'markdown'
 
 [[plugins]]
 repo = 'iamcco/markdown-preview.nvim' # {{{2
@@ -650,9 +695,9 @@ source $VIM_PATH/rc/bullets.vim
 # source $VIM_PATH/rc/rust.vim
 # '''
 
-[[plugins]]
-repo = 'rhysd/rust-doc.vim' # {{{2
-on_ft = 'rust'
+# [[plugins]]
+# repo = 'rhysd/rust-doc.vim' # {{{2
+# on_ft = 'rust'
 
 
 # ==================== Filetype (Haskell) ======== {{{1

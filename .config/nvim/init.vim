@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/07/17 13:48:38.
+" Last Change : 2020/07/19 17:58:20.
 " =============================================================================
 
 " Init: {{{1
@@ -137,6 +137,7 @@ else
 endif
 
 set number
+set signcolumn=yes
 set ambiwidth=double
 set history=10000
 set nofixeol
@@ -510,9 +511,9 @@ au MyAutoCmd BufWritePost *
       \ endif
 
 " Plugin: {{{1
-let s:use_dein = 0
+let s:use_dein = 1
 let s:use_vimplug = 0
-let s:use_minpac = 1
+let s:use_minpac = 0
 let s:use_packager = 0
 let s:use_volt = 0
 let s:use_pack = 0
@@ -554,7 +555,7 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-packadd gruvbox-material
+silent! packadd gruvbox-material
 silent! colorscheme gruvbox-material
 
 " Neovide: {{{1
@@ -565,12 +566,12 @@ let g:neovide_cursor_vfx_mode = "railgun"
 " set guifontwide=Utatane
 
 " lua: {{{1
-if has('nvim') && !g:is_windows
-  packadd nvim-treesitter
-lua << EOF
-  require('init')
-EOF
-endif
+" if has('nvim') && !g:is_windows
+  " packadd nvim-treesitter
+" lua << EOF
+"   require('init')
+" EOF
+" endif
 
 filetype plugin indent on
 
