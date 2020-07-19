@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/07/05 02:56:14.
+" Last Change : 2020/07/17 13:48:38.
 " =============================================================================
 
 " Init: {{{1
@@ -227,7 +227,6 @@ au MyAutoCmd FileType javascript nnoremap <buffer> <expr><localleader>p <SID>add
 
 " PowerShell {{{2
 function! s:addHeaderPs1(pattern, verb)
-  setl fenc=cp932
   setl ff=dos
   let l:lines = []
   if a:verb == 1
@@ -240,9 +239,9 @@ function! s:addHeaderPs1(pattern, verb)
 
   let l:line = "@set __SCRIPTPATH=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass -InputFormat None "
   if a:verb == 1
-    let l:line = l:line . "\"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 7})-join\\\"`n\\\");&$s\" %*"
+    let l:line = l:line . "\"$s=[scriptblock]::create((gc -enc utf8 \\\"%~f0\\\"|?{$_.readcount -gt 7})-join\\\"`n\\\");&$s\" %*"
   else
-    let l:line = l:line . "\"$s=[scriptblock]::create((gc \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*"
+    let l:line = l:line . "\"$s=[scriptblock]::create((gc -enc utf8 \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*"
   endif
   if a:pattern == 1
   elseif a:pattern == 2
@@ -272,7 +271,7 @@ au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>p <SID>addHeaderP
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>ab <SID>addHeaderPs1(0, 1)
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>am <SID>addHeaderPs1(1, 1)
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>ap <SID>addHeaderPs1(2, 1)
-au MyAutoCmd FileType ps1 setl expandtab ts=2 sw=2 sts=0 foldmethod=syntax
+au MyAutoCmd FileType ps1 setl expandtab ts=2 sw=2 sts=0 foldmethod=syntax ff=dos
 
 " dosbatch {{{2
 function! s:addHeaderBat(pattern, verb)

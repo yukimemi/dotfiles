@@ -63,13 +63,13 @@ Activate(APPDATA . "Local\Microsoft\Teams\current\Teams.exe")
 return
 
 ; for gvim
-; F10::
-; Activate("C:\tools\vim\vim82\gvim.exe")
-; return
-; for neovim
 F10::
-Activate(USERPROFILE . "\scoop\apps\neovim\current\bin\nvim.exe")
+Activate("C:\tools\vim\vim82\gvim.exe")
 return
+; for neovim
+; F10::
+; Activate(USERPROFILE . "\scoop\shims\nvim.exe")
+; return
 
 ; for sakura
 ^F10::

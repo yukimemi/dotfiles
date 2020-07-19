@@ -11,8 +11,8 @@ endif
 " font
 " set gfn=Utatane:h11:cSHIFTJIS:qDRAFT
 " set gfw=Utatane:h11:cSHIFTJIS:qDRAFT
-set gfn=Utatane:h11
-set gfw=Utatane:h11
+set gfn=Utatane:h10
+set gfw=Utatane:h10
 set printfont=Utatane:h8
 "set gfn=Ricty_Diminished_Discord:h10:cSHIFTJIS:qDRAFT
 "set gfw=Ricty_Diminished_Discord:h10:cSHIFTJIS:qDRAFT

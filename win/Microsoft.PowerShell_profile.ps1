@@ -63,6 +63,9 @@ function gig {
   $params = ($list | ForEach-Object { [uri]::EscapeDataString($_) }) -join ","
   Invoke-WebRequest -Uri "https://www.gitignore.io/api/$params" | select -ExpandProperty content | Out-File -FilePath $(Join-Path -path $pwd -ChildPath ".gitignore") -Encoding ascii
 }
+function gr {
+  cd $(git rev-parse --show-cdup)
+}
 
 # Auto ls on cd.
 function cd-ls {
