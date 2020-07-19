@@ -1,15 +1,16 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/07/19 17:49:23.
+# Last Change : 2020/07/19 19:58:15.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
 [[plugins]]
 repo = 'Shougo/dein.vim' # {{{2
 
-# [[plugins]]
-# repo = 'wsdjeg/dein-ui.vim' # {{{2
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim' # {{{2
+on_cmd = ['DeinUpdate']
 
 # ==================== Visual ==================== {{{1
 # [[plugins]]
@@ -173,6 +174,16 @@ source $VIM_PATH/rc/coc.nvim
 # [[plugins]]
 # repo = 'honza/vim-snippets' # {{{2
 # on_event = ['InsertEnter']
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+on_event = ['InsertEnter']
+hook_source = '''
+source $VIM_PATH/rc/vim-vsnip.vim
+'''
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
+depends = ['vim-vsnip']
 
 # ==================== Utility =================== {{{1
 [[plugins]]
@@ -428,6 +439,11 @@ on_event  = ['CursorHold']
 [[plugins]]
 repo = 'liuchengxu/vista.vim' # {{{2
 
+[[plugins]]
+repo = 'thinca/vim-ambicmd'
+hook_add = '''
+source $VIM_PATH/rc/vim-ambicmd.vim
+'''
 
 # ==================== Denite ==================== {{{1
 [[plugins]]
