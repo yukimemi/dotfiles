@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/07/19 17:58:20.
+" Last Change : 2020/07/21 17:32:28.
 " =============================================================================
 
 " Init: {{{1
@@ -555,8 +555,8 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-silent! packadd gruvbox-material
-silent! colorscheme gruvbox-material
+silent! packadd palenight
+silent! colorscheme palenight
 
 " Neovide: {{{1
 let g:neovide_transparency = 0.9
