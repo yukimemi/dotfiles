@@ -145,6 +145,9 @@ function r {
 function v {
   gvim --remote-silent $args
 }
+function VimDeinUpdate {
+  vim -c "silent! call dein#update() | q"
+}
 
 # Alias.
 Set-Alias gomi RemoveTo-Trash

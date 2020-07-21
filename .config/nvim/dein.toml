@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/07/19 19:58:15.
+# Last Change : 2020/07/21 14:28:41.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -22,8 +22,8 @@ repo = 'sainnhe/gruvbox-material' # {{{2
 # [[plugins]]
 # repo =  'hiroakis/cyberspace.vim' # {{{2
 
-[[plugins]]
-repo = 'NLKNguyen/papercolor-theme' # {{{2
+# [[plugins]]
+# repo = 'NLKNguyen/papercolor-theme' # {{{2
 
 [[plugins]]
 repo = 'ryanoasis/vim-devicons' # {{{2
@@ -73,16 +73,16 @@ on_event = ["CursorHold"]
 repo = 'ntpeters/vim-better-whitespace' # {{{2
 on_event = ["CursorHold"]
 
-# [[plugins]]
-# repo = 'jeffkreeftmeijer/vim-numbertoggle' # {{{2
-# on_event = ["CursorHold", "WinEnter"]
-
 [[plugins]]
-repo = 'mopp/smartnumber.vim'
-hook_add = '''
-source $VIM_PATH/rc/smartnumber.vim
-'''
-on_event = ["WinEnter"]
+repo = 'jeffkreeftmeijer/vim-numbertoggle' # {{{2
+on_event = ["CursorHold", "WinEnter"]
+
+# [[plugins]]
+# repo = 'mopp/smartnumber.vim' # {{{2
+# hook_add = '''
+# source $VIM_PATH/rc/smartnumber.vim
+# '''
+# on_event = ["CursorHold", "WinEnter"]
 
 [[plugins]]
 repo = 'mattn/transparency-windows-vim' # {{{2
@@ -191,6 +191,7 @@ repo = 'airblade/vim-rooter' # {{{2
 hook_add = '''
 source $VIM_PATH/rc/vim-rooter.vim
 '''
+on_event = ['CursorMoved']
 
 [[plugins]]
 repo = 'thinca/vim-submode' # {{{2
@@ -849,9 +850,6 @@ rust = '''
 text = '''
 setl noexpandtab
 setl ts=4 sw=4 sts=0
-set background=light
-colorscheme PaperColor
-let g:lightline.colorscheme = 'PaperColor'
 '''
 
 # vim:fdm=marker fdc=3:
