@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/07/21 14:28:41.
+# Last Change : 2020/07/21 16:21:04.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -24,6 +24,9 @@ repo = 'sainnhe/gruvbox-material' # {{{2
 
 # [[plugins]]
 # repo = 'NLKNguyen/papercolor-theme' # {{{2
+
+[[plugins]]
+repo = 'drewtempelmeyer/palenight.vim'
 
 [[plugins]]
 repo = 'ryanoasis/vim-devicons' # {{{2
