@@ -141,7 +141,11 @@ if type -q zoxide
 else
   abbr -a j __filter_command_z
 end
-if type -q gomi
+if type -q trash
+  abbr -a rm trash
+  abbr -a r __filter_command_trash
+else if type -q gomi
+  abbr -a rm gomi
   abbr -a r __filter_command_gomi
 else
   abbr -a r __filter_command_rm
