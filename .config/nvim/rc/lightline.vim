@@ -18,8 +18,7 @@ let g:lightline = {
       \             [ 'vista', 'quickfix_title' ] ],
       \   'right': [
       \     ['lineinfo'],
-      \     ['filetype', 'fileencoding', 'fileformat'],
-      \     ['linter_ok', 'linter_informations', 'linter_warnings', 'linter_errors'],
+      \     ['filetype', 'fileencoding', 'fileformat']
       \   ],
       \ },
       \ 'component': {

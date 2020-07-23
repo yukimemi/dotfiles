@@ -8,7 +8,6 @@
 " Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
 " Pack 'RRethy/vim-illuminate', {'type': 'opt', 'event': 'CursorHold'}
 " Pack 'Rigellute/rigel', {'type': 'opt'}
-" Pack 'Shougo/defx.nvim', {'type': 'opt', 'on': ['Defx'], 'do': 'silent! UpdateRemotePlugins'}
 " Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
 " Pack 'Shougo/junkfile.vim', {'type': 'opt', 'on': 'JunkfileOpen'}
 " Pack 'Shougo/neco-syntax'
@@ -63,7 +62,6 @@
 " Pack 'kchmck/vim-coffee-script', {'type': 'opt', 'for': 'coffee'}
 " Pack 'keremc/asyncomplete-racer.vim', {'type': 'opt', 'for': 'rust', 'if': !executable('rls')}
 " Pack 'kopischke/vim-stay'
-" Pack 'kristijanhusak/defx-icons', {'type': 'opt'}
 " Pack 'kristijanhusak/vim-hybrid-material', {'type': 'opt'}
 " Pack 'kshenoy/vim-signature', {'type': 'lazyall'}
 " Pack 'kylef/apiblueprint.vim', {'type': 'opt', 'for': 'apiblueprint'}
@@ -305,6 +303,11 @@ if g:plugin_use_fern
   Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
+endif
+
+if g:plugin_use_defx
+  Pack 'Shougo/defx.nvim', {'type': 'opt', 'on': ['Defx'], 'do': 'silent! UpdateRemotePlugins'}
+  Pack 'kristijanhusak/defx-icons', {'type': 'opt'}
 endif
 
 " Completion: {{{1
