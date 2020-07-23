@@ -92,6 +92,7 @@
 " Pack 'mox-mox/vim-localsearch', {'type': 'lazyall'}
 " Pack 'nelstrom/vim-markdown-folding', {'type': 'opt', 'for': 'markdown'}
 " Pack 'neovimhaskell/haskell-vim', {'type': 'opt', 'for': ['haskell', 'cabal']}
+" Pack 'nvim-treesitter/nvim-treesitter', {'if': has('nvim') && !g:is_windows}
 " Pack 'osyo-manga/vim-anzu', {'type': 'lazyall'}
 " Pack 'osyo-manga/vim-jplus', {'type': 'lazyall'}
 " Pack 'osyo-manga/vim-operator-blockwise', {'type': 'lazyall'}
@@ -158,6 +159,7 @@ Pack 'cocopon/iceberg.vim', {'type': 'opt'}
 Pack 'da-x/name-assign.vim', {'type': 'opt', 'on': ['<plug>NameAssign']}
 Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
 Pack 'dkarter/bullets.vim', {'type': 'opt', 'for': 'markdown'}
+Pack 'drewtempelmeyer/palenight.vim', {'type': 'opt'}
 Pack 'editorconfig/editorconfig-vim'
 Pack 'eugen0329/vim-esearch', {'type': 'opt', 'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
@@ -203,7 +205,6 @@ Pack 'mhinz/vim-grepper'
 Pack 'mopp/smartnumber.vim', {'type': 'lazyall'}
 Pack 'nathanaelkane/vim-indent-guides'
 Pack 'ntpeters/vim-better-whitespace', {'type': 'opt', 'event': 'CursorHold'}
-Pack 'nvim-treesitter/nvim-treesitter', {'if': has('nvim') && !g:is_windows}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}

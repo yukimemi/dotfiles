@@ -27,7 +27,7 @@ nnoremap <silent> scr :<c-u>CtrlP ~/.rhq<cr>
 nnoremap <silent> scD :<c-u>CtrlP ~/.dotfiles<cr>
 nnoremap <silent> scG :<c-u>CtrlPGhq<cr>
 
-command! CtrlPCommandLine call ctrlp#init(ctrlp#commandline#id())
+command! CtrlPCommandLine silent! packadd vim-ctrlp-commandline | call ctrlp#init(ctrlp#commandline#id())
 cnoremap <silent> <c-f> :<c-u>call ctrlp#init(ctrlp#commandline#id())<cr>
 
 if executable('files')

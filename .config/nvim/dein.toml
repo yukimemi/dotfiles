@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/07/21 16:21:04.
+# Last Change : 2020/07/23 15:07:47.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -105,9 +105,9 @@ if = "g:is_windows"
 # source $VIM_PATH/rc/accelerated-jk.vim
 # '''
 
-[[plugins]]
-repo = 'psliwka/vim-smoothie' # {{{2
-on_event = ['CursorMoved']
+# [[plugins]]
+# repo = 'psliwka/vim-smoothie' # {{{2
+# on_event = ['CursorMoved']
 
 # [[plugins]]
 # repo = 'yuttie/comfortable-motion.vim' # {{{2
@@ -620,7 +620,7 @@ source $VIM_PATH/rc/textobj-lastpaste.vim
 [[plugins]]
 repo = 'kana/vim-textobj-line' # {{{2
 depends = 'vim-textobj-user'
-on_map = {nox = '<Plug>(textobj-line-'}
+on_map = {nox = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-line.vim
 '''
