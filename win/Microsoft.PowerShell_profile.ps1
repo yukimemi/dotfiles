@@ -12,6 +12,11 @@
 # Install-Module -Force -Scope CurrentUser PowerHTML
 # Install-Module -Force -Scope CurrentUser ComputerManagementDsc; Get-DscResource -Module ComputerManagementDsc
 
+# wsl
+# Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+# Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile ubuntu-2004.appx -UseBasicParsing
+# Add-AppxPackage .\ubuntu-2004.appx
+
 # Use utf-8
 chcp 65001
 $OutputEncoding = [Console]::OutputEncoding
@@ -139,7 +144,11 @@ function rhl {
 # Remove-Alias r
 Remove-Item alias:r
 function r {
-  Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER | RemoveTo-Trash
+  if (Get-Command trash -ErrorAction SilentlyContinue) {
+    trash $(Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER)
+  } else {
+    Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER | RemoveTo-Trash
+  }
 }
 
 function v {
@@ -151,6 +160,8 @@ function VimDeinUpdate {
 
 # Alias.
 Set-Alias gomi RemoveTo-Trash
+Remove-Item alias:rm
+Set-Alias rm RemoveTo-Trash
 Set-Alias o Start-Process
 Set-Alias e nvim
 Set-Alias which Get-Command

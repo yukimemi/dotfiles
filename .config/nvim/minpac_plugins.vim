@@ -209,6 +209,7 @@ Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
 Pack 'previm/previm', {'type': 'opt', 'for': 'markdown'}
 Pack 'rbtnn/vim-coloredit', {'type': 'opt', 'on': 'ColorEdit'}
 Pack 'rbtnn/vim-vimscript_lasterror', {'type': 'opt', 'on': ['VimscriptLastError']}
+Pack 'rbtnn/vim-winsbar', {'type': 'opt', 'event': ['CursorMoved']}
 Pack 'rhysd/committia.vim', {'if': !g:is_windows}
 Pack 'rhysd/conflict-marker.vim', {'type': 'lazyall'}
 Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}

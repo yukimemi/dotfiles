@@ -47,6 +47,7 @@
 
 [linux]
 ".inputrc"                             = "~/.inputrc"
+".tmux.conf"                           = "~/.tmux.conf"
 ".xmodmap"                             = "~/.xmodmap"
 ".config/nvim"                         = "~/.vim"
 ".config/nvim/init.vim"                = "~/.vimrc"
