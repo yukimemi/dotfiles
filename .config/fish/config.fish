@@ -159,7 +159,7 @@ abbr -a v vim
 abbr -a o open
 if type -q lsd
   abbr -a tree 'lsd --tree'
-else if typq -q exa
+else if type -q exa
   abbr -a tree 'exa -T'
 end
 abbr -a et 'exiftool -api largefilesupport=1'
@@ -200,8 +200,8 @@ abbr -a glo 'git log --oneline'
 abbr -a gk 'git log --graph --pretty'
 
 # vim {{{2
-abbr -a mup 'nvim -c "PackUpdateQuit"'
-abbr -a mvup 'vim -c "PackUpdateQuit"'
+abbr -a mup 'nvim -c "silent! PackClean | PackUpdate | q"'
+abbr -a mvup 'vim -c "silent! PackClean | PackUpdate | q"'
 abbr -a dup 'nvim -c "silent! call dein#update() | q"'
 abbr -a dvup 'vim -c "silent! call dein#update() | q"'
 

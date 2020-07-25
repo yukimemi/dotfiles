@@ -173,7 +173,7 @@ Pack 'itchyny/vim-highlighturl', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'itchyny/vim-parenmatch', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'joshdick/onedark.vim', {'type': 'opt'}
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
-Pack 'k-takata/minpac', {'type': 'opt'}
+Pack 'k-takata/minpac', {'type': 'opt', 'branch': 'devel'}
 Pack 'kana/vim-operator-replace', {'type': 'lazyall'}
 Pack 'kana/vim-operator-user'
 Pack 'kana/vim-textobj-entire', {'type': 'lazyall'}
