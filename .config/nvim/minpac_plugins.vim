@@ -158,7 +158,7 @@ Pack 'da-x/name-assign.vim', {'type': 'opt', 'on': ['<plug>NameAssign']}
 Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
 Pack 'dkarter/bullets.vim', {'type': 'opt', 'for': 'markdown'}
 Pack 'drewtempelmeyer/palenight.vim', {'type': 'opt'}
-Pack 'editorconfig/editorconfig-vim'
+Pack 'editorconfig/editorconfig-vim', {'type': 'opt', 'event': 'VimEnter'}
 Pack 'eugen0329/vim-esearch', {'type': 'opt', 'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
 Pack 'gkeep/iceberg-dark', {'type': 'opt'}
@@ -166,6 +166,8 @@ Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'Me
 Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
 Pack 'haya14busa/vim-edgemotion', {'type': 'lazyall'}
 Pack 'honza/vim-snippets', {'type': 'opt', 'event': 'InsertEnter'}
+Pack 'hrsh7th/vim-vsnip', {'type': 'opt', 'event': 'InsertEnter'}
+Pack 'hrsh7th/vim-vsnip-integ', {'type': 'opt', 'event': 'InsertEnter'}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': '!cd app & yarn install'}
 Pack 'itchyny/vim-cursorword', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'itchyny/vim-external', {'type': 'lazyall'}
@@ -175,17 +177,17 @@ Pack 'joshdick/onedark.vim', {'type': 'opt'}
 Pack 'junegunn/vim-easy-align', {'type': 'opt', 'on': '<Plug>(EasyAlign)'}
 Pack 'k-takata/minpac', {'type': 'opt', 'branch': 'devel'}
 Pack 'kana/vim-operator-replace', {'type': 'lazyall'}
-Pack 'kana/vim-operator-user'
+Pack 'kana/vim-operator-user', {'type': 'opt', 'event': 'VimEnter'}
 Pack 'kana/vim-textobj-entire', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-fold', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-function', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
-Pack 'kana/vim-textobj-user'
+Pack 'kana/vim-textobj-user', {'type': 'opt', 'event': 'VimEnter'}
 Pack 'lambdalisue/gina.vim'
-Pack 'lambdalisue/readablefold.vim'
+Pack 'lambdalisue/readablefold.vim', {'type': 'opt', 'event': 'VimEnter'}
 Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
-Pack 'liuchengxu/vim-which-key'
+Pack 'liuchengxu/vim-which-key', {'type': 'lazyall'}
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'luochen1990/rainbow', {'type': 'lazyall'}
 Pack 'machakann/vim-highlightedyank', {'type': 'lazyall', 'if': !has('nvim')}
@@ -199,7 +201,7 @@ Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
 Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
-Pack 'mhinz/vim-grepper'
+Pack 'mhinz/vim-grepper', {'type': 'lazyall'}
 Pack 'mopp/smartnumber.vim', {'type': 'lazyall'}
 Pack 'nathanaelkane/vim-indent-guides'
 Pack 'ntpeters/vim-better-whitespace', {'type': 'opt', 'event': 'CursorHold'}
@@ -221,9 +223,9 @@ Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'ryanoasis/vim-devicons'
 Pack 'sainnhe/gruvbox-material', {'type': 'opt'}
-Pack 'sheerun/vim-polyglot'
+Pack 'sheerun/vim-polyglot', {'type': 'opt', 'event': 'VimEnter'}
 Pack 't9md/vim-quickhl', {'type': 'lazyall'}
-Pack 'thinca/vim-ambicmd'
+Pack 'thinca/vim-ambicmd', {'type': 'opt', 'event': 'VimEnter'}
 Pack 'thinca/vim-prettyprint', {'type': 'opt', 'on': 'PP'}
 Pack 'thinca/vim-qfreplace', {'type': 'opt', 'for': ['quickfix', 'qf']}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
@@ -291,7 +293,7 @@ endif
 
 if g:plugin_use_lightline
   Pack 'itchyny/lightline.vim'
-  Pack 'kmtoki/lightline-colorscheme-simplicity'
+  " Pack 'kmtoki/lightline-colorscheme-simplicity'
 endif
 
 if g:plugin_use_airline
@@ -320,8 +322,6 @@ if g:plugin_use_asyncomplete
   Pack 'mattn/vim-lsp-icons'
   Pack 'mattn/vim-lsp-settings'
   Pack 'tsuyoshicho/vim-efm-langserver-settings'
-  Pack 'hrsh7th/vim-vsnip'
-  Pack 'hrsh7th/vim-vsnip-integ'
   Pack 'high-moctane/asyncomplete-nextword.vim', {'do': 'silent! !go get -u github.com/high-moctane/nextword', 'if': executable('go') && !g:is_windows}
   Pack 'prabirshrestha/asyncomplete-buffer.vim'
   Pack 'prabirshrestha/asyncomplete-emoji.vim'
@@ -340,8 +340,6 @@ endif
 if g:plugin_use_deoplete
   Pack 'Shougo/deoplete.nvim', {'do': '!pip install -U msgpack'}
   Pack 'lighttiger2505/deoplete-vim-lsp'
-  Pack 'hrsh7th/vim-vsnip'
-  Pack 'hrsh7th/vim-vsnip-integ'
   Pack 'mattn/vim-lsp-icons'
   Pack 'mattn/vim-lsp-settings'
   Pack 'prabirshrestha/async.vim'
