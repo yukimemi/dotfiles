@@ -145,6 +145,7 @@
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'AndrewRadev/linediff.vim', {'type': 'opt', 'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
+Pack 'LumaKernel/nvim-visual-eof.lua', {'if': has('nvim')}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/deol.nvim', {'type': 'opt', 'on': ['Deol', 'DeolCd', 'DeolEdit'], 'do': 'silent! UpdateRemotePlugins'}
 Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
