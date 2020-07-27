@@ -22,7 +22,9 @@ chcp 65001
 $OutputEncoding = [Console]::OutputEncoding
 
 # starship
-Invoke-Expression (&starship init powershell)
+if (Get-Command starship -ErrorAction SilentlyContinue) {
+  Invoke-Expression (&starship init powershell)
+}
 
 # Utility functions.
 function Is-Windows {
