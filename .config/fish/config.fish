@@ -212,7 +212,8 @@ abbr -a chromeapp "open -na 'Google Chrome' --args '--app=https://"
 # youtube-dl {{{2
 abbr -a yt "youtube-dl -i"
 abbr -a ytd "youtube-dl -i --download-archive ./.downloaded"
-abbr -a ytm "youtube-dl -ix --no-post-overwrites --download-archive ./.downloaded --audio-format mp3"
+abbr -a ytM "youtube-dl -ix --no-post-overwrites --download-archive ./.downloaded --audio-format mp3"
+abbr -a ytm "youtube-dl -ix --no-post-overwrites --download-archive ./.downloaded"
 
 # Home-file {{{2
 if __isMac

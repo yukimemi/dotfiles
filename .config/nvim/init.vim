@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/07/23 18:17:50.
+" Last Change : 2020/08/01 00:43:33.
 " =============================================================================
 
 " Init: {{{1
@@ -532,8 +532,10 @@ let g:plugin_use_cocfzf = 0
 let g:plugin_use_fz = 0
 let g:plugin_use_denite = 1
 
-let g:plugin_use_fern = !has('nvim')
-let g:plugin_use_defx = has('nvim')
+" let g:plugin_use_fern = !has('nvim')
+" let g:plugin_use_defx = has('nvim')
+let g:plugin_use_fern = 1
+let g:plugin_use_defx = 0
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 if !g:no_plugin
@@ -563,8 +565,8 @@ silent! colorscheme palenight
 let g:neovide_transparency = 0.9
 " let g:neovide_fullscreen  = v:true
 let g:neovide_cursor_vfx_mode = "railgun"
-" set guifont=Utatane
-" set guifontwide=Utatane
+" set guifont=Cica
+" set guifontwide=Cica
 
 " lua: {{{1
 " if has('nvim') && !g:is_windows

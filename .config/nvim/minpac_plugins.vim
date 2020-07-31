@@ -115,6 +115,7 @@
 " Pack 'rhysd/vim-gfm-syntax', {'type': 'opt', 'for': 'markdown'}
 " Pack 'rhysd/vim-healthcheck', {'type': 'opt', 'on': ['CheckHealth']}
 " Pack 'rust-lang/rust.vim', {'type': 'opt', 'for': 'rust'}
+" Pack 'ryanoasis/vim-devicons'
 " Pack 'scrooloose/nerdtree', {'type': 'opt', 'on': ['NERDTreeToggle', 'NERDTreeFind']}
 " Pack 'scrooloose/vim-slumlord', {'type': 'opt', 'for': 'plantuml'}
 " Pack 'skanehira/preview-markdown.vim', {'type': 'opt', 'on': 'PreviewMarkdown', 'if': executable('mdr') && !has('nvim')}
@@ -145,7 +146,7 @@
 " Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 Pack 'AndrewRadev/linediff.vim', {'type': 'opt', 'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
-Pack 'LumaKernel/nvim-visual-eof.lua', {'if': has('nvim')}
+Pack 'LumaKernel/nvim-visual-eof.lua', {'type': 'lazyall', 'if': has('nvim')}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/deol.nvim', {'type': 'opt', 'on': ['Deol', 'DeolCd', 'DeolEdit'], 'do': 'silent! UpdateRemotePlugins'}
 Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
@@ -186,6 +187,8 @@ Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-user', {'type': 'opt', 'event': 'VimEnter'}
 Pack 'lambdalisue/gina.vim'
+Pack 'lambdalisue/nerdfont-palette.vim'
+Pack 'lambdalisue/nerdfont.vim'
 Pack 'lambdalisue/readablefold.vim', {'type': 'opt', 'event': 'VimEnter'}
 Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
 Pack 'liuchengxu/vim-which-key', {'type': 'lazyall'}
@@ -222,7 +225,6 @@ Pack 'romgrk/github-light.vim', {'type': 'opt'}
 Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
-Pack 'ryanoasis/vim-devicons'
 Pack 'sainnhe/gruvbox-material', {'type': 'opt'}
 Pack 'sheerun/vim-polyglot', {'type': 'opt', 'event': 'VimEnter'}
 Pack 't9md/vim-quickhl', {'type': 'lazyall'}
@@ -306,7 +308,8 @@ if g:plugin_use_fern
   Pack 'lambdalisue/fern.vim'
   Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
-  Pack 'lambdalisue/fern-renderer-devicons.vim', {'type': 'lazyall'}
+  Pack 'lambdalisue/fern-git.vim', {'type': 'lazyall'}
+  Pack 'lambdalisue/fern-renderer-nerdfont.vim', {'type': 'lazyall'}
 endif
 
 if g:plugin_use_defx

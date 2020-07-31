@@ -7,8 +7,8 @@ nnoremap <silent> ge :<c-u>exe printf("Fern file:///%s -drawer -reveal=%s", expa
 " fern-bookmark.vim
 " let g:fern#mapping#bookmark#disable_default_mappings = 0
 
-" fern-renderer-devicons.vim
-let g:fern#renderer = "devicons"
+" fern-renderer-nerdfont.vim
+let g:fern#renderer = "nerdfont"
 
 " fern-comparator-lexical.vim
 " let g:fern#comparator = "lexical"
