@@ -21,7 +21,7 @@ terminal:
       - '#a04b73'
       - '#578e57'
       - '#e6d4a3'
-  font: Utatane Regular
+  font: Cica Regular
   environment: {}
   profile: powershell
   bell: 'off'
