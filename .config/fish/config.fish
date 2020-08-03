@@ -53,13 +53,13 @@ set -U FZF_COMPLETE 1
 # set -x RBENV_ROOT ~/.rbenv
 
 # Install anyenv. {{{1
-if not test -d ~/.anyenv
-  git clone https://github.com/riywo/anyenv ~/.anyenv
-end
-if not test -d ~/.anyenv/plugins/anyenv-update
-  mkdir -p ~/.anyenv/plugins > /dev/null 2>&1
-  git clone https://github.com/znz/anyenv-update ~/.anyenv/plugins/anyenv-update
-end
+# if not test -d ~/.anyenv
+#   git clone https://github.com/riywo/anyenv ~/.anyenv
+# end
+# if not test -d ~/.anyenv/plugins/anyenv-update
+#   mkdir -p ~/.anyenv/plugins > /dev/null 2>&1
+#   git clone https://github.com/znz/anyenv-update ~/.anyenv/plugins/anyenv-update
+# end
 
 # PATH. {{{2
 if not test -d ~/.local/bin
