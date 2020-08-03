@@ -68,7 +68,6 @@
 " Pack 'lambdalisue/edita.vim', {'type': 'lazyall'}
 " Pack 'lambdalisue/reword.vim', {'type': 'lazyall'}
 " Pack 'lambdalisue/suda.vim', {'type': 'lazyall', 'if': !g:is_windows}
-" Pack 'lambdalisue/vim-findent'
 " Pack 'lambdalisue/vim-pyenv', {'type': 'lazyall'}
 " Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
 " Pack 'leafgarland/typescript-vim', {'type': 'opt', 'for': ['typescript', 'typescript.tsx']}
@@ -187,10 +186,11 @@ Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-user', {'type': 'opt', 'event': 'VimEnter'}
 Pack 'lambdalisue/gina.vim'
-Pack 'lambdalisue/nerdfont-palette.vim'
+Pack 'lambdalisue/glyph-palette.vim'
 Pack 'lambdalisue/nerdfont.vim'
 Pack 'lambdalisue/readablefold.vim', {'type': 'opt', 'event': 'VimEnter'}
 Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
+Pack 'lambdalisue/vim-findent', {'type': 'opt', 'on': ['Findent']}
 Pack 'liuchengxu/vim-which-key', {'type': 'lazyall'}
 Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'luochen1990/rainbow', {'type': 'lazyall'}
