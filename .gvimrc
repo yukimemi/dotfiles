@@ -3,7 +3,7 @@ set guioptions=
 
 " color
 set background=dark
-silent! colorscheme palenight
+silent! colorscheme tokyonight
 if g:no_plugin
   colorscheme desert
 endif

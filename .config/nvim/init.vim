@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/08/01 00:43:33.
+" Last Change : 2020/08/12 23:00:09.
 " =============================================================================
 
 " Init: {{{1
@@ -491,6 +491,9 @@ endif
 " Color: {{{1
 silent! syntax enable
 
+au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
+au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
+
 " Highlight VCS conflict markers {{{2
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
@@ -559,7 +562,7 @@ endif
 " Colorscheme: {{{1
 set background=dark
 silent! packadd palenight.vim
-silent! colorscheme palenight
+silent! colorscheme tokyonight
 
 " Neovide: {{{1
 let g:neovide_transparency = 0.9

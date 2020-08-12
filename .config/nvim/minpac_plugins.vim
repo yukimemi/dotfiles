@@ -154,6 +154,7 @@ Pack 'andymass/vim-matchup', {'type': 'lazyall'}
 Pack 'aserebryakov/vim-todo-lists', {'type': 'opt', 'for': ['markdown']}
 Pack 'bluz71/vim-nightfly-guicolors', {'type': 'opt'}
 Pack 'chamindra/marvim', {'type': 'lazyall'}
+Pack 'chaoren/vim-wordmotion'
 Pack 'cocopon/iceberg.vim', {'type': 'opt'}
 Pack 'da-x/name-assign.vim', {'type': 'opt', 'on': ['<plug>NameAssign']}
 Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
@@ -161,6 +162,7 @@ Pack 'dkarter/bullets.vim', {'type': 'opt', 'for': 'markdown'}
 Pack 'drewtempelmeyer/palenight.vim', {'type': 'opt'}
 Pack 'editorconfig/editorconfig-vim', {'type': 'opt', 'event': 'VimEnter'}
 Pack 'eugen0329/vim-esearch', {'type': 'opt', 'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
+Pack 'ghifarit53/tokyonight-vim'
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
 Pack 'gkeep/iceberg-dark', {'type': 'opt'}
 Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'MemoGrep']}
@@ -208,7 +210,7 @@ Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
 Pack 'mhinz/vim-grepper', {'type': 'lazyall'}
 Pack 'mopp/smartnumber.vim', {'type': 'lazyall'}
 Pack 'nathanaelkane/vim-indent-guides'
-Pack 'ntpeters/vim-better-whitespace', {'type': 'opt', 'event': 'CursorHold'}
+Pack 'ntpeters/vim-better-whitespace', {'type': 'opt', 'event': ['CursorHold']}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
@@ -310,6 +312,8 @@ if g:plugin_use_fern
   Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern-git.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern-renderer-nerdfont.vim', {'type': 'lazyall'}
+  Pack 'lambdalisue/fern-git-status.vim', {'type': 'lazyall'}
+  Pack 'lambdalisue/fern-mapping-git.vim', {'type': 'lazyall'}
 endif
 
 if g:plugin_use_defx
