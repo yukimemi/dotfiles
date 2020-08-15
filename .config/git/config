@@ -21,7 +21,7 @@
 	autocrlf = false
 	filemode = false
 [ghq]
-	root = ~/.ghq
+	root = /Users/yukimemi/.rhq
 [credential]
 	helper = manager
 [merge]

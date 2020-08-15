@@ -287,10 +287,15 @@ end
 if test -d ~/.asdf
   source ~/.asdf/asdf.fish
   # __asdf_install_plugin nim
-  __asdf_install_plugin python
-  __asdf_install_plugin ruby
+  # __asdf_install_plugin yarn
+  __asdf_install_plugin fd
   __asdf_install_plugin golang go
   __asdf_install_plugin nodejs node
+  __asdf_install_plugin python
+  __asdf_install_plugin ripgrep rg
+  __asdf_install_plugin ruby
+  __asdf_install_plugin starship
+  __asdf_install_plugin ghq
 end
 
 # Load direnv. {{{1

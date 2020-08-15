@@ -210,6 +210,7 @@ Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
 Pack 'mhinz/vim-grepper', {'type': 'lazyall'}
 Pack 'mopp/smartnumber.vim', {'type': 'opt', 'event': ['VimEnter']}
 Pack 'nathanaelkane/vim-indent-guides'
+Pack 'gelguy/wilder.nvim'
 Pack 'ntpeters/vim-better-whitespace', {'type': 'opt', 'event': ['CursorHold']}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}

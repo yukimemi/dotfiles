@@ -3,6 +3,9 @@ settings.smoothScroll = true;
 settings.scrollStepSize = 140;
 settings.hintAlign = "left";
 
+settings.nextLinkRegex = /((forward|>>|next|次[のへ]|→)+)/i;
+settings.prevLinkRegex = /((back|<<|prev(ious)?|前[のへ]|←)+)/i;
+
 // mappings.
 // History
 map("H", "S");
@@ -28,15 +31,20 @@ mapkey(
 );
 
 // qmarks
-var overlayedGlobalMarks = {
-  "1": "https://mail.google.com/mail/u/0",
-  "2": "http://www.google.com/calendar",
-  "9": [
+const overlayedGlobalMarks = {
+  "0": [
     "https://b.hatena.ne.jp",
     "https://qiita.com",
     "https://www.reddit.com/r/vim",
+    "https://www.reddit.com/r/neovim",
   ],
+  "2": "http://www.google.com/calendar",
   "3": "https://www.google.com/contacts/#contacts",
+  M: [
+    "https://mail.google.com/mail/u/0",
+    "https://mail.google.com/mail/u/1",
+    "https://mail.google.com/mail/u/2",
+  ],
   g: "https://plus.google.com/u/0/",
   r: "https://www.reddit.com/r/vim",
   m: "https://maps.google.com/",
@@ -46,7 +54,7 @@ var overlayedGlobalMarks = {
 };
 
 mapkey("gn", "#10Jump to vim-like mark in new tab.", function (mark) {
-  var priorityURLs = overlayedGlobalMarks[mark];
+  let priorityURLs = overlayedGlobalMarks[mark];
   if (priorityURLs === undefined) {
     // fallback to Surfingkeys default jump
     Normal.jumpVIMark(mark, true);
@@ -55,8 +63,8 @@ mapkey("gn", "#10Jump to vim-like mark in new tab.", function (mark) {
   if (typeof priorityURLs == typeof "") {
     priorityURLs = [priorityURLs];
   }
-  for (var url of priorityURLs) {
-    var markInfo = {
+  for (let url of priorityURLs) {
+    let markInfo = {
       url: url,
       scrollLeft: 0,
       scrollTop: 0,
@@ -70,7 +78,7 @@ mapkey("gn", "#10Jump to vim-like mark in new tab.", function (mark) {
 });
 
 mapkey("go", "#10Jump to vim-like mark in current tab.", function (mark) {
-  var priorityURLs = overlayedGlobalMarks[mark];
+  let priorityURLs = overlayedGlobalMarks[mark];
   if (priorityURLs === undefined) {
     // fallback to Surfingkeys default jump
     Normal.jumpVIMark(mark, true);
@@ -79,8 +87,8 @@ mapkey("go", "#10Jump to vim-like mark in current tab.", function (mark) {
   if (typeof priorityURLs == typeof "") {
     priorityURLs = [priorityURLs];
   }
-  for (var url of priorityURLs) {
-    var markInfo = {
+  for (let url of priorityURLs) {
+    let markInfo = {
       url: url,
       scrollLeft: 0,
       scrollTop: 0,
@@ -101,6 +109,147 @@ addSearchAlias(
   "https://www.google.com.ar/search?site=imghp&tbm=isch&source=hp&biw=1478&bih=740&q="
 );
 addSearchAlias("map", "Google Maps", "https://www.google.com.ar/maps/search/");
+
+addSearchAliasX("ht", "hatena tag", "http://b.hatena.ne.jp/search/tag?q=");
+
+// Qiita
+addSearchAliasX("qi", "Qiita", "https://qiita.com/search?q=");
+addSearchAliasX("qt", "Qiita tag", "https://qiita.com/tags/");
+
+// Twitter
+addSearchAliasX(
+  "tw",
+  "Twitter",
+  "https://twitter.com/search?q=",
+  "s",
+  "https://twitter.com/i/search/typeahead.json?count=10&filters=true&q=",
+  (response) =>
+    JSON.parse(response.text).topics.map((v) =>
+      createSuggestionItem(v.topic, {
+        url: `https://twitter.com/search?q=${encodeURIComponent(v.topic)}`,
+      })
+    )
+);
+mapkey("otw", "#8Open Search with alias tw", function () {
+  Front.openOmnibar({ type: "SearchEngine", extra: "tw" });
+});
+
+// Yahoo! real time
+addSearchAliasX(
+  "r",
+  "Yahoo!リアルタイム検索",
+  "http://realtime.search.yahoo.co.jp/search?ei=UTF-8&p="
+);
+mapkey("or", "#8Open Search with alias r", function () {
+  Front.openOmnibar({ type: "SearchEngine", extra: "r" });
+});
+
+// Wikipedia jp
+addSearchAliasX(
+  "wi",
+  "Wikipedia",
+  "https://ja.wikipedia.org/w/index.php?search="
+);
+
+// npm
+addSearchAliasX(
+  "np",
+  "npm",
+  "https://www.npmjs.com/search?q=",
+  "s",
+  "https://api.npms.io/v2/search/suggestions?size=20&q=",
+  (response) =>
+    JSON.parse(response.text).map((s) => {
+      let flags = "";
+      let desc = "";
+      let stars = "";
+      let score = "";
+      if (s.package.description) {
+        desc = escape(s.package.description);
+      }
+      if (s.score && s.score.final) {
+        score = Math.round(Number(s.score.final) * 5);
+        stars = "⭐".repeat(score) + "☆".repeat(5 - score);
+      }
+      if (s.flags) {
+        Object.keys(s.flags).forEach((f) => {
+          flags += `[<span style='color:#ff4d00'>⚑</span> ${escape(f)}] `;
+        });
+      }
+      return createSuggestionItem(
+        `
+      <div>
+        <style>.title>em { font-weight: bold; }</style>
+        <div class="title">${s.highlight}</div>
+        <div>
+          <span style="font-size:1.5em;line-height:1em">${stars}</span>
+          <span>${flags}</span>
+        </div>
+        <div>${desc}</div>
+      </div>
+    `,
+        { url: s.package.links.npm }
+      );
+    })
+);
+
+// Docker Hub
+addSearchAliasX(
+  "dh",
+  "Docker Hub",
+  "https://hub.docker.com/search/?q=",
+  "s",
+  "https://hub.docker.com/v2/search/repositories/?page_size=20&query=",
+  (response) =>
+    JSON.parse(response.text).results.map((s) => {
+      let meta = "";
+      let repo = s.repo_name;
+      meta += `[⭐${escape(s.star_count)}] `;
+      meta += `[↓${escape(s.pull_count)}] `;
+      if (repo.indexOf("/") === -1) {
+        repo = `_/${repo}`;
+      }
+      return createSuggestionItem(
+        `
+      <div>
+        <div class="title"><strong>${escape(repo)}</strong></div>
+        <div>${meta}</div>
+        <div>${escape(s.short_description)}</div>
+      </div>
+    `,
+        { url: `https://hub.docker.com/r/${repo}` }
+      );
+    })
+);
+
+// Amazon jp
+addSearchAliasX(
+  "am",
+  "Amazon",
+  "https://www.amazon.co.jp/s?k=",
+  "s",
+  "https://completion.amazon.co.jp/search/complete?method=completion&search-alias=aps&mkt=6&q=",
+  (response) => JSON.parse(response.text)[1]
+);
+
+// Amazon jp Kindle
+addSearchAliasX(
+  "k",
+  "Amazon Kindle",
+  "https://www.amazon.co.jp/s?i=digital-text&k=",
+  "s",
+  "https://completion.amazon.co.jp/search/complete?method=completion&search-alias=aps&mkt=6&q=",
+  (response) => JSON.parse(response.text)[1]
+);
+mapkey("ok", "#8Open Search with alias k", function () {
+  Front.openOmnibar({ type: "SearchEngine", extra: "k" });
+});
+
+// alc
+addSearchAliasX("a", "alc", "https://eow.alc.co.jp/search?q=");
+mapkey("oa", "#8Open Search with alias a", function () {
+  Front.openOmnibar({ type: "SearchEngine", extra: "a" });
+});
 
 // https://www.ncaq.net/2018/12/09/16/13/27/
 mapkey("<Ctrl-g>", "google translate", () => {
@@ -209,3 +358,5 @@ settings.theme = `
 #sk_status, #sk_find {
     font-size: 20pt;
 }`;
+
+// vim: fdm=syntax fdc=3:
