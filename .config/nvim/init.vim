@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/08/12 23:00:09.
+" Last Change : 2020/08/15 11:39:58.
 " =============================================================================
 
 " Init: {{{1
@@ -561,8 +561,8 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-silent! packadd palenight.vim
-silent! colorscheme tokyonight
+" silent! packadd palenight.vim
+silent! colorscheme PaperColor
 
 " Neovide: {{{1
 let g:neovide_transparency = 0.9

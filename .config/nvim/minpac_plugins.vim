@@ -3,7 +3,6 @@
 " Pack 'LeafCage/foldCC.vim', {'type': 'lazyall'}
 " Pack 'LumaKernel/vim-messages-qf', {'type': 'lazy'}
 " Pack 'MaxMEllon/vim-shiny', {'type': 'lazyall'}
-" Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 " Pack 'OmniSharp/Omnisharp-vim', {'type': 'opt', 'for': 'cs'}
 " Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
 " Pack 'RRethy/vim-illuminate', {'type': 'opt', 'event': 'CursorHold'}
@@ -32,6 +31,7 @@
 " Pack 'camspiers/animate.vim', {'type': 'lazyall'}
 " Pack 'camspiers/lens.vim', {'type': 'lazyall'}
 " Pack 'cespare/vim-toml', {'type': 'opt', 'for': 'toml'}
+" Pack 'chaoren/vim-wordmotion'
 " Pack 'chriskempson/base16-vim'
 " Pack 'cohama/lexima.vim', {'type': 'lazyall'}
 " Pack 'cormacrelf/vim-colors-github', {'type': 'opt'}
@@ -146,6 +146,7 @@
 Pack 'AndrewRadev/linediff.vim', {'type': 'opt', 'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'LumaKernel/nvim-visual-eof.lua', {'type': 'lazyall', 'if': has('nvim')}
+Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/deol.nvim', {'type': 'opt', 'on': ['Deol', 'DeolCd', 'DeolEdit'], 'do': 'silent! UpdateRemotePlugins'}
 Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
@@ -154,7 +155,6 @@ Pack 'andymass/vim-matchup', {'type': 'lazyall'}
 Pack 'aserebryakov/vim-todo-lists', {'type': 'opt', 'for': ['markdown']}
 Pack 'bluz71/vim-nightfly-guicolors', {'type': 'opt'}
 Pack 'chamindra/marvim', {'type': 'lazyall'}
-Pack 'chaoren/vim-wordmotion'
 Pack 'cocopon/iceberg.vim', {'type': 'opt'}
 Pack 'da-x/name-assign.vim', {'type': 'opt', 'on': ['<plug>NameAssign']}
 Pack 'dhruvasagar/vim-table-mode', {'type': 'opt', 'for': 'markdown'}
@@ -208,7 +208,7 @@ Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'mbbill/undotree', {'type': 'opt', 'on': 'UndotreeToggle'}
 Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
 Pack 'mhinz/vim-grepper', {'type': 'lazyall'}
-Pack 'mopp/smartnumber.vim', {'type': 'lazyall'}
+Pack 'mopp/smartnumber.vim', {'type': 'opt', 'event': ['VimEnter']}
 Pack 'nathanaelkane/vim-indent-guides'
 Pack 'ntpeters/vim-better-whitespace', {'type': 'opt', 'event': ['CursorHold']}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
