@@ -229,7 +229,7 @@ Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'sainnhe/gruvbox-material', {'type': 'opt'}
-Pack 'sheerun/vim-polyglot', {'type': 'opt', 'event': 'VimEnter'}
+Pack 'sheerun/vim-polyglot'
 Pack 't9md/vim-quickhl', {'type': 'lazyall'}
 Pack 'thinca/vim-ambicmd', {'type': 'opt', 'event': 'VimEnter'}
 Pack 'thinca/vim-prettyprint', {'type': 'opt', 'on': 'PP'}
