@@ -169,8 +169,8 @@ Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'Me
 Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
 Pack 'haya14busa/vim-edgemotion', {'type': 'lazyall'}
 Pack 'honza/vim-snippets', {'type': 'opt', 'event': 'InsertEnter'}
-Pack 'hrsh7th/vim-vsnip', {'type': 'opt', 'event': 'InsertEnter'}
-Pack 'hrsh7th/vim-vsnip-integ', {'type': 'opt', 'event': 'InsertEnter'}
+" Pack 'hrsh7th/vim-vsnip', {'type': 'opt', 'event': 'InsertEnter'}
+" Pack 'hrsh7th/vim-vsnip-integ', {'type': 'opt', 'event': 'InsertEnter'}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': '!cd app & yarn install'}
 Pack 'itchyny/vim-cursorword', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'itchyny/vim-external', {'type': 'lazyall'}

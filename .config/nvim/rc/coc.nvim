@@ -158,20 +158,20 @@ else
 endif
 
 " coc-snippet {{{1
-" Use <c-l> for trigger snippet expand.
-" imap <c-l> <Plug>(coc-snippets-expand)
+" Use <c-k> for trigger snippet expand.
+imap <c-k> <Plug>(coc-snippets-expand)
 
 " Use <c-j> for select text for visual placeholder of snippet.
-" vmap <c-j> <Plug>(coc-snippets-select)
+vmap <c-j> <Plug>(coc-snippets-select)
 
 " Use <c-j> for jump to next placeholder, it's default of coc.nvim
-" let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_next = '<c-j>'
 
 " Use <c-k> for jump to previous placeholder, it's default of coc.nvim
-" let g:coc_snippet_prev = '<c-k>'
+let g:coc_snippet_prev = '<c-k>'
 
 " Use <c-j> for both expand and jump (make expand higher priority.)
-" imap <c-j> <Plug>(coc-snippets-expand-jump)
+imap <c-j> <Plug>(coc-snippets-expand-jump)
 
 " coc-bookmark {{{1
 nmap <space>bj <Plug>(coc-bookmark-next)
