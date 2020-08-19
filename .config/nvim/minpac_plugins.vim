@@ -276,7 +276,7 @@ endif
 
 if g:plugin_use_cocfzf
   if !g:plugin_use_coc
-    Pack 'coc.nvim'
+    Pack 'neoclide/coc.nvim'
   endif
   Pack 'junegunn/fzf'
   Pack 'junegunn/fzf.vim'
