@@ -1,6 +1,7 @@
 *.log
 coc-bookmark-data/
 coc-go-data/
+coc-lua-data/
 coc-rust-analyzer-data/
 coc-tabnine-data/
 coc-tabnine-data/

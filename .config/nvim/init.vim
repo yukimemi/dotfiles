@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/08/18 16:03:31.
+" Last Change : 2020/08/23 00:29:01.
 " =============================================================================
 
 " Init: {{{1
@@ -154,6 +154,7 @@ set ignorecase smartcase infercase
 set showmatch matchtime=1
 set belloff=all
 set noerrorbells novisualbell t_vb=
+set noshowmode
 set virtualedit=block
 set synmaxcol=500
 set smarttab
@@ -572,12 +573,10 @@ let g:neovide_cursor_vfx_mode = "railgun"
 " set guifontwide=Cica
 
 " lua: {{{1
-" if has('nvim') && !g:is_windows
-  " packadd nvim-treesitter
-" lua << EOF
-"   require('init')
-" EOF
-" endif
+if has('nvim')
+  silent! packadd nvim-treesitter
+  exe "lua require('init')"
+endif
 
 filetype plugin indent on
 

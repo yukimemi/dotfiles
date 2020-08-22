@@ -7,7 +7,6 @@
 " Pack 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}
 " Pack 'RRethy/vim-illuminate', {'type': 'opt', 'event': 'CursorHold'}
 " Pack 'Rigellute/rigel', {'type': 'opt'}
-" Pack 'Shougo/echodoc.vim', {'type': 'lazyall'}
 " Pack 'Shougo/junkfile.vim', {'type': 'opt', 'on': 'JunkfileOpen'}
 " Pack 'Shougo/neco-syntax'
 " Pack 'Shougo/neco-vim', {'type': 'opt', 'for': 'vim'}
@@ -51,6 +50,8 @@
 " Pack 'haya14busa/vim-operator-flashy', {'type': 'lazyall'}
 " Pack 'hiroakis/cyberspace.vim', {'type': 'opt'}
 " Pack 'hotwatermorning/auto-git-diff', {'type': 'lazyall'}
+" Pack 'hrsh7th/vim-vsnip', {'type': 'opt', 'event': 'InsertEnter'}
+" Pack 'hrsh7th/vim-vsnip-integ', {'type': 'opt', 'event': 'InsertEnter'}
 " Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': 'packadd markdown-preview.nvim \| call mkdp#util#install()'}
 " Pack 'itchyny/vim-gitbranch'
 " Pack 'itchyny/vim-haskell-indent', {'type': 'opt', 'for': 'haskell'}
@@ -89,7 +90,6 @@
 " Pack 'mox-mox/vim-localsearch', {'type': 'lazyall'}
 " Pack 'nelstrom/vim-markdown-folding', {'type': 'opt', 'for': 'markdown'}
 " Pack 'neovimhaskell/haskell-vim', {'type': 'opt', 'for': ['haskell', 'cabal']}
-" Pack 'nvim-treesitter/nvim-treesitter', {'if': has('nvim') && !g:is_windows}
 " Pack 'osyo-manga/vim-anzu', {'type': 'lazyall'}
 " Pack 'osyo-manga/vim-jplus', {'type': 'lazyall'}
 " Pack 'osyo-manga/vim-operator-blockwise', {'type': 'lazyall'}
@@ -149,6 +149,7 @@ Pack 'LumaKernel/nvim-visual-eof.lua', {'type': 'lazyall', 'if': has('nvim')}
 Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/deol.nvim', {'type': 'opt', 'on': ['Deol', 'DeolCd', 'DeolEdit'], 'do': 'silent! UpdateRemotePlugins'}
+Pack 'Shougo/echodoc.vim', {'event': ['CursorHold', 'InsertEnter']}
 Pack 'airblade/vim-rooter', {'type': 'opt', 'event': 'BufEnter'}
 Pack 'aiya000/aho-bakaup.vim', {'type': 'opt', 'event': 'BufWritePre'}
 Pack 'andymass/vim-matchup', {'type': 'lazyall'}
@@ -162,6 +163,7 @@ Pack 'dkarter/bullets.vim', {'type': 'opt', 'for': 'markdown'}
 Pack 'drewtempelmeyer/palenight.vim', {'type': 'opt'}
 Pack 'editorconfig/editorconfig-vim', {'type': 'opt', 'event': 'VimEnter'}
 Pack 'eugen0329/vim-esearch', {'type': 'opt', 'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
+Pack 'gelguy/wilder.nvim'
 Pack 'ghifarit53/tokyonight-vim'
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
 Pack 'gkeep/iceberg-dark', {'type': 'opt'}
@@ -169,8 +171,6 @@ Pack 'glidenote/memolist.vim', {'type': 'opt', 'on': ['MemoNew', 'MemoList', 'Me
 Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
 Pack 'haya14busa/vim-edgemotion', {'type': 'lazyall'}
 Pack 'honza/vim-snippets', {'type': 'opt', 'event': 'InsertEnter'}
-" Pack 'hrsh7th/vim-vsnip', {'type': 'opt', 'event': 'InsertEnter'}
-" Pack 'hrsh7th/vim-vsnip-integ', {'type': 'opt', 'event': 'InsertEnter'}
 Pack 'iamcco/markdown-preview.nvim', {'type': 'opt', 'for': 'markdown', 'on': 'MarkdownPreview', 'do': '!cd app & yarn install'}
 Pack 'itchyny/vim-cursorword', {'type': 'opt', 'event': 'CursorHold'}
 Pack 'itchyny/vim-external', {'type': 'lazyall'}
@@ -210,8 +210,8 @@ Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
 Pack 'mhinz/vim-grepper', {'type': 'lazyall'}
 Pack 'mopp/smartnumber.vim', {'type': 'opt', 'event': ['VimEnter']}
 Pack 'nathanaelkane/vim-indent-guides'
-Pack 'gelguy/wilder.nvim'
 Pack 'ntpeters/vim-better-whitespace', {'type': 'opt', 'event': ['CursorHold']}
+Pack 'nvim-treesitter/nvim-treesitter', {'if': has('nvim') && !g:is_windows}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
