@@ -90,6 +90,7 @@
 " Pack 'mox-mox/vim-localsearch', {'type': 'lazyall'}
 " Pack 'nelstrom/vim-markdown-folding', {'type': 'opt', 'for': 'markdown'}
 " Pack 'neovimhaskell/haskell-vim', {'type': 'opt', 'for': ['haskell', 'cabal']}
+" Pack 'nvim-treesitter/nvim-treesitter', {'if': has('nvim') && !g:is_windows}
 " Pack 'osyo-manga/vim-anzu', {'type': 'lazyall'}
 " Pack 'osyo-manga/vim-jplus', {'type': 'lazyall'}
 " Pack 'osyo-manga/vim-operator-blockwise', {'type': 'lazyall'}
@@ -123,7 +124,6 @@
 " Pack 'stephpy/vim-yaml', {'type': 'opt', 'for': ['yml', 'yaml']}
 " Pack 'svermeulen/vim-macrobatics', {'type': 'lazyall'}
 " Pack 'svermeulen/vim-yoink', {'type': 'lazyall'}
-Pack 't9md/vim-choosewin', {'type': 'lazyall'}
 " Pack 'taku-o/vim-zoom', {'type': 'lazyall'}
 " Pack 'thinca/vim-localrc', {'type': 'lazyall'}
 " Pack 'thinca/vim-quickrun', {'type': 'lazyall'}
@@ -211,7 +211,6 @@ Pack 'mhinz/vim-grepper', {'type': 'lazyall'}
 Pack 'mopp/smartnumber.vim', {'type': 'opt', 'event': ['VimEnter']}
 Pack 'nathanaelkane/vim-indent-guides'
 Pack 'ntpeters/vim-better-whitespace', {'type': 'opt', 'event': ['CursorHold']}
-Pack 'nvim-treesitter/nvim-treesitter', {'if': has('nvim') && !g:is_windows}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
@@ -230,6 +229,7 @@ Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'sainnhe/gruvbox-material', {'type': 'opt'}
 Pack 'sheerun/vim-polyglot'
+Pack 't9md/vim-choosewin', {'type': 'lazyall'}
 Pack 't9md/vim-quickhl', {'type': 'lazyall'}
 Pack 'thinca/vim-ambicmd', {'type': 'opt', 'event': 'VimEnter'}
 Pack 'thinca/vim-prettyprint', {'type': 'opt', 'on': 'PP'}

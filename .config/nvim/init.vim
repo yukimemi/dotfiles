@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/08/23 00:29:01.
+" Last Change : 2020/08/23 01:34:50.
 " =============================================================================
 
 " Init: {{{1
@@ -515,9 +515,9 @@ au MyAutoCmd BufWritePost *
       \ endif
 
 " Plugin: {{{1
-let s:use_dein = 0
+let s:use_dein = 1
 let s:use_vimplug = 0
-let s:use_minpac = 1
+let s:use_minpac = 0
 let s:use_packager = 0
 let s:use_volt = 0
 let s:use_pack = 0
@@ -574,7 +574,6 @@ let g:neovide_cursor_vfx_mode = "railgun"
 
 " lua: {{{1
 if has('nvim')
-  silent! packadd nvim-treesitter
   exe "lua require('init')"
 endif
 

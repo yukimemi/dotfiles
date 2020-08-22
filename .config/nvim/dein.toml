@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/07/23 15:07:47.
+# Last Change : 2020/08/23 01:32:30.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -22,14 +22,23 @@ repo = 'sainnhe/gruvbox-material' # {{{2
 # [[plugins]]
 # repo =  'hiroakis/cyberspace.vim' # {{{2
 
+[[plugins]]
+repo = 'NLKNguyen/papercolor-theme' # {{{2
+
+[[plugins]]
+repo = 'drewtempelmeyer/palenight.vim' # {{{2
+lazy = 1
+
 # [[plugins]]
-# repo = 'NLKNguyen/papercolor-theme' # {{{2
+# repo = 'ryanoasis/vim-devicons' # {{{2
 
 [[plugins]]
-repo = 'drewtempelmeyer/palenight.vim'
+repo = 'lambdalisue/glyph-palette.vim' # {{{2
+[[plugins]]
+repo = 'lambdalisue/nerdfont.vim' # {{{2
 
 [[plugins]]
-repo = 'ryanoasis/vim-devicons' # {{{2
+repo = 'lambdalisue/readablefold.vim' # {{{2
 
 [[plugins]]
 repo = 'itchyny/lightline.vim' # {{{2
@@ -37,7 +46,7 @@ hook_add = '''
 source $VIM_PATH/rc/lightline.vim
 '''
 if = "g:plugin_use_lightline"
-depends = ['vista.vim', 'vim-devicons']
+depends = ['vista.vim']
 
 # [[plugins]]
 # repo = 'kmtoki/lightline-colorscheme-simplicity' # {{{2
@@ -322,16 +331,21 @@ hook_add = '''
 source $VIM_PATH/rc/vim-external.vim
 '''
 
-# [[plugins]]
-# repo = 'Shougo/defx.nvim' # {{{2
-# on_cmd = ['Defx']
-# if = 'has("nvim")'
-# hook_add = '''
-# source $VIM_PATH/rc/defx.nvim
-# '''
+[[plugins]]
+repo = 'Shougo/defx.nvim' # {{{2
+depends = ['defx-icons']
+on_cmd = ['Defx']
+if = "g:plugin_use_defx"
+hook_add = '''
+source $VIM_PATH/rc/defx.nvim
+'''
+
+[[plugins]]
+repo = 'kristijanhusak/defx-icons'
 
 [[plugins]]
 repo = 'lambdalisue/vim-findent' # {{{2
+on_cmd = ['Findent']
 
 [[plugins]]
 repo = 'tmux-plugins/vim-tmux-focus-events' # {{{2
@@ -355,7 +369,7 @@ lazy = 1
 
 [[plugins]]
 repo = 'lambdalisue/fern.vim' # {{{2
-depends = ['fern-bookmark.vim', 'fern-comparator-lexical.vim', 'fern-renderer-devicons.vim']
+depends = ['fern-bookmark.vim', 'fern-comparator-lexical.vim', 'fern-git.vim', 'fern-renderer-nerdfont.vim', 'fern-git-status.vim', 'fern-mapping-git.vim']
 on_cmd = 'Fern'
 hook_add = '''
 source $VIM_PATH/rc/fern.vim
@@ -368,7 +382,17 @@ lazy = 1
 repo = 'lambdalisue/fern-comparator-lexical.vim'
 lazy = 1
 [[plugins]]
-repo = 'lambdalisue/fern-renderer-devicons.vim'
+repo = 'lambdalisue/fern-git.vim'
+lazy = 1
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+lazy = 1
+depends = ['nerdfont.vim', 'glyph-palette.vim']
+[[plugins]]
+repo = 'lambdalisue/fern-git-status.vim'
+lazy = 1
+[[plugins]]
+repo = 'lambdalisue/fern-mapping-git.vim'
 lazy = 1
 
 [[plugins]]
@@ -663,10 +687,17 @@ source $VIM_PATH/rc/gina.vim
 
 # ==================== Filetype (all) ============= {{{1
 [[plugins]]
-repo = 'sheerun/vim-polyglot'
+repo = 'sheerun/vim-polyglot' # {{{2
 hook_add = '''
 source $VIM_PATH/rc/vim-polyglot.vim
 '''
+
+# [[plugins]]
+# repo = 'nvim-treesitter/nvim-treesitter' # {{{2
+# merged = 0
+# hook_add = '''
+# source $VIM_PATH/rc/nvim-treesitter.vim
+# '''
 
 # ==================== Filetype (plantuml) ======= {{{1
 [[plugins]]

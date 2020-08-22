@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2020/07/19 19:00:39.
+" Last Change : 2020/08/23 01:08:29.
 " =============================================================================
 
 " Plugin: {{{1
@@ -20,7 +20,7 @@ let g:dein#enable_notification = 1
 let g:dein#types#git#clone_depth = 1
 
 function! IsInstalled(name) abort
-  return !dein#check_install(a:name)
+  silent! return !dein#check_install(a:name)
 endfunction
 
 if !dein#load_state(s:dein_dir)
