@@ -123,7 +123,7 @@
 " Pack 'stephpy/vim-yaml', {'type': 'opt', 'for': ['yml', 'yaml']}
 " Pack 'svermeulen/vim-macrobatics', {'type': 'lazyall'}
 " Pack 'svermeulen/vim-yoink', {'type': 'lazyall'}
-" Pack 't9md/vim-choosewin', {'type': 'opt', 'on': ['<Plug>(choosewin)']}
+Pack 't9md/vim-choosewin', {'type': 'lazyall'}
 " Pack 'taku-o/vim-zoom', {'type': 'lazyall'}
 " Pack 'thinca/vim-localrc', {'type': 'lazyall'}
 " Pack 'thinca/vim-quickrun', {'type': 'lazyall'}

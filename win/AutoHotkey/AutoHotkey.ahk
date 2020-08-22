@@ -64,7 +64,7 @@ return
 
 ; for gvim
 F10::
-Activate("C:\tools\vim\vim82\gvim.exe")
+Activate(USERPROFILE . "\scoop\apps\vim-kaoriya\current\gvim.exe")
 return
 ; for neovim
 ; F10::
@@ -183,7 +183,7 @@ file.Write(Clipboard)
 file.Close()
 Clipboard := saveclip
 
-RunWait "C:/tools/vim/vim82/gvim.exe" "--cmd" "let g:singleton#disable=1" %tempfile%
+RunWait "%USERPROFILE%\scoop\apps\vim-kaoriya\current\gvim.exe" "--cmd" "let g:singleton#disable=1" %tempfile%
 ;RunWait "%USERPROFILE%\app\Atom\atom.exe" %tempfile%
 
 file := FileOpen(tempfile, "r")
