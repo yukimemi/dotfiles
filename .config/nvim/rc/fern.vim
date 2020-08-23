@@ -15,7 +15,15 @@ let g:fern#renderer = "nerdfont"
 
 
 function! s:init_fern() abort
+  nmap <buffer><expr> <Plug>(fern-my-open-or-expand-or-collapse)
+        \ fern#smart#leaf(
+        \   "\<Plug>(fern-action-open)",
+        \   "\<Plug>(fern-action-expand)",
+        \   "\<Plug>(fern-action-collapse)",
+        \ )
+
   nmap <buffer> s <Nop>
+  nmap <buffer> o <Plug>(fern-my-open-or-expand-or-collapse)
 endfunction
 
 au MyAutoCmd FileType fern call s:init_fern()

@@ -3,6 +3,7 @@ if !IsInstalled("gina.vim")
 endif
 
 nnoremap <space>gs :<c-u>Gina status<cr>
+nnoremap <space>gc :<c-u>Gina commit<cr>
 nnoremap <space>gb :<c-u>Gina branch<cr>
 nnoremap <space>gg :<c-u>Gina grep<cr>
 nnoremap <space>gd :<c-u>Gina diff<cr>
