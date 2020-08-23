@@ -1,1 +1,1 @@
-vmap <leader>B <plug>NameAssign
+vmap <leader>B <Plug>NameAssign

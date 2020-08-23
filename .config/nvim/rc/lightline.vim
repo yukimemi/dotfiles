@@ -14,7 +14,7 @@ let g:lightline = {
       \   },
       \ 'active': {
       \   'left': [ [ 'mode', 'spell', 'paste' ],
-      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'bomb' ],
+      \             [ 'ginastatus', 'cocstatus', 'readonly', 'filename', 'bomb' ],
       \             [ 'vista', 'quickfix_title' ] ],
       \   'right': [
       \     ['lineinfo'],
@@ -156,7 +156,7 @@ function! GinaStatus() abort
     let unstaged = gina#component#status#unstaged() ? gina#component#status#unstaged() : 0
     let conflicted = gina#component#status#conflicted() ? gina#component#status#conflicted() : 0
     return printf(
-          \ 'suc: [%s, %s, %s]',
+          \ '[%s, %s, %s]',
           \ staged,
           \ unstaged,
           \ conflicted,
