@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/08/23 12:07:53.
+" Last Change : 2020/08/23 15:46:12.
 " =============================================================================
 
 " Init: {{{1
@@ -542,6 +542,7 @@ let g:plugin_use_fern = 1
 let g:plugin_use_defx = 0
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
+" let g:no_plugin = 1
 if !g:no_plugin
   if s:use_dein
     runtime! dein.vim

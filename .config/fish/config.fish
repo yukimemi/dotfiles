@@ -225,6 +225,7 @@ end
 
 # docker {{{2
 abbr -a de "docker run --rm -it -v $PWD:/root/(basename $PWD) -w /root/(basename $PWD) yukimemi/neovim"
+abbr -a dnu "docker run --rm -it quay.io/nushell/nu:latest"
 
 ### Options. {{{1
 # Use fish_vi_key_bindings.
