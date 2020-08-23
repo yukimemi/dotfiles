@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/08/23 01:32:30.
+# Last Change : 2020/08/23 12:01:14.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -133,6 +133,19 @@ on_event  = ['CursorHold']
 repo = 'lambdalisue/seethrough.vim'
 if = "!has('gui')"
 
+[[plugins]]
+repo = 'gelguy/wilder.nvim'
+hook_add = '''
+source $VIM_PATH/rc/wilder.nvim
+'''
+
+[[plugins]]
+repo = 'LumaKernel/nvim-visual-eof.lua'
+if = 'has("nvim")'
+hook_add = '''
+source $VIM_PATH/rc/nvim-visual-eof.lua.vim
+'''
+
 # ==================== Complement ================ {{{1
 [[plugins]]
 repo = 'Shougo/context_filetype.vim' # {{{2
@@ -187,15 +200,15 @@ source $VIM_PATH/rc/coc.nvim
 # repo = 'honza/vim-snippets' # {{{2
 # on_event = ['InsertEnter']
 
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip'
-on_event = ['InsertEnter']
-hook_source = '''
-source $VIM_PATH/rc/vim-vsnip.vim
-'''
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip-integ'
-depends = ['vim-vsnip']
+# [[plugins]]
+# repo = 'hrsh7th/vim-vsnip'
+# on_event = ['InsertEnter']
+# hook_source = '''
+# source $VIM_PATH/rc/vim-vsnip.vim
+# '''
+# [[plugins]]
+# repo = 'hrsh7th/vim-vsnip-integ'
+# depends = ['vim-vsnip']
 
 # ==================== Utility =================== {{{1
 [[plugins]]
@@ -265,7 +278,7 @@ source $VIM_PATH/rc/echodoc.vim
 
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim' # {{{2
-on_cmd = ['CtrlP', 'CtrlPBuffer', 'CtrlPCurFile', 'CtrlPMRU']
+on_cmd = ['CtrlP', 'CtrlPBuffer', 'CtrlPCurFile', 'CtrlPMRUFiles']
 hook_add = '''
 source $VIM_PATH/rc/ctrlp.vim
 '''

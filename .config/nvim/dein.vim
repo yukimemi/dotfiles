@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2020/08/23 01:08:29.
+" Last Change : 2020/08/23 12:04:02.
 " =============================================================================
 
 " Plugin: {{{1
@@ -35,7 +35,7 @@ call dein#end()
 call dein#save_state()
 
 " Check and install.
-if has('vim_starting') && dein#check_install() && !g:is_windows
+if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
 

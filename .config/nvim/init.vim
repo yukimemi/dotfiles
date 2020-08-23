@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/08/23 01:34:50.
+" Last Change : 2020/08/23 12:07:53.
 " =============================================================================
 
 " Init: {{{1
@@ -515,9 +515,9 @@ au MyAutoCmd BufWritePost *
       \ endif
 
 " Plugin: {{{1
-let s:use_dein = 1
+let s:use_dein = !(g:is_windows && has('nvim'))
 let s:use_vimplug = 0
-let s:use_minpac = 0
+let s:use_minpac = (g:is_windows && has('nvim'))
 let s:use_packager = 0
 let s:use_volt = 0
 let s:use_pack = 0

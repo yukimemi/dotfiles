@@ -12,7 +12,7 @@ let g:ctrlp_mruf_max = 100000
 nnoremap <silent> scp :<c-u>CtrlP<cr>
 nnoremap <silent> scb :<c-u>CtrlPBuffer<cr>
 nnoremap <silent> scd :<c-u>CtrlPCurFile<cr>
-nnoremap <silent> scu :<c-u>CtrlPMRU<cr>
+nnoremap <silent> scu :<c-u>CtrlPMRUFiles<cr>
 nnoremap <silent> scm :<c-u>CtrlPMark<cr>
 " nnoremap <silent> scl :<c-u>CtrlPLine<cr>
 " nnoremap <silent> scg :<c-u>CtrlPChange<cr>
