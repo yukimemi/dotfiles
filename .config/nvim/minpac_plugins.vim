@@ -73,6 +73,7 @@ Pack 'tyru/capture.vim', {'on': 'Capture'}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'tyru/restart.vim', {'on': 'Restart'}
 Pack 'vim-scripts/autodate.vim', {'event': 'InsertEnter'}
+Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
 Pack 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
 Pack 'yegappan/mru', {'on': 'MRU'}
 
