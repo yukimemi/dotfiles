@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/08/23 15:46:12.
+" Last Change : 2020/08/23 20:33:15.
 " =============================================================================
 
 " Init: {{{1
@@ -453,9 +453,6 @@ au MyAutoCmd BufWritePost *.vim silent! nested source $MYVIMRC | redraw
 " Auto open cwindow.
 au MyAutoCmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) != 0 | copen | endif
 
-" Auto change dir.
-" au MyAutoCmd BufEnter * execute ":silent! tcd " . escape(expand("%:p:h"), ' ')
-
 " Restore last cursor position when open a file.
 au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
@@ -563,8 +560,8 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-" silent! packadd palenight.vim
-silent! colorscheme PaperColor
+silent! packadd iceberg.vim
+silent! colorscheme spring-night
 
 " Neovide: {{{1
 let g:neovide_transparency = 0.9

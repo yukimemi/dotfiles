@@ -16,7 +16,7 @@ Pack 'luochen1990/rainbow', {'type': 'lazyall'}
 Pack 'machakann/vim-highlightedyank', {'type': 'lazyall', 'if': !has('nvim')}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
-Pack 'nathanaelkane/vim-indent-guides', {'event': 'CursorHold'}
+Pack 'nathanaelkane/vim-indent-guides'
 Pack 'ntpeters/vim-better-whitespace', {'event': 'CursorHold'}
 Pack 't9md/vim-quickhl', {'type': 'lazyall'}
 
@@ -57,7 +57,7 @@ Pack 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
 Pack 'rbtnn/vim-coloredit', {'on': 'ColorEdit', 'if': !has('nvim')}
 Pack 'rbtnn/vim-vimscript_lasterror', {'on': 'VimscriptLastError'}
-Pack 'rbtnn/vim-winsbar', { 'event': 'CursorMoved', 'if': !has('nvim')}
+Pack 'rbtnn/vim-winsbar', {'event': 'CursorMoved', 'if': !has('nvim')}
 Pack 'romainl/vim-qf', {'for': ['quickfix', 'qf']}
 Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
