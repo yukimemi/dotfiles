@@ -5,6 +5,7 @@
   "list.maxHeight": 30,
   "list.source.lists.defaultOptions": ["--no-sort"],
   "list.source.files.args": ["--hidden", "--no-ignore-vcs", "--files"],
+  "list.source.grep.defaultArgs": ["-smartcase", "-regex", "-skip-vcs-ignores"],
   "coc.preferences.formatOnSaveFiletypes": [
     "typescript",
     "typescriptreact",

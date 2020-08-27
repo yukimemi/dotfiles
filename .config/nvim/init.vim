@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/08/23 20:33:15.
+" Last Change : 2020/08/28 01:00:04.
 " =============================================================================
 
 " Init: {{{1
@@ -31,29 +31,6 @@ endif
 " Set mapleader.
 let g:mapleader = "\<space>"
 let g:maplocalleader = ','
-
-" Unload default plugins.
-let g:no_gvimrc_example         = 1
-let g:no_vimrc_example          = 1
-let g:loaded_gzip               = 1
-let g:loaded_tar                = 1
-let g:loaded_tarPlugin          = 1
-let g:loaded_zip                = 1
-let g:loaded_zipPlugin          = 1
-let g:loaded_rrhelper           = 1
-let g:loaded_vimball            = 1
-let g:loaded_vimballPlugin      = 1
-let g:loaded_getscript          = 1
-let g:loaded_getscriptPlugin    = 1
-let g:loaded_netrw              = 1
-let g:loaded_netrwPlugin        = 1
-let g:loaded_netrwSettings      = 1
-let g:loaded_netrwFileHandlers  = 1
-let g:did_install_default_menus = 1
-let g:skip_loading_mswin        = 1
-let g:did_install_syntax_menu   = 1
-let g:loaded_2html_plugin       = 1
-let g:loaded_matchparen         = 1
 
 " Utility: {{{1
 " Judge os type. {{{2
@@ -417,6 +394,8 @@ nnoremap <localleader>o :<c-u>call <SID>open_current_dir()<cr>
 " terminal
 tnoremap <Esc> <c-\><c-n>
 
+" Change background color
+nnoremap <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<cr>
 
 "  for git mergetool {{{2
 if &diff
@@ -560,8 +539,8 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-silent! packadd iceberg.vim
-silent! colorscheme spring-night
+silent! packadd quantum.vim
+silent! colorscheme quantum
 
 " Neovide: {{{1
 let g:neovide_transparency = 0.9

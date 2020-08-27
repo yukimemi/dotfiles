@@ -1,5 +1,5 @@
 let g:lightline = {
-      \ 'colorscheme': 'iceberg',
+      \ 'colorscheme': 'quantum',
       \ 'mode_map': {
       \   'n' : 'N',
       \   'i' : 'I',
@@ -14,7 +14,7 @@ let g:lightline = {
       \   },
       \ 'active': {
       \   'left': [ [ 'mode', 'spell', 'paste' ],
-      \             [ 'ginastatus', 'cocstatus', 'readonly', 'filename', 'bomb' ],
+      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'bomb' ],
       \             [ 'vista', 'quickfix_title' ] ],
       \   'right': [
       \     ['lineinfo'],
@@ -36,7 +36,9 @@ let g:lightline = {
       \   'quickfix_title': 'LightLineQuickfixTitle',
       \   'cocstatus': 'coc#status',
       \   'vista': 'NearestMethodOrFunction',
-      \   'reanimate': 'LightLineReanimate'
+      \   'reanimate': 'LightLineReanimate',
+      \   'toggl_task': 'toggl#task',
+      \   'toggl_time': 'toggl#time',
       \ },
       \ 'component_type': {
       \   'linter_errors':       'error',

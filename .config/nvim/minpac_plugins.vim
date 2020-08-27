@@ -19,6 +19,7 @@ Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'nathanaelkane/vim-indent-guides'
 Pack 'ntpeters/vim-better-whitespace', {'event': 'CursorHold'}
 Pack 't9md/vim-quickhl', {'type': 'lazyall'}
+Pack 'unblevable/quick-scope', {'event': 'CursorHold'}
 
 " colorscheme {{{2
 Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
@@ -28,12 +29,17 @@ Pack 'drewtempelmeyer/palenight.vim', {'type': 'opt'}
 Pack 'ghifarit53/tokyonight-vim', {'type': 'opt'}
 Pack 'gkeep/iceberg-dark', {'type': 'opt'}
 Pack 'joshdick/onedark.vim', {'type': 'opt'}
+Pack 'kjssad/quantum.vim', {'type': 'opt'}
 Pack 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pack 'romgrk/github-light.vim', {'type': 'opt'}
 Pack 'sainnhe/gruvbox-material', {'type': 'opt'}
+Pack 'severij/vadelma', {'type': 'opt'}
 Pack 'yasukotelin/shirotelin', {'type': 'opt'}
 
+
 " Utility: {{{1
+" Pack 'thinca/vim-localrc'
+" Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
 Pack 'AndrewRadev/linediff.vim', {'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
@@ -56,12 +62,14 @@ Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
 Pack 'rbtnn/vim-coloredit', {'on': 'ColorEdit', 'if': !has('nvim')}
+Pack 'rbtnn/vim-gloaded'
 Pack 'rbtnn/vim-vimscript_lasterror', {'on': 'VimscriptLastError'}
 Pack 'rbtnn/vim-winsbar', {'event': 'CursorMoved', 'if': !has('nvim')}
 Pack 'romainl/vim-qf', {'for': ['quickfix', 'qf']}
 Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
+Pack 'sentriz/vim-print-debug', {'type': 'lazyall'}
 Pack 't9md/vim-choosewin', {'type': 'lazyall'}
 Pack 'thinca/vim-ambicmd', {'event': 'VimEnter'}
 Pack 'thinca/vim-prettyprint', {'on': 'PP'}
@@ -73,7 +81,6 @@ Pack 'tyru/capture.vim', {'on': 'Capture'}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'tyru/restart.vim', {'on': 'Restart'}
 Pack 'vim-scripts/autodate.vim', {'event': 'InsertEnter'}
-Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
 Pack 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
 Pack 'yegappan/mru', {'on': 'MRU'}
 
@@ -84,6 +91,7 @@ Pack 'tyru/caw.vim', {'event': 'CursorMoved'}
 Pack 'twitvim/twitvim', {'type': 'lazyall'}
 
 " Git: {{{1
+Pack 'itchyny/vim-gitbranch', {'type': 'lazyall'}
 Pack 'lambdalisue/gina.vim'
 Pack 'rhysd/committia.vim', {'if': !g:is_windows}
 Pack 'rhysd/conflict-marker.vim', {'type': 'lazyall'}
@@ -137,10 +145,10 @@ Pack 'mattn/emmet-vim', {'for': 'html'}
 if g:plugin_use_ctrlp
   Pack 'ctrlpvim/ctrlp.vim'
 
+  " Pack 'mattn/ctrlp-ghq', {'on': 'CtrlPGhq'}
   Pack 'kaneshin/ctrlp-filetype', {'on': 'CtrlPFiletype'}
   Pack 'kaneshin/ctrlp-memolist', {'on': 'CtrlPMemolist'}
   Pack 'kaneshin/ctrlp-sonictemplate', {'on': 'CtrlPSonictemplate'}
-  Pack 'mattn/ctrlp-ghq', {'on': 'CtrlPGhq'}
   Pack 'mattn/ctrlp-launcher', {'on': 'CtrlPLauncher'}
   Pack 'mattn/ctrlp-mark', {'on': 'CtrlPMark'}
   Pack 'mattn/ctrlp-vimhelpjp', {'on': 'VimHelpJp'}
@@ -192,11 +200,11 @@ endif
 if g:plugin_use_fern
   Pack 'lambdalisue/fern.vim'
 
-  Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
-  Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern-git-status.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern-git.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern-mapping-git.vim', {'type': 'lazyall'}
+  Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
+  Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern-renderer-nerdfont.vim', {'type': 'lazyall'}
 endif
 
