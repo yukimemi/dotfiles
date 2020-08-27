@@ -167,11 +167,9 @@ endif
 
 if g:plugin_use_cocfzf
   if !g:plugin_use_coc
-    Pack 'neoclide/coc.nvim'
+    Pack 'neoclide/coc.nvim', {'branch': 'release', 'do': 'silent! !go get -u github.com/high-moctane/nextword', 'if': executable('go')}
   endif
   Pack 'junegunn/fzf'
-  Pack 'junegunn/fzf.vim'
-  Pack 'antoinemadec/coc-fzf'
 endif
 
 if g:plugin_use_fz

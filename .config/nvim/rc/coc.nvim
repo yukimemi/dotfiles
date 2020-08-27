@@ -62,6 +62,10 @@ let g:coc_global_extensions = [
      \ "coc-yank",
      \ ]
 
+if g:plugin_use_cocfzf
+  call add(g:coc_global_extensions, "coc-fzf-preview")
+endif
+
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -128,34 +132,54 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " coc-list {{{1
 if g:plugin_use_cocfzf
-  nnoremap <silent> <leader><leader> :<c-u>CocFzfList<cr>
-  nnoremap <silent> <leader>cr :<c-u>CocFzfList files --hidden ~/.rhq<cr>
-  nnoremap <silent> <leader>cf :<c-u>CocFzfList files --hidden ~/.dotfiles<cr>
-  nnoremap <silent> <leader>cv :<c-u>CocFzfList files --hidden ~/.cache<cr>
-  nnoremap <silent> <leader>cm :<c-u>CocFzfList files --hidden ~/.memolist<cr>
-  nnoremap <silent> <leader>cb :<c-u>CocFzfList buffers<cr>
-  nnoremap <silent> <leader>ch :<c-u>CocFzfList cmdhistory<cr>
-  nnoremap <silent> <leader>cH :<c-u>CocFzfList helptags<cr>
-  nnoremap <silent> <leader>cu :<c-u>CocFzfList mru<cr>
-  nnoremap <silent> <leader>ct :<c-u>CocFzfList todolist<cr>
-  nnoremap <silent> <leader>cs :<c-u>CocFzfList -I symbols<cr>
-  nnoremap <silent> <leader>cF :<c-u>CocFzfList filetypes<cr>
-  nnoremap <silent> <leader>r :<c-u>CocFzfListResume<cr>
-else
-  nnoremap <silent> <leader><leader> :<c-u>CocList<cr>
-  nnoremap <silent> <leader>cr :<c-u>CocList files --hidden ~/.rhq<cr>
-  nnoremap <silent> <leader>cf :<c-u>CocList files --hidden ~/.dotfiles<cr>
-  nnoremap <silent> <leader>cv :<c-u>CocList files --hidden ~/.cache<cr>
-  nnoremap <silent> <leader>cm :<c-u>CocList files --hidden ~/.memolist<cr>
-  nnoremap <silent> <leader>cb :<c-u>CocList buffers<cr>
-  nnoremap <silent> <leader>ch :<c-u>CocList cmdhistory<cr>
-  nnoremap <silent> <leader>cH :<c-u>CocList helptags<cr>
-  nnoremap <silent> <leader>cu :<c-u>CocList mru<cr>
-  nnoremap <silent> <leader>ct :<c-u>CocList todolist<cr>
-  nnoremap <silent> <leader>cs :<c-u>CocList -I symbols<cr>
-  nnoremap <silent> <leader>cF :<c-u>CocList filetypes<cr>
-  nnoremap <silent> <leader>r :<c-u>CocListResume<cr>
+  " nnoremap <silent> <leader><leader> :<c-u>CocFzfList<cr>
+  " nnoremap <silent> <leader>cr :<c-u>CocFzfList files --hidden ~/.rhq<cr>
+  " nnoremap <silent> <leader>cf :<c-u>CocFzfList files --hidden ~/.dotfiles<cr>
+  " nnoremap <silent> <leader>cv :<c-u>CocFzfList files --hidden ~/.cache<cr>
+  " nnoremap <silent> <leader>cm :<c-u>CocFzfList files --hidden ~/.memolist<cr>
+  " nnoremap <silent> <leader>cb :<c-u>CocFzfList buffers<cr>
+  " nnoremap <silent> <leader>ch :<c-u>CocFzfList cmdhistory<cr>
+  " nnoremap <silent> <leader>cH :<c-u>CocFzfList helptags<cr>
+  " nnoremap <silent> <leader>cu :<c-u>CocFzfList mru<cr>
+  " nnoremap <silent> <leader>ct :<c-u>CocFzfList todolist<cr>
+  " nnoremap <silent> <leader>cs :<c-u>CocFzfList -I symbols<cr>
+  " nnoremap <silent> <leader>cF :<c-u>CocFzfList filetypes<cr>
+  " nnoremap <silent> <leader>r :<c-u>CocFzfListResume<cr>
+
+  nmap <leader>f [fzf-p]
+  xmap <leader>f [fzf-p]
+
+  nnoremap <silent> [fzf-p]p     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
+  nnoremap <silent> [fzf-p]gs    :<C-u>CocCommand fzf-preview.GitStatus<CR>
+  nnoremap <silent> [fzf-p]ga    :<C-u>CocCommand fzf-preview.GitActions<CR>
+  nnoremap <silent> [fzf-p]b     :<C-u>CocCommand fzf-preview.Buffers<CR>
+  nnoremap <silent> [fzf-p]B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
+  nnoremap <silent> [fzf-p]o     :<C-u>CocCommand fzf-preview.FromResources buffer project_mru<CR>
+  nnoremap <silent> [fzf-p]<C-o> :<C-u>CocCommand fzf-preview.Jumps<CR>
+  nnoremap <silent> [fzf-p]g;    :<C-u>CocCommand fzf-preview.Changes<CR>
+  nnoremap <silent> [fzf-p]/     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
+  nnoremap <silent> [fzf-p]*     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
+  nnoremap          [fzf-p]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
+  xnoremap          [fzf-p]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
+  nnoremap <silent> [fzf-p]t     :<C-u>CocCommand fzf-preview.BufferTags<CR>
+  nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
+  nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
+
 endif
+
+nnoremap <silent> <leader><leader> :<c-u>CocList<cr>
+nnoremap <silent> <leader>cr :<c-u>CocList files --hidden ~/.rhq<cr>
+nnoremap <silent> <leader>cf :<c-u>CocList files --hidden ~/.dotfiles<cr>
+nnoremap <silent> <leader>cv :<c-u>CocList files --hidden ~/.cache<cr>
+nnoremap <silent> <leader>cm :<c-u>CocList files --hidden ~/.memolist<cr>
+nnoremap <silent> <leader>cb :<c-u>CocList buffers<cr>
+nnoremap <silent> <leader>ch :<c-u>CocList cmdhistory<cr>
+nnoremap <silent> <leader>cH :<c-u>CocList helptags<cr>
+nnoremap <silent> <leader>cu :<c-u>CocList mru<cr>
+nnoremap <silent> <leader>ct :<c-u>CocList todolist<cr>
+nnoremap <silent> <leader>cs :<c-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>cF :<c-u>CocList filetypes<cr>
+nnoremap <silent> <leader>r :<c-u>CocListResume<cr>
 
 " coc-snippet {{{1
 " Use <c-k> for trigger snippet expand.
