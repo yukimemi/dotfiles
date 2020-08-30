@@ -8,7 +8,7 @@ Pack 'itchyny/vim-cursorword', {'event': 'CursorHold'}
 Pack 'itchyny/vim-external', {'event': 'CursorHold'}
 Pack 'itchyny/vim-highlighturl', {'event': 'CursorHold'}
 Pack 'itchyny/vim-parenmatch', {'event': 'CursorHold'}
-Pack 'jeffkreeftmeijer/vim-numbertoggle', {'event': ['CursorHold', 'CursorMoved']}
+Pack 'jeffkreeftmeijer/vim-numbertoggle', {'event': ['CursorHold', 'InsertEnter', 'CursorMoved']}
 Pack 'lambdalisue/glyph-palette.vim'
 Pack 'lambdalisue/nerdfont.vim'
 Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
@@ -18,7 +18,7 @@ Pack 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'nathanaelkane/vim-indent-guides'
 Pack 'ntpeters/vim-better-whitespace', {'event': 'CursorHold'}
-Pack 't9md/vim-quickhl', {'type': 'lazyall'}
+Pack 't9md/vim-quickhl', {'event': 'CursorHold'}
 Pack 'unblevable/quick-scope', {'event': 'CursorHold'}
 
 " colorscheme {{{2
@@ -38,6 +38,7 @@ Pack 'yasukotelin/shirotelin', {'type': 'opt'}
 
 
 " Utility: {{{1
+" Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
 Pack 'AndrewRadev/linediff.vim', {'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
@@ -48,7 +49,6 @@ Pack 'chamindra/marvim', {'type': 'lazyall'}
 Pack 'da-x/name-assign.vim', {'on': '<Plug>NameAssign'}
 Pack 'editorconfig/editorconfig-vim', {'event': 'VimEnter'}
 Pack 'gelguy/wilder.nvim', {'event': ['CmdWinEnter', 'CmdlineEnter']}
-Pack 'glidenote/memolist.vim', {'on': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pack 'haya14busa/vim-edgemotion', {'on': ['<Plug>(edgemotion-j)', '<Plug>(edgemotion-k)']}
 Pack 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Pack 'lambdalisue/readablefold.vim', {'event': 'CursorHold'}
@@ -58,12 +58,13 @@ Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'mattn/vim-sonictemplate', {'on': 'Template'}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'mbbill/undotree', {'on': 'UndotreeToggle'}
-Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
 Pack 'nicwest/vim-camelsnek', {'on': ['Snek', 'Camel', 'CamelB', 'Kebab']}
+Pack 'qpkorr/vim-renamer', {'on': ['<Plug>RenamerStart', 'Renamer']}
 Pack 'rbtnn/vim-coloredit', {'on': 'ColorEdit', 'if': !has('nvim')}
 Pack 'rbtnn/vim-gloaded'
 Pack 'rbtnn/vim-vimscript_lasterror', {'on': 'VimscriptLastError'}
 Pack 'rbtnn/vim-winsbar', {'event': 'CursorMoved', 'if': !has('nvim')}
+Pack 'rickhowe/diffchar.vim', {'type': 'lazyall'}
 Pack 'romainl/vim-qf', {'for': ['quickfix', 'qf']}
 Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
@@ -81,11 +82,13 @@ Pack 'tyru/capture.vim', {'on': 'Capture'}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'tyru/restart.vim', {'on': 'Restart'}
 Pack 'vim-scripts/autodate.vim', {'event': 'InsertEnter'}
-Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
+Pack 'wakatime/vim-wakatime', {'event': 'InsertEnter'}
 Pack 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
 Pack 'yegappan/mru', {'on': 'MRU'}
 
 " Comment: {{{1
+Pack 'Shougo/junkfile.vim', {'on': 'JunkfileOpen'}
+Pack 'glidenote/memolist.vim', {'on': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pack 'tyru/caw.vim', {'event': 'CursorMoved'}
 
 " App: {{{1
@@ -93,7 +96,7 @@ Pack 'twitvim/twitvim', {'type': 'lazyall'}
 
 " Git: {{{1
 Pack 'itchyny/vim-gitbranch', {'type': 'lazyall'}
-Pack 'lambdalisue/gina.vim'
+Pack 'lambdalisue/gina.vim', {'on': 'Gina'}
 Pack 'rhysd/committia.vim', {'if': !g:is_windows}
 Pack 'rhysd/conflict-marker.vim', {'type': 'lazyall'}
 
@@ -108,6 +111,7 @@ Pack 'kana/vim-textobj-indent', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'machakann/vim-textobj-delimited', {'type': 'lazyall'}
 Pack 'mattn/vim-textobj-url', {'type': 'lazyall'}
+Pack 'osyo-manga/vim-textobj-multiblock', {'type': 'lazyall'}
 
 
 " Operator: {{{1
@@ -118,8 +122,6 @@ Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
 Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
 
-" Completion: {{{1
-Pack 'honza/vim-snippets', {'event': 'InsertEnter'}
 
 " Search: {{{1
 Pack 'eugen0329/vim-esearch', {'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
@@ -146,7 +148,6 @@ Pack 'mattn/emmet-vim', {'for': 'html'}
 if g:plugin_use_ctrlp
   Pack 'ctrlpvim/ctrlp.vim'
 
-  " Pack 'mattn/ctrlp-ghq', {'on': 'CtrlPGhq'}
   Pack 'kaneshin/ctrlp-filetype', {'on': 'CtrlPFiletype'}
   Pack 'kaneshin/ctrlp-memolist', {'on': 'CtrlPMemolist'}
   Pack 'kaneshin/ctrlp-sonictemplate', {'on': 'CtrlPSonictemplate'}
@@ -161,17 +162,6 @@ if g:plugin_use_clap
   Pack 'liuchengxu/vim-clap', {'on': 'Clap'}
 endif
 
-if g:plugin_use_fzf
-  Pack 'yuki-ycino/fzf-preview.vim'
-  Pack 'MattesGroeger/vim-bookmarks', {'type': 'lazyall'}
-endif
-
-if g:plugin_use_cocfzf
-  if !g:plugin_use_coc
-    Pack 'neoclide/coc.nvim', {'branch': 'release', 'do': 'silent! !go get -u github.com/high-moctane/nextword', 'if': executable('go')}
-  endif
-  Pack 'junegunn/fzf'
-endif
 
 if g:plugin_use_fz
   Pack 'mattn/vim-fz', {'do': 'silent! !go get github.com/mattn/gof'}
@@ -213,11 +203,16 @@ if g:plugin_use_defx
   Pack 'kristijanhusak/defx-icons', {'type': 'opt'}
 endif
 
+
 " Completion: {{{1
+Pack 'honza/vim-snippets', {'event': 'InsertEnter'}
+
 if g:plugin_use_asyncomplete
   Pack 'prabirshrestha/asyncomplete.vim'
 
   Pack 'high-moctane/asyncomplete-nextword.vim', {'do': 'silent! !go get -u github.com/high-moctane/nextword', 'if': executable('go') && !g:is_windows}
+  Pack 'hrsh7th/vim-vsnip'
+  Pack 'hrsh7th/vim-vsnip-integ'
   Pack 'mattn/vim-lsp-icons'
   Pack 'mattn/vim-lsp-settings'
   Pack 'prabirshrestha/async.vim'
@@ -246,5 +241,11 @@ if g:plugin_use_deoplete
   Pack 'tsuyoshicho/vim-efm-langserver-settings'
   Pack 'voldikss/vim-translator', {'on': ['<Plug>Translate', '<Plug>TranslateV', '<Plug>TranslateW', '<Plug>TranslateWV', '<Plug>TranslateR', '<Plug>TranslateRV']}
 endif
+
+
+" Runner: {{{1
+Pack 'thinca/vim-quickrun', {'on': ['QuickRun', '<Plug>(quickrun)']}
+Pack 'lambdalisue/vim-quickrun-neovim-job', {'type': 'lazyall'}
+
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

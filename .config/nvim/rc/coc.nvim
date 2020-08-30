@@ -1,7 +1,3 @@
-if !IsInstalled("coc.nvim")
-  finish
-endif
-
 " coc {{{1
 " always show signcolumns
 set signcolumn=yes
