@@ -12,7 +12,7 @@ Pack 'jeffkreeftmeijer/vim-numbertoggle', {'event': ['CursorHold', 'InsertEnter'
 Pack 'lambdalisue/glyph-palette.vim'
 Pack 'lambdalisue/nerdfont.vim'
 Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
-Pack 'luochen1990/rainbow', {'type': 'lazyall'}
+Pack 'luochen1990/rainbow', {'type': 'lazy'}
 Pack 'machakann/vim-highlightedyank', {'type': 'lazyall', 'if': !has('nvim')}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
 Pack 'mattn/vimtweak', {'if': g:is_windows}

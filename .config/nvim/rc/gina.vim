@@ -10,7 +10,7 @@ nnoremap <space>gd :<c-u>Gina diff<cr>
 nnoremap <space>gl :<c-u>Gina ls-files<cr>
 nnoremap <space>gp :<c-u>Gina push<cr>
 
-au MyAutoCmd VimEnter * call <SID>my_gina_settings()
+au MyAutoCmd CmdUndefined Gina call <SID>my_gina_settings()
 
 function! s:my_gina_settings() abort
   call gina#custom#command#alias('branch', 'br')
