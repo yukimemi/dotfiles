@@ -38,8 +38,6 @@ Pack 'yasukotelin/shirotelin', {'type': 'opt'}
 
 
 " Utility: {{{1
-" Pack 'thinca/vim-localrc'
-" Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
 Pack 'AndrewRadev/linediff.vim', {'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
@@ -61,7 +59,7 @@ Pack 'mattn/vim-sonictemplate', {'on': 'Template'}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
-Pack 'nicwest/vim-camelsnek', {'type': 'lazyall'}
+Pack 'nicwest/vim-camelsnek', {'on': ['Snek', 'Camel', 'CamelB', 'Kebab']}
 Pack 'rbtnn/vim-coloredit', {'on': 'ColorEdit', 'if': !has('nvim')}
 Pack 'rbtnn/vim-gloaded'
 Pack 'rbtnn/vim-vimscript_lasterror', {'on': 'VimscriptLastError'}
@@ -73,6 +71,7 @@ Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'sentriz/vim-print-debug', {'type': 'lazyall'}
 Pack 't9md/vim-choosewin', {'type': 'lazyall'}
 Pack 'thinca/vim-ambicmd', {'event': 'VimEnter'}
+Pack 'thinca/vim-localrc'
 Pack 'thinca/vim-prettyprint', {'on': 'PP'}
 Pack 'thinca/vim-qfreplace', {'for': ['quickfix', 'qf']}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
@@ -82,6 +81,7 @@ Pack 'tyru/capture.vim', {'on': 'Capture'}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'tyru/restart.vim', {'on': 'Restart'}
 Pack 'vim-scripts/autodate.vim', {'event': 'InsertEnter'}
+Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
 Pack 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
 Pack 'yegappan/mru', {'on': 'MRU'}
 
