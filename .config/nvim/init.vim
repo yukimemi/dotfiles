@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/08/28 01:14:47.
+" Last Change : 2020/08/29 19:14:09.
 " =============================================================================
 
 " Init: {{{1
@@ -508,7 +508,7 @@ let g:plugin_use_deoplete = 0
 let g:plugin_use_ctrlp = 1
 let g:plugin_use_clap = 0
 let g:plugin_use_fzf = 0
-let g:plugin_use_cocfzf = 1
+let g:plugin_use_cocfzf = 0
 let g:plugin_use_fz = 0
 let g:plugin_use_denite = 1
 

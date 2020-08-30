@@ -61,6 +61,7 @@ Pack 'mattn/vim-sonictemplate', {'on': 'Template'}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
+Pack 'nicwest/vim-camelsnek', {'type': 'lazyall'}
 Pack 'rbtnn/vim-coloredit', {'on': 'ColorEdit', 'if': !has('nvim')}
 Pack 'rbtnn/vim-gloaded'
 Pack 'rbtnn/vim-vimscript_lasterror', {'on': 'VimscriptLastError'}
