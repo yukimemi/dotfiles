@@ -1,7 +1,3 @@
-if !IsInstalled("denite.nvim")
-  finish
-endif
-
 " Use plefix s
 nnoremap sd/ :<c-u>Denite -post-action=open line<cr>
 nnoremap sdD :<c-u>Denite -path='~/.dotfiles' file/rec<cr>
@@ -24,14 +20,9 @@ nnoremap sdu :<c-u>Denite file/old<cr>
 " inoremap <c-l> <esc>:<c-u>Denite command<cr>
 
 " Load after settings.
-if has('python3')
-  if g:is_windows
-    " let g:python3_host_prog = "C:/Python38/python.exe"
-  endif
-  au MyAutoCmd VimEnter * call <SID>denite_aft()
-  au MyAutoCmd FileType denite call <SID>denite_my_settings()
-  au MyAutoCmd FileType denite-filter call <SID>denite_filter_my_settings()
-endif
+au MyAutoCmd VimEnter * call <SID>denite_aft()
+au MyAutoCmd FileType denite call <SID>denite_my_settings()
+au MyAutoCmd FileType denite-filter call <SID>denite_filter_my_settings()
 
 function! s:denite_aft() abort
   silent! packadd denite.nvim

@@ -8,7 +8,7 @@ Pack 'itchyny/vim-cursorword', {'event': 'CursorHold'}
 Pack 'itchyny/vim-external', {'event': 'CursorHold'}
 Pack 'itchyny/vim-highlighturl', {'event': 'CursorHold'}
 Pack 'itchyny/vim-parenmatch', {'event': 'CursorHold'}
-Pack 'jeffkreeftmeijer/vim-numbertoggle', {'event': ['CursorHold', 'InsertEnter', 'CursorMoved']}
+Pack 'jeffkreeftmeijer/vim-numbertoggle', {'type': 'lazyall'}
 Pack 'lambdalisue/glyph-palette.vim'
 Pack 'lambdalisue/nerdfont.vim'
 Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
@@ -16,7 +16,7 @@ Pack 'luochen1990/rainbow', {'type': 'lazy'}
 Pack 'machakann/vim-highlightedyank', {'type': 'lazyall', 'if': !has('nvim')}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
-Pack 'nathanaelkane/vim-indent-guides'
+Pack 'nathanaelkane/vim-indent-guides', {'event': 'CursorHold'}
 Pack 'ntpeters/vim-better-whitespace', {'event': 'CursorHold'}
 Pack 't9md/vim-quickhl', {'event': 'CursorHold'}
 Pack 'unblevable/quick-scope', {'event': 'CursorHold'}
@@ -43,12 +43,12 @@ Pack 'AndrewRadev/linediff.vim', {'on': ['Linediff', 'LinediffReset', 'LinediffS
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/echodoc.vim', {'event': 'InsertEnter'}
-Pack 'airblade/vim-rooter', {'event': 'BufEnter'}
+Pack 'airblade/vim-rooter', {'event': 'CursorHold'}
 Pack 'aiya000/aho-bakaup.vim', {'event': 'BufWritePre'}
 Pack 'chamindra/marvim', {'type': 'lazyall'}
 Pack 'da-x/name-assign.vim', {'on': '<Plug>NameAssign'}
 Pack 'editorconfig/editorconfig-vim', {'event': 'VimEnter'}
-Pack 'gelguy/wilder.nvim', {'event': ['CmdWinEnter', 'CmdlineEnter']}
+Pack 'gelguy/wilder.nvim', {'event': ['CmdwinEnter', 'CmdlineEnter']}
 Pack 'haya14busa/vim-edgemotion', {'on': ['<Plug>(edgemotion-j)', '<Plug>(edgemotion-k)']}
 Pack 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Pack 'lambdalisue/readablefold.vim', {'event': 'CursorHold'}
@@ -82,7 +82,7 @@ Pack 'tyru/capture.vim', {'on': 'Capture'}
 Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
 Pack 'tyru/restart.vim', {'on': 'Restart'}
 Pack 'vim-scripts/autodate.vim', {'event': 'InsertEnter'}
-Pack 'wakatime/vim-wakatime', {'event': ['InsertEnter', 'CursorMoved']}
+Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
 Pack 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
 Pack 'yegappan/mru', {'on': 'MRU'}
 
@@ -128,7 +128,7 @@ Pack 'eugen0329/vim-esearch', {'on': ['<Plug>(esearch)', '<Plug>(esearch-word-un
 Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
 Pack 'mhinz/vim-grepper', {'type': 'lazyall'}
-Pack 'pechorin/any-jump.vim', {'type': 'lazyall'}
+Pack 'pechorin/any-jump.vim', {'on_cmd': ['AnyJumpLastResults', 'AnyJumpBack', 'AnyJumpVisual', 'AnyJump']}
 
 " Shell: {{{1
 Pack 'Shougo/deol.nvim', {'on': ['Deol', 'DeolCd', 'DeolEdit'], 'do': 'silent! UpdateRemotePlugins'}
@@ -177,7 +177,7 @@ endif
 
 
 if g:plugin_use_lightline
-  Pack 'itchyny/lightline.vim'
+  Pack 'itchyny/lightline.vim', {'event': 'CursorHold'}
 endif
 
 if g:plugin_use_airline

@@ -44,3 +44,8 @@ let g:any_jump_references_only_for_current_filetype = 0
 " Disable search engine ignore vcs untracked files
 " (default: false, search engine will ignore vcs untracked files)
 let g:any_jump_disable_vcs_ignore = 0
+
+nnoremap <leader>j  :AnyJump<cr>
+xnoremap <leader>j  :AnyJumpVisual<cr>
+nnoremap <leader>ab :AnyJumpBack<cr>
+nnoremap <leader>al :AnyJumpLastResults<cr>
