@@ -23,7 +23,7 @@
 [ghq]
 	root = /Users/yukimemi/.rhq
 [credential]
-	helper = manager
+	helper = store
 [merge]
 	tool = "nvim -d"
 [branch]
@@ -36,5 +36,3 @@
 	sslVerify = false
 [hub]
 	protocol = https
-[credential "helperselector"]
-	selected = manager

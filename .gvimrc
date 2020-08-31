@@ -3,7 +3,7 @@ set guioptions=
 
 " color
 set background=dark
-silent! colorscheme quantum
+silent! colorscheme spring-night
 if g:no_plugin
   colorscheme desert
 endif

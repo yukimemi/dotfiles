@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/08/31 01:08:15.
+# Last Change : 2020/08/31 10:00:34.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -154,7 +154,7 @@ repo = 'romgrk/github-light.vim' # {{{2
 lazy = 1
 
 [[plugins]]
-repo =  'sainnhe/gruvbox-material' # {{{2
+repo = 'sainnhe/gruvbox-material' # {{{2
 lazy = 1
 
 [[plugins]]
@@ -403,7 +403,7 @@ source $VIM_PATH/rc/autodate.vim
 
 [[plugins]]
 repo = 'wakatime/vim-wakatime' # {{{2
-on_event = ['InsertEnter']
+on_event = ['InsertEnter', 'CursorMoved']
 
 [[plugins]]
 repo = 'wesQ3/vim-windowswap' # {{{2
