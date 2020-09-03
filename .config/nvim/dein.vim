@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2020/08/23 12:04:02.
+" Last Change : 2020/09/03 09:02:59.
 " =============================================================================
 
 " Plugin: {{{1
@@ -18,6 +18,8 @@ let g:dein#enable_notification = 1
 let g:dein#install_max_processes = 8
 let g:dein#enable_notification = 1
 let g:dein#types#git#clone_depth = 1
+
+let g:dein#install_github_api_token = $DEIN_GITHUB_API_TOKEN
 
 function! IsInstalled(name) abort
   silent! return !dein#check_install(a:name)
@@ -36,6 +38,7 @@ call dein#save_state()
 
 " Check and install.
 if has('vim_starting') && dein#check_install()
-  call dein#install()
+  " call dein#install()
+  call dein#check_update(v:true)
 endif
 

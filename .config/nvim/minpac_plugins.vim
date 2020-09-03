@@ -59,11 +59,13 @@ Pack 'mattn/vim-sonictemplate', {'on': 'Template'}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Pack 'nicwest/vim-camelsnek', {'on': ['Snek', 'Camel', 'CamelB', 'Kebab']}
+" Pack 'psliwka/vim-smoothie', {'type': 'lazyall'}
 Pack 'qpkorr/vim-renamer', {'on': ['<Plug>RenamerStart', 'Renamer']}
 Pack 'rbtnn/vim-coloredit', {'on': 'ColorEdit', 'if': !has('nvim')}
 Pack 'rbtnn/vim-gloaded'
 Pack 'rbtnn/vim-vimscript_lasterror', {'on': 'VimscriptLastError'}
 Pack 'rbtnn/vim-winsbar', {'event': 'CursorMoved', 'if': !has('nvim')}
+Pack 'rhysd/accelerated-jk', {'type': 'lazyall'}
 Pack 'rickhowe/diffchar.vim', {'type': 'lazyall'}
 Pack 'romainl/vim-qf', {'for': ['quickfix', 'qf']}
 Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
@@ -85,6 +87,7 @@ Pack 'vim-scripts/autodate.vim', {'event': 'InsertEnter'}
 Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
 Pack 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
 Pack 'yegappan/mru', {'on': 'MRU'}
+" Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 
 " Comment: {{{1
 Pack 'Shougo/junkfile.vim', {'on': 'JunkfileOpen'}
