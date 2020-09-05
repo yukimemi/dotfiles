@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/09/03 09:57:07.
+# Last Change : 2020/09/04 14:00:43.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -322,12 +322,12 @@ repo = 'rbtnn/vim-winsbar' # {{{2
 if = "!has('nvim')"
 on_event = ['CursorMoved']
 
-[[plugins]]
-repo = 'rhysd/accelerated-jk' # {{{2
-on_event = ['CursorMoved']
-hook_add = '''
-source $VIM_PATH/rc/accelerated-jk.vim
-'''
+# [[plugins]]
+# repo = 'rhysd/accelerated-jk' # {{{2
+# on_event = ['CursorMoved']
+# hook_add = '''
+# source $VIM_PATH/rc/accelerated-jk.vim
+# '''
 
 [[plugins]]
 repo = 'rickhowe/diffchar.vim' # {{{2
