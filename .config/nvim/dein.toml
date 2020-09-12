@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/09/04 14:00:43.
+# Last Change : 2020/09/12 18:14:34.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -14,6 +14,14 @@ on_cmd = ['DeinUpdate']
 
 
 # ==================== Visual ==================== {{{1
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter' # {{{2
+merged = 0
+on_ft = ['vim', 'rust']
+hook_source = '''
+source $VIM_PATH/rc/nvim-treesitter.vim
+'''
+
 [[plugins]]
 repo = 'LumaKernel/nvim-visual-eof.lua' # {{{2
 if = "has('nvim')"

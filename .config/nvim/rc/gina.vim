@@ -7,7 +7,8 @@ nnoremap <space>gc :<c-u>Gina commit<cr>
 nnoremap <space>gb :<c-u>Gina branch<cr>
 nnoremap <space>gg :<c-u>Gina grep<cr>
 nnoremap <space>gd :<c-u>Gina diff<cr>
-nnoremap <space>gl :<c-u>Gina ls-files<cr>
+nnoremap <space>gl :<c-u>Gina log<cr>
+nnoremap <space>gL :<c-u>Gina log -p<cr>
 nnoremap <space>gp :<c-u>Gina push<cr>
 
 au MyAutoCmd CmdUndefined Gina call <SID>my_gina_settings()
