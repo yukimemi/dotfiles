@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/09/12 18:14:34.
+# Last Change : 2020/09/12 19:55:30.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -17,7 +17,7 @@ on_cmd = ['DeinUpdate']
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter' # {{{2
 merged = 0
-on_ft = ['vim', 'rust']
+on_event = ['CursorHold']
 hook_source = '''
 source $VIM_PATH/rc/nvim-treesitter.vim
 '''
