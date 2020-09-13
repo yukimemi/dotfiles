@@ -12,7 +12,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",     -- one of "all", "language", or a list of languages
   highlight = {
     enable = true,
-    disable = { "c" },  -- list of language that will be disabled
+    disable = { "c", "rust" },  -- list of language that will be disabled
   },
   incremental_selection = {
     enable = true,

@@ -1,0 +1,4 @@
+# default profile
+[default]
+# customize repo root path
+root = "~/src"

@@ -1,7 +1,7 @@
 " coc {{{1
 " always show signcolumns
 set signcolumn=yes
-if !g:is_windows
+if !g:is_windows && !has('nvim')
   set tagfunc=CocTagFunc
 endif
 set shortmess+=c

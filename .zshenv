@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2020/02/11 21:35:27.
+# Last Change : 2020/09/14 01:35:18.
 # =============================================================================
 
 # For time. {{{1
@@ -58,7 +58,7 @@ path=(
 
 # go. {{{2
 export GOPATH=$HOME/.go
-export GOROOT=$(go env GOROOT)
+export GOROOT=$(go env GOROOT) > /dev/null 2>&1
 
 # rust. {{{2
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src" > /dev/null 2>&1
@@ -98,6 +98,7 @@ manpath=(
 # Fpath. {{{2
 fpath=(
   /usr/local/share/zsh-completions(N-/)
+  ${ASDF_DIR}/completions(N-/)
 
   $fpath
 )
@@ -107,10 +108,10 @@ typeset -xT SUDO_PATH sudo_path
 typeset -gU sudo_path
 sudo_path=(
   {,/usr/pkg,/usr/local,/usr}/sbin(N-/)
-)
+    )
 
 # Other. {{{2
-export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_HOME="${HOME}/.config"
 
 export GSR_SHOW_AHEAD=1
 export GSR_SHOW_BEHIND=1
@@ -119,6 +120,8 @@ export VIM_CONFIG_PATH="${HOME}/.config/pack"
 
 export __FILTER_TOOL=fzf
 
+export RRC_CONFIG="${HOME}/.config/rrc/config.toml"
+
 # fzf. {{{2
 if which fd > /dev/null 2>&1; then
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
@@ -126,9 +129,6 @@ elif which rg > /dev/null 2>&1; then
   export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 fi
 
-# less settings. {{{2
-# export LESS='-gj10 --no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
-# export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
 
 # local conf {{{2
 if [ -e ~/.zshrc_private ]; then
@@ -142,7 +142,7 @@ fi
 
 # Compile zshenv. {{{1
 # if [ ! -f ~/.zshenv.zwc -o ~/.zshenv -nt ~/.zshenv.zwc ]; then
-  # zcompile ~/.zshenv
+#   zcompile ~/.zshenv
 # fi
 
 # vim:fdm=marker expandtab fdc=3 ft=zsh:

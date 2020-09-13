@@ -14,13 +14,13 @@ on_cmd = ['DeinUpdate']
 
 
 # ==================== Visual ==================== {{{1
-[[plugins]]
-repo = 'nvim-treesitter/nvim-treesitter' # {{{2
-merged = 0
-on_event = ['CursorHold']
-hook_source = '''
-source $VIM_PATH/rc/nvim-treesitter.vim
-'''
+# [[plugins]]
+# repo = 'nvim-treesitter/nvim-treesitter' # {{{2
+# merged = 0
+# on_event = ['CursorHold']
+# hook_source = '''
+# source $VIM_PATH/rc/nvim-treesitter.vim
+# '''
 
 [[plugins]]
 repo = 'LumaKernel/nvim-visual-eof.lua' # {{{2

@@ -1,73 +1,56 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/02/19 00:20:28.
+# Last Change : 2020/09/14 01:21:01.
 # =============================================================================
 
 #
-# Use zplugin. {{{1
+# Use zinit. {{{1
 #
-[ ! -d ~/.zplugin ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
-source ~/.zplugin/bin/zplugin.zsh
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
+[ ! -d ~/.zinit ] && git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
+source ~/.zinit/bin/zinit.zsh
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 #
 # plugin list. {{{2
 #
-zplugin ice wait'0' lucid blockf
-zplugin light zsh-users/zsh-completions
+zinit wait lucid light-mode for \
+  atinit"zicompinit; zicdreplay" \
+  zdharma/fast-syntax-highlighting \
+  atload"_zsh_autosuggest_start" \
+  zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+  zsh-users/zsh-completions \
+  zsh-users/zsh-history-substring-search \
+  agkozak/zsh-z \
+  @asdf-vm/asdf
 
-zplugin ice wait'0' lucid atload'_zsh_autosuggest_start'
-zplugin light zsh-users/zsh-autosuggestions
+zinit wait lucid from"gh-r" as"program" mv"direnv* -> direnv" \
+  atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+  pick"direnv" src="zhook.zsh" for \
+  direnv/direnv
 
-zplugin ice wait'0' lucid atinit'zpcompinit; zpcdreplay'
-zplugin light zdharma/fast-syntax-highlighting
-
-zplugin light zsh-users/zsh-history-substring-search
-# zplugin light rupa/z
-zplugin light agkozak/zsh-z
-
-zplugin ice from"gh-r" as"program"
-zplugin load junegunn/fzf-bin
-
-zplugin ice wait '0' lucid as'program' make'!' atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' src'zhook.zsh'
-zplugin light direnv/direnv
-
-# zplugin ice wait '0' lucid as'program' pick'bin/anyenv' atclone'bin/anyenv init; echo ''eval "$(bin/anyenv init -)" > zhook.zsh''' atpull'!git reset --hard; %atclone' src'zhook.zsh'
-# zplugin light anyenv/anyenv
+# [ ! -d ~/.asdf ] && git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+# zinit wait lucid blockf for OMZ::plugins/asdf/asdf.plugin.zsh
+# . ~/.asdf/asdf.sh
 
 #
 # for git. {{{2
 #
-zplugin ice wait'1' lucid as'program' pick'bin/git-dsf'
-zplugin light zdharma/zsh-diff-so-fancy
-zplugin ice wait'1' lucid as'program' pick'$ZPFX/bin/git-now' make'prefix=$ZPFX install'
-zplugin light iwata/git-now
-zplugin ice wait'1' lucid as'program' pick'$ZPFX/bin/git-alias' make'PREFIX=$ZPFX' nocompile
-zplugin light tj/git-extras
-zplugin ice wait'1' lucid as'program' atclone'perl Makefile.PL PREFIX=$ZPFX' atpull'%atclone' \
-            make'install' pick'$ZPFX/bin/git-cal'
-zplugin light k4rthik/git-cal
+zinit wait lucid as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode for \
+  tj/git-extras
+
+zinit wait lucid light-mode for supercrabtree/k
 
 #
-# theme. {{{1
+# zinit package
 #
-# Load the pure theme, with zsh-async library that's bundled with it
-# zplugin ice pick'async.zsh' src'pure.zsh'
-# zplugin light sindresorhus/pure
-
-# Load OMZ Git library
-# zplugin snippet OMZ::lib/git.zsh
-
-# Load Git plugin from OMZ
-# zplugin snippet OMZ::plugins/git/git.plugin.zsh
-# zplugin cdclear -q # <- forget completions provided up to this moment
-
-# setopt promptsubst
-
-# Load theme from OMZ
-# zplugin snippet OMZ::themes/sorin.zsh-theme
+# zinit pack for ls_colors
+zinit wait pack for \
+  dircolors-material \
+  system-completions \
+  fzy
 
 #
 # functions. {{{1
@@ -118,7 +101,7 @@ function chpwd() { ls -F }
 
 # z and filter cd. {{{2
 function __filter_z_cd() {
-  z -t $1 | awk '{ $1=""; print }' | __filter_execute cd
+  zshz -t $1 | awk '{ $1=""; print }' | __filter_execute cd
   # z -t $1 | tac | awk '{ $1=""; print }' | __filter_execute cd
 }
 
@@ -129,13 +112,6 @@ function __filter_kill() {
   kill -9 $(echo $line | awk '{ print $2 }')
 }
 zle -N __filter_kill
-
-# Shell snippets. {{{2
-function shell-snippets() {
-    BUFFER=$(grep -v "^#" ~/.shell-snippets | $__FILTER_TOOL)
-    zle clear-screen
-}
-zle -N shell-snippets
 
 # ghq list and change dir. {{{2
 function ghq-list-cd() {
@@ -274,8 +250,8 @@ alias -g F=' | $__FILTER_TOOL'
 #
 # history. {{{1
 #
-if [ -d ~/GoogleDrive ]; then
-  HISTFILE=~/GoogleDrive/.zsh_history
+if [ -d ~/Drive ]; then
+  HISTFILE=~/Drive/.zsh_history
 else
   HISTFILE=~/.zsh_history
 fi
@@ -299,7 +275,6 @@ unsetopt bgnice
 bindkey -v
 
 bindkey '^Q' show-buffer-stack
-# bindkey '^S' shell-snippets
 bindkey '^s' pet-select
 
 bindkey '^R' __filter_history
@@ -343,11 +318,6 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*' group-name ''
 
 #
-# anyenv. {{{1
-#
-# eval "$(anyenv init -)"
-
-#
 # starship. {{{1
 #
 if (which starship > /dev/null) ;then
@@ -358,14 +328,12 @@ fi
 # compile zshrc. {{{1
 #
 # if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
-  # zcompile ~/.zshrc
+#   zcompile ~/.zshrc
 # fi
 
 # if (which zprof > /dev/null) ;then
   # zprof | less
 # fi
 
+
 # vim:fdm=marker expandtab fdc=3 ft=zsh:
-
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

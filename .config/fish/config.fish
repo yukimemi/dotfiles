@@ -43,6 +43,9 @@ set -U FZF_TMUX 0
 set -U FZF_ENABLE_OPEN_PREVIEW 1
 set -U FZF_COMPLETE 1
 
+# rrc. {{{2
+set -x RRC_CONFIG "$HOME/.config/rrc/config.toml"
+
 # pkg_config. {{{2
 # set -gx PKG_CONFIG_PATH "/usr/local/opt/libffi/lib/pkgconfig"
 
