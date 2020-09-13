@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/09/14 01:21:01.
+# Last Change : 2020/09/14 02:03:09.
 # =============================================================================
 
 #
@@ -16,15 +16,17 @@ autoload -Uz _zinit
 # plugin list. {{{2
 #
 zinit wait lucid light-mode for \
-  atinit"zicompinit; zicdreplay" \
+  atinit"zicompinit; zicdreplay" atload"zpcompinit" \
   zdharma/fast-syntax-highlighting \
-  atload"_zsh_autosuggest_start" \
-  zsh-users/zsh-autosuggestions \
   blockf atpull'zinit creinstall -q .' \
   zsh-users/zsh-completions \
-  zsh-users/zsh-history-substring-search \
   agkozak/zsh-z \
   @asdf-vm/asdf
+
+zinit light-mode for \
+  atload"_zsh_autosuggest_start" \
+  zsh-users/zsh-autosuggestions \
+  zsh-users/zsh-history-substring-search
 
 zinit wait lucid from"gh-r" as"program" mv"direnv* -> direnv" \
   atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
@@ -331,9 +333,9 @@ fi
 #   zcompile ~/.zshrc
 # fi
 
-# if (which zprof > /dev/null) ;then
-  # zprof | less
-# fi
+if (which zprof > /dev/null) ;then
+  zprof | less
+fi
 
 
 # vim:fdm=marker expandtab fdc=3 ft=zsh:

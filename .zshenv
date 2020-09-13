@@ -5,7 +5,7 @@
 # =============================================================================
 
 # For time. {{{1
-# zmodload zsh/zprof && zprof
+# zmodload zsh/zprof
 
 # Useful functions. {{{1
 is_linux() { [[ $SHELL_PLATFORM == 'linux' || $SHELL_PLATFORM == 'bsd' ]]; }
