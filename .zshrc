@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/09/14 02:03:09.
+# Last Change : 2020/09/14 02:23:02.
 # =============================================================================
 
 #
@@ -52,7 +52,7 @@ zinit wait lucid light-mode for supercrabtree/k
 zinit wait pack for \
   dircolors-material \
   system-completions \
-  fzy
+  fzf
 
 #
 # functions. {{{1
@@ -234,6 +234,7 @@ alias misskey="open -na 'Google Chrome' --args '--app=https://misskey.dev'"
 # alias ghl='ghq list -p | __filter_execute cd'
 alias gsr='gsr --ahead --behind'
 alias ghl='gsr --all | __filter_execute cd'
+alias rhl='rhq list | __filter_execute cd'
 alias gsrl='gsr | __filter_execute cd'
 alias gho='ghq list -p | __filter_execute gh-open'
 alias r='ls -a | __filter_execute gomi'

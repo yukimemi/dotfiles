@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2020/09/14 01:35:18.
+# Last Change : 2020/09/14 02:28:35.
 # =============================================================================
 
 # For time. {{{1
@@ -118,7 +118,7 @@ export GSR_SHOW_BEHIND=1
 
 export VIM_CONFIG_PATH="${HOME}/.config/pack"
 
-export __FILTER_TOOL=fzf
+export __FILTER_TOOL=fzf-tmux
 
 export RRC_CONFIG="${HOME}/.config/rrc/config.toml"
 

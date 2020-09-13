@@ -38,7 +38,7 @@ call dein#save_state()
 
 " Check and install.
 if has('vim_starting') && dein#check_install()
-  " call dein#install()
-  call dein#check_update(v:true)
+  call dein#install()
+  " call dein#check_update(v:true)
 endif
 
