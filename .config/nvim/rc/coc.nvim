@@ -194,10 +194,10 @@ let g:coc_snippet_prev = '<c-k>'
 imap <c-k> <Plug>(coc-snippets-expand-jump)
 
 " coc-bookmark {{{1
-nmap <leader>bj <Plug>(coc-bookmark-next)
-nmap <leader>bk <Plug>(coc-bookmark-prev)
-nmap <leader>bb <Plug>(coc-bookmark-toggle)
-nnoremap <leader>bl :<c-u>CocList bookmark<cr>
+" nmap <leader>bj <Plug>(coc-bookmark-next)
+" nmap <leader>bk <Plug>(coc-bookmark-prev)
+" nmap <leader>bb <Plug>(coc-bookmark-toggle)
+" nnoremap <leader>bl :<c-u>CocList bookmark<cr>
 
 " coc-explorer {{{1
 " nnoremap ge :<c-u>CocCommand explorer<cr>

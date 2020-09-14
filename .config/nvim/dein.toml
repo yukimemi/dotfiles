@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/09/12 19:55:30.
+# Last Change : 2020/09/14 23:29:27.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -733,7 +733,20 @@ repo = 'suy/vim-ctrlp-commandline' # {{{2
 if = "g:plugin_use_ctrlp"
 depends = ['ctrlp.vim']
 # on_cmd = ['CtrlPCommandLine']
-
+[[plugins]]
+repo = 'nixprime/cpsm' # {{{2
+if = "g:plugin_use_ctrlp && !g:is_windows"
+depends = ['ctrlp.vim']
+build = './install.sh'
+[[plugins]]
+repo = 'FelikZ/ctrlp-py-matcher' # {{{2
+if = "g:plugin_use_ctrlp"
+depends = ['ctrlp.vim']
+[[plugins]]
+repo = 'raghur/fruzzy' # {{{2
+if = "g:plugin_use_ctrlp"
+depends = ['ctrlp.vim']
+hook_post_update = 'call fruzzy#install()'
 
 [[plugins]]
 repo = 'liuchengxu/vim-clap' # {{{2

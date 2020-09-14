@@ -1,14 +1,14 @@
-let g:ctrlp_map = '<nop>'
-let g:ctrlp_use_caching = 1
-let g:ctrlp_show_hidden = 1
 let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_lazy_update = 200
-let g:ctrlp_key_loop = 1
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
-" let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed', 'bookmarkdir', 'commandline']
+let g:ctrlp_key_loop = 1
+let g:ctrlp_lazy_update = 200
 let g:ctrlp_line_prefix = '» '
+let g:ctrlp_map = '<nop>'
+let g:ctrlp_match_current_file = 1
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
 let g:ctrlp_mruf_max = 100000
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_use_caching = 1
 nnoremap <silent> scp :<c-u>CtrlP<cr>
 nnoremap <silent> scb :<c-u>CtrlPBuffer<cr>
 nnoremap <silent> scd :<c-u>CtrlPCurFile<cr>
@@ -38,9 +38,16 @@ if executable('rg')
   let g:ctrlp_grep_command = 'rg -i --vimgrep --no-heading --hidden --no-ignore --regexp'
 endif
 
-" if has('python') || has('python2') || has('python3')
-"   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-" endif
-
 " ctrlp-ghq
 let g:ctrlp_ghq_cache_enabled = 1
+
+" Use cpsm.
+" let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+
+" Use pymatcher.
+" let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
+
+" Use fruzzy.
+let g:fruzzy#usenative = 1
+let g:ctrlp_match_func = {'match': 'fruzzy#ctrlp#matcher'}
+

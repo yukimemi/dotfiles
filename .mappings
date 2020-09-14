@@ -4,6 +4,7 @@
 ".qutebrowser"                         = "~/.qutebrowser"
 ".stack"                               = "~/.stack"
 ".surfingkeys.js"                      = "~/.surfingkeys.js"
+".tool-versions"                       = "~/.tool-versions"
 ".volt"                                = "~/.volt"
 
 [windows]

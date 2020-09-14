@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/09/14 21:42:45.
+# Last Change : 2020/09/14 22:28:48.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -58,7 +58,7 @@ zinit wait lucid as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode
 
 
 #
-# zinit package
+# zinit packages {{{2
 #
 # zinit pack for ls_colors
 zinit wait pack for \
@@ -324,14 +324,14 @@ zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path ~/.cache/zsh
 
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
-zstyle ':completion:*:messages' format $YELLOW'%d'$DEFAULT
-zstyle ':completion:*:warnings' format $RED'No matches for:'$YELLOW' %d'$DEFAULT
-zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
-zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEFAULT
-zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*' group-name ''
+# zstyle ':completion:*' verbose yes
+# zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+# zstyle ':completion:*:messages' format $YELLOW'%d'$DEFAULT
+# zstyle ':completion:*:warnings' format $RED'No matches for:'$YELLOW' %d'$DEFAULT
+# zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
+# zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEFAULT
+# zstyle ':completion:*:options' description 'yes'
+# zstyle ':completion:*' group-name ''
 
 #
 # starship. {{{1

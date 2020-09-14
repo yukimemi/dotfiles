@@ -1,0 +1,17 @@
+bat 0.15.4
+tmux 3.1b
+python 3.8.5
+yarn 1.22.4
+nodejs 14.7.0
+deno 1.4.0
+nim 1.2.6
+starship 0.44.0
+golang 1.15.2
+ruby 2.7.1
+fd 8.1.1
+ripgrep 12.1.1
+ghq 1.1.5
+neovim 0.4.4
+zola 0.12.0
+dust 0.5.3
+github-cli 0.12.0
