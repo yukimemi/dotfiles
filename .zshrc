@@ -1,16 +1,32 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/09/14 02:23:02.
+# Last Change : 2020/09/14 21:42:45.
 # =============================================================================
 
-#
-# Use zinit. {{{1
-#
-[ ! -d ~/.zinit ] && git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
-source ~/.zinit/bin/zinit.zsh
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+  print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+  command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+  command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+    print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+    print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+  zinit-zsh/z-a-rust \
+  zinit-zsh/z-a-as-monitor \
+  zinit-zsh/z-a-patch-dl \
+  zinit-zsh/z-a-bin-gem-node
+
+### End of Zinit's installer chunk
+
 
 #
 # plugin list. {{{2
@@ -21,6 +37,7 @@ zinit wait lucid light-mode for \
   blockf atpull'zinit creinstall -q .' \
   zsh-users/zsh-completions \
   agkozak/zsh-z \
+  supercrabtree/k \
   @asdf-vm/asdf
 
 zinit light-mode for \
@@ -33,17 +50,12 @@ zinit wait lucid from"gh-r" as"program" mv"direnv* -> direnv" \
   pick"direnv" src="zhook.zsh" for \
   direnv/direnv
 
-# [ ! -d ~/.asdf ] && git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-# zinit wait lucid blockf for OMZ::plugins/asdf/asdf.plugin.zsh
-# . ~/.asdf/asdf.sh
-
 #
 # for git. {{{2
 #
 zinit wait lucid as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode for \
   tj/git-extras
 
-zinit wait lucid light-mode for supercrabtree/k
 
 #
 # zinit package
@@ -53,6 +65,7 @@ zinit wait pack for \
   dircolors-material \
   system-completions \
   fzf
+
 
 #
 # functions. {{{1
@@ -340,3 +353,4 @@ fi
 
 
 # vim:fdm=marker expandtab fdc=3 ft=zsh:
+

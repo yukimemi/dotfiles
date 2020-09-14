@@ -22,12 +22,12 @@ on_cmd = ['DeinUpdate']
 # source $VIM_PATH/rc/nvim-treesitter.vim
 # '''
 
-[[plugins]]
-repo = 'LumaKernel/nvim-visual-eof.lua' # {{{2
-if = "has('nvim')"
-hook_add = '''
-source $VIM_PATH/rc/nvim-visual-eof.lua.vim
-'''
+# [[plugins]]
+# repo = 'LumaKernel/nvim-visual-eof.lua' # {{{2
+# if = "has('nvim')"
+# hook_add = '''
+# source $VIM_PATH/rc/nvim-visual-eof.lua.vim
+# '''
 
 [[plugins]]
 repo = "andymass/vim-matchup" # {{{2
