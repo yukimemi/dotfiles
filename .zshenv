@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2020/09/14 02:38:56.
+# Last Change : 2020/09/19 16:54:53.
 # =============================================================================
 
 # For time. {{{1
@@ -121,6 +121,8 @@ export VIM_CONFIG_PATH="${HOME}/.config/pack"
 export __FILTER_TOOL=fzf
 
 export RRC_CONFIG="${HOME}/.config/rrc/config.toml"
+
+export NEXTWORD_DATA_PATH="${HOME}/.config/nextword/nextword-data-large"
 
 # fzf. {{{2
 if which fd > /dev/null 2>&1; then
