@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/09/14 22:28:48.
+# Last Change : 2020/09/19 16:08:53.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -282,7 +282,6 @@ setopt histsavenodups
 setopt extendedhistory
 setopt histignorespace
 setopt histverify
-unsetopt bgnice
 
 
 #
@@ -323,6 +322,7 @@ setopt completeinword
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path ~/.cache/zsh
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 
 # zstyle ':completion:*' verbose yes
 # zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
