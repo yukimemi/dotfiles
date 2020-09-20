@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/09/15 08:56:12.
+# Last Change : 2020/09/20 21:17:16.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -119,6 +119,13 @@ repo = 'unblevable/quick-scope' # {{{2
 on_event = ['CursorHold']
 hook_add = '''
 source $VIM_PATH/rc/quick-scope.vim
+'''
+
+[[plugins]]
+repo = 'Xuyuanp/scrollbar.nvim' # {{{2
+if = 'has("nvim")'
+hook_add = '''
+source $VIM_PATH/rc/scrollbar.nvim
 '''
 
 # colorscheme

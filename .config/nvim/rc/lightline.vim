@@ -35,6 +35,7 @@ let g:lightline = {
       \   'bomb': 'LightLineBomb',
       \   'quickfix_title': 'LightLineQuickfixTitle',
       \   'cocstatus': 'coc#status',
+      \   'deinstatus': 'dein#get_progress',
       \   'vista': 'NearestMethodOrFunction',
       \   'reanimate': 'LightLineReanimate',
       \   'toggl_task': 'toggl#task',
