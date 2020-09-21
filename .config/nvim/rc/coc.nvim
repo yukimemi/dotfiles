@@ -62,6 +62,10 @@ if g:plugin_use_cocfzf
   call add(g:coc_global_extensions, "coc-fzf-preview")
 endif
 
+let g:coc_disable_startup_warning = 1
+let g:coc_disable_uncaught_error = 1
+let g:coc_channel_timeout = 10
+
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -128,20 +132,6 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " coc-list {{{1
 if g:plugin_use_cocfzf
-  " nnoremap <silent> <leader><leader> :<c-u>CocFzfList<cr>
-  " nnoremap <silent> <leader>cr :<c-u>CocFzfList files --hidden ~/.rhq<cr>
-  " nnoremap <silent> <leader>cf :<c-u>CocFzfList files --hidden ~/.dotfiles<cr>
-  " nnoremap <silent> <leader>cv :<c-u>CocFzfList files --hidden ~/.cache<cr>
-  " nnoremap <silent> <leader>cm :<c-u>CocFzfList files --hidden ~/.memolist<cr>
-  " nnoremap <silent> <leader>cb :<c-u>CocFzfList buffers<cr>
-  " nnoremap <silent> <leader>ch :<c-u>CocFzfList cmdhistory<cr>
-  " nnoremap <silent> <leader>cH :<c-u>CocFzfList helptags<cr>
-  " nnoremap <silent> <leader>cu :<c-u>CocFzfList mru<cr>
-  " nnoremap <silent> <leader>ct :<c-u>CocFzfList todolist<cr>
-  " nnoremap <silent> <leader>cs :<c-u>CocFzfList -I symbols<cr>
-  " nnoremap <silent> <leader>cF :<c-u>CocFzfList filetypes<cr>
-  " nnoremap <silent> <leader>r :<c-u>CocFzfListResume<cr>
-
   nmap <leader>f [fzf-p]
   xmap <leader>f [fzf-p]
 

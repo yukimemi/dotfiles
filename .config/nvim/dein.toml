@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/09/20 21:17:16.
+# Last Change : 2020/09/22 00:49:40.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -14,21 +14,6 @@ on_cmd = ['DeinUpdate']
 
 
 # ==================== Visual ==================== {{{1
-# [[plugins]]
-# repo = 'nvim-treesitter/nvim-treesitter' # {{{2
-# merged = 0
-# on_event = ['CursorHold']
-# hook_source = '''
-# source $VIM_PATH/rc/nvim-treesitter.vim
-# '''
-
-# [[plugins]]
-# repo = 'LumaKernel/nvim-visual-eof.lua' # {{{2
-# if = "has('nvim')"
-# hook_add = '''
-# source $VIM_PATH/rc/nvim-visual-eof.lua.vim
-# '''
-
 [[plugins]]
 repo = "andymass/vim-matchup" # {{{2
 on_event = ["CursorHold"]
@@ -126,6 +111,13 @@ repo = 'Xuyuanp/scrollbar.nvim' # {{{2
 if = 'has("nvim")'
 hook_add = '''
 source $VIM_PATH/rc/scrollbar.nvim
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious' # {{{2
+on_event = ['InsertEnter', 'InsertLeave']
+hook_add = '''
+source $VIM_PATH/rc/vim-precious.vim
 '''
 
 # colorscheme
@@ -672,8 +664,10 @@ on_ft = ['markdown']
 
 [[plugins]]
 repo = 'iamcco/markdown-preview.nvim' # {{{2
-on_ft = 'markdown'
-on_cmd = ['MarkdownPreview']
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+hook_add = '''
+source $VIM_PATH/rc/markdown-preview.nvim
+'''
 hook_post_update = '''
 call dein#source('markdown-preview.nvim')
 call mkdp#util#install()
@@ -962,13 +956,13 @@ source $VIM_PATH/rc/vim-haskell-sort-import.vim
 
 
 # ==================== Filetype (SQL) ============ {{{1
-[[plugins]]
-repo = 'b4b4r07/vim-sqlfmt' # {{{2
-on_ft = 'sql'
-build = 'go get github.com/jackc/sqlfmt'
-hook_add = '''
-source $VIM_PATH/rc/vim-sqlfmt.vim
-'''
+# [[plugins]]
+# repo = 'b4b4r07/vim-sqlfmt' # {{{2
+# on_ft = 'sql'
+# build = 'go get github.com/jackc/sqlfmt'
+# hook_add = '''
+# source $VIM_PATH/rc/vim-sqlfmt.vim
+# '''
 
 # ==================== Filetype (purescript) ===== {{{1
 [[plugins]]
