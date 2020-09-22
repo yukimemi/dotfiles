@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2020/09/20 23:50:53.
+# Last Change : 2020/09/22 17:40:45.
 # =============================================================================
 
 # For time. {{{1
@@ -58,25 +58,12 @@ path=(
 
 # go. {{{2
 export GOPATH=$HOME/.go
-export GOROOT=$(go env GOROOT) > /dev/null 2>&1
 
 # rust. {{{2
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src" > /dev/null 2>&1
-
-# npm
-export NPM_BIN_DIR=$(npm bin --global) > /dev/null 2>&1
-export YARN_BIN_DIR=$(yarn global bin) > /dev/null 2>&1
+# export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src" > /dev/null 2>&1
 
 path=(
-  # anyenv
-  $HOME/.anyenv/bin(N-/)
-  # go.
   $GOPATH/bin(N-/)
-  $GOROOT/bin(N-/)
-  # yarn
-  ${YARN_BIN_DIR}(N-/)
-  # npm
-  ${NPM_BIN_DIR}(N-/)
 
   $path
 )

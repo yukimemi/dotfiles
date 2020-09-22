@@ -1,34 +1,29 @@
 " asyncomplete-nextword.
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#nextword#get_source_options({
-      \ 'name': 'nextword',
-      \ 'whitelist': ['*'],
-      \ 'args': ['-n', '10000'],
-      \ 'completor': function('asyncomplete#sources#nextword#completor')
-      \ }))
+            \ 'name': 'nextword',
+            \ 'allowlist': ['*'],
+            \ 'args': ['-n', '10000'],
+            \ 'completor': function('asyncomplete#sources#nextword#completor')
+            \ }))
 
 " asyncomplete-buffer.
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-      \ 'name': 'buffer',
-      \ 'whitelist': ['*'],
-      \ 'completor': function('asyncomplete#sources#buffer#completor'),
-      \ 'config': {
-      \    'max_buffer_size': 5000000,
-      \  },
-      \ }))
+            \ 'name': 'buffer',
+            \ 'allowlist': ['*'],
+            \ 'blocklist': ['go', 'rust'],
+            \ 'completor': function('asyncomplete#sources#buffer#completor'),
+            \ 'config': {
+            \    'max_buffer_size': 5000000,
+            \  },
+            \ }))
 
 " asyncomplete-file.
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-      \ 'name': 'file',
-      \ 'whitelist': ['*'],
-      \ 'completor': function('asyncomplete#sources#file#completor')
-      \ }))
+            \ 'name': 'file',
+            \ 'allowlist': ['*'],
+            \ 'completor': function('asyncomplete#sources#file#completor')
+            \ }))
 
-" asyncomplete-emoji.
-au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#emoji#get_source_options({
-      \ 'name': 'emoji',
-      \ 'whitelist': ['*'],
-      \ 'completor': function('asyncomplete#sources#emoji#completor'),
-      \ }))
 
 let g:asyncomplete_auto_completeopt = 1
 let g:asyncomplete_auto_popup = 1
@@ -62,6 +57,7 @@ function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
   setlocal completeopt+=preview
+  setlocal shortmess+=c
   nmap <silent><buffer> gd <plug>(lsp-definition)
   nmap <silent><buffer> gy <Plug>(lsp-type-definition)
   nmap <silent><buffer> gr <plug>(lsp-references)

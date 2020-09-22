@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/09/20 23:59:00.
+# Last Change : 2020/09/22 15:41:10.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -354,7 +354,7 @@ fi
 # fi
 
 if (which zprof > /dev/null) ;then
-  zprof | less
+  zprof
 fi
 
 

@@ -44,7 +44,12 @@ let g:ctrlp_ghq_cache_enabled = 1
 " Use pymatcher.
 " let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
 
-" Use fruzzy.
-let g:fruzzy#usenative = 1
-let g:ctrlp_match_func = {'match': 'fruzzy#ctrlp#matcher'}
+if has('nvim')
+  " Use fruzzy.
+  let g:fruzzy#usenative = 1
+  let g:ctrlp_match_func = {'match': 'fruzzy#ctrlp#matcher'}
+else
+  " Use ctrlp-matchfuzzy.
+  let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
+endif
 

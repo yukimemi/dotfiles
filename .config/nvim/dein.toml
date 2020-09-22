@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/09/21 00:09:59.
+# Last Change : 2020/09/22 21:29:52.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -112,6 +112,9 @@ if = 'has("nvim")'
 hook_add = '''
 source $VIM_PATH/rc/scrollbar.nvim
 '''
+
+[[plugins]]
+repo = 'gcavallanti/vim-noscrollbar' # {{{2
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious' # {{{2
@@ -746,6 +749,10 @@ repo = 'raghur/fruzzy' # {{{2
 if = "g:plugin_use_ctrlp"
 depends = ['ctrlp.vim']
 hook_post_update = 'call fruzzy#install()'
+[[plugins]]
+repo = 'mattn/ctrlp-matchfuzzy' # {{{2
+if = "g:plugin_use_ctrlp && !has('nvim')"
+depends = ['ctrlp.vim']
 
 [[plugins]]
 repo = 'liuchengxu/vim-clap' # {{{2
@@ -878,9 +885,6 @@ if = 'g:plugin_use_asyncomplete'
 repo = 'prabirshrestha/asyncomplete-buffer.vim' # {{{2
 if = 'g:plugin_use_asyncomplete'
 [[plugins]]
-repo = 'prabirshrestha/asyncomplete-emoji.vim' # {{{2
-if = 'g:plugin_use_asyncomplete'
-[[plugins]]
 repo = 'prabirshrestha/asyncomplete-file.vim' # {{{2
 if = 'g:plugin_use_asyncomplete'
 [[plugins]]
@@ -893,7 +897,7 @@ merged = 0
 [[plugins]]
 repo = 'tsufeki/asyncomplete-fuzzy-match' # {{{2
 if = "g:plugin_use_asyncomplete && executable('cargo') && !g:is_windows"
-build = '!cargo build --release'
+build = 'cargo build --release'
 [[plugins]]
 repo = 'tsuyoshicho/vim-efm-langserver-settings' # {{{2
 if = 'g:plugin_use_asyncomplete'

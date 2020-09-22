@@ -17,8 +17,9 @@ let g:lightline = {
       \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'bomb' ],
       \             [ 'vista', 'quickfix_title' ] ],
       \   'right': [
-      \     ['lineinfo'],
-      \     ['filetype', 'fileencoding', 'fileformat']
+      \     [ 'lineinfo' ],
+      \     [ 'filetype', 'fileencoding', 'fileformat' ],
+      \     [ 'noscrollbar' ]
       \   ],
       \ },
       \ 'component': {
@@ -36,6 +37,7 @@ let g:lightline = {
       \   'quickfix_title': 'LightLineQuickfixTitle',
       \   'cocstatus': 'coc#status',
       \   'deinstatus': 'dein#get_progress',
+      \   'noscrollbar': 'noscrollbar#statusline',
       \   'vista': 'NearestMethodOrFunction',
       \   'reanimate': 'LightLineReanimate',
       \   'toggl_task': 'toggl#task',
