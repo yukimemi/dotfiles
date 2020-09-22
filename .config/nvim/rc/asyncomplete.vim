@@ -1,16 +1,10 @@
-if !IsInstalled("asyncomplete.vim")
-  finish
-endif
-
 " asyncomplete-nextword.
-if IsInstalled("asyncomplete-nextword.vim")
-  au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#nextword#get_source_options({
-        \ 'name': 'nextword',
-        \ 'whitelist': ['*'],
-        \ 'args': ['-n', '10000'],
-        \ 'completor': function('asyncomplete#sources#nextword#completor')
-        \ }))
-endif
+au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#nextword#get_source_options({
+      \ 'name': 'nextword',
+      \ 'whitelist': ['*'],
+      \ 'args': ['-n', '10000'],
+      \ 'completor': function('asyncomplete#sources#nextword#completor')
+      \ }))
 
 " asyncomplete-buffer.
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
@@ -42,7 +36,6 @@ let g:asyncomplete_popup_delay = 200
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_float_cursor = 1
-let g:lsp_diagnostics_float_cursor= 1
 let g:lsp_fold_enabled = 1
 let g:lsp_highlight_references_enabled = 1
 let g:lsp_highlights_enabled = 1

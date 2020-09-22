@@ -1,7 +1,3 @@
-if !IsInstalled("glyph-palette.vim")
-  finish
-endif
-
 augroup my-glyph-palette
   au!
   au FileType fern call glyph_palette#apply()

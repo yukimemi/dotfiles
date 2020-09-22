@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/09/19 16:08:53.
+# Last Change : 2020/09/20 23:59:00.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -219,7 +219,7 @@ alias gpu='git push'
 # status
 alias gs='git status'
 # show
-alias gh='git show'
+# alias gh='git show'
 # diff
 alias gd='git diff'
 # rebase
@@ -267,7 +267,7 @@ alias -g F=' | $__FILTER_TOOL'
 # history. {{{1
 #
 if [ -d ~/Drive ]; then
-  HISTFILE=~/Drive/.zsh_history
+  HISTFILE=~/Drive/offline/.zsh_history
 else
   HISTFILE=~/.zsh_history
 fi
@@ -322,16 +322,22 @@ setopt completeinword
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path ~/.cache/zsh
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' group-name ''
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 
-# zstyle ':completion:*' verbose yes
-# zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
-# zstyle ':completion:*:messages' format $YELLOW'%d'$DEFAULT
-# zstyle ':completion:*:warnings' format $RED'No matches for:'$YELLOW' %d'$DEFAULT
-# zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
-# zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEFAULT
-# zstyle ':completion:*:options' description 'yes'
-# zstyle ':completion:*' group-name ''
+#
+# completions. {{{1
+#
+if (which rustup > /dev/null) ;then
+  if [[ ! -f ${HOME}/.config/zsh/completions/_rustup ]]; then
+    rustup completions zsh > ~/.config/zsh/completions/_rustup
+  fi
+  if [[ ! -f ${HOME}/.config/zsh/completions/_cargo ]]; then
+    rustup completions zsh cargo > ~/.config/zsh/completions/_cargo
+  fi
+fi
+
 
 #
 # starship. {{{1

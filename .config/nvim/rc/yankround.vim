@@ -1,7 +1,3 @@
-if !IsInstalled("yankround.vim")
-  finish
-endif
-
 nmap p <Plug>(yankround-p)
 nmap P <Plug>(yankround-P)
 nmap <c-p> <Plug>(yankround-prev)

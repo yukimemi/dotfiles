@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2020/09/19 16:54:53.
+# Last Change : 2020/09/20 23:50:53.
 # =============================================================================
 
 # For time. {{{1
@@ -99,6 +99,7 @@ manpath=(
 fpath=(
   /usr/local/share/zsh-completions(N-/)
   ${ASDF_DIR}/completions(N-/)
+  ${HOME}/.config/zsh/completions(N-/)
 
   $fpath
 )

@@ -11,7 +11,7 @@ ruby 2.7.1
 fd 8.1.1
 ripgrep 12.1.1
 ghq 1.1.5
-neovim 0.4.4
+neovim nightly
 zola 0.12.0
 dust 0.5.3
-github-cli 0.12.0
+github-cli 1.0.0

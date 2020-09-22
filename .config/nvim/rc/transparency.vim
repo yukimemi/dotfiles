@@ -1,7 +1,3 @@
-if !IsInstalled("transparency.vim")
-  finish
-endif
-
 let g:transparency_config = {
       \ 'active'  : 90,
       \ 'inactive': 70

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/09/22 00:49:40.
+# Last Change : 2020/09/21 00:09:59.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -677,7 +677,10 @@ call mkdp#util#install()
 repo = 'previm/previm' # {{{2
 on_cmd = ['PrevimOpen']
 
-
+[[plugins]]
+repo = 'npxbr/glow.nvim'
+on_cmd = ['Glow']
+hook_post_update = 'GlowInstall'
 
 # ==================== Filetype (html) =========== {{{1
 [[plugins]]
@@ -734,11 +737,6 @@ repo = 'suy/vim-ctrlp-commandline' # {{{2
 if = "g:plugin_use_ctrlp"
 depends = ['ctrlp.vim']
 # on_cmd = ['CtrlPCommandLine']
-[[plugins]]
-repo = 'nixprime/cpsm' # {{{2
-if = "g:plugin_use_ctrlp && !g:is_windows"
-depends = ['ctrlp.vim']
-build = './install.sh'
 [[plugins]]
 repo = 'FelikZ/ctrlp-py-matcher' # {{{2
 if = "g:plugin_use_ctrlp"
@@ -954,15 +952,6 @@ hook_add = '''
 source $VIM_PATH/rc/vim-haskell-sort-import.vim
 '''
 
-
-# ==================== Filetype (SQL) ============ {{{1
-# [[plugins]]
-# repo = 'b4b4r07/vim-sqlfmt' # {{{2
-# on_ft = 'sql'
-# build = 'go get github.com/jackc/sqlfmt'
-# hook_add = '''
-# source $VIM_PATH/rc/vim-sqlfmt.vim
-# '''
 
 # ==================== Filetype (purescript) ===== {{{1
 [[plugins]]

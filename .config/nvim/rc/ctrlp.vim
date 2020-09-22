@@ -9,6 +9,7 @@ let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
 let g:ctrlp_mruf_max = 100000
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_use_caching = 1
+let g:ctrlp_user_command_async = 1
 nnoremap <silent> scp :<c-u>CtrlP<cr>
 nnoremap <silent> scb :<c-u>CtrlPBuffer<cr>
 nnoremap <silent> scd :<c-u>CtrlPCurFile<cr>
@@ -29,10 +30,6 @@ nnoremap <silent> scG :<c-u>CtrlPGhq<cr>
 
 command! CtrlPCommandLine silent! packadd vim-ctrlp-commandline | call ctrlp#init(ctrlp#commandline#id())
 cnoremap <silent> <c-f> :<c-u>call ctrlp#init(ctrlp#commandline#id())<cr>
-
-if executable('files')
-  let g:ctrlp_user_command = 'files -a %s'
-endif
 
 if executable('rg')
   let g:ctrlp_grep_command = 'rg -i --vimgrep --no-heading --hidden --no-ignore --regexp'
