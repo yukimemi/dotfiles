@@ -11,7 +11,8 @@ includes = [
   "~/.private",
   "~/.cache/vim/pack",
   "~/.cache/nvim/pack",
-  "~/.cache/nvim/dein/repos"
+  "~/.cache/nvim/dein/repos",
+  "~/Documents/src"
 ]
 
 # Patterns to ignore repositories.

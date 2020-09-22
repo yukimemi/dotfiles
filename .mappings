@@ -31,15 +31,16 @@
 "win/terminus/config.yaml"             = "~/AppData/Roaming/terminus/config.yaml"
 
 [darwin]
+".config/nvim"                         = "~/.vim"
+".config/nvim/init.vim"                = "~/.vimrc"
+".config/rhq"                          = "~/Library/Preferences/rhq"
+".gvimrc"                              = "~/.gvimrc"
+".hyper.js"                            = "~/.hyper.js"
 ".profile"                             = "~/.profile"
 ".tmux.conf"                           = "~/.tmux.conf"
 ".zshenv"                              = "~/.zshenv"
 ".zshrc"                               = "~/.zshrc"
 "win/Microsoft.PowerShell_profile.ps1" = "~/.config/PowerShell/Microsoft.PowerShell_profile.ps1"
-".config/nvim"                         = "~/.vim"
-".config/nvim/init.vim"                = "~/.vimrc"
-".gvimrc"                              = "~/.gvimrc"
-".hyper.js"                            = "~/.hyper.js"
 
 [linux]
 ".inputrc"                             = "~/.inputrc"

@@ -1,34 +1,34 @@
 " asyncomplete-nextword.
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#nextword#get_source_options({
-            \ 'name': 'nextword',
-            \ 'allowlist': ['*'],
-            \ 'args': ['-n', '10000'],
-            \ 'completor': function('asyncomplete#sources#nextword#completor')
-            \ }))
+      \ 'name': 'nextword',
+      \ 'allowlist': ['*'],
+      \ 'args': ['-n', '10000'],
+      \ 'completor': function('asyncomplete#sources#nextword#completor')
+      \ }))
 
 " asyncomplete-buffer.
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-            \ 'name': 'buffer',
-            \ 'allowlist': ['*'],
-            \ 'blocklist': ['go', 'rust'],
-            \ 'completor': function('asyncomplete#sources#buffer#completor'),
-            \ 'config': {
-            \    'max_buffer_size': 5000000,
-            \  },
-            \ }))
+      \ 'name': 'buffer',
+      \ 'allowlist': ['*'],
+      \ 'blocklist': ['go', 'rust'],
+      \ 'completor': function('asyncomplete#sources#buffer#completor'),
+      \ 'config': {
+      \    'max_buffer_size': 5000000,
+      \  },
+      \ }))
 
 " asyncomplete-file.
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-            \ 'name': 'file',
-            \ 'allowlist': ['*'],
-            \ 'completor': function('asyncomplete#sources#file#completor')
-            \ }))
+      \ 'name': 'file',
+      \ 'allowlist': ['*'],
+      \ 'completor': function('asyncomplete#sources#file#completor')
+      \ }))
 
 
 let g:asyncomplete_auto_completeopt = 1
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_popup_delay = 200
-let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_echo_cursor = 0
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_fold_enabled = 1

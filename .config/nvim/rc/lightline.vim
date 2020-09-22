@@ -156,6 +156,9 @@ function! LightLineQuickfixTitle() abort
 endfunction
 
 function! LightLineNoScrollbar() abort
+  if has('nvim')
+    return ''
+  endif
   return noscrollbar#statusline(20,'■','◫',['◧'],['◨'])
 endfunction
 
