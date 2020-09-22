@@ -115,7 +115,7 @@ endif
 
 set number
 set signcolumn=yes
-set ambiwidth=double
+" set ambiwidth=double
 set history=10000
 set nofixeol
 set hidden autoread

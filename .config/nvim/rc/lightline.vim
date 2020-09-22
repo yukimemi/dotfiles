@@ -37,7 +37,7 @@ let g:lightline = {
       \   'quickfix_title': 'LightLineQuickfixTitle',
       \   'cocstatus': 'coc#status',
       \   'deinstatus': 'dein#get_progress',
-      \   'noscrollbar': 'noscrollbar#statusline',
+      \   'noscrollbar': 'LightLineNoScrollbar',
       \   'vista': 'NearestMethodOrFunction',
       \   'reanimate': 'LightLineReanimate',
       \   'toggl_task': 'toggl#task',
@@ -154,6 +154,11 @@ endfunction
 function! LightLineQuickfixTitle() abort
   return exists("w:quickfix_title") ? w:quickfix_title : ""
 endfunction
+
+function! LightLineNoScrollbar() abort
+  return noscrollbar#statusline(20,'■','◫',['◧'],['◨'])
+endfunction
+
 
 function! GinaStatus() abort
   if IsInstalled("gina.vim")
