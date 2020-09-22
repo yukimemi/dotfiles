@@ -46,24 +46,6 @@ set -U FZF_COMPLETE 1
 # rrc. {{{2
 set -x RRC_CONFIG "$HOME/.config/rrc/config.toml"
 
-# pkg_config. {{{2
-# set -gx PKG_CONFIG_PATH "/usr/local/opt/libffi/lib/pkgconfig"
-
-# pyenv. {{{2
-# set -x PYENV_ROOT ~/.pyenv
-
-# rbenv. {{{2
-# set -x RBENV_ROOT ~/.rbenv
-
-# Install anyenv. {{{1
-# if not test -d ~/.anyenv
-#   git clone https://github.com/riywo/anyenv ~/.anyenv
-# end
-# if not test -d ~/.anyenv/plugins/anyenv-update
-#   mkdir -p ~/.anyenv/plugins > /dev/null 2>&1
-#   git clone https://github.com/znz/anyenv-update ~/.anyenv/plugins/anyenv-update
-# end
-
 # PATH. {{{2
 if not test -d ~/.local/bin
   mkdir -p ~/.local/bin
@@ -218,14 +200,6 @@ abbr -a ytd "youtube-dl -i --download-archive ./.downloaded"
 abbr -a ytM "youtube-dl -ix --no-post-overwrites --download-archive ./.downloaded --audio-format mp3"
 abbr -a ytm "youtube-dl -ix --no-post-overwrites --download-archive ./.downloaded"
 
-# Home-file {{{2
-if __isMac
-  abbr -a br 'brew-file brew'
-  abbr -a bre 'brew-file edit'
-  abbr -a bri 'brew-file brew install'
-  abbr -a brs 'brew-file brew search'
-end
-
 # docker {{{2
 abbr -a de "docker run --rm -it -v $PWD:/root/(basename $PWD) -w /root/(basename $PWD) yukimemi/neovim"
 abbr -a dnu "docker run --rm -it quay.io/nushell/nu:latest"
@@ -234,20 +208,7 @@ abbr -a dnu "docker run --rm -it quay.io/nushell/nu:latest"
 # Use fish_vi_key_bindings.
 set -g fish_key_bindings fish_vi_key_bindings
 
-### Install. {{{1
-# __cli_install ghq motemen/ghq
-# __cli_install gomi b4b4r07/gomi
-# __cli_install jvgrep mattn/jvgrep
-
 ### Install plugin manager. {{{1
-# fresco.
-if not test -f ~/.cache/fresco/__fresco_install.fish
-  # mkdir -p ~/.cache/fresco >/dev/null 2>&1
-  # curl -sfL https://raw.githubusercontent.com/masa0x80/fresco/master/install -o ~/.cache/fresco/__fresco_install.fish
-  # cat ~/.cache/fresco/__fresco_install.fish | fish
-  # exec fish -l
-end
-
 # fisherman.
 if not functions -q fisher
   set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
@@ -261,9 +222,6 @@ if test -f ~/.config_local.fish
 end
 
 ### Plugin settings. {{{1
-# pure {{{2
-# set pure_color_green (set_color "white")
-
 # spacefish {{{2
 set SPACEFISH_CHAR_SYMBOL "→ "
 
@@ -277,30 +235,13 @@ if type -q anyenv
 end
 
 # Load asdf. {{{1
-function __asdf_install_plugin -a pl -a cli
-  if test (count $argv) -eq 1
-    set cli $pl
-  end
-  if not type -q $cli
-    asdf plugin add $pl
-    asdf install $pl latest
-    asdf global $pl (string trim (asdf list $pl latest))
-  end
+if not test -d ~/.asdf
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+  cd ~/.asdf
+  git checkout (git describe --abbrev=0 --tags)
 end
 
-if test -d ~/.asdf
-  source ~/.asdf/asdf.fish
-  # __asdf_install_plugin nim
-  # __asdf_install_plugin yarn
-  __asdf_install_plugin fd
-  __asdf_install_plugin golang go
-  __asdf_install_plugin nodejs node
-  __asdf_install_plugin python
-  __asdf_install_plugin ripgrep rg
-  __asdf_install_plugin ruby
-  __asdf_install_plugin starship
-  __asdf_install_plugin ghq
-end
+source ~/.asdf/asdf.fish
 
 # Load direnv. {{{1
 if type -q direnv
