@@ -10,6 +10,7 @@
 [windows]
 ".config/nvim"                         = ["~/vimfiles", "~/AppData/Local/nvim"]
 ".config/nvim/init.vim"                = "~/_vimrc"
+".config/rhq"                          = "~/AppData/Roaming/rhq"
 ".gvimrc"                              = "~/_gvimrc"
 ".hyper.js"                            = "~/AppData/Roaming/Hyper/.hyper.js"
 ".qutebrowser"                         = "~/AppData/Roaming/qutebrowser/config"
@@ -22,7 +23,6 @@
 "win/link/.local"                      = "~/.local"
 "win/link/.memolist"                   = "~/.memolist"
 "win/link/.nuget"                      = "~/.nuget"
-"win/link/.rhq"                        = "~/.rhq"
 "win/link/.rustup"                     = "~/.rustup"
 "win/link/app"                         = "~/app"
 "win/link/archives"                    = "~/archives"

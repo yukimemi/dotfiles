@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/09/22 22:53:14.
+# Last Change : 2020/09/23 10:54:03.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -327,11 +327,6 @@ repo = 'rbtnn/vim-gloaded' # {{{2
 [[plugins]]
 repo = 'rbtnn/vim-vimscript_lasterror' # {{{2
 on_cmd = ['VimscriptLastError']
-
-[[plugins]]
-repo = 'rbtnn/vim-winsbar' # {{{2
-if = "!has('nvim')"
-on_event = ['CursorMoved']
 
 # [[plugins]]
 # repo = 'rhysd/accelerated-jk' # {{{2
@@ -752,7 +747,7 @@ depends = ['ctrlp.vim']
 hook_post_update = 'call fruzzy#install()'
 [[plugins]]
 repo = 'mattn/ctrlp-matchfuzzy' # {{{2
-if = "g:plugin_use_ctrlp && !has('nvim')"
+if = "g:plugin_use_ctrlp && exists('matchfuzzy')"
 depends = ['ctrlp.vim']
 
 [[plugins]]
@@ -858,7 +853,7 @@ source $VIM_PATH/rc/asyncomplete.vim
 '''
 [[plugins]]
 repo = 'high-moctane/asyncomplete-nextword.vim' # {{{2
-if = "g:plugin_use_asyncomplete && executable('go') && !g:is_windows"
+if = "g:plugin_use_asyncomplete && executable('go')"
 build = 'go get -u github.com/high-moctane/nextword'
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip' # {{{2
@@ -899,9 +894,10 @@ merged = 0
 # repo = 'tsufeki/asyncomplete-fuzzy-match' # {{{2
 # if = "g:plugin_use_asyncomplete && executable('cargo') && !g:is_windows"
 # build = 'cargo build --release'
-[[plugins]]
-repo = 'tsuyoshicho/vim-efm-langserver-settings' # {{{2
-if = 'g:plugin_use_asyncomplete'
+# [[plugins]]
+# repo = 'tsuyoshicho/vim-efm-langserver-settings' # {{{2
+# if = 'g:plugin_use_asyncomplete'
+# depends = ['vim-lsp']
 
 [[plugins]]
 repo = "neoclide/coc.nvim" # {{{2

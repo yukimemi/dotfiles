@@ -32,7 +32,7 @@ function Is-Windows {
 }
 
 # ZLocation
-Import-Module ZLocation
+# Import-Module ZLocation
 # Get-ChildItemColor
 Import-Module Get-ChildItemColor
 # Pscx
@@ -84,6 +84,29 @@ function cd-ls {
   trap { $_ }
   Set-Location $path -ea Stop
   ls
+  # Save location.
+  $funcs = "function Is-Windows { ${Function:Is-Windows} }"
+  Start-Job {
+    param([string]$funcs, [string]$path)
+    Invoke-Expression $funcs
+    $z = & {
+      if (Is-Windows) {
+        (Join-Path $env:USERPROFILE ".z")
+      } else {
+        (Join-Path $env:HOME ".z")
+      }
+    }
+    $path | Add-Content -Encoding utf8 $z
+    $c = Get-Content -Encoding utf8 $z | ? { ![string]::IsNullOrEmpty($_) } | ? { Test-Path $_ }
+    [array]::Reverse($c)
+    if (Get-Command uq -ErrorAction SilentlyContinue) {
+      $c | uq | Set-Variable c
+    } else {
+      $c | Sort-Object -Unique | Set-Variable c
+    }
+    [array]::Reverse($c)
+    $c | Set-Content -Encoding utf8 $z
+  } -ArgumentList $funcs, (Get-Location).Path > $null
 }
 
 function RemoveTo-Trash {
@@ -215,5 +238,16 @@ Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.C
 
 # z.
 function j {
-  z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | cd
+  # z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | cd
+  $z = & {
+    if (Is-Windows) {
+      (Join-Path $env:USERPROFILE ".z")
+    } else {
+      (Join-Path $env:HOME ".z")
+    }
+  }
+  $c = Get-Content $z
+  [array]::Reverse($c)
+  $c | __FILTER | cd
+  Get-Job | Stop-Job -PassThru | Remove-Job -Force
 }

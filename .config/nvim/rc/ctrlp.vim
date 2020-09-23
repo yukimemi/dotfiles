@@ -38,18 +38,12 @@ endif
 " ctrlp-ghq
 let g:ctrlp_ghq_cache_enabled = 1
 
-" Use cpsm.
-" let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-
-" Use pymatcher.
-" let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
-
-if has('nvim')
+if exists('matchfuzzy')
+  " Use ctrlp-matchfuzzy.
+  let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
+else
   " Use fruzzy.
   let g:fruzzy#usenative = 1
   let g:ctrlp_match_func = {'match': 'fruzzy#ctrlp#matcher'}
-else
-  " Use ctrlp-matchfuzzy.
-  let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
 endif
 
