@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/09/23 10:54:03.
+# Last Change : 2020/09/24 14:32:00.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -891,13 +891,16 @@ repo = 'prabirshrestha/vim-lsp' # {{{2
 if = 'g:plugin_use_asyncomplete'
 merged = 0
 # [[plugins]]
-# repo = 'tsufeki/asyncomplete-fuzzy-match' # {{{2
-# if = "g:plugin_use_asyncomplete && executable('cargo') && !g:is_windows"
-# build = 'cargo build --release'
-# [[plugins]]
 # repo = 'tsuyoshicho/vim-efm-langserver-settings' # {{{2
 # if = 'g:plugin_use_asyncomplete'
 # depends = ['vim-lsp']
+# build = 'go get github.com/mattn/efm-langserver'
+[[plugins]]
+repo = 'sbdchd/neoformat' # {{{2
+if = 'g:plugin_use_asyncomplete'
+hook_add = '''
+source $VIM_PATH/rc/neoformat.vim
+'''
 
 [[plugins]]
 repo = "neoclide/coc.nvim" # {{{2
