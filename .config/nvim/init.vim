@@ -501,8 +501,8 @@ let s:use_pack = 0
 let g:plugin_use_lightline = 1
 let g:plugin_use_airline = 0
 
-let g:plugin_use_coc = 0
-let g:plugin_use_asyncomplete = 1
+let g:plugin_use_coc = 1
+let g:plugin_use_asyncomplete = 0
 let g:plugin_use_deoplete = 0
 
 let g:plugin_use_ctrlp = 1

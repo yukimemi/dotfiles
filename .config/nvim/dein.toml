@@ -890,17 +890,6 @@ if = 'g:plugin_use_asyncomplete'
 repo = 'prabirshrestha/vim-lsp' # {{{2
 if = 'g:plugin_use_asyncomplete'
 merged = 0
-# [[plugins]]
-# repo = 'tsuyoshicho/vim-efm-langserver-settings' # {{{2
-# if = 'g:plugin_use_asyncomplete'
-# depends = ['vim-lsp']
-# build = 'go get github.com/mattn/efm-langserver'
-[[plugins]]
-repo = 'sbdchd/neoformat' # {{{2
-if = 'g:plugin_use_asyncomplete'
-hook_add = '''
-source $VIM_PATH/rc/neoformat.vim
-'''
 
 [[plugins]]
 repo = "neoclide/coc.nvim" # {{{2

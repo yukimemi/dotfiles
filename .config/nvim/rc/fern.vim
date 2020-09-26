@@ -26,4 +26,4 @@ function! s:init_fern() abort
   nmap <buffer> o <Plug>(fern-my-open-or-expand-or-collapse)
 endfunction
 
-au MyAutoCmd FileType fern call s:init_fern()
+au MyAutoCmd FileType fern call <SID>init_fern()
