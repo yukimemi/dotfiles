@@ -20,6 +20,8 @@ Pack 'nathanaelkane/vim-indent-guides', {'event': 'CursorHold'}
 Pack 'ntpeters/vim-better-whitespace', {'event': 'CursorHold'}
 Pack 't9md/vim-quickhl', {'event': 'CursorHold'}
 Pack 'unblevable/quick-scope', {'event': 'CursorHold'}
+Pack 'Xuyuanp/scrollbar.nvim', {'if': has('nvim')}
+Pack 'gcavallanti/vim-noscrollbar', {'if': !has('nvim')}
 
 " colorscheme {{{2
 Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
@@ -38,7 +40,6 @@ Pack 'yasukotelin/shirotelin', {'type': 'opt'}
 
 
 " Utility: {{{1
-" Pack 'mg979/vim-xtabline', {'type': 'lazyall'}
 Pack 'AndrewRadev/linediff.vim', {'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
@@ -59,13 +60,10 @@ Pack 'mattn/vim-sonictemplate', {'on': 'Template'}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Pack 'nicwest/vim-camelsnek', {'on': ['Snek', 'Camel', 'CamelB', 'Kebab']}
-" Pack 'psliwka/vim-smoothie', {'type': 'lazyall'}
 Pack 'qpkorr/vim-renamer', {'on': ['<Plug>RenamerStart', 'Renamer']}
 Pack 'rbtnn/vim-coloredit', {'on': 'ColorEdit', 'if': !has('nvim')}
 Pack 'rbtnn/vim-gloaded'
 Pack 'rbtnn/vim-vimscript_lasterror', {'on': 'VimscriptLastError'}
-Pack 'rbtnn/vim-winsbar', {'event': 'CursorMoved', 'if': !has('nvim')}
-Pack 'rhysd/accelerated-jk', {'type': 'lazyall'}
 Pack 'rickhowe/diffchar.vim', {'type': 'lazyall'}
 Pack 'romainl/vim-qf', {'for': ['quickfix', 'qf']}
 Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
@@ -87,7 +85,6 @@ Pack 'vim-scripts/autodate.vim', {'event': 'InsertEnter'}
 Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
 Pack 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
 Pack 'yegappan/mru', {'on': 'MRU'}
-" Pack 'yuttie/comfortable-motion.vim', {'type': 'lazyall'}
 
 " Comment: {{{1
 Pack 'Shougo/junkfile.vim', {'on': 'JunkfileOpen'}
@@ -147,9 +144,14 @@ Pack 'previm/previm', {'on': 'PrevimOpen'}
 " html {{{2
 Pack 'mattn/emmet-vim', {'for': 'html'}
 
+" plantuml # {{{2
+Pack 'tsuyoshicho/plantuml-previewer.vim', {'for': 'plantuml'}
+
 " Fuzzy: {{{1
 if g:plugin_use_ctrlp
   Pack 'ctrlpvim/ctrlp.vim'
+  Pack 'raghur/fruzzy'
+  Pack 'mattn/ctrlp-matchfuzzy', {'if': exists('matchfuzzy')}
 
   Pack 'kaneshin/ctrlp-filetype', {'on': 'CtrlPFiletype'}
   Pack 'kaneshin/ctrlp-memolist', {'on': 'CtrlPMemolist'}
@@ -180,7 +182,7 @@ endif
 
 
 if g:plugin_use_lightline
-  Pack 'itchyny/lightline.vim', {'event': 'CursorHold'}
+  Pack 'itchyny/lightline.vim', {'event': ['CursorHold', 'CursorMoved']}
 endif
 
 if g:plugin_use_airline
@@ -191,6 +193,7 @@ endif
 
 if g:plugin_use_fern
   Pack 'lambdalisue/fern.vim'
+  Pack 'lambdalisue/fern-hijack.vim'
 
   Pack 'lambdalisue/fern-git-status.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern-git.vim', {'type': 'lazyall'}
@@ -224,7 +227,6 @@ if g:plugin_use_asyncomplete
   Pack 'prabirshrestha/asyncomplete-file.vim'
   Pack 'prabirshrestha/asyncomplete-lsp.vim'
   Pack 'prabirshrestha/vim-lsp'
-  Pack 'tsufeki/asyncomplete-fuzzy-match', {'do': '!cargo build --release', 'if': executable('cargo') && !g:is_windows}
   Pack 'tsuyoshicho/vim-efm-langserver-settings'
   Pack 'voldikss/vim-translator', {'on': ['<Plug>Translate', '<Plug>TranslateV', '<Plug>TranslateW', '<Plug>TranslateWV', '<Plug>TranslateR', '<Plug>TranslateRV']}
 endif

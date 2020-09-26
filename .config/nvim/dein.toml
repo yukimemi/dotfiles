@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/09/24 14:32:00.
+# Last Change : 2020/09/26 19:55:45.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -117,12 +117,12 @@ source $VIM_PATH/rc/scrollbar.nvim
 repo = 'gcavallanti/vim-noscrollbar' # {{{2
 if = '!has("nvim")'
 
-[[plugins]]
-repo = 'osyo-manga/vim-precious' # {{{2
-on_event = ['InsertEnter', 'InsertLeave']
-hook_add = '''
-source $VIM_PATH/rc/vim-precious.vim
-'''
+# [[plugins]]
+# repo = 'osyo-manga/vim-precious' # {{{2
+# on_event = ['InsertEnter', 'InsertLeave']
+# hook_add = '''
+# source $VIM_PATH/rc/vim-precious.vim
+# '''
 
 # colorscheme
 [[plugins]]
@@ -821,6 +821,10 @@ lazy = 1
 repo = 'lambdalisue/fern-renderer-nerdfont.vim' # {{{2
 depends = ['nerdfont.vim', 'glyph-palette.vim']
 lazy = 1
+[[plugins]]
+repo = 'lambdalisue/fern-hijack.vim'
+if = "g:plugin_use_fern"
+depends = ['fern.vim']
 
 
 [[plugins]]
@@ -922,6 +926,10 @@ on_ft = 'plantuml'
 hook_add = '''
 source $VIM_PATH/rc/vim-slumlord.vim
 '''
+
+[[plugins]]
+repo = 'tsuyoshicho/plantuml-previewer.vim' # {{{2
+on_ft = 'plantuml'
 
 
 # ==================== Filetype (Haskell) ======== {{{1
