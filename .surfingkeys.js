@@ -34,6 +34,7 @@ mapkey(
 const overlayedGlobalMarks = {
   "0": [
     "https://b.hatena.ne.jp",
+    "https://zenn.dev",
     "https://qiita.com",
     "https://www.reddit.com/r/vim",
     "https://www.reddit.com/r/neovim",
