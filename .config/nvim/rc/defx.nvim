@@ -1,6 +1,6 @@
 nnoremap <silent> <space>v :<c-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<cr>
 " nnoremap <silent> ge :<c-u>Defx -listed -resume -buffer-name=tab`tabpagenr()`<cr>
-nnoremap <silent> ge :<c-u>packadd defx-icons \| Defx -columns=icons:indent:filename:type -split=vertical -winwidth=50 -direction=topleft `expand('%:p:h')` -search=`expand('%:p')`<cr>
+nnoremap <silent> ge :<c-u>packadd defx-icons \| Defx -columns=icons:indent:filename:type -split=vertical -winwidth=30 -direction=topleft `expand('%:p:h')` -search=`expand('%:p')`<cr>
 au MyAutoCmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings

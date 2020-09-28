@@ -20,7 +20,6 @@ Pack 'nathanaelkane/vim-indent-guides', {'event': 'CursorHold'}
 Pack 'ntpeters/vim-better-whitespace', {'event': 'CursorHold'}
 Pack 't9md/vim-quickhl', {'event': 'CursorHold'}
 Pack 'unblevable/quick-scope', {'event': 'CursorHold'}
-Pack 'Xuyuanp/scrollbar.nvim', {'if': has('nvim')}
 Pack 'gcavallanti/vim-noscrollbar', {'if': !has('nvim')}
 
 " colorscheme {{{2
@@ -49,7 +48,7 @@ Pack 'aiya000/aho-bakaup.vim', {'event': 'BufWritePre'}
 Pack 'chamindra/marvim', {'type': 'lazyall'}
 Pack 'da-x/name-assign.vim', {'on': '<Plug>NameAssign'}
 Pack 'editorconfig/editorconfig-vim', {'event': 'VimEnter'}
-Pack 'gelguy/wilder.nvim', {'event': ['CmdwinEnter', 'CmdlineEnter']}
+Pack 'gelguy/wilder.nvim'
 Pack 'haya14busa/vim-edgemotion', {'on': ['<Plug>(edgemotion-j)', '<Plug>(edgemotion-k)']}
 Pack 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Pack 'lambdalisue/readablefold.vim', {'event': 'CursorHold'}
@@ -60,6 +59,7 @@ Pack 'mattn/vim-sonictemplate', {'on': 'Template'}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Pack 'nicwest/vim-camelsnek', {'on': ['Snek', 'Camel', 'CamelB', 'Kebab']}
+Pack 'psliwka/vim-smoothie', {'type': 'lazyall'}
 Pack 'qpkorr/vim-renamer', {'on': ['<Plug>RenamerStart', 'Renamer']}
 Pack 'rbtnn/vim-coloredit', {'on': 'ColorEdit', 'if': !has('nvim')}
 Pack 'rbtnn/vim-gloaded'
@@ -150,7 +150,7 @@ Pack 'tsuyoshicho/plantuml-previewer.vim', {'for': 'plantuml'}
 " Fuzzy: {{{1
 if g:plugin_use_ctrlp
   Pack 'ctrlpvim/ctrlp.vim'
-  Pack 'raghur/fruzzy'
+  Pack 'raghur/fruzzy', {'do': 'call fruzzy#install()'}
   Pack 'mattn/ctrlp-matchfuzzy', {'if': exists('matchfuzzy')}
 
   Pack 'kaneshin/ctrlp-filetype', {'on': 'CtrlPFiletype'}
@@ -176,6 +176,8 @@ endif
 if g:plugin_use_denite
   Pack 'Shougo/denite.nvim', {'on': 'Denite', 'do': 'silent! UpdateRemotePlugins'}
 
+  Pack 'mirachan010/vim-denite-plugins', {'type': 'lazyall'}
+  Pack 'mirachan010/vim-pluginlist', {'type': 'lazyall'}
   Pack 'pocari/vim-denite-gists', {'type': 'lazyall', 'if': has('nvim')}
   Pack 'pocari/vim-denite-kind-open-browser', {'type': 'lazyall', 'if': has('nvim')}
 endif
@@ -201,6 +203,11 @@ if g:plugin_use_fern
   Pack 'lambdalisue/fern-bookmark.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern-comparator-lexical.vim', {'type': 'lazyall'}
   Pack 'lambdalisue/fern-renderer-nerdfont.vim', {'type': 'lazyall'}
+endif
+
+if g:plugin_use_molder
+  Pack 'mattn/vim-molder'
+  Pack 'mattn/vim-molder-operations'
 endif
 
 if g:plugin_use_defx
