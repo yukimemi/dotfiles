@@ -23,6 +23,7 @@ function! s:init_fern() abort
         \ )
 
   nmap <buffer> s <Nop>
+  nmap <buffer> S <Plug>(fern-action-open:select)
   nmap <buffer> o <Plug>(fern-my-open-or-expand-or-collapse)
 endfunction
 
