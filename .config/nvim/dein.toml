@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/09/27 17:39:18.
+# Last Change : 2020/09/30 23:54:56.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -234,7 +234,7 @@ on_event = ['VimEnter']
 
 [[plugins]]
 repo = "gelguy/wilder.nvim" # {{{2
-on_event = ["CmdlineEnter", "CmdwinEnter"]
+# on_event = ["CmdlineEnter", "CmdwinEnter"]
 hook_add = '''
 source $VIM_PATH/rc/wilder.nvim
 '''
@@ -304,9 +304,9 @@ hook_add = '''
 source $VIM_PATH/rc/vim-camelsnek.vim
 '''
 
-# [[plugins]]
-# repo = 'psliwka/vim-smoothie' # {{{2
-# on_event = ['CursorMoved']
+[[plugins]]
+repo = 'psliwka/vim-smoothie' # {{{2
+on_event = ['CursorMoved']
 
 
 [[plugins]]
@@ -440,6 +440,12 @@ on_cmd = ['MRU']
 # source $VIM_PATH/rc/comfortable-motion.vim
 # '''
 
+[[plugins]]
+repo = 'thinca/vim-singleton' # {{{2
+if = "!has('nvim')"
+hook_source = '''
+source $VIM_PATH/rc/vim-singleton.vim
+'''
 
 # ==================== Comment =================== {{{1
 [[plugins]]
@@ -841,6 +847,23 @@ repo = 'kristijanhusak/defx-icons' # {{{2
 lazy = 1
 
 
+[[plugins]]
+repo = 'mattn/vim-molder' # {{{2
+if = 'g:plugin_use_molder'
+depends = ['vim-molder-operations']
+hook_add = '''
+source $VIM_PATH/rc/vim-molder.vim
+'''
+
+[[plugins]]
+repo = 'mattn/vim-molder-operations' # {{{2
+if = 'g:plugin_use_molder'
+lazy = 1
+
+[[plugins]]
+repo = 'cocopon/vaffle.vim' # {{{2
+if = 'g:plugin_use_vaffle'
+on_cmd = ['Vaffle']
 
 
 # ==================== Complement ================ {{{1

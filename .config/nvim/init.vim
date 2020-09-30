@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/09/29 22:26:33.
+" Last Change : 2020/09/30 23:37:55.
 " =============================================================================
 
 " Init: {{{1
@@ -514,9 +514,11 @@ let g:plugin_use_denite = 1
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
-let g:plugin_use_fern = 1
+let g:plugin_use_fern = 0
 let g:plugin_use_defx = 0
 let g:plugin_use_molder = 0
+let g:plugin_use_vaffle = 1
+let g:plugin_use_coc_explorer = 0
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1
@@ -549,6 +551,13 @@ let g:neovide_transparency = 0.9
 let g:neovide_cursor_vfx_mode = "railgun"
 " set guifont=Cica
 " set guifontwide=Cica
+
+" Nvy: {{{1
+let g:nvy = get(g:, 'nvy', 0)
+if g:nvy
+  set gfn=Cica:h10
+  set gfw=Cica:h10
+endif
 
 " lua: {{{1
 if has('nvim')

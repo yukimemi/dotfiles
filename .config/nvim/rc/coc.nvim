@@ -17,6 +17,7 @@ let g:coc_global_extensions = [
      \ "coc-docker",
      \ "coc-emoji",
      \ "coc-eslint",
+     \ "coc-explorer",
      \ "coc-fish",
      \ "coc-fsharp",
      \ "coc-git",
@@ -190,7 +191,9 @@ imap <c-k> <Plug>(coc-snippets-expand-jump)
 " nnoremap <leader>bl :<c-u>CocList bookmark<cr>
 
 " coc-explorer {{{1
-" nnoremap ge :<c-u>CocCommand explorer<cr>
+if g:plugin_use_coc_explorer
+  nnoremap ge :<c-u>CocCommand explorer<cr>
+endif
 
 " coc-todolist {{{1
 nnoremap <leader>l :<c-u>CocCommand todolist.create<cr>

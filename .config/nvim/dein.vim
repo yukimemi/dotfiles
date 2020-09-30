@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2020/09/20 16:09:13.
+" Last Change : 2020/10/01 00:08:30.
 " =============================================================================
 
 " Plugin: {{{1
@@ -26,6 +26,9 @@ function! IsInstalled(name) abort
 endfunction
 
 if !dein#load_state(s:dein_dir)
+  if !has('nvim')
+    call dein#call_hook('source')
+  endif
   finish
 endif
 
@@ -34,6 +37,9 @@ let s:toml_file = $VIM_PATH . '/dein.toml'
 call dein#begin(s:dein_dir, [$MYVIMRC, s:toml_file])
 call dein#load_toml(s:toml_file)
 call dein#end()
+if !has('nvim')
+  call dein#call_hook('source')
+endif
 call dein#save_state()
 
 " Check and install.

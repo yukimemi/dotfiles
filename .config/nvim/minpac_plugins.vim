@@ -85,6 +85,7 @@ Pack 'vim-scripts/autodate.vim', {'event': 'InsertEnter'}
 Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
 Pack 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
 Pack 'yegappan/mru', {'on': 'MRU'}
+Pack 'thinca/vim-singleton'
 
 " Comment: {{{1
 Pack 'Shougo/junkfile.vim', {'on': 'JunkfileOpen'}
@@ -208,6 +209,10 @@ endif
 if g:plugin_use_molder
   Pack 'mattn/vim-molder'
   Pack 'mattn/vim-molder-operations'
+endif
+
+if g:plugin_use_vaffle
+  Pack 'cocopon/vaffle.vim', {'on': 'Vaffle'}
 endif
 
 if g:plugin_use_defx

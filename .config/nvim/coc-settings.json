@@ -22,5 +22,8 @@
   "translator.toLang": "ja",
   "translator.engines": ["google", "bing"],
   "eslint.autoFixOnSave": true,
-  "suggest.asciiCharactersOnly": true
+  "suggest.asciiCharactersOnly": true,
+  "explorer.file.autoReveal": true,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": false
 }
