@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/09/30 23:54:56.
+# Last Change : 2020/10/04 00:02:39.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -100,13 +100,6 @@ source $VIM_PATH/rc/vim-quickhl.vim
 '''
 
 [[plugins]]
-repo = 'unblevable/quick-scope' # {{{2
-on_event = ['CursorHold']
-hook_add = '''
-source $VIM_PATH/rc/quick-scope.vim
-'''
-
-[[plugins]]
 repo = 'Xuyuanp/scrollbar.nvim' # {{{2
 if = 'has("nvim")'
 hook_add = '''
@@ -116,13 +109,6 @@ source $VIM_PATH/rc/scrollbar.nvim
 [[plugins]]
 repo = 'gcavallanti/vim-noscrollbar' # {{{2
 if = '!has("nvim")'
-
-# [[plugins]]
-# repo = 'osyo-manga/vim-precious' # {{{2
-# on_event = ['InsertEnter', 'InsertLeave']
-# hook_add = '''
-# source $VIM_PATH/rc/vim-precious.vim
-# '''
 
 # colorscheme
 [[plugins]]
@@ -294,9 +280,6 @@ hook_add = '''
 source $VIM_PATH/rc/undotree.vim
 '''
 
-# [[plugins]]
-# repo = 'mg979/vim-xtabline' # {{{2
-
 [[plugins]]
 repo = 'nicwest/vim-camelsnek' # {{{2
 on_cmd = ['Snek', 'Camel', 'CamelB', 'Kebab']
@@ -327,13 +310,6 @@ repo = 'rbtnn/vim-gloaded' # {{{2
 [[plugins]]
 repo = 'rbtnn/vim-vimscript_lasterror' # {{{2
 on_cmd = ['VimscriptLastError']
-
-# [[plugins]]
-# repo = 'rhysd/accelerated-jk' # {{{2
-# on_event = ['CursorMoved']
-# hook_add = '''
-# source $VIM_PATH/rc/accelerated-jk.vim
-# '''
 
 [[plugins]]
 repo = 'rickhowe/diffchar.vim' # {{{2
@@ -421,10 +397,6 @@ hook_add = '''
 source $VIM_PATH/rc/autodate.vim
 '''
 
-# [[plugins]]
-# repo = 'wakatime/vim-wakatime' # {{{2
-# on_event = ['TextChanged', 'TextChangedI']
-
 [[plugins]]
 repo = 'wesQ3/vim-windowswap' # {{{2
 on_event = ['WinEnter']
@@ -433,18 +405,18 @@ on_event = ['WinEnter']
 repo = 'yegappan/mru' # {{{2
 on_cmd = ['MRU']
 
-# [[plugins]]
-# repo = 'yuttie/comfortable-motion.vim' # {{{2
-# on_event = ['CursorMoved']
-# hook_add = '''
-# source $VIM_PATH/rc/comfortable-motion.vim
-# '''
-
 [[plugins]]
 repo = 'thinca/vim-singleton' # {{{2
 if = "!has('nvim')"
 hook_source = '''
 source $VIM_PATH/rc/vim-singleton.vim
+'''
+
+[[plugins]]
+repo = 'hrsh7th/vim-eft' # {{{2
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-eft.vim
 '''
 
 # ==================== Comment =================== {{{1
@@ -810,21 +782,27 @@ source $VIM_PATH/rc/fern.vim
 '''
 [[plugins]]
 repo = 'lambdalisue/fern-git-status.vim' # {{{2
+if = "g:plugin_use_fern"
 lazy = 1
 [[plugins]]
 repo = 'lambdalisue/fern-git.vim' # {{{2
+if = "g:plugin_use_fern"
 lazy = 1
 [[plugins]]
 repo = 'lambdalisue/fern-mapping-git.vim' # {{{2
+if = "g:plugin_use_fern"
 lazy = 1
 [[plugins]]
 repo = 'lambdalisue/fern-bookmark.vim' # {{{2
+if = "g:plugin_use_fern"
 lazy = 1
 [[plugins]]
 repo = 'lambdalisue/fern-comparator-lexical.vim' # {{{2
+if = "g:plugin_use_fern"
 lazy = 1
 [[plugins]]
 repo = 'lambdalisue/fern-renderer-nerdfont.vim' # {{{2
+if = "g:plugin_use_fern"
 depends = ['nerdfont.vim', 'glyph-palette.vim']
 lazy = 1
 [[plugins]]

@@ -19,7 +19,6 @@ Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'nathanaelkane/vim-indent-guides', {'event': 'CursorHold'}
 Pack 'ntpeters/vim-better-whitespace', {'event': 'CursorHold'}
 Pack 't9md/vim-quickhl', {'event': 'CursorHold'}
-Pack 'unblevable/quick-scope', {'event': 'CursorHold'}
 Pack 'gcavallanti/vim-noscrollbar', {'if': !has('nvim')}
 
 " colorscheme {{{2
@@ -50,6 +49,7 @@ Pack 'da-x/name-assign.vim', {'on': '<Plug>NameAssign'}
 Pack 'editorconfig/editorconfig-vim', {'event': 'VimEnter'}
 Pack 'gelguy/wilder.nvim'
 Pack 'haya14busa/vim-edgemotion', {'on': ['<Plug>(edgemotion-j)', '<Plug>(edgemotion-k)']}
+Pack 'hrsh7th/vim-eft', {'on': ['<Plug>(eft-F)', '<Plug>(eft-T)', '<Plug>(eft-f)', '<Plug>(eft-repeat)', '<Plug>(eft-t)']}
 Pack 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Pack 'lambdalisue/readablefold.vim', {'event': 'CursorHold'}
 Pack 'lambdalisue/vim-findent', {'on': 'Findent'}
@@ -75,6 +75,7 @@ Pack 'thinca/vim-ambicmd', {'event': 'VimEnter'}
 Pack 'thinca/vim-localrc'
 Pack 'thinca/vim-prettyprint', {'on': 'PP'}
 Pack 'thinca/vim-qfreplace', {'for': ['quickfix', 'qf']}
+Pack 'thinca/vim-singleton', {'if': !has('nvim')}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
 Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windows && !has('nvim')}
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}
@@ -85,7 +86,6 @@ Pack 'vim-scripts/autodate.vim', {'event': 'InsertEnter'}
 Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
 Pack 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
 Pack 'yegappan/mru', {'on': 'MRU'}
-Pack 'thinca/vim-singleton', {'if': !has('nvim')}
 
 " Comment: {{{1
 Pack 'Shougo/junkfile.vim', {'on': 'JunkfileOpen'}
