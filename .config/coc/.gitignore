@@ -1,8 +1,9 @@
 commands
 history.json
+list-files-history.json
+list-helptags-history.json
+list-lists-history.json
 lists
 memos.json
 mru
 snippets-mru
-list-lists-history.json
-list-files-history.json

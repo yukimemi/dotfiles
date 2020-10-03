@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/10/04 00:02:39.
+# Last Change : 2020/10/04 00:23:26.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -562,12 +562,8 @@ repo = 'osyo-manga/vim-operator-stay-cursor' # {{{2
 on_event = ['CursorHold']
 
 [[plugins]]
-repo = 'rhysd/vim-operator-surround' # {{{2
-depends = 'vim-operator-user'
-on_map = '<Plug>'
-hook_add = '''
-source $VIM_PATH/rc/vim-operator-surround.vim
-'''
+repo = 'machakann/vim-sandwich'
+on_event = ['CursorHold', 'CursorMoved']
 
 # [[plugins]]
 # repo = 'haya14busa/vim-operator-flashy' # {{{2

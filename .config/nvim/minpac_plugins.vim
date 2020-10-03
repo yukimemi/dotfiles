@@ -121,7 +121,7 @@ Pack 'kana/vim-operator-user', {'event': 'VimEnter'}
 Pack 'kana/vim-operator-replace', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-stay-cursor', {'type': 'lazyall'}
-Pack 'rhysd/vim-operator-surround', {'type': 'lazyall'}
+Pack 'machakann/vim-sandwich', {'type': 'lazyall'}
 
 
 " Search: {{{1
