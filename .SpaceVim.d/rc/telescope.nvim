@@ -1,0 +1,15 @@
+lua <<EOF
+-- totally optional to use setup
+require('telescope').setup{
+  default = {
+    shorten_path = false -- currently the default value is true
+  }
+}
+EOF
+
+nnoremap <leader>pf <cmd>lua require'telescope.builtin'.find_files{}<cr>
+nnoremap <leader>pn <cmd>lua require'telescope.builtin'.find_files{ cwd = "~/.config/nvim/" }<cr>
+nnoremap <leader>pg <cmd>lua require'telescope.builtin'.git_files{}<cr>
+nnoremap <leader>pr <cmd>lua require'telescope.builtin'.lsp_references{ shorten_path = true }<CR>
+
+" vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

@@ -1,4 +1,5 @@
 [general]
+".SpaceVim.d"                          = "~/.SpaceVim.d"
 ".config"                              = "~/.config"
 ".editorconfig"                        = "~/.editorconfig"
 ".qutebrowser"                         = "~/.qutebrowser"
@@ -31,8 +32,6 @@
 "win/terminus/config.yaml"             = "~/AppData/Roaming/terminus/config.yaml"
 
 [darwin]
-".config/nvim"                         = "~/.vim"
-".config/nvim/init.vim"                = "~/.vimrc"
 ".config/rhq"                          = "~/Library/Preferences/rhq"
 ".gvimrc"                              = "~/.gvimrc"
 ".hyper.js"                            = "~/.hyper.js"
