@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/10/04 12:42:58.
+# Last Change : 2020/10/04 15:39:46.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -428,6 +428,14 @@ on_map = '<Plug>'
 hook_add = '''
 source $VIM_PATH/rc/vim-eft.vim
 '''
+
+[[plugins]]
+repo = 'cohama/lexima.vim' # {{{2
+on_event = ['InsertEnter']
+hook_source = '''
+source $VIM_PATH/rc/lexima.vim
+'''
+
 
 # ==================== Comment =================== {{{1
 [[plugins]]

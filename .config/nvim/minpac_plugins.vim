@@ -46,6 +46,7 @@ Pack 'Shougo/echodoc.vim', {'event': 'InsertEnter'}
 Pack 'airblade/vim-rooter', {'event': 'CursorHold'}
 Pack 'aiya000/aho-bakaup.vim', {'event': 'BufWritePre'}
 Pack 'chamindra/marvim', {'type': 'lazyall'}
+Pack 'cohama/lexima.vim', {'on': 'InsertEnter'}
 Pack 'da-x/name-assign.vim', {'on': '<Plug>NameAssign'}
 Pack 'editorconfig/editorconfig-vim', {'event': 'VimEnter'}
 Pack 'gelguy/wilder.nvim'

@@ -32,7 +32,6 @@ let g:coc_global_extensions = [
      \ "coc-markmap",
      \ "coc-nextword",
      \ "coc-omni",
-     \ "coc-pairs",
      \ "coc-postfix",
      \ "coc-powershell",
      \ "coc-prettier",

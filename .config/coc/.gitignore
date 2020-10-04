@@ -1,5 +1,6 @@
 commands
 history.json
+list-extensions-history.json
 list-files-history.json
 list-helptags-history.json
 list-lists-history.json

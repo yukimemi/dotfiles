@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/09/30 23:37:55.
+" Last Change : 2020/10/04 15:34:29.
 " =============================================================================
 
 " Init: {{{1
@@ -295,6 +295,8 @@ command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1))
 " VimShowHlItem: Show highlight item name under a cursor
 command! VimShowHlItem echo synIDattr(synID(line("."), col("."), 1), "name")
 
+" https://qiita.com/1000k/items/6d4953d2dd52fdd86556
+command! RemoveAnsi %s/<1b>\[[0-9;]*m//g
 
 " Mapping: {{{1
 " Use verymagic.
