@@ -1,0 +1,4 @@
+[time]
+disabled = false
+format = "%F %T"
+# format = "%+"
