@@ -43,6 +43,7 @@ const overlayedGlobalMarks = {
   "1": [
     "https://vim-jp.slack.com",
     "https://mohikanz.slack.com",
+    "https://yukimemi.slack.com",
     "https://tweetdeck.twitter.com",
     "https://www.facebook.com",
   ],
