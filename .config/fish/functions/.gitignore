@@ -122,6 +122,7 @@ npm.fish
 pyenv.fish
 rbenv.fish
 test.py
+up-or-search.fish
 z.awk
 zadd.awk
 zclean.awk
