@@ -39,6 +39,12 @@ const overlayedGlobalMarks = {
     "https://www.reddit.com/r/vim",
     "https://www.reddit.com/r/neovim",
   ],
+  "1": [
+    "https://vim-jp.slack.com",
+    "https://mohikanz.slack.com",
+    "https://tweetdeck.twitter.com",
+    "https://www.facebook.com",
+  ],
   "2": "http://www.google.com/calendar",
   "3": "https://www.google.com/contacts/#contacts",
   M: [
