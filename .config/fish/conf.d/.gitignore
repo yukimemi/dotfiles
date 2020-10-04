@@ -1,7 +1,8 @@
-pure.fish
-replace_multiple_dots_keybind.fish
+abbr_tips.fish
+done.fish
 fish-global-abbreviation_key_bindings.fish
 fisher.fish
-done.fish
 fzf.fish
 fzf_key_bindings.fish
+pure.fish
+replace_multiple_dots_keybind.fish
