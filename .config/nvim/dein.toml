@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/10/04 00:23:26.
+# Last Change : 2020/10/04 12:42:58.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -68,7 +68,17 @@ source $VIM_PATH/rc/rainbow.vim
 
 [[plugins]]
 repo = 'machakann/vim-highlightedyank' # {{{2
-if = "!has('nvim')"
+hook_add = '''
+source $VIM_PATH/rc/vim-highlightedyank.vim
+'''
+
+[[plugins]]
+repo = 'machakann/vim-highlightedundo' # {{{2
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-highlightedundo.vim
+'''
+
 
 [[plugins]]
 repo = 'mattn/transparency-windows-vim' # {{{2
@@ -564,15 +574,6 @@ on_event = ['CursorHold']
 [[plugins]]
 repo = 'machakann/vim-sandwich'
 on_event = ['CursorHold', 'CursorMoved']
-
-# [[plugins]]
-# repo = 'haya14busa/vim-operator-flashy' # {{{2
-# depends = 'vim-operator-user'
-# on_map = '<Plug>'
-# hook_add = '''
-# source $VIM_PATH/rc/vim-operator-flashy.vim
-# '''
-
 
 
 # ==================== Search ==================== {{{1

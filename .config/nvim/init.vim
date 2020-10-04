@@ -445,10 +445,6 @@ au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<cr>
 " For git commit.
 au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
 
-if has('nvim')
-  au MyAutoCmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
-endif
-
 if has('gui_running')
   if g:is_windows
     nnoremap <leader>r :<c-u>simalt ~r<cr>

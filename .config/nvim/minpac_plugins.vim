@@ -13,7 +13,8 @@ Pack 'lambdalisue/glyph-palette.vim'
 Pack 'lambdalisue/nerdfont.vim'
 Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
 Pack 'luochen1990/rainbow', {'type': 'lazy'}
-Pack 'machakann/vim-highlightedyank', {'type': 'lazyall', 'if': !has('nvim')}
+Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
+Pack 'machakann/vim-highlightedundo', {'type': 'opt', 'on': ['<Plug>(highlightedundo-undo)', '<Plug>(highlightedundo-redo)', '<Plug>(highlightedundo-gminus)', '<Plug>(highlightedundo-gplus)']}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'nathanaelkane/vim-indent-guides', {'event': 'CursorHold'}

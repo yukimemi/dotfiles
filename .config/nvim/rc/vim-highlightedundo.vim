@@ -1,7 +1,3 @@
-if !IsInstalled("vim-highlightedundo")
-  finish
-endif
-
 let g:highlightedundo#highlight_mode = 2
 
 nmap u     <Plug>(highlightedundo-undo)
