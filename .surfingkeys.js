@@ -38,6 +38,7 @@ const overlayedGlobalMarks = {
     "https://qiita.com",
     "https://www.reddit.com/r/vim",
     "https://www.reddit.com/r/neovim",
+    "https://www.reddit.com/r/fishshell",
   ],
   "1": [
     "https://vim-jp.slack.com",
