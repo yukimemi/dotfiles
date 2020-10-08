@@ -251,3 +251,10 @@ function j {
   $c | __FILTER | cd
   Get-Job | Stop-Job -PassThru | Remove-Job -Force
 }
+
+# hash.
+function Get-FileAndHash {
+  gci . | % { [PSCustomObject]@{ path = $_.Name; hash = (Get-FileHash -a md5 $_.FullName).Hash } }
+}
+
+

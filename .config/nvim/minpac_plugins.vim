@@ -14,7 +14,7 @@ Pack 'lambdalisue/nerdfont.vim'
 Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
 Pack 'luochen1990/rainbow', {'type': 'lazy'}
 Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
-Pack 'machakann/vim-highlightedundo', {'type': 'opt', 'on': ['<Plug>(highlightedundo-undo)', '<Plug>(highlightedundo-redo)', '<Plug>(highlightedundo-gminus)', '<Plug>(highlightedundo-gplus)']}
+Pack 'machakann/vim-highlightedundo', {'if': executable('diff'), 'on': ['<Plug>(highlightedundo-undo)', '<Plug>(highlightedundo-redo)', '<Plug>(highlightedundo-Undo)', '<Plug>(highlightedundo-gminus)', '<Plug>(highlightedundo-gplus)']}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'nathanaelkane/vim-indent-guides', {'event': 'CursorHold'}
@@ -51,7 +51,6 @@ Pack 'da-x/name-assign.vim', {'on': '<Plug>NameAssign'}
 Pack 'editorconfig/editorconfig-vim', {'event': 'VimEnter'}
 Pack 'gelguy/wilder.nvim'
 Pack 'haya14busa/vim-edgemotion', {'on': ['<Plug>(edgemotion-j)', '<Plug>(edgemotion-k)']}
-Pack 'hrsh7th/vim-eft', {'on': ['<Plug>(eft-F)', '<Plug>(eft-T)', '<Plug>(eft-f)', '<Plug>(eft-repeat)', '<Plug>(eft-t)']}
 Pack 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Pack 'lambdalisue/readablefold.vim', {'event': 'CursorHold'}
 Pack 'lambdalisue/vim-findent', {'on': 'Findent'}

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/04 15:34:29.
+" Last Change : 2020/10/09 08:19:26.
 " =============================================================================
 
 " Init: {{{1
@@ -144,6 +144,11 @@ if has('nvim')
   set pumblend=10
   set winblend=10
   set inccommand=split
+endif
+
+" python
+if g:is_windows
+  let g:python3_host_prog = expand('$USERPROFILE') . '/scoop/apps/python/current/python.exe'
 endif
 
 " terminal {{{2

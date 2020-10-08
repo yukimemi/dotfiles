@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : dein.toml
 # Author      : yukimemi
-# Last Change : 2020/10/04 15:39:46.
+# Last Change : 2020/10/07 12:59:22.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -74,6 +74,7 @@ source $VIM_PATH/rc/vim-highlightedyank.vim
 
 [[plugins]]
 repo = 'machakann/vim-highlightedundo' # {{{2
+if = "executable('diff')"
 on_map = '<Plug>'
 hook_add = '''
 source $VIM_PATH/rc/vim-highlightedundo.vim
@@ -123,55 +124,42 @@ if = '!has("nvim")'
 # colorscheme
 [[plugins]]
 repo = "NLKNguyen/papercolor-theme" # {{{2
-lazy = 1
 
 [[plugins]]
 repo = 'bluz71/vim-nightfly-guicolors' # {{{2
-lazy = 1
 
 [[plugins]]
 repo = 'cocopon/iceberg.vim' # {{{2
-lazy = 1
 
 [[plugins]]
 repo = 'drewtempelmeyer/palenight.vim' # {{{2
-lazy = 1
 
 [[plugins]]
 repo = 'ghifarit53/tokyonight-vim' # {{{2
-lazy = 1
 
 [[plugins]]
 repo = 'gkeep/iceberg-dark' # {{{2
-lazy = 1
 
 [[plugins]]
 repo = 'joshdick/onedark.vim' # {{{2
-lazy = 1
 
 [[plugins]]
 repo = 'kjssad/quantum.vim' # {{{2
-lazy = 1
 
 [[plugins]]
 repo = 'rhysd/vim-color-spring-night' # {{{2
-# lazy = 1
 
 [[plugins]]
 repo = 'romgrk/github-light.vim' # {{{2
-lazy = 1
 
 [[plugins]]
 repo = 'sainnhe/gruvbox-material' # {{{2
-lazy = 1
 
 [[plugins]]
 repo = 'severij/vadelma' # {{{2
-lazy = 1
 
 [[plugins]]
 repo = 'yasukotelin/shirotelin' # {{{2
-lazy = 1
 
 
 # ==================== Utility =================== {{{1
@@ -422,12 +410,6 @@ hook_source = '''
 source $VIM_PATH/rc/vim-singleton.vim
 '''
 
-[[plugins]]
-repo = 'hrsh7th/vim-eft' # {{{2
-on_map = '<Plug>'
-hook_add = '''
-source $VIM_PATH/rc/vim-eft.vim
-'''
 
 [[plugins]]
 repo = 'cohama/lexima.vim' # {{{2
