@@ -461,11 +461,6 @@ if = "!g:is_windows"
 repo = 'rhysd/conflict-marker.vim' # {{{2
 on_event = ['CursorHold']
 
-[[plugin]]
-repo = 'skanehira/gh.vim'
-hook_add = '''
-source $VIM_PATH/rc/gh.vim
-'''
 
 # ==================== Textobjs ================== {{{1
 
