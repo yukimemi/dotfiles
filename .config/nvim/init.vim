@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/09 08:19:26.
+" Last Change : 2020/10/10 11:03:59.
 " =============================================================================
 
 " Init: {{{1
@@ -514,6 +514,7 @@ let g:plugin_use_fzf = 0
 let g:plugin_use_cocfzf = 0
 let g:plugin_use_fz = 0
 let g:plugin_use_denite = 1
+let g:plugin_use_quickpick = 1
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')

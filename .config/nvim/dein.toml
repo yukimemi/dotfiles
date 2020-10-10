@@ -1,10 +1,11 @@
 # =============================================================================
-# File        : dein.toml
-# Author      : yukimemi
-# Last Change : 2020/10/07 12:59:22.
+# File       : dein.toml
+# Author     : yukimemi
+# Last Change: 2020/10/10 11:03:38.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
+
 [[plugins]]
 repo = "Shougo/dein.vim" # {{{2
 
@@ -12,8 +13,8 @@ repo = "Shougo/dein.vim" # {{{2
 repo = 'wsdjeg/dein-ui.vim' # {{{2
 on_cmd = ['DeinUpdate']
 
-
 # ==================== Visual ==================== {{{1
+
 [[plugins]]
 repo = "andymass/vim-matchup" # {{{2
 on_event = ["CursorHold"]
@@ -53,11 +54,9 @@ repo = "lambdalisue/glyph-palette.vim" # {{{2
 [[plugins]]
 repo = "lambdalisue/nerdfont.vim" # {{{2
 
-
 [[plugins]]
 repo = 'lambdalisue/seethrough.vim' # {{{2
 if = "!has('gui')"
-
 
 [[plugins]]
 repo = 'luochen1990/rainbow' # {{{2
@@ -79,7 +78,6 @@ on_map = '<Plug>'
 hook_add = '''
 source $VIM_PATH/rc/vim-highlightedundo.vim
 '''
-
 
 [[plugins]]
 repo = 'mattn/transparency-windows-vim' # {{{2
@@ -122,6 +120,7 @@ repo = 'gcavallanti/vim-noscrollbar' # {{{2
 if = '!has("nvim")'
 
 # colorscheme
+
 [[plugins]]
 repo = "NLKNguyen/papercolor-theme" # {{{2
 
@@ -161,8 +160,8 @@ repo = 'severij/vadelma' # {{{2
 [[plugins]]
 repo = 'yasukotelin/shirotelin' # {{{2
 
-
 # ==================== Utility =================== {{{1
+
 [[plugins]]
 repo = 'AndrewRadev/linediff.vim' # {{{2
 on_cmd = ['Linediff', 'LinediffReset', 'LinediffShow']
@@ -218,7 +217,9 @@ on_event = ['VimEnter']
 
 [[plugins]]
 repo = "gelguy/wilder.nvim" # {{{2
+
 # on_event = ["CmdlineEnter", "CmdwinEnter"]
+
 hook_add = '''
 source $VIM_PATH/rc/wilder.nvim
 '''
@@ -240,7 +241,6 @@ source $VIM_PATH/rc/vim-easy-align.vim
 [[plugins]]
 repo = "lambdalisue/readablefold.vim" # {{{2
 on_event = ["CursorHold"]
-
 
 [[plugins]]
 repo = 'lambdalisue/vim-findent' # {{{2
@@ -289,7 +289,6 @@ source $VIM_PATH/rc/vim-camelsnek.vim
 repo = 'psliwka/vim-smoothie' # {{{2
 on_event = ['CursorMoved']
 
-
 [[plugins]]
 repo = 'qpkorr/vim-renamer' # {{{2
 on_cmd = ['Renamer']
@@ -327,7 +326,7 @@ if = '!has("nvim")'
 
 [[plugins]]
 repo = 'roxma/vim-tmux-clipboard' # {{{2
-if  = '!g:is_windows'
+if = '!g:is_windows'
 on_event = ['TextYankPost']
 
 [[plugins]]
@@ -335,13 +334,6 @@ repo = 'sentriz/vim-print-debug' # {{{2
 on_event = ['CursorMoved']
 hook_add = '''
 source $VIM_PATH/rc/vim-print-debug.vim
-'''
-
-[[plugins]]
-repo = 't9md/vim-choosewin' # {{{2
-on_event = ["VimEnter"]
-hook_add = '''
-source $VIM_PATH/rc/vim-choosewin.vim
 '''
 
 [[plugins]]
@@ -357,7 +349,6 @@ repo = 'thinca/vim-localrc' # {{{2
 repo = 'thinca/vim-prettyprint' # {{{2
 on_cmd = ['PP']
 
-
 [[plugins]]
 repo = 'thinca/vim-qfreplace' # {{{2
 on_ft = ['quickfix', 'qf']
@@ -371,7 +362,7 @@ source $VIM_PATH/rc/vim-submode.vim
 
 [[plugins]]
 repo = 'tmux-plugins/vim-tmux-focus-events' # {{{2
-if  = '!g:is_windows'
+if = '!g:is_windows'
 
 [[plugins]]
 repo = 'tpope/vim-repeat' # {{{2
@@ -410,7 +401,6 @@ hook_source = '''
 source $VIM_PATH/rc/vim-singleton.vim
 '''
 
-
 [[plugins]]
 repo = 'cohama/lexima.vim' # {{{2
 on_event = ['InsertEnter']
@@ -418,8 +408,8 @@ hook_source = '''
 source $VIM_PATH/rc/lexima.vim
 '''
 
-
 # ==================== Comment =================== {{{1
+
 [[plugins]]
 repo = 'Shougo/junkfile.vim' # {{{2
 on_cmd = ['JunkfileOpen']
@@ -438,8 +428,8 @@ hook_add = '''
 source $VIM_PATH/rc/caw.vim
 '''
 
-
 # ==================== App ======================= {{{1
+
 [[plugins]]
 repo = 'twitvim/twitvim' # {{{2
 on_cmd = ['FriendsTwitter', 'UserTwitter', 'RepliesTwitter', 'DMTwitter']
@@ -447,12 +437,11 @@ hook_add = '''
 source $VIM_PATH/rc/twitvim.vim
 '''
 
-
 # ==================== Git ======================= {{{1
+
 [[plugins]]
 repo = 'itchyny/vim-gitbranch' # {{{2
 on_event = ['CursorHold']
-
 
 [[plugins]]
 repo = 'lambdalisue/gina.vim' # {{{2
@@ -469,9 +458,8 @@ if = "!g:is_windows"
 repo = 'rhysd/conflict-marker.vim' # {{{2
 on_event = ['CursorHold']
 
-
-
 # ==================== Textobjs ================== {{{1
+
 [[plugins]]
 repo = 'kana/vim-textobj-user' # {{{2
 
@@ -535,9 +523,8 @@ on_event = ['CursorHold']
 repo = 'osyo-manga/vim-textobj-multiblock' # {{{2
 on_event = ['CursorHold']
 
-
-
 # ==================== Operators ================= {{{1
+
 [[plugins]]
 repo = 'kana/vim-operator-user' # {{{2
 
@@ -565,8 +552,8 @@ on_event = ['CursorHold']
 repo = 'machakann/vim-sandwich'
 on_event = ['CursorHold', 'CursorMoved']
 
-
 # ==================== Search ==================== {{{1
+
 [[plugins]]
 repo = 'eugen0329/vim-esearch' # {{{2
 on_map = '<Plug>'
@@ -600,18 +587,18 @@ hook_add = '''
 source $VIM_PATH/rc/any-jump.vim
 '''
 
-
-
+[[plugins]]
+repo = 'tsuyoshicho/vim-fg' # {{{2
+# on_cmd = ['Fg', 'FgRipGrep', 'FgPt', 'FgJVGrep', 'FgFindStr']
 
 # ==================== Shell ===================== {{{1
+
 [[plugins]]
 repo = 'Shougo/deol.nvim' # {{{2
 on_cmd = ['Deol', 'DeolCd', 'DeolEdit']
 
-
-
-
 # ==================== Filetype (all) ============ {{{1
+
 [[plugins]]
 repo = 'sheerun/vim-polyglot' # {{{2
 merged = 0
@@ -619,9 +606,8 @@ hook_add = '''
 source $VIM_PATH/rc/vim-polyglot.vim
 '''
 
-
-
 # ==================== Filetype (markdown) ======= {{{1
+
 [[plugins]]
 repo = 'dhruvasagar/vim-table-mode' # {{{2
 on_ft = ['markdown']
@@ -639,6 +625,7 @@ call mkdp#util#install()
 
 [[plugins]]
 repo = 'previm/previm' # {{{2
+depends = 'open-browser.vim'
 on_cmd = ['PrevimOpen']
 
 [[plugins]]
@@ -647,13 +634,13 @@ on_cmd = ['Glow']
 hook_post_update = 'GlowInstall'
 
 # ==================== Filetype (html) =========== {{{1
+
 [[plugins]]
 repo = 'mattn/emmet-vim' # {{{2
 on_ft = ['html']
 
-
-
 # ==================== Fuzzy ===================== {{{1
+
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim' # {{{2
 if = "g:plugin_use_ctrlp"
@@ -700,7 +687,9 @@ on_cmd = ['CtrlPCmdHistory', 'CtrlPSearchHistory']
 repo = 'suy/vim-ctrlp-commandline' # {{{2
 if = "g:plugin_use_ctrlp"
 depends = ['ctrlp.vim']
+
 # on_cmd = ['CtrlPCommandLine']
+
 [[plugins]]
 repo = 'FelikZ/ctrlp-py-matcher' # {{{2
 if = "g:plugin_use_ctrlp"
@@ -726,7 +715,6 @@ hook_post_update = '''
 call clap#helper#build_all()
 '''
 
-
 [[plugins]]
 repo = 'Shougo/denite.nvim' # {{{2
 if = "has('python3') && g:plugin_use_denite"
@@ -736,8 +724,43 @@ hook_add = '''
 source $VIM_PATH/rc/denite.nvim
 '''
 
+[[plugins]]
+repo = 'prabirshrestha/quickpick.vim' # {{{2
+if = 'g:plugin_use_quickpick'
+lazy = 1
+
+[[plugins]]
+repo = 'prabirshrestha/quickpick-filetypes.vim' # {{{2
+if = 'g:plugin_use_quickpick'
+depends = 'quickpick.vim'
+on_cmd = ['Pfiletypes']
+
+[[plugins]]
+repo = 'prabirshrestha/quickpick-colorschemes.vim' # {{{2
+if = 'g:plugin_use_quickpick'
+depends = 'quickpick.vim'
+on_cmd = ['Pcolorschemes']
+
+[[plugins]]
+repo = 'clozed2u/quickpick-files.vim' # {{{2
+if = 'g:plugin_use_quickpick'
+depends = 'quickpick.vim'
+on_cmd = ['Pfiles']
+
+[[plugins]]
+repo = '0keke/quickpick-oldfiles.vim' # {{{2
+if = 'g:plugin_use_quickpick'
+depends = 'quickpick.vim'
+on_cmd = ['Poldfiles']
+
+[[plugins]]
+repo = '0keke/quickpick-launcher.vim' # {{{2
+if = 'g:plugin_use_quickpick'
+depends = 'quickpick.vim'
+on_cmd = ['Pquicklauncher']
 
 # ==================== Statusline ================ {{{1
+
 [[plugins]]
 repo = "itchyny/lightline.vim" # {{{2
 if = "g:plugin_use_lightline"
@@ -757,8 +780,8 @@ source $VIM_PATH/rc/vim-airline.vim
 repo = "vim-airline/vim-airline-themes" # {{{2
 if = "g:plugin_use_airline"
 
-
 # ==================== Filetree ================== {{{1
+
 [[plugins]]
 repo = 'lambdalisue/fern.vim' # {{{2
 if = "g:plugin_use_fern"
@@ -797,7 +820,6 @@ repo = 'lambdalisue/fern-hijack.vim'
 if = "g:plugin_use_fern"
 depends = ['fern.vim']
 
-
 [[plugins]]
 repo = 'Shougo/defx.nvim' # {{{2
 if = "g:plugin_use_defx"
@@ -810,7 +832,6 @@ source $VIM_PATH/rc/defx.nvim
 [[plugins]]
 repo = 'kristijanhusak/defx-icons' # {{{2
 lazy = 1
-
 
 [[plugins]]
 repo = 'mattn/vim-molder' # {{{2
@@ -832,10 +853,10 @@ on_cmd = ['Vaffle']
 
 
 # ==================== Complement ================ {{{1
+
 [[plugins]]
 repo = 'honza/vim-snippets' # {{{2
 on_event = ['InsertEnter']
-
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim' # {{{2
@@ -891,9 +912,8 @@ hook_add = '''
 source $VIM_PATH/rc/coc.nvim
 '''
 
-
-
 # ==================== Runner ==================== {{{1
+
 [[plugins]]
 repo = 'thinca/vim-quickrun' # {{{2
 depends = ['vim-quickrun-neovim-job']
@@ -906,8 +926,8 @@ source $VIM_PATH/rc/vim-quickrun.vim
 repo = 'lambdalisue/vim-quickrun-neovim-job' # {{{2
 lazy = 1
 
-
 # ==================== Filetype (plantuml) ======= {{{1
+
 [[plugins]]
 repo = 'scrooloose/vim-slumlord' # {{{2
 on_ft = 'plantuml'
@@ -919,8 +939,8 @@ source $VIM_PATH/rc/vim-slumlord.vim
 repo = 'tsuyoshicho/plantuml-previewer.vim' # {{{2
 on_ft = 'plantuml'
 
-
 # ==================== Filetype (Haskell) ======== {{{1
+
 [[plugins]]
 repo = 'eagletmt/ghcmod-vim' # {{{2
 if = "executable('stack')"
@@ -941,19 +961,20 @@ hook_add = '''
 source $VIM_PATH/rc/vim-haskell-sort-import.vim
 '''
 
-
 # ==================== Filetype (purescript) ===== {{{1
+
 [[plugins]]
 repo = 'FrigoEU/psc-ide-vim' # {{{2
 on_ft = 'purescript'
 
-
 # ==================== Filetype (csv) ============ {{{1
+
 [[plugins]]
 repo = 'mechatroner/rainbow_csv' # {{{2
 on_ft = 'csv'
 
 # ==================== After ftplugin ============ {{{1
+
 [ftplugin]
 _ = '''
 set formatoptions-=ro
@@ -1032,4 +1053,4 @@ setl noexpandtab
 setl ts=4 sw=4 sts=0
 '''
 
-# vim:fdm=marker fdc=3:
+# vim:fdm=marker fdc=3 ft=toml:
