@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/10 12:14:29.
+# Last Change: 2020/10/10 14:02:54.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -460,6 +460,12 @@ if = "!g:is_windows"
 [[plugins]]
 repo = 'rhysd/conflict-marker.vim' # {{{2
 on_event = ['CursorHold']
+
+[[plugin]]
+repo = 'skanehira/gh.vim'
+hook_add = '''
+source $VIM_PATH/rc/gh.vim
+'''
 
 # ==================== Textobjs ================== {{{1
 
