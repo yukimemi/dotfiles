@@ -26,6 +26,7 @@ nnoremap <silent> sch :<c-u>CtrlPCommandLine<cr>
 nnoremap <silent> scl :<c-u>CtrlPMemolist<cr>
 nnoremap <silent> scr :<c-u>CtrlP ~/src<cr>
 nnoremap <silent> scD :<c-u>CtrlP ~/.dotfiles<cr>
+nnoremap <silent> scC :<c-u>CtrlP ~/.cache<cr>
 nnoremap <silent> scG :<c-u>CtrlPGhq<cr>
 
 command! CtrlPCommandLine silent! packadd vim-ctrlp-commandline | call ctrlp#init(ctrlp#commandline#id())
