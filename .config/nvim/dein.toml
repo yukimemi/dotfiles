@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/10 11:32:55.
+# Last Change: 2020/10/10 12:06:51.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -773,7 +773,14 @@ repo = "itchyny/lightline.vim" # {{{2
 if = "g:plugin_use_lightline"
 on_event = ['CursorHold']
 hook_add = '''
-source $VIM_PATH/rc/lightline.vim
+" source $VIM_PATH/rc/lightline.vim
+'''
+
+[[plugins]]
+repo = 'delphinus/lightline-delphinus'
+if = "g:plugin_use_lightline"
+hook_add = '''
+source $VIM_PATH/rc/lightline-delphinus.vim
 '''
 
 [[plugins]]
