@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/10 11:30:07.
+# Last Change: 2020/10/10 11:32:55.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -758,6 +758,13 @@ repo = '0keke/quickpick-launcher.vim' # {{{2
 if = 'g:plugin_use_quickpick'
 depends = 'quickpick.vim'
 on_cmd = ['Pquicklauncher']
+
+[[plugins]]
+repo = 'lifepillar/vim-zeef'
+on_func = ['zeef#buffer', 'zeef#files', 'zeef#args', 'zeef#colorscheme']
+hook_add = '''
+source $VIM_PATH/rc/vim-zeef.vim
+'''
 
 # ==================== Statusline ================ {{{1
 
