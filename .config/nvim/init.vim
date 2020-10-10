@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/10 12:00:42.
+" Last Change : 2020/10/10 23:39:34.
 " =============================================================================
 
 " Init: {{{1
@@ -119,7 +119,7 @@ set signcolumn=yes
 set history=10000
 set nofixeol
 set hidden autoread
-set viminfo='1000
+set viminfo='10000
 set cmdheight=2
 set scrolloff=5
 set laststatus=2
@@ -147,7 +147,7 @@ if has('nvim')
 endif
 
 " python
-if g:is_windows
+if g:is_windows && !has('nvim')
   let g:python3_host_prog = expand('$USERPROFILE') . '/scoop/apps/python/current/python.exe'
 endif
 

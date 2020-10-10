@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/10 14:02:54.
+# Last Change: 2020/10/10 23:36:06.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -110,7 +110,7 @@ source $VIM_PATH/rc/vim-quickhl.vim
 
 [[plugins]]
 repo = 'Xuyuanp/scrollbar.nvim' # {{{2
-if = 'has("nvim")'
+if = 'has("nvim") && !g:is_windows'
 hook_add = '''
 source $VIM_PATH/rc/scrollbar.nvim
 '''
@@ -407,6 +407,7 @@ source $VIM_PATH/rc/vim-singleton.vim
 [[plugins]]
 repo = 'cohama/lexima.vim' # {{{2
 on_event = ['InsertEnter']
+on_func = 'lexima#init'
 hook_source = '''
 source $VIM_PATH/rc/lexima.vim
 '''
@@ -777,14 +778,7 @@ repo = "itchyny/lightline.vim" # {{{2
 if = "g:plugin_use_lightline"
 on_event = ['CursorHold']
 hook_add = '''
-" source $VIM_PATH/rc/lightline.vim
-'''
-
-[[plugins]]
-repo = 'delphinus/lightline-delphinus'
-if = "g:plugin_use_lightline"
-hook_add = '''
-source $VIM_PATH/rc/lightline-delphinus.vim
+source $VIM_PATH/rc/lightline.vim
 '''
 
 [[plugins]]
