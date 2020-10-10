@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/10 11:03:38.
+# Last Change: 2020/10/10 11:29:28.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -393,6 +393,12 @@ on_event = ['WinEnter']
 [[plugins]]
 repo = 'yegappan/mru' # {{{2
 on_cmd = ['MRU']
+
+[[plugins]]
+repo = 'kuuote/vim-tinymru' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/vim-tinymru.vim
+'''
 
 [[plugins]]
 repo = 'thinca/vim-singleton' # {{{2
