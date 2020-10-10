@@ -24,7 +24,7 @@ nnoremap <silent> sct :<c-u>packadd sonictemplate-vim \| CtrlPSonictemplate<cr>
 nnoremap <silent> scs :<c-u>CtrlPSearchHistory<cr>
 nnoremap <silent> sch :<c-u>CtrlPCommandLine<cr>
 nnoremap <silent> scl :<c-u>CtrlPMemolist<cr>
-nnoremap <silent> scr :<c-u>CtrlP ~/.rhq<cr>
+nnoremap <silent> scr :<c-u>CtrlP ~/src<cr>
 nnoremap <silent> scD :<c-u>CtrlP ~/.dotfiles<cr>
 nnoremap <silent> scG :<c-u>CtrlPGhq<cr>
 

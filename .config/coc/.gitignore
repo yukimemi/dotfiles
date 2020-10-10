@@ -2,8 +2,12 @@ commands
 history.json
 list-extensions-history.json
 list-files-history.json
+list-gfiles-history.json
+list-grep-history.json
 list-helptags-history.json
 list-lists-history.json
+list-marketplace-history.json
+list-mru-history.json
 lists
 memos.json
 mru
