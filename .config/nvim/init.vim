@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/10 23:39:34.
+" Last Change : 2020/10/12 13:50:14.
 " =============================================================================
 
 " Init: {{{1
@@ -337,8 +337,8 @@ nnoremap <silent><c-h> gT
 " http://itchyny.hatenablog.com/entry/2016/02/02/210000
 " noremap <expr> <c-b> max([winheight(0) - 2, 1]) . "\<c-u>" . (line('.') < 1         + winheight(0) ? 'H' : 'L')
 " noremap <expr> <c-f> max([winheight(0) - 2, 1]) . "\<c-d>" . (line('.') > line('$') - winheight(0) ? 'L' : 'H')
-noremap <expr> <c-y> (line('w0') <= 1         ? 'k' : "\<c-y>")
-noremap <expr> <c-e> (line('w$') >= line('$') ? 'j' : "\<c-e>")
+" noremap <expr> <c-y> (line('w0') <= 1         ? 'k' : "\<c-y>")
+" noremap <expr> <c-e> (line('w$') >= line('$') ? 'j' : "\<c-e>")
 
 " Useful save mappings.
 nnoremap <silent> <localleader><localleader> :<c-u>update<cr>
