@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/12 13:52:32.
+# Last Change: 2020/10/13 23:00:19.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -118,6 +118,11 @@ source $VIM_PATH/rc/scrollbar.nvim
 [[plugins]]
 repo = 'gcavallanti/vim-noscrollbar' # {{{2
 if = '!has("nvim")'
+
+[[plugins]]
+repo = 'camspiers/animate.vim' # {{{2
+[[plugins]]
+repo = 'camspiers/lens.vim' # {{{2
 
 # colorscheme
 
