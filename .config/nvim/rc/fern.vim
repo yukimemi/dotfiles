@@ -25,6 +25,7 @@ function! s:init_fern() abort
   nmap <buffer> s <Nop>
   nmap <buffer> S <Plug>(fern-action-open:select)
   nmap <buffer> o <Plug>(fern-my-open-or-expand-or-collapse)
+  nmap <buffer> h <Plug>(fern-action-leave)
 endfunction
 
 au MyAutoCmd FileType fern call <SID>init_fern()

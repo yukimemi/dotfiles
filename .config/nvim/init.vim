@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/18 08:25:51.
+" Last Change : 2020/10/19 08:36:14.
 " =============================================================================
 
 " Init: {{{1
@@ -399,7 +399,10 @@ nnoremap <silent> sbq :<c-u>q!<cr>
 nnoremap <localleader>o :<c-u>call <SID>open_current_dir()<cr>
 
 " terminal
-tnoremap <Esc> <c-\><c-n>
+tnoremap <c-@> <c-\><c-n>
+if g:is_windows
+  set shell=pwsh
+endif
 
 " Change background color
 nnoremap <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<cr>
