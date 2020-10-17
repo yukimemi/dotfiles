@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/12 13:50:14.
+" Last Change : 2020/10/18 08:25:51.
 " =============================================================================
 
 " Init: {{{1
@@ -437,7 +437,7 @@ au MyAutoCmd BufWritePost $MYGVIMRC silent! nested source $MYGVIMRC | redraw
 au MyAutoCmd BufWritePost *.vim silent! nested source $MYVIMRC | redraw
 
 " Auto open cwindow.
-au MyAutoCmd QuickfixCmdPost make,grep,vimgrep if len(getqflist()) != 0 | copen | endif
+" au MyAutoCmd QuickfixCmdPost make,grep,vimgrep,qf if len(getqflist()) != 0 | copen | endif
 
 " Restore last cursor position when open a file.
 au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif

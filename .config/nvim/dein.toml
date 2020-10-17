@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/13 23:00:19.
+# Last Change: 2020/10/18 08:12:34.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -399,8 +399,11 @@ repo = 'wesQ3/vim-windowswap' # {{{2
 on_event = ['WinEnter']
 
 [[plugins]]
-repo = 'yegappan/mru' # {{{2
-on_cmd = ['MRU']
+repo = 'lambdalisue/mr.vim' # {{{2
+on_cmd = ['Mru', 'Mrw']
+hook_source = '''
+source $VIM_PATH/rc/mr.vim
+'''
 
 [[plugins]]
 repo = 'thinca/vim-singleton' # {{{2
