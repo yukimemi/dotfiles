@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/10/18 15:07:14.
+# Last Change : 2020/10/18 22:42:13.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -167,10 +167,10 @@ function rebootwifi() {
 #
 # history. {{{1
 #
-if [ -d ~/Drive ]; then
-  HISTFILE=~/Drive/offline/.zsh_history
+if [ -d ~/Sync ]; then
+  export HISTFILE=~/Sync/.zsh_history
 else
-  HISTFILE=~/.zsh_history
+  export HISTFILE=~/.zsh_history
 fi
 HISTSIZE=9999999
 SAVEHIST=9999999
