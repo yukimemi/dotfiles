@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/09/22 15:41:10.
+# Last Change : 2020/10/18 15:07:14.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -38,7 +38,8 @@ zinit wait lucid light-mode for \
   zsh-users/zsh-completions \
   agkozak/zsh-z \
   supercrabtree/k \
-  @asdf-vm/asdf
+  @asdf-vm/asdf \
+  olets/zsh-abbr
 
 zinit light-mode for \
   atload"_zsh_autosuggest_start" \
@@ -162,106 +163,6 @@ function rebootwifi() {
   networksetup -setairportpower en0 on
   networksetup -setdhcp Wi-Fi
 }
-
-#
-# aliases. {{{1
-#
-# local alias. {{{2
-alias ll='ls -l'
-alias la='ls -a'
-alias lla='ls -al'
-alias l='ll'
-alias e='nvim'
-alias v='vim'
-alias b='cd ..'
-alias c='files -d | __filter_execute cd'
-alias g='git'
-alias s='git status --short --branch'
-alias d='git diff'
-alias a='git add'
-alias j=__filter_z_cd
-alias o='open'
-
-alias dup='nvim -c "silent! call dein#update() | Capture Dein log"'
-alias vdup='vim -c "silent! call dein#update() | Capture Dein log"'
-alias mup='nvim -c "PackUpdate"'
-alias vmup='vim -c "PackUpdate"'
-
-if (which bat > /dev/null); then
-  alias cat='bat'
-fi
-
-# brew. {{{2
-alias br='brew-file brew'
-alias bre='brew-file edit'
-alias bri='brew-file brew install'
-alias brs='brew-file brew search'
-
-# Git. {{{3
-if which hub > /dev/null 2>&1; then
-  eval "$(hub alias -s)"
-fi
-# checkout
-alias gco='git checkout'
-alias gcot='git checkout --theirs'
-# add
-alias ga='git add'
-# commit
-alias gci='git commit -v'
-# branch
-alias gb='git branch'
-alias gba='git branch -a'
-alias gbd='git branch -d'
-# pull
-alias gp='git pull --rebase'
-# push
-alias gpu='git push'
-# status
-alias gs='git status'
-# show
-# alias gh='git show'
-# diff
-alias gd='git diff'
-# rebase
-alias gr='git rebase'
-alias gri='git rebase -i'
-# log
-alias gl='git log'
-alias glo='git log --oneline'
-alias glp='git log -p'
-alias gk='git log --graph --pretty'
-
-
-# Haskell stack. {{{3
-alias ghc="stack ghc --"
-alias ghci="stack ghci"
-
-# Chrome apps. {{{3
-alias twitter="open -na 'Google Chrome' --args '--app=https://mobile.twitter.com'"
-alias tweetdeck="open -na 'Google Chrome' --args '--app=https://tweetdeck.com'"
-alias hangout="open -na 'Google Chrome' --args '--app=https://hangouts.google.com/'"
-alias misskey="open -na 'Google Chrome' --args '--app=https://misskey.dev'"
-
-
-# Filter aliases. {{{3
-# alias ghl='ghq list -p | __filter_execute cd'
-alias gsr='gsr --ahead --behind'
-alias ghl='gsr --all | __filter_execute cd'
-alias rhl='rhq list | __filter_execute cd'
-alias gsrl='gsr | __filter_execute cd'
-alias gho='ghq list -p | __filter_execute gh-open'
-alias r='ls -a | __filter_execute gomi'
-alias fe='files -A | __filter_execute nvim'
-alias fv='files -A | __filter_execute vim'
-
-# global alias. {{{2
-alias -g L=' | less'
-alias -g G=' | grep'
-alias -g F=' | $__FILTER_TOOL'
-
-# abbrev-alias -g L="| less"
-# abbrev-alias -g G="| grep"
-# abbrev-alias -g F="| $__FILTER_TOOL"
 
 #
 # history. {{{1
