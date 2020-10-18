@@ -1,5 +1,5 @@
 # Don't ask for confirmations
-#assume_yes = true
+assume_yes = true
 
 # Disable specific steps - same options as the command line flag
 #disable = ["system", "emacs"]
@@ -11,7 +11,7 @@
 #only = ["system", "emacs"]
 
 # Do not ask to retry failed steps (default: false)
-#no_retry = true
+no_retry = true
 
 # Run inside tmux
 #run_in_tmux = true
