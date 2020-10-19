@@ -1,4 +1,4 @@
 [time]
 disabled = false
-format = "%F %T"
-# format = "%+"
+style = "bold green"
+time_format = "%F %T"
