@@ -115,8 +115,13 @@ return
 ; return
 
 ; for Terminus
+; F12::
+; Toggle(USERPROFILE . "\scoop\apps\terminus\current\Terminus.exe")
+; return
+
+; for wezterm
 F12::
-Toggle(USERPROFILE . "\scoop\apps\terminus\current\Terminus.exe")
+Toggle(USERPROFILE . "\app\WezTerm\wezterm.exe")
 return
 
 ; for Hyper

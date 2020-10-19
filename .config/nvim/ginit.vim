@@ -6,7 +6,7 @@ set background=dark
 colorscheme gruvbox-material
 
 " font
-GuiFont! Utatane:h13
+" GuiFont! Cica:h13
 " set guifont=Utatane:h13
 " set guifontwide=Utatane:h13
 
