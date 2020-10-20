@@ -34,7 +34,7 @@ function Is-Windows {
 # ZLocation
 # Import-Module ZLocation
 # Get-ChildItemColor
-# Import-Module Get-ChildItemColor
+Import-Module Get-ChildItemColor
 # Pscx
 if (Is-Windows) {
   Import-Module Pscx

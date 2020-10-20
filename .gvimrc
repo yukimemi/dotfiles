@@ -2,8 +2,8 @@
 set guioptions=
 
 " color
-set background=dark
-silent! colorscheme tokyonight
+set background=light
+silent! colorscheme PaperColor
 if g:no_plugin
   colorscheme desert
 endif

@@ -200,7 +200,7 @@ endif
 nnoremap <leader>l :<c-u>CocCommand todolist.create<cr>
 
 " coc-terminal {{{1
-nmap <space>s <Plug>(coc-terminal-toggle)
+" nmap <leader>s <Plug>(coc-terminal-toggle)
 
 " coc-yank {{{1
 nnoremap <silent> <space>y :<c-u>CocList -A --normal yank<cr>
