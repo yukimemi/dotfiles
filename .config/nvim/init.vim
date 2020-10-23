@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/19 08:36:14.
+" Last Change : 2020/10/24 00:54:05.
 " =============================================================================
 
 " Init: {{{1
@@ -135,6 +135,7 @@ set noshowmode
 set virtualedit=block
 set synmaxcol=500
 set smarttab
+set shortmess-=S
 set iminsert=0 imsearch=-1
 set list listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
 if executable('jvgrep')

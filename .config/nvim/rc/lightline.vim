@@ -19,7 +19,7 @@ let g:lightline = {
       \   'right': [
       \     [ 'lineinfo' ],
       \     [ 'filetype', 'fileencoding', 'fileformat' ],
-      \     [ 'noscrollbar' ]
+      \     [ 'scount', 'noscrollbar' ]
       \   ],
       \ },
       \ 'component': {
@@ -42,6 +42,7 @@ let g:lightline = {
       \   'reanimate': 'LightLineReanimate',
       \   'toggl_task': 'toggl#task',
       \   'toggl_time': 'toggl#time',
+      \   'scount': 'LightLineSearchCount',
       \ },
       \ 'component_type': {
       \   'linter_errors':       'error',
@@ -146,9 +147,9 @@ endfunction
 
 function! LightLineCocOk() abort
   return b:coc_diagnostic_info['error'] == 0 &&
-  \ b:coc_diagnostic_info['warning'] == 0 &&
-  \ b:coc_diagnostic_info['information'] == 0 ?
-  \ ' ' : ''
+        \ b:coc_diagnostic_info['warning'] == 0 &&
+        \ b:coc_diagnostic_info['information'] == 0 ?
+        \ ' ' : ''
 endfunction
 
 function! LightLineQuickfixTitle() abort
@@ -162,6 +163,30 @@ function! LightLineNoScrollbar() abort
   return noscrollbar#statusline(20,'■','◫',['◧'],['◨'])
 endfunction
 
+function! LastSearchCount() abort
+  let result = searchcount(#{recompute: 0})
+  if empty(result)
+    return ''
+  endif
+  if result.incomplete ==# 1     " timed out
+    return printf(' /%s [?/??]', @/)
+  elseif result.incomplete ==# 2 " max count exceeded
+    if result.total > result.maxcount && result.current > result.maxcount
+      return printf(' /%s [>%d/>%d]', @/, result.current, result.total)
+    elseif result.total > result.maxcount
+      return printf(' /%s [%d/>%d]', @/, result.current, result.total)
+    endif
+  endif
+  return printf(' /%s [%d/%d]', @/, result.current, result.total)
+endfunction
+
+function! LightLineSearchCount() abort
+  if has("nvim")
+    return ""
+  else
+    return v:hlsearch ? LastSearchCount() : ""
+  endif
+endfunction
 
 function! GinaStatus() abort
   if IsInstalled("gina.vim")
