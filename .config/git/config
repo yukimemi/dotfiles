@@ -37,3 +37,5 @@
 	sslVerify = false
 [hub]
 	protocol = https
+[pull]
+	rebase = true
