@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/24 22:00:18.
+# Last Change: 2020/10/24 22:28:48.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -882,6 +882,7 @@ on_cmd = ['Vaffle']
 
 [[plugins]]
 repo = 'ryym/vim-viler' # {{{2
+if = 'g:plugin_use_viler'
 on_func = 'viler#open'
 hook_add = '''
 source $VIM_PATH/rc/vim-viler.vim

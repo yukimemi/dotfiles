@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/24 22:18:31.
+" Last Change : 2020/10/24 22:29:37.
 " =============================================================================
 
 " Init: {{{1
@@ -525,6 +525,7 @@ let g:plugin_use_fern = 0
 let g:plugin_use_defx = 1
 let g:plugin_use_molder = 0
 let g:plugin_use_vaffle = 0
+let g:plugin_use_viler = 0
 let g:plugin_use_coc_explorer = 0
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
