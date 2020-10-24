@@ -2,8 +2,8 @@
 set guioptions=
 
 " color
-set background=light
-silent! colorscheme PaperColor
+set background=dark
+silent! colorscheme gruvbox-material
 if g:no_plugin
   colorscheme desert
 endif
