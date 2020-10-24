@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/20 08:45:00.
+# Last Change: 2020/10/24 16:55:26.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -846,7 +846,7 @@ depends = ['fern.vim']
 [[plugins]]
 repo = 'Shougo/defx.nvim' # {{{2
 if = "g:plugin_use_defx"
-depends = ['defx-icons']
+depends = ['defx-icons', 'defx-git']
 on_cmd = ['Defx']
 hook_add = '''
 source $VIM_PATH/rc/defx.nvim
@@ -854,6 +854,9 @@ source $VIM_PATH/rc/defx.nvim
 
 [[plugins]]
 repo = 'kristijanhusak/defx-icons' # {{{2
+lazy = 1
+[[plugins]]
+repo = 'kristijanhusak/defx-git' # {{{2
 lazy = 1
 
 [[plugins]]
