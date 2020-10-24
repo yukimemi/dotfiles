@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/24 16:55:26.
+# Last Change: 2020/10/24 22:00:18.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -158,6 +158,9 @@ repo = 'romgrk/github-light.vim' # {{{2
 
 [[plugins]]
 repo = 'sainnhe/gruvbox-material' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/gruvbox-material.vim
+'''
 
 [[plugins]]
 repo = 'severij/vadelma' # {{{2

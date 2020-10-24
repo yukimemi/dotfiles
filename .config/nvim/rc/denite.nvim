@@ -37,7 +37,6 @@ function! s:denite_aft() abort
         \ 'auto_resize': v:true,
         \ 'vertical_preview': v:true,
         \ 'floating_preview': v:true,
-        \ 'split': 'floating',
         \ })
 
   if executable('rg')

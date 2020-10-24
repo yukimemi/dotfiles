@@ -3,7 +3,7 @@ nnoremap scb :<c-u>Clap! buffers<cr>
 nnoremap scm :<c-u>Clap! marks<cr>
 nnoremap scl :<c-u>Clap! blines<cr>
 nnoremap scf :<c-u>Clap! files --hidden<cr>
-nnoremap scr :<c-u>Clap! files --hidden ~/.rhq<cr>
+nnoremap scr :<c-u>Clap! files --hidden ~/src<cr>
 nnoremap scd :<c-u>Clap! files --hidden ~/.dotfiles<cr>
 nnoremap scF :<c-u>Clap! filetypes<cr>
 nnoremap sch :<c-u>Clap! command_history<cr>
