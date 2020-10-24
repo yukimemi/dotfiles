@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/24 00:54:05.
+" Last Change : 2020/10/24 18:53:46.
 " =============================================================================
 
 " Init: {{{1
@@ -522,8 +522,8 @@ let g:plugin_use_quickpick = 1
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
-let g:plugin_use_fern = 1
-let g:plugin_use_defx = 0
+let g:plugin_use_fern = 0
+let g:plugin_use_defx = 1
 let g:plugin_use_molder = 0
 let g:plugin_use_vaffle = 0
 let g:plugin_use_coc_explorer = 0
@@ -550,7 +550,7 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-silent! colorscheme gruvbox-material
+silent! colorscheme tokyonight
 
 " Neovide: {{{1
 let g:neovide_transparency = 0.9
