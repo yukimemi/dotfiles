@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/24 22:06:35.
+" Last Change : 2020/10/24 22:18:31.
 " =============================================================================
 
 " Init: {{{1
@@ -400,7 +400,6 @@ nnoremap <silent> sbq :<c-u>q!<cr>
 nnoremap <localleader>o :<c-u>call <SID>open_current_dir()<cr>
 
 " terminal
-tnoremap <c-@> <c-\><c-n>
 if g:is_windows
   set shell=pwsh
 endif
