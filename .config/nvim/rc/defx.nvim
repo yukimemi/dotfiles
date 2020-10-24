@@ -1,10 +1,10 @@
-nnoremap <silent> <space>v :<c-u>Defx `expand('%:p:h')` -search=`expand('%:p')`<cr>
-" nnoremap <silent> ge :<c-u>Defx -listed -resume -buffer-name=tab`tabpagenr()`<cr>
+nnoremap <silent> <leader>v :<c-u>packadd defx-icons \| packadd defx-git \| Defx -columns=icons:indent:filename:type:git `expand('%:p:h')` -search=`expand('%:p')`<cr>
 nnoremap <silent> ge :<c-u>packadd defx-icons \| packadd defx-git \| Defx -columns=icons:indent:filename:type:git -split=vertical -winwidth=30 -direction=topleft `expand('%:p:h')` -search=`expand('%:p')`<cr>
+
 au MyAutoCmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
-  nnoremap <silent><buffer><expr> <cr> defx#do_action('drop')
+  nnoremap <silent><buffer><expr> <cr> defx#do_action('open')
   nnoremap <silent><buffer><expr> c defx#do_action('copy')
   nnoremap <silent><buffer><expr> m defx#do_action('move')
   nnoremap <silent><buffer><expr> p defx#do_action('paste')
