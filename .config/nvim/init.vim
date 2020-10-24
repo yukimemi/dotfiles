@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/24 22:29:37.
+" Last Change : 2020/10/25 00:29:16.
 " =============================================================================
 
 " Init: {{{1
@@ -474,7 +474,8 @@ endif
 " Color: {{{1
 silent! syntax enable
 
-au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
+set cursorline cursorcolumn
+" au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
 au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 
 " Highlight VCS conflict markers {{{2

@@ -183,6 +183,13 @@ function VimDeinUpdate {
   vim -c "silent! call dein#update() | q"
 }
 
+function Install-Pip {
+  [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+  curl -sSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py
+  .\python .\get-pip.py
+  rm .\get-pip.py
+}
+
 # Alias.
 Set-Alias gomi RemoveTo-Trash
 Remove-Item alias:rm
