@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/10/24 15:52:15.
+# Last Change : 2020/10/24 23:37:11.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -50,6 +50,9 @@ zinit wait lucid from"gh-r" as"program" mv"direnv* -> direnv" \
   atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
   pick"direnv" src="zhook.zsh" for \
   direnv/direnv
+
+zinit wait lucid from"gh-r" as"program" pick"bit" for \
+  chriswalz/bit
 
 #
 # for git. {{{2
