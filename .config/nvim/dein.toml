@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/24 22:28:48.
+# Last Change: 2020/10/26 00:59:21.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -123,6 +123,9 @@ if = '!has("nvim")'
 repo = 'camspiers/animate.vim' # {{{2
 [[plugins]]
 repo = 'camspiers/lens.vim' # {{{2
+hook_add = '''
+source $VIM_PATH/rc/lens.vim
+'''
 
 # colorscheme
 
