@@ -1,6 +1,6 @@
 @echo off
-setlocal enabledelayedexpansion
-REM ====================================================================== {{{1
+REM setlocal enabledelayedexpansion
+REM ======================================================================
 set tm=%time: =0%
 set today=%date:~-10,4%%date:~-5,2%%date:~-2,2%
 set nowtime=%tm:~0,2%%tm:~3,2%%tm:~6,2%%tm:~9,2%
@@ -9,7 +9,7 @@ set cmdDir=%~dp0
 set cmdFile=%~f0
 set cmdName=%~n0
 set cmdFileName=%~nx0
-REM ====================================================================== {{{1
+REM ======================================================================
 
 pushd "%cmdDir%"
 
