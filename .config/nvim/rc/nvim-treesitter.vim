@@ -1,7 +1,3 @@
-if !IsInstalled("nvim-treesitter")
-  finish
-endif
-
 silent! packadd nvim-treesitter
 
 set foldmethod=expr

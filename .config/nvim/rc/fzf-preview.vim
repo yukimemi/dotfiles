@@ -1,6 +1,3 @@
-if !IsInstalled('autoload/fzf_preview.vim') || exists('g:loaded_fzf_preview_cfg')
-  finish
-endif
 let g:loaded_fzf_preview_cfg = 1
 
 nnoremap <silent> scf :<c-u>FzfPreviewProjectFiles<cr>

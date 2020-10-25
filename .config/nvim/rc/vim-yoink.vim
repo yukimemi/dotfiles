@@ -1,7 +1,3 @@
-if !IsInstalled("autoload/yoink.vim")
-  finish
-endif
-
 let g:yoinkMaxItems = 10000
 let g:yoinkSavePersistently = 1
 

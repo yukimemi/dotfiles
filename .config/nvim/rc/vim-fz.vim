@@ -1,6 +1,3 @@
-if !IsInstalled('vim-fz') || exists('g:loaded_fz_cfg')
-  finish
-endif
 let g:loaded_fz_cfg = 1
 
 nmap <silent> scp <Plug>(fz)

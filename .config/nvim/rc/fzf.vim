@@ -1,6 +1,3 @@
-if !IsInstalled('autoload/fzf/vim.vim') || exists('g:loaded_fzf_cfg')
-  finish
-endif
 let g:loaded_fzf_cfg = 1
 
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"

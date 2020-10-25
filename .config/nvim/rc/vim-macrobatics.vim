@@ -1,7 +1,3 @@
-if !IsInstalled("vim-macrobatics")
-  finish
-endif
-
 " Use <nowait> to override the default bindings which wait for another key press
 nmap <nowait> q <plug>(Mac_Play)
 nmap <nowait> gq <plug>(Mac_RecordNew)

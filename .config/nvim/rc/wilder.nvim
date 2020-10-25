@@ -1,7 +1,3 @@
-if !IsInstalled("wilder.nvim")
-  finish
-endif
-
 function! s:wilder_aft() abort
   silent! packadd wilder.nvim
   call wilder#enable_cmdline_enter()

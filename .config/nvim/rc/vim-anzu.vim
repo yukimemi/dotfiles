@@ -1,7 +1,3 @@
-if !IsInstalled("autoload/anzu.vim")
-  finish
-endif
-
 map n <Plug>(anzu-n-with-echo)zv
 map N <Plug>(anzu-N-with-echo)zv
 
