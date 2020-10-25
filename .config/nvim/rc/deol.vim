@@ -1,5 +1,13 @@
 tnoremap <esc> <c-\><c-n>
-nnoremap <c-s> :<c-u>execute 'Deol' '-cwd='.fnamemodify(expand('%'), ':h')<cr>
+nnoremap <leader>s :<c-u>execute 'Deol' '-cwd='.fnamemodify(expand('%'), ':h')<cr>
+
+au MyAutoCmd FileType deol nnoremap <buffer> p <c-w>""
+
+if has('nvim')
+  au MyAutoCmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
+else
+  au MyAutoCmd WinEnter * if &buftype ==# 'terminal' | normal i | endif
+endif
 
 let g:deol#custom_map = {
       \ 'edit': 'e',
