@@ -422,14 +422,6 @@ hook_source = '''
 source $VIM_PATH/rc/vim-singleton.vim
 '''
 
-[[plugins]]
-repo = 'cohama/lexima.vim' # {{{2
-on_event = ['InsertEnter']
-on_func = 'lexima#init'
-hook_source = '''
-source $VIM_PATH/rc/lexima.vim
-'''
-
 # ==================== Comment =================== {{{1
 
 [[plugins]]
