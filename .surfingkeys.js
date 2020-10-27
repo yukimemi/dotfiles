@@ -49,17 +49,17 @@ const overlayedGlobalMarks = {
   ],
   "2": "http://www.google.com/calendar",
   "3": "https://www.google.com/contacts/#contacts",
-  M: [
+  m: [
     "https://mail.google.com/mail/u/0",
     "https://mail.google.com/mail/u/1",
     "https://mail.google.com/mail/u/2",
   ],
-  g: "https://plus.google.com/u/0/",
   r: "https://www.reddit.com/r/vim",
-  m: "https://maps.google.com/",
+  M: "https://maps.google.com/",
   u: "https://www.youtube.com/feed/subscriptions",
-  h: "https://github.com/",
+  g: "https://github.com/",
   f: "https://www.facebook.com",
+  h: "https://hangouts.google.com/",
 };
 
 mapkey("gn", "#10Jump to vim-like mark in new tab.", function (mark) {
