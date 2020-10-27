@@ -10,15 +10,16 @@ else
 endif
 
 let g:deol#custom_map = {
+      \ 'bg': '<c-z>',
+      \ 'ctrl_c': '<c-c>',
       \ 'edit': 'e',
-      \ 'start_insert': 'i',
-      \ 'start_insert_first': 'I',
+      \ 'execute_line': '<cr>',
+      \ 'next_prompt': '<c-n>',
+      \ 'paste_prompt': '<c-y>',
+      \ 'previous_prompt': '<c-p>',
+      \ 'quit': 'q',
       \ 'start_append': 'a',
       \ 'start_append_last': 'A',
-      \ 'execute_line': '<CR>',
-      \ 'previous_prompt': '<C-p>',
-      \ 'next_prompt': '<C-n>',
-      \ 'paste_prompt': '<C-y>',
-      \ 'bg': '<C-z>',
-      \ 'quit': 'q',
+      \ 'start_insert': 'i',
+      \ 'start_insert_first': 'I',
       \ }

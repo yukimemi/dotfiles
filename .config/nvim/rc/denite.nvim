@@ -20,7 +20,8 @@ nnoremap sdu :<c-u>Denite file/old<cr>
 " inoremap <c-l> <esc>:<c-u>Denite command<cr>
 
 " Load after settings.
-au MyAutoCmd VimEnter * call <SID>denite_aft()
+" au MyAutoCmd VimEnter * call <SID>denite_aft()
+au MyAutoCmd FileType denite call <SID>denite_aft()
 au MyAutoCmd FileType denite call <SID>denite_my_settings()
 au MyAutoCmd FileType denite-filter call <SID>denite_filter_my_settings()
 

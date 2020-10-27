@@ -21,6 +21,8 @@ Pack 'nathanaelkane/vim-indent-guides', {'event': 'CursorHold'}
 Pack 'ntpeters/vim-better-whitespace', {'event': 'CursorHold'}
 Pack 't9md/vim-quickhl', {'event': 'CursorHold'}
 Pack 'gcavallanti/vim-noscrollbar', {'if': !has('nvim')}
+Pack 'camspiers/animate.vim', {'event': 'CursorHold'}
+Pack 'camspiers/lens.vim', {'event': 'CursorHold'}
 
 " colorscheme {{{2
 Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}

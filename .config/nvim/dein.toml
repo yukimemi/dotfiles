@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/26 00:59:21.
+# Last Change: 2020/10/27 17:31:56.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -128,6 +128,10 @@ source $VIM_PATH/rc/lens.vim
 '''
 
 # colorscheme
+
+[[plugins]]
+repo = 'kato-k/vim-colorscheme-settings'
+on_cmd = ['ColorSchemeSelect', 'BackGroundSelect']
 
 [[plugins]]
 repo = "NLKNguyen/papercolor-theme" # {{{2
@@ -616,7 +620,7 @@ repo = 'tsuyoshicho/vim-fg' # {{{2
 repo = 'Shougo/deol.nvim' # {{{2
 on_cmd = ['Deol', 'DeolCd', 'DeolEdit']
 hook_add = '''
-source $VIM_PATH/rc/deol.vim
+source $VIM_PATH/rc/deol.nvim
 '''
 
 # ==================== Filetype (all) ============ {{{1
