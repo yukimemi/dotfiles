@@ -417,7 +417,7 @@ source $VIM_PATH/rc/mr.vim
 
 [[plugins]]
 repo = 'thinca/vim-singleton' # {{{2
-if = "!has('nvim')"
+if = "!has('nvim') && has('+clientserver')"
 hook_source = '''
 source $VIM_PATH/rc/vim-singleton.vim
 '''

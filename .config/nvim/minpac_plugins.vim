@@ -80,7 +80,7 @@ Pack 'thinca/vim-ambicmd', {'event': 'VimEnter'}
 Pack 'thinca/vim-localrc'
 Pack 'thinca/vim-prettyprint', {'on': 'PP'}
 Pack 'thinca/vim-qfreplace', {'for': ['quickfix', 'qf']}
-Pack 'thinca/vim-singleton', {'if': !has('nvim')}
+Pack 'thinca/vim-singleton', {'if': !has('nvim') && has('+clientserver')}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
 Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windows && !has('nvim')}
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}
