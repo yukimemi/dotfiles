@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/27 22:04:28.
+" Last Change : 2020/10/28 13:11:29.
 " =============================================================================
 
 " Init: {{{1
@@ -399,11 +399,6 @@ nnoremap <silent> sbq :<c-u>q!<cr>
 
 nnoremap <localleader>o :<c-u>call <SID>open_current_dir()<cr>
 
-" terminal
-if g:is_windows
-  set shell=pwsh
-endif
-
 " Change background color
 nnoremap <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<cr>
 
@@ -498,9 +493,9 @@ au MyAutoCmd BufWritePost *
       \ endif
 
 " Plugin: {{{1
-let s:use_dein = 1
+let s:use_dein = 0
 let s:use_vimplug = 0
-let s:use_minpac = 0
+let s:use_minpac = 1
 let s:use_packager = 0
 let s:use_volt = 0
 let s:use_pack = 0

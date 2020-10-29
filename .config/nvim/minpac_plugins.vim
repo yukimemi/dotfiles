@@ -21,8 +21,11 @@ Pack 'nathanaelkane/vim-indent-guides', {'event': 'CursorHold'}
 Pack 'ntpeters/vim-better-whitespace', {'event': 'CursorHold'}
 Pack 't9md/vim-quickhl', {'event': 'CursorHold'}
 Pack 'gcavallanti/vim-noscrollbar', {'if': !has('nvim')}
+Pack 'Xuyuanp/scrollbar.nvim', {'if': has('nvim') && !g:is_windows}
 Pack 'camspiers/animate.vim', {'event': 'CursorHold'}
 Pack 'camspiers/lens.vim', {'event': 'CursorHold'}
+Pack 'kato-k/vim-colorscheme-settings', {'on': ['ColorSchemeSelect', 'BackGroundSelect']}
+Pack 'mg979/vim-xtabline'
 
 " colorscheme {{{2
 Pack 'NLKNguyen/papercolor-theme', {'type': 'opt'}
@@ -48,7 +51,6 @@ Pack 'Shougo/echodoc.vim', {'event': 'InsertEnter'}
 Pack 'airblade/vim-rooter', {'event': 'CursorHold'}
 Pack 'aiya000/aho-bakaup.vim', {'event': 'BufWritePre'}
 Pack 'chamindra/marvim', {'type': 'lazyall'}
-" Pack 'cohama/lexima.vim', {'on': 'InsertEnter'}
 Pack 'da-x/name-assign.vim', {'on': '<Plug>NameAssign'}
 Pack 'editorconfig/editorconfig-vim', {'event': 'VimEnter'}
 Pack 'gelguy/wilder.nvim'
@@ -222,6 +224,7 @@ if g:plugin_use_defx
   Pack 'Shougo/defx.nvim', {'on': 'Defx', 'do': 'silent! UpdateRemotePlugins'}
 
   Pack 'kristijanhusak/defx-icons', {'type': 'opt'}
+  Pack 'kristijanhusak/defx-git', {'type': 'opt'}
 endif
 
 
