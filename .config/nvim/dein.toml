@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/27 22:35:12.
+# Last Change: 2020/10/29 23:19:50.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -177,6 +177,16 @@ repo = 'yasukotelin/shirotelin' # {{{2
 
 [[plugins]]
 repo = 'yuttie/hydrangea-vim' # {{{2
+
+[[plugins]]
+repo = 'LumaKernel/nvim-visual-eof.lua' # {{{2
+if = "has('nvim')"
+hook_add = '''
+source $VIM_PATH/rc/nvim-visual-eof.lua.vim
+'''
+
+[[plugins]]
+repo =  'mg979/vim-xtabline' # {{{2
 
 # ==================== Utility =================== {{{1
 
