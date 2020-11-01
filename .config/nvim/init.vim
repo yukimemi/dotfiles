@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/30 22:27:51.
+" Last Change : 2020/11/01 16:29:58.
 " =============================================================================
 
 " Init: {{{1
@@ -552,7 +552,6 @@ if has('nvim')
 else
   silent! colorscheme gruvbox-material
 endif
-
 
 " Neovide: {{{1
 let g:neovide_transparency = 0.9

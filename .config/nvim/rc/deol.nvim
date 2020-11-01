@@ -7,12 +7,6 @@ endif
 
 au MyAutoCmd FileType deol nnoremap <buffer> p <c-w>""
 
-if has('nvim')
-  au MyAutoCmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
-else
-  au MyAutoCmd WinEnter * if &buftype ==# 'terminal' | normal i | endif
-endif
-
 let g:deol#custom_map = {
       \ 'bg': '<c-z>',
       \ 'ctrl_c': '<c-c>',
@@ -27,3 +21,5 @@ let g:deol#custom_map = {
       \ 'start_insert': 'i',
       \ 'start_insert_first': 'I',
       \ }
+
+" vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
