@@ -76,11 +76,12 @@ Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
 Pack 'sentriz/vim-print-debug', {'type': 'lazyall'}
 Pack 't9md/vim-choosewin', {'type': 'lazyall'}
+Pack 'tenfyzhong/axring.vim', {'type': 'lazy'}
 Pack 'thinca/vim-ambicmd', {'event': 'VimEnter'}
 Pack 'thinca/vim-localrc'
 Pack 'thinca/vim-prettyprint', {'on': 'PP'}
 Pack 'thinca/vim-qfreplace', {'for': ['quickfix', 'qf']}
-Pack 'thinca/vim-singleton', {'if': !has('nvim') && has('+clientserver')}
+Pack 'thinca/vim-singleton', {'if': !has('nvim') && has('clientserver')}
 Pack 'thinca/vim-submode', {'type': 'lazy'}
 Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windows && !has('nvim')}
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}
