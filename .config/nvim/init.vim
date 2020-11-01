@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/10/28 13:11:29.
+" Last Change : 2020/10/30 22:27:51.
 " =============================================================================
 
 " Init: {{{1
@@ -493,9 +493,9 @@ au MyAutoCmd BufWritePost *
       \ endif
 
 " Plugin: {{{1
-let s:use_dein = 0
+let s:use_dein = 1
 let s:use_vimplug = 0
-let s:use_minpac = 1
+let s:use_minpac = 0
 let s:use_packager = 0
 let s:use_volt = 0
 let s:use_pack = 0
@@ -547,7 +547,12 @@ endif
 " Colorscheme: {{{1
 set background=dark
 silent! packadd gruvbox-material
-silent! colorscheme gruvbox-material
+if has('nvim')
+  silent! colorscheme zephyr
+else
+  silent! colorscheme gruvbox-material
+endif
+
 
 " Neovide: {{{1
 let g:neovide_transparency = 0.9

@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/10/29 23:19:50.
+# Last Change: 2020/10/30 22:25:21.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -127,6 +127,17 @@ hook_add = '''
 source $VIM_PATH/rc/lens.vim
 '''
 
+[[plugins]]
+repo = 'LumaKernel/nvim-visual-eof.lua' # {{{2
+if = "has('nvim')"
+hook_add = '''
+source $VIM_PATH/rc/nvim-visual-eof.lua.vim
+'''
+
+[[plugins]]
+repo =  'mg979/vim-xtabline' # {{{2
+
+
 # colorscheme
 
 [[plugins]]
@@ -179,14 +190,7 @@ repo = 'yasukotelin/shirotelin' # {{{2
 repo = 'yuttie/hydrangea-vim' # {{{2
 
 [[plugins]]
-repo = 'LumaKernel/nvim-visual-eof.lua' # {{{2
-if = "has('nvim')"
-hook_add = '''
-source $VIM_PATH/rc/nvim-visual-eof.lua.vim
-'''
-
-[[plugins]]
-repo =  'mg979/vim-xtabline' # {{{2
+repo = 'glepnir/zephyr-nvim' # {{{2
 
 # ==================== Utility =================== {{{1
 
