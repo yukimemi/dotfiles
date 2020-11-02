@@ -41,7 +41,7 @@ Pack 'romgrk/github-light.vim', {'type': 'opt'}
 Pack 'sainnhe/gruvbox-material', {'type': 'opt'}
 Pack 'severij/vadelma', {'type': 'opt'}
 Pack 'yasukotelin/shirotelin', {'type': 'opt'}
-
+Pack 'glepnir/zephyr-nvim', {'type': 'opt'}
 
 " Utility: {{{1
 Pack 'AndrewRadev/linediff.vim', {'on': ['Linediff', 'LinediffReset', 'LinediffShow']}

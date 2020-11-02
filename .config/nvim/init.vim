@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/11/01 18:04:56.
+" Last Change : 2020/11/03 00:24:06.
 " =============================================================================
 
 " Init: {{{1
@@ -153,7 +153,9 @@ if g:is_windows && !has('nvim')
 endif
 
 " terminal {{{2
-set termwinkey=<c-i>
+if !has('nvim')
+  set termwinkey=<c-i>
+endif
 
 " Filetype: {{{1
 " xml {{{2
@@ -549,6 +551,7 @@ endif
 set background=dark
 silent! packadd gruvbox-material
 if has('nvim')
+  silent! packadd zephyr-nvim
   silent! colorscheme zephyr
 else
   silent! colorscheme gruvbox-material
