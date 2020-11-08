@@ -30,7 +30,6 @@ nnoremap <silent> scC :<c-u>CtrlP ~/.cache<cr>
 nnoremap <silent> scG :<c-u>CtrlPGhq<cr>
 
 command! CtrlPCommandLine silent! packadd vim-ctrlp-commandline | call ctrlp#init(ctrlp#commandline#id())
-cnoremap <silent> <c-f> :<c-u>call ctrlp#init(ctrlp#commandline#id())<cr>
 
 if executable('rg')
   let g:ctrlp_grep_command = 'rg -i --vimgrep --no-heading --hidden --no-ignore --regexp'
