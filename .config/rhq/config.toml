@@ -8,7 +8,6 @@ includes = [
   "~/src",
   "~/.go/src",
   "~/.dotfiles",
-  "~/.private",
   "~/.cache/vim/pack",
   "~/.cache/nvim/pack",
   "~/.cache/nvim/dein/repos",
