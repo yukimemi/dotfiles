@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/11/03 00:24:06.
+" Last Change : 2020/11/08 13:36:53.
 " =============================================================================
 
 " Init: {{{1
@@ -549,12 +549,11 @@ endif
 
 " Colorscheme: {{{1
 set background=dark
-silent! packadd gruvbox-material
+silent! packadd oceanic-next-vim
 if has('nvim')
-  silent! packadd zephyr-nvim
-  silent! colorscheme zephyr
+  silent! colorscheme oceanicnext
 else
-  silent! colorscheme gruvbox-material
+  silent! colorscheme oceanicnext
 endif
 
 " Neovide: {{{1
