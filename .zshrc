@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/10/24 23:37:11.
+# Last Change : 2020/11/08 10:15:15.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -32,14 +32,14 @@ zinit light-mode for \
 # plugin list. {{{2
 #
 zinit wait lucid light-mode for \
+  olets/zsh-abbr \
   atinit"zicompinit; zicdreplay" atload"zpcompinit" \
   zdharma/fast-syntax-highlighting \
   blockf atpull'zinit creinstall -q .' \
   zsh-users/zsh-completions \
   agkozak/zsh-z \
   supercrabtree/k \
-  @asdf-vm/asdf \
-  olets/zsh-abbr
+  @asdf-vm/asdf
 
 zinit light-mode for \
   atload"_zsh_autosuggest_start" \
