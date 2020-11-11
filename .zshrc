@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/11/08 10:15:15.
+# Last Change : 2020/11/11 08:49:58.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -74,6 +74,19 @@ zinit wait pack for \
 #
 # functions. {{{1
 #
+function pdfmin() {
+  local cnt=0
+  for i in $@; do
+    gs -sDEVICE=pdfwrite \
+      -dCompatibilityLevel=1.4 \
+      -dPDFSETTINGS=/screen \
+      -dNOPAUSE -dQUIET -dBATCH \
+      -sOutputFile=${i%%.*}.min.pdf ${i} &
+          (( (cnt += 1) % 4 == 0 )) && wait
+  done
+  wait && return 0
+}
+
 function prev() {
   PREV=$(fc -lrn | head -n 1)
   sh -c "pet new `printf %q "$PREV"`"
