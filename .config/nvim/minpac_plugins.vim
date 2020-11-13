@@ -24,7 +24,7 @@ Pack 'gcavallanti/vim-noscrollbar', {'if': !has('nvim')}
 Pack 'Xuyuanp/scrollbar.nvim', {'if': has('nvim') && !g:is_windows}
 Pack 'camspiers/animate.vim', {'event': 'CursorHold'}
 Pack 'camspiers/lens.vim', {'event': 'CursorHold'}
-Pack 'kato-k/vim-colorscheme-settings', {'on': ['ColorSchemeSelect', 'BackGroundSelect']}
+Pack 'kato-k/vim-colorscheme-settings', {'on': ['SwitchColorScheme', 'SwitchBackGround']}
 Pack 'mg979/vim-xtabline'
 
 " colorscheme {{{2

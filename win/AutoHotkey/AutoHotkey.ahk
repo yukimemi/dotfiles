@@ -58,7 +58,7 @@ Activate("C:\Program Files (x86)\Microsoft Office\Office16\EXCEL.EXE")
 return
 
 ; for Teams
-^F12::
+F12::
 Activate(APPDATA . "Local\Microsoft\Teams\current\Teams.exe")
 return
 
@@ -120,9 +120,9 @@ return
 ; return
 
 ; for wezterm
-F12::
-Toggle(USERPROFILE . "\app\WezTerm\wezterm.exe")
-return
+; F12::
+; Toggle(USERPROFILE . "\app\WezTerm\wezterm.exe")
+; return
 
 ; for Hyper
 ; F12::
@@ -166,7 +166,8 @@ return
 ; for Windows 8.1
 ;SendInput !{TAB}
 ; for persistent script
-^!v::
+; ^!v::
+^F12::
 target_wid := WinExist("A")
 saveclip := Clipboard
 Clipboard := ""

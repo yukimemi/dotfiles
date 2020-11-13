@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/11/08 13:36:53.
+" Last Change : 2020/11/11 18:49:57.
 " =============================================================================
 
 " Init: {{{1
@@ -296,6 +296,9 @@ au MyAutoCmd FileType markdown setl expandtab ts=2 sw=2 sts=0
 
 " log {{{2
 au MyAutoCmd FileType log setl nowrap
+
+" mail {{{2
+au MyAutoCmd FileType mail setl fenc=cp932 ff=dos
 
 " Commands: {{{1
 " VimShowHlGroup: Show highlight group name under a cursor

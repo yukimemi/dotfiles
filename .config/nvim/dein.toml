@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/11/08 13:34:49.
+# Last Change: 2020/11/11 14:18:52.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -142,7 +142,7 @@ repo =  'mg979/vim-xtabline' # {{{2
 
 [[plugins]]
 repo = 'kato-k/vim-colorscheme-settings' # {{{2
-on_cmd = ['ColorSchemeSelect', 'BackGroundSelect']
+on_cmd = ['SwitchColorScheme', 'SwitchBackGround']
 
 [[plugins]]
 repo = "NLKNguyen/papercolor-theme" # {{{2
