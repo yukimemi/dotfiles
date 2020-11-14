@@ -58,6 +58,7 @@ const overlayedGlobalMarks = {
   M: "https://maps.google.com/",
   u: "https://www.youtube.com/feed/subscriptions",
   g: "https://github.com/",
+  s: ["https://app.slack.com/client/T03C4RC8V/unreads"],
   f: "https://www.facebook.com",
   h: "https://hangouts.google.com/",
 };
