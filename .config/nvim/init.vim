@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/11/11 18:49:57.
+" Last Change : 2020/11/14 23:27:11.
 " =============================================================================
 
 " Init: {{{1
@@ -309,6 +309,14 @@ command! VimShowHlItem echo synIDattr(synID(line("."), col("."), 1), "name")
 
 " https://qiita.com/1000k/items/6d4953d2dd52fdd86556
 command! RemoveAnsi %s/<1b>\[[0-9;]*m//g
+
+" https://daisuzu.hatenablog.com/entry/2018/12/13/012608
+command! -bar ToScratch
+      \ setlocal buftype=nofile bufhidden=hide noswapfile
+
+command! -nargs=1 -complete=command L
+      \ <mods> new | ToScratch |
+      \ call setline(1, split(execute(<q-args>), '\n'))
 
 " Mapping: {{{1
 " Use verymagic.
