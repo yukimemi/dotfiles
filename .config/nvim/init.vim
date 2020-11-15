@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/11/14 23:27:11.
+" Last Change : 2020/11/15 23:36:18.
 " =============================================================================
 
 " Init: {{{1
@@ -516,6 +516,7 @@ let s:use_pack = 0
 
 let g:plugin_use_lightline = 1
 let g:plugin_use_airline = 0
+let g:plugin_use_neoline = 0
 
 let g:plugin_use_coc = 1
 let g:plugin_use_asyncomplete = 0

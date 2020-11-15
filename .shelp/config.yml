@@ -1,0 +1,14 @@
+path:
+  # SHELP_ROOT directory
+  root: "~/.shelp"
+
+  # Package configs for installation
+  # Spec:
+  # - from: <remote-location>
+  #   as: <package-name>
+  #   at: <branch-or-tag-or-commitHash>
+  #   bin:
+  #     - <path-to-bin-file>
+  #     - :
+packages:
+  - from: b4b4r07/enhancd

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/11/11 08:49:58.
+# Last Change : 2020/11/15 23:52:12.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -246,7 +246,7 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 #
 # completions. {{{1
 #
-if (which rustup > /dev/null) ;then
+if (which rustup > /dev/null); then
   if [[ ! -f ${HOME}/.config/zsh/completions/_rustup ]]; then
     rustup completions zsh > ~/.config/zsh/completions/_rustup
   fi
@@ -255,6 +255,12 @@ if (which rustup > /dev/null) ;then
   fi
 fi
 
+#
+# shelp. {{{1
+#
+if type shelp > /dev/null 2>&1; then
+  eval "$(shelp init -)"
+fi
 
 #
 # starship. {{{1

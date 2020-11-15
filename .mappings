@@ -6,6 +6,7 @@
 ".surfingkeys.js"                      = "~/.surfingkeys.js"
 ".tool-versions"                       = "~/.tool-versions"
 ".volt"                                = "~/.volt"
+".shelp"                               = "~/.shelp"
 
 [windows]
 ".config/espanso"                      = "~/scoop/apps/espanso/current/.espanso"

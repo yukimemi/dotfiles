@@ -201,6 +201,10 @@ if g:plugin_use_airline
   Pack 'vim-airline/vim-airline-themes'
 endif
 
+if g:plugin_use_neoline
+  Pack 'adelarsq/neoline.vim'
+endif
+
 if g:plugin_use_fern
   Pack 'lambdalisue/fern.vim'
   Pack 'lambdalisue/fern-hijack.vim'
