@@ -17,7 +17,8 @@ Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
 Pack 'machakann/vim-highlightedundo', {'if': executable('diff'), 'on': ['<Plug>(highlightedundo-undo)', '<Plug>(highlightedundo-redo)', '<Plug>(highlightedundo-Undo)', '<Plug>(highlightedundo-gminus)', '<Plug>(highlightedundo-gplus)']}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
-Pack 'nathanaelkane/vim-indent-guides', {'event': 'CursorHold'}
+Pack 'nathanaelkane/vim-indent-guides', {'event': 'CursorHold', 'if': !has('nvim')}
+Pack 'glepnir/indent-guides.nvim', {'event': 'CursorHold', 'if': has('nvim')}
 Pack 'ntpeters/vim-better-whitespace', {'event': 'CursorHold'}
 Pack 't9md/vim-quickhl', {'event': 'CursorHold'}
 Pack 'gcavallanti/vim-noscrollbar', {'if': !has('nvim')}
