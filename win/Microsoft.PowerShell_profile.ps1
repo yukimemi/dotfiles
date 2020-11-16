@@ -229,19 +229,22 @@ if (Is-Windows) {
 # Readline setting.
 Set-PSReadLineOption -EditMode Vi
 
-Set-PSReadlineKeyHandler -Key 'Ctrl+a' -Function BeginningOfLine
-Set-PSReadlineKeyHandler -Key 'Ctrl+b' -Function BackwardChar
-Set-PSReadlineKeyHandler -Key 'Ctrl+d' -Function DeleteChar
-Set-PSReadlineKeyHandler -Key 'Ctrl+e' -Function EndOfLine
-Set-PSReadlineKeyHandler -Key 'Ctrl+f' -Function ForwardChar
-Set-PSReadlineKeyHandler -Key 'Ctrl+h' -Function BackwardDeleteChar
-Set-PSReadlineKeyHandler -Key 'Ctrl+l' -Function ClearScreen
-Set-PSReadlineKeyHandler -Key 'Ctrl+n' -Function HistorySearchForward
-Set-PSReadlineKeyHandler -Key 'Ctrl+p' -Function HistorySearchBackward
-Set-PSReadlineKeyHandler -Key 'Ctrl+u' -Function BackwardDeleteLine
-Set-PSReadlineKeyHandler -Key 'Ctrl+w' -Function BackwardDeleteWord
+Set-PSReadLineKeyHandler -Key 'Ctrl+a' -Function BeginningOfLine
+Set-PSReadLineKeyHandler -Key 'Ctrl+b' -Function BackwardChar
+Set-PSReadLineKeyHandler -Key 'Ctrl+d' -Function DeleteChar
+Set-PSReadLineKeyHandler -Key 'Ctrl+e' -Function EndOfLine
+# Set-PSReadLineKeyHandler -Key 'Ctrl+f' -Function ForwardChar
+Set-PSReadLineKeyHandler -Key 'Ctrl+h' -Function BackwardDeleteChar
+Set-PSReadLineKeyHandler -Key 'Ctrl+l' -Function ClearScreen
+Set-PSReadLineKeyHandler -Key 'Ctrl+n' -Function HistorySearchForward
+Set-PSReadLineKeyHandler -Key 'Ctrl+p' -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key 'Ctrl+u' -Function BackwardDeleteLine
+Set-PSReadLineKeyHandler -Key 'Ctrl+w' -Function BackwardDeleteWord
 
-Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.Count) locations.`n"
+Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function ForwardWord
+
+# Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.Count) locations.`n"
 
 # z.
 function j {

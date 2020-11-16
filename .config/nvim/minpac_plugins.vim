@@ -121,6 +121,7 @@ Pack 'kana/vim-textobj-line', {'type': 'lazyall'}
 Pack 'machakann/vim-textobj-delimited', {'type': 'lazyall'}
 Pack 'mattn/vim-textobj-url', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-textobj-multiblock', {'type': 'lazyall'}
+Pack 'machakann/vim-swap', {'type': 'lazyall'}
 
 
 " Operator: {{{1
