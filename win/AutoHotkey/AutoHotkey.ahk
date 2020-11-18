@@ -47,6 +47,18 @@ Activate2(app, cmd) {
   return
 }
 
+Activate3(app, cmd, title) {
+  Process, Exist, %app%
+  if (ErrorLevel <> 0) {
+      SetTitleMatchMode, 2
+      WinActivate, %title%
+      SetTitleMatchMode, 1
+  } else {
+      Run, %cmd%
+  }
+  return
+}
+
 ; for Outlook
 ^F9::
 Activate("C:\Program Files (x86)\Microsoft Office\Office16\OUTLOOK.EXE")
@@ -58,7 +70,7 @@ Activate("C:\Program Files (x86)\Microsoft Office\Office16\EXCEL.EXE")
 return
 
 ; for Teams
-F12::
+^F12::
 Activate(APPDATA . "Local\Microsoft\Teams\current\Teams.exe")
 return
 
@@ -72,9 +84,9 @@ return
 ; return
 
 ; for sakura
-^F10::
-Activate("C:\Program Files (x86)\sakura\sakura.exe")
-return
+; ^F10::
+; Activate("C:\Program Files (x86)\sakura\sakura.exe")
+; return
 
 ; for chrome
 F11::
@@ -134,6 +146,12 @@ return
 ; Activate2("Terminus.exe", USERPROFILE . "\app\terminus\terminus-portable.exe")
 ; return
 
+; for Fluent Terminal
+F12::
+Activate3("FluentTerminal.App.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\flute.exe", "Fluent")
+return
+
+
 ; for Edge
 ; F11::
 ; Activate2("MicrosoftEdge.exe", "shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge")
@@ -167,7 +185,7 @@ return
 ;SendInput !{TAB}
 ; for persistent script
 ; ^!v::
-^F12::
+^F10::
 target_wid := WinExist("A")
 saveclip := Clipboard
 Clipboard := ""
