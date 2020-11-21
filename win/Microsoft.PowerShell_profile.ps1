@@ -241,8 +241,11 @@ Set-PSReadLineKeyHandler -Key 'Ctrl+p' -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key 'Ctrl+u' -Function BackwardDeleteLine
 Set-PSReadLineKeyHandler -Key 'Ctrl+w' -Function BackwardDeleteWord
 
-Set-PSReadLineOption -PredictionSource History
-Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function ForwardWord
+$readLineVersion = (Get-Module -Name PSReadline).Version
+if ($readLineVersion.Major + 0.1 * $readLineVersion.Minor -ge 2.1) {
+  Set-PSReadLineOption -PredictionSource History
+  Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function ForwardWord
+}
 
 # Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.Count) locations.`n"
 
@@ -267,4 +270,9 @@ function Get-FileAndHash {
   gci . | % { [PSCustomObject]@{ path = $_.Name; hash = (Get-FileHash -a md5 $_.FullName).Hash } }
 }
 
+# Chocolatey profile
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+  Import-Module "$ChocolateyProfile"
+}
 
