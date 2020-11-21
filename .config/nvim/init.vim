@@ -1,8 +1,13 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/11/21 13:05:02.
+" Last Change : 2020/11/22 00:03:25.
 " =============================================================================
+
+if exists('g:vscode')
+  source $HOME/.config/nvim/vscode-neovim.vim
+  finish
+endif
 
 " Init: {{{1
 set encoding=utf-8

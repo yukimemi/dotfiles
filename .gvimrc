@@ -9,8 +9,8 @@ if g:no_plugin
 endif
 
 " font
-set gfn=Cica:h12
-set gfw=Cica:h12
+set gfn=Cica:h10
+set gfw=Cica:h10
 set printfont=Cica:h8
 
 " gui

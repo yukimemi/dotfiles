@@ -24,7 +24,7 @@
 	root = ~/.go/src
 	root = ~/src
 [credential]
-	helper = store
+	helper = manager-core
 [merge]
 	tool = "nvim -d"
 [branch]
