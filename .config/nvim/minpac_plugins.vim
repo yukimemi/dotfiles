@@ -24,7 +24,6 @@ Pack 't9md/vim-quickhl', {'event': 'CursorHold'}
 Pack 'gcavallanti/vim-noscrollbar', {'if': !has('nvim')}
 Pack 'Xuyuanp/scrollbar.nvim', {'if': has('nvim') && !g:is_windows}
 Pack 'camspiers/animate.vim', {'event': 'CursorHold'}
-Pack 'camspiers/lens.vim', {'event': 'CursorHold'}
 Pack 'kato-k/vim-colorscheme-settings', {'on': ['SwitchColorScheme', 'SwitchBackGround']}
 Pack 'mg979/vim-xtabline'
 
@@ -94,6 +93,9 @@ Pack 'vim-scripts/autodate.vim', {'event': 'InsertEnter'}
 Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
 Pack 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
 Pack 'yegappan/mru', {'on': 'MRU'}
+Pack 'lilydjwg/colorizer', {'type': 'lazyall'}
+Pack 'seroqn/tozzy.vim', {'event': 'InsertEnter'}
+Pack 'direnv/direnv.vim', {'type': 'lazyall'}
 
 " Comment: {{{1
 Pack 'Shougo/junkfile.vim', {'on': 'JunkfileOpen'}
@@ -139,6 +141,7 @@ Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
 Pack 'mhinz/vim-grepper', {'type': 'lazyall'}
 Pack 'pechorin/any-jump.vim', {'on_cmd': ['AnyJumpLastResults', 'AnyJumpBack', 'AnyJumpVisual', 'AnyJump']}
+Pack 'obcat/vim-hitspop', {'type': 'lazyall'}
 
 " Shell: {{{1
 Pack 'Shougo/deol.nvim', {'on': ['Deol', 'DeolCd', 'DeolEdit'], 'do': 'silent! UpdateRemotePlugins'}

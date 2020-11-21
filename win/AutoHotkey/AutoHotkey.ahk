@@ -76,7 +76,7 @@ return
 
 ; for gvim
 F10::
-Activate(USERPROFILE . "\scoop\apps\vim-kaoriya\current\gvim.exe")
+Activate3("gvim.exe", USERPROFILE . "\scoop\apps\vim-kaoriya\current\gvim.exe", "GVIM")
 return
 ; for neovim
 ; F10::
@@ -164,7 +164,8 @@ return
 
 ; for slack
 ^F11::
-Activate("C:\Program Files\Slack\Slack.exe")
+; Activate("C:\Program Files\Slack\Slack.exe")
+Activate3("Slack.exe", "C:\Program Files\Slack\Slack.exe", "Slack")
 return
 
 ; for AFxW
