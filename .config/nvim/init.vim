@@ -298,7 +298,7 @@ au MyAutoCmd FileType markdown setl expandtab ts=2 sw=2 sts=0
 au MyAutoCmd FileType log setl nowrap
 
 " mail {{{2
-au MyAutoCmd FileType mail setl fenc=cp932 ff=dos
+au MyAutoCmd FileType mail setl fenc=cp932 ff=dos expandtab
 
 " Commands: {{{1
 " VimShowHlGroup: Show highlight group name under a cursor
@@ -532,12 +532,12 @@ let g:plugin_use_quickpick = 1
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
-let g:plugin_use_fern = 1
+let g:plugin_use_fern = 0
 let g:plugin_use_defx = 0
 let g:plugin_use_molder = 0
 let g:plugin_use_vaffle = 0
 let g:plugin_use_viler = 0
-let g:plugin_use_coc_explorer = 0
+let g:plugin_use_coc_explorer = 1
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1
