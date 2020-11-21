@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/11/16 18:24:15.
+" Last Change : 2020/11/21 13:05:02.
 " =============================================================================
 
 " Init: {{{1
@@ -563,7 +563,8 @@ endif
 set background=dark
 silent! packadd oceanic-next-vim
 if has('nvim')
-  silent! colorscheme oceanicnext
+  set background=light
+  silent! colorscheme PaperColor
 else
   silent! colorscheme oceanicnext
 endif
@@ -583,6 +584,7 @@ if g:nvy
 endif
 
 " lua: {{{1
+let g:vimsyn_embed = 'l'
 if has('nvim')
   exe "lua require('init')"
 endif
