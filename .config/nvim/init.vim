@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/11/21 18:11:35.
+" Last Change : 2020/11/22 22:07:27.
 " =============================================================================
 
 if exists('g:vscode')
@@ -140,6 +140,7 @@ set noshowmode
 set virtualedit=block
 set synmaxcol=500
 set smarttab
+set concealcursor=nc
 set shortmess-=S
 set iminsert=0 imsearch=-1
 set list listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
