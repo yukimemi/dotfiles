@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/11/22 00:03:25.
+" Last Change : 2020/11/21 18:11:35.
 " =============================================================================
 
 if exists('g:vscode')
@@ -568,8 +568,7 @@ endif
 set background=dark
 silent! packadd oceanic-next-vim
 if has('nvim')
-  set background=light
-  silent! colorscheme PaperColor
+  silent! colorscheme oceanicnext
 else
   silent! colorscheme oceanicnext
 endif

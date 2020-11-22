@@ -65,7 +65,6 @@ Pack 'mattn/vim-sonictemplate', {'on': 'Template'}
 Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'mbbill/undotree', {'on': 'UndotreeToggle'}
 Pack 'nicwest/vim-camelsnek', {'on': ['Snek', 'Camel', 'CamelB', 'Kebab']}
-Pack 'psliwka/vim-smoothie', {'type': 'lazyall'}
 Pack 'qpkorr/vim-renamer', {'type': 'lazyall'}
 Pack 'rbtnn/vim-coloredit', {'on': 'ColorEdit', 'if': !has('nvim')}
 Pack 'rbtnn/vim-gloaded'
