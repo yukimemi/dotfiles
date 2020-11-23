@@ -571,8 +571,9 @@ endif
 " Colorscheme: {{{1
 set background=dark
 silent! packadd oceanic-next-vim
+silent! packadd edge
 if has('nvim')
-  silent! colorscheme oceanicnext
+  silent! colorscheme edge
 else
   silent! colorscheme oceanicnext
 endif

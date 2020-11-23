@@ -8,7 +8,6 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",     -- one of "all", "language", or a list of languages
   highlight = {
     enable = true,
-    disable = { "c", "rust" },  -- list of language that will be disabled
   },
   incremental_selection = {
     enable = true,
@@ -18,6 +17,9 @@ require'nvim-treesitter.configs'.setup {
       scope_incremental = "grc",
       node_decremental = "grm",
     },
+  },
+  indent = {
+    enable = true,
   },
   refactor = {
     highlight_definitions = { enable = true },
@@ -33,6 +35,7 @@ require'nvim-treesitter.configs'.setup {
       keymaps = {
         goto_definition = "gnd",
         list_definitions = "gnD",
+        list_definitions_toc = "gO",
         goto_next_usage = "<a-*>",
         goto_previous_usage = "<a-#>",
       },
@@ -83,6 +86,13 @@ require'nvim-treesitter.configs'.setup {
       goto_previous_end = {
         ["[M"] = "@function.outer",
         ["[]"] = "@class.outer",
+      },
+    },
+    lsp_interop = {
+      enable = true,
+      peek_definition_code = {
+        ["df"] = "@function.outer",
+        ["dF"] = "@class.outer",
       },
     },
   },

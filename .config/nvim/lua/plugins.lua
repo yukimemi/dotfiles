@@ -17,7 +17,8 @@ return require('packer').startup(function()
   use {'wbthomason/packer.nvim', opt = true}
 
   -- colorscheme.
-  use {'adrian5/oceanic-next-vim', opt = true}
+  use {'adrian5/oceanic-next-vim', opt = true, disable = true}
+  use {'sainnhe/edge', opt = true}
 
   -- visual.
   use {'lambdalisue/seethrough.vim', cond = not vim.fn.has('gui')}
@@ -56,6 +57,14 @@ return require('packer').startup(function()
   use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
 
   -- all filetype
-  use {'nvim-treesitter/nvim-treesitter', opt = true}
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    setup = vim.cmd [[source $VIM_PATH/rc/nvim-treesitter.vim]],
+    requires = {
+      'nvim-treesitter/nvim-treesitter-refactor',
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'romgrk/nvim-treesitter-context',
+    },
+  }
 
 end)
