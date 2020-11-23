@@ -515,11 +515,11 @@ au MyAutoCmd BufWritePost *
 " Plugin: {{{1
 let s:use_dein = v:false
 let s:use_vimplug = v:false
-let s:use_minpac = v:false
+let s:use_minpac = !has('nvim') && v:true
 let s:use_packager = v:false
 let s:use_volt = v:false
 let s:use_pack = v:false
-let s:use_packer = v:true
+let s:use_packer = has('nvim') && v:true
 
 let g:plugin_use_lightline = v:true
 let g:plugin_use_airline = v:false
