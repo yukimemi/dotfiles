@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/11/22 22:07:27.
+" Last Change : 2020/11/23 22:29:42.
 " =============================================================================
 
 if exists('g:vscode')
@@ -513,37 +513,38 @@ au MyAutoCmd BufWritePost *
       \ endif
 
 " Plugin: {{{1
-let s:use_dein = 0
-let s:use_vimplug = 0
-let s:use_minpac = 1
-let s:use_packager = 0
-let s:use_volt = 0
-let s:use_pack = 0
+let s:use_dein = v:false
+let s:use_vimplug = v:false
+let s:use_minpac = v:false
+let s:use_packager = v:false
+let s:use_volt = v:false
+let s:use_pack = v:false
+let s:use_packer = v:true
 
-let g:plugin_use_lightline = 1
-let g:plugin_use_airline = 0
-let g:plugin_use_neoline = 0
+let g:plugin_use_lightline = v:true
+let g:plugin_use_airline = v:false
+let g:plugin_use_neoline = v:false
 
-let g:plugin_use_coc = 1
-let g:plugin_use_asyncomplete = 0
-let g:plugin_use_deoplete = 0
+let g:plugin_use_coc = v:true
+let g:plugin_use_asyncomplete = v:false
+let g:plugin_use_deoplete = v:false
 
-let g:plugin_use_ctrlp = 1
-let g:plugin_use_clap = 0
-let g:plugin_use_fzf = 0
-let g:plugin_use_cocfzf = 0
-let g:plugin_use_fz = 0
-let g:plugin_use_denite = 1
-let g:plugin_use_quickpick = 1
+let g:plugin_use_ctrlp = v:true
+let g:plugin_use_clap = v:false
+let g:plugin_use_fzf = v:false
+let g:plugin_use_cocfzf = v:false
+let g:plugin_use_fz = v:false
+let g:plugin_use_denite = v:true
+let g:plugin_use_quickpick = v:true
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
-let g:plugin_use_fern = 0
-let g:plugin_use_defx = 0
-let g:plugin_use_molder = 0
-let g:plugin_use_vaffle = 0
-let g:plugin_use_viler = 0
-let g:plugin_use_coc_explorer = 1
+let g:plugin_use_fern = v:false
+let g:plugin_use_defx = v:false
+let g:plugin_use_molder = v:false
+let g:plugin_use_vaffle = v:false
+let g:plugin_use_viler = v:false
+let g:plugin_use_coc_explorer = v:true
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1
@@ -560,6 +561,8 @@ if !g:no_plugin
     runtime! volt.vim
   elseif s:use_pack
     runtime! pack.vim
+  elseif s:use_packer
+    runtime! packer.vim
   else
     echom "No use plugin manager !"
   endif
