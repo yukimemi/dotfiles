@@ -22,7 +22,7 @@ augroup MyAutoCmd | autocmd! | augroup END
 " Echo startup time on start.
 if has('vim_starting') && has('reltime')
   let s:startuptime = reltime()
-  au MyAutoCmd VimEnter * let s:startuptime = reltime(s:startuptime) | redraw
+  au MyAutoCmd VimEnter * ++once let s:startuptime = reltime(s:startuptime) | redraw
         \ | echomsg 'startuptime: ' . reltimestr(s:startuptime)
 endif
 
