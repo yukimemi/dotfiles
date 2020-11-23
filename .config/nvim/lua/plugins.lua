@@ -1,4 +1,9 @@
-local packer_dir = '~/.local/share/nvim/site/pack/packer/opt/packer.nvim'
+local packer_dir = ''
+if vim.g.is_windows then
+  packer_dir = vim.env.HOME .. '/AppData/Local/nvim-data/site/pack/packer/opt/packer.nvim'
+else
+  packer_dir = '~/.local/share/nvim/site/pack/packer/opt/packer.nvim'
+end
 
 if vim.fn.isdirectory(packer_dir) == 0 then
   os.execute("git clone https://github.com/wbthomason/packer.nvim " .. packer_dir)
