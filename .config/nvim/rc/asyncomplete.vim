@@ -24,23 +24,7 @@ au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncompl
       \ 'completor': function('asyncomplete#sources#file#completor')
       \ }))
 
-
-let g:asyncomplete_auto_completeopt = 1
-let g:asyncomplete_auto_popup = 1
-let g:asyncomplete_popup_delay = 200
-let g:lsp_diagnostics_echo_cursor = 0
-let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_float_cursor = 1
-let g:lsp_fold_enabled = 1
-let g:lsp_highlight_references_enabled = 1
-let g:lsp_highlights_enabled = 1
-let g:lsp_hover_conceal = 1
-let g:lsp_signature_help_enabled = 1
-let g:lsp_signs_enabled = 1
-let g:lsp_text_edit_enabled = 1
-let g:lsp_textprop_enabled = 1
-let g:lsp_use_event_queue = 1
-let g:lsp_virtual_text_enabled = 1
 
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<c-g>u\<cr>"
@@ -69,8 +53,8 @@ function! s:on_lsp_buffer_enabled() abort
   nnoremap <silent><buffer> K :<c-u>call <SID>show_documentation()<cr>
 
   " Use `[g` and `]g` to navigate diagnostics
-  nmap <silent><buffer> [g <plug>(lsp-next-diagnostic)
-  nmap <silent><buffer> ]g <plug>(lsp-previous-diagnostic)
+  nmap <silent><buffer> ]g <plug>(lsp-next-diagnostic)
+  nmap <silent><buffer> [g <plug>(lsp-previous-diagnostic)
 
   " Remap for format selected region
   vmap <silent><buffer> <localleader>f <plug>(lsp-document-range-format)
@@ -79,16 +63,16 @@ function! s:on_lsp_buffer_enabled() abort
   " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
   vmap <silent><buffer> <localleader>a <Plug>(lsp-code-action)
 
-  augroup MyVimLsp
-    au!
-    au BufWritePre <buffer> LspDocumentFormatSync
-  augroup END
-
+  au MyAutoCmd BufWritePre <buffer> LspDocumentFormat
 endfunction
 
 au MyAutoCmd User lsp_buffer_enabled call <SID>on_lsp_buffer_enabled()
 au MyAutoCmd CmdwinEnter call lsp#enable()
 au MyAutoCmd CmdwinLeave call lsp#disable()
+
+" Close preview window with <esc>
+au MyAutoCmd User lsp_float_opened silent! nmap <buffer> <silent> <esc> <Plug>(lsp-preview-close)
+au MyAutoCmd User lsp_float_closed silent! nunmap <buffer> <esc>
 
 command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log') | let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 

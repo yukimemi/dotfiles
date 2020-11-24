@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2020/11/11 14:18:52.
+# Last Change: 2020/11/24 10:10:12.
 # =============================================================================
 
 # ==================== Dein ====================== {{{1
@@ -121,11 +121,6 @@ if = '!has("nvim")'
 
 [[plugins]]
 repo = 'camspiers/animate.vim' # {{{2
-[[plugins]]
-repo = 'camspiers/lens.vim' # {{{2
-hook_add = '''
-source $VIM_PATH/rc/lens.vim
-'''
 
 [[plugins]]
 repo = 'LumaKernel/nvim-visual-eof.lua' # {{{2
@@ -195,6 +190,8 @@ repo = 'glepnir/zephyr-nvim' # {{{2
 [[plugins]]
 repo = 'adrian5/oceanic-next-vim' # {{{2
 
+[[plugins]]
+repo = 'sainnhe/edge' # {{{2
 
 # ==================== Utility =================== {{{1
 
@@ -322,10 +319,6 @@ source $VIM_PATH/rc/vim-camelsnek.vim
 '''
 
 [[plugins]]
-repo = 'psliwka/vim-smoothie' # {{{2
-on_event = ['CursorMoved']
-
-[[plugins]]
 repo = 'qpkorr/vim-renamer' # {{{2
 on_cmd = ['Renamer']
 hook_add = '''
@@ -439,6 +432,21 @@ if = "!has('nvim') && has('+clientserver')"
 hook_source = '''
 source $VIM_PATH/rc/vim-singleton.vim
 '''
+
+[[plugins]]
+repo = 'lilydjwg/colorizer' # {{{2
+on_event = ['CursorHold']
+
+[[plugins]]
+repo = 'seroqn/tozzy.vim' # {{{2
+
+[[plugins]]
+repo = 'direnv/direnv.vim' # {{{2
+if = '!g:is_windows'
+
+[[plugins]]
+repo = 'machakann/vim-swap' # {{{2
+
 
 # ==================== Comment =================== {{{1
 

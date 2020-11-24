@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/11/23 22:29:42.
+" Last Change : 2020/11/24 22:26:29.
 " =============================================================================
 
 if exists('g:vscode')
@@ -338,7 +338,7 @@ nnoremap <silent> <Down> gj
 nnoremap <silent> <Up>   gk
 nnoremap <silent> h <Left>
 nnoremap <silent> l <Right>
-inoremap <silent> <C-l> <C-g>U<Right>
+inoremap <silent> <c-l> <C-g>U<Right>
 " Open folding in "l"
 nnoremap <expr> l foldlevel(line('.')) ? "\<Right>zo" : "\<Right>"
 
@@ -489,7 +489,7 @@ endif
 " Color: {{{1
 silent! syntax enable
 
-set cursorline cursorcolumn
+" set cursorline cursorcolumn
 " au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
 au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 
@@ -498,11 +498,11 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Hilight cursorline, cursorcolumn {{{2
 " https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472
-" let s:cur_f = 0
-" au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
-" au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
-" au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
-" au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
+let s:cur_f = 0
+au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
+au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
+au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
+au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
 
 " reload filetype on save. {{{2
 " https://lambdalisue.hatenablog.com/entry/2017/12/24/165759
@@ -525,8 +525,8 @@ let g:plugin_use_lightline = v:true
 let g:plugin_use_airline = v:false
 let g:plugin_use_neoline = v:false
 
-let g:plugin_use_coc = v:true
-let g:plugin_use_asyncomplete = v:false
+let g:plugin_use_coc = v:false
+let g:plugin_use_asyncomplete = v:true
 let g:plugin_use_deoplete = v:false
 
 let g:plugin_use_ctrlp = v:true
@@ -539,12 +539,12 @@ let g:plugin_use_quickpick = v:true
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
-let g:plugin_use_fern = v:false
+let g:plugin_use_fern = v:true
 let g:plugin_use_defx = v:false
 let g:plugin_use_molder = v:false
 let g:plugin_use_vaffle = v:false
 let g:plugin_use_viler = v:false
-let g:plugin_use_coc_explorer = v:true
+let g:plugin_use_coc_explorer = v:false
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1

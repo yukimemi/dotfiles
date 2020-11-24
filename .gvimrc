@@ -3,7 +3,7 @@ set guioptions=
 
 " color
 set background=dark
-silent! colorscheme oceanicnext
+silent! colorscheme edge
 if g:no_plugin
   colorscheme desert
 endif

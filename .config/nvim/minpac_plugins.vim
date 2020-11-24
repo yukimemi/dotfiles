@@ -43,6 +43,7 @@ Pack 'severij/vadelma', {'type': 'opt'}
 Pack 'yasukotelin/shirotelin', {'type': 'opt'}
 Pack 'glepnir/zephyr-nvim', {'type': 'opt'}
 Pack 'adrian5/oceanic-next-vim', {'type': 'opt'}
+Pack 'sainnhe/edge', {'type': 'opt'}
 
 " Utility: {{{1
 Pack 'AndrewRadev/linediff.vim', {'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
@@ -94,7 +95,7 @@ Pack 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
 Pack 'yegappan/mru', {'on': 'MRU'}
 Pack 'lilydjwg/colorizer', {'type': 'lazyall'}
 Pack 'seroqn/tozzy.vim', {'event': 'InsertEnter'}
-Pack 'direnv/direnv.vim', {'type': 'lazyall'}
+Pack 'direnv/direnv.vim', {'type': 'lazyall', 'if': !g:is_windows}
 
 " Comment: {{{1
 Pack 'Shougo/junkfile.vim', {'on': 'JunkfileOpen'}
@@ -149,6 +150,8 @@ Pack 'Shougo/deol.nvim', {'on': ['Deol', 'DeolCd', 'DeolEdit'], 'do': 'silent! U
 Pack 'sheerun/vim-polyglot'
 
 " markdown {{{2
+Pack 'plasticboy/vim-markdown', {'for': 'markdown'}
+Pack 'dkarter/bullets.vim', {'for': 'markdown'}
 Pack 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
 Pack 'iamcco/markdown-preview.nvim', {'on': 'MarkdownPreview', 'do': '!cd app & yarn install'}
 Pack 'previm/previm', {'on': 'PrevimOpen'}
@@ -244,7 +247,7 @@ Pack 'honza/vim-snippets', {'event': 'InsertEnter'}
 if g:plugin_use_asyncomplete
   Pack 'prabirshrestha/asyncomplete.vim'
 
-  Pack 'high-moctane/asyncomplete-nextword.vim', {'do': 'silent! !go get -u github.com/high-moctane/nextword', 'if': executable('go') && !g:is_windows}
+  Pack 'high-moctane/asyncomplete-nextword.vim', {'do': 'silent! !go get -u github.com/high-moctane/nextword', 'if': executable('go')}
   Pack 'hrsh7th/vim-vsnip'
   Pack 'hrsh7th/vim-vsnip-integ'
   Pack 'mattn/vim-lsp-icons'
