@@ -218,6 +218,7 @@ bindkey '^N' history-substring-search-down
 
 # autosuggestions. {{{2
 bindkey '^F' autosuggest-accept
+# bindkey '^F' vi-forward-word
 
 # move at hjkl on menu select. {{{2
 zmodload zsh/complist
