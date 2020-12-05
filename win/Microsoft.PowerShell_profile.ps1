@@ -259,9 +259,10 @@ function j {
       (Join-Path $env:HOME ".z")
     }
   }
-  $c = Get-Content $z
-  [array]::Reverse($c)
-  $c | __FILTER | cd
+  # $c = Get-Content $z
+  # [array]::Reverse($c)
+  # $c | __FILTER | cd
+  Get-Content $z | __FILTER | cd
   Get-Job | Stop-Job -PassThru | Remove-Job -Force
 }
 

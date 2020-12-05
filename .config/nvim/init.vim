@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/11/24 22:26:29.
+" Last Change : 2020/12/05 21:07:08.
 " =============================================================================
 
 if exists('g:vscode')
@@ -120,7 +120,7 @@ endif
 
 set number
 set signcolumn=yes
-" set ambiwidth=double
+set ambiwidth=double
 set history=10000
 set nofixeol
 set hidden autoread
@@ -383,6 +383,9 @@ cnoremap <c-n> <Down>
 " Vim-users.jp - Hack #74: http://vim-users.jp/2009/09/hack74/
 nnoremap <silent> <leader>ev  :<c-u>tabedit $MYVIMRC<cr>
 nnoremap <silent> <leader>eg  :<c-u>tabedit $MYGVIMRC<cr>
+" Load .gvimrc after .vimrc edited at GVim.
+nnoremap <silent> <leader>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif<cr>
+nnoremap <silent> <leader>rg :<C-u>source $MYGVIMRC<cr>
 
 " Cmdwin.
 " nnoremap <silent> : q:i
@@ -515,18 +518,18 @@ au MyAutoCmd BufWritePost *
 " Plugin: {{{1
 let s:use_dein = v:false
 let s:use_vimplug = v:false
-let s:use_minpac = !has('nvim') && v:true
+let s:use_minpac = v:true
 let s:use_packager = v:false
 let s:use_volt = v:false
 let s:use_pack = v:false
-let s:use_packer = has('nvim') && v:true
+let s:use_packer = v:false
 
 let g:plugin_use_lightline = v:true
 let g:plugin_use_airline = v:false
 let g:plugin_use_neoline = v:false
 
-let g:plugin_use_coc = v:false
-let g:plugin_use_asyncomplete = v:true
+let g:plugin_use_coc = v:true
+let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
 
 let g:plugin_use_ctrlp = v:true
@@ -571,9 +574,8 @@ endif
 " Colorscheme: {{{1
 set background=dark
 silent! packadd oceanic-next-vim
-silent! packadd edge
 if has('nvim')
-  silent! colorscheme edge
+  silent! colorscheme oceanicnext
 else
   silent! colorscheme oceanicnext
 endif

@@ -14,16 +14,13 @@ Pack 'lambdalisue/nerdfont.vim'
 Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
 Pack 'luochen1990/rainbow', {'type': 'lazy'}
 Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
-Pack 'machakann/vim-highlightedundo', {'if': executable('diff'), 'on': ['<Plug>(highlightedundo-undo)', '<Plug>(highlightedundo-redo)', '<Plug>(highlightedundo-Undo)', '<Plug>(highlightedundo-gminus)', '<Plug>(highlightedundo-gplus)']}
 Pack 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
 Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'nathanaelkane/vim-indent-guides', {'event': 'CursorHold', 'if': !has('nvim')}
 Pack 'glepnir/indent-guides.nvim', {'event': 'CursorHold', 'if': has('nvim')}
 Pack 'ntpeters/vim-better-whitespace', {'event': 'CursorHold'}
 Pack 't9md/vim-quickhl', {'event': 'CursorHold'}
-Pack 'gcavallanti/vim-noscrollbar', {'if': !has('nvim')}
 Pack 'Xuyuanp/scrollbar.nvim', {'if': has('nvim') && !g:is_windows}
-Pack 'camspiers/animate.vim', {'event': 'CursorHold'}
 Pack 'kato-k/vim-colorscheme-settings', {'on': ['SwitchColorScheme', 'SwitchBackGround']}
 Pack 'mg979/vim-xtabline'
 
@@ -165,8 +162,8 @@ Pack 'tsuyoshicho/plantuml-previewer.vim', {'for': 'plantuml'}
 " Fuzzy: {{{1
 if g:plugin_use_ctrlp
   Pack 'ctrlpvim/ctrlp.vim'
-  Pack 'raghur/fruzzy', {'do': 'call fruzzy#install()'}
-  Pack 'mattn/ctrlp-matchfuzzy', {'if': exists('matchfuzzy')}
+  Pack 'raghur/fruzzy', {'do': 'call fruzzy#install()', 'if': has('python')}
+  Pack 'mattn/ctrlp-matchfuzzy', {'if': exists('*matchfuzzy')}
 
   Pack 'kaneshin/ctrlp-filetype', {'on': 'CtrlPFiletype'}
   Pack 'kaneshin/ctrlp-memolist', {'on': 'CtrlPMemolist'}

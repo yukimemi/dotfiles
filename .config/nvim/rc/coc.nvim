@@ -50,7 +50,6 @@ let g:coc_global_extensions = [
 "      \ "coc-solargraph",
 "      \ "coc-sql",
 "      \ "coc-stylelint",
-"      \ "coc-syntax",
 "      \ "coc-tag",
 "      \ "coc-terminal",
 "      \ "coc-todolist",

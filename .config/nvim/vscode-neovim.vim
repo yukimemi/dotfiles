@@ -19,7 +19,6 @@ let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
 let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
 
 " mappings.
-inoremap <silent> jj <ESC>
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 xnoremap <silent> j gj
@@ -28,50 +27,73 @@ nnoremap <silent> <Down> gj
 nnoremap <silent> <Up>   gk
 nnoremap <silent> h <Left>
 nnoremap <silent> l <Right>
-inoremap <silent> <C-l> <C-g>U<Right>
-" Open folding in "l"
-nnoremap <expr> l foldlevel(line('.')) ? "\<Right>zo" : "\<Right>"
+inoremap <silent> <c-l> <C-g>U<Right>
 
 noremap <silent> gh ^
 noremap <silent> gl $
 nnoremap <silent> Y y$
 
-" For buffer.
-nnoremap <Tab> :<c-u>bn<cr>
-nnoremap <S-Tab> :<c-u>bp<cr>
-
-" For tab.
-nnoremap <silent><c-l> gt
-nnoremap <silent><c-h> gT
-
 " Useful save mappings.
-nnoremap <silent> <localleader><localleader> :<c-u>update<cr>
+nnoremap <silent> <localleader><localleader> <cmd>Write<cr>
 
 " nohlsearch.
-nnoremap <silent> <ESC><ESC> :<c-u>nohlsearch<cr>
+nnoremap <silent> <esc><esc> <cmd>nohlsearch<cr>
+
+" utility functions.
+function! s:switchEditor(...) abort
+  let count = a:1
+  let direction = a:2
+  for i in range(1, count ? count : 1)
+    call VSCodeCall(direction ==# 'next' ? 'workbench.action.nextEditorInGroup' : 'workbench.action.previousEditorInGroup')
+  endfor
+endfunction
+
+function! s:manageEditorSize(...)
+  let count = a:1
+  let to = a:2
+  for i in range(1, count ? count : 1)
+    call VSCodeNotify(to ==# 'increase' ? 'workbench.action.increaseViewSize' : 'workbench.action.decreaseViewSize')
+  endfor
+endfunction
+
+" tab.
+nnoremap <silent> <c-l> <cmd>call <SID>switchEditor(v:count, 'next')<cr>
+nnoremap <silent> <c-h> <cmd>call <SID>switchEditor(v:count, 'prev')<cr>
 
 " Use prefix s.
 nnoremap <silent> s <Nop>
-nnoremap <silent> sj <c-w>j
-nnoremap <silent> sk <c-w>k
-nnoremap <silent> sl <c-w>l
-nnoremap <silent> sh <c-w>h
-nnoremap <silent> sJ <c-w>J
-nnoremap <silent> sK <c-w>K
-nnoremap <silent> sL <c-w>L
-nnoremap <silent> sH <c-w>H
-nnoremap <silent> sr <c-w>r
-nnoremap <silent> s= <c-w>=
-nnoremap <silent> sw <c-w>w
-nnoremap <silent> so <c-w>_<c-w>|
-nnoremap <silent> s0 :<c-u>only<cr>
-nnoremap <silent> sO :<c-u>tabonly<cr>
-nnoremap <silent> sn :<c-u>bn<cr>
-nnoremap <silent> sp :<c-u>bp<cr>
-nnoremap <silent> st :<c-u>tabnew<cr>
-nnoremap <silent> ss :<c-u>sp<cr>
-nnoremap <silent> sv :<c-u>vs<cr>
-nnoremap <silent> sq :<c-u>q<cr>
-nnoremap <silent> sQ :<c-u>qa<cr>
-nnoremap <silent> sbk :<c-u>bd!<cr>
-nnoremap <silent> sbq :<c-u>q!<cr>
+nnoremap <silent> s= <cmd>call VSCodeNotify('workbench.action.evenEditorWidths')<cr>
+nnoremap <silent> so <cmd>call VSCodeNotify('workbench.action.toggleEditorWidths')<cr>
+nnoremap <silent> s0 <cmd>Only<cr>
+nnoremap <silent> sO <cmd>Tabonly<cr>
+nnoremap <silent> st <cmd>Tabnew<cr>
+nnoremap <silent> ss <cmd>Split<cr>
+nnoremap <silent> sv <cmd>Vsplit<cr>
+nnoremap <silent> sq <cmd>Quit<cr>
+nnoremap <silent> sQ <cmd>Qall<cr>
+nnoremap <silent> sbk <cmd>Quit!<cr>
+nnoremap <silent> sbq <cmd>Quit!<cr>
+
+" Window move.
+nnoremap <silent> sj <cmd>call VSCodeNotify('workbench.action.focusBelowGroup')<cr>
+nnoremap <silent> sJ <cmd>call VSCodeNotify('workbench.action.moveEditorToBelowGroup')<cr>
+nnoremap <silent> sk <cmd>call VSCodeNotify('workbench.action.focusAboveGroup')<cr>
+nnoremap <silent> sK <cmd>call VSCodeNotify('workbench.action.moveEditorToAboveGroup')<cr>
+nnoremap <silent> sh <cmd>call VSCodeNotify('workbench.action.focusLeftGroup')<cr>
+nnoremap <silent> sH <cmd>call VSCodeNotify('workbench.action.moveEditorToLeftGroup')<cr>
+nnoremap <silent> sl <cmd>call VSCodeNotify('workbench.action.focusRightGroup')<cr>
+nnoremap <silent> sL <cmd>call VSCodeNotify('workbench.action.moveEditorToRightGroup')<cr>
+nnoremap <silent> sw <cmd>call VSCodeNotify('workbench.action.focusNextGroup')<cr>
+nnoremap <silent> sW <cmd>call VSCodeNotify('workbench.action.focusPreviousGroup')<cr>
+
+" Window size.
+nnoremap <silent> s> <cmd>call <SID>manageEditorSize(v:count, 'increase')<cr>
+nnoremap <silent> s+ <cmd>call <SID>manageEditorSize(v:count, 'increase')<cr>
+nnoremap <silent> s< <cmd>call <SID>manageEditorSize(v:count, 'decrease')<cr>
+nnoremap <silent> s- <cmd>call <SID>manageEditorSize(v:count, 'decrease')<cr>
+
+" Comment.
+xmap gc  <Plug>VSCodeCommentary
+nmap gc  <Plug>VSCodeCommentary
+omap gc  <Plug>VSCodeCommentary
+nmap gcc <Plug>VSCodeCommentaryLine

@@ -1,5 +1,5 @@
 let g:lightline = {
-      \ 'colorscheme': 'edge',
+      \ 'colorscheme': 'oceanicnext',
       \ 'mode_map': {
       \   'n' : 'N',
       \   'i' : 'I',
@@ -157,7 +157,7 @@ function! LightLineQuickfixTitle() abort
 endfunction
 
 function! LightLineNoScrollbar() abort
-  if has('nvim')
+  if has('nvim') || !IsInstalled("vim-noscrollbar")
     return ''
   endif
   return noscrollbar#statusline(20,'■','◫',['◧'],['◨'])
