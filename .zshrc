@@ -66,10 +66,7 @@ zinit wait lucid as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode
 #
 # zinit pack for ls_colors
 zinit wait pack for \
-  dircolors-material \
-  system-completions \
-  fzf
-
+  dircolors-material
 
 #
 # functions. {{{1
