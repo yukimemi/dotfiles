@@ -1,23 +1,3 @@
-" Release autogroup in MyAutoCmd.
-augroup MyAutoCmd | autocmd! | augroup END
-
-" Echo startup time on start.
-if has('vim_starting') && has('reltime')
-  let s:startuptime = reltime()
-  au MyAutoCmd VimEnter * let s:startuptime = reltime(s:startuptime) | redraw
-        \ | echomsg 'startuptime: ' . reltimestr(s:startuptime)
-endif
-
-" Set mapleader.
-let g:mapleader = "\<space>"
-let g:maplocalleader = ','
-
-" Judge os type.
-let g:is_windows = has('win16') || has('win32') || has('win64')
-let g:is_cygwin = has('win32unix')
-let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
-let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
-
 " settings.
 set incsearch hlsearch wrapscan
 set ignorecase smartcase infercase
@@ -101,3 +81,7 @@ xmap gc  <Plug>VSCodeCommentary
 nmap gc  <Plug>VSCodeCommentary
 omap gc  <Plug>VSCodeCommentary
 nmap gcc <Plug>VSCodeCommentaryLine
+
+" Plugin.
+runtime! vscode-plug.vim
+

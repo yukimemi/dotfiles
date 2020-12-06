@@ -4,11 +4,6 @@
 " Last Change : 2020/12/05 21:07:08.
 " =============================================================================
 
-if exists('g:vscode')
-  source $HOME/.config/nvim/vscode-neovim.vim
-  finish
-endif
-
 " Init: {{{1
 set encoding=utf-8
 scriptencoding utf-8
@@ -44,7 +39,6 @@ let g:is_cygwin = has('win32unix')
 let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
 let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
 
-
 " Set path. {{{2
 set shellslash
 let $CACHE = expand('~/.cache')
@@ -65,6 +59,12 @@ else
     let $MYGVIMRC = expand('~/.gvimrc')
   endif
   let $BACKUP_PATH = expand('$CACHE/vim/back')
+endif
+
+" finish on VsCode Neovim. {{{1
+if exists('g:vscode')
+  source $HOME/.config/nvim/vscode-neovim.vim
+  finish
 endif
 
 " Functions: {{{1
