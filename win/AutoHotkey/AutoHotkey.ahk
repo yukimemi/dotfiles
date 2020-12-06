@@ -75,7 +75,7 @@ Activate(APPDATA . "Local\Microsoft\Teams\current\Teams.exe")
 return
 
 ; for gvim
-F10::
+^F10::
 Activate3("gvim.exe", "C:\tools\vim\vim82\gvim.exe", "GVIM")
 return
 ; for neovim
@@ -87,6 +87,11 @@ return
 ; ^F10::
 ; Activate("C:\Program Files (x86)\sakura\sakura.exe")
 ; return
+
+; for VSCode
+F10::
+Activate3("Code.exe", "C:\Program Files\Microsoft VS Code\Code.exe", "Visual Studio Code")
+return
 
 ; for chrome
 F11::
@@ -186,7 +191,7 @@ return
 ;SendInput !{TAB}
 ; for persistent script
 ; ^!v::
-^F10::
+#F10::
 target_wid := WinExist("A")
 saveclip := Clipboard
 Clipboard := ""

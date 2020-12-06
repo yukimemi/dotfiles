@@ -18,6 +18,10 @@ let g:is_cygwin = has('win32unix')
 let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
 let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
 
+" settings.
+set incsearch hlsearch wrapscan
+set ignorecase smartcase infercase
+
 " mappings.
 nnoremap <silent> j gj
 nnoremap <silent> k gk
