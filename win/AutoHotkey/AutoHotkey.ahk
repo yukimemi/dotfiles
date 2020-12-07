@@ -213,7 +213,8 @@ file.Write(Clipboard)
 file.Close()
 Clipboard := saveclip
 
-RunWait "%USERPROFILE%\scoop\apps\vim-kaoriya\current\gvim.exe" "--cmd" "let g:singleton#disable=1" %tempfile%
+; RunWait "%USERPROFILE%\scoop\apps\vim-kaoriya\current\gvim.exe" "--cmd" "let g:singleton#disable=1" %tempfile%
+RunWait "C:\Program Files\Microsoft VS Code\Code.exe" %tempfile%
 ;RunWait "%USERPROFILE%\app\Atom\atom.exe" %tempfile%
 
 file := FileOpen(tempfile, "r")
