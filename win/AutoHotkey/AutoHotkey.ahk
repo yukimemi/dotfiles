@@ -28,6 +28,18 @@ Toggle(app) {
   return
 }
 
+ToggleExe(app, exe) {
+  Process, Exist, %app%
+  if ErrorLevel <> 0
+    if WinActive("ahk_pid" . ErrorLevel)
+      WinMinimize, A
+    else
+      WinActivate, ahk_pid %ErrorLevel%
+  else
+    Run, %exe%
+  return
+}
+
 Activate(app) {
   SplitPath, app, file
   Process, Exist, %file%
@@ -152,10 +164,14 @@ return
 ; return
 
 ; for Fluent Terminal
-F12::
-Activate3("FluentTerminal.App.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\flute.exe", "Fluent")
-return
+; F12::
+; Activate3("FluentTerminal.App.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\flute.exe", "Fluent")
+; return
 
+; for Windows Terminal
+F12::
+ToggleExe("WindowsTerminal.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
+return
 
 ; for Edge
 ; F11::
@@ -185,7 +201,17 @@ return
 
 
 ; for vim
+#IfWinActive "GVIM"
 ^[::Send {Esc}{vk1Dsc07B}
+; for Visual Studio Code
+#IfWinActive "Visual Studio Code"
+^[::Send {Esc}{vk1Dsc07B}
+; for Google Chrome
+#IfWinActive "Google Chrome"
+^[::Send {Esc}{vk1Dsc07B}
+#IfWinActive
+
+^[::Send {Esc}
 
 ; for Windows 8.1
 ;SendInput !{TAB}

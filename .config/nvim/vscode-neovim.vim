@@ -1,6 +1,7 @@
 " settings.
 set incsearch hlsearch wrapscan
 set ignorecase smartcase infercase
+set clipboard=unnamedplus
 
 " mappings.
 nnoremap <silent> j gj
