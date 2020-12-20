@@ -109,7 +109,7 @@ Pack 'rhysd/committia.vim', {'if': !g:is_windows}
 Pack 'rhysd/conflict-marker.vim', {'type': 'lazyall'}
 
 " Textobj: {{{1
-Pack 'kana/vim-textobj-user', {'event': 'VimEnter'}
+Pack 'kana/vim-textobj-user'
 
 Pack 'gilligan/textobj-lastpaste', {'type': 'lazyall'}
 Pack 'kana/vim-textobj-entire', {'type': 'lazyall'}
@@ -124,7 +124,7 @@ Pack 'machakann/vim-swap', {'type': 'lazyall'}
 
 
 " Operator: {{{1
-Pack 'kana/vim-operator-user', {'event': 'VimEnter'}
+Pack 'kana/vim-operator-user'
 
 Pack 'kana/vim-operator-replace', {'type': 'lazyall'}
 Pack 'osyo-manga/vim-operator-search', {'type': 'lazyall'}

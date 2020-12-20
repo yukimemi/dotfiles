@@ -2,6 +2,7 @@
   "diagnostic.refreshAfterSave": true,
   "suggest.enablePreview": true,
   "list.source.lists.defaultOptions": ["--no-sort"],
+  "npm.binPath": "yarn",
   "list.source.files.args": ["--hidden", "--no-ignore-vcs", "--files"],
   "list.source.grep.defaultArgs": ["-smartcase", "-regex", "-skip-vcs-ignores"],
   "coc.preferences.formatOnSaveFiletypes": [

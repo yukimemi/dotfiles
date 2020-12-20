@@ -73,7 +73,7 @@ source $VIM_PATH/rc/vim-highlightedyank.vim
 
 [[plugins]]
 repo = 'machakann/vim-highlightedundo' # {{{2
-if = "executable('diff')"
+if = "executable('diff') && !g:is_windows"
 on_map = '<Plug>'
 hook_add = '''
 source $VIM_PATH/rc/vim-highlightedundo.vim
@@ -120,9 +120,6 @@ repo = 'gcavallanti/vim-noscrollbar' # {{{2
 if = '!has("nvim")'
 
 [[plugins]]
-repo = 'camspiers/animate.vim' # {{{2
-
-[[plugins]]
 repo = 'LumaKernel/nvim-visual-eof.lua' # {{{2
 if = "has('nvim')"
 hook_add = '''
@@ -134,10 +131,6 @@ repo =  'mg979/vim-xtabline' # {{{2
 
 
 # colorscheme
-
-[[plugins]]
-repo = 'kato-k/vim-colorscheme-settings' # {{{2
-on_cmd = ['SwitchColorScheme', 'SwitchBackGround']
 
 [[plugins]]
 repo = "NLKNguyen/papercolor-theme" # {{{2
@@ -250,9 +243,6 @@ on_event = ['VimEnter']
 
 [[plugins]]
 repo = "gelguy/wilder.nvim" # {{{2
-
-# on_event = ["CmdlineEnter", "CmdwinEnter"]
-
 hook_add = '''
 source $VIM_PATH/rc/wilder.nvim
 '''

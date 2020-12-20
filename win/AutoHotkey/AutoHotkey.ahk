@@ -1,17 +1,4 @@
-; IMPORTANT INFO ABOUT GETTING STARTED: Lines that start with a
-; semicolon, such as this one, are comments.  They are not executed.
-
-; This script has a special filename and path because it is automatically
-; launched when you run the program directly.  Also, any text file whose
-; name ends in .ahk is associated with the program, which means that it
-; can be launched simply by double-clicking it.  You can have as many .ahk
-; files as you want, located in any folder.  You can also run more than
-; one .ahk file simultaneously and each will get its own tray icon.
-
-; SAMPLE HOTKEYS: Below are two sample hotkeys.  The first is Win+Z and it
-; launches a web site in the default browser.  The second is Control+Alt+N
-; and it launches a new Notepad window (or activates an existing one).  To
-; try out these hotkeys, run AutoHotkey again, which will load this file.
+SetTitleMatchMode, 2
 
 #z::Run www.autohotkey.com
 
@@ -62,9 +49,7 @@ Activate2(app, cmd) {
 Activate3(app, cmd, title) {
   Process, Exist, %app%
   if (ErrorLevel <> 0) {
-      SetTitleMatchMode, 2
       WinActivate, %title%
-      SetTitleMatchMode, 1
   } else {
       Run, %cmd%
   }
@@ -199,20 +184,17 @@ return
 ; Activate(USERPROFILE . "\app\nyanfi64\NyanFi.exe")
 ; return
 
+; For Visual Studio
+^[::
+if WinActive("ahk_class Chrome_WidgetWin_1") or WinActive("ahk_class Vim") {
+  Send {Esc}{vk1Dsc07B}
+} else {
+  Send {Esc}
+}
+return
+; ^[::Send {Esc}
 
-; for vim
-#IfWinActive "GVIM"
-^[::Send {Esc}{vk1Dsc07B}
-; for Visual Studio Code
-#IfWinActive "Visual Studio Code"
-^[::Send {Esc}{vk1Dsc07B}
-; for Google Chrome
-#IfWinActive "Google Chrome"
-^[::Send {Esc}{vk1Dsc07B}
-#IfWinActive
-
-^[::Send {Esc}
-
+; ^[::Send {Esc}{vk1Dsc07B}
 ; for Windows 8.1
 ;SendInput !{TAB}
 ; for persistent script

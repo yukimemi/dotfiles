@@ -35,7 +35,10 @@
 "win/link/src" = "~/src"
 "win/link/tools" = "c:/tools"
 "win/terminus/config.yaml" = "~/AppData/Roaming/terminus/config.yaml"
-"win/wt/settings.json" = "~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+"win/wt/settings.json" = [
+  "~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json",
+  "~/AppData/Local/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json",
+]
 
 [darwin]
 ".config/espanso" = "~/Library/Preferences/espanso"
@@ -58,5 +61,6 @@
 ".inputrc" = "~/.inputrc"
 ".tmux.conf" = "~/.tmux.conf"
 ".xmodmap" = "~/.xmodmap"
+"win/Microsoft.PowerShell_profile.ps1" = "~/.config/PowerShell/Microsoft.PowerShell_profile.ps1"
 
 # vim: ft=toml:

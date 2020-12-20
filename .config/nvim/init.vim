@@ -516,9 +516,9 @@ au MyAutoCmd BufWritePost *
       \ endif
 
 " Plugin: {{{1
-let s:use_dein = v:false
+let s:use_dein = v:true
 let s:use_vimplug = v:false
-let s:use_minpac = v:true
+let s:use_minpac = v:false
 let s:use_packager = v:false
 let s:use_volt = v:false
 let s:use_pack = v:false
