@@ -13,11 +13,6 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 
-" let g:dein#auto_recache = 0
-" let g:dein#enable_notification = 1
-" let g:dein#install_max_processes = 8
-" let g:dein#types#git#clone_depth = 1
-
 let g:dein#install_github_api_token = $DEIN_GITHUB_API_TOKEN
 
 function! IsInstalled(name) abort

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/12/05 21:07:08.
+" Last Change : 2020/12/20 23:58:11.
 " =============================================================================
 
 " Init: {{{1
@@ -516,9 +516,9 @@ au MyAutoCmd BufWritePost *
       \ endif
 
 " Plugin: {{{1
-let s:use_dein = v:true
+let s:use_dein = v:false
 let s:use_vimplug = v:false
-let s:use_minpac = v:false
+let s:use_minpac = v:true
 let s:use_packager = v:false
 let s:use_volt = v:false
 let s:use_pack = v:false
@@ -528,7 +528,7 @@ let g:plugin_use_lightline = v:true
 let g:plugin_use_airline = v:false
 let g:plugin_use_neoline = v:false
 
-let g:plugin_use_coc = v:true
+let g:plugin_use_coc = v:false
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
 
@@ -538,7 +538,7 @@ let g:plugin_use_fzf = v:false
 let g:plugin_use_cocfzf = v:false
 let g:plugin_use_fz = v:false
 let g:plugin_use_denite = v:true
-let g:plugin_use_quickpick = v:true
+let g:plugin_use_quickpick = v:false
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')

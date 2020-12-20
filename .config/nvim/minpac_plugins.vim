@@ -3,7 +3,7 @@ Pack 'k-takata/minpac', {'type': 'opt'}
 
 " Visual: {{{1
 Pack 'LumaKernel/nvim-visual-eof.lua', {'type': 'lazyall', 'if': has('nvim')}
-Pack 'andymass/vim-matchup', {'event': 'CursorHold'}
+" Pack 'andymass/vim-matchup', {'event': 'CursorHold'}
 Pack 'itchyny/vim-cursorword', {'event': 'CursorHold'}
 Pack 'itchyny/vim-external', {'event': 'CursorHold'}
 Pack 'itchyny/vim-highlighturl', {'event': 'CursorHold'}
@@ -11,17 +11,17 @@ Pack 'itchyny/vim-parenmatch', {'event': 'CursorHold'}
 Pack 'jeffkreeftmeijer/vim-numbertoggle', {'type': 'lazyall'}
 Pack 'lambdalisue/glyph-palette.vim'
 Pack 'lambdalisue/nerdfont.vim'
-Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
+" Pack 'lambdalisue/seethrough.vim', {'if': !has('gui')}
 Pack 'luochen1990/rainbow', {'type': 'lazy'}
 Pack 'machakann/vim-highlightedyank', {'type': 'lazyall'}
-Pack 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
-Pack 'mattn/vimtweak', {'if': g:is_windows}
+" Pack 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
+" Pack 'mattn/vimtweak', {'if': g:is_windows}
 Pack 'nathanaelkane/vim-indent-guides', {'event': 'CursorHold', 'if': !has('nvim')}
 Pack 'glepnir/indent-guides.nvim', {'event': 'CursorHold', 'if': has('nvim')}
 Pack 'ntpeters/vim-better-whitespace', {'event': 'CursorHold'}
 Pack 't9md/vim-quickhl', {'event': 'CursorHold'}
-Pack 'Xuyuanp/scrollbar.nvim', {'if': has('nvim') && !g:is_windows}
-Pack 'kato-k/vim-colorscheme-settings', {'on': ['SwitchColorScheme', 'SwitchBackGround']}
+" Pack 'Xuyuanp/scrollbar.nvim', {'if': has('nvim') && !g:is_windows}
+" Pack 'kato-k/vim-colorscheme-settings', {'on': ['SwitchColorScheme', 'SwitchBackGround']}
 Pack 'mg979/vim-xtabline'
 
 " colorscheme {{{2
@@ -43,56 +43,56 @@ Pack 'adrian5/oceanic-next-vim', {'type': 'opt'}
 Pack 'sainnhe/edge', {'type': 'opt'}
 
 " Utility: {{{1
-Pack 'AndrewRadev/linediff.vim', {'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
+" Pack 'AndrewRadev/linediff.vim', {'on': ['Linediff', 'LinediffReset', 'LinediffShow']}
 Pack 'LeafCage/yankround.vim', {'type': 'lazyall'}
 Pack 'Shougo/context_filetype.vim', {'type': 'lazyall'}
 Pack 'Shougo/echodoc.vim', {'event': 'InsertEnter'}
 Pack 'airblade/vim-rooter', {'event': 'CursorHold'}
 Pack 'aiya000/aho-bakaup.vim', {'event': 'BufWritePre'}
-Pack 'chamindra/marvim', {'type': 'lazyall'}
-Pack 'da-x/name-assign.vim', {'on': '<Plug>NameAssign'}
+" Pack 'chamindra/marvim', {'type': 'lazyall'}
+" Pack 'da-x/name-assign.vim', {'on': '<Plug>NameAssign'}
 Pack 'editorconfig/editorconfig-vim', {'event': 'VimEnter'}
 Pack 'gelguy/wilder.nvim'
-Pack 'haya14busa/vim-edgemotion', {'on': ['<Plug>(edgemotion-j)', '<Plug>(edgemotion-k)']}
-Pack 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
+" Pack 'haya14busa/vim-edgemotion', {'on': ['<Plug>(edgemotion-j)', '<Plug>(edgemotion-k)']}
+" Pack 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Pack 'lambdalisue/readablefold.vim', {'event': 'CursorHold'}
 Pack 'lambdalisue/vim-findent', {'on': 'Findent'}
 Pack 'liuchengxu/vim-which-key', {'type': 'lazyall'}
-Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
+" Pack 'liuchengxu/vista.vim', {'type': 'lazyall'}
 Pack 'mattn/vim-sonictemplate', {'on': 'Template'}
-Pack 'mattn/webapi-vim', {'type': 'lazyall'}
+" Pack 'mattn/webapi-vim', {'type': 'lazyall'}
 Pack 'mbbill/undotree', {'on': 'UndotreeToggle'}
-Pack 'nicwest/vim-camelsnek', {'on': ['Snek', 'Camel', 'CamelB', 'Kebab']}
-Pack 'qpkorr/vim-renamer', {'type': 'lazyall'}
-Pack 'rbtnn/vim-coloredit', {'on': 'ColorEdit', 'if': !has('nvim')}
+" Pack 'nicwest/vim-camelsnek', {'on': ['Snek', 'Camel', 'CamelB', 'Kebab']}
+" Pack 'qpkorr/vim-renamer', {'type': 'lazyall'}
+" Pack 'rbtnn/vim-coloredit', {'on': 'ColorEdit', 'if': !has('nvim')}
 Pack 'rbtnn/vim-gloaded'
 Pack 'rbtnn/vim-vimscript_lasterror', {'on': 'VimscriptLastError'}
-Pack 'rickhowe/diffchar.vim', {'type': 'lazyall'}
+" Pack 'rickhowe/diffchar.vim', {'type': 'lazyall'}
 Pack 'romainl/vim-qf', {'for': ['quickfix', 'qf']}
 Pack 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pack 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
-Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
-Pack 'sentriz/vim-print-debug', {'type': 'lazyall'}
-Pack 't9md/vim-choosewin', {'type': 'lazyall'}
-Pack 'tenfyzhong/axring.vim', {'type': 'lazy'}
+" Pack 'roxma/vim-tmux-clipboard', {'type': 'lazyall', 'if': !g:is_windows}
+" Pack 'sentriz/vim-print-debug', {'type': 'lazyall'}
+" Pack 't9md/vim-choosewin', {'type': 'lazyall'}
+" Pack 'tenfyzhong/axring.vim', {'type': 'lazy'}
 Pack 'thinca/vim-ambicmd', {'event': 'VimEnter'}
-Pack 'thinca/vim-localrc'
-Pack 'thinca/vim-prettyprint', {'on': 'PP'}
+" Pack 'thinca/vim-localrc'
+" Pack 'thinca/vim-prettyprint', {'on': 'PP'}
 Pack 'thinca/vim-qfreplace', {'for': ['quickfix', 'qf']}
 Pack 'thinca/vim-singleton', {'if': !has('nvim') && has('clientserver')}
-Pack 'thinca/vim-submode', {'type': 'lazy'}
-Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windows && !has('nvim')}
+" Pack 'thinca/vim-submode', {'type': 'lazy'}
+" Pack 'tmux-plugins/vim-tmux-focus-events', {'type': 'lazyall', 'if': !g:is_windows && !has('nvim')}
 Pack 'tpope/vim-repeat', {'type': 'lazyall'}
-Pack 'tyru/capture.vim', {'on': 'Capture'}
-Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
-Pack 'tyru/restart.vim', {'on': 'Restart'}
+" Pack 'tyru/capture.vim', {'on': 'Capture'}
+" Pack 'tyru/open-browser.vim', {'type': 'lazyall'}
+" Pack 'tyru/restart.vim', {'on': 'Restart'}
 Pack 'vim-scripts/autodate.vim', {'event': 'InsertEnter'}
-Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
-Pack 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
+" Pack 'wakatime/vim-wakatime', {'type': 'lazyall'}
+" Pack 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
 Pack 'yegappan/mru', {'on': 'MRU'}
-Pack 'lilydjwg/colorizer', {'type': 'lazyall'}
+" Pack 'lilydjwg/colorizer', {'type': 'lazyall'}
 Pack 'seroqn/tozzy.vim', {'event': 'InsertEnter'}
-Pack 'direnv/direnv.vim', {'type': 'lazyall', 'if': !g:is_windows}
+" Pack 'direnv/direnv.vim', {'type': 'lazyall', 'if': !g:is_windows}
 
 " Comment: {{{1
 Pack 'Shougo/junkfile.vim', {'on': 'JunkfileOpen'}
@@ -105,7 +105,7 @@ Pack 'twitvim/twitvim', {'type': 'lazyall'}
 " Git: {{{1
 Pack 'itchyny/vim-gitbranch', {'type': 'lazyall'}
 Pack 'lambdalisue/gina.vim', {'on': 'Gina'}
-Pack 'rhysd/committia.vim', {'if': !g:is_windows}
+" Pack 'rhysd/committia.vim', {'if': !g:is_windows}
 Pack 'rhysd/conflict-marker.vim', {'type': 'lazyall'}
 
 " Textobj: {{{1
@@ -133,12 +133,12 @@ Pack 'machakann/vim-sandwich', {'type': 'lazyall'}
 
 
 " Search: {{{1
-Pack 'eugen0329/vim-esearch', {'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
+" Pack 'eugen0329/vim-esearch', {'on': ['<Plug>(esearch)', '<Plug>(esearch-word-under-cursor)']}
 Pack 'haya14busa/vim-asterisk', {'type': 'lazyall'}
 Pack 'markonm/traces.vim', {'type': 'lazyall'}
-Pack 'mhinz/vim-grepper', {'type': 'lazyall'}
-Pack 'pechorin/any-jump.vim', {'on_cmd': ['AnyJumpLastResults', 'AnyJumpBack', 'AnyJumpVisual', 'AnyJump']}
-Pack 'obcat/vim-hitspop', {'type': 'lazyall'}
+" Pack 'mhinz/vim-grepper', {'type': 'lazyall'}
+" Pack 'pechorin/any-jump.vim', {'on_cmd': ['AnyJumpLastResults', 'AnyJumpBack', 'AnyJumpVisual', 'AnyJump']}
+" Pack 'obcat/vim-hitspop', {'type': 'lazyall'}
 
 " Shell: {{{1
 Pack 'Shougo/deol.nvim', {'on': ['Deol', 'DeolCd', 'DeolEdit'], 'do': 'silent! UpdateRemotePlugins'}
@@ -148,16 +148,16 @@ Pack 'sheerun/vim-polyglot'
 
 " markdown {{{2
 Pack 'plasticboy/vim-markdown', {'for': 'markdown'}
-Pack 'dkarter/bullets.vim', {'for': 'markdown'}
-Pack 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
-Pack 'iamcco/markdown-preview.nvim', {'on': 'MarkdownPreview', 'do': '!cd app & yarn install'}
-Pack 'previm/previm', {'on': 'PrevimOpen'}
+" Pack 'dkarter/bullets.vim', {'for': 'markdown'}
+" Pack 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
+" Pack 'iamcco/markdown-preview.nvim', {'on': 'MarkdownPreview', 'do': '!cd app & yarn install'}
+" Pack 'previm/previm', {'on': 'PrevimOpen'}
 
 " html {{{2
-Pack 'mattn/emmet-vim', {'for': 'html'}
+" Pack 'mattn/emmet-vim', {'for': 'html'}
 
 " plantuml # {{{2
-Pack 'tsuyoshicho/plantuml-previewer.vim', {'for': 'plantuml'}
+" Pack 'tsuyoshicho/plantuml-previewer.vim', {'for': 'plantuml'}
 
 " Fuzzy: {{{1
 if g:plugin_use_ctrlp
@@ -196,7 +196,7 @@ endif
 
 
 if g:plugin_use_lightline
-  Pack 'itchyny/lightline.vim', {'event': ['CursorHold', 'CursorMoved']}
+  Pack 'itchyny/lightline.vim', {'event': ['CursorHold', 'CursorMoved', 'FocusLost']}
 endif
 
 if g:plugin_use_airline
