@@ -13,7 +13,6 @@ nnoremap <silent> <Up>   gk
 nnoremap <silent> h <Left>
 nnoremap <silent> l <Right>
 inoremap <silent> <c-l> <C-g>U<Right>
-
 noremap <silent> gh ^
 noremap <silent> gl $
 nnoremap <silent> Y y$

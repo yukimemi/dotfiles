@@ -14,7 +14,7 @@ let s:minpac_download = 0
 if has('vim_starting')
   if !isdirectory(expand(s:minpac_dir))
     echo "Install minpac ..."
-    execute 'silent! !git clone -b devel --depth 1 https://github.com/k-takata/minpac ' . s:minpac_dir
+    execute 'silent! !git clone --depth 1 https://github.com/k-takata/minpac ' . s:minpac_dir
     let s:minpac_download = 1
   endif
   if !filereadable(expand(s:plugpac_dir . '/autoload/plugpac.vim'))

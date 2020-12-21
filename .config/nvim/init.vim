@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/12/20 23:58:11.
+" Last Change : 2020/12/21 18:23:02.
 " =============================================================================
 
 " Init: {{{1
@@ -339,6 +339,7 @@ nnoremap <silent> <Up>   gk
 nnoremap <silent> h <Left>
 nnoremap <silent> l <Right>
 inoremap <silent> <c-l> <C-g>U<Right>
+
 " Open folding in "l"
 nnoremap <expr> l foldlevel(line('.')) ? "\<Right>zo" : "\<Right>"
 
@@ -517,8 +518,8 @@ au MyAutoCmd BufWritePost *
 
 " Plugin: {{{1
 let s:use_dein = v:false
-let s:use_vimplug = v:false
-let s:use_minpac = v:true
+let s:use_vimplug = v:true
+let s:use_minpac = v:false
 let s:use_packager = v:false
 let s:use_volt = v:false
 let s:use_pack = v:false

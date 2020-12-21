@@ -20,7 +20,7 @@ function! IsInstalled(name) abort
 endfunction
 
 if !dein#load_state(s:dein_dir)
-  if !has('nvim')
+  if has('clientserver')
     call dein#call_hook('source')
   endif
   finish
@@ -31,7 +31,7 @@ let s:toml_file = $VIM_PATH . '/dein.toml'
 call dein#begin(s:dein_dir, [$MYVIMRC, s:toml_file])
 call dein#load_toml(s:toml_file)
 call dein#end()
-if !has('nvim')
+if has('clientserver')
   call dein#call_hook('source')
 endif
 call dein#save_state()
