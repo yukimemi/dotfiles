@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/12/21 18:23:02.
+" Last Change : 2020/12/22 12:54:45.
 " =============================================================================
 
 " Init: {{{1
@@ -154,7 +154,7 @@ if has('nvim')
 endif
 
 " python
-if g:is_windows && !has('nvim')
+if g:is_windows && has('nvim')
   let g:python3_host_prog = expand('$USERPROFILE') . '/scoop/apps/python/current/python.exe'
 endif
 

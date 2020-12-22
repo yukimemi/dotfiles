@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : vimplug.vim
 " Author      : yukimemi
-" Last Change : 2020/02/10 23:42:43.
+" Last Change : 2020/12/22 13:00:00.
 " =============================================================================
 
 " Plugin: {{{1
@@ -165,5 +165,5 @@ function! IsInstalled(name) abort
 endfunction
 
 " Load plugin config.
-call map(s:p.plugs->items(), { i,  v -> s:source_plugin_cfg(v[0]) })
+call map(items(s:p.plugs), { _, v -> s:source_plugin_cfg(v[0]) })
 

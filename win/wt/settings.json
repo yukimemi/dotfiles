@@ -28,7 +28,7 @@
     "defaults": {
       // Put settings here that you want to apply to all profiles.
       "fontFace": "Cica",
-      "fontSize": 12,
+      "fontSize": 10,
       "antialiasingMode": "cleartype",
       "cursorShape": "vintage",
       "useAcrylic": true,
