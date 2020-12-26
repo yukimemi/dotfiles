@@ -46,11 +46,6 @@ zinit light-mode for \
   zsh-users/zsh-autosuggestions \
   zsh-users/zsh-history-substring-search
 
-zinit wait lucid from"gh-r" as"program" mv"direnv* -> direnv" \
-  atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
-  pick"direnv" src="zhook.zsh" for \
-  direnv/direnv
-
 zinit wait lucid from"gh-r" as"program" pick"bit" for \
   chriswalz/bit
 
