@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : vimplug.vim
 " Author      : yukimemi
-" Last Change : 2020/12/22 13:00:00.
+" Last Change : 2020/12/23 15:09:04.
 " =============================================================================
 
 " Plugin: {{{1
@@ -82,14 +82,22 @@ Pg 'mattn/ctrlp-matchfuzzy'
 Pg 'suy/vim-ctrlp-commandline'
 
 " Fern:
-Pg 'lambdalisue/fern.vim'
-Pg 'lambdalisue/fern-bookmark.vim'
-Pg 'lambdalisue/fern-comparator-lexical.vim'
-Pg 'lambdalisue/fern-git-status.vim'
-Pg 'lambdalisue/fern-git.vim'
-Pg 'lambdalisue/fern-hijack.vim'
-Pg 'lambdalisue/fern-mapping-git.vim'
-Pg 'lambdalisue/fern-renderer-nerdfont.vim'
+if g:plugin_use_fern
+  Pg 'lambdalisue/fern.vim'
+  Pg 'lambdalisue/fern-bookmark.vim'
+  Pg 'lambdalisue/fern-comparator-lexical.vim'
+  Pg 'lambdalisue/fern-git-status.vim'
+  Pg 'lambdalisue/fern-git.vim'
+  Pg 'lambdalisue/fern-hijack.vim'
+  Pg 'lambdalisue/fern-mapping-git.vim'
+  Pg 'lambdalisue/fern-renderer-nerdfont.vim'
+endif
+
+" Molder:
+if g:plugin_use_molder
+  Pg 'mattn/vim-molder'
+  Pg 'mattn/vim-molder-operations'
+endif
 
 " Textobj:
 Pg 'kana/vim-textobj-user'
@@ -149,6 +157,7 @@ Pg 'thinca/vim-prettyprint', {'on': ['PP']}
 Pg 'thinca/vim-singleton'
 Pg 'tpope/vim-repeat'
 Pg 'vim-scripts/autodate.vim'
+Pg 'qpkorr/vim-renamer', {'on': ['Renamer']}
 
 " Pg 'neoclide/coc.nvim'
 

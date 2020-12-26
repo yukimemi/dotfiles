@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2020/12/22 12:54:45.
+" Last Change : 2020/12/24 23:26:07.
 " =============================================================================
 
 " Init: {{{1
@@ -518,9 +518,9 @@ au MyAutoCmd BufWritePost *
 
 " Plugin: {{{1
 let s:use_dein = v:false
-let s:use_vimplug = v:true
+let s:use_vimplug = v:false
 let s:use_minpac = v:false
-let s:use_packager = v:false
+let s:use_packager = v:true
 let s:use_volt = v:false
 let s:use_pack = v:false
 let s:use_packer = v:false
@@ -529,7 +529,7 @@ let g:plugin_use_lightline = v:true
 let g:plugin_use_airline = v:false
 let g:plugin_use_neoline = v:false
 
-let g:plugin_use_coc = v:false
+let g:plugin_use_coc = v:true
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
 
@@ -543,12 +543,12 @@ let g:plugin_use_quickpick = v:false
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
-let g:plugin_use_fern = v:true
+let g:plugin_use_fern = v:false
 let g:plugin_use_defx = v:false
 let g:plugin_use_molder = v:false
 let g:plugin_use_vaffle = v:false
 let g:plugin_use_viler = v:false
-let g:plugin_use_coc_explorer = v:false
+let g:plugin_use_coc_explorer = v:true
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1
