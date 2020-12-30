@@ -1,14 +1,14 @@
 " =============================================================================
-" File        : minpac.vim
+" File        : vscode-minpac.vim
 " Author      : yukimemi
-" Last Change : 2020/12/30 15:30:29.
+" Last Change : 2020/07/25 21:42:42.
 " =============================================================================
 
 " Plugin:
-" Use minpac.
-let $CACHE_HOME_VIM = expand('$CACHE_HOME/vim')
-set packpath^=$CACHE_HOME_VIM
-let s:package_home = $CACHE_HOME_VIM . '/pack/minpac'
+" Use minpac. {{{1
+let $CACHE_HOME_VSCODE = expand('$CACHE_HOME/vscode-neovim')
+set packpath^=$CACHE_HOME_VSCODE
+let s:package_home = $CACHE_HOME_VSCODE . '/pack/minpac'
 let s:minpac_dir = s:package_home . '/opt/minpac'
 let s:minpac_download = 0
 if has('vim_starting')
@@ -89,8 +89,39 @@ function! PackInit() abort
   endfor
 endfunction
 
-" Plugin list.
-source $VIM_PATH/pluginslist.vim
+" Visual:
+Pg 'ntpeters/vim-better-whitespace', {'event': ['CursorHold', 'CursorMoved', 'FocusLost']}
+
+" Textobj:
+Pg 'kana/vim-textobj-user'
+Pg 'gilligan/textobj-lastpaste', {'event': 'VimEnter'}
+Pg 'kana/vim-textobj-entire', {'event': 'VimEnter'}
+Pg 'kana/vim-textobj-fold', {'event': 'VimEnter'}
+Pg 'kana/vim-textobj-function', {'event': 'VimEnter'}
+Pg 'kana/vim-textobj-indent', {'event': 'VimEnter'}
+Pg 'kana/vim-textobj-line', {'event': 'VimEnter'}
+Pg 'machakann/vim-textobj-delimited', {'event': 'VimEnter'}
+Pg 'osyo-manga/vim-textobj-multiblock', {'event': 'VimEnter'}
+Pg 'mattn/vim-textobj-url', {'event': 'VimEnter'}
+
+" Operator:
+Pg 'kana/vim-operator-user'
+Pg 'kana/vim-operator-replace', {'event': 'VimEnter'}
+Pg 'machakann/vim-sandwich', {'event': 'VimEnter'}
+Pg 'machakann/vim-swap', {'event': 'VimEnter'}
+Pg 'osyo-manga/vim-operator-search', {'event': 'VimEnter'}
+Pg 'osyo-manga/vim-operator-stay-cursor', {'event': 'VimEnter'}
+
+" Search:
+Pg 'haya14busa/vim-asterisk', {'event': 'VimEnter'}
+
+" Util:
+Pg 'Shougo/junkfile.vim', {'cmd': ['JunkfileOpen']}
+Pg 'thinca/vim-ambicmd'
+Pg 'thinca/vim-prettyprint', {'cmd': 'PP'}
+Pg 'tpope/vim-repeat', {'event': 'VimEnter'}
+Pg 'vim-scripts/autodate.vim', {'event': ['InsertEnter']}
+Pg 'mattn/vim-sonictemplate', {'on': 'Template'}
 
 command! PackUpdate source $MYVIMRC | call PackInit() | call minpac#update()
 command! PackClean  source $MYVIMRC | call PackInit() | call minpac#clean()

@@ -7,8 +7,9 @@
 " Plugin:
 " Use vim-plug.
 set shellslash
-let s:plug_dir = $CACHE_HOME . '/plugs'
-let s:vim_plug_dir = $CACHE_HOME . '/vim-plug'
+let s:cache_vscode = $CACHE_HOME . '/vscode-neovim'
+let s:plug_dir = s:cache_vscode . '/plugs'
+let s:vim_plug_dir = s:cache_vscode . '/vim-plug'
 if has('vim_starting')
   if !isdirectory(s:vim_plug_dir)
     echo "Install vim-plug ..."
@@ -33,6 +34,7 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'
 Plug 't9md/vim-quickhl'
 Plug 'vim-scripts/autodate.vim'
+Plug 'ntpeters/vim-better-whitespace'
 
 call plug#end()
 
@@ -49,3 +51,4 @@ silent! so $VIM_PATH/rc/vim-textobj-entire.vim
 silent! so $VIM_PATH/rc/vim-textobj-fold.vim
 silent! so $VIM_PATH/rc/vim-textobj-indent.vim
 silent! so $VIM_PATH/rc/vim-textobj-user.vim
+silent! so $VIM_PATH/rc/vim-better-whitespace.vim

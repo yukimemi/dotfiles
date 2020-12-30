@@ -43,6 +43,13 @@ function! s:manageEditorSize(...)
   endfor
 endfunction
 
+command! -bar ToScratch
+      \ setlocal buftype=nofile bufhidden=hide noswapfile
+
+command! -nargs=1 -complete=command L
+      \ <mods> new | ToScratch |
+      \ call setline(1, split(execute(<q-args>), '\n'))
+
 " tab.
 nnoremap <silent> <c-l> <cmd>call <SID>switchEditor(v:count, 'next')<cr>
 nnoremap <silent> <c-h> <cmd>call <SID>switchEditor(v:count, 'prev')<cr>
@@ -86,5 +93,18 @@ omap gc  <Plug>VSCodeCommentary
 nmap gcc <Plug>VSCodeCommentaryLine
 
 " Plugin.
-runtime! vscode-plug.vim
+let s:use_dein = v:false
+let s:use_vimplug = v:false
+let s:use_minpac = v:true
+let s:use_packager = v:false
+let s:use_volt = v:false
+let s:use_pack = v:false
+let s:use_packer = v:false
 
+if s:use_dein
+  runtime! vscode-dein.vim
+elseif s:use_vimplug
+  runtime! vscode-plug.vim
+elseif s:use_minpac
+  runtime! vscode-minpac.vim
+endif

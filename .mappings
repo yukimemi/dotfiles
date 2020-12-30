@@ -34,6 +34,7 @@
 "win/link/scoop" = "~/scoop"
 "win/link/src" = "~/src"
 "win/link/tools" = "c:/tools"
+"win/link/nvim-data" = "~/AppData/Local/nvim-data"
 "win/terminus/config.yaml" = "~/AppData/Roaming/terminus/config.yaml"
 "win/wt/settings.json" = [
   "~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json",
