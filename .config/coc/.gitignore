@@ -2,6 +2,7 @@ commands
 history.json
 list-commands-history.json
 list-diagnostics-history.json
+list-explorerFiles-history.json
 list-extensions-history.json
 list-files-history.json
 list-gfiles-history.json

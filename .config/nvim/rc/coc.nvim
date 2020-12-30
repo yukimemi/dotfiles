@@ -21,6 +21,7 @@ let g:coc_global_extensions = [
       \ "coc-marketplace",
       \ "coc-nextword",
       \ "coc-prettier",
+      \ "coc-project",
       \ "coc-snippets",
       \ "coc-toml",
       \ "coc-translator",
@@ -167,7 +168,7 @@ if g:plugin_use_coc_explorer
 endif
 
 " coc-todolist {{{1
-nnoremap <leader>l :<c-u>CocCommand todolist.create<cr>
+" nnoremap <leader>l :<c-u>CocCommand todolist.create<cr>
 
 " coc-terminal {{{1
 " nmap <leader>s <Plug>(coc-terminal-toggle)
