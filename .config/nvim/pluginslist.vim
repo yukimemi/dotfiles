@@ -33,6 +33,7 @@ Pg 't9md/vim-quickhl', {'event': g:lazy_events}
 Pg 'JKirchartz/vim-colors-megapack', {'type': 'opt'}
 Pg 'NLKNguyen/papercolor-theme', {'type': 'opt'}
 Pg 'adrian5/oceanic-next-vim', {'type': 'opt'}
+Pg 'ayu-theme/ayu-vim', {'type': 'opt'}
 Pg 'bluz71/vim-nightfly-guicolors', {'type': 'opt'}
 Pg 'cocopon/iceberg.vim', {'type': 'opt'}
 Pg 'drewtempelmeyer/palenight.vim', {'type': 'opt'}
@@ -43,11 +44,13 @@ Pg 'glepnir/zephyr-nvim', {'type': 'opt'}
 Pg 'joshdick/onedark.vim', {'type': 'opt'}
 Pg 'kjssad/quantum.vim', {'type': 'opt'}
 Pg 'rafi/awesome-vim-colorschemes', {'type': 'opt'}
+Pg 'rakr/vim-one', {'type': 'opt'}
 Pg 'rhysd/vim-color-spring-night', {'type': 'opt'}
 Pg 'romgrk/github-light.vim', {'type': 'opt'}
 Pg 'sainnhe/edge', {'type': 'opt'}
 Pg 'sainnhe/gruvbox-material', {'type': 'opt'}
 Pg 'severij/vadelma', {'type': 'opt'}
+Pg 'ulwlu/elly.vim', {'type': 'opt'}
 Pg 'yasukotelin/shirotelin', {'type': 'opt'}
 
 " Utility:
