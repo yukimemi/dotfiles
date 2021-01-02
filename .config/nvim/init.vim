@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/01/02 16:28:07.
+" Last Change : 2021/01/02 17:15:04.
 " =============================================================================
 
 " Init: {{{1
@@ -536,20 +536,21 @@ let g:plugin_use_deoplete = v:false
 
 let g:plugin_use_ctrlp = v:true
 let g:plugin_use_clap = v:false
-let g:plugin_use_fzf = v:true
-let g:plugin_use_cocfzf = v:false
+let g:plugin_use_fzf = v:false
+let g:plugin_use_cocfzf = v:true
 let g:plugin_use_fz = v:false
 let g:plugin_use_denite = v:true
 let g:plugin_use_quickpick = v:false
+let g:plugin_use_telescope = v:false && has('nvim')
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
 let g:plugin_use_fern = v:false
-let g:plugin_use_defx = v:false
+let g:plugin_use_defx = v:true
 let g:plugin_use_molder = v:false
 let g:plugin_use_vaffle = v:false
 let g:plugin_use_viler = v:false
-let g:plugin_use_coc_explorer = v:true
+let g:plugin_use_coc_explorer = v:false
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1

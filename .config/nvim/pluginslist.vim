@@ -255,6 +255,16 @@ if g:plugin_use_fzf
   Pg 'junegunn/fzf', {'do': {-> fzf#install()}}
   Pg 'yuki-ycino/fzf-preview.vim', {'branch': 'release/rpc'}
 endif
+if g:plugin_use_cocfzf
+  Pg 'junegunn/fzf', {'do': {-> fzf#install()}}
+  Pg 'yuki-ycino/fzf-preview.vim', {'branch': 'release/remote'}
+endif
+
+if g:plugin_use_telescope
+  Pg 'nvim-lua/plenary.nvim'
+  Pg 'nvim-lua/popup.nvim'
+  Pg 'nvim-telescope/telescope.nvim'
+endif
 
 
 " Completion:
