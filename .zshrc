@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2020/11/15 23:52:12.
+# Last Change : 2021/01/02 14:21:14.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -39,7 +39,8 @@ zinit wait lucid light-mode for \
   zsh-users/zsh-completions \
   agkozak/zsh-z \
   supercrabtree/k \
-  @asdf-vm/asdf
+  @asdf-vm/asdf \
+  jeffreytse/zsh-vi-mode
 
 zinit light-mode for \
   atload"_zsh_autosuggest_start" \
@@ -253,6 +254,13 @@ fi
 #
 if type shelp > /dev/null 2>&1; then
   eval "$(shelp init -)"
+fi
+
+#
+# pmy. {{{1
+#
+if type pmy > /dev/null 2>&1; then
+  eval "$(pmy init)"
 fi
 
 #

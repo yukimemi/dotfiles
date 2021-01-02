@@ -73,8 +73,8 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+vmap <localleader>f  <Plug>(coc-format-selected)
+nmap <localleader>f  <Plug>(coc-format-selected)
 
 " Setup formatexpr specified filetype(s).
 au MyAutoCmd FileType typescript,json,markdown,html,css,xml setl formatexpr=CocAction('formatSelected')

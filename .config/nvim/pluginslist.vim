@@ -103,6 +103,7 @@ Pg 'tyru/restart.vim', {'cmd': 'Restart'}
 Pg 'vim-scripts/autodate.vim', {'event': 'InsertEnter'}
 Pg 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
 Pg 'yegappan/mru', {'cmd': 'MRU'}
+Pg 'tweekmonster/startuptime.vim', {'cmd': 'StartupTime'}
 
 " Comment:
 Pg 'tyru/caw.vim', {'event': g:lazy_events}
@@ -214,6 +215,10 @@ if g:plugin_use_airline
   Pg 'vim-airline/vim-airline-themes'
 endif
 
+if g:plugin_use_lualine
+  Pg 'hoob3rt/lualine.nvim'
+endif
+
 if g:plugin_use_neoline
   Pg 'adelarsq/neoline.vim'
 endif
@@ -244,6 +249,11 @@ if g:plugin_use_defx
 
   Pg 'kristijanhusak/defx-icons', {'type': 'opt'}
   Pg 'kristijanhusak/defx-git', {'type': 'opt'}
+endif
+
+if g:plugin_use_fzf
+  Pg 'junegunn/fzf', {'do': {-> fzf#install()}}
+  Pg 'yuki-ycino/fzf-preview.vim', {'branch': 'release/rpc'}
 endif
 
 

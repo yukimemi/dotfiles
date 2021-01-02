@@ -32,7 +32,7 @@ mapkey(
 
 // qmarks
 const overlayedGlobalMarks = {
-  "0": [
+  0: [
     "https://b.hatena.ne.jp",
     "https://zenn.dev",
     "https://qiita.com",
@@ -40,15 +40,15 @@ const overlayedGlobalMarks = {
     "https://www.reddit.com/r/neovim",
     "https://www.reddit.com/r/fishshell",
   ],
-  "1": [
+  1: [
     "https://vim-jp.slack.com",
     "https://mohikanz.slack.com",
     "https://yukimemi.slack.com",
     "https://tweetdeck.twitter.com",
     "https://www.facebook.com",
   ],
-  "2": "http://www.google.com/calendar",
-  "3": "https://www.google.com/contacts/#contacts",
+  2: "http://www.google.com/calendar",
+  3: "https://www.google.com/contacts/#contacts",
   m: [
     "https://mail.google.com/mail/u/0",
     "https://mail.google.com/mail/u/1",
@@ -109,6 +109,16 @@ mapkey("go", "#10Jump to vim-like mark in current tab.", function (mark) {
     };
     RUNTIME("openLink", markInfo);
   }
+});
+
+// Google jp 1 year
+addSearchAliasX(
+  "1",
+  "Google jp 1 year",
+  "https://www.google.co.jp/search?q={0}&tbs=qdr:y,lr:lang_1ja&lr=lang_ja"
+);
+mapkey("o1", "#8Open Search with alias 1", () => {
+  Front.openOmnibar({ type: "SearchEngine", extra: "1" });
 });
 
 addSearchAlias("y", "youtube", "https://www.youtube.com/results?search_query=");

@@ -8,7 +8,7 @@ let g:airline#extensions#tabline#switch_buffers_and_tabs = 0
 let g:airline#extensions#whitespace#enabled = 1
 
 " theme
-let g:airline_theme = 'oceanicnext'
+let g:airline_theme = 'one'
 
 
 let g:airline_mode_map = {
