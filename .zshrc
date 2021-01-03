@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/01/02 14:21:14.
+# Last Change : 2021/01/03 19:02:47.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -261,6 +261,13 @@ fi
 #
 if type pmy > /dev/null 2>&1; then
   eval "$(pmy init)"
+fi
+
+#
+# direnv. {{{1
+#
+if type pmy > /dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
 fi
 
 #
