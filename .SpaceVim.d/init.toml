@@ -61,12 +61,15 @@ name = 'operator'
 name = 'incsearch'
 
 [[custom_plugins]]
-name = 'kana/vim-operator-replace'
+repo = 'kana/vim-operator-replace'
 on_event = ['VimEnter']
 
 [[custom_plugins]]
-name = 'machakann/vim-sandwich'
+repo = 'machakann/vim-sandwich'
 on_event = ['VimEnter']
 
 [[custom_plugins]]
-name = 'gelguy/wilder.nvim'
+repo = 'gelguy/wilder.nvim'
+
+[[custom_plugins]]
+repo = 'lambdalisue/seethrough.vim'
