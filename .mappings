@@ -1,4 +1,5 @@
 [general]
+".SpaceVim.d" = "~/.SpaceVim.d"
 ".config" = "~/.config"
 ".editorconfig" = "~/.editorconfig"
 ".qutebrowser" = "~/.qutebrowser"
@@ -10,8 +11,6 @@
 
 [windows]
 ".config/espanso" = "~/scoop/apps/espanso/current/.espanso"
-".config/nvim" = ["~/vimfiles", "~/AppData/Local/nvim"]
-".config/nvim/init.vim" = "~/_vimrc"
 ".config/rhq" = "~/AppData/Roaming/rhq"
 ".gvimrc" = "~/_gvimrc"
 ".hyper.js" = "~/AppData/Roaming/Hyper/.hyper.js"
@@ -43,8 +42,6 @@
 
 [darwin]
 ".config/espanso" = "~/Library/Preferences/espanso"
-".config/nvim" = "~/.vim"
-".config/nvim/init.vim" = "~/.vimrc"
 ".config/rhq" = "~/Library/Preferences/rhq"
 ".gvimrc" = "~/.gvimrc"
 ".hyper.js" = "~/.hyper.js"
@@ -55,8 +52,6 @@
 "win/Microsoft.PowerShell_profile.ps1" = "~/.config/PowerShell/Microsoft.PowerShell_profile.ps1"
 
 [linux]
-".config/nvim" = "~/.vim"
-".config/nvim/init.vim" = "~/.vimrc"
 ".gvimrc" = "~/.gvimrc"
 ".hyper.js" = "~/.hyper.js"
 ".inputrc" = "~/.inputrc"

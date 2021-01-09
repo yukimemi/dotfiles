@@ -1,0 +1,59 @@
+#=============================================================================
+# dark_powered.toml --- dark powered configuration example for SpaceVim
+# Copyright (c) 2016-2020 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+# All SpaceVim option below [option] section
+[options]
+    autocomplete_method = 'coc'
+    automatic_update = false
+    bootstrap_after = 'myspacevim#after'
+    bootstrap_before = 'myspacevim#before'
+    buffer_index_type = 4
+    colorscheme = "gruvbox"
+    colorscheme_bg = "dark"
+    disabled_plugins = ["neomake.vim"]
+    enable_googlesuggest = true
+    enable_guicolors = true
+    enable_statusline_mode = false
+    enable_tabline_filetype_icon = true
+    statusline_iseparator = "arrow"
+    statusline_separator = "arrow"
+    enable_projects_cache = true
+    projects_cache_num = 20
+
+# Enable autocomplete layer
+[[layers]]
+name = 'autocomplete'
+auto_completion_return_key_behavior = "complete"
+auto_completion_tab_key_behavior = "smart"
+
+[[layers]]
+name = 'colorscheme'
+
+[[layers]]
+name = 'tools'
+
+[[layers]]
+name = 'shell'
+default_position = 'top'
+default_height = 30
+
+[[layers]]
+name = 'denite'
+
+[[layers]]
+name = 'japanese'
+
+[[layers]]
+name = 'lsp'
+
+[[layers]]
+name = 'operator'
+
+[[layers]]
+name = 'incsearch'
+

@@ -1,0 +1,1 @@
+/Users/yukimemi/.dotfiles/.config/nvim
