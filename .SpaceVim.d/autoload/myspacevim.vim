@@ -150,7 +150,7 @@ function! myspacevim#after() abort
   " Plugins:
   " source $SPACE_VIM/rc/ale.vim
   " source $SPACE_VIM/rc/clever-f.vim
-  " source $SPACE_VIM/rc/vim-ps1.vim
+  source $SPACE_VIM/rc/vim-operator-replace.vim
 
   if g:is_windows
     " source $SPACE_VIM/rc/asyncomplete.vim

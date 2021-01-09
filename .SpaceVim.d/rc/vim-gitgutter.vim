@@ -1,0 +1,2 @@
+set signcolumn=yes
+

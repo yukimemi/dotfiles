@@ -1,0 +1,25 @@
+tnoremap <esc> <c-\><c-n>
+if g:is_windows
+  nnoremap <leader>s :<c-u>execute 'Deol pwsh' '-cwd='.fnamemodify(expand('%'), ':h')<cr>
+else
+  nnoremap <leader>s :<c-u>execute 'Deol' '-cwd='.fnamemodify(expand('%'), ':h')<cr>
+endif
+
+au MyAutoCmd FileType deol nnoremap <buffer> p <c-w>""
+
+let g:deol#custom_map = {
+      \ 'bg': '<c-z>',
+      \ 'ctrl_c': '<c-c>',
+      \ 'edit': 'e',
+      \ 'execute_line': '<cr>',
+      \ 'next_prompt': '<c-n>',
+      \ 'paste_prompt': '<c-y>',
+      \ 'previous_prompt': '<c-p>',
+      \ 'quit': 'q',
+      \ 'start_append': 'a',
+      \ 'start_append_last': 'A',
+      \ 'start_insert': 'i',
+      \ 'start_insert_first': 'I',
+      \ }
+
+" vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

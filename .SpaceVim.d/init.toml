@@ -42,7 +42,7 @@ name = 'git'
 
 [[layers]]
 name = 'shell'
-default_position = 'top'
+default_position = 'bottom'
 default_height = 30
 
 [[layers]]
@@ -60,3 +60,13 @@ name = 'operator'
 [[layers]]
 name = 'incsearch'
 
+[[custom_plugins]]
+name = 'kana/vim-operator-replace'
+on_event = ['VimEnter']
+
+[[custom_plugins]]
+name = 'machakann/vim-sandwich'
+on_event = ['VimEnter']
+
+[[custom_plugins]]
+name = 'gelguy/wilder.nvim'
