@@ -6,10 +6,12 @@ Pg 'kristijanhusak/vim-packager', {'type': 'opt'}
 
 " Visual:
 " Pg 'Xuyuanp/scrollbar.nvim', {'if': has('nvim') && !g:is_windows}
+" Pg 'glepnir/indent-guides.nvim', {'event': g:lazy_events, 'if': has('nvim')}
+" Pg 'nathanaelkane/vim-indent-guides', {'event': g:lazy_events, 'if': !has('nvim')}
 Pg 'LumaKernel/nvim-visual-eof.lua', {'if': has('nvim')}
+Pg 'Yggdroot/indentLine', {'event': g:lazy_events}
 Pg 'andymass/vim-matchup', {'event': g:lazy_events}
 Pg 'dstein64/nvim-scrollview', {'event': g:lazy_events, 'if': has('nvim') && !g:is_windows}
-Pg 'glepnir/indent-guides.nvim', {'event': g:lazy_events, 'if': has('nvim')}
 Pg 'itchyny/vim-cursorword', {'event': g:lazy_events}
 Pg 'itchyny/vim-external', {'event': g:lazy_events}
 Pg 'itchyny/vim-highlighturl', {'event': g:lazy_events}
@@ -24,7 +26,6 @@ Pg 'machakann/vim-highlightedyank', {'event': 'VimEnter'}
 Pg 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
 Pg 'mattn/vimtweak', {'if': g:is_windows}
 Pg 'mg979/vim-xtabline', {'event': 'VimEnter', 'if': !has('nvim')}
-Pg 'nathanaelkane/vim-indent-guides', {'event': g:lazy_events, 'if': !has('nvim')}
 Pg 'ntpeters/vim-better-whitespace', {'event': g:lazy_events}
 Pg 'romgrk/barbar.nvim', {'if': has('nvim')}
 Pg 't9md/vim-quickhl', {'event': g:lazy_events}

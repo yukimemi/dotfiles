@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/01/02 17:15:04.
+" Last Change : 2021/01/10 01:44:51.
 " =============================================================================
 
 " Init: {{{1
@@ -530,8 +530,8 @@ let g:plugin_use_airline = v:true
 let g:plugin_use_neoline = v:false
 let g:plugin_use_lualine = v:false
 
-let g:plugin_use_coc = v:true
-let g:plugin_use_asyncomplete = v:false
+let g:plugin_use_coc = v:false
+let g:plugin_use_asyncomplete = v:true
 let g:plugin_use_deoplete = v:false
 
 let g:plugin_use_ctrlp = v:true
