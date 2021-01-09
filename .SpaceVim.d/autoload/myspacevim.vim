@@ -180,15 +180,22 @@ function! myspacevim#after() abort
   let g:spacevim_guifont = "Cica:h10"
 
   " Plugins:
-  " source $SPACE_VIM/rc/ale.vim
-  " source $SPACE_VIM/rc/clever-f.vim
   source $SPACE_VIM/rc/vim-operator-replace.vim
+  source $SPACE_VIM/rc/clever-f.vim
+  source $SPACE_VIM/rc/wilder.nvim
 
   " denite
   au MyAutoCmd FileType denite call <SID>denite_filter_my_settings()
   function! s:denite_filter_my_settings() abort
     nnoremap <silent><buffer><nowait><expr> <esc> denite#do_map('quit')
   endfunction
+
+  " vim-ambicmd
+  let g:ambicmd#show_completion_menu = 1
+
+  cnoremap <expr> <space> ambicmd#expand("\<space>")
+  cnoremap <expr> <cr>    ambicmd#expand("\<cr>")
+  cnoremap <expr> <C-f>   ambicmd#expand("\<right>")
 
 endfunction
 
