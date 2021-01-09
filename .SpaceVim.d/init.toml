@@ -38,6 +38,9 @@ name = 'colorscheme'
 name = 'tools'
 
 [[layers]]
+name = 'git'
+
+[[layers]]
 name = 'shell'
 default_position = 'top'
 default_height = 30
