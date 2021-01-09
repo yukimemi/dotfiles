@@ -9,7 +9,7 @@
 # All SpaceVim option below [option] section
 [options]
     autocomplete_method = 'coc'
-    automatic_update = false
+    automatic_update = true
     bootstrap_after = 'myspacevim#after'
     bootstrap_before = 'myspacevim#before'
     buffer_index_type = 4
@@ -18,14 +18,16 @@
     disabled_plugins = ["neomake.vim"]
     enable_googlesuggest = true
     enable_guicolors = true
+    enable_projects_cache = true
     enable_statusline_mode = false
     enable_tabline_filetype_icon = true
+    filemanager = "defx"
+    filetree_direction = "left"
+    projects_cache_num = 20
     statusline_iseparator = "arrow"
     statusline_separator = "arrow"
-    enable_projects_cache = true
-    projects_cache_num = 20
 
-# Enable autocomplete layer
+
 [[layers]]
 name = 'autocomplete'
 auto_completion_return_key_behavior = "complete"
@@ -60,6 +62,12 @@ name = 'operator'
 [[layers]]
 name = 'incsearch'
 
+[[layers]]
+name = 'test'
+
+[[layers]]
+name = 'ui'
+
 [[custom_plugins]]
 repo = 'kana/vim-operator-replace'
 on_event = ['VimEnter']
@@ -73,3 +81,14 @@ repo = 'gelguy/wilder.nvim'
 
 [[custom_plugins]]
 repo = 'lambdalisue/seethrough.vim'
+
+[[custom_plugins]]
+repo = 'thinca/vim-ambicmd'
+
+[[custom_plugins]]
+repo = 'roxma/nvim-yarp'
+if = "!has('nvim')"
+
+[[custom_plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = "!has('nvim')"

@@ -147,11 +147,6 @@ function! myspacevim#after() abort
   au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
   au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
 
-  " Plugins:
-  " source $SPACE_VIM/rc/ale.vim
-  " source $SPACE_VIM/rc/clever-f.vim
-  source $SPACE_VIM/rc/vim-operator-replace.vim
-
   if g:is_windows
     " source $SPACE_VIM/rc/asyncomplete.vim
   else
@@ -183,6 +178,17 @@ function! myspacevim#after() abort
 
   " GUI:
   let g:spacevim_guifont = "Cica:h10"
+
+  " Plugins:
+  " source $SPACE_VIM/rc/ale.vim
+  " source $SPACE_VIM/rc/clever-f.vim
+  source $SPACE_VIM/rc/vim-operator-replace.vim
+
+  " denite
+  au MyAutoCmd FileType denite call <SID>denite_filter_my_settings()
+  function! s:denite_filter_my_settings() abort
+    nnoremap <silent><buffer><nowait><expr> <esc> denite#do_map('quit')
+  endfunction
 
 endfunction
 
