@@ -1,4 +1,4 @@
-let g:lazy_events = ['CursorHold', 'CursorMoved', 'FocusLost']
+let g:lazy_events = ['CursorHold', 'FocusLost']
 
 " Plugins:
 Pg 'k-takata/minpac', {'type': 'opt'}
@@ -211,9 +211,9 @@ if g:plugin_use_lightline
 endif
 
 if g:plugin_use_airline
-  Pg 'vim-airline/vim-airline'
+  Pg 'vim-airline/vim-airline', {'event': g:lazy_events}
 
-  Pg 'vim-airline/vim-airline-themes'
+  " Pg 'vim-airline/vim-airline-themes'
 endif
 
 if g:plugin_use_lualine
