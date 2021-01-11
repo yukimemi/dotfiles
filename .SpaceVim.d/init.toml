@@ -52,7 +52,7 @@ default_position = 'bottom'
 default_height = 30
 
 [[layers]]
-name = 'denite'
+name = 'leaderf'
 
 [[layers]]
 name = 'japanese'
@@ -131,6 +131,13 @@ repo = 'vim-scripts/autodate.vim'
 on_event = ['InsertEnter']
 hook_add = '''
 source $SPACE_VIM/rc/autodate.vim
+'''
+
+[[custom_plugins]]
+repo = 'thinca/vim-submode'
+on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $SPACE_VIM/rc/vim-submode.vim
 '''
 
 [[custom_plugins]]
