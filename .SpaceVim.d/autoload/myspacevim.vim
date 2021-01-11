@@ -31,17 +31,16 @@ function! myspacevim#before() abort
   let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
 
   " Functions:
-  function! Mkdir(dir) "{{{2
-    if !isdirectory(a:dir)
-      call mkdir(a:dir, "p")
-    endif
+  " dein install check func
+  function! IsInstalled(name) abort
+    silent! return !dein#check_install(a:name)
   endfunction
 
 endfunction
 
 function! myspacevim#after() abort
   " Functions:
-  function! s:open_current_dir() abort "{{{2
+  function! s:open_current_dir() abort
     if g:is_windows
       setl noshellslash
       silent! exe printf("!start \"%s\"", expand("%:h"))
@@ -56,6 +55,8 @@ function! myspacevim#after() abort
   " Options.
   set cmdheight=2
   set virtualedit+=block
+  set wildmenu wildignorecase wildmode=longest:full,full
+  set ignorecase smartcase infercase
 
   " Clipboard.
   set clipboard=unnamed,unnamedplus
@@ -67,6 +68,24 @@ function! myspacevim#after() abort
   if executable("jvgrep")
     set grepprg=jvgrep
   endif
+
+  " Commands:
+  " VimShowHlGroup: Show highlight group name under a cursor
+  " https://rcmdnk.com/blog/2013/12/01/computer-vim/
+  command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
+  " VimShowHlItem: Show highlight item name under a cursor
+  command! VimShowHlItem echo synIDattr(synID(line("."), col("."), 1), "name")
+
+  " https://qiita.com/1000k/items/6d4953d2dd52fdd86556
+  command! RemoveAnsi %s/<1b>\[[0-9;]*m//g
+
+  " https://daisuzu.hatenablog.com/entry/2018/12/13/012608
+  command! -bar ToScratch
+        \ setlocal buftype=nofile bufhidden=hide noswapfile
+
+  command! -nargs=1 -complete=command L
+        \ <mods> new | ToScratch |
+        \ call setline(1, split(execute(<q-args>), '\n'))
 
   " Mappings:
   nnoremap <silent> ,, :<c-u>update<cr>
@@ -129,6 +148,8 @@ function! myspacevim#after() abort
 
   " Escape cmd win.
   au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <esc> :q<cr>
+  " Escape quickfix.
+  au MyAutoCmd FileType quickfix,qf nnoremap <silent><buffer><nowait> <esc> :q<cr>
 
   " Escape E211.
   au MyAutoCmd FileChangedShell * execute
@@ -181,13 +202,27 @@ function! myspacevim#after() abort
 
   " Plugins:
   source $SPACE_VIM/rc/vim-operator-replace.vim
-  source $SPACE_VIM/rc/clever-f.vim
   source $SPACE_VIM/rc/wilder.nvim
+  source $SPACE_VIM/rc/coc.nvim
 
   " denite
-  au MyAutoCmd FileType denite call <SID>denite_filter_my_settings()
-  function! s:denite_filter_my_settings() abort
+  au MyAutoCmd FileType denite call <SID>denite_my_custom_settings()
+  au MyAutoCmd FileType denite-filter call <SID>denite_filter_my_custom_settings()
+  function! s:denite_my_custom_settings() abort
+    nnoremap <silent><buffer><nowait><expr> <cr> denite#do_map('do_action')
     nnoremap <silent><buffer><nowait><expr> <esc> denite#do_map('quit')
+    nnoremap <silent><buffer><nowait><expr> <space> denite#do_map('toggle_select').'j'
+    nnoremap <silent><buffer><nowait><expr> d denite#do_map('do_action', 'delete')
+    nnoremap <silent><buffer><nowait><expr> i denite#do_map('open_filter_buffer')
+    nnoremap <silent><buffer><nowait><expr> p denite#do_map('do_action', 'preview')
+    nnoremap <silent><buffer><nowait><expr> q denite#do_map('quit')
+  endfunction
+
+  function! s:denite_filter_my_custom_settings() abort
+    nmap <silent><buffer><nowait> <esc> <Plug>(denite_filter_quit)
+    inoremap <silent><buffer> <c-j> <esc><c-w>p:call cursor(line('.')+1,0)<cr><c-w>pA
+    inoremap <silent><buffer> <c-k> <esc><c-w>p:call cursor(line('.')-1,0)<cr><c-w>pA
+    inoremap <silent><buffer><nowait><expr> <cr> denite#do_map('do_action')
   endfunction
 
   " vim-ambicmd

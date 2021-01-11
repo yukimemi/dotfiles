@@ -8,22 +8,26 @@
 
 # All SpaceVim option below [option] section
 [options]
-    autocomplete_method = 'coc'
-    automatic_update = true
-    bootstrap_after = 'myspacevim#after'
-    bootstrap_before = 'myspacevim#before'
+    autocomplete_method = "coc"
+    automatic_update = false
+    bootstrap_after = "myspacevim#after"
+    bootstrap_before = "myspacevim#before"
     buffer_index_type = 4
-    colorscheme = "gruvbox"
+    colorscheme = "SpaceVim"
     colorscheme_bg = "dark"
-    disabled_plugins = ["neomake.vim"]
+    disabled_plugins = ["neco-syntax", "vim-surround", "clever-f.vim"]
+    enable_ale = false
     enable_googlesuggest = true
     enable_guicolors = true
+    enable_neomake = true
     enable_projects_cache = true
     enable_statusline_mode = false
     enable_tabline_filetype_icon = true
-    filemanager = "defx"
+    filemanager = "vimfiler"
     filetree_direction = "left"
-    projects_cache_num = 20
+    lint_on_the_fly = true
+    max_column = 120
+    projects_cache_num = 50
     statusline_iseparator = "arrow"
     statusline_separator = "arrow"
 
@@ -40,7 +44,7 @@ name = 'colorscheme'
 name = 'tools'
 
 [[layers]]
-name = 'git'
+name = 'checkers'
 
 [[layers]]
 name = 'shell'
@@ -68,6 +72,15 @@ name = 'test'
 [[layers]]
 name = 'ui'
 
+[[layers]]
+name = 'lang#toml'
+
+[[layers]]
+name = 'lang#rust'
+
+[[layers]]
+name = 'lang#markdown'
+
 [[custom_plugins]]
 repo = 'kana/vim-operator-replace'
 on_event = ['VimEnter']
@@ -86,9 +99,34 @@ repo = 'lambdalisue/seethrough.vim'
 repo = 'thinca/vim-ambicmd'
 
 [[custom_plugins]]
+repo = 'rbtnn/vim-gloaded'
+
+[[custom_plugins]]
+repo = 'lambdalisue/gina.vim'
+on_cmd = ['Gina']
+hook_add = '''
+source $SPACE_VIM/rc/gina.vim
+'''
+
+[[custom_plugins]]
+repo = 'glidenote/memolist.vim'
+on_cmd = ['MemoList', 'MemoNew', 'MemoGrep']
+hook_add = '''
+source $SPACE_VIM/rc/memolist.vim
+'''
+
+[[custom_plugins]]
+repo = 'unblevable/quick-scope'
+on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $SPACE_VIM/rc/quick-scope.vim
+'''
+
+[[custom_plugins]]
 repo = 'roxma/nvim-yarp'
 if = "!has('nvim')"
 
 [[custom_plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
 if = "!has('nvim')"
+
