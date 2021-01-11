@@ -58,9 +58,6 @@ name = 'denite'
 name = 'japanese'
 
 [[layers]]
-name = 'lsp'
-
-[[layers]]
 name = 'operator'
 
 [[layers]]
@@ -120,6 +117,20 @@ repo = 'unblevable/quick-scope'
 on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $SPACE_VIM/rc/quick-scope.vim
+'''
+
+[[custom_plugins]]
+repo = 'haya14busa/vim-edgemotion'
+on_map = '<Plug>'
+hook_add = '''
+source $SPACE_VIM/rc/vim-edgemotion.vim
+'''
+
+[[custom_plugins]]
+repo = 'vim-scripts/autodate.vim'
+on_event = ['InsertEnter']
+hook_add = '''
+source $SPACE_VIM/rc/autodate.vim
 '''
 
 [[custom_plugins]]

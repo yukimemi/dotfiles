@@ -30,7 +30,8 @@ let g:coc_global_extensions = [
       \ "coc-yank",
       \ ]
 
-if g:plugin_use_cocfzf
+let s:plugin_use_cocfzf = get(g:, "plugin_use_cocfzf", v:false)
+if s:plugin_use_cocfzf
   call add(g:coc_global_extensions, "coc-fzf-preview")
 endif
 
@@ -103,7 +104,7 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " coc-list {{{1
-if g:plugin_use_cocfzf
+if s:plugin_use_cocfzf
   nmap <leader>f [fzf-p]
   xmap <leader>f [fzf-p]
 
@@ -163,7 +164,8 @@ imap <c-k> <Plug>(coc-snippets-expand-jump)
 " nnoremap <leader>bl :<c-u>CocList bookmark<cr>
 
 " coc-explorer {{{1
-if g:plugin_use_coc_explorer
+let s:plugin_use_coc_explorer = get(g:, "plugin_use_coc_explorer", v:false)
+if s:plugin_use_coc_explorer
   nnoremap ge :<c-u>CocCommand explorer<cr>
 endif
 

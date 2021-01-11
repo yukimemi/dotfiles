@@ -1,5 +1,6 @@
 commands
 history.json
+list-cmdhistory-history.json
 list-commands-history.json
 list-diagnostics-history.json
 list-explorerFiles-history.json

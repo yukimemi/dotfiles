@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : myspacevim.vim
 " Author      : yukimemi
-" Last Change : 2019/05/30 19:01:25.
+" Last Change : 2021/01/11 15:56:38.
 " =============================================================================
 
 function! myspacevim#before() abort
@@ -90,6 +90,17 @@ function! myspacevim#after() abort
   " Mappings:
   nnoremap <silent> ,, :<c-u>update<cr>
 
+  inoremap <silent> jj <esc>
+  nnoremap <silent> j gj
+  nnoremap <silent> k gk
+  xnoremap <silent> j gj
+  xnoremap <silent> k gk
+  nnoremap <silent> <Down> gj
+  nnoremap <silent> <Up>   gk
+  nnoremap <silent> h <Left>
+  nnoremap <silent> l <Right>
+  inoremap <silent> <c-l> <c-g>U<Right>
+
   " For window.
   nnoremap <silent> sj <c-w>j
   nnoremap <silent> sk <c-w>k
@@ -127,6 +138,7 @@ function! myspacevim#after() abort
 
   noremap <silent> gh ^
   noremap <silent> gl $
+  nnoremap <silent> Y y$
 
   nnoremap <silent> ,o :<c-u>call <SID>open_current_dir()<cr>
   inoremap <silent> <esc> <esc>:set iminsert=0<cr>
@@ -168,61 +180,19 @@ function! myspacevim#after() abort
   au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
   au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
 
-  if g:is_windows
-    " source $SPACE_VIM/rc/asyncomplete.vim
-  else
-    " source $SPACE_VIM/rc/coc.vim
-  endif
-
-  " FileType:
-  " xml
-  let g:xml_syntax_folding = 1
-  au MyAutoCmd BufNewFile,BufRead *.xml call <SID>filetype_xml()
-  function! s:filetype_xml() abort
-    setl noexpandtab
-    setl ts=4 sw=4 sts=0
-    setl foldmethod=syntax
-  endfunction
-
-  " markdow
-  let g:markdown_fenced_languages = [
-        \  'coffee',
-        \  'css',
-        \  'erb=eruby',
-        \  'javascript',
-        \  'js=javascript',
-        \  'json=javascript',
-        \  'ruby',
-        \  'sass',
-        \  'xml',
-        \ ]
-
-  " GUI:
-  let g:spacevim_guifont = "Cica:h10"
 
   " Plugins:
-  source $SPACE_VIM/rc/vim-operator-replace.vim
-  source $SPACE_VIM/rc/wilder.nvim
-  source $SPACE_VIM/rc/coc.nvim
-
   " denite
   au MyAutoCmd FileType denite call <SID>denite_my_custom_settings()
   au MyAutoCmd FileType denite-filter call <SID>denite_filter_my_custom_settings()
   function! s:denite_my_custom_settings() abort
-    nnoremap <silent><buffer><nowait><expr> <cr> denite#do_map('do_action')
     nnoremap <silent><buffer><nowait><expr> <esc> denite#do_map('quit')
-    nnoremap <silent><buffer><nowait><expr> <space> denite#do_map('toggle_select').'j'
-    nnoremap <silent><buffer><nowait><expr> d denite#do_map('do_action', 'delete')
-    nnoremap <silent><buffer><nowait><expr> i denite#do_map('open_filter_buffer')
-    nnoremap <silent><buffer><nowait><expr> p denite#do_map('do_action', 'preview')
-    nnoremap <silent><buffer><nowait><expr> q denite#do_map('quit')
   endfunction
 
   function! s:denite_filter_my_custom_settings() abort
     nmap <silent><buffer><nowait> <esc> <Plug>(denite_filter_quit)
     inoremap <silent><buffer> <c-j> <esc><c-w>p:call cursor(line('.')+1,0)<cr><c-w>pA
     inoremap <silent><buffer> <c-k> <esc><c-w>p:call cursor(line('.')-1,0)<cr><c-w>pA
-    inoremap <silent><buffer><nowait><expr> <cr> denite#do_map('do_action')
   endfunction
 
   " vim-ambicmd
@@ -231,6 +201,14 @@ function! myspacevim#after() abort
   cnoremap <expr> <space> ambicmd#expand("\<space>")
   cnoremap <expr> <cr>    ambicmd#expand("\<cr>")
   cnoremap <expr> <C-f>   ambicmd#expand("\<right>")
+
+  " others
+  source $SPACE_VIM/rc/vim-operator-replace.vim
+  source $SPACE_VIM/rc/wilder.nvim
+  source $SPACE_VIM/rc/coc.nvim
+
+  " GUI:
+  let g:spacevim_guifont = "Cica:h10"
 
 endfunction
 
