@@ -1,10 +1,14 @@
 " hide all
 set guioptions=
+set fillchars=vert:\|,fold:-,diff:-
+set listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
+set ambiwidth=double
 
 " color
 set background=dark
-silent! colorscheme oceanicnext
-if g:no_plugin
+silent! colorscheme ocean,icnext
+let s:no_plugin = get(g:, "no_plugin", v:false)
+if s:no_plugin
   colorscheme desert
 endif
 

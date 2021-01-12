@@ -8,34 +8,33 @@
 
 # All SpaceVim option below [option] section
 [options]
-    autocomplete_method = "coc"
-    automatic_update = false
-    bootstrap_after = "myspacevim#after"
-    bootstrap_before = "myspacevim#before"
-    buffer_index_type = 4
-    colorscheme = "SpaceVim"
-    colorscheme_bg = "dark"
-    disabled_plugins = ["neco-syntax", "vim-surround", "clever-f.vim"]
-    enable_ale = false
-    enable_googlesuggest = true
-    enable_guicolors = true
-    enable_neomake = true
-    enable_projects_cache = true
-    enable_statusline_mode = false
-    enable_tabline_filetype_icon = true
-    filemanager = "vimfiler"
-    filetree_direction = "left"
-    lint_on_the_fly = true
-    max_column = 120
-    projects_cache_num = 50
-    statusline_iseparator = "arrow"
-    statusline_separator = "arrow"
-
+autocomplete_method = "coc"
+automatic_update = false
+bootstrap_after = "myspacevim#after"
+bootstrap_before = "myspacevim#before"
+buffer_index_type = 4
+colorscheme = "SpaceVim"
+colorscheme_bg = "dark"
+disabled_plugins = ["neco-syntax", "vim-surround", "clever-f.vim"]
+enable_ale = false
+enable_googlesuggest = true
+enable_guicolors = true
+enable_neomake = true
+enable_projects_cache = true
+enable_statusline_mode = false
+enable_tabline_filetype_icon = true
+filemanager = "vimfiler"
+filetree_direction = "left"
+lint_on_the_fly = true
+max_column = 120
+projects_cache_num = 50
+statusline_iseparator = "arrow"
+statusline_separator = "arrow"
 
 [[layers]]
-name = 'autocomplete'
 auto_completion_return_key_behavior = "complete"
 auto_completion_tab_key_behavior = "smart"
+name = 'autocomplete'
 
 [[layers]]
 name = 'colorscheme'
@@ -47,9 +46,9 @@ name = 'tools'
 name = 'checkers'
 
 [[layers]]
-name = 'shell'
-default_position = 'bottom'
 default_height = 30
+default_position = 'bottom'
+name = 'shell'
 
 [[layers]]
 name = 'leaderf'
@@ -79,72 +78,98 @@ name = 'lang#rust'
 name = 'lang#markdown'
 
 [[custom_plugins]]
+hook_add = '''
+source $SPACE_VIM/rc/vim-operator-replace.vim
+'''
+on_event = ['VimEnter']
 repo = 'kana/vim-operator-replace'
-on_event = ['VimEnter']
 
 [[custom_plugins]]
+on_event = ['VimEnter']
 repo = 'machakann/vim-sandwich'
-on_event = ['VimEnter']
 
 [[custom_plugins]]
+hook_add = '''
+source $SPACE_VIM/rc/wilder.nvim
+'''
 repo = 'gelguy/wilder.nvim'
 
 [[custom_plugins]]
 repo = 'lambdalisue/seethrough.vim'
 
 [[custom_plugins]]
+hook_add = '''
+source $SPACE_VIM/rc/vim-ambicmd.vim
+'''
 repo = 'thinca/vim-ambicmd'
 
 [[custom_plugins]]
 repo = 'rbtnn/vim-gloaded'
 
 [[custom_plugins]]
-repo = 'lambdalisue/gina.vim'
-on_cmd = ['Gina']
 hook_add = '''
 source $SPACE_VIM/rc/gina.vim
 '''
+on_cmd = ['Gina']
+repo = 'lambdalisue/gina.vim'
 
 [[custom_plugins]]
-repo = 'glidenote/memolist.vim'
-on_cmd = ['MemoList', 'MemoNew', 'MemoGrep']
 hook_add = '''
 source $SPACE_VIM/rc/memolist.vim
 '''
+on_cmd = ['MemoList', 'MemoNew', 'MemoGrep']
+repo = 'glidenote/memolist.vim'
 
 [[custom_plugins]]
-repo = 'unblevable/quick-scope'
-on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $SPACE_VIM/rc/quick-scope.vim
 '''
+on_event = ['CursorHold', 'FocusLost']
+repo = 'unblevable/quick-scope'
 
 [[custom_plugins]]
-repo = 'haya14busa/vim-edgemotion'
-on_map = '<Plug>'
 hook_add = '''
 source $SPACE_VIM/rc/vim-edgemotion.vim
 '''
+on_map = '<Plug>'
+repo = 'haya14busa/vim-edgemotion'
 
 [[custom_plugins]]
-repo = 'vim-scripts/autodate.vim'
-on_event = ['InsertEnter']
 hook_add = '''
 source $SPACE_VIM/rc/autodate.vim
 '''
+on_event = ['InsertEnter']
+repo = 'vim-scripts/autodate.vim'
 
 [[custom_plugins]]
-repo = 'thinca/vim-submode'
-on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $SPACE_VIM/rc/vim-submode.vim
 '''
+on_event = ['CursorHold', 'FocusLost']
+repo = 'thinca/vim-submode'
 
 [[custom_plugins]]
+hook_source = '''
+source $SPACE_VIM/rc/vim-singleton.vim
+'''
+if = "!has('nvim') && has('clientserver')"
+repo = 'thinca/vim-singleton'
+
+[[custom_plugins]]
+hook_add = '''
+source $SPACE_VIM/rc/transparency-windows-vim.vim
+'''
+if = "g:is_windows && has('gui')"
+repo = 'mattn/transparency-windows-vim'
+
+[[custom_plugins]]
+if = "g:is_windows"
+repo = 'mattn/vimtweak'
+
+[[custom_plugins]]
+if = "!has('nvim')"
 repo = 'roxma/nvim-yarp'
-if = "!has('nvim')"
 
 [[custom_plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
 if = "!has('nvim')"
-
+repo = 'roxma/vim-hug-neovim-rpc'

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : myspacevim.vim
 " Author      : yukimemi
-" Last Change : 2021/01/11 15:56:38.
+" Last Change : 2021/01/12 11:20:57.
 " =============================================================================
 
 function! myspacevim#before() abort
@@ -195,20 +195,15 @@ function! myspacevim#after() abort
     inoremap <silent><buffer> <c-k> <esc><c-w>p:call cursor(line('.')-1,0)<cr><c-w>pA
   endfunction
 
-  " vim-ambicmd
-  let g:ambicmd#show_completion_menu = 1
-
-  cnoremap <expr> <space> ambicmd#expand("\<space>")
-  cnoremap <expr> <cr>    ambicmd#expand("\<cr>")
-  cnoremap <expr> <C-f>   ambicmd#expand("\<right>")
-
   " others
-  source $SPACE_VIM/rc/vim-operator-replace.vim
-  source $SPACE_VIM/rc/wilder.nvim
   source $SPACE_VIM/rc/coc.nvim
 
   " GUI:
   let g:spacevim_guifont = "Cica:h10"
+
+  if has('clientserver')
+    call dein#call_hook('source')
+  endif
 
 endfunction
 
