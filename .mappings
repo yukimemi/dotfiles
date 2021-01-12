@@ -28,7 +28,7 @@
 "win/link/.memolist" = "~/.memolist"
 "win/link/.nuget" = "~/.nuget"
 "win/link/.rustup" = "~/.rustup"
-"win/link/.SpaceVim" = ["~/.SpaceVim", "~/vimfiles"]
+"win/link/.SpaceVim" = ["~/.SpaceVim", "~/vimfiles", "~/AppData/Local/nvim"]
 "win/link/app" = "~/app"
 "win/link/archives" = "~/archives"
 "win/link/scoop" = "~/scoop"
