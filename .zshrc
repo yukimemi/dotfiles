@@ -37,7 +37,6 @@ zinit wait lucid light-mode for \
   zdharma/fast-syntax-highlighting \
   blockf atpull'zinit creinstall -q .' \
   zsh-users/zsh-completions \
-  agkozak/zsh-z \
   supercrabtree/k \
   @asdf-vm/asdf \
   jeffreytse/zsh-vi-mode
@@ -277,6 +276,11 @@ if type zoxide > /dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 fi
 
+# HSTR configuration - add this to ~/.zshrc
+alias hh=hstr                    # hh to be alias for hstr
+setopt histignorespace           # skip cmds w/ leading space from history
+export HSTR_CONFIG=hicolor       # get more colors
+bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
 
 #
 # starship. {{{1
@@ -295,7 +299,6 @@ fi
 if (which zprof > /dev/null) ;then
   zprof
 fi
-
 
 # vim:fdm=marker expandtab fdc=3 ft=zsh:
 
