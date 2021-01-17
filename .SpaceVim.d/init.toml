@@ -13,7 +13,7 @@ automatic_update = false
 bootstrap_after = "myspacevim#after"
 bootstrap_before = "myspacevim#before"
 buffer_index_type = 4
-colorscheme = "one"
+colorscheme = "forest-night"
 colorscheme_bg = "dark"
 disabled_plugins = ["neco-syntax", "vim-surround", "clever-f.vim"]
 enable_ale = false
@@ -177,6 +177,17 @@ on_event = ['CursorHold', 'FocusLost']
 [[custom_plugins]]
 if = "g:is_windows"
 repo = 'mattn/vimtweak'
+
+[[custom_plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+if = "has('nvim')"
+on_event = ['CursorHold', 'FocusLost']
+hook_source = '''
+source $SPACE_VIM/rc/nvim-treesitter.vim
+'''
+
+[[custom_plugins]]
+repo = 'sainnhe/forest-night'
 
 [[custom_plugins]]
 if = "!has('nvim')"
