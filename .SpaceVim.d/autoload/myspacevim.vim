@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : myspacevim.vim
 " Author      : yukimemi
-" Last Change : 2021/01/14 09:18:45.
+" Last Change : 2021/01/18 01:53:45.
 " =============================================================================
 
 function! myspacevim#before() abort
@@ -194,10 +194,12 @@ function! myspacevim#after() abort
     inoremap <silent><buffer> <c-j> <esc><c-w>p:call cursor(line('.')+1,0)<cr><c-w>pA
     inoremap <silent><buffer> <c-k> <esc><c-w>p:call cursor(line('.')-1,0)<cr><c-w>pA
   endfunction
+  nnoremap <leader>fc :<c-u>Denite command_history<cr>
+  nnoremap <leader>fH :<c-u>Denite help<cr>
 
   " others
+  " source $SPACE_VIM/rc/LeaderF.vim
   source $SPACE_VIM/rc/coc.nvim
-  source $SPACE_VIM/rc/LeaderF.vim
   source $SPACE_VIM/rc/indentLine.vim
 
   " GUI:
