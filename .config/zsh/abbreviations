@@ -1,5 +1,6 @@
 abbr -g F="| \$__FILTER_TOOL"
 abbr -g G="| grep -i --color=auto"
+abbr -g L="| bat"
 abbr a="git add"
 abbr b="cd .."
 abbr bi="bit"

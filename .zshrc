@@ -260,7 +260,7 @@ fi
 # pmy. {{{1
 #
 if type pmy > /dev/null 2>&1; then
-  eval "$(pmy init)"
+  # eval "$(pmy init)"
 fi
 
 #
