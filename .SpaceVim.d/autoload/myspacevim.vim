@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : myspacevim.vim
 " Author      : yukimemi
-" Last Change : 2021/01/12 11:20:57.
+" Last Change : 2021/01/14 09:18:45.
 " =============================================================================
 
 function! myspacevim#before() abort
@@ -39,6 +39,7 @@ function! myspacevim#before() abort
 endfunction
 
 function! myspacevim#after() abort
+
   " Functions:
   function! s:open_current_dir() abort
     if g:is_windows
@@ -49,7 +50,6 @@ function! myspacevim#after() abort
       silent! exe printf("!open \"%s\"", expand("%:h"))
     endif
   endfunction
-
 
   " Basic:
   " Options.
@@ -197,6 +197,8 @@ function! myspacevim#after() abort
 
   " others
   source $SPACE_VIM/rc/coc.nvim
+  source $SPACE_VIM/rc/LeaderF.vim
+  source $SPACE_VIM/rc/indentLine.vim
 
   " GUI:
   let g:spacevim_guifont = "Cica:h10"

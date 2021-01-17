@@ -5,8 +5,6 @@ set listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
 set ambiwidth=double
 
 " color
-set background=dark
-silent! colorscheme ocean,icnext
 let s:no_plugin = get(g:, "no_plugin", v:false)
 if s:no_plugin
   colorscheme desert

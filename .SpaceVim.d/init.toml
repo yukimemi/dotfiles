@@ -13,8 +13,8 @@ automatic_update = false
 bootstrap_after = "myspacevim#after"
 bootstrap_before = "myspacevim#before"
 buffer_index_type = 4
-colorscheme = "material"
-colorscheme_bg = "light"
+colorscheme = "one"
+colorscheme_bg = "dark"
 disabled_plugins = ["neco-syntax", "vim-surround", "clever-f.vim"]
 enable_ale = false
 enable_googlesuggest = true
@@ -145,11 +145,19 @@ on_event = ['InsertEnter']
 repo = 'vim-scripts/autodate.vim'
 
 [[custom_plugins]]
+repo = 'MTDL9/vim-log-highlighting'
+on_ft = ['log']
+
+[[custom_plugins]]
 hook_add = '''
 source $SPACE_VIM/rc/vim-submode.vim
 '''
 on_event = ['CursorHold', 'FocusLost']
 repo = 'thinca/vim-submode'
+
+[[custom_plugins]]
+repo = 'Shougo/junkfile.vim'
+on_cmd = ['JunkfileOpen']
 
 [[custom_plugins]]
 hook_source = '''
@@ -164,6 +172,7 @@ source $SPACE_VIM/rc/transparency-windows-vim.vim
 '''
 if = "g:is_windows && has('gui')"
 repo = 'mattn/transparency-windows-vim'
+on_event = ['CursorHold', 'FocusLost']
 
 [[custom_plugins]]
 if = "g:is_windows"
@@ -176,3 +185,4 @@ repo = 'roxma/nvim-yarp'
 [[custom_plugins]]
 if = "!has('nvim')"
 repo = 'roxma/vim-hug-neovim-rpc'
+
