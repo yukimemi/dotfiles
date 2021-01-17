@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/01/03 19:02:47.
+# Last Change : 2021/01/18 00:02:58.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -269,6 +269,14 @@ fi
 if type pmy > /dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
+
+#
+# zoxide. {{{1
+#
+if type zoxide > /dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
 
 #
 # starship. {{{1
