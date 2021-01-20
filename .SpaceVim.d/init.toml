@@ -20,11 +20,13 @@ enable_ale = false
 enable_googlesuggest = true
 enable_guicolors = true
 enable_neomake = true
+enable_os_fileformat_icon = true
 enable_projects_cache = true
 enable_statusline_mode = false
 enable_tabline_filetype_icon = true
 filemanager = "vimfiler"
 filetree_direction = "left"
+guifont = 'Cica:h10'
 lint_on_the_fly = true
 max_column = 120
 projects_cache_num = 50
@@ -79,6 +81,9 @@ name = 'lang#markdown'
 
 [[layers]]
 name = 'lang#powershell'
+
+[[layers]]
+name = 'lang#autohotkey'
 
 [[custom_plugins]]
 hook_add = '''
@@ -185,6 +190,9 @@ on_event = ['CursorHold', 'FocusLost']
 hook_source = '''
 source $SPACE_VIM/rc/nvim-treesitter.vim
 '''
+
+[[custom_plugins]]
+repo = 'thinca/vim-localrc'
 
 [[custom_plugins]]
 repo = 'sainnhe/forest-night'

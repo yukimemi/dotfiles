@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : myspacevim.vim
 " Author      : yukimemi
-" Last Change : 2021/01/18 01:53:45.
+" Last Change : 2021/01/18 09:24:23.
 " =============================================================================
 
 function! myspacevim#before() abort
@@ -196,6 +196,7 @@ function! myspacevim#after() abort
   endfunction
   nnoremap <leader>fc :<c-u>Denite command_history<cr>
   nnoremap <leader>fH :<c-u>Denite help<cr>
+  nnoremap <leader>ff :<c-u>Denite filetype<cr>
 
   " others
   " source $SPACE_VIM/rc/LeaderF.vim

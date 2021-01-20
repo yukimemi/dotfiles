@@ -109,6 +109,17 @@ function cd-ls {
   } -ArgumentList $funcs, (Get-Location).Path > $null
 }
 
+function cdls {
+  [CmdletBinding()]
+  param(
+    [Parameter(ValueFromPipeline=$true)]
+    [string]$path
+  )
+  trap { $_ }
+  Set-Location $path -ea Stop
+  ls
+}
+
 function RemoveTo-Trash {
   # https://qiita.com/Zuishin/items/1fa77bccd111b55f7bf6
   [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Path')]
@@ -201,7 +212,8 @@ Set-Alias df Get-DriveInfoView
 # Remove-Item alias:cd
 # Remove-Alias cd
 Remove-Item alias:cd
-Set-Alias cd cd-ls
+# Set-Alias cd cd-ls
+Set-Alias cd cdls
 # filter tool.
 if (Get-Command fzf -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER fzf
@@ -250,7 +262,7 @@ if ($readLineVersion.Major + 0.1 * $readLineVersion.Minor -ge 2.1) {
 # Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.Count) locations.`n"
 
 # z.
-function j {
+function _j {
   # z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | cd
   $z = & {
     if (Is-Windows) {
@@ -265,6 +277,14 @@ function j {
   Get-Content $z | __FILTER | cd
   Get-Job | Stop-Job -PassThru | Remove-Job -Force
 }
+
+function j { zi }
+
+# zoxide.
+Invoke-Expression (& {
+  $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
+  (zoxide init --hook $hook powershell) -join "`n"
+})
 
 # hash.
 function Get-FileAndHash {

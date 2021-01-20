@@ -91,12 +91,12 @@ Activate3("Code.exe", "C:\Program Files\Microsoft VS Code\Code.exe", "Visual Stu
 return
 
 ; for chrome
-; F11::
-; if FileExist("C:\Program Files\Google\Chrome\Application\chrome.exe")
-;   Activate("C:\Program Files\Google\Chrome\Application\chrome.exe")
-; else
-;   Activate("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
-; return
+F11::
+if FileExist("C:\Program Files\Google\Chrome\Application\chrome.exe")
+  Activate("C:\Program Files\Google\Chrome\Application\chrome.exe")
+else
+  Activate("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
+return
 
 ; for Edge
 ; F11::
@@ -109,9 +109,9 @@ return
 ; return
 
 ; for firefox
-F11::
-Activate("C:\Program Files\Mozilla Firefox\firefox.exe")
-return
+; F11::
+; Activate("C:\Program Files\Mozilla Firefox\firefox.exe")
+; return
 
 ; for cmd.exe
 ; F12::
