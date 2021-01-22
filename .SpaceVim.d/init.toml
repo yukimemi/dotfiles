@@ -122,6 +122,14 @@ on_cmd = ['Gina']
 repo = 'lambdalisue/gina.vim'
 
 [[custom_plugins]]
+repo = 'hrsh7th/vim-gitto'
+lazy = 1
+[[custom_plugins]]
+repo = 'hrsh7th/vim-denite-gitto'
+depends = ['denite.nvim', 'vim-gitto']
+on_cmd = ['DeniteGitto']
+
+[[custom_plugins]]
 hook_add = '''
 source $SPACE_VIM/rc/memolist.vim
 '''
@@ -134,6 +142,10 @@ source $SPACE_VIM/rc/quick-scope.vim
 '''
 on_event = ['CursorHold', 'FocusLost']
 repo = 'unblevable/quick-scope'
+
+[[custom_plugins]]
+repo = 'deris/vim-shot-f'
+on_event = ['CursorHold', 'FocusLost']
 
 [[custom_plugins]]
 hook_add = '''
@@ -193,6 +205,10 @@ source $SPACE_VIM/rc/nvim-treesitter.vim
 
 [[custom_plugins]]
 repo = 'thinca/vim-localrc'
+
+[[custom_plugins]]
+repo = 'thinca/vim-fontzoom'
+if = "has('gui')"
 
 [[custom_plugins]]
 repo = 'sainnhe/forest-night'

@@ -126,7 +126,7 @@ if s:plugin_use_cocfzf
 
 endif
 
-" nnoremap <silent> <leader><leader> :<c-u>CocList<cr>
+nnoremap <silent> <leader>cc :<c-u>CocList<cr>
 nnoremap <silent> <leader>cr :<c-u>CocList files --hidden ~/.rhq<cr>
 nnoremap <silent> <leader>cf :<c-u>CocList files --hidden ~/.dotfiles<cr>
 nnoremap <silent> <leader>cv :<c-u>CocList files --hidden ~/.cache<cr>
