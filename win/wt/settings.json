@@ -74,6 +74,12 @@
         "hidden": false,
         "name": "Azure Cloud Shell",
         "source": "Windows.Terminal.Azure"
+      },
+      {
+          "guid": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
+          "hidden": false,
+          "name": "PowerShell 7 Preview",
+          "source": "Windows.Terminal.PowershellCore"
       }
     ]
   },

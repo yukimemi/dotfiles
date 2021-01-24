@@ -16,9 +16,10 @@
 	di = diff
 	k = log --graph --pretty
 [core]
-	editor = nvim
 	autocrlf = false
+	editor = nvim
 	filemode = false
+  pager = delta
 [ghq]
 	root = ~/.cache/nvim/pack/minpac
 	root = ~/.go/src
@@ -39,3 +40,5 @@
 	protocol = https
 [pull]
 	rebase = true
+[delta]
+	side-by-side = true
