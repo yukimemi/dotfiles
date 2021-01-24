@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/01/18 00:02:58.
+# Last Change : 2021/01/24 00:33:22.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -170,6 +170,14 @@ function rebootwifi() {
   sleep 5
   networksetup -setairportpower en0 on
   networksetup -setdhcp Wi-Fi
+}
+
+# Build neovim. {{{2
+function buildneovim() {
+  rhq clone https://github.com/neovim/neovim
+  cd ~/src/github.com/neovim/neovim
+  make CMAKE_BUILD_TYPE=RelWithDebInfo
+  sudo make install
 }
 
 #
