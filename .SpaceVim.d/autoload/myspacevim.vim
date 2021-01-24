@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : myspacevim.vim
 " Author      : yukimemi
-" Last Change : 2021/01/22 21:13:06.
+" Last Change : 2021/01/24 19:55:10.
 " =============================================================================
 
 function! myspacevim#before() abort
@@ -226,7 +226,6 @@ function! myspacevim#after() abort
     nnoremap <silent> <leader>ff :<c-u>CtrlPFiletype<cr>
     nnoremap <silent> <leader>fl :<c-u>CtrlPLauncher<cr>
     nnoremap <silent> <leader>f/ :<c-u>CtrlPSearchHistory<cr>
-    nnoremap <silent> sct :<c-u>packadd sonictemplate-vim \| CtrlPSonictemplate<cr>
     nnoremap <silent> <leader>fc :<c-u>CtrlPCmdHistory<cr>
     " nnoremap <silent> <leader>fc :<c-u>CtrlPCommandLine<cr>
     nnoremap <silent> <leader>fM :<c-u>CtrlPMemolist<cr>

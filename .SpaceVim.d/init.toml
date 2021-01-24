@@ -16,13 +16,11 @@ buffer_index_type = 4
 colorscheme = "forest-night"
 colorscheme_bg = "dark"
 disabled_plugins = ["neco-syntax", "vim-surround", "clever-f.vim"]
-enable_ale = false
 enable_googlesuggest = true
 enable_guicolors = true
-enable_neomake = true
 enable_os_fileformat_icon = true
 enable_projects_cache = true
-enable_statusline_mode = false
+enable_statusline_mode = true
 enable_tabline_filetype_icon = true
 filemanager = "vimfiler"
 filetree_direction = "left"
@@ -35,9 +33,9 @@ statusline_separator = "arrow"
 statusline_right_sections = ['bomb', 'fileformat', 'cursorpos', 'percentage']
 
 [[layers]]
+name = 'autocomplete'
 auto_completion_return_key_behavior = "complete"
 auto_completion_tab_key_behavior = "smart"
-name = 'autocomplete'
 
 [[layers]]
 name = 'colorscheme'
@@ -47,6 +45,7 @@ name = 'tools'
 
 [[layers]]
 name = 'checkers'
+enable = false
 
 [[layers]]
 default_height = 30
@@ -54,7 +53,12 @@ default_position = 'bottom'
 name = 'shell'
 
 [[layers]]
+name = 'denite'
+enable = true
+
+[[layers]]
 name = 'ctrlp'
+enable = false
 
 [[layers]]
 name = 'japanese'
