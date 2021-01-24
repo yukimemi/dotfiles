@@ -32,6 +32,7 @@ max_column = 120
 projects_cache_num = 50
 statusline_iseparator = "arrow"
 statusline_separator = "arrow"
+statusline_right_sections = ['bomb', 'fileformat', 'cursorpos', 'percentage']
 
 [[layers]]
 auto_completion_return_key_behavior = "complete"
@@ -53,7 +54,7 @@ default_position = 'bottom'
 name = 'shell'
 
 [[layers]]
-name = 'denite'
+name = 'ctrlp'
 
 [[layers]]
 name = 'japanese'
@@ -130,11 +131,60 @@ depends = ['denite.nvim', 'vim-gitto']
 on_cmd = ['DeniteGitto']
 
 [[custom_plugins]]
+repo = 'kaneshin/ctrlp-filetype'
+depends = ['ctrlp.vim']
+on_cmd = ['CtrlPFiletype']
+
+[[custom_plugins]]
+repo = 'kaneshin/ctrlp-memolist'
+depends = ['ctrlp.vim']
+on_cmd = ['CtrlPMemolist']
+
+[[custom_plugins]]
+repo = 'kaneshin/ctrlp-sonictemplate'
+depends = ['ctrlp.vim']
+on_cmd = ['CtrlPSonictemplate']
+
+[[custom_plugins]]
+repo = 'mattn/ctrlp-launcher'
+depends = ['ctrlp.vim']
+on_cmd = ['CtrlPLauncher']
+
+[[custom_plugins]]
+repo = 'mattn/ctrlp-mark'
+depends = ['ctrlp.vim']
+on_cmd = ['CtrlPMark']
+
+[[custom_plugins]]
+repo = 'ompugao/ctrlp-history'
+depends = ['ctrlp.vim']
+on_cmd = ['CtrlPCmdHistory', 'CtrlPSearchHistory']
+
+[[custom_plugins]]
+repo = 'suy/vim-ctrlp-commandline'
+depends = ['ctrlp.vim']
+on_cmd = ['CtrlPCommandLine']
+
+[[custom_plugins]]
+repo = 'FelikZ/ctrlp-py-matcher'
+depends = ['ctrlp.vim']
+
+[[custom_plugins]]
+repo = 'raghur/fruzzy'
+depends = ['ctrlp.vim']
+hook_post_update = 'call fruzzy#install()'
+
+[[custom_plugins]]
+repo = 'mattn/ctrlp-matchfuzzy'
+depends = ['ctrlp.vim']
+if = "exists('*matchfuzzy')"
+
+[[custom_plugins]]
+repo = 'glidenote/memolist.vim'
 hook_add = '''
 source $SPACE_VIM/rc/memolist.vim
 '''
 on_cmd = ['MemoList', 'MemoNew', 'MemoGrep']
-repo = 'glidenote/memolist.vim'
 
 [[custom_plugins]]
 hook_add = '''
