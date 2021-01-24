@@ -44,8 +44,11 @@ name = 'colorscheme'
 name = 'tools'
 
 [[layers]]
+name = 'format'
+format_on_save = true
+
+[[layers]]
 name = 'checkers'
-enable = false
 
 [[layers]]
 default_height = 30
