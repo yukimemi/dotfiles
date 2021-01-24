@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/01/24 00:33:22.
+# Last Change : 2021/01/24 10:26:09.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -29,7 +29,7 @@ zinit light-mode for \
 
 
 #
-# plugin list. {{{2
+# plugin list.
 #
 zinit wait lucid light-mode for \
   olets/zsh-abbr \
@@ -50,21 +50,21 @@ zinit wait lucid from"gh-r" as"program" pick"bit" for \
   chriswalz/bit
 
 #
-# for git. {{{2
+# for git.
 #
 zinit wait lucid as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode for \
   tj/git-extras
 
 
 #
-# zinit packages {{{2
+# zinit packages
 #
 # zinit pack for ls_colors
 zinit wait pack for \
   dircolors-material
 
 #
-# functions. {{{1
+# functions.
 #
 function pdfmin() {
   local cnt=0
@@ -90,7 +90,7 @@ function pet-select() {
 }
 zle -N pet-select
 
-# Filter function. {{{2
+# Filter function.
 function __filter_execute() {
   $__FILTER_TOOL | while read line
   do
@@ -106,14 +106,14 @@ function __filter_select() {
   done
 }
 
-# Filter history. {{{2
+# Filter history.
 function __filter_history() {
   BUFFER=$(history -n 1 | $__FILTER_TOOL)
   zle clear-screen
 }
 zle -N __filter_history
 
-# cd and ls. {{{2
+# cd and ls.
 if which lsd > /dev/null 2>&1; then
   alias ls='lsd'
 elif which exa > /dev/null 2>&1; then
@@ -123,13 +123,13 @@ else
 fi
 function chpwd() { ls -F }
 
-# z and filter cd. {{{2
+# z and filter cd.
 function __filter_z_cd() {
   zshz -t $1 | awk '{ $1=""; print }' | __filter_execute cd
   # z -t $1 | tac | awk '{ $1=""; print }' | __filter_execute cd
 }
 
-# kill. {{{2
+# kill.
 function __filter_kill() {
   line=$(ps -ef | $__FILTER_TOOL)
   echo "Kill: [$line]"
@@ -137,7 +137,7 @@ function __filter_kill() {
 }
 zle -N __filter_kill
 
-# ghq list and change dir. {{{2
+# ghq list and change dir.
 function ghq-list-cd() {
   local selected_dir=$(ghq list --full-path | $__FILTER_TOOL)
   if [ -n "$selected_dir" ]; then
@@ -148,7 +148,7 @@ function ghq-list-cd() {
 }
 zle -N ghq-list-cd
 
-# zsh vi key command line stack - Qiita {{{2
+# zsh vi key command line stack - Qiita
 # http://qiita.com/items/1f2c7793944b1f6cc346
 function show-buffer-stack() {
   POSTDISPLAY="
@@ -158,13 +158,13 @@ function show-buffer-stack() {
 zle -N show-buffer-stack
 setopt noflowcontrol
 
-# show option for zsh. {{{2
+# show option for zsh.
 # http://qiita.com/mollifier/items/26c67347734f9fcda274
 function showoptions() {
   set -o | sed -e 's/^no\(.*\)on$/\1  off/' -e 's/^no\(.*\)off$/\1  on/'
 }
 
-# reboot wifi. {{{2
+# reboot wifi.
 function rebootwifi() {
   networksetup -setairportpower en0 off
   sleep 5
@@ -172,7 +172,7 @@ function rebootwifi() {
   networksetup -setdhcp Wi-Fi
 }
 
-# Build neovim. {{{2
+# Build neovim.
 function buildneovim() {
   rhq clone https://github.com/neovim/neovim
   cd ~/src/github.com/neovim/neovim
@@ -181,7 +181,7 @@ function buildneovim() {
 }
 
 #
-# history. {{{1
+# history.
 #
 if [ -d ~/Syncthing ]; then
   export HISTFILE=~/Syncthing/pc/.zsh_history
@@ -202,7 +202,7 @@ setopt histverify
 
 
 #
-# key bindings. {{{1
+# key bindings.
 #
 bindkey -v
 
@@ -212,15 +212,15 @@ bindkey '^s' pet-select
 bindkey '^R' __filter_history
 bindkey '^K' __filter_kill
 
-# histry-substring-search. {{{2
+# histry-substring-search.
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 
-# autosuggestions. {{{2
+# autosuggestions.
 bindkey '^F' autosuggest-accept
 # bindkey '^F' vi-forward-word
 
-# move at hjkl on menu select. {{{2
+# move at hjkl on menu select.
 zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
@@ -228,14 +228,14 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
 #
-# setopt. {{{1
+# setopt.
 #
 setopt magicequalsubst
 setopt printeightbit
 setopt completeinword
 
 #
-# zstyle. {{{1
+# zstyle.
 #
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*' use-cache yes
@@ -245,7 +245,7 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 
 #
-# completions. {{{1
+# completions.
 #
 if (which rustup > /dev/null); then
   if [[ ! -f ${HOME}/.config/zsh/completions/_rustup ]]; then
@@ -257,28 +257,28 @@ if (which rustup > /dev/null); then
 fi
 
 #
-# shelp. {{{1
+# shelp.
 #
 if type shelp > /dev/null 2>&1; then
   eval "$(shelp init -)"
 fi
 
 #
-# pmy. {{{1
+# pmy.
 #
 if type pmy > /dev/null 2>&1; then
   # eval "$(pmy init)"
 fi
 
 #
-# direnv. {{{1
+# direnv.
 #
 if type pmy > /dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
 
 #
-# zoxide. {{{1
+# zoxide.
 #
 if type zoxide > /dev/null 2>&1; then
   eval "$(zoxide init zsh)"
@@ -291,14 +291,14 @@ export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
 
 #
-# starship. {{{1
+# starship.
 #
 if (which starship > /dev/null) ;then
   eval "$(starship init zsh)"
 fi
 
 #
-# compile zshrc. {{{1
+# compile zshrc.
 #
 # if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
 #   zcompile ~/.zshrc
@@ -308,5 +308,4 @@ if (which zprof > /dev/null) ;then
   zprof
 fi
 
-# vim:fdm=marker expandtab fdc=3 ft=zsh:
 

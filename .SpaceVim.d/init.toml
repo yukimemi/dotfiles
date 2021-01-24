@@ -172,6 +172,24 @@ source $SPACE_VIM/rc/vim-submode.vim
 on_event = ['CursorHold', 'FocusLost']
 repo = 'thinca/vim-submode'
 
+
+[[custom_plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+depends = ['popup.nvim', 'plenary.nvim']
+hook_source = '''
+source $SPACE_VIM/rc/telescope.nvim
+'''
+if = "has('nvim')"
+
+[[custom_plugins]]
+repo = 'nvim-lua/popup.nvim'
+lazy = 1
+if = "has('nvim')"
+[[custom_plugins]]
+repo = 'nvim-lua/plenary.nvim'
+lazy = 1
+if = "has('nvim')"
+
 [[custom_plugins]]
 repo = 'Shougo/junkfile.vim'
 on_cmd = ['JunkfileOpen']

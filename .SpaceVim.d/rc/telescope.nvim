@@ -22,6 +22,6 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fg <cmd>lua require'telescope.builtin'.git_files{}<cr>
 nnoremap <leader>fn <cmd>lua require'telescope.builtin'.find_files({ cwd = "~/.config/nvim/" })<cr>
-nnoremap <leader>fr <cmd>lua require'telescope.builtin'.lsp_references{ shorten_path = true }<CR>
+nnoremap <leader>fr <cmd>lua require'telescope.builtin'.lsp_references{ shorten_path = true }<cr>
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
