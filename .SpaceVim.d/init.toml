@@ -22,7 +22,7 @@ enable_os_fileformat_icon = true
 enable_projects_cache = true
 enable_statusline_mode = true
 enable_tabline_filetype_icon = true
-filemanager = "vimfiler"
+filemanager = "nerdtree"
 filetree_direction = "left"
 guifont = 'Cica:h10'
 lint_on_the_fly = true
@@ -57,11 +57,11 @@ name = 'shell'
 
 [[layers]]
 name = 'denite'
-enable = true
+enable = false
 
 [[layers]]
 name = 'ctrlp'
-enable = false
+enable = true
 
 [[layers]]
 name = 'japanese'

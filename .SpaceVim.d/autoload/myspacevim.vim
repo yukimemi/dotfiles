@@ -213,7 +213,7 @@ function! myspacevim#after() abort
   " ctrlp
   if IsInstalled('ctrlp.vim')
     " let g:ctrlp_clear_cache_on_exit = 0
-    " let g:ctrlp_key_loop = 1
+    let g:ctrlp_key_loop = 1
     " let g:ctrlp_lazy_update = 200
     let g:ctrlp_line_prefix = '» '
     let g:ctrlp_map = '<nop>'
