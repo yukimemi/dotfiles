@@ -57,11 +57,11 @@ name = 'shell'
 
 [[layers]]
 name = 'denite'
-enable = false
+enable = true
 
 [[layers]]
 name = 'ctrlp'
-enable = true
+enable = false
 
 [[layers]]
 name = 'japanese'
@@ -277,6 +277,12 @@ on_event = ['CursorHold', 'FocusLost']
 hook_source = '''
 source $SPACE_VIM/rc/nvim-treesitter.vim
 '''
+
+[[custom_plugins]]
+repo = 'delphinus/vim-auto-cursorline'
+
+[[custom_plugins]]
+repo = 'cormacrelf/vim-colors-github'
 
 [[custom_plugins]]
 repo = 'thinca/vim-localrc'

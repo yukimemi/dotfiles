@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : myspacevim.vim
 " Author      : yukimemi
-" Last Change : 2021/01/24 19:55:10.
+" Last Change : 2021/01/30 22:46:31.
 " =============================================================================
 
 function! myspacevim#before() abort
@@ -184,68 +184,17 @@ function! myspacevim#after() abort
 
   " Hilight cursorline, cursorcolumn {{{2
   " https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472
-  let s:cur_f = 0
-  au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
-  au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
-  au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
-  au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
+  " let s:cur_f = 0
+  " au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
+  " au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
+  " au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
+  " au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
 
 
   " Plugins:
-  " denite
-  if IsInstalled('denite.nvim')
-    au MyAutoCmd FileType denite call <SID>denite_my_custom_settings()
-    au MyAutoCmd FileType denite-filter call <SID>denite_filter_my_custom_settings()
-    function! s:denite_my_custom_settings() abort
-      nnoremap <silent><buffer><nowait><expr> <esc> denite#do_map('quit')
-    endfunction
-
-    function! s:denite_filter_my_custom_settings() abort
-      nmap <silent><buffer><nowait> <esc> <Plug>(denite_filter_quit)
-      inoremap <silent><buffer> <c-j> <esc><c-w>p:call cursor(line('.')+1,0)<cr><c-w>pA
-      inoremap <silent><buffer> <c-k> <esc><c-w>p:call cursor(line('.')-1,0)<cr><c-w>pA
-    endfunction
-    nnoremap <leader>fc :<c-u>Denite command_history<cr>
-    nnoremap <leader>fH :<c-u>Denite help<cr>
-    nnoremap <leader>ff :<c-u>Denite filetype<cr>
-  endif
-
-  " ctrlp
-  if IsInstalled('ctrlp.vim')
-    " let g:ctrlp_clear_cache_on_exit = 0
-    let g:ctrlp_key_loop = 1
-    " let g:ctrlp_lazy_update = 200
-    let g:ctrlp_line_prefix = '» '
-    let g:ctrlp_map = '<nop>'
-    let g:ctrlp_match_current_file = 1
-    " let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
-    " let g:ctrlp_mruf_max = 100000
-    let g:ctrlp_show_hidden = 1
-    let g:ctrlp_use_caching = 1
-    let g:ctrlp_user_command_async = 1
-    nnoremap <silent> <leader>ff :<c-u>CtrlPFiletype<cr>
-    nnoremap <silent> <leader>fl :<c-u>CtrlPLauncher<cr>
-    nnoremap <silent> <leader>f/ :<c-u>CtrlPSearchHistory<cr>
-    nnoremap <silent> <leader>fc :<c-u>CtrlPCmdHistory<cr>
-    " nnoremap <silent> <leader>fc :<c-u>CtrlPCommandLine<cr>
-    nnoremap <silent> <leader>fM :<c-u>CtrlPMemolist<cr>
-    nnoremap <silent> <leader>fs :<c-u>CtrlP ~/src<cr>
-    nnoremap <silent> <leader>fd :<c-u>CtrlP ~/.dotfiles<cr>
-
-    command! CtrlPCommandLine silent! packadd vim-ctrlp-commandline | call ctrlp#init(ctrlp#commandline#id())
-
-    if exists('*matchfuzzy')
-      " Use ctrlp-matchfuzzy.
-      let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
-    elseif has('python')
-      " Use fruzzy.
-      let g:fruzzy#usenative = 1
-      let g:ctrlp_match_func = {'match': 'fruzzy#ctrlp#matcher'}
-    endif
-  endif
-
-  " others
   " source $SPACE_VIM/rc/LeaderF.vim
+  source $SPACE_VIM/rc/denite.nvim
+  source $SPACE_VIM/rc/ctrlp.vim
   source $SPACE_VIM/rc/coc.nvim
   source $SPACE_VIM/rc/indentLine.vim
 

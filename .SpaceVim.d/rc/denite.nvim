@@ -1,41 +1,21 @@
-" Use plefix s
-nnoremap sd/ :<c-u>Denite -post-action=open line<cr>
-nnoremap sdD :<c-u>Denite -path='~/.dotfiles' file/rec<cr>
-nnoremap sdm :<c-u>Denite -path='~/.memolist' file/rec<cr>
-nnoremap sdF :<c-u>Denite filetype<cr>
-nnoremap sdG :<c-u>Denite -path='~/.rhq' file/rec<cr>
-nnoremap sdH :<c-u>Denite help<cr>
-nnoremap sdR :<c-u>Denite register<cr>
-nnoremap sda :<c-u>Denite buffer file/old file/rec<cr>
-nnoremap sdb :<c-u>Denite buffer<cr>
-nnoremap sdd :<c-u>DeniteBufferDir file/rec<cr>
-nnoremap sdf :<c-u>Denite file/rec<cr>
-nnoremap sdg :<c-u>Denite -post-action=open -no-empty grep<cr>
-nnoremap sdh :<c-u>Denite command_history<cr>
-nnoremap sdo :<c-u>Denite outline<cr>
-nnoremap sdr :<c-u>Denite -resume<cr>
-nnoremap sdu :<c-u>Denite file/old<cr>
+if !IsInstalled('denite.nvim')
+  finish
+endif
+
+nnoremap <silent> <leader>fH :<c-u>Denite help<cr>
+nnoremap <silent> <leader>fM :<c-u>Denite -path='~/.memolist' file/rec<cr>
+nnoremap <silent> <leader>fa :<c-u>Denite buffer file/old file/rec<cr>
+nnoremap <silent> <leader>fc :<c-u>Denite command_history<cr>
+nnoremap <silent> <leader>fd :<c-u>Denite -path='~/.dotfiles' file/rec/git<cr>
+nnoremap <silent> <leader>ff :<c-u>Denite filetype<cr>
+nnoremap <silent> <leader>fs :<c-u>Denite -path='~/src' file/rec<cr>
 
 " Incremental search in cmdline history.
 " inoremap <c-l> <esc>:<c-u>Denite command<cr>
 
-" Load after settings.
-" au MyAutoCmd VimEnter * call <SID>denite_aft()
-au MyAutoCmd FileType denite call <SID>denite_aft()
-au MyAutoCmd FileType denite call <SID>denite_my_settings()
-au MyAutoCmd FileType denite-filter call <SID>denite_filter_my_settings()
-
-function! s:denite_aft() abort
-  silent! packadd denite.nvim
-
-  " Default options.
-  call denite#custom#option('default', {
-        \ 'prompt': '»',
-        \ 'auto_resize': v:true,
-        \ 'start_filter': v:true,
-        \ 'vertical_preview': v:true,
-        \ })
-
+au MyAutoCmd FileType denite call <SID>denite_my_custom_settings()
+au MyAutoCmd FileType denite-filter call <SID>denite_filter_my_custom_settings()
+function! s:denite_my_custom_settings() abort
   if executable('rg')
     " Ripgrep command on grep source
     call denite#custom#var('grep', 'command', ['rg'])
@@ -64,23 +44,15 @@ function! s:denite_aft() abort
     call denite#custom#var('grep', 'final_opts', [])
 
   endif
-endfunction
 
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><nowait><expr> <cr> denite#do_map('do_action')
   nnoremap <silent><buffer><nowait><expr> <esc> denite#do_map('quit')
-  nnoremap <silent><buffer><nowait><expr> <space> denite#do_map('toggle_select').'j'
-  nnoremap <silent><buffer><nowait><expr> d denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><nowait><expr> i denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><nowait><expr> p denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><nowait><expr> q denite#do_map('quit')
 endfunction
 
-function! s:denite_filter_my_settings() abort
+function! s:denite_filter_my_custom_settings() abort
   nmap <silent><buffer><nowait> <esc> <Plug>(denite_filter_quit)
   inoremap <silent><buffer> <c-j> <esc><c-w>p:call cursor(line('.')+1,0)<cr><c-w>pA
   inoremap <silent><buffer> <c-k> <esc><c-w>p:call cursor(line('.')-1,0)<cr><c-w>pA
-  inoremap <silent><buffer><nowait><expr> <cr> denite#do_map('do_action')
 endfunction
+
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

@@ -12,7 +12,7 @@ let g:memolist_prompt_tags = 1
 " let g:memolist_ex_cmd = 'Clap files'
 
 " mappings
-nnoremap <localleader>mn :<c-u>MemoNew<cr>
-nnoremap <localleader>ml :<c-u>MemoList<cr>
-nnoremap <localleader>mg :<c-u>MemoGrep<cr>
+nnoremap <leader>mn :<c-u>MemoNew<cr>
+nnoremap <leader>ml :<c-u>MemoList<cr>
+nnoremap <leader>mg :<c-u>MemoGrep<cr>
 
