@@ -182,15 +182,6 @@ function! myspacevim#after() abort
   " For all filetype.
   au MyAutoCmd FileType * setlocal fo-=t fo-=c fo-=r fo-=o
 
-  " Hilight cursorline, cursorcolumn {{{2
-  " https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472
-  " let s:cur_f = 0
-  " au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
-  " au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
-  " au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
-  " au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
-
-
   " Plugins:
   " source $SPACE_VIM/rc/LeaderF.vim
   source $SPACE_VIM/rc/denite.nvim

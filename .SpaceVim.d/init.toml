@@ -282,6 +282,9 @@ source $SPACE_VIM/rc/nvim-treesitter.vim
 repo = 'delphinus/vim-auto-cursorline'
 
 [[custom_plugins]]
+repo = 'yukimemi/vim-auto-cursorcolumn'
+
+[[custom_plugins]]
 repo = 'cormacrelf/vim-colors-github'
 
 [[custom_plugins]]
