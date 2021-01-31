@@ -295,6 +295,10 @@ repo = 'thinca/vim-fontzoom'
 if = "has('gui')"
 
 [[custom_plugins]]
+repo = 'jeffkreeftmeijer/vim-numbertoggle'
+on_event = ['CursorHold', 'FocusLost']
+
+[[custom_plugins]]
 repo = 'sainnhe/forest-night'
 
 [[custom_plugins]]
