@@ -22,6 +22,7 @@ enable_os_fileformat_icon = true
 enable_projects_cache = true
 enable_statusline_mode = true
 enable_tabline_filetype_icon = true
+enable_vimfiler_welcome = false
 filemanager = "nerdtree"
 filetree_direction = "left"
 guifont = 'Cica:h10'
@@ -29,8 +30,8 @@ lint_on_the_fly = true
 max_column = 120
 projects_cache_num = 50
 statusline_iseparator = "arrow"
-statusline_separator = "arrow"
 statusline_right_sections = ['bomb', 'fileformat', 'cursorpos', 'percentage']
+statusline_separator = "arrow"
 
 [[layers]]
 name = 'autocomplete'
@@ -300,6 +301,13 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[custom_plugins]]
 repo = 'sainnhe/forest-night'
+
+[[custom_plugins]]
+repo = 'ryanoasis/vim-devicons'
+on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $SPACE_VIM/rc/vim-devicons.vim
+'''
 
 [[custom_plugins]]
 if = "!has('nvim')"
