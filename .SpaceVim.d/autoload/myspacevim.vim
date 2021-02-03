@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : myspacevim.vim
 " Author      : yukimemi
-" Last Change : 2021/01/30 22:46:31.
+" Last Change : 2021/02/03 15:44:21.
 " =============================================================================
 
 function! myspacevim#before() abort
@@ -135,6 +135,9 @@ function! myspacevim#after() abort
   nnoremap <silent> sQ :<c-u>qa<cr>
   nnoremap <silent> sbk :<c-u>bd!<cr>
   nnoremap <silent> sbq :<c-u>q!<cr>
+
+  " Change current directory.
+  nnoremap <leader>cd :<c-u>execute ":tcd " . expand("%:p:h")<cr>
 
   " For tab.
   nnoremap <silent><c-l> gt
