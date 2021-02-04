@@ -6,7 +6,7 @@ nnoremap <silent> <leader>fH :<c-u>Denite help<cr>
 nnoremap <silent> <leader>fM :<c-u>Denite -path='~/.memolist' file/rec<cr>
 nnoremap <silent> <leader>fa :<c-u>Denite buffer file/old file/rec<cr>
 nnoremap <silent> <leader>fc :<c-u>Denite command_history<cr>
-nnoremap <silent> <leader>fd :<c-u>Denite -path='~/.dotfiles' file/rec/git<cr>
+nnoremap <silent> <leader>fd :<c-u>Denite -path='~/.dotfiles' file/rec<cr>
 nnoremap <silent> <leader>ff :<c-u>Denite filetype<cr>
 nnoremap <silent> <leader>fs :<c-u>Denite -path='~/src' file/rec<cr>
 nnoremap <silent> <leader>fg :<c-u>Denite -post-action=open -no-empty grep<cr>
