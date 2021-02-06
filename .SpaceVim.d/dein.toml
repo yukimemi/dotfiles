@@ -1,0 +1,155 @@
+# =============================================================================
+# File       : dein.toml
+# Author     : yukimemi
+# Last Change: 2021/02/06 17:50:40.
+# =============================================================================
+
+# ==================== Dein ======================
+
+[[plugins]]
+repo = "Shougo/dein.vim"
+
+# ==================== Visual ====================
+
+[[plugins]]
+repo = "andymass/vim-matchup"
+on_event = ["CursorHold", "FocusLost"]
+
+[[plugins]]
+repo = 'itchyny/vim-cursorword'
+on_event = ["CursorHold", "FocusLost"]
+hook_add = '''
+source $VIM_PATH/rc/vim-cursorword.vim
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-parenmatch'
+on_event = ["CursorHold", "FocusLost"]
+hook_add = '''
+source $VIM_PATH/rc/vim-parenmatch.vim
+'''
+
+[[plugins]]
+repo = 't9md/vim-quickhl'
+on_event = ["CursorHold", "FocusLost"]
+hook_add = '''
+source $VIM_PATH/rc/vim-quickhl.vim
+'''
+
+# ==================== Utility ===================
+
+[[plugins]]
+repo = 'haya14busa/vim-edgemotion'
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-edgemotion.vim
+'''
+
+[[plugins]]
+repo = 'thinca/vim-ambicmd'
+hook_add = '''
+source $VIM_PATH/rc/vim-ambicmd.vim
+'''
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+# ==================== Textobjs ==================
+
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+
+[[plugins]]
+repo = 'gilligan/textobj-lastpaste'
+
+depends = 'vim-textobj-user'
+hook_add = '''
+source $VIM_PATH/rc/textobj-lastpaste.vim
+'''
+on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+
+[[plugins]]
+repo = 'kana/vim-textobj-entire'
+
+depends = 'vim-textobj-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-entire.vim
+'''
+on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+
+[[plugins]]
+repo = 'kana/vim-textobj-fold'
+
+depends = 'vim-textobj-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-fold.vim
+'''
+on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+
+[[plugins]]
+repo = 'kana/vim-textobj-function'
+
+depends = 'vim-textobj-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-function.vim
+'''
+on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+
+[[plugins]]
+repo = 'kana/vim-textobj-indent'
+
+depends = 'vim-textobj-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-indent.vim
+'''
+on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+
+[[plugins]]
+repo = 'kana/vim-textobj-line'
+
+depends = 'vim-textobj-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-line.vim
+'''
+on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+
+# ==================== Operators =================
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'kana/vim-operator-replace'
+depends = 'vim-operator-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-operator-replace.vim
+'''
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'osyo-manga/vim-operator-search'
+depends = 'vim-operator-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-operator-search.vim
+'''
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+on_event = ['CursorHold', 'CursorMoved', 'FocusLost']
+
+# ==================== Search ====================
+
+[[plugins]]
+repo = 'haya14busa/vim-asterisk'
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-asterisk.vim
+'''
+
+[[plugins]]
+repo = 'markonm/traces.vim'
+on_event = ["CmdlineEnter", "CmdwinEnter"]
+
+
+# vim:fdm=marker fdc=3 ft=toml:

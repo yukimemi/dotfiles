@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : myspacevim.vim
 " Author      : yukimemi
-" Last Change : 2021/02/03 15:44:21.
+" Last Change : 2021/02/06 18:00:52.
 " =============================================================================
 
 function! myspacevim#before() abort
@@ -55,10 +55,6 @@ function! myspacevim#after() abort
     else
       silent! exe printf("!open \"%s\"", expand("%:h"))
     endif
-  endfunction
-
-  function! IsInstalled(name) abort
-    silent! return !dein#check_install(a:name)
   endfunction
 
   " Basic:
@@ -191,6 +187,7 @@ function! myspacevim#after() abort
   source $SPACE_VIM/rc/ctrlp.vim
   source $SPACE_VIM/rc/coc.nvim
   source $SPACE_VIM/rc/indentLine.vim
+  source $SPACE_VIM/rc/calendar.vim
 
   " GUI:
   let g:spacevim_guifont = "Cica:h10"
