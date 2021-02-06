@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/01/24 10:26:09.
+# Last Change : 2021/02/06 18:54:19.
 # =============================================================================
 
 ### Added by Zinit's installer
@@ -38,13 +38,13 @@ zinit wait lucid light-mode for \
   blockf atpull'zinit creinstall -q .' \
   zsh-users/zsh-completions \
   supercrabtree/k \
-  @asdf-vm/asdf \
-  jeffreytse/zsh-vi-mode
+  @asdf-vm/asdf
 
 zinit light-mode for \
   atload"_zsh_autosuggest_start" \
   zsh-users/zsh-autosuggestions \
-  zsh-users/zsh-history-substring-search
+  zsh-users/zsh-history-substring-search \
+  jeffreytse/zsh-vi-mode
 
 zinit wait lucid from"gh-r" as"program" pick"bit" for \
   chriswalz/bit
@@ -206,19 +206,25 @@ setopt histverify
 #
 bindkey -v
 
-bindkey '^Q' show-buffer-stack
-bindkey '^s' pet-select
+function my_lazy_keybindings() {
+  bindkey -M viins '^Q' show-buffer-stack
+  bindkey -M viins '^s' pet-select
 
-bindkey '^R' __filter_history
-bindkey '^K' __filter_kill
+  bindkey -M viins '^R' __filter_history
+  bindkey -M viins '^K' __filter_kill
 
-# histry-substring-search.
-bindkey '^P' history-substring-search-up
-bindkey '^N' history-substring-search-down
+  # histry-substring-search.
+  bindkey -M viins '^P' history-substring-search-up
+  bindkey -M viins '^N' history-substring-search-down
 
-# autosuggestions.
-bindkey '^F' autosuggest-accept
-# bindkey '^F' vi-forward-word
+  # autosuggestions.
+  bindkey -M viins '^F' autosuggest-accept
+  # bindkey -M viins '^F' vi-forward-word
+
+  bindkey -M vicmd 'gh' beginning-of-line
+  bindkey -M vicmd 'gl' end-of-line
+}
+zvm_after_init_commands+=(my_lazy_keybindings)
 
 # move at hjkl on menu select.
 zmodload zsh/complist
@@ -283,12 +289,6 @@ fi
 if type zoxide > /dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 fi
-
-# HSTR configuration - add this to ~/.zshrc
-alias hh=hstr                    # hh to be alias for hstr
-setopt histignorespace           # skip cmds w/ leading space from history
-export HSTR_CONFIG=hicolor       # get more colors
-bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
 
 #
 # starship.

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2020/12/05 20:25:02.
+# Last Change : 2021/02/06 14:07:22.
 # =============================================================================
 
 # For time. {{{1
@@ -22,7 +22,7 @@ export LC_CTYPE="ja_JP.UTF-8"
 export SHELL=zsh
 export EDITOR=nvim
 export VISUAL=nvim
-export PAGER="less"
+export PAGER=bat
 
 # Unique path.
 typeset -gU cdpath fpath mailpath path
