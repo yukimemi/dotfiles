@@ -13,6 +13,7 @@ automatic_update = false
 bootstrap_after = "myspacevim#after"
 bootstrap_before = "myspacevim#before"
 buffer_index_type = 4
+checkinstall = true
 colorscheme = "material"
 colorscheme_bg = "dark"
 disabled_plugins = ["neco-syntax", "vim-surround", "clever-f.vim"]
@@ -60,11 +61,11 @@ name = 'shell'
 
 [[layers]]
 name = 'denite'
-enable = true
+enable = false
 
 [[layers]]
 name = 'ctrlp'
-enable = false
+enable = true
 
 [[layers]]
 name = 'japanese'
@@ -112,6 +113,9 @@ name = 'lang#vim'
 name = 'lang#xml'
 
 [[layers]]
+name = 'lang#plantuml'
+
+[[layers]]
 name = 'lsp'
 
 [[custom_plugins]]
@@ -135,10 +139,10 @@ repo = 'gelguy/wilder.nvim'
 repo = 'lambdalisue/seethrough.vim'
 
 [[custom_plugins]]
+repo = 'thinca/vim-ambicmd'
 hook_add = '''
 source $SPACE_VIM/rc/vim-ambicmd.vim
 '''
-repo = 'thinca/vim-ambicmd'
 
 [[custom_plugins]]
 repo = 'rbtnn/vim-gloaded'
@@ -192,10 +196,6 @@ on_cmd = ['CtrlPCmdHistory', 'CtrlPSearchHistory']
 repo = 'suy/vim-ctrlp-commandline'
 depends = ['ctrlp.vim']
 on_cmd = ['CtrlPCommandLine']
-
-[[custom_plugins]]
-repo = 'FelikZ/ctrlp-py-matcher'
-depends = ['ctrlp.vim']
 
 [[custom_plugins]]
 repo = 'raghur/fruzzy'
@@ -309,6 +309,10 @@ repo = 'yukimemi/vim-auto-cursorcolumn'
 repo = 'cormacrelf/vim-colors-github'
 
 [[custom_plugins]]
+repo = 'rhysd/rust-doc.vim'
+on_ft = ['rust']
+
+[[custom_plugins]]
 repo = 'thinca/vim-localrc'
 
 [[custom_plugins]]
@@ -320,7 +324,12 @@ repo = 'jeffkreeftmeijer/vim-numbertoggle'
 on_event = ['CursorHold', 'FocusLost']
 
 [[custom_plugins]]
-repo = 'sainnhe/forest-night'
+repo = 'thinca/vim-qfreplace'
+on_ft = ['quickfix', 'qf']
+
+[[custom_plugins]]
+repo = 'Bakudankun/BackAndForward.vim'
+on_event = ['CursorHold', 'FocusLost']
 
 [[custom_plugins]]
 repo = 'ryanoasis/vim-devicons'
@@ -330,7 +339,15 @@ source $SPACE_VIM/rc/vim-devicons.vim
 '''
 
 [[custom_plugins]]
-repo = 'kjssad/quantum.vim'
+repo = 'euclio/vim-markdown-composer'
+on_ft = ['markdown']
+build = 'cargo build --release'
+
+[[custom_plugins]]
+repo = 'aiya000/aho-bakaup.vim'
+hook_add = '''
+source $SPACE_VIM/rc/aho-bakaup.vim
+'''
 
 [[custom_plugins]]
 if = "!has('nvim')"
