@@ -36,12 +36,6 @@ function! myspacevim#before() abort
     silent! return !dein#check_install(a:name)
   endfunction
 
-  " Statusline.
-  function! s:show_bomb() abort
-    return &bomb ? 'bomb' : ''
-  endfunction
-  call SpaceVim#layers#core#statusline#register_sections('bomb', function('s:show_bomb'))
-
 endfunction
 
 function! myspacevim#after() abort
@@ -215,6 +209,12 @@ function! myspacevim#after() abort
   if has('clientserver')
     call dein#call_hook('source')
   endif
+
+  " Statusline.
+  function! s:show_bomb() abort
+    return &bomb ? 'bomb' : ''
+  endfunction
+  call SpaceVim#layers#core#statusline#register_sections('bomb', function('s:show_bomb'))
 
 endfunction
 

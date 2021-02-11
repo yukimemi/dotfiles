@@ -68,9 +68,6 @@ name = 'ctrlp'
 enable = true
 
 [[layers]]
-name = 'japanese'
-
-[[layers]]
 name = 'operator'
 
 [[layers]]
@@ -78,6 +75,9 @@ name = 'incsearch'
 
 [[layers]]
 name = 'test'
+
+[[layers]]
+name = 'sudo'
 
 [[layers]]
 name = 'ui'
@@ -342,6 +342,7 @@ source $SPACE_VIM/rc/vim-devicons.vim
 repo = 'euclio/vim-markdown-composer'
 on_ft = ['markdown']
 build = 'cargo build --release'
+if = false
 
 [[custom_plugins]]
 repo = 'aiya000/aho-bakaup.vim'
