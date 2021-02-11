@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : myspacevim.vim
 " Author      : yukimemi
-" Last Change : 2021/02/06 18:00:52.
+" Last Change : 2021/02/10 13:21:18.
 " =============================================================================
 
 function! myspacevim#before() abort
@@ -63,6 +63,7 @@ function! myspacevim#after() abort
   set virtualedit+=block
   set wildmenu wildignorecase wildmode=longest:full,full
   set ignorecase smartcase infercase
+  set timeoutlen=1500
 
   " Clipboard.
   set clipboard=unnamed,unnamedplus
@@ -154,6 +155,25 @@ function! myspacevim#after() abort
 
   cnoremap <c-p> <Up>
   cnoremap <c-n> <Down>
+
+  " Focus floating window with <C-w><C-w>
+  if has('nvim')
+    function! s:focus_floating() abort
+      if !empty(nvim_win_get_config(win_getid()).relative)
+        wincmd p
+        return
+      endif
+      for winnr in range(1, winnr('$'))
+        let winid = win_getid(winnr)
+        let conf = nvim_win_get_config(winid)
+        if conf.focusable && !empty(conf.relative)
+          call win_gotoid(winid)
+          return
+        endif
+      endfor
+    endfunction
+    nnoremap <silent> <c-w><c-w> :<c-u>call <SID>focus_floating()<cr>
+  endif
 
   " Autocmd:
   " https://lambdalisue.hatenablog.com/entry/2017/12/24/165759
