@@ -339,13 +339,8 @@ source $SPACE_VIM/rc/vim-devicons.vim
 '''
 
 [[custom_plugins]]
-repo = 'euclio/vim-markdown-composer'
-on_ft = ['markdown']
-build = 'cargo build --release'
-if = false
-
-[[custom_plugins]]
 repo = 'aiya000/aho-bakaup.vim'
+on_event = ['BufWritePre']
 hook_add = '''
 source $SPACE_VIM/rc/aho-bakaup.vim
 '''
@@ -357,4 +352,5 @@ repo = 'roxma/nvim-yarp'
 [[custom_plugins]]
 if = "!has('nvim')"
 repo = 'roxma/vim-hug-neovim-rpc'
+
 

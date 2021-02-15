@@ -22,6 +22,7 @@ let g:coc_global_extensions = [
       \ "coc-nextword",
       \ "coc-prettier",
       \ "coc-project",
+      \ "coc-rust-analyzer",
       \ "coc-snippets",
       \ "coc-toml",
       \ "coc-translator",

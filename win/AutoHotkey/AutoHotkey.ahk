@@ -222,7 +222,7 @@ file.Close()
 Clipboard := saveclip
 
 ; RunWait "C:\Program Files\Microsoft VS Code\Code.exe" %tempfile%
-RunWait "C:\tools\vim\vim82\gvim.exe" %tempfile%
+RunWait "C:\tools\vim\vim82\gvim.exe" "--cmd" "let g:singleton#disable=1" %tempfile%
 
 file := FileOpen(tempfile, "r")
 if !IsObject(file)

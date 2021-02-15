@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : myspacevim.vim
 " Author      : yukimemi
-" Last Change : 2021/02/10 13:21:18.
+" Last Change : 2021/02/12 09:32:11.
 " =============================================================================
 
 function! myspacevim#before() abort
@@ -58,6 +58,7 @@ function! myspacevim#after() abort
   set wildmenu wildignorecase wildmode=longest:full,full
   set ignorecase smartcase infercase
   set timeoutlen=1500
+  set shellslash
 
   " Clipboard.
   set clipboard=unnamed,unnamedplus
@@ -192,7 +193,7 @@ function! myspacevim#after() abort
   " Auto open quickfix.
   au MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
 
-  " For all filetype.
+  " For filetype.
   au MyAutoCmd FileType * setlocal fo-=t fo-=c fo-=r fo-=o
 
   " Plugins:
