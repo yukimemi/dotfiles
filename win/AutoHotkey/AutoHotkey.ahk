@@ -186,7 +186,7 @@ return
 
 ; For Visual Studio
 ^[::
-if WinActive("ahk_class Chrome_WidgetWin_1") or WinActive("ahk_class Vim") {
+if WinActive("ahk_class Chrome_WidgetWin_1") or WinActive("ahk_class Vim") or WinActive("ahk_class CASCADIA_HOSTING_WINDOW_CLASS") {
   Send {Esc}{vk1Dsc07B}
 } else {
   Send {Esc}

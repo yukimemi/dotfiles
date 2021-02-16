@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : myspacevim.vim
 " Author      : yukimemi
-" Last Change : 2021/02/12 09:32:11.
+" Last Change : 2021/02/15 19:18:17.
 " =============================================================================
 
 function! myspacevim#before() abort
@@ -203,6 +203,8 @@ function! myspacevim#after() abort
   source $SPACE_VIM/rc/coc.nvim
   source $SPACE_VIM/rc/indentLine.vim
   source $SPACE_VIM/rc/calendar.vim
+  source $SPACE_VIM/rc/markdown-preview.nvim
+  source $SPACE_VIM/rc/vim-slumlord.vim
 
   " GUI:
   let g:spacevim_guifont = "Cica:h10"

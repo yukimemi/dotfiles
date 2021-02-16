@@ -16,7 +16,7 @@ buffer_index_type = 4
 checkinstall = true
 colorscheme = "material"
 colorscheme_bg = "dark"
-disabled_plugins = ["neco-syntax", "vim-surround", "clever-f.vim"]
+disabled_plugins = ["neco-syntax", "vim-surround", "clever-f.vim", "vim-slumlord"]
 enable_googlesuggest = true
 enable_guicolors = true
 enable_os_fileformat_icon = true
@@ -24,7 +24,7 @@ enable_projects_cache = true
 enable_statusline_mode = true
 enable_tabline_ft_icon = true
 enable_vimfiler_welcome = false
-filemanager = "nerdtree"
+filemanager = "defx"
 filetree_direction = "left"
 guifont = 'Cica:h10'
 lint_on_the_fly = true
@@ -293,7 +293,7 @@ repo = 'mattn/vimtweak'
 
 [[custom_plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
-if = "has('nvim')"
+if = "has('nvim') && !has('win32')"
 on_event = ['CursorHold', 'FocusLost']
 hook_source = '''
 source $SPACE_VIM/rc/nvim-treesitter.vim
@@ -332,18 +332,14 @@ repo = 'Bakudankun/BackAndForward.vim'
 on_event = ['CursorHold', 'FocusLost']
 
 [[custom_plugins]]
-repo = 'ryanoasis/vim-devicons'
-on_event = ['CursorHold', 'FocusLost']
-hook_add = '''
-source $SPACE_VIM/rc/vim-devicons.vim
-'''
-
-[[custom_plugins]]
 repo = 'aiya000/aho-bakaup.vim'
 on_event = ['BufWritePre']
 hook_add = '''
 source $SPACE_VIM/rc/aho-bakaup.vim
 '''
+
+[[custom_plugins]]
+repo = 'Rigellute/rigel'
 
 [[custom_plugins]]
 if = "!has('nvim')"
@@ -352,5 +348,4 @@ repo = 'roxma/nvim-yarp'
 [[custom_plugins]]
 if = "!has('nvim')"
 repo = 'roxma/vim-hug-neovim-rpc'
-
 
