@@ -56,10 +56,13 @@ noremap <silent> gl $
 nnoremap <silent> Y y$
 
 " Useful save mappings.
-nnoremap <silent> <localleader><localleader> <cmd>Write<cr>
+nnoremap <silent> <leader><leader> <cmd>Write<cr>
 
 " Open file with explorer.
-nnoremap <silent> <localleader>o <cmd>call VSCodeNotify('revealFileInOS')<cr>
+nnoremap <silent> <leader>o <cmd>call VSCodeNotify('revealFileInOS')<cr>
+
+" Quick open.
+nnoremap <silent> <leader>p <cmd>call VSCodeNotify('workbench.action.quickOpen')<cr>
 
 " nohlsearch.
 nnoremap <silent> <esc><esc> <cmd>nohlsearch<cr>
