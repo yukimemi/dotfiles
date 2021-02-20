@@ -328,6 +328,12 @@ repo = 'thinca/vim-qfreplace'
 on_ft = ['quickfix', 'qf']
 
 [[custom_plugins]]
+repo = 'syngan/vim-clurin'
+hook_add = '''
+source $SPACE_VIM/rc/vim-clurin.vim
+'''
+
+[[custom_plugins]]
 repo = 'Bakudankun/BackAndForward.vim'
 on_event = ['CursorHold', 'FocusLost']
 
@@ -337,6 +343,16 @@ on_event = ['BufWritePre']
 hook_add = '''
 source $SPACE_VIM/rc/aho-bakaup.vim
 '''
+
+[[custom_plugins]]
+repo = 'LeafCage/yankround.vim'
+hook_add = '''
+source $SPACE_VIM/rc/yankround.vim
+'''
+
+[[custom_plugins]]
+repo = 'cohama/agit.vim'
+on_cmd = ['Agit']
 
 [[custom_plugins]]
 repo = 'Rigellute/rigel'
