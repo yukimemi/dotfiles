@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/02/24 00:29:23.
+# Last Change: 2021/02/24 01:45:19.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -68,6 +68,10 @@ if = "g:plugin_use_fern"
 [[plugins]]
 repo = 'lambdalisue/seethrough.vim'
 if = "!has('gui')"
+
+[[plugins]]
+repo = 'thinca/vim-fontzoom'
+if = "has('gui')"
 
 [[plugins]]
 repo = 'luochen1990/rainbow'
@@ -380,6 +384,16 @@ repo = 'seroqn/tozzy.vim'
 [[plugins]]
 repo = 'machakann/vim-swap'
 
+[[plugins]]
+repo = 'syngan/vim-clurin'
+hook_add = '''
+source $VIM_PATH/rc/vim-clurin.vim
+'''
+
+[[plugins]]
+repo = 'Bakudankun/BackAndForward.vim'
+on_event = ['CursorHold', 'FocusLost']
+
 # ==================== Comment ===================
 
 [[plugins]]
@@ -563,12 +577,12 @@ source $VIM_PATH/rc/deol.nvim
 
 # ==================== Filetype (all) ============
 
-[[plugins]]
-repo = 'sheerun/vim-polyglot'
-hook_add = '''
-source $VIM_PATH/rc/vim-polyglot.vim
-'''
-merged = 0
+# [[plugins]]
+# repo = 'sheerun/vim-polyglot'
+# hook_add = '''
+# source $VIM_PATH/rc/vim-polyglot.vim
+# '''
+# merged = 0
 
 # ==================== Filetype (markdown) =======
 
@@ -933,6 +947,12 @@ lazy = 1
 [[plugins]]
 repo = 'tsuyoshicho/plantuml-previewer.vim'
 on_ft = 'plantuml'
+
+# ==================== Filetype (plantuml) =======
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
 
 # ==================== Filetype (Haskell) ========
 

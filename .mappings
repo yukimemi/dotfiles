@@ -11,6 +11,8 @@
 [windows]
 ".config/espanso" = "~/scoop/apps/espanso/current/.espanso"
 ".config/rhq" = "~/AppData/Roaming/rhq"
+".config/nvim" = "~/vimfiles"
+".config/nvim/init.vim" = "~/_vimrc"
 ".gvimrc" = "~/_gvimrc"
 ".hyper.js" = "~/AppData/Roaming/Hyper/.hyper.js"
 ".qutebrowser" = "~/AppData/Roaming/qutebrowser/config"
@@ -27,7 +29,6 @@
 "win/link/.memolist" = "~/.memolist"
 "win/link/.nuget" = "~/.nuget"
 "win/link/.rustup" = "~/.rustup"
-"win/link/.SpaceVim" = ["~/.SpaceVim", "~/vimfiles", "~/AppData/Local/nvim"]
 "win/link/app" = "~/app"
 "win/link/archives" = "~/archives"
 "win/link/scoop" = "~/scoop"

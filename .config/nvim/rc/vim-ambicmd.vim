@@ -1,4 +1,8 @@
-if !IsInstalled('vim-ambicmd')
+" if !IsInstalled('vim-ambicmd')
+  " finish
+" endif
+
+if !exists('*ambicmd#expand')
   finish
 endif
 

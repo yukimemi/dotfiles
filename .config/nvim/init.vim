@@ -4,7 +4,7 @@
 " Last Change : 2021/01/10 01:44:51.
 " =============================================================================
 
-" Init: 
+" Init:
 set encoding=utf-8
 scriptencoding utf-8
 
@@ -32,14 +32,14 @@ endif
 let g:mapleader = "\<space>"
 let g:maplocalleader = ','
 
-" Utility: 
-" Judge os type. 
+" Utility:
+" Judge os type.
 let g:is_windows = has('win16') || has('win32') || has('win64')
 let g:is_cygwin = has('win32unix')
 let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
 let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
 
-" Set path. 
+" Set path.
 set shellslash
 let $CACHE = expand('~/.cache')
 if has('nvim')
@@ -61,14 +61,14 @@ else
   let $BACKUP_PATH = expand('$CACHE/vim/back')
 endif
 
-" finish on VsCode Neovim. 
+" finish on VsCode Neovim.
 if exists('g:vscode')
   source $HOME/.config/nvim/vscode-neovim.vim
   finish
 endif
 
-" Functions: 
-function! s:auto_mkdir(dir, force) 
+" Functions:
+function! s:auto_mkdir(dir, force)
   " Hack #202: http://vim-users.jp/2011/02/hack202/
   if !isdirectory(a:dir) && (a:force ||
         \ input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
@@ -76,7 +76,7 @@ function! s:auto_mkdir(dir, force)
   endif
 endfunction
 
-function! s:open_current_dir() abort 
+function! s:open_current_dir() abort
   if g:is_windows
     if !has('nvim')
       setl noshellslash
@@ -90,7 +90,7 @@ function! s:open_current_dir() abort
   endif
 endfunction
 
-" Basic: 
+" Basic:
 " undo, swap.
 let s:undo_dir = $BACKUP_PATH . '/undo'
 let s:backup_dir = $BACKUP_PATH . '/back'
@@ -158,13 +158,13 @@ if g:is_windows && has('nvim')
   let g:python3_host_prog = expand('$USERPROFILE') . '/scoop/apps/python/current/python.exe'
 endif
 
-" terminal 
+" terminal
 if !has('nvim')
   set termwinkey=<c-i>
 endif
 
-" Filetype: 
-" xml 
+" Filetype:
+" xml
 let g:xml_syntax_folding = 1
 au MyAutoCmd BufNewFile,BufRead *.xml call <SID>filetype_xml()
 function! s:filetype_xml() abort
@@ -173,7 +173,7 @@ function! s:filetype_xml() abort
   setl foldmethod=syntax
 endfunction
 
-" Markdown fenced 
+" Markdown fenced
 let g:markdown_fenced_languages = [
       \ 'css',
       \ 'erb=eruby',
@@ -186,7 +186,7 @@ let g:markdown_fenced_languages = [
       \ 'vim',
       \ ]
 
-" JScript 
+" JScript
 function! s:addHeaderJScript(flg)
   setl fenc=cp932
   setl ff=dos
@@ -219,7 +219,7 @@ au MyAutoCmd FileType javascript nnoremap <buffer> <expr><localleader>b <SID>add
 au MyAutoCmd FileType javascript nnoremap <buffer> <expr><localleader>m <SID>addHeaderJScript(1)
 au MyAutoCmd FileType javascript nnoremap <buffer> <expr><localleader>p <SID>addHeaderJScript(2)
 
-" PowerShell 
+" PowerShell
 function! s:addHeaderPs1(pattern, verb)
   setl ff=dos
   let l:lines = []
@@ -267,7 +267,7 @@ au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>am <SID>addHeader
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>ap <SID>addHeaderPs1(2, 1)
 au MyAutoCmd FileType ps1 setl expandtab ts=2 sw=2 sts=0 foldmethod=syntax ff=dos
 
-" dosbatch 
+" dosbatch
 function! s:addHeaderBat(pattern, verb)
   setl fenc=cp932
   setl ff=dos
@@ -295,18 +295,18 @@ function! s:addHeaderBat(pattern, verb)
 endfunction
 au MyAutoCmd FileType dosbatch nnoremap <buffer> <expr><localleader>a <SID>addHeaderBat(0, 1)
 
-" vim 
+" vim
 au MyAutoCmd FileType vim setl expandtab ts=2 sw=2 sts=0
-" markdown 
+" markdown
 au MyAutoCmd FileType markdown setl expandtab ts=2 sw=2 sts=0
 
-" log 
+" log
 au MyAutoCmd FileType log setl nowrap
 
-" mail 
+" mail
 au MyAutoCmd FileType mail setl fenc=cp932 ff=dos expandtab
 
-" Commands: 
+" Commands:
 " VimShowHlGroup: Show highlight group name under a cursor
 " https://rcmdnk.com/blog/2013/12/01/computer-vim/
 command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
@@ -324,7 +324,7 @@ command! -nargs=1 -complete=command L
       \ <mods> new | ToScratch |
       \ call setline(1, split(execute(<q-args>), '\n'))
 
-" Mapping: 
+" Mapping:
 " Use verymagic.
 " nnoremap / /\v
 " inoremap %s/ %s/\v
@@ -426,7 +426,7 @@ nnoremap <localleader>o :<c-u>call <SID>open_current_dir()<cr>
 " Change background color
 nnoremap <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<cr>
 
-"  for git mergetool 
+"  for git mergetool
 if &diff
   nnoremap <localleader>1 :diffget LOCAL<cr>
   nnoremap <localleader>2 :diffget BASE<cr>
@@ -434,7 +434,7 @@ if &diff
   nnoremap <localleader>u :<c-u>diffupdate<cr>
 endif
 
-" hilight over 100 column 
+" hilight over 100 column
 " http://blog.remora.cx/2013/06/source-in-80-columns-2.html
 noremap <Plug>(ToggleColorColumn)
       \ :<c-u>let &colorcolumn = len(&colorcolumn) > 0 ? '' :
@@ -445,7 +445,7 @@ nmap <silent> cc <Plug>(ToggleColorColumn)
 inoremap <silent> <ESC> <ESC>:set iminsert=0<cr>
 
 
-" Autocmd: 
+" Autocmd:
 " Auto mkdir.
 au MyAutoCmd BufWritePre * call <SID>auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
 
@@ -490,17 +490,17 @@ elseif !has('nvim')
   let &t_SR .= "\e[3 q"
 endif
 
-" Color: 
+" Color:
 silent! syntax enable
 
 " set cursorline cursorcolumn
 " au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
 au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 
-" Highlight VCS conflict markers 
+" Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-" Hilight cursorline, cursorcolumn 
+" Hilight cursorline, cursorcolumn
 " https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472
 " let s:cur_f = 0
 " au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
@@ -508,7 +508,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
 " au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
 
-" reload filetype on save. 
+" reload filetype on save.
 " https://lambdalisue.hatenablog.com/entry/2017/12/24/165759
 au MyAutoCmd BufWritePost *
       \ if &filetype ==# '' && exists('b:ftdetect') |
@@ -516,7 +516,7 @@ au MyAutoCmd BufWritePost *
       \   filetype detect |
       \ endif
 
-" Plugin: 
+" Plugin:
 let s:use_dein = v:true
 let s:use_vimplug = v:false
 let s:use_minpac = v:false
@@ -574,7 +574,7 @@ if !g:no_plugin
   endif
 endif
 
-" Colorscheme: 
+" Colorscheme:
 set background=dark
 silent! packadd gruvbox-material
 if has('nvim')
@@ -583,21 +583,21 @@ else
   silent! colorscheme gruvbox-material
 endif
 
-" Neovide: 
+" Neovide:
 let g:neovide_transparency = 0.9
 " let g:neovide_fullscreen  = v:true
 let g:neovide_cursor_vfx_mode = "railgun"
 " set guifont=Cica
 " set guifontwide=Cica
 
-" Nvy: 
+" Nvy:
 let g:nvy = get(g:, 'nvy', 0)
 if g:nvy
   set gfn=Cica:h10
   set gfw=Cica:h10
 endif
 
-" lua: 
+" lua:
 let g:vimsyn_embed = 'l'
 if has('nvim')
   exe "lua require('init')"
