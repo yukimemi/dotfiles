@@ -1,5 +1,4 @@
 [general]
-".SpaceVim.d" = "~/.SpaceVim.d"
 ".config" = "~/.config"
 ".editorconfig" = "~/.editorconfig"
 ".qutebrowser" = "~/.qutebrowser"

@@ -1,0 +1,1051 @@
+# =============================================================================
+# File       : dein.toml
+# Author     : yukimemi
+# Last Change: 2021/02/24 00:29:23.
+# =============================================================================
+
+# ==================== Dein ======================
+
+[[plugins]]
+repo = "Shougo/dein.vim"
+
+# [[plugins]]
+# repo = 'wsdjeg/dein-ui.vim'
+# on_cmd = ['DeinUpdate']
+
+# ==================== Visual ====================
+
+[[plugins]]
+repo = 'delphinus/vim-auto-cursorline'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'yukimemi/vim-auto-cursorcolumn'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = "andymass/vim-matchup"
+on_event = ['CursorHold', 'FocusLost']
+
+
+[[plugins]]
+repo = 'itchyny/vim-cursorword'
+on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $VIM_PATH/rc/vim-cursorword.vim
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-external'
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-external.vim
+'''
+
+[[plugins]]
+repo = "itchyny/vim-highlighturl"
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'itchyny/vim-parenmatch'
+on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $VIM_PATH/rc/vim-parenmatch.vim
+'''
+
+[[plugins]]
+repo = "jeffkreeftmeijer/vim-numbertoggle"
+on_event = ["CursorHold", "InsertEnter", "CursorMoved"]
+
+[[plugins]]
+repo = "lambdalisue/glyph-palette.vim"
+if = "g:plugin_use_fern"
+
+[[plugins]]
+repo = "lambdalisue/nerdfont.vim"
+if = "g:plugin_use_fern"
+
+[[plugins]]
+repo = 'lambdalisue/seethrough.vim'
+if = "!has('gui')"
+
+[[plugins]]
+repo = 'luochen1990/rainbow'
+on_event = ["CursorHold", "CursorMoved"]
+hook_add = '''
+source $VIM_PATH/rc/rainbow.vim
+'''
+
+[[plugins]]
+repo = 'machakann/vim-highlightedyank'
+hook_add = '''
+source $VIM_PATH/rc/vim-highlightedyank.vim
+'''
+
+[[plugins]]
+repo = 'mattn/transparency-windows-vim'
+if = "g:is_windows && has('gui')"
+hook_add = '''
+source $VIM_PATH/rc/transparency-windows-vim.vim
+'''
+
+[[plugins]]
+repo = 'mattn/vimtweak'
+if = "g:is_windows"
+
+[[plugins]]
+repo = "ntpeters/vim-better-whitespace"
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 't9md/vim-quickhl'
+on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $VIM_PATH/rc/vim-quickhl.vim
+'''
+
+[[plugins]]
+repo = 'LumaKernel/nvim-visual-eof.lua'
+if = "has('nvim')"
+hook_add = '''
+source $VIM_PATH/rc/nvim-visual-eof.lua.vim
+'''
+
+[[plugins]]
+repo =  'mg979/vim-xtabline'
+
+# colorscheme
+
+[[plugins]]
+repo = "NLKNguyen/papercolor-theme"
+
+[[plugins]]
+repo = 'bluz71/vim-nightfly-guicolors'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+
+[[plugins]]
+repo = 'drewtempelmeyer/palenight.vim'
+
+[[plugins]]
+repo = 'ghifarit53/tokyonight-vim'
+
+[[plugins]]
+repo = 'gkeep/iceberg-dark'
+
+[[plugins]]
+repo = 'joshdick/onedark.vim'
+
+[[plugins]]
+repo = 'kjssad/quantum.vim'
+
+[[plugins]]
+repo = 'rhysd/vim-color-spring-night'
+
+[[plugins]]
+repo = 'romgrk/github-light.vim'
+
+[[plugins]]
+repo = 'sainnhe/gruvbox-material'
+hook_add = '''
+source $VIM_PATH/rc/gruvbox-material.vim
+'''
+
+[[plugins]]
+repo = 'severij/vadelma'
+
+[[plugins]]
+repo = 'yasukotelin/shirotelin'
+
+[[plugins]]
+repo = 'yuttie/hydrangea-vim'
+
+[[plugins]]
+repo = 'glepnir/zephyr-nvim'
+
+[[plugins]]
+repo = 'adrian5/oceanic-next-vim'
+
+[[plugins]]
+repo = 'sainnhe/edge'
+
+# ==================== Utility ===================
+
+[[plugins]]
+repo = 'AndrewRadev/linediff.vim'
+on_cmd = ['Linediff', 'LinediffReset', 'LinediffShow']
+
+[[plugins]]
+repo = 'LeafCage/yankround.vim'
+hook_add = '''
+source $VIM_PATH/rc/yankround.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+lazy = 1
+
+[[plugins]]
+repo = 'Shougo/echodoc.vim'
+depends = ['context_filetype.vim']
+on_event = ["InsertEnter"]
+hook_add = '''
+source $VIM_PATH/rc/echodoc.vim
+'''
+
+[[plugins]]
+repo = 'airblade/vim-rooter'
+on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $VIM_PATH/rc/vim-rooter.vim
+'''
+
+[[plugins]]
+repo = 'aiya000/aho-bakaup.vim'
+on_event = ['BufWritePre']
+hook_add = '''
+source $VIM_PATH/rc/aho-bakaup.vim
+'''
+
+[[plugins]]
+repo = 'da-x/name-assign.vim'
+on_map = {v = '<Plug>NameAssign'}
+hook_add = '''
+source $VIM_PATH/rc/name-assign.vim
+'''
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+on_event = ['VimEnter']
+
+[[plugins]]
+repo = "gelguy/wilder.nvim"
+hook_add = '''
+source $VIM_PATH/rc/wilder.nvim
+'''
+
+[[plugins]]
+repo = 'haya14busa/vim-edgemotion'
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-edgemotion.vim
+'''
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_map = {v = '<Plug>(EasyAlign)'}
+hook_add = '''
+source $VIM_PATH/rc/vim-easy-align.vim
+'''
+
+[[plugins]]
+repo = "lambdalisue/readablefold.vim"
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'lambdalisue/vim-findent'
+on_cmd = ['Findent']
+hook_add = '''
+source $VIM_PATH/rc/vim-findent.vim
+'''
+
+[[plugins]]
+repo = 'mattn/vim-sonictemplate'
+on_cmd = ['Template']
+hook_add = '''
+source $VIM_PATH/rc/vim-sonictemplate.vim
+'''
+
+[[plugins]]
+repo = 'mattn/webapi-vim'
+lazy = 1
+
+[[plugins]]
+repo = 'mbbill/undotree'
+hook_add = '''
+source $VIM_PATH/rc/undotree.vim
+'''
+on_cmd = ['UndotreeToggle']
+
+[[plugins]]
+repo = 'nicwest/vim-camelsnek'
+on_cmd = ['Snek', 'Camel', 'CamelB', 'Kebab']
+hook_add = '''
+source $VIM_PATH/rc/vim-camelsnek.vim
+'''
+
+[[plugins]]
+repo = 'qpkorr/vim-renamer'
+on_cmd = ['Renamer']
+hook_add = '''
+source $VIM_PATH/rc/vim-renamer.vim
+'''
+
+[[plugins]]
+repo = 'rbtnn/vim-gloaded'
+
+[[plugins]]
+repo = 'rbtnn/vim-vimscript_lasterror'
+on_cmd = ['VimscriptLastError']
+
+[[plugins]]
+repo = 'romainl/vim-qf'
+on_ft = ['quickfix', 'qf']
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = '!has("nvim")'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = '!has("nvim")'
+
+[[plugins]]
+repo = 'roxma/vim-tmux-clipboard'
+if = '!g:is_windows'
+on_event = ['TextYankPost']
+
+[[plugins]]
+repo = 'sentriz/vim-print-debug'
+on_event = ['CursorMoved']
+hook_add = '''
+source $VIM_PATH/rc/vim-print-debug.vim
+'''
+
+[[plugins]]
+repo = 'thinca/vim-ambicmd'
+hook_add = '''
+source $VIM_PATH/rc/vim-ambicmd.vim
+'''
+
+[[plugins]]
+repo = 'thinca/vim-localrc'
+
+[[plugins]]
+repo = 'thinca/vim-prettyprint'
+on_cmd = ['PP']
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
+on_ft = ['quickfix', 'qf']
+
+[[plugins]]
+repo = 'thinca/vim-submode'
+on_event = ['VimEnter']
+hook_add = '''
+source $VIM_PATH/rc/vim-submode.vim
+'''
+
+[[plugins]]
+repo = 'tmux-plugins/vim-tmux-focus-events'
+if = '!g:is_windows'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+
+[[plugins]]
+repo = 'tyru/capture.vim'
+on_cmd = ['Capture']
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+lazy = 1
+
+[[plugins]]
+repo = 'tyru/restart.vim'
+on_cmd = ['Restart']
+
+[[plugins]]
+repo = 'vim-scripts/autodate.vim'
+on_event = ['InsertEnter']
+hook_add = '''
+source $VIM_PATH/rc/autodate.vim
+'''
+
+[[plugins]]
+repo = 'thinca/vim-singleton'
+if = "!has('nvim') && has('clientserver')"
+hook_source = '''
+source $VIM_PATH/rc/vim-singleton.vim
+'''
+
+[[plugins]]
+repo = 'lilydjwg/colorizer'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'seroqn/tozzy.vim'
+
+[[plugins]]
+repo = 'machakann/vim-swap'
+
+# ==================== Comment ===================
+
+[[plugins]]
+repo = 'Shougo/junkfile.vim'
+on_cmd = ['JunkfileOpen']
+
+[[plugins]]
+repo = 'glidenote/memolist.vim'
+on_cmd = ['Memolist', 'MemoNew', 'MemoGrep']
+hook_add = '''
+source $VIM_PATH/rc/memolist.vim
+'''
+
+[[plugins]]
+repo = 'tyru/caw.vim'
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/caw.vim
+'''
+
+# ==================== App =======================
+
+[[plugins]]
+repo = 'twitvim/twitvim'
+on_cmd = ['FriendsTwitter', 'UserTwitter', 'RepliesTwitter', 'DMTwitter']
+hook_add = '''
+source $VIM_PATH/rc/twitvim.vim
+'''
+
+# ==================== Git =======================
+
+[[plugins]]
+repo = 'itchyny/vim-gitbranch'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'lambdalisue/gina.vim'
+on_cmd = ['Gina']
+hook_add = '''
+source $VIM_PATH/rc/gina.vim
+'''
+hook_source = '''
+source $VIM_PATH/rc/gina_source.vim
+'''
+
+[[plugins]]
+repo = 'rhysd/committia.vim'
+if = "!g:is_windows"
+
+[[plugins]]
+repo = 'rhysd/conflict-marker.vim'
+on_event = ['CursorHold', 'FocusLost']
+
+# ==================== Textobjs ==================
+
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+
+[[plugins]]
+repo = 'gilligan/textobj-lastpaste'
+
+depends = 'vim-textobj-user'
+hook_add = '''
+source $VIM_PATH/rc/textobj-lastpaste.vim
+'''
+on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+
+[[plugins]]
+repo = 'kana/vim-textobj-entire'
+
+depends = 'vim-textobj-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-entire.vim
+'''
+on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+
+[[plugins]]
+repo = 'kana/vim-textobj-fold'
+
+depends = 'vim-textobj-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-fold.vim
+'''
+on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+
+[[plugins]]
+repo = 'kana/vim-textobj-function'
+
+depends = 'vim-textobj-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-function.vim
+'''
+on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+
+[[plugins]]
+repo = 'kana/vim-textobj-indent'
+
+depends = 'vim-textobj-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-indent.vim
+'''
+on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+
+[[plugins]]
+repo = 'kana/vim-textobj-line'
+
+depends = 'vim-textobj-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-line.vim
+'''
+on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+
+[[plugins]]
+repo = 'machakann/vim-textobj-delimited'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'mattn/vim-textobj-url'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'osyo-manga/vim-textobj-multiblock'
+on_event = ['CursorHold', 'FocusLost']
+
+# ==================== Operators =================
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'kana/vim-operator-replace'
+
+depends = 'vim-operator-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-operator-replace.vim
+'''
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'osyo-manga/vim-operator-search'
+
+depends = 'vim-operator-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-operator-search.vim
+'''
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'osyo-manga/vim-operator-stay-cursor'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+on_event = ['CursorHold', 'FocusLost']
+
+# ==================== Search ====================
+
+[[plugins]]
+repo = 'haya14busa/vim-asterisk'
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-asterisk.vim
+'''
+
+[[plugins]]
+repo = 'markonm/traces.vim'
+on_event = ["CmdlineEnter", "CmdwinEnter"]
+
+[[plugins]]
+repo = 'tsuyoshicho/vim-fg'
+on_cmd = ['Fg', 'FgRipGrep', 'FgPt', 'FgJVGrep', 'FgFindStr']
+
+# ==================== Shell =====================
+
+[[plugins]]
+repo = 'Shougo/deol.nvim'
+on_cmd = ['Deol', 'DeolCd', 'DeolEdit']
+hook_add = '''
+source $VIM_PATH/rc/deol.nvim
+'''
+
+# ==================== Filetype (all) ============
+
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+hook_add = '''
+source $VIM_PATH/rc/vim-polyglot.vim
+'''
+merged = 0
+
+# ==================== Filetype (markdown) =======
+
+[[plugins]]
+repo = 'dhruvasagar/vim-table-mode'
+on_ft = ['markdown']
+
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+hook_add = '''
+source $VIM_PATH/rc/markdown-preview.nvim
+'''
+hook_post_update = '''
+call dein#source('markdown-preview.nvim')
+call mkdp#util#install()
+'''
+
+# ==================== Filetype (html) ===========
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_ft = ['html']
+
+# ==================== Fuzzy =====================
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+
+hook_add = '''
+source $VIM_PATH/rc/ctrlp.vim
+'''
+if = "g:plugin_use_ctrlp"
+on_cmd = ['CtrlP', 'CtrlPBuffer', 'CtrlPCurFile', 'CtrlPMRUFiles']
+[[plugins]]
+repo = 'kaneshin/ctrlp-filetype'
+
+depends = ['ctrlp.vim']
+if = "g:plugin_use_ctrlp"
+on_cmd = ['CtrlPFiletype']
+[[plugins]]
+repo = 'kaneshin/ctrlp-memolist'
+
+depends = ['ctrlp.vim']
+if = "g:plugin_use_ctrlp"
+on_cmd = ['CtrlPMemolist']
+[[plugins]]
+repo = 'kaneshin/ctrlp-sonictemplate'
+
+depends = ['ctrlp.vim']
+if = "g:plugin_use_ctrlp"
+on_cmd = ['CtrlPSonictemplate']
+[[plugins]]
+repo = 'mattn/ctrlp-launcher'
+
+depends = ['ctrlp.vim']
+if = "g:plugin_use_ctrlp"
+on_cmd = ['CtrlPLauncher']
+[[plugins]]
+repo = 'mattn/ctrlp-mark'
+
+depends = ['ctrlp.vim']
+if = "g:plugin_use_ctrlp"
+on_cmd = ['CtrlPMark']
+[[plugins]]
+repo = 'mattn/ctrlp-vimhelpjp'
+
+depends = ['ctrlp.vim', 'webapi-vim']
+if = "g:plugin_use_ctrlp"
+on_cmd = ['VimHelpJp']
+[[plugins]]
+repo = 'ompugao/ctrlp-history'
+
+depends = ['ctrlp.vim']
+if = "g:plugin_use_ctrlp"
+on_cmd = ['CtrlPCmdHistory', 'CtrlPSearchHistory']
+[[plugins]]
+repo = 'suy/vim-ctrlp-commandline'
+
+depends = ['ctrlp.vim']
+if = "g:plugin_use_ctrlp"
+# on_cmd = ['CtrlPCommandLine']
+
+[[plugins]]
+repo = 'FelikZ/ctrlp-py-matcher'
+
+depends = ['ctrlp.vim']
+if = "g:plugin_use_ctrlp"
+[[plugins]]
+repo = 'raghur/fruzzy'
+
+depends = ['ctrlp.vim']
+hook_post_update = 'call fruzzy#install()'
+if = "g:plugin_use_ctrlp"
+[[plugins]]
+repo = 'mattn/ctrlp-matchfuzzy'
+
+depends = ['ctrlp.vim']
+if = "g:plugin_use_ctrlp && exists('*matchfuzzy')"
+
+[[plugins]]
+repo = 'liuchengxu/vim-clap'
+
+hook_add = '''
+source $VIM_PATH/rc/vim-clap.vim
+'''
+hook_post_update = '''
+call clap#helper#build_all()
+'''
+if = "g:plugin_use_clap"
+on_cmd = ['Clap']
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+depends = ['junkfile.vim']
+on_cmd = ['Denite']
+if = "has('python3') && g:plugin_use_denite"
+hook_add = '''
+source $VIM_PATH/rc/denite.nvim
+'''
+hook_source = '''
+source $VIM_PATH/rc/denite_source.nvim
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/quickpick.vim'
+
+if = 'g:plugin_use_quickpick'
+lazy = 1
+
+[[plugins]]
+repo = 'prabirshrestha/quickpick-filetypes.vim'
+
+depends = 'quickpick.vim'
+if = 'g:plugin_use_quickpick'
+on_cmd = ['Pfiletypes']
+
+[[plugins]]
+repo = 'prabirshrestha/quickpick-colorschemes.vim'
+
+depends = 'quickpick.vim'
+if = 'g:plugin_use_quickpick'
+on_cmd = ['Pcolorschemes']
+
+[[plugins]]
+repo = 'clozed2u/quickpick-files.vim'
+
+depends = 'quickpick.vim'
+if = 'g:plugin_use_quickpick'
+on_cmd = ['Pfiles']
+
+[[plugins]]
+repo = '0keke/quickpick-oldfiles.vim'
+
+depends = 'quickpick.vim'
+if = 'g:plugin_use_quickpick'
+on_cmd = ['Poldfiles']
+
+[[plugins]]
+repo = '0keke/quickpick-launcher.vim'
+
+depends = 'quickpick.vim'
+if = 'g:plugin_use_quickpick'
+on_cmd = ['Pquicklauncher']
+
+# ==================== Statusline ================
+
+[[plugins]]
+repo = "itchyny/lightline.vim"
+hook_add = '''
+source $VIM_PATH/rc/lightline.vim
+'''
+if = "g:plugin_use_lightline"
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = "vim-airline/vim-airline"
+depends = ["vim-airline-themes"]
+hook_add = '''
+source $VIM_PATH/rc/vim-airline.vim
+'''
+if = "g:plugin_use_airline"
+
+[[plugins]]
+repo = "vim-airline/vim-airline-themes"
+if = "g:plugin_use_airline"
+
+# ==================== Filetree ==================
+
+[[plugins]]
+repo = 'lambdalisue/fern.vim'
+
+depends = [
+  'fern-bookmark.vim',
+  'fern-comparator-lexical.vim',
+  'fern-git.vim',
+  'fern-renderer-nerdfont.vim',
+  'fern-git-status.vim',
+  'fern-mapping-git.vim',
+]
+hook_add = '''
+source $VIM_PATH/rc/fern.vim
+'''
+if = "g:plugin_use_fern"
+on_cmd = 'Fern'
+[[plugins]]
+repo = 'lambdalisue/fern-git-status.vim'
+
+if = "g:plugin_use_fern"
+lazy = 1
+[[plugins]]
+repo = 'lambdalisue/fern-git.vim'
+
+if = "g:plugin_use_fern"
+lazy = 1
+[[plugins]]
+repo = 'lambdalisue/fern-mapping-git.vim'
+
+if = "g:plugin_use_fern"
+lazy = 1
+[[plugins]]
+repo = 'lambdalisue/fern-bookmark.vim'
+
+if = "g:plugin_use_fern"
+lazy = 1
+[[plugins]]
+repo = 'lambdalisue/fern-comparator-lexical.vim'
+
+if = "g:plugin_use_fern"
+lazy = 1
+[[plugins]]
+repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+
+depends = ['nerdfont.vim', 'glyph-palette.vim']
+if = "g:plugin_use_fern"
+lazy = 1
+[[plugins]]
+repo = 'lambdalisue/fern-hijack.vim'
+
+depends = ['fern.vim']
+if = "g:plugin_use_fern"
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+hook_add = '''
+source $VIM_PATH/rc/defx.nvim
+'''
+if = "g:plugin_use_defx"
+on_cmd = ['Defx']
+
+[[plugins]]
+repo = 'mattn/vim-molder'
+depends = ['vim-molder-operations']
+hook_add = '''
+source $VIM_PATH/rc/vim-molder.vim
+'''
+if = 'g:plugin_use_molder'
+
+[[plugins]]
+repo = 'mattn/vim-molder-operations'
+if = 'g:plugin_use_molder'
+lazy = 1
+
+[[plugins]]
+repo = 'cocopon/vaffle.vim'
+if = 'g:plugin_use_vaffle'
+on_cmd = ['Vaffle']
+
+[[plugins]]
+repo = 'ryym/vim-viler'
+hook_add = '''
+source $VIM_PATH/rc/vim-viler.vim
+'''
+if = 'g:plugin_use_viler'
+on_func = 'viler#open'
+
+# ==================== Complement ================
+
+[[plugins]]
+repo = 'honza/vim-snippets'
+on_event = ['InsertEnter']
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+hook_add = '''
+source $VIM_PATH/rc/asyncomplete.vim
+'''
+if = 'g:plugin_use_asyncomplete'
+
+[[plugins]]
+repo = 'high-moctane/asyncomplete-nextword.vim'
+build = 'go get -u github.com/high-moctane/nextword'
+if = "g:plugin_use_asyncomplete && executable('go')"
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+hook_source = '''
+source $VIM_PATH/rc/vim-vsnip.vim
+'''
+if = 'g:plugin_use_asyncomplete'
+on_event = ['InsertEnter']
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
+depends = ['vim-vsnip']
+if = 'g:plugin_use_asyncomplete'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-icons'
+if = 'g:plugin_use_asyncomplete'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+if = 'g:plugin_use_asyncomplete'
+merged = 0
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+if = 'g:plugin_use_asyncomplete'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-buffer.vim'
+if = 'g:plugin_use_asyncomplete'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-file.vim'
+if = 'g:plugin_use_asyncomplete'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+if = 'g:plugin_use_asyncomplete'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+if = 'g:plugin_use_asyncomplete'
+merged = 0
+
+[[plugins]]
+repo = "neoclide/coc.nvim"
+hook_add = '''
+source $VIM_PATH/rc/coc.nvim
+'''
+if = "g:plugin_use_coc"
+rev = "release"
+
+# ==================== Runner ====================
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+depends = ['vim-quickrun-neovim-job']
+hook_add = '''
+source $VIM_PATH/rc/vim-quickrun.vim
+'''
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'lambdalisue/vim-quickrun-neovim-job'
+lazy = 1
+
+# ==================== Filetype (plantuml) =======
+
+[[plugins]]
+repo = 'tsuyoshicho/plantuml-previewer.vim'
+on_ft = 'plantuml'
+
+# ==================== Filetype (Haskell) ========
+
+[[plugins]]
+repo = 'eagletmt/ghcmod-vim'
+build = 'stack install ghc-mod'
+hook_add = '''
+source $VIM_PATH/rc/ghcmod-vim.vim
+'''
+if = "executable('stack')"
+on_ft = 'haskell'
+
+[[plugins]]
+repo = 'itchyny/vim-haskell-indent'
+on_ft = 'haskell'
+
+[[plugins]]
+repo = 'itchyny/vim-haskell-sort-import'
+hook_add = '''
+source $VIM_PATH/rc/vim-haskell-sort-import.vim
+'''
+on_ft = 'haskell'
+
+# ==================== Filetype (purescript) =====
+
+[[plugins]]
+repo = 'FrigoEU/psc-ide-vim'
+on_ft = 'purescript'
+
+# ==================== Filetype (csv) ============
+
+[[plugins]]
+repo = 'mechatroner/rainbow_csv'
+on_ft = 'csv'
+
+# ==================== After ftplugin ============
+
+[ftplugin]
+_ = '''
+set formatoptions-=ro
+'''
+
+dosbatch = '''
+setl fenc=cp932 ff=dos
+'''
+
+html = '''
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_syntax_folding = 1
+setl noexpandtab
+setl ts=4 sw=4 sts=0
+setl foldmethod=syntax
+'''
+
+csv = '''
+setl nowrap
+'''
+
+log = '''
+setl nowrap
+'''
+
+mail = '''
+setl ff=dos
+setl fenc=cp932
+'''
+
+markdown = '''
+setl formatoptions+=t
+setl conceallevel=0
+'''
+
+go = '''
+setl completeopt+=preview
+'''
+
+ps1 = '''
+setl ts=2 sw=2 sts=0
+setl expandtab
+setl foldmethod=syntax
+'''
+
+python = '''
+setl cinwords=if,elif,else,for,while,try,except,finally,def,class
+setl expandtab
+setl ts=8 sw=4 sts=4
+setl foldmethod=indent foldlevel=99
+'''
+
+xml = '''
+setl noexpandtab
+setl ts=4 sw=4 sts=0
+
+let g:xml_syntax_folding = 1
+setl foldmethod=syntax
+'''
+
+elm = '''
+setl ts=4 sw=4 sts=0
+'''
+
+javascript = '''
+'''
+
+css = '''
+'''
+
+rust = '''
+'''
+
+text = '''
+setl noexpandtab
+setl ts=4 sw=4 sts=0
+'''
+
+# vim:fdm=marker fdc=3 ft=toml:

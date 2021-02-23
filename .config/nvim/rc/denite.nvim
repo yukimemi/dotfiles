@@ -3,7 +3,7 @@ nnoremap sd/ :<c-u>Denite -post-action=open line<cr>
 nnoremap sdD :<c-u>Denite -path='~/.dotfiles' file/rec<cr>
 nnoremap sdm :<c-u>Denite -path='~/.memolist' file/rec<cr>
 nnoremap sdF :<c-u>Denite filetype<cr>
-nnoremap sdG :<c-u>Denite -path='~/.rhq' file/rec<cr>
+nnoremap sds :<c-u>Denite -path='~/src' file/rec<cr>
 nnoremap sdH :<c-u>Denite help<cr>
 nnoremap sdR :<c-u>Denite register<cr>
 nnoremap sda :<c-u>Denite buffer file/old file/rec<cr>
@@ -20,51 +20,8 @@ nnoremap sdu :<c-u>Denite file/old<cr>
 " inoremap <c-l> <esc>:<c-u>Denite command<cr>
 
 " Load after settings.
-" au MyAutoCmd VimEnter * call <SID>denite_aft()
-au MyAutoCmd FileType denite call <SID>denite_aft()
 au MyAutoCmd FileType denite call <SID>denite_my_settings()
 au MyAutoCmd FileType denite-filter call <SID>denite_filter_my_settings()
-
-function! s:denite_aft() abort
-  silent! packadd denite.nvim
-
-  " Default options.
-  call denite#custom#option('default', {
-        \ 'prompt': '»',
-        \ 'auto_resize': v:true,
-        \ 'start_filter': v:true,
-        \ 'vertical_preview': v:true,
-        \ })
-
-  if executable('rg')
-    " Ripgrep command on grep source
-    call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep', '--no-heading', '--hidden', '--no-ignore'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-
-  elseif executable('jvgrep')
-    " jvgrep command on grep source
-    call denite#custom#var('grep', 'command', ['jvgrep'])
-    call denite#custom#var('grep', 'default_opts', ['-i', '--no-color', '-I'])
-    call denite#custom#var('grep', 'recursive_opts', ['-R'])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', [])
-    call denite#custom#var('grep', 'final_opts', [])
-
-  elseif executable('pt')
-    " Pt command on grep source
-    call denite#custom#var('grep', 'command', ['pt'])
-    call denite#custom#var('grep', 'default_opts', ['-i', '--nogroup', '--nocolor', '--smart-case', '--skip-vcs-ignores', '--hidden'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-
-  endif
-endfunction
 
 function! s:denite_my_settings() abort
   nnoremap <silent><buffer><nowait><expr> <cr> denite#do_map('do_action')
@@ -77,7 +34,7 @@ function! s:denite_my_settings() abort
 endfunction
 
 function! s:denite_filter_my_settings() abort
-  nmap <silent><buffer><nowait> <esc> <Plug>(denite_filter_quit)
+  inoremap <silent><buffer><nowait> <esc> <esc><c-w>p
   inoremap <silent><buffer> <c-j> <esc><c-w>p:call cursor(line('.')+1,0)<cr><c-w>pA
   inoremap <silent><buffer> <c-k> <esc><c-w>p:call cursor(line('.')-1,0)<cr><c-w>pA
   inoremap <silent><buffer><nowait><expr> <cr> denite#do_map('do_action')

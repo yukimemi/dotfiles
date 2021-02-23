@@ -4,7 +4,7 @@
 " Last Change : 2021/01/10 01:44:51.
 " =============================================================================
 
-" Init: {{{1
+" Init: 
 set encoding=utf-8
 scriptencoding utf-8
 
@@ -32,14 +32,14 @@ endif
 let g:mapleader = "\<space>"
 let g:maplocalleader = ','
 
-" Utility: {{{1
-" Judge os type. {{{2
+" Utility: 
+" Judge os type. 
 let g:is_windows = has('win16') || has('win32') || has('win64')
 let g:is_cygwin = has('win32unix')
 let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
 let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
 
-" Set path. {{{2
+" Set path. 
 set shellslash
 let $CACHE = expand('~/.cache')
 if has('nvim')
@@ -61,14 +61,14 @@ else
   let $BACKUP_PATH = expand('$CACHE/vim/back')
 endif
 
-" finish on VsCode Neovim. {{{1
+" finish on VsCode Neovim. 
 if exists('g:vscode')
   source $HOME/.config/nvim/vscode-neovim.vim
   finish
 endif
 
-" Functions: {{{1
-function! s:auto_mkdir(dir, force) "{{{2
+" Functions: 
+function! s:auto_mkdir(dir, force) 
   " Hack #202: http://vim-users.jp/2011/02/hack202/
   if !isdirectory(a:dir) && (a:force ||
         \ input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
@@ -76,7 +76,7 @@ function! s:auto_mkdir(dir, force) "{{{2
   endif
 endfunction
 
-function! s:open_current_dir() abort "{{{2
+function! s:open_current_dir() abort 
   if g:is_windows
     if !has('nvim')
       setl noshellslash
@@ -90,7 +90,7 @@ function! s:open_current_dir() abort "{{{2
   endif
 endfunction
 
-" Basic: {{{1
+" Basic: 
 " undo, swap.
 let s:undo_dir = $BACKUP_PATH . '/undo'
 let s:backup_dir = $BACKUP_PATH . '/back'
@@ -118,7 +118,7 @@ else
   set clipboard=unnamed,unnamedplus
 endif
 
-set number
+set relativenumber
 set signcolumn=yes
 set ambiwidth=double
 set history=10000
@@ -158,13 +158,13 @@ if g:is_windows && has('nvim')
   let g:python3_host_prog = expand('$USERPROFILE') . '/scoop/apps/python/current/python.exe'
 endif
 
-" terminal {{{2
+" terminal 
 if !has('nvim')
   set termwinkey=<c-i>
 endif
 
-" Filetype: {{{1
-" xml {{{2
+" Filetype: 
+" xml 
 let g:xml_syntax_folding = 1
 au MyAutoCmd BufNewFile,BufRead *.xml call <SID>filetype_xml()
 function! s:filetype_xml() abort
@@ -173,7 +173,7 @@ function! s:filetype_xml() abort
   setl foldmethod=syntax
 endfunction
 
-" Markdown fenced {{{2
+" Markdown fenced 
 let g:markdown_fenced_languages = [
       \ 'css',
       \ 'erb=eruby',
@@ -186,7 +186,7 @@ let g:markdown_fenced_languages = [
       \ 'vim',
       \ ]
 
-" JScript {{{2
+" JScript 
 function! s:addHeaderJScript(flg)
   setl fenc=cp932
   setl ff=dos
@@ -219,7 +219,7 @@ au MyAutoCmd FileType javascript nnoremap <buffer> <expr><localleader>b <SID>add
 au MyAutoCmd FileType javascript nnoremap <buffer> <expr><localleader>m <SID>addHeaderJScript(1)
 au MyAutoCmd FileType javascript nnoremap <buffer> <expr><localleader>p <SID>addHeaderJScript(2)
 
-" PowerShell {{{2
+" PowerShell 
 function! s:addHeaderPs1(pattern, verb)
   setl ff=dos
   let l:lines = []
@@ -267,7 +267,7 @@ au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>am <SID>addHeader
 au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>ap <SID>addHeaderPs1(2, 1)
 au MyAutoCmd FileType ps1 setl expandtab ts=2 sw=2 sts=0 foldmethod=syntax ff=dos
 
-" dosbatch {{{2
+" dosbatch 
 function! s:addHeaderBat(pattern, verb)
   setl fenc=cp932
   setl ff=dos
@@ -295,18 +295,18 @@ function! s:addHeaderBat(pattern, verb)
 endfunction
 au MyAutoCmd FileType dosbatch nnoremap <buffer> <expr><localleader>a <SID>addHeaderBat(0, 1)
 
-" vim {{{2
+" vim 
 au MyAutoCmd FileType vim setl expandtab ts=2 sw=2 sts=0
-" markdown {{{2
+" markdown 
 au MyAutoCmd FileType markdown setl expandtab ts=2 sw=2 sts=0
 
-" log {{{2
+" log 
 au MyAutoCmd FileType log setl nowrap
 
-" mail {{{2
+" mail 
 au MyAutoCmd FileType mail setl fenc=cp932 ff=dos expandtab
 
-" Commands: {{{1
+" Commands: 
 " VimShowHlGroup: Show highlight group name under a cursor
 " https://rcmdnk.com/blog/2013/12/01/computer-vim/
 command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
@@ -324,7 +324,7 @@ command! -nargs=1 -complete=command L
       \ <mods> new | ToScratch |
       \ call setline(1, split(execute(<q-args>), '\n'))
 
-" Mapping: {{{1
+" Mapping: 
 " Use verymagic.
 " nnoremap / /\v
 " inoremap %s/ %s/\v
@@ -426,7 +426,7 @@ nnoremap <localleader>o :<c-u>call <SID>open_current_dir()<cr>
 " Change background color
 nnoremap <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<cr>
 
-"  for git mergetool {{{2
+"  for git mergetool 
 if &diff
   nnoremap <localleader>1 :diffget LOCAL<cr>
   nnoremap <localleader>2 :diffget BASE<cr>
@@ -434,7 +434,7 @@ if &diff
   nnoremap <localleader>u :<c-u>diffupdate<cr>
 endif
 
-" hilight over 100 column {{{2
+" hilight over 100 column 
 " http://blog.remora.cx/2013/06/source-in-80-columns-2.html
 noremap <Plug>(ToggleColorColumn)
       \ :<c-u>let &colorcolumn = len(&colorcolumn) > 0 ? '' :
@@ -445,7 +445,7 @@ nmap <silent> cc <Plug>(ToggleColorColumn)
 inoremap <silent> <ESC> <ESC>:set iminsert=0<cr>
 
 
-" Autocmd: {{{1
+" Autocmd: 
 " Auto mkdir.
 au MyAutoCmd BufWritePre * call <SID>auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
 
@@ -490,25 +490,25 @@ elseif !has('nvim')
   let &t_SR .= "\e[3 q"
 endif
 
-" Color: {{{1
+" Color: 
 silent! syntax enable
 
 " set cursorline cursorcolumn
 " au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
 au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 
-" Highlight VCS conflict markers {{{2
+" Highlight VCS conflict markers 
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-" Hilight cursorline, cursorcolumn {{{2
+" Hilight cursorline, cursorcolumn 
 " https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472
-let s:cur_f = 0
-au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
-au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
-au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
-au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
+" let s:cur_f = 0
+" au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
+" au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
+" au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
+" au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
 
-" reload filetype on save. {{{2
+" reload filetype on save. 
 " https://lambdalisue.hatenablog.com/entry/2017/12/24/165759
 au MyAutoCmd BufWritePost *
       \ if &filetype ==# '' && exists('b:ftdetect') |
@@ -516,28 +516,28 @@ au MyAutoCmd BufWritePost *
       \   filetype detect |
       \ endif
 
-" Plugin: {{{1
-let s:use_dein = v:false
+" Plugin: 
+let s:use_dein = v:true
 let s:use_vimplug = v:false
-let s:use_minpac = v:true
+let s:use_minpac = v:false
 let s:use_packager = v:false
 let s:use_volt = v:false
 let s:use_pack = v:false
 let s:use_packer = v:false
 
-let g:plugin_use_lightline = v:false
-let g:plugin_use_airline = v:true
+let g:plugin_use_lightline = v:true
+let g:plugin_use_airline = v:false
 let g:plugin_use_neoline = v:false
 let g:plugin_use_lualine = v:false
 
-let g:plugin_use_coc = v:false
-let g:plugin_use_asyncomplete = v:true
+let g:plugin_use_coc = v:true
+let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
 
-let g:plugin_use_ctrlp = v:true
+let g:plugin_use_ctrlp = v:false
 let g:plugin_use_clap = v:false
 let g:plugin_use_fzf = v:false
-let g:plugin_use_cocfzf = v:true
+let g:plugin_use_cocfzf = v:false
 let g:plugin_use_fz = v:false
 let g:plugin_use_denite = v:true
 let g:plugin_use_quickpick = v:false
@@ -574,30 +574,30 @@ if !g:no_plugin
   endif
 endif
 
-" Colorscheme: {{{1
+" Colorscheme: 
 set background=dark
-silent! packadd vim-one
+silent! packadd gruvbox-material
 if has('nvim')
-  silent! colorscheme one
+  silent! colorscheme gruvbox-material
 else
-  silent! colorscheme one
+  silent! colorscheme gruvbox-material
 endif
 
-" Neovide: {{{1
+" Neovide: 
 let g:neovide_transparency = 0.9
 " let g:neovide_fullscreen  = v:true
 let g:neovide_cursor_vfx_mode = "railgun"
 " set guifont=Cica
 " set guifontwide=Cica
 
-" Nvy: {{{1
+" Nvy: 
 let g:nvy = get(g:, 'nvy', 0)
 if g:nvy
   set gfn=Cica:h10
   set gfw=Cica:h10
 endif
 
-" lua: {{{1
+" lua: 
 let g:vimsyn_embed = 'l'
 if has('nvim')
   exe "lua require('init')"
