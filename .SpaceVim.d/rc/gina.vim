@@ -6,6 +6,7 @@ nnoremap <space>gd :<c-u>Gina diff<cr>
 nnoremap <space>gl :<c-u>Gina log<cr>
 nnoremap <space>gL :<c-u>execute printf('Gina log -p %s', expand('%'))<cr>
 nnoremap <space>gp :<c-u>Gina push<cr>
+nnoremap <space>gy :<c-u>Gina browse --exact --yank<cr>
 
 au MyAutoCmd CmdUndefined Gina call <SID>my_gina_settings()
 

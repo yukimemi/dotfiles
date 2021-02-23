@@ -49,6 +49,7 @@
   "launchMode": "maximized",
   "profiles": {
     "defaults": {
+      "acrylicOpacity": 0.5,
       "antialiasingMode": "cleartype",
       "backgroundImageOpacity": 0.5,
       "colorScheme": "One Half Dark",
@@ -56,7 +57,7 @@
       "fontFace": "Cica",
       "fontSize": 10,
       "useAcrylic": true,
-      "acrylicOpacity": 0.5
+      "padding": "10.10.10.10"
     },
     "list": [
       {

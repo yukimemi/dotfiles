@@ -10,6 +10,7 @@ set updatetime=500
 " extensions
 let g:coc_global_extensions = [
       \ "coc-calc",
+      \ "coc-deno",
       \ "coc-diagnostic",
       \ "coc-emoji",
       \ "coc-explorer",

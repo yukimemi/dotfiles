@@ -352,7 +352,7 @@ source $SPACE_VIM/rc/yankround.vim
 
 [[custom_plugins]]
 repo = 'cohama/agit.vim'
-on_cmd = ['Agit']
+on_cmd = ['Agit', 'AgitFile']
 
 [[custom_plugins]]
 repo = 'Rigellute/rigel'
