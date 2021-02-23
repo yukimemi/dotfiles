@@ -293,7 +293,7 @@ repo = 'mattn/vimtweak'
 
 [[custom_plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
-if = "has('nvim') && !has('win32')"
+if = "has('nvim') && !has('win32') && v:false"
 on_event = ['CursorHold', 'FocusLost']
 hook_source = '''
 source $SPACE_VIM/rc/nvim-treesitter.vim
