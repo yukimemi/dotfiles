@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/02/24 01:45:19.
+# Last Change: 2021/02/24 17:55:20.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -756,7 +756,12 @@ hook_add = '''
 source $VIM_PATH/rc/lightline.vim
 '''
 if = "g:plugin_use_lightline"
+depends = ['lightline-lsp']
 on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'halkn/lightline-lsp'
+if = "g:plugin_use_lightline"
 
 [[plugins]]
 repo = "vim-airline/vim-airline"
@@ -948,7 +953,11 @@ lazy = 1
 repo = 'tsuyoshicho/plantuml-previewer.vim'
 on_ft = 'plantuml'
 
-# ==================== Filetype (plantuml) =======
+[[plugins]]
+repo = 'aklt/plantuml-syntax'
+on_ft = 'plantuml'
+
+# ==================== Filetype (toml) =======
 
 [[plugins]]
 repo = 'cespare/vim-toml'
@@ -981,6 +990,12 @@ on_ft = 'haskell'
 [[plugins]]
 repo = 'FrigoEU/psc-ide-vim'
 on_ft = 'purescript'
+
+# ==================== Filetype (powershell) =====
+
+[[plugins]]
+repo = 'PProvost/vim-ps1'
+on_ft = ['powershell', 'ps1']
 
 # ==================== Filetype (csv) ============
 
