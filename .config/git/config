@@ -42,3 +42,10 @@
 	rebase = true
 [delta]
 	side-by-side = true
+[commit]
+	verbose = true
+[color "status"]
+	added = green
+	changed = red
+	untracked = blue
+	unmerged = yellow

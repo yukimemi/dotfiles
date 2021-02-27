@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/02/27 11:23:00.
+# Last Change: 2021/02/27 22:20:22.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -9,9 +9,9 @@
 [[plugins]]
 repo = "Shougo/dein.vim"
 
-# [[plugins]]
-# repo = 'wsdjeg/dein-ui.vim'
-# on_cmd = ['DeinUpdate']
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
+on_cmd = ['DeinUpdate']
 
 # ==================== Visual ====================
 
@@ -22,6 +22,12 @@ on_event = ['CursorHold', 'FocusLost']
 [[plugins]]
 repo = 'yukimemi/vim-auto-cursorcolumn'
 on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+source $VIM_PATH/rc/indentLine.vim
+'''
 
 [[plugins]]
 repo = "andymass/vim-matchup"
@@ -55,7 +61,7 @@ source $VIM_PATH/rc/vim-parenmatch.vim
 
 [[plugins]]
 repo = "jeffkreeftmeijer/vim-numbertoggle"
-on_event = ["CursorHold", "InsertEnter", "CursorMoved"]
+on_event = ["CursorHold", "InsertEnter", "CursorMoved", "FocusLost"]
 
 [[plugins]]
 repo = "lambdalisue/glyph-palette.vim"
@@ -221,7 +227,6 @@ source $VIM_PATH/rc/name-assign.vim
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
-on_event = ['VimEnter']
 
 [[plugins]]
 repo = "gelguy/wilder.nvim"
@@ -573,6 +578,23 @@ repo = 'Shougo/deol.nvim'
 on_cmd = ['Deol', 'DeolCd', 'DeolEdit']
 hook_add = '''
 source $VIM_PATH/rc/deol.nvim
+'''
+
+# ==================== denops ====================
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+
+[[plugins]]
+repo = 'gamoutatsumi/denops-ojichat.vim'
+depends = ['denops.vim']
+on_cmd = ['DenopsOjichat']
+
+[[plugins]]
+repo = 'higashi000/vim-denopspotify'
+depends = ['denops.vim']
+hook_add = '''
+let g:denopspotify_token = $SPOTIFY_TOKEN
 '''
 
 # ==================== Filetype (all) ============

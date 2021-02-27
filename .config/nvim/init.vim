@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/02/27 11:15:34.
+" Last Change : 2021/02/27 22:19:32.
 " =============================================================================
 
 " Init:
@@ -118,6 +118,7 @@ else
   set clipboard=unnamed,unnamedplus
 endif
 
+set number
 set relativenumber
 set signcolumn=yes
 set ambiwidth=double

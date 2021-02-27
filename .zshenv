@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2021/02/06 14:07:22.
+# Last Change : 2021/02/27 20:36:46.
 # =============================================================================
 
 # For time. {{{1
@@ -62,8 +62,12 @@ export GOPATH=$HOME/.go
 # rust. {{{2
 # export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src" > /dev/null 2>&1
 
+# deno.
+export DENO_INSTALL=$HOME/.deno
+
 path=(
   $GOPATH/bin(N-/)
+  $DENO_INSTALL/bin(N-/)
 
   $path
 )
