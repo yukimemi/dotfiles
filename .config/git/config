@@ -24,8 +24,6 @@
 	root = ~/.cache/nvim/pack/minpac
 	root = ~/.go/src
 	root = ~/src
-[credential]
-	helper = manager-core
 [merge]
 	tool = "nvim -d"
 [branch]
