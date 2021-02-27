@@ -1,10 +1,21 @@
 {
-  "diagnostic.refreshAfterSave": true,
-  "suggest.enablePreview": true,
-  "list.source.lists.defaultOptions": ["--no-sort"],
-  "npm.binPath": "yarn",
+  "coc.preferences.extensionUpdateCheck": "weekly",
+  "coc.preferences.previewAutoClose": false,
+  "coc.preferences.silentAutoupdate": true,
+  "coc.preferences.useQuickfixForLocations": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.run": "onSave",
+  "explorer.file.autoReveal": true,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": false,
   "list.source.files.args": ["--hidden", "--no-ignore-vcs", "--files"],
   "list.source.grep.defaultArgs": ["-smartcase", "-regex", "-skip-vcs-ignores"],
+  "list.source.lists.defaultOptions": ["--no-sort"],
+  "npm.binPath": "yarn",
+  "suggest.asciiCharactersOnly": true,
+  "suggest.enablePreview": true,
+  "translator.engines": ["google", "bing"],
+  "translator.toLang": "ja",
   "coc.preferences.formatOnSaveFiletypes": [
     "typescript",
     "typescriptreact",
@@ -17,14 +28,5 @@
     "html",
     "css",
     "xml"
-  ],
-  "coc.preferences.useQuickfixForLocations": true,
-  "coc.preferences.previewAutoClose": false,
-  "translator.toLang": "ja",
-  "translator.engines": ["google", "bing"],
-  "eslint.autoFixOnSave": true,
-  "suggest.asciiCharactersOnly": true,
-  "explorer.file.autoReveal": true,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.previewAction.onHover": false
+  ]
 }

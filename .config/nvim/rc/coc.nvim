@@ -129,7 +129,7 @@ if s:plugin_use_cocfzf
 endif
 
 nnoremap <silent> <leader><leader> :<c-u>CocList<cr>
-nnoremap <silent> <leader>cf :<c-u>CocList files --hidden ~/.dotfiles<cr>
+nnoremap <silent> <leader>cD :<c-u>CocList files --hidden ~/.dotfiles<cr>
 nnoremap <silent> <leader>cv :<c-u>CocList files --hidden ~/.cache<cr>
 nnoremap <silent> <leader>cm :<c-u>CocList files --hidden ~/.memolist<cr>
 nnoremap <silent> <leader>cs :<c-u>CocList files --hidden ~/src<cr>
@@ -140,7 +140,7 @@ nnoremap <silent> <leader>cu :<c-u>CocList mru<cr>
 nnoremap <silent> <leader>ct :<c-u>CocList todolist<cr>
 nnoremap <silent> <leader>cS :<c-u>CocList -I symbols<cr>
 nnoremap <silent> <leader>cF :<c-u>CocList filetypes<cr>
-nnoremap <silent> <leader>cg :<c-u>CocList grep<cr>
+nnoremap <silent> <leader>cg :<c-u>CocList --no-quit grep<cr>
 nnoremap <silent> <leader>r :<c-u>CocListResume<cr>
 
 " coc-snippet {{{1
@@ -159,11 +159,6 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <c-k> for both expand and jump (make expand higher priority.)
 imap <c-k> <Plug>(coc-snippets-expand-jump)
 
-" coc-bookmark {{{1
-" nmap <leader>bj <Plug>(coc-bookmark-next)
-" nmap <leader>bk <Plug>(coc-bookmark-prev)
-" nmap <leader>bb <Plug>(coc-bookmark-toggle)
-" nnoremap <leader>bl :<c-u>CocList bookmark<cr>
 
 " coc-explorer {{{1
 let s:plugin_use_coc_explorer = get(g:, "plugin_use_coc_explorer", v:false)

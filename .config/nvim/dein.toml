@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/02/24 17:55:20.
+# Last Change: 2021/02/27 10:49:08.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -756,11 +756,15 @@ hook_add = '''
 source $VIM_PATH/rc/lightline.vim
 '''
 if = "g:plugin_use_lightline"
-depends = ['lightline-lsp']
+depends = ['vim-lightline-coc']
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'halkn/lightline-lsp'
+if = "g:plugin_use_lightline && v:false"
+
+[[plugins]]
+repo = 'josa42/vim-lightline-coc'
 if = "g:plugin_use_lightline"
 
 [[plugins]]

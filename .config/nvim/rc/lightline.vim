@@ -1,5 +1,5 @@
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'gruvbox_material',
       \ 'mode_map': {
       \   'n' : 'N',
       \   'i' : 'I',
@@ -13,13 +13,14 @@ let g:lightline = {
       \   "\<c-s>": 'S-B'
       \   },
       \ 'active': {
-      \   'left': [ [ 'mode', 'spell', 'paste' ],
-      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'bomb' ],
-      \             [ 'vista', 'quickfix_title' ] ],
+      \   'left': [ [ 'mode', 'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok', 'spell', 'paste' ],
+      \             [ 'gitbranch', 'coc_status', 'readonly', 'filename', 'bomb' ],
+      \             [ 'vista', 'quickfix_title', 'deinstatus' ]
+      \   ],
       \   'right': [
       \     [ 'lineinfo' ],
       \     [ 'filetype', 'fileencoding', 'fileformat' ],
-      \     [ 'lsp_errors', 'lsp_warnings', 'lsp_ok', 'scount', 'noscrollbar' ]
+      \     [ 'scount', 'noscrollbar' ]
       \   ],
       \ },
       \ 'component': {
@@ -45,22 +46,25 @@ let g:lightline = {
       \   'scount'        : 'LightLineSearchCount',
       \ },
       \ 'component_type': {
-      \   'linter_errors'      : 'error',
-      \   'linter_warnings'    : 'warning',
-      \   'linter_informations': 'information',
-      \   'linter_ok'          : 'ok',
-      \   'lsp_warnings'       : 'warning',
-      \   'lsp_errors'         : 'error',
-      \   'lsp_ok'             : 'middle',
+      \   'coc_warnings': 'warning',
+      \   'coc_errors'  : 'error',
+      \   'coc_info'    : 'info',
+      \   'coc_hints'   : 'hints',
+      \   'coc_ok'      : 'left',
+      \   'lsp_warnings': 'warning',
+      \   'lsp_errors'  : 'error',
+      \   'lsp_ok'      : 'middle',
       \ },
       \ 'component_expand': {
-      \   'linter_errors'      : 'LightLineCocErrors',
-      \   'linter_warnings'    : 'LightLineCocWarnings',
-      \   'linter_informations': 'LightLineCocInformation',
-      \   'linter_ok'          : 'LightLineCocOk',
-      \   'lsp_warnings'       : 'lightline_lsp#warnings',
-      \   'lsp_errors'         : 'lightline_lsp#errors',
-      \   'lsp_ok'             : 'lightline_lsp#ok',
+      \   'coc_warnings': 'lightline#coc#warnings',
+      \   'coc_errors'  : 'lightline#coc#errors',
+      \   'coc_info'    : 'lightline#coc#info',
+      \   'coc_hints'   : 'lightline#coc#hints',
+      \   'coc_ok'      : 'lightline#coc#ok',
+      \   'coc_status'  : 'lightline#coc#status',
+      \   'lsp_warnings': 'lightline_lsp#warnings',
+      \   'lsp_errors'  : 'lightline_lsp#errors',
+      \   'lsp_ok'      : 'lightline_lsp#ok',
       \ }
       \ }
 
