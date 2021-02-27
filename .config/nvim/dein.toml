@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/02/27 10:49:08.
+# Last Change: 2021/02/27 11:23:00.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -762,10 +762,12 @@ on_event = ['CursorHold', 'FocusLost']
 [[plugins]]
 repo = 'halkn/lightline-lsp'
 if = "g:plugin_use_lightline && v:false"
+lazy = 1
 
 [[plugins]]
 repo = 'josa42/vim-lightline-coc'
 if = "g:plugin_use_lightline"
+lazy = 1
 
 [[plugins]]
 repo = "vim-airline/vim-airline"
@@ -778,6 +780,25 @@ if = "g:plugin_use_airline"
 [[plugins]]
 repo = "vim-airline/vim-airline-themes"
 if = "g:plugin_use_airline"
+lazy = 1
+
+[[plugins]]
+repo = "doums/barow"
+hook_add = '''
+source $VIM_PATH/rc/barow.vim
+'''
+if = "g:plugin_use_barow"
+on_event = ['CursorHold', 'FocusLost']
+depends = ["barowLSP", "barowGit"]
+
+[[plugins]]
+repo = "doums/barowLSP"
+if = "g:plugin_use_barow"
+lazy = 1
+[[plugins]]
+repo = "doums/barowGit"
+if = "g:plugin_use_barow"
+lazy = 1
 
 # ==================== Filetree ==================
 
