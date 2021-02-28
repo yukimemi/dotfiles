@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/02/27 22:19:32.
+" Last Change : 2021/02/28 11:43:08.
 " =============================================================================
 
 " Init:
@@ -578,12 +578,8 @@ endif
 
 " Colorscheme:
 set background=dark
-silent! packadd gruvbox-material
-if has('nvim')
-  silent! colorscheme gruvbox-material
-else
-  silent! colorscheme gruvbox-material
-endif
+silent! packadd darcula
+silent! colorscheme darcula
 
 " Neovide:
 let g:neovide_transparency = 0.9

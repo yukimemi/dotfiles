@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/02/27 22:20:22.
+# Last Change: 2021/02/28 12:05:20.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -161,6 +161,9 @@ repo = 'sainnhe/gruvbox-material'
 hook_add = '''
 source $VIM_PATH/rc/gruvbox-material.vim
 '''
+
+[[plugins]]
+repo = 'doums/darcula'
 
 [[plugins]]
 repo = 'severij/vadelma'
@@ -383,8 +386,8 @@ source $VIM_PATH/rc/vim-singleton.vim
 repo = 'lilydjwg/colorizer'
 on_event = ['CursorHold', 'FocusLost']
 
-[[plugins]]
-repo = 'seroqn/tozzy.vim'
+# [[plugins]]
+# repo = 'seroqn/tozzy.vim'
 
 [[plugins]]
 repo = 'machakann/vim-swap'
@@ -398,6 +401,9 @@ source $VIM_PATH/rc/vim-clurin.vim
 [[plugins]]
 repo = 'Bakudankun/BackAndForward.vim'
 on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'lambdalisue/edita.vim'
 
 # ==================== Comment ===================
 
@@ -597,6 +603,9 @@ hook_add = '''
 let g:denopspotify_token = $SPOTIFY_TOKEN
 '''
 
+[[plugins]]
+repo = 'higashi000/dps-kakkonan'
+
 # ==================== Filetype (all) ============
 
 # [[plugins]]
@@ -683,14 +692,12 @@ if = "g:plugin_use_ctrlp"
 on_cmd = ['CtrlPCmdHistory', 'CtrlPSearchHistory']
 [[plugins]]
 repo = 'suy/vim-ctrlp-commandline'
-
 depends = ['ctrlp.vim']
 if = "g:plugin_use_ctrlp"
 # on_cmd = ['CtrlPCommandLine']
 
 [[plugins]]
 repo = 'FelikZ/ctrlp-py-matcher'
-
 depends = ['ctrlp.vim']
 if = "g:plugin_use_ctrlp"
 [[plugins]]
@@ -701,13 +708,11 @@ hook_post_update = 'call fruzzy#install()'
 if = "g:plugin_use_ctrlp"
 [[plugins]]
 repo = 'mattn/ctrlp-matchfuzzy'
-
 depends = ['ctrlp.vim']
 if = "g:plugin_use_ctrlp && exists('*matchfuzzy')"
 
 [[plugins]]
 repo = 'liuchengxu/vim-clap'
-
 hook_add = '''
 source $VIM_PATH/rc/vim-clap.vim
 '''
@@ -731,41 +736,35 @@ source $VIM_PATH/rc/denite_source.nvim
 
 [[plugins]]
 repo = 'prabirshrestha/quickpick.vim'
-
 if = 'g:plugin_use_quickpick'
 lazy = 1
 
 [[plugins]]
 repo = 'prabirshrestha/quickpick-filetypes.vim'
-
 depends = 'quickpick.vim'
 if = 'g:plugin_use_quickpick'
 on_cmd = ['Pfiletypes']
 
 [[plugins]]
 repo = 'prabirshrestha/quickpick-colorschemes.vim'
-
 depends = 'quickpick.vim'
 if = 'g:plugin_use_quickpick'
 on_cmd = ['Pcolorschemes']
 
 [[plugins]]
 repo = 'clozed2u/quickpick-files.vim'
-
 depends = 'quickpick.vim'
 if = 'g:plugin_use_quickpick'
 on_cmd = ['Pfiles']
 
 [[plugins]]
 repo = '0keke/quickpick-oldfiles.vim'
-
 depends = 'quickpick.vim'
 if = 'g:plugin_use_quickpick'
 on_cmd = ['Poldfiles']
 
 [[plugins]]
 repo = '0keke/quickpick-launcher.vim'
-
 depends = 'quickpick.vim'
 if = 'g:plugin_use_quickpick'
 on_cmd = ['Pquicklauncher']
@@ -1055,6 +1054,7 @@ on_ft = 'csv'
 [ftplugin]
 _ = '''
 set formatoptions-=ro
+set concealcursor=nc
 '''
 
 dosbatch = '''
