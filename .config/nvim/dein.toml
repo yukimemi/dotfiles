@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/03/05 18:59:16.
+# Last Change: 2021/03/06 12:42:13.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -596,18 +596,18 @@ repo = 'vim-denops/denops.vim'
 
 [[plugins]]
 repo = 'gamoutatsumi/denops-ojichat.vim'
-depends = ['denops.vim']
-on_cmd = ['DenopsOjichat']
 
 [[plugins]]
 repo = 'higashi000/vim-denopspotify'
-depends = ['denops.vim']
 hook_add = '''
 let g:denopspotify_token = $SPOTIFY_TOKEN
 '''
 
 [[plugins]]
 repo = 'higashi000/dps-kakkonan'
+
+[[plugins]]
+repo = 'syumai/goplayground-vim'
 
 # ==================== Filetype (all) ============
 
