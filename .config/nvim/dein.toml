@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/02/28 12:05:20.
+# Last Change: 2021/03/05 18:59:16.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -404,6 +404,9 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'lambdalisue/edita.vim'
+
+[[plugins]]
+repo = 'MattesGroeger/vim-bookmarks'
 
 # ==================== Comment ===================
 

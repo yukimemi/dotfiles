@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/02/28 11:43:08.
+" Last Change : 2021/03/05 19:21:42.
 " =============================================================================
 
 " Init:
@@ -491,24 +491,6 @@ elseif !has('nvim')
   let &t_SR .= "\e[3 q"
 endif
 
-" Color:
-silent! syntax enable
-
-" set cursorline cursorcolumn
-" au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
-au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
-
-" Highlight VCS conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-" Hilight cursorline, cursorcolumn
-" https://github.com/mopp/dotfiles/blob/14fc5fba2429a1d70aac2b904e46c5c2930063ae/.vimrc#L468-L472
-" let s:cur_f = 0
-" au MyAutoCmd WinEnter,BufEnter,CmdwinLeave * setlocal cursorline cursorcolumn | let s:cur_f = 1
-" au MyAutoCmd WinLeave * setlocal nocursorline nocursorcolumn | let s:cur_f = 0
-" au MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline cursorcolumn | let s:cur_f = 1
-" au MyAutoCmd CursorMoved,CursorMovedI * if s:cur_f | setlocal nocursorline nocursorcolumn | let s:cur_f = 0 | endif
-
 " reload filetype on save.
 " https://lambdalisue.hatenablog.com/entry/2017/12/24/165759
 au MyAutoCmd BufWritePost *
@@ -516,6 +498,8 @@ au MyAutoCmd BufWritePost *
       \   unlet! b:ftdetect |
       \   filetype detect |
       \ endif
+
+au MyAutoCmd FileType * setlocal formatoptions-=r formatoptions-=o
 
 " Plugin:
 let s:use_dein = v:true
@@ -548,11 +532,11 @@ let g:plugin_use_telescope = v:false && has('nvim')
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
 let g:plugin_use_fern = v:false
-let g:plugin_use_defx = v:true
+let g:plugin_use_defx = v:false
 let g:plugin_use_molder = v:false
 let g:plugin_use_vaffle = v:false
 let g:plugin_use_viler = v:false
-let g:plugin_use_coc_explorer = v:false
+let g:plugin_use_coc_explorer = v:true
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1
@@ -576,10 +560,19 @@ if !g:no_plugin
   endif
 endif
 
-" Colorscheme:
+" Color:
+silent! syntax enable
+
+" set cursorline cursorcolumn
+" au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
+au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
+
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
 set background=dark
-silent! packadd darcula
-silent! colorscheme darcula
+silent! packadd gruvbox-material
+silent! colorscheme gruvbox-material
 
 " Neovide:
 let g:neovide_transparency = 0.9
@@ -602,5 +595,6 @@ if has('nvim')
 endif
 
 filetype plugin indent on
+
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
