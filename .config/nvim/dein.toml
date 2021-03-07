@@ -611,6 +611,10 @@ repo = 'syumai/goplayground-vim'
 
 [[plugins]]
 repo = 'yukimemi/dps-ahdr'
+# repo = '~/src/github.com/yukimemi/dps-ahdr'
+hook_add = '''
+"let g:ahdr_debug = v:true
+'''
 
 # ==================== Filetype (all) ============
 
