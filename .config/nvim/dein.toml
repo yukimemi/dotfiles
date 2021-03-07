@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/03/07 17:33:39.
+# Last Change: 2021/03/07 22:49:07.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -613,7 +613,8 @@ repo = 'syumai/goplayground-vim'
 repo = 'yukimemi/dps-ahdr'
 # repo = '~/src/github.com/yukimemi/dps-ahdr'
 hook_add = '''
-"let g:ahdr_debug = v:true
+" let g:ahdr_debug = v:true
+" let g:ahdr_cfg_path = "~/.ahdr_me.toml"
 '''
 
 # ==================== Filetype (all) ============
