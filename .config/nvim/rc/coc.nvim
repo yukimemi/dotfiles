@@ -28,6 +28,7 @@ let g:coc_global_extensions = [
       \ "coc-snippets",
       \ "coc-toml",
       \ "coc-translator",
+      \ "coc-tsdetect",
       \ "coc-vimlsp",
       \ "coc-yaml",
       \ "coc-yank",

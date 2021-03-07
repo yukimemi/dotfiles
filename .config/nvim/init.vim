@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/03/05 19:21:42.
+" Last Change : 2021/03/07 04:04:11.
 " =============================================================================
 
 " Init:
@@ -186,115 +186,6 @@ let g:markdown_fenced_languages = [
       \ 'xml',
       \ 'vim',
       \ ]
-
-" JScript
-function! s:addHeaderJScript(flg)
-  setl fenc=cp932
-  setl ff=dos
-  let lines = []
-  call add(lines, "@set @junk=1 /*")
-  call add(lines, "@cscript //nologo //e:jscript \"%~f0\" %*")
-  if a:flg == 0
-    call add(lines, "@ping -n 30 localhost > nul")
-  elseif a:flg == 2
-    call add(lines, "@pause")
-  endif
-  call add(lines, "@exit /b %errorlevel%")
-  call add(lines, "*/")
-  call extend(lines, readfile(expand("%")))
-  let i = 0
-  for line in lines
-    if len(lines) != (i + 1)
-      let lines[i] .= "\r"
-    endif
-    let i += 1
-  endfor
-  " let l:baseDir = expand("%:p:h") . "/../cmd/"
-  let l:baseDir = expand("%:p:h") . "/"
-  let l:cmdFile = expand("%:p:t:r") . ".cmd"
-  silent! call mkdir(l:baseDir, 'p')
-  call writefile(lines,  l:baseDir . l:cmdFile, "b")
-  echo "Write " . l:baseDir . expand("%:p:t:r") . ".cmd"
-endfunction
-au MyAutoCmd FileType javascript nnoremap <buffer> <expr><localleader>b <SID>addHeaderJScript(0)
-au MyAutoCmd FileType javascript nnoremap <buffer> <expr><localleader>m <SID>addHeaderJScript(1)
-au MyAutoCmd FileType javascript nnoremap <buffer> <expr><localleader>p <SID>addHeaderJScript(2)
-
-" PowerShell
-function! s:addHeaderPs1(pattern, verb)
-  setl ff=dos
-  let l:lines = []
-  if a:verb == 1
-    call add(l:lines, "@openfiles > nul 2>&1")
-    call add(l:lines, "@if %errorlevel% equ 0 goto :ALREADY_ADMIN_PRIVILEGE")
-    call add(l:lines, "@powershell.exe -Command Start-Process \"%~f0\" %* -verb runas")
-    call add(l:lines, "@exit /b %errorlevel%")
-    call add(l:lines, ":ALREADY_ADMIN_PRIVILEGE")
-  endif
-
-  let l:line = "@set __SCRIPTPATH=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass -InputFormat None "
-  if a:verb == 1
-    let l:line = l:line . "\"$s=[scriptblock]::create((gc -enc utf8 \\\"%~f0\\\"|?{$_.readcount -gt 7})-join\\\"`n\\\");&$s\" %*"
-  else
-    let l:line = l:line . "\"$s=[scriptblock]::create((gc -enc utf8 \\\"%~f0\\\"|?{$_.readcount -gt 2})-join\\\"`n\\\");&$s\" %*"
-  endif
-  if a:pattern == 1
-  elseif a:pattern == 2
-    let l:line = l:line . "&@pause"
-  else
-    let l:line = l:line . "&@ping -n 30 localhost>nul"
-  endif
-  call add(l:lines, l:line)
-  call add(l:lines, "@exit /b %errorlevel%")
-  call extend(l:lines, readfile(expand("%")))
-  let i = 0
-  for line in l:lines
-    if len(l:lines) != (i + 1)
-      let l:lines[i] .= "\r"
-    endif
-    let i += 1
-  endfor
-  let l:baseDir = expand("%:p:h") . "/"
-  let l:cmdFile = expand("%:p:t:r") . ".cmd"
-  silent! call mkdir(l:baseDir, 'p')
-  call writefile(l:lines,  l:baseDir . l:cmdFile, "b")
-  echo "Write " . l:baseDir . l:cmdFile
-endfunction
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>b <SID>addHeaderPs1(0, 0)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>m <SID>addHeaderPs1(1, 0)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>p <SID>addHeaderPs1(2, 0)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>ab <SID>addHeaderPs1(0, 1)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>am <SID>addHeaderPs1(1, 1)
-au MyAutoCmd FileType ps1 nnoremap <buffer> <expr><localleader>ap <SID>addHeaderPs1(2, 1)
-au MyAutoCmd FileType ps1 setl expandtab ts=2 sw=2 sts=0 foldmethod=syntax ff=dos
-
-" dosbatch
-function! s:addHeaderBat(pattern, verb)
-  setl fenc=cp932
-  setl ff=dos
-  let l:lines = []
-  if a:verb == 1
-    call add(l:lines, "@openfiles > nul 2>&1")
-    call add(l:lines, "@if %errorlevel% equ 0 goto :ALREADY_ADMIN_PRIVILEGE")
-    call add(l:lines, "@powershell.exe -Command Start-Process \"%~f0\" %* -verb runas")
-    call add(l:lines, "@exit /b %errorlevel%")
-    call add(l:lines, ":ALREADY_ADMIN_PRIVILEGE")
-  endif
-  call extend(l:lines, readfile(expand("%")))
-  let i = 0
-  for line in l:lines
-    if len(l:lines) != (i + 1)
-      let l:lines[i] .= "\r"
-    endif
-    let i += 1
-  endfor
-  let l:baseDir = expand("%:p:h") . "/"
-  let l:cmdFile = expand("%:p:t:r") . "_admin." . expand("%:e")
-  silent! call mkdir(l:baseDir, 'p')
-  call writefile(l:lines,  l:baseDir . l:cmdFile, "b")
-  echo "Write " . l:baseDir . l:cmdFile
-endfunction
-au MyAutoCmd FileType dosbatch nnoremap <buffer> <expr><localleader>a <SID>addHeaderBat(0, 1)
 
 " vim
 au MyAutoCmd FileType vim setl expandtab ts=2 sw=2 sts=0
@@ -500,6 +391,11 @@ au MyAutoCmd BufWritePost *
       \ endif
 
 au MyAutoCmd FileType * setlocal formatoptions-=r formatoptions-=o
+
+" nosmartcase on cmdline.
+" [vim-jp » vim-jp.slack.com log - #question - 2021年03月](https://vim-jp.org/slacklog/CJMV3MSLR/2021/03/#ts-1614946023.402700)
+set wildcharm=<tab>
+cnoremap <expr> <tab> '<cmd>set nosmartcase<cr><tab><cmd>let &smartcase = ' .. &smartcase .. '<cr>'
 
 " Plugin:
 let s:use_dein = v:true
