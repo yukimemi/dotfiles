@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/03/07 17:24:38.
+# Last Change: 2021/03/07 17:33:39.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -123,6 +123,9 @@ source $VIM_PATH/rc/nvim-visual-eof.lua.vim
 
 [[plugins]]
 repo =  'mg979/vim-xtabline'
+
+[[plugins]]
+repo = 'powerman/vim-plugin-AnsiEsc'
 
 # colorscheme
 
