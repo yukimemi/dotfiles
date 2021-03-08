@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/03/07 22:49:07.
+# Last Change: 2021/03/09 02:36:48.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -15,13 +15,13 @@ on_cmd = ['DeinUpdate']
 
 # ==================== Visual ====================
 
-[[plugins]]
-repo = 'delphinus/vim-auto-cursorline'
-on_event = ['CursorHold', 'FocusLost']
+# [[plugins]]
+# repo = 'delphinus/vim-auto-cursorline'
+# on_event = ['CursorHold', 'FocusLost']
 
-[[plugins]]
-repo = 'yukimemi/vim-auto-cursorcolumn'
-on_event = ['CursorHold', 'FocusLost']
+# [[plugins]]
+# repo = 'yukimemi/vim-auto-cursorcolumn'
+# on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
@@ -616,6 +616,24 @@ hook_add = '''
 " let g:ahdr_debug = v:true
 " let g:ahdr_cfg_path = "~/.ahdr_me.toml"
 '''
+
+[[plugins]]
+repo = 'yukimemi/dps-autocursor'
+# repo = '~/src/github.com/yukimemi/dps-autocursor'
+hook_add = '''
+" let g:autocursor_debug = v:true
+let g:autocursor_cursorline = {
+  \ "enable": v:true,
+  \ "events": [
+  \   {
+  \     "name": "FocusLost",
+  \     "set": v:true,
+  \     "wait": 3000,
+  \   }
+  \  ]
+  \ }
+'''
+
 
 # ==================== Filetype (all) ============
 
