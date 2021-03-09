@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/03/09 02:36:48.
+# Last Change: 2021/03/09 19:41:20.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -626,9 +626,29 @@ let g:autocursor_cursorline = {
   \ "enable": v:true,
   \ "events": [
   \   {
-  \     "name": "FocusLost",
+  \     "name": "FocusGained",
   \     "set": v:true,
-  \     "wait": 3000,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "CursorHold",
+  \     "set": v:true,
+  \     "wait": 100,
+  \   }
+  \  ]
+  \ }
+let g:autocursor_cursorcolumn = {
+  \ "enable": v:true,
+  \ "events": [
+  \   {
+  \     "name": "FocusGained",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "CursorHold",
+  \     "set": v:true,
+  \     "wait": 200,
   \   }
   \  ]
   \ }
