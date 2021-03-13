@@ -51,26 +51,22 @@ if not test -d ~/.local/bin
   mkdir -p ~/.local/bin
 end
 
-if test (count $fish_user_paths) -eq 0
-  set -U fish_user_paths
-  __add_fish_user_paths /usr/local/bin
-  __add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
-  __add_fish_user_paths /usr/local/opt/gnu-sed/libexec/gnubin
-  __add_fish_user_paths /home/linuxbrew/.linuxbrew/bin
-  __add_fish_user_paths ~/.cargo/bin
-  __add_fish_user_paths ~/.yarn/bin
-  __add_fish_user_paths ~/.linuxbrew/bin
-  __add_fish_user_paths ~/.yarn/bin
-  __add_fish_user_paths ~/.config/yarn/global/node_modules/.bin
-  __add_fish_user_paths ~/.local/bin
-  __add_fish_user_paths ~/.local/bin/scripts
-  __add_fish_user_paths ~/.local/google-cloud-sdk/bin
-  __add_fish_user_paths ~/.ghq/src/bitbucket.org/yukimemi/scripts
-  __add_fish_user_paths $GOPATH/bin
-  __add_fish_user_paths ~/.anyenv/bin
-  __add_fish_user_paths $DENO_INSTALL/bin
-  echo "Update fish_user_paths"
-end
+__add_fish_user_paths /usr/local/bin
+__add_fish_user_paths /usr/local/opt/coreutils/libexec/gnubin
+__add_fish_user_paths /usr/local/opt/gnu-sed/libexec/gnubin
+__add_fish_user_paths /home/linuxbrew/.linuxbrew/bin
+__add_fish_user_paths ~/.cargo/bin
+__add_fish_user_paths ~/.yarn/bin
+__add_fish_user_paths ~/.linuxbrew/bin
+__add_fish_user_paths ~/.yarn/bin
+__add_fish_user_paths ~/.config/yarn/global/node_modules/.bin
+__add_fish_user_paths ~/.local/bin
+__add_fish_user_paths ~/.local/bin/scripts
+__add_fish_user_paths ~/.local/google-cloud-sdk/bin
+__add_fish_user_paths ~/.ghq/src/bitbucket.org/yukimemi/scripts
+__add_fish_user_paths $GOPATH/bin
+__add_fish_user_paths ~/.anyenv/bin
+__add_fish_user_paths $DENO_INSTALL/bin
 
 # MANPATH. {{{2
 set MANPATH /usr/local/opt/coreutils/libexec/gnuman $MANPATH

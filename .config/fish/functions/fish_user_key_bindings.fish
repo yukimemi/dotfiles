@@ -1,7 +1,8 @@
 function fish_user_key_bindings
 
     # Additional bind for fish_vi_key_bindings.
-    bind -M insert \cf accept-autosuggestion
+    # bind -M insert \cf accept-autosuggestion
+    bind -M insert \cf nextd-or-forward-word
     bind -M insert \cn down-or-search
     bind -M insert \cp up-or-search
 
