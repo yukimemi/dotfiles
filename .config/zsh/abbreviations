@@ -71,3 +71,4 @@ abbr ytd="youtube-dl -i --download-archive ./.downloaded"
 abbr ytM="youtube-dl -ix --no-post-overwrites --download-archive ./.downloaded --audio-format mp3"
 abbr ytm="youtube-dl -ix --no-post-overwrites --download-archive ./.downloaded"
 abbr rs="rsync -av8 --progress"
+abbr asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'

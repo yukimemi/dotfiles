@@ -634,6 +634,16 @@ let g:autocursor_cursorline = {
   \     "name": "CursorHold",
   \     "set": v:true,
   \     "wait": 100,
+  \   },
+  \   {
+  \     "name": "TextYankPost",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "CursorMoved",
+  \     "set": v:false,
+  \     "wait": 500,
   \   }
   \  ]
   \ }
@@ -649,6 +659,16 @@ let g:autocursor_cursorcolumn = {
   \     "name": "CursorHold",
   \     "set": v:true,
   \     "wait": 200,
+  \   },
+  \   {
+  \     "name": "TextYankPost",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "CursorMoved",
+  \     "set": v:false,
+  \     "wait": 500,
   \   }
   \  ]
   \ }
