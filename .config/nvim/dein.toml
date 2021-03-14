@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/03/09 19:41:20.
+# Last Change: 2021/03/15 00:34:39.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -636,6 +636,11 @@ let g:autocursor_cursorline = {
   \     "wait": 100,
   \   },
   \   {
+  \     "name": "TextChanged",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
   \     "name": "TextYankPost",
   \     "set": v:true,
   \     "wait": 0,
@@ -658,7 +663,12 @@ let g:autocursor_cursorcolumn = {
   \   {
   \     "name": "CursorHold",
   \     "set": v:true,
-  \     "wait": 200,
+  \     "wait": 300,
+  \   },
+  \   {
+  \     "name": "TextChanged",
+  \     "set": v:true,
+  \     "wait": 0,
   \   },
   \   {
   \     "name": "TextYankPost",
@@ -894,7 +904,6 @@ lazy = 1
 
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
-
 depends = [
   'fern-bookmark.vim',
   'fern-comparator-lexical.vim',
@@ -1067,6 +1076,7 @@ lazy = 1
 [[plugins]]
 repo = 'tsuyoshicho/plantuml-previewer.vim'
 on_ft = 'plantuml'
+depends = ['open-browser.vim']
 
 [[plugins]]
 repo = 'aklt/plantuml-syntax'
@@ -1196,6 +1206,10 @@ rust = '''
 text = '''
 setl noexpandtab
 setl ts=4 sw=4 sts=0
+'''
+
+json = '''
+set concealcursor=nc
 '''
 
 # vim:fdm=marker fdc=3 ft=toml:
