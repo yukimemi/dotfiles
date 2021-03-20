@@ -47,3 +47,5 @@
 	changed = red
 	untracked = blue
 	unmerged = yellow
+[init]
+	defaultBranch = main

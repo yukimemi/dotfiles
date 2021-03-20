@@ -602,6 +602,13 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'yukimemi/dps-asyngrep'
+# repo = '~/src/github.com/yukimemi/dps-asyngrep'
+hook_add = '''
+let g:asyngrep_debug = v:true
+'''
+
+[[plugins]]
 repo = 'yukimemi/dps-autocursor'
 # repo = '~/src/github.com/yukimemi/dps-autocursor'
 hook_add = '''

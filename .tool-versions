@@ -5,7 +5,7 @@ nodejs 14.7.0
 deno 1.4.0
 nim 1.2.6
 starship 0.46.2
-golang 1.15.2
+golang 1.16.2
 ruby 2.7.1
 fd 8.1.1
 ripgrep 12.1.1

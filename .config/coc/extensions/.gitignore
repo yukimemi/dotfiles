@@ -1,13 +1,5 @@
 *.log
-coc-bookmark-data/
-coc-go-data/
-coc-lua-data/
-coc-rust-analyzer-data/
-coc-tabnine-data/
-coc-tabnine-data/
-coc-todolist-data/
-coc-translator-data/
-coc-yank-data/
+coc-*-data/
 db.json
 node_modules/
 package.json
