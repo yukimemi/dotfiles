@@ -11,7 +11,10 @@
 [windows]
 ".config/espanso" = "~/scoop/apps/espanso/current/.espanso"
 ".config/rhq" = "~/AppData/Roaming/rhq"
-".config/nvim" = "~/vimfiles"
+".config/nvim" = [
+  "~/vimfiles",
+  "~/AppData/Local/nvim",
+]
 ".config/nvim/init.vim" = "~/_vimrc"
 ".gvimrc" = "~/_gvimrc"
 ".hyper.js" = "~/AppData/Roaming/Hyper/.hyper.js"
