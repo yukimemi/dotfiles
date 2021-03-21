@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/03/21 01:13:12.
+# Last Change: 2021/03/21 17:55:33.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -599,13 +599,6 @@ repo = 'yukimemi/dps-ahdr'
 hook_add = '''
 " let g:ahdr_debug = v:true
 " let g:ahdr_cfg_path = $VIM_PATH . "~/ahdr.toml"
-'''
-
-[[plugins]]
-repo = 'yukimemi/dps-asyngrep'
-# repo = '~/src/github.com/yukimemi/dps-asyngrep'
-hook_add = '''
-let g:asyngrep_debug = v:true
 '''
 
 [[plugins]]
