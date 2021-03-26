@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/03/21 17:55:33.
+# Last Change: 2021/03/26 21:03:14.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -598,7 +598,7 @@ repo = 'yukimemi/dps-ahdr'
 # repo = '~/src/github.com/yukimemi/dps-ahdr'
 hook_add = '''
 " let g:ahdr_debug = v:true
-" let g:ahdr_cfg_path = $VIM_PATH . "~/ahdr.toml"
+let g:ahdr_cfg_path = $VIM_PATH . "/ahdr.toml"
 '''
 
 [[plugins]]
@@ -672,8 +672,7 @@ let g:autocursor_cursorcolumn = {
 repo = 'yukimemi/dps-asyngrep'
 # repo = '~/src/github.com/yukimemi/dps-asyngrep'
 hook_add = '''
-" let g:asyngrep_debug = v:true
-let g:asyngrep_cfg_path = $VIM_PATH . "/asyngrep.toml"
+source $VIM_PATH/rc/dps-asyngrep.vim
 '''
 
 # ==================== Filetype (all) ============

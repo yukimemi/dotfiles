@@ -1,3 +1,13 @@
+function! MyBarowBomb() abort
+  return &bomb ? ' bomb ' : ''
+endfunction
+function! MyBarowFileType() abort
+	return ' ' . &filetype . ' '
+endfunction
+function! MyBarowFenc() abort
+	return ' ' . &fileencoding . ' '
+endfunction
+
 let g:barow = {
       \  'modes': {
       \    'normal'  : [' ', 'BarowNormal'],
@@ -45,6 +55,8 @@ let g:barow = {
       \    [ 'barowLSP#hint', 'BarowHint' ],
       \    [ 'barowLSP#coc_status', 'StatusLine' ],
       \    [ 'barowLSP#ale_status', 'StatusLine' ],
-      \    [ 'barowGit#branch', 'StatusLine' ],
+      \    [ 'MyBarowFileType', 'BarowInfo' ],
+      \    [ 'MyBarowFenc', 'BarowInfo' ],
+      \    [ 'MyBarowBomb', 'BarowInfo' ],
       \  ]
       \ }
