@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/03/26 21:03:14.
+# Last Change: 2021/03/27 14:24:57.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -398,6 +398,13 @@ repo = 'lambdalisue/edita.vim'
 
 [[plugins]]
 repo = 'MattesGroeger/vim-bookmarks'
+
+[[plugins]]
+repo = 'osyo-manga/vim-hopping'
+on_cmd = ['HoppingStart']
+hook_add = '''
+source $VIM_PATH/rc/vim-hopping.vim
+'''
 
 # ==================== Comment ===================
 
