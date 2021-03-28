@@ -1,8 +1,8 @@
 tnoremap <esc> <c-\><c-n>
 if g:is_windows
-  nnoremap <leader>s :<c-u>execute 'Deol pwsh' '-cwd='.fnamemodify(expand('%'), ':h')<cr>
+  nnoremap <localleader>s :<c-u>execute 'Deol pwsh' '-cwd='.fnamemodify(expand('%'), ':h')<cr>
 else
-  nnoremap <leader>s :<c-u>execute 'Deol' '-cwd='.fnamemodify(expand('%'), ':h')<cr>
+  nnoremap <localleader>s :<c-u>execute 'Deol' '-cwd='.fnamemodify(expand('%'), ':h')<cr>
 endif
 
 au MyAutoCmd FileType deol nnoremap <buffer> p <c-w>""

@@ -8,4 +8,4 @@ let g:hopping#keymapping = {
       \	"\<c-d>" : "<Over>(scroll-d)",
       \ }
 
-au MyAutoCmd FileType qf,quickfix HoppingStart
+" au MyAutoCmd FileType qf,quickfix HoppingStart
