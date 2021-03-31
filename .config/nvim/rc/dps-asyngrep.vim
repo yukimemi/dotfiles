@@ -1,4 +1,4 @@
-let g:asyngrep_debug = v:true
+" let g:asyngrep_debug = v:true
 let g:asyngrep_cfg_path = $VIM_PATH . "/asyngrep.toml"
 
 nnoremap <space>ss <cmd>Agp<cr>

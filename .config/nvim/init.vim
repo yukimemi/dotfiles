@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/03/07 04:04:11.
+" Last Change : 2021/03/28 22:18:20.
 " =============================================================================
 
 " Init:
@@ -390,7 +390,7 @@ au MyAutoCmd BufWritePost *
       \   filetype detect |
       \ endif
 
-au MyAutoCmd FileType * setlocal formatoptions-=r formatoptions-=o
+au MyAutoCmd FileType * setlocal formatoptions-=r formatoptions-=o concealcursor=nc
 
 " nosmartcase on cmdline.
 " [vim-jp » vim-jp.slack.com log - #question - 2021年03月](https://vim-jp.org/slacklog/CJMV3MSLR/2021/03/#ts-1614946023.402700)
