@@ -34,13 +34,6 @@
         "splitMode": "duplicate"
       },
       "keys": "alt+shift+d"
-    },
-    {
-      "command": {
-        "action": "openSettings",
-        "target": "settingsUI"
-      },
-      "keys": "ctrl+shift+,"
     }
   ],
   "copyFormatting": "none",
@@ -332,4 +325,3 @@
   ],
   "startOnUserLogin": true
 }
-
