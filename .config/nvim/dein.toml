@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/03/27 14:24:57.
+# Last Change: 2021/03/31 10:21:35.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1129,7 +1129,7 @@ on_ft = 'csv'
 
 [ftplugin]
 _ = '''
-set formatoptions-=ro
+set formatoptions-=r formatoptions-=o
 set concealcursor=nc
 '''
 
