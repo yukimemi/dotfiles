@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/03/31 10:21:35.
+# Last Change: 2021/04/03 14:52:24.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -203,7 +203,11 @@ source $VIM_PATH/rc/echodoc.vim
 '''
 
 [[plugins]]
-repo = 'mattn/vim-findroot'
+repo = 'airblade/vim-rooter'
+on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $VIM_PATH/rc/vim-rooter.vim
+'''
 
 [[plugins]]
 repo = 'aiya000/aho-bakaup.vim'
@@ -406,6 +410,16 @@ hook_add = '''
 source $VIM_PATH/rc/vim-hopping.vim
 '''
 
+[[plugins]]
+repo = 'itchyny/vim-winfix'
+
+[[plugins]]
+repo = 'lambdalisue/fin.vim'
+on_cmd = ['Fin']
+hook_add = '''
+source $VIM_PATH/rc/fin.vim
+'''
+
 # ==================== Comment ===================
 
 [[plugins]]
@@ -604,75 +618,14 @@ repo = 'syumai/goplayground-vim'
 repo = 'yukimemi/dps-ahdr'
 # repo = '~/src/github.com/yukimemi/dps-ahdr'
 hook_add = '''
-" let g:ahdr_debug = v:true
-let g:ahdr_cfg_path = $VIM_PATH . "/ahdr.toml"
+source $VIM_PATH/rc/dps-ahdr.vim
 '''
 
 [[plugins]]
 repo = 'yukimemi/dps-autocursor'
 # repo = '~/src/github.com/yukimemi/dps-autocursor'
 hook_add = '''
-" let g:autocursor_debug = v:true
-let g:autocursor_cursorline = {
-  \ "enable": v:true,
-  \ "events": [
-  \   {
-  \     "name": "FocusGained",
-  \     "set": v:true,
-  \     "wait": 0,
-  \   },
-  \   {
-  \     "name": "CursorHold",
-  \     "set": v:true,
-  \     "wait": 100,
-  \   },
-  \   {
-  \     "name": "TextChanged",
-  \     "set": v:true,
-  \     "wait": 0,
-  \   },
-  \   {
-  \     "name": "TextYankPost",
-  \     "set": v:true,
-  \     "wait": 0,
-  \   },
-  \   {
-  \     "name": "CursorMoved",
-  \     "set": v:false,
-  \     "wait": 500,
-  \   }
-  \  ]
-  \ }
-let g:autocursor_cursorcolumn = {
-  \ "enable": v:true,
-  \ "events": [
-  \   {
-  \     "name": "FocusGained",
-  \     "set": v:true,
-  \     "wait": 0,
-  \   },
-  \   {
-  \     "name": "CursorHold",
-  \     "set": v:true,
-  \     "wait": 300,
-  \   },
-  \   {
-  \     "name": "TextChanged",
-  \     "set": v:true,
-  \     "wait": 0,
-  \   },
-  \   {
-  \     "name": "TextYankPost",
-  \     "set": v:true,
-  \     "wait": 0,
-  \   },
-  \   {
-  \     "name": "CursorMoved",
-  \     "set": v:false,
-  \     "wait": 500,
-  \   }
-  \  ]
-  \ }
+source $VIM_PATH/rc/dps-autocursor.vim
 '''
 
 [[plugins]]
@@ -680,6 +633,13 @@ repo = 'yukimemi/dps-asyngrep'
 # repo = '~/src/github.com/yukimemi/dps-asyngrep'
 hook_add = '''
 source $VIM_PATH/rc/dps-asyngrep.vim
+'''
+
+[[plugins]]
+repo = 'yukimemi/dps-walk'
+# repo = '~/src/github.com/yukimemi/dps-walk'
+hook_add = '''
+source $VIM_PATH/rc/dps-walk.vim
 '''
 
 # ==================== Filetype (all) ============
