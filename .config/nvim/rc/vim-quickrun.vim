@@ -31,7 +31,7 @@ let g:quickrun_config['typescript'] = extend({
 " deno
 let g:quickrun_config['typescript/deno'] = extend({
       \ 'command' : 'deno',
-      \ 'cmdopt'  : 'run',
+      \ 'cmdopt'  : 'run --unstable -A',
       \ 'hook/output_encode/enable'     : 1,
       \ 'hook/output_encode/fileformat' : 'unix',
       \ 'outputter/loclist/errorformat' : '%A%*[^:]: TS%n [%t%*[A-Z]]: %m,%Z    at file:\/\/\/%f:%l:%n,%C    %m,%-GCheck%.%#' ,
