@@ -1,4 +1,4 @@
-" let g:autocursor_debug = v:true
+let g:autocursor_debug = v:false
 let g:autocursor_cursorline = {
   \ "enable": v:true,
   \ "events": [
