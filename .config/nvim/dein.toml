@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/04/03 14:52:24.
+# Last Change: 2021/04/11 14:56:49.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -308,10 +308,10 @@ if = '!has("nvim")'
 repo = 'roxma/vim-hug-neovim-rpc'
 if = '!has("nvim")'
 
-[[plugins]]
-repo = 'roxma/vim-tmux-clipboard'
-if = '!g:is_windows'
-on_event = ['TextYankPost']
+# [[plugins]]
+# repo = 'roxma/vim-tmux-clipboard'
+# if = '!g:is_windows'
+# on_event = ['TextYankPost']
 
 [[plugins]]
 repo = 'sentriz/vim-print-debug'
@@ -419,6 +419,9 @@ on_cmd = ['Fin']
 hook_add = '''
 source $VIM_PATH/rc/fin.vim
 '''
+
+[[plugins]]
+repo = 'chimay/wheel'
 
 # ==================== Comment ===================
 
@@ -575,6 +578,14 @@ on_event = ['CursorHold', 'FocusLost']
 repo = 'machakann/vim-sandwich'
 on_event = ['CursorHold', 'FocusLost']
 
+[[plugins]]
+repo = 'osyo-manga/vim-operator-highlighter'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'thinca/vim-operator-sequence'
+on_event = ['CursorHold', 'FocusLost']
+
 # ==================== Search ====================
 
 [[plugins]]
@@ -613,6 +624,9 @@ repo = 'gamoutatsumi/denops-ojichat.vim'
 
 [[plugins]]
 repo = 'syumai/goplayground-vim'
+
+[[plugins]]
+repo = 'yutkat/dps-coding-now.nvim'
 
 [[plugins]]
 repo = 'yukimemi/dps-ahdr'

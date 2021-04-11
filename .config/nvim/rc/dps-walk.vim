@@ -1,4 +1,6 @@
 let g:walk_debug = v:false
+let g:walk_bufsize = 777
+let g:walk_skips = ["\\.git", "\\.svn", "\\.hg", "\\.o$", "\\.obj$", "\\.a$", "\\.exe~?$", "tags$"]
 
 nnoremap <space>wa <cmd>DenopsWalk<cr>
 nnoremap <space>ws <cmd>DenopsWalk --path=~/src<cr>
