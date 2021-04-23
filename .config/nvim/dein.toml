@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/04/11 14:56:49.
+# Last Change: 2021/04/11 22:50:29.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -627,6 +627,7 @@ repo = 'syumai/goplayground-vim'
 
 [[plugins]]
 repo = 'yutkat/dps-coding-now.nvim'
+if = "!g:is_windows"
 
 [[plugins]]
 repo = 'yukimemi/dps-ahdr'

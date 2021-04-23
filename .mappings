@@ -36,6 +36,7 @@
 "win/link/archives" = "~/archives"
 "win/link/scoop" = "~/scoop"
 "win/link/src" = "~/src"
+"win/link/onedrive" = "~/onedrive"
 "win/link/tools" = "c:/tools"
 "win/link/nvim-data" = "~/AppData/Local/nvim-data"
 "win/terminus/config.yaml" = "~/AppData/Roaming/terminus/config.yaml"

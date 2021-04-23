@@ -86,9 +86,9 @@ return
 ; return
 
 ; for VSCode
-^F10::
-Activate3("Code.exe", "C:\Program Files\Microsoft VS Code\Code.exe", "Visual Studio Code")
-return
+; ^F10::
+; Activate3("Code.exe", "C:\Program Files\Microsoft VS Code\Code.exe", "Visual Studio Code")
+; return
 
 ; for chrome
 ; F11::
@@ -164,9 +164,9 @@ return
 ; return
 
 ; for cfiler
-; ^F11::
-; Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
-; return
+^F10::
+Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
+return
 
 ; for slack
 ^F11::
