@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/04/11 22:50:29.
+# Last Change: 2021/04/24 11:27:18.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -177,6 +177,12 @@ repo = 'adrian5/oceanic-next-vim'
 
 [[plugins]]
 repo = 'sainnhe/edge'
+
+[[plugins]]
+repo = 'tiagovla/tokyodark.nvim'
+hook_add = '''
+source $VIM_PATH/rc/tokyodark.nvim
+'''
 
 # ==================== Utility ===================
 
@@ -621,9 +627,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'gamoutatsumi/denops-ojichat.vim'
-
-[[plugins]]
-repo = 'syumai/goplayground-vim'
 
 [[plugins]]
 repo = 'yutkat/dps-coding-now.nvim'
