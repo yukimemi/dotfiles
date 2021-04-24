@@ -38,3 +38,10 @@ let g:quickrun_config['typescript/deno'] = extend({
       \ }, get(g:quickrun_config, 'typescript/deno', {}), "keep")
 
 map <leader>R <Plug>(quickrun)
+
+function s:quickrun_sweep_sessions() abort
+  echom "Stop quickrun"
+  call quickrun#sweep_sessions()
+endfunction
+
+nnoremap <expr><silent> <c-c> quickrun#is_running() ? <SID>quickrun_sweep_sessions() : "\<c-c>"
