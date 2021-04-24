@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/04/24 11:27:18.
+# Last Change: 2021/04/24 21:08:45.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -118,6 +118,9 @@ repo =  'mg979/vim-xtabline'
 
 [[plugins]]
 repo = 'powerman/vim-plugin-AnsiEsc'
+hook_add = '''
+source $VIM_PATH/rc/vim-plugin-AnsiEsc.vim
+'''
 
 # colorscheme
 
@@ -429,6 +432,15 @@ source $VIM_PATH/rc/fin.vim
 [[plugins]]
 repo = 'chimay/wheel'
 
+# ==================== Test ======================
+[[plugins]]
+repo = 'vim-test/vim-test'
+depends = ['neoterm', 'vim-floaterm']
+on_cmd = ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit']
+hook_add = '''
+source $VIM_PATH/rc/vim-test.vim
+'''
+
 # ==================== Comment ===================
 
 [[plugins]]
@@ -615,6 +627,17 @@ repo = 'Shougo/deol.nvim'
 on_cmd = ['Deol', 'DeolCd', 'DeolEdit']
 hook_add = '''
 source $VIM_PATH/rc/deol.nvim
+'''
+
+[[plugins]]
+repo = 'voldikss/vim-floaterm'
+lazy = 1
+
+[[plugins]]
+repo = 'kassio/neoterm'
+on_cmd = ['Tnew']
+hook_add = '''
+source $VIM_PATH/rc/neoterm.vim
 '''
 
 # ==================== denops ====================
@@ -1036,6 +1059,7 @@ rev = "release"
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
+if = "g:plugin_use_quickrun"
 depends = ['vim-quickrun-neovim-job']
 hook_add = '''
 source $VIM_PATH/rc/vim-quickrun.vim
@@ -1044,7 +1068,15 @@ on_map = '<Plug>'
 
 [[plugins]]
 repo = 'lambdalisue/vim-quickrun-neovim-job'
+if = "g:plugin_use_quickrun"
 lazy = 1
+
+[[plugins]]
+repo = 'skywind3000/asyncrun.vim'
+if = "g:plugin_use_asyncrun"
+hook_add = '''
+source $VIM_PATH/rc/asyncrun.vim
+'''
 
 # ==================== Filetype (plantuml) =======
 

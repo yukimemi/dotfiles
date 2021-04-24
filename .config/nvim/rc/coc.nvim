@@ -199,7 +199,7 @@ nnoremap <silent> <space>y :<c-u>CocList -A --normal yank<cr>
 
 " coc-translator {{{1
 " popup
-nmap <leader>t <Plug>(coc-translator-p)
-vmap <leader>t <Plug>(coc-translator-pv)
+nmap <leader>T <Plug>(coc-translator-p)
+vmap <leader>T <Plug>(coc-translator-pv)
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
