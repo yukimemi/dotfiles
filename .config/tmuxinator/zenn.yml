@@ -1,0 +1,11 @@
+name: zenn
+root: ~/src/github.com/yukimemi/zenn-dev
+
+windows:
+  - zola:
+      layout: d253,254x73,0,0{184x73,0,0,35,69x73,185,0[69x11,185,0,37,69x61,185,12,38]}
+      panes:
+        - pwd
+        - yarn zenn preview
+        - pwd
+  - shell: pwd

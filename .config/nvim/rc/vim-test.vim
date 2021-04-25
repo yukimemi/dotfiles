@@ -1,10 +1,10 @@
 " let g:test#preserve_screen = 1
 
-nmap <silent> <leader>tn <cmd>TestNearest<cr>
-nmap <silent> <leader>tf <cmd>TestFile<cr>
-nmap <silent> <leader>ts <cmd>TestSuite<cr>
-nmap <silent> <leader>tl <cmd>TestLast<cr>
-nmap <silent> <leader>tg <cmd>TestVisit<cr>
+nnoremap <silent> <leader>tn <cmd>TestNearest<cr>
+nnoremap <silent> <leader>tf <cmd>TestFile<cr>
+nnoremap <silent> <leader>ts <cmd>TestSuite<cr>
+nnoremap <silent> <leader>tl <cmd>TestLast<cr>
+nnoremap <silent> <leader>tg <cmd>TestVisit<cr>
 
 let test#strategy = {
 			\ 'nearest': 'neoterm',
