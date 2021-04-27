@@ -4,8 +4,8 @@ endfunction
 function! MyBarowFileType() abort
 	return ' ' . &filetype . ' '
 endfunction
-function! MyBarowFenc() abort
-	return ' ' . &fileencoding . ' '
+function! MyBarowFencFF() abort
+	return ' [' . &fileencoding . ' / ' . &fileformat . '] '
 endfunction
 
 let g:barow = {
@@ -56,7 +56,7 @@ let g:barow = {
       \    [ 'barowLSP#coc_status', 'StatusLine' ],
       \    [ 'barowLSP#ale_status', 'StatusLine' ],
       \    [ 'MyBarowFileType', 'BarowInfo' ],
-      \    [ 'MyBarowFenc', 'BarowInfo' ],
+      \    [ 'MyBarowFencFF', 'BarowInfo' ],
       \    [ 'MyBarowBomb', 'BarowInfo' ],
       \  ]
       \ }
