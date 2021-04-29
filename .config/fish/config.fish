@@ -135,6 +135,7 @@ abbr -a rr __filter_command_rm_recurse
 abbr -a c __filter_command_cd
 abbr -a fr __filter_command_fresco_remove
 abbr -a tl __filter_command_tmux
+abbr -a tm __filter_command_tmuxinator
 abbr -a b bd
 abbr -a t exit
 abbr -a e nvim
