@@ -136,6 +136,7 @@ abbr -a c __filter_command_cd
 abbr -a fr __filter_command_fresco_remove
 abbr -a tl __filter_command_tmux
 abbr -a b bd
+abbr -a t exit
 abbr -a e nvim
 abbr -a v vim
 abbr -a o open
