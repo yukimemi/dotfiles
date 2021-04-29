@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/04/26 12:04:34.
+# Last Change: 2021/04/29 10:54:31.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -120,6 +120,13 @@ repo =  'mg979/vim-xtabline'
 repo = 'powerman/vim-plugin-AnsiEsc'
 hook_add = '''
 source $VIM_PATH/rc/vim-plugin-AnsiEsc.vim
+'''
+
+[[plugins]]
+repo = 'edluffy/specs.nvim'
+if = "has('nvim')"
+hook_add = '''
+source $VIM_PATH/rc/specs.nvim
 '''
 
 # colorscheme
@@ -619,6 +626,12 @@ on_event = ["CmdlineEnter", "CmdwinEnter"]
 
 [[plugins]]
 repo = 'tsuyoshicho/vim-fg'
+
+[[plugins]]
+repo = 'inside/vim-search-pulse'
+hook_add = '''
+source $VIM_PATH/rc/vim-search-pulse.vim
+'''
 
 # ==================== Shell =====================
 
@@ -1134,6 +1147,12 @@ on_ft = ['powershell', 'ps1']
 [[plugins]]
 repo = 'mechatroner/rainbow_csv'
 on_ft = 'csv'
+
+# ==================== Filetype (fish) ============
+
+[[plugins]]
+repo = 'dag/vim-fish'
+on_ft = 'fish'
 
 # ==================== After ftplugin ============
 

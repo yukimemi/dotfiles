@@ -54,6 +54,7 @@ const overlayedGlobalMarks = {
     "https://mail.google.com/mail/u/1",
     "https://mail.google.com/mail/u/2",
   ],
+  n: "https://yukimemi.netlify.app",
   r: "https://www.reddit.com/r/vim",
   M: "https://maps.google.com/",
   u: "https://www.youtube.com/feed/subscriptions",
@@ -61,6 +62,7 @@ const overlayedGlobalMarks = {
   s: ["https://app.slack.com/client/T03C4RC8V/unreads"],
   f: "https://www.facebook.com",
   h: "https://hangouts.google.com/",
+  z: "https://zenn.dev",
 };
 
 mapkey("gn", "#10Jump to vim-like mark in new tab.", function (mark) {
