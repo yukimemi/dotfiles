@@ -163,7 +163,7 @@ nnoremap <silent> <leader>ct :<c-u>CocList todolist<cr>
 nnoremap <silent> <leader>cS :<c-u>CocList -I symbols<cr>
 nnoremap <silent> <leader>cF :<c-u>CocList filetypes<cr>
 nnoremap <silent> <leader>cg :<c-u>CocList --no-quit grep<cr>
-nnoremap <silent> <leader>r :<c-u>CocListResume<cr>
+nnoremap <silent> <leader>cr :<c-u>CocListResume<cr>
 
 " coc-snippet {{{1
 " Use <c-k> for trigger snippet expand.

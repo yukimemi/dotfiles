@@ -7,6 +7,13 @@ endfunction
 function! MyBarowFencFF() abort
 	return ' [' . &fileencoding . ' / ' . &fileformat . '] '
 endfunction
+function! MyReanimateLastPoint()
+	if IsInstalled('vim-reanimate')
+		return reanimate#is_saved() ? reanimate#last_point() : "no save"
+	else
+		return ''
+	endif
+endfunction
 
 let g:barow = {
       \  'modes': {
@@ -58,5 +65,6 @@ let g:barow = {
       \    [ 'MyBarowFileType', 'BarowInfo' ],
       \    [ 'MyBarowFencFF', 'BarowInfo' ],
       \    [ 'MyBarowBomb', 'BarowInfo' ],
+      \    [ 'MyReanimateLastPoint', 'BarowInfo' ],
       \  ]
       \ }

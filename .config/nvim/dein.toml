@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/04/29 10:54:31.
+# Last Change: 2021/04/29 22:12:49.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -439,10 +439,30 @@ source $VIM_PATH/rc/fin.vim
 [[plugins]]
 repo = 'chimay/wheel'
 
+[[plugins]]
+repo = 'habamax/vim-winlayout'
+on_cmd = ['WinlayoutInspectLayout', 'WinlayoutInspectRestcmd']
+
+[[plugins]]
+repo = 'xolox/vim-session'
+depends = 'vim-misc'
+on_cmd = ['SaveSession', 'OpenSession', 'RestartVim', 'CloseSession', 'DeleteSession', 'ViewSession', 'OpenTabSession', 'SaveTabSession', 'AppendTabSession', 'CloseTabSession']
+
+[[plugins]]
+repo = 'xolox/vim-misc'
+lazy = 1
+
+[[plugins]]
+repo = 'osyo-manga/vim-reanimate'
+on_cmd = ['ReanimateSave', 'ReanimateLoad']
+hook_add = '''
+source $VIM_PATH/rc/vim-reanimate.vim
+'''
+
 # ==================== Test ======================
 [[plugins]]
 repo = 'vim-test/vim-test'
-depends = ['neoterm', 'vim-floaterm']
+depends = ['neoterm']
 on_cmd = ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit']
 hook_add = '''
 source $VIM_PATH/rc/vim-test.vim
@@ -900,7 +920,7 @@ source $VIM_PATH/rc/barow.vim
 '''
 if = "g:plugin_use_barow"
 on_event = ['CursorHold', 'FocusLost']
-depends = ["barowLSP", "barowGit"]
+depends = ["barowLSP", "barowGit", "vim-reanimate"]
 
 [[plugins]]
 repo = "doums/barowLSP"
