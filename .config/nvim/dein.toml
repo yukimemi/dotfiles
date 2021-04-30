@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/04/29 22:12:49.
+# Last Change: 2021/04/30 10:54:52.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -97,7 +97,7 @@ if = "g:is_windows"
 
 [[plugins]]
 repo = "ntpeters/vim-better-whitespace"
-on_event = ['CursorHold', 'FocusLost']
+on_event = ['CursorHold', 'FocusLost', 'StripWhiteSpace']
 
 [[plugins]]
 repo = 't9md/vim-quickhl'
