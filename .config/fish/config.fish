@@ -225,6 +225,10 @@ if test -f ~/.config_local.fish
   source ~/.config_local.fish
 end
 
+if test -f ~/.config_private.fish
+  source ~/.config_private.fish
+end
+
 ### Plugin settings. {{{1
 # spacefish {{{2
 set SPACEFISH_CHAR_SYMBOL "→ "
