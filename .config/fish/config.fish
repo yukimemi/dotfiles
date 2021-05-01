@@ -262,3 +262,8 @@ if type -q zoxide
   zoxide init fish | source
 end
 
+# Google cloud sdk
+if test -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
+  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
+  abbr -a gc 'gcloud'
+end

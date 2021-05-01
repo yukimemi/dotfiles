@@ -13,6 +13,6 @@ let test#strategy = {
 			\ }
 
 let test#javascript#denotest#options = {
-      \ 'all': '--no-check --unstable -A'
+      \ 'all': '--unstable -A'
       \ }
 
