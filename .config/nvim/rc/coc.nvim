@@ -9,29 +9,14 @@ set shortmess+=c
 
 " extensions
 let g:coc_global_extensions = [
-      \ "coc-calc",
-      \ "coc-deno",
       \ "coc-diagnostic",
-      \ "coc-emoji",
       \ "coc-explorer",
-      \ "coc-git",
-      \ "coc-gitignore",
-      \ "coc-go",
-      \ "coc-json",
       \ "coc-lists",
-      \ "coc-markdownlint",
       \ "coc-marketplace",
       \ "coc-nextword",
-      \ "coc-prettier",
-      \ "coc-project",
-      \ "coc-rust-analyzer",
       \ "coc-snippets",
-      \ "coc-toml",
       \ "coc-translator",
-      \ "coc-tsdetect",
       \ "coc-vimlsp",
-      \ "coc-yaml",
-      \ "coc-yank",
       \ ]
 
 let s:plugin_use_cocfzf = get(g:, "plugin_use_cocfzf", v:false)
