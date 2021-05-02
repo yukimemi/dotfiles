@@ -682,9 +682,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'gamoutatsumi/denops-ojichat.vim'
-
-[[plugins]]
 repo = 'yutkat/dps-coding-now.nvim'
 if = "!g:is_windows"
 
