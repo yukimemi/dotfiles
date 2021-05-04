@@ -253,7 +253,8 @@ source ~/.asdf/asdf.fish
 
 # Load direnv. {{{1
 if type -q direnv
-  eval (direnv hook fish)
+  direnv hook fish | source
+  set -g direnv_fish_mode eval_after_arrow
 end
 
 # Load starship. {{{1

@@ -1,0 +1,12 @@
+name: deno-btc
+root: ~/src/github.com/yukimemi/deno-btc
+
+windows:
+  - zola:
+      layout: ea1b,254x73,0,0{152x73,0,0,55,101x73,153,0,56}
+      panes:
+        - nvim
+        - test:
+          - direnv allow
+          - denon test
+  - shell: pwd

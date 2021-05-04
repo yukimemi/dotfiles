@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/04/30 10:54:52.
+# Last Change: 2021/05/04 15:13:23.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -98,6 +98,9 @@ if = "g:is_windows"
 [[plugins]]
 repo = "ntpeters/vim-better-whitespace"
 on_event = ['CursorHold', 'FocusLost', 'StripWhiteSpace']
+hook_add = '''
+source $VIM_PATH/rc/vim-better-whitespace.vim
+'''
 
 [[plugins]]
 repo = 't9md/vim-quickhl'
@@ -398,9 +401,6 @@ repo = 'lilydjwg/colorizer'
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
-repo = 'seroqn/tozzy.vim'
-
-[[plugins]]
 repo = 'machakann/vim-swap'
 
 [[plugins]]
@@ -457,6 +457,13 @@ repo = 'osyo-manga/vim-reanimate'
 on_cmd = ['ReanimateSave', 'ReanimateLoad']
 hook_add = '''
 source $VIM_PATH/rc/vim-reanimate.vim
+'''
+
+[[plugins]]
+repo = 't9md/vim-choosewin'
+on_event = ["VimEnter"]
+hook_add = '''
+source $VIM_PATH/rc/vim-choosewin.vim
 '''
 
 # ==================== Test ======================
@@ -682,6 +689,9 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'higashi000/dps-kakkonan'
+
+[[plugins]]
 repo = 'yutkat/dps-coding-now.nvim'
 if = "!g:is_windows"
 
@@ -809,7 +819,6 @@ depends = ['ctrlp.vim']
 if = "g:plugin_use_ctrlp"
 [[plugins]]
 repo = 'raghur/fruzzy'
-
 depends = ['ctrlp.vim']
 hook_post_update = 'call fruzzy#install()'
 if = "g:plugin_use_ctrlp"
@@ -984,11 +993,19 @@ if = "g:plugin_use_fern"
 
 [[plugins]]
 repo = 'Shougo/defx.nvim'
+depends = ['defx-icons', 'defx-git', 'vim-choosewin']
+on_cmd = ['Defx']
 hook_add = '''
 source $VIM_PATH/rc/defx.nvim
 '''
 if = "g:plugin_use_defx"
-on_cmd = ['Defx']
+
+[[plugins]]
+repo = 'kristijanhusak/defx-icons'
+lazy = 1
+[[plugins]]
+repo = 'kristijanhusak/defx-git'
+lazy = 1
 
 [[plugins]]
 repo = 'mattn/vim-molder'

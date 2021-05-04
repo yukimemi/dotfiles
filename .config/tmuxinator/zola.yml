@@ -8,4 +8,4 @@ windows:
         - pwd
         - zola serve --drafts
         - pwd
-  - shell: pwd
+  - shell: open http://127.0.0.1:1111
