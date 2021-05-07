@@ -36,13 +36,13 @@ function Is-Windows {
 # Get-ChildItemColor
 Import-Module Get-ChildItemColor
 # Pscx
-if (Is-Windows) {
-  Import-Module Pscx
-}
+# if (Is-Windows) {
+#   Import-Module Pscx
+# }
 
 # OS commands.
 function b {
-  cd ..
+  Set-Location ..
 }
 
 # git commands.
@@ -64,26 +64,28 @@ function gp {
 # git ignore for PowerShell v3
 function gig {
   param(
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string[]]$list
   )
   $params = ($list | ForEach-Object { [uri]::EscapeDataString($_) }) -join ","
-  Invoke-WebRequest -Uri "https://www.gitignore.io/api/$params" | select -ExpandProperty content | Out-File -FilePath $(Join-Path -path $pwd -ChildPath ".gitignore") -Encoding ascii
+  Invoke-WebRequest -Uri "https://www.gitignore.io/api/$params" |
+    Select-Object -ExpandProperty content |
+    Out-File -FilePath $(Join-Path -Path $pwd -ChildPath ".gitignore") -Encoding ascii
 }
 function gr {
-  cd $(git rev-parse --show-cdup)
+  Set-Location $(git rev-parse --show-cdup)
 }
 
 # Auto ls on cd.
 function cd-ls {
   [CmdletBinding()]
   param(
-    [Parameter(ValueFromPipeline=$true)]
+    [Parameter(ValueFromPipeline = $true)]
     [string]$path
   )
   trap { $_ }
   Set-Location $path -ea Stop
-  ls
+  Get-ChildItem
   # Save location.
   $funcs = "function Is-Windows { ${Function:Is-Windows} }"
   Start-Job {
@@ -92,16 +94,18 @@ function cd-ls {
     $z = & {
       if (Is-Windows) {
         (Join-Path $env:USERPROFILE ".z")
-      } else {
+      }
+      else {
         (Join-Path $env:HOME ".z")
       }
     }
     $path | Add-Content -Encoding utf8 $z
-    $c = Get-Content -Encoding utf8 $z | ? { ![string]::IsNullOrEmpty($_) } | ? { Test-Path $_ }
+    $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) } | Where-Object { Test-Path $_ }
     [array]::Reverse($c)
     if (Get-Command uq -ErrorAction SilentlyContinue) {
       $c | uq | Set-Variable c
-    } else {
+    }
+    else {
       $c | Sort-Object -Unique | Set-Variable c
     }
     [array]::Reverse($c)
@@ -112,12 +116,16 @@ function cd-ls {
 function cdls {
   [CmdletBinding()]
   param(
-    [Parameter(ValueFromPipeline=$true)]
+    [Parameter(ValueFromPipeline = $true)]
     [string]$path
   )
   trap { $_ }
   Set-Location $path -ea Stop
-  ls
+  Get-ChildItem
+}
+
+function t {
+  exit
 }
 
 function RemoveTo-Trash {
@@ -151,12 +159,13 @@ function RemoveTo-Trash {
   }
   Process {
     if ($PSBoundParameters.ContainsKey('Path')) {
-      $Path | ? { ![string]::IsNullOrWhiteSpace($_) } | Set-Variable Path
+      $Path | Where-Object { ![string]::IsNullOrWhiteSpace($_) } | Set-Variable Path
       $targets = Convert-Path $Path
-    } else {
+    }
+    else {
       $targets = Convert-Path -LiteralPath $LiteralPath
     }
-    $targets | % {
+    $targets | ForEach-Object {
       if ($PSCmdlet.ShouldProcess($_)) {
         $trash.MoveHere($_)
       }
@@ -165,7 +174,7 @@ function RemoveTo-Trash {
 }
 
 function Get-DriveInfo {
-  Get-PSDrive -PSProvider FileSystem | ? { $_.Used } | ? { $_.Name -ne "Temp" } | Sort-Object Name
+  Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Used } | Where-Object { $_.Name -ne "Temp" } | Sort-Object Name
 }
 
 function Get-DriveInfoView {
@@ -174,7 +183,7 @@ function Get-DriveInfoView {
 
 # rhq.
 function rhl {
-  rhq list | __FILTER | cd
+  rhq list | __FILTER | Set-Location
 }
 
 # Remove-Alias r
@@ -182,7 +191,8 @@ Remove-Item alias:r
 function r {
   if (Get-Command trash -ErrorAction SilentlyContinue) {
     trash $(Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER)
-  } else {
+  }
+  else {
     Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER | RemoveTo-Trash
   }
 }
@@ -198,7 +208,7 @@ function Install-Pip {
   [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
   curl -sSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py
   .\python .\get-pip.py
-  rm .\get-pip.py
+  Remove-Item .\get-pip.py
 }
 
 # Alias.
@@ -230,21 +240,28 @@ if (Is-Windows) {
 }
 if (Is-Windows) {
   Set-Alias ls Get-ChildItem
-  function l { ls $args }
-  function la { ls -Force $args }
-} else {
+  function l { Get-ChildItem $args }
+  function la { Get-ChildItem -Force $args }
+}
+else {
   Set-Alias ls lsd
-  function l { ls -l $args }
-  function la { ls -a $args }
+  function l { Get-ChildItem -l $args }
+  function la { Get-ChildItem -a $args }
 }
 
 # Readline setting.
 Set-PSReadLineOption -EditMode Vi
 
+Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function AcceptNextSuggestionWord
+Set-PSReadLineKeyHandler -Key 'Ctrl+e' -Function AcceptSuggestion
+
+Set-PSReadLineKeyHandler -Key 'Shift+Spacebar' -Function PossibleCompletions
+
 Set-PSReadLineKeyHandler -Key 'Ctrl+a' -Function BeginningOfLine
 Set-PSReadLineKeyHandler -Key 'Ctrl+b' -Function BackwardChar
 Set-PSReadLineKeyHandler -Key 'Ctrl+d' -Function DeleteChar
-Set-PSReadLineKeyHandler -Key 'Ctrl+e' -Function EndOfLine
+# Set-PSReadLineKeyHandler -Key 'Ctrl+e' -Function EndOfLine
 # Set-PSReadLineKeyHandler -Key 'Ctrl+f' -Function ForwardChar
 Set-PSReadLineKeyHandler -Key 'Ctrl+h' -Function BackwardDeleteChar
 Set-PSReadLineKeyHandler -Key 'Ctrl+l' -Function ClearScreen
@@ -252,12 +269,6 @@ Set-PSReadLineKeyHandler -Key 'Ctrl+n' -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Key 'Ctrl+p' -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key 'Ctrl+u' -Function BackwardDeleteLine
 Set-PSReadLineKeyHandler -Key 'Ctrl+w' -Function BackwardDeleteWord
-
-$readLineVersion = (Get-Module -Name PSReadline).Version
-if ($readLineVersion.Major + 0.1 * $readLineVersion.Minor -ge 2.1) {
-  Set-PSReadLineOption -PredictionSource History
-  Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function ForwardWord
-}
 
 # Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.Count) locations.`n"
 
@@ -267,14 +278,15 @@ function _j {
   $z = & {
     if (Is-Windows) {
       (Join-Path $env:USERPROFILE ".z")
-    } else {
+    }
+    else {
       (Join-Path $env:HOME ".z")
     }
   }
   # $c = Get-Content $z
   # [array]::Reverse($c)
   # $c | __FILTER | cd
-  Get-Content $z | __FILTER | cd
+  Get-Content $z | __FILTER | Set-Location
   Get-Job | Stop-Job -PassThru | Remove-Job -Force
 }
 
@@ -282,13 +294,13 @@ function j { zi }
 
 # zoxide.
 Invoke-Expression (& {
-  $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
-  (zoxide init --hook $hook powershell) -join "`n"
-})
+    $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
+    (zoxide init --hook $hook powershell) -join "`n"
+  })
 
 # hash.
 function Get-FileAndHash {
-  gci . | % { [PSCustomObject]@{ path = $_.Name; hash = (Get-FileHash -a md5 $_.FullName).Hash } }
+  Get-ChildItem . | ForEach-Object { [PSCustomObject]@{ path = $_.Name; hash = (Get-FileHash -a md5 $_.FullName).Hash } }
 }
 
 # Chocolatey profile

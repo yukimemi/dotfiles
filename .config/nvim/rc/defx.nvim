@@ -2,6 +2,8 @@ nnoremap <silent> <leader>v :<c-u>Defx -columns=icons:indent:filename:type:git `
 nnoremap <silent> ge :<c-u>Defx -columns=icons:indent:filename:type:git -split=vertical -winwidth=30 -direction=topleft `expand('%:p:h')` -search=`expand('%:p')`<cr>
 
 au MyAutoCmd FileType defx call s:defx_my_settings()
+au MyAutoCmd BufWritePost * call defx#redraw()
+
 function! s:defx_my_settings() abort
   " Define mappings
   nnoremap <silent><buffer><expr> <cr> defx#do_action('open')
