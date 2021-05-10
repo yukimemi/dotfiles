@@ -125,13 +125,6 @@ hook_add = '''
 source $VIM_PATH/rc/vim-plugin-AnsiEsc.vim
 '''
 
-[[plugins]]
-repo = 'edluffy/specs.nvim'
-if = "has('nvim')"
-hook_add = '''
-source $VIM_PATH/rc/specs.nvim
-'''
-
 # colorscheme
 
 [[plugins]]
