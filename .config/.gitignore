@@ -1,4 +1,5 @@
 NuGet/
+PowerShell/
 anyenv/
 asciinema/
 cmus/
@@ -12,6 +13,7 @@ gcloud/
 gh/
 heroku/
 hub
+iterm2/
 nextword/
 pet
 powershell/
@@ -21,4 +23,3 @@ stetic/
 vim/yankround/
 xbuild/
 yarn/
-PowerShell/

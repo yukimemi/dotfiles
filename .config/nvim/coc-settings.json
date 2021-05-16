@@ -38,5 +38,10 @@
     "html",
     "css",
     "xml"
-  ]
+  ],
+  "tsserver.enable": false,
+  "deno.enable": true,
+  "deno.lint": true,
+  "coc.source.file.trimSameExts": [],
+  "prettier.disableLanguages": ["typescript", "typescriptreact"]
 }

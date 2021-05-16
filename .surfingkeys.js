@@ -5,6 +5,8 @@ settings.hintAlign = "left";
 
 settings.nextLinkRegex = /((forward|>>|next|次[のへ]|→)+)/i;
 settings.prevLinkRegex = /((back|<<|prev(ious)?|前[のへ]|←)+)/i;
+settings.newTabPosition = "right";
+settings.omnibarMaxResults = 12;
 
 // mappings.
 // History
@@ -285,14 +287,11 @@ mapkey("<Ctrl-g>", "google translate", () => {
   }
 });
 
-mapkey("yM", "Copy URL as markdown", () => {
-  Clipboard.write(`[${document.title}](${window.location.href})`);
-});
-
 Hints.style("font-size: 13pt;");
 Hints.style("font-size: 13pt;", "text");
 
 // --- Site-specific mappings ---//
+const ri = { repeatIgnore: true };
 const Hint = (selector, action = Hints.dispatchMouseClick) => () =>
   Hints.create(selector, action);
 const siteleader = ",";
@@ -319,6 +318,73 @@ function mapsitekeys(d, maps, opts = {}) {
   });
 }
 
+// --- Global mappings ---//
+//  0: Help
+//  1: Mouse Click
+//  2: Scroll Page / Element
+//  3: Tabs
+//  4: Page Navigation
+mapkey(
+  "gI",
+  "#4View image in new tab",
+  Hint("img", (i) => tabOpenLink(i.src)),
+  ri
+);
+//  5: Sessions
+//  6: Search selected with
+//  7: Clipboard
+mapkey(
+  "yI",
+  "#7Copy Image URL",
+  Hint("img", (i) => Clipboard.write(i.src)),
+  ri
+);
+
+mapkey(";t", "#14google translate", () => {
+  const selection = window.getSelection().toString();
+  if (selection === "") {
+    // 文字列選択してない場合はページ自体を翻訳にかける
+    tabOpenLink(
+      `http://translate.google.com/translate?u=${window.location.href}`
+    );
+  } else {
+    // 選択している場合はそれを翻訳する
+    tabOpenLink(
+      `https://translate.google.com/?sl=auto&tl=ja&text=${encodeURI(selection)}`
+    );
+  }
+});
+
+mapkey(";b", "#14hatena bookmark", () => {
+  const { location } = window;
+  let url = location.href;
+  if (location.href.startsWith("https://app.getpocket.com/read/")) {
+    url = decodeURIComponent(
+      document
+        .querySelector("header a")
+        .getAttribute("href")
+        .replace("https://getpocket.com/redirect?url=", "")
+    );
+  }
+  if (url.startsWith("http:")) {
+    tabOpenBackground(
+      `http://b.hatena.ne.jp/entry/${url.replace("http://", "")}`
+    );
+    return;
+  }
+  if (url.startsWith("https:")) {
+    tabOpenBackground(
+      `http://b.hatena.ne.jp/entry/s/${url.replace("https://", "")}`
+    );
+    return;
+  }
+  throw new Error("はてなブックマークに対応していないページ");
+});
+
+mapkey(";g", "#14魚拓", () => {
+  tabOpenLink(`https://megalodon.jp/?url=${location.href}`);
+});
+
 // YouTube.
 const ytFullscreen = () =>
   document.querySelector(".ytp-fullscreen-button.ytp-button").click();
@@ -341,6 +407,61 @@ mapsitekeys(
   ],
   { leader: "" }
 );
+
+const copyTitleAndUrl = (format) => {
+  const text = format
+    .replace("%URL%", location.href)
+    .replace("%TITLE%", document.title);
+  Clipboard.write(text);
+};
+const copyHtmlLink = () => {
+  const clipNode = document.createElement("a");
+  const range = document.createRange();
+  const sel = window.getSelection();
+  clipNode.setAttribute("href", location.href);
+  clipNode.innerText = document.title;
+  document.body.appendChild(clipNode);
+  range.selectNode(clipNode);
+  sel.removeAllRanges();
+  sel.addRange(range);
+  document.execCommand("copy", false, null);
+  document.body.removeChild(clipNode);
+  Front.showBanner("Ritch Copied: " + document.title);
+};
+
+mapkey("cm", "#7Copy title and link to markdown", () => {
+  copyTitleAndUrl("[%TITLE%](%URL%)");
+});
+mapkey("ct", "#7Copy title and link to textile", () => {
+  copyTitleAndUrl('"%TITLE%":%URL%');
+});
+mapkey("ch", "#7Copy title and link to human readable", () => {
+  copyTitleAndUrl("%TITLE% / %URL%");
+});
+mapkey("cb", "#7Copy title and link to scrapbox", () => {
+  copyTitleAndUrl("[%TITLE% %URL%]");
+});
+mapkey("ca", "#7Copy title and link to href", () => {
+  copyTitleAndUrl('<a href="%URL%">%TITLE%</a>');
+});
+mapkey("cp", "#7Copy title and link to plantuml", () => {
+  copyTitleAndUrl("[[%URL% %TITLE%]]");
+});
+mapkey("cr", "#7Copy rich text link", () => {
+  copyHtmlLink();
+});
+mapkey("co", "#7Copy title and link to org", () => {
+  copyTitleAndUrl("[[%URL%][%TITLE%]]");
+});
+
+unmapAllExcept(
+  ["E", "R", "d", "u", "T", "f", "F", "C", "x", "S", "H", "L", "cm"],
+  /mail.google.com|twitter.com|feedly.com|i.doit.im/
+);
+if (/^https:\/\/www.amazon.co.jp\/gp\/video\//.test(window.location.href)) {
+  // for Video Speed Controller
+  unmapKeys(["d", "s", "z", "x", "r", "g"]);
+}
 
 // set theme
 settings.theme = `
@@ -380,5 +501,3 @@ settings.theme = `
 #sk_status, #sk_find {
     font-size: 20pt;
 }`;
-
-// vim: fdm=syntax fdc=3:

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/05/02 22:39:16.
+" Last Change : 2021/05/15 22:14:04.
 " =============================================================================
 
 " Init:
@@ -121,7 +121,9 @@ endif
 set number
 set relativenumber
 set signcolumn=yes
-set ambiwidth=double
+if has('gui')
+  set ambiwidth=double
+endif
 set history=10000
 set nofixeol
 set hidden autoread

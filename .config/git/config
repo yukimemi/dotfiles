@@ -15,11 +15,18 @@
 	br = branch
 	di = diff
 	k = log --graph --pretty
+	info = remote show origin
+	l  = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset'
+	ln = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset' --name-status
+	lc = log --graph -n 20 --pretty=format:'%C(yellow)%h%Creset %s'
+	lp = log --oneline -n 20 -p
+	ls = log --stat --abbrev-commit -n 1 # display previous log
+	pf = push --force-with-lease
 [core]
 	autocrlf = false
 	editor = nvim
 	filemode = false
-  pager = delta
+	pager = delta
 [ghq]
 	root = ~/.cache/nvim/pack/minpac
 	root = ~/.go/src
@@ -38,6 +45,9 @@
 	protocol = https
 [pull]
 	rebase = true
+[rebase]
+	autosquash = true
+	autostash = true
 [delta]
 	side-by-side = true
 [commit]
