@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/05/16 20:55:51.
+# Last Change: 2021/05/16 23:39:58.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -721,8 +721,8 @@ repo = 'yutkat/dps-coding-now.nvim'
 if = "!g:is_windows"
 
 [[plugins]]
-repo = 'yukimemi/dps-ahdr'
-# repo = '~/src/github.com/yukimemi/dps-ahdr'
+# repo = 'yukimemi/dps-ahdr'
+repo = '~/src/github.com/yukimemi/dps-ahdr'
 hook_add = '''
 source $VIM_PATH/rc/dps-ahdr.vim
 '''

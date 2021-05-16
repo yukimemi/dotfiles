@@ -7,5 +7,5 @@ augroup MyAutoCmdAhdr| autocmd! | augroup END
 command! DenopsAhdrDebug call <SID>my_ahdr_debug()
 
 function! s:my_ahdr_debug() abort
-  au BufWritePost <buffer>  DenopsAhdr wait
+  au MyAutoCmdAhdr BufWritePost <buffer> DenopsAhdr wait
 endfunction

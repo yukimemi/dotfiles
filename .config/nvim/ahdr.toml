@@ -10,7 +10,7 @@ header = '''
 '''
 
 [[ps1]]
-name = "pause"
+name = "pausecmd"
 prefix = ""
 suffix = ""
 dst = "../cmd"
@@ -21,7 +21,7 @@ header = '''
 '''
 
 [[ps1]]
-name = "wait"
+name = "waitcmd"
 prefix = ""
 suffix = ""
 dst = "../cmd"
@@ -45,7 +45,7 @@ header = '''
 '''
 
 [[javascript]]
-name = "pause"
+name = "pausecmd"
 prefix = ""
 suffix = ""
 dst = "../cmd"
@@ -59,7 +59,7 @@ header = '''
 '''
 
 [[javascript]]
-name = "wait"
+name = "waitcmd"
 prefix = ""
 suffix = ""
 dst = "../cmd"
@@ -73,7 +73,7 @@ header = '''
 '''
 
 [[dosbatch]]
-name = "admin"
+name = "admincmd"
 prefix = ""
 suffix = "_a"
 dst = "../cmd"

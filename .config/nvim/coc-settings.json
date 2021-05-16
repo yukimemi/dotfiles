@@ -29,6 +29,8 @@
   "coc.preferences.formatOnSaveFiletypes": [
     "typescript",
     "typescriptreact",
+    "powershell",
+    "ps1",
     "javascript",
     "json",
     "html",

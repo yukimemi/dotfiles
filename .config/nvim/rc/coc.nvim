@@ -1,4 +1,4 @@
-" coc {{{1
+" coc
 " always show signcolumns
 set signcolumn=yes
 if !g:is_windows && !has('nvim')
@@ -92,6 +92,11 @@ omap af <Plug>(coc-funcobj-a)
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format <cmd>call CocAction('format')
 
+au MyAutoCmd FileType ps1 call <SID>autoformat_onsave()
+function! s:autoformat_onsave()
+  au MyAutoCmd BufWritePre <buffer> call CocAction('format')
+endfunction
+
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold <cmd>call CocAction('fold', <f-args>)
 
@@ -113,7 +118,7 @@ endif
 nmap <silent> <c-s> <Plug>(coc-range-select)
 xmap <silent> <c-s> <Plug>(coc-range-select)
 
-" coc-list {{{1
+" coc-list
 if s:plugin_use_cocfzf
   nmap <leader>f [fzf-p]
   xmap <leader>f [fzf-p]
@@ -151,7 +156,7 @@ nnoremap <silent> <leader>cF :<c-u>CocList filetypes<cr>
 nnoremap <silent> <leader>cg :<c-u>CocList --no-quit grep<cr>
 nnoremap <silent> <leader>cr :<c-u>CocListResume<cr>
 
-" coc-snippet {{{1
+" coc-snippet
 " Use <c-k> for trigger snippet expand.
 " imap <c-k> <Plug>(coc-snippets-expand)
 
@@ -168,22 +173,22 @@ let g:coc_snippet_prev = '<c-k>'
 imap <c-k> <Plug>(coc-snippets-expand-jump)
 
 
-" coc-explorer {{{1
+" coc-explorer
 let s:plugin_use_coc_explorer = get(g:, "plugin_use_coc_explorer", v:false)
 if s:plugin_use_coc_explorer
   nnoremap ge :<c-u>CocCommand explorer<cr>
 endif
 
-" coc-todolist {{{1
+" coc-todolist
 " nnoremap <leader>l :<c-u>CocCommand todolist.create<cr>
 
-" coc-terminal {{{1
+" coc-terminal
 " nmap <leader>s <Plug>(coc-terminal-toggle)
 
-" coc-yank {{{1
+" coc-yank
 nnoremap <silent> <space>y :<c-u>CocList -A --normal yank<cr>
 
-" coc-translator {{{1
+" coc-translator
 " popup
 nmap <leader>T <Plug>(coc-translator-p)
 vmap <leader>T <Plug>(coc-translator-pv)
