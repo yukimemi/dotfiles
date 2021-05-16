@@ -41,7 +41,7 @@ let g:ctrlp_ghq_cache_enabled = 1
 if exists('*matchfuzzy')
   " Use ctrlp-matchfuzzy.
   let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
-elseif has('python')
+elseif has('python3')
   " Use fruzzy.
   let g:fruzzy#usenative = 1
   let g:ctrlp_match_func = {'match': 'fruzzy#ctrlp#matcher'}

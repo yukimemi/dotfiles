@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/05/16 20:24:46.
+# Last Change: 2021/05/16 20:55:51.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -485,6 +485,9 @@ call dein#source('fzf')
 call fzf#install()
 '''
 
+[[plugins]]
+repo = 'deris/vim-pasta'
+
 # ==================== Test ======================
 [[plugins]]
 repo = 'vim-test/vim-test'
@@ -846,7 +849,10 @@ if = "g:plugin_use_ctrlp"
 [[plugins]]
 repo = 'raghur/fruzzy'
 depends = ['ctrlp.vim']
-hook_post_update = 'call fruzzy#install()'
+hook_post_update = '''
+call dein#source('fruzzy')
+call fruzzy#install()
+'''
 if = "g:plugin_use_ctrlp"
 [[plugins]]
 repo = 'mattn/ctrlp-matchfuzzy'
