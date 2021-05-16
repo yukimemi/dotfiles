@@ -43,14 +43,16 @@
   "deno.enable": true,
   "deno.lint": true,
   "coc.source.file.trimSameExts": [],
-  "prettier.disableLanguages": [
-    "typescript",
-    "typescriptreact"
-  ],
-  "prettier.disableLanguage": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
+  "prettier.disableLanguages": ["typescript", "typescriptreact"],
+  "cSpell.enabledLanguageIds": [
+    "git-commit",
+    "html",
+    "json",
+    "jsonc",
+    "markdown",
+    "plaintext",
+    "restructuredtext",
+    "yaml",
+    "yml"
   ]
 }
