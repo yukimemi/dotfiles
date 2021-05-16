@@ -15,6 +15,7 @@ let g:coc_global_extensions = [
       \ "coc-marketplace",
       \ "coc-nextword",
       \ "coc-snippets",
+      \ "coc-spell-checker",
       \ "coc-translator",
       \ "coc-vimlsp",
       \ ]

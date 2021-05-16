@@ -43,5 +43,14 @@
   "deno.enable": true,
   "deno.lint": true,
   "coc.source.file.trimSameExts": [],
-  "prettier.disableLanguages": ["typescript", "typescriptreact"]
+  "prettier.disableLanguages": [
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.disableLanguage": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ]
 }

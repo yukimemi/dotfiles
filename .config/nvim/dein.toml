@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/05/04 15:13:23.
+# Last Change: 2021/05/16 20:24:46.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -459,6 +459,32 @@ hook_add = '''
 source $VIM_PATH/rc/vim-choosewin.vim
 '''
 
+[[plugins]]
+repo = 'folke/todo-comments.nvim'
+depends = ['plenary.nvim']
+if = "has('nvim')"
+hook_add = '''
+source $VIM_PATH/rc/todo-comments.nvim
+'''
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+if = "has('nvim')"
+lazy = 1
+
+[[plugins]]
+repo = 'kevinhwang91/nvim-bqf'
+depends = ['fzf']
+if = "has('nvim')"
+
+[[plugins]]
+repo = 'junegunn/fzf'
+lazy = 1
+hook_post_update = '''
+call dein#source('fzf')
+call fzf#install()
+'''
+
 # ==================== Test ======================
 [[plugins]]
 repo = 'vim-test/vim-test'
@@ -685,6 +711,9 @@ hook_add = '''
 repo = 'higashi000/dps-kakkonan'
 
 [[plugins]]
+repo = 'tamago324/dps-gitignore'
+
+[[plugins]]
 repo = 'yutkat/dps-coding-now.nvim'
 if = "!g:is_windows"
 
@@ -741,6 +770,10 @@ hook_post_update = '''
 call dein#source('markdown-preview.nvim')
 call mkdp#util#install()
 '''
+
+[[plugins]]
+repo = 'rhysd/vim-gfm-syntax'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 
 # ==================== Filetype (html) ===========
 

@@ -49,7 +49,7 @@
 ".config/espanso" = "~/Library/Preferences/espanso"
 ".config/rhq" = "~/Library/Preferences/rhq"
 ".gvimrc" = "~/.gvimrc"
-".hyper.js" = "~/.hyper.js"
+".hyper.js" = "~/Library/Application Support/Hyper/.hyper.js"
 ".profile" = "~/.profile"
 ".tmux.conf" = "~/.tmux.conf"
 ".zshenv" = "~/.zshenv"
