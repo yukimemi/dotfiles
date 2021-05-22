@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/05/22 21:19:33.
+# Last Change: 2021/05/23 00:25:07.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -216,6 +216,11 @@ on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/vim-rooter.vim
 '''
+
+[[plugins]]
+repo = 'ahmedkhalf/lsp-rooter.nvim'
+on_event = ['CursorHold', 'FocusLost']
+if = 'has("nvim")'
 
 [[plugins]]
 repo = 'aiya000/aho-bakaup.vim'
@@ -484,6 +489,13 @@ call fzf#install()
 [[plugins]]
 repo = 'deris/vim-pasta'
 
+[[plugins]]
+repo = 'nanotee/zoxide.vim'
+depends = ['fzf']
+hook_add = '''
+source $VIM_PATH/rc/zoxide.vim
+'''
+
 # ==================== Test ======================
 [[plugins]]
 repo = 'vim-test/vim-test'
@@ -715,6 +727,13 @@ repo = 'tamago324/dps-gitignore'
 [[plugins]]
 repo = 'yutkat/dps-coding-now.nvim'
 if = "!g:is_windows"
+
+[[plugins]]
+repo = 'skanehira/command.vim'
+if = "!g:is_windows"
+hook_add = '''
+source $VIM_PATH/rc/command.vim
+'''
 
 [[plugins]]
 # repo = 'yukimemi/dps-ahdr'
@@ -965,6 +984,13 @@ repo = "doums/barowGit"
 if = "g:plugin_use_barow"
 lazy = 1
 
+[[plugins]]
+repo = 'tamton-aquib/staline.nvim'
+if = "g:plugin_use_staline && has('nvim')"
+hook_add = '''
+source $VIM_PATH/rc/staline.nvim
+'''
+
 # ==================== Filetree ==================
 
 [[plugins]]
@@ -1145,6 +1171,14 @@ on_map = '<Plug>'
 repo = 'lambdalisue/vim-quickrun-neovim-job'
 if = "g:plugin_use_quickrun"
 lazy = 1
+
+[[plugins]]
+repo = 'statiolake/vim-quickrun-runner-nvimterm'
+if = "has('nvim') && g:plugin_use_quickrun"
+on_source = ['vim-quickrun']
+hook_add = '''
+source $VIM_PATH/rc/vim-quickrun-runner-nvimterm.vim
+'''
 
 [[plugins]]
 repo = 'skywind3000/asyncrun.vim'
