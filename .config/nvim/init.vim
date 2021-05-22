@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/05/22 21:32:17.
+" Last Change : 2021/05/22 21:56:45.
 " =============================================================================
 
 " Init:
@@ -488,8 +488,7 @@ au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 set background=dark
-silent! packadd gruvbox-material
-silent! colorscheme gruvbox-material
+silent! colorscheme spring-night
 
 " Neovide:
 let g:neovide_transparency = 0.9

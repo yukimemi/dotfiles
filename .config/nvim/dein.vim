@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2021/05/22 21:23:06.
+" Last Change : 2021/05/22 21:58:27.
 " =============================================================================
 
 " Plugin:
@@ -61,7 +61,6 @@ call dein#save_state()
 " Check and install.
 if !v:vim_did_enter && dein#check_install()
   call dein#install()
-  " call dein#check_update(v:true)
 endif
 
 if !empty(map(dein#check_clean(), 'delete(v:val, "rf")'))

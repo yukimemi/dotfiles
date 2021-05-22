@@ -15,7 +15,7 @@ let g:autocursor_cursorline = {
   \   {
   \     "name": "CursorMoved",
   \     "set": v:false,
-  \     "wait": 500,
+  \     "wait": 100,
   \   }
   \  ]
   \ }
@@ -35,7 +35,7 @@ let g:autocursor_cursorcolumn = {
   \   {
   \     "name": "CursorMoved",
   \     "set": v:false,
-  \     "wait": 500,
+  \     "wait": 100,
   \   }
   \  ]
   \ }
