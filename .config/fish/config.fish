@@ -1,9 +1,9 @@
 ### Environment. {{{1
 # Basic. {{{2
 set -x SHELL fish
-set -x EDITOR nvim
-set -x VISUAL nvim
-set -x PAGER less
+# set -x EDITOR nvim
+# set -x VISUAL nvim
+# set -x PAGER less
 
 set -x LANG ja_JP.UTF-8
 set -x LC_TYPE ja_JP.UTF-8

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/05/16 20:57:39.
+" Last Change : 2021/05/22 21:32:17.
 " =============================================================================
 
 " Init:
@@ -15,11 +15,19 @@ filetype plugin indent off
 augroup MyAutoCmd | autocmd! | augroup END
 
 " Echo startup time on start.
-if has('vim_starting') && has('reltime')
+if !v:vim_did_enter && has('reltime')
   let s:startuptime = reltime()
   au MyAutoCmd VimEnter * ++once let s:startuptime = reltime(s:startuptime) | redraw
-        \ | echomsg 'startuptime: ' . reltimestr(s:startuptime)
+        \ | echomsg 'startuptime: ' .. reltimestr(s:startuptime)
 endif
+
+" Encodings.
+if has('guess_encode')
+  set fileencodings=ucs-bom,utf-8,iso-2022-jp,guess,euc-jp,cp932,latin1
+else
+  set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1
+endif
+set fileformats=unix,dos
 
 " True color.
 set termguicolors
@@ -106,10 +114,6 @@ exe 'set undodir=' . s:undo_dir
 exe 'set backupdir=' . s:backup_dir
 exe 'set directory=' . s:directory
 exe 'set viewdir=' . s:view_dir
-
-" Encodings.
-set fileencodings=utf-8,cp932,utf-16le,utf-16
-set fileformats=unix,dos,mac
 
 " Clipboard.
 if g:is_windows || g:is_darwin
@@ -274,6 +278,18 @@ cnoremap <c-d> <Del>
 cnoremap <c-y> <c-r>
 cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
+
+
+" Shortcut enc and ff.
+" https://github.com/thinca/config/blob/master/dotfiles/dot.vim/vimrc#L1300-L1308
+cnoreabbrev ++u ++enc=utf8
+cnoreabbrev ++c ++enc=cp932
+cnoreabbrev ++s ++enc=cp932
+cnoreabbrev ++e ++enc=euc-jp
+cnoreabbrev ++j ++enc=iso-2022-jp
+cnoreabbrev ++x ++ff=unix
+cnoreabbrev ++d ++ff=dos
+cnoreabbrev ++m ++ff=mac
 
 " Vim-users.jp - Hack #74: http://vim-users.jp/2009/09/hack74/
 nnoremap <silent> <leader>ev  :<c-u>tabedit $MYVIMRC<cr>
