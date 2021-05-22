@@ -455,7 +455,7 @@ mapkey("co", "#7Copy title and link to org", () => {
 });
 
 unmapAllExcept(
-  ["E", "R", "d", "u", "T", "f", "F", "C", "x", "S", "H", "L", "cm"],
+  ["E", "R", "T", "f", "F", "C", "x", "S", "H", "L", "cm"],
   /mail.google.com|twitter.com|feedly.com|i.doit.im/
 );
 if (/^https:\/\/www.amazon.co.jp\/gp\/video\//.test(window.location.href)) {
