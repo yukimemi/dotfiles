@@ -1,8 +1,14 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/02/06 18:54:19.
+# Last Change : 2021/05/29 17:40:40.
 # =============================================================================
+
+# if tmux is executable and not inside a tmux session, then try to attach.
+# if attachment fails, start a new session
+[ -x "$(command -v tmux)" ] \
+  && [ -z "${TMUX}" ] \
+  && { tmux attach || tmux; } >/dev/null 2>&1
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -137,6 +143,32 @@ function __filter_kill() {
 }
 zle -N __filter_kill
 
+# tmux filter.
+function __tmux_session_list() {
+  tmux list-sessions | $__FILTER_TOOL | while read line
+  do
+    ses=${line[(ws,:,)1]}
+    if [ -z $TMUX ]; then
+      echo "Attach ${ses}"
+      tmux attach -t $ses
+      return
+    else
+      echo "Switch ${ses}"
+      tmux switch -t $ses
+      return
+    fi
+  done
+}
+
+function __tmux_tmuxinator_list() {
+  tmuxinator list -n | $__FILTER_TOOL | while read line
+  do
+    echo "Change tmuxinator ${line}"
+    tmuxinator $line
+    return
+  done
+}
+
 # ghq list and change dir.
 function ghq-list-cd() {
   local selected_dir=$(ghq list --full-path | $__FILTER_TOOL)
@@ -218,8 +250,8 @@ function my_lazy_keybindings() {
   bindkey -M viins '^N' history-substring-search-down
 
   # autosuggestions.
-  bindkey -M viins '^F' autosuggest-accept
-  # bindkey -M viins '^F' vi-forward-word
+  bindkey -M viins '^E' autosuggest-accept
+  bindkey -M viins '^F' vi-forward-word
 
   bindkey -M vicmd 'gh' beginning-of-line
   bindkey -M vicmd 'gl' end-of-line
@@ -300,9 +332,9 @@ fi
 #
 # compile zshrc.
 #
-# if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
-#   zcompile ~/.zshrc
-# fi
+if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
+  zcompile ~/.zshrc
+fi
 
 if (which zprof > /dev/null) ;then
   zprof

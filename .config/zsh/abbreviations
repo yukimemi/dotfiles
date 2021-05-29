@@ -3,6 +3,9 @@ abbr -g G="| grep -i --color=auto"
 abbr -g L="| bat"
 abbr a="git add"
 abbr b="cd .."
+abbr t="exit"
+abbr tl=__tmux_session_list
+abbr tm=__tmux_tmuxinator_list
 abbr bi="bit"
 abbr c="files -d | __filter_execute cd"
 abbr cat="bat"

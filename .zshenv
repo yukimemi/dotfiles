@@ -1,22 +1,22 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2021/02/27 20:36:46.
+# Last Change : 2021/05/29 17:18:50.
 # =============================================================================
 
-# For time. {{{1
+# For time.
 # zmodload zsh/zprof
 
-# Useful functions. {{{1
+# Useful functions.
 is_linux() { [[ $SHELL_PLATFORM == 'linux' || $SHELL_PLATFORM == 'bsd' ]]; }
 is_osx() { [[ $SHELL_PLATFORM == 'osx' ]]; }
 is_bsd() { [[ $SHELL_PLATFORM == 'bsd' || $SHELL_PLATFORM == 'osx' ]]; }
 is_cygwin() { [[ $SHELL_PLATFORM == 'cygwin' ]]; }
 
 
-# Env setting {{{1
+# Env setting
 
-# Basic envs. {{{2
+# Basic envs.
 export LANG=ja_JP.UTF-8
 export LC_CTYPE="ja_JP.UTF-8"
 export SHELL=zsh
@@ -27,7 +27,7 @@ export PAGER=bat
 # Unique path.
 typeset -gU cdpath fpath mailpath path
 
-# Path. {{{2
+# Path.
 path=(
   # Home.
   $HOME/bin(N-/)
@@ -56,10 +56,10 @@ path=(
   $path
 )
 
-# go. {{{2
+# go.
 export GOPATH=$HOME/.go
 
-# rust. {{{2
+# rust.
 # export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src" > /dev/null 2>&1
 
 # deno.
@@ -73,7 +73,7 @@ path=(
 )
 
 
-# Manpath. {{{2
+# Manpath.
 manpath=(
   # user.
   $HOME/local/share/man(N-/)
@@ -86,7 +86,7 @@ manpath=(
   $manpath
 )
 
-# Fpath. {{{2
+# Fpath.
 fpath=(
   /usr/local/share/zsh-completions(N-/)
   ${ASDF_DIR}/completions(N-/)
@@ -95,14 +95,14 @@ fpath=(
   $fpath
 )
 
-# sudo path. {{{2
+# sudo path.
 typeset -xT SUDO_PATH sudo_path
 typeset -gU sudo_path
 sudo_path=(
   {,/usr/pkg,/usr/local,/usr}/sbin(N-/)
     )
 
-# Other. {{{2
+# Other.
 export XDG_CONFIG_HOME="${HOME}/.config"
 
 export GSR_SHOW_AHEAD=1
@@ -116,15 +116,14 @@ export RRC_CONFIG="${HOME}/.config/rrc/config.toml"
 
 export NEXTWORD_DATA_PATH="${HOME}/.config/nextword/nextword-data-large"
 
-# fzf. {{{2
+# fzf.
 if which fd > /dev/null 2>&1; then
   export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 elif which rg > /dev/null 2>&1; then
   export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 fi
 
-
-# local conf {{{2
+# local conf
 if [ -e ~/.zshrc_private ]; then
   source ~/.zshrc_private
 fi
@@ -134,10 +133,9 @@ if [ -e ~/.zshrc_local ]; then
 fi
 
 
-# Compile zshenv. {{{1
-# if [ ! -f ~/.zshenv.zwc -o ~/.zshenv -nt ~/.zshenv.zwc ]; then
-#   zcompile ~/.zshenv
-# fi
+# Compile zshenv.
+if [ ! -f ~/.zshenv.zwc -o ~/.zshenv -nt ~/.zshenv.zwc ]; then
+  zcompile ~/.zshenv
+fi
 
-# vim:fdm=marker expandtab fdc=3 ft=zsh:
 
