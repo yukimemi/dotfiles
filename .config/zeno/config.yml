@@ -10,7 +10,7 @@ snippets:
     keyword: d
     snippet: git diff
   - name: git diff --cached
-    keyword: dd
+    keyword: dc
     snippet: git diff --cached
   - name: git add
     keyword: a
@@ -42,6 +42,24 @@ snippets:
   - name: git cd root
     keyword: gr
     snippet: "cd $(git rev-parse --show-cdup)"
+  - name: git stash
+    keyword: gst
+    snippet: git stash
+  - name: git stash list
+    keyword: gstl
+    snippet: git stash list
+  - name: git stash show {{stash}}
+    keyword: gsts
+    snippet: git stash show {{stash}}
+  - name: git stash apply
+    keyword: gsta
+    snippet: git stash apply {{stash}}
+  - name: git stash pop
+    keyword: gstp
+    snippet: git stash pop {{stash}}
+  - name: git stash drop
+    keyword: gstd
+    snippet: git stash drop {{stash}}
   # Editor
   - name: Neovim
     keyword: e
@@ -115,6 +133,11 @@ snippets:
     keyword: "null"
     snippet: ">/dev/null 2>&1"
     enableMiddleOfLine: true
+
+  # Install
+  - name: Install deno-cache-injector
+    keyword: install deno-cache-injector
+    snippet: deno install -r -f -n deno-cache-injector --allow-env --allow-read --allow-write https://raw.githubusercontent.com/kuuote/deno-cache-injector/main/injector.ts
 
 completions:
   - name: kill

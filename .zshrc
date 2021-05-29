@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/05/29 21:50:40.
+# Last Change : 2021/05/29 23:17:20.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -50,7 +50,8 @@ zinit light-mode for \
   zsh-users/zsh-autosuggestions \
   zsh-users/zsh-history-substring-search \
   jeffreytse/zsh-vi-mode \
-  yuki-yano/zeno.zsh
+  yuki-yano/zeno.zsh \
+  yukiycino-dotfiles/zsh-show-buffer-stack
 
 zinit wait lucid from"gh-r" as"program" pick"bit" for \
   chriswalz/bit
@@ -85,16 +86,16 @@ function pdfmin() {
   wait && return 0
 }
 
-function prev() {
-  PREV=$(fc -lrn | head -n 1)
-  sh -c "pet new `printf %q "$PREV"`"
-}
-function pet-select() {
-  BUFFER=$(pet search --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle redisplay
-}
-zle -N pet-select
+# function prev() {
+#   PREV=$(fc -lrn | head -n 1)
+#   sh -c "pet new `printf %q "$PREV"`"
+# }
+# function pet-select() {
+#   BUFFER=$(pet search --query "$LBUFFER")
+#   CURSOR=$#BUFFER
+#   zle redisplay
+# }
+# zle -N pet-select
 
 # Filter function.
 function __filter_execute() {
@@ -180,16 +181,6 @@ function ghq-list-cd() {
 }
 zle -N ghq-list-cd
 
-# zsh vi key command line stack - Qiita
-# http://qiita.com/items/1f2c7793944b1f6cc346
-function show-buffer-stack() {
-  POSTDISPLAY="
-  stack: $BUFFER"
-  zle push-line-or-edit
-}
-zle -N show-buffer-stack
-setopt noflowcontrol
-
 # show option for zsh.
 # http://qiita.com/mollifier/items/26c67347734f9fcda274
 function showoptions() {
@@ -240,19 +231,19 @@ setopt histverify
 bindkey -v
 
 function my_lazy_keybindings() {
-  bindkey -M viins '^Q' show-buffer-stack
-  bindkey -M viins '^s' pet-select
+  bindkey -M viins '^q' show-buffer-stack
+  # bindkey -M viins '^s' pet-select
 
-  bindkey -M viins '^R' __filter_history
-  bindkey -M viins '^K' __filter_kill
+  bindkey -M viins '^r' __filter_history
+  bindkey -M viins '^k' __filter_kill
 
   # histry-substring-search.
-  bindkey -M viins '^P' history-substring-search-up
-  bindkey -M viins '^N' history-substring-search-down
+  bindkey -M viins '^p' history-substring-search-up
+  bindkey -M viins '^n' history-substring-search-down
 
   # autosuggestions.
-  bindkey -M viins '^E' autosuggest-accept
-  bindkey -M viins '^F' vi-forward-word
+  bindkey -M viins '^e' autosuggest-accept
+  bindkey -M viins '^f' vi-forward-word
 
   bindkey -M vicmd 'gh' beginning-of-line
   bindkey -M vicmd 'gl' end-of-line
@@ -261,6 +252,7 @@ function my_lazy_keybindings() {
   bindkey -M viins ' ' zeno-auto-snippet
   bindkey -M viins '^m' zeno-auto-snippet-and-accept-line
   bindkey -M viins '^i' zeno-completion
+  bindkey -M viins '^s' zeno-insert-snippet
 }
 zvm_after_init_commands+=(my_lazy_keybindings)
 
@@ -299,6 +291,18 @@ if (which rustup > /dev/null); then
     rustup completions zsh cargo > ~/.config/zsh/completions/_cargo
   fi
 fi
+
+#
+# yuki-yano/zeno.zsh
+#
+# zle -N zeno-insert-snippet
+
+#
+# yukiycino-dotfiles/zsh-show-buffer-stack
+#
+setopt noflowcontrol
+add-zsh-hook precmd check-buffer-stack
+RPROMPT='${COMMAND_BUFFER_STACK}'
 
 #
 # shelp.

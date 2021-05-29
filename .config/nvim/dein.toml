@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/05/29 21:36:28.
+# Last Change: 2021/05/29 22:35:50.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -720,6 +720,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'higashi000/dps-kakkonan'
+
+[[plugins]]
+repo = 'yuki-yano/dps-zero.vim'
 
 [[plugins]]
 repo = 'tamago324/dps-gitignore'
