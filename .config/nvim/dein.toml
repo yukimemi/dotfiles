@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/05/17 00:42:00.
+# Last Change: 2021/05/29 21:36:28.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -48,7 +48,7 @@ source $VIM_PATH/rc/vim-parenmatch.vim
 '''
 
 [[plugins]]
-repo = "jeffkreeftmeijer/vim-numbertoggle"
+repo = 'mopp/smartnumber.vim'
 on_event = ["CursorHold", "InsertEnter", "CursorMoved", "FocusLost"]
 
 [[plugins]]

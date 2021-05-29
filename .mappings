@@ -7,6 +7,8 @@
 ".surfingkeys.js" = "~/.surfingkeys.js"
 ".tool-versions" = "~/.tool-versions"
 ".volt" = "~/.volt"
+".zshenv" = "~/.zshenv"
+".zshrc" = "~/.zshrc"
 
 [windows]
 ".config/espanso" = "~/scoop/apps/espanso/current/.espanso"
@@ -52,8 +54,6 @@
 ".hyper.js" = "~/Library/Application Support/Hyper/.hyper.js"
 ".profile" = "~/.profile"
 ".tmux.conf" = "~/.tmux.conf"
-".zshenv" = "~/.zshenv"
-".zshrc" = "~/.zshrc"
 "win/Microsoft.PowerShell_profile.ps1" = "~/.config/PowerShell/Microsoft.PowerShell_profile.ps1"
 
 [linux]

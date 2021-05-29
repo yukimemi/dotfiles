@@ -1,0 +1,88 @@
+snippets:
+  # Git
+  - name: git
+    keyword: g
+    snippet: git
+  - name: git status
+    keyword: s
+    snippet: git status --short --branch
+  - name: git diff
+    keyword: d
+    snippet: git diff
+  - name: git add
+    keyword: a
+    snippet: git add
+  - name: git commit
+    keyword: gci
+    snippet: git commit -v
+  - name: git checkout
+    keyword: gco
+    snippet: git checkout
+  - name: git push
+    keyword: gpu
+    snippet: git push
+  - name: git pull
+    keyword: gp
+    snippet: git pull
+  - name: git commit message
+    keyword: gcim
+    snippet: git commit -m '{{commit_message}}'
+  # Editor
+  - name: Neovim
+    keyword: e
+    snippet: nvim
+  - name: Vim
+    keyword: v
+    snippet: vim
+  # Shell
+  - name: ls -a
+    keyword: la
+    snippet: ls -al
+  - name: ls -l
+    keyword: l
+    snippet: ls -l
+  - name: Back cd
+    keyword: b
+    snippet: cd ..
+  - name: Exit
+    keyword: t
+    snippet: exit
+  # Filter
+  - name: Zi
+    keyword: j
+    snippet: zi
+  # rhq
+  - name: rhq list jump
+    keyword: rhl
+    snippet: rhq list | __filter_execute cd
+  # Global abbr
+  - name: Pipe grep
+    keyword: G
+    snippet: "| grep -i --color=auto"
+    enableMiddleOfLine: true
+  - name: Pipe less
+    keyword: L
+    snippet: "| bat"
+    enableMiddleOfLine: true
+  - name: "null"
+    keyword: "null"
+    snippet: ">/dev/null 2>&1"
+    enableMiddleOfLine: true
+
+completions:
+  - name: kill
+    patterns:
+      - "^kill( -9)? $"
+    sourceCommand: "ps -ef | sed 1d"
+    options:
+      --multi: true
+      --prompt: "'Kill Process> '"
+    callback: "awk '{print $2}'"
+  - name: git checkout
+    patterns:
+      - "^git checkout"
+    sourceCommand: "git branch -a"
+    options:
+      --multi: false
+      --prompt: "'Git branch> '"
+    callback: "awk '{print $0}'"

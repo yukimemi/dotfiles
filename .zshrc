@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/05/29 17:40:40.
+# Last Change : 2021/05/29 19:32:19.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -38,7 +38,6 @@ zinit light-mode for \
 # plugin list.
 #
 zinit wait lucid light-mode for \
-  olets/zsh-abbr \
   atinit"zicompinit; zicdreplay" atload"zpcompinit" \
   zdharma/fast-syntax-highlighting \
   blockf atpull'zinit creinstall -q .' \
@@ -50,7 +49,8 @@ zinit light-mode for \
   atload"_zsh_autosuggest_start" \
   zsh-users/zsh-autosuggestions \
   zsh-users/zsh-history-substring-search \
-  jeffreytse/zsh-vi-mode
+  jeffreytse/zsh-vi-mode \
+  yuki-yano/zeno.zsh
 
 zinit wait lucid from"gh-r" as"program" pick"bit" for \
   chriswalz/bit
@@ -255,6 +255,11 @@ function my_lazy_keybindings() {
 
   bindkey -M vicmd 'gh' beginning-of-line
   bindkey -M vicmd 'gl' end-of-line
+
+  # zeno
+  bindkey -M viins ' ' zeno-auto-snippet
+  bindkey -M viins '^m' zeno-auto-snippet-and-accept-line
+  bindkey -M viins '^i' zeno-completion
 }
 zvm_after_init_commands+=(my_lazy_keybindings)
 
@@ -320,6 +325,13 @@ fi
 #
 if type zoxide > /dev/null 2>&1; then
   eval "$(zoxide init zsh)"
+fi
+
+#
+# Google cloud sdk
+#
+if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]; then
+  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 fi
 
 #
