@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/05/29 19:32:19.
+# Last Change : 2021/05/29 21:50:40.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -208,6 +208,7 @@ function rebootwifi() {
 function buildneovim() {
   rhq clone https://github.com/neovim/neovim
   cd ~/src/github.com/neovim/neovim
+  git pull
   make CMAKE_BUILD_TYPE=RelWithDebInfo
   sudo make install
 }
