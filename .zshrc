@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/05/29 23:17:20.
+# Last Change : 2021/05/30 19:57:57.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -37,7 +37,7 @@ zinit light-mode for \
 #
 # plugin list.
 #
-zinit wait lucid light-mode for \
+zinit wait light-mode for \
   atinit"zicompinit; zicdreplay" atload"zpcompinit" \
   zdharma/fast-syntax-highlighting \
   blockf atpull'zinit creinstall -q .' \
@@ -69,6 +69,15 @@ zinit wait lucid as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode
 # zinit pack for ls_colors
 zinit wait pack for \
   dircolors-material
+
+#
+# zinit rust
+#
+zinit wait light-mode rustup for \
+  cargo'!lsd' zdharma/null \
+  cargo'!starship' zdharma/null \
+  cargo'!atuin' zdharma/null \
+  cargo'!zoxide' zdharma/null
 
 #
 # functions.
@@ -114,11 +123,11 @@ function __filter_select() {
 }
 
 # Filter history.
-function __filter_history() {
-  BUFFER=$(history -n 1 | $__FILTER_TOOL)
-  zle clear-screen
-}
-zle -N __filter_history
+# function __filter_history() {
+#   BUFFER=$(history -n 1 | $__FILTER_TOOL)
+#   zle clear-screen
+# }
+# zle -N __filter_history
 
 # cd and ls.
 if which lsd > /dev/null 2>&1; then
@@ -149,7 +158,7 @@ function __tmux_session_list() {
   tmux list-sessions | $__FILTER_TOOL | while read line
   do
     ses=${line[(ws,:,)1]}
-    if [ -z $TMUX ]; then
+    if [[ -z $TMUX ]]; then
       echo "Attach ${ses}"
       tmux attach -t $ses
       return
@@ -173,7 +182,7 @@ function __tmux_tmuxinator_list() {
 # ghq list and change dir.
 function ghq-list-cd() {
   local selected_dir=$(ghq list --full-path | $__FILTER_TOOL)
-  if [ -n "$selected_dir" ]; then
+  if [[ -n "$selected_dir" ]]; then
     BUFFER="cd ${selected_dir}"
     zle accept-line
   fi
@@ -207,7 +216,7 @@ function buildneovim() {
 #
 # history.
 #
-if [ -d ~/Syncthing ]; then
+if [[ -d ~/Syncthing ]]; then
   export HISTFILE=~/Syncthing/pc/.zsh_history
 else
   export HISTFILE=~/.zsh_history
@@ -234,8 +243,8 @@ function my_lazy_keybindings() {
   bindkey -M viins '^q' show-buffer-stack
   # bindkey -M viins '^s' pet-select
 
-  bindkey -M viins '^r' __filter_history
-  bindkey -M viins '^k' __filter_kill
+  # bindkey -M viins '^r' __filter_history
+  # bindkey -M viins '^k' __filter_kill
 
   # histry-substring-search.
   bindkey -M viins '^p' history-substring-search-up
@@ -253,6 +262,9 @@ function my_lazy_keybindings() {
   bindkey -M viins '^m' zeno-auto-snippet-and-accept-line
   bindkey -M viins '^i' zeno-completion
   bindkey -M viins '^s' zeno-insert-snippet
+
+  # atuin
+  bindkey -M viins '^r' _atuin_search_widget
 }
 zvm_after_init_commands+=(my_lazy_keybindings)
 
@@ -321,7 +333,7 @@ fi
 #
 # direnv.
 #
-if type pmy > /dev/null 2>&1; then
+if type direnv > /dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
 
@@ -333,9 +345,16 @@ if type zoxide > /dev/null 2>&1; then
 fi
 
 #
+# atuin.
+#
+if (which atuin > /dev/null) ;then
+  eval "$(atuin init zsh)"
+fi
+
+#
 # Google cloud sdk
 #
-if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]; then
+if [[ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]]; then
   source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 fi
 

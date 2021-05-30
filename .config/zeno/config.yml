@@ -18,6 +18,9 @@ snippets:
   - name: git commit
     keyword: gci
     snippet: git commit -v
+  - name: git commit --no-edit --amend
+    keyword: gcia
+    snippet: git commit --no-edit --amend
   - name: git checkout
     keyword: gco
     snippet: git checkout
@@ -120,6 +123,16 @@ snippets:
   - name: youtube-dl download
     keyword: ytd
     snippet: youtube-dl -i --download-archive ./.downloaded
+  # atuin
+  - name: atuin register
+    keyword: atuin register
+    snippet: atuin register -u yukimemi -e yukimemi@gmail.com -p {{PASSWORD}}
+  - name: atuin login
+    keyword: atuin login
+    snippet: atuin login -u yukimemi -p {{PASSWORD}} -k {{KEY}}
+  - name: atuin get key
+    keyword: atuin key
+    snippet: atuin key
   # Global abbr
   - name: Pipe grep
     keyword: G
@@ -138,6 +151,12 @@ snippets:
   - name: Install deno-cache-injector
     keyword: install deno-cache-injector
     snippet: deno install -r -f -n deno-cache-injector --allow-env --allow-read --allow-write https://raw.githubusercontent.com/kuuote/deno-cache-injector/main/injector.ts
+  - name: Install packup
+    keyword: install packup
+    snippet: deno run -A https://deno.land/x/packup/install.ts
+  - name: Install atuin
+    keyword: install atuin
+    snippet: cargo install atuin
 
 completions:
   - name: kill
