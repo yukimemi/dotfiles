@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/05/29 22:35:50.
+# Last Change: 2021/05/30 21:16:43.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1206,6 +1206,12 @@ on_ft = 'plantuml'
 [[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
+
+# ==================== Filetype (zsh [zinit]) =======
+
+[[plugins]]
+repo = 'zinit-zsh/zinit-vim-syntax'
+on_ft = 'zsh'
 
 # ==================== Filetype (Haskell) ========
 

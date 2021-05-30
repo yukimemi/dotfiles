@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/05/30 19:57:57.
+# Last Change : 2021/05/30 22:02:21.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -40,8 +40,7 @@ zinit light-mode for \
 zinit wait light-mode for \
   atinit"zicompinit; zicdreplay" atload"zpcompinit" \
   zdharma/fast-syntax-highlighting \
-  blockf atpull'zinit creinstall -q .' \
-  zsh-users/zsh-completions \
+  marlonrichert/zsh-autocomplete \
   supercrabtree/k \
   @asdf-vm/asdf
 
@@ -53,13 +52,13 @@ zinit light-mode for \
   yuki-yano/zeno.zsh \
   yukiycino-dotfiles/zsh-show-buffer-stack
 
-zinit wait lucid from"gh-r" as"program" pick"bit" for \
+zinit wait from"gh-r" as"program" pick"bit" for \
   chriswalz/bit
 
 #
 # for git.
 #
-zinit wait lucid as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode for \
+zinit wait as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode for \
   tj/git-extras
 
 
@@ -67,17 +66,15 @@ zinit wait lucid as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode
 # zinit packages
 #
 # zinit pack for ls_colors
-zinit wait pack for \
-  dircolors-material
+zinit wait for \
+  pack dircolors-material \
+  pack"binary" fzf
 
 #
-# zinit rust
+# z-a-rust
 #
-zinit wait light-mode rustup for \
-  cargo'!lsd' zdharma/null \
-  cargo'!starship' zdharma/null \
-  cargo'!atuin' zdharma/null \
-  cargo'!zoxide' zdharma/null
+zinit ice wait rustup cargo'!lsd;starship;atuin;zoxide'
+zinit load zdharma/null
 
 #
 # functions.
@@ -265,6 +262,7 @@ function my_lazy_keybindings() {
 
   # atuin
   bindkey -M viins '^r' _atuin_search_widget
+
 }
 zvm_after_init_commands+=(my_lazy_keybindings)
 
@@ -285,12 +283,12 @@ setopt completeinword
 #
 # zstyle.
 #
-zstyle ':completion:*:default' menu select=2
-zstyle ':completion:*' use-cache yes
-zstyle ':completion:*' cache-path ~/.cache/zsh
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+# zstyle ':completion:*:default' menu select=2
+# zstyle ':completion:*' use-cache yes
+# zstyle ':completion:*' cache-path ~/.cache/zsh
+# zstyle ':completion:*' verbose yes
+# zstyle ':completion:*' group-name ''
+# zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 
 #
 # completions.
@@ -303,6 +301,11 @@ if (which rustup > /dev/null); then
     rustup completions zsh cargo > ~/.config/zsh/completions/_cargo
   fi
 fi
+
+#
+# zsh-autocomplete
+#
+zstyle ':autocomplete:*' widget-style menu-select
 
 #
 # yuki-yano/zeno.zsh
