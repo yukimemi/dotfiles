@@ -42,9 +42,9 @@ command! -nargs=* -complete=customlist,s:source_cmpl DeinSource
 command! DeinRecache call dein#recache_runtimepath()
 
 if !dein#load_state(s:dein_dir)
-  " if has('clientserver')
-  "   call dein#call_hook('source')
-  " endif
+  if has('clientserver')
+    call dein#call_hook('source')
+  endif
   finish
 endif
 
@@ -53,9 +53,9 @@ let s:toml_file = $VIM_PATH . '/dein.toml'
 call dein#begin(s:dein_dir, [$MYVIMRC, s:toml_file])
 call dein#load_toml(s:toml_file)
 call dein#end()
-" if has('clientserver')
-"   call dein#call_hook('source')
-" endif
+if has('clientserver')
+  call dein#call_hook('source')
+endif
 call dein#save_state()
 
 " Check and install.

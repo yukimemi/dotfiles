@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/05/30 21:16:43.
+# Last Change: 2021/05/31 10:20:37.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -386,7 +386,7 @@ source $VIM_PATH/rc/autodate.vim
 [[plugins]]
 repo = 'thinca/vim-singleton'
 if = "!has('nvim') && has('clientserver')"
-hook_add = '''
+hook_source = '''
 source $VIM_PATH/rc/vim-singleton.vim
 '''
 
