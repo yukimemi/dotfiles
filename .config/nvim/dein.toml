@@ -739,8 +739,8 @@ source $VIM_PATH/rc/command.vim
 '''
 
 [[plugins]]
-# repo = 'yukimemi/dps-ahdr'
-repo = '~/src/github.com/yukimemi/dps-ahdr'
+repo = 'yukimemi/dps-ahdr'
+# repo = '~/src/github.com/yukimemi/dps-ahdr'
 hook_add = '''
 source $VIM_PATH/rc/dps-ahdr.vim
 '''

@@ -61,3 +61,5 @@
 	defaultBranch = main
 [status]
 	showUntrackedFiles = all
+[credential]
+	helper = store
