@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/05/30 22:02:21.
+# Last Change : 2021/06/03 21:24:59.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -73,7 +73,7 @@ zinit wait for \
 #
 # z-a-rust
 #
-zinit ice wait rustup cargo'!lsd;starship;atuin;zoxide'
+zinit ice wait rustup cargo'!lsd;starship;atuin;bat;zoxide'
 zinit load zdharma/null
 
 #
