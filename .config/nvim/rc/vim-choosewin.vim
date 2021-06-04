@@ -1,2 +1,2 @@
 " invoke with '-'
-nmap  -  <Plug>(choosewin)
+" nmap - <Plug>(choosewin)
