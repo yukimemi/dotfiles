@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/06/03 21:24:59.
+# Last Change : 2021/06/05 12:39:22.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -25,7 +25,7 @@ autoload -Uz _zinit
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
-zinit light-mode for \
+zinit lucid light-mode for \
   zinit-zsh/z-a-rust \
   zinit-zsh/z-a-as-monitor \
   zinit-zsh/z-a-patch-dl \
@@ -37,14 +37,14 @@ zinit light-mode for \
 #
 # plugin list.
 #
-zinit wait light-mode for \
+zinit lucid wait light-mode for \
   atinit"zicompinit; zicdreplay" atload"zpcompinit" \
   zdharma/fast-syntax-highlighting \
   marlonrichert/zsh-autocomplete \
   supercrabtree/k \
   @asdf-vm/asdf
 
-zinit light-mode for \
+zinit lucid light-mode for \
   atload"_zsh_autosuggest_start" \
   zsh-users/zsh-autosuggestions \
   zsh-users/zsh-history-substring-search \
@@ -52,13 +52,13 @@ zinit light-mode for \
   yuki-yano/zeno.zsh \
   yukiycino-dotfiles/zsh-show-buffer-stack
 
-zinit wait from"gh-r" as"program" pick"bit" for \
+zinit lucid wait from"gh-r" as"program" pick"bit" for \
   chriswalz/bit
 
 #
 # for git.
 #
-zinit wait as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode for \
+zinit lucid wait as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode for \
   tj/git-extras
 
 
@@ -73,7 +73,7 @@ zinit wait for \
 #
 # z-a-rust
 #
-zinit ice wait rustup cargo'!lsd;starship;atuin;bat;zoxide'
+zinit ice lucid wait rustup cargo'!lsd;starship;atuin;bat;zoxide'
 zinit load zdharma/null
 
 #
