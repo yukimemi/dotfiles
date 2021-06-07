@@ -23,12 +23,14 @@ terminal:
       - '#e6d4a3'
   font: Cica Regular
   environment: {}
-  profile: powershell
+  profile: powershell-core
   bell: 'off'
   customShell: pwsh
   cursorBlink: false
   fontSize: 15
   ligatures: false
+  searchOptions: {}
+  frontend: xterm
 hotkeys:
   profile: {}
   shell: {}
@@ -44,7 +46,7 @@ appearance:
   frame: thin
   dock: 'off'
   dockFill: 1
-  theme: Compact
+  theme: Gruvbox
 enableAnalytics: false
 enableWelcomeTab: false
 pluginBlacklist:
@@ -52,3 +54,4 @@ pluginBlacklist:
   - serial
 titleControl:
   replacePattern: \cmd - \cwd (\scmd)
+syncConfig: {}

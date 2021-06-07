@@ -129,9 +129,10 @@ return
 ; return
 
 ; for Terminus
-; F12::
+F12::
 ; Toggle(USERPROFILE . "\scoop\apps\terminus\current\Terminus.exe")
-; return
+ToggleExe("Terminus.exe", USERPROFILE . "\AppData\Local\Programs\Terminus\Terminus.exe")
+return
 
 ; for wezterm
 ; F12::
@@ -143,20 +144,15 @@ return
 ; Activate(USERPROFILE . "\AppData\Local\hyper\Hyper.exe")
 ; return
 
-; for terminus
-; F12::
-; Activate2("Terminus.exe", USERPROFILE . "\app\terminus\terminus-portable.exe")
-; return
-
 ; for Fluent Terminal
 ; F12::
 ; Activate3("FluentTerminal.App.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\flute.exe", "Fluent")
 ; return
 
 ; for Windows Terminal
-F12::
-ToggleExe("WindowsTerminal.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
-return
+; F12::
+; ToggleExe("WindowsTerminal.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
+; return
 
 ; for Edge
 ; F11::
