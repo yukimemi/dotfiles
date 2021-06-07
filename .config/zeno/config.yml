@@ -110,6 +110,9 @@ snippets:
   - name: tmuxinator list
     keyword: tm
     snippet: __tmux_tmuxinator_list
+  - name: tmuxinator
+    keyword: mux
+    snippet: tmuxinator
   # youtube-dl
   - name: youtube-dl -i
     keyword: yt
@@ -157,6 +160,8 @@ snippets:
   - name: Install atuin
     keyword: install atuin
     snippet: cargo install atuin
+  - name: Install direnv
+    snippet: curl -sfL https://direnv.net/install.sh | bash
 
 completions:
   - name: kill
