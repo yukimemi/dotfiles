@@ -154,6 +154,9 @@ snippets:
   - name: Install deno-cache-injector
     keyword: install deno-cache-injector
     snippet: deno install -r -f -n deno-cache-injector --allow-env --allow-read --allow-write https://raw.githubusercontent.com/kuuote/deno-cache-injector/main/injector.ts
+  - name: Install denon
+    keyword: install denon
+    snippet: deno install -qAf --unstable https://deno.land/x/denon/denon.ts
   - name: Install packup
     keyword: install packup
     snippet: deno run -A https://deno.land/x/packup/install.ts
