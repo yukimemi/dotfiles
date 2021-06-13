@@ -165,6 +165,8 @@ snippets:
     snippet: cargo install atuin
   - name: Install direnv
     snippet: curl -sfL https://direnv.net/install.sh | bash
+  - name: Install nextword
+    snippet: go install github.com/high-moctane/nextword@latest
 
 completions:
   - name: kill
