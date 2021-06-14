@@ -161,7 +161,7 @@ return
 
 ; for cfiler
 ^F10::
-Activate(USERPROFILE . "\app\cfiler\cfiler.exe")
+Activate("C:\Program Files (x86)\cfiler\cfiler.exe")
 return
 
 ; for slack
