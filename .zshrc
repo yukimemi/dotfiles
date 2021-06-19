@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/06/05 12:39:22.
+# Last Change : 2021/06/20 02:33:19.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -255,13 +255,17 @@ function my_lazy_keybindings() {
   bindkey -M vicmd 'gl' end-of-line
 
   # zeno
-  bindkey -M viins ' ' zeno-auto-snippet
-  bindkey -M viins '^m' zeno-auto-snippet-and-accept-line
-  bindkey -M viins '^i' zeno-completion
-  bindkey -M viins '^s' zeno-insert-snippet
+  if [[ -n $ZENO_LOADED ]]; then
+    bindkey -M viins ' ' zeno-auto-snippet
+    bindkey -M viins '^m' zeno-auto-snippet-and-accept-line
+    bindkey -M viins '^i' zeno-completion
+    bindkey -M viins '^s' zeno-insert-snippet
+  fi
 
   # atuin
-  bindkey -M viins '^r' _atuin_search_widget
+  if type atuin > /dev/null 2>&1; then
+    bindkey -M viins '^r' _atuin_search_widget
+  fi
 
 }
 zvm_after_init_commands+=(my_lazy_keybindings)

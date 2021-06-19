@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2021/05/29 17:18:50.
+# Last Change : 2021/06/20 02:19:52.
 # =============================================================================
 
 # For time.
@@ -20,7 +20,7 @@ is_cygwin() { [[ $SHELL_PLATFORM == 'cygwin' ]]; }
 export LANG=ja_JP.UTF-8
 export LC_CTYPE="ja_JP.UTF-8"
 export SHELL=zsh
-export EDITOR=nvim
+[[ -n $EDITOR ]] || export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=bat
 

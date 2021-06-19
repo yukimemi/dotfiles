@@ -24,7 +24,6 @@
 	pf = push --force-with-lease
 [core]
 	autocrlf = false
-	editor = nvim
 	filemode = false
 	pager = delta
 [ghq]
