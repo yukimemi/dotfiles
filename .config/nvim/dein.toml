@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/05/31 10:23:40.
+# Last Change: 2021/06/16 13:13:26.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -488,6 +488,9 @@ call fzf#install()
 
 [[plugins]]
 repo = 'deris/vim-pasta'
+hook_add = '''
+source $VIM_PATH/vim-pasta.vim
+'''
 
 [[plugins]]
 repo = 'nanotee/zoxide.vim'
