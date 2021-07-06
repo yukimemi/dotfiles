@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/05/23 00:35:51.
+" Last Change : 2021/07/05 21:08:29.
 " =============================================================================
 
 " Init:
@@ -434,6 +434,9 @@ let g:plugin_use_staline = v:false
 let g:plugin_use_coc = v:true
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
+let g:plugin_use_ddc = v:false
+
+let g:plugin_use_ale = v:false
 
 let g:plugin_use_ctrlp = v:true
 let g:plugin_use_clap = v:false

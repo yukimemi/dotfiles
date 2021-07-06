@@ -1,13 +1,17 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/06/23 19:05:55.
+# Last Change: 2021/07/05 20:36:32.
 # =============================================================================
 
 # ==================== Dein ======================
 
 [[plugins]]
 repo = "Shougo/dein.vim"
+
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
+on_cmd = 'DeinUpdate'
 
 # ==================== Visual ====================
 
@@ -499,6 +503,14 @@ hook_add = '''
 source $VIM_PATH/rc/zoxide.vim
 '''
 
+[[plugins]]
+repo = 'dense-analysis/ale'
+if = 'g:plugin_use_ale'
+on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $VIM_PATH/rc/ale.vim
+'''
+
 # ==================== Test ======================
 [[plugins]]
 repo = 'vim-test/vim-test'
@@ -722,20 +734,34 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'Shougo/ddc.vim'
+if = 'g:plugin_use_ddc'
+depends = ['context_filetype.vim', 'denops.vim']
+on_event = ['InsertEnter']
+hook_source = '''
+source $VIM_PATH/rc/ddc.vim
+'''
+
+[[plugins]]
 repo = 'higashi000/dps-kakkonan'
+depends = ['denops.vim']
 
 [[plugins]]
 repo = 'yuki-yano/dps-zero.vim'
+depends = ['denops.vim']
 
 [[plugins]]
 repo = 'tamago324/dps-gitignore'
+depends = ['denops.vim']
 
 [[plugins]]
 repo = 'yutkat/dps-coding-now.nvim'
+depends = ['denops.vim']
 if = "!g:is_windows"
 
 [[plugins]]
 repo = 'skanehira/command.vim'
+depends = ['denops.vim']
 if = "!g:is_windows"
 hook_add = '''
 source $VIM_PATH/rc/command.vim
@@ -743,6 +769,7 @@ source $VIM_PATH/rc/command.vim
 
 [[plugins]]
 repo = 'yukimemi/dps-ahdr'
+depends = ['denops.vim']
 # repo = '~/src/github.com/yukimemi/dps-ahdr'
 hook_add = '''
 source $VIM_PATH/rc/dps-ahdr.vim
@@ -750,6 +777,7 @@ source $VIM_PATH/rc/dps-ahdr.vim
 
 [[plugins]]
 repo = 'yukimemi/dps-autocursor'
+depends = ['denops.vim']
 # repo = '~/src/github.com/yukimemi/dps-autocursor'
 hook_add = '''
 source $VIM_PATH/rc/dps-autocursor.vim
@@ -757,6 +785,7 @@ source $VIM_PATH/rc/dps-autocursor.vim
 
 [[plugins]]
 repo = 'yukimemi/dps-asyngrep'
+depends = ['denops.vim']
 # repo = '~/src/github.com/yukimemi/dps-asyngrep'
 hook_add = '''
 source $VIM_PATH/rc/dps-asyngrep.vim
@@ -764,46 +793,11 @@ source $VIM_PATH/rc/dps-asyngrep.vim
 
 [[plugins]]
 repo = 'yukimemi/dps-walk'
+depends = ['denops.vim']
 # repo = '~/src/github.com/yukimemi/dps-walk'
 hook_add = '''
 source $VIM_PATH/rc/dps-walk.vim
 '''
-
-# ==================== Filetype (all) ============
-
-# [[plugins]]
-# repo = 'sheerun/vim-polyglot'
-# hook_add = '''
-# source $VIM_PATH/rc/vim-polyglot.vim
-# '''
-# merged = 0
-
-# ==================== Filetype (markdown) =======
-
-[[plugins]]
-repo = 'dhruvasagar/vim-table-mode'
-on_ft = ['markdown']
-
-[[plugins]]
-repo = 'iamcco/markdown-preview.nvim'
-on_ft = ['markdown', 'pandoc.markdown', 'rmd']
-hook_add = '''
-source $VIM_PATH/rc/markdown-preview.nvim
-'''
-hook_post_update = '''
-call dein#source('markdown-preview.nvim')
-call mkdp#util#install()
-'''
-
-[[plugins]]
-repo = 'rhysd/vim-gfm-syntax'
-on_ft = ['markdown', 'pandoc.markdown', 'rmd']
-
-# ==================== Filetype (html) ===========
-
-[[plugins]]
-repo = 'mattn/emmet-vim'
-on_ft = ['html']
 
 # ==================== Fuzzy =====================
 
@@ -1192,6 +1186,43 @@ if = "g:plugin_use_asyncrun"
 hook_add = '''
 source $VIM_PATH/rc/asyncrun.vim
 '''
+
+# ==================== Filetype (all) ============
+
+# [[plugins]]
+# repo = 'sheerun/vim-polyglot'
+# hook_add = '''
+# source $VIM_PATH/rc/vim-polyglot.vim
+# '''
+# merged = 0
+
+# ==================== Filetype (markdown) =======
+
+[[plugins]]
+repo = 'dhruvasagar/vim-table-mode'
+on_ft = ['markdown']
+
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+hook_add = '''
+source $VIM_PATH/rc/markdown-preview.nvim
+'''
+hook_post_update = '''
+call dein#source('markdown-preview.nvim')
+call mkdp#util#install()
+'''
+
+[[plugins]]
+repo = 'rhysd/vim-gfm-syntax'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+
+# ==================== Filetype (html) ===========
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_ft = ['html']
+
 
 # ==================== Filetype (plantuml) =======
 

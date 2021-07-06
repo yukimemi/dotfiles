@@ -29,6 +29,7 @@
 "win/link/.cache" = "~/.cache"
 "win/link/.cargo" = "~/.cargo"
 "win/link/.dotnet" = "~/.dotnet"
+"win/link/.deno" = "~/.deno"
 "win/link/.go" = "~/.go"
 "win/link/.local" = "~/.local"
 "win/link/.memolist" = "~/.memolist"
