@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/07/05 20:36:32.
+# Last Change: 2021/07/07 22:40:41.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -464,13 +464,13 @@ hook_add = '''
 source $VIM_PATH/rc/vim-choosewin.vim
 '''
 
-[[plugins]]
-repo = 'folke/todo-comments.nvim'
-depends = ['plenary.nvim']
-if = "has('nvim')"
-hook_add = '''
-source $VIM_PATH/rc/todo-comments.nvim
-'''
+# [[plugins]]
+# repo = 'folke/todo-comments.nvim'
+# depends = ['plenary.nvim']
+# if = "has('nvim')"
+# hook_add = '''
+# source $VIM_PATH/rc/todo-comments.nvim
+# '''
 
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
@@ -730,7 +730,7 @@ source $VIM_PATH/rc/neoterm.vim
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 hook_add = '''
-" let g:denops#script#typecheck = 1
+source $VIM_PATH/rc/denops.vim
 '''
 
 [[plugins]]
@@ -741,6 +741,10 @@ on_event = ['InsertEnter']
 hook_source = '''
 source $VIM_PATH/rc/ddc.vim
 '''
+
+[[plugins]]
+repo = 'takkii/dps-himekuri'
+depends = ['denops.vim']
 
 [[plugins]]
 repo = 'higashi000/dps-kakkonan'

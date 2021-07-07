@@ -160,6 +160,8 @@ snippets:
   - name: Install packup
     keyword: install packup
     snippet: deno run -A https://deno.land/x/packup/install.ts
+  - name: Install udd
+    snippet: deno install -A -f -n udd https://deno.land/x/udd/main.ts
   - name: Install atuin
     keyword: install atuin
     snippet: cargo install atuin

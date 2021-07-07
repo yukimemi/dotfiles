@@ -19,6 +19,13 @@ function! IsInstalled(name) abort
   silent! return !dein#check_install(a:name)
 endfunction
 
+if !dein#load_state(s:dein_dir)
+  if has('clientserver')
+    call dein#call_hook('source')
+  endif
+  finish
+endif
+
 let s:toml_file = $VIM_PATH . '/dein.toml'
 
 call dein#begin(s:dein_dir, [$MYVIMRC, s:toml_file])
