@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/07/07 22:40:41.
+# Last Change: 2021/07/10 22:05:58.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -746,9 +746,9 @@ source $VIM_PATH/rc/ddc.vim
 repo = 'takkii/dps-himekuri'
 depends = ['denops.vim']
 
-[[plugins]]
-repo = 'higashi000/dps-kakkonan'
-depends = ['denops.vim']
+# [[plugins]]
+# repo = 'higashi000/dps-kakkonan'
+# depends = ['denops.vim']
 
 [[plugins]]
 repo = 'yuki-yano/dps-zero.vim'
@@ -773,16 +773,16 @@ source $VIM_PATH/rc/command.vim
 
 [[plugins]]
 repo = 'yukimemi/dps-ahdr'
-depends = ['denops.vim']
 # repo = '~/src/github.com/yukimemi/dps-ahdr'
+depends = ['denops.vim']
 hook_add = '''
 source $VIM_PATH/rc/dps-ahdr.vim
 '''
 
 [[plugins]]
 repo = 'yukimemi/dps-autocursor'
-depends = ['denops.vim']
 # repo = '~/src/github.com/yukimemi/dps-autocursor'
+depends = ['denops.vim']
 hook_add = '''
 source $VIM_PATH/rc/dps-autocursor.vim
 '''
