@@ -8,6 +8,26 @@ let g:autocursor_cursorline = {
   \     "wait": 0,
   \   },
   \   {
+  \     "name": "FocusLost",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "WinEnter",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "BufEnter",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "CmdwinLeave",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
   \     "name": "CursorHold",
   \     "set": v:true,
   \     "wait": 100,
@@ -29,6 +49,26 @@ let g:autocursor_cursorcolumn = {
   \ "events": [
   \   {
   \     "name": "FocusGained",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "FocusLost",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "WinEnter",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "BufEnter",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "CmdwinLeave",
   \     "set": v:true,
   \     "wait": 0,
   \   },
