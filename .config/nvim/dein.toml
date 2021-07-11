@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/07/10 22:05:58.
+# Last Change: 2021/07/11 17:59:31.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -789,16 +789,16 @@ source $VIM_PATH/rc/dps-autocursor.vim
 
 [[plugins]]
 repo = 'yukimemi/dps-asyngrep'
-depends = ['denops.vim']
 # repo = '~/src/github.com/yukimemi/dps-asyngrep'
+depends = ['denops.vim']
 hook_add = '''
 source $VIM_PATH/rc/dps-asyngrep.vim
 '''
 
 [[plugins]]
 repo = 'yukimemi/dps-walk'
-depends = ['denops.vim']
 # repo = '~/src/github.com/yukimemi/dps-walk'
+depends = ['denops.vim']
 hook_add = '''
 source $VIM_PATH/rc/dps-walk.vim
 '''
