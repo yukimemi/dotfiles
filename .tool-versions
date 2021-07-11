@@ -7,7 +7,7 @@ nim 1.2.6
 starship 0.46.2
 golang 1.16.2
 ruby 2.7.1
-fd 8.1.1
+fd 8.2.1
 ripgrep 12.1.1
 ghq 1.1.5
 neovim nightly

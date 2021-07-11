@@ -103,6 +103,10 @@ snippets:
   - name: rhq list jump
     keyword: rhl
     snippet: rhq list | __filter_execute cd
+  # gsr
+  - name: gsr list jump
+    keyword: gsrl
+    snippet: gsr | __filter_execute cd
   # tmux
   - name: tmux session list
     keyword: tl
@@ -113,6 +117,10 @@ snippets:
   - name: tmuxinator
     keyword: mux
     snippet: tmuxinator
+  # denops_std update
+  - name: denops_std update
+    keyword: dup
+    snippet: "git add .; git commit -m ':up: Update denops_std.'; git push"
   # youtube-dl
   - name: youtube-dl -i
     keyword: yt
