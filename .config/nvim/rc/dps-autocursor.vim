@@ -40,12 +40,12 @@ let g:autocursor_cursorline = {
   \   {
   \     "name": "CursorMoved",
   \     "set": v:false,
-  \     "wait": 70,
+  \     "wait": 100,
   \   },
   \   {
   \     "name": "CursorMovedI",
   \     "set": v:false,
-  \     "wait": 70,
+  \     "wait": 100,
   \   }
   \  ]
   \ }
@@ -80,22 +80,22 @@ let g:autocursor_cursorcolumn = {
   \   {
   \     "name": "CursorHold",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 0,
   \   },
   \   {
   \     "name": "CursorHoldI",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 0,
   \   },
   \   {
   \     "name": "CursorMoved",
   \     "set": v:false,
-  \     "wait": 70,
+  \     "wait": 100,
   \   },
   \   {
   \     "name": "CursorMovedI",
   \     "set": v:false,
-  \     "wait": 70,
+  \     "wait": 100,
   \   }
   \  ]
   \ }
