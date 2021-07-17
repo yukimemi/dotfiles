@@ -1,6 +1,6 @@
 # espanso configuration file
 
-show_notifications: false
+show_notifications: true
 
 # This is the default configuration file, change it as you like it
 # You can refer to the official documentation:
