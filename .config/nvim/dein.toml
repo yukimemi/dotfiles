@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/07/12 10:47:09.
+# Last Change: 2021/07/20 18:15:07.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -517,6 +517,12 @@ source $VIM_PATH/rc/ale.vim
 repo = 'cohama/lexima.vim'
 hook_add = '''
 " source $VIM_PATH/rc/lexima.vim
+'''
+
+[[plugins]]
+repo = 'monkoose/vim9-stargate'
+hook_add = '''
+source $VIM_PATH/rc/vim9-stargate.vim
 '''
 
 # ==================== Test ======================
