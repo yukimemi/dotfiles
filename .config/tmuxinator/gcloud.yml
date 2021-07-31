@@ -7,13 +7,13 @@ windows:
   - log:
       layout: even-horizontal
       panes:
-        - gcloud compute ssh gce-btc -- zsh
+        # - gcloud compute ssh gce-btc -- zsh
         - gcloud compute ssh gce-btc2 -- zsh
-        - gcloud compute ssh gce-btc3 -- zsh
-        - gcloud compute ssh gce-btc4 -- zsh
+        # - gcloud compute ssh gce-btc3 -- zsh
+        # - gcloud compute ssh gce-btc4 -- zsh
         - gcloud compute ssh gce-btc-test -- zsh
-  - gce-btc: gcloud compute ssh gce-btc -- zsh
+  # - gce-btc: gcloud compute ssh gce-btc -- zsh
   - gce-btc2: gcloud compute ssh gce-btc2 -- zsh
-  - gce-btc3: gcloud compute ssh gce-btc3 -- zsh
-  - gce-btc4: gcloud compute ssh gce-btc4 -- zsh
+  # - gce-btc3: gcloud compute ssh gce-btc3 -- zsh
+  # - gce-btc4: gcloud compute ssh gce-btc4 -- zsh
   - gce-btc-test: gcloud compute ssh gce-btc-test -- zsh
