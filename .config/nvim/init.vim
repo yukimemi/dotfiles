@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/08/02 16:50:12.
+" Last Change : 2021/08/09 15:56:09.
 " =============================================================================
 
 " Init:
@@ -193,6 +193,9 @@ let g:markdown_fenced_languages = [
       \ 'vim',
       \ ]
 
+" lua syntax.
+let g:vimsyn_embed = 'lPr'
+
 " vim
 au MyAutoCmd FileType vim setl expandtab ts=2 sw=2 sts=0
 " markdown
@@ -278,7 +281,6 @@ cnoremap <c-d> <Del>
 cnoremap <c-y> <c-r>
 cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
-
 
 " Shortcut enc and ff.
 " https://github.com/thinca/config/blob/master/dotfiles/dot.vim/vimrc#L1300-L1308
@@ -431,10 +433,10 @@ let g:plugin_use_lualine = v:false
 let g:plugin_use_barow = v:true
 let g:plugin_use_staline = v:false
 
-let g:plugin_use_coc = v:true
+let g:plugin_use_coc = v:false
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
-let g:plugin_use_ddc = v:false
+let g:plugin_use_ddc = v:true
 
 let g:plugin_use_ale = v:false
 

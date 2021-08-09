@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/07/20 18:15:07.
+# Last Change: 2021/08/09 22:31:13.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -749,12 +749,57 @@ source $VIM_PATH/rc/denops.vim
 
 [[plugins]]
 repo = 'Shougo/ddc.vim'
-if = 'g:plugin_use_ddc'
+if = "g:plugin_use_ddc"
 depends = ['context_filetype.vim', 'denops.vim']
-on_event = ['InsertEnter']
+on_event = 'InsertEnter'
 hook_source = '''
 source $VIM_PATH/rc/ddc.vim
 '''
+[[plugins]]
+repo = 'Shougo/ddc-around'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-zsh'
+if = "g:plugin_use_ddc"
+on_ft = 'zsh'
+depends = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-nextword'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
+if = "g:plugin_use_ddc && has('nvim')"
+on_source = 'ddc.vim'
+depends = 'nvim-lspconfig'
+
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+if = "g:plugin_use_ddc && has('nvim')"
+depends = 'nvim-lspinstall'
+lazy = 1
+hook_source = '''
+source $VIM_PATH/rc/nvim-lspconfig.vim
+'''
+
+[[plugins]]
+repo = 'kabouzeid/nvim-lspinstall'
+lazy = 1
+
+[[plugins]]
+repo = 'Shougo/neco-vim'
+on_ft = ['vim', 'toml']
+on_source = 'ddc.vim'
 
 # [[plugins]]
 # repo = 'higashi000/dps-kakkonan'
