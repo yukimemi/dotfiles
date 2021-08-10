@@ -21,6 +21,11 @@
 chcp 65001
 $OutputEncoding = [Console]::OutputEncoding
 
+$ErrorActionPreference = "SilentlyContinue"
+Stop-Transcript | Out-Null
+$ErrorActionPreference = "Stop"
+Start-Transcript
+
 # starship
 if (Get-Command starship -ErrorAction SilentlyContinue) {
   Invoke-Expression (&starship init powershell)
