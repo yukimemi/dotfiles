@@ -8,21 +8,39 @@ function! s:check_back_space() abort
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-call ddc#custom#patch_global({
-			\ 'sources': ['around', 'nextword', 'nvimlsp'],
-			\ 'autoCompleteDelay': 200,
-			\ 'smartCase': v:true,
-			\ })
-call ddc#custom#patch_global('sourceOptions', {
-			\ '_': {
-				\   'matchers': ['matcher_head'],
-				\   'sorters': ['sorter_rank'],
-				\ },
-				\ 'around': {'mark': 'A'},
-				\ 'necovim': {'mark': 'vim'},
-				\ 'nextword': {'mark': 'nextword', 'minAutoCompleteLength': 3},
-				\ 'nvimlsp': {'mark': 'lsp', 'forceCompletionPattern': '\.|:|->'},
+if has('nvim')
+	call ddc#custom#patch_global({
+				\ 'sources': ['around', 'nextword', 'nvimlsp'],
+				\ 'autoCompleteDelay': 200,
+				\ 'smartCase': v:true,
 				\ })
+	call ddc#custom#patch_global('sourceOptions', {
+				\ '_': {
+					\   'matchers': ['matcher_head'],
+					\   'sorters': ['sorter_rank'],
+					\ },
+					\ 'around': {'mark': 'A'},
+					\ 'necovim': {'mark': 'vim'},
+					\ 'nextword': {'mark': 'nextword', 'minAutoCompleteLength': 3},
+					\ 'nvimlsp': {'mark': 'lsp', 'forceCompletionPattern': '\.|:|->'},
+					\ })
+else
+	call ddc#custom#patch_global({
+				\ 'sources': ['around', 'nextword', 'ddc-vim-lsp'],
+				\ 'autoCompleteDelay': 200,
+				\ 'smartCase': v:true,
+				\ })
+	call ddc#custom#patch_global('sourceOptions', {
+				\ '_': {
+					\   'matchers': ['matcher_head'],
+					\   'sorters': ['sorter_rank'],
+					\ },
+					\ 'around': {'mark': 'A'},
+					\ 'necovim': {'mark': 'vim'},
+					\ 'nextword': {'mark': 'nextword', 'minAutoCompleteLength': 3},
+					\ 'ddc-vim-lsp': {'mark': 'lsp', 'forceCompletionPattern': '\.|:|->'},
+					\ })
+endif
 call ddc#custom#patch_filetype(
 			\ ['vim', 'toml'], 'sources', ['necovim', 'around']
 			\ )

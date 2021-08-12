@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/08/09 22:31:13.
+# Last Change: 2021/08/11 14:03:02.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -793,6 +793,13 @@ source $VIM_PATH/rc/nvim-lspconfig.vim
 '''
 
 [[plugins]]
+repo = 'shun/ddc-vim-lsp'
+if = "g:plugin_use_ddc && !has('nvim')"
+on_source = 'ddc.vim'
+depends = ['vim-lsp', 'vim-lsp-settings']
+
+
+[[plugins]]
 repo = 'kabouzeid/nvim-lspinstall'
 lazy = 1
 
@@ -1183,8 +1190,9 @@ if = 'g:plugin_use_asyncomplete'
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
-if = 'g:plugin_use_asyncomplete'
+if = 'g:plugin_use_asyncomplete || g:plugin_use_ddc'
 merged = 0
+depends = 'vim-lsp'
 
 [[plugins]]
 repo = 'prabirshrestha/async.vim'
@@ -1204,8 +1212,12 @@ if = 'g:plugin_use_asyncomplete'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
-if = 'g:plugin_use_asyncomplete'
+if = 'g:plugin_use_asyncomplete || g:plugin_use_ddc'
+lazy = 1
 merged = 0
+hook_source = '''
+source $VIM_PATH/rc/vim-lsp.vim
+'''
 
 [[plugins]]
 repo = "neoclide/coc.nvim"
