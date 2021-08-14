@@ -1,0 +1,6 @@
+nmap  <c-a>  <Plug>(dps-dial-increment)
+nmap  <c-x>  <Plug>(dps-dial-decrement)
+xmap  <c-a>  <Plug>(dps-dial-increment)
+xmap  <c-x>  <Plug>(dps-dial-decrement)
+xmap g<c-a> g<Plug>(dps-dial-increment)
+xmap g<c-x> g<Plug>(dps-dial-decrement)

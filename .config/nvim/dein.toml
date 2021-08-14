@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/08/11 14:03:02.
+# Last Change: 2021/08/14 10:54:09.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -810,24 +810,32 @@ on_source = 'ddc.vim'
 
 # [[plugins]]
 # repo = 'higashi000/dps-kakkonan'
-# depends = ['denops.vim']
+# depends = 'denops.vim'
 
 [[plugins]]
 repo = 'yuki-yano/dps-zero.vim'
-depends = ['denops.vim']
+depends = 'denops.vim'
+
+[[plugins]]
+repo = 'monaqa/dps-dial.vim'
+depends = 'denops.vim'
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/dps-dial.vim
+'''
 
 [[plugins]]
 repo = 'tamago324/dps-gitignore'
-depends = ['denops.vim']
+depends = 'denops.vim'
 
 [[plugins]]
 repo = 'yutkat/dps-coding-now.nvim'
-depends = ['denops.vim']
+depends = 'denops.vim'
 if = "!g:is_windows"
 
 [[plugins]]
 repo = 'skanehira/command.vim'
-depends = ['denops.vim']
+depends = 'denops.vim'
 if = "!g:is_windows"
 hook_add = '''
 source $VIM_PATH/rc/command.vim
@@ -836,7 +844,7 @@ source $VIM_PATH/rc/command.vim
 [[plugins]]
 repo = 'yukimemi/dps-ahdr'
 # repo = '~/src/github.com/yukimemi/dps-ahdr'
-depends = ['denops.vim']
+depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/dps-ahdr.vim
 '''
@@ -844,7 +852,7 @@ source $VIM_PATH/rc/dps-ahdr.vim
 # [[plugins]]
 # repo = 'yukimemi/dps-autocursor'
 # # repo = '~/src/github.com/yukimemi/dps-autocursor'
-# depends = ['denops.vim']
+# depends = 'denops.vim'
 # hook_add = '''
 # source $VIM_PATH/rc/dps-autocursor.vim
 # '''
@@ -852,7 +860,7 @@ source $VIM_PATH/rc/dps-ahdr.vim
 [[plugins]]
 repo = 'yukimemi/dps-asyngrep'
 # repo = '~/src/github.com/yukimemi/dps-asyngrep'
-depends = ['denops.vim']
+depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/dps-asyngrep.vim
 '''
@@ -860,7 +868,7 @@ source $VIM_PATH/rc/dps-asyngrep.vim
 [[plugins]]
 repo = 'yukimemi/dps-walk'
 # repo = '~/src/github.com/yukimemi/dps-walk'
-depends = ['denops.vim']
+depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/dps-walk.vim
 '''
