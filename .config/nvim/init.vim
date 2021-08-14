@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/08/11 15:59:03.
+" Last Change : 2021/08/15 00:37:47.
 " =============================================================================
 
 " Init:
@@ -402,13 +402,12 @@ elseif !has('nvim')
   let &t_SR .= "\e[3 q"
 endif
 
-" reload filetype on save.
-" https://lambdalisue.hatenablog.com/entry/2017/12/24/165759
-au MyAutoCmd BufWritePost *
-      \ if &filetype ==# '' && exists('b:ftdetect') |
-      \   unlet! b:ftdetect |
-      \   filetype detect |
-      \ endif
+" Update filetype.
+autocmd MyAutoCmd BufWritePost * nested
+\ if &l:filetype ==# '' || exists('b:ftdetect')
+\ |   unlet! b:ftdetect
+\ |   filetype detect
+\ | endif
 
 au MyAutoCmd FileType * setlocal formatoptions-=r formatoptions-=o concealcursor=nc
 
@@ -433,10 +432,10 @@ let g:plugin_use_lualine = v:false
 let g:plugin_use_barow = v:true
 let g:plugin_use_staline = v:false
 
-let g:plugin_use_coc = v:true
+let g:plugin_use_coc = v:false
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
-let g:plugin_use_ddc = v:false
+let g:plugin_use_ddc = v:true
 
 let g:plugin_use_ale = v:false
 
@@ -494,7 +493,7 @@ au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 set background=dark
-silent! colorscheme gruvbox-material
+silent! colorscheme nvcode
 
 " Neovide:
 let g:neovide_transparency = 0.9

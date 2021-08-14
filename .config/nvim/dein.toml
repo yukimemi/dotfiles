@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/08/14 10:54:09.
+# Last Change: 2021/08/15 01:07:22.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -72,7 +72,11 @@ repo = 'thinca/vim-fontzoom'
 if = "has('gui')"
 
 [[plugins]]
+repo = 'thinca/vim-ft-diff_fold'
+
+[[plugins]]
 repo = 'luochen1990/rainbow'
+if = "!has('nvim')"
 on_event = ["CursorHold", "CursorMoved"]
 hook_add = '''
 source $VIM_PATH/rc/rainbow.vim
@@ -170,9 +174,6 @@ repo = 'doums/darcula'
 repo = 'severij/vadelma'
 
 [[plugins]]
-repo = 'yasukotelin/shirotelin'
-
-[[plugins]]
 repo = 'yuttie/hydrangea-vim'
 
 [[plugins]]
@@ -189,6 +190,25 @@ repo = 'tiagovla/tokyodark.nvim'
 hook_add = '''
 source $VIM_PATH/rc/tokyodark.nvim
 '''
+
+[[plugins]]
+repo = 'ChristianChiarulli/nvcode-color-schemes.vim'
+
+# ==================== Treesitter ================
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+depends = 'nvim-ts-rainbow'
+if = 'has("nvim")'
+on_event = 'BufRead'
+hook_post_update = 'TSUpdate'
+hook_source = '''
+source $VIM_PATH/rc/nvim-treesitter.vim
+'''
+
+[[plugins]]
+repo = 'p00f/nvim-ts-rainbow'
+if = 'has("nvim")'
+lazy = 1
 
 # ==================== Utility ===================
 
@@ -208,9 +228,8 @@ lazy = 1
 
 [[plugins]]
 repo = 'Shougo/echodoc.vim'
-depends = ['context_filetype.vim']
-on_event = ["InsertEnter"]
-hook_add = '''
+on_event = 'CompleteDone'
+hook_source = '''
 source $VIM_PATH/rc/echodoc.vim
 '''
 
@@ -228,7 +247,7 @@ if = 'has("nvim")'
 
 [[plugins]]
 repo = 'aiya000/aho-bakaup.vim'
-on_event = ['BufWritePre']
+on_event = 'BufWritePre'
 hook_add = '''
 source $VIM_PATH/rc/aho-bakaup.vim
 '''
@@ -245,7 +264,8 @@ repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
 repo = "gelguy/wilder.nvim"
-hook_add = '''
+on_map = ':'
+hook_source = '''
 source $VIM_PATH/rc/wilder.nvim
 '''
 
@@ -314,12 +334,14 @@ repo = 'rbtnn/vim-vimscript_lasterror'
 on_cmd = ['VimscriptLastError']
 
 [[plugins]]
+repo = 'rbtnn/vim-vimscript_indentexpr'
+
+[[plugins]]
 repo = 'romainl/vim-qf'
 on_ft = ['quickfix', 'qf']
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'
-if = '!has("nvim")'
 
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
@@ -521,9 +543,15 @@ hook_add = '''
 
 [[plugins]]
 repo = 'monkoose/vim9-stargate'
+if = "!has('nvim')"
 hook_add = '''
 source $VIM_PATH/rc/vim9-stargate.vim
 '''
+
+[[plugins]]
+repo = 'rcarriga/nvim-notify'
+on_lua = 'notify'
+
 
 # ==================== Test ======================
 [[plugins]]
@@ -743,6 +771,7 @@ source $VIM_PATH/rc/neoterm.vim
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
+augroup = 'denops_plugin_internal'
 hook_add = '''
 source $VIM_PATH/rc/denops.vim
 '''
@@ -780,16 +809,22 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'Shougo/ddc-nvim-lsp'
 if = "g:plugin_use_ddc && has('nvim')"
-on_source = 'ddc.vim'
-depends = 'nvim-lspconfig'
+on_source = 'nvim-lspconfig'
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 if = "g:plugin_use_ddc && has('nvim')"
-depends = 'nvim-lspinstall'
-lazy = 1
+on_if = 'has("nvim")'
+on_ft = ['typescript', 'ps1', 'vim', 'rust']
 hook_source = '''
 source $VIM_PATH/rc/nvim-lspconfig.vim
+'''
+
+[[plugins]]
+repo = 'kabouzeid/nvim-lspinstall'
+on_cmd = ['LspInstallServer', 'LspUninstallServer']
+hook_source = '''
+source $VIM_PATH/rc/nvim-lspinstall.vim
 '''
 
 [[plugins]]
@@ -797,11 +832,6 @@ repo = 'shun/ddc-vim-lsp'
 if = "g:plugin_use_ddc && !has('nvim')"
 on_source = 'ddc.vim'
 depends = ['vim-lsp', 'vim-lsp-settings']
-
-
-[[plugins]]
-repo = 'kabouzeid/nvim-lspinstall'
-lazy = 1
 
 [[plugins]]
 repo = 'Shougo/neco-vim'
@@ -816,13 +846,13 @@ on_source = 'ddc.vim'
 repo = 'yuki-yano/dps-zero.vim'
 depends = 'denops.vim'
 
-[[plugins]]
-repo = 'monaqa/dps-dial.vim'
-depends = 'denops.vim'
-on_map = '<Plug>'
-hook_add = '''
-source $VIM_PATH/rc/dps-dial.vim
-'''
+# [[plugins]]
+# repo = 'monaqa/dps-dial.vim'
+# depends = 'denops.vim'
+# on_map = '<Plug>'
+# hook_add = '''
+# source $VIM_PATH/rc/dps-dial.vim
+# '''
 
 [[plugins]]
 repo = 'tamago324/dps-gitignore'
@@ -849,13 +879,13 @@ hook_add = '''
 source $VIM_PATH/rc/dps-ahdr.vim
 '''
 
-# [[plugins]]
-# repo = 'yukimemi/dps-autocursor'
-# # repo = '~/src/github.com/yukimemi/dps-autocursor'
-# depends = 'denops.vim'
-# hook_add = '''
-# source $VIM_PATH/rc/dps-autocursor.vim
-# '''
+[[plugins]]
+repo = 'yukimemi/dps-autocursor'
+# repo = '~/src/github.com/yukimemi/dps-autocursor'
+depends = 'denops.vim'
+hook_add = '''
+source $VIM_PATH/rc/dps-autocursor.vim
+'''
 
 [[plugins]]
 repo = 'yukimemi/dps-asyngrep'
@@ -962,7 +992,7 @@ on_cmd = ['Clap']
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 depends = ['junkfile.vim']
-on_cmd = ['Denite']
+on_cmd = 'Denite'
 if = "has('python3') && g:plugin_use_denite"
 hook_add = '''
 source $VIM_PATH/rc/denite.nvim
@@ -1198,8 +1228,7 @@ if = 'g:plugin_use_asyncomplete'
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
-if = 'g:plugin_use_asyncomplete || g:plugin_use_ddc'
-merged = 0
+if = 'g:plugin_use_asyncomplete || (g:plugin_use_ddc && !has("nvim"))'
 depends = 'vim-lsp'
 
 [[plugins]]
@@ -1220,9 +1249,8 @@ if = 'g:plugin_use_asyncomplete'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
-if = 'g:plugin_use_asyncomplete || g:plugin_use_ddc'
+if = 'g:plugin_use_asyncomplete || (g:plugin_use_ddc && !has("nvim"))'
 lazy = 1
-merged = 0
 hook_source = '''
 source $VIM_PATH/rc/vim-lsp.vim
 '''
@@ -1376,7 +1404,11 @@ on_ft = 'fish'
 
 [ftplugin]
 _ = '''
-set formatoptions-=r formatoptions-=o
+" Disable automatically insert comment.
+setl formatoptions-=r
+setl formatoptions-=o
+setl formatoptions+=mMBl
+
 set concealcursor=nc
 '''
 
