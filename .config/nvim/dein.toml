@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/08/15 21:35:58.
+# Last Change: 2021/08/13 10:22:15.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -552,6 +552,9 @@ source $VIM_PATH/rc/vim9-stargate.vim
 repo = 'rcarriga/nvim-notify'
 on_lua = 'notify'
 
+[[plugins]]
+repo = 'tyru/nextfile.vim'
+on_source = "vim-submode"
 
 # ==================== Test ======================
 [[plugins]]
