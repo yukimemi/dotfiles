@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/08/15 00:37:47.
+" Last Change : 2021/08/15 21:21:42.
 " =============================================================================
 
 " Init:
@@ -21,13 +21,23 @@ if !v:vim_did_enter && has('reltime')
         \ | echomsg 'startuptime: ' .. reltimestr(s:startuptime)
 endif
 
+" Judge os type.
+let g:is_windows = has('win16') || has('win32') || has('win64')
+let g:is_cygwin = has('win32unix')
+let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
+let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
+
 " Encodings.
 if has('guess_encode')
   set fileencodings=ucs-bom,utf-8,iso-2022-jp,guess,euc-jp,cp932,latin1
 else
   set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1
 endif
-set fileformats=unix,dos
+if g:is_windows
+  set fileformats=dos,unix
+else
+  set fileformats=unix,dos
+endif
 
 " True color.
 set termguicolors
@@ -41,12 +51,6 @@ let g:mapleader = "\<space>"
 let g:maplocalleader = ','
 
 " Utility:
-" Judge os type.
-let g:is_windows = has('win16') || has('win32') || has('win64')
-let g:is_cygwin = has('win32unix')
-let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
-let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
-
 " Set path.
 set shellslash
 let $CACHE = expand('~/.cache')
@@ -436,6 +440,7 @@ let g:plugin_use_coc = v:false
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
 let g:plugin_use_ddc = v:true
+let g:plugin_use_vimlsp = v:true
 
 let g:plugin_use_ale = v:false
 
@@ -517,5 +522,3 @@ endif
 
 filetype plugin indent on
 
-
-" vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

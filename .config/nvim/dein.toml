@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/08/15 01:07:22.
+# Last Change: 2021/08/15 21:35:58.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -780,7 +780,7 @@ source $VIM_PATH/rc/denops.vim
 repo = 'Shougo/ddc.vim'
 if = "g:plugin_use_ddc"
 depends = ['context_filetype.vim', 'denops.vim']
-on_event = 'InsertEnter'
+on_event = 'VimEnter'
 hook_source = '''
 source $VIM_PATH/rc/ddc.vim
 '''
@@ -807,13 +807,18 @@ repo = 'Shougo/ddc-sorter_rank'
 on_source = 'ddc.vim'
 
 [[plugins]]
+repo = 'Shougo/ddc-converter_remove_overlap'
+if = "has('nvim')"
+on_source = 'ddc.vim'
+
+[[plugins]]
 repo = 'Shougo/ddc-nvim-lsp'
-if = "g:plugin_use_ddc && has('nvim')"
+if = "g:plugin_use_ddc && has('nvim') && !g:plugin_use_vimlsp"
 on_source = 'nvim-lspconfig'
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-if = "g:plugin_use_ddc && has('nvim')"
+if = "g:plugin_use_ddc && has('nvim') && !g:plugin_use_vimlsp"
 on_if = 'has("nvim")'
 on_ft = ['typescript', 'ps1', 'vim', 'rust']
 hook_source = '''
@@ -822,16 +827,16 @@ source $VIM_PATH/rc/nvim-lspconfig.vim
 
 [[plugins]]
 repo = 'kabouzeid/nvim-lspinstall'
-on_cmd = ['LspInstallServer', 'LspUninstallServer']
+if = "has('nvim')"
+on_cmd = ['LspInstall', 'LspUninstall']
 hook_source = '''
 source $VIM_PATH/rc/nvim-lspinstall.vim
 '''
 
 [[plugins]]
 repo = 'shun/ddc-vim-lsp'
-if = "g:plugin_use_ddc && !has('nvim')"
+if = "g:plugin_use_ddc && (!has('nvim') || g:plugin_use_vimlsp)"
 on_source = 'ddc.vim'
-depends = ['vim-lsp', 'vim-lsp-settings']
 
 [[plugins]]
 repo = 'Shougo/neco-vim'
@@ -1224,12 +1229,11 @@ if = 'g:plugin_use_asyncomplete'
 
 [[plugins]]
 repo = 'mattn/vim-lsp-icons'
-if = 'g:plugin_use_asyncomplete'
+if = "g:plugin_use_asyncomplete || (g:plugin_use_ddc && (!has('nvim') || g:plugin_use_vimlsp))"
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
-if = 'g:plugin_use_asyncomplete || (g:plugin_use_ddc && !has("nvim"))'
-depends = 'vim-lsp'
+if = "g:plugin_use_asyncomplete || (g:plugin_use_ddc && (!has('nvim') || g:plugin_use_vimlsp))"
 
 [[plugins]]
 repo = 'prabirshrestha/async.vim'
@@ -1249,9 +1253,8 @@ if = 'g:plugin_use_asyncomplete'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
-if = 'g:plugin_use_asyncomplete || (g:plugin_use_ddc && !has("nvim"))'
-lazy = 1
-hook_source = '''
+if = "g:plugin_use_asyncomplete || (g:plugin_use_ddc && (!has('nvim') || g:plugin_use_vimlsp))"
+hook_add = '''
 source $VIM_PATH/rc/vim-lsp.vim
 '''
 
@@ -1495,4 +1498,3 @@ setl fenc=utf-8
 setl ff=dos
 '''
 
-# vim:fdm=marker fdc=3 ft=toml:

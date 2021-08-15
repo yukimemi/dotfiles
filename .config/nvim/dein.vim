@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2021/05/22 21:58:27.
+" Last Change : 2021/08/15 20:11:07.
 " =============================================================================
 
 " Plugin:
@@ -15,7 +15,9 @@ execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 
 let g:dein#auto_recache = v:true
 let g:dein#lazy_rplugins = v:true
+let g:dein#install_log_filename = '~/.dein_install.log'
 let g:dein#enable_notification = v:true
+let g:dein#install_progress_type = 'none'
 let g:dein#install_github_api_token = $DEIN_GITHUB_API_TOKEN
 
 function! IsInstalled(name) abort

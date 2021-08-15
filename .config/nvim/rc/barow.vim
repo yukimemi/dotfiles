@@ -7,12 +7,15 @@ endfunction
 function! MyBarowFencFF() abort
 	return ' [' . &fileencoding . ' / ' . &fileformat . '] '
 endfunction
-function! MyReanimateLastPoint()
+function! MyReanimateLastPoint() abort
 	if IsInstalled('vim-reanimate')
 		return reanimate#is_saved() ? reanimate#last_point() : "no save"
 	else
 		return ''
 	endif
+endfunction
+function! MyDeinProgress() abort
+	return dein#get_progress()
 endfunction
 
 let g:barow = {
@@ -66,5 +69,6 @@ let g:barow = {
       \    [ 'MyBarowFencFF', 'BarowInfo' ],
       \    [ 'MyBarowBomb', 'BarowInfo' ],
       \    [ 'MyReanimateLastPoint', 'BarowInfo' ],
+      \    [ 'MyDeinProgress', 'StatusLine' ],
       \  ]
       \ }
