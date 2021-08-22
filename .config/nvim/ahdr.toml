@@ -1,5 +1,5 @@
 [[ps1]]
-name = "default"
+name = "defaultcmd"
 prefix = ""
 suffix = ""
 dst = "../cmd"

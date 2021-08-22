@@ -92,19 +92,3 @@ nmap gc  <Plug>VSCodeCommentary
 omap gc  <Plug>VSCodeCommentary
 nmap gcc <Plug>VSCodeCommentaryLine
 
-" Plugin.
-let s:use_dein = v:false
-let s:use_vimplug = v:false
-let s:use_minpac = v:true
-let s:use_packager = v:false
-let s:use_volt = v:false
-let s:use_pack = v:false
-let s:use_packer = v:false
-
-if s:use_dein
-  runtime! vscode-dein.vim
-elseif s:use_vimplug
-  runtime! vscode-plug.vim
-elseif s:use_minpac
-  runtime! vscode-minpac.vim
-endif
