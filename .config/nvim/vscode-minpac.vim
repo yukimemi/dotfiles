@@ -5,8 +5,8 @@
 " =============================================================================
 
 " Plugin:
-" Use minpac. {{{1
-let $CACHE_HOME_VSCODE = expand('$CACHE_HOME/vscode-neovim')
+" Use minpac.
+let $CACHE_HOME_VSCODE = expand('~/.cache/vscode-neovim')
 set packpath^=$CACHE_HOME_VSCODE
 let s:package_home = $CACHE_HOME_VSCODE . '/pack/minpac'
 let s:minpac_dir = s:package_home . '/opt/minpac'
@@ -30,7 +30,7 @@ let s:TYPE = {
       \   'funcref': type(function('call'))
       \ }
 let s:repos = {}
-let s:cfg_path = $VIM_PATH . '/rc'
+let s:cfg_path = expand('~/.config/nvim/rc')
 
 " Helper function.
 function! s:plug_add(repo, ...) abort
@@ -123,8 +123,8 @@ Pg 'tpope/vim-repeat', {'event': 'VimEnter'}
 Pg 'vim-scripts/autodate.vim', {'event': ['InsertEnter']}
 Pg 'mattn/vim-sonictemplate', {'on': 'Template'}
 
-command! PackUpdate source $MYVIMRC | call PackInit() | call minpac#update()
-command! PackClean  source $MYVIMRC | call PackInit() | call minpac#clean()
+command! PackUpdate call PackInit() | call minpac#update()
+command! PackClean  call PackInit() | call minpac#clean()
 command! PackStatus packadd minpac | call minpac#status()
 
 " Install on initiall setup.

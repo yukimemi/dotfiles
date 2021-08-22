@@ -3,6 +3,12 @@ set incsearch hlsearch wrapscan
 set ignorecase smartcase infercase
 set clipboard=unnamedplus
 
+" Judge os type.
+let g:is_windows = has('win16') || has('win32') || has('win64')
+let g:is_cygwin = has('win32unix')
+let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
+let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
+
 " mappings.
 nnoremap <silent> j gj
 nnoremap <silent> k gk
@@ -54,6 +60,9 @@ command! -nargs=1 -complete=command L
 nnoremap <silent> <c-l> <cmd>call <SID>switchEditor(v:count, 'next')<cr>
 nnoremap <silent> <c-h> <cmd>call <SID>switchEditor(v:count, 'prev')<cr>
 
+" quickfix.
+nnoremap z= <cmd>call VSCodeNotify('keyboard-quickfix.openQuickFix')<cr>
+
 " Use prefix s.
 nnoremap <silent> s <Nop>
 nnoremap <silent> s= <cmd>call VSCodeNotify('workbench.action.evenEditorWidths')<cr>
@@ -92,3 +101,7 @@ nmap gc  <Plug>VSCodeCommentary
 omap gc  <Plug>VSCodeCommentary
 nmap gcc <Plug>VSCodeCommentaryLine
 
+" Use plugin.
+let $VIM_PATH = expand('~/.config/nvim')
+exe 'set runtimepath^=' . expand('~/.config/nvim')
+exe "lua require('vscode-packer')"
