@@ -18,10 +18,10 @@ noremap <silent> gl $
 nnoremap <silent> Y y$
 
 " Useful save mappings.
-nnoremap <silent> <localleader><localleader> <cmd>Write<cr>
+nnoremap <silent> ,, <cmd>Write<cr>
 
 " Open file with explorer.
-nnoremap <silent> <localleader>o <cmd>call VSCodeNotify('revealFileInOS')<cr>
+nnoremap <silent> ,o <cmd>call VSCodeNotify('revealFileInOS')<cr>
 
 " nohlsearch.
 nnoremap <silent> <esc><esc> <cmd>nohlsearch<cr>
