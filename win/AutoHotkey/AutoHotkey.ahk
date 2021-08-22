@@ -72,9 +72,9 @@ Activate(APPDATA . "Local\Microsoft\Teams\current\Teams.exe")
 return
 
 ; for gvim
-F10::
-Activate3("gvim.exe", "C:\tools\vim\vim82\gvim.exe", "GVIM")
-return
+; F10::
+; Activate3("gvim.exe", "C:\tools\vim\vim82\gvim.exe", "GVIM")
+; return
 ; for neovim
 ; F10::
 ; Activate(USERPROFILE . "\scoop\shims\nvim.exe")
@@ -86,9 +86,9 @@ return
 ; return
 
 ; for VSCode
-; ^F10::
-; Activate3("Code.exe", "C:\Program Files\Microsoft VS Code\Code.exe", "Visual Studio Code")
-; return
+F10::
+Activate3("Code.exe", "C:\Program Files\Microsoft VS Code\Code.exe", "Visual Studio Code")
+return
 
 ; for chrome
 ; F11::
