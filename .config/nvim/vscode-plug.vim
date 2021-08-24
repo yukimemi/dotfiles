@@ -7,7 +7,7 @@
 " Plugin:
 " Use vim-plug.
 set shellslash
-let s:cache_vscode = $CACHE_HOME . '/vscode-neovim'
+let s:cache_vscode = expand('~/.cache/vscode-neovim')
 let s:plug_dir = s:cache_vscode . '/plugs'
 let s:vim_plug_dir = s:cache_vscode . '/vim-plug'
 if has('vim_starting')
@@ -32,23 +32,29 @@ Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-fold'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'
+Plug 'machakann/vim-sandwich'
+Plug 'machakann/vim-swap'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 't9md/vim-quickhl'
 Plug 'vim-scripts/autodate.vim'
-Plug 'ntpeters/vim-better-whitespace'
+Plug 'unblevable/quick-scope'
 
 call plug#end()
 
 " Plugin settings.
+let $VIM_PATH = expand('~/.config/nvim')
 silent! so $VIM_PATH/rc/autodate.vim
 silent! so $VIM_PATH/rc/textobj-lastpaste.vim
 silent! so $VIM_PATH/rc/vim-asterisk.vim
+silent! so $VIM_PATH/rc/vim-better-whitespace.vim
 silent! so $VIM_PATH/rc/vim-easy-align.vim
 silent! so $VIM_PATH/rc/vim-operator-flashy.vim
 silent! so $VIM_PATH/rc/vim-operator-replace.vim
 silent! so $VIM_PATH/rc/vim-operator-user.vim
 silent! so $VIM_PATH/rc/vim-quickhl.vim
+silent! so $VIM_PATH/rc/vim-swap.vim
 silent! so $VIM_PATH/rc/vim-textobj-entire.vim
 silent! so $VIM_PATH/rc/vim-textobj-fold.vim
 silent! so $VIM_PATH/rc/vim-textobj-indent.vim
 silent! so $VIM_PATH/rc/vim-textobj-user.vim
-silent! so $VIM_PATH/rc/vim-better-whitespace.vim
+silent! so $VIM_PATH/rc/quick-scope.vim

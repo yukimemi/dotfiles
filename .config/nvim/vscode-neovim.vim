@@ -101,7 +101,9 @@ nmap gc  <Plug>VSCodeCommentary
 omap gc  <Plug>VSCodeCommentary
 nmap gcc <Plug>VSCodeCommentaryLine
 
-" Use plugin.
-let $VIM_PATH = expand('~/.config/nvim')
-exe 'set runtimepath^=' . expand('~/.config/nvim')
-exe "lua require('vscode-packer')"
+" Use plugin with packer.nvim.
+" let $VIM_PATH = expand('~/.config/nvim')
+" exe 'set runtimepath^=' . expand('~/.config/nvim')
+" exe "lua require('vscode-packer')"
+" Use plugin with plug.vim
+exe printf("source %s", expand("~/.config/nvim/vscode-plug.vim"))
