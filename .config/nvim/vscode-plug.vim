@@ -31,19 +31,21 @@ Plug 'kana/vim-operator-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-fold'
 Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
 Plug 'machakann/vim-sandwich'
 Plug 'machakann/vim-swap'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 't9md/vim-quickhl'
-Plug 'vim-scripts/autodate.vim'
 Plug 'unblevable/quick-scope'
+Plug 'vim-scripts/autodate.vim'
 
 call plug#end()
 
 " Plugin settings.
 let $VIM_PATH = expand('~/.config/nvim')
 silent! so $VIM_PATH/rc/autodate.vim
+silent! so $VIM_PATH/rc/quick-scope.vim
 silent! so $VIM_PATH/rc/textobj-lastpaste.vim
 silent! so $VIM_PATH/rc/vim-asterisk.vim
 silent! so $VIM_PATH/rc/vim-better-whitespace.vim
@@ -55,6 +57,6 @@ silent! so $VIM_PATH/rc/vim-quickhl.vim
 silent! so $VIM_PATH/rc/vim-swap.vim
 silent! so $VIM_PATH/rc/vim-textobj-entire.vim
 silent! so $VIM_PATH/rc/vim-textobj-fold.vim
+silent! so $VIM_PATH/rc/vim-textobj-iine.vim
 silent! so $VIM_PATH/rc/vim-textobj-indent.vim
 silent! so $VIM_PATH/rc/vim-textobj-user.vim
-silent! so $VIM_PATH/rc/quick-scope.vim
