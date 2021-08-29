@@ -57,6 +57,6 @@ silent! so $VIM_PATH/rc/vim-quickhl.vim
 silent! so $VIM_PATH/rc/vim-swap.vim
 silent! so $VIM_PATH/rc/vim-textobj-entire.vim
 silent! so $VIM_PATH/rc/vim-textobj-fold.vim
-silent! so $VIM_PATH/rc/vim-textobj-iine.vim
+silent! so $VIM_PATH/rc/vim-textobj-line.vim
 silent! so $VIM_PATH/rc/vim-textobj-indent.vim
 silent! so $VIM_PATH/rc/vim-textobj-user.vim
