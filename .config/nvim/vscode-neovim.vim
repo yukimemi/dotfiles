@@ -1,3 +1,10 @@
+" Init:
+set encoding=utf-8
+scriptencoding utf-8
+
+" Release autogroup in MyAutoCmd.
+augroup MyAutoCmd | autocmd! | augroup END
+
 " settings.
 set incsearch hlsearch wrapscan
 set ignorecase smartcase infercase
@@ -8,6 +15,23 @@ let g:is_windows = has('win16') || has('win32') || has('win64')
 let g:is_cygwin = has('win32unix')
 let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
 let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
+
+" backup dir.
+let $BACKUP_PATH = expand('~/.cache/vscode-neovim/back')
+let s:undo_dir = $BACKUP_PATH . '/undo'
+let s:backup_dir = $BACKUP_PATH . '/back'
+let s:directory = $BACKUP_PATH . '/dir'
+let s:view_dir = $BACKUP_PATH . '/view'
+silent! call mkdir(s:undo_dir, 'p')
+silent! call mkdir(s:backup_dir, 'p')
+silent! call mkdir(s:directory, 'p')
+silent! call mkdir(s:view_dir, 'p')
+
+set undofile
+exe 'set undodir=' . s:undo_dir
+exe 'set backupdir=' . s:backup_dir
+exe 'set directory=' . s:directory
+exe 'set viewdir=' . s:view_dir
 
 " mappings.
 nnoremap <silent> j gj
@@ -100,6 +124,9 @@ xmap gc  <Plug>VSCodeCommentary
 nmap gc  <Plug>VSCodeCommentary
 omap gc  <Plug>VSCodeCommentary
 nmap gcc <Plug>VSCodeCommentaryLine
+
+" autocmd.
+au MyAutoCmd FileType * set fo-=c fo-=r fo-=o
 
 " Use plugin with packer.nvim.
 " let $VIM_PATH = expand('~/.config/nvim')
