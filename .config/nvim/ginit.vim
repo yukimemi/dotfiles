@@ -5,7 +5,7 @@ set guioptions=
 set background=dark
 
 " font
-Guifont! Cica:h12
+Guifont! Cica:h11
 
 let g:save_window_file = expand("~/.nvimwinpos")
 au MyAutoCmd VimLeavePre * call <SID>save_window()

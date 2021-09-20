@@ -1,11 +1,10 @@
 {
   "coc.preferences.extensionUpdateCheck": "weekly",
-  "coc.preferences.previewAutoClose": false,
   "coc.preferences.silentAutoupdate": true,
   "coc.preferences.useQuickfixForLocations": true,
   "eslint.autoFixOnSave": true,
   "eslint.run": "onSave",
-  "explorer.file.autoReveal": true,
+  "explorer.file.reveal.auto": true,
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,
   "list.source.files.args": ["--hidden", "--no-ignore-vcs", "--files"],

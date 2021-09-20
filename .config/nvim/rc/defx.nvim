@@ -1,3 +1,7 @@
+if !g:plugin_use_defx
+  finish
+endif
+
 nnoremap <silent> <leader>v :<c-u>Defx -columns=icons:indent:filename:type:git `expand('%:p:h')` -search=`expand('%:p')`<cr>
 nnoremap <silent> ge :<c-u>Defx -columns=icons:indent:filename:type:git -split=vertical -winwidth=30 -direction=topleft `expand('%:p:h')` -search=`expand('%:p')`<cr>
 

@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/08/13 10:22:15.
+# Last Change: 2021/09/20 22:20:36.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -91,7 +91,8 @@ repo = 'machakann/vim-highlightedyank'
 hook_add = '''
 source $VIM_PATH/rc/transparency-windows-vim.vim
 '''
-if = "g:is_windows && has('gui')"
+# if = "g:is_windows && has('gui')"
+if = "g:is_windows"
 repo = 'mattn/transparency-windows-vim'
 
 [[plugins]]
@@ -200,12 +201,12 @@ hook_post_update = 'TSUpdate'
 hook_source = '''
 source $VIM_PATH/rc/nvim-treesitter.vim
 '''
-if = 'has("nvim") && !g:is_windows'
+if = 'has("nvim")'
 on_event = 'BufRead'
 repo = 'nvim-treesitter/nvim-treesitter'
 
 [[plugins]]
-if = 'has("nvim") && !g:is_windows'
+if = 'has("nvim")'
 lazy = 1
 repo = 'p00f/nvim-ts-rainbow'
 
@@ -1402,6 +1403,11 @@ repo = 'PProvost/vim-ps1'
 on_ft = 'csv'
 repo = 'mechatroner/rainbow_csv'
 
+# ==================== Filetype (log) ============
+[[plugins]]
+repo = 'MTDL9/vim-log-highlighting'
+on_ft = 'log'
+
 # ==================== Filetype (fish) ============
 
 [[plugins]]
@@ -1455,9 +1461,11 @@ setl completeopt+=preview
 '''
 
 ps1 = '''
-setl ts=2 sw=2 sts=0
 setl expandtab
+setl fenc=utf-8
 setl ff=dos
+setl foldmethod=syntax
+setl ts=2 sw=2 sts=0
 '''
 
 python = '''
@@ -1497,8 +1505,3 @@ json = '''
 set concealcursor=nc
 '''
 
-ps1 = '''
-setl foldmethod=syntax
-setl fenc=utf-8
-setl ff=dos
-'''

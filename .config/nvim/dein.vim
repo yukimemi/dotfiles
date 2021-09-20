@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2021/08/15 20:11:07.
+" Last Change : 2021/09/20 21:57:39.
 " =============================================================================
 
 " Plugin:
@@ -15,6 +15,7 @@ execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 
 let g:dein#auto_recache = v:true
 let g:dein#lazy_rplugins = v:true
+let g:dein#install_check_diff = v:true
 let g:dein#install_log_filename = '~/.dein_install.log'
 let g:dein#enable_notification = v:true
 let g:dein#install_progress_type = 'none'
@@ -46,6 +47,3 @@ if !v:vim_did_enter && dein#check_install()
   call dein#install()
 endif
 
-if !empty(map(dein#check_clean(), 'delete(v:val, "rf")'))
-  call dein#recache_runtimepath()
-endif

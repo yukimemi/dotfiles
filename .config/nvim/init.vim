@@ -456,11 +456,11 @@ let g:plugin_use_telescope = v:false && has('nvim')
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
 let g:plugin_use_fern = v:false
-let g:plugin_use_defx = v:true
+let g:plugin_use_defx = v:false
 let g:plugin_use_molder = v:false
 let g:plugin_use_vaffle = v:false
 let g:plugin_use_viler = v:false
-let g:plugin_use_coc_explorer = v:false
+let g:plugin_use_coc_explorer = v:true
 
 let g:plugin_use_quickrun = v:false
 let g:plugin_use_asyncrun = v:true
