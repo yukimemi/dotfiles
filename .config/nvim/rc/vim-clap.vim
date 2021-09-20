@@ -1,3 +1,7 @@
+if !g:plugin_use_clap
+  finish
+endif
+
 nnoremap scc :<c-u>Clap!<cr>
 nnoremap scb :<c-u>Clap! buffers<cr>
 nnoremap scm :<c-u>Clap! marks<cr>

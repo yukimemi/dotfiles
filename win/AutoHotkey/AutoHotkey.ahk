@@ -76,9 +76,9 @@ return
 ; Activate3("gvim.exe", "C:\tools\vim\vim82\gvim.exe", "GVIM")
 ; return
 ; for neovim
-; F10::
-; Activate(USERPROFILE . "\scoop\shims\nvim.exe")
-; return
+F10::
+Activate("C:\tools\neovim\Neovim\bin\nvim-qt.exe")
+return
 
 ; for sakura
 ; ^F10::
@@ -86,9 +86,9 @@ return
 ; return
 
 ; for VSCode
-F10::
-Activate3("Code.exe", "C:\Program Files\Microsoft VS Code\Code.exe", "Visual Studio Code")
-return
+; F10::
+; Activate3("Code.exe", "C:\Program Files\Microsoft VS Code\Code.exe", "Visual Studio Code")
+; return
 
 ; for chrome
 ; F11::
@@ -187,7 +187,7 @@ return
 
 ; For Visual Studio
 ^[::
-if WinActive("ahk_class Chrome_WidgetWin_1") or WinActive("ahk_class Vim") {
+if WinActive("ahk_class Chrome_WidgetWin_1") or WinActive("ahk_class Vim") or WinActive("ahk_class Qt5QWindowIcon") {
   Send {Esc}{vk1Dsc07B}
 } else {
   Send {Esc}
