@@ -58,12 +58,12 @@ Activate3(app, cmd, title) {
 
 ; for Outlook
 ^F9::
-Activate("C:\Program Files (x86)\Microsoft Office\Office16\OUTLOOK.EXE")
+Activate("C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE")
 return
 
 ; for Excel
 F9::
-Activate("C:\Program Files (x86)\Microsoft Office\Office16\EXCEL.EXE")
+Activate("C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE")
 return
 
 ; for Teams

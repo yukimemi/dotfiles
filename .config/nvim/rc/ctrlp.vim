@@ -1,5 +1,9 @@
+if !g:plugin_use_ctrlp
+  finish
+endif
+
 let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed', 'bookmarkdir', 'commandline']
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed', 'bookmarkdir', 'commandline', 'mr/mru', 'mr/mrw', 'mr/mrr']
 let g:ctrlp_key_loop = 1
 let g:ctrlp_lazy_update = 200
 let g:ctrlp_line_prefix = '» '
@@ -13,7 +17,10 @@ let g:ctrlp_user_command_async = 1
 nnoremap <silent> scp :<c-u>CtrlP<cr>
 nnoremap <silent> scb :<c-u>CtrlPBuffer<cr>
 nnoremap <silent> scd :<c-u>CtrlPCurFile<cr>
-nnoremap <silent> scu :<c-u>CtrlPMRUFiles<cr>
+" nnoremap <silent> scu :<c-u>CtrlPMRUFiles<cr>
+nnoremap <silent> scuu :<c-u>CtrlPMRMru<cr>
+nnoremap <silent> scuw :<c-u>CtrlPMRMrw<cr>
+nnoremap <silent> scur :<c-u>CtrlPMRMrr<cr>
 nnoremap <silent> scm :<c-u>CtrlPMark<cr>
 " nnoremap <silent> scl :<c-u>CtrlPLine<cr>
 " nnoremap <silent> scg :<c-u>CtrlPChange<cr>

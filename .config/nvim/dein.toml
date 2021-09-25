@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/09/20 22:20:36.
+# Last Change: 2021/09/25 12:15:55.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -91,8 +91,8 @@ repo = 'machakann/vim-highlightedyank'
 hook_add = '''
 source $VIM_PATH/rc/transparency-windows-vim.vim
 '''
-# if = "g:is_windows && has('gui')"
-if = "g:is_windows"
+if = "g:is_windows && has('gui')"
+# if = "g:is_windows"
 repo = 'mattn/transparency-windows-vim'
 
 [[plugins]]
@@ -128,6 +128,21 @@ hook_add = '''
 source $VIM_PATH/rc/vim-plugin-AnsiEsc.vim
 '''
 repo = 'powerman/vim-plugin-AnsiEsc'
+
+# [[plugins]]
+# repo = 'DanilaMihailov/beacon.nvim'
+# if = 'has("nvim")'
+# on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'psliwka/vim-smoothie'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'rhysd/accelerated-jk'
+hook_add = '''
+source $VIM_PATH/rc/accelerated-jk.vim
+'''
 
 # colorscheme
 
@@ -380,7 +395,7 @@ repo = 'thinca/vim-qfreplace'
 hook_add = '''
 source $VIM_PATH/rc/vim-submode.vim
 '''
-on_event = ['VimEnter']
+on_event = 'BufRead'
 repo = 'thinca/vim-submode'
 
 [[plugins]]
@@ -496,7 +511,7 @@ repo = 'osyo-manga/vim-reanimate'
 hook_add = '''
 source $VIM_PATH/rc/vim-choosewin.vim
 '''
-on_event = ["VimEnter"]
+on_event = 'BufRead'
 repo = 't9md/vim-choosewin'
 
 # [[plugins]]
@@ -796,7 +811,7 @@ hook_source = '''
 source $VIM_PATH/rc/ddc.vim
 '''
 if = "g:plugin_use_ddc"
-on_event = 'VimEnter'
+on_event = 'BufRead'
 repo = 'Shougo/ddc.vim'
 [[plugins]]
 on_source = 'ddc.vim'
@@ -918,7 +933,6 @@ source $VIM_PATH/rc/dps-walk.vim
 
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
-
 hook_add = '''
 source $VIM_PATH/rc/ctrlp.vim
 '''
@@ -926,43 +940,36 @@ if = "g:plugin_use_ctrlp"
 on_cmd = ['CtrlP', 'CtrlPBuffer', 'CtrlPCurFile', 'CtrlPMRUFiles']
 [[plugins]]
 repo = 'kaneshin/ctrlp-filetype'
-
 depends = ['ctrlp.vim']
 if = "g:plugin_use_ctrlp"
 on_cmd = ['CtrlPFiletype']
 [[plugins]]
 repo = 'kaneshin/ctrlp-memolist'
-
 depends = ['ctrlp.vim']
 if = "g:plugin_use_ctrlp"
 on_cmd = ['CtrlPMemolist']
 [[plugins]]
 repo = 'kaneshin/ctrlp-sonictemplate'
-
 depends = ['ctrlp.vim']
 if = "g:plugin_use_ctrlp"
 on_cmd = ['CtrlPSonictemplate']
 [[plugins]]
 repo = 'mattn/ctrlp-launcher'
-
 depends = ['ctrlp.vim']
 if = "g:plugin_use_ctrlp"
 on_cmd = ['CtrlPLauncher']
 [[plugins]]
 repo = 'mattn/ctrlp-mark'
-
 depends = ['ctrlp.vim']
 if = "g:plugin_use_ctrlp"
 on_cmd = ['CtrlPMark']
 [[plugins]]
 repo = 'mattn/ctrlp-vimhelpjp'
-
 depends = ['ctrlp.vim', 'webapi-vim']
 if = "g:plugin_use_ctrlp"
 on_cmd = ['VimHelpJp']
 [[plugins]]
 repo = 'ompugao/ctrlp-history'
-
 depends = ['ctrlp.vim']
 if = "g:plugin_use_ctrlp"
 on_cmd = ['CtrlPCmdHistory', 'CtrlPSearchHistory']
@@ -971,7 +978,6 @@ depends = ['ctrlp.vim']
 if = "g:plugin_use_ctrlp"
 repo = 'suy/vim-ctrlp-commandline'
 # on_cmd = ['CtrlPCommandLine']
-
 [[plugins]]
 depends = ['ctrlp.vim']
 if = "g:plugin_use_ctrlp"
@@ -988,6 +994,13 @@ repo = 'raghur/fruzzy'
 depends = ['ctrlp.vim']
 if = "g:plugin_use_ctrlp && exists('*matchfuzzy')"
 repo = 'mattn/ctrlp-matchfuzzy'
+[[plugins]]
+repo = 'lambdalisue/mr.vim'
+lazy = 1
+[[plugins]]
+repo = 'tsuyoshicho/ctrlp-mr.vim'
+depends = ['ctrlp.vim', 'mr.vim']
+on_cmd = ['CtrlPMRMru', 'CtrlPMRMrw', 'CtrlPMRMrr']
 
 [[plugins]]
 hook_add = '''

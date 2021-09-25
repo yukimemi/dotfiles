@@ -39,7 +39,7 @@ function Is-Windows {
 # ZLocation
 # Import-Module ZLocation
 # Get-ChildItemColor
-Import-Module Get-ChildItemColor
+# Import-Module Get-ChildItemColor
 # Pscx
 # if (Is-Windows) {
 #   Import-Module Pscx
@@ -66,7 +66,8 @@ function a {
 function gp {
   git pull --rebase
 }
-# git ignore for PowerShell v3
+
+# git ignore for PowerShell
 function gig {
   param(
     [Parameter(Mandatory = $true)]
@@ -77,6 +78,7 @@ function gig {
     Select-Object -ExpandProperty content |
     Out-File -FilePath $(Join-Path -Path $pwd -ChildPath ".gitignore") -Encoding ascii
 }
+
 function gr {
   Set-Location $(git rev-parse --show-cdup)
 }
@@ -92,30 +94,30 @@ function cd-ls {
   Set-Location $path -ea Stop
   Get-ChildItem
   # Save location.
-  $funcs = "function Is-Windows { ${Function:Is-Windows} }"
-  Start-Job {
-    param([string]$funcs, [string]$path)
-    Invoke-Expression $funcs
-    $z = & {
-      if (Is-Windows) {
-        (Join-Path $env:USERPROFILE ".z")
-      }
-      else {
-        (Join-Path $env:HOME ".z")
-      }
-    }
-    $path | Add-Content -Encoding utf8 $z
-    $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) } | Where-Object { Test-Path $_ }
-    [array]::Reverse($c)
-    if (Get-Command uq -ErrorAction SilentlyContinue) {
-      $c | uq | Set-Variable c
-    }
-    else {
-      $c | Sort-Object -Unique | Set-Variable c
-    }
-    [array]::Reverse($c)
-    $c | Set-Content -Encoding utf8 $z
-  } -ArgumentList $funcs, (Get-Location).Path > $null
+  # $funcs = "function Is-Windows { ${Function:Is-Windows} }"
+  # Start-Job {
+  #   param([string]$funcs, [string]$path)
+  #   Invoke-Expression $funcs
+  #   $z = & {
+  #     if (Is-Windows) {
+  #       (Join-Path $env:USERPROFILE ".z")
+  #     }
+  #     else {
+  #       (Join-Path $env:HOME ".z")
+  #     }
+  #   }
+  #   $path | Add-Content -Encoding utf8 $z
+  #   $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) } | Where-Object { Test-Path $_ }
+  #   [array]::Reverse($c)
+  #   if (Get-Command uq -ErrorAction SilentlyContinue) {
+  #     $c | uq | Set-Variable c
+  #   }
+  #   else {
+  #     $c | Sort-Object -Unique | Set-Variable c
+  #   }
+  #   [array]::Reverse($c)
+  #   $c | Set-Content -Encoding utf8 $z
+  # } -ArgumentList $funcs, (Get-Location).Path > $null
 }
 
 function cdls {

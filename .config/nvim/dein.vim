@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2021/09/20 21:57:39.
+" Last Change : 2021/09/25 09:23:06.
 " =============================================================================
 
 " Plugin:
@@ -13,13 +13,16 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 
-let g:dein#auto_recache = v:true
-let g:dein#lazy_rplugins = v:true
-let g:dein#install_check_diff = v:true
-let g:dein#install_log_filename = '~/.dein_install.log'
+if !g:is_windows
+  let g:dein#auto_recache = v:true
+endif
 let g:dein#enable_notification = v:true
-let g:dein#install_progress_type = 'none'
+let g:dein#install_check_diff = v:true
 let g:dein#install_github_api_token = $DEIN_GITHUB_API_TOKEN
+let g:dein#install_log_filename = '~/.dein_install.log'
+let g:dein#install_progress_type = 'none'
+let g:dein#lazy_rplugins = v:true
+let g:dein#notification_time = 15
 
 function! IsInstalled(name) abort
   silent! return !dein#check_install(a:name)
