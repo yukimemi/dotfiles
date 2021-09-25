@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/09/25 13:35:53.
+# Last Change: 2021/09/25 16:27:39.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -137,6 +137,9 @@ repo = 'powerman/vim-plugin-AnsiEsc'
 [[plugins]]
 repo = 'psliwka/vim-smoothie'
 on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $VIM_PATH/rc/vim-smoothie.vim
+'''
 
 [[plugins]]
 repo = 'rhysd/accelerated-jk'
@@ -606,7 +609,7 @@ repo = 'Shougo/junkfile.vim'
 hook_add = '''
 source $VIM_PATH/rc/memolist.vim
 '''
-on_cmd = ['Memolist', 'MemoNew', 'MemoGrep']
+on_cmd = ['MemoList', 'MemoNew', 'MemoGrep']
 repo = 'glidenote/memolist.vim'
 
 [[plugins]]
