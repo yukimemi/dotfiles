@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/09/25 12:15:55.
+# Last Change: 2021/09/25 13:35:53.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -562,10 +562,10 @@ on_event = ['CursorHold', 'FocusLost']
 repo = 'dense-analysis/ale'
 
 [[plugins]]
+repo = 'cohama/lexima.vim'
 hook_add = '''
 " source $VIM_PATH/rc/lexima.vim
 '''
-repo = 'cohama/lexima.vim'
 
 [[plugins]]
 hook_add = '''
@@ -581,6 +581,11 @@ repo = 'rcarriga/nvim-notify'
 [[plugins]]
 on_source = "vim-submode"
 repo = 'tyru/nextfile.vim'
+
+[[plugins]]
+repo = 'liuchengxu/vista.vim'
+on_event = ['CursorHold', 'FocusLost']
+on_cmd = 'Vista'
 
 # ==================== Test ======================
 [[plugins]]

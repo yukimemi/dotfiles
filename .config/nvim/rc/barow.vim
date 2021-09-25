@@ -17,6 +17,9 @@ endfunction
 function! MyDeinProgress() abort
 	return dein#get_progress()
 endfunction
+function! MyNearestMethodOrFunction() abort
+  return 'λ ' .. get(b:, 'vista_nearest_method_or_function', '')
+endfunction
 
 let g:barow = {
       \  'modes': {
@@ -70,5 +73,6 @@ let g:barow = {
       \    [ 'MyBarowBomb', 'BarowInfo' ],
       \    [ 'MyReanimateLastPoint', 'BarowInfo' ],
       \    [ 'MyDeinProgress', 'StatusLine' ],
+      \    [ 'MyNearestMethodOrFunction', 'StatusLine' ],
       \  ]
       \ }

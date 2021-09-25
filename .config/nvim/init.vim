@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/09/25 12:06:44.
+" Last Change : 2021/09/25 13:43:27.
 " =============================================================================
 
 " Init:
@@ -90,15 +90,17 @@ endfunction
 
 function! s:open_current_dir() abort
   if g:is_windows
+    let s:save_shellslash = &shellslash
+    set noshellslash
     if !has('nvim')
-      setl noshellslash
-      exe printf("!start \"%s\"", expand("%:p:h"))
-      setl shellslash
+      exe printf("silent! !start \"%s\"", expand("%:p:h"))
     else
-      exe printf("!explorer \"%s\"", expand("%:p:h"))
+      exe printf("silent! !explorer \"%s\"", expand("%:p:h"))
     endif
+    let &shellslash = s:save_shellslash
+    unlet s:save_shellslash
   else
-    exe printf("!open \"%s\"", expand("%:p:h"))
+    exe printf("silent! !open \"%s\"", expand("%:p:h"))
   endif
 endfunction
 
