@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/09/25 16:27:39.
+# Last Change: 2021/09/26 10:03:06.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -81,11 +81,11 @@ if = "!has('nvim')"
 on_event = ["CursorHold", "CursorMoved"]
 repo = 'luochen1990/rainbow'
 
-[[plugins]]
-hook_add = '''
-source $VIM_PATH/rc/vim-highlightedyank.vim
-'''
-repo = 'machakann/vim-highlightedyank'
+# [[plugins]]
+# hook_add = '''
+# source $VIM_PATH/rc/vim-highlightedyank.vim
+# '''
+# repo = 'machakann/vim-highlightedyank'
 
 [[plugins]]
 hook_add = '''
@@ -141,11 +141,6 @@ hook_add = '''
 source $VIM_PATH/rc/vim-smoothie.vim
 '''
 
-[[plugins]]
-repo = 'rhysd/accelerated-jk'
-hook_add = '''
-source $VIM_PATH/rc/accelerated-jk.vim
-'''
 
 # colorscheme
 
@@ -231,7 +226,7 @@ repo = 'p00f/nvim-ts-rainbow'
 # ==================== Utility ===================
 
 [[plugins]]
-on_cmd = ['Linediff', 'LinediffReset', 'LinediffShow']
+on_cmd = ['Linediff', 'LinediffReset', 'LinediffShow', 'LinediffAdd']
 repo = 'AndrewRadev/linediff.vim'
 
 [[plugins]]
@@ -914,8 +909,8 @@ source $VIM_PATH/rc/dps-ahdr.vim
 '''
 
 [[plugins]]
-repo = 'yukimemi/dps-autocursor'
-# repo = '~/src/github.com/yukimemi/dps-autocursor'
+# repo = 'yukimemi/dps-autocursor'
+repo = '~/src/github.com/yukimemi/dps-autocursor'
 depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/dps-autocursor.vim
@@ -936,6 +931,11 @@ depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/dps-walk.vim
 '''
+
+[[plugins]]
+repo = 'kat0h/dps-mdpreview.vim'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+on_cmd = ['PreviewMarkdown', 'PreviewMarkdownStop', 'PreviewMarkdownToggle']
 
 # ==================== Fuzzy =====================
 
@@ -1009,6 +1009,10 @@ lazy = 1
 repo = 'tsuyoshicho/ctrlp-mr.vim'
 depends = ['ctrlp.vim', 'mr.vim']
 on_cmd = ['CtrlPMRMru', 'CtrlPMRMrw', 'CtrlPMRMrr']
+[[plugins]]
+repo = 'kaneshin/ctrlp-git-log'
+depends = ['ctrlp.vim']
+on_cmd = 'CtrlPGitLog '
 
 [[plugins]]
 hook_add = '''
@@ -1227,8 +1231,8 @@ repo = 'ryym/vim-viler'
 # ==================== Complement ================
 
 [[plugins]]
-on_event = ['InsertEnter']
 repo = 'honza/vim-snippets'
+on_event = 'InsertEnter'
 
 [[plugins]]
 hook_add = '''

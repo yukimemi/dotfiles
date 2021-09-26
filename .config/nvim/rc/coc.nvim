@@ -138,7 +138,6 @@ if s:plugin_use_cocfzf
   nnoremap <silent> [fzf-p]t     :<C-u>CocCommand fzf-preview.BufferTags<CR>
   nnoremap <silent> [fzf-p]q     :<C-u>CocCommand fzf-preview.QuickFix<CR>
   nnoremap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
-
 endif
 
 nnoremap <silent> <leader><leader> :<c-u>CocList<cr>
@@ -161,16 +160,28 @@ nnoremap <silent> <leader>cr :<c-u>CocListResume<cr>
 " imap <c-k> <Plug>(coc-snippets-expand)
 
 " Use <c-j> for select text for visual placeholder of snippet.
-vmap <c-j> <Plug>(coc-snippets-select)
+" vmap <c-j> <Plug>(coc-snippets-select)
 
-" Use <c-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
+" Use <c-j> for both expand and jump (make expand higher priority.)
+imap <c-j> <Plug>(coc-snippets-expand-jump)
 
-" Use <c-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
 
-" Use <c-k> for both expand and jump (make expand higher priority.)
-imap <c-k> <Plug>(coc-snippets-expand-jump)
+" Make `<tab>` used for trigger completion, completion confirm, snippet expand and jump like VSCode.
+inoremap <silent><expr> <tab>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<cr>" :
+      \ <SID>check_back_space() ? "\<tab>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_prev = '<s-tab>'
 
 
 " coc-explorer
