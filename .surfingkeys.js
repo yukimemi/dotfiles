@@ -293,8 +293,10 @@ Hints.style("font-size: 13pt;", "text");
 
 // --- Site-specific mappings ---//
 const ri = { repeatIgnore: true };
-const Hint = (selector, action = Hints.dispatchMouseClick) => () =>
-  Hints.create(selector, action);
+const Hint =
+  (selector, action = Hints.dispatchMouseClick) =>
+  () =>
+    Hints.create(selector, action);
 const siteleader = ",";
 
 function mapsitekey(domainRegex, key, desc, f, opts = {}) {
@@ -459,10 +461,6 @@ unmapAllExcept(
   ["E", "R", "T", "f", "F", "C", "x", "S", "H", "L", "cm"],
   /mail.google.com|twitter.com|feedly.com|i.doit.im/
 );
-if (/^https:\/\/www.amazon.co.jp\/gp\/video\//.test(window.location.href)) {
-  // for Video Speed Controller
-  unmapKeys(["d", "s", "z", "x", "r", "g"]);
-}
 
 // set theme
 settings.theme = `
