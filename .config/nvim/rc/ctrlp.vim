@@ -18,9 +18,9 @@ nnoremap <silent> scp :<c-u>CtrlP<cr>
 nnoremap <silent> scb :<c-u>CtrlPBuffer<cr>
 nnoremap <silent> scd :<c-u>CtrlPCurFile<cr>
 " nnoremap <silent> scu :<c-u>CtrlPMRUFiles<cr>
-nnoremap <silent> scuu :<c-u>CtrlPMRMru<cr>
-nnoremap <silent> scuw :<c-u>CtrlPMRMrw<cr>
-nnoremap <silent> scur :<c-u>CtrlPMRMrr<cr>
+nnoremap <silent> scu :<c-u>CtrlPMRMru<cr>
+nnoremap <silent> scw :<c-u>CtrlPMRMrw<cr>
+nnoremap <silent> scr :<c-u>CtrlPMRMrr<cr>
 nnoremap <silent> scm :<c-u>CtrlPMark<cr>
 " nnoremap <silent> scl :<c-u>CtrlPLine<cr>
 " nnoremap <silent> scg :<c-u>CtrlPChange<cr>
@@ -28,10 +28,10 @@ nnoremap <silent> scf :<c-u>CtrlPFiletype<cr>
 nnoremap <silent> scc :<c-u>CtrlPLauncher<cr>
 nnoremap <silent> sct :<c-u>packadd sonictemplate-vim \| CtrlPSonictemplate<cr>
 " nnoremap <silent> sch :<c-u>CtrlPCmdHistory<cr>
-nnoremap <silent> scs :<c-u>CtrlPSearchHistory<cr>
+nnoremap <silent> scS :<c-u>CtrlPSearchHistory<cr>
 nnoremap <silent> sch :<c-u>CtrlPCommandLine<cr>
 nnoremap <silent> scl :<c-u>CtrlPMemolist<cr>
-nnoremap <silent> scr :<c-u>CtrlP ~/src<cr>
+nnoremap <silent> scs :<c-u>CtrlP ~/src<cr>
 nnoremap <silent> scD :<c-u>CtrlP ~/.dotfiles<cr>
 nnoremap <silent> scC :<c-u>CtrlP ~/.cache<cr>
 nnoremap <silent> scG :<c-u>CtrlPGhq<cr>

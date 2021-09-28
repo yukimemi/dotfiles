@@ -1,4 +1,4 @@
-let g:autocursor_debug = v:true
+let g:autocursor_debug = v:false
 let g:autocursor_cursorline = {
   \ "enable": v:true,
   \ "events": [
@@ -55,47 +55,47 @@ let g:autocursor_cursorcolumn = {
   \   {
   \     "name": "FocusGained",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 50,
   \   },
   \   {
   \     "name": "FocusLost",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 50,
   \   },
   \   {
   \     "name": "WinEnter",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 50,
   \   },
   \   {
   \     "name": "BufEnter",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 50,
   \   },
   \   {
   \     "name": "CmdwinLeave",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 50,
   \   },
   \   {
   \     "name": "CursorHold",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 50,
   \   },
   \   {
   \     "name": "CursorHoldI",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 50,
   \   },
   \   {
   \     "name": "CursorMoved",
   \     "set": v:false,
-  \     "wait": 100,
+  \     "wait": 50,
   \   },
   \   {
   \     "name": "CursorMovedI",
   \     "set": v:false,
-  \     "wait": 100,
+  \     "wait": 50,
   \   }
   \  ]
   \ }

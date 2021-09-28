@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/09/26 10:03:06.
+# Last Change: 2021/09/28 11:34:01.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -209,19 +209,18 @@ repo = 'ChristianChiarulli/nvcode-color-schemes.vim'
 
 # ==================== Treesitter ================
 [[plugins]]
-depends = 'nvim-ts-rainbow'
+repo = 'nvim-treesitter/nvim-treesitter'
+if = 'has("nvim")'
 hook_post_update = 'TSUpdate'
 hook_source = '''
 source $VIM_PATH/rc/nvim-treesitter.vim
 '''
-if = 'has("nvim")'
 on_event = 'BufRead'
-repo = 'nvim-treesitter/nvim-treesitter'
 
 [[plugins]]
-if = 'has("nvim")'
-lazy = 1
 repo = 'p00f/nvim-ts-rainbow'
+if = 'has("nvim")'
+on_source = 'nvim-treesitter'
 
 # ==================== Utility ===================
 
@@ -266,11 +265,11 @@ on_event = 'BufWritePre'
 repo = 'aiya000/aho-bakaup.vim'
 
 [[plugins]]
+repo = 'da-x/name-assign.vim'
 hook_add = '''
 source $VIM_PATH/rc/name-assign.vim
 '''
 on_map = {v = '<Plug>NameAssign'}
-repo = 'da-x/name-assign.vim'
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
@@ -585,6 +584,16 @@ repo = 'liuchengxu/vista.vim'
 on_event = ['CursorHold', 'FocusLost']
 on_cmd = 'Vista'
 
+[[plugins]]
+repo = 'kwkarlwang/bufresize.nvim'
+on_event = ['CursorHold', 'FocusLost']
+if = "has('nvim')"
+
+[[plugins]]
+repo = 'tweekmonster/startuptime.vim'
+on_cmd = 'StartupTime'
+
+
 # ==================== Test ======================
 [[plugins]]
 depends = ['neoterm']
@@ -809,63 +818,84 @@ source $VIM_PATH/rc/denops.vim
 repo = 'vim-denops/denops.vim'
 
 [[plugins]]
+repo = 'Shougo/ddc.vim'
 depends = ['context_filetype.vim', 'denops.vim']
 hook_source = '''
 source $VIM_PATH/rc/ddc.vim
 '''
 if = "g:plugin_use_ddc"
 on_event = 'BufRead'
-repo = 'Shougo/ddc.vim'
-[[plugins]]
-on_source = 'ddc.vim'
-repo = 'Shougo/ddc-around'
 
 [[plugins]]
+repo = 'Shougo/ddc-around'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-zsh'
 depends = 'ddc.vim'
 if = "g:plugin_use_ddc"
 on_ft = 'zsh'
-repo = 'Shougo/ddc-zsh'
 
 [[plugins]]
-on_source = 'ddc.vim'
 repo = 'Shougo/ddc-nextword'
+on_source = 'ddc.vim'
 
 [[plugins]]
-on_source = 'ddc.vim'
 repo = 'Shougo/ddc-matcher_head'
+on_source = 'ddc.vim'
 
 [[plugins]]
+repo = 'Shougo/ddc-matcher_length'
 on_source = 'ddc.vim'
+
+[[plugins]]
 repo = 'Shougo/ddc-sorter_rank'
-
-[[plugins]]
-if = "has('nvim')"
 on_source = 'ddc.vim'
+
+[[plugins]]
 repo = 'Shougo/ddc-converter_remove_overlap'
+on_source = 'ddc.vim'
 
 [[plugins]]
-if = "g:plugin_use_ddc && has('nvim') && !g:plugin_use_vimlsp"
-on_source = 'nvim-lspconfig'
+repo = 'LumaKernel/ddc-file'
+on_source = 'ddc.vim'
+
+# [[plugins]]
+# repo = 'Shougo/ddc-omni'
+# on_source = 'ddc.vim'
+
+[[plugins]]
 repo = 'Shougo/ddc-nvim-lsp'
+on_source = 'nvim-lspconfig'
+[[plugins]]
+repo = 'matsui54/ddc-nvim-lsp-doc'
+on_source = 'nvim-lspconfig'
+hook_source = '''
+source $VIM_PATH/rc/ddc-nvim-lsp-doc.vim
+'''
 
 [[plugins]]
+repo = 'neovim/nvim-lspconfig'
 hook_source = '''
 source $VIM_PATH/rc/nvim-lspconfig.vim
 '''
 if = "g:plugin_use_ddc && has('nvim') && !g:plugin_use_vimlsp"
 on_ft = ['typescript', 'ps1', 'vim', 'rust']
-on_if = 'has("nvim")'
-repo = 'neovim/nvim-lspconfig'
 
 [[plugins]]
+repo = 'shun/ddc-vim-lsp'
 if = "g:plugin_use_ddc && (!has('nvim') || g:plugin_use_vimlsp)"
 on_source = 'ddc.vim'
-repo = 'shun/ddc-vim-lsp'
 
 [[plugins]]
-on_ft = ['vim', 'toml']
-on_source = 'ddc.vim'
+repo = 'delphinus/ddc-treesitter'
+if = "g:plugin_use_ddc && has('nvim') && !g:plugin_use_vimlsp"
+on_source = ['ddc.vim', 'nvim-treesitter']
+
+[[plugins]]
 repo = 'Shougo/neco-vim'
+on_ft = ['vim', 'toml', 'help']
+depends = 'ddc.vim'
 
 # [[plugins]]
 # repo = 'higashi000/dps-kakkonan'
@@ -909,8 +939,8 @@ source $VIM_PATH/rc/dps-ahdr.vim
 '''
 
 [[plugins]]
-# repo = 'yukimemi/dps-autocursor'
-repo = '~/src/github.com/yukimemi/dps-autocursor'
+repo = 'yukimemi/dps-autocursor'
+# repo = '~/src/github.com/yukimemi/dps-autocursor'
 depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/dps-autocursor.vim
@@ -1107,126 +1137,100 @@ lazy = 1
 repo = "vim-airline/vim-airline-themes"
 
 [[plugins]]
-depends = ["barowLSP", "barowGit", "vim-reanimate"]
-hook_add = '''
+repo = "doums/barow"
+if = "g:plugin_use_barow"
+hook_source = '''
 source $VIM_PATH/rc/barow.vim
 '''
-if = "g:plugin_use_barow"
 on_event = ['CursorHold', 'FocusLost']
-repo = "doums/barow"
 
 [[plugins]]
-if = "g:plugin_use_barow"
-lazy = 1
 repo = "doums/barowLSP"
+on_source = 'barow'
 [[plugins]]
-if = "g:plugin_use_barow"
-lazy = 1
 repo = "doums/barowGit"
+on_source = 'barow'
+
 
 [[plugins]]
+repo = 'tamton-aquib/staline.nvim'
 hook_source = '''
 source $VIM_PATH/rc/staline.nvim
 '''
 if = "g:plugin_use_staline && has('nvim')"
 on_event = ['CursorHold', 'FocusLost']
-repo = 'tamton-aquib/staline.nvim'
 
 # ==================== Filetree ==================
 
 [[plugins]]
-depends = [
-  'fern-bookmark.vim',
-  'fern-comparator-lexical.vim',
-  'fern-git.vim',
-  'fern-renderer-nerdfont.vim',
-  'fern-git-status.vim',
-  'fern-mapping-git.vim',
-]
+repo = 'lambdalisue/fern.vim'
+if = "g:plugin_use_fern"
 hook_add = '''
 source $VIM_PATH/rc/fern.vim
 '''
-if = "g:plugin_use_fern"
 on_cmd = 'Fern'
-repo = 'lambdalisue/fern.vim'
 [[plugins]]
 repo = 'lambdalisue/fern-git-status.vim'
-
-if = "g:plugin_use_fern"
-lazy = 1
+on_source = 'fern.vim'
 [[plugins]]
 repo = 'lambdalisue/fern-git.vim'
-
-if = "g:plugin_use_fern"
-lazy = 1
+on_source = 'fern.vim'
 [[plugins]]
 repo = 'lambdalisue/fern-mapping-git.vim'
-
-if = "g:plugin_use_fern"
-lazy = 1
+on_source = 'fern.vim'
 [[plugins]]
 repo = 'lambdalisue/fern-bookmark.vim'
-
-if = "g:plugin_use_fern"
-lazy = 1
+on_source = 'fern.vim'
 [[plugins]]
 repo = 'lambdalisue/fern-comparator-lexical.vim'
-
-if = "g:plugin_use_fern"
-lazy = 1
+on_source = 'fern.vim'
 [[plugins]]
 repo = 'lambdalisue/fern-renderer-nerdfont.vim'
-
+on_source = 'fern.vim'
 depends = ['nerdfont.vim', 'glyph-palette.vim']
-if = "g:plugin_use_fern"
-lazy = 1
 [[plugins]]
 repo = 'lambdalisue/fern-hijack.vim'
-
-depends = ['fern.vim']
-if = "g:plugin_use_fern"
+on_source = 'fern.vim'
 
 [[plugins]]
-depends = ['defx-icons', 'defx-git', 'vim-choosewin']
+repo = 'Shougo/defx.nvim'
+depends = 'vim-choosewin'
 hook_add = '''
 source $VIM_PATH/rc/defx.nvim
 '''
 if = "g:plugin_use_defx"
-on_cmd = ['Defx']
-repo = 'Shougo/defx.nvim'
-
+on_cmd = 'Defx'
 [[plugins]]
-lazy = 1
 repo = 'kristijanhusak/defx-icons'
+on_source = 'defx.nvim'
 [[plugins]]
-lazy = 1
 repo = 'kristijanhusak/defx-git'
+on_source = 'defx.nvim'
 
 [[plugins]]
+repo = 'mattn/vim-molder'
+if = 'g:plugin_use_molder'
 depends = ['vim-molder-operations']
 hook_add = '''
 source $VIM_PATH/rc/vim-molder.vim
 '''
-if = 'g:plugin_use_molder'
-repo = 'mattn/vim-molder'
 
 [[plugins]]
-if = 'g:plugin_use_molder'
-lazy = 1
 repo = 'mattn/vim-molder-operations'
+on_source = 'vim-molder'
 
 [[plugins]]
-if = 'g:plugin_use_vaffle'
-on_cmd = ['Vaffle']
 repo = 'cocopon/vaffle.vim'
+if = 'g:plugin_use_vaffle'
+on_cmd = 'Vaffle'
 
 [[plugins]]
+repo = 'ryym/vim-viler'
+if = 'g:plugin_use_viler'
 hook_add = '''
 source $VIM_PATH/rc/vim-viler.vim
 '''
-if = 'g:plugin_use_viler'
 on_func = 'viler#open'
-repo = 'ryym/vim-viler'
 
 # ==================== Complement ================
 
@@ -1291,12 +1295,12 @@ if = "g:plugin_use_asyncomplete || (g:plugin_use_ddc && (!has('nvim') || g:plugi
 repo = 'prabirshrestha/vim-lsp'
 
 [[plugins]]
+repo = "neoclide/coc.nvim"
+if = "g:plugin_use_coc"
+rev = "release"
 hook_add = '''
 source $VIM_PATH/rc/coc.nvim
 '''
-if = "g:plugin_use_coc"
-repo = "neoclide/coc.nvim"
-rev = "release"
 
 # ==================== Runner ====================
 
@@ -1330,6 +1334,13 @@ if = "g:plugin_use_asyncrun"
 repo = 'skywind3000/asyncrun.vim'
 
 # ==================== Filetype (all) ============
+
+[[plugins]]
+repo = 'nathom/filetype.nvim'
+if = "has('nvim')"
+hook_add = '''
+source $VIM_PATH/rc/filetype.nvim
+'''
 
 # [[plugins]]
 # repo = 'sheerun/vim-polyglot'

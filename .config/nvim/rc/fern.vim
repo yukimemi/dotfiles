@@ -13,7 +13,6 @@ let g:fern#renderer = "nerdfont"
 " fern-comparator-lexical.vim
 " let g:fern#comparator = "lexical"
 
-
 function! s:init_fern() abort
   nmap <buffer><expr> <Plug>(fern-my-open-or-expand-or-collapse)
         \ fern#smart#leaf(

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/09/25 13:43:27.
+" Last Change : 2021/09/28 10:57:15.
 " =============================================================================
 
 " Init:
@@ -438,10 +438,10 @@ let g:plugin_use_lualine = v:false
 let g:plugin_use_barow = v:true
 let g:plugin_use_staline = v:false
 
-let g:plugin_use_coc = v:true
+let g:plugin_use_coc = v:false
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
-let g:plugin_use_ddc = v:false
+let g:plugin_use_ddc = v:true
 let g:plugin_use_vimlsp = v:false
 
 let g:plugin_use_ale = v:false
@@ -457,15 +457,15 @@ let g:plugin_use_telescope = v:false && has('nvim')
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
-let g:plugin_use_fern = v:false
+let g:plugin_use_fern = v:true
 let g:plugin_use_defx = v:false
 let g:plugin_use_molder = v:false
 let g:plugin_use_vaffle = v:false
 let g:plugin_use_viler = v:false
-let g:plugin_use_coc_explorer = v:true
+let g:plugin_use_coc_explorer = v:false
 
-let g:plugin_use_quickrun = v:false
-let g:plugin_use_asyncrun = v:true
+let g:plugin_use_quickrun = v:true
+let g:plugin_use_asyncrun = v:false
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1
