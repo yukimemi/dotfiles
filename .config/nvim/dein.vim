@@ -13,9 +13,7 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 
-if !g:is_windows
-  let g:dein#auto_recache = v:true
-endif
+let g:dein#auto_recache = v:true
 let g:dein#enable_notification = v:true
 let g:dein#install_check_diff = v:true
 let g:dein#install_github_api_token = $DEIN_GITHUB_API_TOKEN

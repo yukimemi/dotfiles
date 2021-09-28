@@ -1,6 +1,12 @@
-let g:reanimate_save_dir = $CACHE_HOME . "/save_point"
+let g:reanimate_save_dir = $CACHE_HOME . "/reanimate"
 let g:reanimate_default_category = "def"
 let g:reanimate_default_save_name = "lat"
+
+let g:reanimate_event_disables = {
+      \	"_" : {
+      \		"reanimate_confirm" : 1
+      \	}
+      \ }
 
 function s:reanimate_save_cwd() abort
   let l:cmd = "ReanimateSave " . fnamemodify(getcwd(), ":t")
@@ -17,13 +23,6 @@ endfunction
 nnoremap <leader>rs <cmd>call <SID>reanimate_save_cwd()<cr>
 nnoremap <leader>rl <cmd>call <SID>reanimate_load_cwd()<cr>
 
-" nnoremap <leader>rs <cmd>ReanimateSave<cr>
-" nnoremap <leader>rl <cmd>ReanimateLoad<cr>
-
-" sessionoptions
-" let g:reanimate_sessionoptions = "resize,winpos,winsize"
-
-" au MyAutoCmd VimLeavePre * ReanimateSave
-" au MyAutoCmd BufWritePost * ReanimateSave
-" au MyAutoCmd VimEnter * ReanimateLoad
+au MyAutoCmd VimLeavePre * silent! call <SID>reanimate_save_cwd()
+au MyAutoCmd BufWritePost * silent! call <SID>reanimate_save_cwd()
 

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/09/28 10:57:15.
+" Last Change : 2021/09/28 16:49:52.
 " =============================================================================
 
 " Init:
@@ -438,10 +438,10 @@ let g:plugin_use_lualine = v:false
 let g:plugin_use_barow = v:true
 let g:plugin_use_staline = v:false
 
-let g:plugin_use_coc = v:false
+let g:plugin_use_coc = v:true
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
-let g:plugin_use_ddc = v:true
+let g:plugin_use_ddc = v:false
 let g:plugin_use_vimlsp = v:false
 
 let g:plugin_use_ale = v:false

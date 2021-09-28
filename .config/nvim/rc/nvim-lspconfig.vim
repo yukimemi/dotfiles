@@ -38,11 +38,17 @@ end
 -- map buffer local keybindings when the language server attaches
 local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'denols', 'powershell_es', 'vimls' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+  local options = {
     on_attach = on_attach,
     flags = {
-      debounce_text_changes = 150,
+      debounce_text_changes = 50,
     }
   }
+
+  if lsp == 'powershell_es' then
+    options['bundle_path'] = "~/src/github.com/powershell/PowerShellEditorServices/release/PowerShellEditorServices"
+  end
+
+  nvim_lsp[lsp].setup(options)
 end
 EOF

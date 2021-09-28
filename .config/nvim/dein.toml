@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/09/28 12:56:23.
+# Last Change: 2021/09/28 16:05:29.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -25,7 +25,7 @@ source $VIM_PATH/rc/indentLine.vim
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
 if = "has('nvim')"
-hook_add = '''
+hook_source = '''
 source $VIM_PATH/rc/indent-blankline.nvim
 '''
 
@@ -71,7 +71,7 @@ if = "g:plugin_use_fern"
 repo = "lambdalisue/nerdfont.vim"
 
 [[plugins]]
-if = "!has('gui')"
+if = "!has('gui') && !g:is_windows"
 repo = 'lambdalisue/seethrough.vim'
 
 [[plugins]]
@@ -82,12 +82,12 @@ repo = 'thinca/vim-fontzoom'
 repo = 'thinca/vim-ft-diff_fold'
 
 [[plugins]]
+repo = 'luochen1990/rainbow'
 hook_add = '''
 source $VIM_PATH/rc/rainbow.vim
 '''
 if = "!has('nvim')"
 on_event = ["CursorHold", "CursorMoved"]
-repo = 'luochen1990/rainbow'
 
 # [[plugins]]
 # hook_add = '''
@@ -462,30 +462,31 @@ repo = 'lambdalisue/edita.vim'
 repo = 'MattesGroeger/vim-bookmarks'
 
 [[plugins]]
+repo = 'osyo-manga/vim-hopping'
 hook_add = '''
 source $VIM_PATH/rc/vim-hopping.vim
 '''
 on_cmd = ['HoppingStart']
-repo = 'osyo-manga/vim-hopping'
 
 [[plugins]]
 repo = 'itchyny/vim-winfix'
 
 [[plugins]]
+repo = 'lambdalisue/fin.vim'
 hook_add = '''
 source $VIM_PATH/rc/fin.vim
 '''
 on_cmd = ['Fin']
-repo = 'lambdalisue/fin.vim'
 
 [[plugins]]
 repo = 'chimay/wheel'
 
 [[plugins]]
-on_cmd = ['WinlayoutInspectLayout', 'WinlayoutInspectRestcmd']
 repo = 'habamax/vim-winlayout'
+on_cmd = ['WinlayoutInspectLayout', 'WinlayoutInspectRestcmd']
 
 [[plugins]]
+repo = 'xolox/vim-session'
 depends = 'vim-misc'
 on_cmd = [
   'SaveSession',
@@ -499,18 +500,17 @@ on_cmd = [
   'AppendTabSession',
   'CloseTabSession',
 ]
-repo = 'xolox/vim-session'
 
 [[plugins]]
 lazy = 1
 repo = 'xolox/vim-misc'
 
 [[plugins]]
+repo = 'osyo-manga/vim-reanimate'
 hook_add = '''
 source $VIM_PATH/rc/vim-reanimate.vim
 '''
-on_cmd = ['ReanimateSave', 'ReanimateLoad']
-repo = 'osyo-manga/vim-reanimate'
+on_cmd = ['ReanimateSave', 'ReanimateLoad', ':ReanimateLoadLatest']
 
 [[plugins]]
 hook_add = '''
@@ -891,6 +891,12 @@ if = "g:plugin_use_ddc && has('nvim') && !g:plugin_use_vimlsp"
 on_ft = ['typescript', 'ps1', 'vim', 'rust', 'go']
 
 [[plugins]]
+repo = 'williamboman/nvim-lsp-installer'
+depends = 'nvim-lspconfig'
+on_cmd = ['LspInstall', 'LspUninstall', 'LspUninstallAll', 'LspPrintInstalled', 'LspInstallInfo']
+if = "has('nvim')"
+
+[[plugins]]
 repo = 'shun/ddc-vim-lsp'
 if = "g:plugin_use_ddc && (!has('nvim') || g:plugin_use_vimlsp)"
 on_source = 'ddc.vim'
@@ -1064,6 +1070,7 @@ on_cmd = ['Clap']
 repo = 'liuchengxu/vim-clap'
 
 [[plugins]]
+repo = 'Shougo/denite.nvim'
 depends = ['junkfile.vim']
 hook_add = '''
 source $VIM_PATH/rc/denite.nvim
@@ -1073,7 +1080,6 @@ source $VIM_PATH/rc/denite_source.nvim
 '''
 if = "has('python3') && g:plugin_use_denite"
 on_cmd = 'Denite'
-repo = 'Shougo/denite.nvim'
 
 [[plugins]]
 if = 'g:plugin_use_quickpick'
@@ -1247,11 +1253,11 @@ repo = 'honza/vim-snippets'
 on_event = 'InsertEnter'
 
 [[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
 hook_add = '''
 source $VIM_PATH/rc/asyncomplete.vim
 '''
 if = 'g:plugin_use_asyncomplete'
-repo = 'prabirshrestha/asyncomplete.vim'
 
 [[plugins]]
 build = 'go get -u github.com/high-moctane/nextword'
@@ -1325,6 +1331,7 @@ repo = 'thinca/vim-quickrun'
 if = "g:plugin_use_quickrun"
 lazy = 1
 repo = 'lambdalisue/vim-quickrun-neovim-job'
+if = "has('nvim')"
 
 [[plugins]]
 hook_add = '''

@@ -1,3 +1,7 @@
+if !g:plugin_use_asyncomplete
+	finish
+endif
+
 " asyncomplete-nextword.
 au MyAutoCmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#nextword#get_source_options({
       \ 'name': 'nextword',
