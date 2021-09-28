@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/09/28 16:05:29.
+# Last Change: 2021/09/28 18:38:26.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -510,7 +510,7 @@ repo = 'osyo-manga/vim-reanimate'
 hook_add = '''
 source $VIM_PATH/rc/vim-reanimate.vim
 '''
-on_cmd = ['ReanimateSave', 'ReanimateLoad', ':ReanimateLoadLatest']
+on_cmd = ['ReanimateSave', 'ReanimateLoad', 'ReanimateLoadLatest']
 
 [[plugins]]
 hook_add = '''
@@ -1152,6 +1152,7 @@ repo = "vim-airline/vim-airline-themes"
 
 [[plugins]]
 repo = "doums/barow"
+depends = 'vim-reanimate'
 if = "g:plugin_use_barow"
 hook_source = '''
 source $VIM_PATH/rc/barow.vim
