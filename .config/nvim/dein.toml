@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/09/28 11:34:01.
+# Last Change: 2021/09/28 12:56:23.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -16,10 +16,18 @@ repo = 'wsdjeg/dein-ui.vim'
 # ==================== Visual ====================
 
 [[plugins]]
+repo = 'Yggdroot/indentLine'
+if = "!has('nvim')"
 hook_add = '''
 source $VIM_PATH/rc/indentLine.vim
 '''
-repo = 'Yggdroot/indentLine'
+
+[[plugins]]
+repo = 'lukas-reineke/indent-blankline.nvim'
+if = "has('nvim')"
+hook_add = '''
+source $VIM_PATH/rc/indent-blankline.nvim
+'''
 
 [[plugins]]
 on_event = ['CursorHold', 'FocusLost']
@@ -880,7 +888,7 @@ hook_source = '''
 source $VIM_PATH/rc/nvim-lspconfig.vim
 '''
 if = "g:plugin_use_ddc && has('nvim') && !g:plugin_use_vimlsp"
-on_ft = ['typescript', 'ps1', 'vim', 'rust']
+on_ft = ['typescript', 'ps1', 'vim', 'rust', 'go']
 
 [[plugins]]
 repo = 'shun/ddc-vim-lsp'
@@ -1142,7 +1150,7 @@ if = "g:plugin_use_barow"
 hook_source = '''
 source $VIM_PATH/rc/barow.vim
 '''
-on_event = ['CursorHold', 'FocusLost']
+on_event = 'BufRead'
 
 [[plugins]]
 repo = "doums/barowLSP"
