@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/09/28 18:38:26.
+# Last Change: 2021/10/03 19:44:10.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -24,10 +24,15 @@ source $VIM_PATH/rc/indentLine.vim
 
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
-if = "has('nvim')"
+on_source = 'nvim-treesitter'
+if = "has('nvim') && g:plugin_use_indent_blankline"
 hook_source = '''
 source $VIM_PATH/rc/indent-blankline.nvim
 '''
+
+[[plugins]]
+repo = 'yuki-yano/dps-indent-line'
+if = "has('nvim') && g:plugin_use_dps_indent_line"
 
 [[plugins]]
 on_event = ['CursorHold', 'FocusLost']
@@ -356,9 +361,9 @@ repo = 'rbtnn/vim-vimscript_lasterror'
 [[plugins]]
 repo = 'rbtnn/vim-vimscript_indentexpr'
 
-[[plugins]]
-on_ft = ['quickfix', 'qf']
-repo = 'romainl/vim-qf'
+# [[plugins]]
+# repo = 'romainl/vim-qf'
+# on_ft = ['quickfix', 'qf']
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'
@@ -533,38 +538,38 @@ lazy = 1
 repo = 'nvim-lua/plenary.nvim'
 
 [[plugins]]
+repo = 'kevinhwang91/nvim-bqf'
 depends = ['fzf']
 if = "has('nvim')"
-repo = 'kevinhwang91/nvim-bqf'
 
 [[plugins]]
+repo = 'junegunn/fzf'
 hook_post_update = '''
 call dein#source('fzf')
 call fzf#install()
 '''
 lazy = 1
-repo = 'junegunn/fzf'
 
 [[plugins]]
+repo = 'deris/vim-pasta'
 hook_add = '''
 source $VIM_PATH/vim-pasta.vim
 '''
-repo = 'deris/vim-pasta'
 
 [[plugins]]
+repo = 'nanotee/zoxide.vim'
 depends = ['fzf']
 hook_add = '''
 source $VIM_PATH/rc/zoxide.vim
 '''
-repo = 'nanotee/zoxide.vim'
 
 [[plugins]]
+repo = 'dense-analysis/ale'
 hook_add = '''
 source $VIM_PATH/rc/ale.vim
 '''
 if = 'g:plugin_use_ale'
 on_event = ['CursorHold', 'FocusLost']
-repo = 'dense-analysis/ale'
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
@@ -573,15 +578,15 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'monkoose/vim9-stargate'
+if = "!has('nvim')"
 hook_add = '''
 source $VIM_PATH/rc/vim9-stargate.vim
 '''
-if = "!has('nvim')"
-repo = 'monkoose/vim9-stargate'
 
 [[plugins]]
-on_lua = 'notify'
 repo = 'rcarriga/nvim-notify'
+on_lua = 'notify'
 
 [[plugins]]
 on_source = "vim-submode"
@@ -961,8 +966,8 @@ source $VIM_PATH/rc/dps-autocursor.vim
 '''
 
 [[plugins]]
-repo = 'yukimemi/dps-asyngrep'
-# repo = '~/src/github.com/yukimemi/dps-asyngrep'
+# repo = 'yukimemi/dps-asyngrep'
+repo = '~/src/github.com/yukimemi/dps-asyngrep'
 depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/dps-asyngrep.vim
@@ -1518,6 +1523,7 @@ setl fenc=utf-8
 setl ff=dos
 setl foldmethod=syntax
 setl ts=2 sw=2 sts=0
+setl foldcolumn=3
 '''
 
 python = '''

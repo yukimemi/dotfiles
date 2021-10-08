@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2021/09/25 09:23:06.
+" Last Change : 2021/10/08 08:58:45.
 " =============================================================================
 
 " Plugin:
@@ -13,7 +13,9 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 
-let g:dein#auto_recache = v:true
+if !g:is_windows
+  let g:dein#auto_recache = v:true
+endif
 let g:dein#enable_notification = v:true
 let g:dein#install_check_diff = v:true
 let g:dein#install_github_api_token = $DEIN_GITHUB_API_TOKEN
