@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/10/13 20:01:57.
+# Last Change: 2021/10/23 17:22:57.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -170,7 +170,7 @@ repo = 'cocopon/iceberg.vim'
 repo = 'drewtempelmeyer/palenight.vim'
 
 [[plugins]]
-repo = 'ghifarit53/tokyonight-vim'
+repo = 'folke/tokyonight.nvim'
 
 [[plugins]]
 repo = 'gkeep/iceberg-dark'
@@ -188,10 +188,10 @@ repo = 'rhysd/vim-color-spring-night'
 repo = 'romgrk/github-light.vim'
 
 [[plugins]]
+repo = 'sainnhe/gruvbox-material'
 hook_add = '''
 source $VIM_PATH/rc/gruvbox-material.vim
 '''
-repo = 'sainnhe/gruvbox-material'
 
 [[plugins]]
 repo = 'doums/darcula'
@@ -212,13 +212,31 @@ repo = 'adrian5/oceanic-next-vim'
 repo = 'sainnhe/edge'
 
 [[plugins]]
+repo = 'tiagovla/tokyodark.nvim'
 hook_add = '''
 source $VIM_PATH/rc/tokyodark.nvim
 '''
-repo = 'tiagovla/tokyodark.nvim'
 
 [[plugins]]
 repo = 'ChristianChiarulli/nvcode-color-schemes.vim'
+
+[[plugins]]
+repo = 'rafamadriz/neon'
+
+[[plugins]]
+repo = 'Matsuuu/pinkmare'
+
+[[plugins]]
+repo = 'RRethy/nvim-base16'
+
+[[plugins]]
+repo = 'marko-cerovac/material.nvim'
+
+[[plugins]]
+repo = 'fenetikm/falcon'
+
+[[plugins]]
+repo = 'PHSix/nvim-hybrid'
 
 # ==================== Treesitter ================
 [[plugins]]
@@ -580,9 +598,14 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
+if = "g:plugin_use_lexima"
 hook_add = '''
 " source $VIM_PATH/rc/lexima.vim
 '''
+
+[[plugins]]
+if = "g:plugin_use_lexiv"
+repo = 'mattn/vim-lexiv'
 
 [[plugins]]
 repo = 'monkoose/vim9-stargate'
@@ -990,7 +1013,7 @@ source $VIM_PATH/rc/dps-walk.vim
 '''
 
 [[plugins]]
-repo = 'kat0h/dps-mdpreview.vim'
+repo = 'kat0h/bufpreview.vim'
 on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 on_cmd = ['PreviewMarkdown', 'PreviewMarkdownStop', 'PreviewMarkdownToggle']
 

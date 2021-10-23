@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/10/08 23:38:09.
+" Last Change : 2021/10/23 17:30:27.
 " =============================================================================
 
 " Init:
@@ -449,6 +449,9 @@ let g:plugin_use_vimlsp = v:false
 
 let g:plugin_use_ale = v:false
 
+let g:plugin_use_lexima = v:false
+let g:plugin_use_lexiv = v:true
+
 let g:plugin_use_ctrlp = v:true
 let g:plugin_use_clap = v:false
 let g:plugin_use_fzf = v:false
@@ -503,7 +506,7 @@ au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 set background=dark
-silent! colorscheme nvcode
+silent! colorscheme pinkmare
 
 " Neovide:
 let g:neovide_transparency = 0.9
