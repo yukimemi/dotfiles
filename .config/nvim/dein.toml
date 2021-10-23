@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/10/03 19:44:10.
+# Last Change: 2021/10/13 20:01:57.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -491,6 +491,13 @@ repo = 'habamax/vim-winlayout'
 on_cmd = ['WinlayoutInspectLayout', 'WinlayoutInspectRestcmd']
 
 [[plugins]]
+repo = 'rbtnn/vim-layout'
+on_cmd = ['LayoutSave', 'LayoutLoad']
+hook_add = '''
+source $VIM_PATH/rc/vim-layout.vim
+'''
+
+[[plugins]]
 repo = 'xolox/vim-session'
 depends = 'vim-misc'
 on_cmd = [
@@ -639,19 +646,20 @@ repo = 'tyru/caw.vim'
 # ==================== App =======================
 
 [[plugins]]
+repo = 'twitvim/twitvim'
 hook_add = '''
 source $VIM_PATH/rc/twitvim.vim
 '''
 on_cmd = ['FriendsTwitter', 'UserTwitter', 'RepliesTwitter', 'DMTwitter']
-repo = 'twitvim/twitvim'
 
 # ==================== Git =======================
 
 [[plugins]]
-on_event = ['CursorHold', 'FocusLost']
 repo = 'itchyny/vim-gitbranch'
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
+repo = 'lambdalisue/gina.vim'
 hook_add = '''
 source $VIM_PATH/rc/gina.vim
 '''
@@ -659,15 +667,15 @@ hook_source = '''
 source $VIM_PATH/rc/gina_source.vim
 '''
 on_cmd = ['Gina']
-repo = 'lambdalisue/gina.vim'
 
 [[plugins]]
-if = "!g:is_windows"
 repo = 'rhysd/committia.vim'
+if = "!g:is_windows"
 
 [[plugins]]
-on_event = ['CursorHold', 'FocusLost']
 repo = 'rhysd/conflict-marker.vim'
+on_event = ['CursorHold', 'FocusLost']
+
 
 # ==================== Textobjs ==================
 
