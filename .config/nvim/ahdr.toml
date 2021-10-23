@@ -31,6 +31,28 @@ header = '''
 @exit /b %errorlevel%
 '''
 
+[[ps1]]
+name = "defaultcmdhidden"
+prefix = ""
+suffix = ""
+dst = "../cmd"
+ext = ".cmd"
+header = '''
+@set __SCRIPTPATH=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass -InputFormat None -WindowStyle Hidden "$s=[scriptblock]::create((gc -enc utf8 -li \\"%~f0\\"|?{$_.readcount -gt 2})-join\\"`n\\");&$s" %*
+@exit /b %errorlevel%
+'''
+
+[[ps1]]
+name = "waitcmdhidden"
+prefix = ""
+suffix = ""
+dst = "../cmd"
+ext = ".cmd"
+header = '''
+@set __SCRIPTPATH=%~f0&@powershell -NoProfile -ExecutionPolicy ByPass -InputFormat None -WindowStyle Hidden "$s=[scriptblock]::create((gc -enc utf8 -li \\"%~f0\\"|?{$_.readcount -gt 2})-join\\"`n\\");&$s" %*&@ping -n 30 localhost > nul
+@exit /b %errorlevel%
+'''
+
 [[javascript]]
 name = "default"
 prefix = ""
