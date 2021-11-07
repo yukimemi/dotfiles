@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2021/06/20 02:33:19.
+# Last Change : 2021/11/07 20:43:53.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -12,9 +12,9 @@
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-  print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+  print -P "%F{33}▓▒░ %F{160}Installing %F{33}ZINIT%F{160} Initiative Plugin Manager (%F{33}z-shell/zinit%F{160})…%f"
   command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-  command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+  command git clone https://github.com/z-shell/zinit "$HOME/.zinit/bin" && \
     print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
     print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
@@ -23,15 +23,12 @@ source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit lucid light-mode for \
-  zinit-zsh/z-a-rust \
-  zinit-zsh/z-a-as-monitor \
-  zinit-zsh/z-a-patch-dl \
-  zinit-zsh/z-a-bin-gem-node
-
-### End of Zinit's installer chunk
+# (this is currently required annexes)
+zinit light-mode for \
+  z-shell/z-a-readurl \
+  z-shell/z-a-meta-plugins \
+  annexes
+  ### End of Zinit's installer chunk
 
 
 #
@@ -39,7 +36,7 @@ zinit lucid light-mode for \
 #
 zinit lucid wait light-mode for \
   atinit"zicompinit; zicdreplay" atload"zpcompinit" \
-  zdharma/fast-syntax-highlighting \
+  z-shell/fast-syntax-highlighting \
   marlonrichert/zsh-autocomplete \
   supercrabtree/k \
   @asdf-vm/asdf
@@ -63,18 +60,10 @@ zinit lucid wait as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode
 
 
 #
-# zinit packages
-#
-# zinit pack for ls_colors
-zinit wait for \
-  pack dircolors-material \
-  pack"binary" fzf
-
-#
 # z-a-rust
 #
 zinit ice lucid wait rustup cargo'!lsd;starship;atuin;bat;zoxide'
-zinit load zdharma/null
+zinit load z-shell/null
 
 #
 # functions.
@@ -88,9 +77,9 @@ function pdfmin() {
       -dNOPAUSE -dQUIET -dBATCH \
       -sOutputFile=${i%%.*}.min.pdf ${i} &
           (( (cnt += 1) % 4 == 0 )) && wait
-  done
-  wait && return 0
-}
+        done
+        wait && return 0
+      }
 
 # function prev() {
 #   PREV=$(fc -lrn | head -n 1)
@@ -106,17 +95,17 @@ function pdfmin() {
 # Filter function.
 function __filter_execute() {
   $__FILTER_TOOL | while read line
-  do
-    echo "Exec: [$@ $line]"
-    $@ $line
-  done
+do
+  echo "Exec: [$@ $line]"
+  $@ $line
+done
 }
 
 function __filter_select() {
   $__FILTER_TOOL | while read line
-  do
-    print -z $line
-  done
+do
+  print -z $line
+done
 }
 
 # Filter history.
@@ -153,37 +142,37 @@ zle -N __filter_kill
 # tmux filter.
 function __tmux_session_list() {
   tmux list-sessions | $__FILTER_TOOL | while read line
-  do
-    ses=${line[(ws,:,)1]}
-    if [[ -z $TMUX ]]; then
-      echo "Attach ${ses}"
-      tmux attach -t $ses
-      return
-    else
-      echo "Switch ${ses}"
-      tmux switch -t $ses
-      return
-    fi
-  done
+do
+  ses=${line[(ws,:,)1]}
+  if [[ -z $TMUX ]]; then
+    echo "Attach ${ses}"
+    tmux attach -t $ses
+    return
+  else
+    echo "Switch ${ses}"
+    tmux switch -t $ses
+    return
+  fi
+done
 }
 
 function __tmux_tmuxinator_list() {
   tmuxinator list -n | $__FILTER_TOOL | while read line
-  do
-    echo "Change tmuxinator ${line}"
-    tmuxinator $line
-    return
-  done
+do
+  echo "Change tmuxinator ${line}"
+  tmuxinator $line
+  return
+done
 }
 
 # ghq list and change dir.
 function ghq-list-cd() {
-  local selected_dir=$(ghq list --full-path | $__FILTER_TOOL)
-  if [[ -n "$selected_dir" ]]; then
-    BUFFER="cd ${selected_dir}"
-    zle accept-line
-  fi
-  zle clear-screen
+local selected_dir=$(ghq list --full-path | $__FILTER_TOOL)
+if [[ -n "$selected_dir" ]]; then
+  BUFFER="cd ${selected_dir}"
+  zle accept-line
+fi
+zle clear-screen
 }
 zle -N ghq-list-cd
 
@@ -310,6 +299,7 @@ fi
 # zsh-autocomplete
 #
 zstyle ':autocomplete:*' widget-style menu-select
+zstyle ':autocomplete:*' min-input 1
 
 #
 # yuki-yano/zeno.zsh
