@@ -1,3 +1,7 @@
+if !g:plugin_use_fern
+  finish
+endif
+
 " Don't use netrw.
 let g:loaded_netrwPlugin = 1
 let g:fern#default_hidden = 1

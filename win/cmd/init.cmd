@@ -44,9 +44,9 @@ doskey gco=git checkout $*
 if "%CMD_INIT_SCRIPT_LOADED%" neq "" goto :eof
 set CMD_INIT_SCRIPT_LOADED=1
 
-set GIT_EDITOR=vim
+set GIT_EDITOR=nvim
 
 set GSR_SHOW_AHEAD=1
 set GSR_SHOW_BEHIND=1
 
-cls
+rem cls

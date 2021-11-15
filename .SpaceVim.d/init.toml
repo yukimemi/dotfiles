@@ -16,7 +16,12 @@ buffer_index_type = 4
 checkinstall = true
 colorscheme = "material"
 colorscheme_bg = "dark"
-disabled_plugins = ["neco-syntax", "vim-surround", "clever-f.vim", "vim-slumlord"]
+disabled_plugins = [
+  "neco-syntax",
+  "vim-surround",
+  "clever-f.vim",
+  "vim-slumlord",
+]
 enable_googlesuggest = true
 enable_guicolors = true
 enable_os_fileformat_icon = true
@@ -364,4 +369,3 @@ repo = 'roxma/nvim-yarp'
 [[custom_plugins]]
 if = "!has('nvim')"
 repo = 'roxma/vim-hug-neovim-rpc'
-

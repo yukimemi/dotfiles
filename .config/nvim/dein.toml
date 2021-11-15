@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/10/23 17:22:57.
+# Last Change: 2021/11/11 19:36:40.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -149,6 +149,7 @@ repo = 'powerman/vim-plugin-AnsiEsc'
 
 [[plugins]]
 repo = 'psliwka/vim-smoothie'
+if = "!exists('g:nvui')"
 on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/vim-smoothie.vim
@@ -289,18 +290,29 @@ on_event = ['CursorHold', 'FocusLost']
 repo = 'ahmedkhalf/lsp-rooter.nvim'
 
 [[plugins]]
+repo = 'aiya000/aho-bakaup.vim'
 hook_add = '''
 source $VIM_PATH/rc/aho-bakaup.vim
 '''
+on_cmd = [
+  'BakaupBackupExecute',
+  'BakaupEnable',
+  'BakaupDisable',
+  'BakaupArchiveBackups',
+  'BakaupSetBackupDir',
+  'BakaupExplore',
+  'BakaupTexplore',
+  'BakaupVexplore',
+  'BakaupSexplore',
+]
 on_event = 'BufWritePre'
-repo = 'aiya000/aho-bakaup.vim'
 
 [[plugins]]
 repo = 'da-x/name-assign.vim'
 hook_add = '''
 source $VIM_PATH/rc/name-assign.vim
 '''
-on_map = {v = '<Plug>NameAssign'}
+on_map = { v = '<Plug>NameAssign' }
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
@@ -323,7 +335,7 @@ repo = 'haya14busa/vim-edgemotion'
 hook_add = '''
 source $VIM_PATH/rc/vim-easy-align.vim
 '''
-on_map = {v = '<Plug>(EasyAlign)'}
+on_map = { v = '<Plug>(EasyAlign)' }
 repo = 'junegunn/vim-easy-align'
 
 [[plugins]]
@@ -712,7 +724,7 @@ depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/textobj-lastpaste.vim
 '''
-on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-entire'
@@ -721,7 +733,7 @@ depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-entire.vim
 '''
-on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-fold'
@@ -730,7 +742,7 @@ depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-fold.vim
 '''
-on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-function'
@@ -739,7 +751,7 @@ depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-function.vim
 '''
-on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-indent'
@@ -748,7 +760,7 @@ depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-indent.vim
 '''
-on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-line'
@@ -757,7 +769,7 @@ depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-line.vim
 '''
-on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 on_event = ['CursorHold', 'FocusLost']
@@ -929,7 +941,13 @@ on_ft = ['typescript', 'ps1', 'vim', 'rust', 'go']
 [[plugins]]
 repo = 'williamboman/nvim-lsp-installer'
 depends = 'nvim-lspconfig'
-on_cmd = ['LspInstall', 'LspUninstall', 'LspUninstallAll', 'LspPrintInstalled', 'LspInstallInfo']
+on_cmd = [
+  'LspInstall',
+  'LspUninstall',
+  'LspUninstallAll',
+  'LspPrintInstalled',
+  'LspInstallInfo',
+]
 if = "has('nvim')"
 
 [[plugins]]
@@ -1014,6 +1032,7 @@ source $VIM_PATH/rc/dps-walk.vim
 
 [[plugins]]
 repo = 'kat0h/bufpreview.vim'
+depends = 'denops.vim'
 on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 on_cmd = ['PreviewMarkdown', 'PreviewMarkdownStop', 'PreviewMarkdownToggle']
 
@@ -1407,16 +1426,16 @@ source $VIM_PATH/rc/filetype.nvim
 on_ft = ['markdown']
 repo = 'dhruvasagar/vim-table-mode'
 
-[[plugins]]
-hook_add = '''
-source $VIM_PATH/rc/markdown-preview.nvim
-'''
-hook_post_update = '''
-call dein#source('markdown-preview.nvim')
-call mkdp#util#install()
-'''
-on_ft = ['markdown', 'pandoc.markdown', 'rmd']
-repo = 'iamcco/markdown-preview.nvim'
+# [[plugins]]
+# repo = 'iamcco/markdown-preview.nvim'
+# hook_add = '''
+# source $VIM_PATH/rc/markdown-preview.nvim
+# '''
+# hook_post_update = '''
+# call dein#source('markdown-preview.nvim')
+# call mkdp#util#install()
+# '''
+# on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 
 [[plugins]]
 on_ft = ['markdown', 'pandoc.markdown', 'rmd']
@@ -1442,8 +1461,17 @@ repo = 'aklt/plantuml-syntax'
 # ==================== Filetype (toml) =======
 
 [[plugins]]
-on_ft = 'toml'
 repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'nastevens/vim-cargo-make'
+on_ft = 'toml'
+
+# ==================== Filetype (duckscript) =======
+
+[[plugins]]
+repo = 'nastevens/vim-duckscript'
 
 # ==================== Filetype (zsh [zinit]) =======
 
@@ -1593,4 +1621,3 @@ setl ts=4 sw=4 sts=0
 json = '''
 set concealcursor=nc
 '''
-

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/10/23 17:30:27.
+" Last Change : 2021/11/11 19:47:56.
 " =============================================================================
 
 " Init:
@@ -392,6 +392,16 @@ au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<cr>
 " For git commit.
 au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
 
+" Automatic reload from disk
+" Triger `autoread` when files changes on disk
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+au MyAutoCmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+
+" Notification after file change
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+au MyAutoCmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
 if has('gui_running')
   if g:is_windows
     nnoremap <leader>r :<c-u>simalt ~r<cr>
@@ -463,12 +473,12 @@ let g:plugin_use_telescope = v:false && has('nvim')
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
-let g:plugin_use_fern = v:true
+let g:plugin_use_fern = v:false
 let g:plugin_use_defx = v:false
 let g:plugin_use_molder = v:false
 let g:plugin_use_vaffle = v:false
 let g:plugin_use_viler = v:false
-let g:plugin_use_coc_explorer = v:false
+let g:plugin_use_coc_explorer = v:true
 
 let g:plugin_use_quickrun = v:true
 let g:plugin_use_asyncrun = v:false
@@ -499,7 +509,7 @@ endif
 silent! syntax enable
 
 " set cursorline cursorcolumn
-" au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
+au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
 au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 
 " Highlight VCS conflict markers
@@ -518,8 +528,28 @@ let g:neovide_cursor_vfx_mode = "railgun"
 " Nvy:
 let g:nvy = get(g:, 'nvy', 0)
 if g:nvy
-  set gfn=Cica:h10
-  set gfw=Cica:h10
+  set gfn=Cica:h12
+  set gfw=Cica:h12
+endif
+
+" nvui:
+if exists('g:nvui')
+  set guifont=Cica:h12
+  " General.
+  NvuiOpacity 0.9
+  NvuiCaretExtendTop 200
+  NvuiCaretExtendBottom 200
+  " MultiGrid.
+  NvuiAnimationsEnabled v:true
+  NvuiScrollScaler fast-start
+  NvuiScrollAnimationDuration 0.2
+  NvuiMoveScaler fast-start
+  NvuiMoveAnimationDuration 0.2
+  " Cursor.
+  NvuiCursorScaler fast-start
+  NvuiCursorAnimationDuration 0.2
+  " au MyAutoCmd InsertEnter * NvuiIMEEnable
+  " au MyAutoCmd InsertLeave * NvuiIMEDisable
 endif
 
 " lua:

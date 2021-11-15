@@ -66,7 +66,7 @@ depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/textobj-lastpaste.vim
 '''
-on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-entire'
@@ -75,7 +75,7 @@ depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-entire.vim
 '''
-on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-fold'
@@ -84,7 +84,7 @@ depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-fold.vim
 '''
-on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-function'
@@ -93,7 +93,7 @@ depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-function.vim
 '''
-on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-indent'
@@ -102,7 +102,7 @@ depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-indent.vim
 '''
-on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-line'
@@ -111,7 +111,7 @@ depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-line.vim
 '''
-on_map = {n = '<Plug>', x = '<Plug>', o = '<Plug>'}
+on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 # ==================== Operators =================
 

@@ -11,15 +11,28 @@ arg = ["-i", "--no-color", "-I", "-R", "-8"]
 [[tool]]
 name = "pt-all"
 cmd = "pt"
-arg = ["-i", "--nogroup", "--nocolor", "--smart-case", "--skip-vcs-ignores", "--hidden"]
+arg = [
+  "-i",
+  "--nogroup",
+  "--nocolor",
+  "--smart-case",
+  "--skip-vcs-ignores",
+  "--hidden",
+]
 
 [[tool]]
 name = "default-all"
 cmd = "pt"
-arg = ["-i", "--nogroup", "--nocolor", "--smart-case", "--skip-vcs-ignores", "--hidden"]
+arg = [
+  "-i",
+  "--nogroup",
+  "--nocolor",
+  "--smart-case",
+  "--skip-vcs-ignores",
+  "--hidden",
+]
 
 [[tool]]
 name = "default"
 cmd = "pt"
 arg = ["-i", "--nogroup", "--nocolor"]
-

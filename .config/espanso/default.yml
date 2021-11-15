@@ -2,6 +2,8 @@
 
 show_notifications: false
 
+toggle_key: OFF
+
 # This is the default configuration file, change it as you like it
 # You can refer to the official documentation:
 # https://espanso.org/docs/

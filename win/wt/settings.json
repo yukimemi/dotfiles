@@ -1,4 +1,5 @@
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "actions": 
     [
@@ -37,13 +38,16 @@
     {
         "defaults": 
         {
-            "acrylicOpacity": 0.5,
             "antialiasingMode": "cleartype",
             "backgroundImageOpacity": 0.5,
             "colorScheme": "One Half Dark",
             "cursorShape": "vintage",
-            "fontFace": "Cica",
-            "fontSize": 10,
+            "font": 
+            {
+                "face": "Cica",
+                "size": 10
+            },
+            "opacity": 50,
             "padding": "10.10.10.10",
             "useAcrylic": true
         },
@@ -68,12 +72,6 @@
                 "source": "Windows.Terminal.PowershellCore"
             },
             {
-                "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
-                "hidden": false,
-                "name": "Ubuntu-20.04",
-                "source": "Windows.Terminal.Wsl"
-            },
-            {
                 "guid": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
                 "hidden": false,
                 "name": "PowerShell 7 Preview",
@@ -84,6 +82,30 @@
                 "hidden": false,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{8ee00d20-375a-5510-a734-9deb38625b25}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2019 (2)",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{25e08a07-626b-5298-9110-30f32d6ae7be}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2019 (2)",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{39986516-fd25-5439-b4e9-fbd15623125b}",
+                "hidden": true,
+                "name": "Developer Command Prompt for VS 2019",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{1ffc6d53-47f6-59e1-845f-dd9c1defc138}",
+                "hidden": true,
+                "name": "Developer PowerShell for VS 2019",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
