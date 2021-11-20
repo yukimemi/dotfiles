@@ -1,3 +1,7 @@
+if !g:plugin_use_neoterm
+  finish
+endif
+
 let g:neoterm_autoinsert = 1
 let g:neoterm_autoscroll = 1
 let g:neoterm_default_mod = 'botright'

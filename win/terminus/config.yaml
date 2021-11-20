@@ -24,7 +24,7 @@ terminal:
   font: Cica Regular
   environment: {}
   profile: powershell-core
-  bell: 'off'
+  bell: visual
   customShell: pwsh
   cursorBlink: false
   fontSize: 15
@@ -54,4 +54,6 @@ pluginBlacklist:
   - serial
 titleControl:
   replacePattern: \cmd - \cwd (\scmd)
-syncConfig: {}
+syncConfig:
+  type: GitHub
+version: 1

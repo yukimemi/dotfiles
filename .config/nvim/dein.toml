@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/11/11 19:36:40.
+# Last Change: 2021/11/20 22:11:36.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -651,12 +651,12 @@ on_cmd = 'StartupTime'
 
 # ==================== Test ======================
 [[plugins]]
+repo = 'vim-test/vim-test'
 depends = ['neoterm']
 hook_add = '''
 source $VIM_PATH/rc/vim-test.vim
 '''
 on_cmd = ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit']
-repo = 'vim-test/vim-test'
 
 # ==================== Comment ===================
 
@@ -695,6 +695,7 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'lambdalisue/gina.vim'
+if = "g:plugin_use_gina"
 hook_add = '''
 source $VIM_PATH/rc/gina.vim
 '''
@@ -854,15 +855,22 @@ on_cmd = ['Deol', 'DeolCd', 'DeolEdit']
 repo = 'Shougo/deol.nvim'
 
 [[plugins]]
-lazy = 1
 repo = 'voldikss/vim-floaterm'
+lazy = 1
 
 [[plugins]]
+repo = 'kassio/neoterm'
+on_cmd = ['Tnew']
 hook_add = '''
 source $VIM_PATH/rc/neoterm.vim
 '''
-on_cmd = ['Tnew']
-repo = 'kassio/neoterm'
+
+[[plugins]]
+repo = 'akinsho/toggleterm.nvim'
+on_cmd = 'ToggleTerm'
+hook_add = '''
+source $VIM_PATH/rc/toggleterm.nvim
+'''
 
 # ==================== denops ====================
 
@@ -1035,6 +1043,19 @@ repo = 'kat0h/bufpreview.vim'
 depends = 'denops.vim'
 on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 on_cmd = ['PreviewMarkdown', 'PreviewMarkdownStop', 'PreviewMarkdownToggle']
+
+[[plugins]]
+repo = 'lambdalisue/askpass.vim'
+if = "g:plugin_use_gin"
+lazy = 1
+
+[[plugins]]
+repo = 'lambdalisue/gin.vim'
+if = "g:plugin_use_gin"
+depends = ['denops.vim', 'askpass.vim']
+hook_add = '''
+source $VIM_PATH/rc/gin.vim
+'''
 
 # ==================== Fuzzy =====================
 
@@ -1390,12 +1411,12 @@ repo = 'lambdalisue/vim-quickrun-neovim-job'
 if = "has('nvim')"
 
 [[plugins]]
+repo = 'statiolake/vim-quickrun-runner-nvimterm'
 hook_add = '''
 source $VIM_PATH/rc/vim-quickrun-runner-nvimterm.vim
 '''
 if = "has('nvim') && g:plugin_use_quickrun"
 on_source = ['vim-quickrun']
-repo = 'statiolake/vim-quickrun-runner-nvimterm'
 
 [[plugins]]
 hook_add = '''

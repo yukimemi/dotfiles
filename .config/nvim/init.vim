@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/11/11 19:47:56.
+" Last Change : 2021/11/20 22:11:06.
 " =============================================================================
 
 " Init:
@@ -482,6 +482,13 @@ let g:plugin_use_coc_explorer = v:true
 
 let g:plugin_use_quickrun = v:true
 let g:plugin_use_asyncrun = v:false
+
+let g:plugin_use_gina = v:false
+let g:plugin_use_gin = v:true
+
+let g:plugin_use_neoterm = v:false
+let g:plugin_use_toggleterm = v:true
+let g:plugin_use_floaterm = v:false
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1

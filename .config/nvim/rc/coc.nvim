@@ -208,4 +208,7 @@ nnoremap <silent> <space>y :<c-u>CocList -A --normal yank<cr>
 nmap <leader>T <Plug>(coc-translator-p)
 vmap <leader>T <Plug>(coc-translator-pv)
 
+" coc-go
+au MyAutoCmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

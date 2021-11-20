@@ -1,3 +1,5 @@
+#Include IME.ahk
+
 SetTitleMatchMode, 2
 
 #z::Run www.autohotkey.com
@@ -138,10 +140,10 @@ return
 ; return
 
 ; for Terminus
-F12::
+; F12::
 ; Toggle(USERPROFILE . "\scoop\apps\terminus\current\Terminus.exe")
-ToggleExe("Terminus.exe", USERPROFILE . "\AppData\Local\Programs\Terminus\Terminus.exe")
-return
+; ToggleExe("Terminus.exe", USERPROFILE . "\AppData\Local\Programs\Terminus\Terminus.exe")
+; return
 
 ; for wezterm
 ; F12::
@@ -159,9 +161,9 @@ return
 ; return
 
 ; for Windows Terminal
-; F12::
-; ToggleExe("WindowsTerminal.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
-; return
+F12::
+ToggleExe("WindowsTerminal.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
+return
 
 ; for Edge
 ; F11::
@@ -191,13 +193,17 @@ return
 
 ; For Visual Studio
 ^[::
-if WinActive("ahk_class Chrome_WidgetWin_1") or WinActive("ahk_class Vim") or WinActive("ahk_class Qt5QWindowIcon") {
-  Send {Esc}{vk1Dsc07B}
-} else {
+;if WinActive("ahk_class Chrome_WidgetWin_1") or WinActive("ahk_class Vim") or WinActive("ahk_class Qt5QWindowIcon") {
   Send {Esc}
-}
+  IME_SET(0)
+;} else {
+;  Send {Esc}
+;}
 return
 ; ^[::Send {Esc}
+
+SC079::IME_SET(1)
+SC07B::IME_SET(0)
 
 ; ^[::Send {Esc}{vk1Dsc07B}
 ; for Windows 8.1
