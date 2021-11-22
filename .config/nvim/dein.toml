@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/11/22 09:17:51.
+# Last Change: 2021/11/22 16:35:48.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1196,13 +1196,13 @@ repo = '0keke/quickpick-launcher.vim'
 # ==================== Statusline ================
 
 [[plugins]]
+repo = "itchyny/lightline.vim"
+if = "g:plugin_use_lightline"
 depends = ['vim-lightline-coc']
 hook_add = '''
 source $VIM_PATH/rc/lightline.vim
 '''
-if = "g:plugin_use_lightline"
 on_event = ['CursorHold', 'FocusLost']
-repo = "itchyny/lightline.vim"
 
 [[plugins]]
 if = "g:plugin_use_lightline && v:false"

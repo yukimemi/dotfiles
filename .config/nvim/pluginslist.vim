@@ -168,7 +168,7 @@ Pg 'markonm/traces.vim', {'event': 'VimEnter'}
 Pg 'akinsho/toggleterm.nvim', {'cmd': 'ToggleTerm'}
 
 " FileType:
-" Pg 'sheerun/vim-polyglot'
+Pg 'sheerun/vim-polyglot'
 
 " markdown
 Pg 'plasticboy/vim-markdown', {'ft': 'markdown'}
@@ -221,6 +221,8 @@ endif
 
 if g:plugin_use_lightline
   Pg 'itchyny/lightline.vim', {'event': g:lazy_events}
+  Pg 'kmtoki/lightline-colorscheme-simplicity'
+  Pg 'josa42/vim-lightline-coc'
 endif
 
 if g:plugin_use_airline
