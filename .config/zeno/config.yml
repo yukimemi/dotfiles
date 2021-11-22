@@ -160,23 +160,21 @@ snippets:
 
   # Install
   - name: Install deno-cache-injector
-    keyword: install deno-cache-injector
     snippet: deno install -r -f -n deno-cache-injector --allow-env --allow-read --allow-write https://raw.githubusercontent.com/kuuote/deno-cache-injector/main/injector.ts
   - name: Install denon
-    keyword: install denon
     snippet: deno install -qAf --unstable https://deno.land/x/denon/denon.ts
   - name: Install packup
-    keyword: install packup
     snippet: deno run -A https://deno.land/x/packup/install.ts
   - name: Install udd
     snippet: deno install -A -f -n udd https://deno.land/x/udd/main.ts
   - name: Install atuin
-    keyword: install atuin
     snippet: cargo install atuin
   - name: Install direnv
     snippet: curl -sfL https://direnv.net/install.sh | bash
   - name: Install nextword
     snippet: go install github.com/high-moctane/nextword@latest
+  - name: Install zsh-bench
+    snippet: git clone https://github.com/romkatv/zsh-bench ~/.zsh-bench
 
 completions:
   - name: kill
