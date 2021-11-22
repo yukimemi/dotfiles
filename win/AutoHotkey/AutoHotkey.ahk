@@ -83,7 +83,8 @@ return
 ; return
 ; for neovim
 F10::
-Activate("C:\tools\neovim\Neovim\bin\nvim.exe")
+; Activate("C:\tools\neovim\Neovim\bin\nvim.exe")
+Activate2("nvim.exe", USERPROFILE . "\AppData\Local\Programs\Python\Python310\Scripts\nvr.exe")
 return
 
 ; for sakura
