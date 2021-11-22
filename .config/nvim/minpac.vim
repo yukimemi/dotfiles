@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : minpac.vim
 " Author      : yukimemi
-" Last Change : 2020/12/30 15:30:29.
+" Last Change : 2021/11/22 09:59:45.
 " =============================================================================
 
 " Plugin:
@@ -92,7 +92,7 @@ endfunction
 " Plugin list.
 source $VIM_PATH/pluginslist.vim
 
-command! PackUpdate source $MYVIMRC | call PackInit() | call minpac#update()
+command! PackUpdate source $MYVIMRC | call PackInit() | call minpac#clean() | call minpac#update()
 command! PackClean  source $MYVIMRC | call PackInit() | call minpac#clean()
 command! PackStatus packadd minpac | call minpac#status()
 

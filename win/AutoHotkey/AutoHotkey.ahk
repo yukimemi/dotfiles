@@ -78,13 +78,13 @@ return
 ; Activate3("gvim.exe", "C:\tools\vim\vim82\gvim.exe", "GVIM")
 ; return
 ; for neovim-qt
-F10::
-Activate("C:\tools\neovim\Neovim\bin\nvim-qt.exe")
-return
-; for neovim
 ; F10::
-; Activate("C:\tools\neovim\Neovim\bin\nvim.exe")
+; Activate("C:\tools\neovim\Neovim\bin\nvim-qt.exe")
 ; return
+; for neovim
+F10::
+Activate("C:\tools\neovim\Neovim\bin\nvim.exe")
+return
 
 ; for sakura
 ; ^F10::

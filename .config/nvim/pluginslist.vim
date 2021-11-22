@@ -6,28 +6,30 @@ Pg 'kristijanhusak/vim-packager', {'type': 'opt'}
 
 " Visual:
 " Pg 'Xuyuanp/scrollbar.nvim', {'if': has('nvim') && !g:is_windows}
+" Pg 'Yggdroot/indentLine', {'event': g:lazy_events}
+" Pg 'dstein64/nvim-scrollview', {'event': g:lazy_events, 'if': has('nvim') && !g:is_windows}
 " Pg 'glepnir/indent-guides.nvim', {'event': g:lazy_events, 'if': has('nvim')}
+" Pg 'jeffkreeftmeijer/vim-numbertoggle', {'event': g:lazy_events}
+" Pg 'machakann/vim-highlightedyank', {'event': 'VimEnter'}
+" Pg 'mg979/vim-xtabline', {'event': 'VimEnter'}
 " Pg 'nathanaelkane/vim-indent-guides', {'event': g:lazy_events, 'if': !has('nvim')}
+" Pg 'romgrk/barbar.nvim', {'if': has('nvim')}
 Pg 'LumaKernel/nvim-visual-eof.lua', {'if': has('nvim')}
-Pg 'Yggdroot/indentLine', {'event': g:lazy_events}
 Pg 'andymass/vim-matchup', {'event': g:lazy_events}
-Pg 'dstein64/nvim-scrollview', {'event': g:lazy_events, 'if': has('nvim') && !g:is_windows}
 Pg 'itchyny/vim-cursorword', {'event': g:lazy_events}
 Pg 'itchyny/vim-external', {'event': g:lazy_events}
 Pg 'itchyny/vim-highlighturl', {'event': g:lazy_events}
 Pg 'itchyny/vim-parenmatch', {'event': g:lazy_events}
-Pg 'jeffkreeftmeijer/vim-numbertoggle', {'event': g:lazy_events}
 Pg 'kyazdani42/nvim-web-devicons'
-Pg 'lambdalisue/glyph-palette.vim', {'event': 'VimEnter'}
-Pg 'lambdalisue/nerdfont.vim', {'event': 'VimEnter'}
+Pg 'lambdalisue/glyph-palette.vim', {'event': 'VimEnter', 'if': g:plugin_use_fern}
+Pg 'lambdalisue/nerdfont.vim', {'event': 'VimEnter', 'if': g:plugin_use_fern}
 Pg 'lambdalisue/seethrough.vim', {'if': !has('gui')}
+Pg 'lukas-reineke/indent-blankline.nvim', {'if': has('nvim'), 'event': 'VimEnter'}
 Pg 'luochen1990/rainbow', {'event': g:lazy_events}
-Pg 'machakann/vim-highlightedyank', {'event': 'VimEnter'}
 Pg 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
-Pg 'mattn/vimtweak', {'if': g:is_windows}
-Pg 'mg979/vim-xtabline', {'event': 'VimEnter', 'if': !has('nvim')}
+Pg 'mattn/vimtweak', {'if': g:is_windows && !has('nvim')}
+Pg 'mopp/smartnumber.vim', {'event': g:lazy_events}
 Pg 'ntpeters/vim-better-whitespace', {'event': g:lazy_events}
-Pg 'romgrk/barbar.nvim', {'if': has('nvim')}
 Pg 't9md/vim-quickhl', {'event': g:lazy_events}
 
 " Colorscheme:
@@ -53,58 +55,66 @@ Pg 'sainnhe/gruvbox-material', {'type': 'opt'}
 Pg 'severij/vadelma', {'type': 'opt'}
 Pg 'ulwlu/elly.vim', {'type': 'opt'}
 Pg 'yasukotelin/shirotelin', {'type': 'opt'}
+Pg 'Matsuuu/pinkmare', {'type': 'opt'}
 
 " Utility:
+" Pg 'aiya000/aho-bakaup.vim', {'event': 'BufWritePre'}
+" Pg 'liuchengxu/vim-which-key', {'event': 'VimEnter'}
+" Pg 'liuchengxu/vista.vim', {'event': 'VimEnter'}
+" Pg 'romainl/vim-qf', {'ft': ['quickfix', 'qf']}
+" Pg 'seroqn/tozzy.vim', {'event': 'InsertEnter'}
+" Pg 'tenfyzhong/axring.vim', {'event': 'VimEnter'}
+" Pg 'yegappan/mru', {'cmd': 'MRU'}
 Pg 'AndrewRadev/linediff.vim', {'cmd': ['Linediff', 'LinediffReset', 'LinediffShow']}
+Pg 'LeafCage/autobackup.vim', {'event': 'BufWritePre'}
 Pg 'LeafCage/yankround.vim', {'event': 'VimEnter'}
-Pg 'Shougo/context_filetype.vim', {'event': 'VimEnter'}
-Pg 'Shougo/echodoc.vim', {'event': 'InsertEnter'}
+Pg 'Shougo/context_filetype.vim', {'event': 'BufRead'}
+Pg 'Shougo/echodoc.vim', {'event': 'VimEnter'}
 Pg 'Shougo/junkfile.vim', {'cmd': 'JunkfileOpen'}
 Pg 'airblade/vim-rooter', {'event': g:lazy_events}
-Pg 'aiya000/aho-bakaup.vim', {'event': 'BufWritePre'}
+Pg 'cohama/lexima.vim', {'if': g:plugin_use_lexima}
 Pg 'da-x/name-assign.vim', {'event': 'VimEnter'}
 Pg 'editorconfig/editorconfig-vim', {'event': 'VimEnter'}
-Pg 'gelguy/wilder.nvim'
+Pg 'gelguy/wilder.nvim', {'event': ['CmdlineEnter', 'CmdwinEnter']}
 Pg 'glidenote/memolist.vim', {'cmd': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pg 'haya14busa/vim-edgemotion', {'event': g:lazy_events}
+Pg 'itchyny/vim-winfix', {'event': 'BufRead'}
+Pg 'rcarriga/nvim-notify', {'event': g:lazy_events}
+Pg 'kwkarlwang/bufresize.nvim', {'event': g:lazy_events}
 Pg 'junegunn/vim-easy-align', {'event': g:lazy_events}
 Pg 'lambdalisue/readablefold.vim', {'event': g:lazy_events}
 Pg 'lambdalisue/vim-findent', {'cmd': 'Findent'}
-Pg 'lilydjwg/colorizer', {'event': 'VimEnter'}
-Pg 'liuchengxu/vim-which-key', {'event': 'VimEnter'}
-Pg 'liuchengxu/vista.vim', {'event': 'VimEnter'}
+Pg 'lilydjwg/colorizer', {'event': g:lazy_events}
+Pg 'mattn/vim-lexiv', {'if': g:plugin_use_lexiv}
 Pg 'mattn/vim-sonictemplate', {'cmd': 'Template'}
 Pg 'mattn/webapi-vim', {'event': 'VimEnter'}
 Pg 'mbbill/undotree', {'cmd': 'UndotreeToggle'}
 Pg 'nicwest/vim-camelsnek', {'cmd': ['Snek', 'Camel', 'CamelB', 'Kebab']}
+Pg 'psliwka/vim-smoothie', {'event': g:lazy_events}
 Pg 'qpkorr/vim-renamer', {'event': 'VimEnter'}
 Pg 'rbtnn/vim-coloredit', {'cmd': 'ColorEdit', 'if': !has('nvim')}
 Pg 'rbtnn/vim-gloaded'
 Pg 'rbtnn/vim-vimscript_lasterror', {'cmd': 'VimscriptLastError'}
 Pg 'rickhowe/diffchar.vim', {'event': 'VimEnter'}
-Pg 'romainl/vim-qf', {'ft': ['quickfix', 'qf']}
 Pg 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pg 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
 Pg 'roxma/vim-tmux-clipboard', {'event': 'VimEnter', 'if': !g:is_windows}
 Pg 'sentriz/vim-print-debug', {'event': 'VimEnter'}
-Pg 'seroqn/tozzy.vim', {'event': 'InsertEnter'}
 Pg 't9md/vim-choosewin', {'event': 'VimEnter'}
-Pg 'tenfyzhong/axring.vim', {'event': 'VimEnter'}
 Pg 'thinca/vim-ambicmd', {'event': 'VimEnter'}
 Pg 'thinca/vim-localrc'
 Pg 'thinca/vim-prettyprint', {'cmd': 'PP'}
 Pg 'thinca/vim-qfreplace', {'ft': ['quickfix', 'qf']}
 Pg 'thinca/vim-singleton', {'if': !has('nvim') && has('clientserver')}
-Pg 'thinca/vim-submode', {'event': 'VimEnter'}
+Pg 'thinca/vim-submode', {'event': 'BufRead'}
 Pg 'tmux-plugins/vim-tmux-focus-events', {'event': 'VimEnter', 'if': !g:is_windows && !has('nvim')}
 Pg 'tpope/vim-repeat', {'event': 'VimEnter'}
+Pg 'tweekmonster/startuptime.vim', {'cmd': 'StartupTime'}
 Pg 'tyru/capture.vim', {'cmd': 'Capture'}
 Pg 'tyru/open-browser.vim', {'event': 'VimEnter'}
 Pg 'tyru/restart.vim', {'cmd': 'Restart'}
 Pg 'vim-scripts/autodate.vim', {'event': 'InsertEnter'}
 Pg 'wesQ3/vim-windowswap', {'event': 'WinEnter'}
-Pg 'yegappan/mru', {'cmd': 'MRU'}
-Pg 'tweekmonster/startuptime.vim', {'cmd': 'StartupTime'}
 
 " Comment:
 Pg 'tyru/caw.vim', {'event': g:lazy_events}
@@ -138,31 +148,34 @@ Pg 'kana/vim-operator-user'
 
 Pg 'kana/vim-operator-replace', {'event': 'VimEnter'}
 Pg 'machakann/vim-sandwich', {'event': 'VimEnter'}
-Pg 'osyo-manga/vim-operator-search', {'event': 'VimEnter'}
-Pg 'osyo-manga/vim-operator-stay-cursor', {'event': 'VimEnter'}
+Pg 'osyo-manga/vim-operator-search', {'event': g:lazy_events}
+Pg 'osyo-manga/vim-operator-stay-cursor', {'event': g:lazy_events}
+Pg 'osyo-manga/vim-operator-highlighter', {'event': g:lazy_events}
 
 
 " Search:
-Pg 'eugen0329/vim-esearch', {'event': 'VimEnter'}
-Pg 'haya14busa/vim-asterisk', {'event': 'VimEnter'}
-Pg 'kevinhwang91/nvim-hlslens', {'event': 'VimEnter', 'if': has('nvim')}
+" Pg 'eugen0329/vim-esearch', {'event': 'BufRead'}
+" Pg 'kevinhwang91/nvim-hlslens', {'event': 'VimEnter', 'if': has('nvim')}
+" Pg 'mhinz/vim-grepper', {'event': 'VimEnter'}
+" Pg 'pechorin/any-jump.vim', {'cmd': ['AnyJumpLastResults', 'AnyJumpBack', 'AnyJumpVisual', 'AnyJump']}
+" Pg 'ripxorip/aerojump.nvim', {'event': 'BufRead', 'if': has('nvim')}
+Pg 'haya14busa/vim-asterisk', {'event': 'BufRead'}
+Pg 'inside/vim-search-pulse', {'event': g:lazy_events}
 Pg 'markonm/traces.vim', {'event': 'VimEnter'}
-Pg 'mhinz/vim-grepper', {'event': 'VimEnter'}
-Pg 'pechorin/any-jump.vim', {'cmd': ['AnyJumpLastResults', 'AnyJumpBack', 'AnyJumpVisual', 'AnyJump']}
-Pg 'ripxorip/aerojump.nvim', {'event': 'VimEnter', 'if': has('nvim')}
 
 " Shell:
-Pg 'Shougo/deol.nvim', {'cmd': ['Deol', 'DeolCd', 'DeolEdit'], 'do': 'silent! UpdateRemotePlugins'}
+" Pg 'Shougo/deol.nvim', {'cmd': ['Deol', 'DeolCd', 'DeolEdit'], 'do': 'silent! UpdateRemotePlugins'}
+Pg 'akinsho/toggleterm.nvim', {'cmd': 'ToggleTerm'}
 
 " FileType:
-Pg 'sheerun/vim-polyglot'
+" Pg 'sheerun/vim-polyglot'
 
 " markdown
 Pg 'plasticboy/vim-markdown', {'ft': 'markdown'}
 Pg 'dkarter/bullets.vim', {'ft': 'markdown'}
 Pg 'dhruvasagar/vim-table-mode', {'ft': 'markdown'}
-Pg 'iamcco/markdown-preview.nvim', {'cmd': 'MarkdownPreview', 'do': '!cd app & yarn install', 'if': executable('yarn')}
-Pg 'previm/previm', {'cmd': 'PrevimOpen'}
+" Pg 'iamcco/markdown-preview.nvim', {'cmd': 'MarkdownPreview', 'do': '!cd app & yarn install', 'if': executable('yarn')}
+" Pg 'previm/previm', {'cmd': 'PrevimOpen'}
 
 " html
 Pg 'mattn/emmet-vim', {'ft': 'html'}
@@ -217,11 +230,15 @@ if g:plugin_use_airline
 endif
 
 if g:plugin_use_lualine
-  Pg 'hoob3rt/lualine.nvim'
+  Pg 'nvim-lualine/lualine.nvim'
 endif
 
 if g:plugin_use_neoline
   Pg 'adelarsq/neoline.vim'
+endif
+
+if g:plugin_use_galaxyline
+  Pg 'glepnir/galaxyline.nvim', {'branch': 'main'}
 endif
 
 if g:plugin_use_fern
@@ -306,8 +323,25 @@ if g:plugin_use_deoplete
 endif
 
 " Runner:
-Pg 'thinca/vim-quickrun', {'cmd': ['QuickRun', '<Plug>(quickrun)']}
-Pg 'lambdalisue/vim-quickrun-neovim-job', {'event': 'VimEnter'}
+if plugin_use_quickrun
+  Pg 'thinca/vim-quickrun', {'event': 'VimEnter'}
+  Pg 'lambdalisue/vim-quickrun-neovim-job', {'event': 'VimEnter'}
+endif
+
+" Treesitter:
+Pg 'nvim-treesitter/nvim-treesitter', {'if': has('nvim'), 'do': 'silent! TSUpdate', 'event': 'BufRead'}
+Pg 'p00f/nvim-ts-rainbow', {'if': has('nvim'), 'event': 'BufRead'}
+
+
+" Denops:
+Pg 'vim-denops/denops.vim'
+Pg 'yuki-yano/dps-zero.vim'
+Pg 'tamago324/dps-gitignore'
+Pg 'yukimemi/dps-ahdr'
+Pg 'yukimemi/dps-autocursor'
+Pg 'yukimemi/dps-asyngrep'
+Pg 'yukimemi/dps-walk'
+Pg 'kat0h/bufpreview.vim', {'ft': ['markdown', 'pandoc.markdown', 'rmd'], 'cmd':  ['PreviewMarkdown', 'PreviewMarkdownStop', 'PreviewMarkdownToggle']}
 
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

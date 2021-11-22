@@ -1,5 +1,5 @@
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox_material',
+      \ 'colorscheme': 'simpleblack',
       \ 'mode_map': {
       \   'n' : 'N',
       \   'i' : 'I',

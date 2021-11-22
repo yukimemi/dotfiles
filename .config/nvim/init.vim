@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/11/20 22:11:06.
+" Last Change : 2021/11/22 09:55:51.
 " =============================================================================
 
 " Init:
@@ -168,7 +168,7 @@ endif
 
 " python
 if g:is_windows && has('nvim')
-  let g:python3_host_prog = expand('$USERPROFILE') . '/scoop/apps/python/current/python.exe'
+  let g:python3_host_prog = expand('$USERPROFILE') . '/AppData/Local/Programs/Python/Python310/python.exe'
 endif
 
 " terminal
@@ -433,9 +433,9 @@ set wildcharm=<tab>
 cnoremap <expr> <tab> '<cmd>set nosmartcase<cr><tab><cmd>let &smartcase = ' .. &smartcase .. '<cr>'
 
 " Plugin:
-let s:use_dein = v:true
+let s:use_dein = v:false
 let s:use_vimplug = v:false
-let s:use_minpac = v:false
+let s:use_minpac = v:true
 let s:use_packager = v:false
 let s:use_volt = v:false
 let s:use_pack = v:false
@@ -444,9 +444,10 @@ let s:use_packer = v:false
 let g:plugin_use_lightline = v:false
 let g:plugin_use_airline = v:false
 let g:plugin_use_neoline = v:false
-let g:plugin_use_lualine = v:false
-let g:plugin_use_barow = v:true
+let g:plugin_use_lualine = v:true
+let g:plugin_use_barow = v:false
 let g:plugin_use_staline = v:false
+let plugin_use_galaxyline = v:false
 
 let g:plugin_use_indent_blankline = v:true
 let g:plugin_use_dps_indent_line = v:false
@@ -462,14 +463,14 @@ let g:plugin_use_ale = v:false
 let g:plugin_use_lexima = v:false
 let g:plugin_use_lexiv = v:true
 
-let g:plugin_use_ctrlp = v:true
+let g:plugin_use_ctrlp = v:false
 let g:plugin_use_clap = v:false
 let g:plugin_use_fzf = v:false
 let g:plugin_use_cocfzf = v:false
 let g:plugin_use_fz = v:false
 let g:plugin_use_denite = v:true
 let g:plugin_use_quickpick = v:false
-let g:plugin_use_telescope = v:false && has('nvim')
+let g:plugin_use_telescope = v:true && has('nvim')
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
@@ -483,8 +484,8 @@ let g:plugin_use_coc_explorer = v:true
 let g:plugin_use_quickrun = v:true
 let g:plugin_use_asyncrun = v:false
 
-let g:plugin_use_gina = v:false
-let g:plugin_use_gin = v:true
+let g:plugin_use_gina = v:true
+let g:plugin_use_gin = v:false
 
 let g:plugin_use_neoterm = v:false
 let g:plugin_use_toggleterm = v:true
@@ -565,5 +566,6 @@ if has('nvim')
   exe "lua require('init')"
 endif
 
+set noshellslash
 filetype plugin indent on
 

@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/11/20 22:11:36.
+# Last Change: 2021/11/22 09:17:51.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -64,8 +64,8 @@ on_event = ['CursorHold', 'FocusLost']
 repo = 'itchyny/vim-parenmatch'
 
 [[plugins]]
-on_event = ["CursorHold", "InsertEnter", "CursorMoved", "FocusLost"]
 repo = 'mopp/smartnumber.vim'
+on_event = ["CursorHold", "InsertEnter", "CursorMoved", "FocusLost"]
 
 [[plugins]]
 if = "g:plugin_use_fern"
@@ -318,11 +318,11 @@ on_map = { v = '<Plug>NameAssign' }
 repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
+repo = "gelguy/wilder.nvim"
 hook_source = '''
 source $VIM_PATH/rc/wilder.nvim
 '''
 on_map = ':'
-repo = "gelguy/wilder.nvim"
 
 [[plugins]]
 hook_add = '''
@@ -432,11 +432,11 @@ on_ft = ['quickfix', 'qf']
 repo = 'thinca/vim-qfreplace'
 
 [[plugins]]
+repo = 'thinca/vim-submode'
 hook_add = '''
 source $VIM_PATH/rc/vim-submode.vim
 '''
 on_event = 'BufRead'
-repo = 'thinca/vim-submode'
 
 [[plugins]]
 if = '!g:is_windows'
@@ -474,17 +474,17 @@ if = "!has('nvim') && has('clientserver')"
 repo = 'thinca/vim-singleton'
 
 [[plugins]]
-on_event = ['CursorHold', 'FocusLost']
 repo = 'lilydjwg/colorizer'
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'machakann/vim-swap'
 
 [[plugins]]
+repo = 'syngan/vim-clurin'
 hook_add = '''
 source $VIM_PATH/rc/vim-clurin.vim
 '''
-repo = 'syngan/vim-clurin'
 
 [[plugins]]
 on_event = ['CursorHold', 'FocusLost']
@@ -492,6 +492,7 @@ repo = 'Bakudankun/BackAndForward.vim'
 
 [[plugins]]
 repo = 'lambdalisue/edita.vim'
+lazy = 1
 
 [[plugins]]
 repo = 'MattesGroeger/vim-bookmarks'
@@ -555,11 +556,11 @@ source $VIM_PATH/rc/vim-reanimate.vim
 on_cmd = ['ReanimateSave', 'ReanimateLoad', 'ReanimateLoadLatest']
 
 [[plugins]]
+repo = 't9md/vim-choosewin'
 hook_add = '''
 source $VIM_PATH/rc/vim-choosewin.vim
 '''
 on_event = 'BufRead'
-repo = 't9md/vim-choosewin'
 
 # [[plugins]]
 # repo = 'folke/todo-comments.nvim'
@@ -840,10 +841,10 @@ repo = 'markonm/traces.vim'
 repo = 'tsuyoshicho/vim-fg'
 
 [[plugins]]
+repo = 'inside/vim-search-pulse'
 hook_add = '''
 source $VIM_PATH/rc/vim-search-pulse.vim
 '''
-repo = 'inside/vim-search-pulse'
 
 # ==================== Shell =====================
 
@@ -875,11 +876,11 @@ source $VIM_PATH/rc/toggleterm.nvim
 # ==================== denops ====================
 
 [[plugins]]
+repo = 'vim-denops/denops.vim'
 augroup = 'denops_plugin_internal'
 hook_add = '''
 source $VIM_PATH/rc/denops.vim
 '''
-repo = 'vim-denops/denops.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc.vim'
@@ -1023,8 +1024,8 @@ source $VIM_PATH/rc/dps-autocursor.vim
 '''
 
 [[plugins]]
-# repo = 'yukimemi/dps-asyngrep'
-repo = '~/src/github.com/yukimemi/dps-asyngrep'
+repo = 'yukimemi/dps-asyngrep'
+# repo = '~/src/github.com/yukimemi/dps-asyngrep'
 depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/dps-asyngrep.vim

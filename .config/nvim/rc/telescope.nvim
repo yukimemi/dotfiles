@@ -10,18 +10,22 @@ lua <<EOF
 -- totally optional to use setup
 require('telescope').setup{
   defaults = {
-    shorten_path = false -- currently the default value is true
+    shorten_path = false
   }
 }
 EOF
 
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader><leader> <cmd>Telescope<cr>
 nnoremap <leader>fG <cmd>Telescope live_grep<cr>
+nnoremap <leader>fH <cmd>Telescope help_tags<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fc <cmd>Telescope command<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>lua require'telescope.builtin'.git_files{}<cr>
+nnoremap <leader>fh <cmd>Telescope command_history<cr>
 nnoremap <leader>fn <cmd>lua require'telescope.builtin'.find_files({ cwd = "~/.config/nvim/" })<cr>
 nnoremap <leader>fr <cmd>lua require'telescope.builtin'.lsp_references{ shorten_path = true }<cr>
+nnoremap <leader>fu <cmd>Telescope oldfiles<cr>
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

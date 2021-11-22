@@ -6,8 +6,8 @@ function! IsInstalled(name) abort
   return !empty(globpath(&pp, "pack/packer/*/" . a:name))
 endfunction
 
-set noshellslash
+" set shellslash
 exe "lua require('plugins')"
-set shellslash
+" set shellslash
 au MyAutoCmd BufWritePost plugins.lua silent! PackerCompile
 

@@ -51,10 +51,7 @@ return require('packer').startup(function()
     setup = vim.cmd [[source $VIM_PATH/rc/wilder.nvim]],
   }
 
-  use {'andymass/vim-matchup', event = 'VimEnter *'}
-
-  -- markdown.
-  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
+  use {'andymass/vim-matchup', event = 'BufRead *'}
 
   -- all filetype
   use {
