@@ -10,6 +10,7 @@ doskey history=doskey /history
 doskey ll=dir /ad $*
 doskey la=dir $*
 doskey l=dir $*
+doskey t=exit
 doskey ls=dir /w $*
 doskey lv=more /E $*
 doskey mv=move $*
