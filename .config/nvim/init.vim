@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/11/22 16:19:30.
+" Last Change : 2021/12/18 23:24:23.
 " =============================================================================
 
 " Init:
@@ -452,10 +452,10 @@ let plugin_use_galaxyline = v:false
 let g:plugin_use_indent_blankline = v:true
 let g:plugin_use_dps_indent_line = v:false
 
-let g:plugin_use_coc = v:true
+let g:plugin_use_coc = v:false
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
-let g:plugin_use_ddc = v:false
+let g:plugin_use_ddc = v:true
 let g:plugin_use_vimlsp = v:false
 
 let g:plugin_use_ale = v:false
@@ -463,14 +463,15 @@ let g:plugin_use_ale = v:false
 let g:plugin_use_lexima = v:false
 let g:plugin_use_lexiv = v:true
 
-let g:plugin_use_ctrlp = v:false
+let g:plugin_use_ctrlp = v:true
 let g:plugin_use_clap = v:false
 let g:plugin_use_fzf = v:false
 let g:plugin_use_cocfzf = v:false
 let g:plugin_use_fz = v:false
-let g:plugin_use_denite = v:true
+let g:plugin_use_denite = v:false
 let g:plugin_use_quickpick = v:false
-let g:plugin_use_telescope = v:true && has('nvim')
+let g:plugin_use_telescope = v:false && has('nvim')
+let g:plugin_use_linearf = v:false && has('nvim')
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')

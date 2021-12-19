@@ -6,6 +6,10 @@ function! s:show_documentation()
   endif
 endfunction
 
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_format_sync_timeout = 3000
+let g:lsp_diagnostics_virtual_text_enabled = 0
+
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
@@ -32,14 +36,12 @@ function! s:on_lsp_buffer_enabled() abort
   " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
   vmap <silent><buffer> <localleader>a <Plug>(lsp-code-action)
 
-  if !g:is_windows
-    au MyAutoCmd BufWritePre <buffer> LspDocumentFormat
-  endif
+  au MyAutoCmd BufWritePre <buffer> LspDocumentFormat
 endfunction
 
 au MyAutoCmd User lsp_buffer_enabled call <SID>on_lsp_buffer_enabled()
-au MyAutoCmd CmdwinEnter call lsp#enable()
-au MyAutoCmd CmdwinLeave call lsp#disable()
+" au MyAutoCmd CmdwinEnter call lsp#enable()
+" au MyAutoCmd CmdwinLeave call lsp#disable()
 
 " Close preview window with <esc>
 au MyAutoCmd User lsp_float_opened silent! nmap <buffer> <silent> <esc> <Plug>(lsp-preview-close)

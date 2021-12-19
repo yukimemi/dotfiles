@@ -30,12 +30,12 @@ let g:autocursor_cursorline = {
   \   {
   \     "name": "CursorHold",
   \     "set": v:true,
-  \     "wait": 0,
+  \     "wait": 500,
   \   },
   \   {
   \     "name": "CursorHoldI",
   \     "set": v:true,
-  \     "wait": 0,
+  \     "wait": 500,
   \   },
   \   {
   \     "name": "CursorMoved",
@@ -55,47 +55,47 @@ let g:autocursor_cursorcolumn = {
   \   {
   \     "name": "FocusGained",
   \     "set": v:true,
-  \     "wait": 50,
+  \     "wait": 77,
   \   },
   \   {
   \     "name": "FocusLost",
   \     "set": v:true,
-  \     "wait": 50,
+  \     "wait": 77,
   \   },
   \   {
   \     "name": "WinEnter",
   \     "set": v:true,
-  \     "wait": 50,
+  \     "wait": 77,
   \   },
   \   {
   \     "name": "BufEnter",
   \     "set": v:true,
-  \     "wait": 50,
+  \     "wait": 77,
   \   },
   \   {
   \     "name": "CmdwinLeave",
   \     "set": v:true,
-  \     "wait": 50,
+  \     "wait": 77,
   \   },
   \   {
   \     "name": "CursorHold",
   \     "set": v:true,
-  \     "wait": 50,
+  \     "wait": 577,
   \   },
   \   {
   \     "name": "CursorHoldI",
   \     "set": v:true,
-  \     "wait": 50,
+  \     "wait": 577,
   \   },
   \   {
   \     "name": "CursorMoved",
   \     "set": v:false,
-  \     "wait": 50,
+  \     "wait": 77,
   \   },
   \   {
   \     "name": "CursorMovedI",
   \     "set": v:false,
-  \     "wait": 50,
+  \     "wait": 77,
   \   }
   \  ]
   \ }

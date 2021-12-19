@@ -9,6 +9,7 @@ Pg 'kristijanhusak/vim-packager', {'type': 'opt'}
 " Pg 'Yggdroot/indentLine', {'event': g:lazy_events}
 " Pg 'dstein64/nvim-scrollview', {'event': g:lazy_events, 'if': has('nvim') && !g:is_windows}
 " Pg 'glepnir/indent-guides.nvim', {'event': g:lazy_events, 'if': has('nvim')}
+" Pg 'itchyny/vim-external', {'event': g:lazy_events}
 " Pg 'jeffkreeftmeijer/vim-numbertoggle', {'event': g:lazy_events}
 " Pg 'machakann/vim-highlightedyank', {'event': 'VimEnter'}
 " Pg 'mg979/vim-xtabline', {'event': 'VimEnter'}
@@ -17,7 +18,6 @@ Pg 'kristijanhusak/vim-packager', {'type': 'opt'}
 Pg 'LumaKernel/nvim-visual-eof.lua', {'if': has('nvim')}
 Pg 'andymass/vim-matchup', {'event': g:lazy_events}
 Pg 'itchyny/vim-cursorword', {'event': g:lazy_events}
-Pg 'itchyny/vim-external', {'event': g:lazy_events}
 Pg 'itchyny/vim-highlighturl', {'event': g:lazy_events}
 Pg 'itchyny/vim-parenmatch', {'event': g:lazy_events}
 Pg 'kyazdani42/nvim-web-devicons'
@@ -61,6 +61,7 @@ Pg 'Matsuuu/pinkmare', {'type': 'opt'}
 " Pg 'aiya000/aho-bakaup.vim', {'event': 'BufWritePre'}
 " Pg 'liuchengxu/vim-which-key', {'event': 'VimEnter'}
 " Pg 'liuchengxu/vista.vim', {'event': 'VimEnter'}
+" Pg 'psliwka/vim-smoothie', {'event': g:lazy_events}
 " Pg 'romainl/vim-qf', {'ft': ['quickfix', 'qf']}
 " Pg 'seroqn/tozzy.vim', {'event': 'InsertEnter'}
 " Pg 'tenfyzhong/axring.vim', {'event': 'VimEnter'}
@@ -75,13 +76,14 @@ Pg 'airblade/vim-rooter', {'event': g:lazy_events}
 Pg 'cohama/lexima.vim', {'if': g:plugin_use_lexima}
 Pg 'da-x/name-assign.vim', {'event': 'VimEnter'}
 Pg 'editorconfig/editorconfig-vim', {'event': 'VimEnter'}
-Pg 'gelguy/wilder.nvim', {'event': ['CmdlineEnter', 'CmdwinEnter']}
+" Pg 'gelguy/wilder.nvim', {'event': ['CmdlineEnter', 'CmdwinEnter']}
 Pg 'glidenote/memolist.vim', {'cmd': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pg 'haya14busa/vim-edgemotion', {'event': g:lazy_events}
 Pg 'itchyny/vim-winfix', {'event': 'BufRead'}
-Pg 'rcarriga/nvim-notify', {'event': g:lazy_events}
-Pg 'kwkarlwang/bufresize.nvim', {'event': g:lazy_events}
 Pg 'junegunn/vim-easy-align', {'event': g:lazy_events}
+Pg 'kwkarlwang/bufresize.nvim', {'event': g:lazy_events}
+Pg 'lambdalisue/mr-quickfix.vim'
+Pg 'lambdalisue/mr.vim'
 Pg 'lambdalisue/readablefold.vim', {'event': g:lazy_events}
 Pg 'lambdalisue/vim-findent', {'cmd': 'Findent'}
 Pg 'lilydjwg/colorizer', {'event': g:lazy_events}
@@ -90,11 +92,11 @@ Pg 'mattn/vim-sonictemplate', {'cmd': 'Template'}
 Pg 'mattn/webapi-vim', {'event': 'VimEnter'}
 Pg 'mbbill/undotree', {'cmd': 'UndotreeToggle'}
 Pg 'nicwest/vim-camelsnek', {'cmd': ['Snek', 'Camel', 'CamelB', 'Kebab']}
-Pg 'psliwka/vim-smoothie', {'event': g:lazy_events}
 Pg 'qpkorr/vim-renamer', {'event': 'VimEnter'}
 Pg 'rbtnn/vim-coloredit', {'cmd': 'ColorEdit', 'if': !has('nvim')}
 Pg 'rbtnn/vim-gloaded'
 Pg 'rbtnn/vim-vimscript_lasterror', {'cmd': 'VimscriptLastError'}
+Pg 'rcarriga/nvim-notify', {'event': g:lazy_events}
 Pg 'rickhowe/diffchar.vim', {'event': 'VimEnter'}
 Pg 'roxma/nvim-yarp', {'if': !has('nvim')}
 Pg 'roxma/vim-hug-neovim-rpc', {'if': !has('nvim')}
@@ -160,7 +162,7 @@ Pg 'osyo-manga/vim-operator-highlighter', {'event': g:lazy_events}
 " Pg 'pechorin/any-jump.vim', {'cmd': ['AnyJumpLastResults', 'AnyJumpBack', 'AnyJumpVisual', 'AnyJump']}
 " Pg 'ripxorip/aerojump.nvim', {'event': 'BufRead', 'if': has('nvim')}
 Pg 'haya14busa/vim-asterisk', {'event': 'BufRead'}
-Pg 'inside/vim-search-pulse', {'event': g:lazy_events}
+" Pg 'inside/vim-search-pulse', {'event': g:lazy_events}
 Pg 'markonm/traces.vim', {'event': 'VimEnter'}
 
 " Shell:
@@ -195,8 +197,9 @@ if g:plugin_use_ctrlp
   Pg 'mattn/ctrlp-matchfuzzy', {'if': exists('*matchfuzzy')}
   Pg 'mattn/ctrlp-vimhelpjp', {'cmd': 'VimHelpJp'}
   Pg 'ompugao/ctrlp-history', {'cmd': ['CtrlPCmdHistory', 'CtrlPSearchHistory']}
-  Pg 'raghur/fruzzy', {'do': 'call fruzzy#install()', 'if': has('python')}
   Pg 'suy/vim-ctrlp-commandline', {'event': 'VimEnter'}
+  Pg 'tsuyoshicho/ctrlp-mr.vim', {'cmd': ['CtrlPMRMru', 'CtrlPMRMrw', 'CtrlPMRMrr']}
+  Pg 'kaneshin/ctrlp-git-log', {'cmd': 'CtrlPGitLog'}
 endif
 
 if g:plugin_use_clap
@@ -218,6 +221,10 @@ if g:plugin_use_denite
   Pg 'pocari/vim-denite-kind-open-browser', {'event': 'VimEnter', 'if': has('nvim')}
 endif
 
+if g:plugin_use_linearf
+  Pg 'octaltree/linearf'
+  Pg 'octaltree/linearf-my-flavors'
+endif
 
 if g:plugin_use_lightline
   Pg 'itchyny/lightline.vim', {'event': g:lazy_events}
@@ -344,6 +351,34 @@ Pg 'yukimemi/dps-autocursor'
 Pg 'yukimemi/dps-asyngrep'
 Pg 'yukimemi/dps-walk'
 Pg 'kat0h/bufpreview.vim', {'ft': ['markdown', 'pandoc.markdown', 'rmd'], 'cmd':  ['PreviewMarkdown', 'PreviewMarkdownStop', 'PreviewMarkdownToggle']}
+
+if g:plugin_use_ddc
+  Pg 'Shougo/ddc.vim'
+  Pg 'Shougo/ddc-around'
+  Pg 'Shougo/ddc-nextword'
+  Pg 'Shougo/ddc-matcher_head'
+  Pg 'Shougo/ddc-matcher_length'
+  Pg 'Shougo/ddc-sorter_rank'
+  Pg 'Shougo/ddc-converter_remove_overlap'
+  Pg 'Shougo/ddc-omni'
+  Pg 'Shougo/ddc-cmdline'
+  Pg 'Shougo/ddc-cmdline-history'
+  Pg 'Shougo/ddc-line'
+  Pg 'Shougo/pum.vim'
+  Pg 'Shougo/ddc-zsh', {'ft': 'zsh'}
+  Pg 'Shougo/neco-vim', {'ft': ['vim', 'toml', 'markdown']}
+
+  Pg 'LumaKernel/ddc-file'
+  Pg 'shun/ddc-vim-lsp'
+  Pg 'prabirshrestha/vim-lsp'
+  Pg 'mattn/vim-lsp-icons'
+  Pg 'mattn/vim-lsp-settings'
+  Pg 'delphinus/ddc-treesitter'
+  Pg 'tani/ddc-oldfiles'
+  Pg 'tani/ddc-git'
+  Pg 'tani/ddc-path'
+  Pg 'tani/ddc-fuzzy'
+endif
 
 
 " vim:fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:
