@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/12/18 23:24:23.
+" Last Change : 2021/12/19 17:08:18.
 " =============================================================================
 
 " Init:
@@ -475,12 +475,12 @@ let g:plugin_use_linearf = v:false && has('nvim')
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
-let g:plugin_use_fern = v:false
+let g:plugin_use_fern = v:true
 let g:plugin_use_defx = v:false
 let g:plugin_use_molder = v:false
 let g:plugin_use_vaffle = v:false
 let g:plugin_use_viler = v:false
-let g:plugin_use_coc_explorer = v:true
+let g:plugin_use_coc_explorer = v:false
 
 let g:plugin_use_quickrun = v:true
 let g:plugin_use_asyncrun = v:false

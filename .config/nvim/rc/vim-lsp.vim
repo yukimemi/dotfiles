@@ -36,7 +36,7 @@ function! s:on_lsp_buffer_enabled() abort
   " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
   vmap <silent><buffer> <localleader>a <Plug>(lsp-code-action)
 
-  au MyAutoCmd BufWritePre <buffer> LspDocumentFormat
+  au MyAutoCmd BufWritePre <buffer> LspDocumentFormatSync
 endfunction
 
 au MyAutoCmd User lsp_buffer_enabled call <SID>on_lsp_buffer_enabled()
