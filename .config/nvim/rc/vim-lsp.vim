@@ -1,3 +1,7 @@
+if !g:plugin_use_vimlsp
+  finish
+endif
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -30,11 +34,11 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <silent><buffer> [g <plug>(lsp-previous-diagnostic)
 
   " Remap for format selected region
-  vmap <silent><buffer> <localleader>f <plug>(lsp-document-range-format)
+  xmap <silent><buffer> <localleader>f <plug>(lsp-document-range-format)
   nmap <silent><buffer> <localleader>f <plug>(lsp-document-format)
 
   " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-  vmap <silent><buffer> <localleader>a <Plug>(lsp-code-action)
+  xmap <silent><buffer> <localleader>a <Plug>(lsp-code-action)
 
   au MyAutoCmd BufWritePre <buffer> LspDocumentFormatSync
 endfunction

@@ -1,3 +1,7 @@
+if !g:plugin_use_nvimlsp
+	finish
+endif
+
 lua << EOF
 local nvim_lsp = require('lspconfig')
 

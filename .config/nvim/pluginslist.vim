@@ -59,6 +59,7 @@ Pg 'Matsuuu/pinkmare', {'type': 'opt'}
 
 " Utility:
 " Pg 'aiya000/aho-bakaup.vim', {'event': 'BufWritePre'}
+" Pg 'gelguy/wilder.nvim', {'event': ['CmdlineEnter', 'CmdwinEnter']}
 " Pg 'liuchengxu/vim-which-key', {'event': 'VimEnter'}
 " Pg 'liuchengxu/vista.vim', {'event': 'VimEnter'}
 " Pg 'psliwka/vim-smoothie', {'event': g:lazy_events}
@@ -76,7 +77,6 @@ Pg 'airblade/vim-rooter', {'event': g:lazy_events}
 Pg 'cohama/lexima.vim', {'if': g:plugin_use_lexima}
 Pg 'da-x/name-assign.vim', {'event': 'VimEnter'}
 Pg 'editorconfig/editorconfig-vim', {'event': 'VimEnter'}
-" Pg 'gelguy/wilder.nvim', {'event': ['CmdlineEnter', 'CmdwinEnter']}
 Pg 'glidenote/memolist.vim', {'cmd': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pg 'haya14busa/vim-edgemotion', {'event': g:lazy_events}
 Pg 'itchyny/vim-winfix', {'event': 'BufRead'}
@@ -85,6 +85,7 @@ Pg 'kwkarlwang/bufresize.nvim', {'event': g:lazy_events}
 Pg 'lambdalisue/mr-quickfix.vim'
 Pg 'lambdalisue/mr.vim'
 Pg 'lambdalisue/readablefold.vim', {'event': g:lazy_events}
+Pg 'lambdalisue/vim-backslash', {'ft': 'vim'}
 Pg 'lambdalisue/vim-findent', {'cmd': 'Findent'}
 Pg 'lilydjwg/colorizer', {'event': g:lazy_events}
 Pg 'mattn/vim-lexiv', {'if': g:plugin_use_lexiv}
@@ -343,14 +344,15 @@ Pg 'p00f/nvim-ts-rainbow', {'if': has('nvim'), 'event': 'BufRead'}
 
 
 " Denops:
+Pg 'kat0h/bufpreview.vim'
+Pg 'monaqa/dps-dial.vim'
+Pg 'tamago324/dps-gitignore'
 Pg 'vim-denops/denops.vim'
 Pg 'yuki-yano/dps-zero.vim'
-Pg 'tamago324/dps-gitignore'
 Pg 'yukimemi/dps-ahdr'
-Pg 'yukimemi/dps-autocursor'
 Pg 'yukimemi/dps-asyngrep'
+Pg 'yukimemi/dps-autocursor'
 Pg 'yukimemi/dps-walk'
-Pg 'kat0h/bufpreview.vim', {'ft': ['markdown', 'pandoc.markdown', 'rmd'], 'cmd':  ['PreviewMarkdown', 'PreviewMarkdownStop', 'PreviewMarkdownToggle']}
 
 if g:plugin_use_ddc
   Pg 'Shougo/ddc.vim'
@@ -367,17 +369,28 @@ if g:plugin_use_ddc
   Pg 'Shougo/pum.vim'
   Pg 'Shougo/ddc-zsh', {'ft': 'zsh'}
   Pg 'Shougo/neco-vim', {'ft': ['vim', 'toml', 'markdown']}
+  Pg 'Shougo/ddc-rg', {'if': executable('rg')}
 
   Pg 'LumaKernel/ddc-file'
-  Pg 'shun/ddc-vim-lsp'
-  Pg 'prabirshrestha/vim-lsp'
-  Pg 'mattn/vim-lsp-icons'
-  Pg 'mattn/vim-lsp-settings'
   Pg 'delphinus/ddc-treesitter'
-  Pg 'tani/ddc-oldfiles'
-  Pg 'tani/ddc-git'
-  Pg 'tani/ddc-path'
+  Pg 'matsui54/ddc-buffer'
+  Pg 'matsui54/denops-popup-preview.vim'
   Pg 'tani/ddc-fuzzy'
+  Pg 'tani/ddc-git'
+  Pg 'tani/ddc-oldfiles'
+  Pg 'tani/ddc-path'
+
+  if g:plugin_use_vimlsp
+    Pg 'prabirshrestha/vim-lsp'
+    Pg 'mattn/vim-lsp-icons'
+    Pg 'mattn/vim-lsp-settings'
+    Pg 'shun/ddc-vim-lsp'
+  endif
+  if g:plugin_use_nvimlsp
+    Pg 'neovim/nvim-lspconfig'
+    Pg 'williamboman/nvim-lsp-installer'
+    Pg 'Shougo/ddc-nvim-lsp'
+  endif
 endif
 
 

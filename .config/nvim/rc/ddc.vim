@@ -4,14 +4,17 @@ endif
 
 inoremap <silent><expr> <c-f> ddc#complete_common_string()
 
-" let s:defult_sources = ['around', 'nextword', 'ddc-path', 'git-file', 'git-commit', 'git-branch', 'file']
-let s:defult_sources = ['vim-lsp', 'around', 'nextword', 'file']
-let s:defult_sources_nvim = ['treesitter'] + s:defult_sources
-let s:defult_sources_vim = s:defult_sources
+" let s:default_sources = ['around', 'nextword', 'ddc-path', 'git-file', 'git-commit', 'git-branch', 'file']
+let s:default_sources = ['around', 'buffer', 'nextword', 'file', 'rg']
+if g:plugin_use_vimlsp
+	let s:default_sources = ['vim-lsp'] + s:default_sources
+endif
+if g:plugin_use_nvimlsp
+	let s:default_sources = ['nvim-lsp'] + s:default_sources
+endif
 
-" let s:lsp_sources_nvim = ['nvim-lsp'] + s:defult_sources_nvim
-" let s:lsp_sources_nvim = ['vim-lsp'] + s:defult_sources_nvim
-" let s:lsp_sources_vim = ['vim-lsp'] + s:defult_sources_vim
+let s:defult_sources_nvim = ['treesitter'] + s:default_sources
+let s:defult_sources_vim = s:default_sources
 
 let s:lsp_languages = ['typescript', 'ps1', 'vim', 'rust', 'go', 'json']
 
@@ -28,11 +31,11 @@ function! CommandlinePre(mode) abort
 	let s:prev_buffer_config = ddc#custom#get_buffer()
 	if a:mode ==# ':'
 		call ddc#custom#patch_buffer('sources',
-						\ ['cmdline', 'cmdline-history', 'file', 'nextword', 'around'])
+						\ ['cmdline', 'cmdline-history', 'file', 'nextword', 'buffer', 'around'])
 		call ddc#custom#patch_buffer('keywordPattern', '[0-9a-zA-Z_:#]*')
 	else
 		call ddc#custom#patch_buffer('sources',
-						\ ['around', 'line', 'nextword'])
+						\ ['around', 'buffer', 'line', 'nextword'])
 	endif
 
 	au MyAutoCmd User DDCCmdlineLeave ++once call CommandlinePost()
@@ -67,6 +70,7 @@ call ddc#custom#patch_global(
       \ s:defult_sources_nvim :
       \ s:defult_sources_vim,
       \ )
+
 call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
       \   'ignoreCase': v:true,
@@ -80,6 +84,9 @@ call ddc#custom#patch_global('sourceOptions', {
       \ 'around': {
       \   'mark': 'A',
       \   'matchers': ['matcher_head', 'matcher_length'],
+      \ },
+      \ 'buffer': {
+      \   'mark': 'B'
       \ },
       \ 'necovim': {
       \   'mark': 'vim'
@@ -101,11 +108,11 @@ call ddc#custom#patch_global('sourceOptions', {
       \   'isVolatile': v:true,
       \ },
       \ 'nvim-lsp': {
-      \   'mark': 'nlsp',
+      \   'mark': 'lsp',
       \   'forceCompletionPattern': '\.\w*|:\w*|->\w*'
       \ },
       \ 'vim-lsp': {
-      \   'mark': 'vlsp',
+      \   'mark': 'lsp',
       \   'forceCompletionPattern': '\.\w*|:\w*|->\w*'
       \ },
       \ 'file': {
@@ -115,8 +122,22 @@ call ddc#custom#patch_global('sourceOptions', {
       \ },
 			\ 'path': { 'mark': 'P',
 			\   'cmd': ['fd', '--max-depth', '5']
-			\ }
+			\ },
+      \ 'rg': {
+      \   'mark': 'rg',
+      \   'matchers': ['matcher_head', 'matcher_length'],
+      \   'minAutoCompleteLength': 3,
+      \ },
       \ })
+
+call ddc#custom#patch_global('sourceParams', {
+			\ 'buffer': {
+			\   'requireSameFiletype': v:false,
+			\   'limitBytes': 5000000,
+			\   'fromAltBuf': v:true,
+			\   'forceCollect': v:true,
+			\ }
+			\ })
 
 call ddc#custom#patch_filetype(
       \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
@@ -148,22 +169,16 @@ call ddc#custom#patch_filetype(['FineCmdlinePrompt'], {
 			\ 'specialBufferCompletion': v:true,
 			\ })
 
-" inoremap <silent><expr> <TAB>
-"			\ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-"			\ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-"			\ '<TAB>' : ddc#manual_complete()
-" inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<cr>
-" inoremap <c-n>   <Cmd>call pum#map#select_relative(+1)<cr>
-" inoremap <c-p>   <Cmd>call pum#map#select_relative(-1)<cr>
-inoremap <c-n>   <Cmd>call pum#map#insert_relative(+1)<cr>
-inoremap <c-p>   <Cmd>call pum#map#insert_relative(-1)<cr>
-inoremap <tab>   <Cmd>call pum#map#confirm()<cr>
-" inoremap <c-e>   <Cmd>call pum#map#cancel()<cr>
+inoremap <silent>       <c-n> <Cmd>call pum#map#insert_relative(+1)<cr>
+inoremap <silent>       <c-p> <Cmd>call pum#map#insert_relative(-1)<cr>
+inoremap <silent>       <tab> <Cmd>call pum#map#confirm()<cr>
 inoremap <silent><expr> <c-e> ddc#map#extend()
+" inoremap <c-e>   <Cmd>call pum#map#cancel()<cr>
 
 nnoremap : <Cmd>call CommandlinePre(':')<cr>:
 nnoremap ? <Cmd>call CommandlinePre('/')<cr>?
 nnoremap / <Cmd>call CommandlinePre('/')<cr>/
 
 call ddc#enable()
+
 

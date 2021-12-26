@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/12/19 17:08:18.
+" Last Change : 2021/12/25 20:56:43.
 " =============================================================================
 
 " Init:
@@ -48,7 +48,7 @@ endif
 
 " Set mapleader.
 let g:mapleader = "\<space>"
-let g:maplocalleader = ','
+let g:maplocalleader = '\\'
 
 " Utility:
 " Set path.
@@ -270,7 +270,7 @@ nnoremap <silent><c-h> gT
 " noremap <expr> <c-e> (line('w$') >= line('$') ? 'j' : "\<c-e>")
 
 " Useful save mappings.
-nnoremap <silent> <localleader><localleader> :<c-u>update<cr>
+nnoremap <silent> <leader><leader> :<c-u>update<cr>
 
 " Paste continuously.
 vnoremap <c-p> "0p<cr>
@@ -339,7 +339,7 @@ nnoremap <silent> sQ :<c-u>qa<cr>
 nnoremap <silent> sbk :<c-u>bd!<cr>
 nnoremap <silent> sbq :<c-u>q!<cr>
 
-nnoremap <localleader>o :<c-u>call <SID>open_current_dir()<cr>
+nnoremap <leader>o :<c-u>call <SID>open_current_dir()<cr>
 
 " Change background color
 nnoremap <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<cr>
@@ -456,7 +456,8 @@ let g:plugin_use_coc = v:false
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
 let g:plugin_use_ddc = v:true
-let g:plugin_use_vimlsp = v:false
+let g:plugin_use_vimlsp = v:true
+let g:plugin_use_nvimlsp = v:false
 
 let g:plugin_use_ale = v:false
 
