@@ -79,6 +79,7 @@ Pg 'da-x/name-assign.vim', {'event': 'VimEnter'}
 Pg 'editorconfig/editorconfig-vim', {'event': 'VimEnter'}
 Pg 'glidenote/memolist.vim', {'cmd': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pg 'haya14busa/vim-edgemotion', {'event': g:lazy_events}
+Pg 'hrsh7th/vim-seak', {'event': 'BufRead'}
 Pg 'itchyny/vim-winfix', {'event': 'BufRead'}
 Pg 'junegunn/vim-easy-align', {'event': g:lazy_events}
 Pg 'kwkarlwang/bufresize.nvim', {'event': g:lazy_events}
@@ -158,13 +159,15 @@ Pg 'osyo-manga/vim-operator-highlighter', {'event': g:lazy_events}
 
 " Search:
 " Pg 'eugen0329/vim-esearch', {'event': 'BufRead'}
+" Pg 'hrsh7th/vim-eft', {'event': 'BufRead'}
+" Pg 'inside/vim-search-pulse', {'event': g:lazy_events}
 " Pg 'kevinhwang91/nvim-hlslens', {'event': 'VimEnter', 'if': has('nvim')}
 " Pg 'mhinz/vim-grepper', {'event': 'VimEnter'}
 " Pg 'pechorin/any-jump.vim', {'cmd': ['AnyJumpLastResults', 'AnyJumpBack', 'AnyJumpVisual', 'AnyJump']}
 " Pg 'ripxorip/aerojump.nvim', {'event': 'BufRead', 'if': has('nvim')}
 Pg 'haya14busa/vim-asterisk', {'event': 'BufRead'}
-" Pg 'inside/vim-search-pulse', {'event': g:lazy_events}
-Pg 'markonm/traces.vim', {'event': 'VimEnter'}
+Pg 'markonm/traces.vim', {'event': 'BufRead'}
+Pg 'unblevable/quick-scope', {'event': 'BufRead'}
 
 " Shell:
 " Pg 'Shougo/deol.nvim', {'cmd': ['Deol', 'DeolCd', 'DeolEdit'], 'do': 'silent! UpdateRemotePlugins'}
@@ -349,6 +352,7 @@ Pg 'monaqa/dps-dial.vim'
 Pg 'tamago324/dps-gitignore'
 Pg 'vim-denops/denops.vim'
 Pg 'yuki-yano/dps-zero.vim'
+Pg 'yuki-yano/fuzzy-motion.vim'
 Pg 'yukimemi/dps-ahdr'
 Pg 'yukimemi/dps-asyngrep'
 Pg 'yukimemi/dps-autocursor'

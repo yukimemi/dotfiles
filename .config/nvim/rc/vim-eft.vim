@@ -1,5 +1,6 @@
 nmap ; <Plug>(eft-repeat)
 xmap ; <Plug>(eft-repeat)
+omap ; <Plug>(eft-repeat)
 
 nmap f <Plug>(eft-f)
 xmap f <Plug>(eft-f)
