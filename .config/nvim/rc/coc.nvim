@@ -144,20 +144,22 @@ if s:plugin_use_cocfzf
   nmap <silent> [fzf-p]l     :<C-u>CocCommand fzf-preview.LocationList<CR>
 endif
 
-nnoremap <silent> <leader>cc :<c-u>CocList<cr>
-nnoremap <silent> <leader>cD :<c-u>CocList files --hidden ~/.dotfiles<cr>
-nnoremap <silent> <leader>cv :<c-u>CocList files --hidden ~/.cache<cr>
-nnoremap <silent> <leader>cm :<c-u>CocList files --hidden ~/.memolist<cr>
-nnoremap <silent> <leader>cs :<c-u>CocList files --hidden ~/src<cr>
-nnoremap <silent> <leader>cb :<c-u>CocList buffers<cr>
-nnoremap <silent> <leader>ch :<c-u>CocList cmdhistory<cr>
-nnoremap <silent> <leader>cH :<c-u>CocList helptags<cr>
-nnoremap <silent> <leader>cu :<c-u>CocList mru<cr>
-nnoremap <silent> <leader>ct :<c-u>CocList todolist<cr>
-nnoremap <silent> <leader>cS :<c-u>CocList -I symbols<cr>
-nnoremap <silent> <leader>cF :<c-u>CocList filetypes<cr>
-nnoremap <silent> <leader>cg :<c-u>CocList --no-quit grep<cr>
-nnoremap <silent> <leader>cr :<c-u>CocListResume<cr>
+if g:plugin_use_coclist
+  nnoremap <silent> <leader>cc :<c-u>CocList<cr>
+  nnoremap <silent> <leader>cD :<c-u>CocList files --hidden ~/.dotfiles<cr>
+  nnoremap <silent> <leader>cv :<c-u>CocList files --hidden ~/.cache<cr>
+  nnoremap <silent> <leader>cm :<c-u>CocList files --hidden ~/.memolist<cr>
+  nnoremap <silent> <leader>cs :<c-u>CocList files --hidden ~/src<cr>
+  nnoremap <silent> <leader>cb :<c-u>CocList buffers<cr>
+  nnoremap <silent> <leader>ch :<c-u>CocList cmdhistory<cr>
+  nnoremap <silent> <leader>cH :<c-u>CocList helptags<cr>
+  nnoremap <silent> <leader>cu :<c-u>CocList mru<cr>
+  nnoremap <silent> <leader>ct :<c-u>CocList todolist<cr>
+  nnoremap <silent> <leader>cS :<c-u>CocList -I symbols<cr>
+  nnoremap <silent> <leader>cF :<c-u>CocList filetypes<cr>
+  nnoremap <silent> <leader>cg :<c-u>CocList --no-quit grep<cr>
+  nnoremap <silent> <leader>cr :<c-u>CocListResume<cr>
+endif
 
 " coc-snippet
 " Use <c-k> for trigger snippet expand.

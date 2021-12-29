@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/12/25 20:56:43.
+" Last Change : 2021/12/29 19:33:32.
 " =============================================================================
 
 " Init:
@@ -52,7 +52,6 @@ let g:maplocalleader = '\\'
 
 " Utility:
 " Set path.
-set shellslash
 let $CACHE = expand('~/.cache')
 if has('nvim')
   let $CACHE_HOME = expand('$CACHE/nvim')
@@ -90,15 +89,11 @@ endfunction
 
 function! s:open_current_dir() abort
   if g:is_windows
-    let s:save_shellslash = &shellslash
-    set noshellslash
     if !has('nvim')
       exe printf("silent! !start \"%s\"", expand("%:p:h"))
     else
       exe printf("silent! !explorer \"%s\"", expand("%:p:h"))
     endif
-    let &shellslash = s:save_shellslash
-    unlet s:save_shellslash
   else
     exe printf("silent! !open \"%s\"", expand("%:p:h"))
   endif
@@ -167,7 +162,7 @@ if has('nvim')
 endif
 
 " python
-if g:is_windows && has('nvim')
+if g:is_windows
   let g:python3_host_prog = expand('$USERPROFILE') . '/AppData/Local/Programs/Python/Python310/python.exe'
 endif
 
@@ -433,9 +428,9 @@ set wildcharm=<tab>
 cnoremap <expr> <tab> '<cmd>set nosmartcase<cr><tab><cmd>let &smartcase = ' .. &smartcase .. '<cr>'
 
 " Plugin:
-let s:use_dein = v:false
+let s:use_dein = v:true
 let s:use_vimplug = v:false
-let s:use_minpac = v:true
+let s:use_minpac = v:false
 let s:use_packager = v:false
 let s:use_volt = v:false
 let s:use_pack = v:false
@@ -468,6 +463,7 @@ let g:plugin_use_ctrlp = v:true
 let g:plugin_use_clap = v:false
 let g:plugin_use_fzf = v:false
 let g:plugin_use_cocfzf = v:false
+let g:plugin_use_coclist = v:false
 let g:plugin_use_fz = v:false
 let g:plugin_use_denite = v:false
 let g:plugin_use_quickpick = v:false
@@ -490,7 +486,7 @@ let g:plugin_use_gina = v:true
 let g:plugin_use_gin = v:false
 
 let g:plugin_use_neoterm = v:false
-let g:plugin_use_toggleterm = v:true
+let g:plugin_use_toggleterm = v:false
 let g:plugin_use_floaterm = v:false
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
@@ -568,6 +564,5 @@ if has('nvim')
   exe "lua require('init')"
 endif
 
-set noshellslash
 filetype plugin indent on
 

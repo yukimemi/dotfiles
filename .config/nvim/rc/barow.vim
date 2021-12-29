@@ -1,3 +1,7 @@
+if !g:plugin_use_barow
+	finish
+endif
+
 function! MyBarowBomb() abort
   return &bomb ? ' bomb ' : ''
 endfunction

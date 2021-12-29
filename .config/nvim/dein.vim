@@ -11,11 +11,9 @@ let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if !isdirectory(s:dein_repo_dir)
   execute 'silent! !git clone --depth 1 https://github.com/Shougo/dein.vim ' . s:dein_repo_dir
 endif
-execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+execute 'set runtimepath^=' . substitute(fnamemodify(s:dein_repo_dir, ':p') , '[/\\]$', '', '')
 
-if !g:is_windows
-  let g:dein#auto_recache = v:true
-endif
+let g:dein#auto_recache = v:true
 let g:dein#enable_notification = v:true
 let g:dein#install_check_diff = v:true
 let g:dein#install_github_api_token = $DEIN_GITHUB_API_TOKEN
@@ -48,5 +46,6 @@ call dein#save_state()
 " Check and install.
 if !v:vim_did_enter && dein#check_install()
   call dein#install()
+  " call dein#check_update(v:true)
 endif
 

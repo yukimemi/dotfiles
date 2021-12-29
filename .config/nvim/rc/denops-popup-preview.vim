@@ -1,4 +1,4 @@
-if !g:plugin_use_ddc
+if !g:plugin_use_ddc || !has('nvim')
 	finish
 endif
 

@@ -20,7 +20,7 @@ let g:lightline = {
       \   'right': [
       \     [ 'lineinfo' ],
       \     [ 'filetype', 'fileencoding', 'fileformat' ],
-      \     [ 'scount', 'noscrollbar' ]
+      \     [ 'scount', 'noscrollbar', 'lsp_errors', 'lsp_warnings', 'lsp_ok' ]
       \   ],
       \ },
       \ 'component': {
