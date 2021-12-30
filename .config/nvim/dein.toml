@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/12/30 10:28:12.
+# Last Change: 2021/12/30 14:31:20.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1450,12 +1450,13 @@ hook_add = '''
 source $VIM_PATH/rc/filetype.nvim
 '''
 
-# [[plugins]]
-# repo = 'sheerun/vim-polyglot'
-# hook_add = '''
-# source $VIM_PATH/rc/vim-polyglot.vim
-# '''
-# merged = 0
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+if = "!has('nvim')"
+hook_add = '''
+source $VIM_PATH/rc/vim-polyglot.vim
+'''
+merged = 0
 
 # ==================== Filetype (markdown) =======
 

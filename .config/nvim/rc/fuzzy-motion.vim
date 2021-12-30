@@ -1,2 +1,2 @@
-au MyAutoCmd BufEnter * if &buftype isnot# "quickfix" | nnoremap <buffer> <cr> <cmd>FuzzyMotion<cr> | endif
+au MyAutoCmd BufEnter * if !(&buftype is# "quickfix" || &buftype is# "qf") | nnoremap <buffer> <cr> <cmd>FuzzyMotion<cr> | endif
 

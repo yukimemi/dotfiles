@@ -33,11 +33,7 @@ if has('guess_encode')
 else
   set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1
 endif
-if g:is_windows
-  set fileformats=dos,unix
-else
-  set fileformats=unix,dos
-endif
+set fileformats=unix,dos
 
 " True color.
 set termguicolors
