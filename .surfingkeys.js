@@ -1,3 +1,26 @@
+// https://github.com/brookhong/Surfingkeys/wiki/Migrate-your-settings-from-0.9.74-to-1.0
+const {
+  Clipboard,
+  Front,
+  Hints,
+  RUNTIME,
+  Visual,
+  aceVimMap,
+  addSearchAlias,
+  cmap,
+  getClickableElements,
+  imap,
+  imapkey,
+  map,
+  mapkey,
+  readText,
+  removeSearchAlias,
+  tabOpenLink,
+  unmap,
+  unmapAllExcept,
+  vmapkey,
+} = api;
+
 // j/k scrolls in one step with size as 70, you could change it as below:
 settings.smoothScroll = true;
 settings.scrollStepSize = 140;
@@ -117,7 +140,7 @@ mapkey("go", "#10Jump to vim-like mark in current tab.", function (mark) {
 });
 
 // Google jp 1 year
-addSearchAliasX(
+addSearchAlias(
   "1",
   "Google jp 1 year",
   "https://www.google.co.jp/search?q={0}&tbs=qdr:y,lr:lang_1ja&lr=lang_ja"
@@ -135,14 +158,14 @@ addSearchAlias(
 );
 addSearchAlias("map", "Google Maps", "https://www.google.com.ar/maps/search/");
 
-addSearchAliasX("ht", "hatena tag", "http://b.hatena.ne.jp/search/tag?q=");
+addSearchAlias("ht", "hatena tag", "http://b.hatena.ne.jp/search/tag?q=");
 
 // Qiita
-addSearchAliasX("qi", "Qiita", "https://qiita.com/search?q=");
-addSearchAliasX("qt", "Qiita tag", "https://qiita.com/tags/");
+addSearchAlias("qi", "Qiita", "https://qiita.com/search?q=");
+addSearchAlias("qt", "Qiita tag", "https://qiita.com/tags/");
 
 // Twitter
-addSearchAliasX(
+addSearchAlias(
   "tw",
   "Twitter",
   "https://twitter.com/search?q=",
@@ -160,7 +183,7 @@ mapkey("otw", "#8Open Search with alias tw", function () {
 });
 
 // Yahoo! real time
-addSearchAliasX(
+addSearchAlias(
   "r",
   "Yahoo!リアルタイム検索",
   "http://realtime.search.yahoo.co.jp/search?ei=UTF-8&p="
@@ -170,14 +193,14 @@ mapkey("or", "#8Open Search with alias r", function () {
 });
 
 // Wikipedia jp
-addSearchAliasX(
+addSearchAlias(
   "wi",
   "Wikipedia",
   "https://ja.wikipedia.org/w/index.php?search="
 );
 
 // npm
-addSearchAliasX(
+addSearchAlias(
   "np",
   "npm",
   "https://www.npmjs.com/search?q=",
@@ -219,7 +242,7 @@ addSearchAliasX(
 );
 
 // Docker Hub
-addSearchAliasX(
+addSearchAlias(
   "dh",
   "Docker Hub",
   "https://hub.docker.com/search/?q=",
@@ -248,7 +271,7 @@ addSearchAliasX(
 );
 
 // Amazon jp
-addSearchAliasX(
+addSearchAlias(
   "am",
   "Amazon",
   "https://www.amazon.co.jp/s?k=",
@@ -258,7 +281,7 @@ addSearchAliasX(
 );
 
 // Amazon jp Kindle
-addSearchAliasX(
+addSearchAlias(
   "k",
   "Amazon Kindle",
   "https://www.amazon.co.jp/s?i=digital-text&k=",
@@ -271,7 +294,7 @@ mapkey("ok", "#8Open Search with alias k", function () {
 });
 
 // alc
-addSearchAliasX("a", "alc", "https://eow.alc.co.jp/search?q=");
+addSearchAlias("a", "alc", "https://eow.alc.co.jp/search?q=");
 mapkey("oa", "#8Open Search with alias a", function () {
   Front.openOmnibar({ type: "SearchEngine", extra: "a" });
 });
