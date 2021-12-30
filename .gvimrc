@@ -14,8 +14,8 @@ set background=dark
 silent! colorscheme pinkmare
 
 " font
-set gfn=Cica:h12
-set gfw=Cica:h12
+set gfn=Cica:h10
+set gfw=Cica:h10
 set printfont=Cica:h8
 
 " gui

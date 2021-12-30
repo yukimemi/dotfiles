@@ -1,3 +1,7 @@
+if !g:plugin_use_quickrun
+  finish
+endif
+
 let g:quickrun_config = get(g:, 'quickrun_config', {})
 let g:quickrun_config['_'] = get(g:quickrun_config, '_', {})
 

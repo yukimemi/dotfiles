@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2021/12/29 10:54:07.
+# Last Change: 2021/12/30 10:28:12.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -600,12 +600,12 @@ hook_add = '''
 repo = 'mattn/vim-lexiv'
 if = "g:plugin_use_lexiv"
 
-[[plugins]]
-repo = 'monkoose/vim9-stargate'
-if = "!has('nvim')"
-hook_add = '''
-source $VIM_PATH/rc/vim9-stargate.vim
-'''
+# [[plugins]]
+# repo = 'monkoose/vim9-stargate'
+# if = "!has('nvim')"
+# hook_add = '''
+# source $VIM_PATH/rc/vim9-stargate.vim
+# '''
 
 [[plugins]]
 repo = 'rcarriga/nvim-notify'
@@ -1007,7 +1007,6 @@ depends = 'denops.vim'
 [[plugins]]
 repo = 'yuki-yano/fuzzy-motion.vim'
 depends = 'denops.vim'
-if = "has('nvim')"
 hook_add = '''
 source $VIM_PATH/rc/fuzzy-motion.vim
 '''
@@ -1015,7 +1014,6 @@ source $VIM_PATH/rc/fuzzy-motion.vim
 [[plugins]]
 repo = 'monaqa/dps-dial.vim'
 depends = 'denops.vim'
-on_map = '<Plug>'
 hook_add = '''
 source $VIM_PATH/rc/dps-dial.vim
 '''
@@ -1379,6 +1377,7 @@ if = "g:plugin_use_vimlsp"
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
 if = "g:plugin_use_vimlsp"
+# rev = 'b84cb9d04bd06a410d28897e2bd3cf1d02af202b'
 
 [[plugins]]
 repo = 'prabirshrestha/async.vim'
@@ -1462,6 +1461,10 @@ source $VIM_PATH/rc/filetype.nvim
 
 [[plugins]]
 repo = 'dhruvasagar/vim-table-mode'
+on_ft = ['markdown']
+
+[[plugins]]
+repo = 'SidOfc/mkdx'
 on_ft = ['markdown']
 
 # [[plugins]]

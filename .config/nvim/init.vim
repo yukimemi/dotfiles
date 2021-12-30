@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/12/29 19:33:32.
+" Last Change : 2021/12/30 10:28:28.
 " =============================================================================
 
 " Init:
@@ -447,11 +447,11 @@ let plugin_use_galaxyline = v:false
 let g:plugin_use_indent_blankline = v:true
 let g:plugin_use_dps_indent_line = v:false
 
-let g:plugin_use_coc = v:false
+let g:plugin_use_coc = v:true
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
-let g:plugin_use_ddc = v:true
-let g:plugin_use_vimlsp = v:true
+let g:plugin_use_ddc = v:false
+let g:plugin_use_vimlsp = v:false
 let g:plugin_use_nvimlsp = v:false
 
 let g:plugin_use_ale = v:false
