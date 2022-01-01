@@ -21,9 +21,9 @@ nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
 
 " theme
-" let g:airline_solarized_bg = 'dark'
-" let g:airline_theme = 'solarized'
-let g:airline_theme = 'minimalist'
+let g:airline_solarized_bg = 'dark'
+let g:airline_theme = 'solarized'
+" let g:airline_theme = 'minimalist'
 
 let g:airline_mode_map = {
       \ '__'     : '-',
