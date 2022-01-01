@@ -1,1 +1,1 @@
-" let g:qs_lazy_highlight = 1
+let g:qs_lazy_highlight = 1

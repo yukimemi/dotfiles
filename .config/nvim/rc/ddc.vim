@@ -180,8 +180,8 @@ inoremap <silent><expr> <c-e> ddc#map#extend()
 " inoremap <c-e>   <Cmd>call pum#map#cancel()<cr>
 
 nnoremap : <Cmd>call CommandlinePre(':')<cr>:
-nnoremap ? <Cmd>call CommandlinePre('/')<cr>?
-nnoremap / <Cmd>call CommandlinePre('/')<cr>/
+" nnoremap ? <Cmd>call CommandlinePre('/')<cr>?
+" nnoremap / <Cmd>call CommandlinePre('/')<cr>/
 
 call ddc#enable()
 

@@ -18,6 +18,7 @@ function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
   setlocal completeopt+=preview
+  setlocal completeopt-=noinsert
   setlocal shortmess+=c
   nmap <silent><buffer> gd <plug>(lsp-definition)
   nmap <silent><buffer> gy <Plug>(lsp-type-definition)

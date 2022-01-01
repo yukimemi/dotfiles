@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2021/12/30 10:28:28.
+" Last Change : 2022/01/01 15:20:07.
 " =============================================================================
 
 " Init:
@@ -110,6 +110,7 @@ set undofile
 exe 'set undodir=' . s:undo_dir
 exe 'set backupdir=' . s:backup_dir
 exe 'set directory=' . s:directory
+exe 'set directory=' . s:directory
 exe 'set viewdir=' . s:view_dir
 
 " Clipboard.
@@ -148,6 +149,7 @@ set concealcursor=nc
 set shortmess-=S
 set iminsert=0 imsearch=-1
 set list listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
+set completeopt-=noinsert
 if executable('jvgrep')
   set grepprg=jvgrep
 endif
@@ -432,8 +434,8 @@ let s:use_volt = v:false
 let s:use_pack = v:false
 let s:use_packer = v:false
 
-let g:plugin_use_lightline = v:true
-let g:plugin_use_airline = v:false
+let g:plugin_use_lightline = v:false
+let g:plugin_use_airline = v:true
 let g:plugin_use_neoline = v:false
 let g:plugin_use_lualine = v:false
 let g:plugin_use_barow = v:false
@@ -443,11 +445,11 @@ let plugin_use_galaxyline = v:false
 let g:plugin_use_indent_blankline = v:true
 let g:plugin_use_dps_indent_line = v:false
 
-let g:plugin_use_coc = v:true
+let g:plugin_use_coc = v:false
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
-let g:plugin_use_ddc = v:false
-let g:plugin_use_vimlsp = v:false
+let g:plugin_use_ddc = v:true
+let g:plugin_use_vimlsp = v:true
 let g:plugin_use_nvimlsp = v:false
 
 let g:plugin_use_ale = v:false
