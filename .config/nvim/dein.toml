@@ -10,8 +10,8 @@
 repo = "Shougo/dein.vim"
 
 [[plugins]]
-on_cmd = 'DeinUpdate'
 repo = 'wsdjeg/dein-ui.vim'
+on_cmd = 'DeinUpdate'
 
 # ==================== Visual ====================
 
@@ -75,9 +75,9 @@ if = "g:plugin_use_fern"
 repo = "lambdalisue/nerdfont.vim"
 if = "g:plugin_use_fern"
 
-[[plugins]]
-repo = 'lambdalisue/seethrough.vim'
-if = "!has('gui') && !g:is_windows"
+# [[plugins]]
+# repo = 'lambdalisue/seethrough.vim'
+# if = "!has('gui') && !g:is_windows"
 
 [[plugins]]
 repo = 'thinca/vim-fontzoom'
