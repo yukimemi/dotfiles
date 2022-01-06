@@ -12,7 +12,8 @@ endfunction
 au MyAutoCmd FileType xml call <SID>autodate_xml()
 function! s:autodate_xml() abort
   let b:autodate_format       = "%Y%m%d_%H%M%S"
-  let b:autodate_keyword_pre  = '<set key="VERSION">'
+  " let b:autodate_keyword_pre  = '<set key="VERSION">'
+  let b:autodate_keyword_pre  = '\.\{-}VERSION">'
   let b:autodate_keyword_post = '</set>'
 endfunction
 

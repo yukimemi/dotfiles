@@ -25,6 +25,7 @@ function! CommandlinePre(mode) abort
   \ ddc#manual_complete()
   cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
   set wildchar=<C-t>
+  setl completeopt-=noinsert
   "set cmdheight=1
 
   " Overwrite sources

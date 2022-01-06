@@ -48,7 +48,7 @@ noremap <silent> gl $
 nnoremap <silent> Y y$
 
 " Useful save mappings.
-nnoremap <silent> ,, <cmd>Write<cr>
+nnoremap <silent> <space><space> <cmd>Write<cr>
 
 " Open file with explorer.
 nnoremap <silent> ,o <cmd>call VSCodeNotify('revealFileInOS')<cr>

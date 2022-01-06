@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/01/01 11:09:10.
+# Last Change: 2022/01/01 20:44:07.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -447,7 +447,7 @@ repo = 'vim-scripts/autodate.vim'
 hook_add = '''
 source $VIM_PATH/rc/autodate.vim
 '''
-on_event = ['InsertEnter']
+on_event = ['InsertEnter', 'CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'thinca/vim-singleton'
