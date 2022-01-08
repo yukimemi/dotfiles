@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/01/01 20:44:07.
+# Last Change: 2022/01/08 16:42:25.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -456,9 +456,9 @@ source $VIM_PATH/rc/vim-singleton.vim
 '''
 if = "!has('nvim') && has('clientserver')"
 
-[[plugins]]
-repo = 'lilydjwg/colorizer'
-on_event = ['CursorHold', 'FocusLost']
+# [[plugins]]
+# repo = 'lilydjwg/colorizer'
+# on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'machakann/vim-swap'
@@ -640,6 +640,10 @@ on_event = 'BufWritePre'
 hook_add = '''
 source $VIM_PATH/rc/autobackup.vim
 '''
+
+[[plugins]]
+repo = 'rbtnn/vim-qfpopup'
+on_event = ['CursorHold', 'FocusLost']
 
 # ==================== Test ======================
 [[plugins]]

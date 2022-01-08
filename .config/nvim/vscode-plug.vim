@@ -39,6 +39,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 't9md/vim-quickhl'
 Plug 'unblevable/quick-scope'
 Plug 'vim-scripts/autodate.vim'
+Plug 'vim-denops/denops.vim'
+Plug 'yukimemi/dps-ahdr'
 
 call plug#end()
 
