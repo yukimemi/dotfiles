@@ -24,11 +24,11 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # (this is currently required annexes)
-zinit light-mode for \
-  z-shell/z-a-readurl \
-  z-shell/z-a-meta-plugins \
-  annexes
-  ### End of Zinit's installer chunk
+# zinit light-mode for \
+#   z-shell/z-a-readurl \
+#   z-shell/z-a-meta-plugins \
+#   annexes
+### End of Zinit's installer chunk
 
 
 #
