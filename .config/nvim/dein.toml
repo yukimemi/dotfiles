@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/01/08 16:42:25.
+# Last Change: 2022/01/09 22:50:52.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -643,7 +643,7 @@ source $VIM_PATH/rc/autobackup.vim
 
 [[plugins]]
 repo = 'rbtnn/vim-qfpopup'
-on_event = ['CursorHold', 'FocusLost']
+on_ft = ['quickfix', 'qf']
 
 # ==================== Test ======================
 [[plugins]]
@@ -1193,6 +1193,16 @@ if = "has('python3') && g:plugin_use_denite"
 on_cmd = 'Denite'
 
 [[plugins]]
+repo = 'Shougo/ddu.vim'
+if = "g:plugin_use_ddu"
+depends = 'denops.vim'
+[plugins.ftplugin]
+ddu-std = '''
+nnoremap <buffer><silent> <cr> <cmd>call ddu#ui#std#do_action('default')<cr>
+'''
+
+
+[[plugins]]
 if = 'g:plugin_use_quickpick'
 lazy = 1
 repo = 'prabirshrestha/quickpick.vim'
@@ -1311,6 +1321,10 @@ on_source = 'fern.vim'
 depends = ['nerdfont.vim', 'glyph-palette.vim']
 [[plugins]]
 repo = 'lambdalisue/fern-hijack.vim'
+on_source = 'fern.vim'
+[[plugins]]
+repo = 'KosukeMizuno/ctrlp-fern-action.vim'
+depends = ['ctrlp.vim']
 on_source = 'fern.vim'
 
 [[plugins]]
