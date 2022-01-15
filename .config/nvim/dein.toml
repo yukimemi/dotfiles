@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/01/09 22:50:52.
+# Last Change: 2022/01/15 11:52:50.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -75,9 +75,9 @@ if = "g:plugin_use_fern"
 repo = "lambdalisue/nerdfont.vim"
 if = "g:plugin_use_fern"
 
-# [[plugins]]
-# repo = 'lambdalisue/seethrough.vim'
-# if = "!has('gui') && !g:is_windows"
+[[plugins]]
+repo = 'lambdalisue/seethrough.vim'
+if = "!has('gui') && !g:is_windows"
 
 [[plugins]]
 repo = 'thinca/vim-fontzoom'
@@ -641,9 +641,9 @@ hook_add = '''
 source $VIM_PATH/rc/autobackup.vim
 '''
 
-[[plugins]]
-repo = 'rbtnn/vim-qfpopup'
-on_ft = ['quickfix', 'qf']
+# [[plugins]]
+# repo = 'rbtnn/vim-qfpopup'
+# on_ft = ['quickfix', 'qf']
 
 # ==================== Test ======================
 [[plugins]]
@@ -1290,6 +1290,12 @@ on_source = 'barow'
 repo = "doums/barowGit"
 on_source = 'barow'
 
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+if = "g:plugin_use_lualine && has('nvim')"
+hook_add = '''
+source $VIM_PATH/rc/lualine.nvim
+'''
 
 # ==================== Filetree ==================
 

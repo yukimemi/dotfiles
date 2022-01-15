@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/01/09 17:41:56.
+" Last Change : 2022/01/15 12:26:10.
 " =============================================================================
 
 " Init:
@@ -434,10 +434,10 @@ let s:use_volt = v:false
 let s:use_pack = v:false
 let s:use_packer = v:false
 
-let g:plugin_use_lightline = v:false
-let g:plugin_use_airline = v:true
+let g:plugin_use_lightline = !has('nvim')
+let g:plugin_use_airline = v:false
 let g:plugin_use_neoline = v:false
-let g:plugin_use_lualine = v:false
+let g:plugin_use_lualine = has('nvim')
 let g:plugin_use_barow = v:false
 let g:plugin_use_staline = v:false
 let plugin_use_galaxyline = v:false
