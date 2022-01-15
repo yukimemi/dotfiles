@@ -105,11 +105,11 @@ repo = 'mattn/transparency-windows-vim'
 hook_add = '''
 source $VIM_PATH/rc/transparency-windows-vim.vim
 '''
-if = "g:is_windows && has('gui')"
+if = "g:is_windows && has('gui') && !has('nvim')"
 
 [[plugins]]
 repo = 'mattn/vimtweak'
-if = "g:is_windows"
+if = "g:is_windows && !has('nvim')"
 
 [[plugins]]
 repo = "ntpeters/vim-better-whitespace"
@@ -497,8 +497,8 @@ source $VIM_PATH/rc/fin.vim
 '''
 on_cmd = ['Fin']
 
-[[plugins]]
-repo = 'chimay/wheel'
+# [[plugins]]
+# repo = 'chimay/wheel'
 
 [[plugins]]
 repo = 'habamax/vim-winlayout'
@@ -629,9 +629,18 @@ on_cmd = 'StartupTime'
 
 [[plugins]]
 repo = 'unblevable/quick-scope'
+if = "g:plugin_use_quickscope"
 on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/quick-scope.vim
+'''
+
+[[plugins]]
+repo = 'rhysd/clever-f.vim'
+if = "g:plugin_use_cleverf"
+on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $VIM_PATH/rc/clever-f.vim
 '''
 
 [[plugins]]
@@ -644,6 +653,7 @@ source $VIM_PATH/rc/autobackup.vim
 # [[plugins]]
 # repo = 'rbtnn/vim-qfpopup'
 # on_ft = ['quickfix', 'qf']
+# if = "has('nvim')"
 
 # ==================== Test ======================
 [[plugins]]

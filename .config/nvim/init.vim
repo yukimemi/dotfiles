@@ -457,6 +457,9 @@ let g:plugin_use_ale = v:false
 let g:plugin_use_lexima = v:false
 let g:plugin_use_lexiv = v:true
 
+let g:plugin_use_quickscope = v:false
+let g:plugin_use_cleverf = v:true
+
 let g:plugin_use_ctrlp = v:true
 let g:plugin_use_clap = v:false
 let g:plugin_use_fzf = v:false

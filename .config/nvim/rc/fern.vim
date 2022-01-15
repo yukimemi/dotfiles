@@ -19,7 +19,7 @@ let g:fern#renderer = "nerdfont"
 " let g:fern#comparator = "lexical"
 
 " ctrlp-fern-action.vim
-au MyAutoCmd FileType fern nnoremap ; <buffer> <cmd>CtrlPFernAction<cr>
+" au MyAutoCmd FileType fern nnoremap ; <buffer> <cmd>CtrlPFernAction<cr>
 
 function! s:init_fern() abort
   nmap <buffer><expr> <Plug>(fern-my-open-or-expand-or-collapse)
