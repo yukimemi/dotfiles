@@ -21,6 +21,8 @@ let g:searchx = {}
 " Auto jump if the recent input matches to any marker.
 let g:searchx.auto_accept = v:true
 
+let g:searchx.scrolltime = 200
+
 " Marker characters.
 let g:searchx.markers = split('ABCDEFGHIJKLMNOPQRSTUVWXYZ', '.\zs')
 
@@ -29,5 +31,5 @@ function g:searchx.convert(input) abort
   if a:input !~# '\k'
     return '\V' .. a:input
   endif
-  return join(split(a:input, ' '), '.\{-}')
+  return a:input[0] .. substitute(a:input[1:], '\\\@<! ', '.\\{-}', 'g')
 endfunction

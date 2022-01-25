@@ -12,12 +12,15 @@
             "keys": "ctrl+c"
         },
         {
+            "command": "unbound",
+            "keys": "ctrl+v"
+        },
+        {
             "command": "find",
             "keys": "ctrl+shift+f"
         },
         {
-            "command": "paste",
-            "keys": "ctrl+v"
+            "command": "paste"
         },
         {
             "command": 
@@ -39,16 +42,18 @@
         "defaults": 
         {
             "antialiasingMode": "cleartype",
-            "backgroundImageOpacity": 0.5,
+            "backgroundImage": "desktopWallpaper",
+            "backgroundImageOpacity": 0.10000000000000001,
+            "backgroundImageStretchMode": "uniformToFill",
             "colorScheme": "One Half Dark",
             "cursorShape": "vintage",
             "font": 
             {
                 "face": "Cica",
-                "size": 10
+                "size": 12
             },
             "opacity": 50,
-            "padding": "10.10.10.10",
+            "padding": "7",
             "useAcrylic": true
         },
         "list": 
@@ -106,6 +111,12 @@
                 "hidden": true,
                 "name": "Developer PowerShell for VS 2019",
                 "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },

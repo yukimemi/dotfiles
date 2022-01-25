@@ -1,0 +1,3 @@
+let g:beacon_minimal_jump = 5
+
+" vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

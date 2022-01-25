@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/01/15 12:26:10.
+" Last Change : 2022/01/26 01:00:57.
 " =============================================================================
 
 " Init:
@@ -10,6 +10,8 @@ scriptencoding utf-8
 
 filetype off
 filetype plugin indent off
+
+language message C
 
 " Release autogroup in MyAutoCmd.
 augroup MyAutoCmd | autocmd! | augroup END
@@ -28,11 +30,7 @@ let g:is_darwin = has('mac') || has('macunix') || has('gui_macvim')
 let g:is_linux = !g:is_windows && !g:is_cygwin && !g:is_darwin
 
 " Encodings.
-if has('guess_encode')
-  set fileencodings=ucs-bom,utf-8,iso-2022-jp,guess,euc-jp,cp932,latin1
-else
-  set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1
-endif
+set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1
 set fileformats=unix,dos
 
 " True color.
@@ -44,7 +42,7 @@ endif
 
 " Set mapleader.
 let g:mapleader = "\<space>"
-let g:maplocalleader = '\\'
+let g:maplocalleader = '\'
 
 " Utility:
 " Set path.
@@ -94,6 +92,20 @@ function! s:open_current_dir() abort
     exe printf("silent! !open \"%s\"", expand("%:p:h"))
   endif
 endfunction
+
+function! s:keymap(force_map, modes, ...) abort
+  let arg = join(a:000, ' ')
+  let cmd = (a:force_map || arg =~? '<Plug>') ? 'map' : 'noremap'
+  for mode in split(a:modes, '.\zs')
+    if index(split('nvsxoilct', '.\zs'), mode) < 0
+      echoerr 'Invalid mode is detected: ' . mode
+      continue
+    endif
+    execute mode . cmd arg
+  endfor
+endfunction
+
+command! -nargs=+ -bang Keymap call <SID>keymap(<bang>0, <f-args>)
 
 " Basic:
 " undo, swap.
@@ -229,140 +241,111 @@ command! -nargs=1 -complete=command L
 " nnoremap / /\v
 " inoremap %s/ %s/\v
 
-inoremap <silent> jj <ESC>
-nnoremap <silent> j gj
-nnoremap <silent> k gk
-xnoremap <silent> j gj
-xnoremap <silent> k gk
-nnoremap <silent> <Down> gj
-nnoremap <silent> <Up>   gk
-nnoremap <silent> h <Left>
-nnoremap <silent> l <Right>
-inoremap <silent> <c-l> <C-g>U<Right>
+Keymap i  <silent> jj    <esc>
+Keymap nx <silent> j     gj
+Keymap nx <silent> k     gk
+Keymap nx <silent> gj    j
+Keymap nx <silent> gk    k
+Keymap n  <silent> h     <Left>
+Keymap n  <silent> l     <Right>
+Keymap i  <silent> <c-l> <C-g>U<Right>
 
 " Open folding in "l"
-nnoremap <expr> l foldlevel(line('.')) ? "\<Right>zo" : "\<Right>"
+Keymap n <expr> l foldlevel(line('.')) ? "\<Right>zo" : "\<Right>"
 
-noremap <silent> gh ^
-noremap <silent> gl $
-nnoremap <silent> Y y$
+Keymap nx <silent> gh ^
+Keymap nx <silent> gl $
+Keymap n  <silent> Y  y$
 
 " For buffer.
-nnoremap <Tab> :<c-u>bn<cr>
-nnoremap <S-Tab> :<c-u>bp<cr>
-
-" For tab.
-nnoremap <silent><c-l> gt
-nnoremap <silent><c-h> gT
-
-" Benri scroll.
-" http://itchyny.hatenablog.com/entry/2016/02/02/210000
-" noremap <expr> <c-b> max([winheight(0) - 2, 1]) . "\<c-u>" . (line('.') < 1         + winheight(0) ? 'H' : 'L')
-" noremap <expr> <c-f> max([winheight(0) - 2, 1]) . "\<c-d>" . (line('.') > line('$') - winheight(0) ? 'L' : 'H')
-" noremap <expr> <c-y> (line('w0') <= 1         ? 'k' : "\<c-y>")
-" noremap <expr> <c-e> (line('w$') >= line('$') ? 'j' : "\<c-e>")
+" nnoremap <Tab> <cmd>bn<cr>
+" nnoremap <S-Tab> <cmd>bp<cr>
+Keymap nx <tab> %
 
 " Useful save mappings.
-nnoremap <silent> <leader><leader> :<c-u>update<cr>
+Keymap n <silent> <leader><leader> <cmd>update<cr>
 
 " Paste continuously.
-vnoremap <c-p> "0p<cr>
+Keymap x <c-p> "0p<cr>
 
 " Change current directory.
-nnoremap <leader>cd :<c-u>execute ":tcd " . expand("%:p:h")<cr>
+" nnoremap <leader>cd <cmd>execute ":tcd " . expand("%:p:h")<cr>
 
 " Like emacs.
-cnoremap <c-b> <Left>
-cnoremap <c-f> <Right>
-cnoremap <c-a> <Home>
-cnoremap <c-e> <End>
-cnoremap <c-d> <Del>
-cnoremap <c-y> <c-r>
-cnoremap <c-p> <Up>
-cnoremap <c-n> <Down>
-
-" Shortcut enc and ff.
-" https://github.com/thinca/config/blob/master/dotfiles/dot.vim/vimrc#L1300-L1308
-cnoreabbrev ++u ++enc=utf8
-cnoreabbrev ++c ++enc=cp932
-cnoreabbrev ++s ++enc=cp932
-cnoreabbrev ++e ++enc=euc-jp
-cnoreabbrev ++j ++enc=iso-2022-jp
-cnoreabbrev ++x ++ff=unix
-cnoreabbrev ++d ++ff=dos
-cnoreabbrev ++m ++ff=mac
+Keymap c <c-b> <Left>
+Keymap c <c-f> <Right>
+Keymap c <c-a> <Home>
+Keymap c <c-e> <End>
+Keymap c <c-d> <Del>
+Keymap c <c-y> <c-r>
+Keymap c <c-p> <Up>
+Keymap c <c-n> <Down>
 
 " Vim-users.jp - Hack #74: http://vim-users.jp/2009/09/hack74/
-nnoremap <silent> <leader>ev  :<c-u>tabedit $MYVIMRC<cr>
-nnoremap <silent> <leader>eg  :<c-u>tabedit $MYGVIMRC<cr>
+Keymap n <silent> <leader>ev  <cmd>tabedit $MYVIMRC<cr>
+Keymap n <silent> <leader>eg  <cmd>tabedit $MYGVIMRC<cr>
 " Load .gvimrc after .vimrc edited at GVim.
-nnoremap <silent> <leader>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif<cr>
-nnoremap <silent> <leader>rg :<C-u>source $MYGVIMRC<cr>
-
-" Cmdwin.
-" nnoremap <silent> : q:i
-" vnoremap <silent> : q:A
+Keymap n <silent> <leader>rv <cmd>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif<cr>
+Keymap n <silent> <leader>rg <cmd>source $MYGVIMRC<cr>
 
 " nohlsearch.
-nnoremap <silent> <ESC><ESC> :<c-u>nohlsearch<cr>
+Keymap n <silent> <esc><esc> <cmd>nohlsearch<cr>
 
 " Use prefix s.
-nnoremap <silent> s <Nop>
-nnoremap <silent> sj <c-w>j
-nnoremap <silent> sk <c-w>k
-nnoremap <silent> sl <c-w>l
-nnoremap <silent> sh <c-w>h
-nnoremap <silent> sJ <c-w>J
-nnoremap <silent> sK <c-w>K
-nnoremap <silent> sL <c-w>L
-nnoremap <silent> sH <c-w>H
-nnoremap <silent> sr <c-w>r
-nnoremap <silent> s= <c-w>=
-nnoremap <silent> sw <c-w>w
-nnoremap <silent> so <c-w>_<c-w>|
-nnoremap <silent> s0 :<c-u>only<cr>
-nnoremap <silent> sO :<c-u>tabonly<cr>
-nnoremap <silent> sn :<c-u>bn<cr>
-nnoremap <silent> sp :<c-u>bp<cr>
-nnoremap <silent> st :<c-u>tabnew<cr>
-nnoremap <silent> ss :<c-u>sp<cr>
-nnoremap <silent> sv :<c-u>vs<cr>
-nnoremap <silent> sq :<c-u>q<cr>
-nnoremap <silent> sQ :<c-u>qa<cr>
-nnoremap <silent> sbk :<c-u>bd!<cr>
-nnoremap <silent> sbq :<c-u>q!<cr>
+" Keymap n <silent> sj <c-w>j
+" Keymap n <silent> sk <c-w>k
+Keymap n <silent> <c-h> <c-w>h
+Keymap n <silent> <c-j> <c-w>j
+Keymap n <silent> <c-k> <c-w>k
+Keymap n <silent> <c-l> <c-w>l
+Keymap n <silent> s <Nop>
+Keymap n <silent> s0 <cmd>only<cr>
+Keymap n <silent> s= <c-w>=
+Keymap n <silent> sH <c-w>H
+Keymap n <silent> sJ <c-w>J
+Keymap n <silent> sK <c-w>K
+Keymap n <silent> sL <c-w>L
+Keymap n <silent> sO <cmd>tabonly<cr>
+Keymap n <silent> sQ <cmd>qa<cr>
+Keymap n <silent> sbk <cmd>bd!<cr>
+Keymap n <silent> sbq <cmd>q!<cr>
+Keymap n <silent> sn <cmd>bn<cr>
+Keymap n <silent> so <c-w>_<c-w>|
+Keymap n <silent> sp <cmd>bp<cr>
+Keymap n <silent> sq <cmd>q<cr>
+Keymap n <silent> sr <c-w>r
+Keymap n <silent> ss <cmd>sp<cr>
+Keymap n <silent> st <cmd>tabnew<cr>
+Keymap n <silent> sv <cmd>vs<cr>
+Keymap n <silent> sw <c-w>w
 
-nnoremap <leader>o :<c-u>call <SID>open_current_dir()<cr>
+Keymap n <leader>o <cmd>call <SID>open_current_dir()<cr>
 
 " Change background color
-nnoremap <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<cr>
+Keymap n <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<cr>
 
 "  for git mergetool
 if &diff
-  nnoremap <localleader>1 :diffget LOCAL<cr>
-  nnoremap <localleader>2 :diffget BASE<cr>
-  nnoremap <localleader>3 :diffget REMOTE<cr>
-  nnoremap <localleader>u :<c-u>diffupdate<cr>
+  Keymap n <localleader>1 :diffget LOCAL<cr>
+  Keymap n <localleader>2 :diffget BASE<cr>
+  Keymap n <localleader>3 :diffget REMOTE<cr>
+  Keymap n <localleader>u <cmd>diffupdate<cr>
 endif
 
 " hilight over 100 column
 " http://blog.remora.cx/2013/06/source-in-80-columns-2.html
 noremap <Plug>(ToggleColorColumn)
-      \ :<c-u>let &colorcolumn = len(&colorcolumn) > 0 ? '' :
+      \ <cmd>let &colorcolumn = len(&colorcolumn) > 0 ? '' :
       \   join(range(101, 9999), ',')<cr>
 
-nmap <silent> cc <Plug>(ToggleColorColumn)
+Keymap n <silent> cc <Plug>(ToggleColorColumn)
 
-inoremap <silent> <ESC> <ESC>:set iminsert=0<cr>
+Keymap i <silent> <esc> <esc>:set iminsert=0<cr>
 
 
 " Autocmd:
 " Auto mkdir.
 au MyAutoCmd BufWritePre * call <SID>auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
-
-" au MyAutoCmd WinEnter,WinLeave,BufEnter * checktime
-" au MyAutoCmd CursorHold * setl nohlsearch
-" au MyAutoCmd CmdwinEnter * :silent! 1,$-50 delete _ | call cursor("$", 1)
 
 " Reload .vimrc automatically.
 au MyAutoCmd BufWritePost $MYVIMRC silent! nested source $MYVIMRC | redraw
@@ -370,7 +353,7 @@ au MyAutoCmd BufWritePost $MYGVIMRC silent! nested source $MYGVIMRC | redraw
 au MyAutoCmd BufWritePost *.vim silent! nested source $MYVIMRC | redraw
 
 " Auto open cwindow.
-" au MyAutoCmd QuickfixCmdPost make,grep,vimgrep,qf if len(getqflist()) != 0 | copen | endif
+au MyAutoCmd QuickfixCmdPost make,grep,vimgrep,qf if len(getqflist()) != 0 | copen | endif
 
 " Restore last cursor position when open a file.
 au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -380,7 +363,7 @@ au MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe 
 au MyAutoCmd SwapExists * let v:swapchoice = 'o'
 
 " Escape cmd win.
-au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <ESC> :q<cr>
+au MyAutoCmd CmdwinEnter * nnoremap <silent><buffer><nowait> <esc> <cmd>q<cr>
 
 " For git commit.
 au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
@@ -397,8 +380,8 @@ au MyAutoCmd FileChangedShellPost * echohl WarningMsg | echo "File changed on di
 
 if has('gui_running')
   if g:is_windows
-    nnoremap <leader>r :<c-u>simalt ~r<cr>
-    nnoremap <leader>x :<c-u>simalt ~x<cr>
+    nnoremap <leader>r <cmd>simalt ~r<cr>
+    nnoremap <leader>x <cmd>simalt ~x<cr>
   elseif g:is_darwin
     set macmeta
     set transparency=10
@@ -434,10 +417,10 @@ let s:use_volt = v:false
 let s:use_pack = v:false
 let s:use_packer = v:false
 
-let g:plugin_use_lightline = !has('nvim')
+let g:plugin_use_lightline = v:true
 let g:plugin_use_airline = v:false
 let g:plugin_use_neoline = v:false
-let g:plugin_use_lualine = has('nvim')
+let g:plugin_use_lualine = v:false
 let g:plugin_use_barow = v:false
 let g:plugin_use_staline = v:false
 let plugin_use_galaxyline = v:false
@@ -457,8 +440,8 @@ let g:plugin_use_ale = v:false
 let g:plugin_use_lexima = v:false
 let g:plugin_use_lexiv = v:true
 
-let g:plugin_use_quickscope = v:false
-let g:plugin_use_cleverf = v:true
+let g:plugin_use_quickscope = v:true
+let g:plugin_use_cleverf = v:false
 
 let g:plugin_use_ctrlp = v:true
 let g:plugin_use_clap = v:false
@@ -490,6 +473,12 @@ let g:plugin_use_gin = v:false
 let g:plugin_use_neoterm = v:false
 let g:plugin_use_toggleterm = v:false
 let g:plugin_use_floaterm = v:false
+
+let g:plugin_use_beacon = v:false
+let g:plugin_use_columnskip = v:false
+let g:plugin_use_edgemotion = v:true
+
+let g:plugin_use_treesitter = v:false
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1

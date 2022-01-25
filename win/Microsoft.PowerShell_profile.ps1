@@ -38,6 +38,7 @@ function Is-Windows {
 
 # ZLocation
 # Import-Module ZLocation
+
 # Get-ChildItemColor
 # Import-Module Get-ChildItemColor
 # Pscx
@@ -94,30 +95,30 @@ function cd-ls {
   Set-Location $path -ea Stop
   Get-ChildItem
   # Save location.
-  # $funcs = "function Is-Windows { ${Function:Is-Windows} }"
-  # Start-Job {
-  #   param([string]$funcs, [string]$path)
-  #   Invoke-Expression $funcs
-  #   $z = & {
-  #     if (Is-Windows) {
-  #       (Join-Path $env:USERPROFILE ".z")
-  #     }
-  #     else {
-  #       (Join-Path $env:HOME ".z")
-  #     }
-  #   }
-  #   $path | Add-Content -Encoding utf8 $z
-  #   $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) } | Where-Object { Test-Path $_ }
-  #   [array]::Reverse($c)
-  #   if (Get-Command uq -ErrorAction SilentlyContinue) {
-  #     $c | uq | Set-Variable c
-  #   }
-  #   else {
-  #     $c | Sort-Object -Unique | Set-Variable c
-  #   }
-  #   [array]::Reverse($c)
-  #   $c | Set-Content -Encoding utf8 $z
-  # } -ArgumentList $funcs, (Get-Location).Path > $null
+  $funcs = "function Is-Windows { ${Function:Is-Windows} }"
+  Start-Job {
+    param([string]$funcs, [string]$path)
+    Invoke-Expression $funcs
+    $z = & {
+      if (Is-Windows) {
+        (Join-Path $env:USERPROFILE ".z")
+      }
+      else {
+        (Join-Path $env:HOME ".z")
+      }
+    }
+    $path | Add-Content -Encoding utf8 $z
+    $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) } | Where-Object { Test-Path $_ }
+    [array]::Reverse($c)
+    if (Get-Command uq -ErrorAction SilentlyContinue) {
+      $c | uq | Set-Variable c
+    }
+    else {
+      $c | Sort-Object -Unique | Set-Variable c
+    }
+    [array]::Reverse($c)
+    $c | Set-Content -Encoding utf8 $z
+  } -ArgumentList $funcs, (Get-Location).Path > $null
 }
 
 function cdls {
@@ -204,6 +205,10 @@ function r {
   }
 }
 
+function fe {
+  fd | __FILTER | nvim
+}
+
 function v {
   gvim --remote-silent $args
 }
@@ -226,11 +231,10 @@ Set-Alias o Start-Process
 Set-Alias e nvim
 Set-Alias which Get-Command
 Set-Alias df Get-DriveInfoView
-# Remove-Item alias:cd
 # Remove-Alias cd
 Remove-Item alias:cd
-# Set-Alias cd cd-ls
-Set-Alias cd cdls
+Set-Alias cd cd-ls
+# Set-Alias cd cdls
 # filter tool.
 if (Get-Command fzf -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER fzf
@@ -258,6 +262,7 @@ else {
 
 # Readline setting.
 Set-PSReadLineOption -EditMode Vi
+Set-PSReadlineOption -ViModeIndicator cursor
 
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function AcceptNextSuggestionWord
@@ -280,8 +285,11 @@ Set-PSReadLineKeyHandler -Key 'Ctrl+w' -Function BackwardDeleteWord
 # Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.Count) locations.`n"
 
 # z.
-function _j {
-  # z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | cd
+function _j1 {
+  z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | Set-Location
+}
+
+function _j2 {
   $z = & {
     if (Is-Windows) {
       (Join-Path $env:USERPROFILE ".z")
@@ -297,13 +305,13 @@ function _j {
   Get-Job | Stop-Job -PassThru | Remove-Job -Force
 }
 
-function j { zi }
+function j { _j2 }
 
 # zoxide.
-Invoke-Expression (& {
-    $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
-    (zoxide init --hook $hook powershell) -join "`n"
-  })
+# Invoke-Expression (& {
+#     $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
+#     (zoxide init --hook $hook powershell) -join "`n"
+#   })
 
 # hash.
 function Get-FileAndHash {

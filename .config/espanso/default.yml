@@ -4,6 +4,8 @@ show_notifications: false
 
 toggle_key: OFF
 
+backend: Clipboard
+
 # This is the default configuration file, change it as you like it
 # You can refer to the official documentation:
 # https://espanso.org/docs/
@@ -25,6 +27,14 @@ matches:
           format: "%Y/%m/%d"
 
   - trigger: ";now"
+    replace: "{{mytime}}"
+    vars:
+      - name: mytime
+        type: date
+        params:
+          format: "%H:%M"
+
+  - trigger: ";time"
     replace: "{{mytime}}"
     vars:
       - name: mytime

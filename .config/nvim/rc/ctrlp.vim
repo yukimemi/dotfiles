@@ -2,11 +2,11 @@ if !g:plugin_use_ctrlp
   finish
 endif
 
+" let g:ctrlp_map = '<nop>'
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_key_loop = 1
 let g:ctrlp_lazy_update = 200
 let g:ctrlp_line_prefix = '» '
-let g:ctrlp_map = '<nop>'
 let g:ctrlp_match_current_file = 1
 " let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
 let g:ctrlp_mruf_max = 100000
@@ -15,7 +15,7 @@ let g:ctrlp_use_caching = 1
 let g:ctrlp_user_command_async = 1
 nnoremap <silent> <leader>cp <cmd>CtrlP<cr>
 nnoremap <silent> <leader>cb <cmd>CtrlPBuffer<cr>
-" nnoremap <silent> <leader>cd <cmd>CtrlPCurFile<cr>
+nnoremap <silent> <leader>cd <cmd>CtrlPCurFile<cr>
 " nnoremap <silent> <leader>cu <cmd>CtrlPMRUFiles<cr>
 nnoremap <silent> <leader>cu <cmd>CtrlPMRMru<cr>
 nnoremap <silent> <leader>cw <cmd>CtrlPMRMrw<cr>
