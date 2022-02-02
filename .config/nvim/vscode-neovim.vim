@@ -51,7 +51,7 @@ nnoremap <silent> Y y$
 nnoremap <silent> <space><space> <cmd>Write<cr>
 
 " Open file with explorer.
-nnoremap <silent> ,o <cmd>call VSCodeNotify('revealFileInOS')<cr>
+nnoremap <silent> <space>o <cmd>call VSCodeNotify('revealFileInOS')<cr>
 
 " nohlsearch.
 nnoremap <silent> <esc><esc> <cmd>nohlsearch<cr>
@@ -81,8 +81,8 @@ command! -nargs=1 -complete=command L
       \ call setline(1, split(execute(<q-args>), '\n'))
 
 " tab.
-nnoremap <silent> <c-l> <cmd>call <SID>switchEditor(v:count, 'next')<cr>
-nnoremap <silent> <c-h> <cmd>call <SID>switchEditor(v:count, 'prev')<cr>
+" nnoremap <silent> <c-l> <cmd>call <SID>switchEditor(v:count, 'next')<cr>
+" nnoremap <silent> <c-h> <cmd>call <SID>switchEditor(v:count, 'prev')<cr>
 
 " quickfix.
 nnoremap z= <cmd>call VSCodeNotify('keyboard-quickfix.openQuickFix')<cr>
@@ -102,13 +102,13 @@ nnoremap <silent> sbk <cmd>Quit!<cr>
 nnoremap <silent> sbq <cmd>Quit!<cr>
 
 " Window move.
-nnoremap <silent> sj <cmd>call VSCodeNotify('workbench.action.focusBelowGroup')<cr>
+nnoremap <silent> <c-j> <cmd>call VSCodeNotify('workbench.action.focusBelowGroup')<cr>
 nnoremap <silent> sJ <cmd>call VSCodeNotify('workbench.action.moveEditorToBelowGroup')<cr>
-nnoremap <silent> sk <cmd>call VSCodeNotify('workbench.action.focusAboveGroup')<cr>
+nnoremap <silent> <c-k> <cmd>call VSCodeNotify('workbench.action.focusAboveGroup')<cr>
 nnoremap <silent> sK <cmd>call VSCodeNotify('workbench.action.moveEditorToAboveGroup')<cr>
-nnoremap <silent> sh <cmd>call VSCodeNotify('workbench.action.focusLeftGroup')<cr>
+nnoremap <silent> <c-h> <cmd>call VSCodeNotify('workbench.action.focusLeftGroup')<cr>
 nnoremap <silent> sH <cmd>call VSCodeNotify('workbench.action.moveEditorToLeftGroup')<cr>
-nnoremap <silent> sl <cmd>call VSCodeNotify('workbench.action.focusRightGroup')<cr>
+nnoremap <silent> <c-l> <cmd>call VSCodeNotify('workbench.action.focusRightGroup')<cr>
 nnoremap <silent> sL <cmd>call VSCodeNotify('workbench.action.moveEditorToRightGroup')<cr>
 nnoremap <silent> sw <cmd>call VSCodeNotify('workbench.action.focusNextGroup')<cr>
 nnoremap <silent> sW <cmd>call VSCodeNotify('workbench.action.focusPreviousGroup')<cr>

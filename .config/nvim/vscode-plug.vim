@@ -40,7 +40,8 @@ Plug 't9md/vim-quickhl'
 Plug 'unblevable/quick-scope'
 Plug 'vim-scripts/autodate.vim'
 Plug 'vim-denops/denops.vim'
-Plug 'yukimemi/dps-ahdr'
+" Plug 'yukimemi/dps-ahdr'
+Plug 'asvetliakov/vim-easymotion'
 
 call plug#end()
 
@@ -62,3 +63,8 @@ silent! so $VIM_PATH/rc/vim-textobj-fold.vim
 silent! so $VIM_PATH/rc/vim-textobj-line.vim
 silent! so $VIM_PATH/rc/vim-textobj-indent.vim
 silent! so $VIM_PATH/rc/vim-textobj-user.vim
+
+let g:EasyMotion_do_mapping = 0
+nmap <cr> <Plug>(easymotion-bd-w)
+" nmap <cr> <Plug>(easymotion-overwin-w)
+
