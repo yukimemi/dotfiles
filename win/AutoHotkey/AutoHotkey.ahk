@@ -74,18 +74,18 @@ Activate(APPDATA . "Local\Microsoft\Teams\current\Teams.exe")
 return
 
 ; for gvim
-; F10::
-; Activate3("gvim.exe", "C:\tools\vim\vim82\gvim.exe", "GVIM")
-; return
+F10::
+Activate3("gvim.exe", "C:\tools\vim\vim82\gvim.exe", "GVIM")
+return
 ; for neovim-qt
 ; F10::
 ; Activate("C:\tools\neovim\Neovim\bin\nvim-qt.exe")
 ; return
 ; for neovim
-F10::
+; F10::
 ; Activate("C:\tools\neovim\Neovim\bin\nvim.exe")
-Activate2("nvim.exe", USERPROFILE . "\AppData\Local\Programs\Python\Python310\Scripts\gnvr.exe")
-return
+; Activate2("nvim.exe", USERPROFILE . "\AppData\Local\Programs\Python\Python310\Scripts\gnvr.exe")
+; return
 
 ; for sakura
 ; ^F10::

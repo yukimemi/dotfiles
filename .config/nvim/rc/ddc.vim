@@ -5,12 +5,16 @@ endif
 inoremap <silent><expr> <c-f> ddc#complete_common_string()
 
 " let s:default_sources = ['around', 'nextword', 'ddc-path', 'git-file', 'git-commit', 'git-branch', 'file']
-let s:default_sources = ['around', 'buffer', 'nextword', 'file', 'rg']
+let s:default_sources = ['around', 'buffer', 'nextword', 'file']
 if g:plugin_use_vimlsp
   let s:default_sources = ['vim-lsp'] + s:default_sources
 endif
 if g:plugin_use_nvimlsp
   let s:default_sources = ['nvim-lsp'] + s:default_sources
+endif
+
+if !g:is_windows
+  let s:default_sources = s:default_sources + ['rg']
 endif
 
 let s:defult_sources_nvim = ['treesitter'] + s:default_sources
@@ -19,6 +23,8 @@ let s:defult_sources_vim = s:default_sources
 let s:lsp_languages = ['typescript', 'ps1', 'vim', 'rust', 'go', 'json']
 
 function! CommandlinePre(mode) abort
+  silent! call dein#source('ddc.vim')
+
   " Note: It disables default command line completion!
   cnoremap <expr> <Tab>
   \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
@@ -60,11 +66,11 @@ function! CommandlinePost() abort
 endfunction
 
 " Use pum.vim
-call ddc#custom#patch_global('completionMenu', 'pum.vim')
 call ddc#custom#patch_global('autoCompleteEvents', [
       \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
       \ 'CmdlineEnter', 'CmdlineChanged',
       \ ])
+call ddc#custom#patch_global('completionMenu', 'pum.vim')
 
 call ddc#custom#patch_global(
       \ 'sources', has('nvim') ?
@@ -96,7 +102,10 @@ call ddc#custom#patch_global('sourceOptions', {
       \   'mark': 'cmdline',
       \   'forceCompletionPattern': '\S/\S*',
       \ },
-      \ 'cmdline-history': {'mark': 'history'},
+      \ 'cmdline-history': {
+      \   'mark': 'history',
+      \   'sorters': [],
+      \ },
       \ 'shell-history': {'mark': 'shell'},
       \ 'zsh': {
       \   'mark': 'zsh',
@@ -127,7 +136,7 @@ call ddc#custom#patch_global('sourceOptions', {
       \ 'rg': {
       \   'mark': 'rg',
       \   'matchers': ['matcher_head', 'matcher_length'],
-      \   'minAutoCompleteLength': 3,
+      \   'minAutoCompleteLength': 4,
       \ },
       \ })
 
@@ -181,8 +190,8 @@ inoremap <silent><expr> <c-e> ddc#map#extend()
 " inoremap <c-e>   <Cmd>call pum#map#cancel()<cr>
 
 nnoremap : <Cmd>call CommandlinePre(':')<cr>:
-" nnoremap ? <Cmd>call CommandlinePre('/')<cr>?
-" nnoremap / <Cmd>call CommandlinePre('/')<cr>/
+nnoremap ? <Cmd>call CommandlinePre('/')<cr>?
+nnoremap / <Cmd>call CommandlinePre('/')<cr>/
 
 call ddc#enable()
 

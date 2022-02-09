@@ -94,7 +94,7 @@ omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
 " Add `:Format` command to format current buffer.
-command! -nargs=0 Format <cmd>call CocAction('format')
+command! -nargs=0 Format <cmd>call CocAction('format')<cr>
 
 au MyAutoCmd FileType ps1 call <SID>autoformat_onsave()
 function! s:autoformat_onsave()

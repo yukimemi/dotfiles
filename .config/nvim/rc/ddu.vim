@@ -3,27 +3,33 @@ if !g:plugin_use_ddu
 endif
 
 call ddu#custom#patch_global({
-      \ 'ui': 'std',
-      \ 'sourceOptions' : {
-      \   '_' : {
-      \     'ignoreCase': v:true,
-      \     'matchers': ['matcher_substring'],
+      \   'ui': 'std',
+      \   'sourceOptions': {
+      \     '_': {
+      \       'ignoreCase': v:true,
+      \       'matchers': ['matcher_substring'],
+      \     },
+      \   },
+      \   'sourceParams': {
+      \     'file_external': {
+      \       'cmd': ['git', 'ls-files', '-co', '--exclude-standard'],
+      \     },
+      \   },
+      \   'uiParams': {
+      \     'std': {
+      \       'prompt': '»',
+      \       'split': 'horizontal',
+      \       'filterSplitDirection': 'botright',
+      \     }
+      \   },
+      \   'kindOptions': {
+      \     'file': {
+      \       'defaultAction': 'open',
+      \     },
+      \     'word': {
+      \       'defaultAction': 'append',
+      \     }
       \   }
-      \ },
-      \ 'uiParams': {
-      \   'std': {
-      \     'startFilter': v:true,
-      \     'split': 'vertical',
-      \   }
-      \ },
-      \ })
-
-" Set name specific configuration
-call ddu#custom#patch_local('files', {
-      \ 'sources': [
-      \   {'name': 'file', 'params': {}},
-      \   {'name': 'mr', 'params': {}},
-      \ ],
       \ })
 
 " Specify name
@@ -34,18 +40,25 @@ call ddu#custom#patch_local('files', {
 " nnoremap <leader>dh <cmd>call ddu#start({'name': 'file_rec', 'params': {'path': expand('~')}})<cr>
 
 function! s:ddu_std_cfg() abort
-  nnoremap <buffer><silent> <cr> <cmd>call ddu#ui#std#do_map('doAction')<cr>
-  nnoremap <buffer><silent> <space> <cmd>call ddu#ui#std#do_map('toggleSelectItem')<cr>
-  nnoremap <buffer><silent> i <cmd>call ddu#ui#std#do_map('openFilterWindow')<cr>
-  nnoremap <buffer><silent> a <cmd>call ddu#ui#std#do_map('openFilterWindow')<cr>
-  nnoremap <buffer><silent> q <cmd>call ddu#ui#std#do_map('quit')<cr>
-  nnoremap <buffer><silent><nowait> <esc> <cmd>call ddu#ui#std#do_map('quit')<cr>
+  nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#std#do_action('itemAction')<CR>
+  nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#std#do_action('toggleSelectItem')<CR>
+  nnoremap <buffer><silent> i <Cmd>call ddu#ui#std#do_action('openFilterWindow')<CR>
+  nnoremap <buffer><silent> <C-l> <Cmd>call ddu#ui#std#do_action('refreshItems')<CR>
+  nnoremap <buffer><silent> q <Cmd>call ddu#ui#std#do_action('quit')<CR>
+  nnoremap <buffer><silent><nowait> <esc> <Cmd>call ddu#ui#std#do_action('quit')<CR>
+  nnoremap <buffer><silent> r <Cmd>call ddu#ui#std#do_action('updateOptions', {
+        \   'sourceOptions': {
+        \     '_': {
+        \       'matchers': [],
+        \     },
+        \   },
+        \ })<CR>
 endfunction
 
 function! s:ddu_std_filter_cfg() abort
-  inoremap <buffer><silent> <cr> <esc><cmd>close \| call ddu#ui#std#do_map('doAction')<cr>
+  inoremap <buffer><silent> <CR> <Esc><Cmd>close \| call ddu#ui#std#do_action('itemAction')<CR>
   inoremap <buffer><silent><nowait> <esc> <esc><cmd>close<cr>
-  nnoremap <buffer><silent> <cr> <cmd>close<cr>
+  nnoremap <buffer><silent> <CR> <Cmd>close<CR>
 endfunction
 
 au MyAutoCmd FileType ddu-std call s:ddu_std_cfg()

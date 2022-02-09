@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/01/26 01:00:57.
+" Last Change : 2022/02/09 20:18:51.
 " =============================================================================
 
 " Init:
@@ -160,6 +160,7 @@ set smarttab
 set concealcursor=nc
 set shortmess-=S
 set iminsert=0 imsearch=-1
+set pumheight=13
 set list listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
 set completeopt-=noinsert
 if executable('jvgrep')
@@ -432,16 +433,20 @@ let g:plugin_use_coc = v:true
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
 let g:plugin_use_ddc = v:false
-let g:plugin_use_vimlsp = v:false
-let g:plugin_use_nvimlsp = v:false
+let g:plugin_use_vimlsp = v:true && !has('nvim') && !g:plugin_use_coc
+let g:plugin_use_nvimlsp = v:true && has('nvim') && !g:plugin_use_coc
 
 let g:plugin_use_ale = v:false
 
 let g:plugin_use_lexima = v:false
 let g:plugin_use_lexiv = v:true
 
-let g:plugin_use_quickscope = v:true
+let g:plugin_use_quickscope = v:false
 let g:plugin_use_cleverf = v:false
+let g:plugin_use_shotf = v:true
+
+let g:plugin_use_autobackup = v:false
+let g:plugin_use_aho_bakaup = v:true
 
 let g:plugin_use_ctrlp = v:true
 let g:plugin_use_clap = v:false
@@ -470,6 +475,9 @@ let g:plugin_use_asyncrun = v:false
 let g:plugin_use_gina = v:true
 let g:plugin_use_gin = v:false
 
+let g:plugin_use_bufpreview = v:true
+let g:plugin_use_glance = v:false
+
 let g:plugin_use_neoterm = v:false
 let g:plugin_use_toggleterm = v:false
 let g:plugin_use_floaterm = v:false
@@ -478,7 +486,7 @@ let g:plugin_use_beacon = v:false
 let g:plugin_use_columnskip = v:false
 let g:plugin_use_edgemotion = v:true
 
-let g:plugin_use_treesitter = v:false
+let g:plugin_use_treesitter = v:true
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1

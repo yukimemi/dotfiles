@@ -1,3 +1,3 @@
-nmap S <Plug>(backandforward-back)
-nmap D <Plug>(backandforward-forward)
+nmap gH <Plug>(backandforward-back)
+nmap gL <Plug>(backandforward-forward)
 

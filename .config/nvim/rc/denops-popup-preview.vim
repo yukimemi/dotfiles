@@ -1,4 +1,4 @@
-if !g:plugin_use_ddc || !has('nvim')
+if !g:plugin_use_ddc
 	finish
 endif
 
@@ -11,5 +11,5 @@ let g:popup_preview_config = {
 
 call popup_preview#enable()
 
-au MyAutoCmd FileType ps1,vim call popup_preview#disable()
+" au MyAutoCmd FileType ps1,vim call popup_preview#disable()
 
