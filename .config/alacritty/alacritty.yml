@@ -7,6 +7,8 @@ window:
 
   startup_mode: Maximized
 
+  opacity: 0.9
+
 scrolling:
   history: 10000
   multiplier: 3
@@ -16,8 +18,6 @@ font:
     family: Cica
     style: Regular
   size: 16.0
-
-background_opacity: 0.9
 
 cursor:
   style: Block
