@@ -13,9 +13,9 @@ if g:plugin_use_nvimlsp
   let s:default_sources = ['nvim-lsp'] + s:default_sources
 endif
 
-if !g:is_windows
+" if !g:is_windows
   let s:default_sources = s:default_sources + ['rg']
-endif
+" endif
 
 let s:defult_sources_nvim = ['treesitter'] + s:default_sources
 let s:defult_sources_vim = s:default_sources

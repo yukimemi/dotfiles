@@ -75,7 +75,7 @@ return
 
 ; for gvim
 F10::
-Activate3("gvim.exe", "C:\tools\vim\vim82\gvim.exe", "GVIM")
+Activate3("gvim.exe", "C:\Program Files\Vim\vim82\gvim.exe", "GVIM")
 return
 ; for neovim-qt
 ; F10::

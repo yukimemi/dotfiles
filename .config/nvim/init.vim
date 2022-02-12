@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/02/09 20:18:51.
+" Last Change : 2022/02/13 03:36:49.
 " =============================================================================
 
 " Init:
@@ -160,7 +160,7 @@ set smarttab
 set concealcursor=nc
 set shortmess-=S
 set iminsert=0 imsearch=-1
-set pumheight=13
+set pumheight=20
 set list listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
 set completeopt-=noinsert
 if executable('jvgrep')
@@ -410,29 +410,29 @@ set wildcharm=<tab>
 cnoremap <expr> <tab> '<cmd>set nosmartcase<cr><tab><cmd>let &smartcase = ' .. &smartcase .. '<cr>'
 
 " Plugin:
-let s:use_dein = v:true
-let s:use_vimplug = v:false
-let s:use_minpac = v:false
-let s:use_packager = v:false
-let s:use_volt = v:false
-let s:use_pack = v:false
-let s:use_packer = v:false
+let g:plugin_use_dein = v:true
+let g:plugin_use_vimplug = v:false
+let g:plugin_use_minpac = v:false
+let g:plugin_use_packager = v:false
+let g:plugin_use_volt = v:false
+let g:plugin_use_pack = v:false
+let g:plugin_use_packer = v:false
 
-let g:plugin_use_lightline = v:true
+let g:plugin_use_lightline = v:false
 let g:plugin_use_airline = v:false
 let g:plugin_use_neoline = v:false
 let g:plugin_use_lualine = v:false
-let g:plugin_use_barow = v:false
+let g:plugin_use_barow = v:true
 let g:plugin_use_staline = v:false
 let plugin_use_galaxyline = v:false
 
 let g:plugin_use_indent_blankline = v:true
 let g:plugin_use_dps_indent_line = v:false
 
-let g:plugin_use_coc = v:true
+let g:plugin_use_coc = v:false
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
-let g:plugin_use_ddc = v:false
+let g:plugin_use_ddc = v:true
 let g:plugin_use_vimlsp = v:true && !has('nvim') && !g:plugin_use_coc
 let g:plugin_use_nvimlsp = v:true && has('nvim') && !g:plugin_use_coc
 
@@ -491,19 +491,19 @@ let g:plugin_use_treesitter = v:true
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1
 if !g:no_plugin
-  if s:use_dein
+  if g:plugin_use_dein
     runtime! dein.vim
-  elseif s:use_vimplug
+  elseif g:plugin_use_vimplug
     runtime! vimplug.vim
-  elseif s:use_minpac
+  elseif g:plugin_use_minpac
     runtime! minpac.vim
-  elseif s:use_packager
+  elseif g:plugin_use_packager
     runtime! packager.vim
-  elseif s:use_volt
+  elseif g:plugin_use_volt
     runtime! volt.vim
-  elseif s:use_pack
+  elseif g:plugin_use_pack
     runtime! pack.vim
-  elseif s:use_packer
+  elseif g:plugin_use_packer
     runtime! packer.vim
   else
     echom "No use plugin manager !"

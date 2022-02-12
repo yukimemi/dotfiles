@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/02/09 23:12:54.
+# Last Change: 2022/02/13 05:09:19.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -677,8 +677,7 @@ source $VIM_PATH/rc/clever-f.vim
 '''
 
 [[plugins]]
-# repo = 'aiya000/aho-bakaup.vim'
-repo = 'yukimemi/aho-bakaup.vim'
+repo = 'aiya000/aho-bakaup.vim'
 if = "g:plugin_use_aho_bakaup"
 on_event = 'BufWritePre'
 hook_add = '''
@@ -1006,7 +1005,7 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-rg'
-if = "executable('rg') && !g:is_windows"
+if = "executable('rg')"
 on_source = 'ddc.vim'
 
 [[plugins]]
@@ -1129,8 +1128,8 @@ source $VIM_PATH/rc/dps-ahdr.vim
 '''
 
 [[plugins]]
-repo = 'yukimemi/dps-autocursor'
-# repo = '~/src/github.com/yukimemi/dps-autocursor'
+# repo = 'yukimemi/dps-autocursor'
+repo = '~/src/github.com/yukimemi/dps-autocursor'
 depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/dps-autocursor.vim
@@ -1195,76 +1194,55 @@ hook_add = '''
 source $VIM_PATH/rc/ctrlp.vim
 '''
 if = "g:plugin_use_ctrlp"
-on_cmd = ['CtrlP', 'CtrlPBuffer', 'CtrlPCurFile', 'CtrlPMRUFiles']
+on_cmd = ['CtrlP', 'CtrlPBuffer', 'CtrlPCurFile', 'CtrlPMRUFiles', 'CtrlPLauncher', 'CtrlPSonictemplate', 'VimHelpJp', 'CtrlPCmdHistory', 'CtrlPSearchHistory', 'CtrlPMRMru', 'CtrlPMRMrw', 'CtrlPMRMrr']
+on_map = '<Plug>'
+depends = 'mr.vim'
 [[plugins]]
 repo = 'kaneshin/ctrlp-filetype'
-depends = ['ctrlp.vim']
-if = "g:plugin_use_ctrlp"
-on_cmd = ['CtrlPFiletype']
+on_source = 'ctrlp.vim'
 [[plugins]]
 repo = 'kaneshin/ctrlp-memolist'
-depends = ['ctrlp.vim']
-if = "g:plugin_use_ctrlp"
-on_cmd = ['CtrlPMemolist']
+on_source = 'ctrlp.vim'
 [[plugins]]
 repo = 'kaneshin/ctrlp-sonictemplate'
-depends = ['ctrlp.vim']
-if = "g:plugin_use_ctrlp"
-on_cmd = ['CtrlPSonictemplate']
+on_source = 'ctrlp.vim'
 [[plugins]]
 repo = 'mattn/ctrlp-launcher'
-depends = ['ctrlp.vim']
-if = "g:plugin_use_ctrlp"
-on_cmd = ['CtrlPLauncher']
+on_source = 'ctrlp.vim'
 [[plugins]]
 repo = 'mattn/ctrlp-mark'
-depends = ['ctrlp.vim']
-if = "g:plugin_use_ctrlp"
-on_cmd = ['CtrlPMark']
+on_source = 'ctrlp.vim'
 [[plugins]]
 repo = 'mattn/ctrlp-vimhelpjp'
-depends = ['ctrlp.vim', 'webapi-vim']
-if = "g:plugin_use_ctrlp"
-on_cmd = ['VimHelpJp']
+on_source = 'ctrlp.vim'
+depends = 'webapi-vim'
 [[plugins]]
 repo = 'ompugao/ctrlp-history'
-depends = ['ctrlp.vim']
-if = "g:plugin_use_ctrlp"
-on_cmd = ['CtrlPCmdHistory', 'CtrlPSearchHistory']
+on_source = 'ctrlp.vim'
 [[plugins]]
-depends = ['ctrlp.vim']
-if = "g:plugin_use_ctrlp"
 repo = 'suy/vim-ctrlp-commandline'
-# on_cmd = ['CtrlPCommandLine']
+on_source = 'ctrlp.vim'
 [[plugins]]
-depends = ['ctrlp.vim']
-if = "g:plugin_use_ctrlp"
 repo = 'FelikZ/ctrlp-py-matcher'
+on_source = 'ctrlp.vim'
 [[plugins]]
-depends = ['ctrlp.vim']
-hook_post_update = '''
-call dein#source('fruzzy')
-call fruzzy#install()
-'''
-if = "g:plugin_use_ctrlp"
-repo = 'raghur/fruzzy'
-[[plugins]]
-depends = ['ctrlp.vim']
-if = "g:plugin_use_ctrlp && exists('*matchfuzzy')"
 repo = 'mattn/ctrlp-matchfuzzy'
+if = "exists('*matchfuzzy')"
+on_source = 'ctrlp.vim'
 [[plugins]]
 repo = 'lambdalisue/mr.vim'
 lazy = 1
 [[plugins]]
 repo = 'tsuyoshicho/ctrlp-mr.vim'
-depends = ['ctrlp.vim', 'mr.vim']
-on_cmd = ['CtrlPMRMru', 'CtrlPMRMrw', 'CtrlPMRMrr']
+depends = 'mr.vim'
+on_source = 'ctrlp.vim'
 [[plugins]]
 repo = 'kaneshin/ctrlp-git-log'
-depends = ['ctrlp.vim']
-on_cmd = 'CtrlPGitLog'
+on_source = 'ctrlp.vim'
 
 [[plugins]]
+on_cmd = ['Clap']
+repo = 'liuchengxu/vim-clap'
 hook_add = '''
 source $VIM_PATH/rc/vim-clap.vim
 '''
@@ -1272,8 +1250,6 @@ hook_post_update = '''
 call clap#helper#build_all()
 '''
 if = "g:plugin_use_clap"
-on_cmd = ['Clap']
-repo = 'liuchengxu/vim-clap'
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
@@ -1306,7 +1282,7 @@ source $VIM_PATH/rc/ddu-commands.vim
 '''
 
 [[plugins]]
-repo = 'Shougo/ddu-ui-std'
+repo = 'Shougo/ddu-ui-ff'
 on_source = 'ddu.vim'
 
 [[plugins]]
@@ -1348,6 +1324,10 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_relative'
 on_source = 'ddu.vim'
 
 [[plugins]]

@@ -3,12 +3,17 @@ if !g:plugin_use_ddu
 endif
 
 call ddu#custom#patch_global({
-      \   'ui': 'std',
+      \   'ui': 'ff',
       \   'sourceOptions': {
       \     '_': {
       \       'ignoreCase': v:true,
       \       'matchers': ['matcher_substring'],
       \     },
+      \   },
+      \   'file_old': {
+      \     'matchers': [
+      \       'matcher_substring', 'matcher_relative', 'matcher_hidden',
+      \     ],
       \   },
       \   'sourceParams': {
       \     'file_external': {
@@ -16,9 +21,13 @@ call ddu#custom#patch_global({
       \     },
       \   },
       \   'uiParams': {
-      \     'std': {
+      \     'ff': {
       \       'prompt': '»',
+      \       'position': "bottom",
+      \       'displaySourceName': "long",
       \       'split': 'horizontal',
+      \       'previewVertical': v:true,
+      \       'filterFloatingPosition': "bottom",
       \       'filterSplitDirection': 'botright',
       \     }
       \   },
@@ -39,14 +48,20 @@ call ddu#custom#patch_global({
 " Specify source with params
 " nnoremap <leader>dh <cmd>call ddu#start({'name': 'file_rec', 'params': {'path': expand('~')}})<cr>
 
-function! s:ddu_std_cfg() abort
-  nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#std#do_action('itemAction')<CR>
-  nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#std#do_action('toggleSelectItem')<CR>
-  nnoremap <buffer><silent> i <Cmd>call ddu#ui#std#do_action('openFilterWindow')<CR>
-  nnoremap <buffer><silent> <C-l> <Cmd>call ddu#ui#std#do_action('refreshItems')<CR>
-  nnoremap <buffer><silent> q <Cmd>call ddu#ui#std#do_action('quit')<CR>
-  nnoremap <buffer><silent><nowait> <esc> <Cmd>call ddu#ui#std#do_action('quit')<CR>
-  nnoremap <buffer><silent> r <Cmd>call ddu#ui#std#do_action('updateOptions', {
+function! s:ddu_ff_cfg() abort
+  Keymap n <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+  Keymap n <buffer><silent> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
+  Keymap n <buffer><silent> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
+  Keymap n <buffer><silent> <C-l> <Cmd>call ddu#ui#ff#do_action('refreshItems')<CR>
+  Keymap n <buffer><silent> p <Cmd>call ddu#ui#ff#do_action('preview')<CR>
+  Keymap n <buffer><silent> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+  Keymap n <buffer><silent> d <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<CR>
+  Keymap n <buffer><silent> e <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<CR>
+  Keymap n <buffer><silent> v <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<CR>
+  Keymap n <buffer><silent> N <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'new'})<CR>
+  Keymap n <buffer><silent> r <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'quickfix'})<CR>
+  Keymap n <buffer><silent><nowait> <esc> <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+  Keymap n <buffer><silent> u <Cmd>call ddu#ui#ff#do_action('updateOptions', {
         \   'sourceOptions': {
         \     '_': {
         \       'matchers': [],
@@ -55,12 +70,12 @@ function! s:ddu_std_cfg() abort
         \ })<CR>
 endfunction
 
-function! s:ddu_std_filter_cfg() abort
-  inoremap <buffer><silent> <CR> <Esc><Cmd>close \| call ddu#ui#std#do_action('itemAction')<CR>
-  inoremap <buffer><silent><nowait> <esc> <esc><cmd>close<cr>
-  nnoremap <buffer><silent> <CR> <Cmd>close<CR>
+function! s:ddu_ff_filter_cfg() abort
+  Keymap i <buffer><silent> <CR> <Esc><Cmd>close \| call ddu#ui#ff#do_action('itemAction')<CR>
+  Keymap i <buffer><silent><nowait> <esc> <esc><cmd>close<cr>
+  Keymap n <buffer><silent> <CR> <Cmd>close<CR>
 endfunction
 
-au MyAutoCmd FileType ddu-std call s:ddu_std_cfg()
-au MyAutoCmd FileType ddu-std-filter call s:ddu_std_filter_cfg()
+au MyAutoCmd FileType ddu-ff call s:ddu_ff_cfg()
+au MyAutoCmd FileType ddu-ff-filter call s:ddu_ff_filter_cfg()
 

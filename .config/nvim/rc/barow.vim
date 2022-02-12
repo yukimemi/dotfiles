@@ -19,7 +19,7 @@ function! MyReanimateLastPoint() abort
 	endif
 endfunction
 function! MyDeinProgress() abort
-	return dein#get_progress()
+	return g:plugin_use_dein ? dein#get_progress() : ''
 endfunction
 function! MyNearestMethodOrFunction() abort
   return 'λ ' .. get(b:, 'vista_nearest_method_or_function', '')
@@ -47,7 +47,7 @@ let g:barow = {
       \    'hi'   : ['BarowBufName', 'BarowBufNameNC']
       \  },
       \  'read_only': {
-      \    'value': 'ro',
+      \    'value': '🔑',
       \    'hi': ['BarowRO', 'BarowRONC']
       \  },
       \  'buf_changed': {
