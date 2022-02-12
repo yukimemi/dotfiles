@@ -175,6 +175,8 @@ snippets:
     snippet: go install github.com/high-moctane/nextword@latest
   - name: Install zsh-bench
     snippet: git clone https://github.com/romkatv/zsh-bench ~/.zsh-bench
+  - name: Install tmux plugin manager (tpm)
+    snippet: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 completions:
   - name: kill
