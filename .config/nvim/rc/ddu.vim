@@ -23,12 +23,8 @@ call ddu#custom#patch_global({
       \   'uiParams': {
       \     'ff': {
       \       'prompt': '»',
-      \       'position': "bottom",
-      \       'displaySourceName': "long",
-      \       'split': 'horizontal',
-      \       'previewVertical': v:true,
-      \       'filterFloatingPosition': "bottom",
-      \       'filterSplitDirection': 'botright',
+      \       'split': 'no',
+      \       'displaySourceName': 'long',
       \     }
       \   },
       \   'kindOptions': {

@@ -1,3 +1,7 @@
+if !IsInstalled('wilder.nvim')
+  finish
+endif
+
 silent! packadd wilder.nvim
 
 call wilder#enable_cmdline_enter()
@@ -13,19 +17,30 @@ call wilder#set_option('modes', ['/', '?', ':'])
 call wilder#set_option('pipeline', [
       \ wilder#branch(
       \ [
-        \   wilder#check({_, x -> empty(x)}),
-        \   wilder#history(),
-        \ ],
-        \ wilder#cmdline_pipeline(),
-        \ wilder#search_pipeline(),
-        \ ),
-        \ ])
+      \   wilder#check({_, x -> empty(x)}),
+      \   wilder#history(),
+      \ ],
+      \ wilder#cmdline_pipeline(),
+      \ wilder#search_pipeline(),
+      \ ),
+      \ ])
 
-if has('nvim')
-  " popupmenu completion
-  call wilder#set_option('renderer', wilder#popupmenu_renderer({
-        \ 'highlighter': wilder#basic_highlighter(),
-        \ }))
-endif
+" popupmenu completion
+call wilder#set_option('renderer', wilder#popupmenu_renderer({
+      \ 'highlighter': wilder#basic_highlighter(),
+      \ 'left': [
+      \   ' ', wilder#popupmenu_devicons(),
+      \ ],
+      \ 'right': [
+      \   ' ', wilder#popupmenu_scrollbar(),
+      \ ],
+      \ }))
+
+call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
+      \ 'highlights': {
+      \   'border': 'Normal',
+      \ },
+      \ 'border': 'rounded',
+      \ })))
 
 " vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

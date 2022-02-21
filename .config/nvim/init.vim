@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/02/13 03:36:49.
+" Last Change : 2022/02/20 18:14:40.
 " =============================================================================
 
 " Init:
@@ -147,6 +147,7 @@ set scrolloff=5
 set laststatus=2
 set backspace=indent,eol,start
 set wildmenu wildignorecase wildmode=longest:full,full
+set wildoptions=pum,tagfile
 set autoindent smartindent breakindent
 set incsearch hlsearch wrapscan
 set ignorecase smartcase infercase
@@ -417,6 +418,7 @@ let g:plugin_use_packager = v:false
 let g:plugin_use_volt = v:false
 let g:plugin_use_pack = v:false
 let g:plugin_use_packer = v:false
+let g:plugin_use_jetpack = v:false
 
 let g:plugin_use_lightline = v:false
 let g:plugin_use_airline = v:false
@@ -505,6 +507,8 @@ if !g:no_plugin
     runtime! pack.vim
   elseif g:plugin_use_packer
     runtime! packer.vim
+  elseif g:plugin_use_jetpack
+    runtime! jetpack.vim
   else
     echom "No use plugin manager !"
   endif

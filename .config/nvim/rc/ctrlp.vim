@@ -3,12 +3,12 @@ if !g:plugin_use_ctrlp
 endif
 
 " let g:ctrlp_map = '<nop>'
+" let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_key_loop = 1
 let g:ctrlp_lazy_update = 200
 let g:ctrlp_line_prefix = '» '
 let g:ctrlp_match_current_file = 1
-" let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
 let g:ctrlp_mruf_max = 100000
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_use_caching = 1
@@ -40,6 +40,11 @@ let g:ctrlp_extensions = get(g:, 'ctrlp_extensions', [])
 let g:ctrlp_extensions += ['mr/mru', 'mr/mrw', 'mr/mrr']
 
 command! CtrlPCommandLine silent! packadd vim-ctrlp-commandline | call ctrlp#init(ctrlp#commandline#id())
+
+" ctrlp-grep
+if executable('rg')
+  let g:ctrlp_grep_command_definition = "rg -i --no-heading --regexp '{query}'"
+endif
 
 if executable('rg')
   let g:ctrlp_grep_command = 'rg -i --vimgrep --no-heading --hidden --no-ignore --regexp'

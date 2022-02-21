@@ -18,7 +18,7 @@ let g:dein#enable_notification = v:true
 let g:dein#install_check_diff = v:false
 let g:dein#install_github_api_token = $DEIN_GITHUB_API_TOKEN
 let g:dein#install_log_filename = '~/.dein_install.log'
-let g:dein#install_progress_type = 'none'
+let g:dein#install_progress_type = 'floating'
 let g:dein#lazy_rplugins = v:true
 let g:dein#notification_time = 15
 

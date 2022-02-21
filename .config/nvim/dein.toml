@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/02/13 05:09:19.
+# Last Change: 2022/02/21 22:56:09.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -138,11 +138,11 @@ hook_add = '''
 source $VIM_PATH/rc/vim-xtabline.vim
 '''
 
-[[plugins]]
-repo = 'powerman/vim-plugin-AnsiEsc'
-hook_add = '''
-source $VIM_PATH/rc/vim-plugin-AnsiEsc.vim
-'''
+# [[plugins]]
+# repo = 'powerman/vim-plugin-AnsiEsc'
+# hook_add = '''
+# source $VIM_PATH/rc/vim-plugin-AnsiEsc.vim
+# '''
 
 [[plugins]]
 repo = 'DanilaMihailov/beacon.nvim'
@@ -311,6 +311,7 @@ repo = 'editorconfig/editorconfig-vim'
 [[plugins]]
 repo = "gelguy/wilder.nvim"
 if = '!g:plugin_use_ddc'
+depends = 'nerdfont.vim'
 hook_source = '''
 source $VIM_PATH/rc/wilder.nvim
 '''
@@ -518,12 +519,12 @@ on_cmd = ['HoppingStart']
 [[plugins]]
 repo = 'itchyny/vim-winfix'
 
-[[plugins]]
-repo = 'lambdalisue/fin.vim'
-hook_add = '''
-source $VIM_PATH/rc/fin.vim
-'''
-on_cmd = ['Fin']
+# [[plugins]]
+# repo = 'lambdalisue/fin.vim'
+# hook_add = '''
+# source $VIM_PATH/rc/fin.vim
+# '''
+# on_cmd = ['Fin']
 
 # [[plugins]]
 # repo = 'chimay/wheel'
@@ -704,6 +705,10 @@ on_cmd = 'Vitalize'
 [[plugins]]
 repo = 'thinca/vim-themis'
 lazy = 1
+
+[[plugins]]
+repo = 'thinca/vim-partedit'
+on_cmd = 'Partedit'
 
 # ==================== Test ======================
 [[plugins]]
@@ -1239,6 +1244,10 @@ on_source = 'ctrlp.vim'
 [[plugins]]
 repo = 'kaneshin/ctrlp-git-log'
 on_source = 'ctrlp.vim'
+[[plugins]]
+repo = 'ompugao/ctrlp-grep'
+on_source = 'ctrlp.vim'
+
 
 [[plugins]]
 on_cmd = ['Clap']
@@ -1298,11 +1307,19 @@ repo = 'Shougo/ddu-source-file_old'
 on_source = 'ddu.vim'
 
 [[plugins]]
+repo = 'Shougo/ddu-source-file_point'
+on_source = 'ddu.vim'
+
+[[plugins]]
 repo = 'Shougo/ddu-source-line'
 on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-source-register'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-action'
 on_source = 'ddu.vim'
 
 [[plugins]]
