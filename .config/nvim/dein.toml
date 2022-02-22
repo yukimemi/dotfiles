@@ -1133,8 +1133,8 @@ source $VIM_PATH/rc/dps-ahdr.vim
 '''
 
 [[plugins]]
-# repo = 'yukimemi/dps-autocursor'
-repo = '~/src/github.com/yukimemi/dps-autocursor'
+repo = 'yukimemi/dps-autocursor'
+# repo = '~/src/github.com/yukimemi/dps-autocursor'
 depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/dps-autocursor.vim
