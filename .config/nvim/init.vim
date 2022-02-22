@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/02/20 18:14:40.
+" Last Change : 2022/02/23 08:03:57.
 " =============================================================================
 
 " Init:
@@ -426,7 +426,7 @@ let g:plugin_use_neoline = v:false
 let g:plugin_use_lualine = v:false
 let g:plugin_use_barow = v:true
 let g:plugin_use_staline = v:false
-let plugin_use_galaxyline = v:false
+let g:plugin_use_galaxyline = v:false
 
 let g:plugin_use_indent_blankline = v:true
 let g:plugin_use_dps_indent_line = v:false
