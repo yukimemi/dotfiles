@@ -23,7 +23,7 @@ call ddu#custom#patch_global({
       \   'uiParams': {
       \     'ff': {
       \       'prompt': '»',
-      \       'split': 'no',
+      \       'split': 'horizontal',
       \       'displaySourceName': 'long',
       \     }
       \   },

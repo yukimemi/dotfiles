@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/02/21 22:56:09.
+# Last Change: 2022/02/26 23:47:27.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -905,6 +905,13 @@ on_event = ["CmdlineEnter", "CmdwinEnter"]
 # hook_add = '''
 # source $VIM_PATH/rc/vim-eft.vim
 # '''
+
+[[plugins]]
+repo = 'kyoh86/vim-ripgrep'
+on_cmd = 'Ripgrep'
+hook_add = '''
+source $VIM_PATH/rc/vim-ripgrep.vim
+'''
 
 # ==================== Shell =====================
 
