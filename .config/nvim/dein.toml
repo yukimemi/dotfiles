@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/02/26 23:47:27.
+# Last Change: 2022/02/28 20:57:20.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1638,6 +1638,7 @@ source $VIM_PATH/rc/vim-quickrun.vim
 '''
 if = "g:plugin_use_quickrun"
 on_map = '<Plug>'
+on_cmd = 'QuickRun'
 
 [[plugins]]
 repo = 'lambdalisue/vim-quickrun-neovim-job'

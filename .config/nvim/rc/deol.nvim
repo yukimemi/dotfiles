@@ -5,8 +5,6 @@ else
   nnoremap <localleader>s :<c-u>execute 'Deol' '-cwd='.fnamemodify(expand('%'), ':h')<cr>
 endif
 
-let g:deol#enable_ddc_completion = v:true
-
 au MyAutoCmd FileType deol nnoremap <buffer> p <c-w>""
 
 let g:deol#custom_map = {
@@ -25,6 +23,7 @@ let g:deol#custom_map = {
       \ }
 
 if g:plugin_use_ddc
+  let g:deol#enable_ddc_completion = v:true
   function! s:deol_cfg() abort
     call ddc#custom#patch_filetype(['deol'], 'sources', ['shell-history'])
     call ddc#custom#patch_global('sourceOptions', {
