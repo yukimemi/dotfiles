@@ -1,5 +1,5 @@
 let g:autocursor_debug = v:false
-let g:autocursor_fix_interval = 3000
+" let g:autocursor_fix_interval = 3000
 let g:autocursor_cursorline = {
   \ "enable": v:true,
   \ "events": [

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/03/01 01:00:06.
+" Last Change : 2022/03/05 10:58:47.
 " =============================================================================
 
 " Init:
@@ -421,20 +421,20 @@ let g:plugin_use_packer = v:false
 let g:plugin_use_jetpack = v:false
 
 let g:plugin_use_lightline = v:false
-let g:plugin_use_airline = v:false
+let g:plugin_use_airline = v:true
 let g:plugin_use_neoline = v:false
 let g:plugin_use_lualine = v:false
-let g:plugin_use_barow = v:true
+let g:plugin_use_barow = v:false
 let g:plugin_use_staline = v:false
 let g:plugin_use_galaxyline = v:false
 
 let g:plugin_use_indent_blankline = v:true
 let g:plugin_use_dps_indent_line = v:false
 
-let g:plugin_use_coc = v:true
+let g:plugin_use_coc = v:false
 let g:plugin_use_asyncomplete = v:false
 let g:plugin_use_deoplete = v:false
-let g:plugin_use_ddc = v:false
+let g:plugin_use_ddc = v:true
 let g:plugin_use_vimlsp = v:true && !has('nvim') && !g:plugin_use_coc
 let g:plugin_use_nvimlsp = v:true && has('nvim') && !g:plugin_use_coc
 
@@ -475,7 +475,7 @@ let g:plugin_use_quickrun = v:true
 let g:plugin_use_asyncrun = v:false
 
 let g:plugin_use_gina = v:true
-let g:plugin_use_gin = v:false
+let g:plugin_use_gin = v:true
 
 let g:plugin_use_bufpreview = v:true
 let g:plugin_use_glance = v:false

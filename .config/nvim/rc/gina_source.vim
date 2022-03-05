@@ -1,3 +1,7 @@
+if !g:plugin_use_gina
+  finish
+endif
+
 call gina#custom#command#alias('branch', 'br')
 call gina#custom#command#option('br', '-v', 'v')
 call gina#custom#command#option(

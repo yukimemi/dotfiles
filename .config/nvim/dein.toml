@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/02/28 20:57:20.
+# Last Change: 2022/03/05 11:07:26.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1193,10 +1193,14 @@ lazy = 1
 [[plugins]]
 repo = 'lambdalisue/gin.vim'
 if = "g:plugin_use_gin"
-depends = ['denops.vim', 'askpass.vim']
+depends = ['denops.vim', 'askpass.vim', 'guise.vim']
 hook_add = '''
 source $VIM_PATH/rc/gin.vim
 '''
+
+[[plugins]]
+repo = 'lambdalisue/guise.vim'
+depends = 'denops.vim'
 
 # ==================== Fuzzy =====================
 
