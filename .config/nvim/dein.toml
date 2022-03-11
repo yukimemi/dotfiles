@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/03/05 11:07:26.
+# Last Change: 2022/03/11 13:58:29.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -390,8 +390,14 @@ repo = 'rbtnn/vim-gloaded'
 repo = 'rbtnn/vim-vimscript_lasterror'
 on_cmd = ['VimscriptLastError']
 
+# [[plugins]]
+# repo = 'rbtnn/vim-vimscript_indentexpr'
+
 [[plugins]]
-repo = 'rbtnn/vim-vimscript_indentexpr'
+repo = 'hrsh7th/vim-gindent'
+hook_add = '''
+source $VIM_PATH/rc/vim-gindent.vim
+'''
 
 # [[plugins]]
 # repo = 'romainl/vim-qf'
@@ -955,7 +961,7 @@ source $VIM_PATH/rc/denops.vim
 repo = 'Shougo/ddc.vim'
 depends = ['context_filetype.vim', 'denops.vim', 'pum.vim']
 on_source = 'denops.vim'
-on_event = 'InsertEnter'
+on_event = ['InsertEnter', 'CursorHold']
 hook_source = '''
 source $VIM_PATH/rc/ddc.vim
 '''
@@ -1046,7 +1052,7 @@ source $VIM_PATH/rc/denops-signature_help.vim
 '''
 
 [[plugins]]
-repo = 'tani/ddc-fuzzy'
+repo = 'yukimemi/ddc-fuzzy'
 on_source = 'ddc.vim'
 
 [[plugins]]
@@ -1171,7 +1177,7 @@ on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 # on_cmd = ['PreviewMarkdown', 'PreviewMarkdownStop', 'PreviewMarkdownToggle']
 
 [[plugins]]
-repo = 'tani/glance-vim'
+repo = 'yukimemi/glance-vim'
 if = "g:plugin_use_glance"
 depends = 'denops.vim'
 on_ft = ['markdown', 'pandoc.markdown', 'rmd']
@@ -1200,6 +1206,7 @@ source $VIM_PATH/rc/gin.vim
 
 [[plugins]]
 repo = 'lambdalisue/guise.vim'
+rev = 'fix-windows'
 depends = 'denops.vim'
 
 # ==================== Fuzzy =====================
@@ -1356,6 +1363,10 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_relative'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_hidden'
 on_source = 'ddu.vim'
 
 [[plugins]]
@@ -1618,6 +1629,9 @@ source $VIM_PATH/rc/vim-lsp.vim
 '''
 
 [[plugins]]
+repo = 'tsuyoshicho/vim-efm-langserver-settings'
+
+[[plugins]]
 repo = "neoclide/coc.nvim"
 if = "g:plugin_use_coc"
 rev = "release"
@@ -1691,16 +1705,17 @@ on_ft = ['markdown']
 # repo = 'SidOfc/mkdx'
 # on_ft = ['markdown']
 
-# [[plugins]]
-# repo = 'iamcco/markdown-preview.nvim'
-# hook_add = '''
-# source $VIM_PATH/rc/markdown-preview.nvim
-# '''
-# hook_post_update = '''
-# call dein#source('markdown-preview.nvim')
-# call mkdp#util#install()
-# '''
-# on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+if = "g:plugin_use_markdownpreview"
+hook_add = '''
+source $VIM_PATH/rc/markdown-preview.nvim
+'''
+hook_post_update = '''
+call dein#source('markdown-preview.nvim')
+call mkdp#util#install()
+'''
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 
 [[plugins]]
 repo = 'rhysd/vim-gfm-syntax'
@@ -1725,6 +1740,9 @@ source $VIM_PATH/rc/vim-closetag.vim
 repo = 'tsuyoshicho/plantuml-previewer.vim'
 depends = ['open-browser.vim']
 on_ft = 'plantuml'
+hook_add = '''
+source $VIM_PATH/rc/plantuml-previewer.vim
+'''
 
 [[plugins]]
 repo = 'aklt/plantuml-syntax'

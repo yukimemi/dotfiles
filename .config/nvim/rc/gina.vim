@@ -3,7 +3,7 @@ if !g:plugin_use_gina
 endif
 
 " nnoremap <leader>gs :<c-u>Gina status<cr>
-" nnoremap <leader>gc :<c-u>Gina commit -v<cr>
+nnoremap <leader>gc :<c-u>Gina commit -v<cr>
 nnoremap <leader>gb :<c-u>Gina branch<cr>
 nnoremap <leader>gg :<c-u>Gina grep<cr>
 nnoremap <leader>gd :<c-u>Gina diff<cr>

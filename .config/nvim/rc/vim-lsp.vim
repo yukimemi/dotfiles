@@ -13,6 +13,8 @@ endfunction
 let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_format_sync_timeout = 5000
 let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_signature_help_enabled = 0
+let g:lsp_signature_help_delay = 1000
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal completeopt+=preview

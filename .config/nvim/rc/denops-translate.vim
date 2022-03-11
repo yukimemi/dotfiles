@@ -1,2 +1,2 @@
-Keymap n <space>t <Plug>(Translate)
-Keymap x <space>t <Plug>(VTranslate)
+Keymap n <localleader>t <Plug>(Translate)
+Keymap x <localleader>t <Plug>(VTranslate)

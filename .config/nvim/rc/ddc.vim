@@ -81,9 +81,9 @@ call ddc#custom#patch_global(
 call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
       \   'ignoreCase': v:true,
-      \   'matchers': ['matcher_head'],
-      \   'sorters': ['sorter_rank'],
-      \   'converters': ['converter_remove_overlap']
+      \   'matchers': ['matcher_fuzzy'],
+      \   'sorters': ['sorter_fuzzy'],
+      \   'converters': ['converter_fuzzy'],
       \ },
       \ 'treesitter': {
       \   'mark': 'T'
@@ -149,6 +149,12 @@ call ddc#custom#patch_global('sourceParams', {
       \ }
       \ })
 
+call ddc#custom#patch_global('filterParams', {
+      \ 'converter_fuzzy': {
+      \   'hlGroup': 'SpellBad'
+      \ }
+      \ })
+
 call ddc#custom#patch_filetype(
       \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
       \ 'sourceOptions': {
@@ -185,7 +191,7 @@ call ddc#custom#patch_filetype(['FineCmdlinePrompt'], {
 
 inoremap <silent>       <c-n> <Cmd>call pum#map#insert_relative(+1)<cr>
 inoremap <silent>       <c-p> <Cmd>call pum#map#insert_relative(-1)<cr>
-inoremap <silent>       <tab> <Cmd>call pum#map#confirm()<cr>
+" inoremap <silent>       <tab> <Cmd>call pum#map#confirm()<cr>
 inoremap <silent><expr> <c-e> ddc#map#extend()
 " inoremap <c-e>   <Cmd>call pum#map#cancel()<cr>
 

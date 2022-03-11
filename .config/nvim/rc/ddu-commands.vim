@@ -15,11 +15,10 @@
 Keymap n <silent> <leader>du <Cmd>Ddu mr -ui-param-startFilter=v:true<CR>
 Keymap n <silent> <leader>db <Cmd>Ddu buffer -ui-param-startFilter=v:false<CR>
 Keymap n <silent> <leader>dc <Cmd>Ddu colorscheme -ui-param-startFilter=v:true<CR>
-" Keymap n <silent> <leader>ds <Cmd>Ddu -name=files file_rec -source-param-path='`fnamemodify($MYVIMRC, ':h').'/rc'`'<CR>
-Keymap n <silent> <leader>df <Cmd>Ddu -name=files file_old `finddir('.git', ';') != '' ? 'file_external' : 'file_rec'`<CR>
+Keymap n <silent> <leader>df <Cmd>Ddu -name=files file_point file_old `finddir('.git', ';') != '' ? 'file_external' : 'file_rec'` -ui-param-displaySourceName=short<CR>
 Keymap n <silent> <leader>d/ <Cmd>Ddu -name=search line -ui-param-startFilter=v:true<CR>
 Keymap n <silent> <leader>d* <Cmd>Ddu -name=search line -input=`expand('<cword>')` -ui-param-startFilter=v:false<CR>
-Keymap n <silent> <leader>ds <Cmd>Ddu -name=search rg -source-param-input=`input('Pattern: ')`<CR>
+Keymap n <silent> <leader>ds <Cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-input=`input('Pattern: ')`<CR>
 Keymap n <silent> <leader>dn <Cmd>Ddu -name=search -resume -ui-param-startFilter=v:false<CR>
 Keymap n <silent> <leader>dR <Cmd>Ddu -buffer-name=register register -ui-param-autoResize<CR>
 Keymap n <silent> <leader>dr <Cmd>Ddu -resume<CR>

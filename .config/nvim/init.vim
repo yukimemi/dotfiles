@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/03/05 10:58:47.
+" Last Change : 2022/03/09 19:37:57.
 " =============================================================================
 
 " Init:
@@ -106,6 +106,19 @@ function! s:keymap(force_map, modes, ...) abort
 endfunction
 
 command! -nargs=+ -bang Keymap call <SID>keymap(<bang>0, <f-args>)
+
+" http://liosk.blog103.fc2.com/blog-entry-187.html
+Keymap x <localleader>e "xx:call <SID>escape_xml('x')<CR>"xP
+
+function s:escape_xml(regname)
+  let x = getreg(a:regname)
+  let x = substitute(x, '&', '\&amp;', 'g')
+  let x = substitute(x, '<', '\&lt;', 'g')
+  let x = substitute(x, '>', '\&gt;', 'g')
+  let x = substitute(x, "'", '\&apos;', 'g')
+  let x = substitute(x, '"', '\&quot;', 'g')
+  call setreg(a:regname, x)
+endfunction
 
 " Basic:
 " undo, swap.
@@ -477,8 +490,9 @@ let g:plugin_use_asyncrun = v:false
 let g:plugin_use_gina = v:true
 let g:plugin_use_gin = v:true
 
-let g:plugin_use_bufpreview = v:true
+let g:plugin_use_bufpreview = v:false
 let g:plugin_use_glance = v:false
+let g:plugin_use_markdownpreview = v:true
 
 let g:plugin_use_neoterm = v:false
 let g:plugin_use_toggleterm = v:false

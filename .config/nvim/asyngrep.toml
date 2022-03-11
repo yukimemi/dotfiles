@@ -22,17 +22,11 @@ arg = [
 
 [[tool]]
 name = "default-all"
-cmd = "pt"
-arg = [
-  "-i",
-  "--nogroup",
-  "--nocolor",
-  "--smart-case",
-  "--skip-vcs-ignores",
-  "--hidden",
-]
+cmd = "rg"
+arg = ["-i", "--vimgrep", "--no-heading", "--hidden", "--no-ignore", "--regexp"]
 
 [[tool]]
 name = "default"
-cmd = "pt"
-arg = ["-i", "--nogroup", "--nocolor"]
+cmd = "rg"
+arg = ["-i", "--vimgrep", "--no-heading"]
+
