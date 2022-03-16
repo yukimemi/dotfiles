@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/03/11 13:58:29.
+# Last Change: 2022/03/15 11:24:04.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -716,6 +716,14 @@ lazy = 1
 repo = 'thinca/vim-partedit'
 on_cmd = 'Partedit'
 
+[[plugins]]
+repo = 'prettier/vim-prettier'
+on_ft = 'json'
+build = 'yarn install'
+hook_add = '''
+source $VIM_PATH/rc/vim-prettier.vim
+'''
+
 # ==================== Test ======================
 [[plugins]]
 repo = 'vim-test/vim-test'
@@ -875,6 +883,15 @@ on_event = ['CursorHold', 'FocusLost']
 [[plugins]]
 repo = 'thinca/vim-operator-sequence'
 on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'tyru/operator-html-escape.vim'
+depends = 'vim-operator-user'
+hook_add = '''
+source $VIM_PATH/rc/operator-html-escape.vim
+'''
+on_map = '<Plug>'
+
 
 # ==================== Search ====================
 
@@ -1206,7 +1223,6 @@ source $VIM_PATH/rc/gin.vim
 
 [[plugins]]
 repo = 'lambdalisue/guise.vim'
-rev = 'fix-windows'
 depends = 'denops.vim'
 
 # ==================== Fuzzy =====================

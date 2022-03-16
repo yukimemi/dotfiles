@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/03/09 19:37:57.
+" Last Change : 2022/03/17 00:06:35.
 " =============================================================================
 
 " Init:
@@ -107,18 +107,6 @@ endfunction
 
 command! -nargs=+ -bang Keymap call <SID>keymap(<bang>0, <f-args>)
 
-" http://liosk.blog103.fc2.com/blog-entry-187.html
-Keymap x <localleader>e "xx:call <SID>escape_xml('x')<CR>"xP
-
-function s:escape_xml(regname)
-  let x = getreg(a:regname)
-  let x = substitute(x, '&', '\&amp;', 'g')
-  let x = substitute(x, '<', '\&lt;', 'g')
-  let x = substitute(x, '>', '\&gt;', 'g')
-  let x = substitute(x, "'", '\&apos;', 'g')
-  let x = substitute(x, '"', '\&quot;', 'g')
-  call setreg(a:regname, x)
-endfunction
 
 " Basic:
 " undo, swap.
@@ -433,8 +421,8 @@ let g:plugin_use_pack = v:false
 let g:plugin_use_packer = v:false
 let g:plugin_use_jetpack = v:false
 
-let g:plugin_use_lightline = v:false
-let g:plugin_use_airline = v:true
+let g:plugin_use_lightline = v:true
+let g:plugin_use_airline = v:false
 let g:plugin_use_neoline = v:false
 let g:plugin_use_lualine = v:false
 let g:plugin_use_barow = v:false
@@ -487,7 +475,7 @@ let g:plugin_use_coc_explorer = v:false
 let g:plugin_use_quickrun = v:true
 let g:plugin_use_asyncrun = v:false
 
-let g:plugin_use_gina = v:true
+let g:plugin_use_gina = v:false
 let g:plugin_use_gin = v:true
 
 let g:plugin_use_bufpreview = v:false

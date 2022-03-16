@@ -36,14 +36,10 @@ call ddu#custom#patch_global({
 \   'uiParams': {
 \     'ff': {
 \       'prompt': '»',
+\       'winHeight': 10,
 \       'reversed': v:true,
 \       'split': has('nvim') ? 'floating' : 'horizontal',
 \       'displaySourceName': 'long',
-\     },
-\   },
-\   'filterParams': {
-\     'matcher_substring': {
-\       'highlightMatched': 'Search',
 \     },
 \   },
 \   'kindOptions': {

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2022/01/22 18:10:24.
+" Last Change : 2022/03/12 20:39:25.
 " =============================================================================
 
 " Plugin:
@@ -17,6 +17,7 @@ let g:dein#auto_recache = v:true
 let g:dein#enable_notification = v:true
 let g:dein#install_check_diff = v:false
 let g:dein#install_github_api_token = $DEIN_GITHUB_API_TOKEN
+let g:dein#install_check_remote_threshold = 12 * 60 * 60
 let g:dein#install_log_filename = '~/.dein_install.log'
 let g:dein#install_progress_type = 'floating'
 let g:dein#lazy_rplugins = v:true
