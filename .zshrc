@@ -10,38 +10,38 @@
   && [ -z "${TMUX}" ] \
   && { tmux attach || tmux; } >/dev/null 2>&1
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-  print -P "%F{33}▓▒░ %F{160}Installing %F{33}ZINIT%F{160} Initiative Plugin Manager (%F{33}z-shell/zinit%F{160})…%f"
-  command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-  command git clone https://github.com/z-shell/zinit "$HOME/.zinit/bin" && \
+### Added by ZI's installer
+if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
+  print -P "%F{33}▓▒░ %F{160}Installing %F{33}ZI%F{160} Initiative Plugin Manager (%F{33}z-shell/zi%F{160})…%f"
+  command mkdir -p "$HOME/.zi" && command chmod g-rwX "$HOME/.zi"
+  command git clone https://github.com/z-shell/zi "$HOME/.zi/bin" && \
     print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
     print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
 
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+source "$HOME/.zi/bin/zi.zsh"
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
 
 # (this is currently required annexes)
-# zinit light-mode for \
+# zi light-mode for \
 #   z-shell/z-a-readurl \
 #   z-shell/z-a-meta-plugins \
 #   annexes
-### End of Zinit's installer chunk
+### End of ZI's installer chunk
 
 
 #
 # plugin list.
 #
-zinit lucid wait light-mode for \
+zi lucid wait light-mode for \
   atinit"zicompinit; zicdreplay" atload"zpcompinit" \
-  z-shell/fast-syntax-highlighting \
+  z-shell/F-Sy-H \
   marlonrichert/zsh-autocomplete \
   supercrabtree/k \
   @asdf-vm/asdf
 
-zinit lucid light-mode for \
+zi lucid light-mode for \
   atload"_zsh_autosuggest_start" \
   zsh-users/zsh-autosuggestions \
   zsh-users/zsh-history-substring-search \
@@ -49,21 +49,21 @@ zinit lucid light-mode for \
   yuki-yano/zeno.zsh \
   yukiycino-dotfiles/zsh-show-buffer-stack
 
-zinit lucid wait from"gh-r" as"program" pick"bit" for \
+zi lucid wait from"gh-r" as"program" pick"bit" for \
   chriswalz/bit
 
 #
 # for git.
 #
-zinit lucid wait as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode for \
+zi lucid wait as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode for \
   tj/git-extras
 
 
 #
 # z-a-rust
 #
-zinit ice lucid wait rustup cargo'!lsd;starship;atuin;bat;zoxide'
-zinit load z-shell/null
+zi ice lucid wait rustup cargo'!lsd;starship;atuin;bat;zoxide'
+zi load z-shell/null
 
 #
 # functions.
