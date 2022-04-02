@@ -1,1 +1,1 @@
-au MyAutoCmd BufWritePre *.json PrettierAsync
+au MyAutoCmd BufWritePre *.json,*.md PrettierAsync

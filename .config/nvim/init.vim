@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/03/17 00:06:35.
+" Last Change : 2022/04/01 22:56:06.
 " =============================================================================
 
 " Init:
@@ -466,6 +466,7 @@ let g:plugin_use_linearf = v:false && has('nvim')
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
 let g:plugin_use_fern = v:true
+let g:plugin_use_vfiler = v:false
 let g:plugin_use_defx = v:false
 let g:plugin_use_molder = v:false
 let g:plugin_use_vaffle = v:false
@@ -527,7 +528,7 @@ au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 set background=dark
-silent! colorscheme pinkmare
+silent! colorscheme gruvbox-material
 
 " Neovide:
 let g:neovide_transparency = 0.9

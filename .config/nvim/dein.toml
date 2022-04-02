@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/03/15 11:24:04.
+# Last Change: 2022/04/01 22:45:07.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -55,6 +55,9 @@ on_map = '<Plug>'
 [[plugins]]
 repo = "itchyny/vim-highlighturl"
 on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $VIM_PATH/rc/vim-highlighturl.vim
+'''
 
 [[plugins]]
 repo = 'itchyny/vim-parenmatch'
@@ -906,6 +909,14 @@ on_map = '<Plug>'
 repo = 'markonm/traces.vim'
 on_event = ["CmdlineEnter", "CmdwinEnter"]
 
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'
+on_map = '<Plug>'
+hook_add = '''
+source $VIM_PATH/rc/vim-anzu.vim
+'''
+
+
 # [[plugins]]
 # repo = 'tsuyoshicho/vim-fg'
 
@@ -1085,6 +1096,10 @@ repo = 'tani/ddc-path'
 on_source = 'ddc.vim'
 
 [[plugins]]
+repo = 'octaltree/cmp-look'
+on_source = 'ddc.vim'
+
+[[plugins]]
 repo = 'neovim/nvim-lspconfig'
 if = 'has("nvim") && g:plugin_use_nvimlsp'
 depends = ['nvim-lsp-installer', 'null-ls.nvim']
@@ -1210,7 +1225,6 @@ on_cmd = 'GhostStart'
 
 [[plugins]]
 repo = 'lambdalisue/askpass.vim'
-if = "g:plugin_use_gin"
 lazy = 1
 
 [[plugins]]
@@ -1224,6 +1238,13 @@ source $VIM_PATH/rc/gin.vim
 [[plugins]]
 repo = 'lambdalisue/guise.vim'
 depends = 'denops.vim'
+
+[[plugins]]
+repo = 'tennashi/gitsign.vim'
+depends = 'denops.vim'
+hook_add = '''
+source $VIM_PATH/rc/gitsign.vim
+'''
 
 # ==================== Fuzzy =====================
 
@@ -1581,6 +1602,19 @@ on_cmd = 'Vaffle'
 # source $VIM_PATH/rc/vim-viler.vim
 # '''
 # on_func = 'viler#open'
+
+[[plugins]]
+repo = 'obaland/vfiler.vim'
+depends = 'vfiler-column-devicons'
+if = 'g:plugin_use_vfiler'
+on_cmd = 'VFiler'
+hook_add = '''
+source $VIM_PATH/rc/vfiler.vim
+'''
+
+[[plugins]]
+repo = 'obaland/vfiler-column-devicons'
+lazy = 1
 
 # ==================== Complement ================
 

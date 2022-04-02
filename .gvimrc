@@ -11,12 +11,18 @@ if s:no_plugin
 endif
 
 set background=dark
-silent! colorscheme pinkmare
+silent! colorscheme gruvbox-material
 
 " font
+" set gfn=PlemolJP_Console_NF:h11
+" set gfw=PlemolJP_Console_NF:h11
+" set printfont=PlemolJP_Console_NF:h11
+" set gfn=UDEV_Gothic_NF:h11
+" set gfw=UDEV_Gothic_NF:h11
+" set printfont=UDEV_Gothic_NF:h11
 set gfn=Cica:h11
 set gfw=Cica:h11
-set printfont=Cica:h8
+set printfont=Cica:h11
 
 " gui
 set rop=type:directx,renmode:5

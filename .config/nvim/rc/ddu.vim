@@ -36,7 +36,7 @@ call ddu#custom#patch_global({
 \   'uiParams': {
 \     'ff': {
 \       'prompt': '»',
-\       'winHeight': 10,
+\       'winHeight': 15,
 \       'reversed': v:true,
 \       'split': has('nvim') ? 'floating' : 'horizontal',
 \       'displaySourceName': 'long',
