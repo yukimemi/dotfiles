@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/04/01 22:56:06.
+" Last Change : 2022/04/11 14:46:57.
 " =============================================================================
 
 " Init:
@@ -172,6 +172,7 @@ if has('nvim')
   set pumblend=10
   set winblend=10
   set inccommand=split
+  set laststatus=3
 endif
 
 " python
@@ -421,13 +422,14 @@ let g:plugin_use_pack = v:false
 let g:plugin_use_packer = v:false
 let g:plugin_use_jetpack = v:false
 
-let g:plugin_use_lightline = v:true
+let g:plugin_use_lightline = !has('nvim')
 let g:plugin_use_airline = v:false
-let g:plugin_use_neoline = v:false
-let g:plugin_use_lualine = v:false
 let g:plugin_use_barow = v:false
-let g:plugin_use_staline = v:false
-let g:plugin_use_galaxyline = v:false
+let g:plugin_use_neoline = v:false && has('nvim')
+let g:plugin_use_lualine = v:false && has('nvim')
+let g:plugin_use_staline = v:false && has('nvim')
+let g:plugin_use_galaxyline = v:false && has('nvim')
+let g:plugin_use_incline = v:true && has('nvim')
 
 let g:plugin_use_indent_blankline = v:true
 let g:plugin_use_dps_indent_line = v:false
@@ -528,7 +530,7 @@ au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 set background=dark
-silent! colorscheme gruvbox-material
+silent! colorscheme pinkmare
 
 " Neovide:
 let g:neovide_transparency = 0.9

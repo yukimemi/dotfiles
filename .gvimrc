@@ -11,7 +11,7 @@ if s:no_plugin
 endif
 
 set background=dark
-silent! colorscheme gruvbox-material
+silent! colorscheme pinkmare
 
 " font
 " set gfn=PlemolJP_Console_NF:h11

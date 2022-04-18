@@ -2,7 +2,7 @@
 let g:gitsign#auto_enable = 1
 
 " Highlight lines
-let g:gitsign#highlight#enable_lines = 1
+let g:gitsign#highlight#enable_lines = 0
 
 " Highlight marks
 let g:gitsign#highlight#enable_marks = 1

@@ -32,13 +32,19 @@ call ddu#custom#patch_global({
 \     'file_external': {
 \       'cmd': ['git', 'ls-files', '-co', '--exclude-standard'],
 \     },
+\     'file_rg': {
+\       'cmd': ['rg', '--files', '--glob', '!.git', '--color', 'never', '--no-messages'],
+\       'updateItems': 50000,
+\     },
+\     'rg': {
+\       'args': ['--ignore-case', '--column', '--no-heading', '--color', 'never'],
+\     },
 \   },
 \   'uiParams': {
 \     'ff': {
 \       'prompt': '»',
-\       'winHeight': 15,
 \       'reversed': v:true,
-\       'split': has('nvim') ? 'floating' : 'horizontal',
+\       'split': 'horizontal',
 \       'displaySourceName': 'long',
 \     },
 \   },
@@ -55,7 +61,10 @@ call ddu#custom#patch_global({
 \     'action': {
 \       'defaultAction': 'do',
 \     },
-\   }
+\     'colorscheme': {
+\       'defaultAction': 'set',
+\     },
+\   },
 \ })
 
 " Specify name
