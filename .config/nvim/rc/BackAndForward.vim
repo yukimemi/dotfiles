@@ -1,3 +1,3 @@
-nmap gH <Plug>(backandforward-back)
-nmap gL <Plug>(backandforward-forward)
+Keymap n gH <Plug>(backandforward-back)
+Keymap n gL <Plug>(backandforward-forward)
 

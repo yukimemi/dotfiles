@@ -4,8 +4,6 @@ let g:textobj_multiblock_blocks = [
       \]
 let g:textobj_multiblock_search_limit = 200
 
-omap ab <Plug>(textobj-multiblock-a)
-omap ib <Plug>(textobj-multiblock-i)
-xmap ab <Plug>(textobj-multiblock-a)
-xmap ib <Plug>(textobj-multiblock-i)
+Keymap xo ab <Plug>(textobj-multiblock-a)
+Keymap xo ib <Plug>(textobj-multiblock-i)
 

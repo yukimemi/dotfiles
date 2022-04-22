@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/04/11 14:46:57.
+" Last Change : 2022/04/21 22:55:41.
 " =============================================================================
 
 " Init:
@@ -376,11 +376,11 @@ au MyAutoCmd VimEnter COMMIT_EDITMSG setl spell
 " Triger `autoread` when files changes on disk
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
 " https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
-au MyAutoCmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+" au MyAutoCmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
 
 " Notification after file change
 " https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
-au MyAutoCmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+" au MyAutoCmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
 if has('gui_running')
   if g:is_windows
@@ -413,14 +413,14 @@ set wildcharm=<tab>
 cnoremap <expr> <tab> '<cmd>set nosmartcase<cr><tab><cmd>let &smartcase = ' .. &smartcase .. '<cr>'
 
 " Plugin:
-let g:plugin_use_dein = v:true
+let g:plugin_use_dein = v:false
 let g:plugin_use_vimplug = v:false
 let g:plugin_use_minpac = v:false
 let g:plugin_use_packager = v:false
 let g:plugin_use_volt = v:false
 let g:plugin_use_pack = v:false
 let g:plugin_use_packer = v:false
-let g:plugin_use_jetpack = v:false
+let g:plugin_use_jetpack = v:true
 
 let g:plugin_use_lightline = !has('nvim')
 let g:plugin_use_airline = v:false

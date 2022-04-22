@@ -72,153 +72,158 @@ function! CommandlinePost() abort
 endfunction
 
 " Use pum.vim
-call ddc#custom#patch_global('autoCompleteEvents', [
-\ 'InsertEnter', 'TextChangedI', 'TextChangedP',
-\ 'CmdlineEnter', 'CmdlineChanged',
-\ ])
-call ddc#custom#patch_global('completionMenu', 'pum.vim')
+function! s:my_ddc_config() abort
 
-call ddc#custom#patch_global(
-\ 'sources', has('nvim') ?
-\ s:defult_sources_nvim :
-\ s:defult_sources_vim,
-\ )
+  call ddc#custom#patch_global('autoCompleteEvents', [
+  \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
+  \ 'CmdlineEnter', 'CmdlineChanged',
+  \ ])
+  call ddc#custom#patch_global('completionMenu', 'pum.vim')
 
-call ddc#custom#patch_global('sourceOptions', {
-\ '_': {
-\   'ignoreCase': v:true,
-\   'matchers': ['matcher_fuzzy'],
-\   'sorters': ['sorter_fuzzy'],
-\   'converters': ['converter_fuzzy'],
-\ },
-\ 'treesitter': {
-\   'mark': 'T'
-\ },
-\ 'around': {
-\   'mark': 'A',
-\   'matchers': ['matcher_head', 'matcher_length'],
-\ },
-\ 'buffer': {
-\   'mark': 'B'
-\ },
-\ 'necovim': {
-\   'mark': 'vim'
-\ },
-\ 'cmdline': {
-\   'mark': 'cmdline',
-\   'forceCompletionPattern': '\S/\S*',
-\ },
-\ 'cmdline-history': {
-\   'mark': 'history',
-\   'sorters': [],
-\ },
-\ 'shell-history': {'mark': 'shell'},
-\ 'zsh': {
-\   'mark': 'zsh',
-\   'isVolatile': v:true,
-\   'forceCompletionPattern': '\S/\S*'
-\ },
-\ 'nextword': {
-\   'mark': 'nextword',
-\   'minAutoCompleteLength': 2,
-\   'isVolatile': v:true,
-\ },
-\ 'mocword': {
-\   'mark': 'mocword',
-\   'minAutoCompleteLength': 2,
-\   'isVolatile': v:true,
-\ },
-\ 'nvim-lsp': {
-\   'mark': 'lsp',
-\   'forceCompletionPattern': '\.\w*|:\w*|->\w*'
-\ },
-\ 'vim-lsp': {
-\   'mark': 'lsp',
-\   'forceCompletionPattern': '\.\w*|:\w*|->\w*'
-\ },
-\ 'file': {
-\   'mark': 'F',
-\   'isVolatile': v:true,
-\   'minAutoCompleteLength': 1000,
-\   'forceCompletionPattern': '\S/\S*'
-\ },
-\ 'path': {
-\   'mark': 'P',
-\   'cmd': ['fd', '--max-depth', '5']
-\ },
-\ 'look': {
-\   'converters': ['loud', 'matcher_head'],
-\   'matchers': [],
-\   'mark': 'l',
-\   'isVolatile': v:true
-\ },
-\ 'rg': {
-\   'mark': 'rg',
-\   'matchers': ['matcher_head', 'matcher_length'],
-\   'minAutoCompleteLength': 4,
-\ },
-\ })
+  call ddc#custom#patch_global(
+  \ 'sources', has('nvim') ?
+  \ s:defult_sources_nvim :
+  \ s:defult_sources_vim,
+  \ )
 
-call ddc#custom#patch_global('sourceParams', {
-\ 'buffer': {
-\   'requireSameFiletype': v:false,
-\   'limitBytes': 5000000,
-\   'fromAltBuf': v:true,
-\   'forceCollect': v:true,
-\ },
-\ 'look': {
-\   'convertCase': v:true,
-\   'dict': v:null,
-\ },
-\ })
+  call ddc#custom#patch_global('sourceOptions', {
+  \ '_': {
+  \   'ignoreCase': v:true,
+  \   'matchers': ['matcher_fuzzy'],
+  \   'sorters': ['sorter_fuzzy'],
+  \   'converters': ['converter_fuzzy'],
+  \ },
+  \ 'treesitter': {
+  \   'mark': 'T'
+  \ },
+  \ 'around': {
+  \   'mark': 'A',
+  \   'matchers': ['matcher_head', 'matcher_length'],
+  \ },
+  \ 'buffer': {
+  \   'mark': 'B'
+  \ },
+  \ 'necovim': {
+  \   'mark': 'vim'
+  \ },
+  \ 'cmdline': {
+  \   'mark': 'cmdline',
+  \   'forceCompletionPattern': '\S/\S*',
+  \ },
+  \ 'cmdline-history': {
+  \   'mark': 'history',
+  \   'sorters': [],
+  \ },
+  \ 'shell-history': {'mark': 'shell'},
+  \ 'zsh': {
+  \   'mark': 'zsh',
+  \   'isVolatile': v:true,
+  \   'forceCompletionPattern': '\S/\S*'
+  \ },
+  \ 'nextword': {
+  \   'mark': 'nextword',
+  \   'minAutoCompleteLength': 2,
+  \   'isVolatile': v:true,
+  \ },
+  \ 'mocword': {
+  \   'mark': 'mocword',
+  \   'minAutoCompleteLength': 2,
+  \   'isVolatile': v:true,
+  \ },
+  \ 'nvim-lsp': {
+  \   'mark': 'lsp',
+  \   'forceCompletionPattern': '\.\w*|:\w*|->\w*'
+  \ },
+  \ 'vim-lsp': {
+  \   'mark': 'lsp',
+  \   'forceCompletionPattern': '\.\w*|:\w*|->\w*'
+  \ },
+  \ 'file': {
+  \   'mark': 'F',
+  \   'isVolatile': v:true,
+  \   'minAutoCompleteLength': 1000,
+  \   'forceCompletionPattern': '\S/\S*'
+  \ },
+  \ 'path': {
+  \   'mark': 'P',
+  \   'cmd': ['fd', '--max-depth', '5']
+  \ },
+  \ 'look': {
+  \   'converters': ['loud', 'matcher_head'],
+  \   'matchers': [],
+  \   'mark': 'l',
+  \   'isVolatile': v:true
+  \ },
+  \ 'rg': {
+  \   'mark': 'rg',
+  \   'matchers': ['matcher_head', 'matcher_length'],
+  \   'minAutoCompleteLength': 4,
+  \ },
+  \ })
 
-call ddc#custom#patch_global('filterParams', {
-\ 'converter_fuzzy': {
-\   'hlGroup': 'SpellBad'
-\ }
-\ })
+  call ddc#custom#patch_global('sourceParams', {
+  \ 'buffer': {
+  \   'requireSameFiletype': v:false,
+  \   'limitBytes': 5000000,
+  \   'fromAltBuf': v:true,
+  \   'forceCollect': v:true,
+  \ },
+  \ 'look': {
+  \   'convertCase': v:true,
+  \   'dict': v:null,
+  \ },
+  \ })
 
-call ddc#custom#patch_filetype(
-\ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
-\ 'sourceOptions': {
-\   'file': {
-\     'forceCompletionPattern': '\S\\\S*',
-\   },
-\ },
-\ 'sourceParams': {
-\   'file': {
-\     'mode': 'win32',
-\   },
-\ }})
-" call ddc#custom#patch_filetype(
-"      \ s:lsp_languages, 'sources', has('nvim') ?
-"      \ s:lsp_sources_nvim :
-"      \ s:lsp_sources_vim,
-"      \ )
+  call ddc#custom#patch_global('filterParams', {
+  \ 'converter_fuzzy': {
+  \   'hlGroup': 'SpellBad'
+  \ }
+  \ })
 
-if has('nvim')
-  let s:vim_sources = s:defult_sources_nvim + ['necovim']
-else
-  let s:vim_sources = s:defult_sources_vim + ['necovim']
-endif
-call ddc#custom#patch_filetype(
-\ ['vim'], 'sources',
-\ s:vim_sources,
-\ )
+  call ddc#custom#patch_filetype(
+  \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
+  \ 'sourceOptions': {
+  \   'file': {
+  \     'forceCompletionPattern': '\S\\\S*',
+  \   },
+  \ },
+  \ 'sourceParams': {
+  \   'file': {
+  \     'mode': 'win32',
+  \   },
+  \ }})
+  " call ddc#custom#patch_filetype(
+  "      \ s:lsp_languages, 'sources', has('nvim') ?
+  "      \ s:lsp_sources_nvim :
+  "      \ s:lsp_sources_vim,
+  "      \ )
 
-call ddc#custom#patch_filetype(['FineCmdlinePrompt'], {
-\ 'keywordPattern': '[0-9a-zA-Z_:#]*',
-\ 'sources': ['cmdline', 'cmdline-history', 'around'],
-\ 'specialBufferCompletion': v:true,
-\ })
+  if has('nvim')
+    let s:vim_sources = s:defult_sources_nvim + ['necovim']
+  else
+    let s:vim_sources = s:defult_sources_vim + ['necovim']
+  endif
+  call ddc#custom#patch_filetype(
+  \ ['vim'], 'sources',
+  \ s:vim_sources,
+  \ )
 
-Keymap i <silent>       <c-n> <Cmd>call pum#map#insert_relative(+1)<cr>
-Keymap i <silent>       <c-p> <Cmd>call pum#map#insert_relative(-1)<cr>
-Keymap i <silent><expr> <c-e> ddc#map#extend()
+  call ddc#custom#patch_filetype(['FineCmdlinePrompt'], {
+  \ 'keywordPattern': '[0-9a-zA-Z_:#]*',
+  \ 'sources': ['cmdline', 'cmdline-history', 'around'],
+  \ 'specialBufferCompletion': v:true,
+  \ })
 
-Keymap n : <Cmd>call CommandlinePre(':')<cr>:
-Keymap n ? <Cmd>call CommandlinePre('/')<cr>?
-Keymap n / <Cmd>call CommandlinePre('/')<cr>/
+  Keymap i <silent>       <c-n> <Cmd>call pum#map#insert_relative(+1)<cr>
+  Keymap i <silent>       <c-p> <Cmd>call pum#map#insert_relative(-1)<cr>
+  Keymap i <silent><expr> <c-e> ddc#map#extend()
 
-call ddc#enable()
+  Keymap n : <Cmd>call CommandlinePre(':')<cr>:
+  Keymap n ? <Cmd>call CommandlinePre('/')<cr>?
+  Keymap n / <Cmd>call CommandlinePre('/')<cr>/
+
+  call ddc#enable()
+endfunction
+
+au MyAutoCmd InsertEnter * ++once call <SID>my_ddc_config()
 

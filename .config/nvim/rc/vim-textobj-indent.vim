@@ -1,9 +1,5 @@
-omap ai <Plug>(textobj-indent-a)
-xmap ai <Plug>(textobj-indent-a)
-omap ii <Plug>(textobj-indent-i)
-xmap ii <Plug>(textobj-indent-i)
-omap aI <Plug>(textobj-indent-same-a)
-xmap aI <Plug>(textobj-indent-same-a)
-omap iI <Plug>(textobj-indent-same-i)
-xmap iI <Plug>(textobj-indent-same-i)
+Keymap xo ai <Plug>(textobj-indent-a)
+Keymap xo ii <Plug>(textobj-indent-i)
+Keymap xo aI <Plug>(textobj-indent-same-a)
+Keymap xo iI <Plug>(textobj-indent-same-i)
 

@@ -9,7 +9,7 @@ let g:popup_preview_config = {
 			\ 'maxHeight': 30,
 			\ }
 
-call popup_preview#enable()
+au MyAutoCmd InsertEnter * ++once call popup_preview#enable()
 
 " au MyAutoCmd FileType ps1,vim call popup_preview#disable()
 
