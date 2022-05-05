@@ -71,6 +71,9 @@ snippets:
     keyword: v
     snippet: vim
   # Shell
+  - name: clear
+    keyword: c
+    snippet: clear
   - name: open
     keyword: o
     snippet: open
