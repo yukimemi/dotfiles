@@ -3,3 +3,5 @@ if !has('nvim')
 endif
 
 let g:did_load_filetypes = 1
+
+" vim: ft=vim :

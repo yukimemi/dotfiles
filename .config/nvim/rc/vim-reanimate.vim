@@ -1,11 +1,11 @@
-let g:reanimate_save_dir = $CACHE_HOME . "/reanimate"
+let g:reanimate_save_dir = $CACHE_HOME .. "/reanimate"
 let g:reanimate_default_category = "def"
 let g:reanimate_default_save_name = "lat"
 
 let g:reanimate_event_disables = {
-      \	"_" : {
-      \		"reanimate_confirm" : 1
-      \	}
+      \ "_" : {
+      \   "reanimate_confirm" : 1
+      \ }
       \ }
 
 function s:reanimate_save_cwd() abort

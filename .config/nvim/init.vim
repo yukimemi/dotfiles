@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/04/29 19:48:43.
+" Last Change : 2022/05/05 19:06:56.
 " =============================================================================
 
 " Init:
@@ -414,6 +414,7 @@ set wildcharm=<tab>
 cnoremap <expr> <tab> '<cmd>set nosmartcase<cr><tab><cmd>let &smartcase = ' .. &smartcase .. '<cr>'
 
 " Plugin:
+let g:plugin_use_mini = 1
 let g:plugin_use_dein = 1
 let g:plugin_use_vimplug = 0
 let g:plugin_use_minpac = 0
@@ -436,8 +437,6 @@ let g:plugin_use_indent_blankline = 1
 let g:plugin_use_dps_indent_line = 0
 
 let g:plugin_use_coc = 1
-let g:plugin_use_asyncomplete = 0
-let g:plugin_use_deoplete = 0
 let g:plugin_use_ddc = 0
 let g:plugin_use_vimlsp = 1 && !has('nvim') && !g:plugin_use_coc
 let g:plugin_use_nvimlsp = 1 && has('nvim') && !g:plugin_use_coc
@@ -447,22 +446,21 @@ let g:plugin_use_ale = 0
 let g:plugin_use_lexima = 0 && g:plugin_use_coc
 let g:plugin_use_lexiv = 1 && g:plugin_use_coc
 
-let g:plugin_use_quickscope = 0
+let g:plugin_use_quickscope = 1
 let g:plugin_use_cleverf = 0
-let g:plugin_use_shotf = 1
+let g:plugin_use_shotf = 0
 
 let g:plugin_use_autobackup = 0
 let g:plugin_use_aho_bakaup = 1
 
+let g:plugin_use_smoothie = 0
+
 let g:plugin_use_ctrlp = 1
-let g:plugin_use_clap = 0
 let g:plugin_use_fzf = 0
 let g:plugin_use_cocfzf = 0
 let g:plugin_use_coclist = 0
 let g:plugin_use_fz = 0
-let g:plugin_use_denite = 0
 let g:plugin_use_ddu = 1
-let g:plugin_use_quickpick = 0
 let g:plugin_use_telescope = 0 && has('nvim')
 let g:plugin_use_linearf = 0 && has('nvim')
 

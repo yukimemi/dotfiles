@@ -1,4 +1,4 @@
-nmap <space>/ <Plug>(hopping-start)
+Keymap n <space>/ <Plug>(hopping-start)
 
 " Keymapping
 let g:hopping#keymapping = {

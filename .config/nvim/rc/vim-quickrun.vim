@@ -18,4 +18,4 @@ function s:quickrun_sweep_sessions() abort
   call quickrun#sweep_sessions()
 endfunction
 
-nnoremap <expr><silent> <c-c> quickrun#is_running() ? <SID>quickrun_sweep_sessions() : "\<c-c>"
+Keymap n <expr><silent> <c-c> quickrun#is_running() ? <SID>quickrun_sweep_sessions() : "\<c-c>"
