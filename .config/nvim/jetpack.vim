@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : jetpack.vim
 " Author      : yukimemi
-" Last Change : 2022/04/22 13:11:33.
+" Last Change : 2022/04/28 18:28:12.
 " =============================================================================
 
 " Plugin:
@@ -60,7 +60,8 @@ call jetpack#begin(s:package_home)
 Pg 'tani/vim-jetpack', {'on': 'JetpackSync'}
 
 " Colorscheme:
-Pg 'Matsuuu/pinkmare'
+Pg 'Matsuuu/pinkmare', {'opt': 1}
+Pg 'srcery-colors/srcery-vim'
 
 " Visual:
 Pg 'LumaKernel/nvim-visual-eof.lua', {'if': has('nvim')}
@@ -71,12 +72,16 @@ Pg 'itchyny/vim-parenmatch', {'on': g:lazy_events}
 Pg 'lambdalisue/seethrough.vim', {'if': !has('gui')}
 Pg 'lukas-reineke/indent-blankline.nvim', {'if': has('nvim'), 'on': 'VimEnter'}
 Pg 'luochen1990/rainbow', {'on': g:lazy_events}
+Pg 'machakann/vim-highlightedyank', {'on': g:lazy_events, 'if': !has('nvim')}
 Pg 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
+Pg 'mattn/vim-notification', {'on': g:lazy_events, 'if': !has('nvim')}
 Pg 'mattn/vimtweak', {'if': g:is_windows && !has('nvim')}
 Pg 'mopp/smartnumber.vim', {'on': g:lazy_events}
 Pg 'ntpeters/vim-better-whitespace', {'on': g:lazy_events}
 Pg 't9md/vim-quickhl', {'on': g:lazy_events}
-Pg 'mattn/vim-notification', {'on': g:lazy_events, 'if': !has('nvim')}
+
+" Movement:
+" Pg 'psliwka/vim-smoothie', {'on': g:lazy_events}
 
 " Statusline:
 if g:plugin_use_barow
@@ -139,17 +144,20 @@ Pg 'osyo-manga/vim-operator-search', {'on': '<Plug>(operator-search)'}
 Pg 'osyo-manga/vim-operator-stay-cursor', {'on': g:lazy_events}
 
 " Search:
-Pg 'haya14busa/vim-asterisk', {'on': g:lazy_events}
+Pg 'haya14busa/vim-asterisk', {'on': ['<Plug>(asterisk-z*)', '<Plug>(asterisk-gz*)', '<Plug>(asterisk-z#)', '<Plug>(asterisk-gz#)']}
+Pg 'deris/vim-shot-f', {'on': g:lazy_events}
+Pg 'inside/vim-search-pulse', {'on': g:lazy_events}
 
 " Git:
-Pg 'lambdalisue/askpass.vim'
-Pg 'lambdalisue/gin.vim'
-Pg 'lambdalisue/guise.vim'
+Pg 'lambdalisue/askpass.vim', {'on': 'BufRead'}
+Pg 'lambdalisue/gin.vim', {'on': 'BufRead'}
+Pg 'lambdalisue/guise.vim', {'on': 'BufRead'}
 
 " Comment:
 Pg 'tyru/caw.vim', {'on': ['<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)']}
 
 " FileType:
+" Pg 'alvan/vim-closetag', {'for': ['xml', 'html']}
 
 " Util:
 Pg 'Bakudankun/BackAndForward.vim', {'on': ['<Plug>(backandforward-back)', '<Plug>(backandforward-forward)']}
@@ -163,6 +171,7 @@ Pg 'haya14busa/vim-edgemotion', {'on': ['<Plug>(edgemotion-j)', '<Plug>(edgemoti
 Pg 'lambdalisue/mr.vim'
 Pg 'lambdalisue/vim-findent', {'on': 'Findent'}
 Pg 'mattn/vim-lexiv', {'if': g:plugin_use_lexiv}
+Pg 'mattn/vim-sonictemplate', {'on': 'Template'}
 Pg 'qpkorr/vim-renamer', {'on': 'Renamer'}
 Pg 'thinca/vim-ambicmd'
 Pg 'thinca/vim-prettyprint', {'on': 'PP'}
@@ -171,6 +180,8 @@ Pg 'thinca/vim-submode', {'on': 'BufRead'}
 Pg 'tpope/vim-repeat', {'on': 'BufRead'}
 Pg 'tyru/open-browser.vim', {'on': g:lazy_events}
 Pg 'vim-scripts/autodate.vim', {'on': 'InsertEnter'}
+Pg 'gelguy/wilder.nvim', {'if': !g:plugin_use_ddc}
+Pg 'thinca/vim-partedit', {'on': 'Partedit'}
 
 " Denops:
 Pg 'vim-denops/denops.vim'
@@ -231,6 +242,33 @@ if g:plugin_use_ddc
     Pg 'williamboman/nvim-lsp-installer'
     Pg 'Shougo/ddc-nvim-lsp'
   endif
+endif
+
+if g:plugin_use_ddu
+  Pg 'Shougo/ddu.vim'
+  Pg 'Shougo/ddu-commands.vim'
+
+  Pg 'Shougo/ddu-filter-matcher_hidden'
+  Pg 'Shougo/ddu-filter-matcher_relative'
+  Pg 'Shougo/ddu-filter-matcher_substring'
+  Pg 'Shougo/ddu-kind-file'
+  Pg 'Shougo/ddu-kind-word'
+  Pg 'Shougo/ddu-source-action'
+  Pg 'Shougo/ddu-source-file'
+  Pg 'Shougo/ddu-source-file_old'
+  Pg 'Shougo/ddu-source-file_point'
+  Pg 'Shougo/ddu-source-file_rec'
+  Pg 'Shougo/ddu-source-line'
+  Pg 'Shougo/ddu-source-register'
+  Pg 'Shougo/ddu-ui-ff'
+  Pg 'kuuote/ddu-source-mr'
+  Pg 'matsui54/ddu-source-file_external'
+  Pg 'matsui54/ddu-source-help'
+  Pg 'shun/ddu-source-buffer'
+  Pg 'shun/ddu-source-rg'
+  Pg 'yuki-yano/ddu-filter-fzf'
+  Pg '4513ECHO/ddu-source-colorscheme'
+  Pg '4513ECHO/vim-readme-viewer'
 endif
 
 call jetpack#end()

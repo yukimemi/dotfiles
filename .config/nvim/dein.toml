@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/04/18 21:41:32.
+# Last Change: 2022/04/29 16:47:15.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -98,10 +98,10 @@ if = "!has('nvim')"
 on_event = ["CursorHold", "CursorMoved"]
 
 # [[plugins]]
+# repo = 'machakann/vim-highlightedyank'
 # hook_add = '''
 # source $VIM_PATH/rc/vim-highlightedyank.vim
 # '''
-# repo = 'machakann/vim-highlightedyank'
 
 [[plugins]]
 repo = 'mattn/transparency-windows-vim'
@@ -240,6 +240,9 @@ repo = 'Matsuuu/pinkmare'
 hook_add = '''
 source $VIM_PATH/rc/pinkmare.vim
 '''
+
+[[plugins]]
+repo = 'srcery-colors/srcery-vim'
 
 [[plugins]]
 repo = 'RRethy/nvim-base16'
@@ -652,9 +655,16 @@ if = "g:plugin_use_lexiv"
 # source $VIM_PATH/rc/vim9-stargate.vim
 # '''
 
-# [[plugins]]
-# repo = 'rcarriga/nvim-notify'
-# on_lua = 'notify'
+[[plugins]]
+repo = 'rcarriga/nvim-notify'
+on_lua = 'notify'
+on_source = '''
+lua vim.notify = require('notify')
+'''
+
+[[plugins]]
+repo = 'mattn/vim-notification'
+if = "!has('nvim')"
 
 [[plugins]]
 repo = 'tyru/nextfile.vim'
@@ -733,6 +743,13 @@ source $VIM_PATH/rc/vim-prettier.vim
 
 [[plugins]]
 repo = 'fuenor/JpFormat.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-jplus'
+on_map = {n = '<Plug>'}
+hook_add = '''
+source $VIM_PATH/rc/vim-jplus.vim
+'''
 
 # ==================== Test ======================
 [[plugins]]
@@ -1807,12 +1824,12 @@ on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 repo = 'mattn/emmet-vim'
 on_ft = ['html']
 
-[[plugins]]
-repo = 'alvan/vim-closetag'
-on_ft = ['xml', 'html']
-hook_add = '''
-source $VIM_PATH/rc/vim-closetag.vim
-'''
+# [[plugins]]
+# repo = 'alvan/vim-closetag'
+# on_ft = ['xml', 'html']
+# hook_add = '''
+# source $VIM_PATH/rc/vim-closetag.vim
+# '''
 
 # ==================== Filetype (plantuml) =======
 

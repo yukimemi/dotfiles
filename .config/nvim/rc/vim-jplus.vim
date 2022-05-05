@@ -1,14 +1,10 @@
-nmap J <Plug>(jplus)
-vmap J <Plug>(jplus)
+Keymap nx J <Plug>(jplus)
+Keymap nx <leader>J <Plug>(jplus-getchar)
 
-nmap <leader>J <Plug>(jplus-getchar)
-vmap <leader>J <Plug>(jplus-getchar)
-
-" nmap <leader>J <Plug>(jplus-input)
-" vmap <leader>J <Plug>(jplus-input)
+" Keymap nx <leader>J <Plug>(jplus-input)
 
 let g:jplus#config = {
-      \ "_" : {
-      \   "delimiter_format" : ' %d '
-      \ }
-      \ }
+\ "_": {
+\   "delimiter_format": ' %d '
+\ }
+\ }

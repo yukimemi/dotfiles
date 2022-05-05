@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/04/21 22:55:41.
+" Last Change : 2022/04/29 19:48:43.
 " =============================================================================
 
 " Init:
@@ -135,7 +135,7 @@ endif
 
 set number
 set relativenumber
-set signcolumn=yes
+set signcolumn=number
 if has('gui')
   set ambiwidth=double
 endif
@@ -161,6 +161,7 @@ set synmaxcol=500
 set smarttab
 set concealcursor=nc
 set shortmess-=S
+set shortmess+=c
 set iminsert=0 imsearch=-1
 set pumheight=20
 set list listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
@@ -413,87 +414,87 @@ set wildcharm=<tab>
 cnoremap <expr> <tab> '<cmd>set nosmartcase<cr><tab><cmd>let &smartcase = ' .. &smartcase .. '<cr>'
 
 " Plugin:
-let g:plugin_use_dein = v:false
-let g:plugin_use_vimplug = v:false
-let g:plugin_use_minpac = v:false
-let g:plugin_use_packager = v:false
-let g:plugin_use_volt = v:false
-let g:plugin_use_pack = v:false
-let g:plugin_use_packer = v:false
-let g:plugin_use_jetpack = v:true
+let g:plugin_use_dein = 1
+let g:plugin_use_vimplug = 0
+let g:plugin_use_minpac = 0
+let g:plugin_use_packager = 0
+let g:plugin_use_volt = 0
+let g:plugin_use_pack = 0
+let g:plugin_use_packer = 0
+let g:plugin_use_jetpack = 0
 
 let g:plugin_use_lightline = !has('nvim')
-let g:plugin_use_airline = v:false
-let g:plugin_use_barow = v:false
-let g:plugin_use_neoline = v:false && has('nvim')
-let g:plugin_use_lualine = v:false && has('nvim')
-let g:plugin_use_staline = v:false && has('nvim')
-let g:plugin_use_galaxyline = v:false && has('nvim')
-let g:plugin_use_incline = v:true && has('nvim')
+let g:plugin_use_airline = 0
+let g:plugin_use_barow = 0
+let g:plugin_use_neoline = 0 && has('nvim')
+let g:plugin_use_lualine = 0 && has('nvim')
+let g:plugin_use_staline = 0 && has('nvim')
+let g:plugin_use_galaxyline = 0 && has('nvim')
+let g:plugin_use_incline = 1 && has('nvim')
 
-let g:plugin_use_indent_blankline = v:true
-let g:plugin_use_dps_indent_line = v:false
+let g:plugin_use_indent_blankline = 1
+let g:plugin_use_dps_indent_line = 0
 
-let g:plugin_use_coc = v:false
-let g:plugin_use_asyncomplete = v:false
-let g:plugin_use_deoplete = v:false
-let g:plugin_use_ddc = v:true
-let g:plugin_use_vimlsp = v:true && !has('nvim') && !g:plugin_use_coc
-let g:plugin_use_nvimlsp = v:true && has('nvim') && !g:plugin_use_coc
+let g:plugin_use_coc = 1
+let g:plugin_use_asyncomplete = 0
+let g:plugin_use_deoplete = 0
+let g:plugin_use_ddc = 0
+let g:plugin_use_vimlsp = 1 && !has('nvim') && !g:plugin_use_coc
+let g:plugin_use_nvimlsp = 1 && has('nvim') && !g:plugin_use_coc
 
-let g:plugin_use_ale = v:false
+let g:plugin_use_ale = 0
 
-let g:plugin_use_lexima = v:false
-let g:plugin_use_lexiv = v:true
+let g:plugin_use_lexima = 0 && g:plugin_use_coc
+let g:plugin_use_lexiv = 1 && g:plugin_use_coc
 
-let g:plugin_use_quickscope = v:false
-let g:plugin_use_cleverf = v:false
-let g:plugin_use_shotf = v:true
+let g:plugin_use_quickscope = 0
+let g:plugin_use_cleverf = 0
+let g:plugin_use_shotf = 1
 
-let g:plugin_use_autobackup = v:false
-let g:plugin_use_aho_bakaup = v:true
+let g:plugin_use_autobackup = 0
+let g:plugin_use_aho_bakaup = 1
 
-let g:plugin_use_ctrlp = v:true
-let g:plugin_use_clap = v:false
-let g:plugin_use_fzf = v:false
-let g:plugin_use_cocfzf = v:false
-let g:plugin_use_coclist = v:false
-let g:plugin_use_fz = v:false
-let g:plugin_use_denite = v:false
-let g:plugin_use_ddu = v:true
-let g:plugin_use_quickpick = v:false
-let g:plugin_use_telescope = v:false && has('nvim')
-let g:plugin_use_linearf = v:false && has('nvim')
+let g:plugin_use_ctrlp = 1
+let g:plugin_use_clap = 0
+let g:plugin_use_fzf = 0
+let g:plugin_use_cocfzf = 0
+let g:plugin_use_coclist = 0
+let g:plugin_use_fz = 0
+let g:plugin_use_denite = 0
+let g:plugin_use_ddu = 1
+let g:plugin_use_quickpick = 0
+let g:plugin_use_telescope = 0 && has('nvim')
+let g:plugin_use_linearf = 0 && has('nvim')
 
 " let g:plugin_use_fern = !has('nvim')
 " let g:plugin_use_defx = has('nvim')
-let g:plugin_use_fern = v:true
-let g:plugin_use_vfiler = v:false
-let g:plugin_use_defx = v:false
-let g:plugin_use_molder = v:false
-let g:plugin_use_vaffle = v:false
-let g:plugin_use_viler = v:false
-let g:plugin_use_coc_explorer = v:false
+let g:plugin_use_fern = 1
+let g:plugin_use_vfiler = 0
+let g:plugin_use_defx = 0
+let g:plugin_use_molder = 0
+let g:plugin_use_vaffle = 0
+let g:plugin_use_viler = 0
+let g:plugin_use_coc_explorer = 0
 
-let g:plugin_use_quickrun = v:true
-let g:plugin_use_asyncrun = v:false
+let g:plugin_use_quickrun = 1
+let g:plugin_use_asyncrun = 0
 
-let g:plugin_use_gina = v:false
-let g:plugin_use_gin = v:true
+let g:plugin_use_gina = 0
+let g:plugin_use_gin = 1
 
-let g:plugin_use_bufpreview = v:false
-let g:plugin_use_glance = v:false
-let g:plugin_use_markdownpreview = v:true
+let g:plugin_use_bufpreview = 0
+let g:plugin_use_glance = 0
+let g:plugin_use_markdownpreview = 1
 
-let g:plugin_use_neoterm = v:false
-let g:plugin_use_toggleterm = v:false
-let g:plugin_use_floaterm = v:false
+let g:plugin_use_neoterm = 0
+let g:plugin_use_toggleterm = 0
+let g:plugin_use_floaterm = 0
 
-let g:plugin_use_beacon = v:false
-let g:plugin_use_columnskip = v:false
-let g:plugin_use_edgemotion = v:true
+let g:plugin_use_beacon = 0
+let g:plugin_use_columnskip = 0
+let g:plugin_use_edgemotion = 1
 
-let g:plugin_use_treesitter = v:true
+let g:plugin_use_treesitter = 1
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1
@@ -530,11 +531,11 @@ au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 set background=dark
-silent! colorscheme pinkmare
+silent! colorscheme srcery
 
 " Neovide:
 let g:neovide_transparency = 0.9
-" let g:neovide_fullscreen  = v:true
+" let g:neovide_fullscreen  = 1
 let g:neovide_cursor_vfx_mode = "railgun"
 " set guifont=Cica
 " set guifontwide=Cica
@@ -554,7 +555,7 @@ if exists('g:nvui')
   NvuiCaretExtendTop 200
   NvuiCaretExtendBottom 200
   " MultiGrid.
-  NvuiAnimationsEnabled v:true
+  NvuiAnimationsEnabled 1
   NvuiScrollScaler fast-start
   NvuiScrollAnimationDuration 0.2
   NvuiMoveScaler fast-start

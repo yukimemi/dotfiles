@@ -3,6 +3,7 @@ if !g:plugin_use_ddc
 endif
 
 Keymap i <silent><expr> <c-f> ddc#complete_common_string()
+Keymap i <silent><expr> <c-space> ddc#manual_complete()
 
 " let s:default_sources = ['around', 'mocword', 'ddc-path', 'git-file', 'git-commit', 'git-branch', 'file']
 let s:default_sources = ['around', 'buffer', 'mocword', 'file']
@@ -22,63 +23,7 @@ let s:defult_sources_vim = s:default_sources
 
 let s:lsp_languages = ['typescript', 'ps1', 'vim', 'rust', 'go', 'json']
 
-function! CommandlinePre(mode) abort
-  silent! call dein#source('ddc.vim')
-
-  " Note: It disables default command line completion!
-  Keymap c <expr> <Tab>
-  \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-  \ ddc#manual_complete()
-  Keymap c <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
-  Keymap c <C-c>   <Cmd>call pum#map#cancel()<CR>
-  Keymap c <C-j>   <Cmd>call pum#map#select_relative(+1)<CR>
-  Keymap c <C-k>   <Cmd>call pum#map#select_relative(-1)<CR>
-  Keymap c <C-o>   <Cmd>call pum#map#confirm()<CR>
-  set wildchar=<C-t>
-  " setl completeopt-=noinsert
-
-  " Overwrite sources
-  if !exists('b:prev_buffer_config')
-    let b:prev_buffer_config = ddc#custom#get_buffer()
-  endif
-  if a:mode ==# ':'
-    call ddc#custom#patch_buffer('sources',
-    \ ['cmdline', 'cmdline-history', 'file', 'mocword', 'buffer', 'around'])
-    call ddc#custom#patch_buffer('keywordPattern', '[0-9a-zA-Z_:#]*')
-  else
-    call ddc#custom#patch_buffer('sources',
-    \ ['around', 'buffer', 'line', 'mocword'])
-  endif
-
-  au MyAutoCmd User DDCCmdlineLeave ++once call CommandlinePost()
-  au MyAutoCmd InsertEnter <buffer> ++once call CommandlinePost()
-
-  " Enable command line completion
-  call ddc#enable_cmdline_completion()
-  call ddc#enable()
-endfunction
-
-function! CommandlinePost() abort
-  " Restore sources
-  if exists('b:prev_buffer_config')
-    call ddc#custom#set_buffer(b:prev_buffer_config)
-    unlet b:prev_buffer_config
-  else
-    call ddc#custom#set_buffer({})
-  endif
-
-  silent! cunmap <Tab>
-  set wildchar=<Tab>
-endfunction
-
-" Use pum.vim
 function! s:my_ddc_config() abort
-
-  call ddc#custom#patch_global('autoCompleteEvents', [
-  \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
-  \ 'CmdlineEnter', 'CmdlineChanged',
-  \ ])
-  call ddc#custom#patch_global('completionMenu', 'pum.vim')
 
   call ddc#custom#patch_global(
   \ 'sources', has('nvim') ?
@@ -89,9 +34,9 @@ function! s:my_ddc_config() abort
   call ddc#custom#patch_global('sourceOptions', {
   \ '_': {
   \   'ignoreCase': v:true,
-  \   'matchers': ['matcher_fuzzy'],
-  \   'sorters': ['sorter_fuzzy'],
-  \   'converters': ['converter_fuzzy'],
+  \   'matchers': ['matcher_head'],
+  \   'sorters': ['sorter_rank'],
+  \   'converters': ['converter_remove_overlap', 'converter_truncate_abbr'],
   \ },
   \ 'treesitter': {
   \   'mark': 'T'
@@ -122,12 +67,12 @@ function! s:my_ddc_config() abort
   \ },
   \ 'nextword': {
   \   'mark': 'nextword',
-  \   'minAutoCompleteLength': 2,
+  \   'minAutoCompleteLength': 3,
   \   'isVolatile': v:true,
   \ },
   \ 'mocword': {
   \   'mark': 'mocword',
-  \   'minAutoCompleteLength': 2,
+  \   'minAutoCompleteLength': 3,
   \   'isVolatile': v:true,
   \ },
   \ 'nvim-lsp': {
@@ -214,16 +159,70 @@ function! s:my_ddc_config() abort
   \ 'specialBufferCompletion': v:true,
   \ })
 
-  Keymap i <silent>       <c-n> <Cmd>call pum#map#insert_relative(+1)<cr>
-  Keymap i <silent>       <c-p> <Cmd>call pum#map#insert_relative(-1)<cr>
+  " Use pum.vim
+  call ddc#custom#patch_global('autoCompleteEvents', [
+  \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
+  \ 'CmdlineEnter', 'CmdlineChanged',
+  \ ])
+  call ddc#custom#patch_global('completionMenu', 'pum.vim')
+
+  function! CommandlinePre(mode) abort
+    " Note: It disables default command line completion!
+    Keymap c <expr> <Tab>
+    \ pum#visible() ? '<cmd>call pum#map#insert_relative(+1)<CR>' :
+    \ ddc#manual_complete()
+    Keymap c <S-Tab> <cmd>call pum#map#insert_relative(-1)<CR>
+    Keymap c <C-c>   <cmd>call pum#map#cancel()<CR>
+    Keymap c <C-j>   <cmd>call pum#map#select_relative(+1)<CR>
+    Keymap c <C-k>   <cmd>call pum#map#select_relative(-1)<CR>
+    Keymap c <C-o>   <cmd>call pum#map#confirm()<CR>
+    set wildchar=<C-t>
+
+    " Overwrite sources
+    if !exists('b:prev_buffer_config')
+      let b:prev_buffer_config = ddc#custom#get_buffer()
+    endif
+    if a:mode ==# ':'
+      call ddc#custom#patch_buffer('sources', ['cmdline', 'cmdline-history', 'file', 'buffer', 'around'])
+      call ddc#custom#patch_buffer('keywordPattern', '[0-9a-zA-Z_:#]*')
+    else
+      call ddc#custom#patch_buffer('sources', ['around', 'buffer', 'line', 'mocword'])
+    endif
+
+    au MyAutoCmd User DDCCmdlineLeave ++once call CommandlinePost()
+    au MyAutoCmd InsertEnter <buffer> ++once call CommandlinePost()
+
+    " Enable command line completion
+    call ddc#enable_cmdline_completion()
+  endfunction
+
+  function! CommandlinePost() abort
+    " Restore sources
+    if exists('b:prev_buffer_config')
+      call ddc#custom#set_buffer(b:prev_buffer_config)
+      unlet b:prev_buffer_config
+    else
+      call ddc#custom#set_buffer({})
+    endif
+
+    silent! cunmap <Tab>
+    silent! cunmap <S-Tab>
+    silent! cunmap <C-j>
+    silent! cunmap <C-k>
+    silent! cunmap <C-o>
+    set wildchar=<Tab>
+  endfunction
+
+  Keymap i <silent>       <c-n> <cmd>call pum#map#insert_relative(+1)<cr>
+  Keymap i <silent>       <c-p> <cmd>call pum#map#insert_relative(-1)<cr>
   Keymap i <silent><expr> <c-e> ddc#map#extend()
 
-  Keymap n : <Cmd>call CommandlinePre(':')<cr>:
-  Keymap n ? <Cmd>call CommandlinePre('/')<cr>?
-  Keymap n / <Cmd>call CommandlinePre('/')<cr>/
+  Keymap n : <cmd>call CommandlinePre(':')<cr>:
+  Keymap n ? <cmd>call CommandlinePre('/')<cr>?
+  Keymap n / <cmd>call CommandlinePre('/')<cr>/
 
   call ddc#enable()
 endfunction
 
-au MyAutoCmd InsertEnter * ++once call <SID>my_ddc_config()
+au MyAutoCmd VimEnter * ++once call <SID>my_ddc_config()
 

@@ -13,27 +13,28 @@ let g:ctrlp_mruf_max = 100000
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_use_caching = 1
 let g:ctrlp_user_command_async = 1
-Keymap n <silent> <leader>cp <cmd>CtrlP<cr>
-Keymap n <silent> <leader>cb <cmd>CtrlPBuffer<cr>
-Keymap n <silent> <leader>cd <cmd>CtrlPCurFile<cr>
+
+" Keymap n <silent> <leader>cg <cmd>CtrlPChange<cr>
+" Keymap n <silent> <leader>ch <cmd>CtrlPCmdHistory<cr>
+" Keymap n <silent> <leader>cl <cmd>CtrlPLine<cr>
 " Keymap n <silent> <leader>cu <cmd>CtrlPMRUFiles<cr>
+Keymap n <silent> <leader>cC <cmd>CtrlP ~/.cache<cr>
+Keymap n <silent> <leader>cD <cmd>CtrlP ~/.dotfiles<cr>
+Keymap n <silent> <leader>cG <cmd>CtrlPGhq<cr>
+Keymap n <silent> <leader>cS <cmd>CtrlPSearchHistory<cr>
+Keymap n <silent> <leader>cb <cmd>CtrlPBuffer<cr>
+Keymap n <silent> <leader>cc <cmd>CtrlPLauncher<cr>
+Keymap n <silent> <leader>cd <cmd>CtrlPCurFile<cr>
+Keymap n <silent> <leader>cf <cmd>CtrlPFiletype<cr>
+Keymap n <silent> <leader>ch <cmd>CtrlPCommandLine<cr>
+Keymap n <silent> <leader>cm <cmd>CtrlPMemolist<cr>
+Keymap n <silent> <leader>cM <cmd>CtrlPMark<cr>
+Keymap n <silent> <leader>cp <cmd>CtrlP<cr>
+Keymap n <silent> <leader>cr <cmd>CtrlPMRMrr<cr>
+Keymap n <silent> <leader>cs <cmd>CtrlP ~/src<cr>
+Keymap n <silent> <leader>ct <cmd>packadd vim-sonictemplate \| CtrlPSonictemplate<cr>
 Keymap n <silent> <leader>cu <cmd>CtrlPMRMru<cr>
 Keymap n <silent> <leader>cw <cmd>CtrlPMRMrw<cr>
-Keymap n <silent> <leader>cr <cmd>CtrlPMRMrr<cr>
-Keymap n <silent> <leader>cm <cmd>CtrlPMark<cr>
-" Keymap n <silent> <leader>cl <cmd>CtrlPLine<cr>
-" Keymap n <silent> <leader>cg <cmd>CtrlPChange<cr>
-Keymap n <silent> <leader>cf <cmd>CtrlPFiletype<cr>
-Keymap n <silent> <leader>cc <cmd>CtrlPLauncher<cr>
-Keymap n <silent> <leader>ct <cmd>packadd sonictemplate-vim \| CtrlPSonictemplate<cr>
-" Keymap n <silent> <leader>ch <cmd>CtrlPCmdHistory<cr>
-Keymap n <silent> <leader>cS <cmd>CtrlPSearchHistory<cr>
-Keymap n <silent> <leader>ch <cmd>CtrlPCommandLine<cr>
-Keymap n <silent> <leader>cl <cmd>CtrlPMemolist<cr>
-Keymap n <silent> <leader>cs <cmd>CtrlP ~/src<cr>
-Keymap n <silent> <leader>cD <cmd>CtrlP ~/.dotfiles<cr>
-Keymap n <silent> <leader>cC <cmd>CtrlP ~/.cache<cr>
-Keymap n <silent> <leader>cG <cmd>CtrlPGhq<cr>
 
 " Extensions
 let g:ctrlp_extensions = get(g:, 'ctrlp_extensions', [])
