@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/04/29 16:47:15.
+# Last Change: 2022/05/05 14:23:41.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1140,8 +1140,8 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
+depends = 'nvim-lsp-installer'
 if = 'has("nvim") && g:plugin_use_nvimlsp'
-depends = ['nvim-lsp-installer']
 on_event = 'BufRead'
 hook_source = '''
 source $VIM_PATH/rc/nvim-lspconfig.vim
@@ -1150,7 +1150,9 @@ source $VIM_PATH/rc/nvim-lspconfig.vim
 [[plugins]]
 repo = 'williamboman/nvim-lsp-installer'
 if = 'has("nvim") && g:plugin_use_nvimlsp'
-lazy = 1
+hook_source = '''
+source $VIM_PATH/rc/nvim-lsp-installer.vim
+'''
 
 # [[plugins]]
 # repo = 'jose-elias-alvarez/null-ls.nvim'

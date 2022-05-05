@@ -7,7 +7,8 @@ let s:save_shellslash = &shellslash
 set noshellslash
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+  ensure_installed = {"c", "lua", "vim", "rust", "go"},
+  sync_install = false,
   highlight = {
     enable = true,
   },
