@@ -625,7 +625,7 @@ lua vim.notify = require('notify')
 
 [[plugins]]
 repo = 'mattn/vim-notification'
-if = "!has('nvim') && !g:plugin_use_mini"
+if = "!has('nvim')"
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
