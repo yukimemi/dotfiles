@@ -46,7 +46,7 @@ call ddu#custom#patch_global({
 \     'ff': {
 \       'prompt': '»',
 \       'reversed': v:true,
-\       'split': 'horizontal',
+\       'split': has('nvim') ? 'floating' : 'horizontal',
 \       'displaySourceName': 'long',
 \     },
 \   },
@@ -78,6 +78,24 @@ call ddu#custom#patch_global({
 \     },
 \   },
 \ })
+
+
+function! s:ddu_detect_size() abort
+  let s:ddu_winheight = 30
+  let s:ddu_winrow = &lines > s:ddu_winheight ? (&lines - s:ddu_winheight) / 2 : 0
+  let s:ddu_winwidth = &columns > 240 ? &columns / 2 : 120
+  let s:ddu_wincol = &columns > s:ddu_winwidth ? (&columns - s:ddu_winwidth) / 2 : 0
+  call ddu#custom#patch_global({
+  \ 'uiParams': {
+  \   'ff': {
+  \     'winCol': s:ddu_wincol,
+  \     'winHeight': s:ddu_winheight,
+  \     'winRow': s:ddu_winwidth,
+  \     'winWidth': s:ddu_winwidth,
+  \   },
+  \ },
+  \ })
+endfunction
 
 function! s:ddu_ff_cfg() abort
   Keymap n <buffer><silent> <cr> <cmd>call ddu#ui#ff#do_action('itemAction')<cr>
@@ -112,6 +130,8 @@ function! s:ddu_ff_filter_cfg() abort
   Keymap i <buffer> <c-k> <cmd>call ddu#ui#ff#execute("call cursor(line('.')-1,0)")<cr>
 endfunction
 
+" call s:ddu_detect_size()
+
 au MyAutoCmd FileType ddu-ff call s:ddu_ff_cfg()
 au MyAutoCmd FileType ddu-ff-filter call s:ddu_ff_filter_cfg()
-
+" au MyAutoCmd VimResized * call s:ddu_detect_size()
