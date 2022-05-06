@@ -39,6 +39,26 @@ let g:autocursor_cursorline = {
   \     "wait": 0,
   \   },
   \   {
+  \     "name": "DirChanged",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "VimResized",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "InsertLeave",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
+  \     "name": "ModeChanged",
+  \     "set": v:true,
+  \     "wait": 0,
+  \   },
+  \   {
   \     "name": "CursorMoved",
   \     "set": v:false,
   \     "wait": 300,
@@ -85,6 +105,26 @@ let g:autocursor_cursorcolumn = {
   \   },
   \   {
   \     "name": "CursorHoldI",
+  \     "set": v:true,
+  \     "wait": 100,
+  \   },
+  \   {
+  \     "name": "DirChanged",
+  \     "set": v:true,
+  \     "wait": 100,
+  \   },
+  \   {
+  \     "name": "VimResized",
+  \     "set": v:true,
+  \     "wait": 100,
+  \   },
+  \   {
+  \     "name": "InsertLeave",
+  \     "set": v:true,
+  \     "wait": 100,
+  \   },
+  \   {
+  \     "name": "ModeChanged",
   \     "set": v:true,
   \     "wait": 100,
   \   },

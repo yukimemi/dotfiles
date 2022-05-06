@@ -229,6 +229,7 @@ Remove-Item alias:rm
 Set-Alias rm RemoveTo-Trash
 Set-Alias o Start-Process
 Set-Alias e nvim
+Set-Alias c Clear-Host
 Set-Alias which Get-Command
 Set-Alias df Get-DriveInfoView
 # Remove-Alias cd
