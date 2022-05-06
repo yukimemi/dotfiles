@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/05/06 13:35:31.
+# Last Change: 2022/05/06 19:20:48.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -971,13 +971,12 @@ source $VIM_PATH/rc/denops.vim
 
 [[plugins]]
 repo = 'Shougo/ddc.vim'
+if = "g:plugin_use_ddc"
 depends = ['context_filetype.vim', 'denops.vim', 'pum.vim']
-on_source = 'denops.vim'
 on_event = ['InsertEnter', 'CursorHold']
 hook_source = '''
 source $VIM_PATH/rc/ddc.vim
 '''
-if = "g:plugin_use_ddc"
 
 [[plugins]]
 repo = 'Shougo/ddc-around'
@@ -1347,9 +1346,12 @@ repo = 'matsui54/ddu-source-file_external'
 on_source = 'ddu.vim'
 
 [[plugins]]
-repo = 'matsui54/ddu-source-help'
+repo = 'matsui54/ddu-source-command_history'
 on_source = 'ddu.vim'
 
+[[plugins]]
+repo = 'matsui54/ddu-source-help'
+on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'shun/ddu-source-rg'
@@ -1394,6 +1396,13 @@ on_source = 'ddu.vim'
 [[plugins]]
 repo = 'kuuote/ddu-source-mr'
 on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-filer'
+on_source = 'ddu.vim'
+hook_source = '''
+source $VIM_PATH/rc/ddu-ui-filer.vim
+'''
 
 # ==================== Statusline ================
 

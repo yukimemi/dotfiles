@@ -2,84 +2,82 @@ if !g:plugin_use_ddu
   finish
 endif
 
-function! s:my_ddu_config() abort
-  call ddu#custom#patch_global({
-  \   'ui': 'ff',
-  \   'sourceOptions': {
-  \     '_': {
-  \       'ignoreCase': v:true,
-  \       'matchers': ['matcher_substring'],
-  \     },
-  \   },
-  \   'file_old': {
-  \     'matchers': [
-  \       'matcher_substring', 'matcher_relative', 'matcher_hidden',
-  \     ],
-  \   },
-  \   'file_external': {
-  \     'matchers': [
-  \       'matcher_substring', 'matcher_hidden',
-  \     ],
-  \   },
-  \   'file_rec': {
-  \     'matchers': [
-  \       'matcher_substring', 'matcher_hidden',
-  \     ],
-  \   },
-  \   'dein': {
-  \     'defaultAction': 'cd',
-  \   },
-  \   'sourceParams': {
-  \     'file_external': {
-  \       'cmd': ['git', 'ls-files', '-co', '--exclude-standard'],
-  \     },
-  \     'file_rg': {
-  \       'cmd': ['rg', '--files', '--glob', '!.git', '--color', 'never', '--no-messages'],
-  \       'updateItems': 50000,
-  \     },
-  \     'rg': {
-  \       'args': ['--ignore-case', '--column', '--no-heading', '--color', 'never'],
-  \     },
-  \   },
-  \   'uiParams': {
-  \     'ff': {
-  \       'prompt': '»',
-  \       'reversed': v:true,
-  \       'split': 'horizontal',
-  \       'displaySourceName': 'long',
-  \     },
-  \   },
-  \   'filterParams': {
-  \     'matcher_substring': {
-  \       'highlightMatched': 'Search',
-  \     },
-  \   },
-  \   'kindOptions': {
-  \     'file': {
-  \       'defaultAction': 'open',
-  \     },
-  \     'word': {
-  \       'defaultAction': 'append',
-  \     },
-  \     'deol': {
-  \       'defaultAction': 'switch',
-  \     },
-  \     'action': {
-  \       'defaultAction': 'do',
-  \     },
-  \     'colorscheme': {
-  \       'defaultAction': 'set',
-  \     },
-  \   },
-  \ })
-endfunction
+call ddu#custom#alias('source', 'file_rg', 'file_external')
 
-" Specify name
-" nnoremap <leader>df <cmd>call ddu#start({'name': 'files'})<cr>
-" nnoremap <leader>du <cmd>call ddu#start({'name': 'file_old'})<cr>
-
-" Specify source with params
-" nnoremap <leader>dh <cmd>call ddu#start({'name': 'file_rec', 'params': {'path': expand('~')}})<cr>
+call ddu#custom#patch_global({
+\   'ui': 'ff',
+\   'sourceOptions': {
+\     '_': {
+\       'ignoreCase': v:true,
+\       'matchers': ['matcher_substring'],
+\     },
+\   },
+\   'file_old': {
+\     'matchers': [
+\       'matcher_substring', 'matcher_relative', 'matcher_hidden',
+\     ],
+\   },
+\   'file_external': {
+\     'matchers': [
+\       'matcher_substring', 'matcher_hidden',
+\     ],
+\   },
+\   'file_rec': {
+\     'matchers': [
+\       'matcher_substring', 'matcher_hidden',
+\     ],
+\   },
+\   'dein': {
+\     'defaultAction': 'cd',
+\   },
+\   'sourceParams': {
+\     'file_external': {
+\       'cmd': ['git', 'ls-files', '-co', '--exclude-standard'],
+\     },
+\     'file_rg': {
+\       'cmd': ['rg', '--files', '--glob', '!.git', '--color', 'never', '--no-messages'],
+\       'updateItems': 50000,
+\     },
+\     'rg': {
+\       'args': ['--ignore-case', '--column', '--no-heading', '--color', 'never'],
+\     },
+\   },
+\   'uiParams': {
+\     'ff': {
+\       'prompt': '»',
+\       'reversed': v:true,
+\       'split': 'horizontal',
+\       'displaySourceName': 'long',
+\     },
+\   },
+\   'filterParams': {
+\     'matcher_substring': {
+\       'highlightMatched': 'Search',
+\     },
+\   },
+\   'kindOptions': {
+\     'file': {
+\       'defaultAction': 'open',
+\     },
+\     'word': {
+\       'defaultAction': 'append',
+\     },
+\     'deol': {
+\       'defaultAction': 'switch',
+\     },
+\     'action': {
+\       'defaultAction': 'do',
+\     },
+\     'colorscheme': {
+\       'defaultAction': 'set',
+\     },
+\   },
+\   'actionOptions': {
+\     'narrow': {
+\       'quit': v:false,
+\     },
+\   },
+\ })
 
 function! s:ddu_ff_cfg() abort
   Keymap n <buffer><silent> <cr> <cmd>call ddu#ui#ff#do_action('itemAction')<cr>
@@ -114,7 +112,6 @@ function! s:ddu_ff_filter_cfg() abort
   Keymap i <buffer> <c-k> <cmd>call ddu#ui#ff#execute("call cursor(line('.')-1,0)")<cr>
 endfunction
 
-au MyAutoCmd VimEnter * ++once call s:my_ddu_config()
 au MyAutoCmd FileType ddu-ff call s:ddu_ff_cfg()
 au MyAutoCmd FileType ddu-ff-filter call s:ddu_ff_filter_cfg()
 
