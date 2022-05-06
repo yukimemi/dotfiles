@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2021/06/20 02:19:52.
+# Last Change : 2022/05/06 13:44:11.
 # =============================================================================
 
 # For time.
@@ -115,6 +115,8 @@ export __FILTER_TOOL=sk
 export RRC_CONFIG="${HOME}/.config/rrc/config.toml"
 
 export NEXTWORD_DATA_PATH="${HOME}/.config/nextword/nextword-data-large"
+
+export MOCWORD_DATA="${HOME}/.config/mocword/mocword.sqlite"
 
 # fzf.
 if which fd > /dev/null 2>&1; then
