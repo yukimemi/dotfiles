@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/05/05 19:22:43.
+# Last Change: 2022/05/06 13:35:31.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -297,6 +297,11 @@ source $VIM_PATH/rc/yankround.vim
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 lazy = 1
+hook_source = '''
+let g:context_filetype#ignore_patterns = {
+    \ 'toml': ['^\s*#\s*'],
+    \ }
+'''
 
 [[plugins]]
 repo = 'Shougo/echodoc.vim'
@@ -959,6 +964,7 @@ source $VIM_PATH/rc/toggleterm.nvim
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
+on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/denops.vim
 '''
@@ -1025,6 +1031,10 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-cmdline'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-input'
 on_source = 'ddc.vim'
 
 [[plugins]]
@@ -1095,6 +1105,7 @@ source $VIM_PATH/rc/nvim-lspconfig.vim
 
 [[plugins]]
 repo = 'williamboman/nvim-lsp-installer'
+depends = 'nvim-lspconfig'
 if = 'has("nvim") && g:plugin_use_nvimlsp'
 hook_source = '''
 source $VIM_PATH/rc/nvim-lsp-installer.vim
@@ -1161,6 +1172,7 @@ source $VIM_PATH/rc/dps-ahdr.vim
 repo = 'yukimemi/dps-autocursor'
 # repo = '~/src/github.com/yukimemi/dps-autocursor'
 depends = 'denops.vim'
+on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/dps-autocursor.vim
 '''
@@ -1221,8 +1233,9 @@ source $VIM_PATH/rc/gin.vim
 
 [[plugins]]
 repo = 'tennashi/gitsign.vim'
-if = '!g:plugin_use_mini'
+# if = '!g:plugin_use_mini'
 depends = 'denops.vim'
+on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/gitsign.vim
 '''

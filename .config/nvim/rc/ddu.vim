@@ -49,6 +49,11 @@ function! s:my_ddu_config() abort
   \       'displaySourceName': 'long',
   \     },
   \   },
+  \   'filterParams': {
+  \     'matcher_substring': {
+  \       'highlightMatched': 'Search',
+  \     },
+  \   },
   \   'kindOptions': {
   \     'file': {
   \       'defaultAction': 'open',
