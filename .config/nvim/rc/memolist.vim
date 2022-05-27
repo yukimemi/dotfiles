@@ -1,7 +1,7 @@
 if isdirectory($HOME . '/GoogleDrive')
   let g:memolist_path = $HOME . '/GoogleDrive/.memolist'
 else
-  let g:memolist_path = $HOME . '/.memolist'
+  execute printf("let g:memolist_path = '%s\\.memolist'", expand($HOME))
 endif
 
 silent! call mkdir(g:memolist_path, 'p')

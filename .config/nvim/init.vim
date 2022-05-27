@@ -443,8 +443,8 @@ let g:plugin_use_nvimlsp = 1 && has('nvim') && !g:plugin_use_coc
 
 let g:plugin_use_ale = 0
 
-let g:plugin_use_lexima = 0 && g:plugin_use_coc
-let g:plugin_use_lexiv = 1 && g:plugin_use_coc
+let g:plugin_use_lexima = 0 && !g:plugin_use_coc
+let g:plugin_use_lexiv = 1 && !g:plugin_use_coc
 
 let g:plugin_use_quickscope = 1
 let g:plugin_use_cleverf = 0

@@ -11,7 +11,9 @@ if s:no_plugin
 endif
 
 set background=dark
-silent! colorscheme srcery
+" silent! colorscheme srcery
+" silent! colorscheme pinkmare
+silent! colorscheme palenight
 
 " font
 " set gfn=PlemolJP_Console_NF:h11

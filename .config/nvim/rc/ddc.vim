@@ -3,7 +3,8 @@ if !g:plugin_use_ddc
 endif
 
 " let s:default_sources = ['around', 'mocword', 'ddc-path', 'git-file', 'git-commit', 'git-branch', 'file']
-let s:default_sources = ['around', 'buffer', 'mocword', 'file']
+" let s:default_sources = ['around', 'buffer', 'mocword', 'file']
+let s:default_sources = ['around', 'buffer', 'nextword', 'file']
 if g:plugin_use_vimlsp
   let s:default_sources = ['vim-lsp'] + s:default_sources
 endif
@@ -172,7 +173,8 @@ function! CommandlinePre(mode) abort
     call ddc#custom#patch_buffer('cmdlineSources', ['cmdline', 'cmdline-history', 'file', 'buffer', 'around'])
     call ddc#custom#patch_buffer('keywordPattern', '[0-9a-zA-Z_:#]*')
   else
-    call ddc#custom#patch_buffer('cmdlineSources', ['around', 'buffer', 'line', 'mocword'])
+    " call ddc#custom#patch_buffer('cmdlineSources', ['around', 'buffer', 'line', 'mocword'])
+    call ddc#custom#patch_buffer('cmdlineSources', ['around', 'buffer', 'line', 'nextword'])
   endif
 
   au MyAutoCmd User DDCCmdlineLeave ++once call CommandlinePost()

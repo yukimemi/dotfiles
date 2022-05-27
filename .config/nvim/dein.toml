@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/05/28 01:52:35.
+# Last Change: 2022/05/14 00:48:58.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -40,7 +40,6 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'itchyny/vim-cursorword'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/vim-cursorword.vim
 '''
@@ -122,7 +121,6 @@ if = "g:is_windows && !has('nvim')"
 
 [[plugins]]
 repo = "ntpeters/vim-better-whitespace"
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/vim-better-whitespace.vim
 '''
@@ -313,7 +311,6 @@ source $VIM_PATH/rc/echodoc.vim
 
 [[plugins]]
 repo = 'airblade/vim-rooter'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/vim-rooter.vim
 '''
@@ -612,10 +609,12 @@ if = "g:plugin_use_lexima"
 hook_add = '''
 " source $VIM_PATH/rc/lexima.vim
 '''
+on_event = "InsertEnter"
 
 [[plugins]]
 repo = 'mattn/vim-lexiv'
 if = "g:plugin_use_lexiv"
+on_event = "InsertEnter"
 
 [[plugins]]
 repo = 'rcarriga/nvim-notify'
@@ -707,6 +706,10 @@ on_map = {n = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-jplus.vim
 '''
+
+[[plugins]]
+repo = 'djoshea/vim-autoread'
+on_cmd = ['WatchForChanges', 'WatchForChangesWhileInThisBuffer', 'WatchForChangesAllFile']
 
 # ==================== Test ======================
 [[plugins]]
@@ -1711,6 +1714,9 @@ source $VIM_PATH/rc/plantuml-previewer.vim
 [[plugins]]
 repo = 'aklt/plantuml-syntax'
 on_ft = 'plantuml'
+hook_add = '''
+source $VIM_PATH/rc/plantuml-syntax.vim
+'''
 
 # ==================== Filetype (toml) =======
 
@@ -1767,6 +1773,9 @@ on_ft = 'csv'
 [[plugins]]
 repo = 'MTDL9/vim-log-highlighting'
 on_ft = 'log'
+hook_add = '''
+source $VIM_PATH/rc/vim-log-highlighting.vim
+'''
 
 # ==================== Filetype (fish) ============
 
