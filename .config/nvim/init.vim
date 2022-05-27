@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/05/06 20:12:46.
+" Last Change : 2022/05/27 23:42:39.
 " =============================================================================
 
 " Init:
@@ -453,7 +453,7 @@ let g:plugin_use_shotf = 0
 let g:plugin_use_autobackup = 0
 let g:plugin_use_aho_bakaup = 1
 
-let g:plugin_use_smoothie = 0
+let g:plugin_use_smoothie = g:is_darwin
 
 let g:plugin_use_ctrlp = 1
 let g:plugin_use_fzf = 0

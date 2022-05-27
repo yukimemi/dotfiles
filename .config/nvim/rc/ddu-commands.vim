@@ -15,7 +15,7 @@
 Keymap n <silent> <leader>du <Cmd>Ddu mr -ui-param-startFilter=v:true<CR>
 Keymap n <silent> <leader>db <Cmd>Ddu buffer -ui-param-startFilter=v:false<CR>
 Keymap n <silent> <leader>dc <Cmd>Ddu colorscheme -ui-param-startFilter=v:true<CR>
-Keymap n <silent> <leader>df <Cmd>Ddu -name=files file_point file_old `finddir('.git', ';') != '' ? 'file_external' : 'file_rec'` -ui-param-displaySourceName=short<CR>
+Keymap n <silent> <leader>df <Cmd>Ddu -name=files file_point file_old `finddir('.git', ';') != '' ? 'file_external' : 'file_rec'` -ui-param-displaySourceName=short -ui-param-startFilter=v:true<CR>
 Keymap n <silent> <leader>d/ <Cmd>Ddu -name=search line -ui-param-startFilter=v:true<CR>
 Keymap n <silent> <leader>d* <Cmd>Ddu -name=search line -input=`expand('<cword>')` -ui-param-startFilter=v:false<CR>
 Keymap n <silent> <leader>dn <Cmd>Ddu -name=search -resume -ui-param-startFilter=v:false<CR>
