@@ -2,7 +2,6 @@
   "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.silentAutoupdate": true,
   "coc.preferences.useQuickfixForLocations": true,
-  "http.proxy": "http://proxygate2.nic.nec.co.jp:8080",
   "explorer.file.reveal.auto": true,
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,

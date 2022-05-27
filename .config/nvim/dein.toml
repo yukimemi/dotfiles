@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/05/06 21:10:28.
+# Last Change: 2022/05/28 01:52:35.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -362,7 +362,6 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'lambdalisue/vim-findent'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/vim-findent.vim
 '''
@@ -484,7 +483,6 @@ on_cmd = 'Capture'
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/open-browser.vim
 '''
@@ -1173,6 +1171,16 @@ depends = 'denops.vim'
 on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/dps-autocursor.vim
+'''
+
+[[plugins]]
+repo = 'yukimemi/dps-autobackup'
+# repo = '~/src/github.com/yukimemi/dps-autobackup'
+if = "g:plugin_use_dps_autobackup"
+depends = 'denops.vim'
+on_event = ['CursorHold', 'FocusLost', 'BufWritePre']
+hook_add = '''
+source $VIM_PATH/rc/dps-autobackup.vim
 '''
 
 [[plugins]]
