@@ -98,6 +98,9 @@ snippets:
   - name: bat
     keyword: cat
     snippet: bat
+  - name: rsync
+    keyword: rs
+    snippet: rsync -av8 --progress
   # Filter
   - name: Zi
     keyword: j
@@ -147,6 +150,10 @@ snippets:
   - name: atuin get key
     keyword: atuin key
     snippet: atuin key
+  # srss
+  - name: srss open
+    keyword: so
+    snippet: srss open
   # Global abbr
   - name: Pipe grep
     keyword: G
@@ -180,6 +187,20 @@ snippets:
     snippet: git clone https://github.com/romkatv/zsh-bench ~/.zsh-bench
   - name: Install tmux plugin manager (tpm)
     snippet: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  - name: Install rhq
+    snippet: cargo install --git https://github.com/ubnt-intrepid/rhq.git
+  - name: Install zola blog theme
+    snippet: git clone https://github.com/pawroman/zola-theme-terminimal.git themes/terminimal
+  - name: Install mmv
+    snippet: go install github.com/itchyny/mmv/cmd/mmv@latest
+  - name: Install yarn
+    snippet: curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+  - name: Install heroku cli
+    snippet: brew tap heroku/brew && brew install heroku
+  - name: Install gojq
+    snippet: go install github.com/itchyny/gojq/cmd/gojq@latest
+  - name: Install delta
+    snippet: cargo install git-delta
 
 completions:
   - name: kill

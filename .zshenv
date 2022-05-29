@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2022/05/06 13:44:11.
+# Last Change : 2022/05/28 20:27:05.
 # =============================================================================
 
 # For time.
@@ -45,13 +45,17 @@ path=(
   $HOME/.cabal/bin(N-/)
   # cargo
   $HOME/.cargo/bin(N-/)
+  # yarn.
+  $HOME/.yarn/bin(N-/)
+  # pip3.
+  $HOME/Library/Python/3.8/bin(N-/)
+  # tpm.
+  $HOME/.tmux/plugins/tpm(N-/)
   # normal.
   /usr/bin(N-/)
   /usr/sbin(N-/)
   /bin(N-/)
   /sbin(N-/)
-  # yarn
-  $HOME/.yarn/bin(N-/)
 
   $path
 )
