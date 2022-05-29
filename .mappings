@@ -49,12 +49,13 @@
 
 [darwin]
 ".config/espanso" = "~/Library/Preferences/espanso"
+".config/nvim" = "~/.vim"
+".config/nvim/init.vim" = "~/.vimrc"
 ".config/rhq" = "~/Library/Preferences/rhq"
 ".gvimrc" = "~/.gvimrc"
 ".hyper.js" = "~/Library/Application Support/Hyper/.hyper.js"
 ".profile" = "~/.profile"
 ".tmux.conf" = "~/.tmux.conf"
-"mac/Keyhac/config.py" = "~/Library/Application Support/Keyhac/config.py"
 "win/Microsoft.PowerShell_profile.ps1" = "~/.config/PowerShell/Microsoft.PowerShell_profile.ps1"
 
 [linux]

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2022/05/28 20:27:05.
+# Last Change : 2022/05/29 23:26:56.
 # =============================================================================
 
 # For time.
@@ -41,14 +41,15 @@ path=(
   /usr/local/opt/gnu-sed/libexec/gnubin(N-/)
   # homebrew.
   /usr/local/bin(N-/)
+  /opt/homebrew/bin(N-/)
   # cabal.
   $HOME/.cabal/bin(N-/)
   # cargo
   $HOME/.cargo/bin(N-/)
   # yarn.
   $HOME/.yarn/bin(N-/)
-  # pip3.
-  $HOME/Library/Python/3.8/bin(N-/)
+  # Poetry.
+  $HOME/.poetry/bin(N-/)
   # tpm.
   $HOME/.tmux/plugins/tpm(N-/)
   # normal.
@@ -114,7 +115,7 @@ export GSR_SHOW_BEHIND=1
 
 export VIM_CONFIG_PATH="${HOME}/.config/pack"
 
-export __FILTER_TOOL=sk
+export __FILTER_TOOL=fzf-tmux
 
 export RRC_CONFIG="${HOME}/.config/rrc/config.toml"
 

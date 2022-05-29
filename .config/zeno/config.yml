@@ -157,16 +157,19 @@ snippets:
   # Global abbr
   - name: Pipe grep
     keyword: G
-    snippet: "| grep -i --color=auto"
-    enableMiddleOfLine: true
+    snippet: "| grep -i --color=auto {{grep_word}}"
+    context:
+      lbuffer: '.+\s'
   - name: Pipe less
     keyword: L
     snippet: "| bat"
-    enableMiddleOfLine: true
+    context:
+      lbuffer: '.+\s'
   - name: "null"
     keyword: "null"
     snippet: ">/dev/null 2>&1"
-    enableMiddleOfLine: true
+    context:
+      lbuffer: '.+\s'
 
   # Install
   - name: Install deno-cache-injector
@@ -201,6 +204,10 @@ snippets:
     snippet: go install github.com/itchyny/gojq/cmd/gojq@latest
   - name: Install delta
     snippet: cargo install git-delta
+  - name: Install Poetry
+    snippet: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+  - name: Install vim-startuptime
+    snippet: go install github.com/rhysd/vim-startuptime@latest
 
 completions:
   - name: kill
