@@ -318,7 +318,7 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
-if = '!g:plugin_use_mini'
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = "gelguy/wilder.nvim"
@@ -687,6 +687,7 @@ on_cmd = 'Partedit'
 
 [[plugins]]
 repo = 'prettier/vim-prettier'
+if = "!g:is_windows"
 on_ft = 'json'
 build = 'yarn install'
 hook_add = '''
@@ -770,13 +771,19 @@ on_cmd = 'Gina'
 
 [[plugins]]
 repo = 'rhysd/committia.vim'
-if = "!g:is_windows && !g:plugin_use_mini"
+if = "!g:is_windows"
 
 [[plugins]]
 repo = 'rhysd/conflict-marker.vim'
-if = '!g:plugin_use_mini'
 on_event = ['CursorHold', 'FocusLost']
 
+[[plugins]]
+repo = 'mhinz/vim-signify'
+if = 'g:plugin_use_signify'
+on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $VIM_PATH/rc/vim-signify.vim
+'''
 
 # ==================== Textobjs ==================
 
@@ -1059,7 +1066,6 @@ depends = 'nvim-lsp-installer'
 
 [[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'
-# if = "has('nvim')"
 on_source = 'ddc.vim'
 hook_source = '''
 source $VIM_PATH/rc/denops-popup-preview.vim
@@ -1242,7 +1248,7 @@ source $VIM_PATH/rc/gin.vim
 
 [[plugins]]
 repo = 'tennashi/gitsign.vim'
-# if = '!g:plugin_use_mini'
+if = 'g:plugin_use_gitsign'
 depends = 'denops.vim'
 on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
@@ -1572,13 +1578,19 @@ on_event = 'InsertEnter'
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
-lazy = 1
+if = '!g:plugin_use_coc'
+on_event = 'InsertEnter'
+hook_source = '''
+source $VIM_PATH/rc/vim-vsnip.vim
+'''
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip-integ'
-if = '!g:plugin_use_coc'
-depends = ['vim-vsnip']
-on_event = 'InsertEnter'
+on_source = 'vim-vsnip'
+
+[[plugins]]
+repo = 'rafamadriz/friendly-snippets'
+on_source = 'vim-vsnip'
 
 [[plugins]]
 repo = 'mattn/vim-lsp-icons'
@@ -1700,6 +1712,10 @@ on_ft = ['html', 'xml']
 # hook_add = '''
 # source $VIM_PATH/rc/vim-closetag.vim
 # '''
+
+[[plugins]]
+repo = 'amadeus/vim-xml'
+on_ft = ['html', 'xml']
 
 # ==================== Filetype (plantuml) =======
 

@@ -28,7 +28,7 @@ function! s:on_lsp_buffer_enabled() abort
   " Keymap n <silent><buffer> <expr><c-d> lsp#scroll(-4)
   " Keymap n <silent><buffer> <expr><c-f> lsp#scroll(+4)
   Keymap n <silent><buffer> <f2> <plug>(lsp-rename)
-  Keymap n <silent><buffer> <localleader>f <plug>(lsp-document-format)
+  Keymap n <silent><buffer> <leader>f <plug>(lsp-document-format)
   Keymap n <silent><buffer> <localleader>s <cmd>split \| :LspDefinition<cr>
   Keymap n <silent><buffer> <localleader>v <cmd>vsplit \| :LspDefinition<cr>
   Keymap n <silent><buffer> K <cmd>call <SID>show_documentation()<cr>

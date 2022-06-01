@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/05/29 23:09:52.
+" Last Change : 2022/05/30 22:17:57.
 " =============================================================================
 
 " Init:
@@ -480,6 +480,9 @@ let g:plugin_use_asyncrun = 0
 
 let g:plugin_use_gina = 0
 let g:plugin_use_gin = 1
+
+let g:plugin_use_gitsign = 0
+let g:plugin_use_signify = 1
 
 let g:plugin_use_bufpreview = 0
 let g:plugin_use_glance = 0

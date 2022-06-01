@@ -91,7 +91,9 @@ function cd-ls {
     [Parameter(ValueFromPipeline = $true)]
     [string]$path
   )
-  trap { $_ }
+  trap {
+    $_
+  }
   Set-Location $path -ea Stop
   Get-ChildItem
   # Save location.
@@ -102,8 +104,7 @@ function cd-ls {
     $z = & {
       if (Is-Windows) {
         (Join-Path $env:USERPROFILE ".z")
-      }
-      else {
+      } else {
         (Join-Path $env:HOME ".z")
       }
     }
@@ -112,8 +113,7 @@ function cd-ls {
     [array]::Reverse($c)
     if (Get-Command uq -ErrorAction SilentlyContinue) {
       $c | uq | Set-Variable c
-    }
-    else {
+    } else {
       $c | Sort-Object -Unique | Set-Variable c
     }
     [array]::Reverse($c)
@@ -127,7 +127,9 @@ function cdls {
     [Parameter(ValueFromPipeline = $true)]
     [string]$path
   )
-  trap { $_ }
+  trap {
+    $_
+  }
   Set-Location $path -ea Stop
   Get-ChildItem
 }
@@ -169,8 +171,7 @@ function RemoveTo-Trash {
     if ($PSBoundParameters.ContainsKey('Path')) {
       $Path | Where-Object { ![string]::IsNullOrWhiteSpace($_) } | Set-Variable Path
       $targets = Convert-Path $Path
-    }
-    else {
+    } else {
       $targets = Convert-Path -LiteralPath $LiteralPath
     }
     $targets | ForEach-Object {
@@ -190,8 +191,30 @@ function Get-DriveInfoView {
 }
 
 # rhq.
+function Trim-Cd {
+  [CmdletBinding()]
+  param (
+    [Parameter(
+      Mandatory                       = $false,
+      Position                        = 0,
+      ParameterSetName                = "Path",
+      ValueFromPipeline               = $true,
+      ValueFromPipelineByPropertyName = $true,
+      HelpMessage                     = "Path to location."
+    )]
+    [ValidateNotNullOrEmpty()]
+    [string]
+    $Path
+  )
+
+  process {
+    $p = $Path.Trim()
+    Write-Host "cd ${p}"
+    Set-Location $p
+  }
+}
 function rhl {
-  rhq list | __FILTER | Set-Location
+  rhq list | __FILTER | Trim-Cd
 }
 
 # Remove-Alias r
@@ -199,8 +222,7 @@ Remove-Item alias:r
 function r {
   if (Get-Command trash -ErrorAction SilentlyContinue) {
     trash $(Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER)
-  }
-  else {
+  } else {
     Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER | RemoveTo-Trash
   }
 }
@@ -218,7 +240,7 @@ function VimDeinUpdate {
 
 function Install-Pip {
   [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
-  curl -sSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py
+  Invoke-WebRequest -sSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py
   .\python .\get-pip.py
   Remove-Item .\get-pip.py
 }
@@ -252,18 +274,25 @@ if (Is-Windows) {
 }
 if (Is-Windows) {
   Set-Alias ls Get-ChildItem
-  function l { Get-ChildItem $args }
-  function la { Get-ChildItem -Force $args }
-}
-else {
+  function l {
+    Get-ChildItem $args
+  }
+  function la {
+    Get-ChildItem -Force $args
+  }
+} else {
   Set-Alias ls lsd
-  function l { Get-ChildItem -l $args }
-  function la { Get-ChildItem -a $args }
+  function l {
+    Get-ChildItem -l $args
+  }
+  function la {
+    Get-ChildItem -a $args
+  }
 }
 
 # Readline setting.
 Set-PSReadLineOption -EditMode Vi
-Set-PSReadlineOption -ViModeIndicator cursor
+Set-PSReadLineOption -ViModeIndicator cursor
 
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function AcceptNextSuggestionWord
@@ -294,8 +323,7 @@ function _j2 {
   $z = & {
     if (Is-Windows) {
       (Join-Path $env:USERPROFILE ".z")
-    }
-    else {
+    } else {
       (Join-Path $env:HOME ".z")
     }
   }
@@ -306,7 +334,9 @@ function _j2 {
   Get-Job | Stop-Job -PassThru | Remove-Job -Force
 }
 
-function j { _j2 }
+function j {
+  _j2
+}
 
 # zoxide.
 # Invoke-Expression (& {
