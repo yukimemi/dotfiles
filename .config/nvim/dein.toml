@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/05/30 00:28:28.
+# Last Change: 2022/06/01 22:52:49.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -457,7 +457,6 @@ on_ft = ['quickfix', 'qf']
 
 [[plugins]]
 repo = 'thinca/vim-submode'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/vim-submode.vim
 '''
@@ -1104,8 +1103,9 @@ source $VIM_PATH/rc/nvim-lspconfig.vim
 
 [[plugins]]
 repo = 'williamboman/nvim-lsp-installer'
-depends = 'nvim-lspconfig'
 if = 'has("nvim") && g:plugin_use_nvimlsp'
+depends = 'nvim-lspconfig'
+on_event = 'BufRead'
 hook_source = '''
 source $VIM_PATH/rc/nvim-lsp-installer.vim
 '''
