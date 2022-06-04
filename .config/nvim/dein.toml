@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/04 22:47:03.
+# Last Change: 2022/06/04 23:06:32.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -691,6 +691,7 @@ on_cmd = ['WatchForChanges', 'WatchForChangesWhileInThisBuffer', 'WatchForChange
 
 [[plugins]]
 repo = 'stevearc/stickybuf.nvim'
+if = "has('nvim')"
 on_event = ['CursorHold', 'FocusLost']
 
 # ==================== Test ======================
@@ -821,6 +822,11 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'osyo-manga/vim-textobj-multiblock'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'rbtnn/vim-textobj-string'
+depends = 'vim-textobj-user'
 on_event = ['CursorHold', 'FocusLost']
 
 # ==================== Operators =================
