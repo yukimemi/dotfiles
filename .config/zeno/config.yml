@@ -208,6 +208,8 @@ snippets:
     snippet: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
   - name: Install vim-startuptime
     snippet: go install github.com/rhysd/vim-startuptime@latest
+  - name: Install gsr
+    snippet: go install github.com/yukimemi/gsr@latest
 
 completions:
   - name: kill

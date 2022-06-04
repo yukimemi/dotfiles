@@ -414,7 +414,6 @@ set wildcharm=<tab>
 cnoremap <expr> <tab> '<cmd>set nosmartcase<cr><tab><cmd>let &smartcase = ' .. &smartcase .. '<cr>'
 
 " Plugin:
-let g:plugin_use_mini = 1
 let g:plugin_use_dein = 1
 let g:plugin_use_vimplug = 0
 let g:plugin_use_minpac = 0
@@ -424,14 +423,14 @@ let g:plugin_use_pack = 0
 let g:plugin_use_packer = 0
 let g:plugin_use_jetpack = 0
 
-let g:plugin_use_lightline = 1 && !has('nvim')
+let g:plugin_use_lightline = 1
 let g:plugin_use_airline = 0
 let g:plugin_use_barow = 0
 let g:plugin_use_neoline = 0 && has('nvim')
 let g:plugin_use_lualine = 0 && has('nvim')
 let g:plugin_use_staline = 0 && has('nvim')
 let g:plugin_use_galaxyline = 0 && has('nvim')
-let g:plugin_use_incline = 1 && has('nvim')
+let g:plugin_use_incline = 0 && has('nvim')
 
 let g:plugin_use_indent_blankline = 1
 let g:plugin_use_dps_indent_line = 0

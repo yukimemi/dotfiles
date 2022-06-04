@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/01 22:52:49.
+# Last Change: 2022/06/04 22:47:03.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -47,7 +47,6 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'itchyny/vim-external'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/vim-external.vim
 '''
@@ -62,7 +61,6 @@ on_map = '<Plug>'
 
 [[plugins]]
 repo = 'itchyny/vim-parenmatch'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/vim-parenmatch.vim
 '''
@@ -86,11 +84,9 @@ if = "!has('gui')"
 
 [[plugins]]
 repo = 'thinca/vim-fontzoom'
-if = "has('gui') && !g:plugin_use_mini"
 
 [[plugins]]
 repo = 'thinca/vim-ft-diff_fold'
-if = '!g:plugin_use_mini'
 on_event = ["CursorHold", "InsertEnter", "CursorMoved", "FocusLost"]
 
 [[plugins]]
@@ -98,12 +94,11 @@ repo = 'luochen1990/rainbow'
 hook_add = '''
 source $VIM_PATH/rc/rainbow.vim
 '''
-if = "!has('nvim') && !g:plugin_use_mini"
+if = "!has('nvim')"
 on_event = ["CursorHold", "CursorMoved"]
 
 [[plugins]]
 repo = 'machakann/vim-highlightedyank'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/vim-highlightedyank.vim
 '''
@@ -129,7 +124,6 @@ on_cmd = 'StripWhiteSpace'
 
 [[plugins]]
 repo = 't9md/vim-quickhl'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/vim-quickhl.vim
 '''
@@ -140,11 +134,10 @@ repo = 'LumaKernel/nvim-visual-eof.lua'
 hook_add = '''
 source $VIM_PATH/rc/nvim-visual-eof.lua.vim
 '''
-if = "has('nvim') && !g:plugin_use_mini"
+if = "has('nvim')"
 
 [[plugins]]
 repo = 'mg979/vim-xtabline'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/vim-xtabline.vim
 '''
@@ -303,7 +296,6 @@ let g:context_filetype#ignore_patterns = {
 
 [[plugins]]
 repo = 'Shougo/echodoc.vim'
-if = '!g:plugin_use_mini'
 on_event = 'InsertEnter'
 hook_source = '''
 source $VIM_PATH/rc/echodoc.vim
@@ -354,7 +346,6 @@ on_map = { v = '<Plug>(EasyAlign)' }
 
 [[plugins]]
 repo = "lambdalisue/readablefold.vim"
-if = '!g:plugin_use_mini'
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
@@ -418,11 +409,10 @@ source $VIM_PATH/rc/vim-gindent.vim
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'
-if = '!g:plugin_use_mini'
 
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
-if = '!has("nvim") && !g:plugin_use_mini'
+if = '!has("nvim")'
 
 # [[plugins]]
 # repo = 'roxma/vim-tmux-clipboard'
@@ -431,7 +421,6 @@ if = '!has("nvim") && !g:plugin_use_mini'
 
 [[plugins]]
 repo = 'sentriz/vim-print-debug'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/vim-print-debug.vim
 '''
@@ -445,7 +434,6 @@ source $VIM_PATH/rc/vim-ambicmd.vim
 
 [[plugins]]
 repo = 'thinca/vim-localrc'
-if = '!g:plugin_use_mini'
 
 [[plugins]]
 repo = 'thinca/vim-prettyprint'
@@ -503,7 +491,6 @@ if = "!has('nvim') && has('clientserver')"
 
 [[plugins]]
 repo = 'machakann/vim-swap'
-if = '!g:plugin_use_mini'
 
 [[plugins]]
 repo = 'Bakudankun/BackAndForward.vim'
@@ -514,7 +501,6 @@ source $VIM_PATH/rc/BackAndForward.vim
 
 [[plugins]]
 repo = 'MattesGroeger/vim-bookmarks'
-if = '!g:plugin_use_mini'
 
 [[plugins]]
 repo = 'osyo-manga/vim-hopping'
@@ -525,7 +511,6 @@ on_cmd = 'HoppingStart'
 
 [[plugins]]
 repo = 'itchyny/vim-winfix'
-if = '!g:plugin_use_mini'
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
@@ -568,7 +553,6 @@ on_cmd = ['ReanimateSave', 'ReanimateLoad', 'ReanimateLoadLatest']
 
 [[plugins]]
 repo = 't9md/vim-choosewin'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/vim-choosewin.vim
 '''
@@ -581,13 +565,10 @@ lazy = 1
 
 [[plugins]]
 repo = 'kevinhwang91/nvim-bqf'
-if = '!g:plugin_use_mini'
-depends = 'fzf'
 if = "has('nvim')"
 
 [[plugins]]
 repo = 'junegunn/fzf'
-if = '!g:plugin_use_mini'
 hook_post_update = '''
 call dein#source('fzf')
 call fzf#install()
@@ -617,7 +598,6 @@ on_event = "InsertEnter"
 
 [[plugins]]
 repo = 'rcarriga/nvim-notify'
-if = '!g:plugin_use_mini'
 on_lua = 'notify'
 on_source = '''
 lua vim.notify = require('notify')
@@ -685,23 +665,21 @@ lazy = 1
 repo = 'thinca/vim-partedit'
 on_cmd = 'Partedit'
 
-[[plugins]]
-repo = 'prettier/vim-prettier'
-if = "!g:is_windows"
-on_ft = 'json'
-build = 'yarn install'
-hook_add = '''
-source $VIM_PATH/rc/vim-prettier.vim
-'''
+# [[plugins]]
+# repo = 'prettier/vim-prettier'
+# if = "!g:is_windows"
+# on_ft = 'json'
+# build = 'yarn install'
+# hook_add = '''
+# source $VIM_PATH/rc/vim-prettier.vim
+# '''
 
 [[plugins]]
 repo = 'fuenor/JpFormat.vim'
-if = '!g:plugin_use_mini'
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'osyo-manga/vim-jplus'
-if = '!g:plugin_use_mini'
 on_map = {n = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-jplus.vim
@@ -710,6 +688,10 @@ source $VIM_PATH/rc/vim-jplus.vim
 [[plugins]]
 repo = 'djoshea/vim-autoread'
 on_cmd = ['WatchForChanges', 'WatchForChangesWhileInThisBuffer', 'WatchForChangesAllFile']
+
+[[plugins]]
+repo = 'stevearc/stickybuf.nvim'
+on_event = ['CursorHold', 'FocusLost']
 
 # ==================== Test ======================
 [[plugins]]
@@ -755,7 +737,6 @@ on_cmd = ['FriendsTwitter', 'UserTwitter', 'RepliesTwitter', 'DMTwitter']
 
 [[plugins]]
 repo = 'itchyny/vim-gitbranch'
-if = '!g:plugin_use_mini'
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
@@ -832,17 +813,14 @@ on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'machakann/vim-textobj-delimited'
-if = '!g:plugin_use_mini'
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'mattn/vim-textobj-url'
-if = '!g:plugin_use_mini'
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'osyo-manga/vim-textobj-multiblock'
-if = '!g:plugin_use_mini'
 on_event = ['CursorHold', 'FocusLost']
 
 # ==================== Operators =================
@@ -917,7 +895,6 @@ source $VIM_PATH/rc/vim-anzu.vim
 
 [[plugins]]
 repo = 'inside/vim-search-pulse'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/vim-search-pulse.vim
 '''
@@ -931,7 +908,6 @@ source $VIM_PATH/rc/vim-ripgrep.vim
 
 [[plugins]]
 repo = 'monaqa/modesearch.vim'
-if = '!g:plugin_use_mini'
 hook_add = '''
 source $VIM_PATH/rc/modesearch.vim
 '''
@@ -1481,13 +1457,13 @@ hook_source = '''
 source $VIM_PATH/rc/lualine.nvim
 '''
 
-[[plugins]]
-repo = 'b0o/incline.nvim'
-if = "g:plugin_use_incline && has('nvim')"
-on_event = ['CursorHold', 'FocusLost']
-hook_source = '''
-source $VIM_PATH/rc/incline.nvim
-'''
+# [[plugins]]
+# repo = 'b0o/incline.nvim'
+# if = "g:plugin_use_incline && has('nvim')"
+# on_event = ['CursorHold', 'FocusLost']
+# hook_source = '''
+# source $VIM_PATH/rc/incline.nvim
+# '''
 
 # ==================== Filetree ==================
 
