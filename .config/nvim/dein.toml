@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/04 23:06:32.
+# Last Change: 2022/06/04 23:11:29.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1236,6 +1236,10 @@ on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/gitsign.vim
 '''
+
+[[plugins]]
+repo = 'skanehira/denops-twitter.vim'
+depends = 'denops.vim'
 
 # ==================== Fuzzy =====================
 

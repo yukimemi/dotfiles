@@ -4,6 +4,7 @@ anyenv/
 asciinema/
 cmus/
 configstore/
+denops_twitter/
 direnv/
 easytag/
 fisher/
@@ -14,8 +15,8 @@ gh/
 heroku/
 hub
 iterm2/
-nextword/
 mocword/
+nextword/
 pet
 powershell/
 rclone
