@@ -12,6 +12,9 @@ snippets:
   - name: git diff --cached
     keyword: dc
     snippet: git diff --cached
+  - name: git graph
+    keyword: gg
+    snippet: git-graph
   - name: git add
     keyword: a
     snippet: git add
@@ -210,6 +213,8 @@ snippets:
     snippet: go install github.com/rhysd/vim-startuptime@latest
   - name: Install gsr
     snippet: go install github.com/yukimemi/gsr@latest
+  - name: Install git-graph
+    snippet: cargo install --git https://github.com/mlange-42/git-graph
 
 completions:
   - name: kill
