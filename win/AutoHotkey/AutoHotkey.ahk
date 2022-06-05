@@ -93,9 +93,9 @@ return
 ; return
 
 ; for VSCode
-; F10::
-; Activate3("Code.exe", "C:\Program Files\Microsoft VS Code\Code.exe", "Visual Studio Code")
-; return
+F8::
+Activate3("Code.exe", "C:\Program Files\Microsoft VS Code\Code.exe", "Visual Studio Code")
+return
 
 ; for chrome
 ; F11::

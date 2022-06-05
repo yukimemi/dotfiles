@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/04 23:11:29.
+# Last Change: 2022/06/05 18:22:43.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1240,6 +1240,7 @@ source $VIM_PATH/rc/gitsign.vim
 [[plugins]]
 repo = 'skanehira/denops-twitter.vim'
 depends = 'denops.vim'
+on_cmd = ['TwitterHome', 'TwitterMentions', 'TwitterTweet', 'TwitterEditConfig']
 
 # ==================== Fuzzy =====================
 
