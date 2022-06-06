@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/05 18:22:43.
+# Last Change: 2022/06/06 23:19:23.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1044,7 +1044,8 @@ if = 'g:plugin_use_ddc'
 [[plugins]]
 repo = 'Shougo/ddc-nvim-lsp'
 if = 'g:plugin_use_nvimlsp'
-depends = 'nvim-lsp-installer'
+on_source = 'ddc.vim'
+depends = 'nvim-lspconfig'
 
 [[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'
@@ -1083,20 +1084,18 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
+depends = 'nvim-lsp-installer'
 if = 'has("nvim") && g:plugin_use_nvimlsp'
 on_event = 'BufRead'
 hook_source = '''
+source $VIM_PATH/rc/nvim-lsp-installer.vim
 source $VIM_PATH/rc/nvim-lspconfig.vim
 '''
 
 [[plugins]]
 repo = 'williamboman/nvim-lsp-installer'
 if = 'has("nvim") && g:plugin_use_nvimlsp'
-depends = 'nvim-lspconfig'
-on_event = 'BufRead'
-hook_source = '''
-source $VIM_PATH/rc/nvim-lsp-installer.vim
-'''
+lazy = 1
 
 [[plugins]]
 repo = 'shun/ddc-vim-lsp'
