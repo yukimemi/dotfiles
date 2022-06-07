@@ -482,7 +482,12 @@ mapkey("co", "#7Copy title and link to org", () => {
 
 unmapAllExcept(
   ["E", "R", "T", "f", "F", "C", "x", "S", "H", "L", "cm"],
-  /mail.google.com|twitter.com|feedly.com|i.doit.im|outlook.office.com/
+  /mail.google.com|feedly.com|i.doit.im|outlook.office.com/
+);
+
+unmapAllExcept(
+  ["E", "R", "T", "F", "C", "S", "H", "L", "cm"],
+  /twitter.com/
 );
 
 // set theme
