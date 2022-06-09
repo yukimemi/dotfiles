@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/09 01:28:49.
+# Last Change: 2022/06/10 00:03:54.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1249,9 +1249,12 @@ source $VIM_PATH/rc/gitsign.vim
 '''
 
 [[plugins]]
-repo = 'skanehira/denops-twitter.vim'
+repo = 'skanehira/denops-twihi.vim'
 depends = 'denops.vim'
-on_cmd = ['TwitterHome', 'TwitterMentions', 'TwitterTweet', 'TwitterEditConfig']
+on_cmd = ['TwihiHome', 'TwihiTimeline', 'TwihiMentions', 'TwihiTweet', 'TwihiEditConfig']
+hook_add = '''
+source $VIM_PATH/rc/denops-twihi.vim
+'''
 
 # ==================== Fuzzy =====================
 
