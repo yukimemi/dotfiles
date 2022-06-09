@@ -1,3 +1,9 @@
+" =============================================================================
+" File        : .gvimrc
+" Author      : yukimemi
+" Last Change : 2022/06/09 21:00:30.
+" =============================================================================
+
 " hide all
 set guioptions=
 set fillchars=vert:\|,fold:-,diff:-
@@ -12,8 +18,8 @@ endif
 
 set background=dark
 " silent! colorscheme srcery
-" silent! colorscheme pinkmare
-silent! colorscheme palenight
+silent! colorscheme pinkmare
+" silent! colorscheme palenight
 
 " font
 " set gfn=PlemolJP_Console_NF:h11

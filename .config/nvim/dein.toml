@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/06 23:19:23.
+# Last Change: 2022/06/09 21:01:38.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -477,6 +477,7 @@ on_cmd = 'Restart'
 
 [[plugins]]
 repo = 'vim-scripts/autodate.vim'
+if = "g:plugin_use_autodate"
 hook_add = '''
 source $VIM_PATH/rc/autodate.vim
 '''
@@ -1171,6 +1172,16 @@ depends = 'denops.vim'
 on_event = ['CursorHold', 'FocusLost', 'BufWritePre']
 hook_add = '''
 source $VIM_PATH/rc/dps-autobackup.vim
+'''
+
+[[plugins]]
+repo = 'yukimemi/dps-autodate'
+# repo = '~/src/github.com/yukimemi/dps-autodate'
+if = "g:plugin_use_dps_autodate"
+depends = 'denops.vim'
+on_event = ['CursorHold', 'FocusLost', 'BufWritePre']
+hook_add = '''
+source $VIM_PATH/rc/dps-autodate.vim
 '''
 
 [[plugins]]
