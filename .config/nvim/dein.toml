@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/09 21:01:38.
+# Last Change: 2022/06/09 01:28:49.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -394,14 +394,15 @@ repo = 'rbtnn/vim-gloaded'
 repo = 'rbtnn/vim-vimscript_lasterror'
 on_cmd = 'VimscriptLastError'
 
-# [[plugins]]
-# repo = 'rbtnn/vim-vimscript_indentexpr'
-
 [[plugins]]
-repo = 'hrsh7th/vim-gindent'
-hook_add = '''
-source $VIM_PATH/rc/vim-gindent.vim
-'''
+repo = 'rbtnn/vim-vimscript_indentexpr'
+on_ft = 'vim'
+
+# [[plugins]]
+# repo = 'hrsh7th/vim-gindent'
+# hook_add = '''
+# source $VIM_PATH/rc/vim-gindent.vim
+# '''
 
 # [[plugins]]
 # repo = 'romainl/vim-qf'
