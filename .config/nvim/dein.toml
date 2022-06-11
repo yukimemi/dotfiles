@@ -954,7 +954,6 @@ source $VIM_PATH/rc/toggleterm.nvim
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
-rev = 'catch_errors'
 on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/denops.vim
