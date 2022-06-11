@@ -53,7 +53,7 @@
 ".config/nvim/init.vim" = "~/.vimrc"
 ".config/rhq" = "~/Library/Preferences/rhq"
 ".gvimrc" = "~/.gvimrc"
-".hyper.js" = "~/Library/Application Support/Hyper/.hyper.js"
+".hyper.js" = ["~/Library/Application Support/Hyper/.hyper.js", "~/.hyper.js"]
 ".profile" = "~/.profile"
 ".tmux.conf" = "~/.tmux.conf"
 "win/Microsoft.PowerShell_profile.ps1" = "~/.config/PowerShell/Microsoft.PowerShell_profile.ps1"
