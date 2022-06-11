@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/10 00:03:54.
+# Last Change: 2022/06/10 22:24:26.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -901,11 +901,11 @@ hook_add = '''
 source $VIM_PATH/rc/vim-anzu.vim
 '''
 
-[[plugins]]
-repo = 'inside/vim-search-pulse'
-hook_add = '''
-source $VIM_PATH/rc/vim-search-pulse.vim
-'''
+# [[plugins]]
+# repo = 'inside/vim-search-pulse'
+# hook_add = '''
+# source $VIM_PATH/rc/vim-search-pulse.vim
+# '''
 
 [[plugins]]
 repo = 'kyoh86/vim-ripgrep'
@@ -954,6 +954,7 @@ source $VIM_PATH/rc/toggleterm.nvim
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
+rev = 'catch_errors'
 on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/denops.vim
