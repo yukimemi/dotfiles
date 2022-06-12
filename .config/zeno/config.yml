@@ -216,7 +216,9 @@ snippets:
   - name: Install git-graph
     snippet: cargo install --git https://github.com/mlange-42/git-graph
   - name: Install jid
-    anippet: go install github.com/simeji/jid/cmd/jid@latest
+    snippet: go install github.com/simeji/jid/cmd/jid@latest
+  - name: Install jvgrep
+    snippet: go install github.com/mattn/jvgrep/v5@latest
 
 completions:
   - name: kill
