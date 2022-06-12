@@ -486,7 +486,7 @@ unmapAllExcept(
 );
 
 unmapAllExcept(
-  ["E", "R", "T", "F", "C", "x", "S", "H", "L", "cm"],
+  ["E", "R", "T", "f", "F", "C", "x", "S", "H", "L", "cm"],
   /twitter.com/
 );
 
