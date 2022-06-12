@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2022/04/29 15:40:42.
+" Last Change : 2022/06/12 15:54:56.
 " =============================================================================
 
 " Plugin:
@@ -21,7 +21,7 @@ let g:dein#install_check_diff = v:true
 let g:dein#install_check_remote_threshold = 12 * 60 * 60
 let g:dein#install_github_api_token = $DEIN_GITHUB_API_TOKEN
 let g:dein#install_log_filename = '~/.dein_install.log'
-let g:dein#install_progress_type = 'floating'
+let g:dein#install_progress_type = 'none'
 let g:dein#lazy_rplugins = v:true
 
 function! IsInstalled(name) abort

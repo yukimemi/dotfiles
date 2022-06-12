@@ -215,6 +215,8 @@ snippets:
     snippet: go install github.com/yukimemi/gsr@latest
   - name: Install git-graph
     snippet: cargo install --git https://github.com/mlange-42/git-graph
+  - name: Install jid
+    anippet: go install github.com/simeji/jid/cmd/jid@latest
 
 completions:
   - name: kill
