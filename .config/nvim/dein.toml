@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/12 16:03:53.
+# Last Change: 2022/06/14 18:59:48.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1688,6 +1688,10 @@ on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 
 [[plugins]]
 repo = 'rhysd/vim-gfm-syntax'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+
+[[plugins]]
+repo = 'previm/previm'
 on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 
 # ==================== Filetype (html) ===========
