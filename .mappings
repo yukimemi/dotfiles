@@ -19,7 +19,7 @@
 ]
 ".config/nvim/init.vim" = "~/_vimrc"
 ".gvimrc" = "~/_gvimrc"
-".hyper.js" = "~/AppData/Roaming/Hyper/.hyper.js"
+".hyper.js" = ["~/AppData/Roaming/Hyper/.hyper.js", "~/.hyper.js"]
 ".qutebrowser" = "~/AppData/Roaming/qutebrowser/config"
 "win/Microsoft.PowerShell_profile.ps1" = [
   "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1",

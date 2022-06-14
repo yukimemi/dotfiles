@@ -316,7 +316,7 @@ Set-PSReadLineKeyHandler -Key 'Ctrl+w' -Function BackwardDeleteWord
 
 # z.
 function _j1 {
-  z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | Set-Location
+  z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | Trim-Cd
 }
 
 function _j2 {
@@ -327,10 +327,10 @@ function _j2 {
       (Join-Path $env:HOME ".z")
     }
   }
-  # $c = Get-Content $z
-  # [array]::Reverse($c)
-  # $c | __FILTER | cd
-  Get-Content $z | __FILTER | Set-Location
+  $c = Get-Content $z
+  [array]::Reverse($c)
+  $c | __FILTER | Trim-Cd
+  # Get-Content $z | __FILTER | Trim-Cd
   Get-Job | Stop-Job -PassThru | Remove-Job -Force
 }
 
