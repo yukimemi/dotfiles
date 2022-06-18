@@ -152,9 +152,9 @@ return
 ; return
 
 ; for Hyper
-F12::
-Toggle(USERPROFILE . "\AppData\Local\Programs\hyper\Hyper.exe")
-return
+; F12::
+; Toggle(USERPROFILE . "\AppData\Local\Programs\hyper\Hyper.exe")
+; return
 
 ; for Fluent Terminal
 ; F12::
@@ -162,9 +162,9 @@ return
 ; return
 
 ; for Windows Terminal
-; F12::
-; ToggleExe("WindowsTerminal.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
-; return
+F12::
+ToggleExe("WindowsTerminal.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
+return
 
 ; for Edge
 ; F11::
