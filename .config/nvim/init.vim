@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/06/15 07:20:54.
+" Last Change : 2022/06/18 16:44:04.
 " =============================================================================
 
 " Init:
@@ -297,12 +297,10 @@ Keymap n <silent> <leader>rg <cmd>source $MYGVIMRC<cr>
 Keymap n <silent> <esc><esc> <cmd>nohlsearch<cr>
 
 " Use prefix s.
-" Keymap n <silent> sj <c-w>j
-" Keymap n <silent> sk <c-w>k
-Keymap n <silent> <c-h> <c-w>h
-Keymap n <silent> <c-j> <c-w>j
-Keymap n <silent> <c-k> <c-w>k
-Keymap n <silent> <c-l> <c-w>l
+" Keymap n <silent> <c-h> <c-w>h
+" Keymap n <silent> <c-j> <c-w>j
+" Keymap n <silent> <c-k> <c-w>k
+" Keymap n <silent> <c-l> <c-w>l
 Keymap n <silent> s <Nop>
 Keymap n <silent> s0 <cmd>only<cr>
 Keymap n <silent> s= <c-w>=
@@ -314,6 +312,10 @@ Keymap n <silent> sO <cmd>tabonly<cr>
 Keymap n <silent> sQ <cmd>qa<cr>
 Keymap n <silent> sbk <cmd>bd!<cr>
 Keymap n <silent> sbq <cmd>q!<cr>
+Keymap n <silent> sh <c-w>h
+Keymap n <silent> sj <c-w>j
+Keymap n <silent> sk <c-w>k
+Keymap n <silent> sl <c-w>l
 Keymap n <silent> sn <cmd>bn<cr>
 Keymap n <silent> so <c-w>_<c-w>|
 Keymap n <silent> sp <cmd>bp<cr>
@@ -435,8 +437,8 @@ let g:plugin_use_incline = 0 && has('nvim')
 let g:plugin_use_indent_blankline = 1
 let g:plugin_use_dps_indent_line = 0
 
-let g:plugin_use_coc = 0
-let g:plugin_use_ddc = 1
+let g:plugin_use_coc = 1
+let g:plugin_use_ddc = 0
 let g:plugin_use_vimlsp = 1 && !has('nvim') && !g:plugin_use_coc
 let g:plugin_use_nvimlsp = 1 && has('nvim') && !g:plugin_use_coc
 

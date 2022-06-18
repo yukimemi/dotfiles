@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/14 18:59:48.
+# Last Change: 2022/06/18 17:27:46.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -442,9 +442,9 @@ source $VIM_PATH/rc/vim-submode.vim
 '''
 on_event = 'BufRead'
 
-[[plugins]]
-repo = 'christoomey/vim-tmux-navigator'
-if = '!g:is_windows'
+# [[plugins]]
+# repo = 'christoomey/vim-tmux-navigator'
+# if = '!g:is_windows'
 
 [[plugins]]
 repo = 'tpope/vim-repeat'
