@@ -46,7 +46,7 @@ call ddu#custom#patch_global({
 \     'ff': {
 \       'prompt': '»',
 \       'reversed': v:true,
-\       'split': has('nvim') ? 'floating' : 'horizontal',
+\       'split': 'horizontal',
 \       'displaySourceName': 'long',
 \     },
 \   },
