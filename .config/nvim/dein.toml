@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/18 17:27:46.
+# Last Change: 2022/06/18 23:04:18.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -682,6 +682,11 @@ on_cmd = ['WatchForChanges', 'WatchForChangesWhileInThisBuffer', 'WatchForChange
 repo = 'stevearc/stickybuf.nvim'
 if = "has('nvim')"
 on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'cosminadrianpopescu/vim-tail'
+on_cmd = ['TailStart', 'TailStop']
+
 
 # ==================== Test ======================
 [[plugins]]
