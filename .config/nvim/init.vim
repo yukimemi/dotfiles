@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/06/19 21:35:12.
+" Last Change : 2022/06/26 00:52:03.
 " =============================================================================
 
 " Init:
@@ -543,9 +543,17 @@ silent! colorscheme srcery
 " Neovide:
 let g:neovide_transparency = 0.9
 " let g:neovide_fullscreen  = 1
+let g:neovide_remember_window_size = v:true
+let g:neovide_profiler = v:false
+let g:neovide_input_use_logo = v:true
 let g:neovide_cursor_vfx_mode = "railgun"
-" set guifont=Cica
-" set guifontwide=Cica
+" let g:neovide_cursor_vfx_mode = "torpedo"
+" let g:neovide_cursor_vfx_mode = "pixiedust"
+" let g:neovide_cursor_vfx_mode = "sonicboom"
+" let g:neovide_cursor_vfx_mode = "ripple"
+" let g:neovide_cursor_vfx_mode = "wireframe"
+set guifont=Cica
+set guifontwide=Cica
 
 " Nvy:
 let g:nvy = get(g:, 'nvy', 0)
