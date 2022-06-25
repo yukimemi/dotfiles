@@ -123,9 +123,8 @@ function! s:ddu_ff_cfg() abort
 endfunction
 
 function! s:ddu_ff_filter_cfg() abort
-  Keymap i <buffer><silent> <cr> <esc><cmd>close \| call ddu#ui#ff#do_action('itemAction')<cr>
-  Keymap i <buffer><silent><nowait> <esc> <esc><cmd>close<cr>
-  Keymap n <buffer><silent> <cr> <cmd>close<cr>
+  Keymap i <buffer><silent> <cr> <esc><cmd>call ddu#ui#ff#close() \| call ddu#ui#ff#do_action('itemAction')<cr>
+  Keymap i <buffer><silent><nowait> <esc> <esc><cmd>call ddu#ui#ff#close()<cr>
   Keymap i <buffer> <c-j> <cmd>call ddu#ui#ff#execute("call cursor(line('.')+1,0)")<cr>
   Keymap i <buffer> <c-k> <cmd>call ddu#ui#ff#execute("call cursor(line('.')-1,0)")<cr>
 endfunction

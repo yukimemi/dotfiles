@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/18 23:04:18.
+# Last Change: 2022/06/25 20:19:21.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -687,6 +687,17 @@ on_event = ['CursorHold', 'FocusLost']
 repo = 'cosminadrianpopescu/vim-tail'
 on_cmd = ['TailStart', 'TailStop']
 
+[[plugins]]
+repo = 'vim-autoformat/vim-autoformat'
+if = "g:plugin_use_vim_autoformat"
+on_event = ['CursorHold', 'FocusLost', 'BufWritePre']
+
+[[plugins]]
+repo = 'skanehira/qfopen.vim'
+on_ft = ['quickfix', 'qf']
+hook_add = '''
+source $VIM_PATH/rc/qfopen.vim
+'''
 
 # ==================== Test ======================
 [[plugins]]
