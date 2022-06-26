@@ -7,10 +7,10 @@ Keymap n <silent> <leader>tl <cmd>TestLast<cr>
 Keymap n <silent> <leader>tg <cmd>TestVisit<cr>
 
 let test#strategy = {
-			\ 'nearest': 'neoterm',
-			\ 'file'   : 'neoterm',
-			\ 'suite'  : 'neoterm',
-			\ }
+      \ 'nearest': 'neoterm',
+      \ 'file'   : 'neoterm',
+      \ 'suite'  : 'neoterm',
+      \ }
 
 let test#javascript#denotest#options = {
       \ 'all': '--unstable -A'

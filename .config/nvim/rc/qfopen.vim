@@ -6,5 +6,5 @@ augroup qfopen-bufenter
     Keymap n <buffer> <C-t> <Plug>(qfopen-open-tab)
   endfunction
   au!
-  au FileType qf call s:qfopen_keymap()
+  au FileType quickfix,qf call s:qfopen_keymap()
 augroup END

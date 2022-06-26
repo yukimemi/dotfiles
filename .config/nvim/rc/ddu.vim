@@ -71,6 +71,9 @@ call ddu#custom#patch_global({
 \     'colorscheme': {
 \       'defaultAction': 'set',
 \     },
+\     'source': {
+\       'defaultAction': 'execute',
+\     },
 \   },
 \   'actionOptions': {
 \     'narrow': {

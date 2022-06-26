@@ -3,8 +3,6 @@ silent! packadd nvim-treesitter
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
-let s:save_shellslash = &shellslash
-set noshellslash
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {"c", "lua", "vim", "rust", "go"},
@@ -19,7 +17,4 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
-
-let &shellslash = s:save_shellslash
-unlet s:save_shellslash
 

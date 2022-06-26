@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/06/26 00:52:03.
+" Last Change : 2022/06/26 20:44:46.
 " =============================================================================
 
 " Init:
@@ -451,13 +451,6 @@ let g:plugin_use_quickscope = 1
 let g:plugin_use_cleverf = 0
 let g:plugin_use_shotf = 0
 
-let g:plugin_use_autobackup = 0
-let g:plugin_use_aho_bakaup = 0
-let g:plugin_use_dps_autobackup = 1
-
-let g:plugin_use_autodate = 0
-let g:plugin_use_dps_autodate = 1
-
 let g:plugin_use_smoothie = g:is_darwin
 
 let g:plugin_use_ctrlp = 1
@@ -472,7 +465,6 @@ let g:plugin_use_linearf = 0 && has('nvim')
 let g:plugin_use_fern = 1
 let g:plugin_use_ddu_filer = 0
 let g:plugin_use_vfiler = 0
-let g:plugin_use_defx = 0
 let g:plugin_use_molder = 0
 let g:plugin_use_vaffle = 0
 let g:plugin_use_viler = 0
@@ -494,8 +486,6 @@ let g:plugin_use_markdownpreview = 1
 let g:plugin_use_neoterm = 0
 let g:plugin_use_toggleterm = 0
 let g:plugin_use_floaterm = 0
-
-let g:plugin_use_vim_autoformat = 0
 
 let g:plugin_use_beacon = 1
 let g:plugin_use_columnskip = 0
@@ -538,7 +528,7 @@ au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 set background=dark
-silent! colorscheme srcery
+silent! colorscheme edge
 
 " Neovide:
 let g:neovide_transparency = 0.9
