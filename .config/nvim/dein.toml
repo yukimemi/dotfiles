@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/26 21:00:27.
+# Last Change: 2022/06/28 01:14:49.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -234,6 +234,9 @@ repo = 'PHSix/nvim-hybrid'
 
 [[plugins]]
 repo = '4513ECHO/vim-colors-hatsunemiku'
+
+[[plugins]]
+repo = 'base16-project/base16-vim'
 
 [[plugins]]
 repo = 'cocopon/inspecthi.vim'

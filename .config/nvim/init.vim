@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/06/26 20:44:46.
+" Last Change : 2022/06/27 12:14:00.
 " =============================================================================
 
 " Init:
@@ -212,6 +212,9 @@ let g:markdown_fenced_languages = [
 " lua syntax.
 let g:vimsyn_embed = 'lPr'
 
+" quickfix.
+au MyAutoCmd FileType qf,quickfix setl cursorline
+
 " vim
 au MyAutoCmd FileType vim setl expandtab ts=2 sw=2 sts=0
 " markdown
@@ -295,6 +298,10 @@ Keymap n <silent> <leader>rg <cmd>source $MYGVIMRC<cr>
 
 " nohlsearch.
 Keymap n <silent> <esc><esc> <cmd>nohlsearch<cr>
+
+" tab
+Keymap n <silent> <c-h> gT
+Keymap n <silent> <c-l> gt
 
 " Use prefix s.
 " Keymap n <silent> <c-h> <c-w>h
