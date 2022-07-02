@@ -535,7 +535,7 @@ au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 set background=dark
-silent! colorscheme edge
+silent! colorscheme srcery
 
 " Neovide:
 let g:neovide_transparency = 0.9
