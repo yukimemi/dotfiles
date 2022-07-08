@@ -185,6 +185,8 @@ snippets:
     snippet: deno install -A -f -n udd https://deno.land/x/udd/main.ts
   - name: Install atuin
     snippet: cargo install atuin
+  - name: Install sheldon
+    snippet: cargo install sheldon
   - name: Install direnv
     snippet: curl -sfL https://direnv.net/install.sh | bash
   - name: Install nextword
@@ -221,6 +223,8 @@ snippets:
     snippet: go install github.com/mattn/jvgrep/v5@latest
   - name: Install task
     snippet: go install github.com/go-task/task/v3/cmd/task@latest
+  - name: Install asdf
+    snippet: brew install asdf
 
 completions:
   - name: kill

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2022/06/12 23:21:51.
+# Last Change : 2022/07/09 01:45:02.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -10,60 +10,12 @@
   && [ -z "${TMUX}" ] \
   && { tmux attach || tmux; } >/dev/null 2>&1
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-  print -P "%F{33}▓▒░ %F{160}Installing %F{33}ZINIT%F{160} Initiative Plugin Manager (%F{33}z-shell/zinit%F{160})…%f"
-  command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-  command git clone https://github.com/z-shell/zinit "$HOME/.zinit/bin" && \
-    print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-    print -P "%F{160}▓▒░ The clone has failed.%f%b"
+#
+# sheldon
+#
+if type sheldon > /dev/null 2>&1; then
+  eval "$(sheldon source)"
 fi
-
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# (this is currently required annexes)
-# zinit light-mode for \
-#   z-shell/z-a-readurl \
-#   z-shell/z-a-meta-plugins \
-#   annexes
-### End of Zinit's installer chunk
-
-
-#
-# plugin list.
-#
-zinit lucid wait light-mode for \
-  atinit"zicompinit; zicdreplay" atload"zpcompinit" \
-  z-shell/fast-syntax-highlighting \
-  marlonrichert/zsh-autocomplete \
-  supercrabtree/k \
-  @asdf-vm/asdf
-
-zinit lucid light-mode for \
-  atload"_zsh_autosuggest_start" \
-  zsh-users/zsh-autosuggestions \
-  zsh-users/zsh-history-substring-search \
-  jeffreytse/zsh-vi-mode \
-  yuki-yano/zeno.zsh \
-  yukiycino-dotfiles/zsh-show-buffer-stack
-
-zinit lucid wait from"gh-r" as"program" pick"bit" for \
-  chriswalz/bit
-
-#
-# for git.
-#
-zinit lucid wait as"program" pick"$ZPFX/bin/git-*" make"PREFIX=$ZPFX" light-mode for \
-  tj/git-extras
-
-
-#
-# z-a-rust
-#
-zinit ice lucid wait rustup cargo'!lsd;starship;atuin;bat;zoxide'
-zinit load z-shell/null
 
 #
 # functions.
@@ -80,17 +32,6 @@ function pdfmin() {
         done
         wait && return 0
       }
-
-# function prev() {
-#   PREV=$(fc -lrn | head -n 1)
-#   sh -c "pet new `printf %q "$PREV"`"
-# }
-# function pet-select() {
-#   BUFFER=$(pet search --query "$LBUFFER")
-#   CURSOR=$#BUFFER
-#   zle redisplay
-# }
-# zle -N pet-select
 
 # Filter function.
 function __filter_execute() {
@@ -319,6 +260,7 @@ export ZENO_GIT_TREE="exa --tree"
 # yukiycino-dotfiles/zsh-show-buffer-stack
 #
 setopt noflowcontrol
+autoload -Uz add-zsh-hook
 add-zsh-hook precmd check-buffer-stack
 RPROMPT='${COMMAND_BUFFER_STACK}'
 
