@@ -49,6 +49,9 @@ call ddu#custom#patch_global({
       \       'split': 'horizontal',
       \       'displaySourceName': 'long',
       \     },
+      \     'filer': {
+      \       'split': 'no',
+      \     },
       \   },
       \   'filterParams': {
       \     'matcher_substring': {

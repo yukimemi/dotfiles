@@ -5,6 +5,8 @@ function! s:twihi_keymap() abort
   Keymap n <buffer> <silent> r <Plug>(twihi:reply)
   Keymap n <buffer> <silent> R <Plug>(twihi:retweet)
   Keymap n <buffer> <silent> T <Plug>(twihi:retweet:comment)
+  Keymap n <buffer> <silent> j <Plug>(twihi:tweet:next)
+  Keymap n <buffer> <silent> k <Plug>(twihi:tweet:prev)
   Keymap n <buffer> <silent> s <cmd>TwihiTweet<cr>
   Keymap n <buffer> S :<c-u>TwihiSearch<space>
 endfunction

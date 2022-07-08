@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/06/28 01:14:49.
+# Last Change: 2022/07/09 00:04:05.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1272,6 +1272,14 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_hidden'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-column-filename'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-converter_display_word'
 on_source = 'ddu.vim'
 
 [[plugins]]
