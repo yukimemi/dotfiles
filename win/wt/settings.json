@@ -8,10 +8,6 @@
             "keys": "ctrl+shift+f"
         },
         {
-            "command": "unbound",
-            "keys": "ctrl+v"
-        },
-        {
             "command": 
             {
                 "action": "copy",
@@ -21,6 +17,10 @@
         },
         {
             "command": "paste"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+v"
         },
         {
             "command": 
@@ -43,7 +43,7 @@
         {
             "antialiasingMode": "cleartype",
             "backgroundImage": "desktopWallpaper",
-            "backgroundImageOpacity": 0.10000000000000001,
+            "backgroundImageOpacity": 0.40000000000000002,
             "backgroundImageStretchMode": "uniformToFill",
             "bellStyle": "window",
             "colorScheme": "One Half Dark",

@@ -179,7 +179,8 @@ return
 ; for slack
 ^F11::
 ; Activate("C:\Program Files\Slack\Slack.exe")
-Activate3("Slack.exe", "C:\Program Files\Slack\Slack.exe", "Slack")
+; Activate3("Slack.exe", "C:\Program Files\Slack\Slack.exe", "Slack")
+Activate3("Slack.exe", USERPROFILE . "\AppData\Local\slack\slack.exe", "Slack")
 return
 
 ; for AFxW

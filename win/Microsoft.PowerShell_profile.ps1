@@ -11,6 +11,7 @@
 # Install-Module -Force -Scope CurrentUser PSReadLine
 # Install-Module -Force -Scope CurrentUser PowerHTML
 # Install-Module -Force -Scope CurrentUser ComputerManagementDsc; Get-DscResource -Module ComputerManagementDsc
+# Install-Module -Force -Scope CurrentUser PSFzf
 
 # wsl
 # Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
