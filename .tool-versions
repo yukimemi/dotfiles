@@ -1,7 +1,7 @@
 bat 0.15.4
 tmux 3.1b
 yarn 1.22.4
-nodejs 18.2.0
+nodejs 17.9.1
 deno 1.4.0
 nim 1.2.6
 starship 0.46.2

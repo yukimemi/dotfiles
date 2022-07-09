@@ -29,6 +29,10 @@ github = 'yuki-yano/zeno.zsh'
 [plugins.zsh-vi-mode]
 github = 'jeffreytse/zsh-vi-mode'
 
+[plugins.asdf]
+github = "asdf-vm/asdf"
+apply = ["defer"]
+
 [plugins.zsh-autocomplete]
 github = 'marlonrichert/zsh-autocomplete'
 apply = ["defer"]
