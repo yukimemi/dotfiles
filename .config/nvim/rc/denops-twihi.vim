@@ -1,4 +1,5 @@
 function! s:twihi_keymap() abort
+  setl nowrap
   Keymap n <buffer> <silent> y <Plug>(twihi:tweet:yank)
   Keymap n <buffer> <silent> l <Plug>(twihi:tweet:like)
   Keymap n <buffer> <silent> o <Plug>(twihi:tweet:open)

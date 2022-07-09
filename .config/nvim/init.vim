@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/07/09 00:08:30.
+" Last Change : 2022/07/09 12:51:01.
 " =============================================================================
 
 " Init:
@@ -300,14 +300,18 @@ Keymap n <silent> <leader>rg <cmd>source $MYGVIMRC<cr>
 Keymap n <silent> <esc><esc> <cmd>nohlsearch<cr>
 
 " tab
-Keymap n <silent> <c-h> gT
-Keymap n <silent> <c-l> gt
+" Keymap n <silent> <c-h> gT
+" Keymap n <silent> <c-l> gt
 
 " Use prefix s.
-" Keymap n <silent> <c-h> <c-w>h
-" Keymap n <silent> <c-j> <c-w>j
-" Keymap n <silent> <c-k> <c-w>k
-" Keymap n <silent> <c-l> <c-w>l
+" Keymap n <silent> sh <c-w>h
+" Keymap n <silent> sj <c-w>j
+" Keymap n <silent> sk <c-w>k
+" Keymap n <silent> sl <c-w>l
+Keymap n <silent> <c-h> <c-w>h
+Keymap n <silent> <c-j> <c-w>j
+Keymap n <silent> <c-k> <c-w>k
+Keymap n <silent> <c-l> <c-w>l
 Keymap n <silent> s <Nop>
 Keymap n <silent> s0 <cmd>only<cr>
 Keymap n <silent> s= <c-w>=
@@ -319,10 +323,6 @@ Keymap n <silent> sO <cmd>tabonly<cr>
 Keymap n <silent> sQ <cmd>qa<cr>
 Keymap n <silent> sbk <cmd>bd!<cr>
 Keymap n <silent> sbq <cmd>q!<cr>
-Keymap n <silent> sh <c-w>h
-Keymap n <silent> sj <c-w>j
-Keymap n <silent> sk <c-w>k
-Keymap n <silent> sl <c-w>l
 Keymap n <silent> sn <cmd>bn<cr>
 Keymap n <silent> so <c-w>_<c-w>|
 Keymap n <silent> sp <cmd>bp<cr>
@@ -452,14 +452,13 @@ let g:plugin_use_nvimlsp = 1 && has('nvim') && !g:plugin_use_coc
 let g:plugin_use_ale = 0
 
 let g:plugin_use_lexima = 0 && !g:plugin_use_coc
-let g:plugin_use_lexiv = 1 && !g:plugin_use_coc
+let g:plugin_use_lexiv = 0 && !g:plugin_use_coc
 
 let g:plugin_use_quickscope = 1
 let g:plugin_use_cleverf = 0
 let g:plugin_use_shotf = 0
 
-" let g:plugin_use_smoothie = g:is_darwin
-let g:plugin_use_smoothie = 0
+let g:plugin_use_smoothie = g:is_darwin
 
 let g:plugin_use_ctrlp = 1
 let g:plugin_use_fzf = 0
@@ -539,7 +538,7 @@ set background=dark
 silent! colorscheme srcery
 
 " Neovide:
-let g:neovide_transparency = 0.9
+let g:neovide_transparency = 0.8
 " let g:neovide_fullscreen  = 1
 let g:neovide_remember_window_size = v:true
 let g:neovide_profiler = v:false

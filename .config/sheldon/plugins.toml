@@ -12,7 +12,13 @@
 
 shell = "zsh"
 
+[templates]
+defer = { value = 'zsh-defer source "{{ file }}"', each = true }
+
 [plugins]
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
 
 [plugins.zsh-show-buffer-stack]
 github = 'yukiycino-dotfiles/zsh-show-buffer-stack'
@@ -20,19 +26,22 @@ github = 'yukiycino-dotfiles/zsh-show-buffer-stack'
 [plugins."zeno.zsh"]
 github = 'yuki-yano/zeno.zsh'
 
-[plugins.zsh-autosuggestions]
-github = 'zsh-users/zsh-autosuggestions'
-
-[plugins.zsh-history-substring-search]
-github = 'zsh-users/zsh-history-substring-search'
-
 [plugins.zsh-vi-mode]
 github = 'jeffreytse/zsh-vi-mode'
 
-[plugins.fast-syntax-highlighting]
-github = 'z-shell/fast-syntax-highlighting'
-
 [plugins.zsh-autocomplete]
 github = 'marlonrichert/zsh-autocomplete'
+apply = ["defer"]
 
+[plugins.zsh-history-substring-search]
+github = 'zsh-users/zsh-history-substring-search'
+apply = ["defer"]
 
+[plugins.fast-syntax-highlighting]
+github = 'z-shell/fast-syntax-highlighting'
+apply = ["defer"]
+
+[plugins.zsh-autosuggestions]
+github = 'zsh-users/zsh-autosuggestions'
+use = ['{{ name }}.zsh']
+apply = ["defer"]

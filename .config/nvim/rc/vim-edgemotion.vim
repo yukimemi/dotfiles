@@ -1,3 +1,3 @@
-Keymap nox <c-j> <Plug>(edgemotion-j)
-Keymap nox <c-k> <Plug>(edgemotion-k)
+Keymap nox sj <Plug>(edgemotion-j)
+Keymap nox sk <Plug>(edgemotion-k)
 
