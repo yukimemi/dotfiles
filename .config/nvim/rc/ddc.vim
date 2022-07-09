@@ -3,7 +3,7 @@ if !g:plugin_use_ddc
 endif
 
 " let s:default_sources = ['around', 'mocword', 'ddc-path', 'git-file', 'git-commit', 'git-branch', 'file']
-let s:default_sources = ['around', 'buffer', 'mocword', 'file']
+let s:default_sources = ['vsnip', 'around', 'buffer', 'mocword', 'file']
 if g:plugin_use_vimlsp
   let s:default_sources = ['vim-lsp'] + s:default_sources
 endif
@@ -33,6 +33,7 @@ call ddc#custom#patch_global('cmdlineSources',
 call ddc#custom#patch_global('sourceOptions', {
       \ '_': {
       \   'ignoreCase': v:true,
+      \   'dup': v:true,
       \   'matchers': ['matcher_head'],
       \   'sorters': ['sorter_rank'],
       \   'converters': ['converter_remove_overlap', 'converter_truncate_abbr'],
@@ -46,6 +47,9 @@ call ddc#custom#patch_global('sourceOptions', {
       \ },
       \ 'buffer': {
       \   'mark': 'B'
+      \ },
+      \ 'vsnip': {
+      \   'mark': 'S'
       \ },
       \ 'necovim': {
       \   'mark': 'vim'
