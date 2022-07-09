@@ -1,0 +1,56 @@
+feature:
+  consumer:
+    token: ""
+    tokensecret: ""
+  mainuser: yukimemi
+  loadtweetscount: 50
+  tweetmaxaccumulationnum: 250
+  islocalecjk: true
+  confirm:
+    Block: true
+    Delete: true
+    Follow: true
+    Like: true
+    Mute: true
+    Quit: true
+    Retweet: true
+    Tweet: true
+    Unblock: true
+    Unfollow: true
+    Unlike: true
+    Unmute: true
+    Unretweet: true
+  startup:
+  - home
+  - mention --unfocus
+  - user yukimemi --unfocus
+  - search denops --unfocus
+  - search ddu.vim --unfocus
+  - search ddc.vim --unfocus
+appearance:
+  stylefile: default.yml
+  dateformat: 2006/01/02
+  timeformat: "15:04:05"
+  userbiomaxrow: 3
+  userprofilepaddingx: 4
+  graphchar: █
+  graphmaxwidth: 30
+  tabseparate: "|"
+  tabmaxwidth: 20
+texts:
+  like: Like
+  retweet: RT
+  loading: Loading...
+  notweets: No tweets ฅ^-ω-^ฅ
+  tabhome: Home
+  tabmention: Mention
+  tablist: "List: {name}"
+  tabuser: "User: @{name}"
+  tabsearch: "Search: {query}"
+  tabdocs: "Docs: {name}"
+icon:
+  geo: 📍
+  link: 🔗
+  pinned: 📌
+  verified: ✅
+  private: 🔒

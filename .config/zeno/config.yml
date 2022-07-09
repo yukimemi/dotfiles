@@ -225,6 +225,10 @@ snippets:
     snippet: go install github.com/go-task/task/v3/cmd/task@latest
   - name: Install asdf
     snippet: brew install asdf
+  - name: Install nekome
+    snippet: brew install arrow2nd/tap/nekome
+  - name: Install exercism
+    snippet: brew install exercism
 
 completions:
   - name: kill

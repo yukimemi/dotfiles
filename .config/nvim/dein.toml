@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/07/09 13:55:51.
+# Last Change: 2022/07/09 14:35:14.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1219,6 +1219,10 @@ on_cmd = ['TwihiHome', 'TwihiTimeline', 'TwihiMentions', 'TwihiTweet', 'TwihiEdi
 hook_add = '''
 source $VIM_PATH/rc/denops-twihi.vim
 '''
+
+[[plugins]]
+repo = 'pyonk/dexercism.vim'
+if = "executable('exercism')"
 
 # ==================== Fuzzy =====================
 
