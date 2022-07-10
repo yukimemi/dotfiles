@@ -77,6 +77,12 @@ call ddu#custom#patch_global({
       \     'source': {
       \       'defaultAction': 'execute',
       \     },
+      \     'help': {
+      \       'defaultAction': 'open',
+      \     },
+      \     'command_history': {
+      \       'defaultAction': 'execute',
+      \     },
       \   },
       \   'actionOptions': {
       \     'narrow': {

@@ -10,6 +10,9 @@
   && [ -z "${TMUX}" ] \
   && { tmux attach || tmux; } >/dev/null 2>&1
 
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
+
 #
 # sheldon
 #
@@ -324,4 +327,6 @@ if (which zprof > /dev/null) ;then
   zprof
 fi
 
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
 

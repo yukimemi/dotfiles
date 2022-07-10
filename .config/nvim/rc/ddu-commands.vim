@@ -24,6 +24,8 @@ Keymap n <silent> <leader>dd <cmd>Ddu file_rec -source-option-path=`fnamemodify(
 Keymap n <silent> <leader>dD <cmd>Ddu file_rec -source-option-path=`expand('~/.dotfiles')` -ui-param-startFilter=v:true<cr>
 Keymap n <silent> <leader>dm <cmd>Ddu file_rec -source-option-path=`expand('~/.memolist')` -ui-param-startFilter=v:true<cr>
 Keymap n <silent> <leader>dS <cmd>Ddu file_rec -source-option-path=`expand('~/src')` -ui-param-startFilter=v:true<cr>
+Keymap n <silent> <leader>dH <cmd>Ddu help -ui-param-startFilter=v:true<cr>
+Keymap n <silent> <leader>dh <cmd>Ddu command_history<cr>
 
 " Search.
 Keymap n <silent> <leader>ds <cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-input=`input('Pattern: ')`<cr>
