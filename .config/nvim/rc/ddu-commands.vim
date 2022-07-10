@@ -27,7 +27,5 @@ Keymap n <silent> <leader>dS <cmd>Ddu file_rec -source-option-path=`expand('~/sr
 Keymap n <silent> <leader>dH <cmd>Ddu help -ui-param-startFilter=v:true<cr>
 Keymap n <silent> <leader>dh <cmd>Ddu command_history -ui-param-startFilter=v:true<cr>
 Keymap c <expr><silent> <C-t> "<C-u><ESC><cmd>Ddu command_history -ui-param-startFilter -input='" . getcmdline() . "'<CR>"
-
-" Search.
 Keymap n <silent> <leader>ds <cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-input=`input('Pattern: ')`<cr>
 Keymap n <silent> <leader>dr <cmd>Ddu -name=search -resume<cr>

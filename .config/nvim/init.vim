@@ -480,8 +480,8 @@ let g:plugin_use_coc_explorer = 0
 let g:plugin_use_quickrun = 1
 let g:plugin_use_asyncrun = 0
 
-let g:plugin_use_gina = g:is_windows
-let g:plugin_use_gin = !g:is_windows
+let g:plugin_use_gina = 1
+let g:plugin_use_gin = 0
 
 let g:plugin_use_gitsign = 0
 let g:plugin_use_signify = 1
