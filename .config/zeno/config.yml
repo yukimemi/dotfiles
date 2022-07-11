@@ -229,6 +229,12 @@ snippets:
     snippet: brew install arrow2nd/tap/nekome
   - name: Install exercism
     snippet: brew install exercism
+  - name: Install taplo
+    snippet: cargo install --features lsp taplo-cli
+  - name: Install yj
+    snippet: brew install yj
+  - name: Install jyt
+    snippet: cargo install jyt
 
 completions:
   - name: kill

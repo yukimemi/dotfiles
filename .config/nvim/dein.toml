@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/07/09 15:48:38.
+# Last Change: 2022/07/10 22:34:54.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -149,7 +149,6 @@ on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/vim-smoothie.vim
 '''
-
 
 # colorscheme
 
@@ -649,6 +648,11 @@ source $VIM_PATH/rc/qfopen.vim
 repo = 'christoomey/vim-tmux-navigator'
 if = '!g:is_windows'
 
+[[plugins]]
+repo = '4513ECHO/vim-vimhelp-url'
+if = 1
+on_event = 'HelpUrl'
+
 # ==================== Test ======================
 [[plugins]]
 repo = 'vim-test/vim-test'
@@ -905,8 +909,11 @@ on_cmd = ['Deol', 'DeolCd', 'DeolEdit']
 
 [[plugins]]
 repo = 'voldikss/vim-floaterm'
-if = "has('nvim') && g:plugin_use_floaterm"
-lazy = 1
+if = "g:plugin_use_floaterm"
+on_cmd = 'FloatermToggle'
+hook_add = '''
+source $VIM_PATH/rc/vim-floaterm.vim
+'''
 
 [[plugins]]
 repo = 'kassio/neoterm'

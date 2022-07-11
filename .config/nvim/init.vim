@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/07/09 12:51:01.
+" Last Change : 2022/07/10 21:54:12.
 " =============================================================================
 
 " Init:
@@ -492,7 +492,7 @@ let g:plugin_use_markdownpreview = 1
 
 let g:plugin_use_neoterm = 0
 let g:plugin_use_toggleterm = 0
-let g:plugin_use_floaterm = 0
+let g:plugin_use_floaterm = 1
 
 let g:plugin_use_beacon = 1
 let g:plugin_use_columnskip = 0
