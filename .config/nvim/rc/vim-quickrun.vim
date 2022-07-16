@@ -19,3 +19,12 @@ function s:quickrun_sweep_sessions() abort
 endfunction
 
 Keymap n <expr><silent> <c-c> quickrun#is_running() ? <SID>quickrun_sweep_sessions() : "\<c-c>"
+
+function s:quickrun_ps1_config() abort
+  let b:quickrun_config = deepcopy(g:quickrun#default_config['ps1/powershell'])
+  let b:quickrun_config.cmdopt ..= ' -NoProfile'
+endfunction
+
+au MyAutoCmd FileType ps1 call <SID>quickrun_ps1_config()
+
+

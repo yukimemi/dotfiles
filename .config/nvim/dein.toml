@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/07/10 22:34:54.
+# Last Change: 2022/07/14 18:39:10.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -437,7 +437,7 @@ if = 0
 
 [[plugins]]
 repo = 'thinca/vim-prettyprint'
-if = 0
+if = 1
 on_cmd = 'PP'
 
 [[plugins]]
@@ -1599,6 +1599,7 @@ depends = 'vim-quickrun-neovim-job'
 hook_add = '''
 source $VIM_PATH/rc/vim-quickrun.vim
 '''
+on_ft = ['ps1', 'typescript']
 on_map = '<Plug>'
 on_cmd = 'QuickRun'
 

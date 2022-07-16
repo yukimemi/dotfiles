@@ -5,6 +5,11 @@ let g:denops#debug = 0
 " If you use dein.vim, you can get the path via `dein#get('denops.vim').path`.
 " Or if you are a user of jetpack.vim, you can use `jetpack#get('denops.vim').path`.
 " https://github.com/vim-denops/denops.vim/wiki/Configurations-for-shared-server
+
+if g:is_windows
+  finish
+endif
+
 let g:denops_server_addr = '127.0.0.1:32123'
 if g:plugin_use_dein
   let s:denops_path = dein#get('denops.vim').path
