@@ -11,7 +11,7 @@ repo = "Shougo/dein.vim"
 
 [[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
-if = 0
+if = 1
 on_cmd = 'DeinUpdate'
 
 # ==================== Visual ====================
