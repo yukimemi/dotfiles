@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/07/24 15:49:05.
+# Last Change: 2022/07/24 21:06:19.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1589,6 +1589,9 @@ source $VIM_PATH/rc/coc.nvim
 repo = 'github/copilot.vim'
 on_event = ['CursorHold', 'FocusLost']
 on_cmd = 'Copilot'
+hook_add = '''
+source $VIM_PATH/rc/copilot.vim
+'''
 
 
 # ==================== Runner ====================
