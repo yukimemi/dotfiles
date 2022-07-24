@@ -4,7 +4,7 @@ endif
 
 lua << EOF
 require("nvim-lsp-installer").setup({
-  ensure_installed = { 'pyright', 'rust_analyzer', 'sumneko_lua', 'vimls', 'jsonls' }, -- ensure these servers are always installed
+  ensure_installed = { 'pyright', 'rust_analyzer', 'sumneko_lua', 'vimls', 'jsonls', 'gopls' }, -- ensure these servers are always installed
   automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
   ui = {
     icons = {

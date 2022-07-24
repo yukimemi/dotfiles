@@ -235,6 +235,10 @@ snippets:
     snippet: brew install yj
   - name: Install jyt
     snippet: cargo install jyt
+  - name: Install unrar
+    snippet: brew install carlocab/personal/unrar
+  - name: Install broot
+    snippet: cargo install broot
 
 completions:
   - name: kill

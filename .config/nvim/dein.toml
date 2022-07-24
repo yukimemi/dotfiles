@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/07/14 18:39:10.
+# Last Change: 2022/07/24 15:49:05.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1111,8 +1111,9 @@ depends = 'denops.vim'
 
 [[plugins]]
 repo = 'yutkat/dps-coding-now.nvim'
-depends = 'denops.vim'
 if = "!g:is_windows"
+depends = 'denops.vim'
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'

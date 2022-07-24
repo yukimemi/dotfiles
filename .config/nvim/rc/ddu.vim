@@ -10,6 +10,7 @@ call ddu#custom#patch_global({
       \     '_': {
       \       'ignoreCase': v:true,
       \       'matchers': ['matcher_substring'],
+      \       'converters': ['converter_display_word', 'matcher_substring'],
       \     },
       \   },
       \   'file_old': {
@@ -42,20 +43,21 @@ call ddu#custom#patch_global({
       \       'args': ['--ignore-case', '--column', '--no-heading', '--color', 'never'],
       \     },
       \   },
+      \   'uiOptions': {
+      \     'filer': {
+      \       'toggle': v:true,
+      \     },
+      \   },
       \   'uiParams': {
       \     'ff': {
       \       'prompt': '»',
+      \       'filterSplitDirection': 'floating',
+      \       'previewFloating': v:true,
       \       'reversed': v:true,
-      \       'split': 'horizontal',
-      \       'displaySourceName': 'long',
+      \       'split': has('nvim') ? 'floating' : 'horizontal',
       \     },
       \     'filer': {
-      \       'split': 'no',
-      \     },
-      \   },
-      \   'filterParams': {
-      \     'matcher_substring': {
-      \       'highlightMatched': 'Search',
+      \       'toggle': v:true,
       \     },
       \   },
       \   'kindOptions': {
@@ -91,25 +93,17 @@ call ddu#custom#patch_global({
       \   },
       \ })
 
+call ddu#custom#patch_global({
+    \   'filterParams': {
+    \     'matcher_substring': {
+    \       'highlightMatched': 'Search',
+    \     },
+    \   }
+    \ })
 
-function! s:ddu_detect_size() abort
-  let s:ddu_winheight = 30
-  let s:ddu_winrow = &lines > s:ddu_winheight ? (&lines - s:ddu_winheight) / 2 : 0
-  let s:ddu_winwidth = &columns > 240 ? &columns / 2 : 120
-  let s:ddu_wincol = &columns > s:ddu_winwidth ? (&columns - s:ddu_winwidth) / 2 : 0
-  call ddu#custom#patch_global({
-        \ 'uiParams': {
-        \   'ff': {
-        \     'winCol': s:ddu_wincol,
-        \     'winHeight': s:ddu_winheight,
-        \     'winRow': s:ddu_winwidth,
-        \     'winWidth': s:ddu_winwidth,
-        \   },
-        \ },
-        \ })
-endfunction
 
 function! s:ddu_ff_cfg() abort
+  setl cursorline
   Keymap n <buffer><silent> <cr> <cmd>call ddu#ui#ff#do_action('itemAction')<cr>
   Keymap n <buffer><silent> <space> <cmd>call ddu#ui#ff#do_action('toggleSelectItem')<cr>
   Keymap n <buffer><silent> i <cmd>call ddu#ui#ff#do_action('openFilterWindow')<cr>
@@ -135,16 +129,12 @@ function! s:ddu_ff_cfg() abort
 endfunction
 
 function! s:ddu_ff_filter_cfg() abort
+  setl cursorline
   Keymap i <buffer><silent> <cr> <esc><cmd>call ddu#ui#ff#do_action('itemAction')<cr>
   Keymap i <buffer><silent><nowait> <esc> <esc><cmd>call ddu#ui#ff#close()<cr>
-  " Keymap i <buffer> <c-j> <cmd>call ddu#ui#ff#execute("call cursor(line('.')+1,0)")<cr>
-  " Keymap i <buffer> <c-k> <cmd>call ddu#ui#ff#execute("call cursor(line('.')-1,0)")<cr>
   Keymap i <buffer> <C-j> <cmd>call ddu#ui#ff#execute('call cursor(line(".") % line("$") + 1, 0)')<cr>
   Keymap i <buffer> <C-k> <cmd>call ddu#ui#ff#execute('call cursor((line(".") - 2 + line("$")) % line("$") + 1, 0)')<cr>
 endfunction
 
-" call s:ddu_detect_size()
-
 au MyAutoCmd FileType ddu-ff call s:ddu_ff_cfg()
 au MyAutoCmd FileType ddu-ff-filter call s:ddu_ff_filter_cfg()
-" au MyAutoCmd VimResized * call s:ddu_detect_size()
