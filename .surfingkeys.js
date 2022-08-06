@@ -52,7 +52,7 @@ mapkey(
   "#12 go Extensions - Open Chrome extensions Shortcut setting",
   function () {
     tabOpenLink("chrome://extensions/shortcuts");
-  }
+  },
 );
 
 // qmarks
@@ -143,7 +143,7 @@ mapkey("go", "#10Jump to vim-like mark in current tab.", function (mark) {
 addSearchAlias(
   "1",
   "Google jp 1 year",
-  "https://www.google.co.jp/search?q={0}&tbs=qdr:y,lr:lang_1ja&lr=lang_ja"
+  "https://www.google.co.jp/search?q={0}&tbs=qdr:y,lr:lang_1ja&lr=lang_ja",
 );
 mapkey("o1", "#8Open Search with alias 1", () => {
   Front.openOmnibar({ type: "SearchEngine", extra: "1" });
@@ -154,7 +154,7 @@ addSearchAlias("a", "Amazon", "http://www.amazon.co.jp/s/?field-keywords=");
 addSearchAlias(
   "i",
   "Google Img",
-  "https://www.google.com.ar/search?site=imghp&tbm=isch&source=hp&biw=1478&bih=740&q="
+  "https://www.google.com.ar/search?site=imghp&tbm=isch&source=hp&biw=1478&bih=740&q=",
 );
 addSearchAlias("map", "Google Maps", "https://www.google.com.ar/maps/search/");
 
@@ -176,7 +176,7 @@ addSearchAlias(
       createSuggestionItem(v.topic, {
         url: `https://twitter.com/search?q=${encodeURIComponent(v.topic)}`,
       })
-    )
+    ),
 );
 mapkey("otw", "#8Open Search with alias tw", function () {
   Front.openOmnibar({ type: "SearchEngine", extra: "tw" });
@@ -186,7 +186,7 @@ mapkey("otw", "#8Open Search with alias tw", function () {
 addSearchAlias(
   "r",
   "Yahoo!リアルタイム検索",
-  "http://realtime.search.yahoo.co.jp/search?ei=UTF-8&p="
+  "http://realtime.search.yahoo.co.jp/search?ei=UTF-8&p=",
 );
 mapkey("or", "#8Open Search with alias r", function () {
   Front.openOmnibar({ type: "SearchEngine", extra: "r" });
@@ -196,7 +196,7 @@ mapkey("or", "#8Open Search with alias r", function () {
 addSearchAlias(
   "wi",
   "Wikipedia",
-  "https://ja.wikipedia.org/w/index.php?search="
+  "https://ja.wikipedia.org/w/index.php?search=",
 );
 
 // npm
@@ -236,9 +236,9 @@ addSearchAlias(
         <div>${desc}</div>
       </div>
     `,
-        { url: s.package.links.npm }
+        { url: s.package.links.npm },
       );
-    })
+    }),
 );
 
 // Docker Hub
@@ -265,9 +265,9 @@ addSearchAlias(
         <div>${escape(s.short_description)}</div>
       </div>
     `,
-        { url: `https://hub.docker.com/r/${repo}` }
+        { url: `https://hub.docker.com/r/${repo}` },
       );
-    })
+    }),
 );
 
 // Amazon jp
@@ -277,7 +277,7 @@ addSearchAlias(
   "https://www.amazon.co.jp/s?k=",
   "s",
   "https://completion.amazon.co.jp/search/complete?method=completion&search-alias=aps&mkt=6&q=",
-  (response) => JSON.parse(response.text)[1]
+  (response) => JSON.parse(response.text)[1],
 );
 
 // Amazon jp Kindle
@@ -287,7 +287,7 @@ addSearchAlias(
   "https://www.amazon.co.jp/s?i=digital-text&k=",
   "s",
   "https://completion.amazon.co.jp/search/complete?method=completion&search-alias=aps&mkt=6&q=",
-  (response) => JSON.parse(response.text)[1]
+  (response) => JSON.parse(response.text)[1],
 );
 mapkey("ok", "#8Open Search with alias k", function () {
   Front.openOmnibar({ type: "SearchEngine", extra: "k" });
@@ -304,7 +304,7 @@ mapkey("<Ctrl-g>", "google translate", () => {
   const selection = window.getSelection().toString();
   if (selection === "") {
     tabOpenLink(
-      `http://translate.google.com/translate?u=${window.location.href}`
+      `http://translate.google.com/translate?u=${window.location.href}`,
     );
   } else {
     tabOpenLink(`https://translate.google.com/?text=${encodeURI(selection)}`);
@@ -316,10 +316,8 @@ Hints.style("font-size: 13pt;", "text");
 
 // --- Site-specific mappings ---//
 const ri = { repeatIgnore: true };
-const Hint =
-  (selector, action = Hints.dispatchMouseClick) =>
-  () =>
-    Hints.create(selector, action);
+const Hint = (selector, action = Hints.dispatchMouseClick) => () =>
+  Hints.create(selector, action);
 const siteleader = ",";
 
 function mapsitekey(domainRegex, key, desc, f, opts = {}) {
@@ -328,7 +326,7 @@ function mapsitekey(domainRegex, key, desc, f, opts = {}) {
     {
       leader: siteleader,
     },
-    opts
+    opts,
   );
   mapkey(`${o.leader}${key}`, desc, f, { domain: domainRegex });
 }
@@ -336,7 +334,7 @@ function mapsitekey(domainRegex, key, desc, f, opts = {}) {
 function mapsitekeys(d, maps, opts = {}) {
   const domain = d.replace(".", "\\.");
   const domainRegex = new RegExp(
-    `^http(s)?://(([a-zA-Z0-9-_]+\\.)*)(${domain})(/.*)?`
+    `^http(s)?://(([a-zA-Z0-9-_]+\\.)*)(${domain})(/.*)?`,
   );
   maps.forEach((map) => {
     const [key, desc, f, subOpts = {}] = map;
@@ -354,7 +352,7 @@ mapkey(
   "gI",
   "#4View image in new tab",
   Hint("img", (i) => tabOpenLink(i.src)),
-  ri
+  ri,
 );
 //  5: Sessions
 //  6: Search selected with
@@ -363,7 +361,7 @@ mapkey(
   "yI",
   "#7Copy Image URL",
   Hint("img", (i) => Clipboard.write(i.src)),
-  ri
+  ri,
 );
 
 mapkey(";t", "#14google translate", () => {
@@ -371,12 +369,14 @@ mapkey(";t", "#14google translate", () => {
   if (selection === "") {
     // 文字列選択してない場合はページ自体を翻訳にかける
     tabOpenLink(
-      `http://translate.google.com/translate?u=${window.location.href}`
+      `http://translate.google.com/translate?u=${window.location.href}`,
     );
   } else {
     // 選択している場合はそれを翻訳する
     tabOpenLink(
-      `https://translate.google.com/?sl=auto&tl=ja&text=${encodeURI(selection)}`
+      `https://translate.google.com/?sl=auto&tl=ja&text=${
+        encodeURI(selection)
+      }`,
     );
   }
 });
@@ -389,18 +389,18 @@ mapkey(";b", "#14hatena bookmark", () => {
       document
         .querySelector("header a")
         .getAttribute("href")
-        .replace("https://getpocket.com/redirect?url=", "")
+        .replace("https://getpocket.com/redirect?url=", ""),
     );
   }
   if (url.startsWith("http:")) {
     tabOpenBackground(
-      `http://b.hatena.ne.jp/entry/${url.replace("http://", "")}`
+      `http://b.hatena.ne.jp/entry/${url.replace("http://", "")}`,
     );
     return;
   }
   if (url.startsWith("https:")) {
     tabOpenBackground(
-      `http://b.hatena.ne.jp/entry/s/${url.replace("https://", "")}`
+      `http://b.hatena.ne.jp/entry/s/${url.replace("https://", "")}`,
     );
     return;
   }
@@ -425,13 +425,13 @@ mapsitekeys(
       "Goto homepage",
       () =>
         window.location.assign(
-          "https://www.youtube.com/feed/subscriptions?flow=2"
+          "https://www.youtube.com/feed/subscriptions?flow=2",
         ),
     ],
     ["F", "Toggle fullscreen", ytFullscreen],
     ["<Space>", "Play/pause", Hint(".ytp-play-button")],
   ],
-  { leader: "" }
+  { leader: "" },
 );
 
 const copyTitleAndUrl = (format) => {
@@ -482,12 +482,17 @@ mapkey("co", "#7Copy title and link to org", () => {
 
 unmapAllExcept(
   ["E", "R", "T", "f", "F", "C", "x", "S", "H", "L", "cm"],
-  /mail.google.com|feedly.com|i.doit.im|outlook.office.com/
+  /mail.google.com|feedly.com|i.doit.im|outlook.office.com/,
 );
 
 unmapAllExcept(
   ["E", "R", "T", "f", "F", "C", "x", "S", "H", "L", "cm"],
-  /twitter.com/
+  /twitter.com/,
+);
+
+unmapAllExcept(
+  [],
+  /docs.google.com/,
 );
 
 // set theme
