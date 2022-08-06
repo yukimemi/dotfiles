@@ -98,6 +98,7 @@ await.fish
 bass.fish
 bax.fish
 bd.fish
+br.fish
 fenv.apply.fish
 fenv.fish
 fenv.main.fish
@@ -125,8 +126,8 @@ npm.fish
 pyenv.fish
 rbenv.fish
 test.py
+uninstall.fish
 up-or-search.fish
 z.awk
 zadd.awk
 zclean.awk
-uninstall.fish

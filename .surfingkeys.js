@@ -73,6 +73,7 @@ const overlayedGlobalMarks = {
     "https://www.facebook.com",
   ],
   2: "http://www.google.com/calendar",
+  c: "http://www.google.com/calendar",
   3: "https://www.google.com/contacts/#contacts",
   m: [
     "https://mail.google.com/mail/u/0",
