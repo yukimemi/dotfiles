@@ -7,9 +7,9 @@ Keymap n <silent> <leader>tl <cmd>TestLast<cr>
 Keymap n <silent> <leader>tg <cmd>TestVisit<cr>
 
 let test#strategy = {
-      \ 'nearest': 'neoterm',
-      \ 'file'   : 'neoterm',
-      \ 'suite'  : 'neoterm',
+      \ 'nearest': 'basic',
+      \ 'file'   : 'basic',
+      \ 'suite'  : 'basic',
       \ }
 
 let test#javascript#denotest#options = {

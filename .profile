@@ -36,6 +36,8 @@ path=(
   $HOME/.cargo/bin
   # linuxbrew
   /home/linuxbrew/.linuxbrew/bin
+  # asdf.
+  $HOME/.asdf/shims
 )
 
 export PATH=${PATH}:/home/linuxbrew/.linuxbrew/bin:/usr/local/bin

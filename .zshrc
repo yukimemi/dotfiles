@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
@@ -9,9 +11,6 @@
 [ -x "$(command -v tmux)" ] \
   && [ -z "${TMUX}" ] \
   && { tmux attach || tmux; } >/dev/null 2>&1
-
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 
 #
 # sheldon
@@ -317,6 +316,13 @@ if (which starship > /dev/null) ;then
 fi
 
 #
+# broot.
+#
+if [[ -f ~/.config/broot/launcher/bash/br ]]; then
+  source ~/.config/broot/launcher/bash/br
+fi
+
+#
 # compile zshrc.
 #
 if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
@@ -329,4 +335,3 @@ fi
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
-
