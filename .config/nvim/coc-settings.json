@@ -6,19 +6,9 @@
   "explorer.file.reveal.auto": true,
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,
-  "list.source.files.args": [
-    "--hidden",
-    "--no-ignore-vcs",
-    "--files"
-  ],
-  "list.source.grep.defaultArgs": [
-    "-smartcase",
-    "-regex",
-    "-skip-vcs-ignores"
-  ],
-  "list.source.lists.defaultOptions": [
-    "--no-sort"
-  ],
+  "list.source.files.args": ["--hidden", "--no-ignore-vcs", "--files"],
+  "list.source.grep.defaultArgs": ["-smartcase", "-regex", "-skip-vcs-ignores"],
+  "list.source.lists.defaultOptions": ["--no-sort"],
   "powershell.codeFolding.enable": true,
   "powershell.enableProfileLoading": false,
   "powershell.integratedConsole.showOnStartup": false,
@@ -31,10 +21,7 @@
   "npm.binPath": "yarn",
   "suggest.asciiCharactersOnly": true,
   "suggest.enablePreview": true,
-  "translator.engines": [
-    "google",
-    "bing"
-  ],
+  "translator.engines": ["google", "bing"],
   "translator.toLang": "ja",
   "coc.preferences.formatOnSaveFiletypes": [
     "typescript",
@@ -62,7 +49,5 @@
     "yaml",
     "yml"
   ],
-  "mocword.filetypes": [
-    "*"
-  ]
+  "mocword.filetypes": ["*"]
 }

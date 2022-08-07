@@ -132,8 +132,8 @@ function! s:ddu_ff_filter_cfg() abort
   setl cursorline
   Keymap i <buffer><silent> <cr> <esc><cmd>call ddu#ui#ff#do_action('itemAction')<cr>
   Keymap i <buffer><silent><nowait> <esc> <esc><cmd>call ddu#ui#ff#close()<cr>
-  Keymap i <buffer> <C-j> <cmd>call ddu#ui#ff#execute('call cursor(line(".") % line("$") + 1, 0)')<cr>
-  Keymap i <buffer> <C-k> <cmd>call ddu#ui#ff#execute('call cursor((line(".") - 2 + line("$")) % line("$") + 1, 0)')<cr>
+  Keymap i <buffer><silent> <C-j> <cmd>call ddu#ui#ff#execute('call cursor(line(".") % line("$") + 1, 0)')<cr>
+  Keymap i <buffer><silent> <C-k> <cmd>call ddu#ui#ff#execute('call cursor((line(".") - 2 + line("$")) % line("$") + 1, 0)')<cr>
 endfunction
 
 au MyAutoCmd FileType ddu-ff call s:ddu_ff_cfg()
