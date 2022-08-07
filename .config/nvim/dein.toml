@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/08/06 11:55:41.
+# Last Change: 2022/08/07 21:21:25.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1058,17 +1058,26 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 if = 'has("nvim") && g:plugin_use_nvimlsp'
-depends = 'nvim-lsp-installer'
 on_event = 'BufRead'
 hook_source = '''
-source $VIM_PATH/rc/nvim-lsp-installer.vim
 source $VIM_PATH/rc/nvim-lspconfig.vim
 '''
 
 [[plugins]]
-repo = 'williamboman/nvim-lsp-installer'
+repo = 'williamboman/mason.nvim'
 if = 'has("nvim") && g:plugin_use_nvimlsp'
-lazy = 1
+on_source = 'nvim-lspconfig'
+hook_source = '''
+source $VIM_PATH/rc/mason.nvim
+'''
+
+[[plugins]]
+repo = 'williamboman/mason-lspconfig.nvim'
+if = 'has("nvim") && g:plugin_use_nvimlsp'
+on_source = 'mason.nvim'
+hook_source = '''
+source $VIM_PATH/rc/mason-lspconfig.nvim
+'''
 
 [[plugins]]
 repo = 'shun/ddc-vim-lsp'
@@ -1095,6 +1104,10 @@ on_cmd = 'FuzzyMotion'
 hook_add = '''
 source $VIM_PATH/rc/fuzzy-motion.vim
 '''
+
+[[plugins]]
+repo = 'uki00a/denops-pomodoro.vim'
+depends = 'denops.vim'
 
 [[plugins]]
 repo = 'monaqa/dps-dial.vim'
@@ -1554,6 +1567,10 @@ on_source = 'vim-vsnip'
 
 [[plugins]]
 repo = 'rafamadriz/friendly-snippets'
+on_source = 'vim-vsnip'
+
+[[plugins]]
+repo = 'kitagry/vs-snippets'
 on_source = 'vim-vsnip'
 
 [[plugins]]
