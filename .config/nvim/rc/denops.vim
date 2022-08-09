@@ -13,7 +13,7 @@ endif
 let g:denops_server_addr = '127.0.0.1:32123'
 if g:plugin_use_dein
   let s:denops_path = dein#get('denops.vim').path
-elseif plugin_use_jetpack
+elseif g:plugin_use_jetpack
   let s:denops_path = jetpack#get('denops.vim').path
 endif
 if has('nvim')
