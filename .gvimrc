@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : .gvimrc
 " Author      : yukimemi
-" Last Change : 2022/06/18 18:31:55.
+" Last Change : 2022/08/17 02:45:41.
 " =============================================================================
 
 " hide all
@@ -28,9 +28,9 @@ silent! colorscheme srcery
 " set gfn=UDEV_Gothic_NF:h11
 " set gfw=UDEV_Gothic_NF:h11
 " set printfont=UDEV_Gothic_NF:h11
-set gfn=Cica:h11
-set gfw=Cica:h11
-set printfont=Cica:h11
+set gfn=Cica:h10
+set gfw=Cica:h10
+set printfont=Cica:h10
 
 " gui
 set rop=type:directx,renmode:5

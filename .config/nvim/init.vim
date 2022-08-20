@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/08/08 09:19:41.
+" Last Change : 2022/08/21 00:31:19.
 " =============================================================================
 
 " Init:
@@ -469,8 +469,8 @@ let g:plugin_use_ddu = 1
 let g:plugin_use_telescope = 0 && has('nvim')
 let g:plugin_use_linearf = 0 && has('nvim')
 
-let g:plugin_use_fern = 0
-let g:plugin_use_ddu_filer = 1
+let g:plugin_use_fern = 1
+let g:plugin_use_ddu_filer = 0
 let g:plugin_use_vfiler = 0
 let g:plugin_use_molder = 0
 let g:plugin_use_vaffle = 0
@@ -480,8 +480,8 @@ let g:plugin_use_coc_explorer = 0
 let g:plugin_use_quickrun = 1
 let g:plugin_use_asyncrun = 0
 
-let g:plugin_use_gina = 0
-let g:plugin_use_gin = 1
+let g:plugin_use_gina = g:is_windows
+let g:plugin_use_gin = !g:is_windows
 
 let g:plugin_use_gitsign = 0
 let g:plugin_use_signify = 1

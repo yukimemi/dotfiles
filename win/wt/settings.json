@@ -43,7 +43,7 @@
         {
             "antialiasingMode": "cleartype",
             "backgroundImage": "desktopWallpaper",
-            "backgroundImageOpacity": 0.40000000000000002,
+            "backgroundImageOpacity": 0.05,
             "backgroundImageStretchMode": "uniformToFill",
             "bellStyle": "window",
             "colorScheme": "One Half Dark",
@@ -86,18 +86,6 @@
                 "hidden": false,
                 "name": "Ubuntu",
                 "source": "Windows.Terminal.Wsl"
-            },
-            {
-                "guid": "{e0f3ebf2-2b09-5da6-9cdf-7e79a804b0c0}",
-                "hidden": false,
-                "name": "Developer Command Prompt for VS 2022",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{18e16959-b5fb-51d0-94cd-95e7fb72d368}",
-                "hidden": false,
-                "name": "Developer PowerShell for VS 2022",
-                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },

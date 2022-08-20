@@ -6,9 +6,9 @@ let g:denops#debug = 0
 " Or if you are a user of jetpack.vim, you can use `jetpack#get('denops.vim').path`.
 " https://github.com/vim-denops/denops.vim/wiki/Configurations-for-shared-server
 
-if g:is_windows
-  finish
-endif
+" if g:is_windows
+"   finish
+" endif
 
 let g:denops_server_addr = '127.0.0.1:32123'
 if g:plugin_use_dein
