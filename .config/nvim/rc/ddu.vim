@@ -51,10 +51,9 @@ call ddu#custom#patch_global({
       \   'uiParams': {
       \     'ff': {
       \       'prompt': '»',
-      \       'filterSplitDirection': 'floating',
       \       'previewFloating': v:true,
       \       'reversed': v:true,
-      \       'split': has('nvim') ? 'floating' : 'horizontal',
+      \       'split': has('nvim') ? 'horizontal' : 'horizontal',
       \     },
       \     'filer': {
       \       'toggle': v:true,
