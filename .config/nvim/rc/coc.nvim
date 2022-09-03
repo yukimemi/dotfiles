@@ -47,7 +47,7 @@ Keymap n <silent> gi <Plug>(coc-implementation)
 Keymap n <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
-Keymap n <silent> K :<c-u>call ShowDocumentation()<CR>
+Keymap n <silent> K <cmd>call ShowDocumentation()<cr>
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')

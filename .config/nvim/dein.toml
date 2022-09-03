@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/08/19 09:11:31.
+# Last Change: 2022/09/03 01:09:02.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -300,10 +300,15 @@ source $VIM_PATH/rc/echodoc.vim
 
 [[plugins]]
 repo = 'airblade/vim-rooter'
-if = 1
+if = 0
 hook_add = '''
 source $VIM_PATH/rc/vim-rooter.vim
 '''
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'mattn/vim-findroot'
+if = 1
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
@@ -564,7 +569,7 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'liuchengxu/vista.vim'
-if = 0
+if = 1
 on_cmd = 'Vista'
 
 [[plugins]]
@@ -937,6 +942,9 @@ on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/denops.vim
 '''
+
+[[plugins]]
+repo = 'vim-denops/denops-shared-server.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc.vim'
@@ -1419,7 +1427,7 @@ on_source = 'ddu.vim'
 [[plugins]]
 repo = 'Shougo/ddu-ui-filer'
 if = "g:plugin_use_ddu_filer"
-on_source = 'ddu.vim'
+depends = 'ddu.vim'
 hook_source = '''
 source $VIM_PATH/rc/ddu-ui-filer.vim
 '''
@@ -1433,7 +1441,7 @@ hook_add = '''
 source $VIM_PATH/rc/lightline.vim
 '''
 on_event = ['CursorHold', 'FocusLost']
-depends = ['lightline-colorscheme-simplicity', 'lightline-lsp', 'vim-gitbranch']
+depends = ['lightline-colorscheme-simplicity', 'lightline-lsp', 'vim-gitbranch', 'vista.vim']
 
 [[plugins]]
 repo = 'halkn/lightline-lsp'

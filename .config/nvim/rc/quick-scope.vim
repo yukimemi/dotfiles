@@ -1,4 +1,4 @@
-let g:qs_lazy_highlight = 0
+let g:qs_lazy_highlight = 1
 
 if exists('g:vscode')
   highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline

@@ -5,6 +5,8 @@ endif
 function! s:ddu_filer_cfg() abort
   nnoremap <buffer> <Space>
         \ <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
+  nnoremap <buffer> *
+        \ <Cmd>call ddu#ui#filer#do_action('toggleAllItems')<CR>
   nnoremap <buffer> a
         \ <Cmd>call ddu#ui#filer#do_action('chooseAction')<CR>
   nnoremap <buffer> q
@@ -16,16 +18,18 @@ function! s:ddu_filer_cfg() abort
         \ <Cmd>call ddu#ui#filer#do_action('expandItem',
         \ {'maxLevel': -1})<CR>
   "nnoremap <buffer> O
-  "\ <Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>
+        "\ <Cmd>call ddu#ui#filer#do_action('collapseItem')<CR>
   nnoremap <buffer> c
-        \ <Cmd>call ddu#ui#filer#do_action('itemAction',
-        \ {'name': 'copy'})<CR>
+        \ <Cmd>call ddu#ui#filer#multi_actions([
+        \ ['itemAction', {'name': 'copy'}],
+        \ ['clearSelectAllItems'],
+        \ ])<CR>
   nnoremap <buffer> d
         \ <Cmd>call ddu#ui#filer#do_action('itemAction',
-        \ {'name': 'trash'})<CR>
+        \ {'name': 'delete'})<CR>
   nnoremap <buffer> D
         \ <Cmd>call ddu#ui#filer#do_action('itemAction',
-        \ {'name': 'delete'})<CR>
+        \ {'name': 'trash'})<CR>
   nnoremap <buffer> m
         \ <Cmd>call ddu#ui#filer#do_action('itemAction',
         \ {'name': 'move'})<CR>
@@ -57,8 +61,8 @@ function! s:ddu_filer_cfg() abort
   nnoremap <buffer> >
         \ <Cmd>call ddu#ui#filer#do_action('updateOptions', {
         \   'sourceOptions': {
-        \     '_': {
-        \       'matchers': ToggleHidden(),
+        \     'file': {
+        \       'matchers': ToggleHidden('file'),
         \     },
         \   },
         \ })<CR>
@@ -73,18 +77,21 @@ function! s:ddu_filer_cfg() abort
         \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'narrow'})<CR>" :
         \ "<Cmd>call ddu#ui#filer#do_action('itemAction', {'name': 'open'})<CR>"
 
-  function! ToggleHidden()
+  function! ToggleHidden(name)
     let current = ddu#custom#get_current(b:ddu_ui_name)
     let source_options = get(current, 'sourceOptions', {})
-    let source_options_all = get(source_options, '_', {})
-    let matchers = get(source_options_all, 'matchers', [])
+    let source_options_name = get(source_options, a:name, {})
+    let matchers = get(source_options_name, 'matchers', [])
     return empty(matchers) ? ['matcher_hidden'] : []
   endfunction
 
-  autocmd TabEnter,CursorHold,FocusGained <buffer>
+  au MyAutoCmd TabEnter,CursorHold,FocusGained <buffer>
         \ call ddu#ui#filer#do_action('checkItems')
 endfunction
 
 au MyAutoCmd FileType ddu-filer call s:ddu_filer_cfg()
 
-Keymap n ge <Cmd>Ddu -name=filer-`win_getid()` -ui=filer -source-option-columns=filename file<CR>
+Keymap n ge <Cmd>Ddu
+      \ -name=filer-`win_getid()` -ui=filer -resume
+      \ -source-option-path=`getcwd()`
+      \ -source-option-columns=filename file<CR>

@@ -46,6 +46,8 @@ call ddu#custom#patch_global({
       \   'uiOptions': {
       \     'filer': {
       \       'toggle': v:true,
+      \       'split': 'vertical',
+      \       'winWidth': 40,
       \     },
       \   },
       \   'uiParams': {

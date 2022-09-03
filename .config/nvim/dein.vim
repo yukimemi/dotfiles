@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2022/06/12 15:54:56.
+" Last Change : 2022/08/27 20:03:07.
 " =============================================================================
 
 " Plugin:
@@ -13,7 +13,6 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath^=' . substitute(fnamemodify(s:dein_repo_dir, ':p') , '[/\\]$', '', '')
 
-" let g:dein#auto_recache = !g:is_windows
 let g:dein#auto_recache = v:true
 let g:dein#auto_remote_plugins = v:false
 let g:dein#enable_notification = v:true
