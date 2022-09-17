@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/09/17 23:46:58.
+# Last Change: 2022/09/18 00:20:19.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -677,6 +677,14 @@ if = '!g:is_windows'
 repo = '4513ECHO/vim-vimhelp-url'
 if = 1
 on_event = 'HelpUrl'
+
+[[plugins]]
+repo = 'uga-rosa/ccc.nvim'
+if = "has('nvim')"
+on_cmd = 'CccPick'
+hook_source = '''
+source $VIM_PATH/rc/ccc.nvim
+'''
 
 # ==================== Test ======================
 [[plugins]]
