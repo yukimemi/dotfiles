@@ -3,13 +3,28 @@
   "coc.preferences.silentAutoupdate": true,
   "coc.preferences.useQuickfixForLocations": true,
   "suggest.noselect": true,
+  "suggest.enablePreselect": false,
   "explorer.file.reveal.auto": true,
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,
-  "explorer.root.strategies": ["reveal", "workspace", "sourceBuffer"],
-  "list.source.files.args": ["--hidden", "--no-ignore-vcs", "--files"],
-  "list.source.grep.defaultArgs": ["-smartcase", "-regex", "-skip-vcs-ignores"],
-  "list.source.lists.defaultOptions": ["--no-sort"],
+  "explorer.root.strategies": [
+    "reveal",
+    "workspace",
+    "sourceBuffer"
+  ],
+  "list.source.files.args": [
+    "--hidden",
+    "--no-ignore-vcs",
+    "--files"
+  ],
+  "list.source.grep.defaultArgs": [
+    "-smartcase",
+    "-regex",
+    "-skip-vcs-ignores"
+  ],
+  "list.source.lists.defaultOptions": [
+    "--no-sort"
+  ],
   "powershell.codeFolding.enable": true,
   "powershell.enableProfileLoading": false,
   "powershell.integratedConsole.showOnStartup": false,
@@ -17,11 +32,12 @@
   "powershell.codeFormatting.useCorrectCasing": true,
   "powershell.codeFormatting.autoCorrectAliases": true,
   "powershell.sideBar.CommandExplorerVisibility": true,
-  "prettier.enable": true,
-  "prettier.printWidth": 120,
   "npm.binPath": "yarn",
   "suggest.asciiCharactersOnly": true,
-  "translator.engines": ["google", "bing"],
+  "translator.engines": [
+    "google",
+    "bing"
+  ],
   "translator.toLang": "ja",
   "coc.preferences.formatOnSaveFiletypes": [
     "typescript",
@@ -49,5 +65,7 @@
     "yaml",
     "yml"
   ],
-  "mocword.filetypes": ["*"]
+  "mocword.filetypes": [
+    "*"
+  ]
 }

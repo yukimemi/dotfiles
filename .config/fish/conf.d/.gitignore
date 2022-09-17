@@ -1,3 +1,5 @@
+00_fig_pre.fish
+99_fig_post.fish
 abbr_tips.fish
 done.fish
 fish-global-abbreviation_key_bindings.fish

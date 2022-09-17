@@ -20,6 +20,7 @@ let g:coc_global_extensions = [
       \ "coc-snippets",
       \ "coc-spell-checker",
       \ "coc-translator",
+      \ "coc-rust-analyzer",
       \ "coc-vimlsp",
       \ ]
 

@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/09/03 01:09:02.
+# Last Change: 2022/09/17 23:31:57.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1037,6 +1037,7 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'Shougo/pum.vim'
 if = 'g:plugin_use_ddc'
+lazy = 1
 hook_source = '''
 source $VIM_PATH/rc/pum.vim
 '''
