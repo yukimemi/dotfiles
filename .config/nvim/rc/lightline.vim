@@ -1,5 +1,5 @@
 let g:lightline = {
-      \ 'colorscheme': 'srcery',
+      \ 'colorscheme': 'simplicity',
       \ 'mode_map': {
       \   'n' : 'N',
       \   'i' : 'I',

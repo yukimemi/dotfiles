@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/09/03 01:09:02.
+# Last Change: 2022/09/16 11:39:02.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -166,6 +166,7 @@ repo = 'drewtempelmeyer/palenight.vim'
 
 [[plugins]]
 repo = 'folke/tokyonight.nvim'
+if = 'has("nvim")'
 
 [[plugins]]
 repo = 'gkeep/iceberg-dark'
@@ -199,6 +200,7 @@ repo = 'yuttie/hydrangea-vim'
 
 [[plugins]]
 repo = 'glepnir/zephyr-nvim'
+if = 'has("nvim")'
 
 [[plugins]]
 repo = 'adrian5/oceanic-next-vim'
@@ -211,6 +213,7 @@ source $VIM_PATH/rc/edge.vim
 
 [[plugins]]
 repo = 'tiagovla/tokyodark.nvim'
+if = 'has("nvim")'
 hook_add = '''
 source $VIM_PATH/rc/tokyodark.nvim
 '''
@@ -220,6 +223,7 @@ repo = 'ChristianChiarulli/nvcode-color-schemes.vim'
 
 [[plugins]]
 repo = 'rafamadriz/neon'
+if = 'has("nvim")'
 
 [[plugins]]
 repo = 'Matsuuu/pinkmare'
@@ -235,12 +239,14 @@ repo = 'RRethy/nvim-base16'
 
 [[plugins]]
 repo = 'marko-cerovac/material.nvim'
+if = 'has("nvim")'
 
 [[plugins]]
 repo = 'fenetikm/falcon'
 
 [[plugins]]
 repo = 'PHSix/nvim-hybrid'
+if = 'has("nvim")'
 
 [[plugins]]
 repo = '4513ECHO/vim-colors-hatsunemiku'
@@ -251,6 +257,12 @@ repo = 'base16-project/base16-vim'
 [[plugins]]
 repo = 'cocopon/inspecthi.vim'
 on_cmd = 'Inspecthi'
+
+[[plugins]]
+repo = 'Sammyalhashe/random_colorscheme.vim'
+hook_add = '''
+source $VIM_PATH/rc/random_colorscheme.vim
+'''
 
 # ==================== Treesitter ================
 [[plugins]]
@@ -1249,6 +1261,9 @@ on_cmd = ['TwihiHome', 'TwihiTimeline', 'TwihiMentions', 'TwihiTweet', 'TwihiEdi
 hook_add = '''
 source $VIM_PATH/rc/denops-twihi.vim
 '''
+
+[[plugins]]
+repo = 'skanehira/denops-silicon.vim'
 
 [[plugins]]
 repo = 'pyonk/dexercism.vim'

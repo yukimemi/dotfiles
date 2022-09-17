@@ -23,6 +23,8 @@ Keymap n <expr><silent> <c-c> quickrun#is_running() ? <SID>quickrun_sweep_sessio
 function s:quickrun_ps1_config() abort
   let b:quickrun_config = deepcopy(g:quickrun#default_config['ps1/powershell'])
   let b:quickrun_config.cmdopt ..= ' -NoProfile'
+  let b:quickrun_config['outputter/buffer/opener'] = 'vnew'
+  let b:quickrun_config['hook/output_encode/encoding'] = 'cp932'
 endfunction
 
 au MyAutoCmd FileType ps1 call <SID>quickrun_ps1_config()

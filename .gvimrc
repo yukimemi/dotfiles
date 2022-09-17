@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : .gvimrc
 " Author      : yukimemi
-" Last Change : 2022/08/17 02:45:41.
+" Last Change : 2022/09/08 15:02:03.
 " =============================================================================
 
 " hide all
@@ -16,8 +16,8 @@ if s:no_plugin
   colorscheme desert
 endif
 
-set background=dark
-silent! colorscheme srcery
+" set background=dark
+" silent! colorscheme srcery
 " silent! colorscheme pinkmare
 " silent! colorscheme palenight
 

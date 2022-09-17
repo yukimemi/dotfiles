@@ -6,6 +6,7 @@
   "explorer.file.reveal.auto": true,
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,
+  "explorer.root.strategies": ["reveal", "workspace", "sourceBuffer"],
   "list.source.files.args": ["--hidden", "--no-ignore-vcs", "--files"],
   "list.source.grep.defaultArgs": ["-smartcase", "-regex", "-skip-vcs-ignores"],
   "list.source.lists.defaultOptions": ["--no-sort"],
@@ -20,7 +21,6 @@
   "prettier.printWidth": 120,
   "npm.binPath": "yarn",
   "suggest.asciiCharactersOnly": true,
-  "suggest.enablePreview": true,
   "translator.engines": ["google", "bing"],
   "translator.toLang": "ja",
   "coc.preferences.formatOnSaveFiletypes": [

@@ -2,7 +2,7 @@ if !g:plugin_use_vimlsp
   finish
 endif
 
-function! s:show_documentation()
+function! Showdocumentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
@@ -31,7 +31,7 @@ function! s:on_lsp_buffer_enabled() abort
   Keymap n <silent><buffer> <leader>f <plug>(lsp-document-format)
   Keymap n <silent><buffer> <localleader>s <cmd>split \| :LspDefinition<cr>
   Keymap n <silent><buffer> <localleader>v <cmd>vsplit \| :LspDefinition<cr>
-  Keymap n <silent><buffer> K <cmd>call <SID>show_documentation()<cr>
+  Keymap n <silent><buffer> K <cmd>call Showdocumentation()<cr>
   Keymap n <silent><buffer> [g <plug>(lsp-previous-diagnostic)
   Keymap n <silent><buffer> ]g <plug>(lsp-next-diagnostic)
   Keymap n <silent><buffer> gS <plug>(lsp-workspace-symbol-search)
