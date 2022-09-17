@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/09/17 23:31:57.
+# Last Change: 2022/09/17 23:46:58.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -148,6 +148,14 @@ if = "!exists('g:nvui') && g:plugin_use_smoothie"
 on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/vim-smoothie.vim
+'''
+
+[[plugins]]
+repo = 'gen740/SmoothCursor.nvim'
+if = 'has("nvim")'
+on_event = ['CursorHold', 'FocusLost']
+hook_source = '''
+source $VIM_PATH/rc/SmoothCursor.nvim
 '''
 
 # colorscheme
