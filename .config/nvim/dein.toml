@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/09/18 11:05:29.
+# Last Change: 2022/09/18 12:46:46.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -671,6 +671,10 @@ source $VIM_PATH/rc/qfopen.vim
 
 [[plugins]]
 repo = 'christoomey/vim-tmux-navigator'
+if = 0
+
+[[plugins]]
+repo = 'sunaku/tmux-navigate'
 if = '!g:is_windows'
 
 [[plugins]]

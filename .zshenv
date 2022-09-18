@@ -37,6 +37,7 @@ path=(
   $HOME/local/bin(N-/)
   # coreutils.
   /usr/local/opt/coreutils/libexec/gnubin(N-/)
+  /opt/homebrew/opt/coreutils/libexec/gnubin(N-/)
   # gnu-sed.
   /usr/local/opt/gnu-sed/libexec/gnubin(N-/)
   # homebrew.

@@ -2,6 +2,10 @@
   "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.silentAutoupdate": true,
   "coc.preferences.useQuickfixForLocations": true,
+  "suggest.floatConfig": {
+    "border": true,
+    "rounded": true
+  },
   "suggest.noselect": true,
   "suggest.enablePreselect": false,
   "explorer.file.reveal.auto": true,
