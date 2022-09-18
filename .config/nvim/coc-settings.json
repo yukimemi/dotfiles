@@ -2,6 +2,10 @@
   "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.silentAutoupdate": true,
   "coc.preferences.useQuickfixForLocations": true,
+  "floatFactory.floatConfig": {
+    "border": true,
+    "rounded": true
+  },
   "suggest.floatConfig": {
     "border": true,
     "rounded": true

@@ -15,6 +15,7 @@ set shortmess+=c
 let g:coc_global_extensions = [
       \ "coc-diagnostic",
       \ "coc-explorer",
+      \ "coc-pairs",
       \ "coc-lists",
       \ "coc-marketplace",
       \ "coc-snippets",
