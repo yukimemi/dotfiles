@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/09/18 00:20:19.
+# Last Change: 2022/09/18 11:05:29.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1526,6 +1526,14 @@ hook_source = '''
 source $VIM_PATH/rc/lualine.nvim
 '''
 
+[[plugins]]
+repo = 'b0o/incline.nvim'
+if = "g:plugin_use_incline && has('nvim')"
+on_event = ['CursorHold', 'FocusLost']
+hook_source = '''
+source $VIM_PATH/rc/incline.nvim
+'''
+
 # ==================== Filetree ==================
 
 [[plugins]]
@@ -1645,7 +1653,7 @@ source $VIM_PATH/rc/coc.nvim
 
 [[plugins]]
 repo = 'github/copilot.vim'
-if = "!g:is_windows"
+if = 0
 on_event = ['CursorHold', 'FocusLost']
 on_cmd = 'Copilot'
 hook_add = '''
@@ -1702,6 +1710,12 @@ hook_add = '''
 source $VIM_PATH/rc/vim-polyglot.vim
 '''
 merged = 0
+
+# ==================== Filetype (vim) =======
+
+[[plugins]]
+repo = 'lambdalisue/vim-backslash'
+on_ft = 'vim'
 
 # ==================== Filetype (markdown) =======
 

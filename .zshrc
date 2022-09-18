@@ -1,9 +1,7 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2022/07/09 01:45:02.
+# Last Change : 2022/09/18 10:51:18.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -13,7 +11,7 @@
   && { tmux attach || tmux; } >/dev/null 2>&1
 
 # Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 
 #
 # sheldon
@@ -337,5 +335,4 @@ if (which zprof > /dev/null) ;then
 fi
 
 # Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
-
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
