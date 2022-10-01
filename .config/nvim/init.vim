@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/09/18 11:29:22.
+" Last Change : 2022/10/02 00:36:57.
 " =============================================================================
 
 " Init:
@@ -535,7 +535,7 @@ au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 set background=dark
-silent! colorscheme pinkmare
+" silent! colorscheme pinkmare
 
 " Neovide:
 let g:neovide_transparency = 0.8

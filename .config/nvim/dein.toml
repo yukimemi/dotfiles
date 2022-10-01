@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/09/18 12:46:46.
+# Last Change: 2022/10/02 00:09:48.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -266,11 +266,6 @@ repo = 'base16-project/base16-vim'
 repo = 'cocopon/inspecthi.vim'
 on_cmd = 'Inspecthi'
 
-[[plugins]]
-repo = 'Sammyalhashe/random_colorscheme.vim'
-hook_add = '''
-source $VIM_PATH/rc/random_colorscheme.vim
-'''
 
 # ==================== Treesitter ================
 [[plugins]]
@@ -1226,6 +1221,14 @@ repo = 'yukimemi/dps-walk'
 depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/dps-walk.vim
+'''
+
+[[plugins]]
+repo = 'yukimemi/dps-randomcolorscheme'
+# repo = '~/src/github.com/yukimemi/dps-randomcolorscheme'
+depends = 'denops.vim'
+hook_add = '''
+source $VIM_PATH/rc/dps-randomcolorscheme.vim
 '''
 
 [[plugins]]
