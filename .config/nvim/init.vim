@@ -534,8 +534,8 @@ au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+silent! colorscheme pinkmare
 set background=dark
-" silent! colorscheme pinkmare
 
 " Neovide:
 let g:neovide_transparency = 0.8
