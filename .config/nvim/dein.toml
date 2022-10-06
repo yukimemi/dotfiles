@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/10/07 00:42:08.
+# Last Change: 2022/10/06 08:49:35.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1286,8 +1286,8 @@ hook_add = '''
 source $VIM_PATH/rc/denops-twihi.vim
 '''
 
-[[plugins]]
-repo = 'skanehira/denops-silicon.vim'
+# [[plugins]]
+# repo = 'skanehira/denops-silicon.vim'
 
 [[plugins]]
 repo = 'pyonk/dexercism.vim'
