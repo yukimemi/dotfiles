@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/10/02 10:23:13.
+# Last Change: 2022/10/07 00:42:08.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -315,7 +315,7 @@ source $VIM_PATH/rc/echodoc.vim
 
 [[plugins]]
 repo = 'airblade/vim-rooter'
-if = 0
+if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-rooter.vim
 '''

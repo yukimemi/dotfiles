@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2022/06/13 15:02:37.
+# Last Change : 2022/10/05 21:44:17.
 # =============================================================================
 
 # For time.
@@ -123,6 +123,9 @@ export RRC_CONFIG="${HOME}/.config/rrc/config.toml"
 export NEXTWORD_DATA_PATH="${HOME}/.config/nextword/nextword-data-large"
 
 export MOCWORD_DATA="${HOME}/.config/mocword/mocword.sqlite"
+
+# neovide.
+export NEOVIDE_MULTIGRID=1
 
 # fzf.
 if which fd > /dev/null 2>&1; then
