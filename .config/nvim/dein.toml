@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/10/06 08:49:35.
+# Last Change: 2022/10/09 22:22:26.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -283,6 +283,10 @@ if = 'has("nvim")'
 on_source = 'nvim-treesitter'
 
 # ==================== Utility ===================
+
+[[plugins]]
+repo = 'lewis6991/impatient.nvim'
+if = 'has("nvim")'
 
 [[plugins]]
 repo = 'AndrewRadev/linediff.vim'
@@ -726,6 +730,7 @@ hook_add = '''
 source $VIM_PATH/rc/twitvim.vim
 '''
 on_cmd = ['FriendsTwitter', 'UserTwitter', 'RepliesTwitter', 'DMTwitter']
+
 
 # ==================== Git =======================
 
@@ -1284,6 +1289,14 @@ depends = 'denops.vim'
 on_cmd = ['TwihiHome', 'TwihiTimeline', 'TwihiMentions', 'TwihiTweet', 'TwihiEditConfig']
 hook_add = '''
 source $VIM_PATH/rc/denops-twihi.vim
+'''
+
+[[plugins]]
+repo = '4513ECHO/denops-gitter.vim'
+if = 1
+depends = 'denops.vim'
+hook_add = '''
+source $VIM_PATH/rc/denops-gitter.vim
 '''
 
 # [[plugins]]
