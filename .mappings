@@ -7,6 +7,7 @@
 ".surfingkeys.js" = "~/.surfingkeys.js"
 ".tool-versions" = "~/.tool-versions"
 ".volt" = "~/.volt"
+".zprofile" = "~/.zprofile"
 ".zshenv" = "~/.zshenv"
 ".zshrc" = "~/.zshrc"
 
@@ -57,6 +58,7 @@
 ".profile" = "~/.profile"
 ".tmux.conf" = "~/.tmux.conf"
 "win/Microsoft.PowerShell_profile.ps1" = "~/.config/PowerShell/Microsoft.PowerShell_profile.ps1"
+"mac/Library/LaunchAgents/com.Neovide.set-multigrid.plist" = "~/Library/LaunchAgents/com.Neovide.set-multigrid.plist"
 
 [linux]
 ".gvimrc" = "~/.gvimrc"

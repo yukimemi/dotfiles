@@ -75,5 +75,6 @@
   ],
   "mocword.filetypes": [
     "*"
-  ]
+  ],
+  "Lua.telemetry.enable": true
 }

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2022/10/05 21:44:17.
+# Last Change : 2022/10/10 00:39:43.
 # =============================================================================
 
 # For time.
@@ -35,6 +35,8 @@ path=(
   $HOME/.local/bin/scripts(N-/)
   $HOME/bin/scripts(N-/)
   $HOME/local/bin(N-/)
+  # cargo
+  $HOME/.cargo/bin(N-/)
   # coreutils.
   /usr/local/opt/coreutils/libexec/gnubin(N-/)
   /opt/homebrew/opt/coreutils/libexec/gnubin(N-/)
@@ -45,8 +47,6 @@ path=(
   /opt/homebrew/bin(N-/)
   # cabal.
   $HOME/.cabal/bin(N-/)
-  # cargo
-  $HOME/.cargo/bin(N-/)
   # yarn.
   $HOME/.yarn/bin(N-/)
   # Poetry.

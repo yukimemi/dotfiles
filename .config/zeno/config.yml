@@ -241,6 +241,8 @@ snippets:
     snippet: cargo install broot
   - name: Install rembg
     snippet: pip install rembg
+  - name: Install dot
+    snippet: cargo install --git https://github.com/ubnt-intrepid/dot.git
 
 completions:
   - name: kill
