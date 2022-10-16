@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : jetpack.vim
 " Author      : yukimemi
-" Last Change : 2022/10/15 22:15:40.
+" Last Change : 2022/10/16 17:35:10.
 " =============================================================================
 
 " Plugin:
@@ -60,7 +60,6 @@ Pg 'srcery-colors/srcery-vim', {'opt': 1}
 Pg 'base16-project/base16-vim', {'opt': 1}
 
 " Visual:
-Pg 'LumaKernel/nvim-visual-eof.lua', {'if': has('nvim'), 'event': g:lazy_events}
 Pg 'andymass/vim-matchup', {'event': g:lazy_events}
 Pg 'itchyny/vim-cursorword', {'event': g:lazy_events}
 Pg 'itchyny/vim-highlighturl', {'event': g:lazy_events}
@@ -80,7 +79,7 @@ Pg 'nvim-treesitter/nvim-treesitter', {'if': has('nvim') && g:plugin_use_treesit
 
 " Movement:
 " Pg 'psliwka/vim-smoothie', {'event': g:lazy_events}
-Pg 'gen740/SmoothCursor.nvim', {'event': g:lazy_events}
+Pg 'gen740/SmoothCursor.nvim', {'if': has('nvim'), 'event': g:lazy_events}
 
 " Statusline:
 Pg 'itchyny/lightline.vim', {'event': g:lazy_events}
@@ -90,29 +89,27 @@ Pg 'itchyny/vim-gitbranch', {'event': g:lazy_events}
 
 " Ctrlp:
 Pg 'ctrlpvim/ctrlp.vim', {'cmd': ['CtrlP', 'CtrlPBuffer', 'CtrlPCurFile', 'CtrlPMRUFiles', 'CtrlPLauncher', 'CtrlPSonictemplate', 'VimHelpJp', 'CtrlPCmdHistory', 'CtrlPSearchHistory', 'CtrlPMRMru', 'CtrlPMRMrw', 'CtrlPMRMrr']}
-Pg 'kaneshin/ctrlp-filetype', {'event': 'JetpackCtrlpVimPre'}
-Pg 'kaneshin/ctrlp-memolist', {'event': 'JetpackCtrlpVimPre'}
-Pg 'kaneshin/ctrlp-sonictemplate', {'event': 'JetpackCtrlpVimPre'}
-Pg 'ompugao/ctrlp-history', {'event': 'JetpackCtrlpVimPre'}
-Pg 'tsuyoshicho/ctrlp-mr.vim', {'event': 'JetpackCtrlpVimPre'}
-Pg 'mattn/ctrlp-launcher', {'event': 'JetpackCtrlpVimPre'}
-Pg 'mattn/ctrlp-mark', {'event': 'JetpackCtrlpVimPre'}
-Pg 'mattn/ctrlp-matchfuzzy', {'if': exists('*matchfuzzy'), 'event': 'JetpackCtrlpVimPre'}
-Pg 'suy/vim-ctrlp-commandline', {'event': 'JetpackCtrlpVimPre'}
+Pg 'kaneshin/ctrlp-filetype', {'cmd': 'CtrlPFiletype'}
+Pg 'kaneshin/ctrlp-sonictemplate', {'cmd': 'CtrlPSonictemplate'}
+Pg 'ompugao/ctrlp-history', {'cmd': 'CtrlPSearchHistory'}
+Pg 'tsuyoshicho/ctrlp-mr.vim', {'cmd': ['CtrlPMRMrw', 'CtrlPMRMru', 'CtrlPMRMrr']}
+Pg 'mattn/ctrlp-launcher', {'cmd': 'CtrlPLauncher'}
+Pg 'mattn/ctrlp-matchfuzzy', {'if': exists('*matchfuzzy'), 'event': g:lazy_events}
+Pg 'suy/vim-ctrlp-commandline', {'cmd': 'CtrlPCmdHistory'}
 
 " Fern:
 if g:plugin_use_fern
   Pg 'lambdalisue/fern.vim', {'cmd': ['Fern']}
 
-  Pg 'lambdalisue/fern-bookmark.vim', {'event': 'JetpackFernVimPre'}
-  Pg 'lambdalisue/fern-comparator-lexical.vim', {'event': 'JetpackFernVimPre'}
-  Pg 'lambdalisue/fern-git-status.vim', {'event': 'JetpackFernVimPre'}
-  Pg 'lambdalisue/fern-git.vim', {'event': 'JetpackFernVimPre'}
-  Pg 'lambdalisue/fern-hijack.vim', {'event': 'JetpackFernVimPre'}
-  Pg 'lambdalisue/fern-mapping-git.vim', {'event': 'JetpackFernVimPre'}
-  Pg 'lambdalisue/fern-renderer-nerdfont.vim', {'event': 'JetpackFernVimPre'}
-  Pg 'lambdalisue/glyph-palette.vim', {'event': ['JetpackFernVimPre']}
-  Pg 'lambdalisue/nerdfont.vim', {'event': ['JetpackFernVimPre']}
+  Pg 'lambdalisue/fern-bookmark.vim', {'event': g:lazy_events}
+  Pg 'lambdalisue/fern-comparator-lexical.vim', {'event': g:lazy_events}
+  Pg 'lambdalisue/fern-git-status.vim', {'event': g:lazy_events}
+  Pg 'lambdalisue/fern-git.vim', {'event': g:lazy_events}
+  Pg 'lambdalisue/fern-hijack.vim', {'event': g:lazy_events}
+  Pg 'lambdalisue/fern-mapping-git.vim', {'event': g:lazy_events}
+  Pg 'lambdalisue/fern-renderer-nerdfont.vim', {'event': g:lazy_events}
+  Pg 'lambdalisue/glyph-palette.vim', {'event': g:lazy_events}
+  Pg 'lambdalisue/nerdfont.vim', {'event': g:lazy_events}
 endif
 
 " Textobj:
@@ -128,17 +125,17 @@ Pg 'vimtaku/vim-operator-mdurl', {'map': ['<Plug>(operator-mdurl)', '<Plug>(oper
 Pg 'osyo-manga/vim-textobj-multiblock', {'map': ['<Plug>(textobj-multiblock-a)', '<Plug>(textobj-multiblock-i)']}
 
 " Operator:
-Pg 'kana/vim-operator-user'
-Pg 'kana/vim-operator-replace', {'on': '<Plug>(operator-replace)'}
-Pg 'machakann/vim-sandwich', {'on': g:lazy_events}
-Pg 'machakann/vim-swap', {'on': ['<Plug>(swap-textobject-i)', '<Plug>(swap-textobject-a)']}
-Pg 'osyo-manga/vim-operator-search', {'on': '<Plug>(operator-search)'}
-Pg 'osyo-manga/vim-operator-stay-cursor', {'on': g:lazy_events}
+Pg 'kana/vim-operator-user', {'event': 'BufRead'}
+Pg 'kana/vim-operator-replace', {'map': '<Plug>(operator-replace)'}
+Pg 'machakann/vim-sandwich', {'event': g:lazy_events}
+Pg 'machakann/vim-swap', {'map': ['<Plug>(swap-textobject-i)', '<Plug>(swap-textobject-a)']}
+Pg 'osyo-manga/vim-operator-search', {'map': '<Plug>(operator-search)'}
+Pg 'osyo-manga/vim-operator-stay-cursor', {'event': g:lazy_events}
 
 " Search:
 Pg 'haya14busa/vim-asterisk', {'map': ['<Plug>(asterisk-z*)', '<Plug>(asterisk-gz*)', '<Plug>(asterisk-z#)', '<Plug>(asterisk-gz#)']}
 Pg 'deris/vim-shot-f', {'event': g:lazy_events}
-Pg 'inside/vim-search-pulse', {'on': g:lazy_events}
+Pg 'inside/vim-search-pulse', {'event': g:lazy_events}
 
 " Git:
 if g:plugin_use_gin
@@ -155,34 +152,33 @@ Pg 'sunaku/tmux-navigate', {'if': !g:is_windows, 'event': 'BufRead'}
 
 
 " Comment:
-Pg 'tyru/caw.vim', {'on': ['<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)']}
+Pg 'tyru/caw.vim', {'map': ['<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)']}
 
 " FileType:
 " Pg 'alvan/vim-closetag', {'for': ['xml', 'html']}
 
 " Util:
 Pg 'Bakudankun/BackAndForward.vim', {'map': ['<Plug>(backandforward-back)', '<Plug>(backandforward-forward)']}
-Pg 'LeafCage/yankround.vim', {'on': 'BufRead'}
-Pg 'Shougo/junkfile.vim', {'on': 'JunkfileOpen'}
-Pg 'airblade/vim-rooter', {'on': 'BufRead'}
-Pg 'aiya000/aho-bakaup.vim', {'on': 'BufWritePre'}
+Pg 'LeafCage/yankround.vim', {'event': 'BufRead'}
+Pg 'Shougo/junkfile.vim', {'cmd': 'JunkfileOpen'}
+Pg 'airblade/vim-rooter', {'event': 'BufRead'}
+Pg 'aiya000/aho-bakaup.vim', {'event': 'BufWritePre'}
 Pg 'cohama/lexima.vim', {'if': g:plugin_use_lexima}
-Pg 'glidenote/memolist.vim', {'on': ['MemoNew', 'MemoList', 'MemoGrep']}
+Pg 'glidenote/memolist.vim', {'cmd': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pg 'haya14busa/vim-edgemotion', {'map': ['<Plug>(edgemotion-j)', '<Plug>(edgemotion-k)']}
 Pg 'lambdalisue/mr.vim', {'event': ['JetpackCtrlpVimPre']}
 Pg 'lambdalisue/vim-findent', {'cmd': 'Findent'}
 Pg 'mattn/vim-lexiv', {'if': g:plugin_use_lexiv}
-Pg 'mattn/vim-sonictemplate', {'on': 'Template'}
-Pg 'qpkorr/vim-renamer', {'on': 'Renamer'}
-Pg 'thinca/vim-ambicmd'
-Pg 'thinca/vim-prettyprint', {'on': 'PP'}
+Pg 'mattn/vim-sonictemplate', {'cmd': 'Template'}
+Pg 'qpkorr/vim-renamer', {'cmd': 'Renamer'}
+Pg 'thinca/vim-ambicmd', {'event': 'BufRead'}
+Pg 'thinca/vim-prettyprint', {'cmd': 'PP'}
 Pg 'thinca/vim-singleton', {'if': g:is_windows}
-Pg 'thinca/vim-submode', {'on': 'BufRead'}
-Pg 'tpope/vim-repeat', {'on': 'BufRead'}
-Pg 'tyru/open-browser.vim', {'on': g:lazy_events}
-Pg 'vim-scripts/autodate.vim', {'on': 'InsertEnter'}
+Pg 'thinca/vim-submode', {'event': 'BufRead'}
+Pg 'tpope/vim-repeat', {'event': 'BufRead'}
+Pg 'tyru/open-browser.vim', {'event': g:lazy_events}
 Pg 'gelguy/wilder.nvim', {'if': !g:plugin_use_ddc}
-Pg 'thinca/vim-partedit', {'on': 'Partedit'}
+Pg 'thinca/vim-partedit', {'cmd': 'Partedit'}
 
 " Denops:
 Pg 'vim-denops/denops.vim'
@@ -196,6 +192,9 @@ Pg 'yukimemi/dps-ahdr'
 Pg 'yukimemi/dps-asyngrep'
 Pg 'yukimemi/dps-autocursor'
 Pg 'yukimemi/dps-walk'
+Pg 'yukimemi/dps-randomcolorscheme'
+Pg 'yukimemi/dps-autobackup'
+Pg 'yukimemi/dps-autodate'
 Pg 'yutkat/dps-coding-now.nvim'
 Pg 'skanehira/denops-translate.vim'
 
