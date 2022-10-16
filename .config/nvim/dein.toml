@@ -978,8 +978,11 @@ hook_add = '''
 source $VIM_PATH/rc/denops.vim
 '''
 
+# [[plugins]]
+# repo = 'vim-denops/denops-shared-server.vim'
 [[plugins]]
-repo = 'vim-denops/denops-shared-server.vim'
+repo = 'Milly/denops-shared-server.vim'
+rev = 'feat/powershell-startup'
 
 [[plugins]]
 repo = 'Shougo/ddc.vim'
