@@ -1,3 +1,4 @@
+silent! packadd SmoothCursor.nvim
 lua << EOF
 require("smoothcursor").setup {
   autostart = true,

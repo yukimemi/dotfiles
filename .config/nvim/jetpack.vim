@@ -1,23 +1,17 @@
 " =============================================================================
 " File        : jetpack.vim
 " Author      : yukimemi
-" Last Change : 2022/04/28 18:28:12.
+" Last Change : 2022/10/15 22:15:40.
 " =============================================================================
 
 " Plugin:
 " Use vim-jetpack
-let s:jetpack_bootstrap = $CACHE_HOME .. '/jetpack_bootstrap'
-let s:jetpack_bootstrap_dir = s:jetpack_bootstrap .. '/pack/jetpack/start/jetpack'
-let s:package_home = $CACHE_HOME . '/jetpack'
-let s:jetpack_download = 0
-execute printf('set packpath^=%s', s:jetpack_bootstrap)
-if has('vim_starting')
-  if !isdirectory(expand(s:jetpack_bootstrap_dir))
-    echo "Install jetpack ..."
-    execute 'silent! !git clone --depth 1 https://github.com/tani/vim-jetpack ' .. s:jetpack_bootstrap_dir
-    let s:jetpack_download = 1
-  endif
+let s:package_home = expand('$CACHE_HOME/jetpack')
+let s:jetpack_bootstrap = s:package_home .. '/pack/jetpack/opt/vim-jetpack'
+if !isdirectory(s:jetpack_bootstrap)
+  execute 'silent! !git clone --depth 1 https://github.com/tani/vim-jetpack ' . s:jetpack_bootstrap
 endif
+execute 'set packpath^=' . substitute(fnamemodify(s:package_home, ':p') , '[/\\]$', '', '')
 
 function! IsInstalled(name) abort
   return jetpack#tap(a:name)
@@ -55,85 +49,83 @@ command! -bar -nargs=+ Pg call s:plug_add(<args>)
 " Plugin list.
 let g:lazy_events = ['CursorHold', 'FocusLost']
 
+packadd vim-jetpack
 call jetpack#begin(s:package_home)
 
-Pg 'tani/vim-jetpack', {'on': 'JetpackSync'}
+Pg 'tani/vim-jetpack', {'opt': 1}
 
 " Colorscheme:
 Pg 'Matsuuu/pinkmare', {'opt': 1}
-Pg 'srcery-colors/srcery-vim'
+Pg 'srcery-colors/srcery-vim', {'opt': 1}
+Pg 'base16-project/base16-vim', {'opt': 1}
 
 " Visual:
-Pg 'LumaKernel/nvim-visual-eof.lua', {'if': has('nvim')}
-Pg 'andymass/vim-matchup', {'on': g:lazy_events}
-Pg 'itchyny/vim-cursorword', {'on': g:lazy_events}
-Pg 'itchyny/vim-highlighturl', {'on': g:lazy_events}
-Pg 'itchyny/vim-parenmatch', {'on': g:lazy_events}
+Pg 'LumaKernel/nvim-visual-eof.lua', {'if': has('nvim'), 'event': g:lazy_events}
+Pg 'andymass/vim-matchup', {'event': g:lazy_events}
+Pg 'itchyny/vim-cursorword', {'event': g:lazy_events}
+Pg 'itchyny/vim-highlighturl', {'event': g:lazy_events}
+Pg 'itchyny/vim-parenmatch', {'event': g:lazy_events}
 Pg 'lambdalisue/seethrough.vim', {'if': !has('gui')}
-Pg 'lukas-reineke/indent-blankline.nvim', {'if': has('nvim'), 'on': 'VimEnter'}
-Pg 'luochen1990/rainbow', {'on': g:lazy_events}
-Pg 'machakann/vim-highlightedyank', {'on': g:lazy_events, 'if': !has('nvim')}
+Pg 'lukas-reineke/indent-blankline.nvim', {'if': has('nvim'), 'event': g:lazy_events}
+Pg 'luochen1990/rainbow', {'event': g:lazy_events}
 Pg 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
-Pg 'mattn/vim-notification', {'on': g:lazy_events, 'if': !has('nvim')}
+Pg 'mattn/vim-notification', {'event': g:lazy_events, 'if': !has('nvim')}
 Pg 'mattn/vimtweak', {'if': g:is_windows && !has('nvim')}
-Pg 'mopp/smartnumber.vim', {'on': g:lazy_events}
-Pg 'ntpeters/vim-better-whitespace', {'on': g:lazy_events}
-Pg 't9md/vim-quickhl', {'on': g:lazy_events}
+Pg 'mopp/smartnumber.vim', {'event': g:lazy_events}
+Pg 'ntpeters/vim-better-whitespace', {'event': g:lazy_events}
+Pg 't9md/vim-quickhl', {'event': g:lazy_events}
+
+" Treesitter:
+Pg 'nvim-treesitter/nvim-treesitter', {'if': has('nvim') && g:plugin_use_treesitter, 'do': 'execute(TSUpdate)', 'event': 'BufRead'}
 
 " Movement:
-" Pg 'psliwka/vim-smoothie', {'on': g:lazy_events}
+" Pg 'psliwka/vim-smoothie', {'event': g:lazy_events}
+Pg 'gen740/SmoothCursor.nvim', {'event': g:lazy_events}
 
 " Statusline:
-if g:plugin_use_barow
-  Pg 'doums/barow', {'on': g:lazy_events}
-  Pg 'doums/barowLSP', {'on': g:lazy_events}
-  Pg 'doums/barowGit', {'on': g:lazy_events}
-endif
-
-if g:plugin_use_lightline
-  Pg 'itchyny/lightline.vim', {'on': g:lazy_events}
-  Pg 'kmtoki/lightline-colorscheme-simplicity', {'on': g:lazy_events}
-  Pg 'josa42/vim-lightline-coc', {'on': g:lazy_events}
-  Pg 'itchyny/vim-gitbranch', {'on': g:lazy_events}
-endif
+Pg 'itchyny/lightline.vim', {'event': g:lazy_events}
+Pg 'kmtoki/lightline-colorscheme-simplicity', {'event': g:lazy_events}
+Pg 'josa42/vim-lightline-coc', {'event': g:lazy_events}
+Pg 'itchyny/vim-gitbranch', {'event': g:lazy_events}
 
 " Ctrlp:
-Pg 'ctrlpvim/ctrlp.vim'
-Pg 'kaneshin/ctrlp-filetype'
-Pg 'kaneshin/ctrlp-memolist'
-Pg 'kaneshin/ctrlp-sonictemplate'
-Pg 'ompugao/ctrlp-history'
-Pg 'tsuyoshicho/ctrlp-mr.vim'
-Pg 'mattn/ctrlp-launcher'
-Pg 'mattn/ctrlp-mark'
-Pg 'mattn/ctrlp-matchfuzzy', {'if': exists('*matchfuzzy')}
-Pg 'suy/vim-ctrlp-commandline'
+Pg 'ctrlpvim/ctrlp.vim', {'cmd': ['CtrlP', 'CtrlPBuffer', 'CtrlPCurFile', 'CtrlPMRUFiles', 'CtrlPLauncher', 'CtrlPSonictemplate', 'VimHelpJp', 'CtrlPCmdHistory', 'CtrlPSearchHistory', 'CtrlPMRMru', 'CtrlPMRMrw', 'CtrlPMRMrr']}
+Pg 'kaneshin/ctrlp-filetype', {'event': 'JetpackCtrlpVimPre'}
+Pg 'kaneshin/ctrlp-memolist', {'event': 'JetpackCtrlpVimPre'}
+Pg 'kaneshin/ctrlp-sonictemplate', {'event': 'JetpackCtrlpVimPre'}
+Pg 'ompugao/ctrlp-history', {'event': 'JetpackCtrlpVimPre'}
+Pg 'tsuyoshicho/ctrlp-mr.vim', {'event': 'JetpackCtrlpVimPre'}
+Pg 'mattn/ctrlp-launcher', {'event': 'JetpackCtrlpVimPre'}
+Pg 'mattn/ctrlp-mark', {'event': 'JetpackCtrlpVimPre'}
+Pg 'mattn/ctrlp-matchfuzzy', {'if': exists('*matchfuzzy'), 'event': 'JetpackCtrlpVimPre'}
+Pg 'suy/vim-ctrlp-commandline', {'event': 'JetpackCtrlpVimPre'}
 
 " Fern:
 if g:plugin_use_fern
-  Pg 'lambdalisue/fern-bookmark.vim'
-  Pg 'lambdalisue/fern-comparator-lexical.vim'
-  Pg 'lambdalisue/fern-git-status.vim'
-  Pg 'lambdalisue/fern-git.vim'
-  Pg 'lambdalisue/fern-hijack.vim'
-  Pg 'lambdalisue/fern-mapping-git.vim'
-  Pg 'lambdalisue/fern-renderer-nerdfont.vim'
-  Pg 'lambdalisue/fern.vim'
-  Pg 'lambdalisue/glyph-palette.vim', {'on': 'VimEnter'}
-  Pg 'lambdalisue/nerdfont.vim', {'on': 'VimEnter'}
+  Pg 'lambdalisue/fern.vim', {'cmd': ['Fern']}
+
+  Pg 'lambdalisue/fern-bookmark.vim', {'event': 'JetpackFernVimPre'}
+  Pg 'lambdalisue/fern-comparator-lexical.vim', {'event': 'JetpackFernVimPre'}
+  Pg 'lambdalisue/fern-git-status.vim', {'event': 'JetpackFernVimPre'}
+  Pg 'lambdalisue/fern-git.vim', {'event': 'JetpackFernVimPre'}
+  Pg 'lambdalisue/fern-hijack.vim', {'event': 'JetpackFernVimPre'}
+  Pg 'lambdalisue/fern-mapping-git.vim', {'event': 'JetpackFernVimPre'}
+  Pg 'lambdalisue/fern-renderer-nerdfont.vim', {'event': 'JetpackFernVimPre'}
+  Pg 'lambdalisue/glyph-palette.vim', {'event': ['JetpackFernVimPre']}
+  Pg 'lambdalisue/nerdfont.vim', {'event': ['JetpackFernVimPre']}
 endif
 
 " Textobj:
-Pg 'kana/vim-textobj-user'
-Pg 'gilligan/textobj-lastpaste', {'on': '<Plug>(textobj-lastpaste-i)'}
-Pg 'kana/vim-textobj-entire', {'on': ['<Plug>(textobj-entire-a)', '<Plug>(textobj-entire-i)']}
-Pg 'kana/vim-textobj-fold', {'on': ['<Plug>(textobj-fold-a)', '<Plug>(textobj-fold-i)']}
-Pg 'kana/vim-textobj-function', {'on': ['<Plug>(textobj-function-a)', '<Plug>(textobj-function-i)', '<Plug>(textobj-function-A)', '<Plug>(textobj-function-I)']}
-Pg 'kana/vim-textobj-indent', {'on': ['<Plug>(textobj-indent-a)', '<Plug>(textobj-indent-i)', '<Plug>(textobj-indent-same-a)', '<Plug>(textobj-indent-same-i)']}
-Pg 'kana/vim-textobj-line', {'on': ['<Plug>(textobj-line-i)', '<Plug>(textobj-line-a)']}
-Pg 'mattn/vim-textobj-url', {'on': g:lazy_events}
-Pg 'vimtaku/vim-operator-mdurl', {'on': ['<Plug>(operator-mdurl)', '<Plug>(operator-mdurlp)']}
-Pg 'osyo-manga/vim-textobj-multiblock', {'on': ['<Plug>(textobj-multiblock-a)', '<Plug>(textobj-multiblock-i)']}
+Pg 'kana/vim-textobj-user', {'event': 'BufRead'}
+Pg 'gilligan/textobj-lastpaste', {'map': '<Plug>(textobj-lastpaste-i)'}
+Pg 'kana/vim-textobj-entire', {'map': ['<Plug>(textobj-entire-a)', '<Plug>(textobj-entire-i)']}
+Pg 'kana/vim-textobj-fold', {'map': ['<Plug>(textobj-fold-a)', '<Plug>(textobj-fold-i)']}
+Pg 'kana/vim-textobj-function', {'map': ['<Plug>(textobj-function-a)', '<Plug>(textobj-function-i)', '<Plug>(textobj-function-A)', '<Plug>(textobj-function-I)']}
+Pg 'kana/vim-textobj-indent', {'map': ['<Plug>(textobj-indent-a)', '<Plug>(textobj-indent-i)', '<Plug>(textobj-indent-same-a)', '<Plug>(textobj-indent-same-i)']}
+Pg 'kana/vim-textobj-line', {'map': ['<Plug>(textobj-line-i)', '<Plug>(textobj-line-a)']}
+Pg 'mattn/vim-textobj-url', {'map': g:lazy_events}
+Pg 'vimtaku/vim-operator-mdurl', {'map': ['<Plug>(operator-mdurl)', '<Plug>(operator-mdurlp)']}
+Pg 'osyo-manga/vim-textobj-multiblock', {'map': ['<Plug>(textobj-multiblock-a)', '<Plug>(textobj-multiblock-i)']}
 
 " Operator:
 Pg 'kana/vim-operator-user'
@@ -144,14 +136,23 @@ Pg 'osyo-manga/vim-operator-search', {'on': '<Plug>(operator-search)'}
 Pg 'osyo-manga/vim-operator-stay-cursor', {'on': g:lazy_events}
 
 " Search:
-Pg 'haya14busa/vim-asterisk', {'on': ['<Plug>(asterisk-z*)', '<Plug>(asterisk-gz*)', '<Plug>(asterisk-z#)', '<Plug>(asterisk-gz#)']}
-Pg 'deris/vim-shot-f', {'on': g:lazy_events}
+Pg 'haya14busa/vim-asterisk', {'map': ['<Plug>(asterisk-z*)', '<Plug>(asterisk-gz*)', '<Plug>(asterisk-z#)', '<Plug>(asterisk-gz#)']}
+Pg 'deris/vim-shot-f', {'event': g:lazy_events}
 Pg 'inside/vim-search-pulse', {'on': g:lazy_events}
 
 " Git:
-Pg 'lambdalisue/askpass.vim', {'on': 'BufRead'}
-Pg 'lambdalisue/gin.vim', {'on': 'BufRead'}
-Pg 'lambdalisue/guise.vim', {'on': 'BufRead'}
+if g:plugin_use_gin
+  Pg 'lambdalisue/askpass.vim', {'event': 'BufRead'}
+  Pg 'lambdalisue/gin.vim', {'event': 'BufRead'}
+  Pg 'lambdalisue/guise.vim', {'event': 'BufRead'}
+endif
+if g:plugin_use_gina
+  Pg 'lambdalisue/gina.vim', {'cmd': 'Gina'}
+endif
+
+" Tmux:
+Pg 'sunaku/tmux-navigate', {'if': !g:is_windows, 'event': 'BufRead'}
+
 
 " Comment:
 Pg 'tyru/caw.vim', {'on': ['<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)']}
@@ -160,22 +161,22 @@ Pg 'tyru/caw.vim', {'on': ['<Plug>(caw:prefix)', '<Plug>(caw:hatpos:toggle)']}
 " Pg 'alvan/vim-closetag', {'for': ['xml', 'html']}
 
 " Util:
-Pg 'Bakudankun/BackAndForward.vim', {'on': ['<Plug>(backandforward-back)', '<Plug>(backandforward-forward)']}
+Pg 'Bakudankun/BackAndForward.vim', {'map': ['<Plug>(backandforward-back)', '<Plug>(backandforward-forward)']}
 Pg 'LeafCage/yankround.vim', {'on': 'BufRead'}
 Pg 'Shougo/junkfile.vim', {'on': 'JunkfileOpen'}
 Pg 'airblade/vim-rooter', {'on': 'BufRead'}
 Pg 'aiya000/aho-bakaup.vim', {'on': 'BufWritePre'}
 Pg 'cohama/lexima.vim', {'if': g:plugin_use_lexima}
 Pg 'glidenote/memolist.vim', {'on': ['MemoNew', 'MemoList', 'MemoGrep']}
-Pg 'haya14busa/vim-edgemotion', {'on': ['<Plug>(edgemotion-j)', '<Plug>(edgemotion-k)']}
-Pg 'lambdalisue/mr.vim'
-Pg 'lambdalisue/vim-findent', {'on': 'Findent'}
+Pg 'haya14busa/vim-edgemotion', {'map': ['<Plug>(edgemotion-j)', '<Plug>(edgemotion-k)']}
+Pg 'lambdalisue/mr.vim', {'event': ['JetpackCtrlpVimPre']}
+Pg 'lambdalisue/vim-findent', {'cmd': 'Findent'}
 Pg 'mattn/vim-lexiv', {'if': g:plugin_use_lexiv}
 Pg 'mattn/vim-sonictemplate', {'on': 'Template'}
 Pg 'qpkorr/vim-renamer', {'on': 'Renamer'}
 Pg 'thinca/vim-ambicmd'
 Pg 'thinca/vim-prettyprint', {'on': 'PP'}
-Pg 'thinca/vim-singleton', {'if': !has('nvim')}
+Pg 'thinca/vim-singleton', {'if': g:is_windows}
 Pg 'thinca/vim-submode', {'on': 'BufRead'}
 Pg 'tpope/vim-repeat', {'on': 'BufRead'}
 Pg 'tyru/open-browser.vim', {'on': g:lazy_events}
@@ -272,6 +273,13 @@ if g:plugin_use_ddu
 endif
 
 call jetpack#end()
+
+for name in jetpack#names()
+  if !jetpack#tap(name)
+    call jetpack#sync()
+    break
+  endif
+endfor
 
 " Load plugin config.
 call jetpack#names()->map({ -> s:source_plugin_cfg(v:val) })

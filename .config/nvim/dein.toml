@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/10/09 22:22:26.
+# Last Change: 2022/10/16 13:27:57.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -319,7 +319,7 @@ source $VIM_PATH/rc/echodoc.vim
 
 [[plugins]]
 repo = 'airblade/vim-rooter'
-if = 1
+if = 0
 hook_add = '''
 source $VIM_PATH/rc/vim-rooter.vim
 '''
@@ -329,6 +329,9 @@ on_event = ['CursorHold', 'FocusLost']
 repo = 'mattn/vim-findroot'
 if = 1
 on_event = ['CursorHold', 'FocusLost']
+hook_add = '''
+source $VIM_PATH/rc/vim-findroot.vim
+'''
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
@@ -1521,22 +1524,6 @@ if = "g:plugin_use_airline"
 repo = "vim-airline/vim-airline-themes"
 if = "g:plugin_use_airline"
 lazy = 1
-
-[[plugins]]
-repo = "doums/barow"
-if = "g:plugin_use_barow"
-depends = 'vim-reanimate'
-hook_source = '''
-source $VIM_PATH/rc/barow.vim
-'''
-on_event = 'BufRead'
-
-[[plugins]]
-repo = "doums/barowLSP"
-on_source = 'barow'
-[[plugins]]
-repo = "doums/barowGit"
-on_source = 'barow'
 
 [[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
