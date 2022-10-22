@@ -15,16 +15,19 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok', 'spell', 'paste' ],
       \             [ 'gitbranch', 'coc_status', 'readonly', 'filename', 'bomb' ],
-      \             [ 'vista', 'quickfix_title', 'deinstatus' ]
+      \             [ 'vista', 'quickfix_title', 'deinstatus', 'colorscheme' ]
       \   ],
       \   'right': [
       \     [ 'lineinfo' ],
       \     [ 'filetype', 'fileencoding', 'fileformat' ],
-      \     [ 'scount', 'noscrollbar', 'lsp_errors', 'lsp_warnings', 'lsp_ok' ]
+      \     [ 'cwd', 'scount', 'noscrollbar', 'lsp_errors', 'lsp_warnings', 'lsp_ok' ]
       \   ],
       \ },
       \ 'component': {
       \   'spell': "%{&spell ? 'SPELL' : ''}",
+      \   'bomb': "%{&bomb ? 'bomb' : ''}",
+      \   'colorscheme': "%{exists('g:colors_name') ? g:colors_name : ''}",
+      \   'cwd': "%{getcwd()}",
       \  },
       \ 'component_function': {
       \   'gitbranch'     : 'gitbranch#name',
@@ -34,7 +37,6 @@ let g:lightline = {
       \   'filename'      : 'LightLineFilename',
       \   'filetype'      : 'LightLineFiletype',
       \   'fileformat'    : 'LightLineFileformat',
-      \   'bomb'          : 'LightLineBomb',
       \   'quickfix_title': 'LightLineQuickfixTitle',
       \   'cocstatus'     : 'coc#status',
       \   'deinstatus'    : 'dein#get_progress',
@@ -129,10 +131,6 @@ function! LightLineFileformat()
       return winwidth(0) > 70 ? &fileformat : ''
     endif
   endif
-endfunction
-
-function! LightLineBomb() abort
-  return &bomb ? 'bomb' : ''
 endfunction
 
 function! LightLineReanimate()

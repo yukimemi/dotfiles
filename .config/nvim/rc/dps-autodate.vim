@@ -4,6 +4,7 @@ let g:autodate_config = {
       \   "replace": [
       \     ['/^(.*key="version">)[^<]*(<.*)/i', '$1${format(now, "yyyyMMdd_HHmmss")}$2'],
       \     ['/^(.*key="%{task_file}%_version">)[^<]*(<.*)/i', '$1${format(now, "yyyyMMdd_HHmmss")}$2'],
+      \     ['/^(.*key="%{task_name}%_version">)[^<]*(<.*)/i', '$1${format(now, "yyyyMMdd_HHmmss")}$2'],
       \     ['/^(.*key="autobot_version">)[^<]*(<.*)/i', '$1${format(now, "yyyyMMdd_HHmmss")}$2']
       \   ],
       \   "event": "BufWritePre",
