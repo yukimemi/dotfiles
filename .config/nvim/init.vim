@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/10/23 18:49:47.
+" Last Change : 2022/10/23 19:03:59.
 " =============================================================================
 
 " Init:
@@ -498,7 +498,7 @@ let g:plugin_use_beacon = 1
 let g:plugin_use_columnskip = 0
 let g:plugin_use_edgemotion = 1
 
-let g:plugin_use_treesitter = 1
+let g:plugin_use_treesitter = 1 && has('nvim')
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1

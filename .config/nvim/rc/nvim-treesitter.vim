@@ -1,3 +1,7 @@
+if !g:plugin_use_treesitter
+  finish
+endif
+
 silent! packadd nvim-treesitter
 
 set foldmethod=expr

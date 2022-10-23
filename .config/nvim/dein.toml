@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/10/23 18:50:25.
+# Last Change: 2022/10/23 19:37:06.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -800,6 +800,10 @@ hook_add = '''
 source $VIM_PATH/rc/vim-signify.vim
 '''
 if = 'g:plugin_use_signify'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'jason0x43/vim-wildgitignore'
 on_event = ['CursorHold', 'FocusLost']
 
 # ==================== Textobjs ==================
