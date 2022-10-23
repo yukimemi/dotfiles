@@ -9,6 +9,12 @@ require'nvim-treesitter.configs'.setup {
   sync_install = false,
   highlight = {
     enable = true,
+    disable = function(lang)
+      local ok = pcall(function()
+        vim.treesitter.get_query(lang, 'highlights')
+      end)
+      return not ok
+    end,
   },
   rainbow = {
     enable = true,

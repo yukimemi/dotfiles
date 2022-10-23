@@ -1,7 +1,6 @@
 if !g:plugin_use_incline
   finish
 endif
-
 lua << EOF
 require('incline').setup({
   window = {

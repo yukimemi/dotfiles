@@ -24,7 +24,7 @@ let g:dein#install_progress_type = 'none'
 let g:dein#lazy_rplugins = v:true
 
 function! IsInstalled(name) abort
-  silent! return !dein#check_install(a:name)
+  silent! return dein#tap(a:name)
 endfunction
 
 if !dein#load_state(s:dein_dir)

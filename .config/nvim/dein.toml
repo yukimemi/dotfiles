@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/10/22 19:56:00.
+# Last Change: 2022/10/23 18:50:25.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -18,18 +18,18 @@ on_cmd = 'DeinUpdate'
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
-if = "!has('nvim')"
 hook_add = '''
 source $VIM_PATH/rc/indentLine.vim
 '''
+if = "!has('nvim')"
 
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
-if = "has('nvim') && g:plugin_use_indent_blankline"
-on_source = 'nvim-treesitter'
 hook_source = '''
 source $VIM_PATH/rc/indent-blankline.nvim
 '''
+if = "has('nvim') && g:plugin_use_indent_blankline"
+on_source = 'nvim-treesitter'
 
 [[plugins]]
 repo = 'yuki-yano/dps-indent-line'
@@ -42,26 +42,26 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'itchyny/vim-cursorword'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-cursorword.vim
 '''
+if = 1
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'itchyny/vim-external'
-if = 0
 hook_add = '''
 source $VIM_PATH/rc/vim-external.vim
 '''
+if = 0
 on_map = '<Plug>'
 
 [[plugins]]
 repo = 'itchyny/vim-parenmatch'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-parenmatch.vim
 '''
+if = 1
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
@@ -92,18 +92,18 @@ on_event = ["CursorHold", "InsertEnter", "CursorMoved", "FocusLost"]
 
 [[plugins]]
 repo = 'luochen1990/rainbow'
-if = "!has('nvim')"
 hook_add = '''
 source $VIM_PATH/rc/rainbow.vim
 '''
+if = "!has('nvim')"
 on_event = ["CursorHold", "CursorMoved"]
 
 [[plugins]]
 repo = 'mattn/transparency-windows-vim'
-if = "g:is_windows && has('gui') && !has('nvim')"
 hook_add = '''
 source $VIM_PATH/rc/transparency-windows-vim.vim
 '''
+if = "g:is_windows && has('gui') && !has('nvim')"
 
 [[plugins]]
 repo = 'mattn/vimtweak'
@@ -111,52 +111,69 @@ if = "g:is_windows && !has('nvim')"
 
 [[plugins]]
 repo = "ntpeters/vim-better-whitespace"
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-better-whitespace.vim
 '''
-on_event = ['CursorHold', 'FocusLost']
+if = 1
 on_cmd = 'StripWhiteSpace'
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 't9md/vim-quickhl'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-quickhl.vim
 '''
+if = 1
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'LumaKernel/nvim-visual-eof.lua'
 # if = "has('nvim')"
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/nvim-visual-eof.lua.vim
 '''
+if = 1
 
 [[plugins]]
 repo = 'DanilaMihailov/beacon.nvim'
-if = "g:plugin_use_beacon"
-on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/beacon.nvim
 '''
+if = "g:plugin_use_beacon"
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'psliwka/vim-smoothie'
-if = "!exists('g:nvui') && g:plugin_use_smoothie"
-on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/vim-smoothie.vim
 '''
+if = "!exists('g:nvui') && g:plugin_use_smoothie"
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'gen740/SmoothCursor.nvim'
-if = 'has("nvim")'
-on_event = ['CursorHold', 'FocusLost']
 hook_source = '''
 source $VIM_PATH/rc/SmoothCursor.nvim
 '''
+if = 'has("nvim")'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'nvim-tree/nvim-web-devicons'
+hook_source = '''
+source $VIM_PATH/rc/nvim-web-devicons.vim
+'''
+if = 'has("nvim")'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+hook_add = '''
+source $VIM_PATH/rc/vim-devicons.vim
+'''
+if = '!has("nvim")'
+on_event = ['CursorHold', 'FocusLost']
+on_source = 'lightline.vim'
 
 # colorscheme
 
@@ -224,10 +241,10 @@ source $VIM_PATH/rc/edge.vim
 
 [[plugins]]
 repo = 'tiagovla/tokyodark.nvim'
-if = 'has("nvim")'
 hook_add = '''
 source $VIM_PATH/rc/tokyodark.nvim
 '''
+if = 'has("nvim")'
 
 [[plugins]]
 repo = 'ChristianChiarulli/nvcode-color-schemes.vim'
@@ -265,6 +282,7 @@ repo = '4513ECHO/vim-colors-hatsunemiku'
 
 [[plugins]]
 repo = 'rhysd/vim-color-splatoon'
+if = "has('gui')"
 
 [[plugins]]
 repo = 'tinted-theming/base16-vim'
@@ -274,15 +292,14 @@ if = '!has("nvim")'
 repo = 'cocopon/inspecthi.vim'
 on_cmd = 'Inspecthi'
 
-
 # ==================== Treesitter ================
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
-if = 'has("nvim") && g:plugin_use_treesitter'
 hook_post_update = 'TSUpdate'
 hook_source = '''
 source $VIM_PATH/rc/nvim-treesitter.vim
 '''
+if = 'has("nvim") && g:plugin_use_treesitter'
 on_event = 'BufRead'
 
 [[plugins]]
@@ -297,49 +314,54 @@ repo = 'lewis6991/impatient.nvim'
 if = 'has("nvim")'
 
 [[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+if = 'has("nvim")'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
 repo = 'AndrewRadev/linediff.vim'
 on_cmd = ['Linediff', 'LinediffReset', 'LinediffShow', 'LinediffAdd']
 
 [[plugins]]
 repo = 'LeafCage/yankround.vim'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/yankround.vim
 '''
+if = 1
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
-if = 1
-lazy = 1
 hook_source = '''
 let g:context_filetype#ignore_patterns = {
     \ 'toml': ['^\s*#\s*'],
     \ }
 '''
+if = 1
+lazy = 1
 
 [[plugins]]
 repo = 'Shougo/echodoc.vim'
-if = 1
-on_event = 'InsertEnter'
 hook_source = '''
 source $VIM_PATH/rc/echodoc.vim
 '''
+if = 1
+on_event = 'InsertEnter'
 
 [[plugins]]
 repo = 'airblade/vim-rooter'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-rooter.vim
 '''
+if = 1
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'mattn/vim-findroot'
-if = 0
-on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/vim-findroot.vim
 '''
+if = 0
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
@@ -348,35 +370,35 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = "gelguy/wilder.nvim"
-if = '!g:plugin_use_ddc'
 depends = 'nerdfont.vim'
 hook_source = '''
 source $VIM_PATH/rc/wilder.nvim
 '''
+if = '!g:plugin_use_ddc'
 on_map = [':', '/', '?']
 
 [[plugins]]
 repo = 'haya14busa/vim-edgemotion'
-if = "g:plugin_use_edgemotion"
 hook_add = '''
 source $VIM_PATH/rc/vim-edgemotion.vim
 '''
+if = "g:plugin_use_edgemotion"
 on_map = '<Plug>'
 
 [[plugins]]
 repo = 'tyru/columnskip.vim'
-if = "g:plugin_use_columnskip"
 hook_add = '''
 source $VIM_PATH/rc/columnskip.vim
 '''
+if = "g:plugin_use_columnskip"
 on_map = '<Plug>'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-easy-align.vim
 '''
+if = 1
 on_map = { v = '<Plug>(EasyAlign)' }
 
 [[plugins]]
@@ -386,18 +408,18 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'lambdalisue/vim-findent'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-findent.vim
 '''
+if = 1
 on_cmd = 'Findent'
 
 [[plugins]]
 repo = 'mattn/vim-sonictemplate'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-sonictemplate.vim
 '''
+if = 1
 on_cmd = 'Template'
 
 [[plugins]]
@@ -407,26 +429,26 @@ lazy = 1
 
 [[plugins]]
 repo = 'mbbill/undotree'
-if = 0
 hook_add = '''
 source $VIM_PATH/rc/undotree.vim
 '''
+if = 0
 on_cmd = ['UndotreeToggle']
 
 [[plugins]]
 repo = 'nicwest/vim-camelsnek'
-if = 0
 hook_add = '''
 source $VIM_PATH/rc/vim-camelsnek.vim
 '''
+if = 0
 on_cmd = ['Snek', 'Camel', 'CamelB', 'Kebab']
 
 [[plugins]]
 repo = 'qpkorr/vim-renamer'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-renamer.vim
 '''
+if = 1
 on_cmd = ['Renamer']
 
 [[plugins]]
@@ -453,18 +475,18 @@ if = '!has("nvim")'
 
 [[plugins]]
 repo = 'sentriz/vim-print-debug'
-if = 0
 hook_add = '''
 source $VIM_PATH/rc/vim-print-debug.vim
 '''
+if = 0
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'thinca/vim-ambicmd'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-ambicmd.vim
 '''
+if = 1
 
 [[plugins]]
 repo = 'thinca/vim-localrc'
@@ -482,10 +504,10 @@ on_ft = ['quickfix', 'qf']
 
 [[plugins]]
 repo = 'thinca/vim-submode'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-submode.vim
 '''
+if = 1
 on_event = 'BufRead'
 
 [[plugins]]
@@ -494,10 +516,10 @@ if = 1
 
 [[plugins]]
 repo = 'tyru/open-browser.vim'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/open-browser.vim
 '''
+if = 1
 
 [[plugins]]
 repo = 'tyru/restart.vim'
@@ -506,10 +528,10 @@ on_cmd = 'Restart'
 
 [[plugins]]
 repo = 'thinca/vim-singleton'
-if = "!has('nvim') && has('clientserver')"
 hook_source = '''
 source $VIM_PATH/rc/vim-singleton.vim
 '''
+if = "!has('nvim') && has('clientserver')"
 
 [[plugins]]
 repo = 'machakann/vim-swap'
@@ -517,11 +539,11 @@ if = 0
 
 [[plugins]]
 repo = 'Bakudankun/BackAndForward.vim'
-if = 1
-on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/BackAndForward.vim
 '''
+if = 1
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'MattesGroeger/vim-bookmarks'
@@ -539,33 +561,27 @@ on_cmd = ['WinlayoutInspectLayout', 'WinlayoutInspectRestcmd']
 
 [[plugins]]
 repo = 'rbtnn/vim-layout'
-if = 0
-on_cmd = ['LayoutSave', 'LayoutLoad']
 hook_add = '''
 source $VIM_PATH/rc/vim-layout.vim
 '''
+if = 0
+on_cmd = ['LayoutSave', 'LayoutLoad']
 
 [[plugins]]
 repo = 'osyo-manga/vim-reanimate'
-if = 0
 hook_add = '''
 source $VIM_PATH/rc/vim-reanimate.vim
 '''
+if = 0
 on_cmd = ['ReanimateSave', 'ReanimateLoad', 'ReanimateLoadLatest']
 
 [[plugins]]
 repo = 't9md/vim-choosewin'
-if = 0
 hook_add = '''
 source $VIM_PATH/rc/vim-choosewin.vim
 '''
-on_event = 'BufRead'
-
-[[plugins]]
-repo = 'nvim-lua/plenary.nvim'
 if = 0
-# if = "has('nvim')"
-lazy = 1
+on_event = 'BufRead'
 
 [[plugins]]
 repo = 'kevinhwang91/nvim-bqf'
@@ -573,10 +589,10 @@ if = "has('nvim')"
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
-if = "g:plugin_use_lexima"
 hook_add = '''
 " source $VIM_PATH/rc/lexima.vim
 '''
+if = "g:plugin_use_lexima"
 on_event = "InsertEnter"
 
 [[plugins]]
@@ -609,11 +625,11 @@ on_cmd = 'StartupTime'
 
 [[plugins]]
 repo = 'unblevable/quick-scope'
-if = "g:plugin_use_quickscope"
-on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/quick-scope.vim
 '''
+if = "g:plugin_use_quickscope"
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'deris/vim-shot-f'
@@ -622,11 +638,11 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'rhysd/clever-f.vim'
-if = "g:plugin_use_cleverf"
-on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/clever-f.vim
 '''
+if = "g:plugin_use_cleverf"
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'vim-jp/vital.vim'
@@ -650,16 +666,20 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'osyo-manga/vim-jplus'
-if = 0
-on_map = {n = '<Plug>'}
 hook_add = '''
 source $VIM_PATH/rc/vim-jplus.vim
 '''
+if = 0
+on_map = { n = '<Plug>' }
 
 [[plugins]]
 repo = 'djoshea/vim-autoread'
 if = 0
-on_cmd = ['WatchForChanges', 'WatchForChangesWhileInThisBuffer', 'WatchForChangesAllFile']
+on_cmd = [
+  'WatchForChanges',
+  'WatchForChangesWhileInThisBuffer',
+  'WatchForChangesAllFile',
+]
 
 [[plugins]]
 repo = 'stevearc/stickybuf.nvim'
@@ -673,11 +693,11 @@ on_cmd = ['TailStart', 'TailStop']
 
 [[plugins]]
 repo = 'skanehira/qfopen.vim'
-if = 1
-on_ft = ['quickfix', 'qf']
 hook_add = '''
 source $VIM_PATH/rc/qfopen.vim
 '''
+if = 1
+on_ft = ['quickfix', 'qf']
 
 [[plugins]]
 repo = 'christoomey/vim-tmux-navigator'
@@ -694,11 +714,11 @@ on_event = 'HelpUrl'
 
 [[plugins]]
 repo = 'uga-rosa/ccc.nvim'
-if = "has('nvim')"
-on_cmd = 'CccPick'
 hook_source = '''
 source $VIM_PATH/rc/ccc.nvim
 '''
+if = "has('nvim')"
+on_cmd = 'CccPick'
 
 # ==================== Test ======================
 [[plugins]]
@@ -718,30 +738,29 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'glidenote/memolist.vim'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/memolist.vim
 '''
+if = 1
 on_cmd = ['MemoList', 'MemoNew', 'MemoGrep']
 
 [[plugins]]
 repo = 'tyru/caw.vim'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/caw.vim
 '''
+if = 1
 on_map = '<Plug>'
 
 # ==================== App =======================
 
 [[plugins]]
 repo = 'twitvim/twitvim'
-if = 0
 hook_add = '''
 source $VIM_PATH/rc/twitvim.vim
 '''
+if = 0
 on_cmd = ['FriendsTwitter', 'UserTwitter', 'RepliesTwitter', 'DMTwitter']
-
 
 # ==================== Git =======================
 
@@ -751,14 +770,19 @@ if = 1
 lazy = 1
 
 [[plugins]]
+repo = 'tpope/vim-fugitive'
+if = 1
+lazy = 1
+
+[[plugins]]
 repo = 'lambdalisue/gina.vim'
-if = "g:plugin_use_gina"
 hook_add = '''
 source $VIM_PATH/rc/gina.vim
 '''
 hook_source = '''
 source $VIM_PATH/rc/gina_source.vim
 '''
+if = "g:plugin_use_gina"
 on_cmd = 'Gina'
 
 [[plugins]]
@@ -772,11 +796,11 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'mhinz/vim-signify'
-if = 'g:plugin_use_signify'
-on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/vim-signify.vim
 '''
+if = 'g:plugin_use_signify'
+on_event = ['CursorHold', 'FocusLost']
 
 # ==================== Textobjs ==================
 
@@ -785,47 +809,47 @@ repo = 'kana/vim-textobj-user'
 
 [[plugins]]
 repo = 'gilligan/textobj-lastpaste'
-if = 1
 depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/textobj-lastpaste.vim
 '''
+if = 1
 on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-entire'
-if = 1
 depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-entire.vim
 '''
+if = 1
 on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-fold'
-if = 1
 depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-fold.vim
 '''
+if = 1
 on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-indent'
-if = 1
 depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-indent.vim
 '''
+if = 1
 on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-line'
-if = 1
 depends = 'vim-textobj-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-textobj-line.vim
 '''
+if = 1
 on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
@@ -845,8 +869,8 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'rbtnn/vim-textobj-string'
-if = 0
 depends = 'vim-textobj-user'
+if = 0
 on_event = ['CursorHold', 'FocusLost']
 
 # ==================== Operators =================
@@ -856,64 +880,63 @@ repo = 'kana/vim-operator-user'
 
 [[plugins]]
 repo = 'kana/vim-operator-replace'
-if = 1
 depends = 'vim-operator-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-operator-replace.vim
 '''
+if = 1
 on_map = '<Plug>'
 
 [[plugins]]
 repo = 'osyo-manga/vim-operator-search'
-if = 1
 depends = 'vim-operator-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-operator-search.vim
 '''
+if = 1
 on_map = '<Plug>'
 
 [[plugins]]
 repo = 'osyo-manga/vim-operator-stay-cursor'
-if = 1
 depends = 'vim-operator-user'
+if = 1
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'machakann/vim-sandwich'
-if = 1
 depends = 'vim-operator-user'
+if = 1
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'osyo-manga/vim-operator-highlighter'
-if = 1
 depends = 'vim-operator-user'
+if = 1
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'thinca/vim-operator-sequence'
-if = 0
 depends = 'vim-operator-user'
+if = 0
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'tyru/operator-html-escape.vim'
-if = 1
 depends = 'vim-operator-user'
 hook_add = '''
 source $VIM_PATH/rc/operator-html-escape.vim
 '''
+if = 1
 on_map = '<Plug>'
-
 
 # ==================== Search ====================
 
 [[plugins]]
 repo = 'haya14busa/vim-asterisk'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-asterisk.vim
 '''
+if = 1
 on_map = '<Plug>'
 
 [[plugins]]
@@ -923,83 +946,80 @@ on_event = ["CmdlineEnter", "CmdwinEnter"]
 
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
-if = 1
-on_map = '<Plug>'
 hook_add = '''
 source $VIM_PATH/rc/vim-anzu.vim
 '''
+if = 1
+on_map = '<Plug>'
 
 [[plugins]]
 repo = 'inside/vim-search-pulse'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/vim-search-pulse.vim
 '''
+if = 1
 
 [[plugins]]
 repo = 'monaqa/modesearch.vim'
-if = 1
 hook_add = '''
 source $VIM_PATH/rc/modesearch.vim
 '''
+if = 1
 
 # ==================== Shell =====================
 
 [[plugins]]
 repo = 'Shougo/deol.nvim'
-if = 0
 hook_add = '''
 source $VIM_PATH/rc/deol.nvim
 '''
+if = 0
 on_cmd = ['Deol', 'DeolCd', 'DeolEdit']
 
 [[plugins]]
 repo = 'voldikss/vim-floaterm'
-if = "g:plugin_use_floaterm"
-on_cmd = 'FloatermToggle'
 hook_add = '''
 source $VIM_PATH/rc/vim-floaterm.vim
 '''
+if = "g:plugin_use_floaterm"
+on_cmd = 'FloatermToggle'
 
 [[plugins]]
 repo = 'kassio/neoterm'
-if = "has('nvim') && g:plugin_use_neoterm"
-on_cmd = 'Tnew'
 hook_add = '''
 source $VIM_PATH/rc/neoterm.vim
 '''
+if = "has('nvim') && g:plugin_use_neoterm"
+on_cmd = 'Tnew'
 
 [[plugins]]
 repo = 'akinsho/toggleterm.nvim'
-if = "has('nvim') && g:plugin_use_toggleterm"
-on_cmd = 'ToggleTerm'
 hook_add = '''
 source $VIM_PATH/rc/toggleterm.nvim
 '''
+if = "has('nvim') && g:plugin_use_toggleterm"
+on_cmd = 'ToggleTerm'
 
 # ==================== denops ====================
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
-on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/denops.vim
 '''
+on_event = ['CursorHold', 'FocusLost']
 
-# [[plugins]]
-# repo = 'vim-denops/denops-shared-server.vim'
 [[plugins]]
-repo = 'Milly/denops-shared-server.vim'
-rev = 'feat/powershell-startup'
+repo = 'vim-denops/denops-shared-server.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc.vim'
-if = "g:plugin_use_ddc"
 depends = ['context_filetype.vim', 'denops.vim', 'pum.vim']
-on_event = ['InsertEnter', 'CursorHold']
 hook_source = '''
 source $VIM_PATH/rc/ddc.vim
 '''
+if = "g:plugin_use_ddc"
+on_event = ['InsertEnter', 'CursorHold']
 
 [[plugins]]
 repo = 'Shougo/ddc-around'
@@ -1007,8 +1027,8 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-zsh'
-if = "g:plugin_use_ddc"
 depends = 'ddc.vim'
+if = "g:plugin_use_ddc"
 on_ft = 'zsh'
 
 [[plugins]]
@@ -1070,32 +1090,32 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/pum.vim'
-if = 'g:plugin_use_ddc'
-lazy = 1
 hook_source = '''
 source $VIM_PATH/rc/pum.vim
 '''
+if = 'g:plugin_use_ddc'
+lazy = 1
 
 [[plugins]]
 repo = 'Shougo/ddc-nvim-lsp'
+depends = 'nvim-lspconfig'
 if = 'g:plugin_use_nvimlsp'
 on_source = 'ddc.vim'
-depends = 'nvim-lspconfig'
 
 [[plugins]]
 repo = 'matsui54/denops-popup-preview.vim'
-on_source = 'ddc.vim'
 hook_source = '''
 source $VIM_PATH/rc/denops-popup-preview.vim
 '''
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'matsui54/denops-signature_help'
-if = "has('nvim')"
-on_source = 'ddc.vim'
 hook_source = '''
 source $VIM_PATH/rc/denops-signature_help.vim
 '''
+if = "has('nvim')"
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'tani/ddc-git'
@@ -1115,27 +1135,27 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-if = 'has("nvim") && g:plugin_use_nvimlsp'
-on_event = 'BufRead'
 hook_source = '''
 source $VIM_PATH/rc/nvim-lspconfig.vim
 '''
+if = 'has("nvim") && g:plugin_use_nvimlsp'
+on_event = 'BufRead'
 
 [[plugins]]
 repo = 'williamboman/mason.nvim'
-if = 'has("nvim") && g:plugin_use_nvimlsp'
-on_source = 'nvim-lspconfig'
 hook_source = '''
 source $VIM_PATH/rc/mason.nvim
 '''
+if = 'has("nvim") && g:plugin_use_nvimlsp'
+on_source = 'nvim-lspconfig'
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
-if = 'has("nvim") && g:plugin_use_nvimlsp'
-on_source = 'mason.nvim'
 hook_source = '''
 source $VIM_PATH/rc/mason-lspconfig.nvim
 '''
+if = 'has("nvim") && g:plugin_use_nvimlsp'
+on_source = 'mason.nvim'
 
 [[plugins]]
 repo = 'shun/ddc-vim-lsp'
@@ -1158,10 +1178,10 @@ depends = 'denops.vim'
 [[plugins]]
 repo = 'yuki-yano/fuzzy-motion.vim'
 depends = 'denops.vim'
-on_cmd = 'FuzzyMotion'
 hook_add = '''
 source $VIM_PATH/rc/fuzzy-motion.vim
 '''
+on_cmd = 'FuzzyMotion'
 
 [[plugins]]
 repo = 'uki00a/denops-pomodoro.vim'
@@ -1180,8 +1200,8 @@ depends = 'denops.vim'
 
 [[plugins]]
 repo = 'yutkat/dps-coding-now.nvim'
-if = "!g:is_windows"
 depends = 'denops.vim'
+if = "!g:is_windows"
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
@@ -1203,28 +1223,28 @@ source $VIM_PATH/rc/dps-ahdr.vim
 repo = 'yukimemi/dps-autocursor'
 # repo = '~/src/github.com/yukimemi/dps-autocursor'
 depends = 'denops.vim'
-on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/dps-autocursor.vim
 '''
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'yukimemi/dps-autobackup'
 # repo = '~/src/github.com/yukimemi/dps-autobackup'
 depends = 'denops.vim'
-on_event = ['CursorHold', 'FocusLost', 'BufWritePre']
 hook_add = '''
 source $VIM_PATH/rc/dps-autobackup.vim
 '''
+on_event = ['CursorHold', 'FocusLost', 'BufWritePre']
 
 [[plugins]]
 repo = 'yukimemi/dps-autodate'
 # repo = '~/src/github.com/yukimemi/dps-autodate'
 depends = 'denops.vim'
-on_event = ['CursorHold', 'FocusLost', 'BufWritePre']
 hook_add = '''
 source $VIM_PATH/rc/dps-autodate.vim
 '''
+on_event = ['CursorHold', 'FocusLost', 'BufWritePre']
 
 [[plugins]]
 repo = 'yukimemi/dps-asyngrep'
@@ -1252,20 +1272,20 @@ source $VIM_PATH/rc/dps-randomcolorscheme.vim
 
 [[plugins]]
 repo = 'kat0h/bufpreview.vim'
-if = "g:plugin_use_bufpreview"
 depends = 'denops.vim'
-on_ft = ['markdown', 'pandoc.markdown', 'rmd']
+if = "g:plugin_use_bufpreview"
 on_cmd = ['PreviewMarkdown', 'PreviewMarkdownStop', 'PreviewMarkdownToggle']
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 
 [[plugins]]
 repo = 'yukimemi/glance-vim'
-if = "g:plugin_use_glance"
 depends = 'denops.vim'
-on_ft = ['markdown', 'pandoc.markdown', 'rmd']
-on_cmd = 'Glance'
 hook_add = '''
 source $VIM_PATH/rc/glance-vim.vim
 '''
+if = "g:plugin_use_glance"
+on_cmd = 'Glance'
+on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 
 [[plugins]]
 repo = 'gamoutatsumi/dps-ghosttext.vim'
@@ -1282,36 +1302,42 @@ depends = 'denops.vim'
 
 [[plugins]]
 repo = 'lambdalisue/gin.vim'
-if = "g:plugin_use_gin"
 depends = ['denops.vim', 'askpass.vim', 'guise.vim']
 hook_add = '''
 source $VIM_PATH/rc/gin.vim
 '''
+if = "g:plugin_use_gin"
 
 [[plugins]]
 repo = 'tennashi/gitsign.vim'
-if = 'g:plugin_use_gitsign'
 depends = 'denops.vim'
-on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/gitsign.vim
 '''
+if = 'g:plugin_use_gitsign'
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'skanehira/denops-twihi.vim'
 depends = 'denops.vim'
-on_cmd = ['TwihiHome', 'TwihiTimeline', 'TwihiMentions', 'TwihiTweet', 'TwihiEditConfig']
 hook_add = '''
 source $VIM_PATH/rc/denops-twihi.vim
 '''
+on_cmd = [
+  'TwihiHome',
+  'TwihiTimeline',
+  'TwihiMentions',
+  'TwihiTweet',
+  'TwihiEditConfig',
+]
 
 [[plugins]]
 repo = '4513ECHO/denops-gitter.vim'
-if = "!g:is_windows"
 depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/denops-gitter.vim
 '''
+if = "!g:is_windows"
 
 # [[plugins]]
 # repo = 'skanehira/denops-silicon.vim'
@@ -1322,15 +1348,29 @@ if = "executable('exercism')"
 
 # ==================== Fuzzy =====================
 
+## ctrlp
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
+depends = 'mr.vim'
 hook_add = '''
 source $VIM_PATH/rc/ctrlp.vim
 '''
 if = "g:plugin_use_ctrlp"
-on_cmd = ['CtrlP', 'CtrlPBuffer', 'CtrlPCurFile', 'CtrlPMRUFiles', 'CtrlPLauncher', 'CtrlPSonictemplate', 'VimHelpJp', 'CtrlPCmdHistory', 'CtrlPSearchHistory', 'CtrlPMRMru', 'CtrlPMRMrw', 'CtrlPMRMrr']
+on_cmd = [
+  'CtrlP',
+  'CtrlPBuffer',
+  'CtrlPCurFile',
+  'CtrlPMRUFiles',
+  'CtrlPLauncher',
+  'CtrlPSonictemplate',
+  'VimHelpJp',
+  'CtrlPCmdHistory',
+  'CtrlPSearchHistory',
+  'CtrlPMRMru',
+  'CtrlPMRMrw',
+  'CtrlPMRMrr',
+]
 on_map = '<Plug>'
-depends = 'mr.vim'
 [[plugins]]
 repo = 'kaneshin/ctrlp-filetype'
 on_source = 'ctrlp.vim'
@@ -1348,8 +1388,8 @@ repo = 'mattn/ctrlp-mark'
 on_source = 'ctrlp.vim'
 [[plugins]]
 repo = 'mattn/ctrlp-vimhelpjp'
-on_source = 'ctrlp.vim'
 depends = 'webapi-vim'
+on_source = 'ctrlp.vim'
 [[plugins]]
 repo = 'ompugao/ctrlp-history'
 on_source = 'ctrlp.vim'
@@ -1371,24 +1411,24 @@ repo = 'tsuyoshicho/ctrlp-mr.vim'
 depends = 'mr.vim'
 on_source = 'ctrlp.vim'
 
-
+## ddu
 [[plugins]]
 repo = 'Shougo/ddu.vim'
-if = "g:plugin_use_ddu"
 depends = 'denops.vim'
-on_source = 'denops.vim'
 hook_source = '''
 source $VIM_PATH/rc/ddu.vim
 '''
+if = "g:plugin_use_ddu"
+on_source = 'denops.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-commands.vim'
-if = "g:plugin_use_ddu"
 depends = ['ddu.vim', 'mr.vim']
-on_cmd = 'Ddu'
 hook_add = '''
 source $VIM_PATH/rc/ddu-commands.vim
 '''
+if = "g:plugin_use_ddu"
+on_cmd = 'Ddu'
 
 [[plugins]]
 repo = 'Shougo/ddu-ui-ff'
@@ -1492,40 +1532,56 @@ on_source = 'ddu.vim'
 
 [[plugins]]
 repo = 'Shougo/ddu-ui-filer'
-if = "g:plugin_use_ddu_filer"
 depends = 'ddu.vim'
 hook_source = '''
 source $VIM_PATH/rc/ddu-ui-filer.vim
 '''
+if = "g:plugin_use_ddu_filer"
+
+## telescope
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+depends = 'plenary.nvim'
+hook_add = '''
+source $VIM_PATH/rc/telescope.nvim
+'''
+hook_source = '''
+source $VIM_PATH/rc/telescope_source.nvim
+'''
+if = "g:plugin_use_telescope"
+on_cmd = 'Telescope'
 
 # ==================== Statusline ================
 
 [[plugins]]
 repo = "itchyny/lightline.vim"
-if = "g:plugin_use_lightline"
+depends = ['vim-gitbranch', 'vista.vim']
 hook_add = '''
 source $VIM_PATH/rc/lightline.vim
 '''
+if = "g:plugin_use_lightline"
 on_event = ['CursorHold', 'FocusLost']
-depends = ['lightline-colorscheme-simplicity', 'lightline-lsp', 'vim-gitbranch', 'vista.vim']
 
 [[plugins]]
 repo = 'halkn/lightline-lsp'
 if = "g:plugin_use_lightline"
-lazy = 1
+on_source = 'lightline.vim'
 
 [[plugins]]
 repo = 'josa42/vim-lightline-coc'
 if = "g:plugin_use_lightline"
-lazy = 1
+on_source = 'lightline.vim'
 
 [[plugins]]
 repo = 'kmtoki/lightline-colorscheme-simplicity'
-lazy = 1
+if = "g:plugin_use_lightline"
+on_source = 'lightline.vim'
+
 
 [[plugins]]
 repo = "vim-airline/vim-airline"
-depends = ["vim-airline-themes", "vista.vim"]
+depends = ["vim-airline-themes", "vista.vim", "vim-fugitive"]
+on_event = ['CursorHold', 'FocusLost']
 hook_add = '''
 source $VIM_PATH/rc/vim-airline.vim
 '''
@@ -1538,28 +1594,28 @@ lazy = 1
 
 [[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
-if = "g:plugin_use_lualine && has('nvim')"
-on_event = ['CursorHold', 'FocusLost']
 hook_source = '''
 source $VIM_PATH/rc/lualine.nvim
 '''
+if = "g:plugin_use_lualine"
+on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'b0o/incline.nvim'
-if = "g:plugin_use_incline && has('nvim')"
-on_event = ['CursorHold', 'FocusLost']
 hook_source = '''
 source $VIM_PATH/rc/incline.nvim
 '''
+if = "g:plugin_use_incline && has('nvim')"
+on_event = ['CursorHold', 'FocusLost']
 
 # ==================== Filetree ==================
 
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
-if = "g:plugin_use_fern"
 hook_add = '''
 source $VIM_PATH/rc/fern.vim
 '''
+if = "g:plugin_use_fern"
 on_cmd = 'Fern'
 [[plugins]]
 repo = 'lambdalisue/fern-git-status.vim'
@@ -1578,20 +1634,19 @@ repo = 'lambdalisue/fern-comparator-lexical.vim'
 on_source = 'fern.vim'
 [[plugins]]
 repo = 'lambdalisue/fern-renderer-nerdfont.vim'
-on_source = 'fern.vim'
 depends = ['nerdfont.vim', 'glyph-palette.vim']
+on_source = 'fern.vim'
 [[plugins]]
 repo = 'lambdalisue/fern-hijack.vim'
 on_source = 'fern.vim'
 
-
 [[plugins]]
 repo = 'mattn/vim-molder'
-if = 'g:plugin_use_molder'
 depends = ['vim-molder-operations']
 hook_add = '''
 source $VIM_PATH/rc/vim-molder.vim
 '''
+if = 'g:plugin_use_molder'
 
 [[plugins]]
 repo = 'mattn/vim-molder-operations'
@@ -1605,11 +1660,11 @@ on_cmd = 'Vaffle'
 [[plugins]]
 repo = 'obaland/vfiler.vim'
 depends = 'vfiler-column-devicons'
-if = 'g:plugin_use_vfiler'
-on_cmd = 'VFiler'
 hook_add = '''
 source $VIM_PATH/rc/vfiler.vim
 '''
+if = 'g:plugin_use_vfiler'
+on_cmd = 'VFiler'
 
 [[plugins]]
 repo = 'obaland/vfiler-column-devicons'
@@ -1623,12 +1678,12 @@ on_event = 'InsertEnter'
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
-if = '!g:plugin_use_coc'
-on_event = 'InsertEnter'
-on_source = 'ddc.vim'
 hook_source = '''
 source $VIM_PATH/rc/vim-vsnip.vim
 '''
+if = '!g:plugin_use_coc'
+on_event = 'InsertEnter'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip-integ'
@@ -1652,10 +1707,10 @@ if = "g:plugin_use_vimlsp"
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
-if = "g:plugin_use_vimlsp"
 hook_add = '''
 source $VIM_PATH/rc/vim-lsp.vim
 '''
+if = "g:plugin_use_vimlsp"
 
 [[plugins]]
 repo = 'tsuyoshicho/vim-efm-langserver-settings'
@@ -1663,34 +1718,33 @@ if = 0
 
 [[plugins]]
 repo = "neoclide/coc.nvim"
-if = "g:plugin_use_coc"
-rev = "release"
 hook_add = '''
 source $VIM_PATH/rc/coc.nvim
 '''
+if = "g:plugin_use_coc"
+rev = "release"
 
 [[plugins]]
 repo = 'github/copilot.vim'
-if = 0
-on_event = ['CursorHold', 'FocusLost']
-on_cmd = 'Copilot'
 hook_add = '''
 source $VIM_PATH/rc/copilot.vim
 '''
-
+if = 0
+on_cmd = 'Copilot'
+on_event = ['CursorHold', 'FocusLost']
 
 # ==================== Runner ====================
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
-if = "g:plugin_use_quickrun"
 depends = 'vim-quickrun-neovim-job'
 hook_add = '''
 source $VIM_PATH/rc/vim-quickrun.vim
 '''
+if = "g:plugin_use_quickrun"
+on_cmd = 'QuickRun'
 on_ft = ['ps1', 'typescript']
 on_map = '<Plug>'
-on_cmd = 'QuickRun'
 
 [[plugins]]
 repo = 'lambdalisue/vim-quickrun-neovim-job'
@@ -1707,27 +1761,27 @@ on_source = 'vim-quickrun'
 
 [[plugins]]
 repo = 'skywind3000/asyncrun.vim'
-if = "g:plugin_use_asyncrun"
 hook_add = '''
 source $VIM_PATH/rc/asyncrun.vim
 '''
+if = "g:plugin_use_asyncrun"
 
 # ==================== Filetype (all) ============
 
 [[plugins]]
 repo = 'nathom/filetype.nvim'
-if = "has('nvim')"
 hook_add = '''
 source $VIM_PATH/rc/filetype.nvim
 '''
+if = "has('nvim')"
 
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
-if = 0
 hook_add = '''
 source $VIM_PATH/rc/vim-polyglot.vim
 '''
-merged = 0
+if = 0
+merged = false
 
 # ==================== Filetype (vim) =======
 
@@ -1747,7 +1801,6 @@ on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 
 [[plugins]]
 repo = 'iamcco/markdown-preview.nvim'
-if = "g:plugin_use_markdownpreview"
 hook_add = '''
 source $VIM_PATH/rc/markdown-preview.nvim
 '''
@@ -1755,6 +1808,7 @@ hook_post_update = '''
 call dein#source('markdown-preview.nvim')
 call mkdp#util#install()
 '''
+if = "g:plugin_use_markdownpreview"
 on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 
 [[plugins]]
@@ -1776,32 +1830,31 @@ repo = 'amadeus/vim-xml'
 if = "!g:plugin_use_coc"
 on_ft = ['html', 'xml']
 
-
 # ==================== Filetype (javascript) =======
 
 [[plugins]]
 repo = 'heavenshell/vim-jsdoc'
-on_ft = ['javascript', 'javascript.jsx','typescript']
 build = '''
 npm i -g lehre
 '''
+on_ft = ['javascript', 'javascript.jsx', 'typescript']
 
 # ==================== Filetype (plantuml) =======
 
 [[plugins]]
 repo = 'tsuyoshicho/plantuml-previewer.vim'
 depends = ['open-browser.vim']
-on_ft = 'plantuml'
 hook_add = '''
 source $VIM_PATH/rc/plantuml-previewer.vim
 '''
+on_ft = 'plantuml'
 
 [[plugins]]
 repo = 'aklt/plantuml-syntax'
-on_ft = 'plantuml'
 hook_add = '''
 source $VIM_PATH/rc/plantuml-syntax.vim
 '''
+on_ft = 'plantuml'
 
 # ==================== Filetype (toml) =======
 
@@ -1858,10 +1911,10 @@ on_ft = 'csv'
 
 [[plugins]]
 repo = 'MTDL9/vim-log-highlighting'
-on_ft = 'log'
 hook_add = '''
 source $VIM_PATH/rc/vim-log-highlighting.vim
 '''
+on_ft = 'log'
 
 # ==================== Filetype (fish) ============
 

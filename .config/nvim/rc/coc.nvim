@@ -16,6 +16,7 @@ let g:coc_global_extensions = [
       \ "coc-diagnostic",
       \ "coc-explorer",
       \ "coc-pairs",
+      \ "coc-git",
       \ "coc-lists",
       \ "coc-marketplace",
       \ "coc-snippets",
@@ -41,8 +42,8 @@ Keymap i <silent><expr> <c-space> coc#refresh()
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-Keymap n <silent> [g <Plug>(coc-diagnostic-prev)
-Keymap n <silent> ]g <Plug>(coc-diagnostic-next)
+Keymap n <silent> [d <Plug>(coc-diagnostic-prev)
+Keymap n <silent> ]d <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 Keymap n <silent> gd <Plug>(coc-definition)
@@ -183,6 +184,21 @@ Keymap n <silent> <space>y :<c-u>CocList -A --normal yank<cr>
 " popup
 Keymap n <leader>T <Plug>(coc-translator-p)
 Keymap v <leader>T <Plug>(coc-translator-pv)
+
+" coc-git.
+" navigate chunks of current buffer
+Keymap n [g <Plug>(coc-git-prevchunk)
+Keymap n ]g <Plug>(coc-git-nextchunk)
+" navigate conflicts of current buffer
+Keymap n [c <Plug>(coc-git-prevconflict)
+Keymap n ]c <Plug>(coc-git-nextconflict)
+" show chunk diff at current position
+Keymap n gs <Plug>(coc-git-chunkinfo)
+" show commit contains current position
+Keymap n gc <Plug>(coc-git-commit)
+" create text object for git chunks
+Keymap xo ig <Plug>(coc-git-chunk-inner)
+Keymap xo ag <Plug>(coc-git-chunk-outer)
 
 " coc-go
 au MyAutoCmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
