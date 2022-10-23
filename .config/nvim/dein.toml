@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/10/23 19:37:06.
+# Last Change: 2022/10/23 20:11:37.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1517,6 +1517,11 @@ on_source = 'ddu.vim'
 [[plugins]]
 repo = '4513ECHO/ddu-source-colorscheme'
 on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'liquidz/ddu-source-custom-list'
+on_source = 'ddu.vim'
+
 
 [[plugins]]
 repo = 'yuki-yano/ddu-filter-fzf'

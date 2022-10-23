@@ -82,7 +82,7 @@ ins_left {
   function()
     return '▊'
   end,
-  color = { fg = colors.blue }, -- Sets highlighting of component
+  color = { fg = colors.violet }, -- Sets highlighting of component
   padding = { left = 0, right = 1 }, -- We don't need space before this
 }
 
@@ -147,6 +147,14 @@ ins_left {
   },
 }
 
+ins_left {
+  function()
+    return vim.fn.getcwd()
+  end,
+  cond = conditions.buffer_not_empty,
+  color = { fg = colors.cyan },
+}
+
 -- Insert mid section. You can make any number of sections in neovim :)
 -- for lualine it's any number greater then 2
 ins_left {
@@ -158,6 +166,9 @@ ins_left {
 ins_left {
   -- Lsp server name .
   function()
+    if vim.g.plugin_use_coc then
+      return vim.fn['coc#status']()
+    end
     local msg = 'No Active Lsp'
     local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
     local clients = vim.lsp.get_active_clients()
@@ -172,11 +183,19 @@ ins_left {
     end
     return msg
   end,
-  icon = ' LSP:',
+  icon = '  :',
   color = { fg = '#ffffff', gui = 'bold' },
 }
 
 -- Add components to right sections
+ins_right {
+  function()
+    return vim.g.colors_name
+  end,
+  cond = conditions.hide_in_width,
+  color = { fg = colors.orange },
+}
+
 ins_right {
   'o:encoding', -- option component same as &encoding in viml
   fmt = string.upper, -- I'm not sure why it's upper case either ;)
@@ -187,13 +206,13 @@ ins_right {
 ins_right {
   'fileformat',
   fmt = string.upper,
-  icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+  icons_enabled = true,
   color = { fg = colors.green, gui = 'bold' },
 }
 
 ins_right {
   'branch',
-  icon = '',
+  icon = ' ',
   color = { fg = colors.violet, gui = 'bold' },
 }
 
