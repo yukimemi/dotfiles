@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/10/23 19:03:59.
+" Last Change : 2022/10/27 01:15:06.
 " =============================================================================
 
 " Init:
@@ -432,8 +432,8 @@ let g:plugin_use_pack = 0
 let g:plugin_use_packer = 0
 let g:plugin_use_jetpack = 0
 
-let g:plugin_use_lightline = 0
-let g:plugin_use_airline = !has('nvim')
+let g:plugin_use_lightline = 1
+let g:plugin_use_airline = 0
 let g:plugin_use_barow = 0
 let g:plugin_use_neoline = 0 && has('nvim')
 let g:plugin_use_lualine = 1 && has('nvim')
@@ -463,19 +463,19 @@ let g:plugin_use_smoothie = 0
 let g:plugin_use_ctrlp = 1
 let g:plugin_use_fzf = 0
 let g:plugin_use_cocfzf = 0
-let g:plugin_use_coclist = 0
+let g:plugin_use_coclist = 1
 let g:plugin_use_fz = 0
 let g:plugin_use_ddu = 1
 let g:plugin_use_telescope = 0 && has('nvim')
 let g:plugin_use_linearf = 0 && has('nvim')
 
-let g:plugin_use_fern = 0
+let g:plugin_use_fern = !g:plugin_use_coc
 let g:plugin_use_ddu_filer = 0
 let g:plugin_use_vfiler = 0
 let g:plugin_use_molder = 0
 let g:plugin_use_vaffle = 0
 let g:plugin_use_viler = 0
-let g:plugin_use_coc_explorer = 1
+let g:plugin_use_coc_explorer = g:plugin_use_coc
 
 let g:plugin_use_quickrun = 1
 let g:plugin_use_asyncrun = 0
@@ -487,8 +487,8 @@ let g:plugin_use_gitsign = 0 && !g:plugin_use_coc
 let g:plugin_use_signify = 1 && !g:plugin_use_coc
 
 let g:plugin_use_bufpreview = 0
-let g:plugin_use_glance = 0
-let g:plugin_use_markdownpreview = 1
+let g:plugin_use_glance = 1
+let g:plugin_use_markdownpreview = 0
 
 let g:plugin_use_neoterm = 0
 let g:plugin_use_toggleterm = 0

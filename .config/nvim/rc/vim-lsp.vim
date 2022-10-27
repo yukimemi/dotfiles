@@ -32,8 +32,8 @@ function! s:on_lsp_buffer_enabled() abort
   Keymap n <silent><buffer> <localleader>s <cmd>split \| :LspDefinition<cr>
   Keymap n <silent><buffer> <localleader>v <cmd>vsplit \| :LspDefinition<cr>
   Keymap n <silent><buffer> K <cmd>call Showdocumentation()<cr>
-  Keymap n <silent><buffer> [g <plug>(lsp-previous-diagnostic)
-  Keymap n <silent><buffer> ]g <plug>(lsp-next-diagnostic)
+  Keymap n <silent><buffer> [d <plug>(lsp-previous-diagnostic)
+  Keymap n <silent><buffer> ]d <plug>(lsp-next-diagnostic)
   Keymap n <silent><buffer> gS <plug>(lsp-workspace-symbol-search)
   Keymap n <silent><buffer> gd <plug>(lsp-definition)
   Keymap n <silent><buffer> gi <plug>(lsp-implementation)

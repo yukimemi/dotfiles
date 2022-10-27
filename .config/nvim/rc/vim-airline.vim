@@ -32,7 +32,7 @@ Keymap n <leader>+ <Plug>AirlineSelectNextTab
 
 function! AirlineInit()
   let g:airline_section_b = airline#section#create_left(['hunks', 'branch', '%-0.30{getcwd()}'])
-  let g:airline_section_x = airline#section#create_right(['%{exists("g:colors_name") ? g:colors_name : ""}', 'tagbar', 'filetype'])
+  let g:airline_section_x = airline#section#create_right(['%{dein#get_progress()}', '%{exists("g:colors_name") ? g:colors_name : ""}', 'tagbar', 'filetype'])
 endfunction
 au MyAutoCmd User AirlineAfterInit call AirlineInit()
 

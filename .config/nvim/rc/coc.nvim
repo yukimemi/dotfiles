@@ -129,20 +129,22 @@ if s:plugin_use_cocfzf
 endif
 
 if g:plugin_use_coclist
-  nnoremap <silent> <leader>cc :<c-u>CocList<cr>
-  nnoremap <silent> <leader>cD :<c-u>CocList files --hidden ~/.dotfiles<cr>
-  nnoremap <silent> <leader>cv :<c-u>CocList files --hidden ~/.cache<cr>
-  nnoremap <silent> <leader>cm :<c-u>CocList files --hidden ~/.memolist<cr>
-  nnoremap <silent> <leader>cs :<c-u>CocList files --hidden ~/src<cr>
-  nnoremap <silent> <leader>cb :<c-u>CocList buffers<cr>
-  nnoremap <silent> <leader>ch :<c-u>CocList cmdhistory<cr>
-  nnoremap <silent> <leader>cH :<c-u>CocList helptags<cr>
-  nnoremap <silent> <leader>cu :<c-u>CocList mru<cr>
-  nnoremap <silent> <leader>ct :<c-u>CocList todolist<cr>
-  nnoremap <silent> <leader>cS :<c-u>CocList -I symbols<cr>
-  nnoremap <silent> <leader>cF :<c-u>CocList filetypes<cr>
-  nnoremap <silent> <leader>cg :<c-u>CocList --no-quit grep<cr>
-  nnoremap <silent> <leader>cr :<c-u>CocListResume<cr>
+  Keymap n <silent> <leader>ff <cmd>CocList<cr>
+  Keymap n <silent> <leader>fg <cmd>CocList gfiles<cr>
+  Keymap n <silent> <leader>fD <cmd>CocList files --hidden ~/.dotfiles<cr>
+  Keymap n <silent> <leader>fv <cmd>CocList files --hidden ~/.cache<cr>
+  Keymap n <silent> <leader>fm <cmd>CocList files --hidden ~/.memolist<cr>
+  Keymap n <silent> <leader>fs <cmd>CocList files --hidden ~/src<cr>
+  Keymap n <silent> <leader>fb <cmd>CocList buffers<cr>
+  Keymap n <silent> <leader>fh <cmd>CocList cmdhistory<cr>
+  Keymap n <silent> <leader>fH <cmd>CocList helptags<cr>
+  Keymap n <silent> <leader>fu <cmd>CocList mru -A<cr>
+  Keymap n <silent> <leader>fU <cmd>CocList mru<cr>
+  Keymap n <silent> <leader>ft <cmd>CocList todolist<cr>
+  Keymap n <silent> <leader>fS <cmd>CocList -I symbols<cr>
+  Keymap n <silent> <leader>fF <cmd>CocList filetypes<cr>
+  Keymap n <silent> <leader>fG <cmd>CocList --no-quit grep<cr>
+  Keymap n <silent> <leader>fr <cmd>CocListResume<cr>
 endif
 
 " coc-snippet
@@ -172,7 +174,7 @@ if s:plugin_use_coc_explorer
 endif
 
 " coc-todolist
-" nnoremap <leader>l :<c-u>CocCommand todolist.create<cr>
+Keymap n <leader>l <cmd>CocCommand todolist.create<cr>
 
 " coc-terminal
 " nmap <leader>s <Plug>(coc-terminal-toggle)

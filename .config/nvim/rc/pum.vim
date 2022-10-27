@@ -3,9 +3,12 @@ if !g:plugin_use_ddc
 endif
 
 function! s:pum_cfg() abort
-  call pum#set_option({ 'border': "rounded" })
-  call pum#set_option('max_width', 100)
-  call pum#set_option('use_complete', v:true)
+  call pum#set_option({
+        \  'border': "rounded",
+        \  'highlight_kind': 'Type',
+        \  'max_width': 100,
+        \  'use_complete': v:true,
+        \ })
 endfunction
 
 au MyAutoCmd InsertEnter * ++once call s:pum_cfg()

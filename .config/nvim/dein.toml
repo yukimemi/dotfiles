@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/10/23 22:35:13.
+# Last Change: 2022/10/27 00:52:40.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -172,8 +172,7 @@ hook_add = '''
 source $VIM_PATH/rc/vim-devicons.vim
 '''
 if = '!has("nvim")'
-on_event = ['CursorHold', 'FocusLost']
-on_source = 'lightline.vim'
+lazy = 1
 
 # colorscheme
 
@@ -327,7 +326,7 @@ repo = 'LeafCage/yankround.vim'
 hook_add = '''
 source $VIM_PATH/rc/yankround.vim
 '''
-if = 1
+if = 0
 on_event = 'BufRead'
 
 [[plugins]]
@@ -1028,6 +1027,14 @@ if = "g:plugin_use_ddc"
 on_event = ['InsertEnter', 'CursorHold']
 
 [[plugins]]
+repo = 'Shougo/ddc-ui-native'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-ui-pum'
+on_source = 'ddc.vim'
+
+[[plugins]]
 repo = 'Shougo/ddc-around'
 on_source = 'ddc.vim'
 
@@ -1036,6 +1043,11 @@ repo = 'Shougo/ddc-zsh'
 depends = 'ddc.vim'
 if = "g:plugin_use_ddc"
 on_ft = 'zsh'
+
+[[plugins]]
+repo = 'delphinus/ddc-tmux'
+on_source = 'ddc.vim'
+if = "!g:is_windows"
 
 [[plugins]]
 repo = 'Shougo/ddc-mocword'
@@ -1059,6 +1071,10 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-converter_truncate_abbr'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'matsui54/ddc-converter_truncate'
 on_source = 'ddc.vim'
 
 [[plugins]]
@@ -1121,6 +1137,10 @@ hook_source = '''
 source $VIM_PATH/rc/denops-signature_help.vim
 '''
 if = "has('nvim')"
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'tani/ddc-fuzzy'
 on_source = 'ddc.vim'
 
 [[plugins]]
@@ -1284,7 +1304,7 @@ on_cmd = ['PreviewMarkdown', 'PreviewMarkdownStop', 'PreviewMarkdownToggle']
 on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 
 [[plugins]]
-repo = 'yukimemi/glance-vim'
+repo = 'tani/glance-vim'
 depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/glance-vim.vim
@@ -1566,7 +1586,7 @@ on_cmd = 'Telescope'
 
 [[plugins]]
 repo = "itchyny/lightline.vim"
-depends = ['vim-gitbranch', 'vista.vim']
+depends = ['vim-gitbranch', 'vista.vim', 'vim-devicons']
 hook_add = '''
 source $VIM_PATH/rc/lightline.vim
 '''
@@ -1734,7 +1754,7 @@ source $VIM_PATH/rc/coc.nvim
 '''
 if = "g:plugin_use_coc"
 rev = "release"
-on_event = 'BufRead'
+on_event = 'VimEnter'
 
 [[plugins]]
 repo = 'github/copilot.vim'

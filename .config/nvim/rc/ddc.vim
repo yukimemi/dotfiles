@@ -2,169 +2,224 @@ if !g:plugin_use_ddc
   finish
 endif
 
-" let s:default_sources = ['around', 'mocword', 'ddc-path', 'git-file', 'git-commit', 'git-branch', 'file']
-let s:default_sources = ['vsnip', 'around', 'buffer', 'mocword', 'file']
+let s:patch_global = {}
+let s:sources = ['file', 'around', 'vsnip', 'buffer']
+let s:sourceOptions = {}
+let s:sourceParams = {}
+let s:filterParams = {}
+
 if g:plugin_use_vimlsp
-  let s:default_sources = ['vim-lsp'] + s:default_sources
+  call extend(['vim-lsp'], s:sources)
 endif
+
 if g:plugin_use_nvimlsp
-  let s:default_sources = ['nvim-lsp'] + s:default_sources
+  call extend(['nvim-lsp'], s:sources)
 endif
 
 if !g:is_windows
-  let s:default_sources = s:default_sources + ['rg']
+  call extend(['tmux'], s:sources)
 endif
 
-let s:defult_sources_nvim = ['treesitter'] + s:default_sources
-let s:defult_sources_vim = s:default_sources
-
-let s:lsp_languages = ['typescript', 'ps1', 'vim', 'rust', 'go', 'json']
-
-call ddc#custom#patch_global(
-      \ 'sources', has('nvim') ?
-      \ s:defult_sources_nvim :
-      \ s:defult_sources_vim,
-      \ )
-
-call ddc#custom#patch_global('cmdlineSources',
-      \ ['cmdline-history', 'input', 'file', 'around']
-      \ )
-
-call ddc#custom#patch_global('sourceOptions', {
-      \ '_': {
-      \   'ignoreCase': v:true,
-      \   'dup': v:true,
-      \   'matchers': ['matcher_head'],
-      \   'sorters': ['sorter_rank'],
-      \   'converters': ['converter_remove_overlap', 'converter_truncate_abbr'],
-      \ },
-      \ 'treesitter': {
-      \   'mark': 'T'
-      \ },
-      \ 'around': {
-      \   'mark': 'A',
-      \   'matchers': ['matcher_head', 'matcher_length'],
-      \ },
-      \ 'buffer': {
-      \   'mark': 'B'
-      \ },
-      \ 'vsnip': {
-      \   'mark': 'S'
-      \ },
-      \ 'necovim': {
-      \   'mark': 'vim'
-      \ },
-      \ 'cmdline': {
-      \   'mark': 'cmdline',
-      \   'forceCompletionPattern': '\S/\S*',
-      \ },
-      \ 'cmdline-history': {
-      \   'mark': 'history',
-      \   'sorters': [],
-      \ },
-      \ 'shell-history': {'mark': 'shell'},
-      \ 'zsh': {
-      \   'mark': 'zsh',
-      \   'isVolatile': v:true,
-      \   'forceCompletionPattern': '\S/\S*'
-      \ },
-      \ 'mocword': {
-      \   'mark': 'mocword',
-      \   'minAutoCompleteLength': 3,
-      \   'isVolatile': v:true,
-      \ },
-      \ 'nvim-lsp': {
-      \   'mark': 'lsp',
-      \   'forceCompletionPattern': '\.\w*|:\w*|->\w*'
-      \ },
-      \ 'vim-lsp': {
-      \   'mark': 'lsp',
-      \   'forceCompletionPattern': '\.\w*|:\w*|->\w*'
-      \ },
-      \ 'file': {
-      \   'mark': 'F',
-      \   'isVolatile': v:true,
-      \   'minAutoCompleteLength': 1000,
-      \   'forceCompletionPattern': '\S/\S*'
-      \ },
-      \ 'path': {
-      \   'mark': 'P',
-      \   'cmd': ['fd', '--max-depth', '5']
-      \ },
-      \ 'look': {
-      \   'converters': ['loud', 'matcher_head'],
-      \   'matchers': [],
-      \   'mark': 'l',
-      \   'isVolatile': v:true
-      \ },
-      \ 'rg': {
-      \   'mark': 'rg',
-      \   'matchers': ['matcher_head', 'matcher_length'],
-      \   'minAutoCompleteLength': 4,
-      \ },
-      \ })
-
-call ddc#custom#patch_global('sourceParams', {
-      \ 'buffer': {
-      \   'requireSameFiletype': v:false,
-      \   'limitBytes': 5000000,
-      \   'fromAltBuf': v:true,
-      \   'forceCollect': v:true,
-      \ },
-      \ 'look': {
-      \   'convertCase': v:true,
-      \   'dict': v:null,
-      \ },
-      \ })
-
-call ddc#custom#patch_global('filterParams', {
-      \ 'converter_fuzzy': {
-      \   'hlGroup': 'SpellBad'
+let s:sourceOptions._ = {
+      \ 'ignoreCase': v:true,
+      \ 'matchers': ['matcher_fuzzy'],
+      \ 'sorters': ['sorter_fuzzy'],
+      \ 'converters': [
+      \   'converter_remove_overlap',
+      \   'converter_truncate',
+      \   'converter_fuzzy',
+      \ ],
+      \ 'maxItems': 10,
       \ }
-      \ })
+let s:sourceOptions.around = {
+      \ 'mark': '[ard]',
+      \ 'isVolatile': v:true,
+      \ 'maxItems': 8,
+      \ }
+let s:sourceOptions.file = {
+      \ 'mark': '[file]',
+      \ 'minAutoCompleteLength': 30,
+      \ 'isVolatile': v:true,
+      \ 'forceCompletionPattern': '[\w@:~._-]/[\w@:~._-]*',
+      \ }
+let s:sourceOptions['vim-lsp'] = {
+      \ 'mark': '[lsp]',
+      \ 'isVolatile': v:true,
+      \ 'forceCompletionPattern': '\.|:\s*|->\s*',
+      \ }
+let s:sourceOptions['nvim-lsp'] = {
+      \ 'mark': '[lsp]',
+      \ 'isVolatile': v:true,
+      \ 'forceCompletionPattern': '\.|:\s*|->\s*',
+      \ }
+let s:sourceOptions.necovim = {
+      \ 'mark': '[vim]',
+      \ 'isVolatile': v:true,
+      \ 'maxItems': 8,
+      \ }
+let s:sourceOptions.emoji = {
+      \ 'mark': '[emoji]',
+      \ 'matchers': ['emoji'],
+      \ 'sorters': [],
+      \ }
+let s:sourceOptions['cmdline-history'] = {
+      \ 'mark': '[hist]',
+      \ 'maxItems': 5,
+      \ 'sorters': [],
+      \ }
+let s:sourceOptions.vsnip = {
+      \ 'mark': '[snip]',
+      \ 'dup': v:true,
+      \ }
+let s:sourceOptions.zsh = {
+      \ 'mark': '[zsh]',
+      \ 'isVolatile': v:true,
+      \ 'forceCompletionPattern': '[\w@:~._-]/[\w@:~._-]*',
+      \ 'maxItems': 8,
+      \ }
+let s:sourceOptions.mocword = {
+      \ 'mark': '[word]',
+      \ 'minAutoCompleteLength': 3,
+      \ 'isVolatile': v:true,
+      \ }
+let s:sourceOptions.github_issue = {
+      \ 'mark': '[issue]',
+      \ 'forceCompletionPattern': '#\d*',
+      \ }
+let s:sourceOptions.github_pull_request = {
+      \ 'mark': '[PR]',
+      \ 'forceCompletionPattern': '#\d*',
+      \ }
+let s:sourceOptions.cmdline = {
+      \ 'mark': '[cmd]',
+      \ 'isVolatile': v:true,
+      \ }
+let s:sourceOptions.buffer = {'mark': '[buf]'}
+let s:sourceOptions.tmux = {'mark': '[tmux]'}
+let s:sourceOptions.omni = {'mark': '[omni]'}
+let s:sourceOptions.line = {'mark': '[line]'}
 
+let s:sourceParams.around = {'maxSize': 500}
+let s:sourceParams.buffer = {
+      \ 'requireSameFiletype': v:false,
+      \ 'fromAltBuf': v:true,
+      \ 'bufNameStyle': 'basename',
+      \ }
+let s:sourceParams.file = {
+      \ 'trailingSlash': v:true,
+      \ 'followSymlinks': v:true,
+      \ }
+let s:sourceParams['cmdline-history'] = {'maxSize': 100}
+let s:sourceParams.tmux = {
+      \ 'currentWinOnly': v:true,
+      \ 'excludeCurrentPane': v:true,
+      \ 'kindFormat': '#{pane_index}.#{pane_current_command}',
+      \ }
+let s:sourceParams['vim-lsp'] = {
+      \ 'ignoreCompleteProvider': v:true,
+      \ }
+
+let s:filterParams.converter_truncate = {
+      \ 'maxAbbrWidth': 40,
+      \ 'maxInfoWidth': 40,
+      \ 'maxKindWidth': 20,
+      \ 'maxMenuWidth': 20,
+      \ 'ellipsis': '..',
+      \ }
+
+call ddc#custom#patch_filetype(
+      \ ['vim', 'toml'], {
+      \ 'sources': extend(['necovim'], s:sources),
+      \ })
+call ddc#custom#patch_filetype(
+      \ ['toml'], {
+      \ 'sourceOptions': {
+      \   'vim-lsp': {'forceCompletionPattern': '\.|[={[,"]\s*'},
+      \ }})
+call ddc#custom#patch_filetype(
+      \ ['markdown', 'gitcommit'], {
+      \ 'sources': extend([
+      \   'nextword',
+      \   'github_issue', 'github_pull_request',
+      \ ], s:sources),
+      \ 'keywordPattern': '[a-zA-Z_:#]\k*',
+      \ })
 call ddc#custom#patch_filetype(
       \ ['ps1', 'dosbatch', 'autohotkey', 'registry'], {
-      \ 'sourceOptions': {
-      \   'file': {
-      \     'forceCompletionPattern': '\S\\\S*',
-      \   },
+      \ 'sourcesOptions': {
+      \   'file': {'forceCompletionPattern': '[\w@:~._-]\\[\w@:~._-*'},
       \ },
       \ 'sourceParams': {
-      \   'file': {
-      \     'mode': 'win32',
-      \   },
+      \   'file': {'mode': 'win32'},
       \ }})
-
-if has('nvim')
-  let s:vim_sources = s:defult_sources_nvim + ['necovim']
-else
-  let s:vim_sources = s:defult_sources_vim + ['necovim']
-endif
 call ddc#custom#patch_filetype(
-      \ ['vim'], 'sources',
-      \ s:vim_sources,
-      \ )
+      \ ['ddu-ff-filter'], {
+      \ 'sources': [],
+      \ })
+call ddc#custom#patch_filetype(
+      \ ['sh', 'zsh'], {
+      \ 'sources': extend(['zsh'], s:sources),
+      \ })
 
 call ddc#custom#patch_filetype(['FineCmdlinePrompt'], {
       \ 'keywordPattern': '[0-9a-zA-Z_:#]*',
-      \ 'sources': ['cmdline', 'cmdline-history', 'around'],
+      \ 'sources': ['cmdline-history', 'cmdline', 'around'],
       \ 'specialBufferCompletion': v:true,
       \ })
 
+
+let s:patch_global.sources = s:sources
+let s:patch_global.sourceOptions = s:sourceOptions
+let s:patch_global.sourceParams = s:sourceParams
+let s:patch_global.filterParams = s:filterParams
+let s:patch_global.backspaceCompletion = v:true
+let s:patch_global.specialBufferCompletion = v:true
+let s:patch_global.overwriteCompleteopt = v:false
+
 " Use pum.vim
-call ddc#custom#patch_global('autoCompleteEvents', [
+let s:patch_global.ui = 'pum'
+let s:patch_global.autoCompleteEvents = [
       \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
       \ 'CmdlineEnter', 'CmdlineChanged',
-      \ ])
-call ddc#custom#patch_global('completionMenu', 'pum.vim')
+      \ ]
+
+call ddc#custom#patch_global(s:patch_global)
+
+" keymappings
+" For insert mode completion
+inoremap <silent><expr> <TAB>
+      \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+      \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+      \ '<TAB>' : ddc#manual_complete()
+inoremap <silent><expr> <C-n>
+      \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : ddc#manual_complete()
+inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+" inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
+inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
+inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
+inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
+" inoremap <silent><expr> <C-l>   ddc#map#extend()
+inoremap <silent><expr> <C-x><C-f> ddc#manual_complete('path')
+
+" For command line mode completion
+cnoremap <expr> <Tab>
+      \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+      \ exists('b:ddc_cmdline_completion') ?
+      \ ddc#manual_complete() : nr2char(&wildcharm)
+cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+cnoremap <C-c>   <Cmd>call pum#map#cancel()<CR>
+cnoremap <C-o>   <Cmd>call pum#map#confirm()<CR>
+
+nnoremap :       <Cmd>call CommandlinePre(':')<CR>:
+nnoremap /       <Cmd>call CommandlinePre('/')<CR>/
+nnoremap ?       <Cmd>call CommandlinePre('/')<CR>?
 
 function! CommandlinePre(mode) abort
   " Note: It disables default command line completion!
   set wildchar=<C-t>
   set wildcharm=<C-t>
 
-  Keymap c <expr><buffer> <Tab>
+  cnoremap <expr><buffer> <Tab>
         \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
         \ exists('b:ddc_cmdline_completion') ? ddc#manual_complete() : "\<C-t>"
 
@@ -173,10 +228,12 @@ function! CommandlinePre(mode) abort
     let b:prev_buffer_config = ddc#custom#get_buffer()
   endif
   if a:mode ==# ':'
-    call ddc#custom#patch_buffer('cmdlineSources', ['cmdline-history', 'cmdline', 'around', 'file'])
+    call ddc#custom#patch_buffer('cmdlineSources',
+          \ ['cmdline-history', 'cmdline', 'around'])
     call ddc#custom#patch_buffer('keywordPattern', '[0-9a-zA-Z_:#]*')
   else
-    call ddc#custom#patch_buffer('cmdlineSources', ['around', 'line', 'mocword'])
+    call ddc#custom#patch_buffer('cmdlineSources',
+          \ ['around', 'line'])
   endif
 
   autocmd MyAutoCmd User DDCCmdlineLeave ++once call CommandlinePost()
@@ -184,7 +241,6 @@ function! CommandlinePre(mode) abort
 
   call ddc#enable_cmdline_completion()
 endfunction
-
 function! CommandlinePost() abort
   silent! cunmap <buffer> <Tab>
 
@@ -198,27 +254,6 @@ function! CommandlinePost() abort
 
   set wildcharm=<Tab>
 endfunction
-
-" For insert mode completion
-Keymap i <silent><expr> <c-f>      ddc#complete_common_string()
-Keymap i <silent><expr> <c-space>  ddc#manual_complete()
-Keymap i <silent><expr> <c-x><c-f> ddc#manual_complete('path')
-Keymap i <silent>       <c-n>      <cmd>call pum#map#insert_relative(+1)<cr>
-Keymap i <silent>       <c-p>      <cmd>call pum#map#insert_relative(-1)<cr>
-Keymap i <silent><expr> <c-e>      ddc#map#extend()
-
-Keymap n : <cmd>call CommandlinePre(':')<cr>:
-Keymap n / <cmd>call CommandlinePre('/')<cr>/
-Keymap n ? <cmd>call CommandlinePre('?')<cr>?
-
-" For command line mode completion
-Keymap c <expr> <Tab>
-      \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-      \ exists('b:ddc_cmdline_completion') ?
-      \ ddc#manual_complete() : nr2char(&wildcharm)
-Keymap c <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
-Keymap c <C-c>   <Cmd>call pum#map#cancel()<CR>
-Keymap c <C-o>   <Cmd>call pum#map#confirm()<CR>
 
 call ddc#enable()
 

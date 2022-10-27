@@ -71,7 +71,7 @@ let g:lightline = {
       \ }
 
 " Use auocmd to force lightline update.
-au MyAutoCmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+" au MyAutoCmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 function! LightLineModified()
   if &filetype == "help"
