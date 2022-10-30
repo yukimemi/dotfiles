@@ -35,33 +35,22 @@ let s:filterParams.matcher_fzf = {
       \ 'highlightMatched': 'Search',
       \ }
 
+let s:row_ratio = 8
+let s:col_ratio = 8
+
 let s:uiParams.ff = {
       \ 'floatingBorder': 'rounded',
       \ 'previewFloating': v:true,
-      \ 'previewWidth': &columns / 8 * 6,
+      \ 'previewWidth': &columns / 10 * s:row_ratio,
       \ 'prompt': '»',
       \ 'split': has('nvim') ? 'floating' : 'horizontal',
       \ 'statusline': v:false,
-      \ 'winCol': &columns / 8,
-      \ 'winHeight': &lines / 8 * 6,
-      \ 'winRow': &lines / 8,
-      \ 'winWidth': &columns / 8 * 6,
+      \ 'winCol': &columns / s:col_ratio,
+      \ 'winHeight': &lines / 10 * s:row_ratio,
+      \ 'winRow': &lines / 10,
+      \ 'winWidth': &columns / 10 * s:col_ratio,
       \ }
 
-call ddu#custom#patch_local('file_rec', {
-      \ 'sources': [{
-      \   'name': 'file_rec',
-      \ }],
-      \ 'uiParams': {'ff': {
-      \   'autoAction': {
-      \     'name': 'preview',
-      \   },
-      \   'previewHeight': &lines / 2,
-      \   'previewVertical': v:true,
-      \   'previewWidth': &columns / 3,
-      \   'winWidth': &columns / 3,
-      \ }},
-      \ })
 call ddu#custom#patch_local('rg_live', {
       \ 'volatile': v:true,
       \ 'sources': [{

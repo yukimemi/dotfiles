@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/10/27 00:52:40.
+# Last Change: 2022/10/29 20:36:49.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -707,6 +707,14 @@ if = 0
 [[plugins]]
 repo = 'sunaku/tmux-navigate'
 if = '!g:is_windows'
+
+[[plugins]]
+repo = 'aserowy/tmux.nvim'
+if = 0
+on_event = 'VimEnter'
+hook_source = '''
+source $VIM_PATH/rc/tmux.nvim
+'''
 
 [[plugins]]
 repo = '4513ECHO/vim-vimhelp-url'

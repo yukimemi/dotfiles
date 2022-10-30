@@ -4,7 +4,6 @@ endif
 
 function! s:pum_cfg() abort
   call pum#set_option({
-        \  'border': "rounded",
         \  'highlight_kind': 'Type',
         \  'max_width': 100,
         \  'use_complete': v:true,
