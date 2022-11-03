@@ -13,6 +13,7 @@
   "suggest.noselect": true,
   "suggest.enablePreselect": false,
   "explorer.file.reveal.auto": true,
+  "explorer.file.reveal.whenOpen": false,
   "explorer.icon.enableNerdfont": true,
   "explorer.previewAction.onHover": false,
   "explorer.root.strategies": [

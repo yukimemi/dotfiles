@@ -13,17 +13,19 @@ set shortmess+=c
 
 " extensions
 let g:coc_global_extensions = [
+      \ "coc-deno",
       \ "coc-diagnostic",
       \ "coc-explorer",
-      \ "coc-pairs",
       \ "coc-git",
+      \ "coc-json",
       \ "coc-lists",
       \ "coc-marketplace",
+      \ "coc-pairs",
+      \ "coc-powershell",
+      \ "coc-rust-analyzer",
       \ "coc-snippets",
       \ "coc-spell-checker",
       \ "coc-translator",
-      \ "coc-rust-analyzer",
-      \ "coc-deno",
       \ "coc-tsdetect",
       \ "coc-vimlsp",
       \ ]

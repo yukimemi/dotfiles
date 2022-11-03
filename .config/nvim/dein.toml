@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/11/03 14:45:26.
+# Last Change: 2022/11/03 19:44:32.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1050,11 +1050,19 @@ repo = 'Shougo/ddc-ui-pum'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-around'
+repo = 'Shougo/ddc-ui-inline'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-zsh'
+repo = 'Shougo/ddc-ui-none'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-around'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-zsh'
 depends = 'ddc.vim'
 if = "g:plugin_use_ddc"
 on_ft = 'zsh'
@@ -1065,7 +1073,7 @@ on_source = 'ddc.vim'
 if = "!g:is_windows"
 
 [[plugins]]
-repo = 'Shougo/ddc-mocword'
+repo = 'Shougo/ddc-source-mocword'
 on_source = 'ddc.vim'
 
 [[plugins]]
@@ -1101,27 +1109,27 @@ repo = 'matsui54/ddc-buffer'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-omni'
+repo = 'Shougo/ddc-source-omni'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-cmdline'
+repo = 'Shougo/ddc-source-cmdline'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-input'
+repo = 'Shougo/ddc-source-input'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-cmdline-history'
+repo = 'Shougo/ddc-source-cmdline-history'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-line'
+repo = 'Shougo/ddc-source-line'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-rg'
+repo = 'Shougo/ddc-source-rg'
 if = "executable('rg')"
 on_source = 'ddc.vim'
 
@@ -1134,7 +1142,7 @@ if = 'g:plugin_use_ddc'
 lazy = 1
 
 [[plugins]]
-repo = 'Shougo/ddc-nvim-lsp'
+repo = 'Shougo/ddc-source-nvim-lsp'
 depends = 'nvim-lspconfig'
 if = 'g:plugin_use_nvimlsp'
 on_source = 'ddc.vim'
@@ -1386,6 +1394,14 @@ if = "!g:is_windows"
 [[plugins]]
 repo = 'pyonk/dexercism.vim'
 if = "executable('exercism')"
+
+[[plugins]]
+repo = 'uga-rosa/dps-vsctm.vim'
+if = 0
+depends = 'denops.vim'
+hook_add = '''
+source $VIM_PATH/rc/dps-vsctm.vim
+'''
 
 # ==================== Fuzzy =====================
 

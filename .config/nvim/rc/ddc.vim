@@ -6,6 +6,7 @@ let s:patch_global = {}
 let s:sources = ['file', 'around', 'vsnip', 'buffer']
 let s:sourceOptions = {}
 let s:sourceParams = {}
+let s:cmdlineSources = ['cmdline-history', 'input', 'file', 'around']
 let s:filterParams = {}
 
 if g:plugin_use_vimlsp
@@ -29,12 +30,10 @@ let s:sourceOptions._ = {
       \   'converter_truncate',
       \   'converter_fuzzy',
       \ ],
-      \ 'maxItems': 10,
       \ }
 let s:sourceOptions.around = {
       \ 'mark': '[ard]',
       \ 'isVolatile': v:true,
-      \ 'maxItems': 8,
       \ }
 let s:sourceOptions.file = {
       \ 'mark': '[file]',
@@ -55,7 +54,6 @@ let s:sourceOptions['nvim-lsp'] = {
 let s:sourceOptions.necovim = {
       \ 'mark': '[vim]',
       \ 'isVolatile': v:true,
-      \ 'maxItems': 8,
       \ }
 let s:sourceOptions.emoji = {
       \ 'mark': '[emoji]',
@@ -64,7 +62,6 @@ let s:sourceOptions.emoji = {
       \ }
 let s:sourceOptions['cmdline-history'] = {
       \ 'mark': '[hist]',
-      \ 'maxItems': 5,
       \ 'sorters': [],
       \ }
 let s:sourceOptions.vsnip = {
@@ -75,7 +72,6 @@ let s:sourceOptions.zsh = {
       \ 'mark': '[zsh]',
       \ 'isVolatile': v:true,
       \ 'forceCompletionPattern': '[\w@:~._-]/[\w@:~._-]*',
-      \ 'maxItems': 8,
       \ }
 let s:sourceOptions.mocword = {
       \ 'mark': '[word]',
@@ -119,13 +115,13 @@ let s:sourceParams['vim-lsp'] = {
       \ 'ignoreCompleteProvider': v:true,
       \ }
 
-let s:filterParams.converter_truncate = {
-      \ 'maxAbbrWidth': 40,
-      \ 'maxInfoWidth': 40,
-      \ 'maxKindWidth': 20,
-      \ 'maxMenuWidth': 20,
-      \ 'ellipsis': '..',
-      \ }
+" let s:filterParams.converter_truncate = {
+"      \ 'maxAbbrWidth': 40,
+"      \ 'maxInfoWidth': 40,
+"      \ 'maxKindWidth': 20,
+"      \ 'maxMenuWidth': 20,
+"      \ 'ellipsis': '..',
+"      \ }
 
 call ddc#custom#patch_filetype(
       \ ['vim', 'toml'], {
@@ -171,6 +167,7 @@ call ddc#custom#patch_filetype(['FineCmdlinePrompt'], {
 let s:patch_global.sources = s:sources
 let s:patch_global.sourceOptions = s:sourceOptions
 let s:patch_global.sourceParams = s:sourceParams
+let s:patch_global.cmdlineSources = s:cmdlineSources
 let s:patch_global.filterParams = s:filterParams
 let s:patch_global.backspaceCompletion = v:true
 let s:patch_global.specialBufferCompletion = v:true
@@ -180,7 +177,7 @@ let s:patch_global.overwriteCompleteopt = v:false
 let s:patch_global.ui = 'pum'
 let s:patch_global.autoCompleteEvents = [
       \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
-      \ 'CmdlineEnter', 'CmdlineChanged',
+      \ 'CmdlineEnter', 'CmdlineChanged', 'TextChangedT',
       \ ]
 
 call ddc#custom#patch_global(s:patch_global)

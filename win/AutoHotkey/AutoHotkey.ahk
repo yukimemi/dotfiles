@@ -74,18 +74,24 @@ Activate(APPDATA . "Local\Microsoft\Teams\current\Teams.exe")
 return
 
 ; for gvim
-F10::
-Activate3("gvim.exe", "C:\Program Files\Vim\vim90\gvim.exe", "GVIM")
-return
+; F10::
+; Activate3("gvim.exe", "C:\Program Files\Vim\vim90\gvim.exe", "GVIM")
+; return
 ; for neovim-qt
 ; F10::
-; Activate("C:\tools\neovim\Neovim\bin\nvim-qt.exe")
+; Activate("C:\Program Files\Neovim\bin\nvim-qt.exe")
 ; return
 ; for neovim
 ; F10::
 ; Activate("C:\tools\neovim\Neovim\bin\nvim.exe")
 ; Activate2("nvim.exe", USERPROFILE . "\AppData\Local\Programs\Python\Python310\Scripts\gnvr.exe")
 ; return
+; F10::
+; Activate(USERPROFILE . "\app\fvim\FVim.exe")
+; return
+F10::
+Activate(USERPROFILE . "\app\nvy\Nvy.exe")
+return
 
 ; for sakura
 ; ^F10::
@@ -236,7 +242,7 @@ Clipboard := saveclip
 
 ; RunWait "C:\Program Files\Microsoft VS Code\Code.exe" %tempfile%
 ; RunWait "C:\tools\vim\vim90\gvim.exe" "--cmd" "let g:singleton#disable=1" %tempfile%
-RunWait "C:\tools\neovim\Neovim\bin\nvim-qt.exe" %tempfile%
+RunWait "C:\Program Files\Neovim\bin\nvim-qt.exe" %tempfile%
 
 file := FileOpen(tempfile, "r")
 if !IsObject(file)

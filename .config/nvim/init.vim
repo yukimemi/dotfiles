@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/11/03 17:52:56.
+" Last Change : 2022/11/03 19:47:21.
 " =============================================================================
 
 " Init:
@@ -543,25 +543,27 @@ silent! colorscheme pinkmare
 set background=dark
 
 " Neovide:
-let g:neovide_transparency = 0.8
-" let g:neovide_fullscreen  = 1
-let g:neovide_remember_window_size = v:true
-let g:neovide_profiler = v:false
-let g:neovide_input_use_logo = v:true
-let g:neovide_cursor_vfx_mode = "railgun"
-" let g:neovide_cursor_vfx_mode = "torpedo"
-" let g:neovide_cursor_vfx_mode = "pixiedust"
-" let g:neovide_cursor_vfx_mode = "sonicboom"
-" let g:neovide_cursor_vfx_mode = "ripple"
-" let g:neovide_cursor_vfx_mode = "wireframe"
-set guifont=Cica
-set guifontwide=Cica
+if exists("g:neovide")
+  let g:neovide_transparency = 0.8
+  " let g:neovide_fullscreen  = 1
+  let g:neovide_remember_window_size = v:true
+  let g:neovide_profiler = v:false
+  let g:neovide_input_use_logo = v:true
+  let g:neovide_cursor_vfx_mode = "railgun"
+  " let g:neovide_cursor_vfx_mode = "torpedo"
+  " let g:neovide_cursor_vfx_mode = "pixiedust"
+  " let g:neovide_cursor_vfx_mode = "sonicboom"
+  " let g:neovide_cursor_vfx_mode = "ripple"
+  " let g:neovide_cursor_vfx_mode = "wireframe"
+  set guifont=Cica
+  set guifontwide=Cica
+endif
 
 " Nvy:
 let g:nvy = get(g:, 'nvy', 0)
 if g:nvy
-  set gfn=Cica:h12
-  set gfw=Cica:h12
+  set gfn=Cica:h11
+  set gfw=Cica:h11
 endif
 
 " nvui:
