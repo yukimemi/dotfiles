@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/10/29 20:36:49.
+# Last Change: 2022/11/03 14:45:26.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -173,6 +173,13 @@ source $VIM_PATH/rc/vim-devicons.vim
 '''
 if = '!has("nvim")'
 lazy = 1
+
+[[plugins]]
+repo = 'j-hui/fidget.nvim'
+if = 'has("nvim")'
+hook_add = '''
+source $VIM_PATH/rc/fidget.nvim
+'''
 
 # colorscheme
 

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/10/27 22:38:48.
+" Last Change : 2022/11/03 17:52:56.
 " =============================================================================
 
 " Init:
@@ -334,6 +334,11 @@ Keymap n <silent> sv <cmd>vs<cr>
 Keymap n <silent> sw <c-w>w
 
 Keymap n <leader>o <cmd>call <SID>open_current_dir()<cr>
+
+" https://vim-jp.slack.com/archives/CLKR04BEF/p1667463907309639
+Keymap xo a' 2i'
+Keymap xo a" 2i"
+Keymap xo a` 2i`
 
 " Change background color
 Keymap n <leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<cr>
