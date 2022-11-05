@@ -503,8 +503,8 @@ let g:plugin_use_beacon = 1
 let g:plugin_use_columnskip = 0
 let g:plugin_use_edgemotion = 1
 
-let g:plugin_use_treesitter = 0 && has('nvim')
-let g:plugin_use_vsctm = 1
+let g:plugin_use_treesitter = 1 && g:is_windows
+let g:plugin_use_vsctm = 1 && !g:is_windows
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1
