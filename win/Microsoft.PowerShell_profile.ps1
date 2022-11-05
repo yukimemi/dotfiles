@@ -18,9 +18,16 @@
 # Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile ubuntu-2004.appx -UseBasicParsing
 # Add-AppxPackage .\ubuntu-2004.appx
 
+# Utility functions.
+function Is-Windows {
+  ($PSVersionTable.PSVersion.Major -eq 5) -or ($PSVersionTable.Platform -eq "Win32NT")
+}
+
 # Use utf-8
-chcp 65001
-$OutputEncoding = [Console]::OutputEncoding
+if (Is-Windows) {
+  chcp 65001
+  $OutputEncoding = [Console]::OutputEncoding
+}
 
 $ErrorActionPreference = "SilentlyContinue"
 Stop-Transcript | Out-Null
@@ -30,11 +37,6 @@ Start-Transcript
 # starship
 if (Get-Command starship -ErrorAction SilentlyContinue) {
   Invoke-Expression (&starship init powershell)
-}
-
-# Utility functions.
-function Is-Windows {
-  ($PSVersionTable.PSVersion.Major -eq 5) -or ($PSVersionTable.Platform -eq "Win32NT")
 }
 
 # ZLocation
@@ -105,7 +107,8 @@ function cd-ls {
     $z = & {
       if (Is-Windows) {
         (Join-Path $env:USERPROFILE ".z")
-      } else {
+      }
+      else {
         (Join-Path $env:HOME ".z")
       }
     }
@@ -114,7 +117,8 @@ function cd-ls {
     [array]::Reverse($c)
     if (Get-Command uq -ErrorAction SilentlyContinue) {
       $c | uq | Set-Variable c
-    } else {
+    }
+    else {
       $c | Sort-Object -Unique | Set-Variable c
     }
     [array]::Reverse($c)
@@ -172,7 +176,8 @@ function RemoveTo-Trash {
     if ($PSBoundParameters.ContainsKey('Path')) {
       $Path | Where-Object { ![string]::IsNullOrWhiteSpace($_) } | Set-Variable Path
       $targets = Convert-Path $Path
-    } else {
+    }
+    else {
       $targets = Convert-Path -LiteralPath $LiteralPath
     }
     $targets | ForEach-Object {
@@ -196,12 +201,12 @@ function Trim-Cd {
   [CmdletBinding()]
   param (
     [Parameter(
-      Mandatory                       = $false,
-      Position                        = 0,
-      ParameterSetName                = "Path",
-      ValueFromPipeline               = $true,
+      Mandatory = $false,
+      Position = 0,
+      ParameterSetName = "Path",
+      ValueFromPipeline = $true,
       ValueFromPipelineByPropertyName = $true,
-      HelpMessage                     = "Path to location."
+      HelpMessage = "Path to location."
     )]
     [ValidateNotNullOrEmpty()]
     [string]
@@ -223,7 +228,8 @@ Remove-Item alias:r
 function r {
   if (Get-Command trash -ErrorAction SilentlyContinue) {
     trash $(Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER)
-  } else {
+  }
+  else {
     Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER | RemoveTo-Trash
   }
 }
@@ -248,10 +254,17 @@ function Install-Pip {
 
 # Alias.
 Set-Alias gomi RemoveTo-Trash
-Remove-Item alias:rm
+if (Is-Windows) {
+  Remove-Item alias:rm
+}
 Set-Alias rm RemoveTo-Trash
 Set-Alias o Start-Process
-Set-Alias e nvim
+if (Is-Windows) {
+  Set-Alias e nvim
+}
+else {
+  Set-Alias e neovide
+}
 Set-Alias c Clear-Host
 Set-Alias which Get-Command
 Set-Alias df Get-DriveInfoView
@@ -273,22 +286,12 @@ if (Get-Command gof -ErrorAction SilentlyContinue) {
 if (Is-Windows) {
   Remove-Item alias:ls
 }
-if (Is-Windows) {
-  Set-Alias ls Get-ChildItem
-  function l {
-    Get-ChildItem $args
-  }
-  function la {
-    Get-ChildItem -Force $args
-  }
-} else {
-  Set-Alias ls lsd
-  function l {
-    Get-ChildItem -l $args
-  }
-  function la {
-    Get-ChildItem -a $args
-  }
+Set-Alias ls Get-ChildItem
+function l {
+  Get-ChildItem $args
+}
+function la {
+  Get-ChildItem -Force $args
 }
 
 # Readline setting.
@@ -324,7 +327,8 @@ function _j2 {
   $z = & {
     if (Is-Windows) {
       (Join-Path $env:USERPROFILE ".z")
-    } else {
+    }
+    else {
       (Join-Path $env:HOME ".z")
     }
   }

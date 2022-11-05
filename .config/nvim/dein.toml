@@ -891,7 +891,7 @@ on_event = ['CursorHold', 'FocusLost']
 [[plugins]]
 repo = 'rbtnn/vim-textobj-string'
 depends = 'vim-textobj-user'
-if = 0
+if = 1
 on_event = ['CursorHold', 'FocusLost']
 
 # ==================== Operators =================
