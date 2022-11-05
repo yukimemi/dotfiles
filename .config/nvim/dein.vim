@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : dein.vim
 " Author      : yukimemi
-" Last Change : 2022/08/27 20:03:07.
+" Last Change : 2022/11/04 02:54:53.
 " =============================================================================
 
 " Plugin:
@@ -22,6 +22,8 @@ let g:dein#install_github_api_token = $DEIN_GITHUB_API_TOKEN
 let g:dein#install_log_filename = '~/.dein_install.log'
 let g:dein#install_progress_type = 'none'
 let g:dein#lazy_rplugins = v:true
+
+command! DeinRecache call dein#recache_runtimepath()
 
 function! IsInstalled(name) abort
   silent! return dein#tap(a:name)

@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/11/03 19:44:32.
+# Last Change: 2022/11/03 19:55:32.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -176,10 +176,11 @@ lazy = 1
 
 [[plugins]]
 repo = 'j-hui/fidget.nvim'
-if = 'has("nvim")'
-hook_add = '''
+hook_source = '''
 source $VIM_PATH/rc/fidget.nvim
 '''
+if = 'has("nvim")'
+on_event = ['CursorHold', 'FocusLost']
 
 # colorscheme
 
