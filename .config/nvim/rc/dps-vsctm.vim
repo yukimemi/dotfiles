@@ -1,1 +1,1 @@
-let g:vsctmSyntaxesDir = expand('~/.config/nvim/vsctm')
+let g:vsctm_extensions_path = dein#get('vscode').path .. '/extensions'

@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/11/03 19:55:32.
+# Last Change: 2022/11/05 14:14:49.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1398,11 +1398,16 @@ if = "executable('exercism')"
 
 [[plugins]]
 repo = 'uga-rosa/dps-vsctm.vim'
-if = 0
+if = "g:plugin_use_vsctm"
 depends = 'denops.vim'
 hook_add = '''
 source $VIM_PATH/rc/dps-vsctm.vim
 '''
+
+[[plugins]]
+repo = 'microsoft/vscode'
+if = 0
+merged = 0
 
 # ==================== Fuzzy =====================
 
