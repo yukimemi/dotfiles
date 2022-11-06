@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/11/05 14:14:49.
+# Last Change: 2022/11/06 19:53:58.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -293,6 +293,15 @@ if = "has('gui')"
 
 [[plugins]]
 repo = 'tinted-theming/base16-vim'
+if = '!has("nvim")'
+
+[[plugins]]
+repo = 'catppuccin/nvim'
+name = 'catppuccin-nvim'
+if = 'has("nvim")'
+[[plugins]]
+repo = 'catppuccin/vim'
+name = 'catppuccin-vim'
 if = '!has("nvim")'
 
 [[plugins]]
