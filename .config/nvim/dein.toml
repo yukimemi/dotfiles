@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/11/06 19:53:58.
+# Last Change: 2022/11/06 20:02:17.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1851,7 +1851,7 @@ repo = 'nathom/filetype.nvim'
 hook_add = '''
 source $VIM_PATH/rc/filetype.nvim
 '''
-if = "has('nvim')"
+if = 0
 
 [[plugins]]
 repo = 'sheerun/vim-polyglot'

@@ -2,7 +2,7 @@
 
 SetTitleMatchMode, 2
 
-#z::Run www.autohotkey.com
+; #z::Run www.autohotkey.com
 
 Toggle(app) {
   SplitPath, app, file
