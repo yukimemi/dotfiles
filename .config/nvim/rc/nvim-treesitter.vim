@@ -9,7 +9,7 @@ set foldexpr=nvim_treesitter#foldexpr()
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"c", "lua", "vim", "rust", "go", "toml"},
+  ensure_installed = {"c", "lua", "vim", "rust", "go"},
   sync_install = false,
   auto_install = true,
   highlight = {

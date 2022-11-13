@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/11/06 20:02:17.
+# Last Change: 2022/11/12 22:07:20.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -343,7 +343,7 @@ repo = 'LeafCage/yankround.vim'
 hook_add = '''
 source $VIM_PATH/rc/yankround.vim
 '''
-if = 0
+if = 1
 on_event = 'BufRead'
 
 [[plugins]]
@@ -883,6 +883,16 @@ if = 1
 on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
+repo = 'Omochice/vim-textobj-bettertag'
+depends = 'vim-textobj-user'
+hook_add = '''
+source $VIM_PATH/rc/vim-textobj-bettertag.vim
+'''
+if = 0
+on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
+
+
+[[plugins]]
 repo = 'machakann/vim-textobj-delimited'
 if = 0
 on_event = ['CursorHold', 'FocusLost']
@@ -909,7 +919,7 @@ on_event = ['CursorHold', 'FocusLost']
 repo = 'kana/vim-operator-user'
 
 [[plugins]]
-repo = 'kana/vim-operator-replace'
+repo = 'yuki-yano/vim-operator-replace'
 depends = 'vim-operator-user'
 hook_add = '''
 source $VIM_PATH/rc/vim-operator-replace.vim
@@ -937,6 +947,9 @@ repo = 'machakann/vim-sandwich'
 depends = 'vim-operator-user'
 if = 1
 on_event = ['CursorHold', 'FocusLost']
+hook_source = '''
+source $VIM_PATH/rc/vim-sandwich.vim
+'''
 
 [[plugins]]
 repo = 'osyo-manga/vim-operator-highlighter'
@@ -1344,7 +1357,6 @@ source $VIM_PATH/rc/glance-vim.vim
 '''
 if = "g:plugin_use_glance"
 on_cmd = 'Glance'
-on_ft = ['markdown', 'pandoc.markdown', 'rmd']
 
 [[plugins]]
 repo = 'gamoutatsumi/dps-ghosttext.vim'
@@ -1406,17 +1418,30 @@ repo = 'pyonk/dexercism.vim'
 if = "executable('exercism')"
 
 [[plugins]]
-repo = 'uga-rosa/dps-vsctm.vim'
-if = "g:plugin_use_vsctm"
+repo = 'uga-rosa/scorpeon.vim'
+if = "g:plugin_use_scorpeon"
 depends = 'denops.vim'
 hook_add = '''
-source $VIM_PATH/rc/dps-vsctm.vim
+source $VIM_PATH/rc/scorpeon.vim
 '''
 
 [[plugins]]
 repo = 'microsoft/vscode'
 if = 0
 merged = 0
+path = '$CACHE/vscode'
+
+[[plugins]]
+repo = 'oovm/vscode-toml'
+if = 0
+merged = 0
+path = '$CACHE/scorpeon/extensions/toml'
+
+[[plugins]]
+repo = 'emilast/vscode-logfile-highlighter'
+if = 0
+merged = 0
+path = '$CACHE/scorpeon/extensions/log'
 
 # ==================== Fuzzy =====================
 
@@ -1944,6 +1969,16 @@ on_ft = 'toml'
 repo = 'nastevens/vim-cargo-make'
 on_ft = 'toml'
 
+# ==================== Filetype (lua) =======
+
+[[plugins]]
+repo = 'folke/neodev.nvim'
+if = "has('nvim')"
+hook_source = '''
+source $VIM_PATH/rc/neodev.nvim
+'''
+on_ft = 'lua'
+
 # ==================== Filetype (duckscript) =======
 
 [[plugins]]
@@ -1989,6 +2024,7 @@ on_ft = 'csv'
 
 [[plugins]]
 repo = 'MTDL9/vim-log-highlighting'
+if = 0
 hook_add = '''
 source $VIM_PATH/rc/vim-log-highlighting.vim
 '''

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/11/06 20:01:41.
+" Last Change : 2022/11/12 20:53:52.
 " =============================================================================
 
 " Init:
@@ -106,6 +106,14 @@ function! s:keymap(force_map, modes, ...) abort
 endfunction
 
 command! -nargs=+ -bang Keymap call <SID>keymap(<bang>0, <f-args>)
+
+function! s:searchend() abort
+  let l:pos = searchpos('\v%(\)|}|]|<end\a*)', 'cez')
+  call cursor(l:pos[0], l:pos[1] + 1)
+  doautocmd <nomodeline> TextChangedI % " trigger completion
+endfunction
+
+" Keymap i <C-l> <Cmd>call <SID>searchend()<CR>
 
 
 " Basic:
@@ -468,10 +476,10 @@ let g:plugin_use_smoothie = 0
 let g:plugin_use_ctrlp = 1
 let g:plugin_use_fzf = 0
 let g:plugin_use_cocfzf = 0
-let g:plugin_use_coclist = 1
+let g:plugin_use_coclist = 0
 let g:plugin_use_fz = 0
-let g:plugin_use_ddu = 1
-let g:plugin_use_telescope = 0 && has('nvim')
+let g:plugin_use_ddu = 0
+let g:plugin_use_telescope = 1 && has('nvim')
 let g:plugin_use_linearf = 0 && has('nvim')
 
 let g:plugin_use_fern = !g:plugin_use_coc
@@ -504,7 +512,7 @@ let g:plugin_use_columnskip = 0
 let g:plugin_use_edgemotion = 1
 
 let g:plugin_use_treesitter = 1
-let g:plugin_use_vsctm = 1
+let g:plugin_use_scorpeon = 1
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1

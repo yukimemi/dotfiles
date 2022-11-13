@@ -78,9 +78,9 @@ return
 ; Activate3("gvim.exe", "C:\Program Files\Vim\vim90\gvim.exe", "GVIM")
 ; return
 ; for neovim-qt
-; F10::
-; Activate("C:\Program Files\Neovim\bin\nvim-qt.exe")
-; return
+F10::
+Activate("C:\Program Files\Neovim\bin\nvim-qt.exe")
+return
 ; for neovim
 ; F10::
 ; Activate("C:\tools\neovim\Neovim\bin\nvim.exe")
@@ -89,9 +89,9 @@ return
 ; F10::
 ; Activate(USERPROFILE . "\app\fvim\FVim.exe")
 ; return
-F10::
-Activate(USERPROFILE . "\app\nvy\Nvy.exe")
-return
+; F10::
+; Activate(USERPROFILE . "\app\nvy\Nvy.exe")
+; return
 
 ; for sakura
 ; ^F10::

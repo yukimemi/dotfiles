@@ -4,7 +4,7 @@ endif
 
 let g:yankround_max_history   = 10000
 let g:yankround_use_region_hl = 1
-let g:yankround_dir           = '~/.cache/yankround'
+let g:yankround_dir           = expand('~/.cache/yankround')
 
 Keymap nx p <Plug>(yankround-p)
 Keymap n  P <Plug>(yankround-P)
