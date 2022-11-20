@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/11/20 21:01:11.
+# Last Change: 2022/11/21 00:38:47.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -789,7 +789,16 @@ repo = 'tyru/caw.vim'
 hook_add = '''
 source $VIM_PATH/rc/caw.vim
 '''
-if = 1
+if = "g:plugin_use_caw"
+on_map = '<Plug>'
+
+[[plugins]]
+repo = 'uga-rosa/contextment.vim'
+depends = 'context_filetype.vim'
+hook_add = '''
+source $VIM_PATH/rc/contextment.vim
+'''
+if = "g:plugin_use_contextment"
 on_map = '<Plug>'
 
 # ==================== App =======================
@@ -1723,6 +1732,7 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'b0o/incline.nvim'
+on_lua = 'incline'
 depends = ['nvim-web-devicons', 'nvim-treesitter']
 hook_source = '''
 source $VIM_PATH/rc/incline.nvim
@@ -2064,8 +2074,8 @@ _ = '''
 setl formatoptions-=r
 setl formatoptions-=o
 setl formatoptions+=mMBl
-
-set concealcursor=nc
+setl concealcursor=nc
+setl foldlevel=99
 '''
 
 dosbatch = '''

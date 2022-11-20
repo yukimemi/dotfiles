@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/11/12 20:53:52.
+" Last Change : 2022/11/21 00:48:19.
 " =============================================================================
 
 " Init:
@@ -513,6 +513,9 @@ let g:plugin_use_edgemotion = 1
 
 let g:plugin_use_treesitter = 1
 let g:plugin_use_scorpeon = 1
+
+let g:plugin_use_caw = 0
+let g:plugin_use_contextment = 1
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
 " let g:no_plugin = 1

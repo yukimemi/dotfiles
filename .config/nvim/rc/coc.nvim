@@ -194,12 +194,12 @@ Keymap v <leader>T <Plug>(coc-translator-pv)
 Keymap n [g <Plug>(coc-git-prevchunk)
 Keymap n ]g <Plug>(coc-git-nextchunk)
 " navigate conflicts of current buffer
-Keymap n [c <Plug>(coc-git-prevconflict)
-Keymap n ]c <Plug>(coc-git-nextconflict)
+" Keymap n [c <Plug>(coc-git-prevconflict)
+" Keymap n ]c <Plug>(coc-git-nextconflict)
 " show chunk diff at current position
 Keymap n gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
-Keymap n gc <Plug>(coc-git-commit)
+" Keymap n gc <Plug>(coc-git-commit)
 " create text object for git chunks
 Keymap xo ig <Plug>(coc-git-chunk-inner)
 Keymap xo ag <Plug>(coc-git-chunk-outer)
