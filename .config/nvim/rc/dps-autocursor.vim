@@ -1,6 +1,6 @@
 let g:autocursor_debug = v:false
 let g:autocursor_blacklist_filetypes = ["list", "ctrlp", "ddu-ff", "ddu-ff-filter", "ddu-filer", "dpswalk", "qf", "quickfix"]
-let g:autocursor_fix_interval = 60000
+let g:autocursor_fix_interval = 10000
 let g:autocursor_cursorline = {
   \ "enable": v:true,
   \ "events": [
