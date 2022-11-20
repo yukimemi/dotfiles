@@ -71,7 +71,7 @@ au MyAutoCmd CursorHold * silent call CocActionAsync('highlight')
 Keymap n <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-Keymap nx <leader>f <Plug>(coc-format-selected)
+Keymap nx <leader>F <Plug>(coc-format-selected)
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph

@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/11/19 22:44:53.
+# Last Change: 2022/11/20 21:01:11.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -751,6 +751,14 @@ source $VIM_PATH/rc/ccc.nvim
 '''
 if = "has('nvim')"
 on_cmd = 'CccPick'
+
+[[plugins]]
+repo = 'folke/which-key.nvim'
+if = "has('nvim')"
+on_event = ['CursorHold', 'FocusLost']
+hook_source = '''
+source $VIM_PATH/rc/which-key.nvim
+'''
 
 # ==================== Test ======================
 [[plugins]]
