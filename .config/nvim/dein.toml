@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/11/12 22:07:20.
+# Last Change: 2022/11/19 22:44:53.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -83,7 +83,11 @@ if = "!has('gui')"
 
 [[plugins]]
 repo = 'thinca/vim-fontzoom'
-if = "has('gui')"
+# if = "has('gui')"
+hook_add = '''
+source $VIM_PATH/rc/vim-fontzoom.vim
+'''
+
 
 [[plugins]]
 repo = 'thinca/vim-ft-diff_fold'
@@ -620,10 +624,12 @@ on_event = "InsertEnter"
 
 [[plugins]]
 repo = 'rcarriga/nvim-notify'
-if = "has('nvim')"
+if = 0
 on_lua = 'notify'
 on_source = '''
-lua vim.notify = require('notify')
+lua vim.notify = require('notify').setup({
+  background_colour = "#000000",
+})
 '''
 
 [[plugins]]
@@ -971,6 +977,11 @@ source $VIM_PATH/rc/operator-html-escape.vim
 '''
 if = 1
 on_map = '<Plug>'
+
+[[plugins]]
+repo = 'tommcdo/vim-exchange'
+if = 1
+on_event = ['CursorHold', 'FocusLost']
 
 # ==================== Search ====================
 
@@ -1704,6 +1715,7 @@ on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
 repo = 'b0o/incline.nvim'
+depends = ['nvim-web-devicons', 'nvim-treesitter']
 hook_source = '''
 source $VIM_PATH/rc/incline.nvim
 '''

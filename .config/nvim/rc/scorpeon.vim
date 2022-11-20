@@ -2,7 +2,7 @@ function! s:use_scorpeon() abort
   " syntax off
   TSBufDisable highlight
   ScorpeonHighlightEnable
-  echom "Use scorpeon!"
+  " echom "Use scorpeon!"
 endfunction
 
 let s:use_scorpeon_filetypes = ['ps1', 'typescript', 'javascript', 'dosbatch', 'markdown', 'toml', 'log', 'xml']
@@ -11,7 +11,7 @@ call map(s:use_scorpeon_filetypes, { -> execute("au MyAutoCmd FileType " .. v:va
 
 let g:scorpeon_extensions_path = [
       \ expand('$CACHE/vscode/extensions'),
-      \ expand('$CACHE/scorpeon'),
+      \ expand('$CACHE/scorpeon/extensions'),
       \ ]
 
 let g:scorpeon_highlight = {
