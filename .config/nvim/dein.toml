@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/11/22 20:08:30.
+# Last Change: 2022/11/23 20:37:11.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1746,6 +1746,15 @@ hook_source = '''
 source $VIM_PATH/rc/incline.nvim
 '''
 if = "g:plugin_use_incline && has('nvim')"
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'fgheng/winbar.nvim'
+depends = ['nvim-web-devicons']
+if = "g:plugin_use_winbar && has('nvim')"
+hook_source = '''
+source $VIM_PATH/rc/winbar.nvim
+'''
 on_event = ['CursorHold', 'FocusLost']
 
 # ==================== Filetree ==================

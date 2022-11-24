@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/11/21 00:48:19.
+" Last Change : 2022/11/23 17:30:40.
 " =============================================================================
 
 " Init:
@@ -452,7 +452,8 @@ let g:plugin_use_neoline = 0 && has('nvim')
 let g:plugin_use_lualine = 1 && has('nvim')
 let g:plugin_use_staline = 0 && has('nvim')
 let g:plugin_use_galaxyline = 0 && has('nvim')
-let g:plugin_use_incline = 1 && has('nvim')
+let g:plugin_use_incline = 0 && has('nvim')
+let g:plugin_use_winbar = 1 && has('nvim')
 
 let g:plugin_use_indent_blankline = 1
 let g:plugin_use_dps_indent_line = 0
