@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/11/23 17:30:40.
+" Last Change : 2022/11/24 09:19:21.
 " =============================================================================
 
 " Init:
@@ -430,6 +430,10 @@ autocmd MyAutoCmd BufWritePost * nested
 
 au MyAutoCmd FileType * setlocal formatoptions-=r formatoptions-=o concealcursor=nc
 
+" syntax off on open the huge file.
+" https://zenn.dev/hokorobi/articles/98f79339d7d114
+au MyAutoCmd BufEnter * if getfsize(@%) > 1000 * 1000 | setlocal syntax=OFF | call interrupt() | endif
+
 " nosmartcase on cmdline.
 " [vim-jp » vim-jp.slack.com log - #question - 2021年03月](https://vim-jp.org/slacklog/CJMV3MSLR/2021/03/#ts-1614946023.402700)
 set wildcharm=<tab>
@@ -546,8 +550,8 @@ endif
 silent! syntax enable
 
 " set cursorline cursorcolumn
-au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
-au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
+" au MyAutoCmd ColorScheme * hi LineNr guifg=#777777
+" au MyAutoCmd ColorScheme * hi CursorLineNr guibg=#5507FF guifg=#AAAAAA
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
