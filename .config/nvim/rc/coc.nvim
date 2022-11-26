@@ -16,7 +16,6 @@ let g:coc_global_extensions = [
       \ "coc-deno",
       \ "coc-diagnostic",
       \ "coc-explorer",
-      \ "coc-git",
       \ "coc-json",
       \ "coc-lists",
       \ "coc-marketplace",
@@ -190,19 +189,21 @@ Keymap n <leader>T <Plug>(coc-translator-p)
 Keymap v <leader>T <Plug>(coc-translator-pv)
 
 " coc-git.
-" navigate chunks of current buffer
-Keymap n [g <Plug>(coc-git-prevchunk)
-Keymap n ]g <Plug>(coc-git-nextchunk)
-" navigate conflicts of current buffer
-" Keymap n [c <Plug>(coc-git-prevconflict)
-" Keymap n ]c <Plug>(coc-git-nextconflict)
-" show chunk diff at current position
-Keymap n gs <Plug>(coc-git-chunkinfo)
-" show commit contains current position
-" Keymap n gc <Plug>(coc-git-commit)
-" create text object for git chunks
-Keymap xo ig <Plug>(coc-git-chunk-inner)
-Keymap xo ag <Plug>(coc-git-chunk-outer)
+if g:plugin_use_cocgit
+  " navigate chunks of current buffer
+  Keymap n [g <Plug>(coc-git-prevchunk)
+  Keymap n ]g <Plug>(coc-git-nextchunk)
+  " navigate conflicts of current buffer
+  " Keymap n [c <Plug>(coc-git-prevconflict)
+  " Keymap n ]c <Plug>(coc-git-nextconflict)
+  " show chunk diff at current position
+  Keymap n gs <Plug>(coc-git-chunkinfo)
+  " show commit contains current position
+  " Keymap n gc <Plug>(coc-git-commit)
+  " create text object for git chunks
+  Keymap xo ig <Plug>(coc-git-chunk-inner)
+  Keymap xo ag <Plug>(coc-git-chunk-outer)
+endif
 
 " coc-go
 au MyAutoCmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
