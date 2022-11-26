@@ -8,6 +8,15 @@
             "keys": "ctrl+v"
         },
         {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
+        },
+        {
             "command": "find",
             "keys": "ctrl+shift+f"
         },
@@ -21,15 +30,6 @@
                 "singleLine": false
             },
             "keys": "ctrl+c"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "keys": "alt+shift+d"
         }
     ],
     "alwaysShowTabs": false,
@@ -43,7 +43,7 @@
         {
             "antialiasingMode": "cleartype",
             "backgroundImage": "desktopWallpaper",
-            "backgroundImageOpacity": 0.050000000000000003,
+            "backgroundImageOpacity": 0.07,
             "backgroundImageStretchMode": "uniformToFill",
             "bellStyle": "window",
             "colorScheme": "One Half Dark",
@@ -51,7 +51,7 @@
             "font": 
             {
                 "face": "Cica",
-                "size": 12
+                "size": 10.0
             },
             "opacity": 50,
             "padding": "7",
@@ -336,5 +336,6 @@
     ],
     "showTabsInTitlebar": true,
     "startOnUserLogin": true,
+    "themes": [],
     "useAcrylicInTabRow": true
 }

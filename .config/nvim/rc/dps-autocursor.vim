@@ -77,57 +77,57 @@ let g:autocursor_cursorcolumn = {
   \   {
   \     "name": "FocusGained",
   \     "set": v:true,
-  \     "wait": 300,
+  \     "wait": 100,
   \   },
   \   {
   \     "name": "FocusLost",
   \     "set": v:true,
-  \     "wait": 300,
+  \     "wait": 100,
   \   },
   \   {
   \     "name": "WinEnter",
   \     "set": v:true,
-  \     "wait": 300,
+  \     "wait": 100,
   \   },
   \   {
   \     "name": "BufEnter",
   \     "set": v:true,
-  \     "wait": 300,
+  \     "wait": 100,
   \   },
   \   {
   \     "name": "CmdwinLeave",
   \     "set": v:true,
-  \     "wait": 300,
+  \     "wait": 100,
   \   },
   \   {
   \     "name": "CursorHold",
   \     "set": v:true,
-  \     "wait": 300,
+  \     "wait": 100,
   \   },
   \   {
   \     "name": "CursorHoldI",
   \     "set": v:true,
-  \     "wait": 300,
+  \     "wait": 100,
   \   },
   \   {
   \     "name": "DirChanged",
   \     "set": v:true,
-  \     "wait": 300,
+  \     "wait": 100,
   \   },
   \   {
   \     "name": "VimResized",
   \     "set": v:true,
-  \     "wait": 300,
+  \     "wait": 100,
   \   },
   \   {
   \     "name": "InsertLeave",
   \     "set": v:true,
-  \     "wait": 300,
+  \     "wait": 100,
   \   },
   \   {
   \     "name": "ModeChanged",
   \     "set": v:true,
-  \     "wait": 300,
+  \     "wait": 100,
   \   },
   \   {
   \     "name": "CursorMoved",

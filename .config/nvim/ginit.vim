@@ -19,7 +19,23 @@ endif
 
 " Enable GUI ScrollBar
 if exists(':GuiScrollBar')
-  GuiScrollBar 1
+  GuiScrollBar 0
+endif
+
+if exists(':GuiWindowOpacity')
+  GuiWindowOpacity 0.9
+endif
+
+if exists(':GuiAdaptiveFont')
+  GuiAdaptiveFont 1
+endif
+
+if exists(':GuiAdaptiveColor')
+  GuiAdaptiveColor 1
+endif
+
+if exists(':GuiAdaptiveStyle')
+  GuiAdaptiveStyle Fusion
 endif
 
 if exists('g:fvim_loaded')
