@@ -1,8 +1,22 @@
+Keymap n <silent>[b <Cmd>BufferLineCycleNext<CR>
+Keymap n <silent>]b <Cmd>BufferLineCyclePrev<CR>
+
+Keymap n <silent><leader>1 <Cmd>BufferLineGoToBuffer 1<CR>
+Keymap n <silent><leader>2 <Cmd>BufferLineGoToBuffer 2<CR>
+Keymap n <silent><leader>3 <Cmd>BufferLineGoToBuffer 3<CR>
+Keymap n <silent><leader>4 <Cmd>BufferLineGoToBuffer 4<CR>
+Keymap n <silent><leader>5 <Cmd>BufferLineGoToBuffer 5<CR>
+Keymap n <silent><leader>6 <Cmd>BufferLineGoToBuffer 6<CR>
+Keymap n <silent><leader>7 <Cmd>BufferLineGoToBuffer 7<CR>
+Keymap n <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
+Keymap n <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
+Keymap n <silent><leader>$ <Cmd>BufferLineGoToBuffer -1<CR>
+
 lua << EOF
 require("bufferline").setup{
   options = {
     mode = "buffers", -- set to "tabs" to only show tabpages instead
-    numbers = "buffer_id",
+    numbers = "ordinal",
     close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
     right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
     left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"

@@ -1,3 +1,6 @@
+
+set completeopt=menu,menuone,noselect
+
 lua << EOF
 -- Set up nvim-cmp.
 local cmp = require'cmp'
@@ -13,8 +16,8 @@ cmp.setup({
     end,
   },
   window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -68,6 +71,14 @@ cmp.setup.cmdline(':', {
  )
 })
 
+-- Lsp settings.
+local servers = { 'pyright', 'rust_analyzer', 'sumneko_lua', 'vimls', 'denols', 'jsonls', 'taplo', 'gopls' }
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+for _, lsp in pairs(servers) do
+  require('lspconfig')[lsp].setup {
+    capabilities = capabilities
+  }
+  end
 EOF
 
 " vim: ft=vim ts=2 sw=2 sts=2:

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/11/29 15:47:35.
+" Last Change : 2022/11/29 22:41:58.
 " =============================================================================
 
 " Init:
@@ -462,9 +462,12 @@ let g:plugin_use_winbar = 0
 let g:plugin_use_indent_blankline = 1
 let g:plugin_use_dps_indent_line = 0
 
-let g:plugin_use_coc = 1
+let g:plugin_use_cursorword = 0
+let g:plugin_use_illuminate = 1
+
+let g:plugin_use_coc = 0
 let g:plugin_use_ddc = 0
-let g:plugin_use_cmp = 0
+let g:plugin_use_cmp = 1
 let g:plugin_use_vimlsp = 1 && !has('nvim') && !g:plugin_use_coc
 let g:plugin_use_nvimlsp = 1 && has('nvim') && !g:plugin_use_coc
 
@@ -472,6 +475,7 @@ let g:plugin_use_ale = 0
 
 let g:plugin_use_lexima = 0 && !g:plugin_use_coc
 let g:plugin_use_lexiv = 0 && !g:plugin_use_coc
+let g:plugin_use_autopairs = 1
 
 let g:plugin_use_quickscope = 1
 let g:plugin_use_cleverf = 0
@@ -503,7 +507,8 @@ let g:plugin_use_gina = 0
 let g:plugin_use_gin = 1
 
 let g:plugin_use_gitsign = 0
-let g:plugin_use_signify = 1
+let g:plugin_use_gitsigns = 1
+let g:plugin_use_signify = 0
 let g:plugin_use_cocgit = 0
 
 let g:plugin_use_bufpreview = 0
