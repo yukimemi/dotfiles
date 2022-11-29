@@ -29,6 +29,7 @@ function! s:init_fern() abort
         \   "\<Plug>(fern-action-collapse)",
         \ )
 
+  Keymap n <buffer> n <Nop>
   Keymap n <buffer> s <Nop>
   Keymap n <buffer> <c-l> <c-w>l
   Keymap n <buffer> S <Plug>(fern-action-open:select)

@@ -3,10 +3,9 @@ if !g:plugin_use_ddc
 endif
 
 let s:patch_global = {}
-let s:sources = ['file', 'around', 'vsnip', 'buffer']
+let s:sources = ['vsnip', 'around', 'file']
 let s:sourceOptions = {}
 let s:sourceParams = {}
-let s:cmdlineSources = ['cmdline-history', 'input', 'file', 'around']
 let s:filterParams = {}
 
 if g:plugin_use_vimlsp
@@ -18,7 +17,7 @@ if g:plugin_use_nvimlsp
 endif
 
 if !g:is_windows
-  call extend(['tmux'], s:sources)
+  call extend(['tmux', 'rg'], s:sources)
 endif
 
 let s:sourceOptions._ = {
@@ -32,68 +31,78 @@ let s:sourceOptions._ = {
       \ ],
       \ }
 let s:sourceOptions.around = {
-      \ 'mark': '[ard]',
-      \ 'isVolatile': v:true,
+      \ 'mark': 'A',
       \ }
 let s:sourceOptions.file = {
-      \ 'mark': '[file]',
-      \ 'minAutoCompleteLength': 30,
-      \ 'isVolatile': v:true,
+      \ 'mark': 'F',
+      \ 'minAutoCompleteLength': 3,
       \ 'forceCompletionPattern': '[\w@:~._-]/[\w@:~._-]*',
       \ }
-let s:sourceOptions['vim-lsp'] = {
-      \ 'mark': '[lsp]',
+let s:sourceOptions['rg'] = {
+      \ 'mark': 'rg',
+      \ 'minAutoCompleteLength': 5,
+      \ 'enabledIf': "finddir('.git', ';') != ''",
+      \ }
+let s:sourceOptions['input'] = {
+      \ 'mark': 'input',
       \ 'isVolatile': v:true,
       \ 'forceCompletionPattern': '\.|:\s*|->\s*',
+      \ }
+let s:sourceOptions['vim-lsp'] = {
+      \ 'mark': 'lsp',
+      \ 'forceCompletionPattern': '\.\w*|:\w*|->\w*',
+      \ 'dup': 'force',
       \ }
 let s:sourceOptions['nvim-lsp'] = {
-      \ 'mark': '[lsp]',
-      \ 'isVolatile': v:true,
-      \ 'forceCompletionPattern': '\.|:\s*|->\s*',
+      \ 'mark': 'lsp',
+      \ 'forceCompletionPattern': '\.\w*|:\w*|->\w*',
+      \ 'dup': 'force',
       \ }
 let s:sourceOptions.necovim = {
-      \ 'mark': '[vim]',
+      \ 'mark': 'vim',
       \ 'isVolatile': v:true,
       \ }
 let s:sourceOptions.emoji = {
-      \ 'mark': '[emoji]',
+      \ 'mark': 'emj',
       \ 'matchers': ['emoji'],
       \ 'sorters': [],
       \ }
+let s:sourceOptions.cmdline = {
+      \ 'mark': 'C',
+      \ 'forceCompletionPattern': '\S/\S*|\.\w*',
+      \ 'dup': 'force',
+      \ }
 let s:sourceOptions['cmdline-history'] = {
-      \ 'mark': '[hist]',
+      \ 'mark': 'CH',
       \ 'sorters': [],
       \ }
 let s:sourceOptions.vsnip = {
-      \ 'mark': '[snip]',
-      \ 'dup': v:true,
+      \ 'mark': 'S',
+      \ 'dup': 'force',
       \ }
 let s:sourceOptions.zsh = {
-      \ 'mark': '[zsh]',
+      \ 'mark': 'zsh',
       \ 'isVolatile': v:true,
       \ 'forceCompletionPattern': '[\w@:~._-]/[\w@:~._-]*',
       \ }
 let s:sourceOptions.mocword = {
-      \ 'mark': '[word]',
+      \ 'mark': 'word',
       \ 'minAutoCompleteLength': 3,
       \ 'isVolatile': v:true,
       \ }
 let s:sourceOptions.github_issue = {
-      \ 'mark': '[issue]',
+      \ 'mark': 'issue',
       \ 'forceCompletionPattern': '#\d*',
       \ }
 let s:sourceOptions.github_pull_request = {
-      \ 'mark': '[PR]',
+      \ 'mark': 'PR',
       \ 'forceCompletionPattern': '#\d*',
       \ }
-let s:sourceOptions.cmdline = {
-      \ 'mark': '[cmd]',
-      \ 'isVolatile': v:true,
-      \ }
-let s:sourceOptions.buffer = {'mark': '[buf]'}
-let s:sourceOptions.tmux = {'mark': '[tmux]'}
-let s:sourceOptions.omni = {'mark': '[omni]'}
-let s:sourceOptions.line = {'mark': '[line]'}
+let s:sourceOptions.around = {'mark': 'A'}
+let s:sourceOptions.buffer = {'mark': 'B'}
+let s:sourceOptions.tmux = {'mark': 'tmux'}
+let s:sourceOptions.omni = {'mark': 'omni'}
+let s:sourceOptions.line = {'mark': 'line'}
 
 let s:sourceParams.around = {'maxSize': 500}
 let s:sourceParams.buffer = {
@@ -123,6 +132,16 @@ let s:sourceParams['vim-lsp'] = {
 "      \ 'ellipsis': '..',
 "      \ }
 
+let s:cmdlineSources = {
+      \   ':': ['cmdline-history', 'cmdline', 'around'],
+      \   '@': ['cmdline-history', 'input', 'file', 'around'],
+      \   '>': ['cmdline-history', 'input', 'file', 'around'],
+      \   '/': ['around', 'line'],
+      \   '?': ['around', 'line'],
+      \   '-': ['around', 'line'],
+      \   '=': ['input'],
+      \ }
+
 call ddc#custom#patch_filetype(
       \ ['vim', 'toml'], {
       \ 'sources': extend(['necovim'], s:sources),
@@ -135,7 +154,7 @@ call ddc#custom#patch_filetype(
 call ddc#custom#patch_filetype(
       \ ['markdown', 'gitcommit'], {
       \ 'sources': extend([
-      \   'nextword',
+      \   'mocword',
       \   'github_issue', 'github_pull_request',
       \ ], s:sources),
       \ 'keywordPattern': '[a-zA-Z_:#]\k*',
@@ -193,8 +212,9 @@ inoremap <silent><expr> <C-n>
 inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
 " inoremap <C-n>   <Cmd>call pum#map#insert_relative(+1)<CR>
 inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
+
+inoremap <expr> <C-e> ddc#map#insert_item(0, '<Cmd>call pum#map#cancel()<CR>')
 inoremap <C-y>   <Cmd>call pum#map#confirm()<CR>
-inoremap <C-e>   <Cmd>call pum#map#cancel()<CR>
 " inoremap <silent><expr> <C-l>   ddc#map#extend()
 inoremap <silent><expr> <C-x><C-f> ddc#manual_complete('path')
 
@@ -212,25 +232,22 @@ nnoremap /       <Cmd>call CommandlinePre('/')<CR>/
 nnoremap ?       <Cmd>call CommandlinePre('/')<CR>?
 
 function! CommandlinePre(mode) abort
-  " Note: It disables default command line completion!
+  " NOTE: It disables default command line completion!
   set wildchar=<C-t>
   set wildcharm=<C-t>
 
   cnoremap <expr><buffer> <Tab>
-        \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-        \ exists('b:ddc_cmdline_completion') ? ddc#manual_complete() : "\<C-t>"
+  \ pum#visible() ?
+  \  '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+  \ exists('b:ddc_cmdline_completion') ?
+  \   ddc#map#manual_complete() : "\<C-t>"
 
   " Overwrite sources
   if !exists('b:prev_buffer_config')
     let b:prev_buffer_config = ddc#custom#get_buffer()
   endif
   if a:mode ==# ':'
-    call ddc#custom#patch_buffer('cmdlineSources',
-          \ ['cmdline-history', 'cmdline', 'around'])
-    call ddc#custom#patch_buffer('keywordPattern', '[0-9a-zA-Z_:#]*')
-  else
-    call ddc#custom#patch_buffer('cmdlineSources',
-          \ ['around', 'line'])
+    call ddc#custom#patch_buffer('keywordPattern', '[0-9a-zA-Z_:#-]*')
   endif
 
   autocmd MyAutoCmd User DDCCmdlineLeave ++once call CommandlinePost()

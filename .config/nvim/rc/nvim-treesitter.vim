@@ -9,7 +9,7 @@ set foldexpr=nvim_treesitter#foldexpr()
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"c", "lua", "vim", "rust", "go"},
+  ensure_installed = {"c", "lua", "vim", "rust", "go", "markdown"},
   sync_install = false,
   auto_install = true,
   highlight = {
@@ -25,6 +25,9 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     extended_mode = true,
     max_file_lines = 5000,
+  },
+  autotag = {
+    enable = true,
   },
 }
 EOF

@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : jetpack.vim
 " Author      : yukimemi
-" Last Change : 2022/10/16 17:35:10.
+" Last Change : 2022/11/29 15:03:57.
 " =============================================================================
 
 " Plugin:
@@ -56,8 +56,8 @@ Pg 'tani/vim-jetpack', {'opt': 1}
 
 " Colorscheme:
 Pg 'Matsuuu/pinkmare', {'opt': 1}
-Pg 'srcery-colors/srcery-vim', {'opt': 1}
-Pg 'base16-project/base16-vim', {'opt': 1}
+Pg 'rafi/awesome-vim-colorschemes', {'opt': 1}
+Pg 'RRethy/nvim-base16', {'opt': 1}
 
 " Visual:
 Pg 'andymass/vim-matchup', {'event': g:lazy_events}

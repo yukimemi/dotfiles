@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/11/25 10:41:42.
+# Last Change: 2022/11/29 14:47:53.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -327,6 +327,12 @@ repo = 'p00f/nvim-ts-rainbow'
 if = 'has("nvim")'
 on_source = 'nvim-treesitter'
 
+[[plugins]]
+repo = 'windwp/nvim-ts-autotag'
+if = 'has("nvim")'
+on_source = 'nvim-treesitter'
+
+
 # ==================== Utility ===================
 
 [[plugins]]
@@ -395,7 +401,7 @@ depends = 'nerdfont.vim'
 hook_source = '''
 source $VIM_PATH/rc/wilder.nvim
 '''
-if = '!g:plugin_use_ddc'
+if = 'g:plugin_use_coc'
 on_map = [':', '/', '?']
 
 [[plugins]]
@@ -1765,6 +1771,23 @@ source $VIM_PATH/rc/winbar.nvim
 '''
 on_event = ['CursorHold', 'FocusLost']
 
+[[plugins]]
+repo = 'akinsho/bufferline.nvim'
+if = "has('nvim')"
+depends = 'scope.nvim'
+hook_source = '''
+source $VIM_PATH/rc/bufferline.nvim
+'''
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'tiagovla/scope.nvim'
+if = "has('nvim')"
+hook_source = '''
+source $VIM_PATH/rc/scope.nvim
+'''
+on_event = ['CursorHold', 'FocusLost']
+
 # ==================== Filetree ==================
 
 [[plugins]]
@@ -1890,6 +1913,41 @@ source $VIM_PATH/rc/copilot.vim
 if = 0
 on_cmd = 'Copilot'
 on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'hrsh7th/nvim-cmp'
+depends = ['context_filetype.vim', 'denops.vim', 'pum.vim']
+if = "g:plugin_use_cmp"
+on_event = ['InsertEnter', 'CursorHold']
+hook_source = '''
+source $VIM_PATH/rc/nvim-cmp.vim
+'''
+
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lsp'
+depends = 'nvim-lspconfig'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'hrsh7th/cmp-buffer'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'hrsh7th/cmp-path'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'hrsh7th/cmp-cmdline'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'hrsh7th/cmp-vsnip'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lsp-signature-help'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'hrsh7th/cmp-nvim-lsp-document-symbol'
+on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'dmitmel/cmp-cmdline-history'
+on_source = 'nvim-cmp'
 
 # ==================== Runner ====================
 

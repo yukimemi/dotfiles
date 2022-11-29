@@ -5,8 +5,8 @@ endif
 function! s:pum_cfg() abort
   call pum#set_option({
         \  'highlight_kind': 'Type',
-        \  'max_width': 100,
-        \  'use_complete': v:true,
+        \  'max_width': 150,
+        \  'use_complete': v:false,
         \ })
 endfunction
 
