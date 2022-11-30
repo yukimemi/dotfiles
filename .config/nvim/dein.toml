@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/11/29 23:18:15.
+# Last Change: 2022/11/30 09:24:55.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -2019,23 +2019,6 @@ hook_add = '''
 source $VIM_PATH/rc/asyncrun.vim
 '''
 if = "g:plugin_use_asyncrun"
-
-# ==================== Filetype (all) ============
-
-[[plugins]]
-repo = 'nathom/filetype.nvim'
-hook_add = '''
-source $VIM_PATH/rc/filetype.nvim
-'''
-if = 0
-
-[[plugins]]
-repo = 'sheerun/vim-polyglot'
-hook_add = '''
-source $VIM_PATH/rc/vim-polyglot.vim
-'''
-if = 0
-merged = false
 
 # ==================== Filetype (vim) =======
 

@@ -72,9 +72,8 @@ cmp.setup.cmdline(':', {
 })
 
 -- Lsp settings.
-local servers = { 'pyright', 'rust_analyzer', 'sumneko_lua', 'vimls', 'denols', 'jsonls', 'taplo', 'gopls' }
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-for _, lsp in pairs(servers) do
+for _, lsp in pairs(vim.g.lsp_use_servers) do
   require('lspconfig')[lsp].setup {
     capabilities = capabilities
   }

@@ -4,7 +4,7 @@ endif
 
 lua << EOF
 require("mason-lspconfig").setup({
-  ensure_installed = { 'pyright', 'rust_analyzer', 'sumneko_lua', 'vimls', 'jsonls', 'gopls', 'powershell_es' },
+  ensure_installed = vim.g.lsp_use_servers,
   automatic_installation = true,
 })
 EOF

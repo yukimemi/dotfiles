@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/11/29 22:41:58.
+" Last Change : 2022/11/30 13:36:57.
 " =============================================================================
 
 " Init:
@@ -440,97 +440,98 @@ set wildcharm=<tab>
 cnoremap <expr> <tab> '<cmd>set nosmartcase<cr><tab><cmd>let &smartcase = ' .. &smartcase .. '<cr>'
 
 " Plugin:
-let g:plugin_use_dein = 1
-let g:plugin_use_vimplug = 0
-let g:plugin_use_minpac = 0
-let g:plugin_use_packager = 0
-let g:plugin_use_volt = 0
-let g:plugin_use_pack = 0
-let g:plugin_use_packer = 0
-let g:plugin_use_jetpack = 0
+let g:plugin_use_dein = v:false
+let g:plugin_use_vimplug = v:false
+let g:plugin_use_minpac = v:false
+let g:plugin_use_packager = v:false
+let g:plugin_use_volt = v:false
+let g:plugin_use_pack = v:false
+let g:plugin_use_packer = v:true
+let g:plugin_use_jetpack = v:false
 
-let g:plugin_use_lightline = 0
-let g:plugin_use_airline = 0
-let g:plugin_use_barow = 0
-let g:plugin_use_neoline = 0
-let g:plugin_use_lualine = 1
-let g:plugin_use_staline = 0
-let g:plugin_use_galaxyline = 0
-let g:plugin_use_incline = 1 && !g:is_windows
-let g:plugin_use_winbar = 0
+let g:plugin_use_lightline = v:false
+let g:plugin_use_airline = v:false
+let g:plugin_use_barow = v:false
+let g:plugin_use_neoline = v:false
+let g:plugin_use_lualine = v:true
+let g:plugin_use_staline = v:false
+let g:plugin_use_galaxyline = v:false
+let g:plugin_use_incline = v:true
+let g:plugin_use_winbar = v:false
 
-let g:plugin_use_indent_blankline = 1
-let g:plugin_use_dps_indent_line = 0
+let g:plugin_use_indent_blankline = v:true
+let g:plugin_use_dps_indent_line = v:false
 
-let g:plugin_use_cursorword = 0
-let g:plugin_use_illuminate = 1
+let g:plugin_use_cursorword = v:false
+let g:plugin_use_illuminate = v:true
 
-let g:plugin_use_coc = 0
-let g:plugin_use_ddc = 0
-let g:plugin_use_cmp = 1
-let g:plugin_use_vimlsp = 1 && !has('nvim') && !g:plugin_use_coc
-let g:plugin_use_nvimlsp = 1 && has('nvim') && !g:plugin_use_coc
+let g:plugin_use_coc = v:true
+let g:plugin_use_ddc = v:false
+let g:plugin_use_cmp = v:false
+let g:plugin_use_vimlsp = v:true && !g:plugin_use_coc
+let g:plugin_use_nvimlsp = v:true && !g:plugin_use_coc
 
-let g:plugin_use_ale = 0
+let g:plugin_use_ale = v:false
 
-let g:plugin_use_lexima = 0 && !g:plugin_use_coc
-let g:plugin_use_lexiv = 0 && !g:plugin_use_coc
-let g:plugin_use_autopairs = 1
+let g:plugin_use_lexima = v:false && !g:plugin_use_coc
+let g:plugin_use_lexiv = v:false && !g:plugin_use_coc
+let g:plugin_use_autopairs = v:true
 
-let g:plugin_use_quickscope = 1
-let g:plugin_use_cleverf = 0
-let g:plugin_use_shotf = 0
+let g:plugin_use_quickscope = v:true
+let g:plugin_use_cleverf = v:false
+let g:plugin_use_shotf = v:false
 
-let g:plugin_use_smoothie = 0
+let g:plugin_use_smoothie = v:false
 
-let g:plugin_use_ctrlp = 1
-let g:plugin_use_fzf = 0
-let g:plugin_use_cocfzf = 0
-let g:plugin_use_coclist = 0
-let g:plugin_use_fz = 0
-let g:plugin_use_ddu = 0
-let g:plugin_use_telescope = 1 && has('nvim')
-let g:plugin_use_linearf = 0 && has('nvim')
+let g:plugin_use_ctrlp = v:true
+let g:plugin_use_fzf = v:false
+let g:plugin_use_cocfzf = v:false
+let g:plugin_use_coclist = v:true
+let g:plugin_use_fz = v:false
+let g:plugin_use_ddu = v:false
+let g:plugin_use_telescope = v:false
+let g:plugin_use_linearf = v:false
 
 let g:plugin_use_fern = !g:plugin_use_coc
-let g:plugin_use_ddu_filer = 0
-let g:plugin_use_vfiler = 0
-let g:plugin_use_molder = 0
-let g:plugin_use_vaffle = 0
-let g:plugin_use_viler = 0
+let g:plugin_use_ddu_filer = v:false
+let g:plugin_use_vfiler = v:false
+let g:plugin_use_molder = v:false
+let g:plugin_use_vaffle = v:false
+let g:plugin_use_viler = v:false
 let g:plugin_use_coc_explorer = g:plugin_use_coc
 
-let g:plugin_use_quickrun = 1
-let g:plugin_use_asyncrun = 0
+let g:plugin_use_quickrun = v:true
+let g:plugin_use_asyncrun = v:false
 
-let g:plugin_use_gina = 0
-let g:plugin_use_gin = 1
+let g:plugin_use_gina = v:false
+let g:plugin_use_gin = v:true
 
-let g:plugin_use_gitsign = 0
-let g:plugin_use_gitsigns = 1
-let g:plugin_use_signify = 0
-let g:plugin_use_cocgit = 0
+let g:plugin_use_gitsign = v:false
+let g:plugin_use_gitsigns = v:true
+let g:plugin_use_signify = v:false
+let g:plugin_use_cocgit = v:false
+let g:plugin_use_bufpreview = v:false
+let g:plugin_use_glance = v:true
+let g:plugin_use_markdownpreview = v:false
 
-let g:plugin_use_bufpreview = 0
-let g:plugin_use_glance = 1
-let g:plugin_use_markdownpreview = 0
-
-let g:plugin_use_neoterm = 0
-let g:plugin_use_toggleterm = 0
-let g:plugin_use_floaterm = 1
+let g:plugin_use_neoterm = v:false
+let g:plugin_use_toggleterm = v:false
+let g:plugin_use_floaterm = v:true
 
 let g:plugin_use_beacon = 1
-let g:plugin_use_columnskip = 0
-let g:plugin_use_edgemotion = 1
+let g:plugin_use_columnskip = v:false
+let g:plugin_use_edgemotion = v:true
 
-let g:plugin_use_treesitter = 1
-let g:plugin_use_scorpeon = 1
+let g:plugin_use_treesitter = v:true
+let g:plugin_use_scorpeon = v:true
 
-let g:plugin_use_caw = 0
-let g:plugin_use_contextment = 1
+let g:plugin_use_caw = v:true
+let g:plugin_use_contextment = v:false
+
+let g:lsp_use_servers = ['denols', 'gopls', 'gopls' , 'jsonls', 'powershell_es' , 'pyright', 'rust_analyzer', 'sumneko_lua', 'taplo', 'vimls']
 
 let g:no_plugin = get(g:, 'no_plugin', 0)
-" let g:no_plugin = 1
+" let g:no_plugin = v:true
 if !g:no_plugin
   if g:plugin_use_dein
     runtime! dein.vim
