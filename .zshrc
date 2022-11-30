@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2022/09/18 10:51:18.
+# Last Change : 2022/11/30 00:43:40.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -336,3 +336,7 @@ fi
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+if type tea > /dev/null 2>&1; then
+  add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
+fi

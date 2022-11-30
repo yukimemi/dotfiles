@@ -245,6 +245,8 @@ snippets:
     snippet: cargo install --git https://github.com/ubnt-intrepid/dot.git
   - name: Install nublar
     snippet: deno install --allow-read --allow-write --allow-env --allow-net https://deno.land/x/nublar@0.2.0/nublar.ts
+  - name: Install tea
+    snippet: sh <(curl https://tea.xyz)
 
 completions:
   - name: kill
