@@ -18,7 +18,7 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-return require('packer').startup(function(use)
+return require('packer').startup({function(use)
   use 'wbthomason/packer.nvim'
 
   -- colorscheme.
@@ -107,6 +107,10 @@ return require('packer').startup(function(use)
 
   -- utility.
   use {
+    'thinca/vim-ambicmd',
+    setup = vim.cmd [[source $VIM_PATH/rc/vim-ambicmd.vim]],
+  }
+  use {
     'gelguy/wilder.nvim',
     setup = vim.cmd [[source $VIM_PATH/rc/wilder.nvim]],
     disable = not vim.g.plugin_use_coc,
@@ -120,7 +124,7 @@ return require('packer').startup(function(use)
   use {
     'Bakudankun/BackAndForward.vim',
     setup = vim.cmd [[source $VIM_PATH/rc/BackAndForward.vim]],
-    keys = {{'n', 'gH'}, {'n', 'gL'}},
+    event = {'CursorHold', 'FocusLost'},
   }
   use {
     'ntpeters/vim-better-whitespace',
@@ -130,6 +134,11 @@ return require('packer').startup(function(use)
   use {
     'monaqa/dial.nvim',
     setup = vim.cmd [[source $VIM_PATH/rc/dial.nvim]],
+    event = {'CursorHold', 'FocusLost'},
+  }
+  use {
+    'ahmedkhalf/project.nvim',
+    config = 'vim.cmd [[source $VIM_PATH/rc/project.nvim]]',
     event = {'CursorHold', 'FocusLost'},
   }
 
@@ -259,5 +268,12 @@ return require('packer').startup(function(use)
   if packer_bootstrap then
     require('packer').sync()
   end
-end)
+end,
+config = {
+  display = {
+    open_fn = function()
+      return require('packer.util').float({ border = 'single' })
+    end
+  }
+}})
 
