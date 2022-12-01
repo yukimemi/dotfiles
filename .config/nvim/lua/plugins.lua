@@ -43,9 +43,9 @@ return require('packer').startup({ function(use)
   -- statusline.
   use {
     'vim-airline/vim-airline',
-    requires = { 'vim-airline/vim-airline-themes' },
     setup = vim.cmd [[source $VIM_PATH/rc/vim-airline.vim]],
     disable = not vim.g.plugin_use_airline,
+    requires = { 'vim-airline/vim-airline-themes' },
   }
   use {
     'itchyny/lightline.vim',
@@ -74,10 +74,12 @@ return require('packer').startup({ function(use)
     'akinsho/bufferline.nvim',
     config = 'vim.cmd [[source $VIM_PATH/rc/bufferline.nvim]]',
     event = { 'CursorHold', 'FocusLost' },
-    require = {
-      'tiagovla/scope.nvim',
-      config = 'vim.cmd [[source $VIM_PATH/rc/scope.nvim]]',
-      event = { 'CursorHold', 'FocusLost' },
+    requires = {
+      {
+        'tiagovla/scope.nvim',
+        config = 'vim.cmd [[source $VIM_PATH/rc/scope.nvim]]',
+        opt = true,
+      }
     },
   }
 
@@ -88,6 +90,8 @@ return require('packer').startup({ function(use)
     run = 'cargo install mocword',
     setup = vim.cmd [[source $VIM_PATH/rc/coc.nvim]],
     disable = not vim.g.plugin_use_coc,
+    event = { 'BufRead', 'CursorHold', 'FocusLost' },
+    cmd = {'CocList', 'CocCommand', 'CocAction', 'CocActionAsync'},
   }
 
   -- comment.
@@ -95,6 +99,14 @@ return require('packer').startup({ function(use)
     'tyru/caw.vim',
     setup = vim.cmd [[source $VIM_PATH/rc/caw.vim]],
     disable = not vim.g.plugin_use_caw,
+    event = { 'BufRead', 'CursorHold', 'FocusLost' },
+  }
+  use {
+    'uga-rosa/contextment.vim',
+    setup = vim.cmd [[source $VIM_PATH/rc/contextment.vim]],
+    disable = not vim.g.plugin_use_contextment,
+    event = { 'BufRead', 'CursorHold', 'FocusLost' },
+    requires = {{'Shougo/context_filetype.vim', opt = true}},
   }
 
   -- motion.
@@ -107,6 +119,10 @@ return require('packer').startup({ function(use)
 
   -- utility.
   use {
+    'tpope/vim-repeat',
+    event = { 'BufRead', 'CursorHold', 'FocusLost' },
+  }
+  use {
     'thinca/vim-ambicmd',
     setup = vim.cmd [[source $VIM_PATH/rc/vim-ambicmd.vim]],
   }
@@ -114,8 +130,9 @@ return require('packer').startup({ function(use)
     'gelguy/wilder.nvim',
     setup = vim.cmd [[source $VIM_PATH/rc/wilder.nvim]],
     disable = not vim.g.plugin_use_coc,
+    event = { 'BufRead', 'CursorHold', 'FocusLost', 'CmdlineEnter', 'CmdWinEnter' },
   }
-  use { 'andymass/vim-matchup', event = 'BufRead *' }
+  use { 'andymass/vim-matchup', event = 'BufRead' }
   use {
     'lambdalisue/vim-findent',
     setup = vim.cmd [[source $VIM_PATH/rc/vim-findent.vim]],
@@ -142,9 +159,30 @@ return require('packer').startup({ function(use)
     event = { 'CursorHold', 'FocusLost' },
   }
   use {
-    'tweekmonster/startuptime.vim',
+    'dstein64/vim-startuptime',
     cmd = 'StartupTime',
   }
+
+  -- run.
+  use {
+    'thinca/vim-quickrun',
+    setup = vim.cmd [[source $VIM_PATH/rc/vim-quickrun.vim]],
+    disable = not vim.g.plugin_use_quickrun,
+    cmd = 'QuickRun',
+    requires = {
+      {
+        'lambdalisue/vim-quickrun-neovim-job',
+        setup = vim.cmd [[source $VIM_PATH/rc/vim-quickrun.vim]],
+        opt = true,
+      },
+      {
+        'statiolake/vim-quickrun-runner-nvimterm',
+        setup = vim.cmd [[source $VIM_PATH/rc/vim-quickrun-runner-nvimterm.vim]],
+        opt = true,
+      },
+    }
+  }
+
 
   -- git.
   use {
@@ -158,32 +196,32 @@ return require('packer').startup({ function(use)
   use { 'kana/vim-textobj-user' }
   use {
     'gilligan/textobj-lastpaste',
-    requires = 'kana/vim-textobj-user',
     event = { 'BufRead', 'CursorHold', 'FocusLost' },
+    requires = 'kana/vim-textobj-user',
   }
   use {
     'kana/vim-textobj-entire',
-    requires = 'kana/vim-textobj-user',
     event = { 'BufRead', 'CursorHold', 'FocusLost' },
+    requires = 'kana/vim-textobj-user',
   }
   use {
     'kana/vim-textobj-line',
-    requires = 'kana/vim-textobj-user',
     event = { 'BufRead', 'CursorHold', 'FocusLost' },
+    requires = 'kana/vim-textobj-user',
   }
   use {
     'rbtnn/vim-textobj-string',
-    requires = 'kana/vim-textobj-user',
     event = { 'BufRead', 'CursorHold', 'FocusLost' },
+    requires = 'kana/vim-textobj-user',
   }
 
   -- operator.
   use { 'kana/vim-operator-user' }
   use {
     'yuki-yano/vim-operator-replace',
-    requires = 'kana/vim-operator-user',
     setup = vim.cmd [[source $VIM_PATH/rc/vim-operator-replace.vim]],
     event = { 'BufRead', 'CursorHold', 'FocusLost' },
+    requires = 'kana/vim-operator-user',
   }
 
   -- denops.
@@ -191,6 +229,7 @@ return require('packer').startup({ function(use)
     'vim-denops/denops.vim',
     setup = vim.cmd [[source $VIM_PATH/rc/denops.vim]],
     event = { 'CursorHold', 'FocusLost' },
+    fn = { 'denops#plugin#wait_async' },
   }
   use {
     'vim-denops/denops-shared-server.vim',

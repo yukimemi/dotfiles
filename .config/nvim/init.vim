@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/11/30 13:36:57.
+" Last Change : 2022/12/01 17:44:04.
 " =============================================================================
 
 " Init:
@@ -440,13 +440,13 @@ set wildcharm=<tab>
 cnoremap <expr> <tab> '<cmd>set nosmartcase<cr><tab><cmd>let &smartcase = ' .. &smartcase .. '<cr>'
 
 " Plugin:
-let g:plugin_use_dein = v:false
+let g:plugin_use_dein = v:true
 let g:plugin_use_vimplug = v:false
 let g:plugin_use_minpac = v:false
 let g:plugin_use_packager = v:false
 let g:plugin_use_volt = v:false
 let g:plugin_use_pack = v:false
-let g:plugin_use_packer = v:true
+let g:plugin_use_packer = v:false
 let g:plugin_use_jetpack = v:false
 
 let g:plugin_use_lightline = v:false
@@ -465,10 +465,10 @@ let g:plugin_use_dps_indent_line = v:false
 let g:plugin_use_cursorword = v:false
 let g:plugin_use_illuminate = v:true
 
-let g:plugin_use_coc = v:true
+let g:plugin_use_coc = v:false
 let g:plugin_use_ddc = v:false
-let g:plugin_use_cmp = v:false
-let g:plugin_use_vimlsp = v:true && !g:plugin_use_coc
+let g:plugin_use_cmp = v:true
+let g:plugin_use_vimlsp = v:false && !g:plugin_use_coc
 let g:plugin_use_nvimlsp = v:true && !g:plugin_use_coc
 
 let g:plugin_use_ale = v:false
@@ -518,7 +518,7 @@ let g:plugin_use_neoterm = v:false
 let g:plugin_use_toggleterm = v:false
 let g:plugin_use_floaterm = v:true
 
-let g:plugin_use_beacon = 1
+let g:plugin_use_beacon = v:false
 let g:plugin_use_columnskip = v:false
 let g:plugin_use_edgemotion = v:true
 

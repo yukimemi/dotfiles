@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/11/30 09:24:55.
+# Last Change: 2022/12/01 18:13:26.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -387,7 +387,7 @@ repo = 'airblade/vim-rooter'
 hook_add = '''
 source $VIM_PATH/rc/vim-rooter.vim
 '''
-if = 1
+if = 0
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
@@ -396,6 +396,14 @@ hook_add = '''
 source $VIM_PATH/rc/vim-findroot.vim
 '''
 if = 0
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'ahmedkhalf/project.nvim'
+if = 1
+hook_source = '''
+source $VIM_PATH/rc/project.nvim
+'''
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
@@ -665,7 +673,7 @@ if = 1
 on_cmd = 'Vista'
 
 [[plugins]]
-repo = 'tweekmonster/startuptime.vim'
+repo = 'dstein64/vim-startuptime'
 if = 1
 on_cmd = 'StartupTime'
 
