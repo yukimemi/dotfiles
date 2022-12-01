@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/12/01 18:13:26.
+# Last Change: 2022/12/01 23:47:33.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -350,7 +350,7 @@ if = 'has("nvim")'
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
 if = 'has("nvim")'
-on_event = ['CursorHold', 'FocusLost']
+lazy = 1
 
 [[plugins]]
 repo = 'AndrewRadev/linediff.vim'
@@ -654,11 +654,13 @@ source $VIM_PATH/rc/nvim-autopairs.vim
 
 [[plugins]]
 repo = 'rcarriga/nvim-notify'
-if = 0
+if = 1
 on_lua = 'notify'
-on_source = '''
-lua vim.notify = require('notify').setup({
-  background_colour = "#000000",
+lua_source = '''
+require('notify').setup({
+  render = "minimal",
+  stages = "static",
+  timeout = 1000,
 })
 '''
 
@@ -905,7 +907,7 @@ hook_add = '''
 source $VIM_PATH/rc/textobj-lastpaste.vim
 '''
 if = 1
-on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
+on_map = { x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-entire'
@@ -914,7 +916,7 @@ hook_add = '''
 source $VIM_PATH/rc/vim-textobj-entire.vim
 '''
 if = 1
-on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
+on_map = { x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-fold'
@@ -923,7 +925,7 @@ hook_add = '''
 source $VIM_PATH/rc/vim-textobj-fold.vim
 '''
 if = 1
-on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
+on_map = { x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-indent'
@@ -932,7 +934,7 @@ hook_add = '''
 source $VIM_PATH/rc/vim-textobj-indent.vim
 '''
 if = 1
-on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
+on_map = { x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'kana/vim-textobj-line'
@@ -941,7 +943,7 @@ hook_add = '''
 source $VIM_PATH/rc/vim-textobj-line.vim
 '''
 if = 1
-on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
+on_map = { x = '<Plug>', o = '<Plug>' }
 
 [[plugins]]
 repo = 'Omochice/vim-textobj-bettertag'
@@ -950,7 +952,7 @@ hook_add = '''
 source $VIM_PATH/rc/vim-textobj-bettertag.vim
 '''
 if = 0
-on_map = { n = '<Plug>', x = '<Plug>', o = '<Plug>' }
+on_map = { x = '<Plug>', o = '<Plug>' }
 
 
 [[plugins]]
@@ -2115,7 +2117,7 @@ on_ft = 'toml'
 
 [[plugins]]
 repo = 'folke/neodev.nvim'
-if = "has('nvim')"
+if = "has('nvim') && !g:plugin_use_coc"
 hook_source = '''
 source $VIM_PATH/rc/neodev.nvim
 '''

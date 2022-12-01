@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/12/01 17:44:04.
+" Last Change : 2022/12/01 21:08:18.
 " =============================================================================
 
 " Init:
@@ -143,7 +143,7 @@ endif
 
 set number
 set relativenumber
-set signcolumn=number
+set signcolumn=yes
 if has('gui')
   set ambiwidth=double
 endif
@@ -465,9 +465,9 @@ let g:plugin_use_dps_indent_line = v:false
 let g:plugin_use_cursorword = v:false
 let g:plugin_use_illuminate = v:true
 
-let g:plugin_use_coc = v:false
+let g:plugin_use_coc = v:true
 let g:plugin_use_ddc = v:false
-let g:plugin_use_cmp = v:true
+let g:plugin_use_cmp = v:false
 let g:plugin_use_vimlsp = v:false && !g:plugin_use_coc
 let g:plugin_use_nvimlsp = v:true && !g:plugin_use_coc
 
