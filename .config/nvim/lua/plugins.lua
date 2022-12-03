@@ -1,7 +1,7 @@
-return require('packer').startup({function(use)
+return require('packer').startup({ function(use)
 
   -- Packer can manage itself
-  use {'wbthomason/packer.nvim', opt = true}
+  use { 'wbthomason/packer.nvim', opt = true }
 
   -- colorscheme.
   use { 'adrian5/oceanic-next-vim', opt = true }
@@ -48,10 +48,10 @@ return require('packer').startup({function(use)
     disable = not vim.g.plugin_use_incline,
     event = { 'CursorHold', 'FocusLost' },
     requires = {
-      {'nvim-tree/nvim-web-devicons', opt = true},
-      {'nvim-treesitter/nvim-treesitter', opt = true},
+      { 'nvim-tree/nvim-web-devicons', opt = true },
+      { 'nvim-treesitter/nvim-treesitter', opt = true },
     },
-    wants = {'nvim-web-devicons', 'nvim-treesitter'},
+    wants = { 'nvim-web-devicons', 'nvim-treesitter' },
   }
   use {
     'nvim-lualine/lualine.nvim',
@@ -82,27 +82,27 @@ return require('packer').startup({function(use)
     setup = function() vim.cmd([[source $VIM_PATH/rc/coc.nvim]]) end,
     disable = not vim.g.plugin_use_coc,
     event = { 'BufRead', 'CursorHold', 'FocusLost' },
-    cmd = {'CocList', 'CocCommand', 'CocAction', 'CocActionAsync'},
+    cmd = { 'CocList', 'CocCommand', 'CocAction', 'CocActionAsync' },
   }
   use {
     'hrsh7th/nvim-cmp',
     config = function() vim.cmd([[source $VIM_PATH/rc/nvim-cmp.vim]]) end,
     disable = not vim.g.plugin_use_cmp,
-    module = {'cmp'},
+    module = { 'cmp' },
     requires = {
       {
         'hrsh7th/cmp-nvim-lsp',
         module = { 'cmp_nvim_lsp' },
-        event = {'InsertEnter', 'CmdlineEnter', 'CmdWinEnter'},
+        event = { 'InsertEnter', 'CmdlineEnter', 'CmdWinEnter' },
         wants = 'nvim-lspconfig',
       },
-      { 'hrsh7th/cmp-buffer', event = {'InsertEnter', 'CmdlineEnter', 'CmdWinEnter'} },
-      { 'hrsh7th/cmp-path', event = {'InsertEnter', 'CmdlineEnter', 'CmdWinEnter'} },
-      { 'hrsh7th/cmp-cmdline', event = {'InsertEnter', 'CmdlineEnter', 'CmdWinEnter'} },
-      { 'hrsh7th/cmp-vsnip', event = {'InsertEnter', 'CmdlineEnter', 'CmdWinEnter'} },
-      { 'hrsh7th/cmp-nvim-lsp-signature-help', event = {'InsertEnter', 'CmdlineEnter', 'CmdWinEnter'} },
-      { 'hrsh7th/cmp-nvim-lsp-document-symbol', event = {'InsertEnter', 'CmdlineEnter', 'CmdWinEnter'} },
-      { 'dmitmel/cmp-cmdline-history', event = {'InsertEnter', 'CmdlineEnter', 'CmdWinEnter'} },
+      { 'hrsh7th/cmp-buffer', event = { 'InsertEnter', 'CmdlineEnter', 'CmdWinEnter' } },
+      { 'hrsh7th/cmp-path', event = { 'InsertEnter', 'CmdlineEnter', 'CmdWinEnter' } },
+      { 'hrsh7th/cmp-cmdline', event = { 'InsertEnter', 'CmdlineEnter', 'CmdWinEnter' } },
+      { 'hrsh7th/cmp-vsnip', event = { 'InsertEnter', 'CmdlineEnter', 'CmdWinEnter' } },
+      { 'hrsh7th/cmp-nvim-lsp-signature-help', event = { 'InsertEnter', 'CmdlineEnter', 'CmdWinEnter' } },
+      { 'hrsh7th/cmp-nvim-lsp-document-symbol', event = { 'InsertEnter', 'CmdlineEnter', 'CmdWinEnter' } },
+      { 'dmitmel/cmp-cmdline-history', event = { 'InsertEnter', 'CmdlineEnter', 'CmdWinEnter' } },
     },
   }
 
@@ -110,7 +110,7 @@ return require('packer').startup({function(use)
   use {
     'neovim/nvim-lspconfig',
     disable = not vim.g.plugin_use_nvimlsp,
-    event = {'BufRead', 'BufNew'},
+    event = { 'BufRead', 'BufNew' },
     config = function() vim.cmd([[source $VIM_PATH/rc/nvim-lspconfig.vim]]) end,
     requires = {
       {
@@ -149,7 +149,7 @@ return require('packer').startup({function(use)
     setup = function() vim.cmd([[source $VIM_PATH/rc/contextment.vim]]) end,
     disable = not vim.g.plugin_use_contextment,
     event = { 'BufRead', 'CursorHold', 'FocusLost' },
-    requires = {{'Shougo/context_filetype.vim', opt = true}},
+    requires = { { 'Shougo/context_filetype.vim', opt = true } },
     wants = { 'context_filetype.vim' },
   }
 
@@ -186,7 +186,7 @@ return require('packer').startup({function(use)
   use {
     'Bakudankun/BackAndForward.vim',
     setup = function() vim.cmd([[source $VIM_PATH/rc/BackAndForward.vim]]) end,
-    keys = {'<Plug>(backandforward-back)', '<Plug>(backandforward-forward)'},
+    keys = { '<Plug>(backandforward-back)', '<Plug>(backandforward-forward)' },
   }
   use {
     'ntpeters/vim-better-whitespace',
@@ -368,10 +368,10 @@ return require('packer').startup({function(use)
   }
 
 end,
-config = {
-  display = {
-    open_fn = function()
-      return require('packer.util').float({ border = 'single' })
-    end
-  }
-}})
+  config = {
+    display = {
+      open_fn = function()
+        return require('packer.util').float({ border = 'single' })
+      end
+    }
+  } })
