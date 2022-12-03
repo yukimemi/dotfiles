@@ -26,7 +26,6 @@ return require('packer').startup({function(use)
     config = function() vim.cmd([[source $VIM_PATH/rc/indent-blankline.nvim]]) end,
     disable = not vim.g.plugin_use_indent_blankline,
     event = { 'CursorHold', 'FocusLost' },
-    requires = 'nvim-treesitter/nvim-treesitter',
     wants = { 'nvim-treesitter' },
   }
 
@@ -95,7 +94,6 @@ return require('packer').startup({function(use)
         'hrsh7th/cmp-nvim-lsp',
         module = { 'cmp_nvim_lsp' },
         event = {'InsertEnter', 'CmdlineEnter', 'CmdWinEnter'},
-        requires = 'neovim/nvim-lspconfig',
         wants = 'nvim-lspconfig',
       },
       { 'hrsh7th/cmp-buffer', event = {'InsertEnter', 'CmdlineEnter', 'CmdWinEnter'} },
@@ -117,7 +115,7 @@ return require('packer').startup({function(use)
     requires = {
       {
         'lukas-reineke/lsp-format.nvim',
-        module = 'lsp-format',
+        module = { 'lsp-format' },
       },
       {
         'williamboman/mason.nvim',
@@ -126,7 +124,6 @@ return require('packer').startup({function(use)
       {
         'williamboman/mason-lspconfig.nvim',
         config = function() vim.cmd [[source $VIM_PATH/rc/mason-lspconfig.nvim]] end,
-        requires = { 'williamboman/mason.nvim' },
         wants = { 'mason.nvim' },
       },
     },
@@ -240,7 +237,6 @@ return require('packer').startup({function(use)
       'vim-quickrun-runner-nvimterm',
     },
   }
-
 
   -- git.
   use {
