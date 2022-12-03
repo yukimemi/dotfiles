@@ -48,11 +48,13 @@
     "bing"
   ],
   "translator.toLang": "ja",
+  "coc.preferences.formatOnSave": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "typescript",
     "typescriptreact",
     "powershell",
     "ps1",
+    "lua",
     "javascript",
     "json",
     "html",

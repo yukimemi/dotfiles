@@ -2,7 +2,7 @@ if !g:plugin_use_treesitter
   finish
 endif
 
-silent! packadd nvim-treesitter
+" silent! packadd nvim-treesitter
 
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()

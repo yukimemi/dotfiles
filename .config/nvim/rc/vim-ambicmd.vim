@@ -1,6 +1,6 @@
 let g:ambicmd#show_completion_menu = 1
 
-silent! packadd vim-ambicmd
+" silent! packadd vim-ambicmd
 
 Keymap c <expr> <space> ambicmd#expand("\<space>")
 Keymap c <expr> <cr>    ambicmd#expand("\<cr>")

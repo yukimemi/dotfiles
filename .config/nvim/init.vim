@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/12/01 21:08:18.
+" Last Change : 2022/12/03 22:46:25.
 " =============================================================================
 
 " Init:
@@ -440,13 +440,13 @@ set wildcharm=<tab>
 cnoremap <expr> <tab> '<cmd>set nosmartcase<cr><tab><cmd>let &smartcase = ' .. &smartcase .. '<cr>'
 
 " Plugin:
-let g:plugin_use_dein = v:true
+let g:plugin_use_dein = v:false
 let g:plugin_use_vimplug = v:false
 let g:plugin_use_minpac = v:false
 let g:plugin_use_packager = v:false
 let g:plugin_use_volt = v:false
 let g:plugin_use_pack = v:false
-let g:plugin_use_packer = v:false
+let g:plugin_use_packer = v:true
 let g:plugin_use_jetpack = v:false
 
 let g:plugin_use_lightline = v:false
@@ -465,9 +465,9 @@ let g:plugin_use_dps_indent_line = v:false
 let g:plugin_use_cursorword = v:false
 let g:plugin_use_illuminate = v:true
 
-let g:plugin_use_coc = v:true
+let g:plugin_use_coc = v:false
 let g:plugin_use_ddc = v:false
-let g:plugin_use_cmp = v:false
+let g:plugin_use_cmp = v:true
 let g:plugin_use_vimlsp = v:false && !g:plugin_use_coc
 let g:plugin_use_nvimlsp = v:true && !g:plugin_use_coc
 
@@ -525,8 +525,8 @@ let g:plugin_use_edgemotion = v:true
 let g:plugin_use_treesitter = v:true
 let g:plugin_use_scorpeon = v:true
 
-let g:plugin_use_caw = v:true
-let g:plugin_use_contextment = v:false
+let g:plugin_use_caw = v:false
+let g:plugin_use_contextment = v:true
 
 let g:lsp_use_servers = ['denols', 'gopls', 'gopls' , 'jsonls', 'powershell_es' , 'pyright', 'rust_analyzer', 'sumneko_lua', 'taplo', 'vimls']
 
