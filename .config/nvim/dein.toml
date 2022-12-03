@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/12/01 23:47:33.
+# Last Change: 2022/12/03 13:59:16.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -673,6 +673,13 @@ on_event = ['CursorHold', 'FocusLost']
 repo = 'liuchengxu/vista.vim'
 if = 1
 on_cmd = 'Vista'
+
+[[plugins]]
+repo = 'stevearc/aerial.nvim'
+if = 'has("nvim")'
+hook_source = '''
+source $VIM_PATH/rc/aerial.nvim
+'''
 
 [[plugins]]
 repo = 'dstein64/vim-startuptime'
