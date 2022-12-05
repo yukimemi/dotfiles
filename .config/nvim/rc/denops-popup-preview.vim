@@ -1,13 +1,14 @@
 if !g:plugin_use_ddc
-	finish
+  finish
 endif
 
 let g:popup_preview_config = {
-      \ 'delay': 100,
+      \ 'delay': 50,
       \ 'border': v:true,
-			\ }
+      \ 'supportVsnip': v:false,
+      \ }
 
-au MyAutoCmd InsertEnter * ++once call popup_preview#enable()
+call popup_preview#enable()
 
 " au MyAutoCmd FileType ps1,vim call popup_preview#disable()
 

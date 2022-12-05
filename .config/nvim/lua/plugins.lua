@@ -173,11 +173,14 @@ return require('packer').startup({ function(use)
   }
   use {
     'gelguy/wilder.nvim',
-    setup = function() vim.cmd([[source $VIM_PATH/rc/wilder.nvim]]) end,
+    config = function() vim.cmd([[source $VIM_PATH/rc/wilder.nvim]]) end,
     disable = not vim.g.plugin_use_coc,
-    event = { 'BufRead', 'CursorHold', 'FocusLost', 'CmdlineEnter', 'CmdWinEnter' },
+    event = { 'CursorHold', 'FocusLost', 'CmdlineEnter', 'CmdWinEnter' },
   }
-  use { 'andymass/vim-matchup', event = 'BufRead' }
+  use {
+    'andymass/vim-matchup',
+    event = { 'BufRead', 'BufNew' },
+  }
   use {
     'lambdalisue/vim-findent',
     setup = function() vim.cmd([[source $VIM_PATH/rc/vim-findent.vim]]) end,
@@ -277,13 +280,24 @@ return require('packer').startup({ function(use)
     event = { 'BufRead', 'CursorHold', 'FocusLost' },
     wants = { 'vim-operator-user' },
   }
+  use {
+    'osyo-manga/vim-operator-stay-cursor',
+    event = { 'BufRead', 'CursorHold', 'FocusLost' },
+    wants = { 'vim-operator-user' },
+  }
+  use {
+    'machakann/vim-sandwich',
+    config = function() vim.cmd([[source $VIM_PATH/rc/vim-sandwich.vim]]) end,
+    event = { 'BufRead', 'CursorHold', 'FocusLost' },
+    wants = { 'vim-operator-user' },
+  }
 
   -- denops.
   use {
     'vim-denops/denops.vim',
     setup = function() vim.cmd([[source $VIM_PATH/rc/denops.vim]]) end,
     event = { 'CursorHold', 'FocusLost' },
-    fn = { 'denops#plugin#wait_async' },
+    fn = { 'denops#plugin#*' },
   }
   use {
     'vim-denops/denops-shared-server.vim',
@@ -352,6 +366,92 @@ return require('packer').startup({ function(use)
       { 'lambdalisue/guise.vim', opt = true },
     },
     wants = { 'denops.vim', 'askpass.vim', 'guise.vim' },
+  }
+  use {
+    'uga-rosa/scorpeon.vim',
+    disable = not vim.g.plugin_use_scorpeon,
+    setup = function() vim.cmd([[source $VIM_PATH/rc/scorpeon.vim]]) end,
+    requires = {
+      'vim-denops/denops.vim',
+      { 'microsoft/vscode', opt = true },
+      { 'oovm/vscode-toml', opt = true },
+      { 'emilast/vscode-logfile-highlighter', opt = true },
+    },
+    wants = { 'denops.vim' },
+  }
+  use {
+    'Shougo/ddu-commands.vim',
+    disable = not vim.g.plugin_use_ddu,
+    setup = function() vim.cmd([[source $VIM_PATH/rc/ddu-commands.vim]]) end,
+    cmd = 'Ddu',
+    wants = {'ddu.vim', 'denops.vim'},
+  }
+  use {
+    'Shougo/ddu.vim',
+    disable = not vim.g.plugin_use_ddu,
+    config = function() vim.cmd([[source $VIM_PATH/rc/ddu.vim]]) end,
+    opt = true,
+    requires = {
+      'vim-denops/denops.vim',
+      { '4513ECHO/ddu-source-colorscheme', opt = true},
+      { '4513ECHO/ddu-source-source', opt = true},
+      { '4513ECHO/vim-readme-viewer', opt = true},
+      { 'Shougo/ddu-column-filename', opt = true},
+      { 'Shougo/ddu-filter-matcher_hidden', opt = true},
+      { 'Shougo/ddu-filter-matcher_relative', opt = true},
+      { 'Shougo/ddu-filter-matcher_substring', opt = true},
+      { 'Shougo/ddu-kind-file', opt = true},
+      { 'Shougo/ddu-kind-word', opt = true},
+      { 'Shougo/ddu-source-action', opt = true},
+      { 'Shougo/ddu-source-file', opt = true},
+      { 'Shougo/ddu-source-file_old', opt = true},
+      { 'Shougo/ddu-source-file_point', opt = true},
+      { 'Shougo/ddu-source-file_rec', opt = true},
+      { 'Shougo/ddu-source-line', opt = true},
+      { 'Shougo/ddu-source-register', opt = true},
+      { 'Shougo/ddu-ui-ff', opt = true},
+      { 'kuuote/ddu-source-mr', opt = true},
+      { 'liquidz/ddu-source-custom-list', opt = true},
+      { 'matsui54/ddu-source-command_history', opt = true},
+      { 'matsui54/ddu-source-file_external', opt = true},
+      { 'matsui54/ddu-source-help', opt = true},
+      { 'shun/ddu-source-buffer', opt = true},
+      { 'shun/ddu-source-rg', opt = true},
+      { 'yuki-yano/ddu-filter-fzf', opt = true},
+      {
+        'Shougo/ddu-ui-filer',
+        config = function() vim.cmd([[source $VIM_PATH/rc/ddu-ui-filer.vim]]) end,
+        opt = true
+      },
+    },
+    wants = {
+      'denops.vim',
+      'ddu-source-colorscheme',
+      'ddu-source-source',
+      'vim-readme-viewer',
+      'ddu-column-filename',
+      'ddu-filter-matcher_hidden',
+      'ddu-filter-matcher_relative',
+      'ddu-filter-matcher_substring',
+      'ddu-kind-file',
+      'ddu-kind-word',
+      'ddu-source-action',
+      'ddu-source-file',
+      'ddu-source-file_old',
+      'ddu-source-file_point',
+      'ddu-source-file_rec',
+      'ddu-source-line',
+      'ddu-source-register',
+      'ddu-ui-ff',
+      'ddu-source-mr',
+      'ddu-source-custom-list',
+      'ddu-source-command_history',
+      'ddu-source-file_external',
+      'ddu-source-help',
+      'ddu-source-buffer',
+      'ddu-source-rg',
+      'ddu-filter-fzf',
+    },
   }
 
   -- treesitter.

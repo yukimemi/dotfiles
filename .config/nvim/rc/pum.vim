@@ -1,13 +1,9 @@
 if !g:plugin_use_ddc
-	finish
+  finish
 endif
 
-function! s:pum_cfg() abort
-  call pum#set_option({
-        \  'highlight_kind': 'Type',
-        \  'max_width': 150,
-        \  'use_complete': v:false,
-        \ })
-endfunction
+call pum#set_option({
+      \  'max_width': 150,
+      \  'use_complete': v:true,
+      \ })
 
-au MyAutoCmd InsertEnter * ++once call s:pum_cfg()

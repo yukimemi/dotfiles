@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/12/03 22:46:25.
+" Last Change : 2022/12/04 21:56:12.
 " =============================================================================
 
 " Init:
@@ -440,13 +440,13 @@ set wildcharm=<tab>
 cnoremap <expr> <tab> '<cmd>set nosmartcase<cr><tab><cmd>let &smartcase = ' .. &smartcase .. '<cr>'
 
 " Plugin:
-let g:plugin_use_dein = v:false
+let g:plugin_use_dein = v:true
 let g:plugin_use_vimplug = v:false
 let g:plugin_use_minpac = v:false
 let g:plugin_use_packager = v:false
 let g:plugin_use_volt = v:false
 let g:plugin_use_pack = v:false
-let g:plugin_use_packer = v:true
+let g:plugin_use_packer = v:false
 let g:plugin_use_jetpack = v:false
 
 let g:plugin_use_lightline = v:false
@@ -466,10 +466,11 @@ let g:plugin_use_cursorword = v:false
 let g:plugin_use_illuminate = v:true
 
 let g:plugin_use_coc = v:false
-let g:plugin_use_ddc = v:false
-let g:plugin_use_cmp = v:true
+let g:plugin_use_ddc = v:true
+let g:plugin_use_cmp = v:false
 let g:plugin_use_vimlsp = v:false && !g:plugin_use_coc
 let g:plugin_use_nvimlsp = v:true && !g:plugin_use_coc
+let g:plugin_use_nullls = v:false
 
 let g:plugin_use_ale = v:false
 
@@ -488,7 +489,7 @@ let g:plugin_use_fzf = v:false
 let g:plugin_use_cocfzf = v:false
 let g:plugin_use_coclist = v:true
 let g:plugin_use_fz = v:false
-let g:plugin_use_ddu = v:false
+let g:plugin_use_ddu = v:true
 let g:plugin_use_telescope = v:false
 let g:plugin_use_linearf = v:false
 

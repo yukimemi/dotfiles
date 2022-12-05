@@ -35,20 +35,9 @@ let s:filterParams.matcher_fzf = {
       \ 'highlightMatched': 'Search',
       \ }
 
-let s:row_ratio = 8
-let s:col_ratio = 8
-
 let s:uiParams.ff = {
-      \ 'floatingBorder': 'rounded',
-      \ 'previewFloating': v:true,
-      \ 'previewWidth': &columns / 10 * s:row_ratio,
       \ 'prompt': '»',
-      \ 'split': has('nvim') ? 'floating' : 'horizontal',
-      \ 'statusline': v:false,
-      \ 'winCol': &columns / s:col_ratio,
-      \ 'winHeight': &lines / 10 * s:row_ratio,
-      \ 'winRow': &lines / 10,
-      \ 'winWidth': &columns / 10 * s:col_ratio,
+      \ 'split': 'horizontal',
       \ }
 
 call ddu#custom#patch_local('rg_live', {
@@ -130,8 +119,7 @@ function! s:ddu_ff_cfg() abort
 endfunction
 
 function! s:ddu_ff_filter_cfg() abort
-  setl cursorline
-  Keymap i <buffer><silent> <cr> <esc><cmd>call ddu#ui#ff#do_action('itemAction')<cr>
+  Keymap i <buffer><silent> <cr> <cmd>call ddu#ui#ff#do_action('itemAction')<cr>
   Keymap i <buffer><silent><nowait> <esc> <esc><cmd>call ddu#ui#ff#close()<cr>
   Keymap i <buffer><silent> <C-j> <cmd>call ddu#ui#ff#execute('call cursor(line(".") % line("$") + 1, 0)<Bar>redraw')<cr>
   Keymap i <buffer><silent> <C-k> <cmd>call ddu#ui#ff#execute('call cursor((line(".") - 2 + line("$")) % line("$") + 1, 0)<Bar>redraw')<cr>
