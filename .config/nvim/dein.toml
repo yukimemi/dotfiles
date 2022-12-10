@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/12/07 02:03:42.
+# Last Change: 2022/12/11 02:36:21.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -565,7 +565,7 @@ if = 1
 
 [[plugins]]
 repo = 'thinca/vim-localrc'
-if = 0
+if = 1
 
 [[plugins]]
 repo = 'thinca/vim-prettyprint'
@@ -1566,6 +1566,11 @@ if = "!g:is_windows"
 
 # [[plugins]]
 # repo = 'skanehira/denops-silicon.vim'
+
+[[plugins]]
+repo = 'skanehira/denops-openai.vim'
+depends = 'denops.vim'
+on_cmd = 'OpenaiChat'
 
 [[plugins]]
 repo = 'pyonk/dexercism.vim'
