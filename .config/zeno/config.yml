@@ -247,6 +247,8 @@ snippets:
     snippet: deno install --allow-read --allow-write --allow-env --allow-net https://deno.land/x/nublar@0.2.0/nublar.ts
   - name: Install tea
     snippet: sh <(curl https://tea.xyz)
+  - name: Install deno
+    snippet: curl -fsSL https://deno.land/x/install/install.sh | sh
 
 completions:
   - name: kill
