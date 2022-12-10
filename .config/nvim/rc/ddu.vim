@@ -34,6 +34,9 @@ let s:sourceParams.mrw = {'kind': 'mrw'}
 let s:filterParams.matcher_fzf = {
       \ 'highlightMatched': 'Search',
       \ }
+let s:filterParams.matcher_fzy = {
+      \ 'highlightMatched': 'Search',
+      \ }
 
 let s:uiParams.ff = {
       \ 'prompt': '»',

@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/12/04 21:56:31.
+# Last Change: 2022/12/07 02:03:42.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -155,6 +155,22 @@ if = "g:plugin_use_beacon"
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
+repo = 'edluffy/specs.nvim'
+hook_source = '''
+source $VIM_PATH/rc/specs.nvim
+'''
+if = "g:plugin_use_specs"
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'mvllow/modes.nvim'
+if = 'has("nvim")'
+hook_source = '''
+source $VIM_PATH/rc/modes.nvim
+'''
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
 repo = 'psliwka/vim-smoothie'
 hook_add = '''
 source $VIM_PATH/rc/vim-smoothie.vim
@@ -194,7 +210,18 @@ source $VIM_PATH/rc/fidget.nvim
 if = 'has("nvim")'
 on_event = ['CursorHold', 'FocusLost']
 
+[[plugins]]
+repo = 'petertriho/nvim-scrollbar'
+hook_source = '''
+source $VIM_PATH/rc/nvim-scrollbar.vim
+'''
+if = 'has("nvim")'
+on_event = ['CursorHold', 'FocusLost']
+
 # colorscheme
+
+[[plugins]]
+repo = 'vim/colorschemes'
 
 [[plugins]]
 repo = 'rafi/awesome-vim-colorschemes'
@@ -349,6 +376,11 @@ if = 'has("nvim")'
 
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
+if = 'has("nvim")'
+lazy = 1
+
+[[plugins]]
+repo = 'MunifTanjim/nui.nvim'
 if = 'has("nvim")'
 lazy = 1
 
@@ -799,6 +831,15 @@ hook_source = '''
 source $VIM_PATH/rc/which-key.nvim
 '''
 
+[[plugins]]
+repo = 'goolord/alpha-nvim'
+depends = 'nvim-web-devicons'
+if = "has('nvim')"
+on_lua = 'alpha'
+hook_add = '''
+source $VIM_PATH/rc/alpha-nvim.vim
+'''
+
 # ==================== Test ======================
 [[plugins]]
 repo = 'vim-test/vim-test'
@@ -839,6 +880,11 @@ source $VIM_PATH/rc/contextment.vim
 '''
 if = "g:plugin_use_contextment"
 on_map = '<Plug>'
+
+[[plugins]]
+repo = 'LudoPinelli/comment-box.nvim'
+on_event = ['CursorHold', 'FocusLost']
+
 
 # ==================== App =======================
 
@@ -1553,6 +1599,12 @@ path = '$CACHE/scorpeon/extensions/log'
 
 # ==================== Fuzzy =====================
 
+## Fzf
+[[plugins]]
+repo = 'ibhagwan/fzf-lua'
+if = "g:plugin_use_fzflua"
+on_cmd = ['FzfLua ']
+
 ## ctrlp
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
@@ -1723,9 +1775,16 @@ on_source = 'ddu.vim'
 repo = 'liquidz/ddu-source-custom-list'
 on_source = 'ddu.vim'
 
-
 [[plugins]]
 repo = 'yuki-yano/ddu-filter-fzf'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'matsui54/ddu-filter-fzy'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'matsui54/ddu-vim-ui-select'
 on_source = 'ddu.vim'
 
 [[plugins]]
@@ -1830,6 +1889,21 @@ source $VIM_PATH/rc/winbar.nvim
 on_event = ['CursorHold', 'FocusLost']
 
 [[plugins]]
+repo = 'SmiteshP/nvim-navic'
+depends = ['nvim-web-devicons']
+if = "has('nvim')"
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'folke/trouble.nvim'
+depends = ['nvim-web-devicons']
+if = "has('nvim')"
+on_event = ['CursorHold', 'FocusLost']
+hook_source = '''
+source $VIM_PATH/rc/trouble.nvim
+'''
+
+[[plugins]]
 repo = 'akinsho/bufferline.nvim'
 if = "has('nvim')"
 depends = 'scope.nvim'
@@ -1907,6 +1981,16 @@ on_cmd = 'VFiler'
 [[plugins]]
 repo = 'obaland/vfiler-column-devicons'
 lazy = 1
+
+[[plugins]]
+repo = 'nvim-neo-tree/neo-tree.nvim'
+depends = ['plenary.nvim', 'nvim-web-devicons', 'nui.nvim']
+if = 'g:plugin_use_neotree'
+hook_add = '''
+source $VIM_PATH/rc/neo-tree.nvim
+'''
+on_lua = 'neo-tree'
+on_cmd = 'Neotree'
 
 # ==================== Complement ================
 

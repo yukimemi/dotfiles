@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/12/04 21:56:12.
+" Last Change : 2022/12/08 12:53:22.
 " =============================================================================
 
 " Init:
@@ -465,8 +465,8 @@ let g:plugin_use_dps_indent_line = v:false
 let g:plugin_use_cursorword = v:false
 let g:plugin_use_illuminate = v:true
 
-let g:plugin_use_coc = v:false
-let g:plugin_use_ddc = v:true
+let g:plugin_use_coc = v:true
+let g:plugin_use_ddc = v:false
 let g:plugin_use_cmp = v:false
 let g:plugin_use_vimlsp = v:false && !g:plugin_use_coc
 let g:plugin_use_nvimlsp = v:true && !g:plugin_use_coc
@@ -486,6 +486,7 @@ let g:plugin_use_smoothie = v:false
 
 let g:plugin_use_ctrlp = v:true
 let g:plugin_use_fzf = v:false
+let g:plugin_use_fzflua = v:true
 let g:plugin_use_cocfzf = v:false
 let g:plugin_use_coclist = v:true
 let g:plugin_use_fz = v:false
@@ -493,13 +494,14 @@ let g:plugin_use_ddu = v:true
 let g:plugin_use_telescope = v:false
 let g:plugin_use_linearf = v:false
 
-let g:plugin_use_fern = !g:plugin_use_coc
+let g:plugin_use_fern = v:false
 let g:plugin_use_ddu_filer = v:false
 let g:plugin_use_vfiler = v:false
 let g:plugin_use_molder = v:false
 let g:plugin_use_vaffle = v:false
 let g:plugin_use_viler = v:false
-let g:plugin_use_coc_explorer = g:plugin_use_coc
+let g:plugin_use_coc_explorer = v:true && g:plugin_use_coc
+let g:plugin_use_neotree = v:false
 
 let g:plugin_use_quickrun = v:true
 let g:plugin_use_asyncrun = v:false
@@ -520,6 +522,7 @@ let g:plugin_use_toggleterm = v:false
 let g:plugin_use_floaterm = v:true
 
 let g:plugin_use_beacon = v:false
+let g:plugin_use_specs = v:true
 let g:plugin_use_columnskip = v:false
 let g:plugin_use_edgemotion = v:true
 

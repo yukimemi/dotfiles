@@ -21,4 +21,13 @@ let g:autodate_config = {
       \   "head": 50,
       \   "tail": 5,
       \ },
+      \ "typescript": {
+      \   "replace": [
+      \     ['/^(const version = ")[0-9_]+(";)/', '$1${format(now, "yyyyMMdd_HHmmss")}$2'],
+      \   ],
+      \   "event": "BufWritePre",
+      \   "pat": ["*.ts"],
+      \   "head": 50,
+      \   "tail": 5,
+      \ },
       \ }

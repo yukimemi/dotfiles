@@ -1,63 +1,54 @@
 let g:autocursor_debug = v:false
 let g:autocursor_blacklist_filetypes = ["list", "ctrlp", "ddu-ff", "ddu-ff-filter", "ddu-filer", "dpswalk", "qf", "quickfix"]
 let g:autocursor_fix_interval = 10000
+let g:autocursor_throttle = 1000
 let g:autocursor_cursorline = {
   \ "enable": v:true,
   \ "events": [
   \   {
   \     "name": "FocusGained",
   \     "set": v:true,
-  \     "wait": 0,
+  \     "wait": 500,
   \   },
   \   {
   \     "name": "FocusLost",
   \     "set": v:true,
-  \     "wait": 0,
+  \     "wait": 500,
   \   },
   \   {
   \     "name": "WinEnter",
   \     "set": v:true,
-  \     "wait": 0,
+  \     "wait": 500,
   \   },
   \   {
   \     "name": "BufEnter",
   \     "set": v:true,
-  \     "wait": 0,
+  \     "wait": 500,
   \   },
   \   {
   \     "name": "CmdwinLeave",
   \     "set": v:true,
-  \     "wait": 0,
+  \     "wait": 500,
   \   },
   \   {
   \     "name": "CursorHold",
   \     "set": v:true,
-  \     "wait": 0,
+  \     "wait": 500,
   \   },
   \   {
   \     "name": "CursorHoldI",
   \     "set": v:true,
-  \     "wait": 0,
+  \     "wait": 500,
   \   },
   \   {
   \     "name": "DirChanged",
   \     "set": v:true,
-  \     "wait": 0,
+  \     "wait": 500,
   \   },
   \   {
   \     "name": "VimResized",
   \     "set": v:true,
-  \     "wait": 0,
-  \   },
-  \   {
-  \     "name": "InsertLeave",
-  \     "set": v:true,
-  \     "wait": 0,
-  \   },
-  \   {
-  \     "name": "ModeChanged",
-  \     "set": v:true,
-  \     "wait": 0,
+  \     "wait": 500,
   \   },
   \   {
   \     "name": "CursorMoved",
@@ -77,57 +68,47 @@ let g:autocursor_cursorcolumn = {
   \   {
   \     "name": "FocusGained",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 600,
   \   },
   \   {
   \     "name": "FocusLost",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 600,
   \   },
   \   {
   \     "name": "WinEnter",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 600,
   \   },
   \   {
   \     "name": "BufEnter",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 600,
   \   },
   \   {
   \     "name": "CmdwinLeave",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 600,
   \   },
   \   {
   \     "name": "CursorHold",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 600,
   \   },
   \   {
   \     "name": "CursorHoldI",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 600,
   \   },
   \   {
   \     "name": "DirChanged",
   \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 600,
   \   },
   \   {
   \     "name": "VimResized",
   \     "set": v:true,
-  \     "wait": 100,
-  \   },
-  \   {
-  \     "name": "InsertLeave",
-  \     "set": v:true,
-  \     "wait": 100,
-  \   },
-  \   {
-  \     "name": "ModeChanged",
-  \     "set": v:true,
-  \     "wait": 100,
+  \     "wait": 600,
   \   },
   \   {
   \     "name": "CursorMoved",

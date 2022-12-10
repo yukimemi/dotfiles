@@ -49,7 +49,7 @@ for _, lsp in pairs(vim.g.lsp_use_servers) do
         -- This will be the default in neovim 0.7+
         debounce_text_changes = 150,
       },
-      bundle_path = vim.fn.expand('~/src/github.com/PowerShell/PowerShellEditorServices'),
+      bundle_path = vim.fn.expand('~/src/github.com/PowerShell/PowerShellEditorServices/release/PowerShellEditorServices'),
     }
   else
     require('lspconfig')[lsp].setup {
