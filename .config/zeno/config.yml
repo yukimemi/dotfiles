@@ -249,6 +249,8 @@ snippets:
     snippet: sh <(curl https://tea.xyz)
   - name: Install deno
     snippet: curl -fsSL https://deno.land/x/install/install.sh | sh
+  - name: Install fk
+    snippet: go install github.com/skanehira/fk/cmd/fk@latest
 
 completions:
   - name: kill
