@@ -11,7 +11,7 @@ return {
   color_scheme = "Sakura",
   dpi = 96.0,
   font = wezterm.font_with_fallback {
-    "Cica",
+    "HackGen Console NF",
   },
   font_size = 15.0;
   hide_tab_bar_if_only_one_tab = true,
@@ -19,4 +19,3 @@ return {
   window_background_opacity = 0.90,
   scrollback_lines = 3500,
 }
-

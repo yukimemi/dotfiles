@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2022/12/11 12:15:01.
+# Last Change: 2022/12/12 21:24:49.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -1555,6 +1555,11 @@ on_cmd = [
   'TwihiTweet',
   'TwihiEditConfig',
 ]
+
+[[plugins]]
+repo = 'Allianaab2m/vimskey'
+depends = 'denops.vim'
+on_cmd = ['VimskeyOpenTL', 'VimskeyNoteFromCmdline', 'VimskeyNotification']
 
 [[plugins]]
 repo = '4513ECHO/denops-gitter.vim'
