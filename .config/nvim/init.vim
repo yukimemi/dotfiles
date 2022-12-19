@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : init.vim / .vimrc
 " Author      : yukimemi
-" Last Change : 2022/12/08 12:53:22.
+" Last Change : 2022/12/19 12:48:24.
 " =============================================================================
 
 " Init:
@@ -186,7 +186,7 @@ endif
 
 " python
 if g:is_windows
-  let g:python3_host_prog = expand('$USERPROFILE') . '/AppData/Local/Programs/Python/Python310/python.exe'
+  let g:python3_host_prog = expand('$USERPROFILE') . '/AppData/Local/Programs/Python/Python311/python.exe'
 endif
 
 " terminal
@@ -490,7 +490,7 @@ let g:plugin_use_fzflua = v:true
 let g:plugin_use_cocfzf = v:false
 let g:plugin_use_coclist = v:true
 let g:plugin_use_fz = v:false
-let g:plugin_use_ddu = v:true
+let g:plugin_use_ddu = v:false
 let g:plugin_use_telescope = v:false
 let g:plugin_use_linearf = v:false
 
@@ -568,7 +568,7 @@ silent! syntax enable
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-silent! colorscheme pinkmare
+silent! colorscheme pink-moon
 set background=dark
 
 " Neovide:

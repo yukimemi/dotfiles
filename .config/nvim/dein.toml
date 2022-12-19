@@ -348,6 +348,7 @@ repo = 'cocopon/inspecthi.vim'
 on_cmd = 'Inspecthi'
 
 # ==================== Treesitter ================
+
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 hook_post_update = 'TSUpdate'
@@ -369,6 +370,10 @@ on_source = 'nvim-treesitter'
 
 
 # ==================== Utility ===================
+
+[[plugins]]
+repo = 'thinca/vim-splash'
+if = 0
 
 [[plugins]]
 repo = 'lewis6991/impatient.nvim'
@@ -834,10 +839,30 @@ source $VIM_PATH/rc/which-key.nvim
 [[plugins]]
 repo = 'goolord/alpha-nvim'
 depends = 'nvim-web-devicons'
-if = "has('nvim')"
+if = "has('nvim') && v:false"
 on_lua = 'alpha'
 hook_add = '''
 source $VIM_PATH/rc/alpha-nvim.vim
+'''
+
+[[plugins]]
+repo = 'lambdalisue/mr.vim'
+lazy = 1
+
+[[plugins]]
+repo = 'lambdalisue/mr-quickfix.vim'
+depends = 'mr.vim'
+on_cmd = ['Mru', 'Mrw']
+hook_add = '''
+source $VIM_PATH/rc/mr-quickfix.vim
+'''
+
+[[plugins]]
+repo = 'lambdalisue/fin.vim'
+if = 0
+on_cmd = 'Fin'
+hook_add = '''
+source $VIM_PATH/rc/fin.vim
 '''
 
 # ==================== Test ======================
@@ -1176,6 +1201,7 @@ on_cmd = 'ToggleTerm'
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
+rev = 'upgrade'
 hook_add = '''
 source $VIM_PATH/rc/denops.vim
 '''
@@ -1425,9 +1451,19 @@ on_event = ['CursorHold', 'FocusLost']
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'
 depends = 'denops.vim'
+if = 0
 hook_add = '''
 source $VIM_PATH/rc/denops-translate.vim
 '''
+
+[[plugins]]
+repo = 'Omochice/dps-translate-vim'
+depends = 'denops.vim'
+if = 1
+hook_add = '''
+source $VIM_PATH/rc/dps-translate-vim.vim
+'''
+on_cmd = ['Translate', 'TranslateJoin']
 
 [[plugins]]
 repo = 'yukimemi/dps-ahdr'
@@ -1593,6 +1629,11 @@ source $VIM_PATH/rc/scorpeon.vim
 '''
 
 [[plugins]]
+repo = 'ryoppippi/bad-apple.vim'
+depends = 'denops.vim'
+on_cmd = 'BadApple'
+
+[[plugins]]
 repo = 'microsoft/vscode'
 if = 0
 merged = 0
@@ -1673,9 +1714,6 @@ on_source = 'ctrlp.vim'
 repo = 'mattn/ctrlp-matchfuzzy'
 if = "exists('*matchfuzzy')"
 on_source = 'ctrlp.vim'
-[[plugins]]
-repo = 'lambdalisue/mr.vim'
-lazy = 1
 [[plugins]]
 repo = 'tsuyoshicho/ctrlp-mr.vim'
 depends = 'mr.vim'

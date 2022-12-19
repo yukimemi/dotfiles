@@ -14,6 +14,7 @@ Keymap n <silent> ge <cmd>Fern . -reveal=% -drawer -width=40<cr>
 
 " fern-renderer-nerdfont.vim
 let g:fern#renderer = "nerdfont"
+let g:fern#renderer#nerdfont#indent_makers = 1
 
 " fern-comparator-lexical.vim
 " let g:fern#comparator = "lexical"

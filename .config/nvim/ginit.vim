@@ -3,8 +3,8 @@ set mouse=a
 
 " Set Editor Font
 if exists(':GuiFont')
-  GuiFont! Cica:h10
-  " GuiFont! HackGen Console NF:h10
+  " GuiFont! Cica:h10
+  GuiFont! HackGen Console NF:h10
 endif
 
 " Disable GUI Tabline

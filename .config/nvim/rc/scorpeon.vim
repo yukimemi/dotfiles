@@ -1,11 +1,11 @@
 function! s:use_scorpeon() abort
   " syntax off
-  TSBufDisable highlight
-  ScorpeonHighlightEnable
+  silent! TSBufDisable highlight
+  silent! ScorpeonHighlightEnable
   " echom "Use scorpeon!"
 endfunction
 
-let s:use_scorpeon_filetypes = ['ps1', 'typescript', 'javascript', 'dosbatch', 'toml', 'log', 'xml']
+let s:use_scorpeon_filetypes = ['ps1', 'typescript', 'javascript', 'dosbatch', 'toml', 'log']
 
 call map(s:use_scorpeon_filetypes, { -> execute("au MyAutoCmd FileType " .. v:val .. " call s:use_scorpeon()") })
 
