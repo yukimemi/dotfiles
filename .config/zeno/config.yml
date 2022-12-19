@@ -251,6 +251,8 @@ snippets:
     snippet: curl -fsSL https://deno.land/x/install/install.sh | sh
   - name: Install fk
     snippet: go install github.com/skanehira/fk/cmd/fk@latest
+  - name: Install cargo-binstall
+    snippet: cargo install cargo-binstall
 
 completions:
   - name: kill

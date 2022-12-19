@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2022/11/30 00:43:40.
+# Last Change : 2022/12/19 22:19:48.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -9,9 +9,6 @@
 [ -x "$(command -v tmux)" ] \
   && [ -z "${TMUX}" ] \
   && { tmux attach || tmux; } >/dev/null 2>&1
-
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 
 #
 # sheldon
@@ -333,9 +330,6 @@ fi
 if (which zprof > /dev/null) ;then
   zprof
 fi
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
 if type tea > /dev/null 2>&1; then
   add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
