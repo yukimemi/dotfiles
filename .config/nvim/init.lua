@@ -11,5 +11,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
+require("config.options")
 require("lazy").setup("plugins")
 
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
+  callback = function()
+    require("config.commands")
+    require("config.mappings")
+  end,
+})

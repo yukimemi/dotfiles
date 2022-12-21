@@ -121,18 +121,18 @@ inoremap <silent><RightMouse> <Esc>:call GuiShowContextMenu()<CR>
 xnoremap <silent><RightMouse> :call GuiShowContextMenu()<CR>gv
 snoremap <silent><RightMouse> <C-G>:call GuiShowContextMenu()<CR>gv
 
-let g:save_window_file = expand("~/.nvimwinpos")
-au MyAutoCmd VimLeavePre * call <SID>save_window()
-function! s:save_window() abort
-  let options = [
-        \ 'set columns=' . &columns,
-        \ 'set lines=' . &lines,
-        \ 'winpos ' . getwinposx() . ' ' . getwinposy(),
-        \ ]
-  call writefile(options, g:save_window_file)
-endfunction
-
-if filereadable(g:save_window_file)
-  au MyAutoCmd GUIEnter * exe 'source' g:save_window_file
-endif
+" let g:save_window_file = expand("~/.nvimwinpos")
+" au MyAutoCmd VimLeavePre * call <SID>save_window()
+" function! s:save_window() abort
+"   let options = [
+"         \ 'set columns=' . &columns,
+"         \ 'set lines=' . &lines,
+"         \ 'winpos ' . getwinposx() . ' ' . getwinposy(),
+"         \ ]
+"   call writefile(options, g:save_window_file)
+" endfunction
+" 
+" if filereadable(g:save_window_file)
+"   au MyAutoCmd GUIEnter * exe 'source' g:save_window_file
+" endif
 
