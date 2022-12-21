@@ -691,6 +691,7 @@ source $VIM_PATH/rc/nvim-autopairs.vim
 
 [[plugins]]
 repo = 'rcarriga/nvim-notify'
+depends = 'impatient.nvim'
 if = 1
 on_lua = 'notify'
 lua_source = '''
@@ -839,11 +840,21 @@ source $VIM_PATH/rc/which-key.nvim
 [[plugins]]
 repo = 'goolord/alpha-nvim'
 depends = 'nvim-web-devicons'
-if = "has('nvim') && v:false"
+if = "has('nvim')"
 on_lua = 'alpha'
 hook_add = '''
 source $VIM_PATH/rc/alpha-nvim.vim
 '''
+
+[[plugins]]
+repo = 'startup-nvim/startup.nvim'
+depends = 'plenary.nvim'
+on_lua = 'startup'
+if = 0
+hook_add = '''
+source $VIM_PATH/rc/startup.nvim
+'''
+
 
 [[plugins]]
 repo = 'lambdalisue/mr.vim'
