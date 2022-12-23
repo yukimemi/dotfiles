@@ -130,6 +130,13 @@ snippets:
   - name: denops_std update
     keyword: dup
     snippet: "git add .; git commit -m ':up: Update denops_std.'; git push"
+  # udd
+  - name: deno udd
+    keyword: udd
+    snippet: deno run --allow-all https://deno.land/x/udd/main.ts
+  - name: deno udd all
+    keyword: uda
+    snippet: deno run --allow-all https://deno.land/x/udd/main.ts **/*.ts
   # youtube-dl
   - name: youtube-dl -i
     keyword: yt
@@ -253,6 +260,9 @@ snippets:
     snippet: go install github.com/skanehira/fk/cmd/fk@latest
   - name: Install cargo-binstall
     snippet: cargo install cargo-binstall
+  - name: Install slack cli
+    snippet: curl -fsSL https://downloads.slack-edge.com/slack-cli/install.sh | bash
+
 
 completions:
   - name: kill
