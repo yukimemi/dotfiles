@@ -15,6 +15,7 @@ return {
       "coc-powershell",
       "coc-rust-analyzer",
       "coc-snippets",
+      "coc-nav",
       "coc-spell-checker",
       "coc-translator",
       "coc-tsdetect",

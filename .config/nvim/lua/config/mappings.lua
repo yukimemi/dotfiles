@@ -45,6 +45,7 @@ vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true })
 
 vim.keymap.set("n", "<space><space>", "<cmd>update<cr>")
 vim.keymap.set("n", "<tab>", "%")
+vim.keymap.set("i", "<c-l>", "<C-g>U<Right>")
 
 vim.keymap.set("n", "gh", "^")
 vim.keymap.set("n", "gl", "$")
