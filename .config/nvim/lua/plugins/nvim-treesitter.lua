@@ -1,6 +1,7 @@
 local M = {
   "nvim-treesitter/nvim-treesitter",
-  dev = false,
+
+  enabled = true,
   build = ":TSUpdate",
   event = "BufReadPost",
 
@@ -30,11 +31,20 @@ end
 function M.config()
   require("nvim-treesitter.configs").setup({
     ensure_installed = {
+      "lua",
       "markdown",
     },
     sync_install = false,
     auto_install = false,
-    highlight = { enable = true },
+    highlight = {
+      enable = true,
+      disable = function(lang)
+        local ok = pcall(function()
+          vim.treesitter.get_query(lang, 'highlights')
+        end)
+        return not ok
+      end,
+    },
     indent = { enable = false },
     context_commentstring = { enable = true, enable_autocmd = false },
     playground = {

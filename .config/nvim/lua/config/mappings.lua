@@ -69,6 +69,8 @@ vim.keymap.set("n", "st", "<cmd>tabnew<cr>")
 vim.keymap.set("n", "sv", "<cmd>vs<cr>")
 vim.keymap.set("n", "sw", "<c-w>w")
 
+vim.keymap.set("n", "<space>l", "<cmd>Lazy<cr>")
+
 local leader = {
   ["w"] = {
     name = "+windows",

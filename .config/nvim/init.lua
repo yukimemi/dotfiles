@@ -11,8 +11,28 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
+require("lazy").setup("plugins", {
+  defaults = { lazy = true },
+  checker = { enabled = true },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+  debug = false,
+})
+vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>")
+
 require("config.options")
-require("lazy").setup("plugins")
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
@@ -21,3 +41,5 @@ vim.api.nvim_create_autocmd("User", {
     require("config.mappings")
   end,
 })
+
+

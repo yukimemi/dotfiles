@@ -7,6 +7,9 @@ local indent = 2
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+vim.g.encoding = "utf-8"
+vim.g.fileencodings = "ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1"
+
 vim.opt.spell = true
 vim.opt.cmdheight = 0
 vim.opt.autowrite = true
@@ -113,4 +116,6 @@ local fences = {
 }
 vim.g.markdown_fenced_languages = fences
 vim.g.markdown_recommended_style = 0
+
+vim.g.colorscheme = "pink-moon"
 
