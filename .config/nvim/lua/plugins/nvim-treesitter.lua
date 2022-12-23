@@ -21,21 +21,11 @@ local M = {
   },
 }
 
-function M.init()
-  vim.cmd([[
-  omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
-  xnoremap <silent> m :lua require('tsht').nodes()<CR>
-  ]])
-end
-
 function M.config()
   require("nvim-treesitter.configs").setup({
-    ensure_installed = {
-      "lua",
-      "markdown",
-    },
+    ensure_installed = "all",
     sync_install = false,
-    auto_install = false,
+    auto_install = true,
     highlight = {
       enable = true,
       disable = function(lang)

@@ -44,6 +44,7 @@ vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true })
 vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true })
 
 vim.keymap.set("n", "<space><space>", "<cmd>update<cr>")
+vim.keymap.set("n", "<tab>", "%")
 
 vim.keymap.set("n", "gh", "^")
 vim.keymap.set("n", "gl", "$")
@@ -83,9 +84,9 @@ local leader = {
     ["l"] = { "<C-W>l", "window-right" },
     ["k"] = { "<C-W>k", "window-up" },
     ["H"] = { "<C-W>5<", "expand-window-left" },
-    ["J"] = { ":resize +5", "expand-window-below" },
+    ["J"] = { "<cmd>resize +5<cr>", "expand-window-below" },
     ["L"] = { "<C-W>5>", "expand-window-right" },
-    ["K"] = { ":resize -5", "expand-window-up" },
+    ["K"] = { "<cmd>resize -5<cr>", "expand-window-up" },
     ["="] = { "<C-W>=", "balance-window" },
     ["s"] = { "<C-W>s", "split-window-below" },
     ["v"] = { "<C-W>v", "split-window-right" },

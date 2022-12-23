@@ -10,6 +10,6 @@ return {
     vim.g.randomcolorscheme_echo = true
     vim.g.randomcolorscheme_interval = 600
     vim.g.randomcolorscheme_path = vim.fn.expand("~/.cache/randomcolorscheme/colors.toml")
-    vim.keymap.set("n", "<leader>co", "<cmd>ChangeColorscheme<cr>")
+    vim.keymap.set("n", "<space>co", "<cmd>ChangeColorscheme<cr>")
   end,
 }
