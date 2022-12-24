@@ -70,9 +70,9 @@ function M.config()
           cond = require("lazy.status").has_updates,
           color = { fg = "#ff9e64" },
         },
-        -- function()
-        --   return require("messages.view").status
-        -- end,
+        function()
+          return require("messages.view").status
+        end,
         { require("github-notifications").statusline_notification_count },
         -- {
         --   function()

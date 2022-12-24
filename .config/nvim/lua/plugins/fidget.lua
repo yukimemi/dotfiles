@@ -4,6 +4,6 @@ return {
   event = "VeryLazy",
 
   config = function()
-    require"fidget".setup()
+    require("fidget").setup()
   end,
 }

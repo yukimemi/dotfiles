@@ -74,35 +74,6 @@ vim.keymap.set("n", "sw", "<c-w>w")
 vim.keymap.set("n", "<space>l", "<cmd>Lazy<cr>")
 
 local leader = {
-  ["w"] = {
-    name = "+windows",
-    ["w"] = { "<C-W>p", "other-window" },
-    ["-"] = { "<C-W>s", "split-window-below" },
-    ["|"] = { "<C-W>v", "split-window-right" },
-    ["2"] = { "<C-W>v", "layout-double-columns" },
-    ["h"] = { "<C-W>h", "window-left" },
-    ["j"] = { "<C-W>j", "window-below" },
-    ["l"] = { "<C-W>l", "window-right" },
-    ["k"] = { "<C-W>k", "window-up" },
-    ["H"] = { "<C-W>5<", "expand-window-left" },
-    ["J"] = { "<cmd>resize +5<cr>", "expand-window-below" },
-    ["L"] = { "<C-W>5>", "expand-window-right" },
-    ["K"] = { "<cmd>resize -5<cr>", "expand-window-up" },
-    ["="] = { "<C-W>=", "balance-window" },
-    ["s"] = { "<C-W>s", "split-window-below" },
-    ["v"] = { "<C-W>v", "split-window-right" },
-  },
-  c = {
-    name = "+code",
-  },
-  b = {
-    name = "+buffer",
-    ["b"] = { "<cmd>e #<cr>", "Switch to Other Buffer" },
-    ["p"] = { "<cmd>BufferLineCyclePrev<CR>", "Previous Buffer" },
-    ["["] = { "<cmd>BufferLineCyclePrev<CR>", "Previous Buffer" },
-    ["n"] = { "<cmd>BufferLineCycleNext<CR>", "Next Buffer" },
-    ["]"] = { "<cmd>BufferLineCycleNext<CR>", "Next Buffer" },
-  },
   g = {
     name = "+git",
     c = { "<Cmd>Telescope git_commits<CR>", "commits" },
@@ -123,13 +94,6 @@ local leader = {
     f = { "<cmd>Telescope filetypes<cr>", "File Types" },
     o = { "<cmd>Telescope vim_options<cr>", "Options" },
     a = { "<cmd>Telescope autocommands<cr>", "Auto Commands" },
-    p = {
-      name = "+packer",
-      p = { "<cmd>PackerSync<cr>", "Sync" },
-      s = { "<cmd>PackerStatus<cr>", "Status" },
-      i = { "<cmd>PackerInstall<cr>", "Install" },
-      c = { "<cmd>PackerCompile<cr>", "Compile" },
-    },
   },
   s = {
     name = "+search",
@@ -145,7 +109,6 @@ local leader = {
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     n = { "<cmd>enew<cr>", "New File" },
-    z = "Zoxide",
     d = "Dot Files",
   },
   o = {
@@ -192,9 +155,7 @@ local leader = {
     f = { "<cmd>tabfirst<CR>", "First" },
     l = { "<cmd>tablast<CR>", "Last" },
   },
-  ["`"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
-  [" "] = "Find File",
-  ["."] = { ":Telescope file_browser<CR>", "Browse Files" },
+  ["."] = { "<cmd>Telescope file_browser<CR>", "Browse Files" },
   [","] = { "<cmd>Telescope buffers show_all_buffers=true<cr>", "Switch Buffer" },
   ["/"] = { "<cmd>Telescope live_grep<cr>", "Search" },
   [":"] = { "<cmd>Telescope command_history<cr>", "Command History" },

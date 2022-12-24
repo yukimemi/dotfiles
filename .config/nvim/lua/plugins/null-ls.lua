@@ -2,6 +2,10 @@ local M = {
   "jose-elias-alvarez/null-ls.nvim",
 
   event = "VeryLazy",
+
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  }
 }
 
 function M.setup(options)
@@ -9,31 +13,53 @@ function M.setup(options)
   nls.setup({
     debounce = 150,
     save_after_format = false,
+
     sources = {
-      -- nls.builtins.formatting.prettierd,
-      nls.builtins.formatting.stylua,
-      nls.builtins.formatting.fish_indent,
-      -- nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
-      -- nls.builtins.formatting.eslint_d,
-      -- nls.builtins.diagnostics.shellcheck,
-      nls.builtins.formatting.shfmt,
-      nls.builtins.diagnostics.markdownlint,
-      -- nls.builtins.diagnostics.luacheck,
-      nls.builtins.formatting.prettierd.with({
-        filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
-      }),
-      nls.builtins.diagnostics.selene.with({
-        condition = function(utils)
-          return utils.root_has_file({ "selene.toml" })
-        end,
-      }),
-      -- nls.builtins.code_actions.gitsigns,
-      nls.builtins.formatting.isort,
-      nls.builtins.formatting.black,
+      -- completion
+      nls.builtins.completion.spell,
+
+      -- diagnostics
+      nls.builtins.diagnostics.cspell,
+      nls.builtins.diagnostics.dotenv_linter,
+      nls.builtins.diagnostics.editorconfig_checker,
       nls.builtins.diagnostics.flake8,
+      nls.builtins.diagnostics.luacheck,
+      nls.builtins.diagnostics.markdownlint,
+      nls.builtins.diagnostics.shellcheck,
+      nls.builtins.diagnostics.yamllint,
+      nls.builtins.diagnostics.zsh,
+
+      -- formatting
+      nls.builtins.formatting.black,
+      nls.builtins.formatting.cbfmt,
+      nls.builtins.formatting.codespell,
+      nls.builtins.formatting.csharpier,
+      nls.builtins.formatting.deno_fmt,
+      nls.builtins.formatting.dprint,
+      nls.builtins.formatting.fixjson,
+      nls.builtins.formatting.gofmt,
+      nls.builtins.formatting.goimports,
+      nls.builtins.formatting.isort,
+      nls.builtins.formatting.jq,
+      nls.builtins.formatting.lua_format,
+      nls.builtins.formatting.markdownlint,
+      nls.builtins.formatting.mdformat,
+      nls.builtins.formatting.remark,
+      nls.builtins.formatting.rustfmt,
+      nls.builtins.formatting.shfmt,
+      nls.builtins.formatting.stylua,
+      nls.builtins.formatting.taplo,
+      nls.builtins.formatting.textlint,
+      nls.builtins.formatting.tidy,
+      nls.builtins.formatting.xmlformat,
+      nls.builtins.formatting.xmllint,
+      nls.builtins.formatting.yamlfmt,
+
+      -- code_actions
+      nls.builtins.code_actions.cspell,
+      nls.builtins.code_actions.gitsigns,
     },
     on_attach = options.on_attach,
-    root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git"),
   })
 end
 
