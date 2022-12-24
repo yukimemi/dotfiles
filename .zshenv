@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2022/10/10 00:39:43.
+# Last Change : 2022/12/24 21:17:11.
 # =============================================================================
 
 # For time.
@@ -45,6 +45,8 @@ path=(
   # homebrew.
   /usr/local/bin(N-/)
   /opt/homebrew/bin(N-/)
+  # Rancher desktop.
+  $HOME/.rd/bin(N-/)
   # cabal.
   $HOME/.cabal/bin(N-/)
   # yarn.

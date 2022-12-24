@@ -181,6 +181,11 @@ snippets:
     context:
       lbuffer: '.+\s'
 
+  # Docker
+  - name: Try NvChad
+    keyword: nvchad
+    snippet: docker run -w /root -it --rm alpine:edge sh -uelic 'apk add git nodejs neovim ripgrep alpine-sdk --update; git clone https://github.com/NvChad/NvChad ~/.config/nvim; nvim'
+
   # Install
   - name: Install deno-cache-injector
     snippet: deno install -r -f -n deno-cache-injector --allow-env --allow-read --allow-write https://raw.githubusercontent.com/kuuote/deno-cache-injector/main/injector.ts
@@ -262,6 +267,8 @@ snippets:
     snippet: cargo install cargo-binstall
   - name: Install slack cli
     snippet: curl -fsSL https://downloads.slack-edge.com/slack-cli/install.sh | bash
+  - name: Install mutagen
+    snippet: brew install mutagen-io/mutagen/mutagen
 
 
 completions:

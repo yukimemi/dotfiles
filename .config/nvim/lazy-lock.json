@@ -66,6 +66,7 @@
   "project.nvim": { "branch": "main", "commit": "685bc8e3890d2feb07ccf919522c97f7d33b94e4" },
   "promise-async": { "branch": "main", "commit": "25ac2ddb577bbc1bda2402e6dd6bd33d52cec398" },
   "sidebar.nvim": { "branch": "main", "commit": "990ce5f562c9125283ccac5473235b1a56fea6dc" },
+  "sqlite.lua": { "branch": "master", "commit": "53cac3fdb5f5e4e63e243232b6eccf3c764ae18a" },
   "symbols-outline.nvim": { "branch": "master", "commit": "6a3ed24c5631da7a5d418bced57c16b32af7747c" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "d1a34d2b2d7ce5e02a23505f0af2daac1d36b41a" },
   "telescope-project.nvim": { "branch": "master", "commit": "8e8ee37b7210761502cdf2c3a82b5ba8fb5b2972" },
