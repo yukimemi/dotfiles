@@ -18,6 +18,27 @@ function M.config()
 
   local function on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
+
+    local opts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+    vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", "gK", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "<localleader>wa", vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set("n", "<localleader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set("n", "<localleader>wl", function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
+    vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
+    vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "<space>F", vim.lsp.buf.format, opts)
   end
 
   ---@type lspconfig.options
@@ -34,6 +55,11 @@ function M.config()
     gopls = {},
     marksman = {},
     pyright = {},
+    powershell_es = {
+      bundle_path = vim.fn.expand(
+        "~/src/github.com/PowerShell/PowerShellEditorServices/release/PowerShellEditorServices"
+      ),
+    },
     rust_analyzer = {
       settings = {
         ["rust-analyzer"] = {

@@ -12,7 +12,7 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "18095520391186d634a0045dacaa346291096566" },
   "denops-shared-server.vim": { "branch": "main", "commit": "7d33db601b5a6c167019ec59b068569f359558e0" },
-  "denops.vim": { "branch": "upgrade", "commit": "f81d17c8b9aadf6c83ec2ce380e4bf0619800fb1" },
+  "denops.vim": { "branch": "upgrade", "commit": "ed734e83fe3d144775be676a18e845293918634b" },
   "dial.nvim": { "branch": "master", "commit": "61afb28f61ba090a67a88186f7bc8a94212e509a" },
   "diffview.nvim": { "branch": "main", "commit": "3812e296d3977a24db62f7c18025755b40968d3a" },
   "dps-ahdr": { "branch": "main", "commit": "0cd8c0fb86d672a46535c4bf443a7cd3274acef7" },

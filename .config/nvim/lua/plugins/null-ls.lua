@@ -5,7 +5,7 @@ local M = {
 
   dependencies = {
     "nvim-lua/plenary.nvim",
-  }
+  },
 }
 
 function M.setup(options)
@@ -36,15 +36,35 @@ function M.setup(options)
           return vim.fn.executable("luacheck") > 0
         end,
       }),
-      nls.builtins.diagnostics.markdownlint,
-      nls.builtins.diagnostics.shellcheck,
-      nls.builtins.diagnostics.yamllint,
+      nls.builtins.diagnostics.markdownlint.with({
+        condition = function()
+          return vim.fn.executable("markdownlint") > 0
+        end,
+      }),
+      nls.builtins.diagnostics.shellcheck.with({
+        condition = function()
+          return vim.fn.executable("shellcheck") > 0
+        end,
+      }),
+      nls.builtins.diagnostics.yamllint.with({
+        condition = function()
+          return vim.fn.executable("yamllint") > 0
+        end,
+      }),
       nls.builtins.diagnostics.zsh,
 
       -- formatting
-      nls.builtins.formatting.black,
+      nls.builtins.formatting.black.with({
+        condition = function()
+          return vim.fn.executable("black") > 0
+        end,
+      }),
       nls.builtins.formatting.cbfmt,
-      nls.builtins.formatting.codespell,
+      nls.builtins.formatting.codespell.with({
+        condition = function()
+          return vim.fn.executable("codespell") > 0
+        end,
+      }),
       nls.builtins.formatting.csharpier,
       nls.builtins.formatting.deno_fmt,
       nls.builtins.formatting.dprint,
@@ -53,15 +73,32 @@ function M.setup(options)
       nls.builtins.formatting.goimports,
       nls.builtins.formatting.isort,
       nls.builtins.formatting.jq,
-      nls.builtins.formatting.lua_format,
-      nls.builtins.formatting.markdownlint,
+      nls.builtins.formatting.lua_format.with({
+        condition = function()
+          return vim.fn.executable("lua_format") > 0
+        end,
+      }),
+      nls.builtins.formatting.markdownlint.with({
+        condition = function()
+          return vim.fn.executable("markdownlint") > 0
+        end,
+      }),
       nls.builtins.formatting.mdformat,
       nls.builtins.formatting.remark,
       nls.builtins.formatting.rustfmt,
       nls.builtins.formatting.shfmt,
-      nls.builtins.formatting.stylua,
+      nls.builtins.formatting.stylua.with({
+        condition = function()
+          return false
+          -- return vim.fn.executable("stylua") > 0
+        end,
+      }),
       nls.builtins.formatting.taplo,
-      nls.builtins.formatting.textlint,
+      nls.builtins.formatting.textlint.with({
+        condition = function()
+          return vim.fn.executable("textlint") > 0
+        end,
+      }),
       nls.builtins.formatting.tidy,
       nls.builtins.formatting.xmlformat,
       nls.builtins.formatting.xmllint,
