@@ -4,9 +4,6 @@ end
 
 local indent = 2
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
 vim.g.encoding = "utf-8"
 vim.g.fileencodings = "ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1"
 

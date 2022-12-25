@@ -11,6 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 require("lazy").setup("plugins", {
   defaults = { lazy = true },
   checker = { enabled = true },
@@ -30,7 +33,8 @@ require("lazy").setup("plugins", {
   },
   debug = false,
 })
-vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>")
+
+vim.keymap.set("n", "<space>l", "<cmd>Lazy<cr>")
 
 require("config.options")
 
