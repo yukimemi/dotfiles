@@ -36,19 +36,15 @@ vim.keymap.set("n", "<C-Right>", "<cmd>bnext<cr>")
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-vim.keymap.set("n", "n", "'Nn'[v:searchforward]", { expr = true })
-vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true })
-vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true })
-vim.keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true })
-vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true })
-vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true })
+vim.keymap.set({"n", "x", "o"}, "n", "'Nn'[v:searchforward]", { expr = true })
+vim.keymap.set({"n", "x", "o"}, "N", "'nN'[v:searchforward]", { expr = true })
 
 vim.keymap.set("n", "<space><space>", "<cmd>update<cr>")
 vim.keymap.set("n", "<tab>", "%")
 vim.keymap.set("i", "<c-l>", "<C-g>U<Right>")
 
-vim.keymap.set("n", "gh", "^")
-vim.keymap.set("n", "gl", "$")
+vim.keymap.set({"n", "x"}, "gh", "^")
+vim.keymap.set({"n", "x"}, "gl", "$")
 
 vim.keymap.set("n", "s", "<Nop>")
 vim.keymap.set("n", "s0", "<cmd>only<cr>")
@@ -76,10 +72,6 @@ vim.keymap.set("n", "<space>l", "<cmd>Lazy<cr>")
 local leader = {
   g = {
     name = "+git",
-    c = { "<Cmd>Telescope git_commits<CR>", "commits" },
-    b = { "<Cmd>Telescope git_branches<CR>", "branches" },
-    s = { "<Cmd>Telescope git_status<CR>", "status" },
-    d = { "<cmd>DiffviewOpen<cr>", "DiffView" },
     h = { name = "+hunk" },
   },
   ["h"] = {

@@ -1,6 +1,8 @@
 return {
   "TimUntersberger/neogit",
 
+  enabled = false,
+
   cmd = "Neogit",
 
   dependencies = {

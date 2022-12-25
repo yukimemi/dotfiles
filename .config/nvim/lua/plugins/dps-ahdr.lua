@@ -2,6 +2,7 @@ return {
   "yukimemi/dps-ahdr",
 
   lazy = false,
+
   dependencies = {
     "vim-denops/denops.vim",
   },

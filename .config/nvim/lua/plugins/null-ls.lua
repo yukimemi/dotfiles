@@ -19,11 +19,23 @@ function M.setup(options)
       nls.builtins.completion.spell,
 
       -- diagnostics
-      nls.builtins.diagnostics.cspell,
+      nls.builtins.diagnostics.cspell.with({
+        condition = function()
+          return vim.fn.executable("cspell") > 0
+        end,
+      }),
       nls.builtins.diagnostics.dotenv_linter,
-      nls.builtins.diagnostics.editorconfig_checker,
+      nls.builtins.diagnostics.editorconfig_checker.with({
+        condition = function()
+          return vim.fn.executable("ec") > 0
+        end,
+      }),
       nls.builtins.diagnostics.flake8,
-      nls.builtins.diagnostics.luacheck,
+      nls.builtins.diagnostics.luacheck.with({
+        condition = function()
+          return vim.fn.executable("luacheck") > 0
+        end,
+      }),
       nls.builtins.diagnostics.markdownlint,
       nls.builtins.diagnostics.shellcheck,
       nls.builtins.diagnostics.yamllint,

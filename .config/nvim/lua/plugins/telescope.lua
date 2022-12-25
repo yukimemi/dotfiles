@@ -1,27 +1,15 @@
 local M = {
   "nvim-telescope/telescope.nvim",
-  cmd = { "Telescope" },
+  cmd = "Telescope",
 
   dependencies = {
-    { "nvim-telescope/telescope-file-browser.nvim" },
-    { "nvim-telescope/telescope-project.nvim" },
-    { "nvim-telescope/telescope-symbols.nvim" },
+    "folke/trouble.nvim",
+    -- "ahmedkhalf/project.nvim",
+    "nvim-telescope/telescope-file-browser.nvim",
+    "nvim-telescope/telescope-project.nvim",
+    "nvim-telescope/telescope-symbols.nvim",
   },
 }
-
-function M.project_files(opts)
-  opts = opts or {}
-  opts.show_untracked = true
-  if vim.loop.fs_stat(".git") then
-    require("telescope.builtin").git_files(opts)
-  else
-    local client = vim.lsp.get_active_clients()[1]
-    if client then
-      opts.cwd = client.config.root_dir
-    end
-    require("telescope.builtin").find_files(opts)
-  end
-end
 
 function M.config()
   local actions = require("telescope.actions")
@@ -29,6 +17,7 @@ function M.config()
 
   local telescope = require("telescope")
   local borderless = true
+
   telescope.setup({
     defaults = {
       layout_strategy = "horizontal",
@@ -44,29 +33,39 @@ function M.config()
       selection_caret = " ",
       winblend = borderless and 0 or 10,
     },
+    extensions = {
+      project = {
+        base_dirs = {
+          "~/src",
+        },
+      },
+    },
   })
 
-  -- telescope.load_extension("frecency")
   telescope.load_extension("file_browser")
-  -- telescope.load_extension("project")
+  telescope.load_extension("project")
+  -- telescope.load_extension("projects")
 end
 
 function M.init()
-  vim.keymap.set("n", "<leader>fp", function()
-    require("plugins.telescope").project_files()
-  end, { desc = "Find File" })
+  vim.keymap.set("n", "<space>ff", "<cmd>Telescope find_files<cr>", { desc = "Find File" })
 
-  vim.keymap.set("n", "<leader>fd", function()
+  vim.keymap.set("n", "<space>fs", function()
+    require("telescope.builtin").find_files({ cwd = "~/src" })
+  end, { desc = "Find src file" })
+
+  -- vim.keymap.set("n", "<space>fp", function()
+  --   require("telescope").extensions.projects.projects()
+  -- end, { desc = "Find Project" })
+  vim.keymap.set("n", "<space>fp", function()
+    require("telescope").extensions.project.project()
+  end, { desc = "Find Project" })
+
+  vim.keymap.set("n", "<space>fg", "<cmd>Telescope git_files<cr>", { desc = "Find git files" })
+
+  vim.keymap.set("n", "<space>fD", function()
     require("telescope.builtin").git_files({ cwd = "~/.dotfiles" })
   end, { desc = "Find Dot File" })
-
-  vim.keymap.set("n", "<leader>fz", function()
-    require("telescope").extensions.z.list({ cmd = { vim.o.shell, "-c", "zoxide query -ls" } })
-  end, { desc = "Find Zoxide" })
-
-  vim.keymap.set("n", "<leader>pp", function()
-    require("telescope").extensions.project.project({})
-  end, { desc = "Find Project" })
 end
 
 return M

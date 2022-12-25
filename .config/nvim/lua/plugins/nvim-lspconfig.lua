@@ -6,9 +6,10 @@ local M = {
   event = "BufReadPre",
 
   dependencies = {
+    "SmiteshP/nvim-navic",
+    "folke/neodev.nvim",
     "hrsh7th/cmp-nvim-lsp",
     "williamboman/mason.nvim",
-    "SmiteshP/nvim-navic",
   },
 }
 
