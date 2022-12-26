@@ -10,6 +10,16 @@ local M = {
     "folke/neodev.nvim",
     "hrsh7th/cmp-nvim-lsp",
     "williamboman/mason.nvim",
+    {
+      "Maan2003/lsp_lines.nvim",
+      config = function()
+        require("lsp_lines").setup()
+        vim.diagnostic.config({
+          virtual_text = false,
+          virtual_lines = { only_current_line = true },
+        })
+      end,
+    },
   },
 }
 
@@ -38,7 +48,7 @@ function M.config()
     vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "<space>F", vim.lsp.buf.format, opts)
+    vim.keymap.set('n', '<space>F', function() vim.lsp.buf.format { async = true } end, opts)
   end
 
   ---@type lspconfig.options
@@ -59,6 +69,9 @@ function M.config()
       bundle_path = vim.fn.expand(
         "~/src/github.com/PowerShell/PowerShellEditorServices/release/PowerShellEditorServices"
       ),
+      codeFormatting = {
+        preset = "OTBS",
+      },
     },
     rust_analyzer = {
       settings = {

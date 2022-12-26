@@ -16,7 +16,7 @@ function M.setup(options)
 
     sources = {
       -- completion
-      nls.builtins.completion.spell,
+      -- nls.builtins.completion.spell,
 
       -- diagnostics
       nls.builtins.diagnostics.cspell.with({
@@ -67,12 +67,24 @@ function M.setup(options)
       }),
       nls.builtins.formatting.csharpier,
       nls.builtins.formatting.deno_fmt,
-      nls.builtins.formatting.dprint,
-      nls.builtins.formatting.fixjson,
+      nls.builtins.formatting.dprint.with({
+        condition = function()
+          return vim.fn.executable("dprint") > 0
+        end,
+      }),
+      nls.builtins.formatting.fixjson.with({
+        condition = function()
+          return vim.fn.executable("fixjson") > 0
+        end,
+      }),
       nls.builtins.formatting.gofmt,
       nls.builtins.formatting.goimports,
       nls.builtins.formatting.isort,
-      nls.builtins.formatting.jq,
+      nls.builtins.formatting.jq.with({
+        condition = function()
+          return vim.fn.executable("jq") > 0
+        end,
+      }),
       nls.builtins.formatting.lua_format.with({
         condition = function()
           return vim.fn.executable("lua_format") > 0
@@ -99,9 +111,17 @@ function M.setup(options)
           return vim.fn.executable("textlint") > 0
         end,
       }),
-      nls.builtins.formatting.tidy,
+      nls.builtins.formatting.tidy.with({
+        condition = function()
+          return vim.fn.executable("tidy") > 0
+        end,
+      }),
       nls.builtins.formatting.xmlformat,
-      nls.builtins.formatting.xmllint,
+      nls.builtins.formatting.xmllint.with({
+        condition = function()
+          return vim.fn.executable("xmllint") > 0
+        end,
+      }),
       nls.builtins.formatting.yamlfmt,
 
       -- code_actions

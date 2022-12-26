@@ -36,15 +36,15 @@ vim.keymap.set("n", "<C-Right>", "<cmd>bnext<cr>")
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-vim.keymap.set({"n", "x", "o"}, "n", "'Nn'[v:searchforward]", { expr = true })
-vim.keymap.set({"n", "x", "o"}, "N", "'nN'[v:searchforward]", { expr = true })
+vim.keymap.set({ "n", "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true })
+vim.keymap.set({ "n", "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true })
 
 vim.keymap.set("n", "<space><space>", "<cmd>update<cr>")
 vim.keymap.set("n", "<tab>", "%")
 vim.keymap.set("i", "<c-l>", "<C-g>U<Right>")
 
-vim.keymap.set({"n", "x"}, "gh", "^")
-vim.keymap.set({"n", "x"}, "gl", "$")
+vim.keymap.set({ "n", "x" }, "gh", "^")
+vim.keymap.set({ "n", "x" }, "gl", "$")
 
 vim.keymap.set("n", "s", "<Nop>")
 vim.keymap.set("n", "s0", "<cmd>only<cr>")

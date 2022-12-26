@@ -8,6 +8,11 @@ local M = {
     "nvim-telescope/telescope-file-browser.nvim",
     "nvim-telescope/telescope-project.nvim",
     "nvim-telescope/telescope-symbols.nvim",
+    { "tom-anders/telescope-vim-bookmarks.nvim",
+      dependencies = {
+        "MattesGroeger/vim-bookmarks",
+      },
+    },
   },
 }
 
@@ -36,7 +41,7 @@ function M.config()
     extensions = {
       project = {
         base_dirs = {
-          "~/src",
+          { "~/src", max_depth = 4 },
         },
       },
     },
@@ -44,6 +49,7 @@ function M.config()
 
   telescope.load_extension("file_browser")
   telescope.load_extension("project")
+  telescope.load_extension('vim_bookmarks')
   -- telescope.load_extension("projects")
 end
 
@@ -66,6 +72,18 @@ function M.init()
   vim.keymap.set("n", "<space>fD", function()
     require("telescope.builtin").git_files({ cwd = "~/.dotfiles" })
   end, { desc = "Find Dot File" })
+
+  vim.keymap.set("n", "<space>fm", function()
+    require("telescope.builtin").find_files({ cwd = "~/.memolist" })
+  end, { desc = "Find memolist file" })
+
+  vim.keymap.set("n", "<space>fba", function()
+    require('telescope').extensions.vim_bookmarks.all()
+  end, { desc = "Bookmarks all" })
+  vim.keymap.set("n", "<space>fbc", function()
+    require('telescope').extensions.vim_bookmarks.current_file()
+  end, { desc = "Bookmarks current_file" })
+
 end
 
 return M

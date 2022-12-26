@@ -18,7 +18,7 @@ vim.opt.expandtab = true
 vim.opt.backup = true
 vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"
 
-vim.o.formatoptions = "jcroqlnt" -- tcqj
+vim.opt.formatoptions = "jcroqlnt" -- tcqj
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.hidden = true
@@ -70,33 +70,6 @@ if vim.fn.has("nvim-0.9") == 1 then
   vim.o.shortmess = "filnxtToOFWIcC"
 end
 
--- don't load the plugins below
-local builtins = {
-  "gzip",
-  "zip",
-  "zipPlugin",
-  "fzf",
-  "tar",
-  "tarPlugin",
-  "getscript",
-  "getscriptPlugin",
-  "vimball",
-  "vimballPlugin",
-  "2html_plugin",
-  "matchit",
-  "matchparen",
-  "logiPat",
-  "rrhelper",
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
-}
-
-for _, plugin in ipairs(builtins) do
-  vim.g["loaded_" .. plugin] = 1
-end
-
 -- Use proper syntax highlighting in code blocks
 local fences = {
   "lua",
@@ -114,5 +87,19 @@ local fences = {
 vim.g.markdown_fenced_languages = fences
 vim.g.markdown_recommended_style = 0
 
-vim.g.colorscheme = "pink-moon"
+vim.api.nvim_create_autocmd("UIEnter", {
+  once = true,
+  callback = function()
+    if vim.fn.exists(":GuiFont") > 0 then
+      vim.cmd([[GuiFont! HackGen Console NF:h10]])
+    end
+    if vim.fn.exists(':GuiTabline') > 0 then
+      vim.cmd([[GuiTabline 0]])
+    end
+    if vim.fn.exists(':GuiPopupmenu') > 0 then
+      vim.cmd([[GuiPopupmenu 0]])
+    end
+  end,
+})
 
+vim.cmd([[colorscheme pink-moon]])

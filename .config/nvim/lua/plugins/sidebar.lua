@@ -6,8 +6,8 @@ return {
   config = function()
     require("sidebar-nvim").setup({
       open = true,
-      side = "left",
-      initial_width = 35,
+      side = "right",
+      initial_width = 40,
       hide_statusline = false,
       update_interval = 1000,
       sections = { "git", "diagnostics", "buffers", "symbols" },

@@ -2,7 +2,8 @@ return {
   "m-demare/hlargs.nvim",
 
   event = "VeryLazy",
-  enabled = false,
+  enabled = true,
+
   config = function()
     require("hlargs").setup({
       excluded_argnames = {

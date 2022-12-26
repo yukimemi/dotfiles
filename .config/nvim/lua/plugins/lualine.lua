@@ -65,6 +65,9 @@ function M.config()
         --   cond = require("noice").api.status.search.has,
         --   color = { fg = "#ff9e64" },
         -- },
+        function()
+          return vim.g.colors_name
+        end,
         {
           require("lazy.status").updates,
           cond = require("lazy.status").has_updates,
