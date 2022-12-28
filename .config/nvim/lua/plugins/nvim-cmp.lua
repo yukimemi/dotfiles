@@ -38,6 +38,7 @@ function M.config()
       ["<C-c>"] = cmp.mapping.abort(),
       ["<CR>"] = cmp.mapping.confirm({ select = false }),
       ["<C-e>"] = cmp.mapping.confirm({ select = true }),
+      ["<C-k>"] = cmp.mapping.confirm({ select = false }),
       ["<C-f>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           return cmp.complete_common_string()

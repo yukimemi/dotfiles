@@ -101,7 +101,7 @@
   "vim-textobj-line": { "branch": "master", "commit": "1a6780d29adcf7e464e8ddbcd0be0a9df1a37339" },
   "vim-textobj-string": { "branch": "main", "commit": "29f2c149e0c3fa6a49ac593f1554680a83d7cb17" },
   "vim-textobj-user": { "branch": "master", "commit": "41a675ddbeefd6a93664a4dc52f302fe3086a933" },
-  "vim-vsnip": { "branch": "master", "commit": "nil" },
+  "vim-vsnip": { "branch": "master", "commit": "8dde8c0ef10bb1afdbb301e2bd7eb1c153dd558e" },
   "vim-vsnip-integ": { "branch": "master", "commit": "1cf89903f12777b90dd79eb4b3d7fbc0b9a254a1" },
   "which-key.nvim": { "branch": "main", "commit": "8682d3003595017cd8ffb4c860a07576647cc6f8" },
   "windows.nvim": { "branch": "main", "commit": "a37b5d021afbe9baf741bb40818bd14604dde424" },
