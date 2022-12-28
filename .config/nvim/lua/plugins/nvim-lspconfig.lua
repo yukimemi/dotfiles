@@ -90,6 +90,15 @@ function M.config()
       single_file_support = true,
       settings = {
         Lua = {
+          diagnostics = {
+            globals = { 'vim' }
+          },
+          workspace = {
+            checkThirdParty = false,
+          },
+          telemetry = {
+            enable = false
+          },
           format = {
             enable = true,
             defaultConfig = {

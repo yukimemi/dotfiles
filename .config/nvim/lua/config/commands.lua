@@ -1,26 +1,14 @@
--- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd("FocusGained", {
-  pattern = "*",
-  callback = function()
-    vim.cmd([[checktime]])
-  end,
-})
-
 -- create directories when needed, when saving a file
 vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function(event)
     local file = vim.loop.fs_realpath(event.match) or event.match
-
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
-    local backup = vim.fn.fnamemodify(file, ":p:~:h")
-    backup = backup:gsub("[/\\]", "%%")
-    vim.go.backupext = backup
   end,
 })
 
 -- Fix conceallevel for json & help files
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "json", "jsonc" },
+  pattern = { "json", "jsonc", "markdown" },
   callback = function()
     vim.wo.spell = false
     vim.wo.conceallevel = 0
@@ -44,7 +32,9 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 })
 
 -- Highlight on yank
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
+  group = highlight_group,
   pattern = "*",
   callback = function()
     vim.highlight.on_yank()
@@ -62,23 +52,10 @@ vim.api.nvim_create_autocmd("FileType", {
     "startuptime",
     "tsplayground",
     "PlenaryTestPopup",
+    "gin://*",
   },
   callback = function()
-    vim.keymap.set("n", "q", "<cmd>close<cr>", {silent = true, buffer = true})
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { silent = true, buffer = true })
     vim.opt.buflisted = false
   end,
 })
-
-
-function open_current_dir()
-  local fpath = vim.fn.expand("%:p:h")
-  if jit.os:find("Windows") then
-    local cmd = "!start " .. '""' .. '"' .. fpath .. '"'
-    vim.cmd(cmd)
-  else
-    vim.cmd([[!open "fpath"]])
-  end
-end
-
-vim.keymap.set("n", "<space>o", open_current_dir)
-
