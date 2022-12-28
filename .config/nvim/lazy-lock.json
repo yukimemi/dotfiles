@@ -1,5 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "45dc21a71ad1450606f5e98261badb28db59d74c" },
+  "SmoothCursor.nvim": { "branch": "main", "commit": "a05a65981754c3202c7cad2e3304969ed188d161" },
   "animation.nvim": { "branch": "main", "commit": "fb77091ab72ec9971aee0562e7081182527aaa6a" },
   "askpass.vim": { "branch": "main", "commit": "aa977b0093424073bd4b4064a90440dec1e4f066" },
   "awesome-vim-colorschemes": { "branch": "master", "commit": "9f96bbdef5cb19daf58449f0fbb597af6fc4c2eb" },
@@ -94,7 +95,7 @@
   "vim-matchup": { "branch": "master", "commit": "db5120dd9887c988de7cd973ddb951e465d413e5" },
   "vim-operator-replace": { "branch": "master", "commit": "2454a42a4e87649d576f1cfabbe32c1b885c8273" },
   "vim-operator-user": { "branch": "master", "commit": "c3dfd41c1ed516b4b901c97562e644de62c367aa" },
-  "vim-partedit": { "branch": "master", "commit": "7000c43d461d0c23e45336ffb6747aa95a3e9b62" },
+  "vim-partedit": { "branch": "master", "commit": "5936e9bc04c8e3925489397079a6b0a862353d3a" },
   "vim-sandwich": { "branch": "master", "commit": "c5a2cc438ce6ea2005c556dc833732aa53cae21a" },
   "vim-startuptime": { "branch": "master", "commit": "cb4c112b9e0f224236ee4eab6bf5153406b3f88b" },
   "vim-textobj-entire": { "branch": "master", "commit": "64a856c9dff3425ed8a863b9ec0a21dbaee6fb3a" },
