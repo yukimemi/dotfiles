@@ -9,6 +9,7 @@ local M = {
     "SmiteshP/nvim-navic",
     "folke/neodev.nvim",
     "hrsh7th/cmp-nvim-lsp",
+    "jose-elias-alvarez/null-ls.nvim",
     "williamboman/mason.nvim",
     {
       "Maan2003/lsp_lines.nvim",
