@@ -71,8 +71,8 @@ function M.init()
 
   vim.keymap.set("n", "<space>fd", function()
     local bufname = vim.fn.bufname()
-    local bufdir = vim.fn.fnamemodify(bufname, ":h")
-    require("telescope.builtin").find_files({ { cwd = bufdir } })
+    local bufdir = vim.fn.fnamemodify(bufname, ":p:h")
+    require("telescope.builtin").find_files({ cwd = bufdir })
   end, { desc = "Find file on buffer dir" })
 
   vim.keymap.set("n", "<space>fD", function()

@@ -104,7 +104,6 @@ local leader = {
     t = { "<cmd>Neotree toggle<cr>", "NeoTree" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     n = { "<cmd>enew<cr>", "New File" },
-    d = "Dot Files",
   },
   o = {
     name = "+open",
