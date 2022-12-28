@@ -7,20 +7,16 @@ return {
   },
 
   config = function()
-    local util = require("util")
-    vim.keymap.set({ "i", "s" }, "<Tab>", function()
-      if (vim.fn["vsnip#available"](1) or vim.fn["vsnip#jumpable"](1)) then
-        vim.api.nvim_feedkeys(util.t('<Plug>(vsnip-jump-next)'), "n", false)
-      else
-        vim.api.nvim_feedkeys(util.t('<Tab>'), "n", false)
-      end
-    end)
-    vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
-      if (vim.fn["vsnip#available"](1) or vim.fn["vsnip#jumpable"](-1)) then
-        vim.api.nvim_feedkeys(util.t('<Plug>(vsnip-jump-prev)'), "n", false)
-      else
-        vim.api.nvim_feedkeys(util.t('<S-Tab>'), "n", false)
-      end
-    end)
+    vim.cmd([[
+    " Expand or jump
+    imap <expr> <C-k>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
+    smap <expr> <C-k>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
+
+    " Jump forward or backward
+    imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+    smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+    imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+    smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+    ]])
   end,
 }
