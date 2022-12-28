@@ -25,6 +25,7 @@ local M = {
 
 function M.config()
   require("mason")
+  require("neodev").setup()
 
   local function on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
@@ -89,34 +90,6 @@ function M.config()
       single_file_support = true,
       settings = {
         Lua = {
-          workspace = {
-            checkThirdParty = false,
-          },
-          completion = {
-            workspaceWord = true,
-            callSnippet = "Both",
-          },
-          diagnostics = {
-            groupSeverity = {
-              strong = "Warning",
-              strict = "Warning",
-            },
-            groupFileStatus = {
-              ["ambiguity"] = "Opened",
-              ["await"] = "Opened",
-              ["codestyle"] = "None",
-              ["duplicate"] = "Opened",
-              ["global"] = "Opened",
-              ["luadoc"] = "Opened",
-              ["redefined"] = "Opened",
-              ["strict"] = "Opened",
-              ["strong"] = "Opened",
-              ["type-check"] = "Opened",
-              ["unbalanced"] = "Opened",
-              ["unused"] = "Opened",
-            },
-            unusedLocalExclude = { "_*" },
-          },
           format = {
             enable = true,
             defaultConfig = {

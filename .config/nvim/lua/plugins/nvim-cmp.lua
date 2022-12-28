@@ -11,8 +11,10 @@ local M = {
     "hrsh7th/cmp-cmdline",
     "dmitmel/cmp-cmdline-history",
     "hrsh7th/cmp-path",
-    "saadparwaiz1/cmp_luasnip",
-    "L3MON4D3/LuaSnip",
+    "hrsh7th/cmp-vsnip",
+    "hrsh7th/vim-vsnip",
+    "hrsh7th/vim-vsnip-integ",
+    "rafamadriz/friendly-snippets",
   },
 }
 
@@ -22,7 +24,7 @@ function M.config()
   cmp.setup({
     snippet = {
       expand = function(args)
-        require("luasnip").lsp_expand(args.body)
+        vim.fn["vsnip#anonymous"](args.body)
       end,
     },
     window = {
@@ -30,15 +32,22 @@ function M.config()
       documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-      ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-d>"] = cmp.mapping.scroll_docs(4),
       ["<C-Space>"] = cmp.mapping.complete(),
-      ["<C-e>"] = cmp.mapping.abort(),
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      ["<C-c>"] = cmp.mapping.abort(),
+      ["<CR>"] = cmp.mapping.confirm({ select = false }),
+      ["<C-e>"] = cmp.mapping.confirm({ select = true }),
+      ["<C-f>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          return cmp.complete_common_string()
+        end
+        fallback()
+      end, { 'i', 'c' }),
     }),
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
-      { name = "luasnip" },
+      { name = "vsnip" },
       { name = "path" },
       { name = "emoji" },
     }, {

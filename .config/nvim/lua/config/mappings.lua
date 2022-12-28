@@ -74,7 +74,7 @@ local leader = {
     name = "+git",
     h = { name = "+hunk" },
   },
-  ["h"] = {
+  h = {
     name = "+help",
     t = { "<cmd>Telescope builtin<cr>", "Telescope" },
     c = { "<cmd>Telescope commands<cr>", "Commands" },
@@ -98,7 +98,6 @@ local leader = {
   f = {
     name = "+file",
     t = { "<cmd>Neotree toggle<cr>", "NeoTree" },
-    f = { "<cmd>Telescope find_files<cr>", "Find File" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     n = { "<cmd>enew<cr>", "New File" },
     d = "Dot Files",

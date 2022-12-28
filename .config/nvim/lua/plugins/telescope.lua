@@ -54,7 +54,7 @@ function M.config()
 end
 
 function M.init()
-  vim.keymap.set("n", "<space>ff", "<cmd>Telescope find_files<cr>", { desc = "Find File" })
+  vim.keymap.set("n", "<space>ff", "<cmd>Telescope<cr>", { desc = "Telescope" })
 
   vim.keymap.set("n", "<space>fs", function()
     require("telescope.builtin").find_files({ cwd = "~/src" })
