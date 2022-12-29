@@ -3,6 +3,7 @@ local M = {
   cmd = "Telescope",
 
   dependencies = {
+    "folke/which-key.nvim",
     "folke/trouble.nvim",
     -- "ahmedkhalf/project.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
@@ -54,6 +55,10 @@ function M.config()
 end
 
 function M.init()
+
+  --------------------------------------------------------------------------------
+  -- Prefix `f` (files) --
+  --------------------------------------------------------------------------------
   vim.keymap.set("n", "<space>ff", "<cmd>Telescope<cr>", { desc = "Telescope" })
 
   vim.keymap.set("n", "<space>fs", function()
@@ -83,12 +88,51 @@ function M.init()
     require("telescope.builtin").find_files({ cwd = "~/.memolist" })
   end, { desc = "Find memolist file" })
 
-  vim.keymap.set("n", "<space>fba", function()
+  vim.keymap.set("n", "<space>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Open Recent File" })
+
+  --------------------------------------------------------------------------------
+  -- Prefix `b` (vim-bookmarks) --
+  --------------------------------------------------------------------------------
+  vim.keymap.set("n", "<space>ba", function()
     require('telescope').extensions.vim_bookmarks.all()
   end, { desc = "Bookmarks all" })
-  vim.keymap.set("n", "<space>fbc", function()
+  vim.keymap.set("n", "<space>bc", function()
     require('telescope').extensions.vim_bookmarks.current_file()
   end, { desc = "Bookmarks current_file" })
+
+  --------------------------------------------------------------------------------
+  -- Prefix `h` (help) --
+  --------------------------------------------------------------------------------
+  vim.keymap.set("n", "<space>hc", "<cmd>Telescope commands<cr>", { desc = "Commands" })
+  vim.keymap.set("n", "<space>hh", "<cmd>Telescope help_tags<cr>", { desc = "Help Pages" })
+  vim.keymap.set("n", "<space>hm", "<cmd>Telescope man_pages<cr>", { desc = "Man Pages" })
+  vim.keymap.set("n", "<space>hk", "<cmd>Telescope keymaps<cr>", { desc = "Key Maps" })
+  vim.keymap.set("n", "<space>hs", "<cmd>Telescope highlights<cr>", { desc = "Search Highlight Groups" })
+  vim.keymap.set("n", "<space>hf", "<cmd>Telescope filetypes<cr>", { desc = "File Types" })
+  vim.keymap.set("n", "<space>ho", "<cmd>Telescope vim_options<cr>", { desc = "Options" })
+  vim.keymap.set("n", "<space>ha", "<cmd>Telescope autocommands<cr>", { desc = "Auto Commands" })
+
+  --------------------------------------------------------------------------------
+  -- Prefix `s` (search) --
+  --------------------------------------------------------------------------------
+  vim.keymap.set("n", "<space>sg", "<cmd>Telescope live_grep<cr>", { desc = "Grep" })
+  vim.keymap.set("n", "<space>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "Buffer" })
+  vim.keymap.set("n", "<space>sh", "<cmd>Telescope command_history<cr>", { desc = "Command History" })
+  vim.keymap.set("n", "<space>sm", "<cmd>Telescope marks<cr>", { desc = "Jump to Mark" })
+  vim.keymap.set("n", "<space>sr", "<cmd>lua require('spectre').open()<cr>", { desc = "Replace (Spectre)" })
+
+  --------------------------------------------------------------------------------
+  -- Prefix `p` (project) --
+  --------------------------------------------------------------------------------
+  vim.keymap.set("n", "<space>pp", "<cmd>Telescope file_browser cwd=~/src<cr>", { desc = "Browse ~/src" })
+
+  --------------------------------------------------------------------------------
+  -- Others
+  --------------------------------------------------------------------------------
+  vim.keymap.set("n", "<space>.", "<cmd>Telescope file_browser<cr>", { desc = "Browse Files" })
+  vim.keymap.set("n", "<space>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", { desc = "Switch Buffer" })
+  vim.keymap.set("n", "<space>/", "<cmd>Telescope live_grep<cr>", { desc = "Search" })
+  vim.keymap.set("n", "<space>:", "<cmd>Telescope command_history<cr>", { desc = "Command History" })
 
 end
 

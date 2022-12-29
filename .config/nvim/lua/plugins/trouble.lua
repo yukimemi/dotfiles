@@ -7,6 +7,10 @@ return {
 
   cmd = { "TroubleToggle", "Trouble" },
 
+  init = function()
+    vim.keymap.set("n", "<space>xx", "<cmd>TroubleToggle workspace_diagnostics<cr>", { desc = "Trouble" })
+  end,
+
   config = function()
     require("trouble").setup({
       auto_open = false,

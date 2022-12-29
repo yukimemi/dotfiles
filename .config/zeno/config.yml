@@ -269,6 +269,8 @@ snippets:
     snippet: curl -fsSL https://downloads.slack-edge.com/slack-cli/install.sh | bash
   - name: Install mutagen
     snippet: brew install mutagen-io/mutagen/mutagen
+  - name: Install bob-nvim
+    snippet: cargo install bob-nvim
 
 
 completions:

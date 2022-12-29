@@ -7,7 +7,7 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
 
-  cmd = {"NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile", "NvimTreeCollapse"},
+  cmd = { "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile", "NvimTreeCollapse" },
 
   init = function()
     vim.g.loaded_netrw = 1

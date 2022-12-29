@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2022/12/24 21:17:11.
+# Last Change : 2022/12/29 09:18:36.
 # =============================================================================
 
 # For time.
@@ -35,6 +35,8 @@ path=(
   $HOME/.local/bin/scripts(N-/)
   $HOME/bin/scripts(N-/)
   $HOME/local/bin(N-/)
+  # bob-nvim
+  $HOME/.local/share/neovim/bin(N-/)
   # cargo
   $HOME/.cargo/bin(N-/)
   # coreutils.

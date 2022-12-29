@@ -1,5 +1,0 @@
-*.log
-coc-*-data/
-db.json
-node_modules/
-package.json
