@@ -1,9 +1,11 @@
 local M = {
   "nvim-lualine/lualine.nvim",
+
   event = "VeryLazy",
 
   dependencies = {
     "rlch/github-notifications.nvim",
+    "SmiteshP/nvim-navic",
   },
 }
 

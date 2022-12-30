@@ -11,7 +11,7 @@ function M.config()
       enabled = true,
 
       -- Default prompt string
-      default_prompt = "Input:",
+      default_prompt = " ",
 
       -- Can be 'left', 'right', or 'center'
       prompt_align = "left",
@@ -54,7 +54,9 @@ function M.config()
           ["<C-c>"] = "Close",
           ["<CR>"] = "Confirm",
           ["<Up>"] = "HistoryPrev",
+          ["<C-p>"] = "HistoryPrev",
           ["<Down>"] = "HistoryNext",
+          ["<C-n>"] = "HistoryNext",
         },
       },
 
@@ -72,7 +74,7 @@ function M.config()
       enabled = true,
 
       -- Priority list of preferred vim.select implementations
-      backend = { "nui", "builtin", "telescope", "fzf_lua", "fzf" },
+      backend = { "telescope", "nui", "builtin", "fzf_lua", "fzf" },
 
       -- Trim trailing `:` from prompt
       trim_prompt = true,

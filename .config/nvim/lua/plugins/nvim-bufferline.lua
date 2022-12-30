@@ -4,6 +4,7 @@ local M = {
 
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+    "neovim/nvim-lspconfig",
   },
 }
 
@@ -12,10 +13,10 @@ function M.config()
     options = {
       mode = "buffers", -- set to "tabs" to only show tabpages instead
       numbers = "ordinal",
-      close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
+      close_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
       right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
-      left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
-      middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
+      left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
+      middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
       indicator = {
         icon = '▎', -- this should be omitted if indicator style is not 'icon'
         style = 'icon'
@@ -33,16 +34,16 @@ function M.config()
       max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
       truncate_names = true, -- whether or not tab names should be truncated
       tab_size = 18,
-      diagnostics = "coc",
+      diagnostics = "nvim_lsp",
       diagnostics_update_in_insert = false,
       -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
       diagnostics_indicator = function(count, level, diagnostics_dict, context)
-        return "("..count..")"
+        return "(" .. count .. ")"
       end,
       -- NOTE: this will be called a lot so don't do any heavy processing here
       custom_filter = function(buf_number, buf_numbers)
         -- filter out filetypes you don't want to see
-        if vim.bo[buf_number].filetype ~= "gin-diff" then
+        if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
           return true
         end
         -- filter out by buffer name
@@ -75,7 +76,7 @@ function M.config()
       hover = {
         enabled = true,
         delay = 200,
-        reveal = {'close'}
+        reveal = { 'close' }
       },
       sort_by = 'insert_after_current',
     }

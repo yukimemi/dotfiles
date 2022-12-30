@@ -59,6 +59,7 @@ function M.config()
     bashls = {},
     clangd = {},
     cssls = {},
+    denols = {},
     dockerls = {},
     tsserver = {},
     svelte = {},

@@ -1,5 +1,3 @@
-local util = require("util")
-
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -10,7 +8,7 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
--- Resize window using <ctrl> arrow keys
+-- Resize window using <shift> arrow keys
 vim.keymap.set("n", "<S-Up>", "<cmd>resize +2<CR>")
 vim.keymap.set("n", "<S-Down>", "<cmd>resize -2<CR>")
 vim.keymap.set("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
@@ -42,6 +40,7 @@ vim.keymap.set("i", "<c-l>", "<C-g>U<Right>")
 vim.keymap.set({ "n", "x" }, "gh", "^")
 vim.keymap.set({ "n", "x" }, "gl", "$")
 
+-- `s` prefix mappings
 vim.keymap.set("n", "s", "<Nop>")
 vim.keymap.set("n", "s0", "<cmd>only<cr>")
 vim.keymap.set("n", "s=", "<c-w>=")
@@ -63,5 +62,6 @@ vim.keymap.set("n", "st", "<cmd>tabnew<cr>")
 vim.keymap.set("n", "sv", "<cmd>vs<cr>")
 vim.keymap.set("n", "sw", "<c-w>w")
 
+-- lazy.nvim
 vim.keymap.set("n", "<space>l", "<cmd>Lazy<cr>")
 

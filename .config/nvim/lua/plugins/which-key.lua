@@ -14,43 +14,31 @@ return {
     })
 
     local leader = {
+      b = { name = "+bookmarks" },
+      h = { name = "+help" },
+      s = { name = "+search" },
+      f = { name = "+file" },
+      p = { name = "+project" },
       g = {
         name = "+git",
         h = { name = "+hunk" },
       },
-      h = {
-        name = "+help",
-      },
-      s = {
-        name = "+search",
-      },
-      f = {
-        name = "+file",
-      },
       o = {
         name = "+open",
-      },
-      p = {
-        name = "+project",
+        i = { "<cmd>edit ~/.config/nvim/init.lua<cr>", "Open init.lua" },
       },
       t = {
         name = "toggle",
         s = {
-          function()
-            util.toggle("spell")
-          end,
+          function() util.toggle("spell") end,
           "Toggle spell",
         },
         w = {
-          function()
-            util.toggle("wrap")
-          end,
+          function() util.toggle("wrap") end,
           "Toggle wrap",
         },
         n = {
-          function()
-            util.toggle("relativenumber", true)
-          end,
+          function() util.toggle("relativenumber", true) end,
           "Toggle relativenumber",
         },
       },
@@ -75,26 +63,18 @@ return {
         l = { "<cmd>lopen<cr>", "Open Location List" },
         q = { "<cmd>copen<cr>", "Open Quickfix List" },
       },
-      z = { [[<cmd>ZenMode<cr>]], "Zen Mode" },
       T = {
-        function()
-          util.test(true)
-        end,
+        function() util.test(true) end,
         "Plenary Test File",
       },
       D = {
-        function()
-          util.test()
-        end,
+        function() util.test() end,
         "Plenary Test Directory",
       },
     }
 
-    for i = 0, 10 do
-      leader[tostring(i)] = "which_key_ignore"
-    end
-
     wk.register(leader, { prefix = "<leader>" })
+
     wk.register({ g = { name = "+goto" } })
   end,
 }

@@ -17,6 +17,12 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup("plugins", {
   defaults = { lazy = true },
   checker = { enabled = true },
+  install = {
+    colorscheme = { "pink-moon" }
+  },
+  dev = {
+    path = "~/src/github.com/yukimemi",
+  },
   performance = {
     rtp = {
       disabled_plugins = {
