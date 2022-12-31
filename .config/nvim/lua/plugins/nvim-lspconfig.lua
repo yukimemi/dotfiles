@@ -13,6 +13,7 @@ local M = {
     "williamboman/mason.nvim",
     {
       "Maan2003/lsp_lines.nvim",
+      enabled = false,
       config = function()
         require("lsp_lines").setup()
         vim.diagnostic.config({
