@@ -7,10 +7,12 @@ local M = {
 
   dependencies = {
     "SmiteshP/nvim-navic",
-    "folke/neodev.nvim",
-    "hrsh7th/cmp-nvim-lsp",
     "jose-elias-alvarez/null-ls.nvim",
     "williamboman/mason.nvim",
+    {
+      "hrsh7th/cmp-nvim-lsp",
+      enabled = vim.g.plugin_use_cmp,
+    },
     {
       "Maan2003/lsp_lines.nvim",
       enabled = false,
@@ -22,12 +24,19 @@ local M = {
         })
       end,
     },
+    {
+      "folke/neodev.nvim",
+      config = true,
+    },
+    {
+      "folke/neoconf.nvim",
+      cmd = "Neoconf",
+      config = true
+    },
   },
 }
 
 function M.config()
-  require("mason")
-  require("neodev").setup()
 
   local function on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
@@ -71,7 +80,7 @@ function M.config()
     pyright = {},
     powershell_es = {
       bundle_path = vim.fn.expand(
-        "~/src/github.com/PowerShell/PowerShellEditorServices/release/PowerShellEditorServices"
+      "~/src/github.com/PowerShell/PowerShellEditorServices/release/PowerShellEditorServices"
       ),
       codeFormatting = {
         preset = "OTBS",
@@ -118,7 +127,9 @@ function M.config()
   }
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+  if vim.g.plugin_use_cmp then
+    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+  end
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,

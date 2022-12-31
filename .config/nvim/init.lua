@@ -14,6 +14,11 @@ vim.opt.runtimepath:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+vim.g.plugin_use_cmp = false
+vim.g.plugin_use_ddc = true
+
+vim.api.nvim_create_augroup("MyAutoCmd", { clear = true })
+
 require("lazy").setup("plugins", {
   defaults = { lazy = true },
   checker = { enabled = true },
@@ -39,8 +44,6 @@ require("lazy").setup("plugins", {
   },
   debug = false,
 })
-
-vim.keymap.set("n", "<space>l", "<cmd>Lazy<cr>")
 
 require("config.options")
 

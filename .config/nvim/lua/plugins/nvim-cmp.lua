@@ -1,6 +1,7 @@
 local M = {
   "hrsh7th/nvim-cmp",
-  enabled = true,
+
+  enabled = vim.g.plugin_use_cmp,
 
   event = "InsertEnter",
 
