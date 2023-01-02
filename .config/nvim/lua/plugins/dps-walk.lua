@@ -1,10 +1,13 @@
 return {
   "yukimemi/dps-walk",
 
+  dev = false,
+
   lazy = false,
   dependencies = {
     "vim-denops/denops.vim",
   },
+
   init = function()
     vim.g.walk_debug = false
 
@@ -15,5 +18,6 @@ return {
     vim.keymap.set("n", "<space>wj", "<cmd>DenopsWalk --path=~/.cache/junkfile<cr>")
     vim.keymap.set("n", "<space>wm", "<cmd>DenopsWalk --path=~/.memolist<cr>")
     vim.keymap.set("n", "<space>wd", "<cmd>DenopsWalkBufferDir<cr>")
+
   end,
 }

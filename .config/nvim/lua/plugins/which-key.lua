@@ -15,6 +15,7 @@ return {
 
     local leader = {
       b = { name = "+bookmarks" },
+      d = { name = "+ddu" },
       h = { name = "+help" },
       s = { name = "+search" },
       f = { name = "+file" },

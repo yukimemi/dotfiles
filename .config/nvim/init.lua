@@ -14,8 +14,10 @@ vim.opt.runtimepath:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.g.plugin_use_cmp = false
-vim.g.plugin_use_ddc = true
+vim.g.plugin_use_cmp = true
+vim.g.plugin_use_ddc = false
+
+vim.g.plugin_use_ddu = false
 
 vim.api.nvim_create_augroup("MyAutoCmd", { clear = true })
 

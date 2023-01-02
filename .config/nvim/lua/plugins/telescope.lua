@@ -74,15 +74,19 @@ function M.init()
 
   vim.keymap.set("n", "<space>fg", "<cmd>Telescope git_files<cr>", { desc = "Find git files" })
 
-  vim.keymap.set("n", "<space>fd", function()
+  vim.keymap.set("n", "<space>fD", function()
     local bufname = vim.fn.bufname()
     local bufdir = vim.fn.fnamemodify(bufname, ":p:h")
     require("telescope.builtin").find_files({ cwd = bufdir })
   end, { desc = "Find file on buffer dir" })
 
-  vim.keymap.set("n", "<space>fD", function()
+  vim.keymap.set("n", "<space>fd", function()
     require("telescope.builtin").git_files({ cwd = "~/.dotfiles" })
   end, { desc = "Find Dot File" })
+
+  vim.keymap.set("n", "<space>fc", function()
+    require("telescope.builtin").git_files({ cwd = "~/.cache" })
+  end, { desc = "Find Cache File" })
 
   vim.keymap.set("n", "<space>fm", function()
     require("telescope.builtin").find_files({ cwd = "~/.memolist" })

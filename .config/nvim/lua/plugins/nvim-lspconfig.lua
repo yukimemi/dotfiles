@@ -69,9 +69,25 @@ function M.config()
     bashls = {},
     clangd = {},
     cssls = {},
-    denols = {},
+    denols = {
+      init_options = {
+        lint = true,
+        unstable = true,
+        suggest = {
+          imports = {
+            hosts = {
+              ["https://deno.land"] = true,
+              ["https://cdn.nest.land"] = true,
+              ["https://crux.land"] = true,
+            },
+          },
+        },
+      },
+    },
     dockerls = {},
-    tsserver = {},
+    tsserver = {
+      root_dir = require("lspconfig").util.root_pattern("package.json"),
+    },
     svelte = {},
     eslint = {},
     html = {},

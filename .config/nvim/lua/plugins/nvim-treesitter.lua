@@ -25,7 +25,7 @@ local M = {
 function M.config()
   require("nvim-treesitter.configs").setup({
     ensure_installed = "all",
-    ignore_install = { "gitcommit" },
+    ignore_install = { "gitcommit", "terraform" },
     sync_install = false,
     auto_install = true,
     highlight = {
