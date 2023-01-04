@@ -40,6 +40,16 @@ vim.keymap.set("i", "<c-l>", "<C-g>U<Right>")
 vim.keymap.set({ "n", "x" }, "gh", "^")
 vim.keymap.set({ "n", "x" }, "gl", "$")
 
+
+vim.keymap.set("c", "<c-b>", "<Left>")
+vim.keymap.set("c", "<c-f>", "<Right>")
+vim.keymap.set("c", "<c-a>", "<Home>")
+vim.keymap.set("c", "<c-e>", "<End>")
+vim.keymap.set("c", "<c-d>", "<Del>")
+vim.keymap.set("c", "<c-y>", "<c-r>")
+vim.keymap.set("c", "<c-p>", "<Up>")
+vim.keymap.set("c", "<c-n>", "<Down>")
+
 -- `s` prefix mappings
 vim.keymap.set("n", "s", "<Nop>")
 vim.keymap.set("n", "s0", "<cmd>only<cr>")
@@ -64,4 +74,3 @@ vim.keymap.set("n", "sw", "<c-w>w")
 
 -- lazy.nvim
 vim.keymap.set("n", "<space>l", "<cmd>Lazy<cr>")
-

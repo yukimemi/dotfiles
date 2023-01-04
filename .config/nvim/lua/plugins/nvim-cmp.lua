@@ -20,6 +20,7 @@ local M = {
       "hrsh7th/cmp-nvim-lsp-signature-help",
       enabled = true,
     },
+    "onsails/lspkind.nvim",
   },
 }
 
@@ -66,11 +67,24 @@ function M.config()
         hl_group = "LspCodeLens",
       },
     },
+    formatting = {
+      format = require('lspkind').cmp_format({
+        mode = 'symbol',
+        maxwidth = 50,
+      })
+    }
   })
 
   -- Use buffer source for `/` and `?`
   cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp.mapping.preset.cmdline({
+      ["<C-n>"] = cmp.mapping(function(fallback)
+        fallback()
+      end, { 'c' }),
+      ["<C-p>"] = cmp.mapping(function(fallback)
+        fallback()
+      end, { 'c' }),
+    }),
     sources = {
       { name = 'buffer' }
     }
@@ -78,7 +92,14 @@ function M.config()
 
   -- Use cmdline & path source for ':'
   cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp.mapping.preset.cmdline({
+      ["<C-n>"] = cmp.mapping(function(fallback)
+        fallback()
+      end, { 'c' }),
+      ["<C-p>"] = cmp.mapping(function(fallback)
+        fallback()
+      end, { 'c' }),
+    }),
     sources = cmp.config.sources({
       { name = 'path' }
     }, {

@@ -1,5 +1,6 @@
 -- create directories when needed, when saving a file
 vim.api.nvim_create_autocmd("BufWritePre", {
+  group = "MyAutoCmd",
   callback = function(event)
     local file = vim.loop.fs_realpath(event.match) or event.match
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
@@ -8,6 +9,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- Fix conceallevel for json & help files
 vim.api.nvim_create_autocmd("FileType", {
+  group = "MyAutoCmd",
   pattern = { "json", "jsonc", "markdown" },
   callback = function()
     vim.wo.spell = false
@@ -17,9 +19,11 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPre", {
+  group = "MyAutoCmd",
   pattern = "*",
   callback = function()
     vim.api.nvim_create_autocmd("FileType", {
+      group = "MyAutoCmd",
       pattern = "<buffer>",
       once = true,
       callback = function()
@@ -32,6 +36,7 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+  group = "MyAutoCmd",
   pattern = {
     "qf",
     "help",
@@ -45,7 +50,8 @@ vim.api.nvim_create_autocmd("FileType", {
     "gin://*",
   },
   callback = function()
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { silent = true, buffer = true })
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { silent = true, buffer = true, nowait = true })
+    vim.keymap.set("n", "<esc>", "<cmd>close<cr>", { silent = true, buffer = true, nowait = true })
     vim.opt.buflisted = false
   end,
 })

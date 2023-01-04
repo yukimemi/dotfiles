@@ -17,19 +17,19 @@
             "keys": "alt+shift+d"
         },
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "command": "paste"
-        },
-        {
             "command": 
             {
                 "action": "copy",
                 "singleLine": false
             },
             "keys": "ctrl+c"
+        },
+        {
+            "command": "paste"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
         }
     ],
     "alwaysShowTabs": false,
@@ -43,7 +43,7 @@
         {
             "antialiasingMode": "cleartype",
             "backgroundImage": "desktopWallpaper",
-            "backgroundImageOpacity": 0.07,
+            "backgroundImageOpacity": 0.070000000000000007,
             "backgroundImageStretchMode": "uniformToFill",
             "bellStyle": "window",
             "colorScheme": "One Half Dark",
@@ -51,7 +51,7 @@
             "font": 
             {
                 "face": "HackGen Console NF",
-                "size": 10.0
+                "size": 10
             },
             "opacity": 50,
             "padding": "7",
@@ -97,6 +97,18 @@
                 "guid": "{fd6f5fce-1801-5cc7-af7c-b16c045d3365}",
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{f5e6ba8c-2dbb-51b3-9c0a-60eb39205ec8}",
+                "hidden": true,
+                "name": "Developer Command Prompt for VS 2019",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{2827f978-f93f-5d3f-88fa-45d14ee8c1ed}",
+                "hidden": true,
+                "name": "Developer PowerShell for VS 2019",
                 "source": "Windows.Terminal.VisualStudio"
             }
         ]
@@ -336,6 +348,5 @@
     ],
     "showTabsInTitlebar": true,
     "startOnUserLogin": true,
-    "themes": [],
     "useAcrylicInTabRow": true
 }

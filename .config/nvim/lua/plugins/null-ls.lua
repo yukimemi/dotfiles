@@ -29,11 +29,6 @@ function M.setup(options)
         end,
       }),
       nls.builtins.diagnostics.flake8,
-      nls.builtins.diagnostics.luacheck.with({
-        condition = function()
-          return vim.fn.executable("luacheck") > 0
-        end,
-      }),
       nls.builtins.diagnostics.markdownlint.with({
         condition = function()
           return vim.fn.executable("markdownlint") > 0
@@ -81,11 +76,6 @@ function M.setup(options)
       nls.builtins.formatting.jq.with({
         condition = function()
           return vim.fn.executable("jq") > 0
-        end,
-      }),
-      nls.builtins.formatting.lua_format.with({
-        condition = function()
-          return vim.fn.executable("lua_format") > 0
         end,
       }),
       nls.builtins.formatting.markdownlint.with({

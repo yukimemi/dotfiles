@@ -95,9 +95,9 @@ function M.config()
     marksman = {},
     pyright = {},
     powershell_es = {
-      bundle_path = vim.fn.expand(
-      "~/src/github.com/PowerShell/PowerShellEditorServices/release/PowerShellEditorServices"
-      ),
+      -- bundle_path = vim.fn.expand(
+      -- "~/src/github.com/PowerShell/PowerShellEditorServices/release/PowerShellEditorServices"
+      -- ),
       codeFormatting = {
         preset = "OTBS",
       },
@@ -118,14 +118,35 @@ function M.config()
       single_file_support = true,
       settings = {
         Lua = {
-          diagnostics = {
-            globals = { 'vim' }
-          },
           workspace = {
             checkThirdParty = false,
           },
-          telemetry = {
-            enable = false
+          completion = {
+            workspaceWord = true,
+            callSnippet = "Both",
+          },
+          diagnostics = {
+            -- enable = false,
+            -- globals = { 'vim' },
+            groupSeverity = {
+              strong = "Warning",
+              strict = "Warning",
+            },
+            groupFileStatus = {
+              ["ambiguity"] = "Opened",
+              ["await"] = "Opened",
+              ["codestyle"] = "None",
+              ["duplicate"] = "Opened",
+              ["global"] = "Opened",
+              ["luadoc"] = "Opened",
+              ["redefined"] = "Opened",
+              ["strict"] = "Opened",
+              ["strong"] = "Opened",
+              ["type-check"] = "Opened",
+              ["unbalanced"] = "Opened",
+              ["unused"] = "Opened",
+            },
+            unusedLocalExclude = { "_*" },
           },
           format = {
             enable = true,
