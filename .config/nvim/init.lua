@@ -28,6 +28,7 @@ require("lazy").setup("plugins", {
     enabled = false,
     frequency = 86400,
   },
+  concurrency = 13,
   install = {
     colorscheme = { "pink-moon" }
   },
