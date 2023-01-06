@@ -42,6 +42,21 @@ return {
           function() util.toggle("relativenumber", true) end,
           "Toggle relativenumber",
         },
+        f = {
+          name = "+fileformat",
+          d = {
+            function()
+              vim.cmd [[e ++ff=dos]]
+            end,
+            "Dos",
+          },
+          u = {
+            function()
+              vim.cmd [[e ++ff=unix]]
+            end,
+            "Unix",
+          },
+        },
       },
       ["<tab>"] = {
         name = "tabs",
