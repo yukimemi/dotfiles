@@ -14,10 +14,7 @@
 [windows]
 ".config/espanso" = "~/scoop/apps/espanso/current/.espanso"
 ".config/rhq" = "~/AppData/Roaming/rhq"
-".config/nvim" = [
-  "~/vimfiles",
-  "~/AppData/Local/nvim",
-]
+".config/nvim" = ["~/vimfiles", "~/AppData/Local/nvim"]
 ".config/nvim/init.vim" = "~/_vimrc"
 ".gvimrc" = "~/_gvimrc"
 ".hyper.js" = ["~/AppData/Roaming/Hyper/.hyper.js", "~/.hyper.js"]
@@ -27,21 +24,6 @@
   "~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1",
 ]
 "win/cmd/init.cmd" = "~/.init.cmd"
-"win/link/.cache" = "~/.cache"
-"win/link/.cargo" = "~/.cargo"
-"win/link/.dotnet" = "~/.dotnet"
-"win/link/.deno" = "~/.deno"
-"win/link/.go" = "~/.go"
-"win/link/.local" = "~/.local"
-"win/link/.memolist" = "~/.memolist"
-"win/link/.nuget" = "~/.nuget"
-"win/link/.rustup" = "~/.rustup"
-"win/link/app" = "~/app"
-"win/link/archives" = "~/archives"
-"win/link/scoop" = "~/scoop"
-"win/link/src" = "~/src"
-"win/link/tools" = "c:/tools"
-"win/link/nvim-data" = "~/AppData/Local/nvim-data"
 "win/terminus/config.yaml" = "~/AppData/Roaming/terminus/config.yaml"
 "win/wt/settings.json" = [
   "~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json",

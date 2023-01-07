@@ -17,7 +17,7 @@ vim.g.maplocalleader = "\\"
 vim.g.plugin_use_cmp = true
 vim.g.plugin_use_ddc = false
 
-vim.g.plugin_use_ddu = false
+vim.g.plugin_use_ddu = true
 vim.g.plugin_use_ctrlp = true
 
 vim.api.nvim_create_augroup("MyAutoCmd", { clear = true })
