@@ -1,5 +1,5 @@
-vim.g.encoding = "utf-8"
-vim.g.fileencodings = "ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1"
+vim.opt.encoding = "utf-8"
+vim.opt.fileencodings = "ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1"
 
 vim.opt.backup = true
 vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"

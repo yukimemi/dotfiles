@@ -6,12 +6,9 @@ root = "~/src"
 # Patterns to search local repositories.
 includes = [
   "~/src",
-  "~/.go/src",
   "~/.dotfiles",
-  "~/.cache/vim/pack",
-  "~/.cache/nvim/pack",
-  "~/.cache/nvim/dein/repos",
   "~/Documents/src",
+  "~/AppData/Local/nvim-data/lazy",
 ]
 
 # Patterns to ignore repositories.

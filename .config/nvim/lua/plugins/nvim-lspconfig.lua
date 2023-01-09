@@ -8,7 +8,13 @@ local M = {
   dependencies = {
     "SmiteshP/nvim-navic",
     "jose-elias-alvarez/null-ls.nvim",
-    "williamboman/mason.nvim",
+    {
+      "williamboman/mason.nvim",
+      cmd = "Mason",
+    },
+    {
+      "williamboman/mason-lspconfig.nvim",
+    },
     {
       "hrsh7th/cmp-nvim-lsp",
       enabled = vim.g.plugin_use_cmp,
@@ -37,6 +43,9 @@ local M = {
 }
 
 function M.config()
+  require("mason").setup()
+  require("mason-lspconfig").setup()
+  local lspconfig = require("lspconfig")
 
   local function on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
@@ -60,108 +69,8 @@ function M.config()
     vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>F', function() vim.lsp.buf.format { async = true } end, opts)
+    vim.keymap.set('n', '<space>F', function() vim.lsp.buf.format({ async = true }) end, opts)
   end
-
-  ---@type lspconfig.options
-  local servers = {
-    ansiblels = {},
-    bashls = {},
-    clangd = {},
-    cssls = {},
-    denols = {
-      init_options = {
-        lint = true,
-        unstable = true,
-        suggest = {
-          imports = {
-            hosts = {
-              ["https://deno.land"] = true,
-              ["https://cdn.nest.land"] = true,
-              ["https://crux.land"] = true,
-            },
-          },
-        },
-      },
-    },
-    dockerls = {},
-    tsserver = {
-      root_dir = require("lspconfig").util.root_pattern("package.json"),
-    },
-    svelte = {},
-    eslint = {},
-    html = {},
-    gopls = {},
-    marksman = {},
-    pyright = {},
-    powershell_es = {
-      -- bundle_path = vim.fn.expand(
-      -- "~/src/github.com/PowerShell/PowerShellEditorServices/release/PowerShellEditorServices"
-      -- ),
-      codeFormatting = {
-        preset = "OTBS",
-      },
-    },
-    rust_analyzer = {
-      settings = {
-        ["rust-analyzer"] = {
-          cargo = { allFeatures = true },
-          checkOnSave = {
-            command = "clippy",
-            extraArgs = { "--no-deps" },
-          },
-        },
-      },
-    },
-    yamlls = {},
-    sumneko_lua = {
-      single_file_support = true,
-      settings = {
-        Lua = {
-          workspace = {
-            checkThirdParty = false,
-          },
-          completion = {
-            workspaceWord = true,
-            callSnippet = "Both",
-          },
-          diagnostics = {
-            -- enable = false,
-            -- globals = { 'vim' },
-            groupSeverity = {
-              strong = "Warning",
-              strict = "Warning",
-            },
-            groupFileStatus = {
-              ["ambiguity"] = "Opened",
-              ["await"] = "Opened",
-              ["codestyle"] = "None",
-              ["duplicate"] = "Opened",
-              ["global"] = "Opened",
-              ["luadoc"] = "Opened",
-              ["redefined"] = "Opened",
-              ["strict"] = "Opened",
-              ["strong"] = "Opened",
-              ["type-check"] = "Opened",
-              ["unbalanced"] = "Opened",
-              ["unused"] = "Opened",
-            },
-            unusedLocalExclude = { "_*" },
-          },
-          format = {
-            enable = true,
-            defaultConfig = {
-              indent_style = "space",
-              indent_size = "2",
-              continuation_indent_size = "2",
-            },
-          },
-        },
-      },
-    },
-    teal_ls = {},
-    vimls = {},
-  }
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   if vim.g.plugin_use_cmp then
@@ -172,21 +81,115 @@ function M.config()
     lineFoldingOnly = true,
   }
 
-  ---@type _.lspconfig.options
-  local options = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    },
-  }
+  require("mason-lspconfig").setup_handlers({
+    function(server_name) -- default handler
+      local options = {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        flags = {
+          debounce_text_changes = 150,
+        },
+      }
+      lspconfig[server_name].setup(options)
+      require("plugins.null-ls").setup(options)
+    end,
 
-  for server, opts in pairs(servers) do
-    opts = vim.tbl_deep_extend("force", {}, options, opts or {})
-    require("lspconfig")[server].setup(opts)
-  end
-
-  require("plugins.null-ls").setup(options)
+    denols = function()
+      lspconfig["denols"].setup({
+        init_options = {
+          lint = true,
+          unstable = true,
+          suggest = {
+            imports = {
+              hosts = {
+                ["https://deno.land"] = true,
+                ["https://cdn.nest.land"] = true,
+                ["https://crux.land"] = true,
+              },
+            },
+          },
+        },
+      })
+    end,
+    tsserver = function()
+      lspconfig["tsserver"].setup({
+        single_file_support = false,
+        root_dir = lspconfig.util.root_pattern("package.json"),
+      })
+    end,
+    ["powershell_es"] = function()
+      lspconfig["powershell_es"].setup({
+        settings = {
+          powershell = {
+            codeFormatting = {
+              preset = "OTBS",
+              ignoreOneLineBlock = false,
+            },
+          },
+        },
+      })
+    end,
+    ["rust_analyzer"] = function()
+      lspconfig["rust_analyzer"].setup({
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = { allFeatures = true },
+            checkOnSave = {
+              command = "clippy",
+              extraArgs = { "--no-deps" },
+            },
+          },
+        },
+      })
+    end,
+    ["sumneko_lua"] = function()
+      lspconfig["sumneko_lua"].setup({
+        single_file_support = true,
+        settings = {
+          Lua = {
+            workspace = {
+              checkThirdParty = false,
+            },
+            completion = {
+              workspaceWord = true,
+              callSnippet = "Both",
+            },
+            diagnostics = {
+              -- enable = false,
+              -- globals = { 'vim' },
+              groupSeverity = {
+                strong = "Warning",
+                strict = "Warning",
+              },
+              groupFileStatus = {
+                ["ambiguity"] = "Opened",
+                ["await"] = "Opened",
+                ["codestyle"] = "None",
+                ["duplicate"] = "Opened",
+                ["global"] = "Opened",
+                ["luadoc"] = "Opened",
+                ["redefined"] = "Opened",
+                ["strict"] = "Opened",
+                ["strong"] = "Opened",
+                ["type-check"] = "Opened",
+                ["unbalanced"] = "Opened",
+                ["unused"] = "Opened",
+              },
+              unusedLocalExclude = { "_*" },
+            },
+            format = {
+              enable = true,
+              defaultConfig = {
+                indent_style = "space",
+                indent_size = "2",
+                continuation_indent_size = "2",
+              },
+            },
+          },
+        },
+      })
+    end,
+  })
 end
 
 return M

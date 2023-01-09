@@ -25,8 +25,7 @@ local M = {
 
 function M.config()
   require("nvim-treesitter.configs").setup({
-    ensure_installed = "all",
-    ignore_install = { "gitcommit", "terraform", "astro", "hlsl", "norg", "ocaml", "ocaml_interface", "tlaplus" },
+    ensure_installed = { "typescript", "rust", "javascript", "json", "jsonc", "toml", "regex" },
     sync_install = false,
     auto_install = true,
     highlight = {
