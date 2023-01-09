@@ -51,25 +51,31 @@ function M.config()
     require("nvim-navic").attach(client, bufnr)
 
     local opts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-    vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", "gK", vim.lsp.buf.signature_help, opts)
-    vim.keymap.set("n", "<localleader>wa", vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set("n", "<localleader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set("n", "<space>e", vim.diagnostic.open_float,
+      vim.tbl_extend("force", opts, { desc = "Open diagnostic on float" }))
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, vim.tbl_extend("force", opts, { desc = "Diagnostic prev" }))
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, vim.tbl_extend("force", opts, { desc = "Diagnostic next" }))
+    vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist,
+      vim.tbl_extend("force", opts, { desc = "Diagnostic to loclist" }))
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "Declaration" }))
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Definition" }))
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover" }))
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, vim.tbl_extend("force", opts, { desc = "Implementation" }))
+    vim.keymap.set("n", "gK", vim.lsp.buf.signature_help, vim.tbl_extend("force", opts, { desc = "Signature help" }))
+    vim.keymap.set("n", "<localleader>wa", vim.lsp.buf.add_workspace_folder,
+      vim.tbl_extend("force", opts, { desc = "Add workspace folder" }))
+    vim.keymap.set("n", "<localleader>wr", vim.lsp.buf.remove_workspace_folder,
+      vim.tbl_extend("force", opts, { desc = "Remove workspace folder" }))
     vim.keymap.set("n", "<localleader>wl", function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
-    vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
-    vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-    vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>F', function() vim.lsp.buf.format({ async = true }) end, opts)
+    end, vim.tbl_extend("force", opts, { desc = "List workspace folders" }))
+    vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition,
+      vim.tbl_extend("force", opts, { desc = "Type definition" }))
+    vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename" }))
+    vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "References" }))
+    vim.keymap.set('n', '<space>F', function() vim.lsp.buf.format({ async = true }) end,
+      vim.tbl_extend("force", opts, { desc = "Format code" }))
   end
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -81,21 +87,22 @@ function M.config()
     lineFoldingOnly = true,
   }
 
+  local options = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    },
+  }
+
   require("mason-lspconfig").setup_handlers({
     function(server_name) -- default handler
-      local options = {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        flags = {
-          debounce_text_changes = 150,
-        },
-      }
       lspconfig[server_name].setup(options)
       require("plugins.null-ls").setup(options)
     end,
 
     denols = function()
-      lspconfig["denols"].setup({
+      lspconfig["denols"].setup(vim.tbl_deep_extend("force", options, {
         init_options = {
           lint = true,
           unstable = true,
@@ -109,16 +116,16 @@ function M.config()
             },
           },
         },
-      })
+      }))
     end,
     tsserver = function()
-      lspconfig["tsserver"].setup({
+      lspconfig["tsserver"].setup(vim.tbl_deep_extend("force", options, {
         single_file_support = false,
         root_dir = lspconfig.util.root_pattern("package.json"),
-      })
+      }))
     end,
     ["powershell_es"] = function()
-      lspconfig["powershell_es"].setup({
+      lspconfig["powershell_es"].setup(vim.tbl_deep_extend("force", options, {
         settings = {
           powershell = {
             codeFormatting = {
@@ -127,10 +134,10 @@ function M.config()
             },
           },
         },
-      })
+      }))
     end,
     ["rust_analyzer"] = function()
-      lspconfig["rust_analyzer"].setup({
+      lspconfig["rust_analyzer"].setup(vim.tbl_deep_extend("force", options, {
         settings = {
           ["rust-analyzer"] = {
             cargo = { allFeatures = true },
@@ -140,10 +147,10 @@ function M.config()
             },
           },
         },
-      })
+      }))
     end,
     ["sumneko_lua"] = function()
-      lspconfig["sumneko_lua"].setup({
+      lspconfig["sumneko_lua"].setup(vim.tbl_deep_extend("force", options, {
         single_file_support = true,
         settings = {
           Lua = {
@@ -187,7 +194,7 @@ function M.config()
             },
           },
         },
-      })
+      }))
     end,
   })
 end

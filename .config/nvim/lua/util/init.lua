@@ -1,56 +1,3 @@
--- selene: allow(global_usage)
-
-_G.d = function(...)
-  local me = debug.getinfo(1, "S")
-  local level = 2
-  local info = debug.getinfo(level, "S")
-  while info and info.source == me.source do
-    level = level + 1
-    info = debug.getinfo(level, "S")
-  end
-  info = info or me
-  local source = info.source:sub(2)
-  source = vim.loop.fs_realpath(source) or source
-  source = vim.fn.fnamemodify(source, ":~:.") .. ":" .. info.linedefined
-  local what = { ... }
-  if vim.tbl_islist(what) and vim.tbl_count(what) <= 1 then
-    what = what[1]
-  end
-  local msg = vim.inspect(vim.deepcopy(what))
-  local ok, notify = pcall(require, "notify")
-  notify = ok and notify or vim
-  notify.notify(msg, vim.log.levels.INFO, {
-    title = "Debug: " .. source,
-    on_open = function(win)
-      vim.wo[win].conceallevel = 3
-      vim.wo[win].concealcursor = ""
-      vim.wo[win].spell = false
-      local buf = vim.api.nvim_win_get_buf(win)
-      vim.treesitter.start(buf, "lua")
-    end,
-  })
-end
-
-_G.dd = function(...)
-  local args = vim.deepcopy(vim.F.pack_len(...))
-  vim.schedule(function()
-    d(vim.F.unpack_len(args))
-  end)
-end
-
--- selene: allow(global_usage)
-_G.profile = function(cmd, times, flush)
-  times = times or 100
-  local start = vim.loop.hrtime()
-  for _ = 1, times, 1 do
-    if flush then
-      jit.flush(cmd, true)
-    end
-    cmd()
-  end
-  print(((vim.loop.hrtime() - start) / 1000000 / times) .. "ms")
-end
-
 local M = {}
 
 function M.require(mod)
@@ -71,35 +18,6 @@ function M.try(fn, ...)
     M.error(table.concat(lines, "\n"))
     return err
   end)
-end
-
-function M.markdown(msg, opts)
-  opts = vim.tbl_deep_extend("force", {
-    title = "Debug",
-    on_open = function(win)
-      vim.wo[win].conceallevel = 3
-      vim.wo[win].concealcursor = ""
-      vim.wo[win].spell = false
-      local buf = vim.api.nvim_win_get_buf(win)
-      vim.treesitter.start(buf, "markdown")
-    end,
-  }, opts or {})
-  require("notify").notify(msg, vim.log.levels.INFO, opts)
-end
-
-function M.debug_pcall()
-  _G.pcall = function(fn, ...)
-    local args = { ... }
-    return xpcall(fn and function()
-      return fn(unpack(args))
-    end, function(err)
-      if err:find("DevIcon") or err:find("mason") or err:find("Invalid highlight") then
-        return err
-      end
-      vim.api.nvim_echo({ { err, "ErrorMsg" }, { debug.traceback("", 3), "Normal" } }, true, {})
-      return err
-    end)
-  end
 end
 
 function M.t(str)
