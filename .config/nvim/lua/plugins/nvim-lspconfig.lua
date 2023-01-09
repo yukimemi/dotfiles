@@ -12,9 +12,7 @@ local M = {
       "williamboman/mason.nvim",
       cmd = "Mason",
     },
-    {
-      "williamboman/mason-lspconfig.nvim",
-    },
+    "williamboman/mason-lspconfig.nvim",
     {
       "hrsh7th/cmp-nvim-lsp",
       enabled = vim.g.plugin_use_cmp,
@@ -30,10 +28,18 @@ local M = {
         })
       end,
     },
-    "folke/neodev.nvim",
+    {
+      "folke/neodev.nvim",
+      config = function()
+        require("neodev").setup()
+      end,
+    },
     {
       "folke/neoconf.nvim",
       cmd = "Neoconf",
+      config = function()
+        require("neoconf").setup()
+      end,
     },
   },
 }
@@ -49,13 +55,13 @@ function M.config()
     local opts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set("n", "<space>e", vim.diagnostic.open_float,
       vim.tbl_extend("force", opts, { desc = "Open diagnostic on float" }))
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, vim.tbl_extend("force", opts, { desc = "Diagnostic prev" }))
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, vim.tbl_extend("force", opts, { desc = "Diagnostic next" }))
+    -- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, vim.tbl_extend("force", opts, { desc = "Diagnostic prev" }))
+    -- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, vim.tbl_extend("force", opts, { desc = "Diagnostic next" }))
     vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist,
       vim.tbl_extend("force", opts, { desc = "Diagnostic to loclist" }))
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "Declaration" }))
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Definition" }))
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover" }))
+    -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Definition" }))
+    -- vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover" }))
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, vim.tbl_extend("force", opts, { desc = "Implementation" }))
     vim.keymap.set("n", "gK", vim.lsp.buf.signature_help, vim.tbl_extend("force", opts, { desc = "Signature help" }))
     vim.keymap.set("n", "<localleader>wa", vim.lsp.buf.add_workspace_folder,
@@ -67,8 +73,8 @@ function M.config()
     end, vim.tbl_extend("force", opts, { desc = "List workspace folders" }))
     vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition,
       vim.tbl_extend("force", opts, { desc = "Type definition" }))
-    vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename" }))
-    vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
+    -- vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename" }))
+    -- vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
     vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "References" }))
     vim.keymap.set('n', '<space>F', function() vim.lsp.buf.format({ async = true }) end,
       vim.tbl_extend("force", opts, { desc = "Format code" }))
