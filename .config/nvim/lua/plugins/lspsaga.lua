@@ -18,7 +18,7 @@ return {
     -- if there is no implement it will hide
     -- when you use action in finder like open vsplit then you can
     -- use <C-t> to jump back
-    vim.keymap.set("n", "gH", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+    vim.keymap.set("n", "<space>H", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
     -- Code action
     vim.keymap.set({ "n", "v" }, "<space>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
