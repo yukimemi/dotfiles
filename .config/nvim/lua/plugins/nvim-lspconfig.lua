@@ -30,14 +30,10 @@ local M = {
         })
       end,
     },
-    {
-      "folke/neodev.nvim",
-      config = true,
-    },
+    "folke/neodev.nvim",
     {
       "folke/neoconf.nvim",
       cmd = "Neoconf",
-      config = true
     },
   },
 }
