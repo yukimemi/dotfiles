@@ -5,6 +5,7 @@ return {
 
   init = function()
     vim.g["findent#enable_warnings"] = 0
+    vim.g["findent#enable_messages"] = 0
 
     vim.api.nvim_create_autocmd("BufRead", {
       group = "MyAutoCmd",
