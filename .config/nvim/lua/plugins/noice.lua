@@ -14,6 +14,10 @@ local M = {
     "nvim-treesitter/nvim-treesitter",
     "rcarriga/nvim-notify",
   },
+
+  init = function()
+    vim.opt.termguicolors = true
+  end,
 }
 
 function M.config()
