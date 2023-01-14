@@ -16,11 +16,11 @@ local M = {
     "hrsh7th/vim-vsnip",
     "hrsh7th/vim-vsnip-integ",
     "rafamadriz/friendly-snippets",
+    "onsails/lspkind.nvim",
     {
       "hrsh7th/cmp-nvim-lsp-signature-help",
       enabled = true,
     },
-    "onsails/lspkind.nvim",
   },
 }
 

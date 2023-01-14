@@ -38,8 +38,6 @@
 	prune = true
 [ghq "https://bitbucket.org"]
 	vcs = git
-[http]
-	sslVerify = false
 [hub]
 	protocol = https
 [pull]

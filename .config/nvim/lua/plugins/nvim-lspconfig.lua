@@ -45,7 +45,12 @@ local M = {
 }
 
 function M.config()
-  require("mason").setup()
+  require("mason").setup({
+    providers = {
+      "mason.providers.client",
+      "mason.providers.registry-api",
+    }
+  })
   require("mason-lspconfig").setup()
   local lspconfig = require("lspconfig")
 

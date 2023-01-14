@@ -2,7 +2,9 @@ local M = {
   "nvim-treesitter/nvim-treesitter",
 
   enabled = true,
+
   build = ":TSUpdate",
+
   event = "BufReadPost",
 
   dependencies = {
@@ -12,14 +14,8 @@ local M = {
     "mfussenegger/nvim-treehopper",
     "windwp/nvim-ts-autotag",
     "p00f/nvim-ts-rainbow",
+    "nvim-treesitter/nvim-treesitter-context",
     { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
-    {
-      "nvim-treesitter/nvim-treesitter-context",
-      event = "BufReadPre",
-      config = function()
-        require("treesitter-context").setup()
-      end,
-    },
   },
 }
 

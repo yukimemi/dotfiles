@@ -30,7 +30,7 @@ require("lazy").setup("plugins", {
   },
   concurrency = (function()
     if jit.os:find("Windows") then
-      return nil
+      return 20
     else
       return 13
     end

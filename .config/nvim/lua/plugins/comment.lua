@@ -5,7 +5,7 @@ return {
 
   keys = {
     "gc",
-    {"gcc", mode = { "n", "x" } },
+    { "gcc", mode = { "n", "x" } },
   },
 
   config = function()

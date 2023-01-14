@@ -78,7 +78,7 @@ Function gig {
     [string[]]$list
   )
   $params = ($list | ForEach-Object { [uri]::EscapeDataString($_) }) -join ","
-  Invoke-WebRequest -Uri "https://www.toptal.com/developers/gitignore/api/$params" | select -ExpandProperty content | Out-File -FilePath $(Join-Path -path $pwd -ChildPath ".gitignore") -Encoding ascii
+  Invoke-WebRequest -Uri "https://www.toptal.com/developers/gitignore/api/$params" | Select-Object -ExpandProperty content | Out-File -FilePath $(Join-Path -Path $pwd -ChildPath ".gitignore") -Encoding ascii
 }
 
 function gr {
@@ -105,8 +105,7 @@ function cd-ls {
     $z = & {
       if (Is-Windows) {
         (Join-Path $env:USERPROFILE ".z")
-      }
-      else {
+      } else {
         (Join-Path $env:HOME ".z")
       }
     }
@@ -115,8 +114,7 @@ function cd-ls {
     [array]::Reverse($c)
     if (Get-Command uq -ErrorAction SilentlyContinue) {
       $c | uq | Set-Variable c
-    }
-    else {
+    } else {
       $c | Sort-Object -Unique | Set-Variable c
     }
     [array]::Reverse($c)
@@ -171,11 +169,12 @@ function RemoveTo-Trash {
     $trash = $shell.NameSpace(10)
   }
   Process {
+    $Path = $Path.Trim()
+    $Path = $Path -replace '^[^A-Z]+', ""
     if ($PSBoundParameters.ContainsKey('Path')) {
       $Path | Where-Object { ![string]::IsNullOrWhiteSpace($_) } | Set-Variable Path
       $targets = Convert-Path $Path
-    }
-    else {
+    } else {
       $targets = Convert-Path -LiteralPath $LiteralPath
     }
     $targets | ForEach-Object {
@@ -213,7 +212,8 @@ function Trim-Cd {
 
   process {
     $p = $Path.Trim()
-    Write-Host "cd ${p}"
+    $p = $p -replace '^[^A-Z]+', ""
+    Write-Host "cd [${p}]"
     Set-Location $p
   }
 }
@@ -225,10 +225,9 @@ function rhl {
 Remove-Item alias:r
 function r {
   if (Get-Command trash -ErrorAction SilentlyContinue) {
-    trash $(Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER)
-  }
-  else {
-    Get-ChildItem | Select-Object -ExpandProperty FullName | __FILTER | RemoveTo-Trash
+    trash $(Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER)
+  } else {
+    Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER | RemoveTo-Trash
   }
 }
 
@@ -259,8 +258,7 @@ Set-Alias rm RemoveTo-Trash
 Set-Alias o Start-Process
 if (Is-Windows) {
   Set-Alias e nvim
-}
-else {
+} else {
   Set-Alias e neovide
 }
 Set-Alias c Clear-Host
@@ -291,6 +289,7 @@ function l {
 function la {
   Get-ChildItem -Force $args
 }
+Set-Alias hi hitori
 
 # Readline setting.
 Set-PSReadLineOption -EditMode Vi
@@ -325,8 +324,7 @@ function _j2 {
   $z = & {
     if (Is-Windows) {
       (Join-Path $env:USERPROFILE ".z")
-    }
-    else {
+    } else {
       (Join-Path $env:HOME ".z")
     }
   }
