@@ -1,7 +1,7 @@
 return {
   "Omochice/dps-translate-vim",
 
-  enabled = true,
+  enabled = false,
 
   lazy = false,
 

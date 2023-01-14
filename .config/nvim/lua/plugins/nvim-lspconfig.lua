@@ -7,6 +7,7 @@ local M = {
 
   dependencies = {
     "SmiteshP/nvim-navic",
+    "lukas-reineke/lsp-format.nvim",
     "jose-elias-alvarez/null-ls.nvim",
     {
       "williamboman/mason.nvim",
@@ -52,10 +53,12 @@ function M.config()
     }
   })
   require("mason-lspconfig").setup()
+  require("lsp-format").setup()
   local lspconfig = require("lspconfig")
 
   local function on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
+    require("lsp-format").on_attach(client, bufnr)
 
     local opts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set("n", "<space>e", vim.diagnostic.open_float,

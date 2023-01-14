@@ -1,7 +1,7 @@
 return {
   "skanehira/denops-translate.vim",
 
-  enabled = false,
+  enabled = true,
 
   lazy = false,
 
