@@ -9,6 +9,7 @@ local M = {
     "nvim-telescope/telescope-file-browser.nvim",
     "nvim-telescope/telescope-project.nvim",
     "nvim-telescope/telescope-symbols.nvim",
+    "tsakirist/telescope-lazy.nvim",
     { "tom-anders/telescope-vim-bookmarks.nvim",
       dependencies = {
         "MattesGroeger/vim-bookmarks",
@@ -50,7 +51,8 @@ function M.config()
 
   telescope.load_extension("file_browser")
   telescope.load_extension("project")
-  telescope.load_extension('vim_bookmarks')
+  telescope.load_extension("vim_bookmarks")
+  telescope.load_extension("lazy")
   -- telescope.load_extension("projects")
 end
 
@@ -93,6 +95,7 @@ function M.init()
   end, { desc = "Find memolist file" })
 
   vim.keymap.set("n", "<space>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Open Recent File" })
+  vim.keymap.set("n", "<space>fl", "<cmd>Telescope lazy<cr>", { desc = "Lazy plugins" })
 
   --------------------------------------------------------------------------------
   -- Prefix `b` (vim-bookmarks) --
