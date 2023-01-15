@@ -46,6 +46,7 @@ require("lazy").setup("plugins", {
   },
   performance = {
     rtp = {
+      reset = not jit.os:find("Windows"),
       disabled_plugins = {
         "gzip",
         "matchit",
@@ -62,6 +63,7 @@ require("lazy").setup("plugins", {
 })
 
 require("config.options")
+require("config.gui")
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",

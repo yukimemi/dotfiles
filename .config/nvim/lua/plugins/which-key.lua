@@ -46,13 +46,13 @@ return {
           name = "+fileformat",
           d = {
             function()
-              vim.cmd [[e ++ff=dos]]
+              vim.cmd([[e ++ff=dos]])
             end,
             "Dos",
           },
           u = {
             function()
-              vim.cmd [[e ++ff=unix]]
+              vim.cmd([[e ++ff=unix]])
             end,
             "Unix",
           },

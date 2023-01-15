@@ -17,19 +17,19 @@
             "keys": "alt+shift+d"
         },
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "command": "paste"
-        },
-        {
             "command": 
             {
                 "action": "copy",
                 "singleLine": false
             },
             "keys": "ctrl+c"
+        },
+        {
+            "command": "paste"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
         }
     ],
     "alwaysShowTabs": false,
@@ -86,6 +86,12 @@
                 "hidden": false,
                 "name": "Ubuntu",
                 "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
+            },
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": true,
+                "name": "Ubuntu",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },

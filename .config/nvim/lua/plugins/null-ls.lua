@@ -99,21 +99,21 @@ function M.setup(options)
           return vim.fn.executable("textlint") > 0
         end,
       }),
-      nls.builtins.formatting.tidy.with({
-        condition = function()
-          return vim.fn.executable("tidy") > 0
-        end,
-      }),
-      nls.builtins.formatting.xmlformat.with({
-        condition = function()
-          return vim.fn.executable("xmlformat") > 0
-        end,
-      }),
-      nls.builtins.formatting.xmllint.with({
-        condition = function()
-          return vim.fn.executable("xmllint") > 0
-        end,
-      }),
+      -- nls.builtins.formatting.tidy.with({
+      --   condition = function()
+      --     return vim.fn.executable("tidy") > 0
+      --   end,
+      -- }),
+      -- nls.builtins.formatting.xmlformat.with({
+      --   condition = function()
+      --     return vim.fn.executable("xmlformat") > 0
+      --   end,
+      -- }),
+      -- nls.builtins.formatting.xmllint.with({
+      --   condition = function()
+      --     return vim.fn.executable("xmllint") > 0
+      --   end,
+      -- }),
       nls.builtins.formatting.yamlfmt,
 
       -- code_actions

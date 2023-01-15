@@ -146,6 +146,22 @@ function M.config()
         },
       }))
     end,
+    ["lemminx"] = function()
+      lspconfig["lemminx"].setup(vim.tbl_deep_extend("force", options, {
+        settings = {
+          xml = {
+            format = {
+              splitAttributes = true,
+              joinCDATALines = false,
+              joinContentLines = true,
+              joinCommentLines = false,
+              spaceBeforeEmptyCloseTag = false,
+              enabled = true
+            },
+          },
+        },
+      }))
+    end,
     ["rust_analyzer"] = function()
       lspconfig["rust_analyzer"].setup(vim.tbl_deep_extend("force", options, {
         settings = {

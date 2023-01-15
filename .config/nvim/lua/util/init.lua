@@ -91,27 +91,6 @@ function M.float(fn, opts)
   fn(buf, win)
 end
 
-function M.float_cmd(cmd, opts)
-  M.float(function(buf)
-    local output = vim.api.nvim_exec(cmd, true)
-    local lines = vim.split(output, "\n")
-    vim.api.nvim_buf_set_lines(buf, 0, -1, true, lines)
-  end, opts)
-end
-
-function M.float_terminal(cmd, opts)
-  M.float(function(buf, win)
-    vim.fn.termopen(cmd)
-    local autocmd = {
-      "autocmd! TermClose <buffer> lua vim.cmd[[checktime]];",
-      string.format("vim.api.nvim_win_close(%d, {force = true});", win),
-      string.format("vim.api.nvim_buf_delete(%d, {force = true});", buf),
-    }
-    vim.cmd(table.concat(autocmd, " "))
-    vim.cmd([[startinsert]])
-  end, opts)
-end
-
 function M.exists(fname)
   local stat = vim.loop.fs_stat(fname)
   return (stat and stat.type) or false
@@ -201,4 +180,3 @@ function M.version()
 end
 
 return M
-

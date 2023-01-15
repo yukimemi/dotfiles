@@ -109,6 +109,11 @@ return {
           highlightMatched = "Search",
         },
       },
+      kindParams = {
+        action = {
+          quit = true,
+        },
+      },
       kindOptions = {
         file = {
           defaultAction = "open",
