@@ -28,7 +28,11 @@ function M.setup(options)
           return vim.fn.executable("ec") > 0
         end,
       }),
-      nls.builtins.diagnostics.flake8,
+      nls.builtins.diagnostics.flake8.with({
+        condition = function()
+          return vim.fn.executable("flake8") > 0
+        end,
+      }),
       nls.builtins.diagnostics.markdownlint.with({
         condition = function()
           return vim.fn.executable("markdownlint") > 0
@@ -52,14 +56,25 @@ function M.setup(options)
           return vim.fn.executable("black") > 0
         end,
       }),
-      nls.builtins.formatting.cbfmt,
+      nls.builtins.formatting.cbfmt.with({
+        condition = function()
+          return vim.fn.executable("cbfmt") > 0
+        end,
+      }),
       nls.builtins.formatting.codespell.with({
         condition = function()
           return vim.fn.executable("codespell") > 0
         end,
       }),
       nls.builtins.formatting.csharpier,
-      nls.builtins.formatting.deno_fmt,
+      nls.builtins.formatting.deno_fmt.with({
+        condition = function()
+          return vim.fn.executable("deno") > 0
+        end,
+        filetypes = {
+          "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescriptreact"
+        }
+      }),
       nls.builtins.formatting.dprint.with({
         condition = function()
           return vim.fn.executable("dprint") > 0
@@ -83,38 +98,62 @@ function M.setup(options)
           return vim.fn.executable("markdownlint") > 0
         end,
       }),
-      nls.builtins.formatting.mdformat,
-      nls.builtins.formatting.remark,
-      nls.builtins.formatting.rustfmt,
-      nls.builtins.formatting.shfmt,
-      nls.builtins.formatting.stylua.with({
+      nls.builtins.formatting.mdformat.with({
         condition = function()
-          return false
-          -- return vim.fn.executable("stylua") > 0
+          return vim.fn.executable("mdformat") > 0
         end,
       }),
-      nls.builtins.formatting.taplo,
+      nls.builtins.formatting.remark.with({
+        condition = function()
+          return vim.fn.executable("remark") > 0
+        end,
+      }),
+      nls.builtins.formatting.rustfmt.with({
+        condition = function()
+          return vim.fn.executable("rustfmt") > 0
+        end,
+      }),
+      nls.builtins.formatting.shfmt.with({
+        condition = function()
+          return vim.fn.executable("shfmt") > 0
+        end,
+      }),
+      nls.builtins.formatting.stylua.with({
+        condition = function()
+          -- return false
+          return vim.fn.executable("stylua") > 0
+        end,
+      }),
+      nls.builtins.formatting.taplo.with({
+        condition = function()
+          return vim.fn.executable("taplo") > 0
+        end,
+      }),
       nls.builtins.formatting.textlint.with({
         condition = function()
           return vim.fn.executable("textlint") > 0
         end,
       }),
-      -- nls.builtins.formatting.tidy.with({
-      --   condition = function()
-      --     return vim.fn.executable("tidy") > 0
-      --   end,
-      -- }),
-      -- nls.builtins.formatting.xmlformat.with({
-      --   condition = function()
-      --     return vim.fn.executable("xmlformat") > 0
-      --   end,
-      -- }),
-      -- nls.builtins.formatting.xmllint.with({
-      --   condition = function()
-      --     return vim.fn.executable("xmllint") > 0
-      --   end,
-      -- }),
-      nls.builtins.formatting.yamlfmt,
+      nls.builtins.formatting.tidy.with({
+        condition = function()
+          return vim.fn.executable("tidy") > 0
+        end,
+      }),
+      nls.builtins.formatting.xmlformat.with({
+        condition = function()
+          return vim.fn.executable("xmlformat") > 0
+        end,
+      }),
+      nls.builtins.formatting.xmllint.with({
+        condition = function()
+          return vim.fn.executable("xmllint") > 0
+        end,
+      }),
+      nls.builtins.formatting.yamlfmt.with({
+        condition = function()
+          return vim.fn.executable("yamlfmt") > 0
+        end,
+      }),
 
       -- code_actions
       nls.builtins.code_actions.cspell,

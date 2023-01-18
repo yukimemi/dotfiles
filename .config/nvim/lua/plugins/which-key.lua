@@ -42,6 +42,21 @@ return {
           function() util.toggle("relativenumber", true) end,
           "Toggle relativenumber",
         },
+        b = {
+          name = "+background",
+          o = {
+            function()
+              vim.cmd([[GuiWindowOpacity 0.9]])
+            end,
+            "GuiWindowOpacity 0.9",
+          },
+          O = {
+            function()
+              vim.cmd([[GuiWindowOpacity 1.0]])
+            end,
+            "GuiWindowOpacity 1.0",
+          },
+        },
         f = {
           name = "+fileformat",
           d = {
@@ -55,6 +70,28 @@ return {
               vim.cmd([[e ++ff=unix]])
             end,
             "Unix",
+          },
+        },
+        r = {
+          name = "+review",
+          s = {
+            function()
+              vim.cmd([[GuiWindowOpacity 1.0]])
+              vim.cmd([[DisableRandomColorscheme]])
+              vim.cmd([[colorscheme github]])
+              vim.opt.background = "light"
+              vim.opt.relativenumber = false
+              vim.opt.number = true
+            end,
+            "Review start",
+          },
+          e = {
+            function()
+              vim.cmd([[GuiWindowOpacity 0.9]])
+              vim.cmd([[EnableRandomColorscheme]])
+              vim.opt.relativenumber = true
+            end,
+            "Review end",
           },
         },
       },

@@ -3,6 +3,7 @@ vim.api.nvim_create_autocmd("UIEnter", {
   pattern = "*",
   once = true,
   callback = function()
+    vim.opt.mouse = "a"
     if vim.fn.exists(":GuiFont") > 0 then
       vim.cmd([[GuiFont! HackGen Console NF:h10]])
     end
@@ -18,5 +19,9 @@ vim.api.nvim_create_autocmd("UIEnter", {
     if vim.fn.exists(":GuiWindowOpacity") > 0 then
       vim.cmd([[GuiWindowOpacity 0.9]])
     end
+
+    -- Right Click Context Menu (Copy-Cut-Paste)
+    vim.keymap.set({ "n", "i" }, "<RightMouse>", "<cmd>call GuiShowContextMenu()<CR>")
+    vim.keymap.set({ "x", "s" }, "<RightMouse>", "<cmd>call GuiShowContextMenu()<CR>gv")
   end,
 })

@@ -16,7 +16,7 @@ return {
     keymap("n", "gF", "<cmd>Lspsaga lsp_finder<CR>")
 
     -- Code action
-    keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+    -- keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
 
     -- Rename
     keymap("n", "gr", "<cmd>Lspsaga rename<CR>")

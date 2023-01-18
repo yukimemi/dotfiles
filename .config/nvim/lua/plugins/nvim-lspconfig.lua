@@ -53,7 +53,11 @@ function M.config()
     }
   })
   require("mason-lspconfig").setup()
-  require("lsp-format").setup()
+  require("lsp-format").setup({
+    xml = {
+      excludee = { "lemminx" },
+    },
+  })
   local lspconfig = require("lspconfig")
 
   local function on_attach(client, bufnr)
@@ -151,12 +155,12 @@ function M.config()
         settings = {
           xml = {
             format = {
-              splitAttributes = true,
+              enabled = false,
+              splitAttributes = false,
               joinCDATALines = false,
-              joinContentLines = true,
+              joinContentLines = false,
               joinCommentLines = false,
               spaceBeforeEmptyCloseTag = false,
-              enabled = true
             },
           },
         },

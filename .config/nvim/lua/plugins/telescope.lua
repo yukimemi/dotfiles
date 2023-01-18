@@ -94,6 +94,10 @@ function M.init()
     require("telescope.builtin").find_files({ cwd = "~/.memolist" })
   end, { desc = "Find memolist file" })
 
+  vim.keymap.set("n", "<space>fj", function()
+    require("telescope.builtin").find_files({ cwd = "~/.cache/junkfile" })
+  end, { desc = "Find junk file" })
+
   vim.keymap.set("n", "<space>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Open Recent File" })
   vim.keymap.set("n", "<space>fl", "<cmd>Telescope lazy<cr>", { desc = "Lazy plugins" })
 

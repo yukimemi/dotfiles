@@ -1,7 +1,7 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
 
-  enabled = false,
+  enabled = vim.g.plugin_use_neotree,
 
   dependencies = {
     "MunifTanjim/nui.nvim",
@@ -9,9 +9,10 @@ return {
 
   cmd = "Neotree",
 
-  init = function()
-    vim.keymap.set("n", "ge", "<cmd>Neotree<cr>")
-  end,
+  keys = {
+    { "ge", "<cmd>Neotree<cr>", mode = "n" },
+  },
+
   config = function()
     vim.g.neo_tree_remove_legacy_commands = 1
 

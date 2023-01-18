@@ -23,6 +23,9 @@ vim.g.plugin_use_ctrlp = true
 vim.g.plugin_use_findent = true
 vim.g.plugin_use_dansa = not vim.g.plugin_use_findent
 
+vim.g.plugin_use_neotree = true
+vim.g.plugin_use_nvimtree = not vim.g.plugin_use_neotree
+
 vim.api.nvim_create_augroup("MyAutoCmd", { clear = true })
 
 require("lazy").setup("plugins", {

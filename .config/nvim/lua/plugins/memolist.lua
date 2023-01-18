@@ -4,7 +4,7 @@ return {
   cmd = { "MemoList", "MemoNew", "MemoGrep" },
 
   init = function()
-    if vim.fn.isdirectory("~/GoogleDrive") then
+    if vim.fn.isdirectory("~/GoogleDrive") > 0 then
       vim.g.memolist_path = vim.fn.expand("~/GoogleDrive/.memolist")
     else
       vim.g.memolist_path = vim.fn.expand("~/.memolist")
