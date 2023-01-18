@@ -21,7 +21,20 @@ local M = {
 
 function M.config()
   require("nvim-treesitter.configs").setup({
-    ensure_installed = { "typescript", "rust", "javascript", "json", "jsonc", "toml", "regex" },
+    ensure_installed = {
+      "bash",
+      "javascript",
+      "json",
+      "jsonc",
+      "lua",
+      "markdown",
+      "markdown_inline",
+      "regex",
+      "rust",
+      "toml",
+      "typescript",
+      "vim",
+    },
     sync_install = false,
     auto_install = true,
     highlight = {
