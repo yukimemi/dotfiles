@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd("UIEnter", {
       vim.cmd([[GuiScrollBar 0]])
     end
     if vim.fn.exists(":GuiWindowOpacity") > 0 then
-      vim.cmd([[GuiWindowOpacity 0.9]])
+      vim.cmd([[GuiWindowOpacity 0.95]])
     end
 
     -- Right Click Context Menu (Copy-Cut-Paste)

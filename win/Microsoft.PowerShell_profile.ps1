@@ -27,6 +27,7 @@ function Is-Windows {
 if (Is-Windows) {
   chcp 65001
   $OutputEncoding = [Console]::OutputEncoding
+  $env:LANG = "ja_JP.UTF-8"
 }
 
 $ErrorActionPreference = "SilentlyContinue"

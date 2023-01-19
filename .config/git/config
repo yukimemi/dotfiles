@@ -26,6 +26,7 @@
 	autocrlf = false
 	filemode = false
 	pager = delta
+	quotepath = false
 [ghq]
 	root = ~/.cache/nvim/pack/minpac
 	root = ~/.go/src
@@ -46,6 +47,8 @@
 	autosquash = true
 	autostash = true
 [delta]
+  navigate = true
+  light = false
 	side-by-side = true
 [commit]
 	verbose = true
@@ -56,6 +59,10 @@
 	unmerged = yellow
 [init]
 	defaultBranch = main
+[interactive]
+  diffFilter = delta --color-only
+[diff]
+  colorMoved = default
 [status]
 	showUntrackedFiles = all
 [credential]

@@ -14,14 +14,22 @@ return {
     -- ui
     "Shougo/ddu-ui-ff",
 
-    -- matcher
-    "yuki-yano/ddu-filter-fzf",
-    "Shougo/ddu-filter-matcher_substring",
-    "Shougo/ddu-filter-matcher_relative",
-    "Shougo/ddu-filter-matcher_hidden",
+    -- matcher / filter
+    "Milly/ddu-filter-merge",
+    "4513ECHO/ddu-source-colorscheme",
     "Shougo/ddu-column-filename",
     "Shougo/ddu-filter-converter_display_word",
-    "4513ECHO/ddu-source-colorscheme",
+    "Shougo/ddu-filter-matcher_hidden",
+    "Shougo/ddu-filter-matcher_relative",
+    "Shougo/ddu-filter-matcher_substring",
+    "kuuote/ddu-filter-fuse",
+    "yuki-yano/ddu-filter-fzf",
+    {
+      "Milly/ddu-filter-kensaku",
+      dependencies = {
+        "lambdalisue/kensaku.vim",
+      },
+    },
 
     -- kind
     "Shougo/ddu-kind-file",
@@ -73,6 +81,14 @@ return {
     vim.keymap.set("n", "<space>ds",
       "<cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-input=`input('Pattern: ')`<cr>")
     vim.keymap.set("n", "<space>dr", "<cmd>Ddu -name=search -resume<cr>")
+
+    vim.api.nvim_create_autocmd("User", {
+      group = "MyAutoCmd",
+      pattern = "DenopsPluginPost:ddu",
+      callback = function()
+        vim.notify("ddu loaded !")
+      end,
+    })
   end,
 
   config = function()
@@ -81,7 +97,7 @@ return {
       sourceOptions = {
         ["_"] = {
           ignoreCase = true,
-          matchers = { "matcher_fzf" },
+          matchers = { "merge" },
         }
       },
       sourceParams = {
@@ -107,6 +123,17 @@ return {
       filterParams = {
         matcher_fzf = {
           highlightMatched = "Search",
+        },
+        merge = {
+          highlightMatched = "Search",
+          filters = {
+            {
+              name = "matcher_kensaku",
+              weight = 2.0,
+            },
+            "matcher_fuse",
+          }
+
         },
       },
       kindParams = {
