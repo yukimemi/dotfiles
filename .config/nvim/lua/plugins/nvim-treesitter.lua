@@ -15,6 +15,7 @@ local M = {
     "windwp/nvim-ts-autotag",
     "p00f/nvim-ts-rainbow",
     "nvim-treesitter/nvim-treesitter-context",
+    "andymass/vim-matchup",
     { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
   },
 }
@@ -47,6 +48,7 @@ function M.config()
       end,
     },
     indent = { enable = false },
+    matchup = { enable = true },
     context_commentstring = { enable = true, enable_autocmd = false },
     playground = {
       enable = true,

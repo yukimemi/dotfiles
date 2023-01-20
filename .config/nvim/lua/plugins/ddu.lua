@@ -54,7 +54,12 @@ return {
     "matsui54/ddu-source-file_external",
     "matsui54/ddu-source-help",
     "shun/ddu-source-buffer",
-    "shun/ddu-source-rg",
+    {
+      "shun/ddu-source-rg",
+      dependencies = {
+        "lambdalisue/kensaku.vim",
+      },
+    },
     {
       "kuuote/ddu-source-mr",
       dependencies = {
@@ -69,7 +74,7 @@ return {
     vim.keymap.set("n", "<space>dw", "<cmd>Ddu mr -source-param-kind='mrw'<cr>")
     vim.keymap.set("n", "<space>db", "<cmd>Ddu buffer<cr>")
     vim.keymap.set("n", "<space>df",
-      "<cmd>Ddu file_point `finddir('.git', ';') != '' ? 'file_external' : 'file_rec'`<cr>")
+      "<cmd>Ddu `finddir('.git', ';') != '' ? 'file_external' : 'file_rec'`<cr>")
     vim.keymap.set("n", "<space>dR", "<cmd>Ddu -buffer-name=register register -ui-param-autoResize<cr>")
     vim.keymap.set("n", "<space>dd", "<cmd>Ddu file_rec -source-option-path=`fnamemodify(bufname(), ':p:h')`<cr>")
     vim.keymap.set("n", "<space>dc", "<cmd>Ddu file_rec -source-option-path=`expand('~/.cache')`<cr>")
@@ -80,7 +85,29 @@ return {
     vim.keymap.set("n", "<space>dh", "<cmd>Ddu command_history<cr>")
     vim.keymap.set("n", "<space>ds",
       "<cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-input=`input('Pattern: ')`<cr>")
+    vim.keymap.set("n", "<space>dk",
+      "<cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-inputType='migemo' -source-param-input=`input('Pattern: ')`<cr>")
     vim.keymap.set("n", "<space>dr", "<cmd>Ddu -name=search -resume<cr>")
+
+    local function ddu_rg_live()
+      vim.fn["ddu#start"]({
+        volatile = true,
+        sources = { {
+          name = "rg",
+          options = {
+            matchers = {},
+          }
+        } },
+        uiParams = {
+          ff = {
+            ignoreEmpty = false,
+            autoResise = false,
+          },
+        },
+      })
+    end
+
+    vim.api.nvim_create_user_command("DduRgLive", ddu_rg_live, {})
 
     vim.api.nvim_create_autocmd("User", {
       group = "MyAutoCmd",
@@ -110,6 +137,7 @@ return {
         },
         rg = {
           args = { "--ignore-case", "--column", "--no-heading", "--color", "never" },
+          inputType = "regex",
         },
       },
       uiParams = {
@@ -122,6 +150,12 @@ return {
       },
       filterParams = {
         matcher_fzf = {
+          highlightMatched = "Search",
+        },
+        matcher_fuse = {
+          highlightMatched = "Search",
+        },
+        matcher_kensaku = {
           highlightMatched = "Search",
         },
         merge = {
