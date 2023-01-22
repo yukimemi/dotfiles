@@ -50,7 +50,7 @@ function M.config()
           return cmp.complete_common_string()
         end
         fallback()
-      end, { 'i', 'c' }),
+      end, { "i", "c" }),
     }),
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
@@ -60,51 +60,51 @@ function M.config()
     }, {
       { name = "buffer" },
     }, {
-      { name = 'nvim_lsp_signature_help' },
+      { name = "nvim_lsp_signature_help" },
     }),
-    experimental = {
-      ghost_text = {
-        hl_group = "LspCodeLens",
-      },
-    },
+    -- experimental = {
+    --   ghost_text = {
+    --     hl_group = "LspCodeLens",
+    --   },
+    -- },
     formatting = {
-      format = require('lspkind').cmp_format({
-        mode = 'symbol',
+      format = require("lspkind").cmp_format({
+        mode = "symbol",
         maxwidth = 50,
-      })
-    }
+      }),
+    },
   })
 
   -- Use buffer source for `/` and `?`
-  cmp.setup.cmdline({ '/', '?' }, {
+  cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline({
       ["<C-n>"] = cmp.mapping(function(fallback)
         fallback()
-      end, { 'c' }),
+      end, { "c" }),
       ["<C-p>"] = cmp.mapping(function(fallback)
         fallback()
-      end, { 'c' }),
+      end, { "c" }),
     }),
     sources = {
-      { name = 'buffer' }
-    }
+      { name = "buffer" },
+    },
   })
 
   -- Use cmdline & path source for ':'
-  cmp.setup.cmdline(':', {
+  cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline({
       ["<C-n>"] = cmp.mapping(function(fallback)
         fallback()
-      end, { 'c' }),
+      end, { "c" }),
       ["<C-p>"] = cmp.mapping(function(fallback)
         fallback()
-      end, { 'c' }),
+      end, { "c" }),
     }),
     sources = cmp.config.sources({
-      { name = 'path' }
+      { name = "path" },
     }, {
-      { name = 'cmdline' }
-    })
+      { name = "cmdline" },
+    }),
   })
 end
 
