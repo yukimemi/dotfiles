@@ -7,10 +7,8 @@ return {
     "Shougo/context_filetype.vim"
   },
 
-  keys = {"gc", "gcc"},
-
-  init = function()
-    vim.keymap.set({"n", "x"}, "gc", "<Plug>(contextment)")
-    vim.keymap.set("n", "gcc", "<Plug>(contextment-line)")
-  end,
+  keys = {
+    { "gc", "<Plug>(contextment)", mode = "x" },
+    { "gcc", "<Plug>(contextment-line)", mode = "n" },
+  },
 }

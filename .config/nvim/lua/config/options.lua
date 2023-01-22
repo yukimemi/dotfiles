@@ -13,7 +13,7 @@ vim.opt.grepprg = "rg --vimgrep"
 vim.opt.hidden = true
 vim.opt.ignorecase = true
 vim.opt.inccommand = "nosplit"
-vim.opt.laststatus = 0
+vim.opt.laststatus = 2
 vim.opt.list = true
 vim.opt.mouse = "a"
 vim.opt.number = true
@@ -54,4 +54,3 @@ vim.g.markdown_fenced_languages = {
   "sh",
   "console=sh",
 }
-

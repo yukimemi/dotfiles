@@ -1,5 +1,6 @@
 return {
   "Shougo/ddc.vim",
+
   enabled = vim.g.plugin_use_ddc,
 
   lazy = false,
@@ -14,7 +15,9 @@ return {
     {
       "Shougo/pum.vim",
       config = function()
-        vim.fn["pum#set_option"]("use_complete", true)
+        vim.fn["pum#set_option"]("use_complete", false)
+        vim.fn["pum#set_option"]("max_width", 100)
+        vim.fn["pum#set_option"]("max_height", 30)
         vim.fn["pum#set_option"]("border", "single")
         vim.fn["pum#set_option"]("padding", true)
       end,
@@ -75,6 +78,7 @@ return {
   },
 
   init = function()
+
     vim.cmd([[
       function! CommandlinePre(mode) abort
         " NOTE: It disables default command line completion!
@@ -118,6 +122,14 @@ return {
     vim.keymap.set("n", ":", "<Cmd>call CommandlinePre(':')<CR>:")
     vim.keymap.set("n", "/", "<Cmd>call CommandlinePre('/')<CR>/")
     vim.keymap.set("n", "?", "<Cmd>call CommandlinePre('/')<CR>?")
+
+    vim.api.nvim_create_autocmd("User", {
+      group = "MyAutoCmd",
+      pattern = "DenopsPluginPost:ddc",
+      callback = function()
+        vim.notify("ddc loaded !")
+      end,
+    })
   end,
 
   config = function()
@@ -178,7 +190,7 @@ return {
           \   },
           \   rg: #{
           \     mark: 'rg',
-          \     minAutoCompleteLength: 5,
+          \     minAutoCompleteLength: 3,
           \     enabledIf: "finddir('.git', ';') != ''",
           \   },
           \ })
@@ -224,7 +236,7 @@ return {
       inoremap <C-p>   <Cmd>call pum#map#insert_relative(-1)<CR>
       inoremap <C-o>   <Cmd>call pum#map#confirm()<CR>
       inoremap <expr> <C-k>   ddc#map#extend(pum#map#confirm())
-      inoremap <expr> <C-x><C-f> ddc#map#manual_complete('path')
+      inoremap <C-x><C-f> <Cmd>call ddc#map#manual_complete(#{ sources: ['file'] })<CR>
       inoremap <expr> l
             \ pum#entered() ?
             \ '<Cmd>call pum#map#insert_relative(+1)<CR>' : 'l'
