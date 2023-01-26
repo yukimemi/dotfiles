@@ -166,7 +166,6 @@ return
 ; F12::
 ; Activate3("FluentTerminal.App.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\flute.exe", "Fluent")
 ; return
-
 ; for Windows Terminal
 F12::
 ToggleExe("WindowsTerminal.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\wt.exe")

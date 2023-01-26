@@ -8,6 +8,10 @@
             "keys": "ctrl+v"
         },
         {
+            "command": "unbound",
+            "keys": "win+sc(41)"
+        },
+        {
             "command": 
             {
                 "action": "splitPane",
@@ -30,6 +34,13 @@
         {
             "command": "find",
             "keys": "ctrl+shift+f"
+        },
+        {
+            "command": 
+            {
+                "action": "quakeMode"
+            },
+            "keys": "f12"
         }
     ],
     "alwaysShowTabs": false,
@@ -37,13 +48,19 @@
     "copyOnSelect": false,
     "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
     "launchMode": "maximized",
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
     "profiles": 
     {
         "defaults": 
         {
             "antialiasingMode": "cleartype",
             "backgroundImage": "desktopWallpaper",
-            "backgroundImageOpacity": 0.070000000000000007,
+            "backgroundImageOpacity": 0.1,
             "backgroundImageStretchMode": "uniformToFill",
             "bellStyle": "window",
             "colorScheme": "One Half Dark",
@@ -51,11 +68,11 @@
             "font": 
             {
                 "face": "HackGen Console NF",
-                "size": 10
+                "size": 10.0
             },
-            "opacity": 50,
+            "opacity": 90,
             "padding": "7",
-            "useAcrylic": true
+            "useAcrylic": false
         },
         "list": 
         [
@@ -92,6 +109,18 @@
                 "hidden": true,
                 "name": "Ubuntu",
                 "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "guid": "{3bef1222-31be-5433-ba8a-9b026d0a04ab}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{1abfea00-248a-598e-8159-08c038907f0e}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
@@ -353,5 +382,6 @@
     ],
     "showTabsInTitlebar": true,
     "startOnUserLogin": true,
+    "themes": [],
     "useAcrylicInTabRow": true
 }
