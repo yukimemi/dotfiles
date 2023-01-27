@@ -1,6 +1,8 @@
 return {
   "ahmedkhalf/project.nvim",
 
+  enabled = true,
+
   event = "VeryLazy",
 
   config = function()
