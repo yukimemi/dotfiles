@@ -42,6 +42,7 @@ return {
     "matsui54/ddu-vim-ui-select",
 
     -- sources
+    "Milly/windows-clipboard-history.vim",
     "4513ECHO/ddu-source-source",
     "4513ECHO/vim-readme-viewer",
     "Shougo/ddc-source-cmdline-history",
@@ -89,6 +90,8 @@ return {
     vim.keymap.set("n", "<space>dk",
       "<cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-inputType='migemo' -source-param-input=`input('Pattern: ')`<cr>")
     vim.keymap.set("n", "<space>dr", "<cmd>Ddu -name=search -resume<cr>")
+    vim.keymap.set("n", "<space>dC", "<cmd>Ddu windows-clipboard-history -source-param-prefix='clip'<cr>")
+
 
     local function ddu_rg_live()
       vim.fn["ddu#start"]({

@@ -1,24 +1,21 @@
 [general]
 ".config" = "~/.config"
 ".editorconfig" = "~/.editorconfig"
-".qutebrowser" = "~/.qutebrowser"
 ".shelp" = "~/.shelp"
 ".stack" = "~/.stack"
 ".surfingkeys.js" = "~/.surfingkeys.js"
 ".tool-versions" = "~/.tool-versions"
-".volt" = "~/.volt"
 ".zprofile" = "~/.zprofile"
 ".zshenv" = "~/.zshenv"
 ".zshrc" = "~/.zshrc"
 
 [windows]
-".config/espanso" = "~/scoop/apps/espanso/current/.espanso"
 ".config/rhq" = "~/AppData/Roaming/rhq"
+".config/helix" = "~/AppData/Roaming/helix"
 ".config/nvim" = ["~/vimfiles", "~/AppData/Local/nvim"]
 ".config/nvim/init.vim" = "~/_vimrc"
 ".gvimrc" = "~/_gvimrc"
 ".hyper.js" = ["~/AppData/Roaming/Hyper/.hyper.js", "~/.hyper.js"]
-".qutebrowser" = "~/AppData/Roaming/qutebrowser/config"
 "win/Microsoft.PowerShell_profile.ps1" = [
   "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1",
   "~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1",

@@ -19,7 +19,7 @@ return {
         vim.fn["pum#set_option"]("max_width", 100)
         vim.fn["pum#set_option"]("max_height", 30)
         vim.fn["pum#set_option"]("border", "single")
-        vim.fn["pum#set_option"]("padding", true)
+        vim.fn["pum#set_option"]("padding", false)
       end,
     },
     "Shougo/ddc-ui-pum",
@@ -29,15 +29,22 @@ return {
     "hrsh7th/vim-vsnip",
 
     -- sources
-    "Shougo/ddc-source-around",
-    "Shougo/ddc-source-mocword",
     "LumaKernel/ddc-file",
+    "LumaKernel/ddc-run",
+    "gamoutatsumi/ddc-emoji",
+    "Milly/windows-clipboard-history.vim",
+    "Shougo/ddc-source-around",
     "matsui54/ddc-buffer",
+    "tani/ddc-oldfiles",
     "Shougo/ddc-source-omni",
     "Shougo/ddc-source-cmdline",
     "Shougo/ddc-source-input",
     "Shougo/ddc-source-cmdline-history",
     "Shougo/ddc-source-line",
+    {
+      "Shougo/ddc-source-mocword",
+      build = "cargo install mocword",
+    },
     {
       "Shougo/ddc-source-rg",
       enabled = vim.fn.executable("rg") > 0,
@@ -134,11 +141,17 @@ return {
 
   config = function()
     vim.cmd([[
-      call ddc#custom#patch_global('sources',
-          \ ['nvim-lsp', 'around', 'vsnip', 'file', 'rg', 'mocword'],
-          \ )
+      if has('win32')
+        call ddc#custom#patch_global('sources',
+            \ ['nvim-lsp', 'around', 'vsnip', 'file', 'rg', 'mocword', 'windows-clipboard-history', 'emoji'],
+            \ )
+      else
+        call ddc#custom#patch_global('sources',
+            \ ['nvim-lsp', 'around', 'vsnip', 'file', 'rg', 'mocword', 'emoji'],
+            \ )
+      endif
       call ddc#custom#patch_global('cmdlineSources', {
-          \   ':': ['cmdline-history', 'cmdline', 'around'],
+          \   ':': ['cmdline-history', 'cmdline', 'oldfiles', 'around'],
           \   '@': ['cmdline-history', 'input', 'file', 'around'],
           \   '>': ['cmdline-history', 'input', 'file', 'around'],
           \   '/': ['around', 'line'],
@@ -156,6 +169,12 @@ return {
           \   },
           \   around: #{ mark: 'A' },
           \   buffer: #{ mark: 'B' },
+          \   emoji: #{
+          \     mark: 'emoji',
+          \     matchers: ['emoji'],
+          \     sorters: [],
+          \     forceCompletionPattern: '[a-zA-Z_:]\w*',
+          \   },
           \   cmdline: #{
           \     mark: 'cmdline',
           \     forceCompletionPattern: '\S/\S*|\.\w*',
@@ -193,6 +212,9 @@ return {
           \     minAutoCompleteLength: 3,
           \     enabledIf: "finddir('.git', ';') != ''",
           \   },
+          \   windows-clipboard-history: #{
+          \     mark: 'clip',
+          \   },
           \ })
 
       call ddc#custom#patch_global('sourceParams', #{
@@ -204,6 +226,9 @@ return {
           \   },
           \   file: #{
           \     filenameChars: '[:keyword:].',
+          \   },
+          \   windows-clipboard-history: #{
+          \     maxAbbrWidth: 100,
           \   },
           \ })
 

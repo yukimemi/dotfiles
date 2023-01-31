@@ -1,6 +1,8 @@
 return {
   "yuki-yano/highlight-undo.nvim",
 
+  enabled = false,
+
   lazy = false,
 
   dependencies = {

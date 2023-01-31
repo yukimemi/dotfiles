@@ -19,7 +19,7 @@ local M = {
     "onsails/lspkind.nvim",
     {
       "hrsh7th/cmp-nvim-lsp-signature-help",
-      enabled = true,
+      enabled = false,
     },
   },
 }
