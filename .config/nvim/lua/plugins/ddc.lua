@@ -31,16 +31,17 @@ return {
     -- sources
     "LumaKernel/ddc-file",
     "LumaKernel/ddc-run",
-    "gamoutatsumi/ddc-emoji",
-    "Milly/windows-clipboard-history.vim",
     "Shougo/ddc-source-around",
     "matsui54/ddc-buffer",
-    "tani/ddc-oldfiles",
     "Shougo/ddc-source-omni",
     "Shougo/ddc-source-cmdline",
     "Shougo/ddc-source-input",
     "Shougo/ddc-source-cmdline-history",
     "Shougo/ddc-source-line",
+    {
+      "Milly/windows-clipboard-history.vim",
+      enabled = jit.os:find("Windows"),
+    },
     {
       "Shougo/ddc-source-mocword",
       build = "cargo install mocword",
@@ -85,7 +86,6 @@ return {
   },
 
   init = function()
-
     vim.cmd([[
       function! CommandlinePre(mode) abort
         " NOTE: It disables default command line completion!
@@ -143,15 +143,15 @@ return {
     vim.cmd([[
       if has('win32')
         call ddc#custom#patch_global('sources',
-            \ ['nvim-lsp', 'around', 'vsnip', 'file', 'rg', 'mocword', 'windows-clipboard-history', 'emoji'],
+            \ ['nvim-lsp', 'around', 'vsnip', 'file', 'rg', 'mocword', 'windows-clipboard-history'],
             \ )
       else
         call ddc#custom#patch_global('sources',
-            \ ['nvim-lsp', 'around', 'vsnip', 'file', 'rg', 'mocword', 'emoji'],
+            \ ['nvim-lsp', 'around', 'vsnip', 'file', 'rg', 'mocword'],
             \ )
       endif
       call ddc#custom#patch_global('cmdlineSources', {
-          \   ':': ['cmdline-history', 'cmdline', 'oldfiles', 'around'],
+          \   ':': ['cmdline-history', 'cmdline', 'around'],
           \   '@': ['cmdline-history', 'input', 'file', 'around'],
           \   '>': ['cmdline-history', 'input', 'file', 'around'],
           \   '/': ['around', 'line'],
@@ -169,12 +169,6 @@ return {
           \   },
           \   around: #{ mark: 'A' },
           \   buffer: #{ mark: 'B' },
-          \   emoji: #{
-          \     mark: 'emoji',
-          \     matchers: ['emoji'],
-          \     sorters: [],
-          \     forceCompletionPattern: '[a-zA-Z_:]\w*',
-          \   },
           \   cmdline: #{
           \     mark: 'cmdline',
           \     forceCompletionPattern: '\S/\S*|\.\w*',

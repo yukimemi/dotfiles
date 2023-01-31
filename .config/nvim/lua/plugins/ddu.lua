@@ -42,7 +42,10 @@ return {
     "matsui54/ddu-vim-ui-select",
 
     -- sources
-    "Milly/windows-clipboard-history.vim",
+    {
+      "Milly/windows-clipboard-history.vim",
+      enabled = jit.os:find("Windows"),
+    },
     "4513ECHO/ddu-source-source",
     "4513ECHO/vim-readme-viewer",
     "Shougo/ddc-source-cmdline-history",
@@ -74,8 +77,7 @@ return {
     vim.keymap.set("n", "<space>du", "<cmd>Ddu mr<cr>")
     vim.keymap.set("n", "<space>dw", "<cmd>Ddu mr -source-param-kind='mrw'<cr>")
     vim.keymap.set("n", "<space>db", "<cmd>Ddu buffer<cr>")
-    vim.keymap.set("n", "<space>df",
-      "<cmd>Ddu `finddir('.git', ';') != '' ? 'file_external' : 'file_rec'`<cr>")
+    vim.keymap.set("n", "<space>df", "<cmd>Ddu `finddir('.git', ';') != '' ? 'file_external' : 'file_rec'`<cr>")
     vim.keymap.set("n", "<space>dR", "<cmd>Ddu -buffer-name=register register -ui-param-autoResize<cr>")
     vim.keymap.set("n", "<space>dd", "<cmd>Ddu file_rec -source-option-path=`fnamemodify(bufname(), ':p:h')`<cr>")
     vim.keymap.set("n", "<space>dc", "<cmd>Ddu file_rec -source-option-path=`expand('~/.cache')`<cr>")
@@ -85,13 +87,18 @@ return {
     vim.keymap.set("n", "<space>dS", "<cmd>Ddu file_rec -source-option-path=`expand('~/src')`<cr>")
     vim.keymap.set("n", "<space>dH", "<cmd>Ddu help<cr>")
     vim.keymap.set("n", "<space>dh", "<cmd>Ddu command_history<cr>")
-    vim.keymap.set("n", "<space>ds",
-      "<cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-input=`input('Pattern: ')`<cr>")
-    vim.keymap.set("n", "<space>dk",
-      "<cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-inputType='migemo' -source-param-input=`input('Pattern: ')`<cr>")
+    vim.keymap.set(
+      "n",
+      "<space>ds",
+      "<cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-input=`input('Pattern: ')`<cr>"
+    )
+    vim.keymap.set(
+      "n",
+      "<space>dk",
+      "<cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-inputType='migemo' -source-param-input=`input('Pattern: ')`<cr>"
+    )
     vim.keymap.set("n", "<space>dr", "<cmd>Ddu -name=search -resume<cr>")
     vim.keymap.set("n", "<space>dC", "<cmd>Ddu windows-clipboard-history -source-param-prefix='clip'<cr>")
-
 
     local function ddu_rg_live()
       vim.fn["ddu#start"]({
@@ -100,7 +107,7 @@ return {
           name = "rg",
           options = {
             matchers = {},
-          }
+          },
         } },
         uiParams = {
           ff = {
@@ -129,7 +136,7 @@ return {
         ["_"] = {
           ignoreCase = true,
           matchers = { "merge" },
-        }
+        },
       },
       sourceParams = {
         file_external = {
@@ -170,8 +177,7 @@ return {
               weight = 2.0,
             },
             "matcher_fuse",
-          }
-
+          },
         },
       },
       kindParams = {
@@ -209,11 +215,18 @@ return {
       callback = function()
         vim.keymap.set("i", "<cr>", "<cmd>call ddu#ui#ff#do_action('itemAction')<cr>", { buffer = true })
         vim.keymap.set("i", "<esc>", "<esc><cmd>call ddu#ui#ff#close()<cr>", { nowait = true, buffer = true })
-        vim.keymap.set("i", "<c-j>",
-          [[<cmd>call ddu#ui#ff#execute('call cursor(line(".") % line("$") + 1, 0)<bar>redraw')<cr>]], { buffer = true })
-        vim.keymap.set("i", "<c-k>",
+        vim.keymap.set(
+          "i",
+          "<c-j>",
+          [[<cmd>call ddu#ui#ff#execute('call cursor(line(".") % line("$") + 1, 0)<bar>redraw')<cr>]],
+          { buffer = true }
+        )
+        vim.keymap.set(
+          "i",
+          "<c-k>",
           [[<cmd>call ddu#ui#ff#execute('call cursor((line(".") - 2 + line("$")) % line("$") + 1, 0)<bar>redraw')<cr>]],
-          { buffer = true })
+          { buffer = true }
+        )
       end,
     })
 
@@ -230,20 +243,39 @@ return {
         vim.keymap.set("n", "p", "<cmd>call ddu#ui#ff#do_action('preview')<cr>", { buffer = true })
         vim.keymap.set("n", "q", "<cmd>call ddu#ui#ff#do_action('quit')<cr>", { buffer = true })
         vim.keymap.set("n", "c", "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'cd'})<cr>", { buffer = true })
-        vim.keymap.set("n", "d", "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<cr>", { buffer = true })
+        vim.keymap.set(
+          "n",
+          "d",
+          "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<cr>",
+          { buffer = true }
+        )
         vim.keymap.set("n", "e", "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<cr>", { buffer = true })
-        vim.keymap.set("n", "E", "<cmd>call ddu#ui#ff#do_action('itemAction', {'params': eval(input('params: '))})<cr>",
-          { buffer = true })
-        vim.keymap.set("n", "v",
+        vim.keymap.set(
+          "n",
+          "E",
+          "<cmd>call ddu#ui#ff#do_action('itemAction', {'params': eval(input('params: '))})<cr>",
+          { buffer = true }
+        )
+        vim.keymap.set(
+          "n",
+          "v",
           "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<cr>",
-          { buffer = true })
+          { buffer = true }
+        )
         vim.keymap.set("n", "N", "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'new'})<cr>", { buffer = true })
-        vim.keymap.set("n", "r", "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'quickfix'})<cr>",
-          { buffer = true })
+        vim.keymap.set(
+          "n",
+          "r",
+          "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'quickfix'})<cr>",
+          { buffer = true }
+        )
         vim.keymap.set("n", "<esc>", "<cmd>call ddu#ui#ff#do_action('quit')<cr>", { nowait = true, buffer = true })
-        vim.keymap.set("n", "u",
+        vim.keymap.set(
+          "n",
+          "u",
           "<cmd>call ddu#ui#ff#do_action('updateOptions', {'sourceOptions': {'_': {'matchers': []}}})<cr>",
-          { buffer = true })
+          { buffer = true }
+        )
       end,
     })
   end,
