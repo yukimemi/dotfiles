@@ -7,6 +7,6 @@ return {
   },
 
   keys = {
-    { "<space>ca", function() require("actions-preview").code_actions() end, mode = { "n", "v" } },
+    { "<space>ca", function() require("actions-preview").code_actions() end, mode = { "n", "v" }, desc = "Code action" },
   },
 }

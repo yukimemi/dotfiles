@@ -1,7 +1,7 @@
 return {
   "kg8m/vim-simple-align",
 
-  enabled = true,
+  enabled = false,
 
   cmd = "SimpleAlign",
 }

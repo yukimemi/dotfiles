@@ -46,6 +46,38 @@ local M = {
 }
 
 function M.config()
+  -- vim.api.nvim_create_autocmd("LspAttach", {
+  --   once = true,
+  --   callback = function()
+  --     vim.lsp.handlers["textDocument/hover"] = function(_, results, ctx, config)
+  --       local client = vim.lsp.get_client_by_id(ctx.client_id)
+  --       vim.lsp.handlers.hover(
+  --         _,
+  --         results,
+  --         ctx,
+  --         vim.tbl_deep_extend("force", config or {}, {
+  --           border = "single",
+  --           title = client.name,
+  --         })
+  --       )
+  --     end
+  --   end,
+  -- })
+  vim.diagnostic.config {
+    virtual_text = {
+      source = "always",
+    },
+    float = {
+      source = "always",
+      format = function(diag)
+        if diag.code then
+          return string.format("[%s](%s): %s", diag.source, diag.code, diag.message)
+        else
+          return string.format("[%s]: %s", diag.source, diag.message)
+        end
+      end,
+    },
+  }
   require("mason").setup({
     providers = {
       "mason.providers.client",
@@ -106,7 +138,7 @@ function M.config()
       vim.tbl_extend("force", opts, { desc = "Type definition" })
     )
     vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename" }))
-    vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
+    -- vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
     vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "References" }))
     vim.keymap.set("n", "<space>F", function()
       vim.lsp.buf.format({ async = true })

@@ -18,7 +18,7 @@ vim.g.plugin_use_cmp = false
 vim.g.plugin_use_ddc = not vim.g.plugin_use_cmp
 
 vim.g.plugin_use_ddu = true
-vim.g.plugin_use_ctrlp = true
+vim.g.plugin_use_ctrlp = false
 
 vim.g.plugin_use_findent = true
 vim.g.plugin_use_dansa = not vim.g.plugin_use_findent
