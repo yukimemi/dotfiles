@@ -17,8 +17,8 @@ return {
         vim.keymap.set("n", "r", "<Plug>(twihi:reply)", { buffer = true })
         vim.keymap.set("n", "R", "<Plug>(twihi:retweet)", { buffer = true })
         vim.keymap.set("n", "T", "<Plug>(twihi:retweet:comment)", { buffer = true })
-        vim.keymap.set("n", "j", "<Plug>(twihi:tweet:next)", { buffer = true })
-        vim.keymap.set("n", "k", "<Plug>(twihi:tweet:prev)", { buffer = true })
+        vim.keymap.set("n", "J", "<Plug>(twihi:tweet:next)", { buffer = true })
+        vim.keymap.set("n", "K", "<Plug>(twihi:tweet:prev)", { buffer = true })
         vim.keymap.set("n", "s", "<cmd>TwihiTweet<cr>", { buffer = true })
         vim.keymap.set("n", "S", ":<c-u>TwihiSearch<space>", { buffer = true })
       end,
