@@ -273,6 +273,8 @@ snippets:
     snippet: cargo install bob-nvim
   - name: Install gptcommit
     snippet: cargo install gptcommit
+  - name: Install pnpm on Windows.
+    snippet: iwr https://get.pnpm.io/install.ps1 -useb | iex
 
 
 completions:

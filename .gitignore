@@ -1,3 +1,4 @@
 .vim/
 .config/nvim/plugin/packer_compiled.lua
 .luarc.json
+*.log
