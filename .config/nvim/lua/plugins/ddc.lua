@@ -33,6 +33,7 @@ return {
     "LumaKernel/ddc-run",
     "Shougo/ddc-source-around",
     "matsui54/ddc-buffer",
+    "hokorobi/ddc-source-plantuml",
     "Shougo/ddc-source-omni",
     "Shougo/ddc-source-cmdline",
     "Shougo/ddc-source-input",
@@ -169,6 +170,7 @@ return {
           \   },
           \   around: #{ mark: 'A' },
           \   buffer: #{ mark: 'B' },
+          \   plantuml: #{ mark: 'U' },
           \   cmdline: #{
           \     mark: 'cmdline',
           \     forceCompletionPattern: '\S/\S*|\.\w*',
@@ -224,6 +226,10 @@ return {
           \   windows-clipboard-history: #{
           \     maxAbbrWidth: 100,
           \   },
+          \ })
+
+      call ddc#custom#patch_filetype(['plantuml'], #{
+          \   sources: ['plantuml', 'nvim-lsp', 'around', 'vsnip', 'file', 'rg', 'mocword'],
           \ })
 
       call ddc#custom#patch_filetype(['ddu-ff-filter'], #{
