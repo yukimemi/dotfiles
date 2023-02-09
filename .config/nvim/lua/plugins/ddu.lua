@@ -130,84 +130,6 @@ return {
   end,
 
   config = function()
-    vim.fn["ddu#custom#patch_global"]({
-      ui = "ff",
-      sourceOptions = {
-        ["_"] = {
-          ignoreCase = true,
-          matchers = { "merge" },
-        },
-      },
-      sourceParams = {
-        file_external = {
-          cmd = { "git", "ls-files", "-co", "--exclude-standard" },
-        },
-        file_rg = {
-          cmd = { "rg", "--files", "--glob", "!.git", "--color", "never", "--no-messages" },
-          updateItems = 50000,
-        },
-        rg = {
-          args = { "--ignore-case", "--column", "--no-heading", "--color", "never" },
-          inputType = "regex",
-        },
-      },
-      uiParams = {
-        ff = {
-          filterSplitDirection = "floating",
-          previewFloating = true,
-          prompt = "»",
-          split = "horizontal",
-        },
-      },
-      filterParams = {
-        matcher_fzf = {
-          highlightMatched = "Search",
-        },
-        matcher_fuse = {
-          highlightMatched = "Search",
-        },
-        matcher_kensaku = {
-          highlightMatched = "Search",
-        },
-        merge = {
-          highlightMatched = "Search",
-          filters = {
-            {
-              name = "matcher_kensaku",
-              weight = 2.0,
-            },
-            "matcher_fuse",
-          },
-        },
-      },
-      kindParams = {
-        action = {
-          quit = true,
-        },
-      },
-      kindOptions = {
-        file = {
-          defaultAction = "open",
-        },
-        help = {
-          defaultAction = "open",
-        },
-        word = {
-          defaultAction = "append",
-        },
-        action = {
-          defaultAction = "do",
-        },
-        readme_viewer = {
-          defaultAction = "open",
-        },
-      },
-      actionOptions = {
-        narrow = {
-          quit = false,
-        },
-      },
-    })
 
     vim.api.nvim_create_autocmd("FileType", {
       group = "MyAutoCmd",
@@ -276,6 +198,105 @@ return {
           "<cmd>call ddu#ui#ff#do_action('updateOptions', {'sourceOptions': {'_': {'matchers': []}}})<cr>",
           { buffer = true }
         )
+      end,
+    })
+
+    local function reset()
+      vim.fn["ddu#custom#patch_global"]({
+        ui = "ff",
+        sourceOptions = {
+          ["_"] = {
+            ignoreCase = true,
+            matchers = { "merge" },
+          },
+        },
+        sourceParams = {
+          file_external = {
+            cmd = { "git", "ls-files", "-co", "--exclude-standard" },
+          },
+          file_rg = {
+            cmd = { "rg", "--files", "--glob", "!.git", "--color", "never", "--no-messages" },
+            updateItems = 50000,
+          },
+          rg = {
+            args = { "--ignore-case", "--column", "--no-heading", "--color", "never" },
+            inputType = "regex",
+          },
+        },
+        uiParams = {
+          ff = {
+            filterSplitDirection = "floating",
+            previewFloating = true,
+            previewVertical = true,
+            previewFloatingZindex = 100,
+            split = "floating",
+            prompt = "»",
+            winCol = math.ceil(vim.o.columns / 8),
+            winWidth = math.ceil((vim.o.columns - (vim.o.columns / 4)) / 2),
+            winRow = math.ceil(vim.o.lines / 8),
+            winHeight = math.ceil(vim.o.lines - (vim.o.lines / 4)),
+            previewWidth = math.ceil((vim.o.columns - (vim.o.columns / 4)) / 2),
+            autoAction = {
+              name = "preview",
+            },
+          },
+        },
+        filterParams = {
+          matcher_fzf = {
+            highlightMatched = "Search",
+          },
+          matcher_fuse = {
+            highlightMatched = "Search",
+          },
+          matcher_kensaku = {
+            highlightMatched = "Search",
+          },
+          merge = {
+            highlightMatched = "Search",
+            filters = {
+              {
+                name = "matcher_kensaku",
+                weight = 2.0,
+              },
+              "matcher_fuse",
+            },
+          },
+        },
+        kindParams = {
+          action = {
+            quit = true,
+          },
+        },
+        kindOptions = {
+          file = {
+            defaultAction = "open",
+          },
+          help = {
+            defaultAction = "open",
+          },
+          word = {
+            defaultAction = "append",
+          },
+          action = {
+            defaultAction = "do",
+          },
+          readme_viewer = {
+            defaultAction = "open",
+          },
+        },
+        actionOptions = {
+          narrow = {
+            quit = false,
+          },
+        },
+      })
+    end
+
+    vim.api.nvim_create_autocmd({ "ColorScheme", "VimResized", "UIEnter" }, {
+      group = "MyAutoCmd",
+      pattern = "*",
+      callback = function()
+        reset()
       end,
     })
   end,
