@@ -5,7 +5,7 @@ return {
     return vim.fn.executable("gh") > 0
   end,
 
-  depencencies = {
+  dependencies = {
     "nvim-tree/nvim-web-devicons",
     "nvim-telescope/telescope.nvim",
     "nvim-lua/plenary.nvim",
@@ -17,4 +17,3 @@ return {
     require("octo").setup()
   end,
 }
-

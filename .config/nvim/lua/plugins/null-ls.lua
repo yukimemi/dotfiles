@@ -22,10 +22,14 @@ function M.setup(options)
           return vim.fn.executable("cspell") > 0
         end,
       }),
-      nls.builtins.diagnostics.dotenv_linter,
+      nls.builtins.diagnostics.dotenv_linter.with({
+        condition = function()
+          return vim.fn.executable("dotenv-linter") > 0
+        end,
+      }),
       nls.builtins.diagnostics.editorconfig_checker.with({
         condition = function()
-          return vim.fn.executable("ec") > 0
+          return vim.fn.executable("editorconfig-checker") > 0
         end,
       }),
       nls.builtins.diagnostics.flake8.with({
@@ -66,14 +70,23 @@ function M.setup(options)
           return vim.fn.executable("codespell") > 0
         end,
       }),
-      nls.builtins.formatting.csharpier,
+      nls.builtins.formatting.csharpier.with({
+        condition = function()
+          return vim.fn.executable("dotnet-csharpier") > 0
+        end,
+      }),
       nls.builtins.formatting.deno_fmt.with({
         condition = function()
           return vim.fn.executable("deno") > 0
         end,
         filetypes = {
-          "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescriptreact"
-        }
+          "javascript",
+          "javascriptreact",
+          "json",
+          "jsonc",
+          "typescript",
+          "typescriptreact",
+        },
       }),
       nls.builtins.formatting.dprint.with({
         condition = function()
@@ -86,8 +99,16 @@ function M.setup(options)
         end,
       }),
       nls.builtins.formatting.gofmt,
-      nls.builtins.formatting.goimports,
-      nls.builtins.formatting.isort,
+      nls.builtins.formatting.goimports.with({
+        condition = function()
+          return vim.fn.executable("goimports") > 0
+        end,
+      }),
+      nls.builtins.formatting.isort.with({
+        condition = function()
+          return vim.fn.executable("isort") > 0
+        end,
+      }),
       nls.builtins.formatting.jq.with({
         condition = function()
           return vim.fn.executable("jq") > 0
@@ -158,7 +179,9 @@ function M.setup(options)
       -- code_actions
       nls.builtins.code_actions.cspell,
       nls.builtins.code_actions.gitsigns.with({
-        condition = function() return false end,
+        condition = function()
+          return false
+        end,
       }),
     },
     on_attach = options.on_attach,
