@@ -10,17 +10,23 @@ return {
 
     -- global settings.
     dansa.setup({
-      -- The threshold for how much to scan above and below the cursor line
-      threshold = 100,
+      -- Specify enabled or disabled.
+      enabled = true,
+
+      -- The offset to specify how much lines to use.
+      scan_offset = 100,
+
+      -- The count for cut-off the indent candidate.
+      cutoff_count = 5,
 
       -- The settings for tab-indentation or when it cannot be guessed.
       default = {
-        expandtab = false,
+        expandtab = true,
         space = {
           shiftwidth = 2,
         },
         tab = {
-          shifwidth = 4,
+          shiftwidth = 4,
         }
       }
     })
@@ -28,18 +34,18 @@ return {
     -- per filetype settings.
     dansa.setup.filetype("go", {
       default = {
-        expandtab = true,
+        expandtab = false,
         tab = {
-          shifwidth = 4,
-        },
-      },
+          shiftwidth = 4,
+        }
+      }
     })
 
     dansa.setup.filetype("xml", {
       default = {
         expandtab = false,
         space = {
-          shiftwidth = 2,
+          shiftwidth = 4,
         },
       },
     })

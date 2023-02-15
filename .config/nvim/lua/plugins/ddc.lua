@@ -18,7 +18,7 @@ return {
         vim.fn["pum#set_option"]("use_complete", false)
         -- vim.fn["pum#set_option"]("max_width", 100)
         vim.fn["pum#set_option"]("max_height", 30)
-        vim.fn["pum#set_option"]("border", "single")
+        -- vim.fn["pum#set_option"]("border", "single")
         vim.fn["pum#set_option"]("padding", false)
       end,
     },

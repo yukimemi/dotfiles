@@ -5,17 +5,29 @@ return {
 
   dependencies = {
     "MunifTanjim/nui.nvim",
+    {
+      "s1n7ax/nvim-window-picker",
+      config = function()
+        require("window-picker").setup()
+      end
+    },
   },
 
   cmd = "Neotree",
 
   keys = {
-    { "ge", "<cmd>Neotree<cr>", mode = "n" },
+    { "ge", "<cmd>Neotree reveal_force_cwd<cr>", mode = "n" },
+    { "gE",
+      function() vim.cmd(string.format("Neotree reveal_force_cwd reveal_file=%s",
+          vim.fn.expand("%:p")))
+      end, mode = "n" },
   },
 
-  config = function()
+  init = function()
     vim.g.neo_tree_remove_legacy_commands = 1
+  end,
 
+  config = function()
     require("neo-tree").setup({
       filesystem = {
         follow_current_file = true,

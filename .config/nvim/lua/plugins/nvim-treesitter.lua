@@ -26,7 +26,7 @@ function M.config()
       "bash",
       "javascript",
       "json",
-      "jsonc",
+      -- "jsonc",
       "lua",
       "markdown",
       "markdown_inline",

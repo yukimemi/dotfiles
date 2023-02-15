@@ -15,6 +15,7 @@ local M = {
     "hrsh7th/cmp-vsnip",
     "hrsh7th/vim-vsnip",
     "hrsh7th/vim-vsnip-integ",
+    "lukas-reineke/cmp-rg",
     "rafamadriz/friendly-snippets",
     "onsails/lspkind.nvim",
     {
@@ -55,6 +56,7 @@ function M.config()
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
       { name = "vsnip" },
+      { name = "rg" },
       { name = "path" },
       { name = "emoji" },
     }, {

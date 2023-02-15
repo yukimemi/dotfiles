@@ -25,7 +25,7 @@ function Is-Windows {
 
 # Use utf-8
 if (Is-Windows) {
-  chcp 65001
+  # chcp 65001
   $OutputEncoding = [Console]::OutputEncoding
   $env:LANG = "ja_JP.UTF-8"
 }
@@ -305,8 +305,6 @@ Set-PSReadLineKeyHandler -Key 'Shift+Spacebar' -Function PossibleCompletions
 Set-PSReadLineKeyHandler -Key 'Ctrl+a' -Function BeginningOfLine
 Set-PSReadLineKeyHandler -Key 'Ctrl+b' -Function BackwardChar
 Set-PSReadLineKeyHandler -Key 'Ctrl+d' -Function DeleteChar
-# Set-PSReadLineKeyHandler -Key 'Ctrl+e' -Function EndOfLine
-# Set-PSReadLineKeyHandler -Key 'Ctrl+f' -Function ForwardChar
 Set-PSReadLineKeyHandler -Key 'Ctrl+h' -Function BackwardDeleteChar
 Set-PSReadLineKeyHandler -Key 'Ctrl+l' -Function ClearScreen
 Set-PSReadLineKeyHandler -Key 'Ctrl+n' -Function HistorySearchForward
