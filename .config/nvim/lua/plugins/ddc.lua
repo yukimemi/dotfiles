@@ -33,7 +33,6 @@ return {
     "LumaKernel/ddc-run",
     "Shougo/ddc-source-around",
     "matsui54/ddc-buffer",
-    "hokorobi/ddc-source-plantuml",
     "Shougo/ddc-source-omni",
     "Shougo/ddc-source-cmdline",
     "Shougo/ddc-source-input",
@@ -63,6 +62,12 @@ return {
         "nvim-treesitter/nvim-treesitter",
       },
     },
+    {
+      "hokorobi/ddc-source-plantuml",
+      init = function()
+        vim.g.ddc_source_plantuml_cmd = vim.fn.expand("~/.local/bin/plantuml.jar")
+      end,
+    },
 
     -- popup, signature
     {
@@ -80,6 +85,7 @@ return {
     },
     {
       "matsui54/denops-signature_help",
+      enabled = false,
       config = function()
         vim.fn["signature_help#enable"]()
       end,
@@ -168,11 +174,11 @@ return {
           \     sorters: ['matcher_fuzzy'],
           \     converters: ['matcher_fuzzy'],
           \   },
-          \   around: #{ mark: 'A' },
-          \   buffer: #{ mark: 'B' },
-          \   plantuml: #{ mark: 'U' },
+          \   around: #{ mark: 'around' },
+          \   buffer: #{ mark: 'buf' },
+          \   plantuml: #{ mark: 'uml' },
           \   cmdline: #{
-          \     mark: 'cmdline',
+          \     mark: 'cmd',
           \     forceCompletionPattern: '\S/\S*|\.\w*',
           \     dup: 'force',
           \   },
@@ -194,7 +200,7 @@ return {
           \     dup: 'force',
           \   },
           \   file: #{
-          \     mark: 'F',
+          \     mark: 'file',
           \     isVolatile: v:true,
           \     minAutoCompleteLength: 3,
           \     forceCompletionPattern: '\S/\S*',

@@ -232,8 +232,8 @@ function M.config()
         },
       }))
     end,
-    ["sumneko_lua"] = function()
-      lspconfig["sumneko_lua"].setup(vim.tbl_deep_extend("force", options, {
+    ["lua_ls"] = function()
+      lspconfig["lua_ls"].setup(vim.tbl_deep_extend("force", options, {
         single_file_support = true,
         settings = {
           Lua = {

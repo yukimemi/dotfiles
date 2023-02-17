@@ -130,7 +130,6 @@ return {
   end,
 
   config = function()
-
     vim.api.nvim_create_autocmd("FileType", {
       group = "MyAutoCmd",
       pattern = "ddu-ff-filter",
@@ -205,6 +204,12 @@ return {
       group = "MyAutoCmd",
       pattern = "*",
       callback = function()
+        local mcol = 1.0 * vim.o.columns * 0.9
+        local mline = 1.0 * vim.o.lines * 0.9
+        local width = vim.fn.float2nr(mcol)
+        local height = vim.fn.float2nr(mline)
+        local x = vim.fn.float2nr((vim.o.columns - mcol) / 2)
+        local y = vim.fn.float2nr((vim.o.lines - mline) / 2)
         vim.fn["ddu#custom#patch_global"]({
           ui = "ff",
           sourceOptions = {
@@ -230,15 +235,15 @@ return {
             ff = {
               filterSplitDirection = "floating",
               previewFloating = true,
-              previewVertical = true,
+              previewSplit = "no",
               previewFloatingZindex = 100,
               split = "floating",
               prompt = "»",
-              winCol = math.ceil(vim.o.columns / 8),
-              winWidth = math.ceil((vim.o.columns - (vim.o.columns / 4)) / 2),
-              winRow = math.ceil(vim.o.lines / 8),
-              winHeight = math.ceil(vim.o.lines - (vim.o.lines / 4)),
-              previewWidth = math.ceil((vim.o.columns - (vim.o.columns / 4)) / 2),
+              winCol = x,
+              winWidth = width,
+              winRow = y,
+              winHeight = height,
+              previewWidth = width / 2,
               autoAction = {
                 name = "preview",
               },
