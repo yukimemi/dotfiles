@@ -204,8 +204,9 @@ return {
       group = "MyAutoCmd",
       pattern = "*",
       callback = function()
-        local mcol = 1.0 * vim.o.columns * 0.9
-        local mline = 1.0 * vim.o.lines * 0.9
+        local ratio = 0.70
+        local mcol = 1.0 * vim.o.columns * ratio
+        local mline = 1.0 * vim.o.lines * ratio
         local width = vim.fn.float2nr(mcol)
         local height = vim.fn.float2nr(mline)
         local x = vim.fn.float2nr((vim.o.columns - mcol) / 2)
@@ -235,13 +236,13 @@ return {
             ff = {
               filterSplitDirection = "floating",
               previewFloating = true,
-              previewSplit = "no",
+              previewSplit = "vertical",
               previewFloatingZindex = 100,
               split = "floating",
               prompt = "»",
               winCol = x,
-              winWidth = width,
               winRow = y,
+              winWidth = width,
               winHeight = height,
               previewWidth = width / 2,
               autoAction = {

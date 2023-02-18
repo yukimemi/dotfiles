@@ -32,7 +32,14 @@ local M = {
     {
       "folke/neodev.nvim",
       config = function()
-        require("neodev").setup()
+        require("neodev").setup({
+          library = {
+            plugins = {
+              "nvim-dap-ui",
+            },
+            types = true,
+          },
+        })
       end,
     },
     {
@@ -63,7 +70,7 @@ function M.config()
   --     end
   --   end,
   -- })
-  vim.diagnostic.config {
+  vim.diagnostic.config({
     virtual_text = {
       source = "always",
     },
@@ -77,7 +84,7 @@ function M.config()
         end
       end,
     },
-  }
+  })
   require("mason").setup({
     providers = {
       "mason.providers.client",

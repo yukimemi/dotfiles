@@ -1,14 +1,14 @@
 return {
   "uga-rosa/contextment.vim",
 
-  enabled = false,
+  enabled = vim.g.plugin_use_contextment,
 
   dependencies = {
-    "Shougo/context_filetype.vim"
+    "Shougo/context_filetype.vim",
   },
 
   keys = {
-    { "gc", "<Plug>(contextment)", mode = "x" },
+    { "gcc", "<Plug>(contextment)", mode = "x" },
     { "gcc", "<Plug>(contextment-line)", mode = "n" },
   },
 }

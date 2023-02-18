@@ -1,6 +1,8 @@
 return {
   "anuvyklack/windows.nvim",
 
+  enabled = true,
+
   event = "VeryLazy",
 
   dependencies = {
@@ -29,5 +31,4 @@ return {
       },
     })
   end,
-
 }

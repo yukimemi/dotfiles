@@ -1,6 +1,8 @@
 return {
   "monaqa/modesearch.nvim",
 
+  enabled = false,
+
   dependencies = {
     "vim-denops/denops.vim",
     "lambdalisue/kensaku.vim",
@@ -33,12 +35,11 @@ return {
     })
 
     vim.keymap.set("n", "/", function()
-      return modesearch.keymap.prompt.show "rawstr"
+      return require("modesearch").keymap.prompt.show("rawstr")
     end, { expr = true })
 
-    vim.keymap.set("c", "<C-x>", function()
-      return modesearch.keymap.mode.cycle { "rawstr", "migemo", "regexp" }
+    vim.keymap.set("c", "<c-x>", function()
+      return require("modesearch").keymap.mode.cycle({ "rawstr", "migemo", "regexp" })
     end, { expr = true })
-
   end,
 }

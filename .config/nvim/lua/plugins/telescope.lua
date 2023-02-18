@@ -10,7 +10,8 @@ local M = {
     "nvim-telescope/telescope-project.nvim",
     "nvim-telescope/telescope-symbols.nvim",
     "tsakirist/telescope-lazy.nvim",
-    { "tom-anders/telescope-vim-bookmarks.nvim",
+    {
+      "tom-anders/telescope-vim-bookmarks.nvim",
       dependencies = {
         "MattesGroeger/vim-bookmarks",
       },
@@ -28,7 +29,6 @@ function M.config()
   telescope.setup({
     defaults = {
       layout_strategy = "horizontal",
-      sorting_strategy = "ascending",
       mappings = {
         i = {
           ["<c-t>"] = trouble.open_with_trouble,
@@ -57,7 +57,6 @@ function M.config()
 end
 
 function M.init()
-
   --------------------------------------------------------------------------------
   -- Prefix `f` (files) --
   --------------------------------------------------------------------------------
@@ -105,10 +104,10 @@ function M.init()
   -- Prefix `b` (vim-bookmarks) --
   --------------------------------------------------------------------------------
   vim.keymap.set("n", "<space>ba", function()
-    require('telescope').extensions.vim_bookmarks.all()
+    require("telescope").extensions.vim_bookmarks.all()
   end, { desc = "Bookmarks all" })
   vim.keymap.set("n", "<space>bc", function()
-    require('telescope').extensions.vim_bookmarks.current_file()
+    require("telescope").extensions.vim_bookmarks.current_file()
   end, { desc = "Bookmarks current_file" })
 
   --------------------------------------------------------------------------------
@@ -144,7 +143,6 @@ function M.init()
   vim.keymap.set("n", "<space>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", { desc = "Switch Buffer" })
   vim.keymap.set("n", "<space>/", "<cmd>Telescope live_grep<cr>", { desc = "Search" })
   vim.keymap.set({ "n", "x" }, "<space>:", "<cmd>Telescope command_history<cr>", { desc = "Command History" })
-
 end
 
 return M

@@ -1,7 +1,7 @@
 return {
   "tyru/caw.vim",
 
-  enabled = false,
+  enabled = vim.g.plugin_use_caw,
 
   dependencies = {
     "Shougo/context_filetype.vim",
@@ -12,6 +12,6 @@ return {
   event = "VeryLazy",
 
   init = function()
-    vim.g.caw_operator_keymappings = 1
+    vim.g.caw_operator_keymappings = 0
   end,
 }

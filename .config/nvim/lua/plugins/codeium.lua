@@ -1,14 +1,24 @@
 return {
   "Exafunction/codeium.vim",
 
-  event = "InsertEnter",
+  enabled = true,
+
+  event = "VeryLazy",
 
   cmd = "Codeium",
 
-  config = function()
-    -- Change '<C-g>' here to any keycode you like.
-    vim.keymap.set("i", "<C-g>", function()
+  init = function()
+    vim.keymap.set("i", "<C-e>", function()
       return vim.fn["codeium#Accept"]()
+    end, { expr = true, nowait = true })
+    vim.keymap.set("i", "<c-j>", function()
+      return vim.fn["codeium#CycleCompletions"](1)
+    end, { expr = true })
+    vim.keymap.set("i", "<c-k>", function()
+      return vim.fn["codeium#CycleCompletions"](-1)
+    end, { expr = true })
+    vim.keymap.set("i", "<c-x>", function()
+      return vim.fn["codeium#Clear"]()
     end, { expr = true })
   end,
 }

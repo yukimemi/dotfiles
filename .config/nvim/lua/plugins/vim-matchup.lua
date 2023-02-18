@@ -1,6 +1,8 @@
 return {
   "andymass/vim-matchup",
 
+  enabled = true,
+
   event = "VeryLazy",
 
   init = function()
