@@ -16,6 +16,10 @@ local M = {
         "MattesGroeger/vim-bookmarks",
       },
     },
+    {
+      "fannheyward/telescope-coc.nvim",
+      enabled = vim.g.plugin_use_coc,
+    },
   },
 }
 
@@ -54,6 +58,9 @@ function M.config()
   telescope.load_extension("vim_bookmarks")
   telescope.load_extension("lazy")
   -- telescope.load_extension("projects")
+  if (vim.g.plugin_use_coc) then
+    telescope.load_extension("coc")
+  end
 end
 
 function M.init()

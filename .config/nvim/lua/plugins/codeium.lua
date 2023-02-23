@@ -20,5 +20,11 @@ return {
     vim.keymap.set("i", "<c-x>", function()
       return vim.fn["codeium#Clear"]()
     end, { expr = true })
+
+    vim.api.nvim_create_autocmd("BufEnter", {
+      pattern = "*",
+      group = "MyAutoCmd",
+      command = "stopinsert",
+    })
   end,
 }

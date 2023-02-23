@@ -11,7 +11,7 @@ return {
   init = function()
     vim.g.randomcolorscheme_debug = false
     vim.g.randomcolorscheme_echo = true
-    vim.g.randomcolorscheme_interval = 600
+    vim.g.randomcolorscheme_interval = 100
     -- vim.g.randomcolorscheme_enables = { "pink-moon", "pinkmare", "nord" }
     vim.g.randomcolorscheme_disables = { "evening", "default" }
     -- vim.g.randomcolorscheme_events = { "FocusLost", "CursorHold" }

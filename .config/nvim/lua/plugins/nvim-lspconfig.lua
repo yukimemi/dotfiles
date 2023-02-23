@@ -1,7 +1,7 @@
 local M = {
   "neovim/nvim-lspconfig",
 
-  enabled = true,
+  enabled = not vim.g.plugin_use_coc,
 
   event = "BufReadPre",
 

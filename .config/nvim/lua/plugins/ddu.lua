@@ -236,15 +236,17 @@ return {
             ff = {
               -- filterSplitDirection = "floating",
               -- previewFloating = true,
-              -- previewSplit = "vertical",
               -- previewFloatingZindex = 100,
+              -- previewSplit = "vertical",
               -- split = "floating",
+              split = "horizontal",
               prompt = "»",
               -- winCol = x,
               -- winRow = y,
               -- winWidth = width,
               -- winHeight = height,
               -- previewWidth = width / 2,
+              previewHeight = 50,
               autoAction = {
                 name = "preview",
               },

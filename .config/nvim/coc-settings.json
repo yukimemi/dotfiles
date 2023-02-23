@@ -1,84 +1,53 @@
 {
-  "coc.preferences.extensionUpdateCheck": "weekly",
-  "coc.preferences.silentAutoupdate": true,
-  "coc.preferences.useQuickfixForLocations": true,
-  "floatFactory.floatConfig": {
+  "snippets.ultisnips.pythonPrompt": false,
+  "suggest.autoTrigger": "always",
+  "suggest.noselect": true,
+  "suggest.enablePreselect": false,
+  "suggest.completionItemKindLabels": {
+    "keyword": "\uf1de",
+    "variable": "\ue79b",
+    "value": "\uf89f",
+    "operator": "\u03a8",
+    "function": "\u0192",
+    "reference": "\ufa46",
+    "constant": "\uf8fe",
+    "method": "\uf09a",
+    "struct": "\ufb44",
+    "class": "\uf0e8",
+    "interface": "\uf417",
+    "text": "\ue612",
+    "enum": "\uf435",
+    "enumMember": "\uf02b",
+    "module": "\uf40d",
+    "color": "\ue22b",
+    "property": "\ue624",
+    "field": "\uf9be",
+    "unit": "\uf475",
+    "event": "\ufacd",
+    "file": "\uf723",
+    "folder": "\uf114",
+    "snippet": "\ue60b",
+    "typeParameter": "\uf728",
+    "default": "\uf29c"
+  },
+  "hover.floatConfig": {
     "border": true,
-    "rounded": true
+    "highlight": "CocHoverFloating",
+    "winblend": 10
   },
   "suggest.floatConfig": {
     "border": true,
-    "rounded": true
+    "highlight": "CocSuggestFloating",
+    "winblend": 10
   },
-  "suggest.noselect": true,
-  "suggest.enablePreselect": false,
-  "explorer.file.reveal.auto": true,
-  "explorer.file.reveal.whenOpen": false,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.previewAction.onHover": false,
-  "explorer.root.strategies": [
-    "reveal",
-    "workspace",
-    "sourceBuffer"
-  ],
-  "list.source.files.args": [
-    "--hidden",
-    "--no-ignore-vcs",
-    "--files"
-  ],
-  "list.source.grep.defaultArgs": [
-    "-smartcase",
-    "-regex",
-    "-skip-vcs-ignores"
-  ],
-  "list.source.lists.defaultOptions": [
-    "--no-sort"
-  ],
-  "powershell.codeFolding.enable": true,
-  "powershell.enableProfileLoading": false,
-  "powershell.integratedConsole.showOnStartup": false,
-  "powershell.codeFormatting.pipelineIndentationStyle": "IncreaseIndentationForFirstPipeline",
-  "powershell.codeFormatting.useCorrectCasing": true,
-  "powershell.codeFormatting.autoCorrectAliases": true,
-  "powershell.sideBar.CommandExplorerVisibility": true,
-  "npm.binPath": "yarn",
-  "suggest.asciiCharactersOnly": true,
-  "translator.engines": [
-    "google",
-    "bing"
-  ],
-  "translator.toLang": "ja",
-  "coc.preferences.formatOnSave": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "typescript",
-    "typescriptreact",
-    "powershell",
-    "ps1",
-    "python",
-    "lua",
-    "javascript",
-    "json",
-    "html",
-    "rust",
-    "vim",
-    "html",
-    "css",
-    "xml"
-  ],
-  "deno.enable": true,
-  "deno.lint": true,
-  "coc.source.file.trimSameExts": [],
-  "cSpell.enabledLanguageIds": [
-    "git-commit",
-    "html",
-    "markdown",
-    "plaintext",
-    "restructuredtext",
-    "yaml",
-    "yml"
-  ],
-  "mocword.filetypes": [
-    "*"
-  ],
-  "Lua.telemetry.enable": true
+  "diagnostic.floatConfig": {
+    "border": true,
+    "highlight": "CocDiagnosticFloating",
+    "winblend": 10
+  },
+  "signature.floatConfig": {
+    "border": true,
+    "highlight": "CocSignatureFloating",
+    "winblend": 10
+  },
 }

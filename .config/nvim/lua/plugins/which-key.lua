@@ -78,7 +78,7 @@ return {
             function()
               vim.cmd([[GuiWindowOpacity 1.0]])
               vim.cmd([[DisableRandomColorscheme]])
-              vim.cmd([[colorscheme github]])
+              vim.cmd([[colorscheme github-light]])
               vim.opt.background = "light"
               vim.opt.relativenumber = false
               vim.opt.number = true
