@@ -14,10 +14,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-vim.g.plugin_use_cmp = true
+vim.g.plugin_use_cmp = false
 vim.g.plugin_use_ddc = not vim.g.plugin_use_cmp
 
-vim.g.plugin_use_ddu = false
+vim.g.plugin_use_ddu = true
 vim.g.plugin_use_ctrlp = false
 
 vim.g.plugin_use_findent = true
