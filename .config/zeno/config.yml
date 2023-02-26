@@ -275,6 +275,11 @@ snippets:
     snippet: cargo install gptcommit
   - name: Install pnpm on Windows.
     snippet: iwr https://get.pnpm.io/install.ps1 -useb | iex
+  - name: Install pnpm on POSIX.
+    snippet: curl -fsSL https://get.pnpm.io/install.sh | sh -
+  - name: Install xc
+    snippet: go install github.com/joerdav/xc/cmd/xc@latest
+
 
 
 completions:

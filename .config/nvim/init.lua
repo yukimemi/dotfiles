@@ -28,9 +28,12 @@ vim.g.plugin_use_caw = false
 vim.g.plugin_use_comment = true
 vim.g.plugin_use_contextment = false
 
-vim.g.plugin_use_neotree = true
+vim.g.plugin_use_neotree = false
 vim.g.plugin_use_nvimtree = false
-vim.g.plugin_use_fern = false
+vim.g.plugin_use_fern = true
+
+vim.g.plugin_use_bookmark = false
+vim.g.plugin_use_marks = true
 
 vim.api.nvim_create_augroup("MyAutoCmd", { clear = true })
 

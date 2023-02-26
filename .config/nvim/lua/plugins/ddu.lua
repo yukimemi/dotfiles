@@ -70,6 +70,8 @@ return {
         "lambdalisue/mr.vim",
       },
     },
+    "tennashi/ddu-source-github",
+    "tennashi/ddu-source-git_ref",
   },
 
   init = function()
@@ -99,6 +101,10 @@ return {
     )
     vim.keymap.set("n", "<space>dr", "<cmd>Ddu -name=search -resume<cr>")
     vim.keymap.set("n", "<space>dC", "<cmd>Ddu windows-clipboard-history -source-param-prefix='clip'<cr>")
+    vim.keymap.set("n", "<space>dgt", "<cmd>Ddu git_ref -source-param-kind='git_tag'<cr>")
+    vim.keymap.set("n", "<space>dgb", "<cmd>Ddu git_ref -source-param-kind='git_branch'<cr>")
+    vim.keymap.set("n", "<space>dgp", "<cmd>Ddu github_pr<cr>")
+    vim.keymap.set("n", "<space>dgi", "<cmd>Ddu github_issue<cr>")
 
     local function ddu_rg_live()
       vim.fn["ddu#start"]({
@@ -293,6 +299,18 @@ return {
             },
             readme_viewer = {
               defaultAction = "open",
+            },
+            git_tag = {
+              defaultAction = "switch",
+            },
+            git_branch = {
+              defaultAction = "switch",
+            },
+            github_pr = {
+              defaultAction = "switch",
+            },
+            github_issue = {
+              defaultAction = "view_web",
             },
           },
           actionOptions = {

@@ -4,11 +4,16 @@ return {
   enabled = vim.g.plugin_use_fern,
 
   keys = {
-    { "ge", "<cmd>Fern . -reveal=% -drawer -width=40<cr>", mode = "n" },
-    { "gE",
-      function() vim.cmd(string.format("Fern file:///%s -reveal=%s -drawer -width=40", vim.fn.expand("%:p:h"),
-          vim.fn.expand("%:t")))
-      end, mode = "n" },
+    { "ge", "<cmd>Fern . -reveal=% -drawer -width=30<cr>", mode = "n" },
+    {
+      "gE",
+      function()
+        vim.cmd(
+          string.format("Fern file:///%s -reveal=%s -drawer -width=30", vim.fn.expand("%:p:h"), vim.fn.expand("%:t"))
+        )
+      end,
+      mode = "n",
+    },
   },
 
   dependencies = {

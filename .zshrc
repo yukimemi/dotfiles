@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2022/12/19 22:19:48.
+# Last Change : 2023/02/25 22:06:20.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -334,3 +334,8 @@ fi
 if type tea > /dev/null 2>&1; then
   add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
 fi
+
+# pnpm
+export PNPM_HOME="${HOME}/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end

@@ -12,6 +12,7 @@ local M = {
     "tsakirist/telescope-lazy.nvim",
     {
       "tom-anders/telescope-vim-bookmarks.nvim",
+      enabled = vim.g.plugin_use_bookmark,
       dependencies = {
         "MattesGroeger/vim-bookmarks",
       },
@@ -55,10 +56,12 @@ function M.config()
 
   telescope.load_extension("file_browser")
   telescope.load_extension("project")
-  telescope.load_extension("vim_bookmarks")
   telescope.load_extension("lazy")
   -- telescope.load_extension("projects")
-  if (vim.g.plugin_use_coc) then
+  if vim.g.plugin_use_bookmark then
+    telescope.load_extension("vim_bookmarks")
+  end
+  if vim.g.plugin_use_coc then
     telescope.load_extension("coc")
   end
 end

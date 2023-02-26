@@ -15,7 +15,7 @@ return {
     -- vim.g.randomcolorscheme_enables = { "pink-moon", "pinkmare", "nord" }
     vim.g.randomcolorscheme_disables = { "evening", "default" }
     -- vim.g.randomcolorscheme_events = { "FocusLost", "CursorHold" }
-    vim.g.randomcolorscheme_path = vim.fn.expand("~/.cache/randomcolorscheme/colors.toml")
+    vim.g.randomcolorscheme_path = vim.fn.expand("~/.config/randomcolorscheme/colorscheme.toml")
     vim.keymap.set("n", "<space>co", "<cmd>ChangeColorscheme<cr>")
     vim.keymap.set("n", "<space>cn", "<cmd>DisableThisColorscheme<cr>")
     vim.keymap.set("n", "<space>cl", "<cmd>LikeThisColorscheme<cr>")
