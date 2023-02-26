@@ -9,5 +9,13 @@ return {
 
   init = function()
     vim.g.openai_config = { apiKey = vim.env.OPENAI_API_KEY }
+
+    vim.api.nvim_create_autocmd("BufRead", {
+      group = "MyAutoCmd",
+      pattern = "openai://*",
+      callback = function()
+        vim.bo.noswap = true
+      end,
+    })
   end,
 }

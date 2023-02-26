@@ -25,8 +25,8 @@ vim.g.plugin_use_findent = true
 vim.g.plugin_use_dansa = false
 
 vim.g.plugin_use_caw = false
-vim.g.plugin_use_comment = true
-vim.g.plugin_use_contextment = false
+vim.g.plugin_use_comment = false
+vim.g.plugin_use_contextment = true
 
 vim.g.plugin_use_neotree = false
 vim.g.plugin_use_nvimtree = false

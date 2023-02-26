@@ -21,7 +21,7 @@ return {
         vim.fn["pum#set_option"]("max_height", 30)
         vim.fn["pum#set_option"]("border", "single")
         vim.fn["pum#set_option"]("scrollbar_char", "")
-        vim.fn["pum#set_option"]("padding", true)
+        vim.fn["pum#set_option"]("padding", false)
       end,
     },
     "Shougo/ddc-ui-pum",
@@ -176,11 +176,11 @@ return {
           \     sorters: ['matcher_fuzzy'],
           \     converters: ['matcher_fuzzy'],
           \   },
-          \   around: #{ mark: 'around' },
-          \   buffer: #{ mark: 'buf' },
-          \   plantuml: #{ mark: 'uml' },
+          \   around: #{ mark: '' },
+          \   buffer: #{ mark: '' },
+          \   plantuml: #{ mark: '' },
           \   cmdline: #{
-          \     mark: 'cmd',
+          \     mark: '',
           \     forceCompletionPattern: '\S/\S*|\.\w*',
           \     dup: 'force',
           \   },
@@ -208,7 +208,7 @@ return {
           \     forceCompletionPattern: '\S/\S*',
           \   },
           \   cmdline-history: #{
-          \     mark: 'history',
+          \     mark: '',
           \     sorters: [],
           \   },
           \   rg: #{
