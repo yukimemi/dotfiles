@@ -284,6 +284,11 @@ function M.config()
               command = "clippy",
               extraArgs = { "--no-deps" },
             },
+            diagnostics = {
+              enable = true,
+              disabled = { "unresolved-proc-macro" },
+              enableExperimental = true,
+            },
           },
         },
       }))

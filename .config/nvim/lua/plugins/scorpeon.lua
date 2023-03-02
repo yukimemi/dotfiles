@@ -5,9 +5,18 @@ return {
 
   dependencies = {
     "vim-denops/denops.vim",
+
+    {
+      "oovm/vscode-toml",
+      cond = false,
+    },
+    {
+      "emilast/vscode-logfile-highlighter",
+      cond = false,
+    }
   },
 
   init = function()
-    vim.g.scorpeon_extensions_path = vim.fn.expand("~/.cache/scorpeon")
+    vim.g.scorpeon_extensions_path = vim.fn.stdpath("data") .. "/lazy"
   end,
 }

@@ -1,7 +1,7 @@
 return {
   "Exafunction/codeium.vim",
 
-  enabled = true,
+  enabled = not jit.os:find("Windows"),
 
   event = "VeryLazy",
 

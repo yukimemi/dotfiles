@@ -14,7 +14,7 @@ return {
       group = "MyAutoCmd",
       pattern = "openai://*",
       callback = function()
-        vim.bo.noswap = true
+        vim.bo.swap = false
       end,
     })
   end,
