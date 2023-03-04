@@ -252,10 +252,10 @@ return {
               -- winWidth = width,
               -- winHeight = height,
               -- previewWidth = width / 2,
-              previewHeight = 50,
-              autoAction = {
-                name = "preview",
-              },
+              -- previewHeight = 50,
+              -- autoAction = {
+              --   name = "preview",
+              -- },
             },
           },
           filterParams = {

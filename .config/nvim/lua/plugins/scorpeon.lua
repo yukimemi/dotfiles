@@ -1,6 +1,8 @@
 return {
   "uga-rosa/scorpeon.vim",
 
+  enabled = false,
+
   lazy = false,
 
   dependencies = {

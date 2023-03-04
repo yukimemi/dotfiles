@@ -10,6 +10,12 @@ return {
 
     -- matcher, sorter, converter
     "tani/ddc-fuzzy",
+    "Shougo/ddc-filter-matcher_head",
+    "Shougo/ddc-filter-matcher_length",
+    "Shougo/ddc-filter-matcher_vimregexp",
+    "Shougo/ddc-filter-sorter_rank",
+    "Shougo/ddc-filter-converter_remove_overlap",
+    "Shougo/ddc-filter-converter_truncate_abbr",
 
     -- ui
     {
@@ -190,7 +196,10 @@ return {
           \     isVolatile: v:true,
           \     dup: 'force',
           \   },
-          \   line: #{ mark: 'line' },
+          \   line: #{
+          \     mark: 'line',
+          \     matchers: ['matcher_vimregexp'],
+          \   },
           \   mocword: #{
           \     mark: '',
           \     minAutoCompleteLength: 3,
