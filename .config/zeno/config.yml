@@ -73,6 +73,9 @@ snippets:
   - name: Vim
     keyword: v
     snippet: vim
+  - name: hitori
+    keyword: hi
+    snippet: hitori
   # Shell
   - name: clear
     keyword: c
@@ -279,7 +282,8 @@ snippets:
     snippet: curl -fsSL https://get.pnpm.io/install.sh | sh -
   - name: Install xc
     snippet: go install github.com/joerdav/xc/cmd/xc@latest
-
+  - name: Install hitori
+    snippet: deno install -A --unstable --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori.ts
 
 
 completions:

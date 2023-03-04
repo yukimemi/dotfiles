@@ -21,8 +21,8 @@ vim.g.plugin_use_ddc = true
 vim.g.plugin_use_ddu = true
 vim.g.plugin_use_ctrlp = false
 
-vim.g.plugin_use_findent = true
-vim.g.plugin_use_dansa = false
+vim.g.plugin_use_findent = false
+vim.g.plugin_use_dansa = true
 
 vim.g.plugin_use_caw = false
 vim.g.plugin_use_comment = false
