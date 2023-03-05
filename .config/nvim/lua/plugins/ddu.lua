@@ -125,14 +125,6 @@ return {
     end
 
     vim.api.nvim_create_user_command("DduRgLive", ddu_rg_live, {})
-
-    vim.api.nvim_create_autocmd("User", {
-      group = "MyAutoCmd",
-      pattern = "DenopsPluginPost:ddu",
-      callback = function()
-        vim.notify("ddu loaded !")
-      end,
-    })
   end,
 
   config = function()

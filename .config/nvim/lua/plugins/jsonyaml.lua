@@ -8,13 +8,6 @@ return {
   },
 
   init = function()
-    vim.api.nvim_create_autocmd("User", {
-      group = "MyAutoCmd",
-      pattern = "DenopsPluginPost:jsonyaml",
-      callback = function()
-        vim.notify("jsonyaml loaded !")
-      end,
-    })
     vim.api.nvim_create_autocmd("FileType", {
       group = "MyAutoCmd",
       pattern = "json,yaml",

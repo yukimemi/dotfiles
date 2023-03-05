@@ -16,13 +16,5 @@ return {
     -- }
 
     vim.g["glance#config"] = "file:///" .. vim.fn.expand("~/.config/glance/init.ts")
-
-    vim.api.nvim_create_autocmd("User", {
-      group = "MyAutoCmd",
-      pattern = "DenopsPluginPost:glance",
-      callback = function()
-        vim.notify("glance-vim loaded !")
-      end,
-    })
   end,
 }

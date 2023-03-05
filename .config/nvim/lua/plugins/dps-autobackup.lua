@@ -16,13 +16,5 @@ return {
     -- vim.g.autobackup_dir = vim.o.backupdir .. "/autobackup"
     vim.g.autobackup_events = { "CursorHold", "CursorHoldI", "BufWritePre", "FocusLost", "FocusGained", "InsertLeave" }
     vim.g.autobackup_blacklist_filetypes = { "log", "csv", "gin-diff", "gin-status" }
-
-    vim.api.nvim_create_autocmd("User", {
-      group = "MyAutoCmd",
-      pattern = "DenopsPluginPost:autobackup",
-      callback = function()
-        vim.notify("dps-autobackup loaded !")
-      end,
-    })
   end,
 }

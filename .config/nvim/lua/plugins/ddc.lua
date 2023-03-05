@@ -144,14 +144,6 @@ return {
     vim.keymap.set("n", ":", "<Cmd>call CommandlinePre(':')<CR>:")
     vim.keymap.set("n", "/", "<Cmd>call CommandlinePre('/')<CR>/")
     vim.keymap.set("n", "?", "<Cmd>call CommandlinePre('/')<CR>?")
-
-    vim.api.nvim_create_autocmd("User", {
-      group = "MyAutoCmd",
-      pattern = "DenopsPluginPost:ddc",
-      callback = function()
-        vim.notify("ddc loaded !")
-      end,
-    })
   end,
 
   config = function()

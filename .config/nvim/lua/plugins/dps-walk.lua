@@ -19,13 +19,5 @@ return {
     vim.keymap.set("n", "<space>wj", "<cmd>DenopsWalk --path=~/.cache/junkfile<cr>")
     vim.keymap.set("n", "<space>wm", "<cmd>DenopsWalk --path=~/.memolist<cr>")
     vim.keymap.set("n", "<space>wD", "<cmd>DenopsWalkBufferDir<cr>")
-
-    vim.api.nvim_create_autocmd("User", {
-      group = "MyAutoCmd",
-      pattern = "DenopsPluginPost:walk",
-      callback = function()
-        vim.notify("dps-walk loaded !")
-      end,
-    })
   end,
 }
