@@ -7,7 +7,10 @@ local M = {
 
   dependencies = {
     "SmiteshP/nvim-navic",
-    "lukas-reineke/lsp-format.nvim",
+    {
+      "lukas-reineke/lsp-format.nvim",
+      enabled = false,
+    },
     "jose-elias-alvarez/null-ls.nvim",
     {
       "williamboman/mason.nvim",
@@ -141,16 +144,16 @@ function M.config()
     },
   })
   require("mason-lspconfig").setup()
-  require("lsp-format").setup({
-    xml = {
-      excludee = { "lemminx" },
-    },
-  })
+  -- require("lsp-format").setup({
+  --   xml = {
+  --     exclude = { "lemminx" },
+  --   },
+  -- })
   local lspconfig = require("lspconfig")
 
   local function on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
-    require("lsp-format").on_attach(client, bufnr)
+    -- require("lsp-format").on_attach(client, bufnr)
 
     local opts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set(
@@ -264,12 +267,13 @@ function M.config()
         settings = {
           xml = {
             format = {
-              enabled = false,
-              splitAttributes = false,
+              enabled = true,
+              formatComments= false,
               joinCDATALines = false,
-              joinContentLines = false,
               joinCommentLines = false,
-              spaceBeforeEmptyCloseTag = false,
+              joinContentLines = false,
+              spaceBeforeEmptyCloseTag = true,
+              splitAttributes = true,
             },
           },
         },

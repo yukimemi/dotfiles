@@ -10,7 +10,7 @@ function M.setup(options)
   local nls = require("null-ls")
   nls.setup({
     debounce = 150,
-    save_after_format = true,
+    save_after_format = false,
 
     sources = {
       -- completion
@@ -93,6 +93,19 @@ function M.setup(options)
           return vim.fn.executable("dprint") > 0
         end,
       }),
+      nls.builtins.formatting.prettier.with({
+        condition = function()
+          return vim.fn.executable("prettier") > 0
+        end,
+        disabled_filetypes = {
+          "javascript",
+          "javascriptreact",
+          "json",
+          "jsonc",
+          "typescript",
+          "typescriptreact",
+        },
+      }),
       nls.builtins.formatting.fixjson.with({
         condition = function()
           return vim.fn.executable("fixjson") > 0
@@ -157,17 +170,20 @@ function M.setup(options)
       }),
       nls.builtins.formatting.tidy.with({
         condition = function()
-          return vim.fn.executable("tidy") > 0
+          -- return vim.fn.executable("tidy") > 0
+          return false
         end,
       }),
       nls.builtins.formatting.xmlformat.with({
         condition = function()
-          return vim.fn.executable("xmlformat") > 0
+          -- return vim.fn.executable("xmlformat") > 0
+          return false
         end,
       }),
       nls.builtins.formatting.xmllint.with({
         condition = function()
-          return vim.fn.executable("xmllint") > 0
+          -- return vim.fn.executable("xmllint") > 0
+          return false
         end,
       }),
       nls.builtins.formatting.yamlfmt.with({

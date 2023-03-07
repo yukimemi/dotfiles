@@ -290,7 +290,7 @@ function l {
 function la {
   Get-ChildItem -Force $args
 }
-Set-Alias hi hitori
+Set-Alias h hitori
 
 # Readline setting.
 Set-PSReadLineOption -EditMode Vi

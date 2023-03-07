@@ -92,14 +92,14 @@ return {
     vim.keymap.set(
       "n",
       "<space>ds",
-      "<cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-input=`input('Pattern: ')`<cr>"
+      "<cmd>Ddu -name=rg rg -ui-param-ignoreEmpty -source-param-input=`input('Pattern: ')`<cr>"
     )
     vim.keymap.set(
       "n",
       "<space>dk",
-      "<cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-inputType='migemo' -source-param-input=`input('Pattern: ')`<cr>"
+      "<cmd>Ddu -name=rg rg -ui-param-ignoreEmpty -source-param-inputType='migemo' -source-param-input=`input('Pattern: ')`<cr>"
     )
-    vim.keymap.set("n", "<space>dr", "<cmd>Ddu -name=search -resume<cr>")
+    vim.keymap.set("n", "<space>dr", "<cmd>Ddu -name=rg -resume<cr>")
     vim.keymap.set("n", "<space>dC", "<cmd>Ddu windows-clipboard-history -source-param-prefix='clip'<cr>")
     vim.keymap.set("n", "<space>dgt", "<cmd>Ddu git_ref -source-param-kind='git_tag'<cr>")
     vim.keymap.set("n", "<space>dgb", "<cmd>Ddu git_ref -source-param-kind='git_branch'<cr>")
@@ -198,7 +198,7 @@ return {
       end,
     })
 
-    vim.api.nvim_create_autocmd({ "ColorScheme", "VimResized", "UIEnter" }, {
+    vim.api.nvim_create_autocmd({ "VimResized", "UIEnter" }, {
       group = "MyAutoCmd",
       pattern = "*",
       callback = function()
@@ -222,11 +222,11 @@ return {
               cmd = { "git", "ls-files", "-co", "--exclude-standard" },
             },
             file_rg = {
-              cmd = { "rg", "--files", "--glob", "!.git", "--color", "never", "--no-messages" },
+              cmd = { "rg", "--files", "--glob", "!.git", "--color", "never", "--no-messages", "--json" },
               updateItems = 50000,
             },
             rg = {
-              args = { "--ignore-case", "--column", "--no-heading", "--color", "never" },
+              args = { "--ignore-case", "--column", "--no-heading", "--color", "never", "--json" },
               inputType = "regex",
             },
           },
