@@ -1,9 +1,39 @@
 {
-  "snippets.ultisnips.pythonPrompt": false,
-  "suggest.noselect": true,
   "colors.enable": true,
   "diagnostic.checkCurrentLine": true,
+  "snippets.ultisnips.pythonPrompt": false,
+  "suggest.autoTrigger": "always",
+  "suggest.enablePreselect": false,
+  "suggest.languageSourcePriority": 200,
+  "suggest.noselect": true,
+  "suggest.snippetIndicator": "~",
+  "hover.floatConfig": {
+    "border": true,
+    "highlight": "CocHoverFloating",
+    "winblend": 10
+  },
+  "suggest.floatConfig": {
+    "border": true,
+    "highlight": "CocSuggestFloating",
+    "winblend": 10
+  },
+  "diagnostic.floatConfig": {
+    "border": true,
+    "highlight": "CocDiagnosticFloating",
+    "winblend": 10
+  },
+  "signature.floatConfig": {
+    "border": true,
+    "highlight": "CocSignatureFloating",
+    "winblend": 10
+  },
   "[typescript][rust][xml][lua]": {
     "coc.preferences.formatOnSave": true
-  }
+  },
+  "xml.codeLens.enabled": true,
+  "xml.completion.autoCloseTags": true,
+  "xml.format.preservedNewlines": 1,
+  "xml.format.spaceBeforeEmptyCloseTag": true,
+  "xml.format.splitAttributes": true,
+  "xml.format.trimTrailingWhitespace": true,
 }

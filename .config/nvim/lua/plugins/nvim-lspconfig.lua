@@ -9,7 +9,7 @@ local M = {
     "SmiteshP/nvim-navic",
     {
       "lukas-reineke/lsp-format.nvim",
-      enabled = false,
+      enabled = true,
     },
     "jose-elias-alvarez/null-ls.nvim",
     {
@@ -105,23 +105,6 @@ local M = {
 }
 
 function M.config()
-  -- vim.api.nvim_create_autocmd("LspAttach", {
-  --   once = true,
-  --   callback = function()
-  --     vim.lsp.handlers["textDocument/hover"] = function(_, results, ctx, config)
-  --       local client = vim.lsp.get_client_by_id(ctx.client_id)
-  --       vim.lsp.handlers.hover(
-  --         _,
-  --         results,
-  --         ctx,
-  --         vim.tbl_deep_extend("force", config or {}, {
-  --           border = "single",
-  --           title = client.name,
-  --         })
-  --       )
-  --     end
-  --   end,
-  -- })
   vim.diagnostic.config({
     virtual_text = {
       source = "always",
@@ -144,16 +127,12 @@ function M.config()
     },
   })
   require("mason-lspconfig").setup()
-  -- require("lsp-format").setup({
-  --   xml = {
-  --     exclude = { "lemminx" },
-  --   },
-  -- })
+  require("lsp-format").setup()
   local lspconfig = require("lspconfig")
 
   local function on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
-    -- require("lsp-format").on_attach(client, bufnr)
+    require("lsp-format").on_attach(client, bufnr)
 
     local opts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set(
@@ -268,12 +247,15 @@ function M.config()
           xml = {
             format = {
               enabled = true,
-              formatComments= false,
+              formatComments = true,
               joinCDATALines = false,
               joinCommentLines = false,
               joinContentLines = false,
               spaceBeforeEmptyCloseTag = true,
               splitAttributes = true,
+            },
+            completion = {
+              autoCloseTags = true,
             },
           },
         },

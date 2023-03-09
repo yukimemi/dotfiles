@@ -45,7 +45,7 @@ return {
       default = {
         expandtab = false,
         space = {
-          shiftwidth = 4,
+          shiftwidth = 2,
         },
       },
     })

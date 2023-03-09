@@ -15,8 +15,8 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 vim.g.plugin_use_cmp = false
-vim.g.plugin_use_coc = false
-vim.g.plugin_use_ddc = true
+vim.g.plugin_use_coc = true
+vim.g.plugin_use_ddc = false
 
 vim.g.plugin_use_ddu = true
 vim.g.plugin_use_ctrlp = false
@@ -32,8 +32,8 @@ vim.g.plugin_use_neotree = false
 vim.g.plugin_use_nvimtree = false
 vim.g.plugin_use_fern = true
 
-vim.g.plugin_use_bookmark = false
-vim.g.plugin_use_marks = true
+vim.g.plugin_use_bookmark = true
+vim.g.plugin_use_marks = false
 
 vim.api.nvim_create_augroup("MyAutoCmd", { clear = true })
 
