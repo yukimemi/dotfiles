@@ -30,6 +30,7 @@
   "[typescript][rust][xml][lua]": {
     "coc.preferences.formatOnSave": true
   },
+  "Lua.diagnostics.globals": ["vim"],
   "xml.codeLens.enabled": true,
   "xml.completion.autoCloseTags": true,
   "xml.format.preservedNewlines": 1,

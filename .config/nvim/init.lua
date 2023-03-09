@@ -43,13 +43,15 @@ require("lazy").setup("plugins", {
     enabled = false,
     frequency = 86400,
   },
-  concurrency = (function()
-    if jit.os:find("Windows") then
-      return 20
-    else
-      return 13
-    end
-  end)(),
+  concurrency = (
+      function()
+        if jit.os:find("Windows") then
+          return 20
+        else
+          return 13
+        end
+      end
+      )(),
   install = {
     colorscheme = { "pink-moon" },
   },
