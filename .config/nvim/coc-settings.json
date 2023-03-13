@@ -33,8 +33,13 @@
   "Lua.diagnostics.globals": ["vim"],
   "xml.codeLens.enabled": true,
   "xml.completion.autoCloseTags": true,
+  "xml.format.emptyElements": "collapse",
+  "xml.format.enforceQuoteStyle": "ignore",
+  "xml.format.preserveAttributeLineBreaks": false,
+  "xml.format.preserveEmptyContent": false,
   "xml.format.preservedNewlines": 1,
+  "xml.format.quotations": "doubleQuotes",
   "xml.format.spaceBeforeEmptyCloseTag": true,
   "xml.format.splitAttributes": true,
-  "xml.format.trimTrailingWhitespace": true,
+  "xml.format.trimTrailingWhitespace": true
 }

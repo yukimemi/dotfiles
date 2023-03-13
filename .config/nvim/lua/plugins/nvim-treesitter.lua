@@ -3,7 +3,7 @@ local M = {
 
   enabled = true,
 
-  build = ":TSUpdate",
+  -- build = ":TSUpdate",
 
   event = "BufReadPost",
 
