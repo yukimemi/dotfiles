@@ -16,11 +16,20 @@ local M = {
     "hrsh7th/vim-vsnip",
     "hrsh7th/vim-vsnip-integ",
     "lukas-reineke/cmp-rg",
+    "ray-x/cmp-treesitter",
+    "yutkat/cmp-mocword",
+    "chrisgrieser/cmp-nerdfont",
     "rafamadriz/friendly-snippets",
     "onsails/lspkind.nvim",
     {
       "hrsh7th/cmp-nvim-lsp-signature-help",
       enabled = false,
+    },
+    {
+      "KentoOgata/cmp-tsnip",
+      dependencies = {
+        "yuki-yano/tsnip.nvim",
+      },
     },
   },
 }
@@ -57,7 +66,11 @@ function M.config()
       { name = "nvim_lsp" },
       { name = "vsnip" },
       { name = "rg" },
+      { name = 'mocword' },
+      { name = 'tsnip' },
+      { name = "treesitter" },
       { name = "path" },
+      { name = "nerdfont" },
       { name = "emoji" },
     }, {
       { name = "buffer" },

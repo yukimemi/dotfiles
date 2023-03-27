@@ -208,6 +208,7 @@ function M.config()
 
     denols = function()
       lspconfig["denols"].setup(vim.tbl_deep_extend("force", options, {
+        root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
         init_options = {
           lint = true,
           unstable = true,
@@ -225,8 +226,14 @@ function M.config()
     end,
     tsserver = function()
       lspconfig["tsserver"].setup(vim.tbl_deep_extend("force", options, {
-        single_file_support = false,
         root_dir = lspconfig.util.root_pattern("package.json"),
+        single_file_support = false,
+      }))
+    end,
+    vtsls = function()
+      lspconfig["vtsls"].setup(vim.tbl_deep_extend("force", options, {
+        root_dir = lspconfig.util.root_pattern("package.json"),
+        single_file_support = false,
       }))
     end,
     ["powershell_es"] = function()

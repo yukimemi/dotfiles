@@ -25,7 +25,7 @@ return {
         vim.fn["pum#set_option"]("min_width", 3)
         vim.fn["pum#set_option"]("max_width", 100)
         vim.fn["pum#set_option"]("max_height", 30)
-        vim.fn["pum#set_option"]("border", "single")
+        -- vim.fn["pum#set_option"]("border", "single")
         vim.fn["pum#set_option"]("scrollbar_char", "")
         vim.fn["pum#set_option"]("padding", false)
       end,

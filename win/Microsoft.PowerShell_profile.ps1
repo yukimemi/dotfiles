@@ -33,7 +33,9 @@ if (Is-Windows) {
 $ErrorActionPreference = "SilentlyContinue"
 Stop-Transcript | Out-Null
 $ErrorActionPreference = "Stop"
-Start-Transcript
+$transcriptPath = [System.IO.Path]::Combine($env:USERPROFILE, ".cache", "ps1", "logs")
+New-Item -Force -ItemType Directory $transcriptPath | Out-Null
+Start-Transcript -OutputDirectory $transcriptPath
 
 # starship
 if (Get-Command starship -ErrorAction SilentlyContinue) {
@@ -75,7 +77,7 @@ function gp {
 # git ignore for PowerShell
 Function gig {
   param(
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string[]]$list
   )
   $params = ($list | ForEach-Object { [uri]::EscapeDataString($_) }) -join ","
@@ -106,7 +108,8 @@ function cd-ls {
     $z = & {
       if (Is-Windows) {
         (Join-Path $env:USERPROFILE ".z")
-      } else {
+      }
+      else {
         (Join-Path $env:HOME ".z")
       }
     }
@@ -115,7 +118,8 @@ function cd-ls {
     [array]::Reverse($c)
     if (Get-Command uq -ErrorAction SilentlyContinue) {
       $c | uq | Set-Variable c
-    } else {
+    }
+    else {
       $c | Sort-Object -Unique | Set-Variable c
     }
     [array]::Reverse($c)
@@ -175,7 +179,8 @@ function RemoveTo-Trash {
     if ($PSBoundParameters.ContainsKey('Path')) {
       $Path | Where-Object { ![string]::IsNullOrWhiteSpace($_) } | Set-Variable Path
       $targets = Convert-Path $Path
-    } else {
+    }
+    else {
       $targets = Convert-Path -LiteralPath $LiteralPath
     }
     $targets | ForEach-Object {
@@ -227,7 +232,8 @@ Remove-Item alias:r
 function r {
   if (Get-Command trash -ErrorAction SilentlyContinue) {
     trash $(Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER)
-  } else {
+  }
+  else {
     Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER | RemoveTo-Trash
   }
 }
@@ -259,7 +265,8 @@ Set-Alias rm RemoveTo-Trash
 Set-Alias o Start-Process
 if (Is-Windows) {
   Set-Alias e nvim
-} else {
+}
+else {
   Set-Alias e neovide
 }
 Set-Alias c Clear-Host
@@ -289,6 +296,9 @@ function l {
 }
 function la {
   Get-ChildItem -Force $args
+}
+if (Is-Windows) {
+  Remove-Item alias:h
 }
 Set-Alias h hitori
 
@@ -323,7 +333,8 @@ function _j2 {
   $z = & {
     if (Is-Windows) {
       (Join-Path $env:USERPROFILE ".z")
-    } else {
+    }
+    else {
       (Join-Path $env:HOME ".z")
     }
   }

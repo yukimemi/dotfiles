@@ -1,6 +1,8 @@
 return {
   "windwp/nvim-autopairs",
 
+  enabled = not vim.g.plugin_use_ddc,
+
   dependencies = {
     "hrsh7th/nvim-cmp",
     enabled = vim.g.plugin_use_cmp,

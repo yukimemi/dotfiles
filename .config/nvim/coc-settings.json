@@ -27,7 +27,7 @@
     "highlight": "CocSignatureFloating",
     "winblend": 10
   },
-  "[typescript][rust][xml][lua]": {
+  "[typescript][typescriptreact][rust][xml][lua][ps1]": {
     "coc.preferences.formatOnSave": true
   },
   "Lua.diagnostics.globals": ["vim"],
@@ -41,5 +41,8 @@
   "xml.format.quotations": "doubleQuotes",
   "xml.format.spaceBeforeEmptyCloseTag": true,
   "xml.format.splitAttributes": true,
-  "xml.format.trimTrailingWhitespace": true
+  "xml.format.trimTrailingWhitespace": true,
+  "powershell.codeFormatting.autoCorrectAliases": true,
+  "powershell.integratedConsole.showOnStartup": false,
+  "cSpell.enabled": false
 }

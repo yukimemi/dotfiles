@@ -37,15 +37,21 @@ return {
         "mattn/vim-sonictemplate",
       },
     },
+    {
+      "ompugao/ctrlp-kensaku",
+      dependencies = {
+        "lambdalisue/kensaku.vim",
+      },
+    }
   },
 
   keys = {
-    { "<space>ch", "<cmd>CtrlPCommandLine<cr>", mode = { "n", "x" } },
+    -- { "<space>ch", "<cmd>CtrlPCommandLine<cr>", mode = { "n", "x" } },
     { "<space>cM", "<cmd>CtrlPMark<cr>", mode = "n" },
     { "<space>cS", "<cmd>CtrlPSearchHistory<cr>", mode = "n" },
     { "<space>cb", "<cmd>CtrlPBuffer<cr>", mode = "n" },
     { "<space>cc", "<cmd>CtrlP ~/.cache<cr>", mode = "n" },
-    { "<space>cl", "<cmd>CtrlPLauncher<cr>", mode = "n" },
+    -- { "<space>cl", "<cmd>CtrlPLauncher<cr>", mode = "n" },
     { "<space>cd", "<cmd>CtrlP ~/.dotfiles<cr>", mode = "n" },
     { "<space>cD", "<cmd>CtrlPCurFile<cr>", mode = "n" },
     { "<space>cf", "<cmd>CtrlPFiletype<cr>", mode = "n" },
@@ -68,11 +74,21 @@ return {
     vim.g.ctrlp_show_hidden = 1
     vim.g.ctrlp_use_caching = 1
     vim.g.ctrlp_user_command_async = 1
+    vim.g.ctrlp_regexp = 1
 
     vim.api.nvim_create_user_command("CtrlPCommandLine", "call ctrlp#init(ctrlp#commandline#id())", {})
 
     if vim.fn.executable("rg") then
       vim.g.ctrlp_grep_command = "rg -i --vimgrep --no-heading --hidden --no-ignore --regexp"
     end
+
+    local function kensaku()
+      local oldmatcher = vim.g.ctrlp_match_func
+      vim.g.ctrlp_match_func = { match = "ctrlp_kensaku#matcher" }
+      vim.cmd([[CtrlP]])
+      vim.g.ctrlp_match_func = oldmatcher
+    end
+
+    vim.api.nvim_create_user_command("CtrlPKensaku", kensaku, {})
   end,
 }

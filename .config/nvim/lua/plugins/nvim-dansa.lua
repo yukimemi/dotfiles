@@ -27,8 +27,8 @@ return {
         },
         tab = {
           shiftwidth = 4,
-        }
-      }
+        },
+      },
     })
 
     -- per filetype settings.
@@ -37,15 +37,15 @@ return {
         expandtab = false,
         tab = {
           shiftwidth = 4,
-        }
-      }
+        },
+      },
     })
 
     dansa.setup.filetype("xml", {
       default = {
         expandtab = false,
         space = {
-          shiftwidth = 2,
+          shiftwidth = 4,
         },
       },
     })

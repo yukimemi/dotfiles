@@ -132,8 +132,13 @@ return {
       group = "MyAutoCmd",
       pattern = "ddu-ff-filter",
       callback = function()
-        vim.keymap.set("i", "<cr>", "<cmd>call ddu#ui#ff#do_action('itemAction')<cr>", { buffer = true })
-        vim.keymap.set("i", "<esc>", "<esc><cmd>call ddu#ui#ff#close()<cr>", { nowait = true, buffer = true })
+        vim.keymap.set("i", "<cr>", "<cmd>call ddu#ui#do_action('itemAction')<cr>", { buffer = true })
+        vim.keymap.set(
+          "i",
+          "<esc>",
+          "<esc><cmd>call ddu#ui#do_action('closeFilterWindow')<cr>",
+          { nowait = true, buffer = true }
+        )
         vim.keymap.set(
           "i",
           "<c-j>",
@@ -154,45 +159,40 @@ return {
       pattern = "ddu-ff",
       callback = function()
         vim.wo.cursorline = true
-        vim.keymap.set("n", "<cr>", "<cmd>call ddu#ui#ff#do_action('itemAction')<cr>", { buffer = true })
-        vim.keymap.set("n", "<space>", "<cmd>call ddu#ui#ff#do_action('toggleSelectItem')<cr>", { buffer = true })
-        vim.keymap.set("n", "i", "<cmd>call ddu#ui#ff#do_action('openFilterWindow')<cr>", { buffer = true })
-        vim.keymap.set("n", "a", "<cmd>call ddu#ui#ff#do_action('chooseAction')<cr>", { buffer = true })
-        vim.keymap.set("n", "<C-l>", "<cmd>call ddu#ui#ff#do_action('refreshItems')<cr>", { buffer = true })
-        vim.keymap.set("n", "p", "<cmd>call ddu#ui#ff#do_action('preview')<cr>", { buffer = true })
-        vim.keymap.set("n", "q", "<cmd>call ddu#ui#ff#do_action('quit')<cr>", { buffer = true })
-        vim.keymap.set("n", "c", "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'cd'})<cr>", { buffer = true })
-        vim.keymap.set(
-          "n",
-          "d",
-          "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<cr>",
-          { buffer = true }
-        )
-        vim.keymap.set("n", "e", "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<cr>", { buffer = true })
+        vim.keymap.set("n", "<cr>", "<cmd>call ddu#ui#do_action('itemAction')<cr>", { buffer = true })
+        vim.keymap.set("n", "<space>", "<cmd>call ddu#ui#do_action('toggleSelectItem')<cr>", { buffer = true })
+        vim.keymap.set("n", "i", "<cmd>call ddu#ui#do_action('openFilterWindow')<cr>", { buffer = true })
+        vim.keymap.set("n", "a", "<cmd>call ddu#ui#do_action('chooseAction')<cr>", { buffer = true })
+        vim.keymap.set("n", "<C-l>", "<cmd>call ddu#ui#do_action('refreshItems')<cr>", { buffer = true })
+        vim.keymap.set("n", "p", "<cmd>call ddu#ui#do_action('preview')<cr>", { buffer = true })
+        vim.keymap.set("n", "q", "<cmd>call ddu#ui#do_action('quit')<cr>", { buffer = true })
+        vim.keymap.set("n", "c", "<cmd>call ddu#ui#do_action('itemAction', {'name': 'cd'})<cr>", { buffer = true })
+        vim.keymap.set("n", "d", "<cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<cr>", { buffer = true })
+        vim.keymap.set("n", "e", "<cmd>call ddu#ui#do_action('itemAction', {'name': 'edit'})<cr>", { buffer = true })
         vim.keymap.set(
           "n",
           "E",
-          "<cmd>call ddu#ui#ff#do_action('itemAction', {'params': eval(input('params: '))})<cr>",
+          "<cmd>call ddu#ui#do_action('itemAction', {'params': eval(input('params: '))})<cr>",
           { buffer = true }
         )
         vim.keymap.set(
           "n",
           "v",
-          "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<cr>",
+          "<cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<cr>",
           { buffer = true }
         )
-        vim.keymap.set("n", "N", "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'new'})<cr>", { buffer = true })
+        vim.keymap.set("n", "N", "<cmd>call ddu#ui#do_action('itemAction', {'name': 'new'})<cr>", { buffer = true })
         vim.keymap.set(
           "n",
           "r",
-          "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'quickfix'})<cr>",
+          "<cmd>call ddu#ui#do_action('itemAction', {'name': 'quickfix'})<cr>",
           { buffer = true }
         )
-        vim.keymap.set("n", "<esc>", "<cmd>call ddu#ui#ff#do_action('quit')<cr>", { nowait = true, buffer = true })
+        vim.keymap.set("n", "<esc>", "<cmd>call ddu#ui#do_action('quit')<cr>", { nowait = true, buffer = true })
         vim.keymap.set(
           "n",
           "u",
-          "<cmd>call ddu#ui#ff#do_action('updateOptions', {'sourceOptions': {'_': {'matchers': []}}})<cr>",
+          "<cmd>call ddu#ui#do_action('updateOptions', {'sourceOptions': {'_': {'matchers': []}}})<cr>",
           { buffer = true }
         )
       end,
@@ -239,6 +239,7 @@ return {
               -- split = "floating",
               split = "horizontal",
               prompt = "»",
+              startFilter = true,
               -- winCol = x,
               -- winRow = y,
               -- winWidth = width,
@@ -307,6 +308,14 @@ return {
           },
           actionOptions = {
             narrow = {
+              quit = false,
+            },
+            tabopen = {
+              quit = false,
+            },
+          },
+          actionParams = {
+            rg = {
               quit = false,
             },
           },

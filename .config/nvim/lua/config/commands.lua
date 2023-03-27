@@ -17,6 +17,15 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.cmd([[
+command! -bar ToScratch
+      \ setlocal buftype=nofile bufhidden=hide noswapfile
+
+command! -nargs=1 -complete=command L
+      \ <mods> new | ToScratch |
+      \ call setline(1, split(execute(<q-args>), '\n'))
+]])
+
 vim.api.nvim_create_autocmd("FileType", {
   group = "MyAutoCmd",
   pattern = {
