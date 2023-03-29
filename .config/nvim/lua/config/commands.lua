@@ -17,6 +17,14 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = "MyAutoCmd",
+  pattern = { "*" },
+  callback = function()
+    vim.cmd([[silent! normal! g`"zv]])
+  end,
+})
+
 vim.cmd([[
 command! -bar ToScratch
       \ setlocal buftype=nofile bufhidden=hide noswapfile

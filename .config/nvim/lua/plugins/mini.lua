@@ -1,7 +1,7 @@
 return {
   "echasnovski/mini.nvim",
 
-  enabled = vim.g.plugin_use_ddc,
+  enabled = false,
 
   event = "VeryLazy",
 

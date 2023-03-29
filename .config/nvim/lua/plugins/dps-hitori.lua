@@ -1,5 +1,6 @@
 return {
   "yukimemi/dps-hitori",
+
   dev = false,
 
   lazy = false,

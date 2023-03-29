@@ -46,7 +46,7 @@ return {
   },
 
   keys = {
-    -- { "<space>ch", "<cmd>CtrlPCommandLine<cr>", mode = { "n", "x" } },
+    { "<space>cH", "<cmd>CtrlPCommandLine<cr>", mode = { "n", "x" } },
     { "<space>cM", "<cmd>CtrlPMark<cr>", mode = "n" },
     { "<space>cS", "<cmd>CtrlPSearchHistory<cr>", mode = "n" },
     { "<space>cb", "<cmd>CtrlPBuffer<cr>", mode = "n" },

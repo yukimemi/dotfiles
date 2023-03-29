@@ -27,7 +27,7 @@ return {
         vim.fn["pum#set_option"]("max_height", 30)
         -- vim.fn["pum#set_option"]("border", "single")
         vim.fn["pum#set_option"]("scrollbar_char", "")
-        vim.fn["pum#set_option"]("padding", false)
+        vim.fn["pum#set_option"]("padding", true)
       end,
     },
     "Shougo/ddc-ui-pum",
@@ -46,6 +46,7 @@ return {
     "Shougo/ddc-source-input",
     "Shougo/ddc-source-cmdline-history",
     "Shougo/ddc-source-line",
+    "Shougo/ddc-source-nvim-lua",
     {
       "Milly/windows-clipboard-history.vim",
       enabled = jit.os:find("Windows"),
@@ -170,9 +171,11 @@ return {
       call ddc#custom#patch_global('sourceOptions', #{
           \   _: #{
           \     ignoreCase: v:true,
-          \     matchers: ['matcher_fuzzy'],
-          \     sorters: ['matcher_fuzzy'],
-          \     converters: ['matcher_fuzzy'],
+          \     matchers: ['matcher_head', 'matcher_length'],
+          \     sorters: ['sorter_rank'],
+          \     converters: [
+          \       'converter_remove_overlap', 'converter_truncate_abbr',
+          \     ],
           \   },
           \   around: #{ mark: '' },
           \   buffer: #{ mark: '' },
