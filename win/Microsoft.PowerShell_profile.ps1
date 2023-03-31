@@ -28,6 +28,7 @@ if (Is-Windows) {
   # chcp 65001
   $OutputEncoding = [Console]::OutputEncoding
   $env:LANG = "ja_JP.UTF-8"
+  $env:EDITOR = "hitori"
 }
 
 $ErrorActionPreference = "SilentlyContinue"
@@ -108,8 +109,7 @@ function cd-ls {
     $z = & {
       if (Is-Windows) {
         (Join-Path $env:USERPROFILE ".z")
-      }
-      else {
+      } else {
         (Join-Path $env:HOME ".z")
       }
     }
@@ -118,8 +118,7 @@ function cd-ls {
     [array]::Reverse($c)
     if (Get-Command uq -ErrorAction SilentlyContinue) {
       $c | uq | Set-Variable c
-    }
-    else {
+    } else {
       $c | Sort-Object -Unique | Set-Variable c
     }
     [array]::Reverse($c)
@@ -179,8 +178,7 @@ function RemoveTo-Trash {
     if ($PSBoundParameters.ContainsKey('Path')) {
       $Path | Where-Object { ![string]::IsNullOrWhiteSpace($_) } | Set-Variable Path
       $targets = Convert-Path $Path
-    }
-    else {
+    } else {
       $targets = Convert-Path -LiteralPath $LiteralPath
     }
     $targets | ForEach-Object {
@@ -232,8 +230,7 @@ Remove-Item alias:r
 function r {
   if (Get-Command trash -ErrorAction SilentlyContinue) {
     trash $(Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER)
-  }
-  else {
+  } else {
     Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER | RemoveTo-Trash
   }
 }
@@ -265,8 +262,7 @@ Set-Alias rm RemoveTo-Trash
 Set-Alias o Start-Process
 if (Is-Windows) {
   Set-Alias e nvim
-}
-else {
+} else {
   Set-Alias e neovide
 }
 Set-Alias c Clear-Host
@@ -333,8 +329,7 @@ function _j2 {
   $z = & {
     if (Is-Windows) {
       (Join-Path $env:USERPROFILE ".z")
-    }
-    else {
+    } else {
       (Join-Path $env:HOME ".z")
     }
   }

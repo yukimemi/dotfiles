@@ -27,6 +27,18 @@ return {
       o = {
         name = "+open",
         i = { "<cmd>edit ~/.config/nvim/init.lua<cr>", "Open init.lua" },
+        o = {
+          function()
+            local bufname = vim.fn.bufname()
+            local bufdir = vim.fn.fnamemodify(bufname, ":p:h")
+            if jit.os:find("Windows") then
+              vim.cmd("!explorer " .. bufdir)
+            else
+              vim.cmd("!open " .. bufdir)
+            end
+          end,
+          "Open buffer dir",
+        },
       },
       t = {
         name = "toggle",
