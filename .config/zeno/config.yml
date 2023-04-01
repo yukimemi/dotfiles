@@ -217,7 +217,7 @@ snippets:
   - name: Install mmv
     snippet: go install github.com/itchyny/mmv/cmd/mmv@latest
   - name: Install memo
-    anippet: go install github.com/mattn/memo@latest
+    snippet: go install github.com/mattn/memo@latest
   - name: Install yarn
     snippet: curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
   - name: Install heroku cli

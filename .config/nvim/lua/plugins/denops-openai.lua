@@ -15,6 +15,7 @@ return {
       pattern = "openai://*",
       callback = function()
         vim.bo.swap = false
+        vim.bo.wrap = false
       end,
     })
   end,

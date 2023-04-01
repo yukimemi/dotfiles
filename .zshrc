@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/02/25 22:06:20.
+# Last Change : 2023/04/01 22:18:15.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -337,5 +337,8 @@ fi
 
 # pnpm
 export PNPM_HOME="${HOME}/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 # pnpm end
