@@ -5,9 +5,9 @@ return {
 
   opts = {
     mappings = {
-      normal = "<C-x>",
+      -- normal = "<C-x>",
       insert = "<C-x>",
-      visual = "<C-x>",
+      -- visual = "<C-x>",
     },
     events = { "TextChanged", "BufRead", "WinEnter", "InsertLeave" },
     highlight = {
