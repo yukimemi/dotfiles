@@ -15,4 +15,4 @@ zola 0.12.0
 dust 0.5.3
 github-cli 1.0.0
 jq jq-1.6
-python 3.10.4
+python 3.11.2

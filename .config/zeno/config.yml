@@ -141,9 +141,9 @@ snippets:
     keyword: uda
     snippet: deno run --allow-all https://deno.land/x/udd/main.ts **/*.ts
   # youtube-dl
-  - name: youtube-dl -i
-    keyword: yt
-    snippet: youtube-dl -i
+  - name: Install yt-dlp (youtube-dl)
+    keyword: install-yt-dlp
+    snippet: pip install -U yt-dlp
   - name: youtube-dl to music
     keyword: ytm
     snippet: youtube-dl -ix --no-post-overwrites --download-archive ./.downloaded

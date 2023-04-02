@@ -55,6 +55,7 @@ return {
     "Shougo/ddu-source-file_rec",
     "Shougo/ddu-source-line",
     "Shougo/ddu-source-register",
+    "Shougo/ddu-filter-matcher_ignore_files",
     "matsui54/ddu-source-file_external",
     "matsui54/ddu-source-help",
     "shun/ddu-source-buffer",
@@ -163,6 +164,7 @@ return {
         vim.keymap.set("n", "<space>", "<cmd>call ddu#ui#do_action('toggleSelectItem')<cr>", { buffer = true })
         vim.keymap.set("n", "i", "<cmd>call ddu#ui#do_action('openFilterWindow')<cr>", { buffer = true })
         vim.keymap.set("n", "a", "<cmd>call ddu#ui#do_action('chooseAction')<cr>", { buffer = true })
+        vim.keymap.set("n", "A", "<cmd>call ddu#ui#do_action('inputAction')<cr>", { buffer = true })
         vim.keymap.set("n", "<C-l>", "<cmd>call ddu#ui#do_action('refreshItems')<cr>", { buffer = true })
         vim.keymap.set("n", "p", "<cmd>call ddu#ui#do_action('preview')<cr>", { buffer = true })
         vim.keymap.set("n", "q", "<cmd>call ddu#ui#do_action('quit')<cr>", { buffer = true })
@@ -211,10 +213,60 @@ return {
         local y = vim.fn.float2nr((vim.o.lines - mline) / 2)
         vim.fn["ddu#custom#patch_global"]({
           ui = "ff",
+          uiOptions = {
+            filer = {
+              toggle = true,
+            },
+          },
           sourceOptions = {
             ["_"] = {
               ignoreCase = true,
               matchers = { "merge" },
+            },
+            file_old = {
+              matchers = {
+                "matcher_substring",
+                "matcher_relative",
+                "matcher_ignore_current_buffer",
+              },
+            },
+            file_external = {
+              matchers = {
+                "matcher_substring",
+              },
+            },
+            file_rec = {
+              matchers = {
+                "matcher_substring",
+                "matcher_hidden",
+              },
+            },
+            file = {
+              matchers = {
+                "matcher_substring",
+                "matcher_hidden",
+              },
+              sorters = { "sorter_alpha" },
+            },
+            dein = {
+              defaultAction = "cd",
+            },
+            markdown = {
+              sorters = {},
+            },
+            line = {
+              matchers = {
+                "matcher_kensaku",
+              },
+            },
+            path_history = {
+              defaultAction = "uiCd",
+            },
+            rg = {
+              matchers = {
+                "matcher_substring",
+                "matcher_files",
+              },
             },
           },
           sourceParams = {

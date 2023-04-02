@@ -22,9 +22,11 @@ return {
       "Shougo/pum.vim",
       config = function()
         vim.fn["pum#set_option"]("use_complete", false)
+        vim.fn["pum#set_option"]("horizontal_menu", false)
         vim.fn["pum#set_option"]("min_width", 3)
         vim.fn["pum#set_option"]("max_width", 100)
         vim.fn["pum#set_option"]("max_height", 30)
+        vim.fn["pum#set_option"]("use_setline", false)
         -- vim.fn["pum#set_option"]("border", "single")
         vim.fn["pum#set_option"]("scrollbar_char", "")
         vim.fn["pum#set_option"]("padding", true)
@@ -104,18 +106,8 @@ return {
   init = function()
     vim.cmd([[
       function! CommandlinePre(mode) abort
-        " NOTE: It disables default command line completion!
-        set wildchar=<C-t>
-        set wildcharm=<C-t>
-
-        cnoremap <expr><buffer> <Tab>
-          \ pum#visible() ?
-          \  '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-          \ exists('b:ddc_cmdline_completion') ?
-          \   ddc#map#manual_complete() : "\<C-t>"
-
         " Overwrite sources
-        if !exists('b:prev_buffer_config')
+        if !('b:prev_buffer_config'->exists())
           let b:prev_buffer_config = ddc#custom#get_buffer()
         endif
         if a:mode ==# ':'
@@ -127,21 +119,17 @@ return {
 
         call ddc#enable_cmdline_completion()
       endfunction
-
       function! CommandlinePost() abort
-        silent! cunmap <buffer> <Tab>
-
         " Restore sources
-        if exists('b:prev_buffer_config')
+        if 'b:prev_buffer_config'->exists()
           call ddc#custom#set_buffer(b:prev_buffer_config)
           unlet b:prev_buffer_config
         else
           call ddc#custom#set_buffer({})
         endif
-
-        set wildcharm=<Tab>
       endfunction
     ]])
+
     vim.keymap.set("n", ":", "<Cmd>call CommandlinePre(':')<CR>:")
     vim.keymap.set("n", "/", "<Cmd>call CommandlinePre('/')<CR>/")
     vim.keymap.set("n", "?", "<Cmd>call CommandlinePre('/')<CR>?")
@@ -159,7 +147,7 @@ return {
             \ )
       endif
       call ddc#custom#patch_global('cmdlineSources', {
-          \   ':': ['cmdline-history', 'cmdline', 'around'],
+          \   ':': ['cmdline', 'cmdline-history', 'around'],
           \   '@': ['cmdline-history', 'input', 'file', 'around'],
           \   '>': ['cmdline-history', 'input', 'file', 'around'],
           \   '/': ['around', 'line'],
@@ -285,13 +273,21 @@ return {
 
       " For command line mode completion
       cnoremap <expr> <Tab>
+      \ wildmenumode() ? &wildcharm->nr2char() :
       \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-      \ exists('b:ddc_cmdline_completion') ?
-      \ ddc#map#manual_complete() : nr2char(&wildcharm)
+      \ ddc#map#manual_complete()
       cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
       cnoremap <C-o>   <Cmd>call pum#map#confirm()<CR>
-      cnoremap <expr> <C-c>
+      cnoremap <expr> <C-e>
             \ ddc#map#insert_item(0, '<Cmd>call pum#map#cancel()<CR>')
+
+      " For terminal completion
+      call ddc#enable_terminal_completion()
+      call ddc#custom#patch_filetype(['deol'], #{
+          \   specialBufferCompletion: v:true,
+          \   keywordPattern: '[0-9a-zA-Z_./#:-]*',
+          \   sources: ['zsh', 'shell-history', 'around'],
+          \ })
 
       call ddc#enable()
     ]])
