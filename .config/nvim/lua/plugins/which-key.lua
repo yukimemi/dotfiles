@@ -32,7 +32,8 @@ return {
             local bufname = vim.fn.bufname()
             local bufdir = vim.fn.fnamemodify(bufname, ":p:h")
             if jit.os:find("Windows") then
-              vim.cmd("!explorer " .. bufdir)
+              local bufdir_backslash = string.gsub(bufdir, "/", "\\")
+              vim.cmd("!explorer " .. bufdir_backslash)
             else
               vim.cmd("!open " .. bufdir)
             end

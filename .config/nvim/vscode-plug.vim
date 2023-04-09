@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : vscode-plug.vim
 " Author      : yukimemi
-" Last Change : 2020/02/10 23:42:43.
+" Last Change : 2023/04/03 12:03:00.
 " =============================================================================
 
 " Plugin:
@@ -38,10 +38,15 @@ Plug 'machakann/vim-swap'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 't9md/vim-quickhl'
 Plug 'unblevable/quick-scope'
-Plug 'vim-scripts/autodate.vim'
+" Plug 'vim-scripts/autodate.vim'
 Plug 'vim-denops/denops.vim'
-" Plug 'yukimemi/dps-ahdr'
-Plug 'asvetliakov/vim-easymotion'
+Plug 'yukimemi/dps-ahdr'
+Plug 'yukimemi/dps-autodate'
+Plug 'yukimemi/dps-autobackup'
+Plug 'yuki-yano/fuzzy-motion.vim'
+Plug 'lambdalisue/kensaku.vim'
+
+" Plug 'asvetliakov/vim-easymotion'
 
 call plug#end()
 
@@ -63,6 +68,10 @@ silent! so $VIM_PATH/rc/vim-textobj-fold.vim
 silent! so $VIM_PATH/rc/vim-textobj-line.vim
 silent! so $VIM_PATH/rc/vim-textobj-indent.vim
 silent! so $VIM_PATH/rc/vim-textobj-user.vim
+silent! so $VIM_PATH/rc/dps-ahdr.vim
+silent! so $VIM_PATH/rc/dps-autodate.vim
+silent! so $VIM_PATH/rc/dps-autobackup.vim
+silent! so $VIM_PATH/rc/fuzzy-motion.vim
 
 let g:EasyMotion_do_mapping = 0
 nmap <cr> <Plug>(easymotion-bd-w)

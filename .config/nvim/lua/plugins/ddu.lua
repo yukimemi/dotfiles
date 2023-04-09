@@ -126,9 +126,7 @@ return {
     end
 
     vim.api.nvim_create_user_command("DduRgLive", ddu_rg_live, {})
-  end,
 
-  config = function()
     vim.api.nvim_create_autocmd("FileType", {
       group = "MyAutoCmd",
       pattern = "ddu-ff-filter",
@@ -199,180 +197,155 @@ return {
         )
       end,
     })
+  end,
 
-    vim.api.nvim_create_autocmd({ "VimResized", "UIEnter" }, {
-      group = "MyAutoCmd",
-      pattern = "*",
-      callback = function()
-        local ratio = 0.70
-        local mcol = 1.0 * vim.o.columns * ratio
-        local mline = 1.0 * vim.o.lines * ratio
-        local width = vim.fn.float2nr(mcol)
-        local height = vim.fn.float2nr(mline)
-        local x = vim.fn.float2nr((vim.o.columns - mcol) / 2)
-        local y = vim.fn.float2nr((vim.o.lines - mline) / 2)
-        vim.fn["ddu#custom#patch_global"]({
-          ui = "ff",
-          uiOptions = {
-            filer = {
-              toggle = true,
-            },
+  config = function()
+    vim.fn["ddu#custom#patch_global"]({
+      ui = "ff",
+      uiParams = {
+        ff = {
+          split = "horizontal",
+          prompt = "»",
+          startFilter = true,
+        },
+      },
+      uiOptions = {
+        filer = {
+          toggle = true,
+        },
+      },
+      sourceOptions = {
+        ["_"] = {
+          ignoreCase = true,
+          matchers = { "merge" },
+        },
+        file_old = {
+          matchers = {
+            "matcher_substring",
+            "matcher_relative",
+            "matcher_ignore_current_buffer",
           },
-          sourceOptions = {
-            ["_"] = {
-              ignoreCase = true,
-              matchers = { "merge" },
-            },
-            file_old = {
-              matchers = {
-                "matcher_substring",
-                "matcher_relative",
-                "matcher_ignore_current_buffer",
-              },
-            },
-            file_external = {
-              matchers = {
-                "matcher_substring",
-              },
-            },
-            file_rec = {
-              matchers = {
-                "matcher_substring",
-                "matcher_hidden",
-              },
-            },
-            file = {
-              matchers = {
-                "matcher_substring",
-                "matcher_hidden",
-              },
-              sorters = { "sorter_alpha" },
-            },
-            dein = {
-              defaultAction = "cd",
-            },
-            markdown = {
-              sorters = {},
-            },
-            line = {
-              matchers = {
-                "matcher_kensaku",
-              },
-            },
-            path_history = {
-              defaultAction = "uiCd",
-            },
-            rg = {
-              matchers = {
-                "matcher_substring",
-                "matcher_files",
-              },
-            },
+        },
+        file_external = {
+          matchers = {
+            "matcher_substring",
           },
-          sourceParams = {
-            file_external = {
-              cmd = { "git", "ls-files", "-co", "--exclude-standard" },
-            },
-            file_rg = {
-              cmd = { "rg", "--files", "--glob", "!.git", "--color", "never", "--no-messages", "--json" },
-              updateItems = 50000,
-            },
-            rg = {
-              args = { "--ignore-case", "--column", "--no-heading", "--color", "never", "--json" },
-              inputType = "regex",
-            },
+        },
+        file_rec = {
+          matchers = {
+            "matcher_substring",
+            "matcher_hidden",
           },
-          uiParams = {
-            ff = {
-              -- filterSplitDirection = "floating",
-              -- previewFloating = true,
-              -- previewFloatingZindex = 100,
-              -- previewSplit = "vertical",
-              -- split = "floating",
-              split = "horizontal",
-              prompt = "»",
-              startFilter = true,
-              -- winCol = x,
-              -- winRow = y,
-              -- winWidth = width,
-              -- winHeight = height,
-              -- previewWidth = width / 2,
-              -- previewHeight = 50,
-              -- autoAction = {
-              --   name = "preview",
-              -- },
-            },
+        },
+        file = {
+          matchers = {
+            "matcher_substring",
+            "matcher_hidden",
           },
-          filterParams = {
-            matcher_fzf = {
-              highlightMatched = "Search",
-            },
-            matcher_fuse = {
-              highlightMatched = "Search",
-            },
-            matcher_kensaku = {
-              highlightMatched = "Search",
-            },
-            merge = {
-              highlightMatched = "Search",
-              filters = {
-                {
-                  name = "matcher_kensaku",
-                  weight = 2.0,
-                },
-                "matcher_fuse",
-              },
-            },
+          sorters = { "sorter_alpha" },
+        },
+        dein = {
+          defaultAction = "cd",
+        },
+        markdown = {
+          sorters = {},
+        },
+        line = {
+          matchers = {
+            "matcher_kensaku",
           },
-          kindParams = {
-            action = {
-              quit = true,
-            },
+        },
+        path_history = {
+          defaultAction = "uiCd",
+        },
+        rg = {
+          matchers = {
+            "matcher_substring",
+            "matcher_files",
           },
-          kindOptions = {
-            file = {
-              defaultAction = "open",
+        },
+      },
+      sourceParams = {
+        file_external = {
+          cmd = { "git", "ls-files", "-co", "--exclude-standard" },
+        },
+        file_rg = {
+          cmd = { "rg", "--files", "--glob", "!.git", "--color", "never", "--no-messages", "--json" },
+          updateItems = 50000,
+        },
+        rg = {
+          args = { "--ignore-case", "--column", "--no-heading", "--color", "never", "--json" },
+          inputType = "regex",
+        },
+      },
+      filterParams = {
+        matcher_fzf = {
+          highlightMatched = "Search",
+        },
+        matcher_fuse = {
+          highlightMatched = "Search",
+        },
+        matcher_kensaku = {
+          highlightMatched = "Search",
+        },
+        merge = {
+          highlightMatched = "Search",
+          filters = {
+            {
+              name = "matcher_kensaku",
+              weight = 2.0,
             },
-            help = {
-              defaultAction = "open",
-            },
-            word = {
-              defaultAction = "append",
-            },
-            action = {
-              defaultAction = "do",
-            },
-            readme_viewer = {
-              defaultAction = "open",
-            },
-            git_tag = {
-              defaultAction = "switch",
-            },
-            git_branch = {
-              defaultAction = "switch",
-            },
-            github_pr = {
-              defaultAction = "switch",
-            },
-            github_issue = {
-              defaultAction = "view_web",
-            },
+            "matcher_fuse",
           },
-          actionOptions = {
-            narrow = {
-              quit = false,
-            },
-            tabopen = {
-              quit = false,
-            },
-          },
-          actionParams = {
-            rg = {
-              quit = false,
-            },
-          },
-        })
-      end,
+        },
+      },
+      kindParams = {
+        action = {
+          quit = true,
+        },
+      },
+      kindOptions = {
+        file = {
+          defaultAction = "open",
+        },
+        help = {
+          defaultAction = "open",
+        },
+        word = {
+          defaultAction = "append",
+        },
+        action = {
+          defaultAction = "do",
+        },
+        readme_viewer = {
+          defaultAction = "open",
+        },
+        git_tag = {
+          defaultAction = "switch",
+        },
+        git_branch = {
+          defaultAction = "switch",
+        },
+        github_pr = {
+          defaultAction = "switch",
+        },
+        github_issue = {
+          defaultAction = "view_web",
+        },
+      },
+      actionOptions = {
+        narrow = {
+          quit = false,
+        },
+        tabopen = {
+          quit = false,
+        },
+      },
+      actionParams = {
+        rg = {
+          quit = false,
+        },
+      },
     })
   end,
 }

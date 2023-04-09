@@ -94,7 +94,7 @@ nnoremap <silent> so <cmd>call VSCodeNotify('workbench.action.toggleEditorWidths
 nnoremap <silent> s0 <cmd>Only<cr>
 nnoremap <silent> sO <cmd>Tabonly<cr>
 nnoremap <silent> st <cmd>Tabnew<cr>
-nnoremap <silent> ss <cmd>Split<cr>
+nnoremap <silent> sh <cmd>Split<cr>
 nnoremap <silent> sv <cmd>Vsplit<cr>
 nnoremap <silent> sq <cmd>Quit<cr>
 nnoremap <silent> sQ <cmd>Qall<cr>

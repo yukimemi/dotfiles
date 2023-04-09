@@ -1,3 +1,7 @@
+if vim.g.vscode then
+  return
+end
+
 if vim.loader then
   vim.loader.enable()
 end
@@ -18,9 +22,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-vim.g.plugin_use_cmp = false
+vim.g.plugin_use_cmp = true
 vim.g.plugin_use_coc = false
-vim.g.plugin_use_ddc = true
+vim.g.plugin_use_ddc = false
 
 vim.g.plugin_use_ddu = true
 vim.g.plugin_use_ctrlp = true
@@ -55,7 +59,7 @@ require("lazy").setup("plugins", {
     end
   end)(),
   install = {
-    colorscheme = { "pink-moon" },
+    colorscheme = { "pinkmare" },
   },
   dev = {
     path = "~/src/github.com/yukimemi",
