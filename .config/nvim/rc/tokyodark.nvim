@@ -1,6 +1,0 @@
-let g:tokyodark_transparent_background = 1
-let g:tokyodark_enable_italic_comment = 1
-let g:tokyodark_enable_italic = 1
-let g:tokyodark_color_gamma = "1.0"
-
-" vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

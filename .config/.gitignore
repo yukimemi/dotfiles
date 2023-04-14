@@ -19,14 +19,15 @@ hub
 iterm2/
 mocword/
 nextword/
+nvim/
 pet
 powershell/
+randomcolorscheme/
 rclone
 scoop/
 stetic/
+tool_state
 vim/autobackup/
 vim/yankround/
 xbuild/
 yarn/
-randomcolorscheme/
-tool_state
