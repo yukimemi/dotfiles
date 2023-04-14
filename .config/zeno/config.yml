@@ -288,6 +288,8 @@ snippets:
     snippet: deno install -f --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori.ts
   - name: Install gifsicle
     snippet: brew install gifsicle
+  - name: Install bsky
+    snippet: go install github.com/mattn/bsky@latest
 
 
 completions:
