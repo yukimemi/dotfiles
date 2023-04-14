@@ -1,0 +1,41 @@
+tnoremap <esc> <c-\><c-n>
+if g:is_windows
+  nnoremap <localleader>s :<c-u>execute 'Deol pwsh' '-cwd='.fnamemodify(expand('%'), ':h')<cr>
+else
+  nnoremap <localleader>s :<c-u>execute 'Deol' '-cwd='.fnamemodify(expand('%'), ':h')<cr>
+endif
+
+au MyAutoCmd FileType deol nnoremap <buffer> p <c-w>""
+
+let g:deol#custom_map = {
+      \ 'bg': '<c-z>',
+      \ 'ctrl_c': '<c-c>',
+      \ 'edit': 'e',
+      \ 'execute_line': '<cr>',
+      \ 'next_prompt': '<c-n>',
+      \ 'paste_prompt': '<c-y>',
+      \ 'previous_prompt': '<c-p>',
+      \ 'quit': 'q',
+      \ 'start_append': 'a',
+      \ 'start_append_last': 'A',
+      \ 'start_insert': 'i',
+      \ 'start_insert_first': 'I',
+      \ }
+
+if g:plugin_use_ddc
+  let g:deol#enable_ddc_completion = v:true
+  function! s:deol_cfg() abort
+    call ddc#custom#patch_filetype(['deol'], 'sources', ['shell-history'])
+    call ddc#custom#patch_global('sourceOptions', {
+          \ '_': {
+          \   'matchers': ['matcher_head'],
+          \   'sorters': ['sorter_rank']
+          \ },
+          \ 'shell-history': {'mark': 'shell'},
+          \ })
+  endfunction
+
+  au MyAutoCmd FileType deol call s:deol_cfg()
+endif
+
+" vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

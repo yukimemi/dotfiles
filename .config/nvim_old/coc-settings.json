@@ -1,0 +1,48 @@
+{
+  "colors.enable": true,
+  "diagnostic.checkCurrentLine": true,
+  "snippets.ultisnips.pythonPrompt": false,
+  "suggest.autoTrigger": "always",
+  "suggest.enablePreselect": false,
+  "suggest.languageSourcePriority": 200,
+  "suggest.noselect": true,
+  "suggest.snippetIndicator": "~",
+  "hover.floatConfig": {
+    "border": true,
+    "highlight": "CocHoverFloating",
+    "winblend": 10
+  },
+  "suggest.floatConfig": {
+    "border": true,
+    "highlight": "CocSuggestFloating",
+    "winblend": 10
+  },
+  "diagnostic.floatConfig": {
+    "border": true,
+    "highlight": "CocDiagnosticFloating",
+    "winblend": 10
+  },
+  "signature.floatConfig": {
+    "border": true,
+    "highlight": "CocSignatureFloating",
+    "winblend": 10
+  },
+  "[typescript][typescriptreact][rust][xml][lua][ps1]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "Lua.diagnostics.globals": ["vim"],
+  "xml.codeLens.enabled": true,
+  "xml.completion.autoCloseTags": true,
+  "xml.format.emptyElements": "collapse",
+  "xml.format.enforceQuoteStyle": "ignore",
+  "xml.format.preserveAttributeLineBreaks": false,
+  "xml.format.preserveEmptyContent": false,
+  "xml.format.preservedNewlines": 1,
+  "xml.format.quotations": "doubleQuotes",
+  "xml.format.spaceBeforeEmptyCloseTag": true,
+  "xml.format.splitAttributes": true,
+  "xml.format.trimTrailingWhitespace": true,
+  "powershell.codeFormatting.autoCorrectAliases": true,
+  "powershell.integratedConsole.showOnStartup": false,
+  "cSpell.enabled": false
+}

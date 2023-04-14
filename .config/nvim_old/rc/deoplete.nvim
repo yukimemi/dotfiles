@@ -1,0 +1,9 @@
+let g:deoplete#enable_at_startup = 1
+
+" <CR>: close popup and save indent.
+inoremap <silent> <cr> <C-r>=<SID>my_cr_function()<cr>
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<cr>"
+endfunction
+
+" vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

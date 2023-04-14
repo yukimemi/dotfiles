@@ -1,0 +1,32 @@
+[[tool]]
+name = "ripgrep-all"
+cmd = "rg"
+arg = ["-i", "--vimgrep", "--no-heading", "--hidden", "--no-ignore", "--regexp"]
+
+[[tool]]
+name = "jvgrep-all"
+cmd = "jvgrep"
+arg = ["-i", "--no-color", "-I", "-R", "-8"]
+
+[[tool]]
+name = "pt-all"
+cmd = "pt"
+arg = [
+  "-i",
+  "--nogroup",
+  "--nocolor",
+  "--smart-case",
+  "--skip-vcs-ignores",
+  "--hidden",
+]
+
+[[tool]]
+name = "default-all"
+cmd = "rg"
+arg = ["-i", "--vimgrep", "--no-heading", "--hidden", "--no-ignore", "--regexp"]
+
+[[tool]]
+name = "default"
+cmd = "rg"
+arg = ["-i", "--vimgrep", "--no-heading"]
+
