@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : .gvimrc
 " Author      : yukimemi
-" Last Change : 2022/09/08 15:02:03.
+" Last Change : 2023/04/16 18:36:11.
 " =============================================================================
 
 " hide all
@@ -28,9 +28,9 @@ endif
 " set gfn=UDEV_Gothic_NF:h11
 " set gfw=UDEV_Gothic_NF:h11
 " set printfont=UDEV_Gothic_NF:h11
-set gfn=Cica:h10
-set gfw=Cica:h10
-set printfont=Cica:h10
+set gfn=HackGen_Console_NF:h10:cSHIFTJIS:qDRAFT
+set gfw=HackGen_Console_NF:h10:cSHIFTJIS:qDRAFT
+set printfont=HackGen_Console_NF:h10:cSHIFTJIS:qDRAFT
 
 " gui
 set rop=type:directx,renmode:5
