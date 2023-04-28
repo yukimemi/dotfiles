@@ -27,8 +27,8 @@ github = "yuki-yano/zeno.zsh"
 [plugins.zsh-vi-mode]
 github = "jeffreytse/zsh-vi-mode"
 
-[plugins.zsh-autocomplete]
-github = "marlonrichert/zsh-autocomplete"
+# [plugins.zsh-autocomplete]
+# github = "marlonrichert/zsh-autocomplete"
 
 [plugins.asdf]
 github = "asdf-vm/asdf"

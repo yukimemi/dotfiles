@@ -1,14 +1,14 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/04/01 22:18:15.
+# Last Change : 2023/04/28 22:53:49.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
 # if attachment fails, start a new session
 [ -x "$(command -v tmux)" ] \
   && [ -z "${TMUX}" ] \
-  && { tmux attach || tmux; } >/dev/null 2>&1
+  && { tmux attach || tmux -u; } >/dev/null 2>&1
 
 #
 # sheldon
