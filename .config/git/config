@@ -27,6 +27,7 @@
 	filemode = false
 	pager = delta
 	quotepath = false
+	editor = nvim
 [ghq]
 	root = ~/.cache/nvim/pack/minpac
 	root = ~/.go/src

@@ -25,7 +25,7 @@ function Is-Windows {
 
 # Use utf-8
 if (Is-Windows) {
-  # chcp 65001
+  chcp 65001
   $OutputEncoding = [Console]::OutputEncoding
   $env:LANG = "ja_JP.UTF-8"
   $env:EDITOR = "hitori"
@@ -224,6 +224,9 @@ function Trim-Cd {
 function rhl {
   rhq list | __FILTER | Trim-Cd
 }
+function ghl {
+  ghr list | __FILTER | Trim-Cd
+}
 
 # Remove-Alias r
 Remove-Item alias:r
@@ -302,7 +305,7 @@ Set-Alias h hitori
 Set-PSReadLineOption -EditMode Vi
 Set-PSReadLineOption -ViModeIndicator cursor
 
-Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function AcceptNextSuggestionWord
 Set-PSReadLineKeyHandler -Key 'Ctrl+e' -Function AcceptSuggestion
 
