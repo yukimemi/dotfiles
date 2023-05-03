@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/05/03 10:52:24.
+# Last Change : 2023/05/03 11:51:30.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -327,7 +327,7 @@ fi
 # tea
 #
 if type tea > /dev/null 2>&1; then
-  add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
+  source <(tea --magic=zsh)
 fi
 
 #
