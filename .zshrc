@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/04/28 22:53:49.
+# Last Change : 2023/05/03 10:52:24.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -15,6 +15,13 @@
 #
 if type sheldon > /dev/null 2>&1; then
   eval "$(sheldon source)"
+fi
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 #
@@ -217,12 +224,14 @@ setopt completeinword
 #
 # zstyle.
 #
-# zstyle ':completion:*:default' menu select=2
-# zstyle ':completion:*' use-cache yes
-# zstyle ':completion:*' cache-path ~/.cache/zsh
-# zstyle ':completion:*' verbose yes
-# zstyle ':completion:*' group-name ''
-# zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path ~/.cache/zsh
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+zstyle ':autocomplete:*' widget-style menu-select
+zstyle ':autocomplete:*' min-input 1
 
 #
 # completions.
@@ -235,12 +244,6 @@ if (which rustup > /dev/null); then
     rustup completions zsh cargo > ~/.config/zsh/completions/_cargo
   fi
 fi
-
-#
-# zsh-autocomplete
-#
-zstyle ':autocomplete:*' widget-style menu-select
-zstyle ':autocomplete:*' min-input 1
 
 #
 # yuki-yano/zeno.zsh
@@ -309,9 +312,9 @@ fi
 #
 # starship.
 #
-if (which starship > /dev/null) ;then
-  eval "$(starship init zsh)"
-fi
+# if (which starship > /dev/null) ;then
+#   eval "$(starship init zsh)"
+# fi
 
 #
 # broot.
@@ -319,6 +322,34 @@ fi
 if [[ -f ~/.config/broot/launcher/bash/br ]]; then
   source ~/.config/broot/launcher/bash/br
 fi
+
+#
+# tea
+#
+if type tea > /dev/null 2>&1; then
+  add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
+fi
+
+#
+# pnpm
+#
+export PNPM_HOME="${HOME}/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+#
+# fzf
+#
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#
+# p10k
+#
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #
 # compile zshrc.
@@ -331,16 +362,3 @@ if (which zprof > /dev/null) ;then
   zprof
 fi
 
-if type tea > /dev/null 2>&1; then
-  add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
-fi
-
-# pnpm
-export PNPM_HOME="${HOME}/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
