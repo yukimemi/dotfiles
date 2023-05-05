@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/05/03 11:51:30.
+# Last Change : 2023/05/05 01:41:48.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -328,6 +328,8 @@ fi
 #
 if type tea > /dev/null 2>&1; then
   source <(tea --magic=zsh)
+else
+  source <(curl tea.xyz | sh -s -- --magic=zsh)
 fi
 
 #
