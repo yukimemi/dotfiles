@@ -79,8 +79,8 @@ return
 ; return
 ; for neovim-qt
 F10::
-Activate("nvim-qt.exe")
-; Activate("neovide.exe")
+; Activate("nvim-qt.exe")
+Activate("neovide.exe")
 return
 ; for neovim
 ; F10::

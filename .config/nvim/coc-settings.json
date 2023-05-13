@@ -1,0 +1,23 @@
+{
+  "suggest.enablePreselect": false,
+  "suggest.noselect": true,
+  "[typescript][typescriptreact][rust][xml][lua][ps1]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "Lua.diagnostics.globals": [
+    "vim"
+  ],
+  "xml.codeLens.enabled": true,
+  "xml.completion.autoCloseTags": true,
+  "xml.format.emptyElements": "collapse",
+  "xml.format.enforceQuoteStyle": "ignore",
+  "xml.format.preserveAttributeLineBreaks": false,
+  "xml.format.preserveEmptyContent": false,
+  "xml.format.preservedNewlines": 1,
+  "xml.format.quotations": "doubleQuotes",
+  "xml.format.spaceBeforeEmptyCloseTag": true,
+  "xml.format.splitAttributes": true,
+  "xml.format.trimTrailingWhitespace": true,
+  "powershell.codeFormatting.autoCorrectAliases": true,
+  "powershell.integratedConsole.showOnStartup": false,
+}

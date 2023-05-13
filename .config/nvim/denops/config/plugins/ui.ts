@@ -140,4 +140,11 @@ export const ui: Plugin[] = [
       })
     `,
   },
+  {
+    org: "folke",
+    repo: "which-key.nvim",
+    lua_post: `
+      require("which-key").setup()
+    `,
+  },
 ];

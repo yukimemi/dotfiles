@@ -3,15 +3,19 @@ import { z } from "https://deno.land/x/zod@v3.21.4/mod.ts";
 const GitHubPlugin = z.object({
   org: z.string(),
   repo: z.string(),
+  branch: z.string().optional(),
   lua_pre: z.string().optional(),
   lua_post: z.string().optional(),
+  enabled: z.boolean().optional(),
 });
 
 const GitPlugin = z.object({
   url: z.string(),
   dst: z.string(),
+  branch: z.string().optional(),
   lua_pre: z.string().optional(),
   lua_post: z.string().optional(),
+  enabled: z.boolean().optional(),
 });
 
 export type GitHubPlugin = z.infer<typeof GitHubPlugin>;
@@ -24,3 +28,4 @@ export function isGitPlugin(x: unknown): x is GitPlugin {
 export function isGitHubPlugin(x: unknown): x is GitHubPlugin {
   return GitHubPlugin.safeParse(x).success;
 }
+

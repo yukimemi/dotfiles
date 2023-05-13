@@ -104,4 +104,15 @@ export const denops: Plugin[] = [
       vim.keymap.set("n", "<space>rh", "<cmd>HateThisColorscheme<cr>")
     `,
   },
+  {
+    org: "yukimemi",
+    repo: "dps-hitori",
+    lua_pre: `
+      vim.g.hitori_debug = false
+      vim.g.hitori_enable = true
+      vim.g.hitori_quit = true
+
+      vim.g.hitori_blacklist_patterns = { "\.tmp\$", "\.diff\$", "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG\$" }
+    `,
+  },
 ];

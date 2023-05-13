@@ -8,6 +8,7 @@ export const ddu: Plugin[] = [
   { org: "Shougo", repo: "ddu-kind-file" },
   { org: "Shougo", repo: "ddu-kind-word" },
   { org: "Shougo", repo: "ddu-source-file_old" },
+  { org: "Shougo", repo: "ddu-source-file_rec" },
   { org: "Shougo", repo: "ddu-source-line" },
   { org: "Shougo", repo: "ddu-source-register" },
   { org: "Shougo", repo: "ddu-ui-ff" },
@@ -21,7 +22,10 @@ export const ddu: Plugin[] = [
     repo: "ddu.vim",
     lua_pre: `
       local start = vim.fn["ddu#start"]
-      vim.keymap.set("n", "<leader>d", function() start({ sources = { { name = "source" } } }) end)
+      vim.keymap.set("n", "<leader>ds", function() start({ sources = { { name = "source" } } }) end, { desc = "ddu source" })
+      vim.keymap.set("n", "<leader>do", function() start({ sources = { { name = "file_old" } } }) end, { desc = "ddu file_old" })
+      vim.keymap.set("n", "<leader>dd", function() start({ sources = { { name = "file_rec", sourceOptionPath = vim.fn.fnamemodify(vim.fn.bufname(), ":p:h") } } }) end, { desc = "ddu files on buffered dir" })
+      vim.keymap.set("n", "<leader>dD", function() start({ sources = { { name = "file_rec", sourceOptionPath = vim.fn.expand("~/.dotfiles") } } }) end, { desc = "ddu files on dorfiles dir" })
       vim.keymap.set("i", "<C-x><C-e>", function() start({ sources = { { name = "emoji", options = { defaultAction = "append" } } } }) end)
     `,
     lua_post: `
