@@ -171,6 +171,11 @@ async function builtinsPost(denops: Denops): Promise<void> {
       silent: true,
     });
 
+    await mapping.map(denops, "<esc><esc>", "<cmd>nohlsearch<cr>", {
+      mode: "n",
+      silent: true,
+    });
+
     await mapping.map(denops, "j", "gj", { mode: ["n", "x"], silent: true });
     await mapping.map(denops, "k", "gk", { mode: ["n", "x"], silent: true });
     await mapping.map(denops, "<tab>", "%", { mode: ["n", "x"], silent: true });

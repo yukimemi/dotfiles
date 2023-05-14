@@ -24,6 +24,7 @@ export const ddu: Plugin[] = [
       local start = vim.fn["ddu#start"]
       vim.keymap.set("n", "<leader>ds", function() start({ sources = { { name = "source" } } }) end, { desc = "ddu source" })
       vim.keymap.set("n", "<leader>do", function() start({ sources = { { name = "file_old" } } }) end, { desc = "ddu file_old" })
+      vim.keymap.set("n", "<leader>db", function() start({ sources = { { name = "buffer" } } }) end, { desc = "ddu buffer" })
       vim.keymap.set("n", "<leader>dd", function() start({ sources = { { name = "file_rec", sourceOptionPath = vim.fn.fnamemodify(vim.fn.bufname(), ":p:h") } } }) end, { desc = "ddu files on buffered dir" })
       vim.keymap.set("n", "<leader>dD", function() start({ sources = { { name = "file_rec", sourceOptionPath = vim.fn.expand("~/.dotfiles") } } }) end, { desc = "ddu files on dorfiles dir" })
       vim.keymap.set("i", "<C-x><C-e>", function() start({ sources = { { name = "emoji", options = { defaultAction = "append" } } } }) end)

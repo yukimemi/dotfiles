@@ -22,5 +22,23 @@
   "powershell.integratedConsole.showOnStartup": false,
   "explorer.file.reveal.auto": true,
   "explorer.icon.enableNerdfont": true,
-  "explorer.file.showHiddenFiles": true
+  "explorer.file.showHiddenFiles": true,
+  "explorer.openAction.select.filter": {
+    "buftypes": [
+      "terminal"
+    ],
+    "filetypes": [
+      "vista",
+      "vista_kind",
+      "qf",
+      "tagbar",
+      "coctree"
+    ],
+    "floatingWindows": true,
+    "sources": {
+      "buffer": {
+        "buftypes": []
+      }
+    }
+  }
 }
