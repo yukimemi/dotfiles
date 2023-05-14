@@ -1,50 +1,35 @@
-import { Plugin } from "./types.ts";
+import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v4.3.1/helper/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.3/plugin.ts";
 
-export const ui: Plugin[] = [
-  { org: "rafi", repo: "awesome-vim-colorschemes" },
-  { org: "RRethy", repo: "nvim-base16" },
+export const ui: Plug[] = [
+  { url: "rafi/awesome-vim-colorschemes" },
+  { url: "RRethy/nvim-base16" },
+  { url: "catppuccin/nvim" },
   {
-    org: "catppuccin",
-    repo: "nvim",
-    lua_post: `
-      require("catppuccin").setup({
-        integrations = {
-          aerial = true,
-          bufferline = true,
-          gitsigns = true,
-          illuminate = true,
-          lsp_trouble = true,
-          mason = true,
-          notify = true,
-          nvimtree = true,
-          sandwich = true,
-          semantic_tokens = true,
-          treesitter = true,
-          treesitter_context = true,
-
-          native_lsp = {
-            enabled = true,
-          },
-        },
-      })
-      vim.cmd([[colorscheme catppuccin-mocha]])
-    `,
-  },
-  {
-    org: "rcarriga",
-    repo: "nvim-notify",
-    lua_post: `
+    url: "rcarriga/nvim-notify",
+    after: async (denops: Denops) => {
+      await execute(
+        denops,
+        `
+lua << EOB
       local notify = require("notify")
       notify.setup({
         stages = "slide",
       })
       vim.notify = notify
+EOB
     `,
+      );
+    },
   },
   {
-    org: "gen740",
-    repo: "SmoothCursor.nvim",
-    lua_post: `
+    url: "gen740/SmoothCursor.nvim",
+    after: async (denops: Denops) => {
+      await execute(
+        denops,
+        `
+lua << EOB
       require("smoothcursor").setup({
         autostart = true,
         cursor = "", -- cursor shape (need nerd font)
@@ -97,17 +82,24 @@ export const ui: Plugin[] = [
           end
         end,
       })
+EOB
     `,
+      );
+    },
   },
   {
-    org: "windwp",
-    repo: "nvim-autopairs",
-    lua_post: `require("nvim-autopairs").setup()`,
+    url: "windwp/nvim-autopairs",
+    after: async (denops: Denops) => {
+      await execute(denops, `lua require("nvim-autopairs").setup()`);
+    },
   },
   {
-    org: "monaqa",
-    repo: "modesearch.nvim",
-    lua_pre: `
+    url: "monaqa/modesearch.nvim",
+    after: async (denops: Denops) => {
+      await execute(
+        denops,
+        `
+lua << EOB
       vim.keymap.set("n", "/", function() return require("modesearch").keymap.prompt.show("rawstr") end, { expr = true })
       vim.keymap.set(
         "c",
@@ -115,8 +107,6 @@ export const ui: Plugin[] = [
         function() return require("modesearch").keymap.mode.cycle({ "rawstr", "migemo", "regexp" }) end,
         { expr = true }
       )
-    `,
-    lua_post: `
       require("modesearch").setup({
         modes = {
           rawstr = {
@@ -133,13 +123,15 @@ export const ui: Plugin[] = [
           },
         },
       })
+EOB
     `,
+      );
+    },
   },
   {
-    org: "folke",
-    repo: "which-key.nvim",
-    lua_post: `
-      require("which-key").setup()
-    `,
+    url: "folke/which-key.nvim",
+    after: async (denops: Denops) => {
+      await execute(denops, `lua require("which-key").setup()`);
+    },
   },
 ];

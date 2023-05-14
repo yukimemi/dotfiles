@@ -1,28 +1,23 @@
-import { Denops } from "https://deno.land/x/denops_std@v4.3.0/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v4.3.0/batch/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v4.3.0/mapping/mod.ts";
-import * as option from "https://deno.land/x/denops_std@v4.3.0/option/mod.ts";
-import * as nvimOption from "https://deno.land/x/denops_std@v4.3.0/option/nvim/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v4.3.0/variable/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
+import { batch } from "https://deno.land/x/denops_std@v4.3.1/batch/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v4.3.1/option/mod.ts";
+import * as nvimOption from "https://deno.land/x/denops_std@v4.3.1/option/nvim/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v4.3.1/variable/mod.ts";
 import {
   exists,
   expand,
   has,
-} from "https://deno.land/x/denops_std@v4.3.0/function/mod.ts";
-import { stdpath } from "https://deno.land/x/denops_std@v4.3.0/function/nvim/mod.ts";
+} from "https://deno.land/x/denops_std@v4.3.1/function/mod.ts";
+import { stdpath } from "https://deno.land/x/denops_std@v4.3.1/function/nvim/mod.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
 import {
   echo,
   execute,
-} from "https://deno.land/x/denops_std@v4.3.0/helper/mod.ts";
+} from "https://deno.land/x/denops_std@v4.3.1/helper/mod.ts";
 
-import {
-  GitHubPlugin,
-  GitPlugin,
-  isGitHubPlugin,
-  isGitPlugin,
-  plugins,
-} from "./plugins.ts";
+import { Dvpm } from "https://deno.land/x/dvpm@0.0.3/dvpm.ts";
+import { plugins } from "./plugins.ts";
 
 export async function main(denops: Denops): Promise<void> {
   if (await globals.get(denops, "config_loaded") === 1) {
@@ -30,32 +25,11 @@ export async function main(denops: Denops): Promise<void> {
   }
   await globals.set(denops, "config_loaded", 1);
   await builtinsPre(denops);
-  await denopm(denops);
+  await dvpmInit(denops);
   await builtinsPost(denops);
 
-  await denops.cmd(
-    "command DenopmUpdate call denops#notify('config', 'update_plugins', [])",
-  );
   // await denops.cmd("LspStart");
-
-  denops.dispatcher = {
-    async update_plugins(): Promise<void> {
-      const base = ensureString(await expand(denops, "~/.cache/nvim/denopm"));
-
-      for (const p of plugins) {
-        if (isGitPlugin(p)) {
-          await denops.dispatch("denopm", "update_git", base, p.dst);
-        }
-        if (isGitHubPlugin(p)) {
-          await denops.dispatch("denopm", "update_github", base, p.org, p.repo);
-        }
-      }
-
-      echo(denops, "updated !");
-    },
-  };
-
-  echo(denops, "configured !");
+  echo(denops, "Load completed !");
 }
 
 async function builtinsPre(denops: Denops): Promise<void> {
@@ -237,84 +211,11 @@ async function builtinsPost(denops: Denops): Promise<void> {
   });
 }
 
-async function denopm_github(
-  denops: Denops,
-  base: string,
-  p: GitHubPlugin,
-): Promise<void> {
-  if (p.enabled != undefined && !p.enabled) {
-    return;
-  }
+async function dvpmInit(denops: Denops) {
+  const base = ensureString(await expand(denops, "~/.cache/nvim/dvpm"));
+  const dvpm = new Dvpm(denops, base, false);
 
-  await denops.dispatch(
-    "denopm",
-    "download_github",
-    base,
-    p.org,
-    p.repo,
-    p.branch,
-  );
-
-  if (p.lua_pre != null) {
-    await denops.cmd(`lua ${p.lua_pre}`);
-  }
-
-  await denops.dispatch("denopm", "add_rtp_github", base, p.org, p.repo);
-  await denops.dispatch(
-    "denopm",
-    "source_vimscript_github",
-    base,
-    p.org,
-    p.repo,
-  );
-  await denops.dispatch("denopm", "source_lua_github", base, p.org, p.repo);
-  await denops.dispatch(
-    "denopm",
-    "register_denops_github",
-    base,
-    p.org,
-    p.repo,
-  );
-
-  if (p.lua_post != null) {
-    await denops.cmd(`lua ${p.lua_post}`);
-  }
-}
-
-async function denopm_git(
-  denops: Denops,
-  base: string,
-  p: GitPlugin,
-): Promise<void> {
-  if (p.enabled != undefined && !p.enabled) {
-    return;
-  }
-
-  await denops.dispatch("denopm", "download_git", base, p.dst, p.url, p.branch);
-
-  if (p.lua_pre != null) {
-    await denops.cmd(`lua ${p.lua_pre}`);
-  }
-
-  await denops.dispatch("denopm", "add_rtp_git", base, p.dst, p.url);
-  await denops.dispatch("denopm", "source_vimscript_git", base, p.dst, p.url);
-  await denops.dispatch("denopm", "source_lua_git", base, p.dst, p.url);
-  await denops.dispatch("denopm", "register_denops_git", base, p.dst, p.url);
-
-  if (p.lua_post != null) {
-    await denops.cmd(`lua ${p.lua_post}`);
-  }
-}
-
-async function denopm(denops: Denops): Promise<void> {
-  const base = ensureString(await expand(denops, "~/.cache/nvim/denopm"));
-
-  for (const p of plugins) {
-    if (isGitPlugin(p)) {
-      await denopm_git(denops, base, p);
-    }
-    if (isGitHubPlugin(p)) {
-      await denopm_github(denops, base, p);
-    }
-  }
+  plugins.forEach(async (p) => {
+    await dvpm.add(p);
+  });
 }

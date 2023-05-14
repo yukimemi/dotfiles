@@ -1,33 +1,47 @@
-import { Plugin } from "./types.ts";
+import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v4.3.1/helper/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.3/plugin.ts";
 
-export const libs: Plugin[] = [
-  { org: "vim-denops", repo: "denops.vim" },
-  { org: "lambdalisue", repo: "kensaku.vim" },
-  { org: "MunifTanjim", repo: "nui.nvim" },
-  { org: "tani", repo: "vim-artemis" },
-  { org: "nvim-lua", repo: "plenary.nvim" },
+export const libs: Plug[] = [
+  { url: "vim-denops/denops.vim" },
+  { url: "lambdalisue/kensaku.vim" },
+  { url: "MunifTanjim/nui.nvim" },
+  { url: "tani/vim-artemis" },
+  { url: "nvim-lua/plenary.nvim" },
   {
-    org: "nvim-tree",
-    repo: "nvim-web-devicons",
-    lua_post: `require("nvim-web-devicons").setup({ default = true })`,
+    url: "nvim-tree/nvim-web-devicons",
+    after: async (denops: Denops) => {
+      await execute(
+        denops,
+        `
+lua require("nvim-web-devicons").setup({ default = true })
+        `,
+      );
+    },
   },
   {
-    org: "Exafunction",
-    repo: "codeium.vim",
+    url: "Exafunction/codeium.vim",
     enabled: false,
-    lua_post: `
-      vim.keymap.set("i", "<C-e>", function()
-        return vim.fn["codeium#Accept"]()
-      end, { expr = true, nowait = true })
-      vim.keymap.set("i", "<c-;>", function()
-        return vim.fn["codeium#CycleCompletions"](1)
-      end, { expr = true })
-      vim.keymap.set("i", "<c-,>", function()
-        return vim.fn["codeium#CycleCompletions"](-1)
-      end, { expr = true })
-      vim.keymap.set("i", "<c-x>", function()
-        return vim.fn["codeium#Clear"]()
-      end, { expr = true })
+    after: async (denops: Denops) => {
+      await execute(
+        denops,
+        `
+lua << EOF
+vim.keymap.set("i", "<C-e>", function()
+  return vim.fn["codeium#Accept"]()
+end, { expr = true, nowait = true })
+vim.keymap.set("i", "<c-;>", function()
+  return vim.fn["codeium#CycleCompletions"](1)
+end, { expr = true })
+vim.keymap.set("i", "<c-,>", function()
+  return vim.fn["codeium#CycleCompletions"](-1)
+end, { expr = true })
+vim.keymap.set("i", "<c-x>", function()
+  return vim.fn["codeium#Clear"]()
+end, { expr = true })
+EOF
     `,
+      );
+    },
   },
 ];

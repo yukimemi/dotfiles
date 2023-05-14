@@ -1,22 +1,24 @@
-import { Plugin } from "./types.ts";
+import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
+import { expand } from "https://deno.land/x/denops_std@v4.3.1/function/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v4.3.1/variable/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.3/plugin.ts";
 
-export const denops: Plugin[] = [
+export const denops: Plug[] = [
   {
-    org: "yukimemi",
-    repo: "dps-autocursor",
-    lua_pre: `
-      vim.g.autocursor_debug = false
-    `,
+    url: "yukimemi/dps-autocursor",
+    before: async (denops: Denops) => {
+      await globals.set(denops, "autocursor_debug", false);
+    },
   },
   {
-    org: "yukimemi",
-    repo: "dps-autobackup",
-    lua_pre: `
-      vim.g.autobackup_debug = false
-      vim.g.autobackup_enable = true
-      vim.g.autobackup_write_echo = false
-      vim.g.autobackup_use_ui_select = false
-      vim.g.autobackup_blacklist_filetypes = {
+    url: "yukimemi/dps-autobackup",
+    before: async (denops: Denops) => {
+      await globals.set(denops, "autobackup_debug", false);
+      await globals.set(denops, "autobackup_enable", true);
+      await globals.set(denops, "autobackup_write_echo", false);
+      await globals.set(denops, "autobackup_use_ui_select", false);
+      await globals.set(denops, "autobackup_blacklist_filetypes", [
         "csv",
         "ctrlp",
         "ddu-ff",
@@ -29,90 +31,163 @@ export const denops: Plugin[] = [
         "log",
         "qf",
         "quickfix",
-      }
-    `,
+      ]);
+    },
   },
   {
-    org: "yukimemi",
-    repo: "dps-autodate",
-    lua_pre: `
-      vim.g.autodate_debug = false
-      vim.g.autodate_config = {
-        xml = {
-          replace = {
-            { '/^(.*key="version">)[^<]*(<.*)/i', '\$1\${format(now, "yyyyMMdd_HHmmss")}$2' },
-            { '/^(.*key="%{task_file}%_version">)[^<]*(<.*)/i', '\$1\${format(now, "yyyyMMdd_HHmmss")}$2' },
-            { '/^(.*key="%{task_name}%_version">)[^<]*(<.*)/i', '\$1\${format(now, "yyyyMMdd_HHmmss")}$2' },
-            { '/^(.*key="autobot_version">)[^<]*(<.*)/i', '\$1\${format(now, "yyyyMMdd_HHmmss")}$2' }
-          },
-          event = "BufWritePre",
-          pat = { "*.xml", "*.xaml" },
-          head = 30,
-          tail = 5,
+    url: "yukimemi/dps-autodate",
+    before: async (denops: Denops) => {
+      await globals.set(denops, "autodate_debug", false);
+      await globals.set(denops, "autodate_config", {
+        xml: {
+          replace: [
+            [
+              '/^(.*key="version">)[^<]*(<.*)/i',
+              '\$1\${format(now, "yyyyMMdd_HHmmss")}\$2',
+            ],
+            [
+              '/^(.*key="%{task_file}%_version">)[^<]*(<.*)/i',
+              '\$1\${format(now, "yyyyMMdd_HHmmss")}\$2',
+            ],
+            [
+              '/^(.*key="%{task_name}%_version">)[^<]*(<.*)/i',
+              '\$1\${format(now, "yyyyMMdd_HHmmss")}\$2',
+            ],
+            [
+              '/^(.*key="autobot_version">)[^<]*(<.*)/i',
+              '\$1\${format(now, "yyyyMMdd_HHmmss")}\$2',
+            ],
+          ],
+          event: "BufWritePre",
+          pat: ["*.xml", "*.xaml"],
+          head: 30,
+          tail: 5,
         },
-        ps1 = {
-          replace = {
-            { [[/^(\s*\.Last Change: ).*/i]], [[\$1\${format(now, "yyyy/MM/dd HH:mm:ss")}]] },
-            { '/^(.*"version", ")[0-9_]+(".*)/i', '\$1\${format(now, "yyyyMMdd_HHmmss")}$2' },
-          },
-          event = "BufWritePre",
-          pat = { "*.ps1" },
-          head = 50,
-          tail = 5,
+        ps1: {
+          replace: [
+            [
+              "/^(\s*\.Last Change: ).*/i",
+              `\$1\${format(now, "yyyy/MM/dd HH:mm:ss")}`,
+            ],
+            [
+              '/^(.*"version", ")[0-9_]+(".*)/i',
+              '\$1\${format(now, "yyyyMMdd_HHmmss")}\$2',
+            ],
+          ],
+          event: "BufWritePre",
+          pat: ["*.ps1"],
+          head: 50,
+          tail: 5,
         },
-        typescript = {
-          replace = {
-            { '/^(const version = ")[0-9_]+(";)/', '\$1\${format(now, "yyyyMMdd_HHmmss")}$2' },
-          },
-          event = "BufWritePre",
-          pat = { "*.ts" },
-          head = 50,
-          tail = 5,
+        typescript: {
+          replace: [
+            [
+              '^(const version = ")[0-9_]+(";)/',
+              '\$1\${format(now, "yyyyMMdd_HHmmss")}\$2',
+            ],
+          ],
+          event: "BufWritePre",
+          pat: ["*.ts"],
+          head: 50,
+          tail: 5,
         },
-      }
-    `,
+      });
+    },
   },
   {
-    org: "yukimemi",
-    repo: "dps-walk",
-    lua_pre: `
-      vim.g.walk_debug = false
+    url: "yukimemi/dps-walk",
+    before: async (denops: Denops) => {
+      await globals.set(denops, "walk_debug", false);
 
-      vim.keymap.set("n", "<space>Wa", "<cmd>DenopsWalk<cr>")
-      vim.keymap.set("n", "<space>Ws", "<cmd>DenopsWalk --path=~/src<cr>")
-      vim.keymap.set("n", "<space>Wd", "<cmd>DenopsWalk --path=~/.dotfiles<cr>")
-      vim.keymap.set("n", "<space>Wc", "<cmd>DenopsWalk --path=~/.cache<cr>")
-      vim.keymap.set("n", "<space>Wj", "<cmd>DenopsWalk --path=~/.cache/junkfile<cr>")
-      vim.keymap.set("n", "<space>Wm", "<cmd>DenopsWalk --path=~/.memolist<cr>")
-      vim.keymap.set("n", "<space>WD", "<cmd>DenopsWalkBufferDir<cr>")
-    `,
-  },
-  {
-    org: "yukimemi",
-    repo: "dps-randomcolorscheme",
-    lua_pre: `
-      vim.g.randomcolorscheme_debug = false
-      vim.g.randomcolorscheme_echo = true
-      vim.g.randomcolorscheme_interval = 100
-      vim.g.randomcolorscheme_disables = { "evening", "default", "blue" }
-      vim.g.randomcolorscheme_path = vim.fn.expand "~/.config/randomcolorscheme/colorscheme.toml"
-      vim.g.randomcolorscheme_notmatch = "[Ll]ight"
-      vim.g.randomcolorscheme_background = "dark"
-      vim.keymap.set("n", "<space>ro", "<cmd>ChangeColorscheme<cr>")
-      vim.keymap.set("n", "<space>rd", "<cmd>DisableThisColorscheme<cr>")
-      vim.keymap.set("n", "<space>rl", "<cmd>LikeThisColorscheme<cr>")
-      vim.keymap.set("n", "<space>rh", "<cmd>HateThisColorscheme<cr>")
-    `,
-  },
-  {
-    org: "yukimemi",
-    repo: "dps-hitori",
-    lua_pre: `
-      vim.g.hitori_debug = false
-      vim.g.hitori_enable = true
-      vim.g.hitori_quit = true
+      await mapping.map(denops, "<space>Wa", "<cmd>DenopsWalk<cr>", {
+        mode: "n",
+      });
 
-      vim.g.hitori_blacklist_patterns = { "\.tmp\$", "\.diff\$", "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG\$" }
-    `,
+      await mapping.map(denops, "<space>Wa", "<cmd>DenopsWalk<cr>", {
+        mode: "n",
+      });
+      await mapping.map(
+        denops,
+        "<space>Ws",
+        "<cmd>DenopsWalk --path=~/src<cr>",
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<space>Wd",
+        "<cmd>DenopsWalk --path=~/.dotfiles<cr>",
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<space>Wc",
+        "<cmd>DenopsWalk --path=~/.cache<cr>",
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<space>Wj",
+        "<cmd>DenopsWalk --path=~/.cache/junkfile<cr>",
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<space>Wm",
+        "<cmd>DenopsWalk --path=~/.memolist<cr>",
+        { mode: "n" },
+      );
+      await mapping.map(denops, "<space>WD", "<cmd>DenopsWalkBufferDir<cr>", {
+        mode: "n",
+      });
+    },
+  },
+  {
+    url: "yukimemi/dps-randomcolorscheme",
+    before: async (denops: Denops) => {
+      await globals.set(denops, "randomcolorscheme_debug", false);
+      await globals.set(denops, "randomcolorscheme_echo", true);
+      await globals.set(denops, "randomcolorscheme_interval", 600);
+      await globals.set(denops, "randomcolorscheme_disables", [
+        "evening",
+        "default",
+        "blue",
+      ]);
+      await globals.set(
+        denops,
+        "randomcolorscheme_path",
+        await expand(denops, "~/.config/randomcolorscheme/colorscheme.toml"),
+      );
+      await globals.set(denops, "randomcolorscheme_notmatch", "[Ll]ight");
+      await globals.set(denops, "randomcolorscheme_background", "dark");
+      await mapping.map(denops, "<space>ro", "<cmd>ChangeColorscheme<cr>", {
+        mode: "n",
+      });
+      await mapping.map(
+        denops,
+        "<space>rd",
+        "<cmd>DisableThisColorscheme<cr>",
+        { mode: "n" },
+      );
+      await mapping.map(denops, "<space>rl", "<cmd>LikeThisColorscheme<cr>", {
+        mode: "n",
+      });
+      await mapping.map(denops, "<space>rh", "<cmd>HateThisColorscheme<cr>", {
+        mode: "n",
+      });
+    },
+  },
+  {
+    url: "yukimemi/dps-hitori",
+    before: async (denops: Denops) => {
+      await globals.set(denops, "hitori_debug", false);
+      await globals.set(denops, "hitori_enable", true);
+      await globals.set(denops, "hitori_quit", true);
+
+      await globals.set(denops, "hitori_blacklist_patterns", [
+        "\.tmp\$",
+        "\.diff\$",
+        "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG\$",
+      ]);
+    },
   },
 ];

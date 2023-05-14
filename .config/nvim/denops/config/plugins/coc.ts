@@ -1,12 +1,15 @@
-import { Plugin } from "./types.ts";
+import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v4.3.1/variable/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v4.3.1/helper/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.3/plugin.ts";
 
-export const coc: Plugin[] = [
+export const coc: Plug[] = [
   {
-    org: "neoclide",
-    repo: "coc.nvim",
+    url: "neoclide/coc.nvim",
     branch: "release",
-    lua_post: `
-      vim.g.coc_global_extensions = {
+    before: async (denops: Denops) => {
+      await globals.set(denops, "coc_global_extensions", [
         "coc-deno",
         "coc-diagnostic",
         "coc-explorer",
@@ -23,8 +26,13 @@ export const coc: Plugin[] = [
         "coc-tsserver",
         "coc-vimlsp",
         "coc-xml",
-      }
-
+      ]);
+    },
+    after: async (denops: Denops) => {
+      await execute(
+        denops,
+        `
+lua << EOB
       -- Always show the signcolumn, otherwise it would shift the text each time
       -- diagnostics appeared/became resolved
       vim.opt.signcolumn = "yes"
@@ -166,7 +174,9 @@ export const coc: Plugin[] = [
 
       -- coc-explorer
       keyset("n", "<leader>e", "<cmd>CocCommand explorer<cr>", { desc = "Open CocExplorer" })
-
-    `,
+EOB
+                    `,
+      );
+    },
   },
 ];

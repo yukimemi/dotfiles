@@ -1,26 +1,31 @@
-import { Plugin } from "./types.ts";
+import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
+import { expand } from "https://deno.land/x/denops_std@v4.3.1/function/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v4.3.1/variable/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.3/plugin.ts";
 
-export const ddu: Plugin[] = [
-  { org: "4513ECHO", repo: "ddu-kind-url" },
-  { org: "4513ECHO", repo: "ddu-source-emoji" },
-  { org: "4513ECHO", repo: "ddu-source-source" },
-  { org: "Milly", repo: "ddu-filter-kensaku" },
-  { org: "Shougo", repo: "ddu-kind-file" },
-  { org: "Shougo", repo: "ddu-kind-word" },
-  { org: "Shougo", repo: "ddu-source-file_old" },
-  { org: "Shougo", repo: "ddu-source-file_rec" },
-  { org: "Shougo", repo: "ddu-source-line" },
-  { org: "Shougo", repo: "ddu-source-register" },
-  { org: "Shougo", repo: "ddu-ui-ff" },
-  { org: "matsui54", repo: "ddu-source-command_history" },
-  { org: "matsui54", repo: "ddu-source-help" },
-  { org: "matsui54", repo: "ddu-vim-ui-select" },
-  { org: "shun", repo: "ddu-source-buffer" },
-  { org: "tyru", repo: "open-browser.vim" },
+export const ddu: Plug[] = [
+  { url: "4513ECHO/ddu-kind-url" },
+  { url: "4513ECHO/ddu-source-emoji" },
+  { url: "4513ECHO/ddu-source-source" },
+  { url: "Milly/ddu-filter-kensaku" },
+  { url: "Shougo/ddu-kind-file" },
+  { url: "Shougo/ddu-kind-word" },
+  { url: "Shougo/ddu-source-file_old" },
+  { url: "Shougo/ddu-source-file_rec" },
+  { url: "Shougo/ddu-source-line" },
+  { url: "Shougo/ddu-source-register" },
+  { url: "Shougo/ddu-ui-ff" },
+  { url: "matsui54/ddu-source-command_history" },
+  { url: "matsui54/ddu-source-help" },
+  { url: "matsui54/ddu-vim-ui-select" },
+  { url: "shun/ddu-source-buffer" },
+  { url: "tyru/open-browser.vim" },
   {
-    org: "Shougo",
-    repo: "ddu.vim",
-    lua_pre: `
+    url: "Shougo/ddu.vim",
+    before: async (denops: Denops) => {
+      await execute(denops, `
+lua << EOB
       local start = vim.fn["ddu#start"]
       vim.keymap.set("n", "<leader>ds", function() start({ sources = { { name = "source" } } }) end, { desc = "ddu source" })
       vim.keymap.set("n", "<leader>do", function() start({ sources = { { name = "file_old" } } }) end, { desc = "ddu file_old" })
@@ -28,8 +33,12 @@ export const ddu: Plugin[] = [
       vim.keymap.set("n", "<leader>dd", function() start({ sources = { { name = "file_rec", sourceOptionPath = vim.fn.fnamemodify(vim.fn.bufname(), ":p:h") } } }) end, { desc = "ddu files on buffered dir" })
       vim.keymap.set("n", "<leader>dD", function() start({ sources = { { name = "file_rec", sourceOptionPath = vim.fn.expand("~/.dotfiles") } } }) end, { desc = "ddu files on dorfiles dir" })
       vim.keymap.set("i", "<C-x><C-e>", function() start({ sources = { { name = "emoji", options = { defaultAction = "append" } } } }) end)
-    `,
-    lua_post: `
+EOB
+    `);
+    },
+    after: async (denops: Denops) => {
+      await execute(denops, `
+lua << EOB
       local patch_global = vim.fn["ddu#custom#patch_global"]
 
       -- ui
@@ -129,6 +138,8 @@ export const ddu: Plugin[] = [
           )
         end,
       })
-    `,
+EOB
+    `);
+    },
   },
 ];
