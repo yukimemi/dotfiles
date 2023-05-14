@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/05/05 01:41:48.
+# Last Change : 2023/05/14 08:59:16.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -298,9 +298,17 @@ fi
 #
 # atuin.
 #
-if (which atuin > /dev/null) ;then
+if type atuin > /dev/null 2>&1; then
   eval "$(atuin init zsh)"
 fi
+
+#
+# rtx
+#
+if type rtx > /dev/null 2>&1; then
+eval "$(rtx activate zsh)"
+fi
+
 
 #
 # Google cloud sdk
