@@ -1,13 +1,16 @@
-import { Plugin } from "./types.ts";
+import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.3/plugin.ts";
 
-export const edit: Plugin[] = [
-  { org: "Shougo", repo: "context_filetype.vim" },
+export const edit: Plug[] = [
+  { url: "Shougo/context_filetype.vim" },
   {
-    org: "uga-rosa",
-    repo: "contextment.vim",
-    lua_pre: `
-      vim.keymap.set("x", "gcc", "<Plug>(contextment)")
-      vim.keymap.set("n", "gcc", "<Plug>(contextment-line)")
-    `,
+    url: "uga-rosa/contextment.vim",
+    before: async (denops: Denops) => {
+      await mapping.map(denops, "gcc", "<Plug>(contextment)", { mode: "x" });
+      await mapping.map(denops, "gcc", "<Plug>(contextment-line)", {
+        mode: "n",
+      });
+    },
   },
 ];

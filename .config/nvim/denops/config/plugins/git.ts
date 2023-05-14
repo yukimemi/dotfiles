@@ -1,25 +1,40 @@
-import { Plugin } from "./types.ts";
+import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v4.3.1/helper/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.3/plugin.ts";
 
-export const git: Plugin[] = [
+export const git: Plug[] = [
   {
-    org: "lewis6991",
-    repo: "gitsigns.nvim",
-    lua_post: `require("gitsigns").setup()`,
+    url: "lewis6991/gitsigns.nvim",
+    after: async (denops: Denops) => {
+      await execute(denops, `lua require("gitsigns").setup()`);
+    },
   },
-  { org: "lambdalisue", repo: "askpass.vim" },
-  { org: "lambdalisue", repo: "guise.vim" },
+  { url: "lambdalisue/askpass.vim" },
+  { url: "lambdalisue/guise.vim" },
   {
-    org: "lambdalisue",
-    repo: "gin.vim",
-    lua_pre: `
-      vim.keymap.set("n", "<space>gs", "<cmd>GinStatus<cr>")
-      vim.keymap.set("n", "<space>gc", "<cmd>Gin commit -v<cr>")
-      vim.keymap.set("n", "<space>gb", "<cmd>GinBranch<cr>")
-      vim.keymap.set("n", "<space>gg", "<cmd>Gin grep<cr>")
-      vim.keymap.set("n", "<space>gd", "<cmd>GinDiff<cr>")
-      vim.keymap.set("n", "<space>gl", "<cmd>GinLog<cr>")
-      vim.keymap.set("n", "<space>gL", "<cmd>GinLog -p %<cr>")
-      vim.keymap.set("n", "<space>gp", "<cmd>Gin push<cr>")
-    `,
+    url: "lambdalisue/gin.vim",
+    before: async (denops: Denops) => {
+      await mapping.map(denops, "<space>gs", "<cmd>GinStatus<cr>", {
+        mode: "n",
+      });
+      await mapping.map(denops, "<space>gc", "<cmd>Gin commit -v<cr>", {
+        mode: "n",
+      });
+      await mapping.map(denops, "<space>gb", "<cmd>GinBranch<cr>", {
+        mode: "n",
+      });
+      await mapping.map(denops, "<space>gg", "<cmd>Gin grep<cr>", {
+        mode: "n",
+      });
+      await mapping.map(denops, "<space>gd", "<cmd>GinDiff<cr>", { mode: "n" });
+      await mapping.map(denops, "<space>gl", "<cmd>GinLog<cr>", { mode: "n" });
+      await mapping.map(denops, "<space>gL", "<cmd>GinLog -p %<cr>", {
+        mode: "n",
+      });
+      await mapping.map(denops, "<space>gp", "<cmd>Gin push<cr>", {
+        mode: "n",
+      });
+    },
   },
 ];

@@ -1,9 +1,9 @@
-import { Plugin } from "./types.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.3/plugin.ts";
 
-export const textobj: Plugin[] = [
-  { org: "kana", repo: "vim-textobj-user" },
-  { org: "kana", repo: "vim-textobj-entire" },
-  { org: "kana", repo: "vim-textobj-indent" },
-  { org: "kana", repo: "vim-textobj-line" },
-  { org: "gilligan", repo: "textobj-lastpaste" },
+export const textobj: Plug[] = [
+  { url: "kana/vim-textobj-user" },
+  { url: "kana/vim-textobj-entire" },
+  { url: "kana/vim-textobj-indent" },
+  { url: "kana/vim-textobj-line" },
+  { url: "gilligan/textobj-lastpaste" },
 ];

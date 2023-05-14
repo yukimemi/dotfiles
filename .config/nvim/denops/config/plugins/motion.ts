@@ -1,12 +1,17 @@
-import { Plugin } from "./types.ts";
+import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.3/plugin.ts";
 
-export const motion: Plugin[] = [
+export const motion: Plug[] = [
   {
-    org: "haya14busa",
-    repo: "vim-edgemotion",
-    lua_post: `
-      vim.keymap.set({"n", "x"}, "sj", "<Plug>(edgemotion-j)")
-      vim.keymap.set({"n", "x"}, "sk", "<Plug>(edgemotion-k)")
-    `,
+    url: "haya14busa/vim-edgemotion",
+    before: async (denops: Denops) => {
+      await mapping.map(denops, "sj", "<Plug>(edgemotion-j)", {
+        mode: ["n", "x"],
+      });
+      await mapping.map(denops, "sk", "<Plug>(edgemotion-k)", {
+        mode: ["n", "x"],
+      });
+    },
   },
 ];

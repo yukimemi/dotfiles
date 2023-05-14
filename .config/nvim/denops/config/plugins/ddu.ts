@@ -1,8 +1,6 @@
-import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
 import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
-import { expand } from "https://deno.land/x/denops_std@v4.3.1/function/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v4.3.1/variable/mod.ts";
 import { type Plug } from "https://deno.land/x/dvpm@0.0.3/plugin.ts";
+import { execute } from "https://deno.land/x/denops_std@v4.3.1/helper/mod.ts";
 
 export const ddu: Plug[] = [
   { url: "4513ECHO/ddu-kind-url" },
@@ -24,7 +22,9 @@ export const ddu: Plug[] = [
   {
     url: "Shougo/ddu.vim",
     before: async (denops: Denops) => {
-      await execute(denops, `
+      await execute(
+        denops,
+        `
 lua << EOB
       local start = vim.fn["ddu#start"]
       vim.keymap.set("n", "<leader>ds", function() start({ sources = { { name = "source" } } }) end, { desc = "ddu source" })
@@ -34,10 +34,13 @@ lua << EOB
       vim.keymap.set("n", "<leader>dD", function() start({ sources = { { name = "file_rec", sourceOptionPath = vim.fn.expand("~/.dotfiles") } } }) end, { desc = "ddu files on dorfiles dir" })
       vim.keymap.set("i", "<C-x><C-e>", function() start({ sources = { { name = "emoji", options = { defaultAction = "append" } } } }) end)
 EOB
-    `);
+    `,
+      );
     },
     after: async (denops: Denops) => {
-      await execute(denops, `
+      await execute(
+        denops,
+        `
 lua << EOB
       local patch_global = vim.fn["ddu#custom#patch_global"]
 
@@ -139,7 +142,8 @@ lua << EOB
         end,
       })
 EOB
-    `);
+    `,
+      );
     },
   },
 ];

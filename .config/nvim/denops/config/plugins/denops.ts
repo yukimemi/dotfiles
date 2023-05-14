@@ -36,26 +36,27 @@ export const denops: Plug[] = [
   },
   {
     url: "yukimemi/dps-autodate",
+    enabled: false,
     before: async (denops: Denops) => {
-      await globals.set(denops, "autodate_debug", false);
+      await globals.set(denops, "autodate_debug", true);
       await globals.set(denops, "autodate_config", {
         xml: {
           replace: [
             [
               '/^(.*key="version">)[^<]*(<.*)/i',
-              '\$1\${format(now, "yyyyMMdd_HHmmss")}\$2',
+              '$1${format(now, "yyyyMMdd_HHmmss")}$2',
             ],
             [
               '/^(.*key="%{task_file}%_version">)[^<]*(<.*)/i',
-              '\$1\${format(now, "yyyyMMdd_HHmmss")}\$2',
+              '$1${format(now, "yyyyMMdd_HHmmss")}$2',
             ],
             [
               '/^(.*key="%{task_name}%_version">)[^<]*(<.*)/i',
-              '\$1\${format(now, "yyyyMMdd_HHmmss")}\$2',
+              '$1${format(now, "yyyyMMdd_HHmmss")}$2',
             ],
             [
               '/^(.*key="autobot_version">)[^<]*(<.*)/i',
-              '\$1\${format(now, "yyyyMMdd_HHmmss")}\$2',
+              '$1${format(now, "yyyyMMdd_HHmmss")}$2',
             ],
           ],
           event: "BufWritePre",
@@ -67,11 +68,11 @@ export const denops: Plug[] = [
           replace: [
             [
               "/^(\s*\.Last Change: ).*/i",
-              `\$1\${format(now, "yyyy/MM/dd HH:mm:ss")}`,
+              '$1${format(now, "yyyy/MM/dd HH:mm:ss")}',
             ],
             [
               '/^(.*"version", ")[0-9_]+(".*)/i',
-              '\$1\${format(now, "yyyyMMdd_HHmmss")}\$2',
+              '$1${format(now, "yyyyMMdd_HHmmss")}$2',
             ],
           ],
           event: "BufWritePre",
@@ -83,7 +84,7 @@ export const denops: Plug[] = [
           replace: [
             [
               '^(const version = ")[0-9_]+(";)/',
-              '\$1\${format(now, "yyyyMMdd_HHmmss")}\$2',
+              '$1${format(now, "yyyyMMdd_HHmmss")}$2',
             ],
           ],
           event: "BufWritePre",
@@ -184,9 +185,9 @@ export const denops: Plug[] = [
       await globals.set(denops, "hitori_quit", true);
 
       await globals.set(denops, "hitori_blacklist_patterns", [
-        "\.tmp\$",
-        "\.diff\$",
-        "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG\$",
+        "\.tmp$",
+        "\.diff$",
+        "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$",
       ]);
     },
   },
