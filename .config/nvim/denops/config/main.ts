@@ -227,8 +227,8 @@ async function builtinsPost(denops: Denops): Promise<void> {
     await mapping.map(denops, "<c-j>", "<c-w>j", { mode: "n", silent: true });
     await mapping.map(denops, "<c-k>", "<c-w>k", { mode: "n", silent: true });
 
-    await mapping.map(denops, "<c-p>", "<up>", { mode: "c", silent: true });
-    await mapping.map(denops, "<c-n>", "<down>", { mode: "c", silent: true });
+    await mapping.map(denops, "<c-p>", "<up>", { mode: "c" });
+    await mapping.map(denops, "<c-n>", "<down>", { mode: "c" });
   });
 }
 
