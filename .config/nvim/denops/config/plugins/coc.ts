@@ -163,6 +163,10 @@ export const coc: Plugin[] = [
 
       -- coclist
       keyset({ "n", "x" }, "<leader>cc", "<cmd>CocList<cr>", { desc = "Open CocList" })
+
+      -- coc-explorer
+      keyset("n", "<leader>e", "<cmd>CocCommand explorer<cr>", { desc = "Open CocExplorer" })
+
     `,
   },
 ];

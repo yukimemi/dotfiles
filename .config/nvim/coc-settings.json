@@ -20,4 +20,7 @@
   "xml.format.trimTrailingWhitespace": true,
   "powershell.codeFormatting.autoCorrectAliases": true,
   "powershell.integratedConsole.showOnStartup": false,
+  "explorer.file.reveal.auto": true,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.file.showHiddenFiles": true
 }

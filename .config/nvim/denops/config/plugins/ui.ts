@@ -105,11 +105,6 @@ export const ui: Plugin[] = [
     lua_post: `require("nvim-autopairs").setup()`,
   },
   {
-    org: "lewis6991",
-    repo: "gitsigns.nvim",
-    lua_post: `require("gitsigns").setup()`,
-  },
-  {
     org: "monaqa",
     repo: "modesearch.nvim",
     lua_pre: `
