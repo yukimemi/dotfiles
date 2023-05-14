@@ -6,12 +6,14 @@ import { Denops } from "https://deno.land/x/denops_std@v4.3.0/mod.ts";
 import { assertString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
 import { fnamemodify } from "https://deno.land/x/denops_std@v4.3.0/function/mod.ts";
 
-async function download_git(dst: string, url: string, branch?: string): Promise<boolean> {
+async function download_git(
+  dst: string,
+  url: string,
+  branch?: string,
+): Promise<boolean> {
   if (await fs.exists(dst)) {
     return true;
   }
-
-  console.log({dst, url, branch});
 
   let cloneOpt = ["--filter=blob:none"];
   if (branch) {
@@ -101,7 +103,7 @@ export function main(denops: Denops): Promise<void> {
       return await download_git(
         `${base}/repos/github.com/${org}/${repo}`,
         `https://github.com/${org}/${repo}`,
-        branch
+        branch,
       );
     },
 
@@ -145,7 +147,10 @@ export function main(denops: Denops): Promise<void> {
       assertString(org);
       assertString(repo);
       await source_vimscript(denops, `${base}/repos/github.com/${org}/${repo}`);
-      await source_vimscript_after(denops, `${base}/repos/github.com/${org}/${repo}`);
+      await source_vimscript_after(
+        denops,
+        `${base}/repos/github.com/${org}/${repo}`,
+      );
     },
 
     async source_lua_git(base, dst): Promise<void> {
