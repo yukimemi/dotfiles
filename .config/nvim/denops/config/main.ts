@@ -25,15 +25,14 @@ export async function main(denops: Denops): Promise<void> {
   }
   await globals.set(denops, "config_loaded", 1);
 
-  await builtinsPre(denops);
+  await pre(denops);
   await dvpmInit(denops);
-  await builtinsPost(denops);
+  await post(denops);
 
-  // await denops.cmd("LspStart");
-  echo(denops, "Load completed !");
+  await echo(denops, "Load completed !");
 }
 
-async function builtinsPre(denops: Denops): Promise<void> {
+async function pre(denops: Denops): Promise<void> {
   if (await exists(denops, ":GuiFont")) {
     await execute(denops, "GuiFont! HackGen Console NF:h10");
   }
@@ -135,7 +134,7 @@ async function builtinsPre(denops: Denops): Promise<void> {
   });
 }
 
-async function builtinsPost(denops: Denops): Promise<void> {
+async function post(denops: Denops): Promise<void> {
   await batch(denops, async (denops: Denops) => {
     await mapping.map(denops, "<leader>w", "<cmd>write<cr>", {
       mode: "n",
