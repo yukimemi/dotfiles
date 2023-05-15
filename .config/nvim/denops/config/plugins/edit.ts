@@ -1,6 +1,6 @@
 import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
 import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.0.4/plugin.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.5/plugin.ts";
 
 export const edit: Plug[] = [
   { url: "Shougo/context_filetype.vim" },

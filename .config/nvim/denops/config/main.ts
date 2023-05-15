@@ -16,7 +16,7 @@ import {
   execute,
 } from "https://deno.land/x/denops_std@v4.3.1/helper/mod.ts";
 
-import { Dvpm } from "https://deno.land/x/dvpm@0.0.4/dvpm.ts";
+import { Dvpm } from "https://deno.land/x/dvpm@0.0.5/dvpm.ts";
 import { plugins } from "./plugins.ts";
 
 export async function main(denops: Denops): Promise<void> {
@@ -24,6 +24,7 @@ export async function main(denops: Denops): Promise<void> {
     return;
   }
   await globals.set(denops, "config_loaded", 1);
+
   await builtinsPre(denops);
   await dvpmInit(denops);
   await builtinsPost(denops);
@@ -217,7 +218,7 @@ async function builtinsPost(denops: Denops): Promise<void> {
 
 async function dvpmInit(denops: Denops) {
   const base = ensureString(await expand(denops, "~/.cache/nvim/dvpm"));
-  const dvpm = new Dvpm(denops, base, false);
+  const dvpm = await Dvpm.create(denops, { base, debug: false });
 
   plugins.forEach(async (p) => {
     await dvpm.add(p);
