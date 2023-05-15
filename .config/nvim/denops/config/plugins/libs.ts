@@ -1,6 +1,6 @@
 import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.1/helper/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.0.5/plugin.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.6/plugin.ts";
 
 export const libs: Plug[] = [
   { url: "vim-denops/denops.vim" },
