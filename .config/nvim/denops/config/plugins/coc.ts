@@ -171,8 +171,8 @@ lua << EOB
 
       -- coclist
       keyset({ "n", "x" }, "<leader>cc", "<cmd>CocList<cr>", { desc = "Open CocList" })
-      keyset({ "n" }, "<leader>co", "<cmd>CocList -auto-preview mru -A<cr>", { desc = "Open CocList mru all" })
-      keyset({ "n" }, "<leader>cu", "<cmd>CocList -auto-preview mru<cr>", { desc = "Open CocList mru current" })
+      keyset({ "n" }, "<leader>co", "<cmd>CocList --auto-preview mru -A<cr>", { desc = "Open CocList mru all" })
+      keyset({ "n" }, "<leader>cu", "<cmd>CocList --auto-preview mru<cr>", { desc = "Open CocList mru current" })
 
       -- coc-explorer
       keyset("n", "<leader>e", "<cmd>CocCommand explorer<cr>", { desc = "Open CocExplorer" })
