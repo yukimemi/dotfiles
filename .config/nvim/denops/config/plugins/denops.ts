@@ -2,6 +2,7 @@ import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
 import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
 import { expand } from "https://deno.land/x/denops_std@v4.3.1/function/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v4.3.1/variable/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v4.3.1/option/mod.ts";
 import { type Plug } from "https://deno.land/x/dvpm@0.0.3/plugin.ts";
 
 export const denops: Plug[] = [
@@ -32,6 +33,48 @@ export const denops: Plug[] = [
         "qf",
         "quickfix",
       ]);
+    },
+  },
+  {
+    url: "yukimemi/dps-asyngrep",
+    before: async (denops: Denops) => {
+      await globals.set(denops, "asyngrep_debug", false);
+      await globals.set(
+        denops,
+        "asyngrep_cfg_path",
+        await expand(denops, "~/.config/asyngrep/asyngrep.toml"),
+      );
+      await option.grepformat.set(denops, "%f:%l:%c:%m");
+
+      await mapping.map(denops, "<space>ss", "<cmd>Agp<cr>", { mode: "n" });
+      await mapping.map(denops, "<space>sr", "<cmd>Agp --tool=ripgrep<cr>", {
+        mode: "n",
+      });
+      await mapping.map(denops, "<space>sp", "<cmd>Agp --tool=pt<cr>", {
+        mode: "n",
+      });
+      await mapping.map(denops, "<space>sj", "<cmd>Agp --tool=jvgrep<cr>", {
+        mode: "n",
+      });
+
+      await mapping.map(
+        denops,
+        "<space>sS",
+        "<cmd>Agp --tool=default-all<cr>",
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<space>sR",
+        "<cmd>Agp --tool=ripgrep-all<cr>",
+        { mode: "n" },
+      );
+      await mapping.map(denops, "<space>sP", "<cmd>Agp --tool=pt-all<cr>", {
+        mode: "n",
+      });
+      await mapping.map(denops, "<space>sJ", "<cmd>Agp --tool=jvgrep-all<cr>", {
+        mode: "n",
+      });
     },
   },
   {
@@ -160,6 +203,7 @@ export const denops: Plug[] = [
       );
       await globals.set(denops, "randomcolorscheme_notmatch", "[Ll]ight");
       await globals.set(denops, "randomcolorscheme_background", "dark");
+
       await mapping.map(denops, "<space>ro", "<cmd>ChangeColorscheme<cr>", {
         mode: "n",
       });
