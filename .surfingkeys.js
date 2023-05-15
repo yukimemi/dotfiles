@@ -482,7 +482,7 @@ mapkey("co", "#7Copy title and link to org", () => {
 });
 
 unmapAllExcept(
-  ["E", "R", "T", "f", "F", "C", "x", "S", "H", "L", "cm", "n", "p"],
+  ["E", "R", "T", "f", "F", "C", "x", "S", "H", "L", "cm"],
   /mail.google.com|feedly.com|i.doit.im|outlook.office.com/,
 );
 

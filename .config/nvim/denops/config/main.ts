@@ -16,7 +16,7 @@ import {
   execute,
 } from "https://deno.land/x/denops_std@v4.3.1/helper/mod.ts";
 
-import { Dvpm } from "https://deno.land/x/dvpm@0.0.3/dvpm.ts";
+import { Dvpm } from "https://deno.land/x/dvpm@0.0.4/dvpm.ts";
 import { plugins } from "./plugins.ts";
 
 export async function main(denops: Denops): Promise<void> {
@@ -208,6 +208,10 @@ async function builtinsPost(denops: Denops): Promise<void> {
 
     await mapping.map(denops, "<c-p>", "<up>", { mode: "c" });
     await mapping.map(denops, "<c-n>", "<down>", { mode: "c" });
+    await mapping.map(denops, "<c-f>", "<right>", { mode: "c" });
+    await mapping.map(denops, "<c-b>", "<left>", { mode: "c" });
+    await mapping.map(denops, "<c-a>", "<home>", { mode: "c" });
+    await mapping.map(denops, "<c-e>", "<end>", { mode: "c" });
   });
 }
 

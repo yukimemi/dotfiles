@@ -2,7 +2,7 @@ import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v4.3.1/variable/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.1/helper/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.0.3/plugin.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.4/plugin.ts";
 
 export const coc: Plug[] = [
   {
@@ -171,6 +171,8 @@ lua << EOB
 
       -- coclist
       keyset({ "n", "x" }, "<leader>cc", "<cmd>CocList<cr>", { desc = "Open CocList" })
+      keyset({ "n" }, "<leader>co", "<cmd>CocList -auto-preview mru -A<cr>", { desc = "Open CocList mru all" })
+      keyset({ "n" }, "<leader>cu", "<cmd>CocList -auto-preview mru<cr>", { desc = "Open CocList mru current" })
 
       -- coc-explorer
       keyset("n", "<leader>e", "<cmd>CocCommand explorer<cr>", { desc = "Open CocExplorer" })

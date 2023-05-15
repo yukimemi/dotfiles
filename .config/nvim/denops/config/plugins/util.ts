@@ -1,11 +1,13 @@
-import { Plugin } from "./types.ts";
+import { globals } from "https://deno.land/x/denops_std@v4.3.1/variable/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.4/plugin.ts";
 
-export const util: Plugin[] = [
+export const util: Plug[] = [
   {
-    org: "thinca",
-    repo: "vim-partedit",
-    lua_pre: `
-      vim.g["partedit#opener"] = "vsplit"
-    `,
+    url: "thinca/vim-partedit",
+    before: async (denops: Denops) => {
+      await globals.set(denops, "partedit#opener", "vsplit");
+    },
   },
+  { url: "tyru/capture.vim" },
 ];

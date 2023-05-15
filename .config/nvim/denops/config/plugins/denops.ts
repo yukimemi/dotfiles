@@ -3,7 +3,7 @@ import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
 import { expand } from "https://deno.land/x/denops_std@v4.3.1/function/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v4.3.1/variable/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v4.3.1/option/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.0.3/plugin.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.0.4/plugin.ts";
 
 export const denops: Plug[] = [
   {
@@ -79,9 +79,8 @@ export const denops: Plug[] = [
   },
   {
     url: "yukimemi/dps-autodate",
-    enabled: false,
     before: async (denops: Denops) => {
-      await globals.set(denops, "autodate_debug", true);
+      await globals.set(denops, "autodate_debug", false);
       await globals.set(denops, "autodate_config", {
         xml: {
           replace: [
@@ -126,7 +125,7 @@ export const denops: Plug[] = [
         typescript: {
           replace: [
             [
-              '^(const version = ")[0-9_]+(";)/',
+              '/^(const version = ")[0-9_]+(";)/',
               '$1${format(now, "yyyyMMdd_HHmmss")}$2',
             ],
           ],
