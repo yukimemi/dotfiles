@@ -16,7 +16,7 @@ import {
   execute,
 } from "https://deno.land/x/denops_std@v4.3.1/helper/mod.ts";
 
-import { Dvpm } from "https://deno.land/x/dvpm@0.0.7/dvpm.ts";
+import { Dvpm } from "https://deno.land/x/dvpm@0.1.0/dvpm.ts";
 import { plugins } from "./plugins.ts";
 
 export async function main(denops: Denops): Promise<void> {
