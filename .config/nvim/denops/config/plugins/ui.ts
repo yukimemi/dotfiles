@@ -88,9 +88,20 @@ EOB
     },
   },
   {
-    url: "windwp/nvim-autopairs",
+    url: "lukas-reineke/indent-blankline.nvim",
     after: async (denops: Denops) => {
-      await execute(denops, `lua require("nvim-autopairs").setup()`);
+      await execute(
+        denops,
+        `
+lua << EOB
+  require("indent_blankline").setup({
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
+  })
+EOB
+    `,
+      );
     },
   },
   {

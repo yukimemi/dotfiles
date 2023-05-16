@@ -1,6 +1,5 @@
 import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v4.3.1/variable/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.1/helper/mod.ts";
 import { type Plug } from "https://deno.land/x/dvpm@0.1.0/mod.ts";
 
