@@ -7,12 +7,11 @@ import { type Plug } from "https://deno.land/x/dvpm@0.1.1/mod.ts";
 export const edit: Plug[] = [
   {
     url: "editorconfig/editorconfig-vim",
-    enabled: async (denops: Denops) => {
-      return !(await has(denops, "nvim"));
-    },
+    enabled: async (denops: Denops) => !(await has(denops, "nvim")),
   },
   {
     url: "windwp/nvim-autopairs",
+    enabled: async (denops: Denops) => (await has(denops, "nvim")),
     after: async (denops: Denops) => {
       await execute(denops, `lua require("nvim-autopairs").setup()`);
     },

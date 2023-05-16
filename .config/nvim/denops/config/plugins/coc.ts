@@ -1,11 +1,13 @@
 import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
+import { has } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
 import { type Plug } from "https://deno.land/x/dvpm@0.1.1/mod.ts";
 
 export const coc: Plug[] = [
   {
     url: "neoclide/coc.nvim",
+    enabled: async (denops: Denops) => (await has(denops, "nvim")),
     branch: "release",
     before: async (denops: Denops) => {
       await globals.set(denops, "coc_global_extensions", [

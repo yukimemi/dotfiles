@@ -31,10 +31,10 @@
 
 [darwin]
 ".config/espanso" = "~/Library/Preferences/espanso"
-".config/nvim" = "~/.vim"
-".config/nvim/init.vim" = "~/.vimrc"
 ".config/rhq" = "~/Library/Preferences/rhq"
+".vimrc" = "~/.vimrc"
 ".gvimrc" = "~/.gvimrc"
+".config/nvim" = "~/.vim"
 ".hyper.js" = ["~/Library/Application Support/Hyper/.hyper.js", "~/.hyper.js"]
 ".profile" = "~/.profile"
 ".tmux.conf" = "~/.tmux.conf"
@@ -42,7 +42,9 @@
 "mac/Library/LaunchAgents/com.Neovide.set-multigrid.plist" = "~/Library/LaunchAgents/com.Neovide.set-multigrid.plist"
 
 [linux]
+".vimrc" = "~/.vimrc"
 ".gvimrc" = "~/.gvimrc"
+".config/nvim" = "~/.vim"
 ".hyper.js" = "~/.hyper.js"
 ".inputrc" = "~/.inputrc"
 ".tmux.conf" = "~/.tmux.conf"

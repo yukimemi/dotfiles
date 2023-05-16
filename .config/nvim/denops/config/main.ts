@@ -1,8 +1,9 @@
+import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
+import * as nvimOption from "https://deno.land/x/denops_std@v4.3.3/option/nvim/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v4.3.3/option/mod.ts";
 import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v4.3.3/batch/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
-import * as option from "https://deno.land/x/denops_std@v4.3.3/option/mod.ts";
-import * as nvimOption from "https://deno.land/x/denops_std@v4.3.3/option/nvim/mod.ts";
+import { ensureDir } from "https://deno.land/std@0.187.0/fs/ensure_dir.ts";
 import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
 import {
   exists,
@@ -11,7 +12,10 @@ import {
 } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 import { stdpath } from "https://deno.land/x/denops_std@v4.3.3/function/nvim/mod.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
+import {
+  echo,
+  execute,
+} from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
 
 import { Dvpm } from "https://deno.land/x/dvpm@0.1.1/dvpm.ts";
 import { plugins } from "./plugins.ts";
@@ -21,10 +25,14 @@ export async function main(denops: Denops): Promise<void> {
   await dvpmInit(denops);
   await post(denops);
 
-  await execute(
-    denops,
-    `lua vim.notify("Config load completed !", vim.log.levels.INFO)`,
-  );
+  if (await has(denops, "nvim")) {
+    await execute(
+      denops,
+      `lua vim.notify("Config load completed !", vim.log.levels.INFO)`,
+    );
+  } else {
+    await echo(denops, "Config load completed !");
+  }
 }
 
 async function pre(denops: Denops): Promise<void> {
@@ -73,7 +81,10 @@ async function pre(denops: Denops): Promise<void> {
     });
   }
 
-  const backupdir = ensureString(await stdpath(denops, "cache"));
+  const backupdir = (await has(denops, "nvim"))
+    ? ensureString(await stdpath(denops, "cache"))
+    : ensureString(await expand(denops, "~/.cache/vim/back"));
+  await ensureDir(backupdir);
 
   await batch(denops, async (denops: Denops) => {
     await option.encoding.set(denops, "utf-8");
@@ -96,6 +107,10 @@ async function pre(denops: Denops): Promise<void> {
     await option.ignorecase.set(denops, true);
     await option.laststatus.set(denops, 3);
     await option.list.set(denops, true);
+    await option.listchars.set(
+      denops,
+      "tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%",
+    );
     await option.mouse.set(denops, "a");
     await option.number.set(denops, true);
     await option.pumheight.set(denops, 30);
@@ -121,8 +136,10 @@ async function pre(denops: Denops): Promise<void> {
     await option.wildmode.set(denops, "longest:full,full");
     await option.wrap.set(denops, false);
 
-    await nvimOption.inccommand.set(denops, "nosplit");
-    await nvimOption.pumblend.set(denops, 10);
+    if (await has(denops, "nvim")) {
+      await nvimOption.inccommand.set(denops, "nosplit");
+      await nvimOption.pumblend.set(denops, 10);
+    }
 
     await globals.set(denops, "mapleader", " ");
     await globals.set(denops, "maplocalleader", "\\");
@@ -208,10 +225,28 @@ async function post(denops: Denops): Promise<void> {
     await mapping.map(denops, "<c-a>", "<home>", { mode: "c" });
     await mapping.map(denops, "<c-e>", "<end>", { mode: "c" });
   });
+
+  await vimInit(denops);
+}
+
+async function vimInit(denops: Denops) {
+  if (await has(denops, "nvim")) {
+    return;
+  }
+  await execute(
+    denops,
+    `
+    silent! syntax enable
+    filetype plugin indent on
+    `,
+  );
 }
 
 async function dvpmInit(denops: Denops) {
-  const base = ensureString(await expand(denops, "~/.cache/nvim/dvpm"));
+  const base_path = (await has(denops, "nvim"))
+    ? "~/.cache/nvim/dvpm"
+    : "~/.cache/vim/dvpm";
+  const base = ensureString(await expand(denops, base_path));
   const dvpm = await Dvpm.create(denops, { base, debug: false });
 
   await Promise.all(plugins.map(async (p) => {

@@ -1,4 +1,5 @@
 import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
+import { has } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 import { type Plug } from "https://deno.land/x/dvpm@0.1.1/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
 
@@ -21,6 +22,7 @@ export const ddu: Plug[] = [
   { url: "tyru/open-browser.vim" },
   {
     url: "Shougo/ddu.vim",
+    enabled: async (denops: Denops) => (await has(denops, "nvim")),
     before: async (denops: Denops) => {
       await execute(
         denops,

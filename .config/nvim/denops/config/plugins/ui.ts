@@ -1,13 +1,21 @@
 import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
+import { has } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
 import { type Plug } from "https://deno.land/x/dvpm@0.1.1/mod.ts";
 
 export const ui: Plug[] = [
   { url: "rafi/awesome-vim-colorschemes" },
-  { url: "RRethy/nvim-base16" },
-  { url: "catppuccin/nvim" },
+  {
+    url: "RRethy/nvim-base16",
+    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+  },
+  {
+    url: "catppuccin/nvim",
+    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+  },
   {
     url: "rcarriga/nvim-notify",
+    enabled: async (denops: Denops) => (await has(denops, "nvim")),
     after: async (denops: Denops) => {
       await execute(
         denops,
@@ -25,6 +33,7 @@ EOB
   },
   {
     url: "gen740/SmoothCursor.nvim",
+    enabled: async (denops: Denops) => (await has(denops, "nvim")),
     after: async (denops: Denops) => {
       await execute(
         denops,
@@ -89,6 +98,7 @@ EOB
   },
   {
     url: "lukas-reineke/indent-blankline.nvim",
+    enabled: async (denops: Denops) => (await has(denops, "nvim")),
     after: async (denops: Denops) => {
       await execute(
         denops,
@@ -106,6 +116,7 @@ EOB
   },
   {
     url: "monaqa/modesearch.nvim",
+    enabled: async (denops: Denops) => (await has(denops, "nvim")),
     after: async (denops: Denops) => {
       await execute(
         denops,
@@ -141,6 +152,7 @@ EOB
   },
   {
     url: "folke/which-key.nvim",
+    enabled: async (denops: Denops) => (await has(denops, "nvim")),
     after: async (denops: Denops) => {
       await execute(denops, `lua require("which-key").setup()`);
     },
