@@ -1,19 +1,19 @@
-import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v4.3.1/batch/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
-import * as option from "https://deno.land/x/denops_std@v4.3.1/option/mod.ts";
-import * as nvimOption from "https://deno.land/x/denops_std@v4.3.1/option/nvim/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v4.3.1/variable/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
+import { batch } from "https://deno.land/x/denops_std@v4.3.3/batch/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v4.3.3/option/mod.ts";
+import * as nvimOption from "https://deno.land/x/denops_std@v4.3.3/option/nvim/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
 import {
   exists,
   expand,
   has,
-} from "https://deno.land/x/denops_std@v4.3.1/function/mod.ts";
-import { stdpath } from "https://deno.land/x/denops_std@v4.3.1/function/nvim/mod.ts";
+} from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import { stdpath } from "https://deno.land/x/denops_std@v4.3.3/function/nvim/mod.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v4.3.1/helper/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
 
-import { Dvpm } from "https://deno.land/x/dvpm@0.1.0/dvpm.ts";
+import { Dvpm } from "https://deno.land/x/dvpm@0.1.1/dvpm.ts";
 import { plugins } from "./plugins.ts";
 
 export async function main(denops: Denops): Promise<void> {
@@ -21,7 +21,10 @@ export async function main(denops: Denops): Promise<void> {
   await dvpmInit(denops);
   await post(denops);
 
-  console.log("Load completed !");
+  await execute(
+    denops,
+    `lua vim.notify("Config load completed !", vim.log.levels.INFO)`,
+  );
 }
 
 async function pre(denops: Denops): Promise<void> {

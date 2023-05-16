@@ -1,9 +1,9 @@
-import * as mapping from "https://deno.land/x/denops_std@v4.3.1/mapping/mod.ts";
-import { Denops } from "https://deno.land/x/denops_std@v4.3.1/mod.ts";
-import { expand } from "https://deno.land/x/denops_std@v4.3.1/function/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v4.3.1/variable/mod.ts";
-import * as option from "https://deno.land/x/denops_std@v4.3.1/option/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.1.0/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
+import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
+import { expand } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v4.3.3/option/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.1.1/mod.ts";
 
 export const denops: Plug[] = [
   {
@@ -189,7 +189,7 @@ export const denops: Plug[] = [
     before: async (denops: Denops) => {
       await globals.set(denops, "randomcolorscheme_debug", false);
       await globals.set(denops, "randomcolorscheme_echo", true);
-      await globals.set(denops, "randomcolorscheme_interval", 600);
+      await globals.set(denops, "randomcolorscheme_interval", 180);
       await globals.set(denops, "randomcolorscheme_disables", [
         "evening",
         "default",
