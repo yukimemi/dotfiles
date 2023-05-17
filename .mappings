@@ -4,7 +4,6 @@
 ".shelp" = "~/.shelp"
 ".stack" = "~/.stack"
 ".surfingkeys.js" = "~/.surfingkeys.js"
-".tool-versions" = "~/.tool-versions"
 ".zprofile" = "~/.zprofile"
 ".zshenv" = "~/.zshenv"
 ".zshrc" = "~/.zshrc"
@@ -13,7 +12,7 @@
 [windows]
 ".config/rhq" = "~/AppData/Roaming/rhq"
 ".config/helix" = "~/AppData/Roaming/helix"
-".config/vim" = "~/vimfiles"
+".config/nvim" = ["~/vimfiles", "~/AppData/Local/nvim"]
 ".vimrc" = "~/_vimrc"
 ".gvimrc" = "~/_gvimrc"
 ".hyper.js" = ["~/AppData/Roaming/Hyper/.hyper.js", "~/.hyper.js"]

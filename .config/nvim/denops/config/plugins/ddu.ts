@@ -17,7 +17,10 @@ export const ddu: Plug[] = [
   { url: "Shougo/ddu-ui-ff" },
   { url: "matsui54/ddu-source-command_history" },
   { url: "matsui54/ddu-source-help" },
-  { url: "matsui54/ddu-vim-ui-select" },
+  {
+    url: "matsui54/ddu-vim-ui-select",
+    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+  },
   { url: "shun/ddu-source-buffer" },
   { url: "tyru/open-browser.vim" },
   {

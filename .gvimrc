@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : .gvimrc
 " Author      : yukimemi
-" Last Change : 2023/04/16 18:36:11.
+" Last Change : 2023/05/17 00:40:12.
 " =============================================================================
 
 " hide all
@@ -10,24 +10,6 @@ set fillchars=vert:\|,fold:-,diff:-
 set listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
 set ambiwidth=double
 
-" color
-let s:no_plugin = get(g:, "no_plugin", v:false)
-if s:no_plugin
-  colorscheme desert
-endif
-
-" set background=dark
-" silent! colorscheme srcery
-" silent! colorscheme pinkmare
-" silent! colorscheme palenight
-
-" font
-" set gfn=PlemolJP_Console_NF:h11
-" set gfw=PlemolJP_Console_NF:h11
-" set printfont=PlemolJP_Console_NF:h11
-" set gfn=UDEV_Gothic_NF:h11
-" set gfw=UDEV_Gothic_NF:h11
-" set printfont=UDEV_Gothic_NF:h11
 set gfn=HackGen_Console_NF:h10:cSHIFTJIS:qDRAFT
 set gfw=HackGen_Console_NF:h10:cSHIFTJIS:qDRAFT
 set printfont=HackGen_Console_NF:h10:cSHIFTJIS:qDRAFT
@@ -36,7 +18,7 @@ set printfont=HackGen_Console_NF:h10:cSHIFTJIS:qDRAFT
 set rop=type:directx,renmode:5
 
 let g:save_window_file = expand("~/.vimwinpos")
-au MyAutoCmd VimLeavePre * call s:save_window()
+au VimLeavePre * call s:save_window()
 function! s:save_window() abort
   let options = [
         \ 'set columns=' . &columns,
@@ -47,6 +29,6 @@ function! s:save_window() abort
 endfunction
 
 if filereadable(g:save_window_file)
-  au MyAutoCmd GUIEnter * exe 'source' g:save_window_file
+  au GUIEnter * exe 'source' g:save_window_file
 endif
 

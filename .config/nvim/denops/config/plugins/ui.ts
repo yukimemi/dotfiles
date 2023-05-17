@@ -1,4 +1,5 @@
 import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
 import { has } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
 import { type Plug } from "https://deno.land/x/dvpm@0.1.1/mod.ts";
@@ -155,6 +156,18 @@ EOB
     enabled: async (denops: Denops) => (await has(denops, "nvim")),
     after: async (denops: Denops) => {
       await execute(denops, `lua require("which-key").setup()`);
+    },
+  },
+  {
+    url: "liuchengxu/vim-which-key",
+    enabled: async (denops: Denops) => !(await has(denops, "nvim")),
+    after: async (denops: Denops) => {
+      await mapping.map(denops, "<leader>", "<cmd>WhichKey '<space>'<cr>", {
+        mode: ["n", "x"],
+      });
+      await mapping.map(denops, "<localleader>", "<cmd>WhichKey '\\'<cr>", {
+        mode: ["n", "x"],
+      });
     },
   },
 ];
