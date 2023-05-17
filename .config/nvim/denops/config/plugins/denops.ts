@@ -189,7 +189,7 @@ export const denops: Plug[] = [
     before: async (denops: Denops) => {
       await globals.set(denops, "randomcolorscheme_debug", false);
       await globals.set(denops, "randomcolorscheme_echo", true);
-      await globals.set(denops, "randomcolorscheme_interval", 111);
+      await globals.set(denops, "randomcolorscheme_interval", 77);
       await globals.set(denops, "randomcolorscheme_disables", [
         "evening",
         "default",
