@@ -4,6 +4,7 @@ import { autocmd, execute, globals, has, mapping } from "../dep.ts";
 export const libs: Plug[] = [
   { url: "vim-denops/denops.vim" },
   { url: "kana/vim-repeat" },
+  { url: "mattn/vim-findroot" },
   { url: "lambdalisue/kensaku.vim" },
   {
     url: "MunifTanjim/nui.nvim",

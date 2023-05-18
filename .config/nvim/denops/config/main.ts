@@ -9,11 +9,16 @@ import { setNeovimQt } from "./neovimqt.ts";
 import { setOption } from "./option.ts";
 
 export async function main(denops: Denops): Promise<void> {
+  const starttime = performance.now();
   await pre(denops);
   await dvpmInit(denops);
   await post(denops);
 
-  await notify(denops, "Config load completed !");
+  const elapsed = performance.now() - starttime;
+  await notify(
+    denops,
+    `Config load completed ! \\nElapsed: (${elapsed})`,
+  );
 }
 
 async function pre(denops: Denops): Promise<void> {

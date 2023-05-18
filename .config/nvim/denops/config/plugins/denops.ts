@@ -1,5 +1,6 @@
 import type { Denops, Plug } from "../dep.ts";
 import { expand, globals, mapping, option } from "../dep.ts";
+import { notify } from "../util.ts";
 
 export const denops: Plug[] = [
   {
@@ -228,6 +229,9 @@ export const denops: Plug[] = [
         "\.diff$",
         "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$",
       ]);
+    },
+    after: async (denops: Denops) => {
+      await notify(denops, "dps-hitori loaded");
     },
   },
 ];
