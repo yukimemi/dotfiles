@@ -1,10 +1,9 @@
-import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
-import { has } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.1.1/mod.ts";
+import type { Denops, Plug } from "../dep.ts";
+import { autocmd, execute, globals, has, mapping } from "../dep.ts";
 
 export const libs: Plug[] = [
   { url: "vim-denops/denops.vim" },
+  { url: "kana/vim-repeat" },
   { url: "lambdalisue/kensaku.vim" },
   {
     url: "MunifTanjim/nui.nvim",
@@ -14,6 +13,24 @@ export const libs: Plug[] = [
   {
     url: "nvim-lua/plenary.nvim",
     enabled: async (denops: Denops) => (await has(denops, "nvim")),
+  },
+  {
+    url: "rcarriga/nvim-notify",
+    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+    after: async (denops: Denops) => {
+      await execute(
+        denops,
+        `
+lua << EOB
+      local notify = require("notify")
+      notify.setup({
+        stages = "slide",
+      })
+      vim.notify = notify
+EOB
+    `,
+      );
+    },
   },
   {
     url: "nvim-tree/nvim-web-devicons",
@@ -50,6 +67,17 @@ end, { expr = true })
 EOF
     `,
       );
+    },
+  },
+  {
+    url: "lambdalisue/vim-findent",
+    before: async (denops: Denops) => {
+      await globals.set(denops, "findent#enable_warnings", 1);
+      await globals.set(denops, "findent#enable_messages", 1);
+      await autocmd.group(denops, "MyFindent", (helper) => {
+        helper.remove("*");
+        helper.define("BufRead", "*", "Findent!");
+      });
     },
   },
 ];

@@ -1,7 +1,5 @@
-import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
-import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.1.1/mod.ts";
+import type { Denops, Plug } from "../dep.ts";
+import { globals, mapping } from "../dep.ts";
 
 export const motion: Plug[] = [
   {
@@ -22,6 +20,17 @@ export const motion: Plug[] = [
       await globals.set(denops, "fuzzy_motion_disable_match_highlight", false);
       await globals.set(denops, "fuzzy_motion_matchers", ["fzf", "kensaku"]);
       await mapping.map(denops, "ss", "<cmd>FuzzyMotion<cr>", { mode: "n" });
+    },
+  },
+  {
+    url: "Bakudankun/BackAndForward.vim",
+    before: async (denops: Denops) => {
+      await mapping.map(denops, "gH", "<Plug>(backandforward-back)", {
+        mode: "n",
+      });
+      await mapping.map(denops, "gL", "<Plug>(backandforward-forward)", {
+        mode: "n",
+      });
     },
   },
 ];

@@ -1,6 +1,5 @@
-import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
-import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.1.1/mod.ts";
+import type { Denops, Plug } from "../dep.ts";
+import { mapping } from "../dep.ts";
 
 export const operator: Plug[] = [
   { url: "kana/vim-operator-user" },

@@ -1,8 +1,5 @@
-import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
-import { has } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.1.1/mod.ts";
+import type { Denops, Plug } from "../dep.ts";
+import { execute, has, mapping } from "../dep.ts";
 
 export const ui: Plug[] = [
   { url: "rafi/awesome-vim-colorschemes" },
@@ -13,24 +10,6 @@ export const ui: Plug[] = [
   {
     url: "catppuccin/nvim",
     enabled: async (denops: Denops) => (await has(denops, "nvim")),
-  },
-  {
-    url: "rcarriga/nvim-notify",
-    enabled: async (denops: Denops) => (await has(denops, "nvim")),
-    after: async (denops: Denops) => {
-      await execute(
-        denops,
-        `
-lua << EOB
-      local notify = require("notify")
-      notify.setup({
-        stages = "slide",
-      })
-      vim.notify = notify
-EOB
-    `,
-      );
-    },
   },
   {
     url: "gen740/SmoothCursor.nvim",

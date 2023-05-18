@@ -1,8 +1,6 @@
-import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
-import { has } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.1.1/mod.ts";
+import type { Denops, Plug } from "../dep.ts";
+import { execute, globals, has } from "../dep.ts";
+import { notify } from "../util.ts";
 
 export const coc: Plug[] = [
   {
@@ -174,12 +172,14 @@ lua << EOB
       keyset({ "n", "x" }, "<leader>cc", "<cmd>CocList<cr>", { desc = "Open CocList" })
       keyset({ "n" }, "<leader>co", "<cmd>CocList --auto-preview mru -A<cr>", { desc = "Open CocList mru all" })
       keyset({ "n" }, "<leader>cu", "<cmd>CocList --auto-preview mru<cr>", { desc = "Open CocList mru current" })
+      keyset({ "n" }, "<leader>cb", "<cmd>CocList --auto-preview buffers<cr>", { desc = "Open CocList buffers" })
 
       -- coc-explorer
       keyset("n", "<leader>e", "<cmd>CocCommand explorer<cr>", { desc = "Open CocExplorer" })
 EOB
                     `,
       );
+      await notify(denops, "coc.nvim loaded");
     },
   },
 ];

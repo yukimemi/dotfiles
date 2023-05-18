@@ -1,13 +1,27 @@
-import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
-import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
-import { has } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.1.1/mod.ts";
+import type { Denops, Plug } from "../dep.ts";
+import { execute, has, mapping } from "../dep.ts";
 
 export const edit: Plug[] = [
   {
     url: "editorconfig/editorconfig-vim",
     enabled: async (denops: Denops) => !(await has(denops, "nvim")),
+  },
+  {
+    url: "monaqa/dial.nvim",
+    after: async (denops: Denops) => {
+      await mapping.map(
+        denops,
+        "<c-a>",
+        '<cmd>lua require("dial.map").inc_normal()<cr>',
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<c-x>",
+        '<cmd>lua require("dial.map").dec_normal()<cr>',
+        { mode: "n" },
+      );
+    },
   },
   {
     url: "windwp/nvim-autopairs",

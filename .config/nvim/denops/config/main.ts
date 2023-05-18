@@ -1,23 +1,21 @@
-import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
-import * as nvimOption from "https://deno.land/x/denops_std@v4.3.3/option/nvim/mod.ts";
-import * as option from "https://deno.land/x/denops_std@v4.3.3/option/mod.ts";
-import { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v4.3.3/batch/mod.ts";
-import { ensureDir } from "https://deno.land/std@0.187.0/fs/ensure_dir.ts";
-import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
+import type { Denops } from "./dep.ts";
 import {
+  batch,
+  Dvpm,
+  ensureDir,
+  ensureString,
+  execute,
   exists,
   expand,
+  globals,
   has,
-} from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
-import { stdpath } from "https://deno.land/x/denops_std@v4.3.3/function/nvim/mod.ts";
-import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
-import {
-  echo,
-  execute,
-} from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
+  mapping,
+  nvimOption,
+  option,
+  stdpath,
+} from "./dep.ts";
 
-import { Dvpm } from "https://deno.land/x/dvpm@0.1.1/dvpm.ts";
+import { notify } from "./util.ts";
 import { plugins } from "./plugins.ts";
 
 export async function main(denops: Denops): Promise<void> {
@@ -25,14 +23,7 @@ export async function main(denops: Denops): Promise<void> {
   await dvpmInit(denops);
   await post(denops);
 
-  if (await has(denops, "nvim")) {
-    await execute(
-      denops,
-      `lua vim.notify("Config load completed !", vim.log.levels.INFO)`,
-    );
-  } else {
-    await echo(denops, "Config load completed !");
-  }
+  await notify(denops, "Config load completed !");
 }
 
 async function pre(denops: Denops): Promise<void> {
@@ -143,11 +134,8 @@ async function pre(denops: Denops): Promise<void> {
 
     await globals.set(denops, "mapleader", " ");
     await globals.set(denops, "maplocalleader", "\\");
-  });
-}
 
-async function post(denops: Denops): Promise<void> {
-  await batch(denops, async (denops: Denops) => {
+    // keymaps.
     await mapping.map(denops, "<leader>w", "<cmd>write<cr>", {
       mode: "n",
       silent: true,
@@ -225,7 +213,9 @@ async function post(denops: Denops): Promise<void> {
     await mapping.map(denops, "<c-a>", "<home>", { mode: "c" });
     await mapping.map(denops, "<c-e>", "<end>", { mode: "c" });
   });
+}
 
+async function post(denops: Denops): Promise<void> {
   await vimInit(denops);
 }
 

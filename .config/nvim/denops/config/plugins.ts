@@ -13,13 +13,13 @@ import { util } from "./plugins/util.ts";
 
 export const plugins = [
   ...libs,
+  ...coc,
   ...treesitter,
   ...ui,
   ...util,
   ...motion,
   ...edit,
   ...git,
-  ...coc,
   ...textobj,
   ...operator,
   ...ddu,
