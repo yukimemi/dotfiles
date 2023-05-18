@@ -1,5 +1,6 @@
-import type { Denops } from "./dep.ts";
-import { globals, has } from "./dep.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
+import { has } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 
 export async function setWsl(denops: Denops) {
   if (await has(denops, "wsl")) {

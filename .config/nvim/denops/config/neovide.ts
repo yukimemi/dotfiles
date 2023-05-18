@@ -1,5 +1,8 @@
-import type { Denops } from "./dep.ts";
-import { exists, globals, option } from "./dep.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
+
+import * as option from "https://deno.land/x/denops_std@v4.3.3/option/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
+import { exists } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 
 export async function setNeovide(denops: Denops) {
   if (await exists(denops, "g:neovide")) {

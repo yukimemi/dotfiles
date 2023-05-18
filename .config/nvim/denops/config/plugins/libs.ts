@@ -1,5 +1,10 @@
-import type { Denops, Plug } from "../dep.ts";
-import { autocmd, execute, globals, has, mapping } from "../dep.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.1.1/mod.ts";
+
+import * as autocmd from "https://deno.land/x/denops_std@v4.3.3/autocmd/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
+import { has } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 
 export const libs: Plug[] = [
   { url: "vim-denops/denops.vim" },
