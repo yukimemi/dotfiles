@@ -6,7 +6,7 @@ import {
   expand,
   has,
 } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
-import { Dvpm } from "https://deno.land/x/dvpm@0.1.1/dvpm.ts";
+import { Dvpm } from "https://deno.land/x/dvpm@0.1.2/dvpm.ts";
 import { notify } from "./util.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setNeovide } from "./neovide.ts";
