@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.1.2/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.2.2/mod.ts";
 
 import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
@@ -183,7 +183,7 @@ lua << EOB
 EOB
                     `,
       );
-      await notify(denops, "coc.nvim loaded");
+      await notify(denops, "coc.nvim loaded !");
     },
   },
 ];
