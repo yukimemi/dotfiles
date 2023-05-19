@@ -1,5 +1,5 @@
 import { type Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.2.2/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.2.3/mod.ts";
 
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
@@ -7,7 +7,7 @@ import {
   expand,
   has,
 } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
-import { Dvpm } from "https://deno.land/x/dvpm@0.2.2/dvpm.ts";
+import { Dvpm } from "https://deno.land/x/dvpm@0.2.3/dvpm.ts";
 import { notify } from "./util.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setNeovide } from "./neovide.ts";

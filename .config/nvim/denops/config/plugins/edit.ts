@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.2.2/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.2.3/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
@@ -16,13 +16,25 @@ export const edit: Plug[] = [
       await mapping.map(
         denops,
         "<c-a>",
-        '<cmd>lua require("dial.map").inc_normal()<cr>',
+        `<Plug>(dial-increment)`,
         { mode: "n" },
       );
       await mapping.map(
         denops,
         "<c-x>",
-        '<cmd>lua require("dial.map").dec_normal()<cr>',
+        `<Plug>(dial-decrement)`,
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "g<c-a>",
+        `g<Plug>(dial-increment)`,
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "g<c-x>",
+        `g<Plug>(dial-decrement)`,
         { mode: "n" },
       );
     },
