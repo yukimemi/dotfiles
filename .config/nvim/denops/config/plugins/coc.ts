@@ -18,6 +18,7 @@ export const coc: Plug[] = [
     before: async (denops: Denops) => {
       await globals.set(denops, "coc_global_extensions", [
         "coc-deno",
+        "coc-rg",
         "coc-diagnostic",
         "coc-explorer",
         "coc-highlight",
