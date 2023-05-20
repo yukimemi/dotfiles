@@ -7,6 +7,18 @@
   "Lua.diagnostics.globals": [
     "vim"
   ],
+  "suggest.floatConfig": {
+    "border": true
+  },
+  "diagnostic.floatConfig": {
+    "border": true
+  },
+  "signature.floatConfig": {
+    "border": true
+  },
+  "hover.floatConfig": {
+    "border": true
+  },
   "xml.codeLens.enabled": true,
   "xml.completion.autoCloseTags": true,
   "xml.format.emptyElements": "collapse",

@@ -1,6 +1,7 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
 
 import * as nvimOption from "https://deno.land/x/denops_std@v4.3.3/option/nvim/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v4.3.3/autocmd/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v4.3.3/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v4.3.3/batch/mod.ts";
 import { ensureDir } from "https://deno.land/std@0.188.0/fs/ensure_dir.ts";
@@ -71,5 +72,14 @@ export async function setOption(denops: Denops) {
       await nvimOption.inccommand.set(denops, "nosplit");
       await nvimOption.pumblend.set(denops, 10);
     }
+
+    await autocmd.group(denops, "MyCommentOut", (helper) => {
+      helper.remove("*");
+      helper.define(
+        "FileType",
+        "*",
+        `set fo-=c fo-=r fo-=o`,
+      );
+    });
   });
 }

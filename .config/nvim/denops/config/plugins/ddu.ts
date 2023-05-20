@@ -1,8 +1,17 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
 import type { Plug } from "https://deno.land/x/dvpm@0.2.3/mod.ts";
 
-import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
-import { has } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v4.3.3/autocmd/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v4.3.3/lambda/mod.ts";
+import * as op from "https://deno.land/x/denops_std@v4.3.3/option/mod.ts";
+import { batch } from "https://deno.land/x/denops_std@v4.3.3/batch/mod.ts";
+import {
+  expand,
+  fnamemodify,
+  has,
+} from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import { notify } from "../util.ts";
 
 export const ddu: Plug[] = [
   { url: "4513ECHO/ddu-kind-url" },
@@ -11,145 +20,294 @@ export const ddu: Plug[] = [
   { url: "Milly/ddu-filter-kensaku" },
   { url: "Shougo/ddu-kind-file" },
   { url: "Shougo/ddu-kind-word" },
+  { url: "Shougo/ddu-source-file" },
   { url: "Shougo/ddu-source-file_old" },
   { url: "Shougo/ddu-source-file_rec" },
+  { url: "Shougo/ddu-source-file_point" },
   { url: "Shougo/ddu-source-line" },
   { url: "Shougo/ddu-source-register" },
   { url: "Shougo/ddu-ui-ff" },
+  { url: "Shougo/ddu-commands.vim" },
+  { url: "matsui54/ddu-source-file_external" },
   { url: "matsui54/ddu-source-command_history" },
   { url: "matsui54/ddu-source-help" },
+  { url: "uga-rosa/ddu-filter-converter_devicon" },
   {
     url: "matsui54/ddu-vim-ui-select",
-    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+    enabled: async (denops: Denops) => await has(denops, "nvim"),
   },
   { url: "shun/ddu-source-buffer" },
   { url: "tyru/open-browser.vim" },
   {
     url: "Shougo/ddu.vim",
-    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+    enabled: async (denops: Denops) => await has(denops, "nvim"),
     before: async (denops: Denops) => {
-      await execute(
+      await mapping.map(
         denops,
-        `
-lua << EOB
-      local start = vim.fn["ddu#start"]
-      vim.keymap.set("n", "<leader>ds", function() start({ sources = { { name = "source" } } }) end, { desc = "ddu source" })
-      vim.keymap.set("n", "<leader>do", function() start({ sources = { { name = "file_old" } } }) end, { desc = "ddu file_old" })
-      vim.keymap.set("n", "<leader>db", function() start({ sources = { { name = "buffer" } } }) end, { desc = "ddu buffer" })
-      vim.keymap.set("n", "<leader>dd", function() start({ sources = { { name = "file_rec", sourceOptionPath = vim.fn.fnamemodify(vim.fn.bufname(), ":p:h") } } }) end, { desc = "ddu files on buffered dir" })
-      vim.keymap.set("n", "<leader>dD", function() start({ sources = { { name = "file_rec", sourceOptionPath = vim.fn.expand("~/.dotfiles") } } }) end, { desc = "ddu files on dorfiles dir" })
-      vim.keymap.set("i", "<C-x><C-e>", function() start({ sources = { { name = "emoji", options = { defaultAction = "append" } } } }) end)
-EOB
-    `,
+        "<leader>dM",
+        "<cmd>Ddu -name=source source<cr>",
+        { mode: "n" }
+      );
+      await mapping.map(
+        denops,
+        "<leader>do",
+        "<cmd>Ddu -name=old file_old<cr>",
+        { mode: "n" }
+      );
+      await mapping.map(
+        denops,
+        "<leader>db",
+        "<cmd>Ddu -name=buffer buffer<cr>",
+        { mode: "n" }
+      );
+      await mapping.map(
+        denops,
+        "<leader>dd",
+        `<cmd>call <SID>${denops.name}_notify("${lambda.register(
+          denops,
+          async () => {
+            await denops.call("ddu#start", {
+              sources: [
+                {
+                  name: "file_rec",
+                  options: {
+                    path: await fnamemodify(
+                      denops,
+                      await expand(denops, "%"),
+                      ":p:h"
+                    ),
+                  },
+                },
+              ],
+            });
+          }
+        )}", [])<cr>`,
+        { mode: "n" }
+      );
+      await mapping.map(
+        denops,
+        "<leader>ds",
+        `<cmd>call <SID>${denops.name}_notify("${lambda.register(
+          denops,
+          async () => {
+            await denops.call("ddu#start", {
+              sources: [
+                {
+                  name: "file_rec",
+                  options: {
+                    path: await expand(denops, "~/src"),
+                  },
+                },
+              ],
+            });
+          }
+        )}", [])<cr>`,
+        { mode: "n" }
+      );
+      await mapping.map(
+        denops,
+        "<leader>dD",
+        `<cmd>call <SID>${denops.name}_notify("${lambda.register(
+          denops,
+          async () => {
+            await denops.call("ddu#start", {
+              sources: [
+                {
+                  name: "file_rec",
+                  options: {
+                    path: await expand(denops, "~/.dotfiles"),
+                  },
+                },
+              ],
+            });
+          }
+        )}", [])<cr>`,
+        { mode: "n" }
       );
     },
     after: async (denops: Denops) => {
-      await execute(
-        denops,
-        `
-lua << EOB
-      local patch_global = vim.fn["ddu#custom#patch_global"]
-
-      -- ui
-      patch_global("ui", "ff")
-      patch_global("uiParams", {
-        ff = {
-          split = "floating",
-          floatingBorder = "single",
+      // global settings.
+      await denops.call("ddu#custom#patch_global", {
+        ui: "ff",
+        uiParams: {
+          ff: {
+            prompt: "> ",
+            split: "floating",
+            floatingBorder: "single",
+            startFilter: true,
+          },
         },
-      })
+        sources: {},
+        sourceOptions: {
+          _: {
+            matchers: ["matcher_kensaku"],
+            converters: ["converter_devicon"],
+          },
+        },
+        sourceParams: {},
+        kindOptions: {
+          command_history: { defaultAction: "edit" },
+          file: { defaultAction: "open" },
+          source: { defaultAction: "execute" },
+          ui_select: { defaultAction: "select" },
+          url: { defaultAction: "browse" },
+          word: { defaultAction: "append" },
+        },
+      });
 
-      -- sources
-      patch_global("sources", {})
-      patch_global("sourceOptions", {
-        ["_"] = { matchers = { "matcher_kensaku" } },
-      })
-      patch_global("sourceParams", {})
-
-      --- kinds
-      patch_global("kindOptions", {
-        command_history = { defaultAction = "edit" },
-        file = { defaultAction = "open" },
-        source = { defaultAction = "execute" },
-        ui_select = { defaultAction = "select" },
-        url = { defaultAction = "browse" },
-        word = { defaultAction = "append" },
-      })
-
-      -- key-bindings
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "ddu-ff",
-        callback = function()
-          local opts = { buffer = true }
-          vim.wo.cursorline = true
-          vim.keymap.set("n", "<cr>", "<cmd>call ddu#ui#do_action('itemAction')<cr>", opts)
-          vim.keymap.set("n", "<space>", "<cmd>call ddu#ui#do_action('toggleSelectItem')<cr>", opts)
-          vim.keymap.set("n", "i", "<cmd>call ddu#ui#do_action('openFilterWindow')<cr>", opts)
-          vim.keymap.set("n", "a", "<cmd>call ddu#ui#do_action('chooseAction')<cr>", opts)
-          vim.keymap.set("n", "A", "<cmd>call ddu#ui#do_action('inputAction')<cr>", opts)
-          vim.keymap.set("n", "<C-l>", "<cmd>call ddu#ui#do_action('refreshItems')<cr>", opts)
-          vim.keymap.set("n", "p", "<cmd>call ddu#ui#do_action('preview')<cr>", opts)
-          vim.keymap.set("n", "q", "<cmd>call ddu#ui#do_action('quit')<cr>", opts)
-          vim.keymap.set("n", "c", "<cmd>call ddu#ui#do_action('itemAction', {'name': 'cd'})<cr>", opts)
-          vim.keymap.set("n", "d", "<cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<cr>", opts)
-          vim.keymap.set("n", "e", "<cmd>call ddu#ui#do_action('itemAction', {'name': 'edit'})<cr>", opts)
-          vim.keymap.set(
-            "n",
-            "E",
-            "<cmd>call ddu#ui#do_action('itemAction', {'params': eval(input('params: '))})<cr>",
-            opts
-          )
-          vim.keymap.set(
-            "n",
-            "v",
-            "<cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<cr>",
-            opts
-          )
-          vim.keymap.set("n", "N", "<cmd>call ddu#ui#do_action('itemAction', {'name': 'new'})<cr>", opts)
-          vim.keymap.set(
-            "n",
-            "r",
-            "<cmd>call ddu#ui#do_action('itemAction', {'name': 'quickfix'})<cr>",
-            opts
-          )
-          vim.keymap.set("n", "<esc>", "<cmd>call ddu#ui#do_action('quit')<cr>", { nowait = true, buffer = true })
-          vim.keymap.set(
-            "n",
-            "u",
-            "<cmd>call ddu#ui#do_action('updateOptions', {'sourceOptions': {'_': {'matchers': []}}})<cr>",
-            opts
-          )
-        end,
-      })
-
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "ddu-ff-filter",
-        callback = function()
-          local opts = { buffer = true }
-          vim.keymap.set("i", "<cr>", "<cmd>call ddu#ui#do_action('itemAction')<cr>", opts)
-          vim.keymap.set(
-            "i",
-            "<esc>",
-            "<esc><cmd>call ddu#ui#do_action('closeFilterWindow')<cr>",
-            { nowait = true, buffer = true }
-          )
-          vim.keymap.set(
-            "i",
-            "<c-j>",
-            [[<cmd>call ddu#ui#ff#execute('call cursor(line(".") % line("$") + 1, 0)<bar>redraw')<cr>]],
-            opts
-          )
-          vim.keymap.set(
-            "i",
-            "<c-k>",
-            [[<cmd>call ddu#ui#ff#execute('call cursor((line(".") - 2 + line("$")) % line("$") + 1, 0)<bar>redraw')<cr>]],
-            opts
-          )
-        end,
-      })
-EOB
-    `,
-      );
+      await autocmd.group(denops, "MyDduUiFfMapping", (helper) => {
+        helper.remove("*");
+        helper.define(
+          "FileType",
+          "ddu-ff",
+          `call <SID>${denops.name}_notify("${lambda.register(
+            denops,
+            async () => {
+              await batch(denops, async (denops) => {
+                await op.cursorline.setLocal(denops, true);
+                await mapping.map(
+                  denops,
+                  "<cr>",
+                  `<cmd>call ddu#ui#do_action('itemAction')<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "<space>",
+                  `<cmd>call ddu#ui#do_action('toggleSelectItem')<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "i",
+                  `<cmd>call ddu#ui#do_action('openFilterWindow')<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "a",
+                  `<cmd>call ddu#ui#do_action('chooseAction')<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "A",
+                  `<cmd>call ddu#ui#do_action('inputAction')<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "<C-l>",
+                  `<cmd>call ddu#ui#do_action('refreshItems')<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "p",
+                  `<cmd>call ddu#ui#do_action('preview')<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "q",
+                  `<cmd>call ddu#ui#do_action('quit')<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "c",
+                  `<cmd>call ddu#ui#do_action('itemAction', {'name': 'cd'})<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "d",
+                  `<cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "e",
+                  `<cmd>call ddu#ui#do_action('itemAction', {'name': 'edit'})<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "E",
+                  `<cmd>call ddu#ui#do_action('itemAction', {'params': eval(input('params: '))})<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "v",
+                  `<cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "N",
+                  `<cmd>call ddu#ui#do_action('itemAction', {'name': 'new'})<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "r",
+                  `<cmd>call ddu#ui#do_action('itemAction', {'name': 'quickfix'})<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "<esc>",
+                  `<cmd>call ddu#ui#do_action('quit')<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "u",
+                  `<cmd>call ddu#ui#do_action('updateOptions', {'sourceOptions': {'_': {'matchers': []}}})<cr>`,
+                  { mode: "n", buffer: true, silent: true }
+                );
+              });
+            }
+          )}", [])`
+        );
+        helper.define(
+          "FileType",
+          "ddu-ff-filter",
+          `call <SID>${denops.name}_notify("${lambda.register(
+            denops,
+            async () => {
+              await batch(denops, async (denops) => {
+                await mapping.map(
+                  denops,
+                  "<cr>",
+                  "<cmd>call ddu#ui#do_action('itemAction')<cr>",
+                  { mode: "i", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "<esc>",
+                  "<esc><cmd>call ddu#ui#do_action('closeFilterWindow')<cr>",
+                  { mode: "i", buffer: true, silent: true, nowait: true }
+                );
+                await mapping.map(
+                  denops,
+                  "<c-j>",
+                  `<cmd>call ddu#ui#do_action('cursorNext')<cr>`,
+                  { mode: "i", buffer: true, silent: true }
+                );
+                await mapping.map(
+                  denops,
+                  "<c-k>",
+                  `<cmd>call ddu#ui#do_action('cursorPrevious')<cr>`,
+                  { mode: "i", buffer: true, silent: true }
+                );
+              });
+            }
+          )}", [])`
+        );
+      });
+      await notify(denops, "ddu.vim loaded !");
     },
   },
 ];
