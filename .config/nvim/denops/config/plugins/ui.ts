@@ -3,147 +3,174 @@ import type { Plug } from "https://deno.land/x/dvpm@0.2.3/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
-import { has } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v4.3.3/autocmd/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v4.3.3/lambda/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import * as nvimFn from "https://deno.land/x/denops_std@v4.3.3/function/nvim/mod.ts";
 
 export const ui: Plug[] = [
   { url: "rafi/awesome-vim-colorschemes" },
   {
     url: "RRethy/nvim-base16",
-    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
   },
   {
     url: "catppuccin/nvim",
-    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
   },
   {
     url: "gen740/SmoothCursor.nvim",
-    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
-      await execute(
-        denops,
-        `
-lua << EOB
-      require("smoothcursor").setup({
-        autostart = true,
-        cursor = "", -- cursor shape (need nerd font)
-        texthl = "SmoothCursor", -- highlight group, default is { bg = nil, fg = "#FFD400" }
-        linehl = nil, -- highlight sub-cursor line like 'cursorline', "CursorLine" recommended
-        type = "default", -- define cursor movement calculate function, "default" or "exp" (exponential).
-        fancy = {
-          enable = true, -- enable fancy mode
-          head = { cursor = "▷", texthl = "SmoothCursor", linehl = nil },
-          body = {
-            { cursor = "", texthl = "SmoothCursorRed" },
-            { cursor = "", texthl = "SmoothCursorOrange" },
-            { cursor = "●", texthl = "SmoothCursorYellow" },
-            { cursor = "●", texthl = "SmoothCursorGreen" },
-            { cursor = "•", texthl = "SmoothCursorAqua" },
-            { cursor = ".", texthl = "SmoothCursorBlue" },
-            { cursor = ".", texthl = "SmoothCursorPurple" },
+      await denops.call(`luaeval`, `require("smoothcursor").setup(_A.param)`, {
+        param: {
+          autostart: true,
+          cursor: "",
+          texthl: "SmoothCursor",
+          linehl: null,
+          type: "default",
+          fancy: {
+            enable: true,
+            head: { cursor: "▷", texthl: "SmoothCursor", linehl: null },
+            body: [
+              { cursor: "", texthl: "SmoothCursorRed" },
+              { cursor: "", texthl: "SmoothCursorOrange" },
+              { cursor: "●", texthl: "SmoothCursorYellow" },
+              { cursor: "●", texthl: "SmoothCursorGreen" },
+              { cursor: "•", texthl: "SmoothCursorAqua" },
+              { cursor: ".", texthl: "SmoothCursorBlue" },
+              { cursor: ".", texthl: "SmoothCursorPurple" },
+            ],
+            tail: { cursor: null, texthl: "SmoothCursor" },
           },
-          tail = { cursor = nil, texthl = "SmoothCursor" }
+          flyin_effect: "bottom",
+          speed: 25,
+          intervals: 35,
+          priority: 10,
+          timeout: 3000,
+          threshold: 3,
+          disable_float_win: false,
+          enabled_filetypes: null,
+          disabled_filetypes: null,
         },
-        flyin_effect = "bottom", -- "bottom" or "top"
-        speed = 25, -- max is 100 to stick to your current position
-        intervals = 35, -- tick interval
-        priority = 10, -- set marker priority
-        timeout = 3000, -- timout for animation
-        threshold = 3, -- animate if threshold lines jump
-        disable_float_win = false, -- disable on float window
-        enabled_filetypes = nil, -- example: { "lua", "vim" }
-        disabled_filetypes = nil, -- this option will be skipped if enabled_filetypes is set. example: { "TelescopePrompt", "NvimTree" }
-      })
+      });
 
-      vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
-        callback = function()
-          local current_mode = vim.fn.mode()
-          if current_mode == 'n' then
-            vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#8aa872' })
-            vim.fn.sign_define('smoothcursor', { text = '▷' })
-          elseif current_mode == 'v' then
-            vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#bf616a' })
-            vim.fn.sign_define('smoothcursor', { text = '' })
-          elseif current_mode == 'V' then
-            vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#bf616a' })
-            vim.fn.sign_define('smoothcursor', { text = '' })
-          elseif current_mode == '' then
-            vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#bf616a' })
-            vim.fn.sign_define('smoothcursor', { text = '' })
-          elseif current_mode == 'i' then
-            vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#668aab' })
-            vim.fn.sign_define('smoothcursor', { text = '' })
-          end
-        end,
-      })
-EOB
-    `,
-      );
+      await autocmd.group(denops, "MySmoothCursor", (helper) => {
+        helper.remove("*");
+        helper.define(
+          "ModeChanged",
+          "*",
+          `call <SID>${denops.name}_notify("${
+            lambda.register(
+              denops,
+              async () => {
+                const mode = await fn.mode(denops);
+                if (mode === "n") {
+                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                    fg: "#8aa872",
+                  });
+                  await denops.call("sign_define", "smoothcursor", {
+                    text: "▷",
+                  });
+                } else if (mode === "v") {
+                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                    fg: "#bf616a",
+                  });
+                  await denops.call("sign_define", "smoothcursor", {
+                    text: "",
+                  });
+                } else if (mode === "V") {
+                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                    fg: "#bf616a",
+                  });
+                  await denops.call("sign_define", "smoothcursor", {
+                    text: "",
+                  });
+                } else if (mode === "") {
+                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                    fg: "#bf616a",
+                  });
+                  await denops.call("sign_define", "smoothcursor", {
+                    text: "",
+                  });
+                } else if (mode === "i") {
+                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                    fg: "#668aab",
+                  });
+                  await denops.call("sign_define", "smoothcursor", {
+                    text: "",
+                  });
+                }
+              },
+            )
+          }", [])`,
+        );
+      });
     },
   },
   {
     url: "lukas-reineke/indent-blankline.nvim",
-    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
-      await execute(
-        denops,
-        `
-lua << EOB
-  require("indent_blankline").setup({
-    space_char_blankline = " ",
-    show_current_context = true,
-    show_current_context_start = true,
-  })
-EOB
-    `,
+      await denops.call(
+        `luaeval`,
+        `require("indent_blankline").setup(_A.param)`,
+        {
+          param: {
+            space_char_blankline: " ",
+            show_current_context: true,
+            show_current_context_start: true,
+          },
+        },
       );
     },
   },
   {
     url: "monaqa/modesearch.nvim",
-    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
       await execute(
         denops,
         `
-lua << EOB
-      vim.keymap.set("n", "/", function() return require("modesearch").keymap.prompt.show("rawstr") end, { expr = true })
-      vim.keymap.set(
-        "c",
-        "<C-x>",
-        function() return require("modesearch").keymap.mode.cycle({ "rawstr", "migemo", "regexp" }) end,
-        { expr = true }
-      )
-      require("modesearch").setup({
-        modes = {
-          rawstr = {
-            prompt = "[rawstr]/",
-            converter = function(query) return [[\\V]] .. vim.fn.escape(query, [[/\\]]) end,
+        lua << EOB
+        vim.keymap.set("n", "/", function() return require("modesearch").keymap.prompt.show("rawstr") end, { expr = true })
+        vim.keymap.set(
+          "c",
+          "<C-x>",
+          function() return require("modesearch").keymap.mode.cycle({ "rawstr", "migemo", "regexp" }) end,
+          { expr = true }
+        )
+        require("modesearch").setup({
+          modes = {
+            rawstr = {
+              prompt = "[rawstr]/",
+              converter = function(query) return [[\\V]] .. vim.fn.escape(query, [[/\\]]) end,
+            },
+            regexp = {
+              prompt = "[regexp]/",
+              converter = function(query) return [[\\v]] .. vim.fn.escape(query, [[/]]) end,
+            },
+            migemo = {
+              prompt = "[migemo]/",
+              converter = function(query) return [[\\v]] .. vim.fn["kensaku#query"](query) end,
+            },
           },
-          regexp = {
-            prompt = "[regexp]/",
-            converter = function(query) return [[\\v]] .. vim.fn.escape(query, [[/]]) end,
-          },
-          migemo = {
-            prompt = "[migemo]/",
-            converter = function(query) return [[\\v]] .. vim.fn["kensaku#query"](query) end,
-          },
-        },
-      })
-EOB
-    `,
+        })
+        EOB
+      `,
       );
     },
   },
   {
     url: "folke/which-key.nvim",
-    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
-      await execute(denops, `lua require("which-key").setup()`);
+      await denops.call(`luaeval`, `require("which-key").setup()`);
     },
   },
   {
     url: "liuchengxu/vim-which-key",
-    enabled: async (denops: Denops) => !(await has(denops, "nvim")),
+    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
     after: async (denops: Denops) => {
       await mapping.map(denops, "<leader>", "<cmd>WhichKey '<space>'<cr>", {
         mode: ["n", "x"],

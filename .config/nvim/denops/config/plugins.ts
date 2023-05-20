@@ -14,14 +14,14 @@ import { util } from "./plugins/util.ts";
 export const plugins = [
   ...libs,
   ...coc,
+  ...ddu,
+  ...denops,
   ...treesitter,
-  ...ui,
   ...util,
   ...motion,
   ...edit,
   ...git,
   ...textobj,
   ...operator,
-  ...ddu,
-  ...denops,
+  ...ui,
 ];

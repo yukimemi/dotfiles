@@ -46,83 +46,89 @@ export const ddu: Plug[] = [
         denops,
         "<leader>dM",
         "<cmd>Ddu -name=source source<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<leader>do",
         "<cmd>Ddu -name=old file_old<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<leader>db",
         "<cmd>Ddu -name=buffer buffer<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<leader>dd",
-        `<cmd>call <SID>${denops.name}_notify("${lambda.register(
-          denops,
-          async () => {
-            await denops.call("ddu#start", {
-              sources: [
-                {
-                  name: "file_rec",
-                  options: {
-                    path: await fnamemodify(
-                      denops,
-                      await expand(denops, "%"),
-                      ":p:h"
-                    ),
+        `<cmd>call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              await denops.call("ddu#start", {
+                sources: [
+                  {
+                    name: "file_rec",
+                    options: {
+                      path: await fnamemodify(
+                        denops,
+                        await expand(denops, "%"),
+                        ":p:h",
+                      ),
+                    },
                   },
-                },
-              ],
-            });
-          }
-        )}", [])<cr>`,
-        { mode: "n" }
+                ],
+              });
+            },
+          )
+        }", [])<cr>`,
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<leader>ds",
-        `<cmd>call <SID>${denops.name}_notify("${lambda.register(
-          denops,
-          async () => {
-            await denops.call("ddu#start", {
-              sources: [
-                {
-                  name: "file_rec",
-                  options: {
-                    path: await expand(denops, "~/src"),
+        `<cmd>call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              await denops.call("ddu#start", {
+                sources: [
+                  {
+                    name: "file_rec",
+                    options: {
+                      path: await expand(denops, "~/src"),
+                    },
                   },
-                },
-              ],
-            });
-          }
-        )}", [])<cr>`,
-        { mode: "n" }
+                ],
+              });
+            },
+          )
+        }", [])<cr>`,
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<leader>dD",
-        `<cmd>call <SID>${denops.name}_notify("${lambda.register(
-          denops,
-          async () => {
-            await denops.call("ddu#start", {
-              sources: [
-                {
-                  name: "file_rec",
-                  options: {
-                    path: await expand(denops, "~/.dotfiles"),
+        `<cmd>call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              await denops.call("ddu#start", {
+                sources: [
+                  {
+                    name: "file_rec",
+                    options: {
+                      path: await expand(denops, "~/.dotfiles"),
+                    },
                   },
-                },
-              ],
-            });
-          }
-        )}", [])<cr>`,
-        { mode: "n" }
+                ],
+              });
+            },
+          )
+        }", [])<cr>`,
+        { mode: "n" },
       );
     },
     after: async (denops: Denops) => {
@@ -160,151 +166,155 @@ export const ddu: Plug[] = [
         helper.define(
           "FileType",
           "ddu-ff",
-          `call <SID>${denops.name}_notify("${lambda.register(
-            denops,
-            async () => {
-              await batch(denops, async (denops) => {
-                await op.cursorline.setLocal(denops, true);
-                await mapping.map(
-                  denops,
-                  "<cr>",
-                  `<cmd>call ddu#ui#do_action('itemAction')<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "<space>",
-                  `<cmd>call ddu#ui#do_action('toggleSelectItem')<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "i",
-                  `<cmd>call ddu#ui#do_action('openFilterWindow')<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "a",
-                  `<cmd>call ddu#ui#do_action('chooseAction')<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "A",
-                  `<cmd>call ddu#ui#do_action('inputAction')<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "<C-l>",
-                  `<cmd>call ddu#ui#do_action('refreshItems')<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "p",
-                  `<cmd>call ddu#ui#do_action('preview')<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "q",
-                  `<cmd>call ddu#ui#do_action('quit')<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "c",
-                  `<cmd>call ddu#ui#do_action('itemAction', {'name': 'cd'})<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "d",
-                  `<cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "e",
-                  `<cmd>call ddu#ui#do_action('itemAction', {'name': 'edit'})<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "E",
-                  `<cmd>call ddu#ui#do_action('itemAction', {'params': eval(input('params: '))})<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "v",
-                  `<cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "N",
-                  `<cmd>call ddu#ui#do_action('itemAction', {'name': 'new'})<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "r",
-                  `<cmd>call ddu#ui#do_action('itemAction', {'name': 'quickfix'})<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "<esc>",
-                  `<cmd>call ddu#ui#do_action('quit')<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "u",
-                  `<cmd>call ddu#ui#do_action('updateOptions', {'sourceOptions': {'_': {'matchers': []}}})<cr>`,
-                  { mode: "n", buffer: true, silent: true }
-                );
-              });
-            }
-          )}", [])`
+          `call <SID>${denops.name}_notify("${
+            lambda.register(
+              denops,
+              async () => {
+                await batch(denops, async (denops) => {
+                  await op.cursorline.setLocal(denops, true);
+                  await mapping.map(
+                    denops,
+                    "<cr>",
+                    `<cmd>call ddu#ui#do_action('itemAction')<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "<space>",
+                    `<cmd>call ddu#ui#do_action('toggleSelectItem')<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "i",
+                    `<cmd>call ddu#ui#do_action('openFilterWindow')<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "a",
+                    `<cmd>call ddu#ui#do_action('chooseAction')<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "A",
+                    `<cmd>call ddu#ui#do_action('inputAction')<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "<C-l>",
+                    `<cmd>call ddu#ui#do_action('refreshItems')<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "p",
+                    `<cmd>call ddu#ui#do_action('preview')<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "q",
+                    `<cmd>call ddu#ui#do_action('quit')<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "c",
+                    `<cmd>call ddu#ui#do_action('itemAction', {'name': 'cd'})<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "d",
+                    `<cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "e",
+                    `<cmd>call ddu#ui#do_action('itemAction', {'name': 'edit'})<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "E",
+                    `<cmd>call ddu#ui#do_action('itemAction', {'params': eval(input('params: '))})<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "v",
+                    `<cmd>call ddu#ui#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "N",
+                    `<cmd>call ddu#ui#do_action('itemAction', {'name': 'new'})<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "r",
+                    `<cmd>call ddu#ui#do_action('itemAction', {'name': 'quickfix'})<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "<esc>",
+                    `<cmd>call ddu#ui#do_action('quit')<cr>`,
+                    { mode: "n", buffer: true, silent: true, nowait: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "u",
+                    `<cmd>call ddu#ui#do_action('updateOptions', {'sourceOptions': {'_': {'matchers': []}}})<cr>`,
+                    { mode: "n", buffer: true, silent: true },
+                  );
+                });
+              },
+            )
+          }", [])`,
         );
         helper.define(
           "FileType",
           "ddu-ff-filter",
-          `call <SID>${denops.name}_notify("${lambda.register(
-            denops,
-            async () => {
-              await batch(denops, async (denops) => {
-                await mapping.map(
-                  denops,
-                  "<cr>",
-                  "<cmd>call ddu#ui#do_action('itemAction')<cr>",
-                  { mode: "i", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "<esc>",
-                  "<esc><cmd>call ddu#ui#do_action('closeFilterWindow')<cr>",
-                  { mode: "i", buffer: true, silent: true, nowait: true }
-                );
-                await mapping.map(
-                  denops,
-                  "<c-j>",
-                  `<cmd>call ddu#ui#do_action('cursorNext')<cr>`,
-                  { mode: "i", buffer: true, silent: true }
-                );
-                await mapping.map(
-                  denops,
-                  "<c-k>",
-                  `<cmd>call ddu#ui#do_action('cursorPrevious')<cr>`,
-                  { mode: "i", buffer: true, silent: true }
-                );
-              });
-            }
-          )}", [])`
+          `call <SID>${denops.name}_notify("${
+            lambda.register(
+              denops,
+              async () => {
+                await batch(denops, async (denops) => {
+                  await mapping.map(
+                    denops,
+                    "<cr>",
+                    "<cmd>call ddu#ui#do_action('itemAction')<cr>",
+                    { mode: "i", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "<esc>",
+                    "<esc><cmd>call ddu#ui#do_action('closeFilterWindow')<cr>",
+                    { mode: "i", buffer: true, silent: true, nowait: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "<c-j>",
+                    `<cmd>call ddu#ui#do_action('cursorNext')<cr>`,
+                    { mode: "i", buffer: true, silent: true },
+                  );
+                  await mapping.map(
+                    denops,
+                    "<c-k>",
+                    `<cmd>call ddu#ui#do_action('cursorPrevious')<cr>`,
+                    { mode: "i", buffer: true, silent: true },
+                  );
+                });
+              },
+            )
+          }", [])`,
         );
       });
       await notify(denops, "ddu.vim loaded !");
