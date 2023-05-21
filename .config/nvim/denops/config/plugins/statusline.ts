@@ -4,6 +4,7 @@ import type { Plug } from "https://deno.land/x/dvpm@0.3.1/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 
 import { pluginStatus } from "../main.ts";
+import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/variable.ts";
 
 export const statusline: Plug[] = [
   {
@@ -72,13 +73,20 @@ export const statusline: Plug[] = [
   },
   {
     url: "vim-airline/vim-airline",
-    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
+    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")) && true,
   },
   {
     url: "vim-airline/vim-airline-themes",
-    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
+    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")) && true,
     dependencies: [
       { url: "vim-airline/vim-airline" },
     ],
+    after: async (denops: Denops) => {
+      await globals.set(denops, "airline_theme", "simple");
+    },
+  },
+  {
+    url: "itchyny/lightline.vim",
+    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")) && false,
   },
 ];

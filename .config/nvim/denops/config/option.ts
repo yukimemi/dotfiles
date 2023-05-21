@@ -34,7 +34,7 @@ export async function setOption(denops: Denops) {
     await option.grepprg.set(denops, "rg --vimgrep");
     await option.hidden.set(denops, true);
     await option.ignorecase.set(denops, true);
-    await option.laststatus.set(denops, 3);
+    await option.laststatus.set(denops, 2);
     await option.list.set(denops, true);
     await option.listchars.set(
       denops,
@@ -68,6 +68,7 @@ export async function setOption(denops: Denops) {
     if (await fn.has(denops, "nvim")) {
       await nvimOption.inccommand.set(denops, "nosplit");
       await nvimOption.pumblend.set(denops, 10);
+      await option.laststatus.set(denops, 3);
     }
 
     await autocmd.group(denops, "MyCommentOut", (helper) => {
