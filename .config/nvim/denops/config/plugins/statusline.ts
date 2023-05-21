@@ -1,12 +1,15 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
 import type { Plug } from "https://deno.land/x/dvpm@0.3.0/mod.ts";
 
+import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+
 import { pluginStatus } from "../main.ts";
 
 export const statusline: Plug[] = [
   {
     url: "rebelot/heirline.nvim",
-    enabled: pluginStatus.heirline,
+    enabled: async (denops: Denops) =>
+      pluginStatus.heirline && await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
       await denops.call(`luaeval`, `require("heirline").setup(_A.param)`, {
         param: {
@@ -20,7 +23,8 @@ export const statusline: Plug[] = [
   },
   {
     url: "nvim-lualine/lualine.nvim",
-    enabled: pluginStatus.lualine,
+    enabled: async (denops: Denops) =>
+      pluginStatus.lualine && await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
       await denops.call(`luaeval`, `require("lualine").setup(_A.param)`, {
         param: {
