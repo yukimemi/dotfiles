@@ -282,6 +282,8 @@ export const coc: Plug[] = [
         mode: "n",
       });
 
+      await denops.cmd(`CocStart`);
+
       await notify(denops, "coc.nvim loaded !");
     },
   },

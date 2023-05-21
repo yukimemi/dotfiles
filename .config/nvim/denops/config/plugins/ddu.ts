@@ -6,11 +6,7 @@ import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v4.3.3/lambda/mod.ts";
 import * as op from "https://deno.land/x/denops_std@v4.3.3/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v4.3.3/batch/mod.ts";
-import {
-  expand,
-  fnamemodify,
-  has,
-} from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 import { notify } from "../util.ts";
 
 export const ddu: Plug[] = [
@@ -34,13 +30,13 @@ export const ddu: Plug[] = [
   { url: "uga-rosa/ddu-filter-converter_devicon" },
   {
     url: "matsui54/ddu-vim-ui-select",
-    enabled: async (denops: Denops) => await has(denops, "nvim"),
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
   },
   { url: "shun/ddu-source-buffer" },
   { url: "tyru/open-browser.vim" },
   {
     url: "Shougo/ddu.vim",
-    enabled: async (denops: Denops) => await has(denops, "nvim"),
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     before: async (denops: Denops) => {
       await mapping.map(
         denops,
@@ -72,9 +68,9 @@ export const ddu: Plug[] = [
                   {
                     name: "file_rec",
                     options: {
-                      path: await fnamemodify(
+                      path: await fn.fnamemodify(
                         denops,
-                        await expand(denops, "%"),
+                        await fn.expand(denops, "%"),
                         ":p:h",
                       ),
                     },
@@ -98,7 +94,7 @@ export const ddu: Plug[] = [
                   {
                     name: "file_rec",
                     options: {
-                      path: await expand(denops, "~/src"),
+                      path: await fn.expand(denops, "~/src"),
                     },
                   },
                 ],
@@ -120,7 +116,7 @@ export const ddu: Plug[] = [
                   {
                     name: "file_rec",
                     options: {
-                      path: await expand(denops, "~/.dotfiles"),
+                      path: await fn.expand(denops, "~/.dotfiles"),
                     },
                   },
                 ],

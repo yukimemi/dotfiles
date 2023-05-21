@@ -4,7 +4,7 @@ import type { Plug } from "https://deno.land/x/dvpm@0.2.4/mod.ts";
 import * as autocmd from "https://deno.land/x/denops_std@v4.3.3/autocmd/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
-import { has } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 
 export const libs: Plug[] = [
   { url: "vim-denops/denops.vim" },
@@ -13,16 +13,16 @@ export const libs: Plug[] = [
   { url: "lambdalisue/kensaku.vim" },
   {
     url: "MunifTanjim/nui.nvim",
-    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+    enabled: async (denops: Denops) => (await fn.has(denops, "nvim")),
   },
   { url: "tani/vim-artemis" },
   {
     url: "nvim-lua/plenary.nvim",
-    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+    enabled: async (denops: Denops) => (await fn.has(denops, "nvim")),
   },
   {
     url: "rcarriga/nvim-notify",
-    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+    enabled: async (denops: Denops) => (await fn.has(denops, "nvim")),
     after: async (denops: Denops) => {
       await execute(
         denops,
@@ -40,7 +40,7 @@ EOB
   },
   {
     url: "nvim-tree/nvim-web-devicons",
-    enabled: async (denops: Denops) => (await has(denops, "nvim")),
+    enabled: async (denops: Denops) => (await fn.has(denops, "nvim")),
     after: async (denops: Denops) => {
       await execute(
         denops,

@@ -3,7 +3,7 @@ import type { Plug } from "https://deno.land/x/dvpm@0.2.4/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v4.3.3/option/mod.ts";
-import { expand } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
 import { notify } from "../util.ts";
 
@@ -44,7 +44,7 @@ export const denops: Plug[] = [
       await globals.set(
         denops,
         "asyngrep_cfg_path",
-        await expand(denops, "~/.config/asyngrep/asyngrep.toml"),
+        await fn.expand(denops, "~/.config/asyngrep/asyngrep.toml"),
       );
       await option.grepformat.set(denops, "%f:%l:%c:%m");
 
@@ -200,7 +200,7 @@ export const denops: Plug[] = [
       await globals.set(
         denops,
         "randomcolorscheme_path",
-        await expand(denops, "~/.config/randomcolorscheme/colorscheme.toml"),
+        await fn.expand(denops, "~/.config/randomcolorscheme/colorscheme.toml"),
       );
       await globals.set(denops, "randomcolorscheme_notmatch", "[Ll]ight");
       await globals.set(denops, "randomcolorscheme_background", "dark");

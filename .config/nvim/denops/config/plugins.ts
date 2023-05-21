@@ -9,13 +9,13 @@ import { operator } from "./plugins/operator.ts";
 import { textobj } from "./plugins/textobj.ts";
 import { treesitter } from "./plugins/treesitter.ts";
 import { ui } from "./plugins/ui.ts";
+import { statusline } from "./plugins/statusline.ts";
 import { util } from "./plugins/util.ts";
 
 export const plugins = [
   ...libs,
   ...coc,
   ...ddu,
-  ...denops,
   ...treesitter,
   ...util,
   ...motion,
@@ -23,5 +23,7 @@ export const plugins = [
   ...git,
   ...textobj,
   ...operator,
+  ...denops,
   ...ui,
+  ...statusline,
 ];
