@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@0.2.3/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.2.4/mod.ts";
 
 export const textobj: Plug[] = [
   { url: "kana/vim-textobj-user" },
