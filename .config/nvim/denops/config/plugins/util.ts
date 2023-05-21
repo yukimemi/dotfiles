@@ -6,20 +6,20 @@ import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
 import { expand } from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 
 export const util: Plug[] = [
+  { url: "tyru/capture.vim" },
   {
     url: "thinca/vim-partedit",
     before: async (denops: Denops) => {
       await globals.set(denops, "partedit#opener", "vsplit");
     },
   },
-  { url: "tyru/capture.vim" },
   {
     url: "glidenote/memolist.vim",
     before: async (denops: Denops) => {
       await globals.set(
         denops,
         "memolist_path",
-        await expand(denops, "~/.memolist")
+        await expand(denops, "~/.memolist"),
       );
       await globals.set(denops, "memolist_memo_suffix", "md");
       await globals.set(denops, "memolist_prompt_tags", 1);

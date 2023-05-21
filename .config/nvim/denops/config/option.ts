@@ -7,15 +7,12 @@ import { batch } from "https://deno.land/x/denops_std@v4.3.3/batch/mod.ts";
 import { ensureDir } from "https://deno.land/std@0.188.0/fs/ensure_dir.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
 import { stdpath } from "https://deno.land/x/denops_std@v4.3.3/function/nvim/mod.ts";
-import {
-  expand,
-  has,
-} from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 
 export async function setOption(denops: Denops) {
-  const backupdir = (await has(denops, "nvim"))
+  const backupdir = (await fn.has(denops, "nvim"))
     ? ensureString(await stdpath(denops, "cache"))
-    : ensureString(await expand(denops, "~/.cache/vim/back"));
+    : ensureString(await fn.expand(denops, "~/.cache/vim/back"));
   await ensureDir(backupdir);
 
   await batch(denops, async (denops: Denops) => {
@@ -68,7 +65,7 @@ export async function setOption(denops: Denops) {
     await option.wildmode.set(denops, "longest:full,full");
     await option.wrap.set(denops, false);
 
-    if (await has(denops, "nvim")) {
+    if (await fn.has(denops, "nvim")) {
       await nvimOption.inccommand.set(denops, "nosplit");
       await nvimOption.pumblend.set(denops, 10);
     }
