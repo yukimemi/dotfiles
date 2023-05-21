@@ -34,6 +34,7 @@ export const coc: Plug[] = [
         "coc-tsserver",
         "coc-vimlsp",
         "coc-xml",
+        "@yaegassy/coc-tailwindcss3",
       ]);
     },
     after: async (denops: Denops) => {
