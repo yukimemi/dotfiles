@@ -24,9 +24,8 @@ export async function setOption(denops: Denops) {
     await option.fileformats.set(denops, "unix,dos,mac");
 
     await option.backup.set(denops, true);
-    await option.backupdir.set(denops, `${backupdir}/backup`);
+    await option.backupdir.set(denops, backupdir);
     await option.clipboard.set(denops, "unnamedplus");
-    // await option.cmdheight.set(denops, 0);
     await option.completeopt.set(denops, "menu,menuone,noselect");
     await option.confirm.set(denops, true);
     await option.expandtab.set(denops, true);
@@ -34,7 +33,6 @@ export async function setOption(denops: Denops) {
     await option.grepprg.set(denops, "rg --vimgrep");
     await option.hidden.set(denops, true);
     await option.ignorecase.set(denops, true);
-    await option.laststatus.set(denops, 2);
     await option.list.set(denops, true);
     await option.listchars.set(
       denops,
@@ -66,9 +64,14 @@ export async function setOption(denops: Denops) {
     await option.wrap.set(denops, false);
 
     if (await fn.has(denops, "nvim")) {
+      // await option.cmdheight.set(denops, 0);
       await nvimOption.inccommand.set(denops, "nosplit");
       await nvimOption.pumblend.set(denops, 10);
       await option.laststatus.set(denops, 3);
+    } else {
+      await option.laststatus.set(denops, 2);
+      await option.incsearch.set(denops, true);
+      await option.hlsearch.set(denops, true);
     }
 
     await autocmd.group(denops, "MyCommentOut", (helper) => {
