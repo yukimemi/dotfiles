@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.1/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 
@@ -69,5 +69,16 @@ export const statusline: Plug[] = [
         },
       });
     },
+  },
+  {
+    url: "vim-airline/vim-airline",
+    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
+  },
+  {
+    url: "vim-airline/vim-airline-themes",
+    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
+    dependencies: [
+      { url: "vim-airline/vim-airline" },
+    ],
   },
 ];

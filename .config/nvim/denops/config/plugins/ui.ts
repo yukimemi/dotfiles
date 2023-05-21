@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.1/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
@@ -52,48 +52,50 @@ export const ui: Plug[] = [
         helper.define(
           "ModeChanged",
           "*",
-          `call <SID>${denops.name}_notify("${lambda.register(
-            denops,
-            async () => {
-              const mode = await fn.mode(denops);
-              if (mode === "n") {
-                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                  fg: "#8aa872",
-                });
-                await denops.call("sign_define", "smoothcursor", {
-                  text: "▷",
-                });
-              } else if (mode === "v") {
-                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                  fg: "#bf616a",
-                });
-                await denops.call("sign_define", "smoothcursor", {
-                  text: "",
-                });
-              } else if (mode === "V") {
-                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                  fg: "#bf616a",
-                });
-                await denops.call("sign_define", "smoothcursor", {
-                  text: "",
-                });
-              } else if (mode === "") {
-                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                  fg: "#bf616a",
-                });
-                await denops.call("sign_define", "smoothcursor", {
-                  text: "",
-                });
-              } else if (mode === "i") {
-                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                  fg: "#668aab",
-                });
-                await denops.call("sign_define", "smoothcursor", {
-                  text: "",
-                });
-              }
-            }
-          )}", [])`
+          `call <SID>${denops.name}_notify("${
+            lambda.register(
+              denops,
+              async () => {
+                const mode = await fn.mode(denops);
+                if (mode === "n") {
+                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                    fg: "#8aa872",
+                  });
+                  await denops.call("sign_define", "smoothcursor", {
+                    text: "▷",
+                  });
+                } else if (mode === "v") {
+                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                    fg: "#bf616a",
+                  });
+                  await denops.call("sign_define", "smoothcursor", {
+                    text: "",
+                  });
+                } else if (mode === "V") {
+                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                    fg: "#bf616a",
+                  });
+                  await denops.call("sign_define", "smoothcursor", {
+                    text: "",
+                  });
+                } else if (mode === "") {
+                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                    fg: "#bf616a",
+                  });
+                  await denops.call("sign_define", "smoothcursor", {
+                    text: "",
+                  });
+                } else if (mode === "i") {
+                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                    fg: "#668aab",
+                  });
+                  await denops.call("sign_define", "smoothcursor", {
+                    text: "",
+                  });
+                }
+              },
+            )
+          }", [])`,
         );
       });
     },
@@ -112,7 +114,7 @@ export const ui: Plug[] = [
             show_current_context: true,
             show_current_context_start: true,
           },
-        }
+        },
       );
     },
   },
@@ -148,27 +150,8 @@ export const ui: Plug[] = [
           },
         })
         EOB
-      `
+      `,
       );
-    },
-  },
-  {
-    url: "folke/which-key.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
-      await denops.call(`luaeval`, `require("which-key").setup()`);
-    },
-  },
-  {
-    url: "liuchengxu/vim-which-key",
-    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
-    after: async (denops: Denops) => {
-      await mapping.map(denops, "<leader>", "<cmd>WhichKey '<space>'<cr>", {
-        mode: ["n", "x"],
-      });
-      await mapping.map(denops, "<localleader>", "<cmd>WhichKey '\\'<cr>", {
-        mode: ["n", "x"],
-      });
     },
   },
 ];

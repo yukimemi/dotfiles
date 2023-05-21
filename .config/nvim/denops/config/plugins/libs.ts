@@ -1,10 +1,11 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.1/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v4.3.3/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 
 export const libs: Plug[] = [
   { url: "vim-denops/denops.vim" },
@@ -49,6 +50,25 @@ EOB
 lua require("nvim-web-devicons").setup({ default = true })
         `,
       );
+    },
+  },
+  {
+    url: "folke/which-key.nvim",
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    after: async (denops: Denops) => {
+      await denops.call(`luaeval`, `require("which-key").setup()`);
+    },
+  },
+  {
+    url: "liuchengxu/vim-which-key",
+    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
+    after: async (denops: Denops) => {
+      await mapping.map(denops, "<leader>", "<cmd>WhichKey '<space>'<cr>", {
+        mode: ["n", "x"],
+      });
+      await mapping.map(denops, "<localleader>", "<cmd>WhichKey '\\'<cr>", {
+        mode: ["n", "x"],
+      });
     },
   },
   {

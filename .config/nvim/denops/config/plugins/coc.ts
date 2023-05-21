@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.1/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
 import * as autocmd from "https://deno.land/x/denops_std@v4.3.3/autocmd/mod.ts";
@@ -13,7 +13,7 @@ import { notify } from "../util.ts";
 export const coc: Plug[] = [
   {
     url: "neoclide/coc.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    // enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     branch: "release",
     before: async (denops: Denops) => {
       await globals.set(denops, "coc_global_extensions", [
