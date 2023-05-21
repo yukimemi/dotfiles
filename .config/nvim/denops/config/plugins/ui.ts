@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.2.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.0/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
@@ -10,15 +10,6 @@ import * as nvimFn from "https://deno.land/x/denops_std@v4.3.3/function/nvim/mod
 
 export const ui: Plug[] = [
   { url: "lambdalisue/seethrough.vim" },
-  { url: "rafi/awesome-vim-colorschemes" },
-  {
-    url: "RRethy/nvim-base16",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-  },
-  {
-    url: "catppuccin/nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-  },
   {
     url: "gen740/SmoothCursor.nvim",
     enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
@@ -61,56 +52,55 @@ export const ui: Plug[] = [
         helper.define(
           "ModeChanged",
           "*",
-          `call <SID>${denops.name}_notify("${
-            lambda.register(
-              denops,
-              async () => {
-                const mode = await fn.mode(denops);
-                if (mode === "n") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#8aa872",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "▷",
-                  });
-                } else if (mode === "v") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#bf616a",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "",
-                  });
-                } else if (mode === "V") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#bf616a",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "",
-                  });
-                } else if (mode === "") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#bf616a",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "",
-                  });
-                } else if (mode === "i") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#668aab",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "",
-                  });
-                }
-              },
-            )
-          }", [])`,
+          `call <SID>${denops.name}_notify("${lambda.register(
+            denops,
+            async () => {
+              const mode = await fn.mode(denops);
+              if (mode === "n") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#8aa872",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "▷",
+                });
+              } else if (mode === "v") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#bf616a",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "",
+                });
+              } else if (mode === "V") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#bf616a",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "",
+                });
+              } else if (mode === "") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#bf616a",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "",
+                });
+              } else if (mode === "i") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#668aab",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "",
+                });
+              }
+            }
+          )}", [])`
         );
       });
     },
   },
   {
     url: "lukas-reineke/indent-blankline.nvim",
+    dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
     enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
       await denops.call(
@@ -122,7 +112,7 @@ export const ui: Plug[] = [
             show_current_context: true,
             show_current_context_start: true,
           },
-        },
+        }
       );
     },
   },
@@ -158,7 +148,7 @@ export const ui: Plug[] = [
           },
         })
         EOB
-      `,
+      `
       );
     },
   },

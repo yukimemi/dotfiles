@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.2.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.0/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
 import * as autocmd from "https://deno.land/x/denops_std@v4.3.3/autocmd/mod.ts";
@@ -40,8 +40,8 @@ export const coc: Plug[] = [
       await mapping.map(
         denops,
         "<cr>",
-        `coc#pum#visible() ? coc#pum#confirm() : '\<c-g>u\<cr>\<c-r>=coc#on_enter()\<cr>'`,
-        { mode: "i" },
+        `coc#pum#visible() ? coc#pum#confirm() : '<c-g>u<cr><c-r>=coc#on_enter()<cr>'`,
+        { mode: "i", noremap: true, expr: true },
       );
 
       // Use <c-j> to trigger snippets

@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.2.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.0/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
@@ -8,15 +8,17 @@ import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 export const git: Plug[] = [
   {
     url: "lewis6991/gitsigns.nvim",
-    enabled: async (denops: Denops) => (await fn.has(denops, "nvim")),
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
       await execute(denops, `lua require("gitsigns").setup()`);
     },
   },
-  { url: "lambdalisue/askpass.vim" },
-  { url: "lambdalisue/guise.vim" },
   {
     url: "lambdalisue/gin.vim",
+    dependencies: [
+      { url: "lambdalisue/askpass.vim" },
+      { url: "lambdalisue/guise.vim" },
+    ],
     before: async (denops: Denops) => {
       await mapping.map(denops, "<space>gs", "<cmd>GinStatus<cr>", {
         mode: "n",

@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.2.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v4.3.3/autocmd/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
@@ -10,32 +10,33 @@ import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 import { notify } from "../util.ts";
 
 export const ddu: Plug[] = [
-  { url: "4513ECHO/ddu-kind-url" },
-  { url: "4513ECHO/ddu-source-emoji" },
-  { url: "4513ECHO/ddu-source-source" },
-  { url: "Milly/ddu-filter-kensaku" },
-  { url: "Shougo/ddu-kind-file" },
-  { url: "Shougo/ddu-kind-word" },
-  { url: "Shougo/ddu-source-file" },
-  { url: "Shougo/ddu-source-file_old" },
-  { url: "Shougo/ddu-source-file_rec" },
-  { url: "Shougo/ddu-source-file_point" },
-  { url: "Shougo/ddu-source-line" },
-  { url: "Shougo/ddu-source-register" },
-  { url: "Shougo/ddu-ui-ff" },
-  { url: "Shougo/ddu-commands.vim" },
-  { url: "matsui54/ddu-source-file_external" },
-  { url: "matsui54/ddu-source-command_history" },
-  { url: "matsui54/ddu-source-help" },
-  { url: "uga-rosa/ddu-filter-converter_devicon" },
-  {
-    url: "matsui54/ddu-vim-ui-select",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-  },
-  { url: "shun/ddu-source-buffer" },
-  { url: "tyru/open-browser.vim" },
   {
     url: "Shougo/ddu.vim",
+    dependencies: [
+      { url: "4513ECHO/ddu-kind-url" },
+      { url: "4513ECHO/ddu-source-emoji" },
+      { url: "4513ECHO/ddu-source-source" },
+      { url: "Milly/ddu-filter-kensaku" },
+      { url: "Shougo/ddu-kind-file" },
+      { url: "Shougo/ddu-kind-word" },
+      { url: "Shougo/ddu-source-file" },
+      { url: "Shougo/ddu-source-file_old" },
+      { url: "Shougo/ddu-source-file_rec" },
+      { url: "Shougo/ddu-source-file_point" },
+      { url: "Shougo/ddu-source-line" },
+      { url: "Shougo/ddu-source-register" },
+      { url: "Shougo/ddu-ui-ff" },
+      { url: "Shougo/ddu-commands.vim" },
+      { url: "matsui54/ddu-source-file_external" },
+      { url: "matsui54/ddu-source-command_history" },
+      { url: "matsui54/ddu-source-help" },
+      { url: "uga-rosa/ddu-filter-converter_devicon" },
+      {
+        url: "matsui54/ddu-vim-ui-select",
+        enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+      },
+      { url: "shun/ddu-source-buffer" },
+    ],
     enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     before: async (denops: Denops) => {
       await mapping.map(

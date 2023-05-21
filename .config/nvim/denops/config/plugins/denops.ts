@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.2.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.0/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v4.3.3/option/mod.ts";
@@ -44,7 +44,7 @@ export const denops: Plug[] = [
       await globals.set(
         denops,
         "asyngrep_cfg_path",
-        await fn.expand(denops, "~/.config/asyngrep/asyngrep.toml"),
+        await fn.expand(denops, "~/.config/asyngrep/asyngrep.toml")
       );
       await option.grepformat.set(denops, "%f:%l:%c:%m");
 
@@ -63,13 +63,13 @@ export const denops: Plug[] = [
         denops,
         "<space>sS",
         "<cmd>Agp --tool=default-all<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(
         denops,
         "<space>sR",
         "<cmd>Agp --tool=ripgrep-all<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(denops, "<space>sP", "<cmd>Agp --tool=pt-all<cr>", {
         mode: "n",
@@ -111,7 +111,7 @@ export const denops: Plug[] = [
         ps1: {
           replace: [
             [
-              "/^(\s*\.Last Change: ).*/i",
+              "/^(s*.Last Change: ).*/i",
               '$1${format(now, "yyyy/MM/dd HH:mm:ss")}',
             ],
             [
@@ -155,31 +155,31 @@ export const denops: Plug[] = [
         denops,
         "<space>Ws",
         "<cmd>DenopsWalk --path=~/src<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(
         denops,
         "<space>Wd",
         "<cmd>DenopsWalk --path=~/.dotfiles<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(
         denops,
         "<space>Wc",
         "<cmd>DenopsWalk --path=~/.cache<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(
         denops,
         "<space>Wj",
         "<cmd>DenopsWalk --path=~/.cache/junkfile<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(
         denops,
         "<space>Wm",
         "<cmd>DenopsWalk --path=~/.memolist<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(denops, "<space>WD", "<cmd>DenopsWalkBufferDir<cr>", {
         mode: "n",
@@ -188,6 +188,17 @@ export const denops: Plug[] = [
   },
   {
     url: "yukimemi/dps-randomcolorscheme",
+    dependencies: [
+      { url: "rafi/awesome-vim-colorschemes" },
+      {
+        url: "RRethy/nvim-base16",
+        enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+      },
+      {
+        url: "catppuccin/nvim",
+        enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+      },
+    ],
     before: async (denops: Denops) => {
       await globals.set(denops, "randomcolorscheme_debug", false);
       await globals.set(denops, "randomcolorscheme_echo", true);
@@ -200,7 +211,7 @@ export const denops: Plug[] = [
       await globals.set(
         denops,
         "randomcolorscheme_path",
-        await fn.expand(denops, "~/.config/randomcolorscheme/colorscheme.toml"),
+        await fn.expand(denops, "~/.config/randomcolorscheme/colorscheme.toml")
       );
       await globals.set(denops, "randomcolorscheme_notmatch", "[Ll]ight");
       await globals.set(denops, "randomcolorscheme_background", "dark");
@@ -212,7 +223,7 @@ export const denops: Plug[] = [
         denops,
         "<space>rd",
         "<cmd>DisableThisColorscheme<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(denops, "<space>rl", "<cmd>LikeThisColorscheme<cr>", {
         mode: "n",
@@ -230,8 +241,8 @@ export const denops: Plug[] = [
       await globals.set(denops, "hitori_quit", true);
 
       await globals.set(denops, "hitori_blacklist_patterns", [
-        "\.tmp$",
-        "\.diff$",
+        ".tmp$",
+        ".diff$",
         "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$",
       ]);
     },

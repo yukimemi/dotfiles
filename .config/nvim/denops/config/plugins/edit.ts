@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.2.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
@@ -35,9 +35,9 @@ export const edit: Plug[] = [
       await execute(denops, `lua require("nvim-autopairs").setup()`);
     },
   },
-  { url: "Shougo/context_filetype.vim" },
   {
     url: "uga-rosa/contextment.vim",
+    dependencies: [{ url: "Shougo/context_filetype.vim" }],
     before: async (denops: Denops) => {
       await mapping.map(denops, "gcc", "<Plug>(contextment)", { mode: "x" });
       await mapping.map(denops, "gcc", "<Plug>(contextment-line)", {

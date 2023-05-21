@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.2.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.0/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
@@ -19,7 +19,7 @@ export const util: Plug[] = [
       await globals.set(
         denops,
         "memolist_path",
-        await expand(denops, "~/.memolist"),
+        await expand(denops, "~/.memolist")
       );
       await globals.set(denops, "memolist_memo_suffix", "md");
       await globals.set(denops, "memolist_prompt_tags", 1);
