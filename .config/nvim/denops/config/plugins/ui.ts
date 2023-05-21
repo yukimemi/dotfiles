@@ -9,6 +9,7 @@ import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
 import * as nvimFn from "https://deno.land/x/denops_std@v4.3.3/function/nvim/mod.ts";
 
 export const ui: Plug[] = [
+  { url: "lambdalisue/seethrough.vim" },
   { url: "rafi/awesome-vim-colorschemes" },
   {
     url: "RRethy/nvim-base16",
