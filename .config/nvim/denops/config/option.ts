@@ -25,7 +25,6 @@ export async function setOption(denops: Denops) {
 
     await option.backup.set(denops, true);
     await option.backupdir.set(denops, backupdir);
-    await option.clipboard.set(denops, "unnamedplus");
     await option.completeopt.set(denops, "menu,menuone,noselect");
     await option.confirm.set(denops, true);
     await option.expandtab.set(denops, true);
@@ -68,10 +67,16 @@ export async function setOption(denops: Denops) {
       await nvimOption.inccommand.set(denops, "nosplit");
       await nvimOption.pumblend.set(denops, 10);
       await option.laststatus.set(denops, 3);
+      await option.clipboard.set(denops, "unnamedplus");
     } else {
       await option.laststatus.set(denops, 2);
       await option.incsearch.set(denops, true);
       await option.hlsearch.set(denops, true);
+      await option.clipboard.set(denops, "unnamed,unnamedplus");
+      await option.undodir.set(denops, backupdir);
+      await option.backupdir.set(denops, backupdir);
+      await option.directory.set(denops, backupdir);
+      await option.viewdir.set(denops, backupdir);
     }
 
     await autocmd.group(denops, "MyCommentOut", (helper) => {

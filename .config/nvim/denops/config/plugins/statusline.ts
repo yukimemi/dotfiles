@@ -74,16 +74,14 @@ export const statusline: Plug[] = [
   {
     url: "vim-airline/vim-airline",
     enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")) && true,
-  },
-  {
-    url: "vim-airline/vim-airline-themes",
-    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")) && true,
     dependencies: [
-      { url: "vim-airline/vim-airline" },
+      {
+        url: "vim-airline/vim-airline-themes",
+        after: async (denops: Denops) => {
+          await globals.set(denops, "airline_theme", "zenburn");
+        },
+      },
     ],
-    after: async (denops: Denops) => {
-      await globals.set(denops, "airline_theme", "simple");
-    },
   },
   {
     url: "itchyny/lightline.vim",
