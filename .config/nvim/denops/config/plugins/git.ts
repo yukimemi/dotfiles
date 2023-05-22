@@ -1,9 +1,9 @@
-import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.1/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.2/mod.ts";
 
-import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 
 export const git: Plug[] = [
   {

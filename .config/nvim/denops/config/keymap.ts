@@ -1,8 +1,8 @@
-import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
 
-import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v4.3.3/batch/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
+import { batch } from "https://deno.land/x/denops_std@v5.0.0/batch/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 
 export async function setKeymap(denops: Denops) {
   await batch(denops, async (denops: Denops) => {

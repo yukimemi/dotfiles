@@ -1,10 +1,10 @@
-import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.1/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.2/mod.ts";
 
-import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
-import * as option from "https://deno.land/x/denops_std@v4.3.3/option/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v5.0.0/option/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 import { notify } from "../util.ts";
 
 export const denops: Plug[] = [

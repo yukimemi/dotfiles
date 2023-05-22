@@ -1,6 +1,6 @@
-import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 
 export async function setNeovimQt(denops: Denops) {
   if (await fn.exists(denops, ":GuiFont")) {

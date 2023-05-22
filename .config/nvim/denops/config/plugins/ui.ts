@@ -1,11 +1,11 @@
-import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.1/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.2/mod.ts";
 
-import { execute } from "https://deno.land/x/denops_std@v4.3.3/helper/mod.ts";
-import * as autocmd from "https://deno.land/x/denops_std@v4.3.3/autocmd/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v4.3.3/lambda/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
-import * as nvimFn from "https://deno.land/x/denops_std@v4.3.3/function/nvim/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.0.0/lambda/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
+import * as nvimFn from "https://deno.land/x/denops_std@v5.0.0/function/nvim/mod.ts";
 
 export const ui: Plug[] = [
   { url: "lambdalisue/seethrough.vim" },

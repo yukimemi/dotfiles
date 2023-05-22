@@ -1,13 +1,13 @@
-import type { Denops } from "https://deno.land/x/denops_std@v4.3.3/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.1/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.2/mod.ts";
 
-import * as mapping from "https://deno.land/x/denops_std@v4.3.3/mapping/mod.ts";
-import * as autocmd from "https://deno.land/x/denops_std@v4.3.3/autocmd/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v4.3.3/lambda/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v4.3.3/variable/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.0.0/lambda/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 import { ensureNumber } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
-import * as op from "https://deno.land/x/denops_std@v4.3.3/option/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v4.3.3/function/mod.ts";
+import * as op from "https://deno.land/x/denops_std@v5.0.0/option/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import { notify } from "../util.ts";
 
 export const coc: Plug[] = [
