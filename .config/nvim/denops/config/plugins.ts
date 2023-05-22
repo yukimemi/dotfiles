@@ -11,6 +11,7 @@ import { treesitter } from "./plugins/treesitter.ts";
 import { ui } from "./plugins/ui.ts";
 import { statusline } from "./plugins/statusline.ts";
 import { util } from "./plugins/util.ts";
+import { filetypes } from "./plugins/filetypes.ts";
 
 export const plugins = [
   ...libs,
@@ -26,4 +27,5 @@ export const plugins = [
   ...denops,
   ...ui,
   ...statusline,
+  ...filetypes,
 ];

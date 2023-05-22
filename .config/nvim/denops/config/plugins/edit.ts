@@ -82,4 +82,6 @@ export const edit: Plug[] = [
       });
     },
   },
+  { url: "thinca/vim-qfreplace" },
+  { url: "itchyny/vim-qfedit" },
 ];
