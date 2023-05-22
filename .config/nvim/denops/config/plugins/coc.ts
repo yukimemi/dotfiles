@@ -13,7 +13,7 @@ import { notify } from "../util.ts";
 export const coc: Plug[] = [
   {
     url: "neoclide/coc.nvim",
-    // enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    dependencies: [{ url: "weirongxu/coc-explorer" }],
     branch: "release",
     before: async (denops: Denops) => {
       await globals.set(denops, "coc_global_extensions", [
