@@ -13,7 +13,7 @@ export async function setNeovide(denops: Denops) {
     await globals.set(denops, "neovide_profiler", false);
     await globals.set(denops, "neovide_input_use_logo", true);
     await globals.set(denops, "neovide_cursor_vfx_mode", "railgun");
-    await option.guifont.set(denops, "Cica:h11:#h-none");
-    await option.guifontwide.set(denops, "Cica:h11:#h-none");
+    await option.guifont.set(denops, "HackGen Console NF:h10:#h-none");
+    await option.guifontwide.set(denops, "HackGen Console NF:h10:#h-none");
   }
 }

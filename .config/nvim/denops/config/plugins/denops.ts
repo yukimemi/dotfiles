@@ -2,7 +2,10 @@ import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
 import type { Plug } from "https://deno.land/x/dvpm@0.3.2/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.0.0/lambda/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v5.0.0/option/mod.ts";
+import * as nvimFn from "https://deno.land/x/denops_std@v5.0.0/function/nvim/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 import { notify } from "../util.ts";
@@ -44,7 +47,7 @@ export const denops: Plug[] = [
       await globals.set(
         denops,
         "asyngrep_cfg_path",
-        await fn.expand(denops, "~/.config/asyngrep/asyngrep.toml")
+        await fn.expand(denops, "~/.config/asyngrep/asyngrep.toml"),
       );
       await option.grepformat.set(denops, "%f:%l:%c:%m");
 
@@ -63,13 +66,13 @@ export const denops: Plug[] = [
         denops,
         "<space>sS",
         "<cmd>Agp --tool=default-all<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<space>sR",
         "<cmd>Agp --tool=ripgrep-all<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(denops, "<space>sP", "<cmd>Agp --tool=pt-all<cr>", {
         mode: "n",
@@ -155,31 +158,31 @@ export const denops: Plug[] = [
         denops,
         "<space>Ws",
         "<cmd>DenopsWalk --path=~/src<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<space>Wd",
         "<cmd>DenopsWalk --path=~/.dotfiles<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<space>Wc",
         "<cmd>DenopsWalk --path=~/.cache<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<space>Wj",
         "<cmd>DenopsWalk --path=~/.cache/junkfile<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<space>Wm",
         "<cmd>DenopsWalk --path=~/.memolist<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(denops, "<space>WD", "<cmd>DenopsWalkBufferDir<cr>", {
         mode: "n",
@@ -211,7 +214,7 @@ export const denops: Plug[] = [
       await globals.set(
         denops,
         "randomcolorscheme_path",
-        await fn.expand(denops, "~/.config/randomcolorscheme/colorscheme.toml")
+        await fn.expand(denops, "~/.config/randomcolorscheme/colorscheme.toml"),
       );
       await globals.set(denops, "randomcolorscheme_notmatch", "[Ll]ight");
       await globals.set(denops, "randomcolorscheme_background", "dark");
@@ -223,7 +226,7 @@ export const denops: Plug[] = [
         denops,
         "<space>rd",
         "<cmd>DisableThisColorscheme<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(denops, "<space>rl", "<cmd>LikeThisColorscheme<cr>", {
         mode: "n",
@@ -248,6 +251,36 @@ export const denops: Plug[] = [
     },
     after: async (denops: Denops) => {
       await notify(denops, "dps-hitori loaded");
+    },
+  },
+  {
+    url: "yukimemi/dps-ahdr",
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    before: async (denops: Denops) => {
+      await globals.set(denops, "ahdr_debug", false);
+      await globals.set(denops, "ahdr_cfg_path", "~/.config/ahdr/ahdr.toml");
+
+      await nvimFn.nvim_create_user_command(
+        denops,
+        "DenopsAhdrDebug",
+        `call denops#notify("${denops.name}", "${
+          lambda.register(
+            denops,
+            async () => {
+              await autocmd.group(denops, "MyAhdr", (helper) => {
+                helper.remove("*");
+                helper.define(
+                  "BufWritePost",
+                  "<buffer>",
+                  "DenopsAhdr waitcmd",
+                  {},
+                );
+              });
+            },
+          )
+        }", [])`,
+        {},
+      );
     },
   },
 ];

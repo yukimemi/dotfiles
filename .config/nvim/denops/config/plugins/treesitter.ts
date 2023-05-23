@@ -28,7 +28,7 @@ lua << EOB
         },
       })
 EOB
-`
+`,
       );
     },
   },
@@ -37,7 +37,7 @@ EOB
     dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
     enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
-      await execute(denops, `lua require("treesitter-context").setup()`);
+      await denops.call(`luaeval`, `require("treesitter-context").setup()`);
     },
   },
 ];

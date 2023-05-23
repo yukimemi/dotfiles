@@ -4,7 +4,7 @@ import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 
 export async function setNeovimQt(denops: Denops) {
   if (await fn.exists(denops, ":GuiFont")) {
-    await execute(denops, "GuiFont! Cica:h11");
+    await execute(denops, "GuiFont! HackGen Console NF:h10");
   }
   if (await fn.exists(denops, ":GuiTabline")) {
     await execute(denops, "GuiTabline 0");
