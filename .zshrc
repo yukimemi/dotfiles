@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/05/14 08:59:16.
+# Last Change : 2023/05/26 00:33:15.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -207,13 +207,6 @@ function my_lazy_keybindings() {
 }
 zvm_after_init_commands+=(my_lazy_keybindings)
 
-# move at hjkl on menu select.
-zmodload zsh/complist
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-
 #
 # setopt.
 #
@@ -232,6 +225,14 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 zstyle ':autocomplete:*' widget-style menu-select
 zstyle ':autocomplete:*' min-input 1
+
+# move at hjkl on menu select.
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+
 
 #
 # completions.
