@@ -13,42 +13,43 @@ export const libs: Plug[] = [
   { url: "mattn/vim-findroot" },
   { url: "tyru/open-browser.vim" },
   { url: "lambdalisue/kensaku.vim" },
-  {
-    url: "MunifTanjim/nui.nvim",
-    enabled: async (denops: Denops) => (await fn.has(denops, "nvim")),
-  },
   { url: "tani/vim-artemis" },
   {
+    url: "MunifTanjim/nui.nvim",
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+  },
+  {
     url: "nvim-lua/plenary.nvim",
-    enabled: async (denops: Denops) => (await fn.has(denops, "nvim")),
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
   },
   {
     url: "rcarriga/nvim-notify",
-    enabled: async (denops: Denops) => (await fn.has(denops, "nvim")),
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
-      await execute(
-        denops,
-        `
-lua << EOB
-      local notify = require("notify")
-      notify.setup({
-        stages = "slide",
-      })
-      vim.notify = notify
-EOB
-    `,
+      await denops.call(
+        `luaeval`,
+        `require("notify").setup(_A.param)`,
+        {
+          param: {
+            stages: "slide",
+          },
+        },
       );
+      await execute(denops, `lua vim.notify = require("notify")`);
     },
   },
   {
     url: "nvim-tree/nvim-web-devicons",
-    enabled: async (denops: Denops) => (await fn.has(denops, "nvim")),
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
-      await execute(
-        denops,
-        `
-lua require("nvim-web-devicons").setup({ default = true })
-        `,
+      await denops.call(
+        `luaeval`,
+        `require("nvim-web-devicons").setup(_A.param)`,
+        {
+          param: {
+            default: true,
+          },
+        },
       );
     },
   },
@@ -78,32 +79,59 @@ lua require("nvim-web-devicons").setup({ default = true })
       await execute(
         denops,
         `
-lua << EOF
-vim.keymap.set("i", "<C-e>", function()
-  return vim.fn["codeium#Accept"]()
-end, { expr = true, nowait = true })
-vim.keymap.set("i", "<c-;>", function()
-  return vim.fn["codeium#CycleCompletions"](1)
-end, { expr = true })
-vim.keymap.set("i", "<c-,>", function()
-  return vim.fn["codeium#CycleCompletions"](-1)
-end, { expr = true })
-vim.keymap.set("i", "<c-x>", function()
-  return vim.fn["codeium#Clear"]()
-end, { expr = true })
-EOF
+        lua << EOB
+          vim.keymap.set("i", "<C-e>", function()
+            return vim.fn["codeium#Accept"]()
+          end, { expr = true, nowait = true })
+          vim.keymap.set("i", "<c-;>", function()
+            return vim.fn["codeium#CycleCompletions"](1)
+          end, { expr = true })
+          vim.keymap.set("i", "<c-,>", function()
+            return vim.fn["codeium#CycleCompletions"](-1)
+          end, { expr = true })
+          vim.keymap.set("i", "<c-x>", function()
+            return vim.fn["codeium#Clear"]()
+          end, { expr = true })
+        EOB
     `,
       );
     },
   },
   {
     url: "lambdalisue/vim-findent",
+    enabled: false,
     before: async (denops: Denops) => {
       await globals.set(denops, "findent#enable_warnings", 1);
       await globals.set(denops, "findent#enable_messages", 1);
       await autocmd.group(denops, "MyFindent", (helper) => {
         helper.remove("*");
-        helper.define("BufRead", "*", "Findent!");
+        helper.define("BufRead", "*", "Findent");
+      });
+    },
+  },
+  {
+    url: "hrsh7th/nvim-dansa",
+    enabled: true,
+    after: async (denops: Denops) => {
+      await denops.call(`luaeval`, `require("dansa").setup(_A.param)`, {
+        param: {
+          // The offset to specify how much lines to use.
+          scan_offset: 100,
+
+          // The count for cut-off the indent candidate.
+          cutoff_count: 5,
+
+          // The settings for tab-indentation or when it cannot be guessed.
+          default: {
+            expandtab: true,
+            space: {
+              shiftwidth: 2,
+            },
+            tab: {
+              shiftwidth: 4,
+            },
+          },
+        },
       });
     },
   },

@@ -51,50 +51,48 @@ export const ui: Plug[] = [
         helper.define(
           "ModeChanged",
           "*",
-          `call <SID>${denops.name}_notify("${
-            lambda.register(
-              denops,
-              async () => {
-                const mode = await fn.mode(denops);
-                if (mode === "n") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#8aa872",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "▷",
-                  });
-                } else if (mode === "v") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#bf616a",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "",
-                  });
-                } else if (mode === "V") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#bf616a",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "",
-                  });
-                } else if (mode === "") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#bf616a",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "",
-                  });
-                } else if (mode === "i") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#668aab",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "",
-                  });
-                }
-              },
-            )
-          }", [])`,
+          `call <SID>${denops.name}_notify("${lambda.register(
+            denops,
+            async () => {
+              const mode = await fn.mode(denops);
+              if (mode === "n") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#8aa872",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "▷",
+                });
+              } else if (mode === "v") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#bf616a",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "",
+                });
+              } else if (mode === "V") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#bf616a",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "",
+                });
+              } else if (mode === "") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#bf616a",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "",
+                });
+              } else if (mode === "i") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#668aab",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "",
+                });
+              }
+            }
+          )}", [])`
         );
       });
     },
@@ -113,7 +111,7 @@ export const ui: Plug[] = [
             show_current_context: true,
             show_current_context_start: true,
           },
-        },
+        }
       );
     },
   },
@@ -125,31 +123,31 @@ export const ui: Plug[] = [
         denops,
         `
         lua << EOB
-        vim.keymap.set("n", "/", function() return require("modesearch").keymap.prompt.show("rawstr") end, { expr = true })
-        vim.keymap.set(
-          "c",
-          "<C-x>",
-          function() return require("modesearch").keymap.mode.cycle({ "rawstr", "migemo", "regexp" }) end,
-          { expr = true }
-        )
-        require("modesearch").setup({
-          modes = {
-            rawstr = {
-              prompt = "[rawstr]/",
-              converter = function(query) return [[\\V]] .. vim.fn.escape(query, [[/\\]]) end,
+          vim.keymap.set("n", "/", function() return require("modesearch").keymap.prompt.show("rawstr") end, { expr = true })
+          vim.keymap.set(
+            "c",
+            "<C-x>",
+            function() return require("modesearch").keymap.mode.cycle({ "rawstr", "migemo", "regexp" }) end,
+            { expr = true }
+          )
+          require("modesearch").setup({
+            modes = {
+              rawstr = {
+                prompt = "[rawstr]/",
+                converter = function(query) return [[\\V]] .. vim.fn.escape(query, [[/\\]]) end,
+              },
+              regexp = {
+                prompt = "[regexp]/",
+                converter = function(query) return [[\\v]] .. vim.fn.escape(query, [[/]]) end,
+              },
+              migemo = {
+                prompt = "[migemo]/",
+                converter = function(query) return [[\\v]] .. vim.fn["kensaku#query"](query) end,
+              },
             },
-            regexp = {
-              prompt = "[regexp]/",
-              converter = function(query) return [[\\v]] .. vim.fn.escape(query, [[/]]) end,
-            },
-            migemo = {
-              prompt = "[migemo]/",
-              converter = function(query) return [[\\v]] .. vim.fn["kensaku#query"](query) end,
-            },
-          },
-        })
+          })
         EOB
-      `,
+      `
       );
     },
   },
