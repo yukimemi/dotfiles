@@ -86,4 +86,17 @@ export const util: Plug[] = [
       });
     },
   },
+  {
+    url: "uga-rosa/ccc.nvim",
+    after: async (denops: Denops) => {
+      await denops.call(`luaeval`, `require("ccc").setup(_A.param)`, {
+        param: {
+          highlighter: {
+            auto_enable: true,
+            lsp: true,
+          },
+        },
+      });
+    },
+  },
 ];
