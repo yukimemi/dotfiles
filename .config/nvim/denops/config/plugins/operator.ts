@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.5/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
 

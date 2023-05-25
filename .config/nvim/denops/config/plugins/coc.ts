@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.5/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
@@ -221,25 +221,25 @@ export const coc: Plug[] = [
         denops,
         "<C-f>",
         'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"',
-        { mode: ["n", "v"], silent: true, nowait: true },
+        { mode: ["n", "v"], silent: true, nowait: true, expr: true },
       );
       await mapping.map(
         denops,
         "<C-b>",
         'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"',
-        { mode: ["n", "v"], silent: true, nowait: true },
+        { mode: ["n", "v"], silent: true, nowait: true, expr: true },
       );
       await mapping.map(
         denops,
         "<C-f>",
         'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"',
-        { mode: "i", silent: true, nowait: true },
+        { mode: "i", silent: true, nowait: true, expr: true },
       );
       await mapping.map(
         denops,
         "<C-b>",
         'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"',
-        { mode: "i", silent: true, nowait: true },
+        { mode: "i", silent: true, nowait: true, expr: true },
       );
 
       // Use CTRL-S for selections ranges

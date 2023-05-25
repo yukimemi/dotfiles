@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.5/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
@@ -11,6 +11,22 @@ export const git: Plug[] = [
     enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
       await execute(denops, `lua require("gitsigns").setup()`);
+      await mapping.map(
+        denops,
+        "]g",
+        `<cmd>lua require("gitsigns").next_hunk()<cr>`,
+        {
+          mode: "n",
+        },
+      );
+      await mapping.map(
+        denops,
+        "[g",
+        `<cmd>lua require("gitsigns").prev_hunk()<cr>`,
+        {
+          mode: "n",
+        },
+      );
     },
   },
   {

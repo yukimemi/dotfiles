@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.5/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
@@ -8,6 +8,7 @@ import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 
 export const util: Plug[] = [
   { url: "tyru/capture.vim" },
+  { url: "dstein64/vim-startuptime" },
   {
     url: "thinca/vim-partedit",
     before: async (denops: Denops) => {
@@ -20,7 +21,7 @@ export const util: Plug[] = [
       await globals.set(
         denops,
         "memolist_path",
-        await expand(denops, "~/.memolist")
+        await expand(denops, "~/.memolist"),
       );
       await globals.set(denops, "memolist_memo_suffix", "md");
       await globals.set(denops, "memolist_prompt_tags", 1);
