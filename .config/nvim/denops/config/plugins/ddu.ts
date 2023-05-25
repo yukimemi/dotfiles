@@ -7,7 +7,6 @@ import * as lambda from "https://deno.land/x/denops_std@v5.0.0/lambda/mod.ts";
 import * as op from "https://deno.land/x/denops_std@v5.0.0/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v5.0.0/batch/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
-import { notify } from "../util.ts";
 
 export const ddu: Plug[] = [
   {
@@ -314,7 +313,6 @@ export const ddu: Plug[] = [
           }", [])`,
         );
       });
-      await notify(denops, "ddu.vim loaded !");
     },
   },
 ];

@@ -1,6 +1,9 @@
 import { Denops } from "https://deno.land/x/denops_core@v5.0.0/denops.ts";
 import type { Plug } from "https://deno.land/x/dvpm@0.3.5/mod.ts";
+
+import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 
 export const filetypes: Plug[] = [
   {
@@ -11,9 +14,44 @@ export const filetypes: Plug[] = [
         helper.define(
           ["BufNew", "BufRead"],
           ["*.uml", "*.plantuml"],
-          "setl ft=plantuml"
+          "setl ft=plantuml",
         );
       });
     },
+  },
+  {
+    url: "uga-rosa/scorpeon.vim",
+    before: async (denops: Denops) => {
+      await globals.set(
+        denops,
+        "scorpeon_extensions_path",
+        [
+          await fn.expand(denops, "~/.cache/vscode/extensions"),
+          await fn.expand(denops, "~/.cache/scorpeon"),
+        ],
+      );
+    },
+    dependencies: [
+      {
+        url: "microsoft/vscode",
+        dst: "~/.cache/vscode",
+        enabled: false,
+      },
+      {
+        url: "saem/vscode-nim",
+        dst: "~/.cache/scorpeon/nim",
+        enabled: false,
+      },
+      {
+        url: "oovm/vscode-toml",
+        dst: "~/.cache/scorpeon/toml",
+        enabled: false,
+      },
+      {
+        url: "emilast/vscode-logfile-highlighter",
+        dst: "~/.cache/scorpeon/log",
+        enabled: false,
+      },
+    ],
   },
 ];
