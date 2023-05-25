@@ -7,10 +7,10 @@ export const terminal: Plug[] = [
   {
     url: "voldikss/vim-floaterm",
     before: async (denops: Denops) => {
-      await mapping.map(denops, `<c-s>`, `<cmd>FloatermToggle<cr>`, {
+      await mapping.map(denops, `<leader>t`, `<cmd>FloatermToggle<cr>`, {
         mode: "n",
       });
-      await mapping.map(denops, `<c-s>`, `<C-\><C-n>:FloatermToggle<cr>`, {
+      await mapping.map(denops, `<leader>t`, `<C-\><C-n>:FloatermToggle<cr>`, {
         mode: "t",
       });
     },
