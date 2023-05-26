@@ -42,7 +42,7 @@ export const ui: Plug[] = [
           threshold: 3,
           disable_float_win: false,
           enabled_filetypes: null,
-          disabled_filetypes: null,
+          disabled_filetypes: ["ddu-ff", "ddu-ff-filter"],
         },
       });
 

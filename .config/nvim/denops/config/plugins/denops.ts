@@ -16,6 +16,16 @@ export const denops: Plug[] = [
     dst: "~/src/github.com/yukimemi/dps-autocursor",
     before: async (denops: Denops) => {
       await globals.set(denops, "autocursor_debug", false);
+      await globals.set(denops, "autocursor_blacklist_filetypes", [
+        "ctrlp",
+        "ddu-ff",
+        "ddu-ff-filter",
+        "ddu-filer",
+        "dpswalk",
+        "list",
+        "qf",
+        "quickfix",
+      ]);
     },
   },
   {

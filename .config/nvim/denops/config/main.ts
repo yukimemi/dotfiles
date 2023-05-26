@@ -15,6 +15,8 @@ import { setOption } from "./option.ts";
 export const pluginStatus = {
   heirline: false,
   lualine: true,
+  ddc: false,
+  coc: true,
 };
 
 export async function main(denops: Denops): Promise<void> {
@@ -24,10 +26,7 @@ export async function main(denops: Denops): Promise<void> {
   await post(denops);
 
   const elapsed = performance.now() - starttime;
-  await notify(
-    denops,
-    `Config load completed ! \\nElapsed: (${elapsed})`,
-  );
+  await notify(denops, `Config load completed ! \\nElapsed: (${elapsed})`);
 }
 
 async function pre(denops: Denops): Promise<void> {
@@ -62,9 +61,11 @@ async function dvpmExec(denops: Denops) {
   const base = ensureString(await fn.expand(denops, base_path));
   const dvpm = await Dvpm.begin(denops, { base, debug: false, profile: false });
 
-  await Promise.all(plugins.map(async (p: Plug) => {
-    await dvpm.add(p);
-  }));
+  await Promise.all(
+    plugins.map(async (p: Plug) => {
+      await dvpm.add(p);
+    }),
+  );
 
   await dvpm.end();
 }
