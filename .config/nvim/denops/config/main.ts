@@ -15,8 +15,8 @@ import { setOption } from "./option.ts";
 export const pluginStatus = {
   heirline: false,
   lualine: true,
-  ddc: false,
-  coc: true,
+  ddc: true,
+  coc: false,
 };
 
 export async function main(denops: Denops): Promise<void> {
