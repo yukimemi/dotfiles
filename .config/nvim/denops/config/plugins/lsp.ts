@@ -178,9 +178,9 @@ export const lsp: Plug[] = [
                   suggest = {
                     imports = {
                       hosts = {
-                            ["https://deno.land"] = true,
-                            ["https://cdn.nest.land"] = true,
-                            ["https://crux.land"] = true,
+                        ["https://deno.land"] = true,
+                        ["https://cdn.nest.land"] = true,
+                        ["https://crux.land"] = true,
                       },
                     },
                   },
@@ -199,7 +199,7 @@ export const lsp: Plug[] = [
                 single_file_support = false,
               }))
             end,
-                ["powershell_es"] = function()
+            ["powershell_es"] = function()
               lspconfig["powershell_es"].setup(vim.tbl_deep_extend("force", options, {
                 settings = {
                   powershell = {
@@ -211,7 +211,7 @@ export const lsp: Plug[] = [
                 },
               }))
             end,
-                ["lemminx"] = function()
+            ["lemminx"] = function()
               lspconfig["lemminx"].setup(vim.tbl_deep_extend("force", options, {
                 settings = {
                   xml = {
@@ -231,10 +231,10 @@ export const lsp: Plug[] = [
                 },
               }))
             end,
-                ["rust_analyzer"] = function()
+            ["rust_analyzer"] = function()
               lspconfig["rust_analyzer"].setup(vim.tbl_deep_extend("force", options, {
                 settings = {
-                      ["rust-analyzer"] = {
+                  ["rust-analyzer"] = {
                     cargo = { allFeatures = true },
                     checkOnSave = {
                       command = "clippy",
@@ -269,18 +269,18 @@ export const lsp: Plug[] = [
                         strict = "Warning",
                       },
                       groupFileStatus = {
-                            ["ambiguity"] = "Opened",
-                            ["await"] = "Opened",
-                            ["codestyle"] = "None",
-                            ["duplicate"] = "Opened",
-                            ["global"] = "Opened",
-                            ["luadoc"] = "Opened",
-                            ["redefined"] = "Opened",
-                            ["strict"] = "Opened",
-                            ["strong"] = "Opened",
-                            ["type-check"] = "Opened",
-                            ["unbalanced"] = "Opened",
-                            ["unused"] = "Opened",
+                        ["ambiguity"] = "Opened",
+                        ["await"] = "Opened",
+                        ["codestyle"] = "None",
+                        ["duplicate"] = "Opened",
+                        ["global"] = "Opened",
+                        ["luadoc"] = "Opened",
+                        ["redefined"] = "Opened",
+                        ["strict"] = "Opened",
+                        ["strong"] = "Opened",
+                        ["type-check"] = "Opened",
+                        ["unbalanced"] = "Opened",
+                        ["unused"] = "Opened",
                       },
                       unusedLocalExclude = { "_*" },
                     },
