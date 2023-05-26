@@ -2,11 +2,12 @@ import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
 import type { Plug } from "https://deno.land/x/dvpm@0.3.5/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v5.0.0/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
 import * as op from "https://deno.land/x/denops_std@v5.0.0/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v5.0.0/batch/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
+import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/ensure.ts";
 
 export const ddu: Plug[] = [
   {
@@ -15,21 +16,30 @@ export const ddu: Plug[] = [
       { url: "4513ECHO/ddu-kind-url" },
       { url: "4513ECHO/ddu-source-emoji" },
       { url: "4513ECHO/ddu-source-source" },
-      { url: "Milly/ddu-filter-kensaku" },
+      { url: "4513ECHO/vim-readme-viewer" },
+      { url: "Shougo/ddu-commands.vim" },
       { url: "Shougo/ddu-kind-file" },
       { url: "Shougo/ddu-kind-word" },
+      { url: "Shougo/ddu-source-action" },
       { url: "Shougo/ddu-source-file" },
       { url: "Shougo/ddu-source-file_old" },
-      { url: "Shougo/ddu-source-file_rec" },
       { url: "Shougo/ddu-source-file_point" },
+      { url: "Shougo/ddu-source-file_rec" },
       { url: "Shougo/ddu-source-line" },
       { url: "Shougo/ddu-source-register" },
       { url: "Shougo/ddu-ui-ff" },
-      { url: "Shougo/ddu-commands.vim" },
-      { url: "matsui54/ddu-source-file_external" },
+      { url: "kuuote/ddu-filter-fuse" },
       { url: "matsui54/ddu-source-command_history" },
+      { url: "matsui54/ddu-source-file_external" },
       { url: "matsui54/ddu-source-help" },
+      { url: "shun/ddu-source-rg" },
       { url: "uga-rosa/ddu-filter-converter_devicon" },
+      { url: "yuki-yano/ddu-filter-fzf" },
+      { url: "Milly/ddu-filter-merge" },
+      {
+        url: "Milly/ddu-filter-kensaku",
+        dependencies: [{ url: "lambdalisue/kensaku.vim" }],
+      },
       {
         url: "matsui54/ddu-vim-ui-select",
         enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
@@ -84,7 +94,7 @@ export const ddu: Plug[] = [
       );
       await mapping.map(
         denops,
-        "<leader>ds",
+        "<leader>dS",
         `<cmd>call <SID>${denops.name}_notify("${
           lambda.register(
             denops,
@@ -126,6 +136,74 @@ export const ddu: Plug[] = [
         }", [])<cr>`,
         { mode: "n" },
       );
+      await mapping.map(
+        denops,
+        "<leader>dm",
+        `<cmd>call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              await denops.call("ddu#start", {
+                sources: [
+                  {
+                    name: "file_rec",
+                    options: {
+                      path: await fn.expand(denops, "~/.memolist"),
+                    },
+                  },
+                ],
+              });
+            },
+          )
+        }", [])<cr>`,
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<leader>ds",
+        `<cmd>call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              await denops.call("ddu#start", {
+                name: "search",
+                uiParams: {
+                  ff: {
+                    ignoreEmpty: true,
+                  },
+                },
+                sources: [
+                  {
+                    name: "rg",
+                    options: {
+                      path: await fn.input(
+                        denops,
+                        "Directory: ",
+                        await fn.getcwd(denops),
+                        "dir",
+                      ),
+                    },
+                    params: {
+                      input: await fn.input(
+                        denops,
+                        "Pattern: ",
+                        ensureString(await fn.expand(denops, "<cword>")),
+                      ),
+                    },
+                  },
+                ],
+              });
+            },
+          )
+        }", [])<cr>`,
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<leader>dr",
+        "<cmd>Ddu -name=search -resume -ui-param-startFilter=v:false<cr>",
+        { mode: "n" },
+      );
     },
     after: async (denops: Denops) => {
       // global settings.
@@ -133,7 +211,7 @@ export const ddu: Plug[] = [
         ui: "ff",
         uiParams: {
           ff: {
-            prompt: "> ",
+            prompt: "»",
             split: "floating",
             floatingBorder: "single",
             startFilter: true,
@@ -142,18 +220,68 @@ export const ddu: Plug[] = [
         sources: {},
         sourceOptions: {
           _: {
-            matchers: ["matcher_kensaku"],
+            ignoreCase: true,
+            matchers: ["merge"],
             converters: ["converter_devicon"],
           },
         },
-        sourceParams: {},
+        sourceParams: {
+          file_external: {
+            cmd: ["git", "ls-files", "-co", "--exclude-standard"],
+          },
+          file_rg: {
+            cmd: [
+              "rg",
+              "--files",
+              "--glob",
+              "!.git",
+              "--color",
+              "never",
+              "--no-messages",
+              "--json",
+            ],
+            updateItems: 50000,
+          },
+          rg: {
+            args: [
+              "--ignore-case",
+              "--column",
+              "--no-heading",
+              "--color",
+              "never",
+              "--json",
+            ],
+            inputType: "regex",
+          },
+        },
         kindOptions: {
+          action: { defaultAction: "do" },
           command_history: { defaultAction: "edit" },
           file: { defaultAction: "open" },
+          help: { defaultAction: "open" },
+          readme_viewer: { defaultAction: "open" },
           source: { defaultAction: "execute" },
           ui_select: { defaultAction: "select" },
           url: { defaultAction: "browse" },
           word: { defaultAction: "append" },
+        },
+        filterParams: {
+          matcher_fuse: {
+            highlightMatched: "Search",
+          },
+          matcher_kensaku: {
+            highlightMatched: "Search",
+          },
+          merge: {
+            highlightMatched: "Search",
+            filters: [
+              {
+                name: "matcher_kensaku",
+                weight: 2.0,
+              },
+              "matcher_fuse",
+            ],
+          },
         },
       });
 
