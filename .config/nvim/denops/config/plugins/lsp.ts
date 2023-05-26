@@ -102,7 +102,7 @@ export const lsp: Plug[] = [
             local opts = { noremap = true, silent = true, buffer = bufnr }
             vim.keymap.set(
               "n",
-              "<space>e",
+              "<space>f",
               vim.diagnostic.open_float,
               vim.tbl_extend("force", opts, { desc = "Open diagnostic on float" })
             )
@@ -141,7 +141,7 @@ export const lsp: Plug[] = [
               vim.tbl_extend("force", opts, { desc = "Type definition" })
             )
             vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename" }))
-            -- vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
+            vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
             vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "References" }))
             vim.keymap.set("n", "<space>F", function()
               vim.lsp.buf.format({ async = true })

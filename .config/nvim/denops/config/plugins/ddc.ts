@@ -4,6 +4,7 @@ import type { Plug } from "https://deno.land/x/dvpm@0.3.5/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/execute.ts";
 
 export const ddc: Plug[] = [
   {
@@ -40,7 +41,29 @@ export const ddc: Plug[] = [
       { url: "Shougo/ddc-ui-inline" },
 
       // snippet
-      { url: "hrsh7th/vim-vsnip" },
+      {
+        url: "hrsh7th/vim-vsnip",
+        dependencies: [
+          { url: "hrsh7th/vim-vsnip-integ" },
+          { url: "rafamadriz/friendly-snippets" },
+        ],
+        after: async (denops: Denops) => {
+          await execute(
+            denops,
+            `
+            " Expand or jump
+            imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'
+            smap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'
+
+            " Jump forward or backward
+            imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+            smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+            imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+            smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+            `,
+          );
+        },
+      },
 
       // sources
       { url: "LumaKernel/ddc-file" },
@@ -60,6 +83,7 @@ export const ddc: Plug[] = [
       // popup, signature
       {
         url: "matsui54/denops-popup-preview.vim",
+        enabled: false,
         before: async (denops: Denops) => {
           await globals.set(denops, "popup_preview_config", {
             delay: 50,
@@ -73,7 +97,7 @@ export const ddc: Plug[] = [
       },
       {
         url: "matsui54/denops-signature_help",
-        enabled: true,
+        enabled: false,
         after: async (denops: Denops) => {
           await denops.call(`signature_help#enable`);
         },
@@ -90,6 +114,13 @@ export const ddc: Plug[] = [
           "CmdlineEnter",
           "CmdlineChanged",
           "TextChangedT",
+        ],
+        sources: [
+          "nvim-lsp",
+          "around",
+          "vsnip",
+          "file",
+          "rg",
         ],
         sourceOptions: {
           _: {

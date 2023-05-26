@@ -3,6 +3,7 @@ import { ddc } from "./plugins/ddc.ts";
 import { ddu } from "./plugins/ddu.ts";
 import { denops } from "./plugins/denops.ts";
 import { edit } from "./plugins/edit.ts";
+import { fern } from "./plugins/fern.ts";
 import { filetypes } from "./plugins/filetypes.ts";
 import { git } from "./plugins/git.ts";
 import { libs } from "./plugins/libs.ts";
@@ -20,6 +21,7 @@ export const plugins = [
   ...libs,
   ...coc,
   ...ddu,
+  ...fern,
   ...ddc,
   ...lsp,
   ...treesitter,

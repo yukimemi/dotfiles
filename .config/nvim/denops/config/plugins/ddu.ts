@@ -17,6 +17,7 @@ export const ddu: Plug[] = [
       { url: "4513ECHO/ddu-source-emoji" },
       { url: "4513ECHO/ddu-source-source" },
       { url: "4513ECHO/vim-readme-viewer" },
+      { url: "Shougo/ddu-column-filename" },
       { url: "Shougo/ddu-commands.vim" },
       { url: "Shougo/ddu-kind-file" },
       { url: "Shougo/ddu-kind-word" },
@@ -28,6 +29,7 @@ export const ddu: Plug[] = [
       { url: "Shougo/ddu-source-line" },
       { url: "Shougo/ddu-source-register" },
       { url: "Shougo/ddu-ui-ff" },
+      { url: "Shougo/ddu-ui-filer" },
       { url: "kuuote/ddu-filter-fuse" },
       { url: "matsui54/ddu-source-command_history" },
       { url: "matsui54/ddu-source-file_external" },
@@ -162,39 +164,36 @@ export const ddu: Plug[] = [
         denops,
         "<leader>ds",
         `<cmd>call <SID>${denops.name}_notify("${
-          lambda.register(
-            denops,
-            async () => {
-              await denops.call("ddu#start", {
-                name: "search",
-                uiParams: {
-                  ff: {
-                    ignoreEmpty: true,
+          lambda.register(denops, async () => {
+            await denops.call("ddu#start", {
+              name: "search",
+              uiParams: {
+                ff: {
+                  ignoreEmpty: true,
+                },
+              },
+              sources: [
+                {
+                  name: "rg",
+                  options: {
+                    path: await fn.input(
+                      denops,
+                      "Directory: ",
+                      await fn.getcwd(denops),
+                      "dir",
+                    ),
+                  },
+                  params: {
+                    input: await fn.input(
+                      denops,
+                      "Pattern: ",
+                      ensureString(await fn.expand(denops, "<cword>")),
+                    ),
                   },
                 },
-                sources: [
-                  {
-                    name: "rg",
-                    options: {
-                      path: await fn.input(
-                        denops,
-                        "Directory: ",
-                        await fn.getcwd(denops),
-                        "dir",
-                      ),
-                    },
-                    params: {
-                      input: await fn.input(
-                        denops,
-                        "Pattern: ",
-                        ensureString(await fn.expand(denops, "<cword>")),
-                      ),
-                    },
-                  },
-                ],
-              });
-            },
-          )
+              ],
+            });
+          })
         }", [])<cr>`,
         { mode: "n" },
       );
@@ -209,15 +208,37 @@ export const ddu: Plug[] = [
       // global settings.
       await denops.call("ddu#custom#patch_global", {
         ui: "ff",
+        uiOptions: {
+          filer: {
+            toggle: false,
+          },
+        },
         uiParams: {
           ff: {
             prompt: "»",
             split: "floating",
+            filterSplitDirection: "floating",
             floatingBorder: "single",
+            previewFloating: true,
+            previewFloatingBorder: "single",
+            previewSplit: "no",
+            highlights: {
+              floating: "Normal",
+              floatingBorder: "Special",
+            },
             startFilter: true,
+            updateTime: 0,
+          },
+          filer: {
+            split: "vertical",
+            sort: "filename",
+            filterSplitDirection: "botleft",
+            sortTreesFirst: true,
+            previewSplit: "no",
+            toggle: true,
+            winWidth: 40,
           },
         },
-        sources: {},
         sourceOptions: {
           _: {
             ignoreCase: true,
@@ -264,6 +285,14 @@ export const ddu: Plug[] = [
           ui_select: { defaultAction: "select" },
           url: { defaultAction: "browse" },
           word: { defaultAction: "append" },
+        },
+        actionOptions: {
+          narrow: {
+            quit: false,
+          },
+          tabopen: {
+            quit: false,
+          },
         },
         filterParams: {
           matcher_fuse: {
