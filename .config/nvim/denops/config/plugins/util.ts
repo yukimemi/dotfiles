@@ -88,6 +88,7 @@ export const util: Plug[] = [
   },
   {
     url: "uga-rosa/ccc.nvim",
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
       await denops.call(`luaeval`, `require("ccc").setup(_A.param)`, {
         param: {

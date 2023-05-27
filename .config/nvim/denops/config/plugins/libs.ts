@@ -103,7 +103,7 @@ export const libs: Plug[] = [
   },
   {
     url: "lambdalisue/vim-findent",
-    enabled: false,
+    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
     before: async (denops: Denops) => {
       await globals.set(denops, "findent#enable_warnings", 1);
       await globals.set(denops, "findent#enable_messages", 1);
@@ -115,7 +115,7 @@ export const libs: Plug[] = [
   },
   {
     url: "hrsh7th/nvim-dansa",
-    enabled: true,
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
       await denops.call(`luaeval`, `require("dansa").setup(_A.param)`, {
         param: {

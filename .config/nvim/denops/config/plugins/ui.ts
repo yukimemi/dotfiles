@@ -214,6 +214,7 @@ export const ui: Plug[] = [
   },
   {
     url: "b0o/incline.nvim",
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
       await denops.call(`luaeval`, `require("incline").setup(_A.param)`, {
         param: {
@@ -236,6 +237,7 @@ export const ui: Plug[] = [
   },
   {
     url: "akinsho/bufferline.nvim",
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
       await denops.cmd(`lua require("bufferline").setup()`);
     },
