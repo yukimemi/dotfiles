@@ -171,6 +171,9 @@ export const ddc: Plug[] = [
         "<cmd>call ddc#map#manual_complete()<cr>",
         { mode: "i" },
       );
+      await mapping.map(denops, "<c-c>", "<cmd>call pum#close()<cr>", {
+        mode: "i",
+      });
 
       await denops.call(`ddc#enable`);
     },
