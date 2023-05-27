@@ -83,7 +83,7 @@ export const ddc: Plug[] = [
       // popup, signature
       {
         url: "matsui54/denops-popup-preview.vim",
-        enabled: true,
+        enabled: false,
         before: async (denops: Denops) => {
           await globals.set(denops, "popup_preview_config", {
             delay: 50,
@@ -97,7 +97,7 @@ export const ddc: Plug[] = [
       },
       {
         url: "matsui54/denops-signature_help",
-        enabled: true,
+        enabled: false,
         after: async (denops: Denops) => {
           await denops.call(`signature_help#enable`);
         },

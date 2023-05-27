@@ -210,4 +210,6 @@ export const util: Plug[] = [
   },
   { url: "tani/glance-vim" },
   { url: "ryoppippi/bad-apple.vim" },
+  { url: "vim-jp/vital.vim" },
+  { url: "hrsh7th/vim-vital-vs" },
 ];

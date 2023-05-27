@@ -9,6 +9,26 @@ import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 
 export const libs: Plug[] = [
   { url: "vim-denops/denops.vim" },
+  {
+    url: "folke/noice.nvim",
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    dependencies: [
+      { url: "MunifTanjim/nui.nvim" },
+      { url: "rcarriga/nvim-notify" },
+    ],
+    after: async (denops: Denops) => {
+      await denops.call(`luaeval`, `require("noice").setup(_A.param)`, {
+        param: {
+          cmdline: {
+            enabled: false,
+          },
+          messages: {
+            enabled: false,
+          },
+        },
+      });
+    },
+  },
   { url: "kana/vim-repeat" },
   { url: "mattn/vim-findroot" },
   { url: "tyru/open-browser.vim" },
