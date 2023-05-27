@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.5/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.6/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
@@ -83,7 +83,7 @@ export const ddc: Plug[] = [
       // popup, signature
       {
         url: "matsui54/denops-popup-preview.vim",
-        enabled: false,
+        enabled: true,
         before: async (denops: Denops) => {
           await globals.set(denops, "popup_preview_config", {
             delay: 50,
@@ -97,7 +97,7 @@ export const ddc: Plug[] = [
       },
       {
         url: "matsui54/denops-signature_help",
-        enabled: false,
+        enabled: true,
         after: async (denops: Denops) => {
           await denops.call(`signature_help#enable`);
         },
@@ -132,9 +132,12 @@ export const ddc: Plug[] = [
           around: { mark: "around" },
           buffer: { mark: "buffer" },
           line: { mark: "line" },
-          "nvim-lsp": { mark: "lsp" },
           file: { mark: "file" },
           rg: { mark: "rg" },
+          "nvim-lsp": {
+            mark: "lsp",
+            forceCompletionPattern: "\.\w*|:\w*|->\w*",
+          },
         },
         sourceParams: {
           buffer: {

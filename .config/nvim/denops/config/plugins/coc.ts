@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.5/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.6/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -43,7 +43,7 @@ export const coc: Plug[] = [
         denops,
         "<cr>",
         `coc#pum#visible() ? coc#pum#confirm() : '<c-g>u<cr><c-r>=coc#on_enter()<cr>'`,
-        { mode: "i", noremap: true, expr: true }
+        { mode: "i", noremap: true, expr: true },
       );
 
       // Use <c-j> to trigger snippets
@@ -86,21 +86,25 @@ export const coc: Plug[] = [
       await mapping.map(
         denops,
         "K",
-        `<cmd>call <SID>${denops.name}_notify("${lambda.register(
-          denops,
-          async () => {
-            const cw = await fn.expand(denops, "<cword>");
-            const ft = await op.filetype.getLocal(denops);
-            if (["vim", "help"].some((t) => t === ft)) {
-              await denops.cmd(`silent! h ${cw}`);
-            } else if (ensureNumber(await denops.call(`coc#rpc#ready`)) === 1) {
-              await denops.call("CocActionAsync", "doHover");
-            } else {
-              await denops.cmd(`!${await op.keywordprg.get(denops)} ${cw}`);
-            }
-          }
-        )}", [])<cr>`,
-        { mode: "n", silent: true }
+        `<cmd>call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              const cw = await fn.expand(denops, "<cword>");
+              const ft = await op.filetype.getLocal(denops);
+              if (["vim", "help"].some((t) => t === ft)) {
+                await denops.cmd(`silent! h ${cw}`);
+              } else if (
+                ensureNumber(await denops.call(`coc#rpc#ready`)) === 1
+              ) {
+                await denops.call("CocActionAsync", "doHover");
+              } else {
+                await denops.cmd(`!${await op.keywordprg.get(denops)} ${cw}`);
+              }
+            },
+          )
+        }", [])<cr>`,
+        { mode: "n", silent: true },
       );
 
       await autocmd.group(denops, "CocGroup", (helper) => {
@@ -109,19 +113,19 @@ export const coc: Plug[] = [
         helper.define(
           "CursorHold",
           "*",
-          `silent call CocActionAsync('highlight')`
+          `silent call CocActionAsync('highlight')`,
         );
         // Setup formatexpr specified filetype(s)
         helper.define(
           "FileType",
           "typescript,json",
-          `setl formatexpr=CocAction('formatSelected')`
+          `setl formatexpr=CocAction('formatSelected')`,
         );
         // Update signature help on jump placeholder
         helper.define(
           "User",
           "CocJumpPlaceholder",
-          `call CocActionAsync('showSignatureHelp')`
+          `call CocActionAsync('showSignatureHelp')`,
         );
       });
 
@@ -147,7 +151,7 @@ export const coc: Plug[] = [
         denops,
         "<leader>a",
         "<Plug>(coc-codeaction-selected)",
-        { mode: ["n", "x"], silent: true }
+        { mode: ["n", "x"], silent: true },
       );
 
       // Remap keys for apply code actions at the cursor position.
@@ -176,13 +180,13 @@ export const coc: Plug[] = [
         denops,
         "<leader>re",
         "<Plug>(coc-codeaction-refactor)",
-        { mode: "n", silent: true }
+        { mode: "n", silent: true },
       );
       await mapping.map(
         denops,
         "<leader>r",
         "<Plug>(coc-codeaction-refactor-selected)",
-        { mode: "x", silent: true }
+        { mode: "x", silent: true },
       );
 
       // Run the Code Lens actions on the current line
@@ -218,25 +222,25 @@ export const coc: Plug[] = [
         denops,
         "<C-f>",
         'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"',
-        { mode: ["n", "v"], silent: true, nowait: true, expr: true }
+        { mode: ["n", "v"], silent: true, nowait: true, expr: true },
       );
       await mapping.map(
         denops,
         "<C-b>",
         'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"',
-        { mode: ["n", "v"], silent: true, nowait: true, expr: true }
+        { mode: ["n", "v"], silent: true, nowait: true, expr: true },
       );
       await mapping.map(
         denops,
         "<C-f>",
         'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"',
-        { mode: "i", silent: true, nowait: true, expr: true }
+        { mode: "i", silent: true, nowait: true, expr: true },
       );
       await mapping.map(
         denops,
         "<C-b>",
         'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"',
-        { mode: "i", silent: true, nowait: true, expr: true }
+        { mode: "i", silent: true, nowait: true, expr: true },
       );
 
       // Use CTRL-S for selections ranges
@@ -256,7 +260,7 @@ export const coc: Plug[] = [
         "<cmd>CocList --auto-preview mru -A<cr>",
         {
           mode: "n",
-        }
+        },
       );
       await mapping.map(
         denops,
@@ -264,7 +268,7 @@ export const coc: Plug[] = [
         "<cmd>CocList --auto-preview mru<cr>",
         {
           mode: "n",
-        }
+        },
       );
       await mapping.map(
         denops,
@@ -272,7 +276,7 @@ export const coc: Plug[] = [
         "<cmd>CocList --auto-preview buffers<cr>",
         {
           mode: "n",
-        }
+        },
       );
 
       // coc-explorer.
