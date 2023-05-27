@@ -54,6 +54,10 @@ export const libs: Plug[] = [
     },
   },
   {
+    url: "ryanoasis/vim-devicons",
+    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
+  },
+  {
     url: "folke/which-key.nvim",
     enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {

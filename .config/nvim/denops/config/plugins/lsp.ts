@@ -9,7 +9,19 @@ export const lsp: Plug[] = [
     url: "neovim/nvim-lspconfig",
     enabled: !pluginStatus.coc,
     dependencies: [
+      {
+        url: "j-hui/fidget.nvim",
+        after: async (denops: Denops) => {
+          await denops.cmd(`lua require("fidget").setup()`);
+        },
+      },
       { url: "SmiteshP/nvim-navic" },
+      {
+        url: "stevearc/aerial.nvim",
+        after: async (denops: Denops) => {
+          await denops.cmd(`lua require("aerial").setup()`);
+        },
+      },
       { url: "lukas-reineke/lsp-format.nvim" },
       { url: "jose-elias-alvarez/null-ls.nvim" },
       { url: "williamboman/mason.nvim" },

@@ -17,6 +17,7 @@ export const ddu: Plug[] = [
       { url: "4513ECHO/ddu-source-emoji" },
       { url: "4513ECHO/ddu-source-source" },
       { url: "4513ECHO/vim-readme-viewer" },
+      { url: "Shougo/junkfile.vim" },
       { url: "Shougo/ddu-column-filename" },
       { url: "Shougo/ddu-commands.vim" },
       { url: "Shougo/ddu-kind-file" },

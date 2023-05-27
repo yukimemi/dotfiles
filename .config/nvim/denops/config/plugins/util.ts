@@ -99,4 +99,114 @@ export const util: Plug[] = [
       });
     },
   },
+  {
+    url: "junegunn/vim-easy-align",
+    before: async (denops: Denops) => {
+      await mapping.map(denops, "<enter>", "<Plug>(EasyAlign)", { mode: "v" });
+      await globals.set(denops, "easy_align_delimiters", {
+        ">": {
+          "pattern": ">>\|=>\|>.\+",
+          "right_margin": 0,
+          "delimiter_align": "l",
+        },
+        "/": {
+          "pattern": "//\+\|/\*\|\*/",
+          "delimiter_align": "l",
+          "ignore_groups": ["!Comment"],
+        },
+        ".": {
+          "pattern": "/",
+          "left_margin": 1,
+          "right_margin": 1,
+          "stick_to_left": 0,
+          "ignore_groups": [],
+        },
+        "]": {
+          "pattern": "[[\]]",
+          "left_margin": 0,
+          "right_margin": 0,
+          "stick_to_left": 0,
+        },
+        ")": {
+          "pattern": "[()]",
+          "left_margin": 0,
+          "right_margin": 0,
+          "stick_to_left": 0,
+        },
+        "d": {
+          "pattern": " \(\S\+\s*[;=]\)\@=",
+          "left_margin": 0,
+          "right_margin": 0,
+        },
+        "p": {
+          "pattern": "pos=\|size=",
+          "right_margin": 0,
+        },
+        "s": {
+          "pattern": "sys=\|Trns=",
+          "right_margin": 0,
+        },
+        "k": {
+          "pattern": "key=\|cmt=",
+          "right_margin": 0,
+        },
+        "c": {
+          "pattern": "cmt=",
+          "right_margin": 0,
+        },
+        ":": {
+          "pattern": ":",
+          "left_margin": 0,
+          "right_margin": 1,
+          "stick_to_left": 0,
+          "ignore_groups": [],
+        },
+        "t": {
+          "pattern": "\<tab>",
+          "left_margin": 0,
+          "right_margin": 0,
+        },
+        ";": {
+          "pattern": ";",
+          "left_margin": 1,
+          "right_margin": 1,
+          "stick_to_left": 0,
+          "ignore_groups": [],
+        },
+        "|": {
+          "pattern": "|",
+          "left_margin": 1,
+          "right_margin": 1,
+          "stick_to_left": 0,
+          "ignore_groups": [],
+        },
+      });
+    },
+  },
+  {
+    url: "thinca/vim-ambicmd",
+    after: async (denops: Denops) => {
+      await mapping.map(denops, "<space>", `ambicmd#expand("<space>")`, {
+        mode: "c",
+        expr: true,
+      });
+      await mapping.map(denops, "<cr>", `ambicmd#expand("<cr>")`, {
+        mode: "c",
+        expr: true,
+      });
+      await mapping.map(denops, "<c-f>", `ambicmd#expand("<right>")`, {
+        mode: "c",
+        expr: true,
+      });
+    },
+  },
+  {
+    url: "stevearc/stickybuf.nvim",
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    after: async (denops: Denops) => {
+      await denops.cmd(`lua require("stickybuf").setup()`);
+    },
+  },
+  { url: "tani/glance-vim" },
+  { url: "ryoppippi/bad-apple.vim" },
 ];
