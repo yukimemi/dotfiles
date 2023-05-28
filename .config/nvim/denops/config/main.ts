@@ -1,8 +1,8 @@
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.3.6/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.3.7/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
-import { Dvpm } from "https://deno.land/x/dvpm@0.3.6/dvpm.ts";
+import { Dvpm } from "https://deno.land/x/dvpm@0.3.7/dvpm.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 import { notify } from "./util.ts";
@@ -15,8 +15,8 @@ import { setOption } from "./option.ts";
 export const pluginStatus = {
   heirline: false,
   lualine: true,
-  ddc: true,
-  coc: false,
+  ddc: false,
+  coc: true,
 };
 
 export async function main(denops: Denops): Promise<void> {
