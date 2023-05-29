@@ -15,8 +15,8 @@ import { setOption } from "./option.ts";
 export const pluginStatus = {
   heirline: false,
   lualine: true,
-  ddc: false,
-  coc: true,
+  ddc: true,
+  coc: false,
 };
 
 export async function main(denops: Denops): Promise<void> {
@@ -50,7 +50,7 @@ async function vimInit(denops: Denops) {
     `
     silent! syntax enable
     filetype plugin indent on
-    `,
+    `
   );
 }
 
@@ -64,7 +64,7 @@ async function dvpmExec(denops: Denops) {
   await Promise.all(
     plugins.map(async (p: Plug) => {
       await dvpm.add(p);
-    }),
+    })
   );
 
   await dvpm.end();

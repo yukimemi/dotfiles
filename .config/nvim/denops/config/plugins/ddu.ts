@@ -296,6 +296,9 @@ export const ddu: Plug[] = [
           },
         },
         filterParams: {
+          matcher_fzf: {
+            highlightMatched: "Search",
+          },
           matcher_fuse: {
             highlightMatched: "Search",
           },
@@ -309,7 +312,7 @@ export const ddu: Plug[] = [
                 name: "matcher_kensaku",
                 weight: 2.0,
               },
-              "matcher_fuse",
+              "matcher_fzf",
             ],
           },
         },

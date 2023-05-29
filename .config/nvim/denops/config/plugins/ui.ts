@@ -106,50 +106,48 @@ export const ui: Plug[] = [
         helper.define(
           "ModeChanged",
           "*",
-          `call <SID>${denops.name}_notify("${
-            lambda.register(
-              denops,
-              async () => {
-                const mode = await fn.mode(denops);
-                if (mode === "n") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#8aa872",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "▷",
-                  });
-                } else if (mode === "v") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#bf616a",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "",
-                  });
-                } else if (mode === "V") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#bf616a",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "",
-                  });
-                } else if (mode === "") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#bf616a",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "",
-                  });
-                } else if (mode === "i") {
-                  await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
-                    fg: "#668aab",
-                  });
-                  await denops.call("sign_define", "smoothcursor", {
-                    text: "",
-                  });
-                }
-              },
-            )
-          }", [])`,
+          `call <SID>${denops.name}_notify("${lambda.register(
+            denops,
+            async () => {
+              const mode = await fn.mode(denops);
+              if (mode === "n") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#8aa872",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "▷",
+                });
+              } else if (mode === "v") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#bf616a",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "",
+                });
+              } else if (mode === "V") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#bf616a",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "",
+                });
+              } else if (mode === "") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#bf616a",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "",
+                });
+              } else if (mode === "i") {
+                await nvimFn.nvim_set_hl(denops, 0, "SmoothCursor", {
+                  fg: "#668aab",
+                });
+                await denops.call("sign_define", "smoothcursor", {
+                  text: "",
+                });
+              }
+            }
+          )}", [])`
         );
       });
     },
@@ -168,7 +166,7 @@ export const ui: Plug[] = [
             show_current_context: true,
             show_current_context_start: true,
           },
-        },
+        }
       );
     },
   },
@@ -208,7 +206,7 @@ export const ui: Plug[] = [
             },
           })
         EOB
-      `,
+      `
       );
     },
   },
@@ -237,7 +235,7 @@ export const ui: Plug[] = [
   },
   {
     url: "akinsho/bufferline.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    enabled: async (denops: Denops) => (await fn.has(denops, "nvim")) && false,
     after: async (denops: Denops) => {
       await denops.cmd(`lua require("bufferline").setup()`);
     },

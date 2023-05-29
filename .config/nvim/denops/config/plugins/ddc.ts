@@ -60,7 +60,7 @@ export const ddc: Plug[] = [
             smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
             imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
             smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-            `,
+            `
           );
         },
       },
@@ -82,7 +82,9 @@ export const ddc: Plug[] = [
 
       // popup, signature
       {
-        url: "matsui54/denops-popup-preview.vim",
+        // url: "matsui54/denops-popup-preview.vim",
+        url: "Shougo/denops-popup-preview.vim",
+        branch: "remove_buffer",
         enabled: false,
         before: async (denops: Denops) => {
           await globals.set(denops, "popup_preview_config", {
@@ -115,13 +117,7 @@ export const ddc: Plug[] = [
           "CmdlineChanged",
           "TextChangedT",
         ],
-        sources: [
-          "nvim-lsp",
-          "around",
-          "vsnip",
-          "file",
-          "rg",
-        ],
+        sources: ["nvim-lsp", "around", "vsnip", "file", "rg"],
         sourceOptions: {
           _: {
             ignoreCase: true,
@@ -136,7 +132,7 @@ export const ddc: Plug[] = [
           rg: { mark: "rg" },
           "nvim-lsp": {
             mark: "lsp",
-            forceCompletionPattern: "\.\w*|:\w*|->\w*",
+            forceCompletionPattern: ".w*|:w*|->w*",
           },
         },
         sourceParams: {
@@ -157,19 +153,19 @@ export const ddc: Plug[] = [
         denops,
         "<c-n>",
         "<cmd>call pum#map#insert_relative(+1)<cr>",
-        { mode: "i" },
+        { mode: "i" }
       );
       await mapping.map(
         denops,
         "<c-p>",
         "<cmd>call pum#map#insert_relative(-1)<cr>",
-        { mode: "i" },
+        { mode: "i" }
       );
       await mapping.map(
         denops,
         "<c-space>",
         "<cmd>call ddc#map#manual_complete()<cr>",
-        { mode: "i" },
+        { mode: "i" }
       );
       await mapping.map(denops, "<c-c>", "<cmd>call pum#close()<cr>", {
         mode: "i",
