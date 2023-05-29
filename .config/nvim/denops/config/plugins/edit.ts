@@ -5,6 +5,8 @@ import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 
+import { pluginStatus } from "../main.ts";
+
 export const edit: Plug[] = [
   {
     url: "editorconfig/editorconfig-vim",
@@ -30,9 +32,18 @@ export const edit: Plug[] = [
   },
   {
     url: "windwp/nvim-autopairs",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    enabled: async (denops: Denops) =>
+      await fn.has(denops, "nvim") && pluginStatus.autopairs,
     after: async (denops: Denops) => {
       await execute(denops, `lua require("nvim-autopairs").setup()`);
+    },
+  },
+  {
+    url: "hrsh7th/nvim-insx",
+    enabled: async (denops: Denops) =>
+      await fn.has(denops, "nvim") && pluginStatus.insx,
+    after: async (denops: Denops) => {
+      await denops.cmd(`lua require('insx.preset.standard').setup()`);
     },
   },
   {

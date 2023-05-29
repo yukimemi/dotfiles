@@ -59,4 +59,17 @@ export const filetypes: Plug[] = [
       },
     ],
   },
+  {
+    url: "tani/glance-vim",
+    before: async (denops: Denops) => {
+      await globals.set(denops, "glance#markdown_breaks", true);
+      await globals.set(denops, "glance#markdown_html", true);
+
+      await globals.set(
+        denops,
+        "glance#config",
+        `file:///${await fn.expand(denops, "~/.config/glance/init.ts")}`,
+      );
+    },
+  },
 ];

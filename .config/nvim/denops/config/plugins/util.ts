@@ -208,8 +208,8 @@ export const util: Plug[] = [
       await denops.cmd(`lua require("stickybuf").setup()`);
     },
   },
-  { url: "tani/glance-vim" },
   { url: "ryoppippi/bad-apple.vim" },
   { url: "vim-jp/vital.vim" },
   { url: "hrsh7th/vim-vital-vs" },
+  { url: "chrisbra/Recover.vim" },
 ];
