@@ -82,9 +82,7 @@ export const ddc: Plug[] = [
 
       // popup, signature
       {
-        // url: "matsui54/denops-popup-preview.vim",
-        url: "Shougo/denops-popup-preview.vim",
-        branch: "remove_buffer",
+        url: "matsui54/denops-popup-preview.vim",
         enabled: false,
         before: async (denops: Denops) => {
           await globals.set(denops, "popup_preview_config", {

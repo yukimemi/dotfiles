@@ -290,6 +290,8 @@ snippets:
     snippet: brew install gifsicle
   - name: Install bsky
     snippet: go install github.com/mattn/bsky@latest
+  - name: Install rtx
+    snippet: cargo install cargo-binstall; cargo binstall rtx-cli
 
 
 completions:
