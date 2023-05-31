@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.8/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.9/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
@@ -23,6 +23,12 @@ export const motion: Plug[] = [
       await globals.set(denops, "fuzzy_motion_disable_match_highlight", false);
       await globals.set(denops, "fuzzy_motion_matchers", ["fzf", "kensaku"]);
       await mapping.map(denops, "ss", "<cmd>FuzzyMotion<cr>", { mode: "n" });
+    },
+  },
+  {
+    url: "yuki-yano/zero.nvim",
+    after: async (denops: Denops) => {
+      await denops.cmd(`lua require("zero").setup()`);
     },
   },
   {

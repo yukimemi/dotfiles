@@ -1,8 +1,8 @@
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.3.8/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.3.9/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
-import { Dvpm } from "https://deno.land/x/dvpm@0.3.8/dvpm.ts";
+import { Dvpm } from "https://deno.land/x/dvpm@0.3.9/dvpm.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 import { notify } from "./util.ts";
@@ -64,11 +64,7 @@ async function dvpmExec(denops: Denops) {
   const base = ensureString(await fn.expand(denops, base_path));
   const dvpm = await Dvpm.begin(denops, { base, debug: false, profile: false });
 
-  await Promise.all(
-    plugins.map(async (p: Plug) => {
-      await dvpm.add(p);
-    }),
-  );
+  await Promise.all(plugins.map((p: Plug) => dvpm.add(p)));
 
   await dvpm.end();
 }
