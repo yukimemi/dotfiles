@@ -1,5 +1,5 @@
 import { Denops } from "https://deno.land/x/denops_core@v5.0.0/denops.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.9/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.10/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";

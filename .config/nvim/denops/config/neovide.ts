@@ -16,6 +16,8 @@ export async function setNeovide(denops: Denops) {
   await globals.set(denops, "neovide_profiler", false);
   await globals.set(denops, "neovide_input_use_logo", true);
   await globals.set(denops, "neovide_cursor_vfx_mode", "railgun");
+  await globals.set(denops, "neovide_cursor_animate_in_insert_mode", true);
+  await globals.set(denops, "neovide_cursor_animate_command_line", true);
   if (await fn.has(denops, "win32")) {
     await option.guifont.set(denops, "HackGen Console NF:h10:#h-none");
     await option.guifontwide.set(denops, "HackGen Console NF:h10:#h-none");
