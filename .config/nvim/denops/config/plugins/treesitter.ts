@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.7/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.8/mod.ts";
 
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -28,7 +28,7 @@ export const treesitter: Plug[] = [
             },
           })
         EOB
-`
+`,
       );
     },
   },
@@ -38,6 +38,14 @@ export const treesitter: Plug[] = [
     enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
       await denops.call(`luaeval`, `require("treesitter-context").setup()`);
+    },
+  },
+  {
+    url: "windwp/nvim-ts-autotag",
+    dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    after: async (denops: Denops) => {
+      await denops.call(`luaeval`, `require("nvim-ts-autotag").setup()`);
     },
   },
 ];

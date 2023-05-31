@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.7/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.3.8/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -37,6 +37,7 @@ export const ddu: Plug[] = [
       { url: "matsui54/ddu-source-help" },
       { url: "shun/ddu-source-rg" },
       { url: "uga-rosa/ddu-filter-converter_devicon" },
+      { url: "uga-rosa/ddu-source-search_history" },
       { url: "yuki-yano/ddu-filter-fzf" },
       { url: "Milly/ddu-filter-merge" },
       {
@@ -51,6 +52,12 @@ export const ddu: Plug[] = [
     ],
     enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     before: async (denops: Denops) => {
+      await mapping.map(denops, "q:", "<cmd>Ddu command_history<cr>", {
+        mode: "n",
+      });
+      await mapping.map(denops, "q/", "<cmd>Ddu search_history<cr>", {
+        mode: "n",
+      });
       await mapping.map(
         denops,
         "<leader>dM",
@@ -67,6 +74,12 @@ export const ddu: Plug[] = [
         denops,
         "<leader>db",
         "<cmd>Ddu -name=buffer buffer<cr>",
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<leader>df",
+        `<cmd>Ddu -name=files file_rec<cr>`,
         { mode: "n" },
       );
       await mapping.map(
@@ -216,13 +229,13 @@ export const ddu: Plug[] = [
             lambda.register(denops, async () => {
               const lines = await op.lines.get(denops);
               const [height, row] = [
-                Math.floor(lines * 0.9),
-                Math.floor(lines * 0.05),
+                Math.floor(lines * 0.85),
+                Math.floor(lines * 0.075),
               ];
               const columns = await op.columns.get(denops);
               const [width, col] = [
-                Math.floor(columns * 0.9),
-                Math.floor(columns * 0.05),
+                Math.floor(columns * 0.85),
+                Math.floor(columns * 0.075),
               ];
               await denops.call("ddu#custom#patch_global", {
                 ui: "ff",
@@ -306,6 +319,7 @@ export const ddu: Plug[] = [
                 kindOptions: {
                   action: { defaultAction: "do" },
                   command_history: { defaultAction: "edit" },
+                  search_history: { defaultAction: "edit" },
                   file: { defaultAction: "open" },
                   help: { defaultAction: "open" },
                   readme_viewer: { defaultAction: "open" },
@@ -507,7 +521,7 @@ export const ddu: Plug[] = [
       });
 
       // Initialize ddu
-      await denops.call(`ddu#start`, { ui: "" });
+      denops.call(`ddu#start`, { ui: "" });
     },
   },
 ];
