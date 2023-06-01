@@ -1,5 +1,6 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
+
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 
 export async function setWsl(denops: Denops) {

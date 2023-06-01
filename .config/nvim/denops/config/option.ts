@@ -1,13 +1,13 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
 
-import * as nvimOption from "https://deno.land/x/denops_std@v5.0.0/option/nvim/mod.ts";
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
+import * as nvimOption from "https://deno.land/x/denops_std@v5.0.0/option/nvim/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v5.0.0/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v5.0.0/batch/mod.ts";
 import { ensureDir } from "https://deno.land/std@0.190.0/fs/ensure_dir.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
 import { stdpath } from "https://deno.land/x/denops_std@v5.0.0/function/nvim/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 
 export async function setOption(denops: Denops) {
   const backupdir = (await fn.has(denops, "nvim"))
