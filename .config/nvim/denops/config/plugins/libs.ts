@@ -8,12 +8,7 @@ import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 
 export const libs: Plug[] = [
-  {
-    url: "vim-denops/denops.vim",
-    before: async (denops: Denops) => {
-      await globals.set(denops, "denops_server_addr", "127.0.0.1:32123");
-    },
-  },
+  { url: "vim-denops/denops.vim" },
   { url: "vim-denops/denops-shared-server.vim" },
   {
     url: "folke/noice.nvim",

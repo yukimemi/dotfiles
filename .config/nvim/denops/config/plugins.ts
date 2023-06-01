@@ -12,6 +12,7 @@ import { motion } from "./plugins/motion.ts";
 import { operator } from "./plugins/operator.ts";
 import { search } from "./plugins/search.ts";
 import { statusline } from "./plugins/statusline.ts";
+import { telescope } from "./plugins/telescope.ts";
 import { terminal } from "./plugins/terminal.ts";
 import { textobj } from "./plugins/textobj.ts";
 import { treesitter } from "./plugins/treesitter.ts";
@@ -22,6 +23,7 @@ export const plugins = [
   ...libs,
   ...coc,
   ...ddu,
+  ...telescope,
   ...search,
   ...fern,
   ...ddc,
