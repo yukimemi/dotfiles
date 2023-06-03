@@ -12,7 +12,7 @@ export const filetypes: Plug[] = [
       await autocmd.group(denops, "MyPlantUml", (helper) => {
         helper.remove("*");
         helper.define(
-          ["BufNew", "BufRead"],
+          ["BufNewFile", "BufRead"],
           ["*.uml", "*.plantuml"],
           "setl ft=plantuml",
         );
@@ -31,9 +31,9 @@ export const filetypes: Plug[] = [
       });
       await autocmd.group(denops, "MyScorpeon", (helper) => {
         helper.remove("*");
-        helper.define(["BufNew", "BufRead"], ["*.log"], "setl ft=log");
-        helper.define(["BufNew", "BufRead"], ["*.nim"], "setl ft=nim");
-        helper.define(["BufNew", "BufRead"], ["*.toml"], "setl ft=toml");
+        helper.define(["BufNewFile", "BufRead"], "*.log", "setl ft=log");
+        helper.define(["BufNewFile", "BufRead"], "*.nim", "setl ft=nim");
+        helper.define(["BufNewFile", "BufRead"], "*.toml", "setl ft=toml");
       });
     },
     dependencies: [

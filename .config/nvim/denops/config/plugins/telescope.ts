@@ -42,13 +42,13 @@ export const telescope: Plug[] = [
 
           vim.keymap.set("n", "<space>fg", "<cmd>Telescope git_files<cr>", { desc = "Find git files" })
 
-          vim.keymap.set("n", "<space>fD", function()
+          vim.keymap.set("n", "<space>fd", function()
             local bufname = vim.fn.bufname()
             local bufdir = vim.fn.fnamemodify(bufname, ":p:h")
             require("telescope.builtin").find_files({ cwd = bufdir })
           end, { desc = "Find file on buffer dir" })
 
-          vim.keymap.set("n", "<space>fd", function()
+          vim.keymap.set("n", "<space>fD", function()
             require("telescope.builtin").git_files({ cwd = "~/.dotfiles" })
           end, { desc = "Find Dot File" })
 
@@ -64,7 +64,7 @@ export const telescope: Plug[] = [
             require("telescope.builtin").find_files({ cwd = "~/.cache/junkfile" })
           end, { desc = "Find junk file" })
 
-          vim.keymap.set("n", "<space>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Open Recent File" })
+          vim.keymap.set("n", "<space>fo", "<cmd>Telescope oldfiles<cr>", { desc = "Open Old File" })
 
           --------------------------------------------------------------------------------
           -- Prefix "b" (vim-bookmarks) --

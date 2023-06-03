@@ -247,6 +247,16 @@ export const ui: Plug[] = [
     },
   },
   {
+    url: "utilyre/barbecue.nvim",
+    dependencies: [
+      { url: "SmiteshP/nvim-navic" },
+      { url: "nvim-tree/nvim-web-devicons" },
+    ],
+    after: async (denops: Denops) => {
+      await denops.cmd(`lua require("barbecue").setup()`);
+    },
+  },
+  {
     url: "kevinhwang91/nvim-bqf",
     enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
   },

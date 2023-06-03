@@ -33,6 +33,7 @@ export const libs: Plug[] = [
   { url: "kana/vim-repeat" },
   { url: "mattn/vim-findroot" },
   { url: "tyru/open-browser.vim" },
+  { url: "lambdalisue/readablefold.vim" },
   { url: "lambdalisue/kensaku.vim" },
   { url: "tani/vim-artemis" },
   {

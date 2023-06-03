@@ -7,6 +7,7 @@ import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 import { notify } from "./util.ts";
 import { plugins } from "./plugins.ts";
+import { setFiletype } from "./filetype.ts";
 import { setKeymap } from "./keymap.ts";
 import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
@@ -36,6 +37,7 @@ async function pre(denops: Denops): Promise<void> {
   await setNeovimQt(denops);
   await setNeovide(denops);
 
+  await setFiletype(denops);
   await setOption(denops);
   await setKeymap(denops);
 }

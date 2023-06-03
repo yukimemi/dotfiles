@@ -35,6 +35,7 @@ export const ddu: Plug[] = [
       { url: "matsui54/ddu-source-command_history" },
       { url: "matsui54/ddu-source-file_external" },
       { url: "matsui54/ddu-source-help" },
+      { url: "kyoh86/ddu-source-command" },
       { url: "shun/ddu-source-rg" },
       { url: "uga-rosa/ddu-filter-converter_devicon" },
       { url: "uga-rosa/ddu-source-search_history" },
@@ -318,6 +319,7 @@ export const ddu: Plug[] = [
                 },
                 kindOptions: {
                   action: { defaultAction: "do" },
+                  command: { defaultAction: "edit" },
                   command_history: { defaultAction: "edit" },
                   search_history: { defaultAction: "edit" },
                   file: { defaultAction: "open" },
