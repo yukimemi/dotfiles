@@ -12,6 +12,7 @@ import { setKeymap } from "./keymap.ts";
 import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setOption } from "./option.ts";
+import { bufOpenWeather } from "./weather.ts";
 
 export const pluginStatus = {
   heirline: false,
@@ -31,6 +32,8 @@ export async function main(denops: Denops): Promise<void> {
 
   const elapsed = performance.now() - starttime;
   await notify(denops, `Config load completed ! \\nElapsed: (${elapsed})`);
+
+  await bufOpenWeather(denops);
 }
 
 async function pre(denops: Denops): Promise<void> {
