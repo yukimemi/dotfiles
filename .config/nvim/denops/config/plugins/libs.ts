@@ -11,6 +11,22 @@ export const libs: Plug[] = [
   { url: "vim-denops/denops.vim" },
   { url: "vim-denops/denops-shared-server.vim" },
   {
+    url: "rcarriga/nvim-notify",
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    after: async (denops: Denops) => {
+      await denops.call(
+        `luaeval`,
+        `require("notify").setup(_A.param)`,
+        {
+          param: {
+            stages: "slide",
+          },
+        },
+      );
+      await execute(denops, `lua vim.notify = require("notify")`);
+    },
+  },
+  {
     url: "folke/noice.nvim",
     enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     dependencies: [
@@ -43,22 +59,6 @@ export const libs: Plug[] = [
   {
     url: "nvim-lua/plenary.nvim",
     enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-  },
-  {
-    url: "rcarriga/nvim-notify",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
-      await denops.call(
-        `luaeval`,
-        `require("notify").setup(_A.param)`,
-        {
-          param: {
-            stages: "slide",
-          },
-        },
-      );
-      await execute(denops, `lua vim.notify = require("notify")`);
-    },
   },
   {
     url: "nvim-tree/nvim-web-devicons",

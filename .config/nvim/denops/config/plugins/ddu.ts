@@ -47,7 +47,8 @@ export const ddu: Plug[] = [
       },
       {
         url: "matsui54/ddu-vim-ui-select",
-        enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+        enabled: async (denops: Denops) =>
+          await fn.has(denops, "nvim") && false,
       },
       { url: "shun/ddu-source-buffer" },
     ],
