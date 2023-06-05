@@ -18,6 +18,22 @@ export const lsp: Plug[] = [
           await denops.cmd(`lua require("fidget").setup()`);
         },
       },
+      {
+        url: "hrsh7th/nvim-linkedit",
+        after: async (denops: Denops) => {
+          await denops.call(
+            `luaeval`,
+            `require("linkedit").setup(_A.param)`,
+            {
+              param: {
+                enabled: true,
+                fetch_timeout: 200,
+                keyword_pattern: `\k*`,
+              },
+            },
+          );
+        },
+      },
       { url: "SmiteshP/nvim-navic" },
       {
         url: "stevearc/aerial.nvim",
