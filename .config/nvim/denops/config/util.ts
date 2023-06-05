@@ -1,9 +1,6 @@
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import {
-  echo,
-  execute,
-} from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
+import { echo } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 
 export async function notify(
   denops: Denops,

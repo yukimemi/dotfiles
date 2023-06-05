@@ -24,6 +24,14 @@ export const libs: Plug[] = [
         },
       );
       await execute(denops, `lua vim.notify = require("notify")`);
+      await mapping.map(
+        denops,
+        "<leader>nc",
+        `<cmd>lua require("notify").dismiss()<cr>`,
+        {
+          mode: "n",
+        },
+      );
     },
   },
   {
