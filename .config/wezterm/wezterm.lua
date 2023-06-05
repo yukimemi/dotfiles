@@ -12,6 +12,7 @@ return {
   color_scheme = "Sakura",
   dpi = 96.0,
   font = wezterm.font_with_fallback({
+    "PlemolJP Console NF",
     "HackGen Console NF",
   }),
   font_size = 12.0,
