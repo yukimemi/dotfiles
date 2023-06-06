@@ -7,21 +7,19 @@ import { notify } from "./util.ts";
 export async function bufOpenWeather(denops: Denops) {
   const result = await fetchWeather("130000");
   const buf = await buffer.open(denops, "forecast");
-  await buffer.ensure(denops, buf.bufnr, async () => {
-    await fn.setbufvar(denops, buf.bufnr, "&buftype", "nofile");
-    await fn.setbufvar(denops, buf.bufnr, "&swapfile", 0);
-    await buffer.replace(
-      denops,
-      buf.bufnr,
-      [
-        "☆東京の天気情報☆",
-        "------------------------------",
-        "",
-        ...result,
-      ],
-    );
-    await buffer.concrete(denops, buf.bufnr);
-  });
+  await fn.setbufvar(denops, buf.bufnr, "&buftype", "nofile");
+  await fn.setbufvar(denops, buf.bufnr, "&swapfile", 0);
+  await buffer.replace(
+    denops,
+    buf.bufnr,
+    [
+      "☆東京の天気情報☆",
+      "------------------------------",
+      "",
+      ...result,
+    ],
+  );
+  await buffer.concrete(denops, buf.bufnr);
 }
 
 export async function notifyWeather(denops: Denops) {

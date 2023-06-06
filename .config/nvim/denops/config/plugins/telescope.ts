@@ -1,11 +1,13 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
 import type { Plug } from "https://deno.land/x/dvpm@0.3.10/mod.ts";
 
+import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 
 export const telescope: Plug[] = [
   {
     url: "nvim-telescope/telescope.nvim",
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     dependencies: [
       { url: "folke/which-key.nvim" },
       { url: "folke/trouble.nvim" },

@@ -212,6 +212,7 @@ export const ui: Plug[] = [
   },
   {
     url: "utilyre/barbecue.nvim",
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     dependencies: [
       { url: "SmiteshP/nvim-navic" },
       { url: "nvim-tree/nvim-web-devicons" },
