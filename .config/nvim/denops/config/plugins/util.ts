@@ -7,7 +7,12 @@ import { expand } from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 
 export const util: Plug[] = [
-  { url: "tyru/capture.vim" },
+  {
+    url: "tyru/capture.vim",
+    after: async (denops: Denops) => {
+      await mapping.map(denops, "<C-c>", "<home>Capture <cr>", { mode: "c" });
+    },
+  },
   { url: "dstein64/vim-startuptime" },
   {
     url: "thinca/vim-partedit",
