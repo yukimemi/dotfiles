@@ -7,6 +7,7 @@ import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 export const treesitter: Plug[] = [
   {
     url: "nvim-treesitter/nvim-treesitter",
+    dependencies: [{ url: "yioneko/nvim-yati" }],
     enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
       await execute(
@@ -26,6 +27,23 @@ export const treesitter: Plug[] = [
                 return false
               end,
             },
+            yati = {
+              enable = true,
+              -- Disable by languages
+              disable = {},
+
+              -- Whether to enable lazy mode (recommend to enable this if bad indent happens frequently)
+              default_lazy = true,
+
+              -- Determine the fallback method used when we cannot calculate indent by tree-sitter
+              --   "auto": fallback to vim auto indent
+              --   "asis": use current indent as-is
+              --   "cindent": see ':h cindent()'
+              default_fallback = "auto"
+            },
+            indent = {
+              enable = false -- disable builtin indent module
+            }
           })
         EOB
 `,
