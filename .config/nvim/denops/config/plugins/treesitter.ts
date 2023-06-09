@@ -1,5 +1,5 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.3.10/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.4.1/mod.ts";
 
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -7,7 +7,6 @@ import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 export const treesitter: Plug[] = [
   {
     url: "nvim-treesitter/nvim-treesitter",
-    dependencies: [{ url: "yioneko/nvim-yati" }],
     enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
     after: async (denops: Denops) => {
       await execute(
@@ -27,6 +26,22 @@ export const treesitter: Plug[] = [
                 return false
               end,
             },
+          })
+        EOB
+`,
+      );
+    },
+  },
+  {
+    url: "yioneko/nvim-yati",
+    dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
+    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    after: async (denops: Denops) => {
+      await execute(
+        denops,
+        `
+        lua << EOB
+          require("nvim-treesitter.configs").setup({
             yati = {
               enable = true,
               -- Disable by languages
