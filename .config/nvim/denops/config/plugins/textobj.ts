@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@0.4.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.4.4/mod.ts";
 
 export const textobj: Plug[] = [
   {
@@ -17,4 +17,5 @@ export const textobj: Plug[] = [
     url: "gilligan/textobj-lastpaste",
     dependencies: [{ url: "kana/vim-textobj-user" }],
   },
+  { url: "machakann/vim-swap" },
 ];

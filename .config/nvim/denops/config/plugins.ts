@@ -1,6 +1,7 @@
 import { coc } from "./plugins/coc.ts";
 import { ddc } from "./plugins/ddc.ts";
 import { ddu } from "./plugins/ddu.ts";
+import { test } from "./plugins/test.ts";
 import { denops } from "./plugins/denops.ts";
 import { edit } from "./plugins/edit.ts";
 import { fern } from "./plugins/fern.ts";
@@ -24,6 +25,7 @@ export const plugins = [
   ...libs,
   ...coc,
   ...ddu,
+  ...test,
   ...telescope,
   ...search,
   ...fern,

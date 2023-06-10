@@ -1,8 +1,9 @@
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.4.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.4.4/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 import { expand } from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 
@@ -217,4 +218,68 @@ export const util: Plug[] = [
   { url: "vim-jp/vital.vim" },
   { url: "hrsh7th/vim-vital-vs" },
   { url: "chrisbra/Recover.vim" },
+  {
+    url: "anuvyklack/windows.nvim",
+    enabled: false,
+    dependencies: [
+      { url: "anuvyklack/middleclass" },
+      { url: "anuvyklack/animation.nvim" },
+    ],
+    after: async (denops: Denops) => {
+      await denops.call(`luaeval`, `require("windows").setup(_A.param)`, {
+        param: {
+          autowidth: {
+            enable: true,
+            winwidth: 5,
+            filetype: {
+              help: 2,
+            },
+          },
+          ignore: {
+            buftype: ["quickfix"],
+            filetype: [
+              "NvimTree",
+              "neo-tree",
+              "coc-explorer",
+              "undotree",
+              "gundo",
+              "aerial",
+              "ddu",
+              "ddu-ff",
+              "ddu-filter",
+            ],
+          },
+          animation: {
+            enable: true,
+            duration: 300,
+            fps: 30,
+            easing: "in_out_sine",
+          },
+        },
+      });
+      await mapping.map(denops, "sz", "<cmd>WindowsMaximize<cr>", {
+        mode: "n",
+      });
+      await mapping.map(denops, "s_", "<cmd>WindowsMaximizeVertically<cr>", {
+        mode: "n",
+      });
+      await mapping.map(
+        denops,
+        "s\\|",
+        "<cmd>WindowsMaximizeHorizontally<cr>",
+        {
+          mode: "n",
+        },
+      );
+      await mapping.map(denops, "s=", "<cmd>WindowsEqualize<cr>", {
+        mode: "n",
+      });
+    },
+  },
+  {
+    url: "simeji/winresizer",
+    before: async (denops: Denops) => {
+      await vars.g.set(denops, "winresizer_gui_enable", 1);
+    },
+  },
 ];

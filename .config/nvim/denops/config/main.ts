@@ -1,8 +1,8 @@
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@0.4.1/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@0.4.4/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
-import { Dvpm } from "https://deno.land/x/dvpm@0.4.1/dvpm.ts";
+import { Dvpm } from "https://deno.land/x/dvpm@0.4.4/dvpm.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 import { notify } from "./util.ts";
@@ -18,8 +18,8 @@ export const pluginStatus = {
   heirline: false,
   lualine: true,
   bufferline: false,
-  ddc: true,
-  coc: false,
+  ddc: false,
+  coc: true,
   autopairs: false,
   insx: true,
   modesearch: false,
