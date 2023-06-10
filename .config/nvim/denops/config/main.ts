@@ -73,6 +73,7 @@ async function dvpmExec(denops: Denops) {
     debug: false,
     profile: false,
     notify: true,
+    concurrency: 13,
   });
 
   await Promise.all(plugins.map((p: Plug) => dvpm.add(p)));

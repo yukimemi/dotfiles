@@ -16,6 +16,7 @@ import { telescope } from "./plugins/telescope.ts";
 import { terminal } from "./plugins/terminal.ts";
 import { textobj } from "./plugins/textobj.ts";
 import { treesitter } from "./plugins/treesitter.ts";
+import { twitter } from "./plugins/twitter.ts";
 import { ui } from "./plugins/ui.ts";
 import { util } from "./plugins/util.ts";
 
@@ -38,6 +39,7 @@ export const plugins = [
   ...denops,
   ...ui,
   ...statusline,
+  ...twitter,
   ...terminal,
   ...filetypes,
 ];
