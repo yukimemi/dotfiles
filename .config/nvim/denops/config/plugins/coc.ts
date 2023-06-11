@@ -14,15 +14,15 @@ export const coc: Plug[] = [
     url: "neoclide/coc.nvim",
     enabled: pluginStatus.coc,
     dependencies: [{ url: "weirongxu/coc-explorer" }],
-    // branch: "release",
-    branch: "master",
-    build: async ({ info }) => {
-      const args = ["install", "--frozen-lockfile"];
-      console.log(info?.dst);
-      const cmd = new Deno.Command("yarn", { args, cwd: info?.dst });
-      const output = await cmd.output();
-      console.log(new TextDecoder().decode(output.stdout));
-    },
+    branch: "release",
+    // branch: "master",
+    // build: async ({ info }) => {
+    //   const args = ["install", "--frozen-lockfile"];
+    //   console.log(info?.dst);
+    //   const cmd = new Deno.Command("yarn", { args, cwd: info?.dst });
+    //   const output = await cmd.output();
+    //   console.log(new TextDecoder().decode(output.stdout));
+    // },
     before: async ({ denops }) => {
       await globals.set(denops, "coc_global_extensions", [
         "@yaegassy/coc-tailwindcss3",
