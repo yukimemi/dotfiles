@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@0.4.5/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
 
 export const textobj: Plug[] = [
   {
