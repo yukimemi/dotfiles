@@ -1,7 +1,5 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
-import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v5.0.0/lambda/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -17,7 +15,7 @@ export const ui: Plug[] = [
   { url: "RRethy/vim-illuminate" },
   {
     url: "unblevable/quick-scope",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await globals.set(denops, "qs_lazy_highlight", 1);
     },
   },
@@ -25,19 +23,19 @@ export const ui: Plug[] = [
   { url: "ntpeters/vim-better-whitespace" },
   {
     url: "LumaKernel/nvim-visual-eof.lua",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.cmd(`lua require("visual-eof").setup()`);
     },
   },
   {
     url: "DanilaMihailov/beacon.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
   },
   {
     url: "mvllow/modes.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("modes").setup(_A.param)`, {
         param: {
           colors: {
@@ -69,8 +67,8 @@ export const ui: Plug[] = [
   },
   {
     url: "gen740/SmoothCursor.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("smoothcursor").setup(_A.param)`, {
         param: {
           autostart: true,
@@ -160,8 +158,8 @@ export const ui: Plug[] = [
   {
     url: "lukas-reineke/indent-blankline.nvim",
     dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
         `require("indent_blankline").setup(_A.param)`,
@@ -177,12 +175,12 @@ export const ui: Plug[] = [
   },
   {
     url: "Yggdroot/indentLine",
-    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
+    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")),
   },
   {
     url: "b0o/incline.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("incline").setup(_A.param)`, {
         param: {
           window: {
@@ -204,25 +202,25 @@ export const ui: Plug[] = [
   },
   {
     url: "akinsho/bufferline.nvim",
-    enabled: async (denops: Denops) =>
+    enabled: async ({ denops }) =>
       (await fn.has(denops, "nvim")) && pluginStatus.bufferline,
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await denops.cmd(`lua require("bufferline").setup()`);
     },
   },
   {
     url: "utilyre/barbecue.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
     dependencies: [
       { url: "SmiteshP/nvim-navic" },
       { url: "nvim-tree/nvim-web-devicons" },
     ],
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await denops.cmd(`lua require("barbecue").setup()`);
     },
   },
   {
     url: "kevinhwang91/nvim-bqf",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
   },
 ];

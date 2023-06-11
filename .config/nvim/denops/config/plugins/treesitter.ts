@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -7,8 +6,8 @@ import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 export const treesitter: Plug[] = [
   {
     url: "nvim-treesitter/nvim-treesitter",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await execute(
         denops,
         `
@@ -35,8 +34,8 @@ export const treesitter: Plug[] = [
   {
     url: "yioneko/nvim-yati",
     dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await execute(
         denops,
         `
@@ -68,16 +67,16 @@ export const treesitter: Plug[] = [
   {
     url: "nvim-treesitter/nvim-treesitter-context",
     dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("treesitter-context").setup()`);
     },
   },
   {
     url: "windwp/nvim-ts-autotag",
     dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("nvim-ts-autotag").setup()`);
     },
   },

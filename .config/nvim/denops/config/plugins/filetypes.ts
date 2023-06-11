@@ -1,5 +1,4 @@
-import { Denops } from "https://deno.land/x/denops_core@v5.0.0/denops.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -8,7 +7,7 @@ import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 export const filetypes: Plug[] = [
   {
     url: "aklt/plantuml-syntax",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await autocmd.group(denops, "MyPlantUml", (helper) => {
         helper.remove("*");
         helper.define(
@@ -21,7 +20,7 @@ export const filetypes: Plug[] = [
   },
   {
     url: "uga-rosa/scorpeon.vim",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await globals.set(denops, "scorpeon_extensions_path", [
         await fn.expand(denops, "~/.cache/vscode/extensions"),
         await fn.expand(denops, "~/.cache/scorpeon"),
@@ -61,7 +60,8 @@ export const filetypes: Plug[] = [
   },
   {
     url: "tani/glance-vim",
-    before: async (denops: Denops) => {
+    enabled: false,
+    before: async ({ denops }) => {
       await globals.set(denops, "glance#markdown_breaks", true);
       await globals.set(denops, "glance#markdown_html", true);
 

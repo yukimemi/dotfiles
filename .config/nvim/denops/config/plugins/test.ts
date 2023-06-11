@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
@@ -7,12 +6,12 @@ import * as vars from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 export const test: Plug[] = [
   {
     url: "vim-test/vim-test",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await vars.g.set(denops, "test#javascript#denotest#options", {
         all: "--no-check --unstable -A",
       });
     },
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await mapping.map(denops, "<space>tn", "<cmd>TestNearest<cr>", {
         mode: "n",
       });

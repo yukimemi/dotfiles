@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
@@ -10,12 +9,12 @@ import { pluginStatus } from "../main.ts";
 export const edit: Plug[] = [
   {
     url: "editorconfig/editorconfig-vim",
-    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
+    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")),
   },
   {
     url: "monaqa/dial.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await mapping.map(denops, "<c-a>", `<Plug>(dial-increment)`, {
         mode: "n",
       });
@@ -32,24 +31,24 @@ export const edit: Plug[] = [
   },
   {
     url: "windwp/nvim-autopairs",
-    enabled: async (denops: Denops) =>
+    enabled: async ({ denops }) =>
       await fn.has(denops, "nvim") && pluginStatus.autopairs,
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await execute(denops, `lua require("nvim-autopairs").setup()`);
     },
   },
   {
     url: "hrsh7th/nvim-insx",
-    enabled: async (denops: Denops) =>
+    enabled: async ({ denops }) =>
       await fn.has(denops, "nvim") && pluginStatus.insx,
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await denops.cmd(`lua require('insx.preset.standard').setup()`);
     },
   },
   {
     url: "uga-rosa/contextment.vim",
     dependencies: [{ url: "Shougo/context_filetype.vim" }],
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await mapping.map(denops, "gcc", "<Plug>(contextment)", { mode: "x" });
       await mapping.map(denops, "gcc", "<Plug>(contextment-line)", {
         mode: "n",
@@ -58,8 +57,8 @@ export const edit: Plug[] = [
   },
   {
     url: "gbprod/yanky.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await mapping.map(denops, "p", "<Plug>(YankyPutAfter)", {
         mode: ["n", "x"],
       });

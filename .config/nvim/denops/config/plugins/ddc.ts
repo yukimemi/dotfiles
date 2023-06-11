@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
@@ -23,7 +22,7 @@ export const ddc: Plug[] = [
       // ui
       {
         url: "Shougo/pum.vim",
-        after: async (denops: Denops) => {
+        after: async ({ denops }) => {
           await denops.call("pum#set_option", {
             use_complete: false,
             horizontal_menu: false,
@@ -47,7 +46,7 @@ export const ddc: Plug[] = [
           { url: "hrsh7th/vim-vsnip-integ" },
           { url: "rafamadriz/friendly-snippets" },
         ],
-        after: async (denops: Denops) => {
+        after: async ({ denops }) => {
           await execute(
             denops,
             `
@@ -60,7 +59,7 @@ export const ddc: Plug[] = [
             smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
             imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
             smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-            `
+            `,
           );
         },
       },
@@ -84,26 +83,26 @@ export const ddc: Plug[] = [
       {
         url: "matsui54/denops-popup-preview.vim",
         enabled: false,
-        before: async (denops: Denops) => {
+        before: async ({ denops }) => {
           await globals.set(denops, "popup_preview_config", {
             delay: 50,
             border: true,
             supportVsnip: true,
           });
         },
-        after: async (denops: Denops) => {
+        after: async ({ denops }) => {
           await denops.call(`popup_preview#enable`);
         },
       },
       {
         url: "matsui54/denops-signature_help",
         enabled: false,
-        after: async (denops: Denops) => {
+        after: async ({ denops }) => {
           await denops.call(`signature_help#enable`);
         },
       },
     ],
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       // global settings.
       await denops.call("ddc#custom#patch_global", {
         ui: "pum",
@@ -151,19 +150,19 @@ export const ddc: Plug[] = [
         denops,
         "<c-n>",
         "<cmd>call pum#map#insert_relative(+1)<cr>",
-        { mode: "i" }
+        { mode: "i" },
       );
       await mapping.map(
         denops,
         "<c-p>",
         "<cmd>call pum#map#insert_relative(-1)<cr>",
-        { mode: "i" }
+        { mode: "i" },
       );
       await mapping.map(
         denops,
         "<c-space>",
         "<cmd>call ddc#map#manual_complete()<cr>",
-        { mode: "i" }
+        { mode: "i" },
       );
       await mapping.map(denops, "<c-c>", "<cmd>call pum#close()<cr>", {
         mode: "i",

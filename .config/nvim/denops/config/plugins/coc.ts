@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -15,8 +14,16 @@ export const coc: Plug[] = [
     url: "neoclide/coc.nvim",
     enabled: pluginStatus.coc,
     dependencies: [{ url: "weirongxu/coc-explorer" }],
-    branch: "release",
-    before: async (denops: Denops) => {
+    // branch: "release",
+    branch: "master",
+    build: async ({ info }) => {
+      const args = ["install", "--frozen-lockfile"];
+      console.log(info?.dst);
+      const cmd = new Deno.Command("yarn", { args, cwd: info?.dst });
+      const output = await cmd.output();
+      console.log(new TextDecoder().decode(output.stdout));
+    },
+    before: async ({ denops }) => {
       await globals.set(denops, "coc_global_extensions", [
         "@yaegassy/coc-tailwindcss3",
         "coc-deno",
@@ -38,7 +45,7 @@ export const coc: Plug[] = [
         "coc-xml",
       ]);
     },
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await mapping.map(
         denops,
         "<cr>",

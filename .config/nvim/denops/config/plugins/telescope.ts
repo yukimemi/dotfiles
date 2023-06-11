@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
@@ -7,7 +6,7 @@ import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 export const telescope: Plug[] = [
   {
     url: "nvim-telescope/telescope.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
     dependencies: [
       { url: "folke/which-key.nvim" },
       { url: "folke/trouble.nvim" },
@@ -21,7 +20,7 @@ export const telescope: Plug[] = [
         ],
       },
     ],
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await execute(
         denops,
         `
@@ -115,7 +114,7 @@ export const telescope: Plug[] = [
         `,
       );
     },
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await execute(
         denops,
         `

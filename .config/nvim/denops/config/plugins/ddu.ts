@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -47,13 +46,12 @@ export const ddu: Plug[] = [
       },
       {
         url: "matsui54/ddu-vim-ui-select",
-        enabled: async (denops: Denops) =>
-          await fn.has(denops, "nvim") && false,
+        enabled: async ({ denops }) => await fn.has(denops, "nvim") && false,
       },
       { url: "shun/ddu-source-buffer" },
     ],
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    before: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    before: async ({ denops }) => {
       await mapping.map(denops, "q:", "<cmd>Ddu command_history<cr>", {
         mode: "n",
       });
@@ -220,7 +218,7 @@ export const ddu: Plug[] = [
         { mode: "n" },
       );
     },
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       // global settings.
       await autocmd.group(denops, "MyDduSettings", (helper) => {
         helper.remove("*");

@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
@@ -10,20 +9,20 @@ import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 export const util: Plug[] = [
   {
     url: "tyru/capture.vim",
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await mapping.map(denops, "<C-c>", "<home>Capture <cr>", { mode: "c" });
     },
   },
   { url: "dstein64/vim-startuptime" },
   {
     url: "thinca/vim-partedit",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await globals.set(denops, "partedit#opener", "vsplit");
     },
   },
   {
     url: "glidenote/memolist.vim",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await globals.set(
         denops,
         "memolist_path",
@@ -42,8 +41,8 @@ export const util: Plug[] = [
   },
   {
     url: "ahmedkhalf/project.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("project_nvim").setup(_A.param)`, {
         param: {
           // Manual mode doesn't automatically change your root directory, so you have
@@ -94,8 +93,8 @@ export const util: Plug[] = [
   },
   {
     url: "uga-rosa/ccc.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ccc").setup(_A.param)`, {
         param: {
           highlighter: {
@@ -108,7 +107,7 @@ export const util: Plug[] = [
   },
   {
     url: "junegunn/vim-easy-align",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await mapping.map(denops, "<enter>", "<Plug>(EasyAlign)", { mode: "v" });
       await globals.set(denops, "easy_align_delimiters", {
         ">": {
@@ -192,7 +191,7 @@ export const util: Plug[] = [
   },
   {
     url: "thinca/vim-ambicmd",
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await mapping.map(denops, "<space>", `ambicmd#expand("<space>")`, {
         mode: "c",
         expr: true,
@@ -209,8 +208,8 @@ export const util: Plug[] = [
   },
   {
     url: "stevearc/stickybuf.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.cmd(`lua require("stickybuf").setup()`);
     },
   },
@@ -225,7 +224,7 @@ export const util: Plug[] = [
       { url: "anuvyklack/middleclass" },
       { url: "anuvyklack/animation.nvim" },
     ],
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("windows").setup(_A.param)`, {
         param: {
           autowidth: {
@@ -278,7 +277,7 @@ export const util: Plug[] = [
   },
   {
     url: "simeji/winresizer",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await vars.g.set(denops, "winresizer_gui_enable", 1);
     },
   },

@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -14,7 +13,7 @@ export const denops: Plug[] = [
   {
     url: "yukimemi/dps-autocursor",
     dst: "~/src/github.com/yukimemi/dps-autocursor",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await globals.set(denops, "autocursor_debug", false);
       await globals.set(denops, "autocursor_blacklist_filetypes", [
         "ctrlp",
@@ -31,7 +30,7 @@ export const denops: Plug[] = [
   {
     url: "yukimemi/dps-autobackup",
     dst: "~/src/github.com/yukimemi/dps-autobackup",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await globals.set(denops, "autobackup_debug", false);
       await globals.set(denops, "autobackup_enable", true);
       await globals.set(denops, "autobackup_write_echo", false);
@@ -55,7 +54,7 @@ export const denops: Plug[] = [
   {
     url: "yukimemi/dps-asyngrep",
     dst: "~/src/github.com/yukimemi/dps-asyngrep",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await globals.set(denops, "asyngrep_debug", false);
       await globals.set(
         denops,
@@ -98,7 +97,7 @@ export const denops: Plug[] = [
   {
     url: "yukimemi/dps-autodate",
     dst: "~/src/github.com/yukimemi/dps-autodate",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await globals.set(denops, "autodate_debug", false);
       await globals.set(denops, "autodate_config", {
         xml: {
@@ -159,7 +158,7 @@ export const denops: Plug[] = [
   {
     url: "yukimemi/dps-walk",
     dst: "~/src/github.com/yukimemi/dps-walk",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await globals.set(denops, "walk_debug", false);
 
       await mapping.map(denops, "<space>Wa", "<cmd>DenopsWalk<cr>", {
@@ -233,30 +232,30 @@ export const denops: Plug[] = [
       { url: "yuttie/hydrangea-vim" },
       {
         url: "folke/tokyonight.nvim",
-        enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
       },
       {
         url: "glepnir/zephyr-nvim",
-        enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
       },
       {
         url: "tiagovla/tokyodark.nvim",
-        enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
       },
       {
         url: "marko-cerovac/material.nvim",
-        enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
       },
       {
         url: "RRethy/nvim-base16",
-        enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
       },
       {
         url: "catppuccin/nvim",
-        enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
       },
     ],
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await globals.set(denops, "randomcolorscheme_debug", false);
       await globals.set(denops, "randomcolorscheme_echo", true);
       await globals.set(denops, "randomcolorscheme_interval", 77);
@@ -293,7 +292,7 @@ export const denops: Plug[] = [
   {
     url: "yukimemi/dps-hitori",
     dst: "~/src/github.com/yukimemi/dps-hitori",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await globals.set(denops, "hitori_debug", false);
       await globals.set(denops, "hitori_enable", true);
       await globals.set(denops, "hitori_quit", true);
@@ -304,15 +303,15 @@ export const denops: Plug[] = [
         "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$",
       ]);
     },
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await notify(denops, "dps-hitori loaded");
     },
   },
   {
     url: "yukimemi/dps-ahdr",
     dst: "~/src/github.com/yukimemi/dps-ahdr",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    before: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    before: async ({ denops }) => {
       await globals.set(denops, "ahdr_debug", false);
       await globals.set(denops, "ahdr_cfg_path", "~/.config/ahdr/ahdr.toml");
 

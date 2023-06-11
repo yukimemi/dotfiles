@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -12,8 +11,8 @@ export const libs: Plug[] = [
   { url: "vim-denops/denops-shared-server.vim" },
   {
     url: "rcarriga/nvim-notify",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
         `require("notify").setup(_A.param)`,
@@ -36,12 +35,12 @@ export const libs: Plug[] = [
   },
   {
     url: "folke/noice.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
     dependencies: [
       { url: "MunifTanjim/nui.nvim" },
       { url: "rcarriga/nvim-notify" },
     ],
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("noice").setup(_A.param)`, {
         param: {
           cmdline: {
@@ -62,16 +61,16 @@ export const libs: Plug[] = [
   { url: "tani/vim-artemis" },
   {
     url: "MunifTanjim/nui.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
   },
   {
     url: "nvim-lua/plenary.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
   },
   {
     url: "nvim-tree/nvim-web-devicons",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
         `require("nvim-web-devicons").setup(_A.param)`,
@@ -85,19 +84,19 @@ export const libs: Plug[] = [
   },
   {
     url: "ryanoasis/vim-devicons",
-    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
+    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")),
   },
   {
     url: "folke/which-key.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("which-key").setup()`);
     },
   },
   {
     url: "liuchengxu/vim-which-key",
-    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")),
+    after: async ({ denops }) => {
       await mapping.map(denops, "<leader>", "<cmd>WhichKey '<space>'<cr>", {
         mode: ["n", "x"],
       });
@@ -109,7 +108,7 @@ export const libs: Plug[] = [
   {
     url: "Exafunction/codeium.vim",
     enabled: false,
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await execute(
         denops,
         `
@@ -133,8 +132,8 @@ export const libs: Plug[] = [
   },
   {
     url: "lambdalisue/vim-findent",
-    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")),
-    before: async (denops: Denops) => {
+    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")),
+    before: async ({ denops }) => {
       await globals.set(denops, "findent#enable_warnings", 1);
       await globals.set(denops, "findent#enable_messages", 1);
       await autocmd.group(denops, "MyFindent", (helper) => {
@@ -145,8 +144,8 @@ export const libs: Plug[] = [
   },
   {
     url: "hrsh7th/nvim-dansa",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("dansa").setup(_A.param)`, {
         param: {
           // The offset to specify how much lines to use.

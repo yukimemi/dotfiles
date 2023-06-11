@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -50,7 +49,7 @@ export const fern: Plug[] = [
         dependencies: [{ url: "lambdalisue/fern.vim" }],
       },
     ],
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await globals.set(denops, "loaded_netrwPlugin", 1);
       await globals.set(denops, "fern#default_hidden", 1);
       await globals.set(denops, "fern#renderer", "nerdfont");

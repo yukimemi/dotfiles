@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
@@ -8,7 +7,7 @@ import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
 export const motion: Plug[] = [
   {
     url: "haya14busa/vim-edgemotion",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await mapping.map(denops, "sj", "<Plug>(edgemotion-j)", {
         mode: ["n", "x"],
       });
@@ -19,7 +18,7 @@ export const motion: Plug[] = [
   },
   {
     url: "yuki-yano/fuzzy-motion.vim",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await globals.set(denops, "fuzzy_motion_auto_jump", false);
       await globals.set(denops, "fuzzy_motion_disable_match_highlight", false);
       await globals.set(denops, "fuzzy_motion_matchers", ["fzf", "kensaku"]);
@@ -28,14 +27,14 @@ export const motion: Plug[] = [
   },
   {
     url: "yuki-yano/zero.nvim",
-    enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
       await denops.cmd(`lua require("zero").setup()`);
     },
   },
   {
     url: "Bakudankun/BackAndForward.vim",
-    before: async (denops: Denops) => {
+    before: async ({ denops }) => {
       await mapping.map(denops, "gH", "<Plug>(backandforward-back)", {
         mode: "n",
       });

@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
@@ -8,19 +7,19 @@ import { pluginStatus } from "../main.ts";
 export const lsp: Plug[] = [
   {
     url: "neovim/nvim-lspconfig",
-    enabled: async (denops: Denops) =>
+    enabled: async ({ denops }) =>
       await fn.has(denops, "nvim") && !pluginStatus.coc,
     dependencies: [
       {
         url: "j-hui/fidget.nvim",
-        enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-        after: async (denops: Denops) => {
+        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+        after: async ({ denops }) => {
           await denops.cmd(`lua require("fidget").setup()`);
         },
       },
       {
         url: "hrsh7th/nvim-linkedit",
-        after: async (denops: Denops) => {
+        after: async ({ denops }) => {
           await denops.call(
             `luaeval`,
             `require("linkedit").setup(_A.param)`,
@@ -37,8 +36,8 @@ export const lsp: Plug[] = [
       { url: "SmiteshP/nvim-navic" },
       {
         url: "stevearc/aerial.nvim",
-        enabled: async (denops: Denops) => await fn.has(denops, "nvim"),
-        after: async (denops: Denops) => {
+        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+        after: async ({ denops }) => {
           await denops.cmd(`lua require("aerial").setup()`);
         },
       },
@@ -49,20 +48,20 @@ export const lsp: Plug[] = [
       {
         url: "folke/neodev.nvim",
         dependencies: [{ url: "neovim/nvim-lspconfig" }],
-        after: async (denops: Denops) => {
+        after: async ({ denops }) => {
           await denops.cmd(`lua require("neodev").setup()`);
         },
       },
       {
         url: "folke/neoconf.nvim",
         dependencies: [{ url: "neovim/nvim-lspconfig" }],
-        after: async (denops: Denops) => {
+        after: async ({ denops }) => {
           await denops.cmd(`lua require("neoconf").setup()`);
         },
       },
       {
         url: "onsails/lspkind.nvim",
-        after: async (denops: Denops) => {
+        after: async ({ denops }) => {
           await denops.call(`luaeval`, `require("lspkind").init(_A.param)`, {
             param: {
               // defines how annotations are shown
@@ -112,7 +111,7 @@ export const lsp: Plug[] = [
         },
       },
     ],
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await execute(
         denops,
         `

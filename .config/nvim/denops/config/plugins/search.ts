@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
@@ -10,7 +9,7 @@ import { pluginStatus } from "../main.ts";
 export const search: Plug[] = [
   {
     url: "haya14busa/vim-asterisk",
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await mapping.map(denops, "*", "<Plug>(asterisk-z*)zv", {
         mode: ["n", "o", "x"],
       });
@@ -27,9 +26,9 @@ export const search: Plug[] = [
   },
   {
     url: "monaqa/modesearch.nvim",
-    enabled: async (denops: Denops) =>
+    enabled: async ({ denops }) =>
       await fn.has(denops, "nvim") && pluginStatus.modesearch,
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await execute(
         denops,
         `
@@ -68,7 +67,7 @@ export const search: Plug[] = [
     dependencies: [
       { url: "lambdalisue/kensaku.vim" },
     ],
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await mapping.map(denops, "<cr>", "<Plug>(kensaku-search-replace)<cr>", {
         mode: "c",
       });

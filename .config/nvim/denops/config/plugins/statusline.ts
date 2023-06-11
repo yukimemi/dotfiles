@@ -1,5 +1,4 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@0.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.0.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 
@@ -9,9 +8,9 @@ import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/variable
 export const statusline: Plug[] = [
   {
     url: "rebelot/heirline.nvim",
-    enabled: async (denops: Denops) =>
+    enabled: async ({ denops }) =>
       pluginStatus.heirline && await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("heirline").setup(_A.param)`, {
         param: {
           statusline: {},
@@ -24,9 +23,9 @@ export const statusline: Plug[] = [
   },
   {
     url: "nvim-lualine/lualine.nvim",
-    enabled: async (denops: Denops) =>
+    enabled: async ({ denops }) =>
       pluginStatus.lualine && await fn.has(denops, "nvim"),
-    after: async (denops: Denops) => {
+    after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("lualine").setup(_A.param)`, {
         param: {
           options: {
@@ -79,11 +78,11 @@ export const statusline: Plug[] = [
   },
   {
     url: "vim-airline/vim-airline",
-    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")) && true,
+    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")) && true,
     dependencies: [
       {
         url: "vim-airline/vim-airline-themes",
-        after: async (denops: Denops) => {
+        after: async ({ denops }) => {
           await globals.set(denops, "airline_theme", "zenburn");
         },
       },
@@ -91,6 +90,6 @@ export const statusline: Plug[] = [
   },
   {
     url: "itchyny/lightline.vim",
-    enabled: async (denops: Denops) => !(await fn.has(denops, "nvim")) && false,
+    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")) && false,
   },
 ];
