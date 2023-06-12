@@ -46,7 +46,7 @@ export const ddu: Plug[] = [
       },
       {
         url: "matsui54/ddu-vim-ui-select",
-        enabled: async ({ denops }) => await fn.has(denops, "nvim") && false,
+        enabled: async ({ denops }) => (await fn.has(denops, "nvim")) && false,
       },
       { url: "shun/ddu-source-buffer" },
     ],
@@ -178,36 +178,39 @@ export const ddu: Plug[] = [
         denops,
         "<leader>ds",
         `<cmd>call <SID>${denops.name}_notify("${
-          lambda.register(denops, async () => {
-            await denops.call("ddu#start", {
-              name: "search",
-              uiParams: {
-                ff: {
-                  ignoreEmpty: true,
-                },
-              },
-              sources: [
-                {
-                  name: "rg",
-                  options: {
-                    path: await fn.input(
-                      denops,
-                      "Directory: ",
-                      await fn.getcwd(denops),
-                      "dir",
-                    ),
-                  },
-                  params: {
-                    input: await fn.input(
-                      denops,
-                      "Pattern: ",
-                      ensureString(await fn.expand(denops, "<cword>")),
-                    ),
+          lambda.register(
+            denops,
+            async () => {
+              await denops.call("ddu#start", {
+                name: "search",
+                uiParams: {
+                  ff: {
+                    ignoreEmpty: true,
                   },
                 },
-              ],
-            });
-          })
+                sources: [
+                  {
+                    name: "rg",
+                    options: {
+                      path: await fn.input(
+                        denops,
+                        "Directory: ",
+                        await fn.getcwd(denops),
+                        "dir",
+                      ),
+                    },
+                    params: {
+                      input: await fn.input(
+                        denops,
+                        "Pattern: ",
+                        ensureString(await fn.expand(denops, "<cword>")),
+                      ),
+                    },
+                  },
+                ],
+              });
+            },
+          )
         }", [])<cr>`,
         { mode: "n" },
       );
@@ -226,140 +229,143 @@ export const ddu: Plug[] = [
           ["VimResized", "VimEnter"],
           "*",
           `call <SID>${denops.name}_notify("${
-            lambda.register(denops, async () => {
-              const lines = await op.lines.get(denops);
-              const [height, row] = [
-                Math.floor(lines * 0.85),
-                Math.floor(lines * 0.075),
-              ];
-              const columns = await op.columns.get(denops);
-              const [width, col] = [
-                Math.floor(columns * 0.85),
-                Math.floor(columns * 0.075),
-              ];
-              await denops.call("ddu#custom#patch_global", {
-                ui: "ff",
-                uiOptions: {
-                  filer: {
-                    toggle: false,
-                  },
-                },
-                uiParams: {
-                  ff: {
-                    filterFloatingPosition: "top",
-                    filterSplitDirection: "floating",
-                    floatingBorder: "single",
-                    previewFloating: true,
-                    previewFloatingBorder: "single",
-                    previewFloatingTitle: "Preview",
-                    previewSplit: "vertical",
-                    previewWidth: Math.floor(width / 2),
-                    prompt: "»",
-                    split: "floating",
-                    startFilter: true,
-                    winCol: col,
-                    winHeight: height,
-                    winRow: row,
-                    winWidth: width,
-                    ignoreEmpty: true,
-                    highlights: {
-                      floating: "Normal",
-                      floatingBorder: "Normal",
-                    },
-                    autoAction: {
-                      name: "preview",
+            lambda.register(
+              denops,
+              async () => {
+                const lines = await op.lines.get(denops);
+                const [height, row] = [
+                  Math.floor(lines * 0.85),
+                  Math.floor(lines * 0.075),
+                ];
+                const columns = await op.columns.get(denops);
+                const [width, col] = [
+                  Math.floor(columns * 0.85),
+                  Math.floor(columns * 0.075),
+                ];
+                await denops.call("ddu#custom#patch_global", {
+                  ui: "ff",
+                  uiOptions: {
+                    filer: {
+                      toggle: false,
                     },
                   },
-                  filer: {
-                    split: "vertical",
-                    sort: "filename",
-                    filterSplitDirection: "botleft",
-                    sortTreesFirst: true,
-                    previewSplit: "no",
-                    toggle: true,
-                    winWidth: 40,
-                  },
-                },
-                sourceOptions: {
-                  _: {
-                    ignoreCase: true,
-                    matchers: ["merge"],
-                    converters: ["converter_devicon"],
-                  },
-                },
-                sourceParams: {
-                  file_external: {
-                    cmd: ["git", "ls-files", "-co", "--exclude-standard"],
-                  },
-                  file_rg: {
-                    cmd: [
-                      "rg",
-                      "--files",
-                      "--glob",
-                      "!.git",
-                      "--color",
-                      "never",
-                      "--no-messages",
-                      "--json",
-                    ],
-                    updateItems: 50000,
-                  },
-                  rg: {
-                    args: [
-                      "--ignore-case",
-                      "--column",
-                      "--no-heading",
-                      "--color",
-                      "never",
-                      "--json",
-                    ],
-                    inputType: "regex",
-                  },
-                },
-                kindOptions: {
-                  action: { defaultAction: "do" },
-                  command: { defaultAction: "edit" },
-                  command_history: { defaultAction: "edit" },
-                  search_history: { defaultAction: "edit" },
-                  file: { defaultAction: "open" },
-                  help: { defaultAction: "open" },
-                  readme_viewer: { defaultAction: "open" },
-                  source: { defaultAction: "execute" },
-                  ui_select: { defaultAction: "select" },
-                  url: { defaultAction: "browse" },
-                  word: { defaultAction: "append" },
-                },
-                actionOptions: {
-                  narrow: {
-                    quit: false,
-                  },
-                  tabopen: {
-                    quit: false,
-                  },
-                },
-                filterParams: {
-                  matcher_fzf: {
-                    highlightMatched: "Search",
-                  },
-                  matcher_fuse: {
-                    highlightMatched: "Search",
-                  },
-                  matcher_kensaku: {
-                    highlightMatched: "Search",
-                  },
-                  merge: {
-                    highlightMatched: "Search",
-                    filters: [
-                      {
-                        name: "matcher_kensaku",
-                        weight: 2.0,
+                  uiParams: {
+                    ff: {
+                      filterFloatingPosition: "top",
+                      filterSplitDirection: "floating",
+                      floatingBorder: "single",
+                      previewFloating: true,
+                      previewFloatingBorder: "single",
+                      previewFloatingTitle: "Preview",
+                      previewSplit: "vertical",
+                      previewWidth: Math.floor(width / 2),
+                      prompt: "»",
+                      split: "floating",
+                      startFilter: true,
+                      winCol: col,
+                      winHeight: height,
+                      winRow: row,
+                      winWidth: width,
+                      ignoreEmpty: true,
+                      highlights: {
+                        floating: "Normal",
+                        floatingBorder: "Normal",
                       },
-                      "matcher_fzf",
-                    ],
+                      autoAction: {
+                        name: "preview",
+                      },
+                    },
+                    filer: {
+                      split: "vertical",
+                      sort: "filename",
+                      filterSplitDirection: "botleft",
+                      sortTreesFirst: true,
+                      previewSplit: "no",
+                      toggle: true,
+                      winWidth: 40,
+                    },
                   },
-                },
-              });
-            })
+                  sourceOptions: {
+                    _: {
+                      ignoreCase: true,
+                      matchers: ["merge"],
+                      converters: ["converter_devicon"],
+                    },
+                  },
+                  sourceParams: {
+                    file_external: {
+                      cmd: ["git", "ls-files", "-co", "--exclude-standard"],
+                    },
+                    file_rg: {
+                      cmd: [
+                        "rg",
+                        "--files",
+                        "--glob",
+                        "!.git",
+                        "--color",
+                        "never",
+                        "--no-messages",
+                        "--json",
+                      ],
+                      updateItems: 50000,
+                    },
+                    rg: {
+                      args: [
+                        "--ignore-case",
+                        "--column",
+                        "--no-heading",
+                        "--color",
+                        "never",
+                        "--json",
+                      ],
+                      inputType: "regex",
+                    },
+                  },
+                  kindOptions: {
+                    action: { defaultAction: "do" },
+                    command: { defaultAction: "edit" },
+                    command_history: { defaultAction: "edit" },
+                    search_history: { defaultAction: "edit" },
+                    file: { defaultAction: "open" },
+                    help: { defaultAction: "open" },
+                    readme_viewer: { defaultAction: "open" },
+                    source: { defaultAction: "execute" },
+                    ui_select: { defaultAction: "select" },
+                    url: { defaultAction: "browse" },
+                    word: { defaultAction: "append" },
+                  },
+                  actionOptions: {
+                    narrow: {
+                      quit: false,
+                    },
+                    tabopen: {
+                      quit: false,
+                    },
+                  },
+                  filterParams: {
+                    matcher_fzf: {
+                      highlightMatched: "Search",
+                    },
+                    matcher_fuse: {
+                      highlightMatched: "Search",
+                    },
+                    matcher_kensaku: {
+                      highlightMatched: "Search",
+                    },
+                    merge: {
+                      highlightMatched: "Search",
+                      filters: [
+                        {
+                          name: "matcher_kensaku",
+                          weight: 2.0,
+                        },
+                        "matcher_fzf",
+                      ],
+                    },
+                  },
+                });
+              },
+            )
           }", [])`,
         );
       });
@@ -493,7 +499,7 @@ export const ddu: Plug[] = [
                   await mapping.map(
                     denops,
                     "<cr>",
-                    "<cmd>call ddu#ui#do_action('itemAction')<cr>",
+                    "<esc><cmd>call ddu#ui#do_action('itemAction')<cr>",
                     { mode: "i", buffer: true, silent: true },
                   );
                   await mapping.map(
@@ -522,7 +528,14 @@ export const ddu: Plug[] = [
       });
 
       // Initialize ddu
-      denops.call(`ddu#start`, { ui: "" });
+      denops.call(`ddu#start`, {
+        ui: "ff",
+        uiParams: {
+          ff: {
+            ignoreEmpty: true,
+          },
+        },
+      });
     },
   },
 ];

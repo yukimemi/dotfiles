@@ -223,4 +223,27 @@ export const ui: Plug[] = [
     url: "kevinhwang91/nvim-bqf",
     enabled: async ({ denops }) => await fn.has(denops, "nvim"),
   },
+  {
+    url: "tzachar/highlight-undo.nvim",
+    after: async ({ denops }) => {
+      await denops.call(
+        `luaeval`,
+        `require("highlight-undo").setup(_A.param)`,
+        {
+          param: {
+            hlgroup: "HighlightUndo",
+            duration: 500,
+          },
+        },
+      );
+    },
+  },
+  {
+    url: "folke/edgy.nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("edgy").setup(_A.param)`, {
+        param: {},
+      });
+    },
+  },
 ];
