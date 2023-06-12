@@ -49,7 +49,7 @@ export const git: Plug[] = [
       });
       await mapping.map(denops, "<space>gd", "<cmd>GinDiff<cr>", { mode: "n" });
       await mapping.map(denops, "<space>gl", "<cmd>GinLog<cr>", { mode: "n" });
-      await mapping.map(denops, "<space>gL", "<cmd>GinLog -p %<cr>", {
+      await mapping.map(denops, "<space>gL", "<cmd>GinLog -p -- %<cr>", {
         mode: "n",
       });
       await mapping.map(denops, "<space>gp", "<cmd>Gin push<cr>", {
