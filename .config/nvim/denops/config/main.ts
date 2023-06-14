@@ -8,7 +8,7 @@ import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 import { notify } from "./util.ts";
 import { plugins } from "./plugins.ts";
 import { setFiletype } from "./filetype.ts";
-import { setKeymap } from "./keymap.ts";
+import { setKeymapPost, setKeymapPre } from "./keymap.ts";
 import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setOption } from "./option.ts";
@@ -43,10 +43,11 @@ async function pre(denops: Denops): Promise<void> {
 
   await setFiletype(denops);
   await setOption(denops);
-  await setKeymap(denops);
+  await setKeymapPre(denops);
 }
 
 async function post(denops: Denops): Promise<void> {
+  await setKeymapPost(denops);
   await vimInit(denops);
 }
 

@@ -1,10 +1,11 @@
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-
+import * as lambda from "https://deno.land/x/denops_std@v5.0.0/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v5.0.0/batch/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
+import { openBufDir, reviewMode } from "./util.ts";
 
-export async function setKeymap(denops: Denops) {
+export async function setKeymapPre(denops: Denops) {
   await batch(denops, async (denops: Denops) => {
     await globals.set(denops, "mapleader", " ");
     await globals.set(denops, "maplocalleader", "\\");
@@ -86,5 +87,35 @@ export async function setKeymap(denops: Denops) {
     await mapping.map(denops, "<c-b>", "<left>", { mode: "c" });
     await mapping.map(denops, "<c-a>", "<home>", { mode: "c" });
     await mapping.map(denops, "<c-e>", "<end>", { mode: "c" });
+  });
+}
+
+export async function setKeymapPost(denops: Denops) {
+  await batch(denops, async (denops: Denops) => {
+    await mapping.map(
+      denops,
+      "<leader>Rb",
+      `<cmd>call <SID>${denops.name}_notify("${
+        lambda.register(denops, async () => await reviewMode(denops))
+      }", [])<cr>`,
+      { mode: "n" },
+    );
+    await mapping.map(
+      denops,
+      "<leader>Re",
+      `<cmd>call <SID>${denops.name}_notify("${
+        lambda.register(denops, async () => await reviewMode(denops, true))
+      }", [])<cr>`,
+      { mode: "n" },
+    );
+
+    await mapping.map(
+      denops,
+      "<leader>o",
+      `<cmd>call <SID>${denops.name}_notify("${
+        lambda.register(denops, async () => await openBufDir(denops))
+      }", [])<cr>`,
+      { mode: "n" },
+    );
   });
 }

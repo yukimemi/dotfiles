@@ -72,4 +72,16 @@ export const filetypes: Plug[] = [
       );
     },
   },
+  {
+    url: "iamcco/markdown-preview.nvim",
+    enabled: true,
+    build: async ({ denops }) => {
+      await denops.call("mkdp#util#install");
+    },
+    before: async ({ denops }) => {
+      await globals.set(denops, "mkdp_auto_close", 0);
+      await globals.set(denops, "mkdp_refresh_slow ", 0);
+      // await globals.set(denops, "mkdp_theme ", "dark");
+    },
+  },
 ];
