@@ -7,6 +7,7 @@ import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
 import * as op from "https://deno.land/x/denops_std@v5.0.0/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v5.0.0/batch/mod.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/ensure.ts";
+import { notify } from "../util.ts";
 
 export const ddu: Plug[] = [
   {
@@ -529,7 +530,7 @@ export const ddu: Plug[] = [
       });
 
       // Initialize ddu
-      denops.call(`ddu#start`, {
+      await denops.call(`ddu#start`, {
         ui: "ff",
         uiParams: {
           ff: {
@@ -537,6 +538,7 @@ export const ddu: Plug[] = [
           },
         },
       });
+      await notify(denops, "ddu loaded");
     },
   },
 ];
