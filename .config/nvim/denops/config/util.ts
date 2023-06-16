@@ -1,5 +1,5 @@
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
-import * as fs from "https://deno.land/std@0.191.0/fs/mod.ts";
+import * as fs from "https://deno.land/std@0.192.0/fs/mod.ts";
 import * as helper from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v5.0.0/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
