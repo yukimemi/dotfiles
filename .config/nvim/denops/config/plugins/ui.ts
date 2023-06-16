@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@1.1.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.1.2/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v5.0.0/lambda/mod.ts";
@@ -225,6 +225,7 @@ export const ui: Plug[] = [
   },
   {
     url: "tzachar/highlight-undo.nvim",
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
     after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
@@ -240,6 +241,7 @@ export const ui: Plug[] = [
   },
   {
     url: "folke/edgy.nvim",
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("edgy").setup(_A.param)`, {
         param: {},
