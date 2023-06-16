@@ -231,6 +231,10 @@ export const denops: Plug[] = [
       { url: "srcery-colors/srcery-vim" },
       { url: "yuttie/hydrangea-vim" },
       {
+        url: "rebelot/kanagawa.nvim",
+        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+      },
+      {
         url: "folke/tokyonight.nvim",
         enabled: async ({ denops }) => await fn.has(denops, "nvim"),
       },
