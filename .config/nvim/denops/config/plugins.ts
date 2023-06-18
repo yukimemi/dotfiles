@@ -23,9 +23,8 @@ import { util } from "./plugins/util.ts";
 
 export const plugins = [
   ...libs,
-  ...coc,
   ...ddu,
-  ...test,
+  ...coc,
   ...telescope,
   ...search,
   ...fern,
@@ -43,5 +42,6 @@ export const plugins = [
   ...statusline,
   ...twitter,
   ...terminal,
+  ...test,
   ...filetypes,
 ];
