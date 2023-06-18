@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@1.1.3/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.2.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -13,15 +13,11 @@ export const libs: Plug[] = [
     url: "rcarriga/nvim-notify",
     enabled: async ({ denops }) => await fn.has(denops, "nvim"),
     after: async ({ denops }) => {
-      await denops.call(
-        `luaeval`,
-        `require("notify").setup(_A.param)`,
-        {
-          param: {
-            stages: "slide",
-          },
+      await denops.call(`luaeval`, `require("notify").setup(_A.param)`, {
+        param: {
+          stages: "slide",
         },
-      );
+      });
       await execute(denops, `lua vim.notify = require("notify")`);
       await mapping.map(
         denops,
@@ -29,7 +25,7 @@ export const libs: Plug[] = [
         `<cmd>lua require("notify").dismiss()<cr>`,
         {
           mode: "n",
-        },
+        }
       );
     },
   },
@@ -78,7 +74,7 @@ export const libs: Plug[] = [
           param: {
             default: true,
           },
-        },
+        }
       );
     },
   },
@@ -107,28 +103,7 @@ export const libs: Plug[] = [
   },
   {
     url: "Exafunction/codeium.vim",
-    enabled: false,
-    after: async ({ denops }) => {
-      await execute(
-        denops,
-        `
-        lua << EOB
-          vim.keymap.set("i", "<C-e>", function()
-            return vim.fn["codeium#Accept"]()
-          end, { expr = true, nowait = true })
-          vim.keymap.set("i", "<c-;>", function()
-            return vim.fn["codeium#CycleCompletions"](1)
-          end, { expr = true })
-          vim.keymap.set("i", "<c-,>", function()
-            return vim.fn["codeium#CycleCompletions"](-1)
-          end, { expr = true })
-          vim.keymap.set("i", "<c-x>", function()
-            return vim.fn["codeium#Clear"]()
-          end, { expr = true })
-        EOB
-    `,
-      );
-    },
+    enabled: Deno.build.os !== "windows",
   },
   {
     url: "lambdalisue/vim-findent",

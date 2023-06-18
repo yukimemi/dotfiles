@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@1.1.3/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.2.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
@@ -19,6 +19,26 @@ export const telescope: Plug[] = [
           { url: "MattesGroeger/vim-bookmarks" },
         ],
       },
+      {
+        url: "danielfalk/smart-open.nvim",
+        enabled: async ({ denops }) =>
+          await fn.has(denops, "nvim") && Deno.build.os !== "windows",
+        dependencies: [
+          { url: "kkharji/sqlite.lua" },
+          { url: "nvim-telescope/telescope.nvim" },
+        ],
+        after: async ({ denops }) => {
+          await execute(
+            denops,
+            `
+            lua << EOB
+              require"telescope".load_extension("smart_open")
+              vim.keymap.set("n", "<space>fs", "<cmd>Telescope smart_open<cr>", { desc = "Smart Open" })
+            EOB
+            `,
+          );
+        },
+      },
     ],
     before: async ({ denops }) => {
       await execute(
@@ -30,7 +50,7 @@ export const telescope: Plug[] = [
           --------------------------------------------------------------------------------
           vim.keymap.set("n", "<space>ff", "<cmd>Telescope<cr>", { desc = "Telescope" })
 
-          vim.keymap.set("n", "<space>fs", function()
+          vim.keymap.set("n", "<space>fS", function()
             require("telescope.builtin").find_files({ cwd = "~/src" })
           end, { desc = "Find src file" })
 

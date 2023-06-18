@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@1.1.3/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.2.0/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
@@ -12,19 +12,19 @@ export const test: Plug[] = [
       });
     },
     after: async ({ denops }) => {
-      await mapping.map(denops, "<space>tn", "<cmd>TestNearest<cr>", {
+      await mapping.map(denops, "<space>Tn", "<cmd>TestNearest<cr>", {
         mode: "n",
       });
-      await mapping.map(denops, "<space>tf", "<cmd>TestFile<cr>", {
+      await mapping.map(denops, "<space>Tf", "<cmd>TestFile<cr>", {
         mode: "n",
       });
-      await mapping.map(denops, "<space>ts", "<cmd>TestSuite<cr>", {
+      await mapping.map(denops, "<space>Ts", "<cmd>TestSuite<cr>", {
         mode: "n",
       });
-      await mapping.map(denops, "<space>tl", "<cmd>TestLast<cr>", {
+      await mapping.map(denops, "<space>Tl", "<cmd>TestLast<cr>", {
         mode: "n",
       });
-      await mapping.map(denops, "<space>tg", "<cmd>TestVisit<cr>", {
+      await mapping.map(denops, "<space>Tg", "<cmd>TestVisit<cr>", {
         mode: "n",
       });
     },

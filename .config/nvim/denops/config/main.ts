@@ -1,8 +1,8 @@
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.0/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@1.1.3/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@1.2.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
-import { Dvpm } from "https://deno.land/x/dvpm@1.1.3/mod.ts";
+import { Dvpm } from "https://deno.land/x/dvpm@1.2.0/mod.ts";
 import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
 import { notify } from "./util.ts";
@@ -13,6 +13,7 @@ import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setOption } from "./option.ts";
 import { notifyWeather } from "./weather.ts";
+import { cacheLua, cacheVim } from "./cache.ts";
 
 export const pluginStatus = {
   heirline: false,
@@ -28,13 +29,16 @@ export const pluginStatus = {
 export async function main(denops: Denops): Promise<void> {
   const starttime = performance.now();
   await pre(denops);
-  await dvpmExec(denops);
+  const dvpm = await dvpmExec(denops);
   await post(denops);
 
   const elapsed = performance.now() - starttime;
   await notify(denops, [`Config load completed !`, `Elapsed: (${elapsed})`]);
 
   await notifyWeather(denops);
+
+  await dvpm.cache(cacheLua());
+  await dvpm.cache(cacheVim());
 }
 
 async function pre(denops: Denops): Promise<void> {
@@ -81,4 +85,6 @@ async function dvpmExec(denops: Denops) {
   await Promise.all(plugins.map((p: Plug) => dvpm.add(p)));
 
   await dvpm.end();
+
+  return dvpm;
 }

@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@1.1.3/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.2.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
@@ -334,6 +334,20 @@ export const util: Plug[] = [
         EOB
         `,
       );
+    },
+  },
+  {
+    url: "thinca/vim-winenv",
+    enabled: Deno.build.os === "windows",
+  },
+  {
+    url: "folke/todo-comments.nvim",
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    dependencies: [
+      { url: "nvim-lua/plenary.nvim" },
+    ],
+    after: async ({ denops }) => {
+      await denops.cmd(`lua require("todo-comments").setup()`);
     },
   },
 ];

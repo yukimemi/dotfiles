@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@1.1.3/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.2.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
@@ -82,6 +82,12 @@ export const ddu: Plug[] = [
         denops,
         "<leader>df",
         `<cmd>Ddu -name=files file_rec<cr>`,
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<leader>dh",
+        `<cmd>Ddu -name=help help<cr>`,
         { mode: "n" },
       );
       await mapping.map(
