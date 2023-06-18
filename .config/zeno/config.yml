@@ -296,7 +296,8 @@ snippets:
     snippet: brew install t-rec
   - name: Install xplr
     snippet: brew install xplr
-
+  - name: Install bleunlock
+    snippet: brew install bleunlock
 
 completions:
   - name: kill
