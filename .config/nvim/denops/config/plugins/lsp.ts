@@ -12,6 +12,7 @@ export const lsp: Plug[] = [
     dependencies: [
       {
         url: "j-hui/fidget.nvim",
+        branch: "legacy",
         enabled: async ({ denops }) => await fn.has(denops, "nvim"),
         after: async ({ denops }) => {
           await denops.cmd(`lua require("fidget").setup()`);

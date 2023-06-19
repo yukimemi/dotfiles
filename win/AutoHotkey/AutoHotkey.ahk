@@ -113,9 +113,9 @@ return
 ; return
 
 ; for Edge
-F11::
-Activate("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
-return
+; F11::
+; Activate("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
+; return
 
 ; for vivaldi
 ; F11::
@@ -128,9 +128,9 @@ return
 ; return
 
 ; for Brave
-; F11::
-; Activate(USERPROFILE . "\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe")
-; return
+F11::
+Activate(USERPROFILE . "\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe")
+return
 
 ; for cmd.exe
 ; F12::
