@@ -1,7 +1,7 @@
-import type { Plug } from "https://deno.land/x/dvpm@1.2.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.3.0/mod.ts";
 
-import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v5.0.0/helper/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const lsp: Plug[] = [
@@ -45,7 +45,13 @@ export const lsp: Plug[] = [
       { url: "lukas-reineke/lsp-format.nvim" },
       { url: "jose-elias-alvarez/null-ls.nvim" },
       { url: "williamboman/mason.nvim" },
-      { url: "williamboman/mason-lspconfig.nvim" },
+      {
+        url: "williamboman/mason-lspconfig.nvim",
+        dependencies: [
+          { url: "neovim/nvim-lspconfig" },
+          { url: "williamboman/mason.nvim" },
+        ],
+      },
       {
         url: "folke/neodev.nvim",
         dependencies: [{ url: "neovim/nvim-lspconfig" }],

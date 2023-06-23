@@ -1,12 +1,12 @@
-import type { Plug } from "https://deno.land/x/dvpm@1.2.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.3.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v5.0.0/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
-import * as op from "https://deno.land/x/denops_std@v5.0.0/option/mod.ts";
-import { ensureNumber } from "https://deno.land/x/unknownutil@v2.1.1/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
+import * as op from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.2.0/mod.ts";
+import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const coc: Plug[] = [
@@ -102,7 +102,7 @@ export const coc: Plug[] = [
               if (["vim", "help"].some((t) => t === ft)) {
                 await denops.cmd(`silent! h ${cw}`);
               } else if (
-                ensureNumber(await denops.call(`coc#rpc#ready`)) === 1
+                ensure(await denops.call(`coc#rpc#ready`), is.Number) === 1
               ) {
                 await denops.call("CocActionAsync", "doHover");
               } else {

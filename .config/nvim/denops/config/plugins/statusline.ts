@@ -1,9 +1,9 @@
-import type { Plug } from "https://deno.land/x/dvpm@1.2.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.3.0/mod.ts";
 
-import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 
 import { pluginStatus } from "../main.ts";
-import { globals } from "https://deno.land/x/denops_std@v5.0.0/variable/variable.ts";
+import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/variable.ts";
 
 export const statusline: Plug[] = [
   {

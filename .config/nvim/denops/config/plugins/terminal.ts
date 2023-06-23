@@ -1,6 +1,6 @@
-import type { Plug } from "https://deno.land/x/dvpm@1.2.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.3.0/mod.ts";
 
-import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 
 export const terminal: Plug[] = [
   {

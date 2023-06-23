@@ -1,12 +1,12 @@
-import type { Plug } from "https://deno.land/x/dvpm@1.2.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@1.3.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.0.0/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.0/function/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v5.0.0/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.0.0/mapping/mod.ts";
-import * as op from "https://deno.land/x/denops_std@v5.0.0/option/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v5.0.0/batch/mod.ts";
-import { ensureString } from "https://deno.land/x/unknownutil@v2.1.1/ensure.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
+import * as op from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
+import { batch } from "https://deno.land/x/denops_std@v5.0.1/batch/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.2.0/mod.ts";
 import { notify } from "../util.ts";
 
 export const ddu: Plug[] = [
@@ -211,7 +211,7 @@ export const ddu: Plug[] = [
                       input: await fn.input(
                         denops,
                         "Pattern: ",
-                        ensureString(await fn.expand(denops, "<cword>")),
+                        ensure(await fn.expand(denops, "<cword>"), is.String),
                       ),
                     },
                   },
