@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/05/26 00:33:15.
+# Last Change : 2023/06/24 22:54:59.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -217,6 +217,7 @@ setopt completeinword
 #
 # zstyle.
 #
+autoload -U compinit && compinit
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path ~/.cache/zsh
