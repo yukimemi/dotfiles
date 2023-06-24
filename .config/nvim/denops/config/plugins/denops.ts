@@ -274,7 +274,7 @@ export const denops: Plug[] = [
         await fn.expand(denops, "~/.config/randomcolorscheme/colorscheme.toml"),
       );
       await globals.set(denops, "randomcolorscheme_notmatch", "[Ll]ight");
-      await globals.set(denops, "randomcolorscheme_background", "dark");
+      // await globals.set(denops, "randomcolorscheme_background", "dark");
 
       await mapping.map(denops, "<space>ro", "<cmd>ChangeColorscheme<cr>", {
         mode: "n",

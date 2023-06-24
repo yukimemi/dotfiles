@@ -248,4 +248,13 @@ export const ui: Plug[] = [
       });
     },
   },
+  {
+    url: "lewis6991/satellite.nvim",
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("satellite").setup(_A.param)`, {
+        param: {},
+      });
+    },
+  },
 ];

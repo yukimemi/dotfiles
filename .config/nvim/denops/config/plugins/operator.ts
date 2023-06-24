@@ -14,6 +14,14 @@ export const operator: Plug[] = [
   {
     url: "tyru/operator-html-escape.vim",
     dependencies: [{ url: "kana/vim-operator-user" }],
+    before: async ({ denops }) => {
+      await mapping.map(denops, "<c-h>", "<Plug>(operator-html-escape)", {
+        mode: "x",
+      });
+      await mapping.map(denops, "<c-u>", "<Plug>(operator-html-unescape)", {
+        mode: "x",
+      });
+    },
   },
   {
     url: "yuki-yano/vim-operator-replace",

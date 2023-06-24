@@ -7,6 +7,7 @@ export function cacheVim() {
         au MyAutoCmd VimEnter * ++once let s:startuptime = reltime(s:startuptime) | redraw
               \\ | echomsg 'startuptime: ' .. reltimestr(s:startuptime)
       endif
+      au MyAutoCmd SwapExists * let v:swapchoice = 'o'
     `,
     path: "~/.config/nvim/plugin/dvpm_cache.vim",
   };

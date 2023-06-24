@@ -53,7 +53,9 @@ export const statusline: Plug[] = [
             lualine_x: [
               "g:colors_name",
               "g:randomcolorscheme_priority",
+              "o:background",
               "encoding",
+              "vim.bo.bomb and '💣' or ''",
               "fileformat",
               "filetype",
             ],
