@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/06/24 22:54:59.
+# Last Change : 2023/06/25 19:28:47.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -308,7 +308,7 @@ fi
 # rtx
 #
 if type rtx > /dev/null 2>&1; then
-eval "$(rtx activate zsh)"
+  eval "$(rtx activate zsh)"
 fi
 
 
