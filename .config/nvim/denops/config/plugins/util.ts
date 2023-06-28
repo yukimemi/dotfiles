@@ -353,12 +353,16 @@ export const util: Plug[] = [
   },
   {
     url: "thinca/vim-singleton",
-    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")),
-    dst: "~/vimfiles/pack/plugins/start/vim-singleton",
+    enabled: async ({ denops }) => await fn.has(denops, "clientserver"),
+    dst: Deno.build.os === "windows"
+      ? "~/vimfiles/pack/plugins/start/vim-singleton"
+      : "~/.vim/pack/plugins/start/vim-singleton",
     after: async ({ denops }) => {
       await cache(denops, {
         script: `if !has("nvim") | call singleton#enable() | endif`,
-        path: `~/vimfiles/plugin/vim-singleton.vim`,
+        path: Deno.build.os === "windows"
+          ? "~/vimfiles/plugin/vim-singleton.vim"
+          : "~/.vim/plugin/vim-singleton.vim",
       });
     },
   },

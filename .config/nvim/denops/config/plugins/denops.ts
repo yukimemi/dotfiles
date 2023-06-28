@@ -209,7 +209,6 @@ export const denops: Plug[] = [
     dependencies: [
       { url: "4513ECHO/vim-colors-hatsunemiku" },
       { url: "ChristianChiarulli/nvcode-color-schemes.vim" },
-      { url: "Matsuuu/pinkmare" },
       { url: "NLKNguyen/papercolor-theme" },
       { url: "PHSix/nvim-hybrid" },
       { url: "adrian5/oceanic-next-vim" },
@@ -230,6 +229,10 @@ export const denops: Plug[] = [
       { url: "severij/vadelma" },
       { url: "srcery-colors/srcery-vim" },
       { url: "yuttie/hydrangea-vim" },
+      {
+        url: "Matsuuu/pinkmare",
+        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+      },
       {
         url: "rebelot/kanagawa.nvim",
         enabled: async ({ denops }) => await fn.has(denops, "nvim"),
