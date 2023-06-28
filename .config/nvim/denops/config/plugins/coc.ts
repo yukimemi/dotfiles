@@ -162,7 +162,7 @@ export const coc: Plug[] = [
       );
 
       // Remap keys for apply code actions at the cursor position.
-      await mapping.map(denops, "<leader>ac", "<Plug>(coc-codeaction-cursor)", {
+      await mapping.map(denops, "<leader>ca", "<Plug>(coc-codeaction-cursor)", {
         mode: "n",
         silent: true,
       });
