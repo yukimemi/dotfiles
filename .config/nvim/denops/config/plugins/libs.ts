@@ -11,6 +11,7 @@ export const libs: Plug[] = [
   { url: "vim-denops/denops-shared-server.vim" },
   {
     url: "rcarriga/nvim-notify",
+    dst: "~/.local/share/nvim/site/pack/plugins/start/nvim-notify",
     enabled: async ({ denops }) => await fn.has(denops, "nvim"),
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("notify").setup(_A.param)`, {
@@ -25,7 +26,7 @@ export const libs: Plug[] = [
         `<cmd>lua require("notify").dismiss()<cr>`,
         {
           mode: "n",
-        }
+        },
       );
     },
   },
@@ -74,7 +75,7 @@ export const libs: Plug[] = [
           param: {
             default: true,
           },
-        }
+        },
       );
     },
   },
