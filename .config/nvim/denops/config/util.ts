@@ -3,6 +3,7 @@ import * as fs from "https://deno.land/std@0.192.0/fs/mod.ts";
 import * as helper from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import { systemopen } from "https://deno.land/x/systemopen@v0.2.0/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
 
 export async function notify(
@@ -81,15 +82,6 @@ export async function openBufDir(denops: Denops) {
   const bufdir = await fn.fnamemodify(denops, bufname, ":h");
   console.log({ bufdir });
   if (await fs.exists(bufdir)) {
-    if (Deno.build.os === "windows") {
-      const args = [bufdir];
-      const cmd = new Deno.Command("explorer", { args });
-      return await cmd.output();
-    }
-    if (Deno.build.os === "darwin") {
-      const args = ["-a", bufdir];
-      const cmd = new Deno.Command("open", { args });
-      return await cmd.output();
-    }
+    systemopen(bufdir);
   }
 }
