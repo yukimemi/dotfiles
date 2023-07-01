@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@2.0.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.0.5/mod.ts";
 
 import { batch } from "https://deno.land/x/denops_std@v5.0.1/batch/mod.ts";
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";

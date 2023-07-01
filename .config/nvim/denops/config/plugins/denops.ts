@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@2.0.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.0.5/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -7,7 +7,6 @@ import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import * as nvimFn from "https://deno.land/x/denops_std@v5.0.1/function/nvim/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
-import { notify } from "../util.ts";
 
 export const denops: Plug[] = [
   {
@@ -310,9 +309,6 @@ export const denops: Plug[] = [
         ".diff$",
         "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$",
       ]);
-    },
-    after: async ({ denops }) => {
-      await notify(denops, "dps-hitori loaded");
     },
   },
   {

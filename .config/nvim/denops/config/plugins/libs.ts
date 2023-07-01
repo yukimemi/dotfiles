@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@2.0.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.0.5/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -20,6 +20,7 @@ export const libs: Plug[] = [
       after: `
         lua << EOB
           require("notify").setup({
+            render = "compact",
             stages = "slide",
           })
           vim.notify = require("notify")
@@ -33,6 +34,27 @@ export const libs: Plug[] = [
         `<cmd>lua require("notify").dismiss()<cr>`,
         {
           mode: "n",
+        },
+      );
+    },
+  },
+  {
+    url: "nvim-lua/plenary.nvim",
+    cache: false,
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+  },
+  {
+    url: "nvim-tree/nvim-web-devicons",
+    cache: false,
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
+      await denops.call(
+        `luaeval`,
+        `require("nvim-web-devicons").setup(_A.param)`,
+        {
+          param: {
+            default: true,
+          },
         },
       );
     },
@@ -65,25 +87,6 @@ export const libs: Plug[] = [
   {
     url: "MunifTanjim/nui.nvim",
     enabled: async ({ denops }) => await fn.has(denops, "nvim"),
-  },
-  {
-    url: "nvim-lua/plenary.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
-  },
-  {
-    url: "nvim-tree/nvim-web-devicons",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
-    after: async ({ denops }) => {
-      await denops.call(
-        `luaeval`,
-        `require("nvim-web-devicons").setup(_A.param)`,
-        {
-          param: {
-            default: true,
-          },
-        },
-      );
-    },
   },
   {
     url: "ryanoasis/vim-devicons",
