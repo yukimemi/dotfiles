@@ -1,25 +1,32 @@
-import type { Plug } from "https://deno.land/x/dvpm@1.3.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.0.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 
 export const libs: Plug[] = [
   { url: "vim-denops/denops.vim" },
   { url: "vim-denops/denops-shared-server.vim" },
   {
-    url: "rcarriga/nvim-notify",
-    dst: "~/.local/share/nvim/site/pack/plugins/start/nvim-notify",
+    url: "tani/vim-artemis",
     enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    cache: true,
+  },
+  {
+    url: "rcarriga/nvim-notify",
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    cache: {
+      after: `
+        lua << EOB
+          require("notify").setup({
+            stages = "slide",
+          })
+          vim.notify = require("notify")
+        EOB
+      `,
+    },
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("notify").setup(_A.param)`, {
-        param: {
-          stages: "slide",
-        },
-      });
-      await execute(denops, `lua vim.notify = require("notify")`);
       await mapping.map(
         denops,
         "<leader>nc",
@@ -55,7 +62,6 @@ export const libs: Plug[] = [
   { url: "tyru/open-browser.vim" },
   { url: "lambdalisue/readablefold.vim" },
   { url: "lambdalisue/kensaku.vim" },
-  { url: "tani/vim-artemis" },
   {
     url: "MunifTanjim/nui.nvim",
     enabled: async ({ denops }) => await fn.has(denops, "nvim"),

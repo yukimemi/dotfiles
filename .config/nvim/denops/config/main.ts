@@ -1,8 +1,8 @@
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@1.3.1/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@2.0.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import { Dvpm } from "https://deno.land/x/dvpm@1.3.1/mod.ts";
+import { Dvpm } from "https://deno.land/x/dvpm@2.0.0/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.2.0/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import { notify } from "./util.ts";
@@ -73,8 +73,13 @@ async function dvpmExec(denops: Denops) {
     ? "~/.cache/nvim/dvpm"
     : "~/.cache/vim/dvpm";
   const base = ensure(await fn.expand(denops, base_path), is.String);
+  const cache_path = (await fn.has(denops, "nvim"))
+    ? "~/.config/nvim/plugin/dvpm_plugin_cache.vim"
+    : "~/.config/vim/plugin/dvpm_plugin_cache.vim";
+  const cache = ensure(await fn.expand(denops, cache_path), is.String);
   const dvpm = await Dvpm.begin(denops, {
     base,
+    cache,
     debug: false,
     profile: false,
     notify: true,
