@@ -1,9 +1,10 @@
-import type { Plug } from "https://deno.land/x/dvpm@2.0.5/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.1.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import { pluginStatus } from "../main.ts";
 
 export const libs: Plug[] = [
   { url: "vim-denops/denops.vim" },
@@ -15,7 +16,8 @@ export const libs: Plug[] = [
   },
   {
     url: "rcarriga/nvim-notify",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    enabled: async ({ denops }) =>
+      await fn.has(denops, "nvim") && pluginStatus.nvimnotify,
     cache: {
       after: `
         lua << EOB
@@ -32,6 +34,29 @@ export const libs: Plug[] = [
         denops,
         "<leader>nc",
         `<cmd>lua require("notify").dismiss()<cr>`,
+        {
+          mode: "n",
+        },
+      );
+    },
+  },
+  {
+    url: "vigoux/notifier.nvim",
+    enabled: async ({ denops }) =>
+      await fn.has(denops, "nvim") && pluginStatus.notifier,
+    cache: {
+      after: `
+        lua << EOB
+          require("notifier").setup()
+          vim.notify = require("notifier")
+        EOB
+      `,
+    },
+    after: async ({ denops }) => {
+      await mapping.map(
+        denops,
+        "<leader>nc",
+        `<cmd>NotifierClear<cr>`,
         {
           mode: "n",
         },
@@ -61,10 +86,14 @@ export const libs: Plug[] = [
   },
   {
     url: "folke/noice.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    enabled: async ({ denops }) => (await fn.has(denops, "nvim")) && false,
     dependencies: [
       { url: "MunifTanjim/nui.nvim" },
-      { url: "rcarriga/nvim-notify" },
+      {
+        url: "rcarriga/nvim-notify",
+        enabled: async ({ denops }) =>
+          await fn.has(denops, "nvim") && pluginStatus.nvimnotify,
+      },
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("noice").setup(_A.param)`, {

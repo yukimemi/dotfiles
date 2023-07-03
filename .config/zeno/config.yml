@@ -298,6 +298,8 @@ snippets:
     snippet: brew install xplr
   - name: Install bleunlock
     snippet: brew install bleunlock
+  - name: Install kingraph (family tree)
+    snippet: pnpm install -g rstacruz/kingraph
 
 completions:
   - name: kill

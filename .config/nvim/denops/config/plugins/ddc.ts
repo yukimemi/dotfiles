@@ -1,9 +1,8 @@
-import type { Plug } from "https://deno.land/x/dvpm@2.0.5/mod.ts";
-
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.1.0/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/execute.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
-import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/execute.ts";
 
 export const ddc: Plug[] = [
   {
@@ -43,7 +42,8 @@ export const ddc: Plug[] = [
       {
         url: "hrsh7th/vim-vsnip",
         dependencies: [
-          { url: "hrsh7th/vim-vsnip-integ" },
+          { url: "hrsh7th/vim-vsnip-integ", enabled: false },
+          { url: "uga-rosa/ddc-source-vsnip" },
           { url: "rafamadriz/friendly-snippets" },
         ],
         after: async ({ denops }) => {
@@ -141,6 +141,10 @@ export const ddc: Plug[] = [
           },
           file: {
             filenameChars: "[:keyword:].",
+          },
+          "nvim-lsp": {
+            enableResolveItem: true,
+            enableAdditionalTextEdit: true,
           },
         },
       });

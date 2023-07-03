@@ -5,25 +5,36 @@ import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v0.2.0/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
+import { is } from "https://deno.land/x/unknownutil@v3.2.0/mod.ts";
+
+const useNvimNotify = true;
 
 export async function notify(
   denops: Denops,
   msg: string | string[],
   opt?: { timeout?: number },
 ) {
-  if (await fn.has(denops, "nvim")) {
-    await denops.call(
-      `luaeval`,
-      `
-      require("notify")(_A.msg, vim.log.levels.INFO, {
-        timeout = _A.timeout,
-        on_open = function(win)
-          vim.wo[win].wrap = true
-        end,
-      })
-    `,
-      { msg, timeout: opt?.timeout || 5000 },
-    );
+  if (denops.meta.host === "nvim") {
+    if (useNvimNotify) {
+      await denops.call(
+        `luaeval`,
+        `
+        require("notify")(_A.msg, vim.log.levels.INFO, {
+          timeout = _A.timeout,
+          on_open = function(win)
+            vim.wo[win].wrap = true
+          end,
+        })
+      `,
+        { msg, timeout: opt?.timeout || 5000 },
+      );
+    } else {
+      const message = is.ArrayOf(is.String)(msg) ? msg.join("\r") : msg;
+      await helper.execute(
+        denops,
+        `lua vim.notify([[${message}]], vim.log.levels.INFO)`,
+      );
+    }
   } else {
     if (typeof msg === "string") {
       await helper.echo(denops, msg);
