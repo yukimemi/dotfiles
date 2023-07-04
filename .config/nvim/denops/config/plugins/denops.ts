@@ -160,44 +160,44 @@ export const denops: Plug[] = [
     before: async ({ denops }) => {
       await globals.set(denops, "walk_debug", false);
 
-      await mapping.map(denops, "<space>Wa", "<cmd>DenopsWalk<cr>", {
+      await mapping.map(denops, "<space>wa", "<cmd>DenopsWalk<cr>", {
         mode: "n",
       });
 
-      await mapping.map(denops, "<space>Wa", "<cmd>DenopsWalk<cr>", {
+      await mapping.map(denops, "<space>wa", "<cmd>DenopsWalk<cr>", {
         mode: "n",
       });
       await mapping.map(
         denops,
-        "<space>Ws",
+        "<space>ws",
         "<cmd>DenopsWalk --path=~/src<cr>",
         { mode: "n" },
       );
       await mapping.map(
         denops,
-        "<space>Wd",
+        "<space>wD",
         "<cmd>DenopsWalk --path=~/.dotfiles<cr>",
         { mode: "n" },
       );
       await mapping.map(
         denops,
-        "<space>Wc",
+        "<space>wc",
         "<cmd>DenopsWalk --path=~/.cache<cr>",
         { mode: "n" },
       );
       await mapping.map(
         denops,
-        "<space>Wj",
+        "<space>wj",
         "<cmd>DenopsWalk --path=~/.cache/junkfile<cr>",
         { mode: "n" },
       );
       await mapping.map(
         denops,
-        "<space>Wm",
+        "<space>wm",
         "<cmd>DenopsWalk --path=~/.memolist<cr>",
         { mode: "n" },
       );
-      await mapping.map(denops, "<space>WD", "<cmd>DenopsWalkBufferDir<cr>", {
+      await mapping.map(denops, "<space>wd", "<cmd>DenopsWalkBufferDir<cr>", {
         mode: "n",
       });
     },
@@ -276,7 +276,7 @@ export const denops: Plug[] = [
         await fn.expand(denops, "~/.config/randomcolorscheme/colorscheme.toml"),
       );
       await globals.set(denops, "randomcolorscheme_notmatch", "[Ll]ight");
-      // await globals.set(denops, "randomcolorscheme_background", "dark");
+      await globals.set(denops, "randomcolorscheme_background", "dark");
 
       await mapping.map(denops, "<space>ro", "<cmd>ChangeColorscheme<cr>", {
         mode: "n",

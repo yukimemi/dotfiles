@@ -11,7 +11,7 @@ export async function setKeymapPre(denops: Denops) {
     await globals.set(denops, "maplocalleader", "\\");
 
     // keymaps.
-    await mapping.map(denops, "<leader>w", "<cmd>write<cr>", {
+    await mapping.map(denops, "<leader><leader>", "<cmd>write<cr>", {
       mode: "n",
       silent: true,
     });
