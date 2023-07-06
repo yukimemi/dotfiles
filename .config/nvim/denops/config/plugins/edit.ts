@@ -1,5 +1,6 @@
 import type { Plug } from "https://deno.land/x/dvpm@2.2.0/mod.ts";
 
+import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
@@ -94,4 +95,27 @@ export const edit: Plug[] = [
   },
   { url: "thinca/vim-qfreplace" },
   { url: "itchyny/vim-qfedit" },
+  {
+    url: "tani/vim-typo",
+    before: async ({ denops }) => {
+      await autocmd.group(denops, "MyTypoSettings", (helper) => {
+        helper.remove("*");
+        helper.define(
+          "FileType",
+          [
+            "ctrlp",
+            "ddu-ff",
+            "ddu-ff-filter",
+            "ddu-filer",
+            "dpswalk",
+            "dpswalk-filter",
+            "list",
+            "qf",
+            "quickfix",
+          ],
+          `let b:typo_did_setup = 1`,
+        );
+      });
+    },
+  },
 ];

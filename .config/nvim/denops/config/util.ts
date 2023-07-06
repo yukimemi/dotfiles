@@ -12,7 +12,7 @@ const useNvimNotify = true;
 export async function notify(
   denops: Denops,
   msg: string | string[],
-  opt?: { timeout?: number },
+  opt?: { timeout?: number }
 ) {
   if (denops.meta.host === "nvim") {
     if (useNvimNotify) {
@@ -26,13 +26,13 @@ export async function notify(
           end,
         })
       `,
-        { msg, timeout: opt?.timeout || 5000 },
+        { msg, timeout: opt?.timeout || 5000 }
       );
     } else {
       const message = is.ArrayOf(is.String)(msg) ? msg.join("\r") : msg;
       await helper.execute(
         denops,
-        `lua vim.notify([[${message}]], vim.log.levels.INFO)`,
+        `lua vim.notify([[${message}]], vim.log.levels.INFO)`
       );
     }
   } else {
@@ -47,19 +47,19 @@ export async function notify(
 export async function toggleOption(
   denops: Denops,
   option: string,
-  global = false,
+  global = false
 ) {
   if (global) {
     await vars.globalOptions.set(
       denops,
       option,
-      !(await vars.globalOptions.get(denops, option)),
+      !(await vars.globalOptions.get(denops, option))
     );
   } else {
     await vars.localOptions.set(
       denops,
       option,
-      !(await vars.localOptions.get(denops, option)),
+      !(await vars.localOptions.get(denops, option))
     );
   }
 }
@@ -90,9 +90,36 @@ export async function reviewMode(denops: Denops, stop = false) {
 
 export async function openBufDir(denops: Denops) {
   const bufname = await fn.bufname(denops);
-  const bufdir = await fn.fnamemodify(denops, bufname, ":h");
+  const bufdir = await fn.fnamemodify(denops, bufname, ":p:h");
   console.log({ bufdir });
   if (await fs.exists(bufdir)) {
     systemopen(bufdir);
   }
+}
+
+export async function focusFloating(denops: Denops) {
+  // https://github.com/yuki-yano/dotfiles/blob/main/.vim/lua/rc/keymaps.lua
+  await helper.execute(
+    denops,
+    `
+    lua << EOB
+      vim.keymap.set({ 'n' }, '<C-w><C-w>', function()
+        if vim.fn.empty(vim.api.nvim_win_get_config(vim.fn.win_getid()).relative) == 0 then
+          vim.cmd([[wincmd p]])
+          return
+        end
+
+        for winnr = 1, vim.fn.winnr('$') do
+          local winid = vim.fn.win_getid(winnr)
+          local conf = vim.api.nvim_win_get_config(winid)
+          if conf.focusable and vim.fn.empty(conf.relative) == 0 then
+            vim.fn.win_gotoid(winid)
+            return
+          end
+        end
+        vim.cmd([[normal! <C-w><C-w>]])
+      end)
+    EOB
+  `
+  );
 }

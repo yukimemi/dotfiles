@@ -84,4 +84,5 @@ export const filetypes: Plug[] = [
       // await globals.set(denops, "mkdp_theme ", "dark");
     },
   },
+  { url: "machakann/vim-vimhelplint" },
 ];

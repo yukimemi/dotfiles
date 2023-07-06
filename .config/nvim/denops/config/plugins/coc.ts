@@ -41,6 +41,7 @@ export const coc: Plug[] = [
         "coc-stylua",
         "coc-tsdetect",
         "coc-tsserver",
+        "coc-snippets",
         "coc-vimlsp",
         "coc-xml",
       ]);

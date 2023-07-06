@@ -20,8 +20,8 @@ export const pluginStatus = {
   heirline: false,
   lualine: true,
   bufferline: false,
-  ddc: true,
-  coc: false,
+  ddc: false,
+  coc: true,
   autopairs: false,
   insx: true,
   modesearch: false,
@@ -29,6 +29,7 @@ export const pluginStatus = {
 
 export async function main(denops: Denops): Promise<void> {
   const starttime = performance.now();
+  await notify(denops, `dvpm main start !`);
   await pre(denops);
   const dvpm = await dvpmExec(denops);
   await post(denops);

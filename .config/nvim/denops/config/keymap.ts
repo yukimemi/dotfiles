@@ -3,7 +3,7 @@ import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v5.0.1/batch/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
-import { openBufDir, reviewMode } from "./util.ts";
+import { focusFloating, openBufDir, reviewMode } from "./util.ts";
 
 export async function setKeymapPre(denops: Denops) {
   await batch(denops, async (denops: Denops) => {
@@ -87,6 +87,8 @@ export async function setKeymapPre(denops: Denops) {
     await mapping.map(denops, "<c-b>", "<left>", { mode: "c" });
     await mapping.map(denops, "<c-a>", "<home>", { mode: "c" });
     await mapping.map(denops, "<c-e>", "<end>", { mode: "c" });
+
+    await focusFloating(denops);
   });
 }
 
