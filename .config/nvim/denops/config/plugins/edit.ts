@@ -97,6 +97,7 @@ export const edit: Plug[] = [
   { url: "itchyny/vim-qfedit" },
   {
     url: "tani/vim-typo",
+    enabled: false,
     before: async ({ denops }) => {
       await autocmd.group(denops, "MyTypoSettings", (helper) => {
         helper.remove("*");
