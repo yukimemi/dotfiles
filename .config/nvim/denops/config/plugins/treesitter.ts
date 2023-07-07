@@ -1,7 +1,8 @@
 import type { Plug } from "https://deno.land/x/dvpm@2.2.0/mod.ts";
 
-import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 
 export const treesitter: Plug[] = [
   {
@@ -78,6 +79,28 @@ export const treesitter: Plug[] = [
     enabled: async ({ denops }) => await fn.has(denops, "nvim"),
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("nvim-ts-autotag").setup()`);
+    },
+  },
+  {
+    url: "monaqa/nvim-treesitter-clipping",
+    dependencies: [
+      { url: "nvim-treesitter/nvim-treesitter" },
+      { url: "thinca/vim-partedit" },
+    ],
+    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    after: async ({ denops }) => {
+      await mapping.map(
+        denops,
+        "<space>C",
+        "<Plug>(ts-clipping-clip)",
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<space>C",
+        "<Plug>(ts-clipping-select)",
+        { mode: ["x", "o"] },
+      );
     },
   },
 ];
