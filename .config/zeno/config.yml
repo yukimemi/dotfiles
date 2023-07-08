@@ -284,8 +284,8 @@ snippets:
     snippet: curl -fsSL https://get.pnpm.io/install.sh | sh -
   - name: Install xc
     snippet: go install github.com/joerdav/xc/cmd/xc@latest
-  - name: Install hitori
-    snippet: deno install -f --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori.ts
+  - name: Install hitori (neovide)
+    snippet: deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/dps-hitori/main/cmd/hitori_neovide.ts
   - name: Install gifsicle
     snippet: brew install gifsicle
   - name: Install bsky
@@ -300,6 +300,10 @@ snippets:
     snippet: brew install bleunlock
   - name: Install kingraph (family tree)
     snippet: pnpm install -g rstacruz/kingraph
+  - name: Install runme
+    snippet: go install github.com/stateful/runme@latest
+  - name: Install btop
+    snippet: brew install btop
 
 completions:
   - name: kill

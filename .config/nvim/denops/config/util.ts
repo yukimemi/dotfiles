@@ -12,54 +12,56 @@ const useNvimNotify = true;
 export async function notify(
   denops: Denops,
   msg: string | string[],
-  opt?: { timeout?: number }
+  opt?: { timeout?: number },
 ) {
   if (denops.meta.host === "nvim") {
-    if (useNvimNotify) {
-      await denops.call(
-        `luaeval`,
-        `
-        require("notify")(_A.msg, vim.log.levels.INFO, {
-          timeout = _A.timeout,
-          on_open = function(win)
-            vim.wo[win].wrap = true
-          end,
-        })
-      `,
-        { msg, timeout: opt?.timeout || 5000 }
-      );
-    } else {
-      const message = is.ArrayOf(is.String)(msg) ? msg.join("\r") : msg;
-      await helper.execute(
-        denops,
-        `lua vim.notify([[${message}]], vim.log.levels.INFO)`
-      );
-    }
+    try {
+      if (useNvimNotify) {
+        await denops.call(
+          `luaeval`,
+          `
+            require("notify")(_A.msg, vim.log.levels.INFO, {
+              timeout = _A.timeout,
+              on_open = function(win)
+                vim.wo[win].wrap = true
+              end,
+            })
+          `,
+          { msg, timeout: opt?.timeout || 5000 },
+        );
+      } else {
+        const message = is.ArrayOf(is.String)(msg) ? msg.join("\r") : msg;
+        await helper.execute(
+          denops,
+          `lua vim.notify([[${message}]], vim.log.levels.INFO)`,
+        );
+      }
+      return;
+    } catch {}
+  }
+  if (typeof msg === "string") {
+    await helper.echo(denops, msg);
   } else {
-    if (typeof msg === "string") {
-      await helper.echo(denops, msg);
-    } else {
-      await helper.echo(denops, msg.join("\n"));
-    }
+    await helper.echo(denops, msg.join("\n"));
   }
 }
 
 export async function toggleOption(
   denops: Denops,
   option: string,
-  global = false
+  global = false,
 ) {
   if (global) {
     await vars.globalOptions.set(
       denops,
       option,
-      !(await vars.globalOptions.get(denops, option))
+      !(await vars.globalOptions.get(denops, option)),
     );
   } else {
     await vars.localOptions.set(
       denops,
       option,
-      !(await vars.localOptions.get(denops, option))
+      !(await vars.localOptions.get(denops, option)),
     );
   }
 }
@@ -120,6 +122,6 @@ export async function focusFloating(denops: Denops) {
         vim.cmd([[normal! <C-w><C-w>]])
       end)
     EOB
-  `
+  `,
   );
 }

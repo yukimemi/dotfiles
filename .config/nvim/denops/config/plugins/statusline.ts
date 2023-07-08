@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@2.2.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 
@@ -8,8 +8,7 @@ import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/variable
 export const statusline: Plug[] = [
   {
     url: "rebelot/heirline.nvim",
-    enabled: async ({ denops }) =>
-      pluginStatus.heirline && await fn.has(denops, "nvim"),
+    enabled: async ({ denops }) => pluginStatus.heirline && await fn.has(denops, "nvim"),
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("heirline").setup(_A.param)`, {
         param: {
@@ -23,8 +22,7 @@ export const statusline: Plug[] = [
   },
   {
     url: "nvim-lualine/lualine.nvim",
-    enabled: async ({ denops }) =>
-      pluginStatus.lualine && await fn.has(denops, "nvim"),
+    enabled: async ({ denops }) => pluginStatus.lualine && await fn.has(denops, "nvim"),
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("lualine").setup(_A.param)`, {
         param: {

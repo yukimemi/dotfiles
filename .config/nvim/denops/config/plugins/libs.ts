@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@2.2.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -16,8 +16,7 @@ export const libs: Plug[] = [
   },
   {
     url: "rcarriga/nvim-notify",
-    enabled: async ({ denops }) =>
-      await fn.has(denops, "nvim") && pluginStatus.nvimnotify,
+    enabled: async ({ denops }) => await fn.has(denops, "nvim") && pluginStatus.nvimnotify,
     cache: {
       after: `
         lua << EOB
@@ -42,8 +41,7 @@ export const libs: Plug[] = [
   },
   {
     url: "vigoux/notifier.nvim",
-    enabled: async ({ denops }) =>
-      await fn.has(denops, "nvim") && pluginStatus.notifier,
+    enabled: async ({ denops }) => await fn.has(denops, "nvim") && pluginStatus.notifier,
     cache: {
       after: `
         lua << EOB
@@ -91,8 +89,7 @@ export const libs: Plug[] = [
       { url: "MunifTanjim/nui.nvim" },
       {
         url: "rcarriga/nvim-notify",
-        enabled: async ({ denops }) =>
-          await fn.has(denops, "nvim") && pluginStatus.nvimnotify,
+        enabled: async ({ denops }) => await fn.has(denops, "nvim") && pluginStatus.nvimnotify,
       },
     ],
     after: async ({ denops }) => {

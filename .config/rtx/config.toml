@@ -1,3 +1,4 @@
 [tools]
 delta = "latest"
 node = "latest"
+github-cli = "latest"

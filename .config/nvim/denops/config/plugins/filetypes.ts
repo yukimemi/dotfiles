@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@2.2.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -60,21 +60,26 @@ export const filetypes: Plug[] = [
   },
   {
     url: "tani/glance-vim",
-    enabled: false,
+    enabled: true,
+    dependencies: [{ url: "tani/podium" }],
     before: async ({ denops }) => {
       await globals.set(denops, "glance#markdown_breaks", true);
       await globals.set(denops, "glance#markdown_html", true);
+      await globals.set(denops, "glance#plugins", [
+        "https://esm.sh/markdown-it-emoji",
+        "https://esm.sh/markdown-it-highlightjs",
+      ]);
 
-      await globals.set(
-        denops,
-        "glance#config",
-        `file:///${await fn.expand(denops, "~/.config/glance/init.ts")}`,
-      );
+      // await globals.set(
+      //   denops,
+      //   "glance#config",
+      //   `file:///${await fn.expand(denops, "~/.config/glance/init.ts")}`,
+      // );
     },
   },
   {
     url: "iamcco/markdown-preview.nvim",
-    enabled: true,
+    enabled: false,
     build: async ({ denops }) => {
       await denops.call("mkdp#util#install");
     },

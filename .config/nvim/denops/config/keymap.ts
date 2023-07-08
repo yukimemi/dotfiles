@@ -88,6 +88,9 @@ export async function setKeymapPre(denops: Denops) {
     await mapping.map(denops, "<c-a>", "<home>", { mode: "c" });
     await mapping.map(denops, "<c-e>", "<end>", { mode: "c" });
 
+    await mapping.map(denops, "<c-n>", "gt", { mode: "n" });
+    await mapping.map(denops, "<c-p>", "gT", { mode: "n" });
+
     await focusFloating(denops);
   });
 }

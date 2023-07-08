@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@2.2.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -21,16 +21,20 @@ export const ddu: Plug[] = [
       { url: "Shougo/ddu-kind-file" },
       { url: "Shougo/ddu-kind-word" },
       { url: "Shougo/ddu-source-action" },
+      { url: "Shougo/ddu-source-dummy" },
       { url: "Shougo/ddu-source-file" },
       { url: "Shougo/ddu-source-file_old" },
       { url: "Shougo/ddu-source-file_point" },
       { url: "Shougo/ddu-source-file_rec" },
       { url: "Shougo/ddu-source-line" },
+      { url: "Shougo/ddu-source-path_history" },
       { url: "Shougo/ddu-source-register" },
       { url: "Shougo/ddu-ui-ff" },
       { url: "Shougo/ddu-ui-filer" },
       { url: "Shougo/junkfile.vim" },
+      { url: "kamecha/ddu-source-jumplist" },
       { url: "kuuote/ddu-filter-fuse" },
+      { url: "kyoh86/ddu-filter-converter_hl_dir" },
       { url: "kyoh86/ddu-source-command" },
       { url: "matsui54/ddu-source-command_history" },
       { url: "matsui54/ddu-source-file_external" },
@@ -83,12 +87,9 @@ export const ddu: Plug[] = [
         `<cmd>Ddu -name=files file_rec<cr>`,
         { mode: "n" },
       );
-      await mapping.map(
-        denops,
-        "<leader>dh",
-        `<cmd>Ddu -name=help help<cr>`,
-        { mode: "n" },
-      );
+      await mapping.map(denops, "<leader>dh", `<cmd>Ddu -name=help help<cr>`, {
+        mode: "n",
+      });
       await mapping.map(
         denops,
         "<leader>dd",
@@ -261,19 +262,21 @@ export const ddu: Plug[] = [
                       filterFloatingPosition: "top",
                       filterSplitDirection: "floating",
                       floatingBorder: "single",
+                      ignoreEmpty: true,
                       previewFloating: true,
                       previewFloatingBorder: "single",
                       previewFloatingTitle: "Preview",
                       previewSplit: "vertical",
+                      previewHeight: height,
                       previewWidth: Math.floor(width / 2),
                       prompt: "»",
                       split: "floating",
+                      startAutoAction: true,
                       startFilter: true,
                       winCol: col,
                       winHeight: height,
                       winRow: row,
                       winWidth: width,
-                      ignoreEmpty: true,
                       highlights: {
                         floating: "Normal",
                         floatingBorder: "Normal",
@@ -297,6 +300,9 @@ export const ddu: Plug[] = [
                       ignoreCase: true,
                       matchers: ["merge"],
                       converters: ["converter_devicon"],
+                    },
+                    file_rec: {
+                      converters: ["converter_devicon", "converter_hl_dir"],
                     },
                   },
                   sourceParams: {
@@ -535,7 +541,8 @@ export const ddu: Plug[] = [
       });
 
       // Initialize ddu
-      await denops.call(`ddu#start`, {
+      await denops.call(`ddu#load`, "ui", ["ff"]);
+      denops.call(`ddu#start`, {
         ui: "ff",
         uiParams: {
           ff: {

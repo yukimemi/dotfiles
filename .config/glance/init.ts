@@ -1,10 +1,8 @@
-import markdownItHighlightjs from "https://cdn.skypack.dev/markdown-it-highlightjs";
-import markdownItEmoji from "https://cdn.skypack.dev/markdown-it-emoji";
-import markdownItMermaid from "https://cdn.skypack.dev/@mogamitsuchikawa/markdown-it-mermaid";
-import MarkdownIt from "https://cdn.skypack.dev/markdown-it";
+import MarkdownIt from "https://esm.sh/markdown-it";
+import markdownItEmoji from "https://esm.sh/markdown-it-emoji";
+import markdownItHighlightjs from "https://esm.sh/markdown-it-highlightjs";
+import markdownItMermaid from "https://esm.sh/@mogamitsuchikawa/markdown-it-mermaid";
 
 export function createMarkdownRenderer(md: MarkdownIt): MarkdownIt {
-  return md.use(markdownItEmoji).use(markdownItMermaid).use(
-    markdownItHighlightjs,
-  );
+  return md.use([markdownItEmoji, markdownItHighlightjs, markdownItMermaid]);
 }
