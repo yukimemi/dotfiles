@@ -5,19 +5,7 @@ import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 
 export const filetypes: Plug[] = [
-  {
-    url: "aklt/plantuml-syntax",
-    before: async ({ denops }) => {
-      await autocmd.group(denops, "MyPlantUml", (helper) => {
-        helper.remove("*");
-        helper.define(
-          ["BufNewFile", "BufRead"],
-          ["*.uml", "*.plantuml"],
-          "setl ft=plantuml",
-        );
-      });
-    },
-  },
+  // all filetypes
   {
     url: "uga-rosa/scorpeon.vim",
     before: async ({ denops }) => {
@@ -58,9 +46,24 @@ export const filetypes: Plug[] = [
       },
     ],
   },
+  // plantuml
+  {
+    url: "aklt/plantuml-syntax",
+    before: async ({ denops }) => {
+      await autocmd.group(denops, "MyPlantUml", (helper) => {
+        helper.remove("*");
+        helper.define(
+          ["BufNewFile", "BufRead"],
+          ["*.uml", "*.plantuml"],
+          "setl ft=plantuml",
+        );
+      });
+    },
+  },
+  // markdown
   {
     url: "tani/glance-vim",
-    enabled: true,
+    enabled: false,
     dependencies: [{ url: "tani/podium" }],
     before: async ({ denops }) => {
       await globals.set(denops, "glance#markdown_breaks", true);
@@ -89,5 +92,44 @@ export const filetypes: Plug[] = [
       // await globals.set(denops, "mkdp_theme ", "dark");
     },
   },
+  {
+    url: "previm/previm",
+    enabled: true,
+    dependencies: [
+      { url: "tyru/open-browser.vim" },
+    ],
+    before: async ({ denops }) => {
+      await globals.set(denops, "previm_enable_realtime", 1);
+      await globals.set(denops, "previm_show_header", 0);
+      await globals.set(denops, "previm_extra_libraries", [
+        {
+          name: "githubcss",
+          files: [
+            {
+              type: "css",
+              path: "_/css/extra/github.css",
+              url:
+                "https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css",
+            },
+          ],
+        },
+      ]);
+    },
+  },
+  // vim
   { url: "machakann/vim-vimhelplint" },
+  // Rust
+  {
+    url: "Saecki/crates.nvim",
+    after: async ({ denops }) => {
+      await autocmd.group(denops, "MyRustSettings", (helper) => {
+        helper.remove("*");
+        helper.define(
+          ["BufNewFile", "BufRead"],
+          "*.rs,*.toml",
+          `lua require("crates").setup()`,
+        );
+      });
+    },
+  },
 ];

@@ -14,7 +14,7 @@ export const denops: Plug[] = [
     dst: "~/src/github.com/yukimemi/dps-autocursor",
     before: async ({ denops }) => {
       await globals.set(denops, "autocursor_debug", false);
-      await globals.set(denops, "autocursor_blacklist_filetypes", [
+      await globals.set(denops, "autocursor_ignore_filetypes", [
         "ctrlp",
         "ddu-ff",
         "ddu-ff-filter",
@@ -34,7 +34,7 @@ export const denops: Plug[] = [
       await globals.set(denops, "autobackup_enable", true);
       await globals.set(denops, "autobackup_write_echo", false);
       await globals.set(denops, "autobackup_use_ui_select", false);
-      await globals.set(denops, "autobackup_blacklist_filetypes", [
+      await globals.set(denops, "autobackup_ignore_filetypes", [
         "csv",
         "ctrlp",
         "ddu-ff",
@@ -304,11 +304,11 @@ export const denops: Plug[] = [
       await globals.set(denops, "hitori_enable", true);
       await globals.set(denops, "hitori_quit", true);
 
-      await globals.set(denops, "hitori_blacklist_patterns", [
-        ".tmp$",
-        ".diff$",
-        "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$",
-      ]);
+      // await globals.set(denops, "hitori_ignore_patterns", [
+      //   ".tmp$",
+      //   ".diff$",
+      //   "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$",
+      // ]);
     },
   },
   {
