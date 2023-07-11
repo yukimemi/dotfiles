@@ -7,6 +7,7 @@ import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const search: Plug[] = [
+  { url: "lambdalisue/reword.vim" },
   {
     url: "haya14busa/vim-asterisk",
     after: async ({ denops }) => {
@@ -26,7 +27,8 @@ export const search: Plug[] = [
   },
   {
     url: "monaqa/modesearch.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim") && pluginStatus.modesearch,
+    enabled: async ({ denops }) =>
+      await fn.has(denops, "nvim") && pluginStatus.modesearch,
     after: async ({ denops }) => {
       await execute(
         denops,
