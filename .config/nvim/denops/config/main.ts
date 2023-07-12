@@ -17,20 +17,21 @@ import { setOption } from "./option.ts";
 import { cacheLua, cacheVim } from "./cache.ts";
 
 export const pluginStatus = {
-  nvimnotify: true,
-  notifier: false,
-  heirline: false,
-  lualine: true,
-  bufferline: false,
+  autopairs: false,
   barbecue: true,
+  bufferline: false,
+  buffertabs: false,
+  coc: true,
   ddc: false,
   ddu: true,
-  coc: true,
-  autopairs: false,
+  heirline: false,
   insx: true,
+  lualine: true,
   modesearch: false,
-  yanky: false,
+  notifier: false,
+  nvimnotify: true,
   yankround: true,
+  yanky: false,
   vscode: false,
 };
 

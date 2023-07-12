@@ -18,4 +18,8 @@ export const textobj: Plug[] = [
     dependencies: [{ url: "kana/vim-textobj-user" }],
   },
   { url: "machakann/vim-swap" },
+  {
+    url: "yuki-yano/vim-textobj-generics",
+    dependencies: [{ url: "machakann/vim-textobj-functioncall" }],
+  },
 ];
