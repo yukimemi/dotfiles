@@ -1,4 +1,6 @@
 {
     "git.ignoreLimitWarning": true,
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "deno.enable": true,
+    "deno.unstable": true
 }

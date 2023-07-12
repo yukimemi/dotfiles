@@ -11,12 +11,17 @@ export const libs: Plug[] = [
   { url: "vim-denops/denops-shared-server.vim" },
   {
     url: "tani/vim-artemis",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     cache: true,
   },
   {
     url: "rcarriga/nvim-notify",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim") && pluginStatus.nvimnotify,
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && pluginStatus.nvimnotify &&
+      !pluginStatus.vscode,
     cache: {
       after: `
         lua << EOB
@@ -41,7 +46,10 @@ export const libs: Plug[] = [
   },
   {
     url: "vigoux/notifier.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim") && pluginStatus.notifier,
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && pluginStatus.notifier &&
+      !pluginStatus.vscode,
     cache: {
       after: `
         lua << EOB
@@ -64,12 +72,16 @@ export const libs: Plug[] = [
   {
     url: "nvim-lua/plenary.nvim",
     cache: false,
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
   },
   {
     url: "nvim-tree/nvim-web-devicons",
     cache: false,
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
@@ -84,12 +96,21 @@ export const libs: Plug[] = [
   },
   {
     url: "folke/noice.nvim",
-    enabled: async ({ denops }) => (await fn.has(denops, "nvim")) && false,
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     dependencies: [
-      { url: "MunifTanjim/nui.nvim" },
+      {
+        url: "MunifTanjim/nui.nvim",
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) =>
+          denops.meta.host === "nvim" && !pluginStatus.vscode,
+      },
       {
         url: "rcarriga/nvim-notify",
-        enabled: async ({ denops }) => await fn.has(denops, "nvim") && pluginStatus.nvimnotify,
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) =>
+          denops.meta.host === "nvim" && !pluginStatus.vscode,
       },
     ],
     after: async ({ denops }) => {
@@ -112,22 +133,28 @@ export const libs: Plug[] = [
   { url: "lambdalisue/kensaku.vim" },
   {
     url: "MunifTanjim/nui.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
   },
   {
     url: "ryanoasis/vim-devicons",
-    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "vim",
   },
   {
     url: "folke/which-key.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("which-key").setup()`);
     },
   },
   {
     url: "liuchengxu/vim-which-key",
-    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "vim",
     after: async ({ denops }) => {
       await mapping.map(denops, "<leader>", "<cmd>WhichKey '<space>'<cr>", {
         mode: ["n", "x"],
@@ -139,11 +166,13 @@ export const libs: Plug[] = [
   },
   {
     url: "Exafunction/codeium.vim",
-    enabled: Deno.build.os !== "windows",
+    enabled: async ({ denops }) =>
+      Deno.build.os !== "windows" && !(await fn.has(denops, "wsl")),
   },
   {
     url: "lambdalisue/vim-findent",
-    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "vim",
     before: async ({ denops }) => {
       await globals.set(denops, "findent#enable_warnings", 1);
       await globals.set(denops, "findent#enable_messages", 1);
@@ -155,7 +184,9 @@ export const libs: Plug[] = [
   },
   {
     url: "hrsh7th/nvim-dansa",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("dansa").setup(_A.param)`, {
         param: {

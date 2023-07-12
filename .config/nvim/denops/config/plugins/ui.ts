@@ -12,7 +12,12 @@ export const ui: Plug[] = [
   { url: "lambdalisue/seethrough.vim" },
   { url: "andymass/vim-matchup" },
   { url: "mopp/smartnumber.vim" },
-  { url: "RRethy/vim-illuminate" },
+  {
+    url: "RRethy/vim-illuminate",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
+  },
   {
     url: "unblevable/quick-scope",
     before: async ({ denops }) => {
@@ -23,18 +28,21 @@ export const ui: Plug[] = [
   { url: "ntpeters/vim-better-whitespace" },
   {
     url: "LumaKernel/nvim-visual-eof.lua",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.cmd(`lua require("visual-eof").setup()`);
     },
   },
   {
     url: "DanilaMihailov/beacon.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
   },
   {
     url: "mvllow/modes.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("modes").setup(_A.param)`, {
         param: {
@@ -67,7 +75,8 @@ export const ui: Plug[] = [
   },
   {
     url: "gen740/SmoothCursor.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("smoothcursor").setup(_A.param)`, {
         param: {
@@ -157,8 +166,10 @@ export const ui: Plug[] = [
   },
   {
     url: "lukas-reineke/indent-blankline.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
     after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
@@ -175,11 +186,14 @@ export const ui: Plug[] = [
   },
   {
     url: "Yggdroot/indentLine",
-    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "vim",
   },
   {
     url: "b0o/incline.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("incline").setup(_A.param)`, {
         param: {
@@ -202,14 +216,20 @@ export const ui: Plug[] = [
   },
   {
     url: "akinsho/bufferline.nvim",
-    enabled: async ({ denops }) => (await fn.has(denops, "nvim")) && pluginStatus.bufferline,
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode &&
+      pluginStatus.bufferline,
     after: async ({ denops }) => {
       await denops.cmd(`lua require("bufferline").setup()`);
     },
   },
   {
     url: "utilyre/barbecue.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && pluginStatus.barbecue &&
+      !pluginStatus.vscode,
     dependencies: [
       { url: "SmiteshP/nvim-navic" },
       { url: "nvim-tree/nvim-web-devicons" },
@@ -220,11 +240,14 @@ export const ui: Plug[] = [
   },
   {
     url: "kevinhwang91/nvim-bqf",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
   },
   {
     url: "tzachar/highlight-undo.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
@@ -240,7 +263,9 @@ export const ui: Plug[] = [
   },
   {
     url: "folke/edgy.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("edgy").setup(_A.param)`, {
         param: {},
@@ -249,7 +274,9 @@ export const ui: Plug[] = [
   },
   {
     url: "lewis6991/satellite.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim") && false,
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("satellite").setup(_A.param)`, {
         param: {},

@@ -3,11 +3,14 @@ import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
+import { pluginStatus } from "../main.ts";
 
 export const git: Plug[] = [
   {
     url: "lewis6991/gitsigns.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await execute(denops, `lua require("gitsigns").setup()`);
       await mapping.map(
@@ -30,6 +33,7 @@ export const git: Plug[] = [
   },
   {
     url: "lambdalisue/gin.vim",
+    enabled: !pluginStatus.vscode,
     dependencies: [
       { url: "lambdalisue/askpass.vim" },
       { url: "lambdalisue/guise.vim" },

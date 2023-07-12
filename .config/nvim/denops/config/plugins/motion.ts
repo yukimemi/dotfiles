@@ -3,6 +3,7 @@ import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import { pluginStatus } from "../main.ts";
 
 export const motion: Plug[] = [
   {
@@ -27,13 +28,15 @@ export const motion: Plug[] = [
   },
   {
     url: "yuki-yano/zero.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.cmd(`lua require("zero").setup()`);
     },
   },
   {
     url: "Bakudankun/BackAndForward.vim",
+    enabled: !pluginStatus.vscode,
     before: async ({ denops }) => {
       await mapping.map(denops, "gH", "<Plug>(backandforward-back)", {
         mode: "n",

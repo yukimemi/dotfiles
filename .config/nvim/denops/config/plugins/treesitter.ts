@@ -3,11 +3,14 @@ import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
+import { pluginStatus } from "../main.ts";
 
 export const treesitter: Plug[] = [
   {
     url: "nvim-treesitter/nvim-treesitter",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await execute(
         denops,
@@ -35,7 +38,9 @@ export const treesitter: Plug[] = [
   {
     url: "yioneko/nvim-yati",
     dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await execute(
         denops,
@@ -68,26 +73,32 @@ export const treesitter: Plug[] = [
   {
     url: "nvim-treesitter/nvim-treesitter-context",
     dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("treesitter-context").setup()`);
     },
   },
   {
     url: "windwp/nvim-ts-autotag",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("nvim-ts-autotag").setup()`);
     },
   },
   {
     url: "monaqa/nvim-treesitter-clipping",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     dependencies: [
       { url: "nvim-treesitter/nvim-treesitter" },
       { url: "thinca/vim-partedit" },
     ],
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
     after: async ({ denops }) => {
       await mapping.map(
         denops,
@@ -105,7 +116,9 @@ export const treesitter: Plug[] = [
   },
   {
     url: "HiPhish/rainbow-delimiters.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
   },
 ];

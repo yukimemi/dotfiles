@@ -3,11 +3,13 @@ import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import { pluginStatus } from "../main.ts";
 
 export const filetypes: Plug[] = [
   // all filetypes
   {
     url: "uga-rosa/scorpeon.vim",
+    enabled: !pluginStatus.vscode,
     before: async ({ denops }) => {
       await globals.set(denops, "scorpeon_extensions_path", [
         await fn.expand(denops, "~/.cache/vscode/extensions"),
@@ -49,6 +51,7 @@ export const filetypes: Plug[] = [
   // plantuml
   {
     url: "aklt/plantuml-syntax",
+    enabled: !pluginStatus.vscode,
     before: async ({ denops }) => {
       await autocmd.group(denops, "MyPlantUml", (helper) => {
         helper.remove("*");
@@ -94,7 +97,7 @@ export const filetypes: Plug[] = [
   },
   {
     url: "previm/previm",
-    enabled: true,
+    enabled: !pluginStatus.vscode,
     dependencies: [
       { url: "tyru/open-browser.vim" },
     ],
@@ -121,6 +124,7 @@ export const filetypes: Plug[] = [
   // Rust
   {
     url: "Saecki/crates.nvim",
+    enabled: !pluginStatus.vscode,
     after: async ({ denops }) => {
       await autocmd.group(denops, "MyRustSettings", (helper) => {
         helper.remove("*");

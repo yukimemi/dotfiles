@@ -1,3 +1,4 @@
+import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/execute.ts";
@@ -7,7 +8,7 @@ import { pluginStatus } from "../main.ts";
 export const ddc: Plug[] = [
   {
     url: "Shougo/ddc.vim",
-    enabled: pluginStatus.ddc,
+    enabled: pluginStatus.ddc && !pluginStatus.vscode,
     dependencies: [
       // matcher, sorter, converter
       { url: "tani/ddc-fuzzy" },

@@ -12,7 +12,7 @@ import { pluginStatus } from "../main.ts";
 export const coc: Plug[] = [
   {
     url: "neoclide/coc.nvim",
-    enabled: pluginStatus.coc,
+    enabled: pluginStatus.coc && !pluginStatus.vscode,
     dependencies: [{ url: "weirongxu/coc-explorer" }],
     branch: "release",
     // branch: "master",

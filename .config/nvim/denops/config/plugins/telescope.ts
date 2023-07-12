@@ -1,12 +1,12 @@
 import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
 
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 
 export const telescope: Plug[] = [
   {
     url: "nvim-telescope/telescope.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
     dependencies: [
       { url: "folke/which-key.nvim" },
       { url: "folke/trouble.nvim" },
@@ -21,7 +21,9 @@ export const telescope: Plug[] = [
       },
       {
         url: "danielfalk/smart-open.nvim",
-        enabled: async ({ denops }) => await fn.has(denops, "nvim") && Deno.build.os !== "windows",
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) =>
+          denops.meta.host === "nvim" && Deno.build.os !== "windows",
         dependencies: [
           { url: "kkharji/sqlite.lua" },
           { url: "nvim-telescope/telescope.nvim" },

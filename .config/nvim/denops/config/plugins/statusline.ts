@@ -8,7 +8,9 @@ import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/variable
 export const statusline: Plug[] = [
   {
     url: "rebelot/heirline.nvim",
-    enabled: async ({ denops }) => pluginStatus.heirline && await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      pluginStatus.heirline && denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("heirline").setup(_A.param)`, {
         param: {
@@ -22,7 +24,9 @@ export const statusline: Plug[] = [
   },
   {
     url: "nvim-lualine/lualine.nvim",
-    enabled: async ({ denops }) => pluginStatus.lualine && await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      pluginStatus.lualine && denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("lualine").setup(_A.param)`, {
         param: {
@@ -78,7 +82,8 @@ export const statusline: Plug[] = [
   },
   {
     url: "vim-airline/vim-airline",
-    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")) && true,
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "vim" && true,
     dependencies: [
       {
         url: "vim-airline/vim-airline-themes",
@@ -90,6 +95,7 @@ export const statusline: Plug[] = [
   },
   {
     url: "itchyny/lightline.vim",
-    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")) && false,
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "vim" && false,
   },
 ];

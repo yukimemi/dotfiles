@@ -7,10 +7,12 @@ import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import * as op from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v5.0.1/batch/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.2.0/mod.ts";
+import { pluginStatus } from "../main.ts";
 
 export const ddu: Plug[] = [
   {
     url: "Shougo/ddu.vim",
+    enabled: pluginStatus.ddu && !pluginStatus.vscode,
     dependencies: [
       { url: "4513ECHO/ddu-kind-url" },
       { url: "4513ECHO/ddu-source-emoji" },
@@ -55,7 +57,6 @@ export const ddu: Plug[] = [
       },
       { url: "shun/ddu-source-buffer" },
     ],
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
     before: async ({ denops }) => {
       await mapping.map(denops, "q:", "<cmd>Ddu command_history<cr>", {
         mode: "n",

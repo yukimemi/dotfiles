@@ -7,10 +7,12 @@ import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import * as nvimFn from "https://deno.land/x/denops_std@v5.0.1/function/nvim/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import { pluginStatus } from "../main.ts";
 
 export const denops: Plug[] = [
   {
     url: "yukimemi/dps-autocursor",
+    enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-autocursor",
     before: async ({ denops }) => {
       await globals.set(denops, "autocursor_debug", false);
@@ -52,13 +54,14 @@ export const denops: Plug[] = [
   },
   {
     url: "yukimemi/dps-asyngrep",
+    enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-asyngrep",
     before: async ({ denops }) => {
       await globals.set(denops, "asyngrep_debug", false);
       await globals.set(
         denops,
         "asyngrep_cfg_path",
-        await fn.expand(denops, "~/.config/asyngrep/asyngrep.toml"),
+        await fn.expand(denops, "~/.config/asyngrep/asyngrep.toml")
       );
       await option.grepformat.set(denops, "%f:%l:%c:%m");
 
@@ -77,13 +80,13 @@ export const denops: Plug[] = [
         denops,
         "<space>sS",
         "<cmd>Agp --tool=default-all<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(
         denops,
         "<space>sR",
         "<cmd>Agp --tool=ripgrep-all<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(denops, "<space>sP", "<cmd>Agp --tool=pt-all<cr>", {
         mode: "n",
@@ -156,6 +159,7 @@ export const denops: Plug[] = [
   },
   {
     url: "yukimemi/dps-walk",
+    enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-walk",
     before: async ({ denops }) => {
       await globals.set(denops, "walk_debug", false);
@@ -171,31 +175,31 @@ export const denops: Plug[] = [
         denops,
         "<space>ws",
         "<cmd>DenopsWalk --path=~/src<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(
         denops,
         "<space>wD",
         "<cmd>DenopsWalk --path=~/.dotfiles<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(
         denops,
         "<space>wc",
         "<cmd>DenopsWalk --path=~/.cache<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(
         denops,
         "<space>wj",
         "<cmd>DenopsWalk --path=~/.cache/junkfile<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(
         denops,
         "<space>wm",
         "<cmd>DenopsWalk --path=~/.memolist<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(denops, "<space>wd", "<cmd>DenopsWalkBufferDir<cr>", {
         mode: "n",
@@ -204,6 +208,7 @@ export const denops: Plug[] = [
   },
   {
     url: "yukimemi/dps-randomcolorscheme",
+    enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-randomcolorscheme",
     dependencies: [
       { url: "4513ECHO/vim-colors-hatsunemiku" },
@@ -221,7 +226,6 @@ export const denops: Plug[] = [
       { url: "kjssad/quantum.vim" },
       { url: "rafamadriz/neon" },
       { url: "rafi/awesome-vim-colorschemes" },
-      { url: "rhysd/vim-color-splatoon" },
       { url: "rhysd/vim-color-spring-night" },
       { url: "sainnhe/edge" },
       { url: "sainnhe/gruvbox-material" },
@@ -229,42 +233,56 @@ export const denops: Plug[] = [
       { url: "srcery-colors/srcery-vim" },
       { url: "yuttie/hydrangea-vim" },
       {
+        url: "rhysd/vim-color-splatoon",
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "vim",
+      },
+      {
         url: "Matsuuu/pinkmare",
-        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
         url: "rebelot/kanagawa.nvim",
-        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
         url: "folke/tokyonight.nvim",
-        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
         url: "glepnir/zephyr-nvim",
-        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
         url: "tiagovla/tokyodark.nvim",
-        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
         url: "marko-cerovac/material.nvim",
-        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
         url: "RRethy/nvim-base16",
-        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
         url: "catppuccin/nvim",
-        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
     ],
     before: async ({ denops }) => {
       await globals.set(denops, "randomcolorscheme_debug", false);
       await globals.set(denops, "randomcolorscheme_echo", true);
       await globals.set(denops, "randomcolorscheme_interval", 77);
+      await globals.set(denops, "randomcolorscheme_checkwait", 30000);
       await globals.set(denops, "randomcolorscheme_disables", [
         "evening",
         "default",
@@ -273,7 +291,7 @@ export const denops: Plug[] = [
       await globals.set(
         denops,
         "randomcolorscheme_path",
-        await fn.expand(denops, "~/.config/randomcolorscheme/colorscheme.toml"),
+        await fn.expand(denops, "~/.config/randomcolorscheme/colorscheme.toml")
       );
       await globals.set(denops, "randomcolorscheme_notmatch", "[Ll]ight");
       await globals.set(denops, "randomcolorscheme_background", "dark");
@@ -285,7 +303,7 @@ export const denops: Plug[] = [
         denops,
         "<space>rd",
         "<cmd>DisableThisColorscheme<cr>",
-        { mode: "n" },
+        { mode: "n" }
       );
       await mapping.map(denops, "<space>rl", "<cmd>LikeThisColorscheme<cr>", {
         mode: "n",
@@ -298,7 +316,8 @@ export const denops: Plug[] = [
   {
     url: "yukimemi/dps-hitori",
     dst: "~/src/github.com/yukimemi/dps-hitori",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
     before: async ({ denops }) => {
       await globals.set(denops, "hitori_debug", false);
       await globals.set(denops, "hitori_enable", true);
@@ -314,7 +333,6 @@ export const denops: Plug[] = [
   {
     url: "yukimemi/dps-ahdr",
     dst: "~/src/github.com/yukimemi/dps-ahdr",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
     before: async ({ denops }) => {
       await globals.set(denops, "ahdr_debug", false);
       await globals.set(denops, "ahdr_cfg_path", "~/.config/ahdr/ahdr.toml");
@@ -322,23 +340,21 @@ export const denops: Plug[] = [
       await nvimFn.nvim_create_user_command(
         denops,
         "DenopsAhdrDebug",
-        `call denops#notify("${denops.name}", "${
-          lambda.register(
-            denops,
-            async () => {
-              await autocmd.group(denops, "MyAhdr", (helper) => {
-                helper.remove("*");
-                helper.define(
-                  "BufWritePost",
-                  "<buffer>",
-                  "DenopsAhdr waitcmd",
-                  {},
-                );
-              });
-            },
-          )
-        }", [])`,
-        {},
+        `call denops#notify("${denops.name}", "${lambda.register(
+          denops,
+          async () => {
+            await autocmd.group(denops, "MyAhdr", (helper) => {
+              helper.remove("*");
+              helper.define(
+                "BufWritePost",
+                "<buffer>",
+                "DenopsAhdr waitcmd",
+                {}
+              );
+            });
+          }
+        )}", [])`,
+        {}
       );
     },
   },

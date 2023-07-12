@@ -10,7 +10,7 @@ import { pluginStatus } from "../main.ts";
 export const fern: Plug[] = [
   {
     url: "lambdalisue/fern.vim",
-    enabled: !pluginStatus.coc,
+    enabled: async ({ denops }) => !pluginStatus.vscode && !pluginStatus.coc,
     dependencies: [
       {
         url: "lambdalisue/fern-hijack.vim",

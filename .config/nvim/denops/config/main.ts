@@ -11,6 +11,8 @@ import { setFiletype } from "./filetype.ts";
 import { setKeymapPost, setKeymapPre } from "./keymap.ts";
 import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
+import { setNvy } from "./nvy.ts";
+import { setFvim } from "./fvim.ts";
 import { setOption } from "./option.ts";
 import { cacheLua, cacheVim } from "./cache.ts";
 
@@ -20,18 +22,22 @@ export const pluginStatus = {
   heirline: false,
   lualine: true,
   bufferline: false,
+  barbecue: true,
   ddc: false,
+  ddu: true,
   coc: true,
   autopairs: false,
   insx: true,
   modesearch: false,
   yanky: false,
   yankround: true,
+  vscode: false,
 };
 
 export async function main(denops: Denops): Promise<void> {
   const starttime = performance.now();
   await notify(denops, `dvpm main start !`);
+  pluginStatus.vscode = await fn.exists(denops, "g:vscode");
   await pre(denops);
   const dvpm = await dvpmExec(denops);
   await post(denops);
@@ -46,6 +52,8 @@ export async function main(denops: Denops): Promise<void> {
 async function pre(denops: Denops): Promise<void> {
   await setNeovimQt(denops);
   await setNeovide(denops);
+  await setNvy(denops);
+  await setFvim(denops);
 
   await setFiletype(denops);
   await setOption(denops);
@@ -71,7 +79,9 @@ async function vimInit(denops: Denops) {
 }
 
 async function dvpmExec(denops: Denops) {
-  const base_path = (await fn.has(denops, "nvim")) ? "~/.cache/nvim/dvpm" : "~/.cache/vim/dvpm";
+  const base_path = (await fn.has(denops, "nvim"))
+    ? "~/.cache/nvim/dvpm"
+    : "~/.cache/vim/dvpm";
   const base = ensure(await fn.expand(denops, base_path), is.String);
   const cache_path = (await fn.has(denops, "nvim"))
     ? "~/.config/nvim/plugin/dvpm_plugin_cache.vim"

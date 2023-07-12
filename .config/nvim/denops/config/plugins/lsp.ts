@@ -7,12 +7,13 @@ import { pluginStatus } from "../main.ts";
 export const lsp: Plug[] = [
   {
     url: "neovim/nvim-lspconfig",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim") && !pluginStatus.coc,
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.coc && !pluginStatus.vscode,
     dependencies: [
       {
         url: "j-hui/fidget.nvim",
         branch: "legacy",
-        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
         after: async ({ denops }) => {
           await denops.cmd(`lua require("fidget").setup()`);
         },
@@ -36,7 +37,6 @@ export const lsp: Plug[] = [
       { url: "SmiteshP/nvim-navic" },
       {
         url: "stevearc/aerial.nvim",
-        enabled: async ({ denops }) => await fn.has(denops, "nvim"),
         after: async ({ denops }) => {
           await denops.cmd(`lua require("aerial").setup()`);
         },

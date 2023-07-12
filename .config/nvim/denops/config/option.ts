@@ -23,7 +23,7 @@ export async function setOption(denops: Denops) {
     );
     await option.fileformats.set(denops, "unix,dos,mac");
 
-    await option.backup.set(denops, true);
+    await option.backup.set(denops, false);
     await option.backupdir.set(denops, backupdir);
     await option.completeopt.set(denops, "menu,menuone,noselect");
     await option.confirm.set(denops, true);

@@ -27,8 +27,9 @@ export const search: Plug[] = [
   },
   {
     url: "monaqa/modesearch.nvim",
+    // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
-      await fn.has(denops, "nvim") && pluginStatus.modesearch,
+      denops.meta.host === "nvim" && pluginStatus.modesearch,
     after: async ({ denops }) => {
       await execute(
         denops,

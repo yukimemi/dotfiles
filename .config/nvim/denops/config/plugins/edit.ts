@@ -13,11 +13,13 @@ import { ensure, is } from "https://deno.land/x/unknownutil@v3.2.0/mod.ts";
 export const edit: Plug[] = [
   {
     url: "editorconfig/editorconfig-vim",
-    enabled: async ({ denops }) => !(await fn.has(denops, "nvim")),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "vim",
   },
   {
     url: "monaqa/dial.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await mapping.map(denops, "<c-a>", `<Plug>(dial-increment)`, {
         mode: "n",
@@ -35,16 +37,19 @@ export const edit: Plug[] = [
   },
   {
     url: "windwp/nvim-autopairs",
+    // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
-      (await fn.has(denops, "nvim")) && pluginStatus.autopairs,
+      denops.meta.host === "nvim" && pluginStatus.autopairs &&
+      !pluginStatus.vscode,
     after: async ({ denops }) => {
       await execute(denops, `lua require("nvim-autopairs").setup()`);
     },
   },
   {
     url: "hrsh7th/nvim-insx",
+    // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
-      (await fn.has(denops, "nvim")) && pluginStatus.insx,
+      denops.meta.host === "nvim" && pluginStatus.insx && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.cmd(`lua require('insx.preset.standard').setup()`);
     },
@@ -61,8 +66,9 @@ export const edit: Plug[] = [
   },
   {
     url: "gbprod/yanky.nvim",
+    // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
-      (await fn.has(denops, "nvim")) && pluginStatus.yanky,
+      denops.meta.host === "nvim" && pluginStatus.yanky && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await mapping.map(denops, "p", "<Plug>(YankyPutAfter)", {
         mode: ["n", "x"],
@@ -99,7 +105,7 @@ export const edit: Plug[] = [
   },
   {
     url: "LeafCage/yankround.vim",
-    enabled: pluginStatus.yankround,
+    enabled: pluginStatus.yankround && !pluginStatus.vscode,
     before: async ({ denops }) => {
       await ensureDir(
         ensure(await fn.expand(denops, `~/.cache/yankround`), is.String),

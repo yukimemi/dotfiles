@@ -81,6 +81,8 @@ return
 F10::
 Activate("nvim-qt.exe")
 ; Activate("neovide.exe")
+; Activate(USERPROFILE . "\scoop\apps\goneovim\current\goneovim.exe")
+; Activate(USERPROFILE . "\app\fvim\FVim.exe")
 return
 ; for neovim
 ; F10::
