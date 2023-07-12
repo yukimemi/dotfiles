@@ -1,6 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
-
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
 
 import { pluginStatus } from "../main.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/variable.ts";
@@ -84,6 +82,8 @@ export const statusline: Plug[] = [
     url: "vim-airline/vim-airline",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim" && true,
+    // deno-lint-ignore require-await
+    clone: async ({ denops }) => denops.meta.host === "vim",
     dependencies: [
       {
         url: "vim-airline/vim-airline-themes",
@@ -97,5 +97,7 @@ export const statusline: Plug[] = [
     url: "itchyny/lightline.vim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim" && false,
+    // deno-lint-ignore require-await
+    clone: async ({ denops }) => denops.meta.host === "vim",
   },
 ];

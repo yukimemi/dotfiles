@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -141,6 +141,8 @@ export const libs: Plug[] = [
     url: "ryanoasis/vim-devicons",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim",
+    // deno-lint-ignore require-await
+    clone: async ({ denops }) => denops.meta.host === "vim",
   },
   {
     url: "folke/which-key.nvim",
@@ -155,6 +157,8 @@ export const libs: Plug[] = [
     url: "liuchengxu/vim-which-key",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim",
+    // deno-lint-ignore require-await
+    clone: async ({ denops }) => denops.meta.host === "vim",
     after: async ({ denops }) => {
       await mapping.map(denops, "<leader>", "<cmd>WhichKey '<space>'<cr>", {
         mode: ["n", "x"],
@@ -173,6 +177,8 @@ export const libs: Plug[] = [
     url: "lambdalisue/vim-findent",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim",
+    // deno-lint-ignore require-await
+    clone: async ({ denops }) => denops.meta.host === "vim",
     before: async ({ denops }) => {
       await globals.set(denops, "findent#enable_warnings", 1);
       await globals.set(denops, "findent#enable_messages", 1);

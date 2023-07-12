@@ -1,4 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
@@ -188,6 +188,8 @@ export const ui: Plug[] = [
     url: "Yggdroot/indentLine",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim",
+    // deno-lint-ignore require-await
+    clone: async ({ denops }) => denops.meta.host === "vim",
   },
   {
     url: "b0o/incline.nvim",
@@ -285,7 +287,7 @@ export const ui: Plug[] = [
     url: "lewis6991/satellite.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
-      denops.meta.host === "nvim" && !pluginStatus.vscode,
+      denops.meta.host === "nvim" && !pluginStatus.vscode && false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("satellite").setup(_A.param)`, {
         param: {},
@@ -295,6 +297,7 @@ export const ui: Plug[] = [
   {
     url: "goolord/alpha-nvim",
     enabled: false,
+    clone: false,
     cache: {
       after: `
         lua require("alpha").setup(require("alpha.themes.startify").config)
@@ -304,6 +307,7 @@ export const ui: Plug[] = [
   {
     url: "startup-nvim/startup.nvim",
     enabled: false,
+    clone: false,
     cache: {
       after: `
         lua require("startup").setup({theme = "startify"})

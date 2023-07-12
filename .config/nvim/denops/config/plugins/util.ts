@@ -1,5 +1,4 @@
-import type { Plug } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
-import { cache } from "https://deno.land/x/dvpm@2.3.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
@@ -354,19 +353,10 @@ export const util: Plug[] = [
   {
     url: "thinca/vim-singleton",
     enabled: async ({ denops }) => await fn.has(denops, "clientserver"),
-    dst: Deno.build.os === "windows"
-      ? "~/vimfiles/pack/plugins/start/vim-singleton"
-      : "~/.vim/pack/plugins/start/vim-singleton",
-    after: async ({ denops }) => {
-      await cache(denops, {
-        script: `if !has("nvim") | call singleton#enable() | endif`,
-        path: Deno.build.os === "windows"
-          ? "~/vimfiles/plugin/vim-singleton.vim"
-          : "~/.vim/plugin/vim-singleton.vim",
-      });
+    clone: async ({ denops }) => await fn.has(denops, "clientserver"),
+    cache: {
+      after: `if !has("nvim") | call singleton#enable() | endif`,
     },
   },
-  {
-    url: "skanehira/denops-translate.vim",
-  },
+  { url: "skanehira/denops-translate.vim" },
 ];
