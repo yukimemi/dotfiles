@@ -42,7 +42,8 @@ export const util: Plug[] = [
   },
   {
     url: "ahmedkhalf/project.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("project_nvim").setup(_A.param)`, {
         param: {
@@ -94,7 +95,8 @@ export const util: Plug[] = [
   },
   {
     url: "uga-rosa/ccc.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ccc").setup(_A.param)`, {
         param: {
@@ -209,7 +211,8 @@ export const util: Plug[] = [
   },
   {
     url: "stevearc/stickybuf.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.cmd(`lua require("stickybuf").setup()`);
     },
@@ -284,7 +287,8 @@ export const util: Plug[] = [
   },
   {
     url: "tenxsoydev/size-matters.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await mapping.map(denops, "+", "<cmd>FontSizeUp<cr>", { mode: "n" });
       await mapping.map(denops, "-", "<cmd>FontSizeDown<cr>", { mode: "n" });
@@ -314,7 +318,8 @@ export const util: Plug[] = [
   },
   {
     url: "gaoDean/autolist.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim") && false,
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
     after: async ({ denops }) => {
       await execute(
         denops,
@@ -342,7 +347,8 @@ export const util: Plug[] = [
   },
   {
     url: "folke/todo-comments.nvim",
-    enabled: async ({ denops }) => await fn.has(denops, "nvim"),
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
     dependencies: [
       { url: "nvim-lua/plenary.nvim" },
     ],
@@ -355,7 +361,7 @@ export const util: Plug[] = [
     enabled: async ({ denops }) => await fn.has(denops, "clientserver"),
     clone: async ({ denops }) => await fn.has(denops, "clientserver"),
     cache: {
-      after: `if !has("nvim") | call singleton#enable() | endif`,
+      after: `call singleton#enable()`,
     },
   },
   { url: "skanehira/denops-translate.vim" },

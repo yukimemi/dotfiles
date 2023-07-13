@@ -67,7 +67,7 @@ async function post(denops: Denops): Promise<void> {
 }
 
 async function vimInit(denops: Denops) {
-  if (await fn.has(denops, "nvim")) {
+  if (denops.meta.host !== "vim") {
     return;
   }
   await execute(
@@ -80,11 +80,11 @@ async function vimInit(denops: Denops) {
 }
 
 async function dvpmExec(denops: Denops) {
-  const base_path = (await fn.has(denops, "nvim"))
+  const base_path = denops.meta.host === "nvim"
     ? "~/.cache/nvim/dvpm"
     : "~/.cache/vim/dvpm";
   const base = ensure(await fn.expand(denops, base_path), is.String);
-  const cache_path = (await fn.has(denops, "nvim"))
+  const cache_path = denops.meta.host === "nvim"
     ? "~/.config/nvim/plugin/dvpm_plugin_cache.vim"
     : "~/.config/vim/plugin/dvpm_plugin_cache.vim";
   const cache = ensure(await fn.expand(denops, cache_path), is.String);

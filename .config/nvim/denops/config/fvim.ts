@@ -15,7 +15,7 @@ export async function setFvim(denops: Denops) {
     // const fontName = "HackGen Console NF";
     const fontName = "PlemolJP Console NF";
 
-    if (await fn.has(denops, "win32")) {
+    if (denops.meta.platform === "windows") {
       await option.guifont.set(denops, `${fontName}:h10`);
       await option.guifontwide.set(denops, `${fontName}:h10`);
     } else {
@@ -47,7 +47,7 @@ export async function setFvim(denops: Denops) {
       FVimFontLineHeight '+1.0'
       FVimFontSubpixel v:true
       FVimFontNoBuiltinSymbols v:false
-    `
+    `,
     );
   });
 }

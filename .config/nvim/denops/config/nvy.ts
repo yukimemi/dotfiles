@@ -11,7 +11,7 @@ export async function setNvy(denops: Denops) {
   // const fontName = "HackGen Console NF";
   const fontName = "PlemolJP Console NF";
 
-  if (await fn.has(denops, "win32")) {
+  if (denops.meta.platform === "windows") {
     await option.guifont.set(denops, `${fontName}:h10:#h-none`);
     await option.guifontwide.set(denops, `${fontName}:h10:#h-none`);
   } else {

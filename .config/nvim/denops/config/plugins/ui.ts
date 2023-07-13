@@ -228,8 +228,9 @@ export const ui: Plug[] = [
   },
   {
     url: "tomiis4/BufferTabs.nvim",
+    // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
-      (await fn.has(denops, "nvim")) && pluginStatus.buffertabs,
+      denops.meta.host === "nvim" && pluginStatus.buffertabs,
     after: async ({ denops }) => {
       await denops.cmd(`lua require("buffertabs").setup()`);
     },
