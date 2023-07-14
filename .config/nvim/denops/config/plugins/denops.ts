@@ -61,7 +61,7 @@ export const denops: Plug[] = [
       await globals.set(
         denops,
         "asyngrep_cfg_path",
-        await fn.expand(denops, "~/.config/asyngrep/asyngrep.toml")
+        await fn.expand(denops, "~/.config/asyngrep/asyngrep.toml"),
       );
       await option.grepformat.set(denops, "%f:%l:%c:%m");
 
@@ -80,13 +80,13 @@ export const denops: Plug[] = [
         denops,
         "<space>sS",
         "<cmd>Agp --tool=default-all<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<space>sR",
         "<cmd>Agp --tool=ripgrep-all<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(denops, "<space>sP", "<cmd>Agp --tool=pt-all<cr>", {
         mode: "n",
@@ -175,31 +175,31 @@ export const denops: Plug[] = [
         denops,
         "<space>ws",
         "<cmd>DenopsWalk --path=~/src<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<space>wD",
         "<cmd>DenopsWalk --path=~/.dotfiles<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<space>wc",
         "<cmd>DenopsWalk --path=~/.cache<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<space>wj",
         "<cmd>DenopsWalk --path=~/.cache/junkfile<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(
         denops,
         "<space>wm",
         "<cmd>DenopsWalk --path=~/.memolist<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(denops, "<space>wd", "<cmd>DenopsWalkBufferDir<cr>", {
         mode: "n",
@@ -280,9 +280,10 @@ export const denops: Plug[] = [
     ],
     before: async ({ denops }) => {
       await globals.set(denops, "randomcolorscheme_debug", false);
-      await globals.set(denops, "randomcolorscheme_echo", true);
+      await globals.set(denops, "randomcolorscheme_echo", false);
+      await globals.set(denops, "randomcolorscheme_notify", true);
       await globals.set(denops, "randomcolorscheme_interval", 77);
-      await globals.set(denops, "randomcolorscheme_checkwait", 30000);
+      // await globals.set(denops, "randomcolorscheme_checkwait", 30000);
       await globals.set(denops, "randomcolorscheme_disables", [
         "evening",
         "default",
@@ -291,7 +292,7 @@ export const denops: Plug[] = [
       await globals.set(
         denops,
         "randomcolorscheme_path",
-        await fn.expand(denops, "~/.config/randomcolorscheme/colorscheme.toml")
+        await fn.expand(denops, "~/.config/randomcolorscheme/colorscheme.toml"),
       );
       await globals.set(denops, "randomcolorscheme_notmatch", "[Ll]ight");
       await globals.set(denops, "randomcolorscheme_background", "dark");
@@ -303,7 +304,7 @@ export const denops: Plug[] = [
         denops,
         "<space>rd",
         "<cmd>DisableThisColorscheme<cr>",
-        { mode: "n" }
+        { mode: "n" },
       );
       await mapping.map(denops, "<space>rl", "<cmd>LikeThisColorscheme<cr>", {
         mode: "n",
@@ -340,21 +341,23 @@ export const denops: Plug[] = [
       await nvimFn.nvim_create_user_command(
         denops,
         "DenopsAhdrDebug",
-        `call denops#notify("${denops.name}", "${lambda.register(
-          denops,
-          async () => {
-            await autocmd.group(denops, "MyAhdr", (helper) => {
-              helper.remove("*");
-              helper.define(
-                "BufWritePost",
-                "<buffer>",
-                "DenopsAhdr waitcmd",
-                {}
-              );
-            });
-          }
-        )}", [])`,
-        {}
+        `call denops#notify("${denops.name}", "${
+          lambda.register(
+            denops,
+            async () => {
+              await autocmd.group(denops, "MyAhdr", (helper) => {
+                helper.remove("*");
+                helper.define(
+                  "BufWritePost",
+                  "<buffer>",
+                  "DenopsAhdr waitcmd",
+                  {},
+                );
+              });
+            },
+          )
+        }", [])`,
+        {},
       );
     },
   },
