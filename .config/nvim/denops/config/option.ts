@@ -11,7 +11,7 @@ import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as nvimOption from "https://deno.land/x/denops_std@v5.0.1/option/nvim/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v5.0.1/batch/mod.ts";
-import { ensureDir } from "https://deno.land/std@0.193.0/fs/ensure_dir.ts";
+import { ensureDir } from "https://deno.land/std@0.194.0/fs/ensure_dir.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.2.0/mod.ts";
 import { stdpath } from "https://deno.land/x/denops_std@v5.0.1/function/nvim/mod.ts";
 
