@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : twitter.ts
+// Author      : yukimemi
+// Last Change : 2023/07/16 00:38:51.
+// =============================================================================
+
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
 
 import { batch } from "https://deno.land/x/denops_std@v5.0.1/batch/mod.ts";

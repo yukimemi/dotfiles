@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : ddu.ts
+// Author      : yukimemi
+// Last Change : 2023/07/16 00:37:23.
+// =============================================================================
+
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
@@ -36,6 +42,7 @@ export const ddu: Plug[] = [
       { url: "Shougo/junkfile.vim" },
       { url: "kamecha/ddu-source-jumplist" },
       { url: "kuuote/ddu-filter-fuse" },
+      { url: "kuuote/ddu-source-git_status" },
       { url: "kyoh86/ddu-filter-converter_hl_dir" },
       { url: "kyoh86/ddu-source-command" },
       { url: "matsui54/ddu-source-command_history" },
@@ -108,6 +115,32 @@ export const ddu: Plug[] = [
                         denops,
                         await fn.expand(denops, "%"),
                         ":p:h",
+                      ),
+                    },
+                  },
+                ],
+              });
+            },
+          )
+        }", [])<cr>`,
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<leader>dg",
+        `<cmd>call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              await denops.call("ddu#start", {
+                sources: [
+                  {
+                    name: "git_status",
+                    options: {
+                      path: await fn.fnamemodify(
+                        denops,
+                        await fn.expand(denops, "%"),
+                        ":p",
                       ),
                     },
                   },
@@ -308,6 +341,9 @@ export const ddu: Plug[] = [
                     },
                   },
                   sourceParams: {
+                    file_rec: {
+                      chunkSize: 50,
+                    },
                     file_external: {
                       cmd: ["git", "ls-files", "-co", "--exclude-standard"],
                     },

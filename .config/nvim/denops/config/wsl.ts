@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : wsl.ts
+// Author      : yukimemi
+// Last Change : 2023/07/16 00:40:06.
+// =============================================================================
+
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 

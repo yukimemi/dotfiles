@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : filetypes.ts
+// Author      : yukimemi
+// Last Change : 2023/07/16 00:37:44.
+// =============================================================================
+
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
@@ -111,14 +117,14 @@ export const filetypes: Plug[] = [
             {
               type: "css",
               path: "_/css/extra/github.css",
-              url:
-                "https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css",
+              url: "https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css",
             },
           ],
         },
       ]);
     },
   },
+  { url: "dhruvasagar/vim-table-mode" },
   // vim
   { url: "machakann/vim-vimhelplint" },
   // Rust

@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : denops.ts
+// Author      : yukimemi
+// Last Change : 2023/07/15 21:28:38.
+// =============================================================================
+
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
@@ -16,6 +22,7 @@ export const denops: Plug[] = [
     dst: "~/src/github.com/yukimemi/dps-autocursor",
     before: async ({ denops }) => {
       await globals.set(denops, "autocursor_debug", false);
+      await globals.set(denops, "autocursor_notify", false);
       await globals.set(denops, "autocursor_ignore_filetypes", [
         "ctrlp",
         "ddu-ff",
@@ -34,7 +41,8 @@ export const denops: Plug[] = [
     before: async ({ denops }) => {
       await globals.set(denops, "autobackup_debug", false);
       await globals.set(denops, "autobackup_enable", true);
-      await globals.set(denops, "autobackup_write_echo", false);
+      await globals.set(denops, "autobackup_echo", false);
+      await globals.set(denops, "autobackup_notify", true);
       await globals.set(denops, "autobackup_use_ui_select", false);
       await globals.set(denops, "autobackup_ignore_filetypes", [
         "csv",
@@ -101,6 +109,7 @@ export const denops: Plug[] = [
     dst: "~/src/github.com/yukimemi/dps-autodate",
     before: async ({ denops }) => {
       await globals.set(denops, "autodate_debug", false);
+      await globals.set(denops, "autodate_notify", true);
       await globals.set(denops, "autodate_config", {
         xml: {
           replace: [
@@ -163,6 +172,17 @@ export const denops: Plug[] = [
     dst: "~/src/github.com/yukimemi/dps-walk",
     before: async ({ denops }) => {
       await globals.set(denops, "walk_debug", false);
+      await globals.set(denops, "walk_no_mapping", false);
+
+      // await autocmd.group(denops, "MyWalk", (helper) => {
+      //   helper.remove("*");
+      //   helper.define(
+      //     "FileType",
+      //     "dpswalk",
+      //     "nnoremap <buffer> <cr> <plug>(dps-walk-enter)",
+      //     {},
+      //   );
+      // });
 
       await mapping.map(denops, "<space>wa", "<cmd>DenopsWalk<cr>", {
         mode: "n",

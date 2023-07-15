@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : nvy.ts
+// Author      : yukimemi
+// Last Change : 2023/07/16 00:39:41.
+// =============================================================================
+
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
 
 import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";

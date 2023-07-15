@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : git.ts
+// Author      : yukimemi
+// Last Change : 2023/07/16 00:37:52.
+// =============================================================================
+
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
@@ -8,8 +14,7 @@ export const git: Plug[] = [
   {
     url: "lewis6991/gitsigns.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) =>
-      denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await execute(denops, `lua require("gitsigns").setup()`);
       await mapping.map(

@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : plugins.ts
+// Author      : yukimemi
+// Last Change : 2023/07/16 00:39:50.
+// =============================================================================
+
 import { coc } from "./plugins/coc.ts";
 import { ddc } from "./plugins/ddc.ts";
 import { ddu } from "./plugins/ddu.ts";

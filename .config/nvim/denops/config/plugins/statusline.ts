@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : statusline.ts
+// Author      : yukimemi
+// Last Change : 2023/07/16 00:38:23.
+// =============================================================================
+
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
 
 import { pluginStatus } from "../main.ts";
@@ -7,8 +13,7 @@ export const statusline: Plug[] = [
   {
     url: "rebelot/heirline.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) =>
-      pluginStatus.heirline && denops.meta.host === "nvim",
+    enabled: async ({ denops }) => pluginStatus.heirline && denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("heirline").setup(_A.param)`, {
         param: {
@@ -23,8 +28,7 @@ export const statusline: Plug[] = [
   {
     url: "nvim-lualine/lualine.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) =>
-      pluginStatus.lualine && denops.meta.host === "nvim",
+    enabled: async ({ denops }) => pluginStatus.lualine && denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("lualine").setup(_A.param)`, {
         param: {

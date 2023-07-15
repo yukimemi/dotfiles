@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : telescope.ts
+// Author      : yukimemi
+// Last Change : 2023/07/16 00:38:28.
+// =============================================================================
+
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
 
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
@@ -22,8 +28,7 @@ export const telescope: Plug[] = [
       {
         url: "danielfalk/smart-open.nvim",
         // deno-lint-ignore require-await
-        enabled: async ({ denops }) =>
-          denops.meta.host === "nvim" && Deno.build.os !== "windows",
+        enabled: async ({ denops }) => denops.meta.host === "nvim" && Deno.build.os !== "windows",
         dependencies: [
           { url: "kkharji/sqlite.lua" },
           { url: "nvim-telescope/telescope.nvim" },

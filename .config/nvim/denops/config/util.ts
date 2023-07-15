@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : util.ts
+// Author      : yukimemi
+// Last Change : 2023/07/16 00:39:55.
+// =============================================================================
+
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as fs from "https://deno.land/std@0.193.0/fs/mod.ts";
 import * as helper from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";

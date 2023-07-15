@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : main.ts
+// Author      : yukimemi
+// Last Change : 2023/07/16 00:40:13.
+// =============================================================================
+
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
 import { type Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
 
@@ -21,8 +27,8 @@ export const pluginStatus = {
   barbecue: true,
   bufferline: false,
   buffertabs: false,
-  coc: true,
-  ddc: false,
+  coc: false,
+  ddc: true,
   ddu: true,
   heirline: false,
   insx: true,
@@ -73,16 +79,14 @@ async function vimInit(denops: Denops) {
   await execute(
     denops,
     `
-    silent! syntax enable
-    filetype plugin indent on
+      silent! syntax enable
+      filetype plugin indent on
     `,
   );
 }
 
 async function dvpmExec(denops: Denops) {
-  const base_path = denops.meta.host === "nvim"
-    ? "~/.cache/nvim/dvpm"
-    : "~/.cache/vim/dvpm";
+  const base_path = denops.meta.host === "nvim" ? "~/.cache/nvim/dvpm" : "~/.cache/vim/dvpm";
   const base = ensure(await fn.expand(denops, base_path), is.String);
   const cache_path = denops.meta.host === "nvim"
     ? "~/.config/nvim/plugin/dvpm_plugin_cache.vim"

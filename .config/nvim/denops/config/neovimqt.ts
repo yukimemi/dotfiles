@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : neovimqt.ts
+// Author      : yukimemi
+// Last Change : 2023/07/16 00:39:36.
+// =============================================================================
+
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";

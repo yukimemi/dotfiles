@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : keymap.ts
+// Author      : yukimemi
+// Last Change : 2023/07/16 00:40:47.
+// =============================================================================
+
 import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -11,7 +17,7 @@ export async function setKeymapPre(denops: Denops) {
     await globals.set(denops, "maplocalleader", "\\");
 
     // keymaps.
-    await mapping.map(denops, "<leader><leader>", "<cmd>write<cr>", {
+    await mapping.map(denops, "<leader><leader>", "<cmd>update<cr>", {
       mode: "n",
       silent: true,
     });
