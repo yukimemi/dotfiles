@@ -1,18 +1,19 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:39:46.
+// Last Change : 2023/07/16 09:54:12.
 // =============================================================================
 
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
 import * as nvimOption from "https://deno.land/x/denops_std@v5.0.1/option/nvim/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v5.0.1/batch/mod.ts";
-import { ensureDir } from "https://deno.land/std@0.194.0/fs/ensure_dir.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.2.0/mod.ts";
+import { ensureDir } from "https://deno.land/std@0.194.0/fs/ensure_dir.ts";
 import { stdpath } from "https://deno.land/x/denops_std@v5.0.1/function/nvim/mod.ts";
 
 export async function setOption(denops: Denops) {
@@ -91,6 +92,26 @@ export async function setOption(denops: Denops) {
         "FileType",
         "*",
         `set fo-=c fo-=r fo-=o`,
+      );
+    });
+
+    await autocmd.group(denops, "MyRestorePosition", (helper) => {
+      helper.remove("*");
+      helper.define(
+        "BufReadPost",
+        "*",
+        `call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              const lastpos = await fn.line(denops, `'"`);
+              const lastLine = await fn.line(denops, "$");
+              if (lastpos > 0 && lastpos <= lastLine) {
+                await denops.cmd('normal! g`"');
+              }
+            },
+          )
+        }", [])`,
       );
     });
   });
