@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:39:50.
+// Last Change : 2023/07/17 20:03:45.
 // =============================================================================
 
 import { coc } from "./plugins/coc.ts";
@@ -26,6 +26,7 @@ import { treesitter } from "./plugins/treesitter.ts";
 import { twitter } from "./plugins/twitter.ts";
 import { ui } from "./plugins/ui.ts";
 import { util } from "./plugins/util.ts";
+import { wiki } from "./plugins/wiki.ts";
 
 export const plugins = [
   ...libs,
@@ -49,5 +50,6 @@ export const plugins = [
   ...twitter,
   ...terminal,
   ...test,
+  ...wiki,
   ...filetypes,
 ];
