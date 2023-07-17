@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/07/15 21:28:38.
+// Last Change : 2023/07/17 18:54:58.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
@@ -105,6 +105,19 @@ export const denops: Plug[] = [
     },
   },
   {
+    url: "yukimemi/dps-chronicle",
+    dst: "~/src/github.com/yukimemi/dps-chronicle",
+    before: async ({ denops }) => {
+      await globals.set(denops, "chronicle_debug", false);
+      await globals.set(denops, "chronicle_echo", false);
+      await globals.set(denops, "chronicle_notify", true);
+      await globals.set(denops, "chronicle_read_path", `~/.cache/chronicle/read`);
+      await globals.set(denops, "chronicle_write_path", `~/.cache/chronicle/write`);
+      await mapping.map(denops, "mr", "<cmd>OpenChronicleRead<cr>", { mode: "n" });
+      await mapping.map(denops, "mw", "<cmd>OpenChronicleWrite<cr>", { mode: "n" });
+    },
+  },
+  {
     url: "yukimemi/dps-autodate",
     dst: "~/src/github.com/yukimemi/dps-autodate",
     before: async ({ denops }) => {
@@ -174,35 +187,32 @@ export const denops: Plug[] = [
       await globals.set(denops, "walk_debug", false);
       await globals.set(denops, "walk_no_mapping", false);
 
-      // await autocmd.group(denops, "MyWalk", (helper) => {
-      //   helper.remove("*");
-      //   helper.define(
-      //     "FileType",
-      //     "dpswalk",
-      //     "nnoremap <buffer> <cr> <plug>(dps-walk-enter)",
-      //     {},
-      //   );
-      // });
-
-      await mapping.map(denops, "<space>wa", "<cmd>DenopsWalk<cr>", {
-        mode: "n",
-      });
-
-      await mapping.map(denops, "<space>wa", "<cmd>DenopsWalk<cr>", {
+      await mapping.map(denops, "mW", "<cmd>DenopsWalk<cr>", {
         mode: "n",
       });
       await mapping.map(
         denops,
-        "<space>ws",
+        "ms",
         "<cmd>DenopsWalk --path=~/src<cr>",
         { mode: "n" },
       );
       await mapping.map(
         denops,
-        "<space>wD",
+        "mD",
         "<cmd>DenopsWalk --path=~/.dotfiles<cr>",
         { mode: "n" },
       );
+      await mapping.map(denops, "md", "<cmd>DenopsWalkBufferDir<cr>", {
+        mode: "n",
+      });
+
+      await mapping.map(
+        denops,
+        "<space>wm",
+        "<cmd>DenopsWalk --path=~/.memolist<cr>",
+        { mode: "n" },
+      );
+
       await mapping.map(
         denops,
         "<space>wc",
@@ -215,15 +225,6 @@ export const denops: Plug[] = [
         "<cmd>DenopsWalk --path=~/.cache/junkfile<cr>",
         { mode: "n" },
       );
-      await mapping.map(
-        denops,
-        "<space>wm",
-        "<cmd>DenopsWalk --path=~/.memolist<cr>",
-        { mode: "n" },
-      );
-      await mapping.map(denops, "<space>wd", "<cmd>DenopsWalkBufferDir<cr>", {
-        mode: "n",
-      });
     },
   },
   {

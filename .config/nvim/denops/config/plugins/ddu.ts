@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:37:23.
+// Last Change : 2023/07/17 18:56:59.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
@@ -48,6 +48,7 @@ export const ddu: Plug[] = [
       { url: "matsui54/ddu-source-command_history" },
       { url: "matsui54/ddu-source-file_external" },
       { url: "matsui54/ddu-source-help" },
+      { url: "shun/ddu-source-buffer" },
       { url: "shun/ddu-source-rg" },
       { url: "uga-rosa/ddu-filter-converter_devicon" },
       { url: "uga-rosa/ddu-source-lsp" },
@@ -63,7 +64,11 @@ export const ddu: Plug[] = [
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
       },
-      { url: "shun/ddu-source-buffer" },
+      {
+        url: "kuuote/ddu-source-mr",
+        enabled: false,
+        dependencies: [{ url: "lambdalisue/mr.vim" }],
+      },
     ],
     before: async ({ denops }) => {
       await mapping.map(denops, "q:", "<cmd>Ddu command_history<cr>", {
@@ -95,6 +100,14 @@ export const ddu: Plug[] = [
         "<leader>df",
         `<cmd>Ddu -name=files file_rec<cr>`,
         { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<leader>dw",
+        `<cmd>Ddu -name=mrw mr -source-param-kind='mrw'<cr>`,
+        {
+          mode: "n",
+        },
       );
       await mapping.map(denops, "<leader>dh", `<cmd>Ddu -name=help help<cr>`, {
         mode: "n",

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:37:58.
+// Last Change : 2023/07/17 18:56:19.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
@@ -15,6 +15,10 @@ import { pluginStatus } from "../main.ts";
 export const libs: Plug[] = [
   { url: "vim-denops/denops.vim" },
   { url: "vim-denops/denops-shared-server.vim" },
+  {
+    url: "lambdalisue/mr.vim",
+    enabled: false,
+  },
   {
     url: "tani/vim-artemis",
     // deno-lint-ignore require-await
