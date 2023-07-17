@@ -304,6 +304,8 @@ snippets:
     snippet: go install github.com/stateful/runme@latest
   - name: Install btop
     snippet: brew install btop
+  - name: Install bfg
+    snippet: brew install bfg
 
 completions:
   - name: kill
