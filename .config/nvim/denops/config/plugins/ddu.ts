@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2023/07/17 18:56:59.
+// Last Change : 2023/07/20 00:55:17.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
@@ -65,9 +65,8 @@ export const ddu: Plug[] = [
         enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
       },
       {
-        url: "kuuote/ddu-source-mr",
-        enabled: false,
-        dependencies: [{ url: "lambdalisue/mr.vim" }],
+        url: "yukimemi/ddu-source-chronicle",
+        dst: "~/src/github.com/yukimemi/ddu-source-chronicle",
       },
     ],
     before: async ({ denops }) => {
@@ -103,8 +102,16 @@ export const ddu: Plug[] = [
       );
       await mapping.map(
         denops,
-        "<leader>dw",
-        `<cmd>Ddu -name=mrw mr -source-param-kind='mrw'<cr>`,
+        "<leader>cr",
+        `<cmd>Ddu -name=chronicle-read chronicle -source-param-kind='read'<cr>`,
+        {
+          mode: "n",
+        },
+      );
+      await mapping.map(
+        denops,
+        "<leader>cw",
+        `<cmd>Ddu -name=chronicle-write chronicle -source-param-kind='write'<cr>`,
         {
           mode: "n",
         },

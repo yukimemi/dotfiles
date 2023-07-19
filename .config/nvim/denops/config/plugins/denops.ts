@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/07/17 18:54:58.
+// Last Change : 2023/07/19 23:28:23.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
@@ -234,6 +234,7 @@ export const denops: Plug[] = [
     dependencies: [
       { url: "4513ECHO/vim-colors-hatsunemiku" },
       { url: "ChristianChiarulli/nvcode-color-schemes.vim" },
+      { url: "KeitaNakamura/neodark.vim" },
       { url: "NLKNguyen/papercolor-theme" },
       { url: "PHSix/nvim-hybrid" },
       { url: "adrian5/oceanic-next-vim" },
@@ -252,7 +253,10 @@ export const denops: Plug[] = [
       { url: "sainnhe/gruvbox-material" },
       { url: "severij/vadelma" },
       { url: "srcery-colors/srcery-vim" },
+      { url: "aereal/vim-colors-japanesque" },
       { url: "yuttie/hydrangea-vim" },
+      { url: "Rigellute/rigel" },
+
       {
         url: "rhysd/vim-color-splatoon",
         // deno-lint-ignore require-await
@@ -295,6 +299,16 @@ export const denops: Plug[] = [
       },
       {
         url: "catppuccin/nvim",
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
+      },
+      {
+        url: "rose-pine/neovim",
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
+      },
+      {
+        url: "Allianaab2m/penumbra.nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
