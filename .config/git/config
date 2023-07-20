@@ -22,6 +22,7 @@
 	lp = log --oneline -n 20 -p
 	ls = log --stat --abbrev-commit -n 1 # display previous log
 	pf = push --force-with-lease
+  browse = "!deno run --allow-net --allow-run --allow-read https://deno.land/x/git_browse/bin/browse.ts"
 [core]
 	autocrlf = false
 	filemode = false

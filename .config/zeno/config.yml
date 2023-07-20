@@ -66,6 +66,9 @@ snippets:
   - name: git stash drop
     keyword: gstd
     snippet: git stash drop {{stash}}
+  - name: git browse
+    keyword: gbr
+    snippet: git browse
   # Editor
   - name: Neovim
     keyword: e
