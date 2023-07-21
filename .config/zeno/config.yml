@@ -309,6 +309,8 @@ snippets:
     snippet: brew install btop
   - name: Install bfg
     snippet: brew install bfg
+  - name: Install zulip-term
+    snippet: pip3 install zulip-term
 
 completions:
   - name: kill

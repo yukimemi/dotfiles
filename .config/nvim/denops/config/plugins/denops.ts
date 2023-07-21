@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/07/19 23:28:23.
+// Last Change : 2023/07/21 01:11:28.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
@@ -110,7 +110,7 @@ export const denops: Plug[] = [
     before: async ({ denops }) => {
       await globals.set(denops, "chronicle_debug", false);
       await globals.set(denops, "chronicle_echo", false);
-      await globals.set(denops, "chronicle_notify", true);
+      await globals.set(denops, "chronicle_notify", false);
       await globals.set(denops, "chronicle_read_path", `~/.cache/chronicle/read`);
       await globals.set(denops, "chronicle_write_path", `~/.cache/chronicle/write`);
       await mapping.map(denops, "mr", "<cmd>OpenChronicleRead<cr>", { mode: "n" });
