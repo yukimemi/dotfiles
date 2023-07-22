@@ -1,11 +1,12 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2023/07/17 20:03:45.
+// Last Change : 2023/07/22 14:26:40.
 // =============================================================================
 
 import { coc } from "./plugins/coc.ts";
 import { ddc } from "./plugins/ddc.ts";
+import { cmp } from "./plugins/cmp.ts";
 import { ddu } from "./plugins/ddu.ts";
 import { test } from "./plugins/test.ts";
 import { denops } from "./plugins/denops.ts";
@@ -36,6 +37,7 @@ export const plugins = [
   ...search,
   ...fern,
   ...ddc,
+  ...cmp,
   ...lsp,
   ...treesitter,
   ...util,

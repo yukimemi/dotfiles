@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:38:04.
+// Last Change : 2023/07/22 14:33:22.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
@@ -192,8 +192,8 @@ export const lsp: Plug[] = [
           end
 
           -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-          -- local capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-          local capabilities = require("ddc_nvim_lsp").make_client_capabilities()
+          local capabilities = require("cmp_nvim_lsp").default_capabilities()
+          -- local capabilities = require("ddc_nvim_lsp").make_client_capabilities()
           capabilities.textDocument.foldingRange = {
             dynamicRegistration = false,
             lineFoldingOnly = true,
