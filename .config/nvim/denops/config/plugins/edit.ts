@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:37:30.
+// Last Change : 2023/07/23 10:42:00.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@2.4.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@2.4.1/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -29,6 +29,22 @@ export const edit: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
+      await execute(
+        denops,
+        `
+          lua << EOB
+            local augend = require("dial.augend")
+            require("dial.config").augends:register_group({
+              default = {
+                augend.case.new({
+                  types = {"camelCase", "snake_case", "PascalCase", "SCREAMING_SNAKE_CASE"},
+                  cyclic = true,
+                }),
+              },
+            })
+          EOB
+        `,
+      );
       await mapping.map(denops, "<c-a>", `<Plug>(dial-increment)`, {
         mode: "n",
       });
