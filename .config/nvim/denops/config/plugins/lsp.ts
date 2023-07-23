@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2023/07/22 14:33:22.
+// Last Change : 2023/07/22 14:44:41.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@2.4.1/mod.ts";
@@ -245,6 +245,7 @@ export const lsp: Plug[] = [
               lspconfig["powershell_es"].setup(vim.tbl_deep_extend("force", options, {
                 settings = {
                   powershell = {
+                    single_file_support = true,
                     codeFormatting = {
                       preset = "OTBS",
                       ignoreOneLineBlock = false,
