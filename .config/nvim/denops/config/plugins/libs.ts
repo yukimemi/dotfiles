@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/07/19 23:48:28.
+// Last Change : 2023/07/23 19:43:52.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@2.4.1/mod.ts";
@@ -168,7 +168,7 @@ export const libs: Plug[] = [
   },
   {
     url: "Exafunction/codeium.vim",
-    enabled: async ({ denops }) => Deno.build.os !== "windows" && !(await fn.has(denops, "wsl")),
+    enabled: Deno.build.os !== "windows",
   },
   {
     url: "lambdalisue/vim-findent",
