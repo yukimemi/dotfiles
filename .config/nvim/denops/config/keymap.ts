@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : keymap.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:40:47.
+// Last Change : 2023/07/26 18:29:16.
 // =============================================================================
 
 import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
@@ -80,7 +80,7 @@ export async function setKeymapPre(denops: Denops) {
       silent: true,
     });
     await mapping.map(denops, "sv", "<cmd>vs<cr>", { mode: "n", silent: true });
-    await mapping.map(denops, "sw", "<c-w>w", { mode: "n", silent: true });
+    // await mapping.map(denops, "sw", "<c-w>w", { mode: "n", silent: true });
 
     await mapping.map(denops, "<c-h>", "<c-w>h", { mode: "n", silent: true });
     await mapping.map(denops, "<c-l>", "<c-w>l", { mode: "n", silent: true });
