@@ -125,14 +125,14 @@ return
 ; return
 
 ; for firefox
-; F11::
-; Activate("C:\Program Files\Mozilla Firefox\firefox.exe")
-; return
+F11::
+Activate("C:\Program Files\Mozilla Firefox\firefox.exe")
+return
 
 ; for Brave
-F11::
-Activate(USERPROFILE . "\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe")
-return
+; F11::
+; Activate(USERPROFILE . "\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe")
+; return
 
 ; for cmd.exe
 ; F12::

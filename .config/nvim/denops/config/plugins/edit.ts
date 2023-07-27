@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2023/07/23 10:42:00.
+// Last Change : 2023/07/24 10:25:52.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@2.4.2/mod.ts";
@@ -36,6 +36,27 @@ export const edit: Plug[] = [
             local augend = require("dial.augend")
             require("dial.config").augends:register_group({
               default = {
+                augend.integer.alias.decimal,
+                augend.integer.alias.hex,
+                augend.date.new {
+                  pattern = "%Y/%m/%d",
+                  default_kind = "day",
+                },
+                augend.date.new {
+                  pattern = "%Y-%m-%d",
+                  default_kind = "day",
+                },
+                augend.date.new {
+                  pattern = "%m/%d",
+                  default_kind = "day",
+                  only_valid = true,
+                },
+                augend.date.new {
+                  pattern = "%H:%M",
+                  default_kind = "day",
+                  only_valid = true,
+                },
+                augend.constant.alias.ja_weekday_full,
                 augend.case.new({
                   types = {"camelCase", "snake_case", "PascalCase", "SCREAMING_SNAKE_CASE"},
                   cyclic = true,
