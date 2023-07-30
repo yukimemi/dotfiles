@@ -311,6 +311,8 @@ snippets:
     snippet: brew install bfg
   - name: Install zulip-term
     snippet: pip3 install zulip-term
+  - name: Install orbstack
+    snippet: brew install orbstack
 
 completions:
   - name: kill
