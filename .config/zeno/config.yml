@@ -313,10 +313,16 @@ snippets:
     snippet: pip3 install zulip-term
   - name: Install orbstack
     snippet: brew install orbstack
+  - name: Install aih
+    snippet: rhq clone https://github.com/Databingo/aih; cd ~/src/github.com/Databingo/aih; go clean -cache && go clean -modcache; go mod tidy && go build && go install
+  - name: Install ai-cli
+    snippet: pip install git+https://github.com/yufeikang/ai-cli.git
 
   # build
   - name: Build neovim (Ubuntu)
     snippet: sudo apt install -y ninja-build gettext cmake unzip curl; git clone https://github.com/neovim/neovim /tmp/neovim; cd /tmp/neovim; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install
+  - name: Build neovim (Mac)
+    snippet: brew install ninja cmake gettext curl; git clone https://github.com/neovim/neovim /tmp/neovim; cd /tmp/neovim; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install
 
 completions:
   - name: kill
