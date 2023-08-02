@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/07/31 07:56:55.
+// Last Change : 2023/08/03 08:32:07.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@2.4.4/mod.ts";
@@ -257,6 +257,7 @@ export const denops: Plug[] = [
       { url: "yuttie/hydrangea-vim" },
       { url: "Rigellute/rigel" },
       { url: "kyoh86/momiji" },
+      { url: "sigmavim/kyotonight" },
       {
         url: "rhysd/vim-color-splatoon",
         // deno-lint-ignore require-await
