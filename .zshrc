@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/08/02 23:47:15.
+# Last Change : 2023/08/03 00:01:16.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -45,6 +45,29 @@ if ! type go > /dev/null 2>&1; then
   elif $is_linux; then
     sudo apt install -y golang
   fi
+fi
+
+#
+# github cli
+#
+if ! type gh > /dev/null 2>&1; then
+  if $is_mac; then
+    brew install gh
+  elif $is_linux; then
+    type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+      && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+      && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+      && sudo apt update \
+      && sudo apt install gh -y
+  fi
+fi
+
+#
+# rhq
+#
+if ! type rhq > /dev/null 2>&1; then
+  cargo install --git https://github.com/ubnt-intrepid/rhq.git
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
