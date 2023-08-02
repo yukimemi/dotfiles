@@ -314,6 +314,10 @@ snippets:
   - name: Install orbstack
     snippet: brew install orbstack
 
+  # build
+  - name: Build neovim (Ubuntu)
+    snippet: sudo apt install -y ninja-build gettext cmake unzip curl; git clone https://github.com/neovim/neovim /tmp/neovim; cd /tmp/neovim; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install
+
 completions:
   - name: kill
     patterns:

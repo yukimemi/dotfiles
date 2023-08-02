@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/06/25 19:28:47.
+# Last Change : 2023/08/02 23:47:15.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -10,11 +10,41 @@
   && [ -z "${TMUX}" ] \
   && { tmux attach || tmux -u; } >/dev/null 2>&1
 
+is_mac=false
+is_linux=false
+case "$(uname -s)" in
+  Darwin*)
+    is_mac=true
+    ;;
+  Linux*)
+    is_linux=true
+    ;;
+esac
+
 #
 # sheldon
 #
-if type sheldon > /dev/null 2>&1; then
-  eval "$(sheldon source)"
+if ! type sheldon > /dev/null 2>&1; then
+  cargo install sheldon
+fi
+eval "$(sheldon source)"
+
+#
+# deno
+#
+if ! type deno > /dev/null 2>&1; then
+  curl -fsSL https://deno.land/x/install/install.sh | sh
+fi
+
+#
+# go
+#
+if ! type go > /dev/null 2>&1; then
+  if $is_mac; then
+    brew install go
+  elif $is_linux; then
+    sudo apt install -y golang
+  fi
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -293,9 +323,10 @@ fi
 #
 # zoxide.
 #
-if type zoxide > /dev/null 2>&1; then
-  eval "$(zoxide init zsh)"
+if ! type zoxide > /dev/null 2>&1; then
+  curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 fi
+eval "$(zoxide init zsh)"
 
 #
 # atuin.
@@ -336,11 +367,10 @@ fi
 #
 # tea
 #
-if type tea > /dev/null 2>&1; then
-  source <(tea --magic=zsh)
-else
-  source <(curl tea.xyz | sh -s -- --magic=zsh)
+if ! type tea > /dev/null 2>&1; then
+  sh <(curl https://tea.xyz)
 fi
+source <(tea --magic=zsh)
 
 #
 # pnpm
@@ -355,6 +385,9 @@ esac
 #
 # fzf
 #
+if ! type fzf > /dev/null 2>&1; then
+  go install github.com/junegunn/fzf@latest
+fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #
