@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : fern.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:37:37.
+// Last Change : 2023/08/05 23:16:14.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@2.4.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.0.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -16,7 +16,7 @@ import { pluginStatus } from "../main.ts";
 export const fern: Plug[] = [
   {
     url: "lambdalisue/fern.vim",
-    enabled: !pluginStatus.vscode && !pluginStatus.coc,
+    enabled: !pluginStatus.vscode && pluginStatus.fern,
     dependencies: [
       {
         url: "lambdalisue/fern-hijack.vim",

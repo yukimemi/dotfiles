@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2023/07/22 14:26:40.
+// Last Change : 2023/08/05 23:32:06.
 // =============================================================================
 
 import { coc } from "./plugins/coc.ts";
@@ -12,6 +12,8 @@ import { test } from "./plugins/test.ts";
 import { denops } from "./plugins/denops.ts";
 import { edit } from "./plugins/edit.ts";
 import { fern } from "./plugins/fern.ts";
+import { neotree } from "./plugins/neotree.ts";
+import { nvimtree } from "./plugins/nvimtree.ts";
 import { filetypes } from "./plugins/filetypes.ts";
 import { git } from "./plugins/git.ts";
 import { libs } from "./plugins/libs.ts";
@@ -36,6 +38,8 @@ export const plugins = [
   ...telescope,
   ...search,
   ...fern,
+  ...neotree,
+  ...nvimtree,
   ...ddc,
   ...cmp,
   ...lsp,

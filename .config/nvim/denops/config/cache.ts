@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:39:07.
+// Last Change : 2023/08/05 23:33:05.
 // =============================================================================
 
 export function cacheVim() {
@@ -27,6 +27,7 @@ export function cacheLua() {
       vim.g.loaded_man = 1
       vim.g.loaded_matchit = 1
       vim.g.loaded_matchparen = 1
+      vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
       vim.g.loaded_remote_plugins = 1
       vim.g.loaded_shada_plugin = 1

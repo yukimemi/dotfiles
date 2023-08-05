@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/07/30 20:34:19.
+// Last Change : 2023/08/05 22:16:15.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@2.4.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.0.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
@@ -20,7 +20,7 @@ export const libs: Plug[] = [
     url: "tani/vim-artemis",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
-    cache: true,
+    cache: { enabled: true },
   },
   {
     url: "rcarriga/nvim-notify",
@@ -77,13 +77,13 @@ export const libs: Plug[] = [
   },
   {
     url: "nvim-lua/plenary.nvim",
-    cache: false,
+    cache: { enabled: false },
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
   },
   {
     url: "nvim-tree/nvim-web-devicons",
-    cache: false,
+    cache: { enabled: false },
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
@@ -232,4 +232,5 @@ export const libs: Plug[] = [
       });
     },
   },
+  { url: "yuki-yano/dedent-yank.vim" },
 ];

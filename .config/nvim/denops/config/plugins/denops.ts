@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/08/03 08:32:07.
+// Last Change : 2023/08/03 22:32:51.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@2.4.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.0.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -107,6 +107,17 @@ export const denops: Plug[] = [
   {
     url: "yukimemi/dps-chronicle",
     dst: "~/src/github.com/yukimemi/dps-chronicle",
+    cache: {
+      enabled: false,
+      before: `
+        let g:chronicle_echo = v:false
+        let g:chronicle_notify = v:true
+        let g:chronicle_read_path = '~/.cache/chronicle/read'
+        let g:chronicle_write_path = '~/.cache/chronicle/write'
+        nnoremap mr <cmd>OpenChronicleRead<cr>
+        nnoremap mw <cmd>OpenChronicleWrite<cr>
+      `,
+    },
     before: async ({ denops }) => {
       await globals.set(denops, "chronicle_debug", false);
       await globals.set(denops, "chronicle_echo", false);

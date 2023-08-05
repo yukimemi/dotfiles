@@ -1,11 +1,11 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:37:06.
+// Last Change : 2023/08/05 23:02:21.
 // =============================================================================
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@2.4.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.0.0/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/execute.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
@@ -85,6 +85,15 @@ export const ddc: Plug[] = [
       { url: "Shougo/ddc-source-nvim-lsp" },
       { url: "delphinus/ddc-treesitter" },
 
+      {
+        url: "uga-rosa/ddc-nvim-lsp-setup",
+        dependencies: [
+          { url: "neovim/nvim-lspconfig" },
+        ],
+        after: async ({ denops }) => {
+          await denops.call(`luaeval`, `require("ddc_nvim_lsp_setup").setup()`);
+        },
+      },
       // popup, signature
       {
         url: "matsui54/denops-popup-preview.vim",

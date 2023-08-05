@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2023/07/20 00:55:17.
+// Last Change : 2023/08/05 22:49:42.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@2.4.4/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.0.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -19,6 +19,7 @@ export const ddu: Plug[] = [
   {
     url: "Shougo/ddu.vim",
     enabled: pluginStatus.ddu && !pluginStatus.vscode,
+    cache: { enabled: false },
     dependencies: [
       { url: "4513ECHO/ddu-kind-url" },
       { url: "4513ECHO/ddu-source-emoji" },
@@ -54,6 +55,7 @@ export const ddu: Plug[] = [
       { url: "uga-rosa/ddu-source-lsp" },
       { url: "uga-rosa/ddu-source-search_history" },
       { url: "yuki-yano/ddu-filter-fzf" },
+      { url: "yuki-yano/ddu-source-nvim-notify" },
       { url: "Milly/ddu-filter-merge" },
       {
         url: "Milly/ddu-filter-kensaku",
