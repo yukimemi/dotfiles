@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/08/05 23:02:21.
+// Last Change : 2023/08/15 16:47:49.
 // =============================================================================
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
@@ -141,6 +141,7 @@ export const ddc: Plug[] = [
           buffer: { mark: "buffer" },
           line: { mark: "line" },
           file: { mark: "file" },
+          vsnip: { mark: "snip" },
           rg: { mark: "rg" },
           "nvim-lsp": {
             mark: "lsp",
