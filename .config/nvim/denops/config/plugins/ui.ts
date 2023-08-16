@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/07/26 18:29:42.
+// Last Change : 2023/08/16 19:49:30.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.0/mod.ts";
@@ -319,6 +319,14 @@ export const ui: Plug[] = [
     url: "4513ECHO/vim-snipewin",
     before: async ({ denops }) => {
       await mapping.map(denops, "sw", "<Plug>(snipewin)", { mode: "n" });
+    },
+  },
+  {
+    url: "nvim-zh/colorful-winsep.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    after: async ({ denops }) => {
+      await denops.cmd(`lua require("colorful-winsep").setup()`);
     },
   },
 ];
