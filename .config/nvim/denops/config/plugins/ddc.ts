@@ -1,11 +1,11 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/08/15 16:47:49.
+// Last Change : 2023/08/17 23:38:16.
 // =============================================================================
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@3.0.2/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.0.6/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/execute.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
@@ -30,14 +30,8 @@ export const ddc: Plug[] = [
         after: async ({ denops }) => {
           await denops.call("pum#set_option", {
             use_complete: false,
-            horizontal_menu: false,
-            min_width: 3,
-            max_width: 100,
-            max_height: 30,
-            use_setline: false,
-            border: "single",
-            scrollbar_char: "",
-            padding: false,
+            item_orders: ["kind", "space", "abbr", "space", "menu"],
+            scrollbar_char: "┃",
           });
         },
       },
@@ -96,6 +90,14 @@ export const ddc: Plug[] = [
       },
       // popup, signature
       {
+        url: "uga-rosa/ddc-previewer-floating",
+        after: async ({ denops }) => {
+          await denops.call(`luaeval`, `require("ddc_previewer_floating").setup(_A)`, {
+            ui: "pum",
+          });
+        },
+      },
+      {
         url: "matsui54/denops-popup-preview.vim",
         enabled: false,
         before: async ({ denops }) => {
@@ -129,9 +131,11 @@ export const ddc: Plug[] = [
           "CmdlineChanged",
           "TextChangedT",
         ],
+        backspaceCompletion: true,
         sources: ["nvim-lsp", "around", "vsnip", "file", "rg"],
         sourceOptions: {
           _: {
+            minAutoCompleteLength: 1,
             ignoreCase: true,
             matchers: ["matcher_fuzzy"],
             sorters: ["sorter_fuzzy"],
@@ -189,6 +193,7 @@ export const ddc: Plug[] = [
       });
 
       await denops.call(`ddc#enable`);
+      await denops.cmd(`lua require("ddc_previewer_floating").enable()`);
     },
   },
 ];
