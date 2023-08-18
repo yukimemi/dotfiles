@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2023/08/05 22:55:36.
+// Last Change : 2023/08/18 22:15:22.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.6/mod.ts";
@@ -28,13 +28,11 @@ export const lsp: Plug[] = [
         after: async ({ denops }) => {
           await denops.call(
             `luaeval`,
-            `require("linkedit").setup(_A.param)`,
+            `require("linkedit").setup(_A)`,
             {
-              param: {
-                enabled: true,
-                fetch_timeout: 200,
-                keyword_pattern: `\k*`,
-              },
+              enabled: true,
+              fetch_timeout: 200,
+              keyword_pattern: `\k*`,
             },
           );
         },
@@ -73,50 +71,48 @@ export const lsp: Plug[] = [
       {
         url: "onsails/lspkind.nvim",
         after: async ({ denops }) => {
-          await denops.call(`luaeval`, `require("lspkind").init(_A.param)`, {
-            param: {
-              // defines how annotations are shown
-              // default: symbol
-              // options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-              mode: "symbol_text",
+          await denops.call(`luaeval`, `require("lspkind").init(_A)`, {
+            // defines how annotations are shown
+            // default: symbol
+            // options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+            mode: "symbol_text",
 
-              // default symbol map
-              // can be either 'default' (requires nerd-fonts font) or
-              // 'codicons' for codicon preset (requires vscode-codicons font)
-              //
-              // default: 'default'
-              preset: "codicons",
+            // default symbol map
+            // can be either 'default' (requires nerd-fonts font) or
+            // 'codicons' for codicon preset (requires vscode-codicons font)
+            //
+            // default: 'default'
+            preset: "codicons",
 
-              // override preset symbols
-              //
-              // default: {}
-              symbol_map: {
-                Text: "",
-                Method: "",
-                Function: "",
-                Constructor: "",
-                Field: "ﰠ",
-                Variable: "",
-                Class: "ﴯ",
-                Interface: "",
-                Module: "",
-                Property: "ﰠ",
-                Unit: "塞",
-                Value: "",
-                Enum: "",
-                Keyword: "",
-                Snippet: "",
-                Color: "",
-                File: "",
-                Reference: "",
-                Folder: "",
-                EnumMember: "",
-                Constant: "",
-                Struct: "פּ",
-                Event: "",
-                Operator: "",
-                TypeParameter: "",
-              },
+            // override preset symbols
+            //
+            // default: {}
+            symbol_map: {
+              Text: "",
+              Method: "",
+              Function: "",
+              Constructor: "",
+              Field: "ﰠ",
+              Variable: "",
+              Class: "ﴯ",
+              Interface: "",
+              Module: "",
+              Property: "ﰠ",
+              Unit: "塞",
+              Value: "",
+              Enum: "",
+              Keyword: "",
+              Snippet: "",
+              Color: "",
+              File: "",
+              Reference: "",
+              Folder: "",
+              EnumMember: "",
+              Constant: "",
+              Struct: "פּ",
+              Event: "",
+              Operator: "",
+              TypeParameter: "",
             },
           });
         },

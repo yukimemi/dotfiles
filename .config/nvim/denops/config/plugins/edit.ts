@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2023/07/24 10:25:52.
+// Last Change : 2023/08/18 22:20:57.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.6/mod.ts";
@@ -133,17 +133,15 @@ export const edit: Plug[] = [
       await mapping.map(denops, "<c-p>", "<Plug>(YankyCycleBackward)", {
         mode: "n",
       });
-      await denops.call(`luaeval`, `require("yanky").setup(_A.param)`, {
-        param: {
-          ring: {
-            history_length: 300,
-            storage: "shada",
-            sync_with_numbered_registers: true,
-            cancel_event: "update",
-          },
-          system_clipboard: {
-            sync_with_ring: true,
-          },
+      await denops.call(`luaeval`, `require("yanky").setup(_A)`, {
+        ring: {
+          history_length: 300,
+          storage: "shada",
+          sync_with_numbered_registers: true,
+          cancel_event: "update",
+        },
+        system_clipboard: {
+          sync_with_ring: true,
         },
       });
     },

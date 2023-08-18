@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/08/16 19:49:30.
+// Last Change : 2023/08/18 22:18:21.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.6/mod.ts";
@@ -50,32 +50,30 @@ export const ui: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("modes").setup(_A.param)`, {
-        param: {
-          colors: {
-            copy: "#f5c359",
-            delete: "#c75c6a",
-            insert: "#78ccc5",
-            visual: "#9745be",
-          },
-
-          // Set opacity for cursorline and number background
-          line_opacity: 0.15,
-
-          // Enable cursor highlights
-          set_cursor: true,
-
-          // Enable cursorline initially, and disable cursorline for inactive windows
-          // or ignored filetypes
-          set_cursorline: true,
-
-          // Enable line number highlights to match cursorline
-          set_number: true,
-
-          // Disable modes highlights in specified filetypes
-          // Please PR commonly ignored filetypes
-          ignore_filetypes: ["NvimTree", "TelescopePrompt"],
+      await denops.call(`luaeval`, `require("modes").setup(_A)`, {
+        colors: {
+          copy: "#f5c359",
+          delete: "#c75c6a",
+          insert: "#78ccc5",
+          visual: "#9745be",
         },
+
+        // Set opacity for cursorline and number background
+        line_opacity: 0.15,
+
+        // Enable cursor highlights
+        set_cursor: true,
+
+        // Enable cursorline initially, and disable cursorline for inactive windows
+        // or ignored filetypes
+        set_cursorline: true,
+
+        // Enable line number highlights to match cursorline
+        set_number: true,
+
+        // Disable modes highlights in specified filetypes
+        // Please PR commonly ignored filetypes
+        ignore_filetypes: ["NvimTree", "TelescopePrompt"],
       });
     },
   },
@@ -84,37 +82,35 @@ export const ui: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("smoothcursor").setup(_A.param)`, {
-        param: {
-          autostart: true,
-          cursor: "",
-          texthl: "SmoothCursor",
-          linehl: null,
-          type: "default",
-          fancy: {
-            enable: true,
-            head: { cursor: "▷", texthl: "SmoothCursor", linehl: null },
-            body: [
-              { cursor: "", texthl: "SmoothCursorRed" },
-              { cursor: "", texthl: "SmoothCursorOrange" },
-              { cursor: "●", texthl: "SmoothCursorYellow" },
-              { cursor: "●", texthl: "SmoothCursorGreen" },
-              { cursor: "•", texthl: "SmoothCursorAqua" },
-              { cursor: ".", texthl: "SmoothCursorBlue" },
-              { cursor: ".", texthl: "SmoothCursorPurple" },
-            ],
-            tail: { cursor: null, texthl: "SmoothCursor" },
-          },
-          flyin_effect: "bottom",
-          speed: 25,
-          intervals: 35,
-          priority: 10,
-          timeout: 3000,
-          threshold: 3,
-          disable_float_win: false,
-          enabled_filetypes: null,
-          disabled_filetypes: ["ddu-ff", "ddu-ff-filter"],
+      await denops.call(`luaeval`, `require("smoothcursor").setup(_A)`, {
+        autostart: true,
+        cursor: "",
+        texthl: "SmoothCursor",
+        linehl: null,
+        type: "default",
+        fancy: {
+          enable: true,
+          head: { cursor: "▷", texthl: "SmoothCursor", linehl: null },
+          body: [
+            { cursor: "", texthl: "SmoothCursorRed" },
+            { cursor: "", texthl: "SmoothCursorOrange" },
+            { cursor: "●", texthl: "SmoothCursorYellow" },
+            { cursor: "●", texthl: "SmoothCursorGreen" },
+            { cursor: "•", texthl: "SmoothCursorAqua" },
+            { cursor: ".", texthl: "SmoothCursorBlue" },
+            { cursor: ".", texthl: "SmoothCursorPurple" },
+          ],
+          tail: { cursor: null, texthl: "SmoothCursor" },
         },
+        flyin_effect: "bottom",
+        speed: 25,
+        intervals: 35,
+        priority: 10,
+        timeout: 3000,
+        threshold: 3,
+        disable_float_win: false,
+        enabled_filetypes: null,
+        disabled_filetypes: ["ddu-ff", "ddu-ff-filter"],
       });
 
       await autocmd.group(denops, "MySmoothCursor", (helper) => {
@@ -178,13 +174,11 @@ export const ui: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
-        `require("indent_blankline").setup(_A.param)`,
+        `require("indent_blankline").setup(_A)`,
         {
-          param: {
-            space_char_blankline: " ",
-            show_current_context: true,
-            show_current_context_start: true,
-          },
+          space_char_blankline: " ",
+          show_current_context: true,
+          show_current_context_start: true,
         },
       );
     },
@@ -201,20 +195,18 @@ export const ui: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("incline").setup(_A.param)`, {
-        param: {
-          window: {
-            width: "fit",
-            placement: { horizontal: "right", vertical: "top" },
-            margin: {
-              horizontal: { left: 1, right: 0 },
-              vertical: { bottom: 0, top: 1 },
-            },
-            padding: { left: 1, right: 1 },
-            padding_char: " ",
-            winhighlight: {
-              Normal: "TreesitterContext",
-            },
+      await denops.call(`luaeval`, `require("incline").setup(_A)`, {
+        window: {
+          width: "fit",
+          placement: { horizontal: "right", vertical: "top" },
+          margin: {
+            horizontal: { left: 1, right: 0 },
+            vertical: { bottom: 0, top: 1 },
+          },
+          padding: { left: 1, right: 1 },
+          padding_char: " ",
+          winhighlight: {
+            Normal: "TreesitterContext",
           },
         },
       });
@@ -265,12 +257,10 @@ export const ui: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
-        `require("highlight-undo").setup(_A.param)`,
+        `require("highlight-undo").setup(_A)`,
         {
-          param: {
-            hlgroup: "HighlightUndo",
-            duration: 500,
-          },
+          hlgroup: "HighlightUndo",
+          duration: 500,
         },
       );
     },
@@ -280,9 +270,7 @@ export const ui: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("edgy").setup(_A.param)`, {
-        param: {},
-      });
+      await denops.call(`luaeval`, `require("edgy").setup(_A)`, {});
     },
   },
   {
@@ -290,9 +278,7 @@ export const ui: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode && false,
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("satellite").setup(_A.param)`, {
-        param: {},
-      });
+      await denops.call(`luaeval`, `require("satellite").setup(_A)`, {});
     },
   },
   {

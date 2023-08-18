@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/08/05 22:16:15.
+// Last Change : 2023/08/18 22:20:35.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.6/mod.ts";
@@ -87,15 +87,9 @@ export const libs: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
-      await denops.call(
-        `luaeval`,
-        `require("nvim-web-devicons").setup(_A.param)`,
-        {
-          param: {
-            default: true,
-          },
-        },
-      );
+      await denops.call(`luaeval`, `require("nvim-web-devicons").setup(_A)`, {
+        default: true,
+      });
     },
   },
   {
@@ -115,14 +109,12 @@ export const libs: Plug[] = [
       },
     ],
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("noice").setup(_A.param)`, {
-        param: {
-          cmdline: {
-            enabled: false,
-          },
-          messages: {
-            enabled: false,
-          },
+      await denops.call(`luaeval`, `require("noice").setup(_A)`, {
+        cmdline: {
+          enabled: false,
+        },
+        messages: {
+          enabled: false,
         },
       });
     },
@@ -210,23 +202,21 @@ export const libs: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("dansa").setup(_A.param)`, {
-        param: {
-          // The offset to specify how much lines to use.
-          scan_offset: 100,
+      await denops.call(`luaeval`, `require("dansa").setup(_A)`, {
+        // The offset to specify how much lines to use.
+        scan_offset: 100,
 
-          // The count for cut-off the indent candidate.
-          cutoff_count: 5,
+        // The count for cut-off the indent candidate.
+        cutoff_count: 5,
 
-          // The settings for tab-indentation or when it cannot be guessed.
-          default: {
-            expandtab: true,
-            space: {
-              shiftwidth: 2,
-            },
-            tab: {
-              shiftwidth: 4,
-            },
+        // The settings for tab-indentation or when it cannot be guessed.
+        default: {
+          expandtab: true,
+          space: {
+            shiftwidth: 2,
+          },
+          tab: {
+            shiftwidth: 4,
           },
         },
       });
