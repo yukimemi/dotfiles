@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2023/08/03 00:09:01.
+# Last Change : 2023/08/20 10:15:40.
 # =============================================================================
 
 # For time.
@@ -12,7 +12,6 @@ is_linux() { [[ $SHELL_PLATFORM == 'linux' || $SHELL_PLATFORM == 'bsd' ]]; }
 is_osx() { [[ $SHELL_PLATFORM == 'osx' ]]; }
 is_bsd() { [[ $SHELL_PLATFORM == 'bsd' || $SHELL_PLATFORM == 'osx' ]]; }
 is_cygwin() { [[ $SHELL_PLATFORM == 'cygwin' ]]; }
-
 
 # Env setting
 

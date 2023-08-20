@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/08/18 22:20:35.
+// Last Change : 2023/08/20 18:39:01.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.6/mod.ts";
@@ -82,6 +82,19 @@ export const libs: Plug[] = [
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
   },
   {
+    url: "MunifTanjim/nui.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+  },
+  {
+    url: "stevearc/dressing.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("dressing").setup(_A)`, {});
+    },
+  },
+  {
     url: "nvim-tree/nvim-web-devicons",
     cache: { enabled: false },
     // deno-lint-ignore require-await
@@ -95,7 +108,7 @@ export const libs: Plug[] = [
   {
     url: "folke/noice.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode && false,
     dependencies: [
       {
         url: "MunifTanjim/nui.nvim",
@@ -124,11 +137,6 @@ export const libs: Plug[] = [
   { url: "tyru/open-browser.vim" },
   { url: "lambdalisue/readablefold.vim" },
   { url: "lambdalisue/kensaku.vim" },
-  {
-    url: "MunifTanjim/nui.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
-  },
   {
     url: "ryanoasis/vim-devicons",
     // deno-lint-ignore require-await
