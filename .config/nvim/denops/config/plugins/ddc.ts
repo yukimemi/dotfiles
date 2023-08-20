@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/08/20 20:01:57.
+// Last Change : 2023/08/20 22:56:13.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
@@ -214,12 +214,12 @@ export const ddc: Plug[] = [
         backspaceCompletion: true,
         sources: ["nvim-lsp", "around", "vsnip", "file", "rg"],
         cmdlineSources: {
-          ":": ["cmdline", "cmdline-history", "around", "file"],
+          ":": ["cmdline", "cmdline-history", "around"],
           "@": ["input", "cmdline-history", "file", "around"],
           ">": ["input", "cmdline-history", "file", "around"],
-          "/": ["around", "line"],
-          "?": ["around", "line"],
-          "-": ["around", "line"],
+          "/": ["around"],
+          "?": ["around"],
+          "-": ["around"],
           "=": ["input"],
         },
         sourceOptions: {
@@ -234,8 +234,12 @@ export const ddc: Plug[] = [
           around: { mark: "󱂚" },
           buffer: { mark: "" },
           line: { mark: "" },
-          file: { mark: "" },
           vsnip: { mark: "" },
+          file: {
+            mark: "",
+            isVolatile: true,
+            "forceCompletionPattern": "\\S/\\S*",
+          },
           rg: {
             mark: "",
             minAutoCompleteLength: 5,
@@ -244,6 +248,7 @@ export const ddc: Plug[] = [
             mark: "󱐋",
             forceCompletionPattern: "\\.\\w*|::\\w*|->\\w*",
             dup: "force",
+            converters: ["converter_fuzzy", "converter_lsp-kind"],
           },
           "nvim-lua": {
             mark: "󰢱",
@@ -252,6 +257,7 @@ export const ddc: Plug[] = [
           cmdline: {
             mark: "",
             forceCompletionPattern: "\\S/\\S*|\\.\\w*",
+            converters: ["converter_fuzzy", "converter_cmdline"],
           },
           "cmdline-history": {
             mark: "",

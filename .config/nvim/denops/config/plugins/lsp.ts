@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2023/08/18 22:15:22.
+// Last Change : 2023/08/20 22:56:38.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.6/mod.ts";
@@ -45,7 +45,7 @@ export const lsp: Plug[] = [
         },
       },
       { url: "lukas-reineke/lsp-format.nvim" },
-      { url: "jose-elias-alvarez/null-ls.nvim" },
+      { url: "jose-elias-alvarez/null-ls.nvim", enabled: false },
       { url: "williamboman/mason.nvim" },
       {
         url: "williamboman/mason-lspconfig.nvim",
@@ -75,49 +75,17 @@ export const lsp: Plug[] = [
             // defines how annotations are shown
             // default: symbol
             // options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-            mode: "symbol_text",
+            mode: "symbol",
 
             // default symbol map
             // can be either 'default' (requires nerd-fonts font) or
             // 'codicons' for codicon preset (requires vscode-codicons font)
             //
             // default: 'default'
-            preset: "codicons",
-
-            // override preset symbols
-            //
-            // default: {}
-            symbol_map: {
-              Text: "",
-              Method: "",
-              Function: "",
-              Constructor: "",
-              Field: "ﰠ",
-              Variable: "",
-              Class: "ﴯ",
-              Interface: "",
-              Module: "",
-              Property: "ﰠ",
-              Unit: "塞",
-              Value: "",
-              Enum: "",
-              Keyword: "",
-              Snippet: "",
-              Color: "",
-              File: "",
-              Reference: "",
-              Folder: "",
-              EnumMember: "",
-              Constant: "",
-              Struct: "פּ",
-              Event: "",
-              Operator: "",
-              TypeParameter: "",
-            },
+            preset: "default",
           });
         },
       },
-      { url: "Shougo/ddc-source-nvim-lsp" },
     ],
     after: async ({ denops }) => {
       await execute(

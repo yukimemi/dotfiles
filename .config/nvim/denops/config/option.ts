@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 09:54:12.
+// Last Change : 2023/08/20 21:36:01.
 // =============================================================================
 
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -107,7 +107,7 @@ export async function setOption(denops: Denops) {
               const lastpos = await fn.line(denops, `'"`);
               const lastLine = await fn.line(denops, "$");
               if (lastpos > 0 && lastpos <= lastLine) {
-                await denops.cmd('normal! g`"');
+                // await denops.cmd('normal! g`"');
               }
             },
           )

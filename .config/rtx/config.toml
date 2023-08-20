@@ -1,4 +1,22 @@
 [tools]
+# bat = "latest"
 delta = "latest"
-node = "latest"
+deno = "latest"
+duf = "latest"
+dust = "latest"
+fd = "latest"
+fzf = "latest"
 github-cli = "latest"
+# jq = "latest"
+# exa = "latest"
+node = "latest"
+pnpm = "latest"
+ripgrep = "latest"
+rust = "latest"
+yq = "latest"
+
+[settings]
+plugin_autoupdate_last_check_duration = '1 week'
+verbose = true
+asdf_compat = true
+
