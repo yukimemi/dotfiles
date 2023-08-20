@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/08/20 18:41:39.
+// Last Change : 2023/08/20 20:01:57.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
@@ -35,13 +35,13 @@ export const ddc: Plug[] = [
         after: async ({ denops }) => {
           await denops.call("pum#set_option", {
             use_complete: false,
-            item_orders: ["kind", "space", "abbr", "space", "menu"],
+            // item_orders: ["kind", "space", "abbr", "space", "menu"],
             scrollbar_char: "┃",
             offset_cmdrow: 0,
             offset_cmdcol: 0,
             reversed: false,
             border: "none",
-            preview: false,
+            preview: true,
             preview_border: "none",
             preview_width: 80,
           });
@@ -103,7 +103,7 @@ export const ddc: Plug[] = [
       // popup, signature
       {
         url: "uga-rosa/ddc-previewer-floating",
-        enabled: true,
+        enabled: false,
         dependencies: [
           { url: "Shougo/pum.vim" },
         ],
@@ -231,30 +231,30 @@ export const ddc: Plug[] = [
             converters: ["converter_fuzzy"],
             timeout: 1000,
           },
-          around: { mark: "around" },
-          buffer: { mark: "buffer" },
-          line: { mark: "line" },
-          file: { mark: "file" },
-          vsnip: { mark: "snip" },
+          around: { mark: "󱂚" },
+          buffer: { mark: "" },
+          line: { mark: "" },
+          file: { mark: "" },
+          vsnip: { mark: "" },
           rg: {
-            mark: "rg",
+            mark: "",
             minAutoCompleteLength: 5,
           },
           "nvim-lsp": {
-            mark: "lsp",
+            mark: "󱐋",
             forceCompletionPattern: "\\.\\w*|::\\w*|->\\w*",
             dup: "force",
           },
           "nvim-lua": {
-            mark: "lua",
+            mark: "󰢱",
             forceCompletionPattern: "\\.\\w*",
           },
           cmdline: {
-            mark: "cmdline",
+            mark: "",
             forceCompletionPattern: "\\S/\\S*|\\.\\w*",
           },
           "cmdline-history": {
-            mark: "history",
+            mark: "",
             sorters: [],
           },
         },
@@ -332,7 +332,7 @@ export const ddc: Plug[] = [
 
       if (denops.meta.host === "nvim") {
         await denops.call(`ddc#enable`, { context_filetype: "treesiters" });
-        await denops.cmd(`lua require("ddc_previewer_floating").enable()`);
+        // await denops.cmd(`lua require("ddc_previewer_floating").enable()`);
       } else {
         await denops.call(`ddc#enable`, { context_filetype: "context_filetype" });
       }
