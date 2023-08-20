@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:39:55.
+// Last Change : 2023/08/20 09:22:02.
 // =============================================================================
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -43,6 +43,7 @@ export async function notify(
         );
       }
       return;
+      // deno-lint-ignore no-empty
     } catch {}
   }
   if (typeof msg === "string") {
