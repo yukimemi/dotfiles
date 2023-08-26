@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:37:14.
+// Last Change : 2023/08/26 23:53:16.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.7/mod.ts";
@@ -12,6 +12,7 @@ import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import * as op from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.4.0/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
@@ -19,7 +20,51 @@ export const coc: Plug[] = [
   {
     url: "neoclide/coc.nvim",
     enabled: pluginStatus.coc && !pluginStatus.vscode,
-    dependencies: [{ url: "weirongxu/coc-explorer" }],
+    dependencies: [
+      { url: "weirongxu/coc-explorer" },
+      {
+        url: "gelguy/wilder.nvim",
+        after: async ({ denops }) => {
+          await execute(
+            denops,
+            `
+              lua << EOB
+                local wilder = require('wilder')
+                wilder.setup({modes = {':', '/', '?'}})
+                -- Disable Python remote plugin
+                wilder.set_option('use_python_remote_plugin', 0)
+
+                wilder.set_option('pipeline', {
+                  wilder.branch(
+                    wilder.cmdline_pipeline({
+                      fuzzy = 1,
+                    }),
+                    wilder.vim_search_pipeline()
+                  )
+                })
+
+                wilder.set_option('renderer', wilder.renderer_mux({
+                  [':'] = wilder.popupmenu_renderer({
+                    highlighter = wilder.basic_highlighter(),
+                    left = {
+                      ' ',
+                      wilder.popupmenu_devicons()
+                    },
+                    right = {
+                      ' ',
+                      wilder.popupmenu_scrollbar()
+                    },
+                  }),
+                  ['/'] = wilder.wildmenu_renderer({
+                    highlighter = wilder.basic_highlighter(),
+                  }),
+                }))
+              EOB
+            `,
+          );
+        },
+      },
+    ],
     branch: "release",
     // branch: "master",
     // build: async ({ info }) => {
