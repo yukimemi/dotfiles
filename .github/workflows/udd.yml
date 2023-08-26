@@ -28,7 +28,7 @@ jobs:
         run: |
           {
             echo 'UDD_RESULT<<EOF'
-            deno run --allow-all https://deno.land/x/udd/main.ts $(find . -type f | grep -E ".*\.([mc]?(ts|js)|(ts|js)x?)$" -)
+            deno run --allow-all https://deno.land/x/udd/main.ts $(find .config/nvim -type f | grep -E ".*\.([mc]?(ts|js)|(ts|js)x?)$" -)
             echo EOF
           } >> $GITHUB_OUTPUT
 
