@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/08/18 22:18:21.
+// Last Change : 2023/08/26 15:38:14.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.0.6/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.0.7/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
@@ -303,8 +303,21 @@ export const ui: Plug[] = [
   },
   {
     url: "4513ECHO/vim-snipewin",
+    enabled: pluginStatus.snipewin,
     before: async ({ denops }) => {
       await mapping.map(denops, "sw", "<Plug>(snipewin)", { mode: "n" });
+    },
+  },
+  {
+    url: "s1n7ax/nvim-window-picker",
+    enabled: pluginStatus.windowpicker,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("window-picker").setup(_A)`, {
+        hint: "floating-big-letter",
+      });
+      await mapping.map(denops, "sw", "<cmd>lua require('window-picker').pick_window()<cr>", {
+        mode: "n",
+      });
     },
   },
   {

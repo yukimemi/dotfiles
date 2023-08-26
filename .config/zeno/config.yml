@@ -317,6 +317,8 @@ snippets:
     snippet: rhq clone https://github.com/Databingo/aih; cd ~/src/github.com/Databingo/aih; go clean -cache && go clean -modcache; go mod tidy && go build && go install
   - name: Install ai-cli
     snippet: pip install git+https://github.com/yufeikang/ai-cli.git
+  - name: Install yazi
+    snippet: brew install yazi ffmpegthumbnailer unar jq poppler fd ripgrep fzf zoxide; brew tap homebrew/cask-fonts; brew install --cask font-symbols-only-nerd-font
 
   # build
   - name: Build neovim (Ubuntu)

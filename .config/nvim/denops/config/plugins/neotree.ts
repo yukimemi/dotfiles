@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : neotree.ts
 // Author      : yukimemi
-// Last Change : 2023/08/05 23:21:09.
+// Last Change : 2023/08/26 16:56:06.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.0.6/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.0.7/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import { pluginStatus } from "../main.ts";
@@ -12,7 +12,7 @@ import { pluginStatus } from "../main.ts";
 export const neotree: Plug[] = [
   {
     url: "nvim-neo-tree/neo-tree.nvim",
-    enabled: !pluginStatus.vscode && pluginStatus.neotree,
+    enabled: !pluginStatus.vscode && !pluginStatus.coc && pluginStatus.neotree,
     dependencies: [
       { url: "nvim-lua/plenary.nvim" },
       { url: "nvim-tree/nvim-web-devicons" },
