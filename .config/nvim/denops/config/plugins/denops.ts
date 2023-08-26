@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/08/17 19:33:00.
+// Last Change : 2023/08/27 00:19:13.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.7/mod.ts";
@@ -276,6 +276,11 @@ export const denops: Plug[] = [
       },
       {
         url: "Matsuuu/pinkmare",
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
+      },
+      {
+        url: "lourenci/github-colors",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
