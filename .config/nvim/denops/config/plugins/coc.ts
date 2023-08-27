@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2023/08/26 23:53:16.
+// Last Change : 2023/08/27 10:25:07.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.7/mod.ts";
@@ -55,7 +55,7 @@ export const coc: Plug[] = [
                       wilder.popupmenu_scrollbar()
                     },
                   }),
-                  ['/'] = wilder.wildmenu_renderer({
+                  ['/'] = wilder.popupmenu_renderer({
                     highlighter = wilder.basic_highlighter(),
                   }),
                 }))
