@@ -47,7 +47,7 @@ snippets:
     snippet: git log -p
   - name: git cd root
     keyword: gr
-    snippet: "cd $(git rev-parse --show-cdup)"
+    snippet: "cd $(git rev-parse --show-toplevel)"
   - name: git stash
     keyword: gst
     snippet: git stash

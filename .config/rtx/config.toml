@@ -14,6 +14,7 @@ pnpm = "latest"
 ripgrep = "latest"
 rust = "latest"
 yq = "latest"
+neovim = "latest"
 
 [settings]
 plugin_autoupdate_last_check_duration = '1 week'
