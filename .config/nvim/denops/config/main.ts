@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2023/08/26 16:55:18.
+// Last Change : 2023/08/27 15:30:59.
 // =============================================================================
 
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -105,7 +105,7 @@ async function dvpmExec(denops: Denops) {
     debug: false,
     profile: false,
     notify: true,
-    concurrency: 13,
+    concurrency: denops.meta.platform === "windows" ? 5 : 13,
     logarg: [],
   });
 
