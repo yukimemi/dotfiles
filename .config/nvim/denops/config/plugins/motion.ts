@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2023/08/06 20:33:57.
+// Last Change : 2023/08/27 22:11:55.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.7/mod.ts";
@@ -51,5 +51,8 @@ export const motion: Plug[] = [
       });
     },
   },
-  { url: "chaoren/vim-wordmotion" },
+  {
+    url: "chaoren/vim-wordmotion",
+    enabled: false,
+  },
 ];
