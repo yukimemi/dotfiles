@@ -1,13 +1,15 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2023/07/23 10:06:49.
+// Last Change : 2023/08/27 16:27:06.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.7/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
@@ -127,6 +129,38 @@ export const filetypes: Plug[] = [
   { url: "dhruvasagar/vim-table-mode" },
   // vim
   { url: "machakann/vim-vimhelplint" },
+  {
+    url: "4513ECHO/vim-vimhelp-hoptag",
+    enabled: !pluginStatus.vscode,
+    after: async ({ denops }) => {
+      await autocmd.group(denops, "MyVimHelpHopTag", (helper) => {
+        helper.remove("*");
+        helper.define(
+          "FileType",
+          "help",
+          `call <SID>${denops.name}_notify("${
+            lambda.register(
+              denops,
+              async () => {
+                await mapping.map(
+                  denops,
+                  "<c-n>",
+                  `<Plug>(hoptag-next)`,
+                  { mode: "n", buffer: true, silent: true, noremap: false },
+                );
+                await mapping.map(
+                  denops,
+                  "<c-p>",
+                  `<Plug>(hoptag-prev)`,
+                  { mode: "n", buffer: true, silent: true, noremap: false },
+                );
+              },
+            )
+          }", [])`,
+        );
+      });
+    },
+  },
   // Rust
   {
     url: "Saecki/crates.nvim",
