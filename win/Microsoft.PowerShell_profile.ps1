@@ -86,7 +86,7 @@ Function gig {
 }
 
 function gr {
-  Set-Location $(git rev-parse --show-cdup)
+  Set-Location $(git rev-parse --show-toplevel)
 }
 
 # Auto ls on cd.
