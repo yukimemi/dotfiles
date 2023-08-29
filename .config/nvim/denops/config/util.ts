@@ -11,7 +11,7 @@ import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v0.2.0/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
-import { is } from "https://deno.land/x/unknownutil@v3.5.1/mod.ts";
+import { is } from "https://deno.land/x/unknownutil@v3.6.0/mod.ts";
 
 const useNvimNotify = true;
 

@@ -11,7 +11,7 @@ import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import * as op from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.5.1/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.6.0/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
