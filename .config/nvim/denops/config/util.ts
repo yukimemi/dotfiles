@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/08/20 09:22:02.
+// Last Change : 2023/08/28 13:40:00.
 // =============================================================================
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -76,7 +76,12 @@ export async function toggleOption(
 export async function reviewMode(denops: Denops, stop = false) {
   if (stop) {
     await option.relativenumber.set(denops, true);
-    await helper.execute(denops, "GuiWindowOpacity 0.95");
+    if (await fn.exists(denops, ":GuiWindowOpacity")) {
+      await helper.execute(denops, "GuiWindowOpacity 0.95");
+    }
+    if (await fn.exists(denops, "g:neovide")) {
+      await vars.g.set(denops, "neovide_transparency", 0.9);
+    }
     await denops.cmd(`EnableRandomColorscheme`);
     await denops.cmd(`EnableAutoCursorColumn`);
     await denops.cmd(`IlluminateResume`);
@@ -86,7 +91,12 @@ export async function reviewMode(denops: Denops, stop = false) {
   } else {
     await option.wrap.set(denops, true);
     await option.relativenumber.set(denops, false);
-    await helper.execute(denops, "GuiWindowOpacity 1.00");
+    if (await fn.exists(denops, ":GuiWindowOpacity")) {
+      await helper.execute(denops, "GuiWindowOpacity 1.00");
+    }
+    if (await fn.exists(denops, "g:neovide")) {
+      await vars.g.set(denops, "neovide_transparency", 1.0);
+    }
     await denops.cmd(`DisableRandomColorscheme`);
     await denops.cmd(`DisableAutoCursorColumn`);
     await denops.cmd(`IlluminatePause`);
