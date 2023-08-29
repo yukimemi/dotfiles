@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/08/18 22:19:54.
+// Last Change : 2023/08/30 00:00:43.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.8/mod.ts";
@@ -9,9 +9,9 @@ import type { Plug } from "https://deno.land/x/dvpm@3.0.8/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import { expand } from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 
 export const util: Plug[] = [
   {
@@ -365,4 +365,66 @@ export const util: Plug[] = [
     },
   },
   { url: "skanehira/denops-translate.vim" },
+  {
+    url: "mattn/vim-sonictemplate",
+    before: async ({ denops }) => {
+      await vars.g.set(
+        denops,
+        "sonictemplate_vim_template_dir",
+        await fn.expand(denops, "~/.config/nvim/template"),
+      );
+      await vars.g.set(
+        denops,
+        "sonictemplate_vim_vars",
+        {
+          "_": {
+            "author": "yukimemi",
+          },
+        },
+      );
+    },
+  },
+  {
+    url: "kevinhwang91/nvim-fundo",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    dependencies: [
+      { url: "kevinhwang91/promise-async" },
+    ],
+    build: async ({ denops }) => {
+      await denops.cmd(`lua require("fundo").install()`);
+    },
+    after: async ({ denops }) => {
+      await vars.o.set(denops, "undofile", true);
+      await denops.cmd(`lua require("fundo").setup()`);
+    },
+  },
+  {
+    url: "m4xshen/hardtime.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
+    dependencies: [
+      { url: "nvim-lua/plenary.nvim" },
+      { url: "MunifTanjim/nui.nvim" },
+    ],
+    after: async ({ denops }) => {
+      await denops.cmd(`lua require("hardtime").setup()`);
+    },
+  },
+  {
+    url: "rgroli/other.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
+    after: async ({ denops }) => {
+      await denops.cmd(`lua require("other-nvim").setup(_A)`, {
+        mappings: [
+          "livewire",
+          "angular",
+          "laravel",
+          "rails",
+          "golang",
+        ],
+      });
+    },
+  },
 ];

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:37:52.
+// Last Change : 2023/08/29 23:06:00.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.8/mod.ts";
@@ -64,5 +64,9 @@ export const git: Plug[] = [
         mode: "n",
       });
     },
+  },
+  {
+    url: "skanehira/denops-gh.vim",
+    enabled: false,
   },
 ];

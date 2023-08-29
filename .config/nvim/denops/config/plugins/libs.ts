@@ -1,21 +1,25 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/08/20 18:39:01.
+// Last Change : 2023/08/29 23:23:59.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.8/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const libs: Plug[] = [
   { url: "vim-denops/denops.vim" },
   { url: "vim-denops/denops-shared-server.vim" },
+  {
+    url: "LunarVim/bigfile.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    cache: { enabled: true },
+  },
   {
     url: "tani/vim-artemis",
     // deno-lint-ignore require-await
@@ -143,25 +147,6 @@ export const libs: Plug[] = [
     enabled: async ({ denops }) => denops.meta.host === "vim",
     // deno-lint-ignore require-await
     clone: async ({ denops }) => denops.meta.host === "vim",
-  },
-  {
-    url: "mattn/vim-sonictemplate",
-    before: async ({ denops }) => {
-      await vars.g.set(
-        denops,
-        "sonictemplate_vim_template_dir",
-        await fn.expand(denops, "~/.config/nvim/template"),
-      );
-      await vars.g.set(
-        denops,
-        "sonictemplate_vim_vars",
-        {
-          "_": {
-            "author": "yukimemi",
-          },
-        },
-      );
-    },
   },
   {
     url: "folke/which-key.nvim",

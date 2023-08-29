@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/08/26 15:38:14.
+// Last Change : 2023/08/29 23:32:16.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.0.8/mod.ts";
@@ -19,6 +19,14 @@ export const ui: Plug[] = [
   { url: "lambdalisue/seethrough.vim" },
   { url: "andymass/vim-matchup" },
   { url: "mopp/smartnumber.vim" },
+  {
+    url: "lukas-reineke/virt-column.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    after: async ({ denops }) => {
+      await denops.cmd(`lua require("virt-column").setup()`);
+    },
+  },
   {
     url: "RRethy/vim-illuminate",
     // deno-lint-ignore require-await
@@ -326,6 +334,14 @@ export const ui: Plug[] = [
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.cmd(`lua require("colorful-winsep").setup()`);
+    },
+  },
+  {
+    url: "Aasim-A/scrollEOF.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    after: async ({ denops }) => {
+      await denops.cmd(`lua require("scrollEOF").setup()`);
     },
   },
 ];
