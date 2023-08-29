@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : neovide.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:39:31.
+// Last Change : 2023/08/27 22:28:20.
 // =============================================================================
 
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -17,6 +17,7 @@ export async function setNeovide(denops: Denops) {
 
   // const fontName = "HackGen Console NF";
   const fontName = "PlemolJP Console NF";
+  // const fontName = "UDEV Gothic NF";
 
   await globals.set(denops, "neovide_transparency", 0.9);
   await globals.set(denops, "neovide_floating_blur_amount_x", 2.0);

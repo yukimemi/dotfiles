@@ -1,3 +1,4 @@
 [tools]
 node = "latest"
 github-cli = "latest"
+go = "1.21.0"
