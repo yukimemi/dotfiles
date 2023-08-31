@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/08/29 23:23:59.
+// Last Change : 2023/08/31 23:58:18.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.0.8/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.1.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
@@ -12,7 +12,15 @@ import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const libs: Plug[] = [
-  { url: "vim-denops/denops.vim" },
+  {
+    url: "vim-denops/denops.vim",
+    cache: {
+      enabled: true,
+      before: `
+        let g:denops_server_addr = '127.0.0.1:32123'
+      `,
+    },
+  },
   { url: "vim-denops/denops-shared-server.vim" },
   {
     url: "LunarVim/bigfile.nvim",
