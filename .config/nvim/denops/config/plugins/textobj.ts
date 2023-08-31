@@ -4,7 +4,7 @@
 // Last Change : 2023/07/16 00:38:42.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.1.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.2.0/mod.ts";
 
 export const textobj: Plug[] = [
   {
