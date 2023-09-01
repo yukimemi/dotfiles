@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/09/01 20:24:15.
+// Last Change : 2023/09/01 20:59:33.
 // =============================================================================
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -156,6 +156,6 @@ export async function json2toml(denops: Denops, start: number, end: number) {
   const lines = await fn.getline(denops, start, end);
   const obj = JSON.parse(lines.join("\n"));
   const tml = toml.stringify(obj);
-  await fn.appendbufline(denops, "%", end, tml.split("\n"));
+  await fn.appendbufline(denops, "%", end, tml.split("\n").slice(1));
   await fn.deletebufline(denops, "%", start, end);
 }

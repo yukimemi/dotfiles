@@ -192,6 +192,10 @@ snippets:
     keyword: nvchad
     snippet: docker run -w /root -it --rm alpine:edge sh -uelic 'apk add git nodejs neovim ripgrep alpine-sdk --update; git clone https://github.com/NvChad/NvChad ~/.config/nvim; nvim'
 
+  # denops
+  - name: Restart denops shared server
+    snippet: launchctl stop io.github.vim-denops.LaunchAtLogin; launchctl start io.github.vim-denops.LaunchAtLogin
+
   # Install
   - name: Install deno-cache-injector
     snippet: deno install -r -f -n deno-cache-injector --allow-env --allow-read --allow-write https://raw.githubusercontent.com/kuuote/deno-cache-injector/main/injector.ts
