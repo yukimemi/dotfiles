@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2023/08/27 16:27:06.
+// Last Change : 2023/09/01 22:09:04.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.2.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.3.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -172,6 +172,20 @@ export const filetypes: Plug[] = [
           ["BufNewFile", "BufRead"],
           "*.rs,*.toml",
           `lua require("crates").setup()`,
+        );
+      });
+    },
+  },
+  // kdl
+  {
+    url: "imsnif/kdl.vim",
+    before: async ({ denops }) => {
+      await autocmd.group(denops, "MyKdl", (helper) => {
+        helper.remove("*");
+        helper.define(
+          ["BufNewFile", "BufRead"],
+          ["*.kdl"],
+          "setl ft=kdl",
         );
       });
     },

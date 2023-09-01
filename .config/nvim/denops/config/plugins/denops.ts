@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/08/27 00:19:13.
+// Last Change : 2023/09/01 22:36:22.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.2.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.3.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -385,11 +385,12 @@ export const denops: Plug[] = [
       await globals.set(denops, "hitori_enable", true);
       await globals.set(denops, "hitori_quit", true);
 
-      // await globals.set(denops, "hitori_ignore_patterns", [
-      //   ".tmp$",
-      //   ".diff$",
-      //   "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$",
-      // ]);
+      await globals.set(denops, "hitori_ignore_patterns", [
+        ".tmp$",
+        ".diff$",
+        ".dump$",
+        "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$",
+      ]);
     },
   },
   {

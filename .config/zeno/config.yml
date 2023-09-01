@@ -132,6 +132,10 @@ snippets:
   - name: tmuxinator
     keyword: mux
     snippet: tmuxinator
+  # zellij
+  - name: zellij
+    keyword: ze
+    snippet: zellij
   # denops_std update
   - name: denops_std update
     keyword: dup
@@ -323,6 +327,8 @@ snippets:
     snippet: pip install git+https://github.com/yufeikang/ai-cli.git
   - name: Install yazi
     snippet: brew install yazi ffmpegthumbnailer unar jq poppler fd ripgrep fzf zoxide; brew tap homebrew/cask-fonts; brew install --cask font-symbols-only-nerd-font
+  - name: Install zellij
+    snippet: cargo install --locked zellij
 
   # build
   - name: Build neovim (Ubuntu)

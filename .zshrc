@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/08/03 00:01:16.
+# Last Change : 2023/09/01 22:55:10.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -430,3 +430,4 @@ if (which zprof > /dev/null) ;then
   zprof
 fi
 
+# eval "$(zellij setup --generate-auto-start zsh)"
