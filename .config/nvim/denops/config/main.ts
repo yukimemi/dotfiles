@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2023/08/30 23:57:10.
+// Last Change : 2023/09/01 19:33:26.
 // =============================================================================
 
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -20,6 +20,7 @@ import { setNeovimQt } from "./neovimqt.ts";
 import { setNvy } from "./nvy.ts";
 import { setFvim } from "./fvim.ts";
 import { setOption } from "./option.ts";
+import { setCommand } from "./command.ts";
 import { cacheLua, cacheVim } from "./cache.ts";
 
 export const pluginStatus = {
@@ -72,6 +73,7 @@ async function pre(denops: Denops): Promise<void> {
   await setFiletype(denops);
   await setOption(denops);
   await setKeymapPre(denops);
+  await setCommand(denops);
 }
 
 async function post(denops: Denops): Promise<void> {

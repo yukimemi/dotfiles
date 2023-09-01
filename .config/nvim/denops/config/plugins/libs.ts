@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/09/01 00:35:36.
+// Last Change : 2023/09/01 20:34:23.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.2.0/mod.ts";
@@ -31,7 +31,8 @@ export const libs: Plug[] = [
   {
     url: "tani/vim-artemis",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     cache: { enabled: true },
   },
   {
@@ -91,17 +92,20 @@ export const libs: Plug[] = [
     url: "nvim-lua/plenary.nvim",
     cache: { enabled: false },
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
   },
   {
     url: "MunifTanjim/nui.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
   },
   {
     url: "stevearc/dressing.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("dressing").setup(_A)`, {});
     },
@@ -110,7 +114,8 @@ export const libs: Plug[] = [
     url: "nvim-tree/nvim-web-devicons",
     cache: { enabled: false },
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("nvim-web-devicons").setup(_A)`, {
         default: true,
@@ -120,17 +125,20 @@ export const libs: Plug[] = [
   {
     url: "folke/noice.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode && false,
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode && false,
     dependencies: [
       {
         url: "MunifTanjim/nui.nvim",
         // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+        enabled: async ({ denops }) =>
+          denops.meta.host === "nvim" && !pluginStatus.vscode,
       },
       {
         url: "rcarriga/nvim-notify",
         // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+        enabled: async ({ denops }) =>
+          denops.meta.host === "nvim" && !pluginStatus.vscode,
       },
     ],
     after: async ({ denops }) => {
@@ -159,7 +167,8 @@ export const libs: Plug[] = [
   {
     url: "folke/which-key.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("which-key").setup()`);
     },
@@ -201,7 +210,8 @@ export const libs: Plug[] = [
   {
     url: "hrsh7th/nvim-dansa",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("dansa").setup(_A)`, {
         // The offset to specify how much lines to use.

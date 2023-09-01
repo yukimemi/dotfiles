@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/08/30 00:00:43.
+// Last Change : 2023/09/01 18:10:59.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.2.0/mod.ts";
@@ -426,5 +426,17 @@ export const util: Plug[] = [
         ],
       });
     },
+  },
+  {
+    url: "kuuote/jsonyaml.vim",
+    after: async ({ denops }) => {
+      await execute(
+        denops,
+        `
+          command! -buffer -range=% JY call denops#request('jsonyaml', 'jsonYAML', [<line1>, <line2>])
+          command! -buffer -range=% YJ call denops#request('jsonyaml', 'yamlJSON', [<line1>, <line2>])
+        `
+      );
+    }
   },
 ];

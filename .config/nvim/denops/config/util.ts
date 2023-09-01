@@ -1,17 +1,18 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/08/28 13:40:00.
+// Last Change : 2023/09/01 20:24:15.
 // =============================================================================
 
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as fs from "https://deno.land/std@0.200.0/fs/mod.ts";
 import * as helper from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
+import * as toml from "https://deno.land/std@0.200.0/toml/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
-import { systemopen } from "https://deno.land/x/systemopen@v0.2.0/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
 import { is } from "https://deno.land/x/unknownutil@v3.6.0/mod.ts";
+import { systemopen } from "https://deno.land/x/systemopen@v0.2.0/mod.ts";
 
 const useNvimNotify = true;
 
@@ -141,4 +142,20 @@ export async function focusFloating(denops: Denops) {
     EOB
   `,
   );
+}
+
+export async function toml2json(denops: Denops, start: number, end: number) {
+  const lines = await fn.getline(denops, start, end);
+  const obj = toml.parse(lines.join("\n"));
+  const json = JSON.stringify(obj, null, 2);
+  await fn.appendbufline(denops, "%", end, json.split("\n"));
+  await fn.deletebufline(denops, "%", start, end);
+}
+
+export async function json2toml(denops: Denops, start: number, end: number) {
+  const lines = await fn.getline(denops, start, end);
+  const obj = JSON.parse(lines.join("\n"));
+  const tml = toml.stringify(obj);
+  await fn.appendbufline(denops, "%", end, tml.split("\n"));
+  await fn.deletebufline(denops, "%", start, end);
 }
