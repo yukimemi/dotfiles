@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/09/01 18:10:59.
+// Last Change : 2023/09/02 11:06:46.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.0/mod.ts";
@@ -433,8 +433,21 @@ export const util: Plug[] = [
       await execute(
         denops,
         `
-          command! -buffer -range=% JY call denops#request('jsonyaml', 'jsonYAML', [<line1>, <line2>])
-          command! -buffer -range=% YJ call denops#request('jsonyaml', 'yamlJSON', [<line1>, <line2>])
+          command! -range=% JY call denops#request('jsonyaml', 'jsonYAML', [<line1>, <line2>])
+          command! -range=% YJ call denops#request('jsonyaml', 'yamlJSON', [<line1>, <line2>])
+        `,
+      );
+    },
+  },
+  {
+    url: "yukimemi/jsontoml.vim",
+    dst: "~/src/github.com/yukimemi/jsontoml.vim",
+    after: async ({ denops }) => {
+      await execute(
+        denops,
+        `
+          command! -range=% JT call denops#request('jsontoml', 'jsonTOML', [<line1>, <line2>])
+          command! -range=% TJ call denops#request('jsontoml', 'tomlJSON', [<line1>, <line2>])
         `,
       );
     },

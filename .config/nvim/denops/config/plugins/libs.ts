@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/09/01 20:34:23.
+// Last Change : 2023/09/02 17:02:15.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.0/mod.ts";
@@ -15,13 +15,18 @@ export const libs: Plug[] = [
   {
     url: "vim-denops/denops.vim",
     cache: {
-      enabled: true,
+      // deno-lint-ignore require-await
+      enabled: async ({ denops }) => denops.meta.platform === "windows",
       before: `
         let g:denops_server_addr = '127.0.0.1:32123'
       `,
     },
   },
-  { url: "vim-denops/denops-shared-server.vim" },
+  {
+    url: "vim-denops/denops-shared-server.vim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.platform === "windows",
+  },
   {
     url: "LunarVim/bigfile.nvim",
     // deno-lint-ignore require-await
