@@ -1,7 +1,7 @@
 
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/09/03 14:54:11.
+# Last Change : 2023/09/03 15:02:29.
 # =============================================================================
 
 #
@@ -13,7 +13,7 @@ fi
 source <(tea --magic=zsh)
 
 ## link necessary commands.
-(( $+commands[deno] )) || ln -snf $(which tea) ~/.local/bin/deno
+(( $+commands[deno] )) || ln -nf $(which tea) ~/.local/bin/deno
 
 # if tmux is executable and not inside a tmux session, then try to attach.
 # if attachment fails, start a new session
