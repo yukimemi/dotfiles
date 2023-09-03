@@ -17,7 +17,7 @@ RUN sed -i.bak -e "s%http://archive.ubuntu.com/ubuntu/%http://ftp.jaist.ac.jp/pu
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt update -y && apt upgrade -y
-RUN apt install -y apt-utils locales pkg-config sudo git curl build-essential pkg-config
+RUN apt install -y apt-utils locales pkg-config sudo git curl build-essential pkg-config unzip
 
 ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:ja
