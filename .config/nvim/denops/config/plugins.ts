@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2023/08/26 13:17:10.
+// Last Change : 2023/09/03 17:43:30.
 // =============================================================================
 
 import { cmp } from "./plugins/cmp.ts";
@@ -15,6 +15,7 @@ import { filetypes } from "./plugins/filetypes.ts";
 import { git } from "./plugins/git.ts";
 import { libs } from "./plugins/libs.ts";
 import { lsp } from "./plugins/lsp.ts";
+import { mini } from "./plugins/mini.ts";
 import { motion } from "./plugins/motion.ts";
 import { neotree } from "./plugins/neotree.ts";
 import { nvimtree } from "./plugins/nvimtree.ts";
@@ -37,6 +38,7 @@ export const plugins = [
   ...tmux,
   ...ddu,
   ...coc,
+  ...mini,
   ...telescope,
   ...search,
   ...fern,
