@@ -1,11 +1,11 @@
 
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/09/03 14:48:27.
+# Last Change : 2023/09/03 14:54:11.
 # =============================================================================
 
 #
-# tea
+# tea/cli
 #
 if ! type tea > /dev/null 2>&1; then
   sh <(curl tea.xyz)
@@ -13,7 +13,7 @@ fi
 source <(tea --magic=zsh)
 
 ## link necessary commands.
-# (( $+commands[deno] )) || ln -snf $(which tea) ~/.local/bin/deno
+(( $+commands[deno] )) || ln -snf $(which tea) ~/.local/bin/deno
 
 # if tmux is executable and not inside a tmux session, then try to attach.
 # if attachment fails, start a new session

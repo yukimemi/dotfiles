@@ -8,5 +8,5 @@ cargo install --git https://github.com/ubnt-intrepid/dot.git
 dot init yukimemi/dotfiles
 
 # and then
-tmux
+zsh
 ```
