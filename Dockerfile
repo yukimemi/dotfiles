@@ -16,15 +16,13 @@ RUN sed -i.bak -e "s%http://archive.ubuntu.com/ubuntu/%http://ftp.jaist.ac.jp/pu
 # Environment setting.
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt update -y \
-      && apt upgrade -y \
-			&& apt install -y --no-install-recommends apt-utils locales pkg-config
+RUN apt update -y && apt upgrade -y
 
 ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:ja
 RUN locale-gen ja_JP.UTF-8
 
-RUN apt install -y sudo git curl build-essential
+RUN apt install -y apt-utils locales pkg-config sudo git curl build-essential pkg-config
 
 # Set localtime.
 RUN ln -snvf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
