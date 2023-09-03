@@ -9,7 +9,7 @@ end)
 return {
   front_end = "WebGpu",
   adjust_window_size_when_changing_font_size = false,
-  color_scheme = "Sakura",
+  color_scheme = 'Catppuccin Mocha',
   dpi = 96.0,
   font = wezterm.font_with_fallback({
     "UDEV Gothic NF",
