@@ -1,7 +1,7 @@
-# =============================================================================
+
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/09/03 11:15:49.
+# Last Change : 2023/09/03 11:58:38.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -30,51 +30,10 @@ fi
 eval "$(sheldon source)"
 
 #
-# deno
-#
-if ! type deno > /dev/null 2>&1; then
-  curl -fsSL https://deno.land/x/install/install.sh | sh
-fi
-
-#
-# go
-#
-if ! type go > /dev/null 2>&1; then
-  if $is_mac; then
-    brew install go
-  elif $is_linux; then
-    sudo apt install -y golang
-  fi
-fi
-
-#
-# github cli
-#
-if ! type gh > /dev/null 2>&1; then
-  if $is_mac; then
-    brew install gh
-  elif $is_linux; then
-    type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
-    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-      && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-      && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-      && sudo apt update \
-      && sudo apt install gh -y
-  fi
-fi
-
-#
 # rhq
 #
 if ! type rhq > /dev/null 2>&1; then
   cargo install --git https://github.com/ubnt-intrepid/rhq.git
-fi
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 #
@@ -323,20 +282,6 @@ add-zsh-hook precmd check-buffer-stack
 RPROMPT='${COMMAND_BUFFER_STACK}'
 
 #
-# shelp.
-#
-if type shelp > /dev/null 2>&1; then
-  eval "$(shelp init -)"
-fi
-
-#
-# pmy.
-#
-if type pmy > /dev/null 2>&1; then
-  # eval "$(pmy init)"
-fi
-
-#
 # direnv.
 #
 if type direnv > /dev/null 2>&1; then
@@ -347,9 +292,8 @@ fi
 # zoxide.
 #
 if ! type zoxide > /dev/null 2>&1; then
-  curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+  eval "$(zoxide init zsh)"
 fi
-eval "$(zoxide init zsh)"
 
 #
 # atuin.
@@ -364,7 +308,6 @@ fi
 if type rtx > /dev/null 2>&1; then
   eval "$(rtx activate zsh)"
 fi
-
 
 #
 # Google cloud sdk
@@ -391,7 +334,7 @@ fi
 # tea
 #
 if ! type tea > /dev/null 2>&1; then
-  sh <(curl https://tea.xyz)
+  sh <(curl tea.xyz)
 fi
 source <(tea --magic=zsh)
 
