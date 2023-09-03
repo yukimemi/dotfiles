@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2023/09/03 12:25:47.
+# Last Change : 2023/09/03 21:46:15.
 # =============================================================================
 
 # For time.
@@ -109,7 +109,7 @@ typeset -xT SUDO_PATH sudo_path
 typeset -gU sudo_path
 sudo_path=(
   {,/usr/pkg,/usr/local,/usr}/sbin(N-/)
-    )
+)
 
 # Other.
 export XDG_CONFIG_HOME="${HOME}/.config"
@@ -117,39 +117,21 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export GSR_SHOW_AHEAD=1
 export GSR_SHOW_BEHIND=1
 
-export VIM_CONFIG_PATH="${HOME}/.config/pack"
+export MOCWORD_DATA="${HOME}/.config/mocword/mocword.sqlite"
 
 export __FILTER_TOOL=fzf
-
-export RRC_CONFIG="${HOME}/.config/rrc/config.toml"
-
-export NEXTWORD_DATA_PATH="${HOME}/.config/nextword/nextword-data-large"
-
-export MOCWORD_DATA="${HOME}/.config/mocword/mocword.sqlite"
 
 # neovide.
 export NEOVIDE_MULTIGRID=1
 
 # fzf.
-if which fd > /dev/null 2>&1; then
-  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-elif which rg > /dev/null 2>&1; then
-  export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-fi
+(( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+(( $+commands[fd] )) && export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # local conf
-if [ -e ~/.zshrc_private ]; then
-  source ~/.zshrc_private
-fi
-
-if [ -e ~/.zshrc_local ]; then
-  source ~/.zshrc_local
-fi
-
+[ -e ~/.zshrc_private ] && source ~/.zshrc_private
+[ -e ~/.zshrc_local ] && source ~/.zshrc_local
 
 # Compile zshenv.
-if [ ! -f ~/.zshenv.zwc -o ~/.zshenv -nt ~/.zshenv.zwc ]; then
-  zcompile ~/.zshenv
-fi
-
+[ ! -f ~/.zshenv.zwc -o ~/.zshenv -nt ~/.zshenv.zwc ] && zcompile ~/.zshenv
 

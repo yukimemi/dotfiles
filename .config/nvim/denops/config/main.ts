@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2023/09/03 17:46:01.
+// Last Change : 2023/09/03 19:49:28.
 // =============================================================================
 
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -46,6 +46,8 @@ export const pluginStatus = {
   nvimtree: false,
   snipewin: true,
   windowpicker: false,
+  indentblankline: true,
+  hlchunk: false,
 };
 
 export async function main(denops: Denops): Promise<void> {

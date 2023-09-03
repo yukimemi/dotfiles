@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/08/29 23:32:16.
+// Last Change : 2023/09/03 19:47:34.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.2/mod.ts";
@@ -177,7 +177,8 @@ export const ui: Plug[] = [
   {
     url: "lukas-reineke/indent-blankline.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && pluginStatus.indentblankline && !pluginStatus.vscode,
     dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
     after: async ({ denops }) => {
       await denops.call(
@@ -189,6 +190,15 @@ export const ui: Plug[] = [
           show_current_context_start: true,
         },
       );
+    },
+  },
+  {
+    url: "shellRaining/hlchunk.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && pluginStatus.hlchunk && !pluginStatus.vscode,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("hlchunk").setup()`);
     },
   },
   {

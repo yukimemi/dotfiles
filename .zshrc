@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/09/03 15:45:56.
+# Last Change : 2023/09/03 22:05:42.
 # =============================================================================
 
 #
@@ -27,14 +27,6 @@ source <(tea --magic=zsh)
 eval "$(sheldon source)"
 
 #
-# rtx
-#
-(( $+commands[rtx] )) || curl https://rtx.pub/install.sh | sh
-if type rtx > /dev/null 2>&1; then
-  eval "$(rtx activate zsh)"
-fi
-
-#
 # rhq
 #
 (( $+commands[rhq] )) || cargo install --git https://github.com/ubnt-intrepid/rhq.git
@@ -42,26 +34,18 @@ fi
 #
 # direnv.
 #
-(( $+commands[direnv] )) || curl -sfL https://direnv.net/install.sh | bash
-if type direnv > /dev/null 2>&1; then
-  eval "$(direnv hook zsh)"
-fi
+eval "$(direnv hook zsh)"
 
 #
 # zoxide.
 #
-(( $+commands[zoxide] )) || cargo install zoxide --locked
-if type zoxide > /dev/null 2>&1; then
-  eval "$(zoxide init zsh)"
-fi
+eval "$(zoxide init zsh)"
 
 #
 # atuin.
 #
 (( $+commands[atuin] )) || cargo install atuin --locked
-if type atuin > /dev/null 2>&1; then
-  eval "$(atuin init zsh)"
-fi
+eval "$(atuin init zsh)"
 
 #
 # functions.
@@ -103,13 +87,9 @@ done
 # zle -N __filter_history
 
 # cd and ls.
-if which lsd > /dev/null 2>&1; then
-  alias ls='lsd'
-elif which exa > /dev/null 2>&1; then
-  alias ls='exa'
-else
-  alias ls='ls --color=auto'
-fi
+# alias ls='lsd'
+alias ls='exa'
+# alias ls='ls --color=auto'
 function chpwd() { ls -F }
 
 # z and filter cd.
@@ -152,17 +132,6 @@ do
 done
 }
 
-# ghq list and change dir.
-function ghq-list-cd() {
-local selected_dir=$(ghq list --full-path | $__FILTER_TOOL)
-if [[ -n "$selected_dir" ]]; then
-  BUFFER="cd ${selected_dir}"
-  zle accept-line
-fi
-zle clear-screen
-}
-zle -N ghq-list-cd
-
 # show option for zsh.
 # http://qiita.com/mollifier/items/26c67347734f9fcda274
 function showoptions() {
@@ -175,15 +144,6 @@ function rebootwifi() {
   sleep 5
   networksetup -setairportpower en0 on
   networksetup -setdhcp Wi-Fi
-}
-
-# Build neovim.
-function buildneovim() {
-  rhq clone https://github.com/neovim/neovim
-  cd ~/src/github.com/neovim/neovim
-  git pull
-  make CMAKE_BUILD_TYPE=RelWithDebInfo
-  sudo make install
 }
 
 #
@@ -239,10 +199,7 @@ function my_lazy_keybindings() {
   fi
 
   # atuin
-  if type atuin > /dev/null 2>&1; then
-    bindkey -M viins '^r' _atuin_search_widget
-  fi
-
+  bindkey -M viins '^r' _atuin_search_widget
 }
 zvm_after_init_commands+=(my_lazy_keybindings)
 
