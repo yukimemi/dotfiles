@@ -199,6 +199,10 @@ snippets:
   - name: Try NvChad
     keyword: nvchad
     snippet: docker run -w /root -it --rm alpine:edge sh -uelic 'apk add git nodejs neovim ripgrep alpine-sdk --update; git clone https://github.com/NvChad/NvChad ~/.config/nvim; nvim'
+  - name: Docker dotfiles (mount)
+    snippet: cd ~/.dotfiles; docker build --tag yukimemi/dotfiles --build-arg USERNAME=yukimemi .; docker run --rm -it -v $PWD:/home/yukimemi/.dotfiles:ro yukimemi/dotfiles
+  - name: Docker dotfiles (no mount)
+    snippet: cd ~/.dotfiles; docker build --tag yukimemi/dotfiles --build-arg USERNAME=yukimemi .; docker run --rm -it yukimemi/dotfiles
 
   # denops
   - name: Restart denops shared server

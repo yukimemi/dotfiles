@@ -3,7 +3,11 @@ LABEL maintainer "yukimemi <yukimemi@gmail.com>"
 
 # Use next 2 steps.
 # docker build --tag yukimemi/dotfiles --build-arg USERNAME=yukimemi .
+
+## mount
 # docker run --rm -it -v $PWD:/home/yukimemi/.dotfiles:ro yukimemi/dotfiles
+## no mount
+# docker run --rm -it yukimemi/dotfiles
 
 ARG USERNAME=yukimemi
 
@@ -14,7 +18,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt update -y \
       && apt upgrade -y \
-			&& apt install -y --no-install-recommends apt-utils locales
+			&& apt install -y --no-install-recommends apt-utils locales pkg-config
 
 ENV LANG ja_JP.UTF-8
 ENV LANGUAGE ja_JP:ja
@@ -29,7 +33,7 @@ RUN ln -snvf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 RUN apt upgrade -y && apt clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
 # adduser ${USERNAME}:${USERNAME} with password '${USERNAME}'
-RUN groupadd -g 1000 ${USERNAME} \
+RUN groupadd -g 3000 ${USERNAME} \
       && useradd -g ${USERNAME} -G sudo -m -s /bin/bash ${USERNAME} \
       && echo "${USERNAME}:${USERNAME}" | chpasswd
 

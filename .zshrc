@@ -1,8 +1,16 @@
 
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/09/03 12:30:47.
+# Last Change : 2023/09/03 13:27:24.
 # =============================================================================
+
+#
+# tea
+#
+if ! type tea > /dev/null 2>&1; then
+  sh <(curl tea.xyz)
+fi
+source <(tea --magic=zsh)
 
 # if tmux is executable and not inside a tmux session, then try to attach.
 # if attachment fails, start a new session
@@ -17,14 +25,6 @@ if ! type sheldon > /dev/null 2>&1; then
   cargo install sheldon
 fi
 eval "$(sheldon source)"
-
-#
-# tea
-#
-if ! type tea > /dev/null 2>&1; then
-  sh <(curl tea.xyz)
-fi
-source <(tea --magic=zsh)
 
 #
 # rhq
