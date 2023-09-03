@@ -30,14 +30,6 @@ github = "jeffreytse/zsh-vi-mode"
 # [plugins.zsh-autocomplete]
 # github = "marlonrichert/zsh-autocomplete"
 
-# [plugins.asdf]
-# github = "asdf-vm/asdf"
-# apply = ["defer"]
-
-# [plugins.rtx]
-# remote = "https://rtx.pub/install.sh"
-# apply = ["defer"]
-
 [plugins.zsh-history-substring-search]
 github = "zsh-users/zsh-history-substring-search"
 apply = ["defer"]
@@ -60,3 +52,13 @@ github = "romkatv/powerlevel10k"
 # [plugins.pure]
 # github = "sindresorhus/pure"
 # use = ["async.zsh", "pure.zsh"]
+
+[plugins.dotfiles-sync]
+local = "~/.dotfiles/.config/zsh/sync"
+use = ["*.zsh"]
+apply = ["source"]
+
+[plugins.dotfiles-defer]
+local = "~/.dotfiles/.config/zsh/defer"
+use = ["*.zsh"]
+apply = ["defer"]

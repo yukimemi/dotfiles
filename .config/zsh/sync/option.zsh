@@ -1,0 +1,3 @@
+setopt magicequalsubst
+setopt printeightbit
+setopt completeinword
