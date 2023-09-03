@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/09/03 22:05:42.
+# Last Change : 2023/09/03 22:09:41.
 # =============================================================================
 
 #
@@ -50,18 +50,6 @@ eval "$(atuin init zsh)"
 #
 # functions.
 #
-function pdfmin() {
-  local cnt=0
-  for i in $@; do
-    gs -sDEVICE=pdfwrite \
-      -dCompatibilityLevel=1.4 \
-      -dPDFSETTINGS=/screen \
-      -dNOPAUSE -dQUIET -dBATCH \
-      -sOutputFile=${i%%.*}.min.pdf ${i} &
-          (( (cnt += 1) % 4 == 0 )) && wait
-        done
-        wait && return 0
-      }
 
 # Filter function.
 function __filter_execute() {
@@ -79,32 +67,9 @@ do
 done
 }
 
-# Filter history.
-# function __filter_history() {
-#   BUFFER=$(history -n 1 | $__FILTER_TOOL)
-#   zle clear-screen
-# }
-# zle -N __filter_history
-
 # cd and ls.
-# alias ls='lsd'
 alias ls='exa'
-# alias ls='ls --color=auto'
 function chpwd() { ls -F }
-
-# z and filter cd.
-function __filter_z_cd() {
-  zshz -t $1 | awk '{ $1=""; print }' | __filter_execute cd
-  # z -t $1 | tac | awk '{ $1=""; print }' | __filter_execute cd
-}
-
-# kill.
-function __filter_kill() {
-  line=$(ps -ef | $__FILTER_TOOL)
-  echo "Kill: [$line]"
-  kill -9 $(echo $line | awk '{ print $2 }')
-}
-zle -N __filter_kill
 
 # tmux filter.
 function __tmux_session_list() {
