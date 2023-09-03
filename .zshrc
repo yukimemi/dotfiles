@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/09/03 15:20:28.
+# Last Change : 2023/09/03 15:45:56.
 # =============================================================================
 
 #
@@ -12,29 +12,55 @@ if ! type tea > /dev/null 2>&1; then
 fi
 source <(tea --magic=zsh)
 
-## link necessary commands.
-(( $+commands[deno] )) || curl -fsSL https://deno.land/x/install/install.sh | sh
-
-# if tmux is executable and not inside a tmux session, then try to attach.
-# if attachment fails, start a new session
-# [ -x "$(command -v tmux)" ] \
-#   && [ -z "${TMUX}" ] \
-#   && { tmux attach || tmux -u; } >/dev/null 2>&1
+#
+# tmux
+#
 [ -z "${TMUX}" ] && { tmux attach || tmux -u; } >/dev/null 2>&1
+
+## deno
+(( $+commands[deno] )) || curl -fsSL https://deno.land/x/install/install.sh | sh
 
 #
 # sheldon
 #
-if ! type sheldon > /dev/null 2>&1; then
-  cargo install sheldon
-fi
+(( $+commands[sheldon] )) || cargo install sheldon
 eval "$(sheldon source)"
+
+#
+# rtx
+#
+(( $+commands[rtx] )) || curl https://rtx.pub/install.sh | sh
+if type rtx > /dev/null 2>&1; then
+  eval "$(rtx activate zsh)"
+fi
 
 #
 # rhq
 #
-if ! type rhq > /dev/null 2>&1; then
-  cargo install --git https://github.com/ubnt-intrepid/rhq.git
+(( $+commands[rhq] )) || cargo install --git https://github.com/ubnt-intrepid/rhq.git
+
+#
+# direnv.
+#
+(( $+commands[direnv] )) || curl -sfL https://direnv.net/install.sh | bash
+if type direnv > /dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
+#
+# zoxide.
+#
+(( $+commands[zoxide] )) || cargo install zoxide --locked
+if type zoxide > /dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
+#
+# atuin.
+#
+(( $+commands[atuin] )) || cargo install atuin --locked
+if type atuin > /dev/null 2>&1; then
+  eval "$(atuin init zsh)"
 fi
 
 #
@@ -281,79 +307,6 @@ setopt noflowcontrol
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd check-buffer-stack
 RPROMPT='${COMMAND_BUFFER_STACK}'
-
-#
-# direnv.
-#
-if type direnv > /dev/null 2>&1; then
-  eval "$(direnv hook zsh)"
-fi
-
-#
-# zoxide.
-#
-if type zoxide > /dev/null 2>&1; then
-  eval "$(zoxide init zsh)"
-fi
-
-#
-# atuin.
-#
-if type atuin > /dev/null 2>&1; then
-  eval "$(atuin init zsh)"
-fi
-
-#
-# rtx
-#
-if type rtx > /dev/null 2>&1; then
-  eval "$(rtx activate zsh)"
-fi
-
-#
-# Google cloud sdk
-#
-if [[ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]]; then
-  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-fi
-
-#
-# starship.
-#
-# if (which starship > /dev/null) ;then
-#   eval "$(starship init zsh)"
-# fi
-
-#
-# broot.
-#
-if [[ -f ~/.config/broot/launcher/bash/br ]]; then
-  source ~/.config/broot/launcher/bash/br
-fi
-
-#
-# pnpm
-#
-export PNPM_HOME="${HOME}/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-#
-# fzf
-#
-if ! type fzf > /dev/null 2>&1; then
-  go install github.com/junegunn/fzf@latest
-fi
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-#
-# p10k
-#
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #
 # compile zshrc.
