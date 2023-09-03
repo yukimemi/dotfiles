@@ -345,9 +345,9 @@ snippets:
 
   # build
   - name: Build neovim (Ubuntu)
-    snippet: sudo apt install -y ninja-build gettext cmake unzip curl; git clone https://github.com/neovim/neovim /tmp/neovim; cd /tmp/neovim; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install
+    snippet: sudo apt install -y ninja-build gettext cmake unzip curl; rm -rf /tmp/neovim; git clone https://github.com/neovim/neovim /tmp/neovim; cd /tmp/neovim; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install
   - name: Build neovim (Mac)
-    snippet: brew install ninja cmake gettext curl; git clone https://github.com/neovim/neovim /tmp/neovim; cd /tmp/neovim; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install
+    snippet: brew install ninja cmake gettext curl; rm -rf /tmp/neovim; git clone https://github.com/neovim/neovim /tmp/neovim; cd /tmp/neovim; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install
   - name: Build helix (Mac)
     snippet: mkdir ~/.config/helix; rhq clone https://github.com/helix-editor/helix; cd ~/src/github.com/helix-editor/helix; git pull; cargo install --path helix-term --locked; ln -s $PWD/runtime ~/.config/helix/runtime
 
