@@ -1,7 +1,7 @@
 
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/09/03 13:46:29.
+# Last Change : 2023/09/03 14:48:27.
 # =============================================================================
 
 #
@@ -12,11 +12,15 @@ if ! type tea > /dev/null 2>&1; then
 fi
 source <(tea --magic=zsh)
 
+## link necessary commands.
+# (( $+commands[deno] )) || ln -snf $(which tea) ~/.local/bin/deno
+
 # if tmux is executable and not inside a tmux session, then try to attach.
 # if attachment fails, start a new session
-[ -x "$(command -v tmux)" ] \
-  && [ -z "${TMUX}" ] \
-  && { tmux attach || tmux -u; } >/dev/null 2>&1
+# [ -x "$(command -v tmux)" ] \
+#   && [ -z "${TMUX}" ] \
+#   && { tmux attach || tmux -u; } >/dev/null 2>&1
+[ -z "${TMUX}" ] && { tmux attach || tmux -u; } >/dev/null 2>&1
 
 #
 # sheldon
