@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/09/01 22:55:10.
+# Last Change : 2023/09/03 11:15:49.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -417,7 +417,7 @@ fi
 # p10k
 #
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #
 # compile zshrc.

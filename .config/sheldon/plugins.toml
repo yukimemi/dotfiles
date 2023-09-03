@@ -34,6 +34,10 @@ github = "jeffreytse/zsh-vi-mode"
 # github = "asdf-vm/asdf"
 # apply = ["defer"]
 
+# [plugins.rtx]
+# remote = "https://rtx.pub/install.sh"
+# apply = ["defer"]
+
 [plugins.zsh-history-substring-search]
 github = "zsh-users/zsh-history-substring-search"
 apply = ["defer"]
@@ -47,11 +51,11 @@ github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
 apply = ["defer"]
 
-[plugins.powerlevel10k]
-github = "romkatv/powerlevel10k"
+# [plugins.powerlevel10k]
+# github = "romkatv/powerlevel10k"
 
-# [plugins.spaceship]
-# github = "spaceship-prompt/spaceship-prompt"
+[plugins.spaceship]
+github = "spaceship-prompt/spaceship-prompt"
 
 # [plugins.pure]
 # github = "sindresorhus/pure"

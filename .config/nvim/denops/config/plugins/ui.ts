@@ -118,7 +118,7 @@ export const ui: Plug[] = [
         threshold: 3,
         disable_float_win: false,
         enabled_filetypes: null,
-        disabled_filetypes: ["ddu-ff", "ddu-ff-filter"],
+        disabled_filetypes: ["ddu-ff", "ddu-ff-filter", "coc-explorer", "fern"],
       });
 
       await autocmd.group(denops, "MySmoothCursor", (helper) => {
@@ -323,9 +323,14 @@ export const ui: Plug[] = [
       await denops.call(`luaeval`, `require("window-picker").setup(_A)`, {
         hint: "floating-big-letter",
       });
-      await mapping.map(denops, "sw", "<cmd>lua require('window-picker').pick_window()<cr>", {
-        mode: "n",
-      });
+      await mapping.map(
+        denops,
+        "sw",
+        "<cmd>lua require('window-picker').pick_window()<cr>",
+        {
+          mode: "n",
+        },
+      );
     },
   },
   {

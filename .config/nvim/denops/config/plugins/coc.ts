@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2023/08/27 10:25:07.
+// Last Change : 2023/08/26 23:39:32.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.0/mod.ts";
@@ -30,7 +30,7 @@ export const coc: Plug[] = [
             `
               lua << EOB
                 local wilder = require('wilder')
-                wilder.setup({modes = {':', '/', '?'}})
+                wilder.setup({ modes = { ':', '/', '?' } })
                 -- Disable Python remote plugin
                 wilder.set_option('use_python_remote_plugin', 0)
 
@@ -44,7 +44,7 @@ export const coc: Plug[] = [
                 })
 
                 wilder.set_option('renderer', wilder.renderer_mux({
-                  [':'] = wilder.popupmenu_renderer({
+                  [':'] = wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
                     highlighter = wilder.basic_highlighter(),
                     left = {
                       ' ',
@@ -54,10 +54,10 @@ export const coc: Plug[] = [
                       ' ',
                       wilder.popupmenu_scrollbar()
                     },
-                  }),
-                  ['/'] = wilder.popupmenu_renderer({
+                  })),
+                  ['/'] = wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
                     highlighter = wilder.basic_highlighter(),
-                  }),
+                  })),
                 }))
               EOB
             `,
