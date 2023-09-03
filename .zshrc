@@ -1,7 +1,7 @@
 
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/09/03 11:58:38.
+# Last Change : 2023/09/03 12:30:47.
 # =============================================================================
 
 # if tmux is executable and not inside a tmux session, then try to attach.
@@ -10,17 +10,6 @@
   && [ -z "${TMUX}" ] \
   && { tmux attach || tmux -u; } >/dev/null 2>&1
 
-is_mac=false
-is_linux=false
-case "$(uname -s)" in
-  Darwin*)
-    is_mac=true
-    ;;
-  Linux*)
-    is_linux=true
-    ;;
-esac
-
 #
 # sheldon
 #
@@ -28,6 +17,14 @@ if ! type sheldon > /dev/null 2>&1; then
   cargo install sheldon
 fi
 eval "$(sheldon source)"
+
+#
+# tea
+#
+if ! type tea > /dev/null 2>&1; then
+  sh <(curl tea.xyz)
+fi
+source <(tea --magic=zsh)
 
 #
 # rhq
@@ -291,7 +288,7 @@ fi
 #
 # zoxide.
 #
-if ! type zoxide > /dev/null 2>&1; then
+if type zoxide > /dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 fi
 
@@ -329,14 +326,6 @@ fi
 if [[ -f ~/.config/broot/launcher/bash/br ]]; then
   source ~/.config/broot/launcher/bash/br
 fi
-
-#
-# tea
-#
-if ! type tea > /dev/null 2>&1; then
-  sh <(curl tea.xyz)
-fi
-source <(tea --magic=zsh)
 
 #
 # pnpm
