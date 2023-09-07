@@ -7,6 +7,14 @@ time_format = "%F %T"
 
 [directory]
 style = "blue"
+truncation_length = 100
+truncate_to_repo = false
+
+[memory_usage]
+disabled = false
+format = "via [${ram_pct}( / ${swap_pct})]($style) "
+threshold = -1
+style = "bold dimmed blue"
 
 [character]
 success_symbol = "[▶▶](purple)"
