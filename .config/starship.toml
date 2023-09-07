@@ -1,6 +1,15 @@
 format = """$all"""
 right_format = """$time"""
 
+[os]
+disabled = false
+format = "$symbol[$codename$edition$version]($style) "
+style = "bold blue"
+
+[os.symbols]
+Macos = " "
+Windows = " "
+
 [time]
 disabled = false
 time_format = "%F %T"
