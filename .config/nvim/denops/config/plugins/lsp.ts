@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2023/09/03 17:46:52.
+// Last Change : 2023/09/08 08:31:07.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -181,6 +181,35 @@ export const lsp: Plug[] = [
           require("mason-lspconfig").setup_handlers({
             function(server_name) -- default handler
               lspconfig[server_name].setup(options)
+            end,
+            efm = function()
+              lspconfig["efm"].setup(vim.tbl_deep_extend("force", options, {
+                init_options = {
+                  documentFormatting = true,
+                  documentRangeFormatting = true,
+                },
+                settings = {
+                  rootMarkers = {
+                    ".git/",
+                  },
+                  languages = {
+                    lua = {
+                      {
+                        formatCommand = "stylua --color Never --config-path ~/.config/.stylua.toml -",
+                      },
+                      {
+                        lintCommand = "luacheck --no-color --quiet --config ~/.config/.luacheckrc -",
+                        lintFormats = {
+                          "%f:%l:%c: %m",
+                        }
+                      }
+                    }
+                  }
+                },
+                filetypes = {
+                  "lua",
+                }
+              }))
             end,
             denols = function()
               lspconfig["denols"].setup(vim.tbl_deep_extend("force", options, {
