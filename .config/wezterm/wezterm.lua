@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : wezterm.lua
 -- Author      : yukimemi
--- Last Change : 2023/09/07 23:24:38.
+-- Last Change : 2023/09/08 05:08:57.
 -- =============================================================================
 
 local wezterm = require("wezterm")
@@ -15,7 +15,8 @@ end)
 return {
   front_end = "WebGpu",
   adjust_window_size_when_changing_font_size = false,
-  color_scheme = 'Catppuccin Mocha',
+  -- color_scheme = 'Catppuccin Mocha',
+  color_scheme = 'Popping and Locking',
   dpi = 96.0,
   font = wezterm.font_with_fallback({
     "UDEV Gothic NF",
