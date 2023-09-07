@@ -3,7 +3,7 @@ right_format = """$time"""
 
 [os]
 disabled = false
-format = "$symbol [$codename$edition$version]($style) "
+format = "$symbol [$codename$edition $version]($style) "
 style = "bold blue"
 
 [os.symbols]
