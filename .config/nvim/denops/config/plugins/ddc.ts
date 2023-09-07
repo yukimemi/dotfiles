@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/08/26 14:22:06.
+// Last Change : 2023/09/07 23:09:29.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
@@ -59,6 +59,13 @@ export const ddc: Plug[] = [
           { url: "uga-rosa/ddc-source-vsnip" },
           { url: "rafamadriz/friendly-snippets" },
         ],
+        before: async ({ denops }) => {
+          await vars.g.set(
+            denops,
+            "vsnip_snippet_dir",
+            await fn.expand(denops, "~/.config/nvim/vsnip"),
+          );
+        },
         after: async ({ denops }) => {
           await execute(
             denops,

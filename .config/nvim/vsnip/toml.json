@@ -1,0 +1,14 @@
+{
+  "plugin": {
+    "prefix": ["plugin"],
+    "body": [
+      "[[plugins]]",
+      "repo = '${1:$TM_SELECTED_TEXT}'",
+      "if = 0",
+      "on_event = ['CursorHold', 'FocusLost']",
+      "hook_add = '''",
+      "source \\$VIM_PATH/rc/${2:$TM_SELECTED_TEXT}.vim",
+      "'''"
+    ]
+  }
+}

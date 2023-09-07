@@ -1,3 +1,9 @@
+# =============================================================================
+# File        : zeno.zsh
+# Author      : yukimemi
+# Last Change : 2023/09/07 23:12:40.
+# =============================================================================
+
 # Experimental: Use UNIX Domain Socket
 export ZENO_ENABLE_SOCK=1
 # if enable fzf-tmux

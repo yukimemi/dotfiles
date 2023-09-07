@@ -1,3 +1,9 @@
+# =============================================================================
+# File        : completion.zsh
+# Author      : yukimemi
+# Last Change : 2023/09/07 23:10:08.
+# =============================================================================
+
 autoload -U compinit && compinit
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*' use-cache yes
@@ -14,7 +20,6 @@ bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
-
 
 #
 # completions.

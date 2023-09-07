@@ -1,3 +1,9 @@
+# =============================================================================
+# File        : history.zsh
+# Author      : yukimemi
+# Last Change : 2023/09/07 23:12:16.
+# =============================================================================
+
 if [[ -d ~/Syncthing ]]; then
   export HISTFILE=~/Syncthing/pc/.zsh_history
 else

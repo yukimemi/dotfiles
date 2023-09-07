@@ -1,3 +1,9 @@
+# =============================================================================
+# File        : func.zsh
+# Author      : yukimemi
+# Last Change : 2023/09/07 23:12:20.
+# =============================================================================
+
 # Filter function.
 function __filter_execute() {
   $__FILTER_TOOL | while read line
