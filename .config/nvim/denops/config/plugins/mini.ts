@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : mini.ts
 // Author      : yukimemi
-// Last Change : 2023/09/03 22:06:15.
+// Last Change : 2023/09/05 09:58:51.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.2/mod.ts";
@@ -15,7 +15,9 @@ export const mini: Plug[] = [
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       // animate.
-      await denops.call(`luaeval`, `require("mini.animate").setup()`);
+      if (denops.meta.platform !== "windows") {
+        await denops.call(`luaeval`, `require("mini.animate").setup()`);
+      }
 
       // files.
       await denops.call(`luaeval`, `require("mini.files").setup()`);

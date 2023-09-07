@@ -115,9 +115,9 @@ return
 ; return
 
 ; for Edge
-; F11::
-; Activate("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
-; return
+F11::
+Activate("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
+return
 
 ; for vivaldi
 ; F11::
@@ -125,9 +125,9 @@ return
 ; return
 
 ; for firefox
-F11::
-Activate("C:\Program Files\Mozilla Firefox\firefox.exe")
-return
+; F11::
+; Activate("C:\Program Files\Mozilla Firefox\firefox.exe")
+; return
 
 ; for Brave
 ; F11::

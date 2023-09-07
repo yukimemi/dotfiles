@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/09/01 22:36:22.
+// Last Change : 2023/09/07 15:53:46.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.2/mod.ts";
@@ -198,44 +198,17 @@ export const denops: Plug[] = [
       await globals.set(denops, "walk_debug", false);
       await globals.set(denops, "walk_no_mapping", false);
 
-      await mapping.map(denops, "mW", "<cmd>DenopsWalk<cr>", {
+      await mapping.map(denops, "mW", "<cmd>DenopsWalk<cr>", { mode: "n" });
+      await mapping.map(denops, "ms", "<cmd>DenopsWalk --path=~/src<cr>", { mode: "n" });
+      await mapping.map(denops, "mD", "<cmd>DenopsWalk --path=~/.dotfiles<cr>", { mode: "n" });
+      await mapping.map(denops, "md", "<cmd>DenopsWalkBufferDir<cr>", { mode: "n" });
+      await mapping.map(denops, "mM", "<cmd>DenopsWalk --path=~/.memolist<cr>", {
         mode: "n",
       });
-      await mapping.map(
-        denops,
-        "ms",
-        "<cmd>DenopsWalk --path=~/src<cr>",
-        { mode: "n" },
-      );
-      await mapping.map(
-        denops,
-        "mD",
-        "<cmd>DenopsWalk --path=~/.dotfiles<cr>",
-        { mode: "n" },
-      );
-      await mapping.map(denops, "md", "<cmd>DenopsWalkBufferDir<cr>", {
+      await mapping.map(denops, "<space>wc", "<cmd>DenopsWalk --path=~/.cache<cr>", { mode: "n" });
+      await mapping.map(denops, "<space>wj", "<cmd>DenopsWalk --path=~/.cache/junkfile<cr>", {
         mode: "n",
       });
-
-      await mapping.map(
-        denops,
-        "<space>wm",
-        "<cmd>DenopsWalk --path=~/.memolist<cr>",
-        { mode: "n" },
-      );
-
-      await mapping.map(
-        denops,
-        "<space>wc",
-        "<cmd>DenopsWalk --path=~/.cache<cr>",
-        { mode: "n" },
-      );
-      await mapping.map(
-        denops,
-        "<space>wj",
-        "<cmd>DenopsWalk --path=~/.cache/junkfile<cr>",
-        { mode: "n" },
-      );
     },
   },
   {

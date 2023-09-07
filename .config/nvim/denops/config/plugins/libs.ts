@@ -1,13 +1,14 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/09/02 17:02:15.
+// Last Change : 2023/09/07 22:04:43.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.2/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
@@ -151,7 +152,13 @@ export const libs: Plug[] = [
   },
   { url: "kana/vim-repeat" },
   { url: "mattn/vim-findroot" },
-  { url: "tyru/open-browser.vim" },
+  {
+    url: "tyru/open-browser.vim",
+    before: async ({ denops }) => {
+      await vars.g.set(denops, "netrw_nogx", 1);
+      await mapping.map(denops, "gx", "<Plug>(openbrowser-smart-search)", { mode: ["n", "x"] });
+    },
+  },
   { url: "lambdalisue/readablefold.vim" },
   { url: "lambdalisue/kensaku.vim" },
   {
