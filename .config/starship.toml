@@ -1,4 +1,4 @@
 [time]
-disabled = false
+disabled = true
 style = "bold green"
 time_format = "%F %T"
