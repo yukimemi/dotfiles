@@ -1,5 +1,6 @@
 NuGet/
 PowerShell/
+ai_cli/
 anyenv/
 asciinema/
 broot/
@@ -18,6 +19,7 @@ heroku/
 hub
 iterm2/
 mocword/
+mps-youtube/
 nextword/
 pet
 powershell/
@@ -30,4 +32,3 @@ vim/autobackup/
 vim/yankround/
 xbuild/
 yarn/
-ai_cli/

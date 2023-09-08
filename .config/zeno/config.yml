@@ -151,6 +151,10 @@ snippets:
   - name: Install yt-dlp (youtube-dl)
     keyword: install-yt-dlp
     snippet: pip install -U yt-dlp
+  # yewtube
+  - name: Install yewtube
+    keyword: install-yewtube
+    snippet: pip install pipx; pipx install --force git+https://github.com/iamtalhaasghar/yewtube.git
   - name: youtube-dl to music
     keyword: ytm
     snippet: youtube-dl -ix --no-post-overwrites --download-archive ./.downloaded
