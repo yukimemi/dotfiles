@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2023/09/09 22:00:44.
+// Last Change : 2023/09/09 22:14:20.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -100,7 +100,7 @@ export const ddu: Plug[] = [
         denops,
         "<leader>df",
         // `<cmd>Ddu -name=files file_rec<cr>`,
-        `<cmd>Ddu -name=files file_rg<cr>`,
+        `<cmd>Ddu -name=files file_fd<cr>`,
         { mode: "n" },
       );
       await mapping.map(
@@ -292,7 +292,7 @@ export const ddu: Plug[] = [
       await denops.call(
         "ddu#custom#alias",
         "source",
-        "file_rg",
+        "file_fd",
         "file_external",
       );
       await denops.call(
@@ -369,15 +369,15 @@ export const ddu: Plug[] = [
                     file_git: {
                       cmd: ["git", "ls-files", "-co", "--exclude-standard"],
                     },
-                    file_rg: {
+                    file_fd: {
                       cmd: [
-                        "rg",
-                        "--files",
-                        "--glob",
-                        "!.git",
-                        "--color",
-                        "never",
-                        "--no-messages",
+                        "fd",
+                        "--hidden",
+                        "--no-ignore",
+                        "--exclude",
+                        "node_modules",
+                        "--exclude",
+                        ".git",
                       ],
                       updateItems: 50000,
                     },
@@ -608,7 +608,7 @@ export const ddu: Plug[] = [
         "file_git",
         "file_point",
         "file_rec",
-        "file_rg",
+        "file_fd",
         "rg",
       ]);
       await denops.call(`ddu#load`, "filter", [
