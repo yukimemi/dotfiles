@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2023/09/09 22:14:20.
+// Last Change : 2023/09/10 01:26:00.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -99,8 +99,7 @@ export const ddu: Plug[] = [
       await mapping.map(
         denops,
         "<leader>df",
-        // `<cmd>Ddu -name=files file_rec<cr>`,
-        `<cmd>Ddu -name=files file_fd<cr>`,
+        `<cmd>Ddu -name=files external_fd<cr>`,
         { mode: "n" },
       );
       await mapping.map(
@@ -292,13 +291,13 @@ export const ddu: Plug[] = [
       await denops.call(
         "ddu#custom#alias",
         "source",
-        "file_fd",
+        "external_fd",
         "file_external",
       );
       await denops.call(
         "ddu#custom#alias",
         "source",
-        "file_git",
+        "external_git",
         "file_external",
       );
 
@@ -366,10 +365,10 @@ export const ddu: Plug[] = [
                     file_rec: {
                       chunkSize: 50,
                     },
-                    file_git: {
+                    external_git: {
                       cmd: ["git", "ls-files", "-co", "--exclude-standard"],
                     },
-                    file_fd: {
+                    external_fd: {
                       cmd: [
                         "fd",
                         "--hidden",
@@ -383,12 +382,17 @@ export const ddu: Plug[] = [
                     },
                     rg: {
                       args: [
+                        "--hidden",
                         "--ignore-case",
                         "--column",
                         "--no-heading",
                         "--color",
                         "never",
                         "--json",
+                        "--glob",
+                        "!node_modules/**",
+                        "--glob",
+                        "!**/.git/**",
                       ],
                       inputType: "regex",
                     },
@@ -600,23 +604,23 @@ export const ddu: Plug[] = [
       });
 
       // Initialize ddu
-      await denops.call(`ddu#load`, "ui", ["ff"]);
-      await denops.call(`ddu#load`, "source", [
+      denops.call(`ddu#load`, "ui", ["ff"]);
+      denops.call(`ddu#load`, "source", [
         "chronicle",
+        "external_fd",
+        "external_git",
         "file",
         "file_external",
-        "file_git",
         "file_point",
         "file_rec",
-        "file_fd",
         "rg",
       ]);
-      await denops.call(`ddu#load`, "filter", [
+      denops.call(`ddu#load`, "filter", [
         "matcher_kensaku",
         "mather_fzf",
         "merge",
       ]);
-      await denops.call(`ddu#load`, "kind", ["file"]);
+      denops.call(`ddu#load`, "kind", ["file"]);
     },
   },
 ];

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : fern.ts
 // Author      : yukimemi
-// Last Change : 2023/08/05 23:16:14.
+// Last Change : 2023/09/10 00:44:06.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -16,7 +16,7 @@ import { pluginStatus } from "../main.ts";
 export const fern: Plug[] = [
   {
     url: "lambdalisue/fern.vim",
-    enabled: !pluginStatus.vscode && pluginStatus.fern,
+    enabled: !pluginStatus.vscode && !pluginStatus.coc && pluginStatus.fern,
     dependencies: [
       {
         url: "lambdalisue/fern-hijack.vim",
@@ -73,8 +73,7 @@ export const fern: Plug[] = [
         `<cmd>Fern file:///${await fn.expand(
           denops,
           "%:p:h",
-        )} -reveal=${await fn
-          .expand(denops, "%:t")} -drawer -width=40<cr>`,
+        )} -reveal=${await fn.expand(denops, "%:t")} -drawer -width=40<cr>`,
         { mode: "n" },
       );
 
@@ -84,56 +83,41 @@ export const fern: Plug[] = [
           "FileType",
           "fern",
           `call <SID>${denops.name}_notify("${
-            lambda.register(denops, async () => {
-              await mapping.map(
-                denops,
-                "o",
-                `<cmd>call fern#smart#leaf("<Plug>(fern-action-open)", "<Plug>(fern-action-expand)", "<Plug>(fern-action-collapse)")`,
-                { mode: "n", buffer: true },
-              );
-              await mapping.map(
-                denops,
-                "<c-l>",
-                `<c-w>l`,
-                { mode: "n", buffer: true },
-              );
-              await mapping.map(
-                denops,
-                "S",
-                `<Plug>(fern-action-open:select)`,
-                { mode: "n", buffer: true },
-              );
-              await mapping.map(
-                denops,
-                "n",
-                `n`,
-                { mode: "n", buffer: true },
-              );
-              await mapping.map(
-                denops,
-                "N",
-                `N`,
-                { mode: "n", buffer: true },
-              );
-              await mapping.map(
-                denops,
-                "a",
-                `<Plug>(fern-action-new-file)`,
-                { mode: "n", buffer: true },
-              );
-              await mapping.map(
-                denops,
-                "<tab>",
-                `<Plug>(fern-action-choice)`,
-                { mode: "n", buffer: true },
-              );
-              await mapping.map(
-                denops,
-                "s",
-                `<Nop>`,
-                { mode: "n", buffer: true },
-              );
-            })
+            lambda.register(
+              denops,
+              async () => {
+                await mapping.map(
+                  denops,
+                  "o",
+                  `<cmd>call fern#smart#leaf("<Plug>(fern-action-open)", "<Plug>(fern-action-expand)", "<Plug>(fern-action-collapse)")`,
+                  { mode: "n", buffer: true },
+                );
+                await mapping.map(denops, "<c-l>", `<c-w>l`, {
+                  mode: "n",
+                  buffer: true,
+                });
+                await mapping.map(
+                  denops,
+                  "S",
+                  `<Plug>(fern-action-open:select)`,
+                  { mode: "n", buffer: true },
+                );
+                await mapping.map(denops, "n", `n`, { mode: "n", buffer: true });
+                await mapping.map(denops, "N", `N`, { mode: "n", buffer: true });
+                await mapping.map(denops, "a", `<Plug>(fern-action-new-file)`, {
+                  mode: "n",
+                  buffer: true,
+                });
+                await mapping.map(denops, "<tab>", `<Plug>(fern-action-choice)`, {
+                  mode: "n",
+                  buffer: true,
+                });
+                await mapping.map(denops, "s", `<Nop>`, {
+                  mode: "n",
+                  buffer: true,
+                });
+              },
+            )
           }", [])`,
         );
       });
