@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/09/03 19:47:34.
+// Last Change : 2023/09/09 09:15:18.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -100,8 +100,8 @@ export const ui: Plug[] = [
           enable: true,
           head: { cursor: "▷", texthl: "SmoothCursor", linehl: null },
           body: [
-            { cursor: "", texthl: "SmoothCursorRed" },
-            { cursor: "", texthl: "SmoothCursorOrange" },
+            { cursor: "★", texthl: "SmoothCursorRed" },
+            { cursor: "☆", texthl: "SmoothCursorOrange" },
             { cursor: "●", texthl: "SmoothCursorYellow" },
             { cursor: "●", texthl: "SmoothCursorGreen" },
             { cursor: "•", texthl: "SmoothCursorAqua" },
