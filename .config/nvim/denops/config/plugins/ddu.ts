@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2023/08/26 10:00:19.
+// Last Change : 2023/09/09 22:00:44.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -99,7 +99,8 @@ export const ddu: Plug[] = [
       await mapping.map(
         denops,
         "<leader>df",
-        `<cmd>Ddu -name=files file_rec<cr>`,
+        // `<cmd>Ddu -name=files file_rec<cr>`,
+        `<cmd>Ddu -name=files file_rg<cr>`,
         { mode: "n" },
       );
       await mapping.map(
@@ -282,11 +283,25 @@ export const ddu: Plug[] = [
       await mapping.map(
         denops,
         "<leader>dr",
-        "<cmd>Ddu -name=search -resume -ui-param-startFilter=v:false<cr>",
+        "<cmd>Ddu -name=search -resume -ui-param-ff-startFilter=v:false<cr>",
         { mode: "n" },
       );
     },
     after: async ({ denops }) => {
+      // aliases.
+      await denops.call(
+        "ddu#custom#alias",
+        "source",
+        "file_rg",
+        "file_external",
+      );
+      await denops.call(
+        "ddu#custom#alias",
+        "source",
+        "file_git",
+        "file_external",
+      );
+
       // global settings.
       await autocmd.group(denops, "MyDduSettings", (helper) => {
         helper.remove("*");
@@ -298,15 +313,7 @@ export const ddu: Plug[] = [
               denops,
               async () => {
                 const lines = await op.lines.get(denops);
-                const [height, row] = [
-                  Math.floor(lines * 0.85),
-                  Math.floor(lines * 0.075),
-                ];
-                const columns = await op.columns.get(denops);
-                const [width, col] = [
-                  Math.floor(columns * 0.85),
-                  Math.floor(columns * 0.075),
-                ];
+                const height = Math.floor(lines * 0.5);
                 await denops.call("ddu#custom#patch_global", {
                   ui: "ff",
                   uiOptions: {
@@ -316,24 +323,14 @@ export const ddu: Plug[] = [
                   },
                   uiParams: {
                     ff: {
-                      filterFloatingPosition: "top",
-                      filterSplitDirection: "floating",
-                      floatingBorder: "single",
                       ignoreEmpty: true,
-                      previewFloating: true,
-                      previewFloatingBorder: "single",
-                      previewFloatingTitle: "Preview",
-                      previewSplit: "vertical",
-                      previewHeight: height,
-                      previewWidth: Math.floor(width / 2),
                       prompt: "»",
-                      split: "floating",
+                      split: "horizontal",
                       startAutoAction: true,
                       startFilter: true,
-                      winCol: col,
-                      winHeight: height,
-                      winRow: row,
-                      winWidth: width,
+                      filterSplitDirection: "floating",
+                      filterFloatingPosition: "bottom",
+                      previewHeight: height,
                       highlights: {
                         floating: "Normal",
                         floatingBorder: "Normal",
@@ -369,7 +366,7 @@ export const ddu: Plug[] = [
                     file_rec: {
                       chunkSize: 50,
                     },
-                    file_external: {
+                    file_git: {
                       cmd: ["git", "ls-files", "-co", "--exclude-standard"],
                     },
                     file_rg: {
@@ -381,7 +378,6 @@ export const ddu: Plug[] = [
                         "--color",
                         "never",
                         "--no-messages",
-                        "--json",
                       ],
                       updateItems: 50000,
                     },
@@ -605,14 +601,22 @@ export const ddu: Plug[] = [
 
       // Initialize ddu
       await denops.call(`ddu#load`, "ui", ["ff"]);
-      denops.call(`ddu#start`, {
-        ui: "ff",
-        uiParams: {
-          ff: {
-            ignoreEmpty: true,
-          },
-        },
-      });
+      await denops.call(`ddu#load`, "source", [
+        "chronicle",
+        "file",
+        "file_external",
+        "file_git",
+        "file_point",
+        "file_rec",
+        "file_rg",
+        "rg",
+      ]);
+      await denops.call(`ddu#load`, "filter", [
+        "matcher_kensaku",
+        "mather_fzf",
+        "merge",
+      ]);
+      await denops.call(`ddu#load`, "kind", ["file"]);
     },
   },
 ];
