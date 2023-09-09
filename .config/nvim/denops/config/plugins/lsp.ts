@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2023/09/08 08:31:07.
+// Last Change : 2023/09/09 09:22:32.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -91,6 +91,30 @@ export const lsp: Plug[] = [
             // default: 'default'
             preset: "default",
           });
+        },
+      },
+      {
+        url: "simrat39/rust-tools.nvim",
+        after: async ({ denops }) => {
+          await execute(
+            denops,
+            `
+              lua << EOB
+                local rt = require("rust-tools")
+
+                rt.setup({
+                  server = {
+                    on_attach = function(_, bufnr)
+                      -- Hover actions
+                      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+                      -- Code action groups
+                      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+                    end,
+                  },
+                })
+              EOB
+            `,
+          );
         },
       },
     ],
