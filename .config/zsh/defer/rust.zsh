@@ -1,9 +1,9 @@
 # =============================================================================
 # File        : rust.zsh
 # Author      : yukimemi
-# Last Change : 2023/09/10 11:13:56.
+# Last Change : 2023/09/10 16:44:59.
 # =============================================================================
 
-export RUSTUP_HOME=$HOME/.tea/rust-lang.org/rustup/v\*
-export CARGO_HOME=$HOME/.tea/rust-lang.org/cargo/v\*
+export RUSTUP_HOME=$HOME/.tea/.local
+export CARGO_HOME=$HOME/.tea/.local
 

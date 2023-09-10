@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2023/09/09 09:28:44.
+// Last Change : 2023/09/10 12:45:16.
 // =============================================================================
 
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -27,8 +27,8 @@ export const pluginStatus = {
   barbecue: true,
   bufferline: false,
   buffertabs: false,
-  coc: true,
-  ddc: false,
+  coc: false,
+  ddc: true,
   cmp: false,
   ddu: true,
   heirline: false,
