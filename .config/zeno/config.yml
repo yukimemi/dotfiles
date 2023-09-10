@@ -346,6 +346,8 @@ snippets:
     snippet: brew install yazi ffmpegthumbnailer unar jq poppler fd ripgrep fzf zoxide; brew tap homebrew/cask-fonts; brew install --cask font-symbols-only-nerd-font
   - name: Install zellij
     snippet: cargo install --locked zellij
+  - name: Install rustup
+    snippet: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
   # build
   - name: Build neovim (Ubuntu)

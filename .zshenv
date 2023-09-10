@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2023/09/03 21:46:15.
+# Last Change : 2023/09/10 10:19:29.
 # =============================================================================
 
 # For time.
@@ -19,25 +19,30 @@ is_cygwin() { [[ $SHELL_PLATFORM == 'cygwin' ]]; }
 export LANG=ja_JP.UTF-8
 export LC_CTYPE="ja_JP.UTF-8"
 export SHELL=zsh
-[[ -n $EDITOR ]] || export EDITOR=nvim
+export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=bat
 
 # Unique path.
 typeset -gU cdpath fpath mailpath path
 
+# go.
+export GOPATH=$HOME/.go
+
+# deno.
+export DENO_INSTALL=$HOME/.deno
+
 # Path.
 path=(
   # Home.
-  $HOME/bin(N-/)
   $HOME/.local/bin(N-/)
   $HOME/.local/bin/scripts(N-/)
-  $HOME/bin/scripts(N-/)
-  $HOME/local/bin(N-/)
-  # bob-nvim
-  $HOME/.local/share/neovim/bin(N-/)
   # cargo
   $HOME/.cargo/bin(N-/)
+  # deno
+  $DENO_INSTALL/bin(N-/)
+  # golang
+  $GOPATH/bin(N-/)
   # coreutils.
   /usr/local/opt/coreutils/libexec/gnubin(N-/)
   /opt/homebrew/opt/coreutils/libexec/gnubin(N-/)
@@ -64,23 +69,6 @@ path=(
 
   $path
 )
-
-# go.
-export GOPATH=$HOME/.go
-
-# rust.
-# export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src" > /dev/null 2>&1
-
-# deno.
-export DENO_INSTALL=$HOME/.deno
-
-path=(
-  $GOPATH/bin(N-/)
-  $DENO_INSTALL/bin(N-/)
-
-  $path
-)
-
 
 # Manpath.
 manpath=(

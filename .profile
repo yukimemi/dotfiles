@@ -42,7 +42,4 @@ export PATH=${PATH}:/home/linuxbrew/.linuxbrew/bin:/usr/local/bin
 export GOROOT=$(go env GOROOT)
 export GOPATH=$HOME/.ghq
 
-
-export PATH="$HOME/.cargo/bin:$PATH"
-
 export PATH="$HOME/.poetry/bin:$PATH"

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2023/08/26 23:39:32.
+// Last Change : 2023/09/10 10:28:05.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -66,14 +66,6 @@ export const coc: Plug[] = [
       },
     ],
     branch: "release",
-    // branch: "master",
-    // build: async ({ info }) => {
-    //   const args = ["install", "--frozen-lockfile"];
-    //   console.log(info?.dst);
-    //   const cmd = new Deno.Command("yarn", { args, cwd: info?.dst });
-    //   const output = await cmd.output();
-    //   console.log(new TextDecoder().decode(output.stdout));
-    // },
     before: async ({ denops }) => {
       await globals.set(denops, "coc_global_extensions", [
         "@yaegassy/coc-tailwindcss3",
@@ -108,6 +100,10 @@ export const coc: Plug[] = [
       // Use <c-j> to trigger snippets
       await mapping.map(denops, "<c-j>", "<Plug>(coc-snippets-expand-jump)", {
         mode: "i",
+      });
+      // Use <leader>x for convert visual selected code to snippet
+      await mapping.map(denops, "<leader>x", "<Plug>(coc-convert-snippet)", {
+        mode: "x",
       });
       // Use <c-space> to trigger completion
       await mapping.map(denops, "<c-space>", "coc#refresh()", {
