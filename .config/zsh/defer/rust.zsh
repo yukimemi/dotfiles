@@ -1,8 +1,9 @@
 # =============================================================================
-# File        : cargo.zsh
+# File        : rust.zsh
 # Author      : yukimemi
-# Last Change : 2023/09/10 10:50:09.
+# Last Change : 2023/09/10 11:13:56.
 # =============================================================================
 
-[ -e ~/.cargo/env ] && source ~/.cargo/env
+export RUSTUP_HOME=$HOME/.tea/rust-lang.org/rustup/v\*
+export CARGO_HOME=$HOME/.tea/rust-lang.org/cargo/v\*
 
