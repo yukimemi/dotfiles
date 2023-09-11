@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2023/08/18 22:20:57.
+// Last Change : 2023/09/11 20:52:56.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -97,6 +97,15 @@ export const edit: Plug[] = [
       denops.meta.host === "nvim" && pluginStatus.insx && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.cmd(`lua require('insx.preset.standard').setup()`);
+    },
+  },
+  {
+    url: "altermo/ultimate-autopair.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && pluginStatus.ultimatepair && !pluginStatus.vscode,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require('ultimate-autopair').setup(_A)`, {});
     },
   },
   {

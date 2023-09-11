@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/09/02 11:06:46.
+// Last Change : 2023/09/11 20:47:44.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -450,6 +450,68 @@ export const util: Plug[] = [
           command! -range=% TJ call denops#request('jsontoml', 'tomlJSON', [<line1>, <line2>])
         `,
       );
+    },
+  },
+  {
+    url: "bennypowers/nvim-regexplainer",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    dependencies: [
+      { url: "nvim-treesitter/nvim-treesitter" },
+      { url: "MunifTanjim/nui.nvim" },
+    ],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("regexplainer").setup(_A)`, {
+        mode: "narrative",
+        // automatically show the explainer when the cursor enters a regexp
+        auto: false,
+
+        // filetypes (i.e. extensions) in which to run the autocommand
+        filetypes: ["html", "js", "cjs", "mjs", "ts", "jsx", "tsx", "cjsx", "mjsx"],
+
+        // Whether to log debug messages
+        debug: false,
+
+        // 'split', 'popup'
+        display: "popup",
+
+        mappings: {
+          toggle: "gR",
+          // examples, not defaults:
+          // show = 'gS',
+          // hide = 'gH',
+          // show_split = 'gP',
+          // show_popup = 'gU',
+        },
+
+        narrative: {
+          separator: "\n",
+        },
+      });
+    },
+  },
+  {
+    url: "gaborvecsei/usage-tracker.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("usage-tracker").setup(_A)`, {});
+    },
+  },
+  {
+    url: "tamton-aquib/zone.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("zone").setup(_A)`, {});
+    },
+  },
+  {
+    url: "stefanlogue/hydrate.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("hydrate").setup(_A)`, {});
     },
   },
 ];

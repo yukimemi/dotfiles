@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2023/09/10 01:26:00.
+// Last Change : 2023/09/11 16:01:03.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -86,7 +86,7 @@ export const ddu: Plug[] = [
       );
       await mapping.map(
         denops,
-        "<leader>do",
+        "<leader>dO",
         "<cmd>Ddu -name=old file_old<cr>",
         { mode: "n" },
       );
@@ -104,7 +104,7 @@ export const ddu: Plug[] = [
       );
       await mapping.map(
         denops,
-        "<leader>cr",
+        "<leader>do",
         `<cmd>Ddu -name=chronicle-read chronicle -source-param-chronicle-kind='read'<cr>`,
         {
           mode: "n",
@@ -112,7 +112,7 @@ export const ddu: Plug[] = [
       );
       await mapping.map(
         denops,
-        "<leader>cw",
+        "<leader>dw",
         `<cmd>Ddu -name=chronicle-write chronicle -source-param-chronicle-kind='write'<cr>`,
         {
           mode: "n",

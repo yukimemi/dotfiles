@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2023/09/10 12:45:16.
+// Last Change : 2023/09/11 20:51:34.
 // =============================================================================
 
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -32,14 +32,15 @@ export const pluginStatus = {
   cmp: false,
   ddu: true,
   heirline: false,
-  insx: true,
+  insx: false,
+  ultimatepair: true,
   lualine: true,
   modesearch: false,
   notifier: false,
   nvimnotify: true,
   yankround: true,
   yanky: false,
-  vimwiki: true,
+  vimwiki: false,
   vscode: false,
   fern: true,
   neotree: false,
