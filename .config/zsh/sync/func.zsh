@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : func.zsh
 # Author      : yukimemi
-# Last Change : 2023/09/07 23:12:20.
+# Last Change : 2023/09/13 00:32:37.
 # =============================================================================
 
 # Filter function.
@@ -22,7 +22,7 @@ done
 
 # cd and ls.
 alias ls='lsd'
-function chpwd() { ls -F }
+function chpwd() { lsd -F }
 
 # tmux filter.
 function __tmux_session_list() {
