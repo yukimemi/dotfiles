@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : wezterm.lua
 -- Author      : yukimemi
--- Last Change : 2023/09/11 08:34:13.
+-- Last Change : 2023/09/11 22:54:22.
 -- =============================================================================
 
 local wezterm = require("wezterm")
@@ -24,7 +24,7 @@ return {
     "PlemolJP Console NF",
     "HackGen Console NF",
   }),
-  font_size = 23.0,
+  font_size = 13.0,
   hide_tab_bar_if_only_one_tab = true,
   use_ime = true,
   window_background_opacity = 0.90,
