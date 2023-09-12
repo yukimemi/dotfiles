@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/09/11 20:43:28.
+// Last Change : 2023/09/12 23:18:44.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -362,7 +362,7 @@ export const ui: Plug[] = [
   {
     url: "tamton-aquib/flirt.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode && false,
     after: async ({ denops }) => {
       await denops.cmd(`lua require("flirt").setup(_A)`, {});
     },

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zeno.zsh
 # Author      : yukimemi
-# Last Change : 2023/09/08 22:40:48.
+# Last Change : 2023/09/12 23:35:51.
 # =============================================================================
 
 # Experimental: Use UNIX Domain Socket
@@ -13,5 +13,5 @@ export ZENO_ENABLE_SOCK=1
 # git file preview with color
 export ZENO_GIT_CAT="bat --color=always"
 # git folder preview with color
-export ZENO_GIT_TREE="exa --tree"
+export ZENO_GIT_TREE="exa -TFla --icons --git --git-ignore -I .git"
 

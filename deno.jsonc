@@ -16,7 +16,7 @@
     "lint": "deno lint --ignore=cov_profile",
     "fmt": "deno fmt --ignore=cov_profile",
     "check": "deno check .config/nvim/**/*.ts",
-    "ci": "deno task check && deno task lint && deno task fmt --check",
+    "ci": "deno task check && deno task lint && deno task fmt",
     "deps": "deno run --allow-read --allow-write --allow-net --allow-run https://deno.land/x/udd@0.8.2/main.ts --test='deno task test' deno.jsonc ./**/*.ts",
     // git hooks
     "setup-hooks": "deno run --allow-read --allow-run https://pax.deno.dev/kawarimidoll/deno-dev-template/scripts/setup-hooks.ts",

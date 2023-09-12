@@ -3,3 +3,4 @@
 .luarc.json
 *.log
 *.swp
+*.zwc

@@ -1,34 +1,42 @@
-# `sheldon` configuration file
-# ----------------------------
-#
-# You can modify this file directly or you can use one of the following
-# `sheldon` commands which are provided to assist in editing the config file:
-#
-# - `sheldon add` to add a new plugin to the config file
-# - `sheldon edit` to open up the config file in the default editor
-# - `sheldon remove` to remove a plugin from the config file
-#
-# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
+# =============================================================================
+# File        : plugins.toml
+# Author      : yukimemi
+# Last Change : 2023/09/13 00:22:14.
+# =============================================================================
 
 shell = "zsh"
 
 [templates]
-defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
+defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks | get: \"post\" | nl }}"
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
+
+[plugins.powerlevel10k]
+github = "romkatv/powerlevel10k"
+use = ['{{ name }}.zsh-theme']
+
+# [plugins.spaceship]
+# github = "spaceship-prompt/spaceship-prompt"
+
+# [plugins.pure]
+# github = "sindresorhus/pure"
+# use = ["async.zsh", "pure.zsh"]
 
 [plugins.zsh-show-buffer-stack]
 github = "yukiycino-dotfiles/zsh-show-buffer-stack"
 
 [plugins."zeno.zsh"]
 github = "yuki-yano/zeno.zsh"
+use = ['zeno.zsh']
+apply = ["defer"]
 
 [plugins.zsh-vi-mode]
 github = "jeffreytse/zsh-vi-mode"
 
-# [plugins.zsh-autocomplete]
-# github = "marlonrichert/zsh-autocomplete"
+[plugins.zsh-autocomplete]
+github = "marlonrichert/zsh-autocomplete"
+apply = ["defer"]
 
 [plugins.zsh-history-substring-search]
 github = "zsh-users/zsh-history-substring-search"
@@ -43,16 +51,6 @@ github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
 apply = ["defer"]
 
-# [plugins.powerlevel10k]
-# github = "romkatv/powerlevel10k"
-
-# [plugins.spaceship]
-# github = "spaceship-prompt/spaceship-prompt"
-
-# [plugins.pure]
-# github = "sindresorhus/pure"
-# use = ["async.zsh", "pure.zsh"]
-
 [plugins.dotfiles-sync]
 local = "~/.dotfiles/.config/zsh/sync"
 use = ["*.zsh"]
@@ -62,3 +60,4 @@ apply = ["source"]
 local = "~/.dotfiles/.config/zsh/defer"
 use = ["*.zsh"]
 apply = ["defer"]
+
