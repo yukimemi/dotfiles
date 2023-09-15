@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : wezterm.lua
 -- Author      : yukimemi
--- Last Change : 2023/09/11 22:54:22.
+-- Last Change : 2023/09/15 22:23:29.
 -- =============================================================================
 
 local wezterm = require("wezterm")
@@ -20,8 +20,8 @@ return {
   audible_bell = "Disabled",
   dpi = 96.0,
   font = wezterm.font_with_fallback({
-    "UDEV Gothic NF",
     "PlemolJP Console NF",
+    "UDEV Gothic NF",
     "HackGen Console NF",
   }),
   font_size = 13.0,
