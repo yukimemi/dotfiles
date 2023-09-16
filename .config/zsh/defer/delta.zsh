@@ -1,8 +1,8 @@
 # =============================================================================
-# File        : zoxide.zsh
+# File        : delta.zsh
 # Author      : yukimemi
-# Last Change : 2023/09/16 00:43:28.
+# Last Change : 2023/09/16 01:31:59.
 # =============================================================================
 
-eval "$(zoxide init zsh)"
+(( $+commands[delta] )) || cargo install git-delta
 

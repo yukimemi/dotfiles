@@ -1,8 +1,8 @@
 # =============================================================================
-# File        : zoxide.zsh
+# File        : fzf.zsh
 # Author      : yukimemi
-# Last Change : 2023/09/16 00:43:28.
+# Last Change : 2023/09/16 01:33:46.
 # =============================================================================
 
-eval "$(zoxide init zsh)"
+(( $+commands[fzf] )) || rtx install -y fzf@latest
 

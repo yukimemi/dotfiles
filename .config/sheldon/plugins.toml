@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : plugins.toml
 # Author      : yukimemi
-# Last Change : 2023/09/13 00:22:14.
+# Last Change : 2023/09/16 01:37:08.
 # =============================================================================
 
 shell = "zsh"
@@ -29,7 +29,6 @@ github = "yukiycino-dotfiles/zsh-show-buffer-stack"
 [plugins."zeno.zsh"]
 github = "yuki-yano/zeno.zsh"
 use = ['zeno.zsh']
-apply = ["defer"]
 
 [plugins.zsh-vi-mode]
 github = "jeffreytse/zsh-vi-mode"

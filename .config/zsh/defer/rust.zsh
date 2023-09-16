@@ -1,9 +1,10 @@
 # =============================================================================
 # File        : rust.zsh
 # Author      : yukimemi
-# Last Change : 2023/09/10 16:44:59.
+# Last Change : 2023/09/16 01:32:25.
 # =============================================================================
 
-export RUSTUP_HOME=$HOME/.tea/.local
-export CARGO_HOME=$HOME/.tea/.local
+(( $+commands[rustup] )) || curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path
+source "$HOME/.cargo/env"
+rustup default stable
 

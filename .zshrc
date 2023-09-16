@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/09/13 00:10:36.
+# Last Change : 2023/09/16 20:15:58.
 # =============================================================================
 
 #
@@ -10,7 +10,10 @@
 if ! type tea > /dev/null 2>&1; then
   sh <(curl tea.xyz)
 fi
-source <(tea --magic=zsh)
+function command_not_found_handler() {
+  (( $+commands[$1] )) || tea install $1
+  tea -- $*
+}
 
 #
 # source command override technique

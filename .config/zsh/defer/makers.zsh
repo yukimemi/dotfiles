@@ -1,8 +1,8 @@
 # =============================================================================
-# File        : zoxide.zsh
+# File        : makers.zsh
 # Author      : yukimemi
-# Last Change : 2023/09/16 00:43:28.
+# Last Change : 2023/09/16 01:31:40.
 # =============================================================================
 
-eval "$(zoxide init zsh)"
+(( $+commands[makers] )) || cargo install cargo-make
 
