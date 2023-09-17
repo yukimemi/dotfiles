@@ -1,22 +1,3 @@
-[tools]
-# bat = "latest"
-# exa = "latest"
-# jq = "latest"
-delta = "latest"
-deno = "latest"
-duf = "latest"
-dust = "latest"
-fd = "latest"
-fzf = "latest"
-github-cli = "latest"
-go = "latest"
-neovim = "latest"
-node = "latest"
-pnpm = "latest"
-ripgrep = "latest"
-rust = "latest"
-yq = "latest"
-
 [settings]
 plugin_autoupdate_last_check_duration = '1 week'
 verbose = true
