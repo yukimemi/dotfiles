@@ -1,10 +1,10 @@
 # =============================================================================
 # File        : rust.zsh
 # Author      : yukimemi
-# Last Change : 2023/09/16 01:32:25.
+# Last Change : 2023/09/16 21:33:32.
 # =============================================================================
 
-(( $+commands[rustup] )) || curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path
+[[ -f "$HOME/.cargo/bin/rustup" ]] || curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path -y
 source "$HOME/.cargo/env"
 rustup default stable
 

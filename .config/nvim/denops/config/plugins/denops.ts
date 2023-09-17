@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/09/09 21:11:59.
+// Last Change : 2023/09/17 11:13:52.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -220,6 +220,7 @@ export const denops: Plug[] = [
       { url: "ChristianChiarulli/nvcode-color-schemes.vim" },
       { url: "KeitaNakamura/neodark.vim" },
       { url: "NLKNguyen/papercolor-theme" },
+      { url: "liuchengxu/space-vim-dark" },
       { url: "PHSix/nvim-hybrid" },
       { url: "adrian5/oceanic-next-vim" },
       { url: "bluz71/vim-nightfly-guicolors" },
