@@ -1,13 +1,14 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2023/08/20 21:36:01.
+// Last Change : 2023/09/17 14:15:42.
 // =============================================================================
 
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
+import * as helper from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
 import * as nvimOption from "https://deno.land/x/denops_std@v5.0.1/option/nvim/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
@@ -114,5 +115,22 @@ export async function setOption(denops: Denops) {
         }", [])`,
       );
     });
+
+    await helper.execute(
+      denops,
+      `
+        " https://vim-jp.org/vim-users-jp/2011/02/20/Hack-202.html
+        augroup vimrc-auto-mkdir
+          autocmd!
+          autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+          function! s:auto_mkdir(dir, force)
+            if !isdirectory(a:dir) && (a:force ||
+            \\  input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\\%[es]$')
+              call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+            endif
+          endfunction
+        augroup END
+      `,
+    );
   });
 }
