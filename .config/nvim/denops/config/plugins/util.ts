@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/09/13 00:09:33.
+// Last Change : 2023/09/17 15:12:24.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -501,7 +501,7 @@ export const util: Plug[] = [
   {
     url: "tamton-aquib/zone.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && Deno.build.os !== "windows",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("zone").setup(_A)`, {
         after: 180,

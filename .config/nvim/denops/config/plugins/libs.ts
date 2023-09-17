@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/09/07 22:04:43.
+// Last Change : 2023/09/15 17:06:44.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -171,7 +171,7 @@ export const libs: Plug[] = [
   {
     url: "folke/which-key.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode && false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("which-key").setup()`);
     },

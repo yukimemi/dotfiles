@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2023/09/01 22:09:04.
+// Last Change : 2023/09/15 09:45:42.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -74,7 +74,7 @@ export const filetypes: Plug[] = [
   // markdown
   {
     url: "tani/glance-vim",
-    enabled: false,
+    enabled: true,
     dependencies: [{ url: "tani/podium" }],
     before: async ({ denops }) => {
       await globals.set(denops, "glance#markdown_breaks", true);
@@ -82,6 +82,7 @@ export const filetypes: Plug[] = [
       await globals.set(denops, "glance#plugins", [
         "https://esm.sh/markdown-it-emoji",
         "https://esm.sh/markdown-it-highlightjs",
+        "https://esm.sh/markdown-it-mermaid-plugin",
       ]);
 
       // await globals.set(
@@ -105,7 +106,7 @@ export const filetypes: Plug[] = [
   },
   {
     url: "previm/previm",
-    enabled: !pluginStatus.vscode,
+    enabled: !pluginStatus.vscode && false,
     dependencies: [
       { url: "tyru/open-browser.vim" },
     ],
