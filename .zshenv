@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2023/09/16 00:40:10.
+# Last Change : 2023/09/17 21:12:08.
 # =============================================================================
 
 # For time.
@@ -34,15 +34,15 @@ export DENO_INSTALL=$HOME/.deno
 
 # Path.
 path=(
-  # Home.
-  $HOME/.local/bin(N-/)
-  $HOME/.local/bin/scripts(N-/)
   # cargo
   $HOME/.cargo/bin(N-/)
   # deno
   $DENO_INSTALL/bin(N-/)
   # golang
   $GOPATH/bin(N-/)
+  # Home.
+  $HOME/.local/bin(N-/)
+  $HOME/.local/bin/scripts(N-/)
   # coreutils.
   /usr/local/opt/coreutils/libexec/gnubin(N-/)
   /opt/homebrew/opt/coreutils/libexec/gnubin(N-/)

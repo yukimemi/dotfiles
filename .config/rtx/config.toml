@@ -6,4 +6,5 @@ asdf_compat = true
 [tools]
 go = "1.21.1"
 dust = "0.8.6"
+jless = "0.9.0"
 
