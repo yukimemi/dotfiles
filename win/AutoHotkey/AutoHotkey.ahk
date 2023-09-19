@@ -156,9 +156,9 @@ return
 ; return
 
 ; for wezterm
-; F12::
-; Toggle(USERPROFILE . "\app\WezTerm\wezterm.exe")
-; return
+F12::
+Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
+return
 
 ; for Hyper
 ; F12::
@@ -170,9 +170,9 @@ return
 ; Activate3("FluentTerminal.App.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\flute.exe", "Fluent")
 ; return
 ; for Windows Terminal
-F12::
-ToggleExe("WindowsTerminal.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
-return
+; F12::
+; ToggleExe("WindowsTerminal.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
+; return
 
 ; for Edge
 ; F11::
