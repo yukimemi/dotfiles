@@ -59,3 +59,4 @@ packages:
   - name: wader/fq@v0.7.0
   - name: wagoodman/dive@v0.11.0
   - name: x-motemen/ghq@v1.4.2
+  - name: phiresky/ripgrep-all@v1.0.0-alpha.5

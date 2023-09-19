@@ -1,0 +1,12 @@
+github:
+- name: Genivia/ugrep
+  description: ultra grep
+  owner: Genivia
+  repo: ugrep
+  release:
+    name: ugrep
+    tag: v4.1.0
+  command:
+    link:
+      - from: "*ug*"
+        to: ug

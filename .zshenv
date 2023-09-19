@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2023/09/17 21:12:08.
+# Last Change : 2023/09/18 12:02:15.
 # =============================================================================
 
 # For time.
@@ -43,6 +43,8 @@ path=(
   # Home.
   $HOME/.local/bin(N-/)
   $HOME/.local/bin/scripts(N-/)
+  # aqua
+  $HOME/.local/share/aquaproj-aqua/bin(N-/)
   # coreutils.
   /usr/local/opt/coreutils/libexec/gnubin(N-/)
   /opt/homebrew/opt/coreutils/libexec/gnubin(N-/)

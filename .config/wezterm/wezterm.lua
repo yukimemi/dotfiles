@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : wezterm.lua
 -- Author      : yukimemi
--- Last Change : 2023/09/17 19:59:12.
+-- Last Change : 2023/09/19 12:39:33.
 -- =============================================================================
 
 local wezterm = require("wezterm")
@@ -24,7 +24,7 @@ return {
     "UDEV Gothic NF",
     "HackGen Console NF",
   }),
-  font_size = 13.0,
+  font_size = 23.0,
   hide_tab_bar_if_only_one_tab = true,
   use_ime = true,
   window_background_opacity = 0.90,
