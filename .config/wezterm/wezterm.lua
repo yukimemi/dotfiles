@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : wezterm.lua
 -- Author      : yukimemi
--- Last Change : 2023/09/19 16:47:03.
+-- Last Change : 2023/09/22 20:44:30.
 -- =============================================================================
 
 -- https://karukichi-blog.netlify.app/blogs/wezterm
@@ -138,13 +138,13 @@ return {
   use_fancy_tab_bar = false,
   use_ime = true,
   window_background_opacity = 0.90,
+  font_size = 13.0,
   font = wezterm.font_with_fallback({
     "PlemolJP Console NF",
     "UDEV Gothic NF",
     "HackGen Console NF",
   }),
   dpi = 96.0,
-  font_size = 11.0,
   inactive_pane_hsb = {
     saturation = 1,
     brightness = 1,
