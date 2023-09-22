@@ -348,6 +348,10 @@ snippets:
     snippet: cargo install --locked zellij
   - name: Install rustup
     snippet: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  - name: Install gh-q
+    snippet: gh extension install kawarimidoll/gh-q
+  - name: Install gh-graph
+    snippet: gh extension install kawarimidoll/gh-graph
 
   # build
   - name: Build neovim (Ubuntu)
