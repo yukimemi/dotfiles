@@ -28,5 +28,16 @@ arg = ["-i", "--vimgrep", "--no-heading", "--hidden", "--no-ignore", "--regexp"]
 [[tool]]
 name = "default"
 cmd = "rg"
-arg = ["-i", "--vimgrep", "--no-heading"]
+arg = [
+"-i",
+ "--vimgrep",
+ "--no-heading",
+ "--hidden",
+ "--no-ignore",
+ "--glob",
+ "!**/node_modules/**",
+ "--glob",
+ "!**/.git/**",
+ "--regexp",
+]
 

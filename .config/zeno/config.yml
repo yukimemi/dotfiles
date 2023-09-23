@@ -155,15 +155,15 @@ snippets:
   - name: Install yewtube
     keyword: install-yewtube
     snippet: pip install pipx; pipx install --force git+https://github.com/iamtalhaasghar/yewtube.git
-  - name: youtube-dl to music
+  - name: yt-dlp to music
     keyword: ytm
-    snippet: youtube-dl -ix --no-post-overwrites --download-archive ./.downloaded
-  - name: youtube-dl to mp3
+    snippet: yt-dlp -ix --no-post-overwrites --download-archive ./.downloaded
+  - name: yt-dlp to mp3
     keyword: ytM
-    snippet: youtube-dl -ix --no-post-overwrites --download-archive ./.downloaded --audio-format mp3-dl -i
-  - name: youtube-dl download
+    snippet: yt-dlp -ix --no-post-overwrites --download-archive ./.downloaded --audio-format mp3-dl -i
+  - name: yt-dlp download
     keyword: ytd
-    snippet: youtube-dl -i --download-archive ./.downloaded
+    snippet: yt-dlp -i --download-archive ./.downloaded
   # atuin
   - name: atuin register
     keyword: atuin register
@@ -182,6 +182,10 @@ snippets:
   - name: vim-startuptime
     keyword: vim-startuptime
     snippet: go run github.com/rhysd/vim-startuptime@latest
+  # Gravatar icon
+  - name: Gravatar icon url
+    keyword: gravatar
+    snippet: https://www.gravatar.com/avatar/fdd2cd540411ae241ef29add747b62dd
   # Global abbr
   - name: Pipe grep
     keyword: G
