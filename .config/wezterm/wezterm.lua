@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : wezterm.lua
 -- Author      : yukimemi
--- Last Change : 2023/09/22 20:44:30.
+-- Last Change : 2023/09/23 13:50:54.
 -- =============================================================================
 
 -- https://karukichi-blog.netlify.app/blogs/wezterm
@@ -101,22 +101,6 @@ local colors = {
   },
 }
 
-local leader = { key = 'q', mods = 'CTRL', timeout_milliseconds = 1000 };
-local act = wezterm.action;
-local keys = {
-  -- { key = '|', mods = '', action = act({ SplitVertical = { domain = 'CurrentPaneDomain' } }) },
-  -- { key = '-', mods = '', action = act({ SplitHorizontal = { domain = 'CurrentPaneDomain' } }) },
-  { key = 'h',     mods = 'CTRL',  action = act({ ActivatePaneDirection = 'Left' }) },
-  { key = 'l',     mods = 'CTRL',  action = act({ ActivatePaneDirection = 'Right' }) },
-  { key = 'k',     mods = 'CTRL',  action = act({ ActivatePaneDirection = 'Up' }) },
-  { key = 'j',     mods = 'CTRL',  action = act({ ActivatePaneDirection = 'Down' }) },
-  { key = 'H',     mods = 'CTRL',  action = act({ AdjustPaneSize = { 'Left', 5 } }) },
-  { key = 'L',     mods = 'CTRL',  action = act({ AdjustPaneSize = { 'Right', 5 } }) },
-  { key = 'K',     mods = 'CTRL',  action = act({ AdjustPaneSize = { 'Up', 5 } }) },
-  { key = 'J',     mods = 'CTRL',  action = act({ AdjustPaneSize = { 'Down', 5 } }) },
-  { key = 'Enter', mods = 'SHIFT', action = 'QuickSelect' },
-}
-
 wezterm.on("gui-startup", function(cmd)
   local tab, pane, window = mux.spawn_window(cmd or {})
   -- window:gui_window():maximize()
@@ -131,7 +115,6 @@ return {
   colors = colors,
   front_end = "WebGpu",
   hide_tab_bar_if_only_one_tab = false,
-  keys = keys,
   leader = leader,
   line_height = 1.00,
   scrollback_lines = 3500,

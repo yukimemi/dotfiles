@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:38:18.
+// Last Change : 2023/09/23 13:44:35.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -15,6 +15,8 @@ export const search: Plug[] = [
   { url: "lambdalisue/reword.vim" },
   {
     url: "haya14busa/vim-asterisk",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host !== "nvim",
     after: async ({ denops }) => {
       await mapping.map(denops, "*", "<Plug>(asterisk-z*)zv", {
         mode: ["n", "o", "x"],
