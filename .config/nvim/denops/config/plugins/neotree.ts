@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : neotree.ts
 // Author      : yukimemi
-// Last Change : 2023/08/26 16:56:06.
+// Last Change : 2023/09/23 15:46:38.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -17,13 +17,23 @@ export const neotree: Plug[] = [
       { url: "nvim-lua/plenary.nvim" },
       { url: "nvim-tree/nvim-web-devicons" },
       { url: "MunifTanjim/nui.nvim" },
+      { url: "s1n7ax/nvim-window-picker" },
     ],
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("neo-tree").setup()`);
+      await denops.call(`luaeval`, `require("neo-tree").setup(_A)`, {
+        filesystem: {
+          window: {
+            mappings: {
+              "/": "noop",
+              "l": "open",
+            },
+          },
+        },
+      });
       await mapping.map(
         denops,
         "<leader>e",
-        `<cmd>Neotree filesystem reveal left<cr>`,
+        `<cmd>Neotree focus filesystem left reveal_force_cwd<cr>`,
         { mode: "n" },
       );
     },

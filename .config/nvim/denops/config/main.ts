@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2023/09/11 20:51:34.
+// Last Change : 2023/09/23 15:30:05.
 // =============================================================================
 
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -27,28 +27,28 @@ export const pluginStatus = {
   barbecue: true,
   bufferline: false,
   buffertabs: false,
+  cmp: false,
   coc: false,
   ddc: true,
-  cmp: false,
   ddu: true,
+  fern: false,
   heirline: false,
+  hlchunk: false,
+  indentblankline: true,
   insx: false,
-  ultimatepair: true,
   lualine: true,
   modesearch: false,
+  neotree: true,
   notifier: false,
   nvimnotify: true,
-  yankround: true,
-  yanky: false,
-  vimwiki: false,
-  vscode: false,
-  fern: true,
-  neotree: false,
   nvimtree: false,
   snipewin: true,
+  ultimatepair: true,
+  vimwiki: false,
+  vscode: false,
   windowpicker: false,
-  indentblankline: true,
-  hlchunk: false,
+  yankround: true,
+  yanky: false,
 };
 
 export async function main(denops: Denops): Promise<void> {

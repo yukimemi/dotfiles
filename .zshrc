@@ -1,15 +1,13 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/09/16 20:15:58.
+# Last Change : 2023/09/24 11:16:34.
 # =============================================================================
 
 #
 # tea/cli
 #
-if ! type tea > /dev/null 2>&1; then
-  sh <(curl tea.xyz)
-fi
+(( $+commands[tea] )) || sh <(curl tea.xyz)
 function command_not_found_handler() {
   (( $+commands[$1] )) || tea install $1
   tea -- $*

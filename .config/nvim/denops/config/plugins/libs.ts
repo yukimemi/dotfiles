@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/09/15 17:06:44.
+// Last Change : 2023/09/23 14:12:47.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -126,26 +126,28 @@ export const libs: Plug[] = [
   {
     url: "folke/noice.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode && false,
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     dependencies: [
-      {
-        url: "MunifTanjim/nui.nvim",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
-      },
-      {
-        url: "rcarriga/nvim-notify",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
-      },
+      { url: "MunifTanjim/nui.nvim" },
+      { url: "rcarriga/nvim-notify" },
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("noice").setup(_A)`, {
-        cmdline: {
-          enabled: false,
+        lsp: {
+          override: {
+            "vim.lsp.util.convert_input_to_markdown_lines": true,
+            "vim.lsp.util.stylize_markdown": true,
+          },
         },
-        messages: {
-          enabled: false,
+        presets: {
+          bottom_search: true,
+          command_palette: false,
+          long_message_to_split: true,
+          inc_rename: false,
+          lsp_doc_border: false,
+        },
+        cmdline: {
+          view: "cmdline",
         },
       });
     },

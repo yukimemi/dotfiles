@@ -76,6 +76,9 @@ snippets:
   - name: Vim
     keyword: v
     snippet: vim
+  - name: Filter Neovim
+    keyword: fe
+    snippet: fd -H -E "**/.git/**" -E "**/node_modules/**" -t f | __filter_execute nvim
   - name: hitori
     keyword: h
     snippet: hitori
@@ -356,6 +359,8 @@ snippets:
     snippet: gh extension install kawarimidoll/gh-q
   - name: Install gh-graph
     snippet: gh extension install kawarimidoll/gh-graph
+  - name: Install countdown
+    snippet: go install github.com/antonmedv/countdown@latest
 
   # build
   - name: Build neovim (Ubuntu)
