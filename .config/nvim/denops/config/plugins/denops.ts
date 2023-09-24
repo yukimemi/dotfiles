@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/09/23 12:24:22.
+// Last Change : 2023/09/24 22:11:42.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -286,7 +286,7 @@ export const denops: Plug[] = [
       {
         url: "RRethy/nvim-base16",
         // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
+        enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
       },
       {
         url: "catppuccin/nvim",
