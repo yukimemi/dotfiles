@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/09/24 22:11:42.
+// Last Change : 2023/09/26 23:36:37.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -316,7 +316,7 @@ export const denops: Plug[] = [
       if (denops.meta.platform === "windows") {
         await globals.set(denops, "randomcolorscheme_interval", 1800);
       } else {
-        await globals.set(denops, "randomcolorscheme_interval", 30);
+        await globals.set(denops, "randomcolorscheme_interval", 60);
       }
       // await globals.set(denops, "randomcolorscheme_checkwait", 30000);
       await globals.set(denops, "randomcolorscheme_disables", [
@@ -341,10 +341,10 @@ export const denops: Plug[] = [
         "<cmd>DisableThisColorscheme<cr>",
         { mode: "n" },
       );
-      await mapping.map(denops, "<space>rl", "<cmd>LikeThisColorscheme<cr>", {
+      await mapping.map(denops, "ml", "<cmd>LikeThisColorscheme<cr>", {
         mode: "n",
       });
-      await mapping.map(denops, "<space>rh", "<cmd>HateThisColorscheme<cr>", {
+      await mapping.map(denops, "mh", "<cmd>HateThisColorscheme<cr>", {
         mode: "n",
       });
     },
