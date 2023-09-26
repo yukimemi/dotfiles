@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/09/23 14:12:47.
+// Last Change : 2023/09/25 11:46:20.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -126,7 +126,8 @@ export const libs: Plug[] = [
   {
     url: "folke/noice.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && !pluginStatus.vscode && denops.meta.platform !== "windows",
     dependencies: [
       { url: "MunifTanjim/nui.nvim" },
       { url: "rcarriga/nvim-notify" },

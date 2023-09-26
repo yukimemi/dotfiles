@@ -155,10 +155,14 @@ return
 ; ToggleExe("Terminus.exe", USERPROFILE . "\AppData\Local\Programs\Terminus\Terminus.exe")
 ; return
 
-; for wezterm
 F12::
-Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
-return
+If (FileExist(USERPROFILE . "\.usewez")) {
+  Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
+  return
+} else {
+  ToggleExe("WindowsTerminal.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
+  return
+}
 
 ; for Hyper
 ; F12::
@@ -169,11 +173,6 @@ return
 ; F12::
 ; Activate3("FluentTerminal.App.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\flute.exe", "Fluent")
 ; return
-; for Windows Terminal
-; F12::
-; ToggleExe("WindowsTerminal.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
-; return
-
 ; for Edge
 ; F11::
 ; Activate2("MicrosoftEdge.exe", "shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge")
