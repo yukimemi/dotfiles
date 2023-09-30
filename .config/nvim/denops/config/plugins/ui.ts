@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/09/17 15:11:54.
+// Last Change : 2023/09/30 00:04:03.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -183,12 +183,8 @@ export const ui: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
-        `require("indent_blankline").setup(_A)`,
-        {
-          space_char_blankline: " ",
-          show_current_context: true,
-          show_current_context_start: true,
-        },
+        `require("ibl").setup(_A)`,
+        {},
       );
     },
   },
