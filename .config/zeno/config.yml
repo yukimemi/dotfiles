@@ -305,6 +305,10 @@ snippets:
     snippet: go install github.com/skanehira/fk/cmd/fk@latest
   - name: Install cargo-binstall
     snippet: cargo install cargo-binstall
+  - name: Install cargo-udeps
+    snippet: cargo install cargo-udeps
+  - name: Install cargo-diet
+    snippet: cargo install cargo-diet
   - name: Install slack cli
     snippet: curl -fsSL https://downloads.slack-edge.com/slack-cli/install.sh | bash
   - name: Install mutagen
