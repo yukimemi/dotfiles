@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/10/07 22:17:39.
+// Last Change : 2023/10/09 18:56:57.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -10,8 +10,6 @@ import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
-import { expand } from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 
 export const util: Plug[] = [
   {
@@ -24,26 +22,7 @@ export const util: Plug[] = [
   {
     url: "thinca/vim-partedit",
     before: async ({ denops }) => {
-      await globals.set(denops, "partedit#opener", "vsplit");
-    },
-  },
-  {
-    url: "glidenote/memolist.vim",
-    before: async ({ denops }) => {
-      await globals.set(
-        denops,
-        "memolist_path",
-        await expand(denops, "~/.memolist"),
-      );
-      await globals.set(denops, "memolist_memo_suffix", "md");
-      await globals.set(denops, "memolist_prompt_tags", 1);
-
-      await mapping.map(denops, "<leader>mn", "<cmd>MemoNew<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "<leader>ml", "<cmd>MemoList<cr>", {
-        mode: "n",
-      });
+      await vars.g.set(denops, "partedit#opener", "vsplit");
     },
   },
   {
@@ -114,7 +93,7 @@ export const util: Plug[] = [
     url: "junegunn/vim-easy-align",
     before: async ({ denops }) => {
       await mapping.map(denops, "<enter>", "<Plug>(EasyAlign)", { mode: "v" });
-      await globals.set(denops, "easy_align_delimiters", {
+      await vars.g.set(denops, "easy_align_delimiters", {
         ">": {
           "pattern": ">>\|=>\|>.\+",
           "right_margin": 0,

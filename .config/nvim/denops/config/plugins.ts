@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2023/09/25 00:51:50.
+// Last Change : 2023/10/02 20:19:59.
 // =============================================================================
 
 import { cmp } from "./plugins/cmp.ts";
@@ -32,7 +32,7 @@ import { treesitter } from "./plugins/treesitter.ts";
 import { twitter } from "./plugins/twitter.ts";
 import { ui } from "./plugins/ui.ts";
 import { util } from "./plugins/util.ts";
-import { wiki } from "./plugins/wiki.ts";
+import { memo } from "./plugins/memo.ts";
 
 export const plugins = [
   ...libs,
@@ -62,6 +62,6 @@ export const plugins = [
   ...twitter,
   ...terminal,
   ...test,
-  ...wiki,
+  ...memo,
   ...filetypes,
 ];
