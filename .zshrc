@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/09/24 11:16:34.
+# Last Change : 2023/10/02 23:47:36.
 # =============================================================================
 
 #
@@ -12,6 +12,7 @@ function command_not_found_handler() {
   (( $+commands[$1] )) || tea install $1
   tea -- $*
 }
+source <(tea --shellcode)  #docs.tea.xyz/shellcode
 
 #
 # source command override technique
