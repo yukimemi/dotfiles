@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/09/25 11:46:20.
+// Last Change : 2023/10/07 22:13:00.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -109,7 +109,7 @@ export const libs: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("dressing").setup(_A)`, {});
+      await denops.call(`luaeval`, `require("dressing").setup()`);
     },
   },
   {

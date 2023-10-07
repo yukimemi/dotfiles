@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/09/24 00:53:43.
+// Last Change : 2023/10/07 22:17:39.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -491,14 +491,6 @@ export const util: Plug[] = [
     },
   },
   {
-    url: "gaborvecsei/usage-tracker.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("usage-tracker").setup(_A)`, {});
-    },
-  },
-  {
     url: "tamton-aquib/zone.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && Deno.build.os !== "windows",
@@ -512,9 +504,9 @@ export const util: Plug[] = [
   {
     url: "stefanlogue/hydrate.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("hydrate").setup(_A)`, {});
+      await denops.call(`luaeval`, `require("hydrate").setup()`);
     },
   },
 ];

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2023/09/11 20:52:56.
+// Last Change : 2023/10/07 22:15:40.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -105,7 +105,7 @@ export const edit: Plug[] = [
     enabled: async ({ denops }) =>
       denops.meta.host === "nvim" && pluginStatus.ultimatepair && !pluginStatus.vscode,
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require('ultimate-autopair').setup(_A)`, {});
+      await denops.call(`luaeval`, `require('ultimate-autopair').setup()`);
     },
   },
   {

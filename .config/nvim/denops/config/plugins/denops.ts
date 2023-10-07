@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/09/26 23:36:37.
+// Last Change : 2023/10/07 22:26:36.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -115,7 +115,7 @@ export const denops: Plug[] = [
         let g:chronicle_read_path = '~/.cache/chronicle/read'
         let g:chronicle_write_path = '~/.cache/chronicle/write'
         nnoremap mr <cmd>OpenChronicleRead<cr>
-        nnoremap mw <cmd>OpenChronicleWrite<cr>
+        nnoremap me <cmd>OpenChronicleWrite<cr>
       `,
     },
     before: async ({ denops }) => {
@@ -125,7 +125,7 @@ export const denops: Plug[] = [
       await globals.set(denops, "chronicle_read_path", `~/.cache/chronicle/read`);
       await globals.set(denops, "chronicle_write_path", `~/.cache/chronicle/write`);
       await mapping.map(denops, "mr", "<cmd>OpenChronicleRead<cr>", { mode: "n" });
-      await mapping.map(denops, "mw", "<cmd>OpenChronicleWrite<cr>", { mode: "n" });
+      await mapping.map(denops, "me", "<cmd>OpenChronicleWrite<cr>", { mode: "n" });
     },
   },
   {
@@ -198,7 +198,7 @@ export const denops: Plug[] = [
       await globals.set(denops, "walk_debug", false);
       await globals.set(denops, "walk_no_mapping", false);
 
-      await mapping.map(denops, "mW", "<cmd>DenopsWalk<cr>", { mode: "n" });
+      await mapping.map(denops, "mw", "<cmd>DenopsWalk<cr>", { mode: "n" });
       await mapping.map(denops, "ms", "<cmd>DenopsWalk --path=~/src<cr>", { mode: "n" });
       await mapping.map(denops, "mD", "<cmd>DenopsWalk --path=~/.dotfiles<cr>", { mode: "n" });
       await mapping.map(denops, "md", "<cmd>DenopsWalkBufferDir<cr>", { mode: "n" });

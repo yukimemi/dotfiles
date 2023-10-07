@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/09/30 00:04:03.
+// Last Change : 2023/10/07 22:15:05.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -181,11 +181,7 @@ export const ui: Plug[] = [
       denops.meta.host === "nvim" && pluginStatus.indentblankline && !pluginStatus.vscode,
     dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
     after: async ({ denops }) => {
-      await denops.call(
-        `luaeval`,
-        `require("ibl").setup(_A)`,
-        {},
-      );
+      await denops.call(`luaeval`, `require("ibl").setup()`);
     },
   },
   {
@@ -284,7 +280,7 @@ export const ui: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("edgy").setup(_A)`, {});
+      await denops.call(`luaeval`, `require("edgy").setup()`);
     },
   },
   {
@@ -292,7 +288,7 @@ export const ui: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode && false,
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("satellite").setup(_A)`, {});
+      await denops.call(`luaeval`, `require("satellite").setup()`);
     },
   },
   {
@@ -360,7 +356,7 @@ export const ui: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode && false,
     after: async ({ denops }) => {
-      await denops.cmd(`lua require("flirt").setup(_A)`, {});
+      await denops.cmd(`lua require("flirt").setup()`);
     },
   },
 ];

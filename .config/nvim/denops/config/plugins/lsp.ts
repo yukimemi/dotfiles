@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2023/09/25 00:25:57.
+// Last Change : 2023/10/07 22:16:02.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -27,7 +27,7 @@ export const lsp: Plug[] = [
         url: "zbirenbaum/neodim",
         enabled: false,
         after: async ({ denops }) => {
-          await denops.call(`luaeval`, `require("neodim").setup(_A)`, {});
+          await denops.call(`luaeval`, `require("neodim").setup()`);
         },
       },
       {
