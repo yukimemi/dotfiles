@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2023/09/17 14:15:42.
+// Last Change : 2023/10/05 00:41:21.
 // =============================================================================
 
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -87,17 +87,13 @@ export async function setOption(denops: Denops) {
       await option.viewdir.set(denops, backupdir);
     }
 
-    await autocmd.group(denops, "MyCommentOut", (helper) => {
+    await autocmd.group(denops, "MyAutoCmd", (helper) => {
       helper.remove("*");
       helper.define(
         "FileType",
         "*",
         `set fo-=c fo-=r fo-=o`,
       );
-    });
-
-    await autocmd.group(denops, "MyRestorePosition", (helper) => {
-      helper.remove("*");
       helper.define(
         "BufReadPost",
         "*",
@@ -114,6 +110,7 @@ export async function setOption(denops: Denops) {
           )
         }", [])`,
       );
+      helper.define(["CursorHold", "FocusGained", "FocusLost"], "*", `silent! checktime`);
     });
 
     await helper.execute(
