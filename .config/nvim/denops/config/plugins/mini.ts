@@ -1,11 +1,13 @@
 // =============================================================================
 // File        : mini.ts
 // Author      : yukimemi
-// Last Change : 2023/09/17 13:40:38.
+// Last Change : 2023/10/08 08:24:15.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
+
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 
 export const mini: Plug[] = [
   {
@@ -17,6 +19,17 @@ export const mini: Plug[] = [
       if (denops.meta.platform !== "windows") {
         await denops.call(`luaeval`, `require("mini.animate").setup()`);
       }
+
+      // indentscope.
+      await denops.call(`luaeval`, `require("mini.indentscope").setup()`);
+      autocmd.group(denops, "MyMiniIndentscope", (helper) => {
+        helper.remove("*");
+        helper.define(
+          "FileType",
+          ["fern"],
+          `let b:miniindentscope_disable = v:true`,
+        );
+      });
 
       // files.
       await denops.call(`luaeval`, `require("mini.files").setup()`);

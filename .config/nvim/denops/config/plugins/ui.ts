@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/10/07 22:15:05.
+// Last Change : 2023/10/08 08:28:49.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -181,7 +181,9 @@ export const ui: Plug[] = [
       denops.meta.host === "nvim" && pluginStatus.indentblankline && !pluginStatus.vscode,
     dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("ibl").setup()`);
+      await denops.call(`luaeval`, `require("ibl").setup(_A)`, {
+        indent: { char: `▏` },
+      });
     },
   },
   {
