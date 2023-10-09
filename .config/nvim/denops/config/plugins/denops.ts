@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/10/07 22:26:36.
+// Last Change : 2023/10/09 22:12:38.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
@@ -167,6 +167,10 @@ export const denops: Plug[] = [
             ],
             [
               '/^(.*"version", ")[0-9_]+(".*)/i',
+              '$1${format(now, "yyyyMMdd_HHmmss")}$2',
+            ],
+            [
+              '/^(.*\\$version = ")[0-9_]+(".*)/i',
               '$1${format(now, "yyyyMMdd_HHmmss")}$2',
             ],
           ],
