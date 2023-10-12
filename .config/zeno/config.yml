@@ -365,6 +365,8 @@ snippets:
     snippet: gh extension install kawarimidoll/gh-graph
   - name: Install countdown
     snippet: go install github.com/antonmedv/countdown@latest
+  - name: Install ghg
+    snippet: go install github.com/Songmu/ghg/cmd/ghg@latest
 
   # build
   - name: Build neovim (Ubuntu)
