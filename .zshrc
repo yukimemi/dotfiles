@@ -1,18 +1,18 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/10/03 00:14:07.
+# Last Change : 2023/10/13 00:08:43.
 # =============================================================================
 
 #
-# tea/cli
+# pkgx
 #
-(( $+commands[tea] )) || sh <(curl tea.xyz)
+(( $+commands[pkgx] )) || curl -fsS https://pkgx.sh | sh
 function command_not_found_handler() {
-  (( $+commands[$1] )) || tea install $1
-  tea -- $*
+  (( $+commands[$1] )) || pkgx install $1
+  pkgx -- $*
 }
-# source <(tea --shellcode)  #docs.tea.xyz/shellcode
+# source <(pkgx --shellcode)
 
 #
 # source command override technique
