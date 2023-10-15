@@ -4,7 +4,7 @@
 // Last Change : 2023/09/23 15:46:38.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.3.4/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import { pluginStatus } from "../main.ts";

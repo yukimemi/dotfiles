@@ -4,7 +4,7 @@
 // Last Change : 2023/10/15 14:00:01.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.3.3/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.3.4/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
