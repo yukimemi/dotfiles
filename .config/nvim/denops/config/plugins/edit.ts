@@ -14,7 +14,7 @@ import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 
 import { pluginStatus } from "../main.ts";
 import { ensureDir } from "https://deno.land/std@0.204.0/fs/ensure_dir.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.9.0/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
 
 export const edit: Plug[] = [
   {
