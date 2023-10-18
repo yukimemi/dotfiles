@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : wiki.ts
 // Author      : yukimemi
-// Last Change : 2023/10/02 21:35:32.
+// Last Change : 2023/10/17 23:26:53.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.4/mod.ts";
@@ -83,7 +83,7 @@ export const memo: Plug[] = [
       await mapping.map(denops, "<leader>zI", "<cmd>Telekasten insert_img_link<CR>", { mode: "n" });
 
       // Call insert link automatically when we start typing a link
-      await mapping.map(denops, "[[", "<cmd>Telekasten insert_link<CR>", { mode: "i" });
+      // await mapping.map(denops, "[[", "<cmd>Telekasten insert_link<CR>", { mode: "i" });
     },
   },
 ];

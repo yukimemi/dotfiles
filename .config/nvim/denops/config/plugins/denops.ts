@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/10/15 14:00:01.
+// Last Change : 2023/10/18 01:25:31.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.4/mod.ts";
@@ -189,6 +189,18 @@ export const denops: Plug[] = [
           ],
           event: "BufWritePre",
           pat: ["*.ts"],
+          head: 50,
+          tail: 5,
+        },
+        toml: {
+          replace: [
+            [
+              "/^(version = [\"'])[0-9_]+([\"'])/",
+              '$1${format(now, "yyyyMMdd_HHmmss")}$2',
+            ],
+          ],
+          event: "BufWritePre",
+          pat: ["*.toml"],
           head: 50,
           tail: 5,
         },

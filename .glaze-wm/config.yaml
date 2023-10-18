@@ -1,10 +1,22 @@
 gaps:
-  inner_gap: 15
-  outer_gap: 15
+  inner_gap: 7
+  outer_gap: 7
 
 general:
+  # Whether to automatically focus windows underneath the cursor.
+  focus_follows_cursor: false
+  # Whether to jump the cursor between windows focused by the WM.
+  cursor_follow_focus: false
+  # Whether to switch back and forth between the previously focused workspace
+  # when focusing the current workspace.
+  toggle_workspace_on_refocus: true
   # Whether to show floating windows as always on top.
   show_floating_on_top: false
+  # Amount to move floating windows by (eg. when using `alt+<hjkl>` on a floating window)
+  floating_window_move_amount: "5%"
+  # Whether to globally enable/disable window transition animations (on minimize, close,
+  # etc). Set to 'unchanged' to make no setting changes.
+  window_animations: "unchanged"
 
 bar:
   height: "30px"
@@ -61,15 +73,15 @@ window_rules:
 
   - command: "ignore"
     match_process_name: "cfiler"
-    match_title: "ドライブ選択"
+    match_title: "ドライブ選択.*"
 
   - command: "ignore"
     match_process_name: "cfiler"
-    match_title: "ジャンプ"
+    match_title: "ジャンプ.*"
 
   - command: "ignore"
     match_process_name: "cfiler"
-    match_title: "ソート"
+    match_title: "ソート.*"
 
   - command: "ignore"
     match_process_name: "cfiler"
@@ -81,7 +93,15 @@ window_rules:
 
   - command: "ignore"
     match_process_name: "cfiler"
+    match_title: "圧縮.*"
+
+  - command: "ignore"
+    match_process_name: "cfiler"
     match_title: "ごみ箱.*"
+
+  - command: "ignore"
+    match_process_name: "cfiler"
+    match_title: "アーカイブ展開.*"
 
   - command: "ignore"
     match_process_name: "cfiler"

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2023/10/08 13:10:02.
+// Last Change : 2023/10/16 08:42:18.
 // =============================================================================
 
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -35,7 +35,7 @@ export const pluginStatus = {
   heirline: false,
   hlchunk: false,
   indentblankline: true,
-  insx: false,
+  insx: true,
   lualine: true,
   modesearch: false,
   neotree: true,
@@ -43,7 +43,7 @@ export const pluginStatus = {
   nvimnotify: true,
   nvimtree: false,
   snipewin: true,
-  ultimatepair: true,
+  ultimatepair: false,
   vimwiki: false,
   vscode: false,
   windowpicker: false,
