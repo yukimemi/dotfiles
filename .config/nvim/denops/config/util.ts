@@ -10,7 +10,7 @@ import * as helper from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
-import { is } from "https://deno.land/x/unknownutil@v3.9.0/mod.ts";
+import { is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v0.2.0/mod.ts";
 
 const useNvimNotify = true;
