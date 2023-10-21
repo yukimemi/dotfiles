@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/10/18 23:44:25.
+// Last Change : 2023/10/20 21:07:58.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.4/mod.ts";
@@ -44,6 +44,11 @@ export const denops: Plug[] = [
       await globals.set(denops, "autobackup_echo", false);
       await globals.set(denops, "autobackup_notify", false);
       await globals.set(denops, "autobackup_use_ui_select", false);
+      await globals.set(denops, "autobackup_events", [
+        "CursorHold",
+        "BufWritePre",
+        "InsertLeave",
+      ]);
       await globals.set(denops, "autobackup_ignore_filetypes", [
         "csv",
         "ctrlp",

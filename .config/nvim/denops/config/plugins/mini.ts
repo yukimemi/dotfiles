@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : mini.ts
 // Author      : yukimemi
-// Last Change : 2023/10/09 21:21:30.
+// Last Change : 2023/10/20 20:33:42.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.4/mod.ts";
@@ -39,6 +39,9 @@ export const mini: Plug[] = [
 
       // splitjoin.
       await denops.call(`luaeval`, `require("mini.splitjoin").setup()`);
+
+      // pick.
+      await denops.call(`luaeval`, `require('mini.pick').setup()`);
     },
   },
 ];

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2023/10/07 22:16:02.
+// Last Change : 2023/10/22 00:15:42.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.4/mod.ts";
@@ -53,7 +53,9 @@ export const lsp: Plug[] = [
       },
       { url: "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
       { url: "lukas-reineke/lsp-format.nvim" },
-      { url: "jose-elias-alvarez/null-ls.nvim", enabled: false }, // TODO: replace other plugin.
+      {
+        url: "nvimtools/none-ls.nvim",
+      },
       { url: "williamboman/mason.nvim" },
       {
         url: "williamboman/mason-lspconfig.nvim",
