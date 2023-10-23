@@ -1,110 +1,106 @@
-#Include IME.ahk
+#Include "IME.ahk"
 
-SetTitleMatchMode, 2
+SetTitleMatchMode(2)
 
 ; #z::Run www.autohotkey.com
 
 Toggle(app) {
-  SplitPath, app, file
-  Process, Exist, %file%
-  if ErrorLevel <> 0
+  SplitPath(app, &file)
+  ErrorLevel := ProcessExist(file)
+  if (ErrorLevel != 0)
     if WinActive("ahk_pid" . ErrorLevel)
-      WinMinimize, A
+      WinMinimize("A")
     else
-      WinActivate, ahk_pid %ErrorLevel%
+      WinActivate("ahk_pid " ErrorLevel)
   else
-    Run, %app%
+    Run(app)
   return
 }
 
 ToggleExe(app, exe) {
-  Process, Exist, %app%
-  if ErrorLevel <> 0
+  ErrorLevel := ProcessExist(app)
+  if (ErrorLevel != 0)
     if WinActive("ahk_pid" . ErrorLevel)
-      WinMinimize, A
+      WinMinimize("A")
     else
-      WinActivate, ahk_pid %ErrorLevel%
+      WinActivate("ahk_pid " ErrorLevel)
   else
-    Run, %exe%
+    Run(exe)
   return
 }
 
 Activate(app) {
-  SplitPath, app, file
-  Process, Exist, %file%
-  if ErrorLevel <> 0
-      WinActivate, ahk_pid %ErrorLevel%
+  SplitPath(app, &file)
+  ErrorLevel := ProcessExist(file)
+  if (ErrorLevel != 0)
+      WinActivate("ahk_pid " ErrorLevel)
     else
-      Run, %app%
+      Run(app)
   return
 }
 
 Activate2(app, cmd) {
-  Process, Exist, %app%
-  if ErrorLevel <> 0
-      WinActivate, ahk_pid %ErrorLevel%
+  ErrorLevel := ProcessExist(app)
+  if (ErrorLevel != 0)
+      WinActivate("ahk_pid " ErrorLevel)
     else
-      Run, %cmd%
+      Run(cmd)
   return
 }
 
 Activate3(app, cmd, title) {
-  Process, Exist, %app%
-  if (ErrorLevel <> 0) {
-      WinActivate, %title%
+  ErrorLevel := ProcessExist(app)
+  if (ErrorLevel != 0) {
+      WinActivate(title)
   } else {
-      Run, %cmd%
+      Run(cmd)
   }
   return
 }
 
 ; for Outlook
 ^F9::
-Activate("C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE")
-return
+{
+  If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usenewoutlook")) {
+    Activate("C:\Program Files\WindowsApps\Microsoft.OutlookForWindows_1.2023.1011.100_x64__8wekyb3d8bbwe\olk.exe")
+    return
+  } else {
+    Activate("C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE")
+    return
+  }
+}
 
 ; for Excel
 F9::
-Activate("C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE")
-return
+{
+  Activate("C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE")
+  return
+}
 
 ; for Teams
 ^F12::
-Activate(APPDATA . "Local\Microsoft\Teams\current\Teams.exe")
-return
+{
+  Activate(EnvGet("APPDATA") . "Local\Microsoft\Teams\current\Teams.exe")
+  return
+}
 
-; for gvim
-; F10::
-; Activate3("gvim.exe", "C:\Program Files\Vim\vim90\gvim.exe", "GVIM")
-; return
 ; for neovim-qt
 F10::
-Activate("nvim-qt.exe")
-; Activate("neovide.exe")
-; Activate(USERPROFILE . "\scoop\apps\goneovim\current\goneovim.exe")
-; Activate(USERPROFILE . "\app\fvim\FVim.exe")
-return
-; for neovim
-; F10::
-; Activate("C:\tools\neovim\Neovim\bin\nvim.exe")
-; Activate2("nvim.exe", USERPROFILE . "\AppData\Local\Programs\Python\Python310\Scripts\gnvr.exe")
-; return
-; F10::
-; Activate(USERPROFILE . "\app\fvim\FVim.exe")
-; return
-; F10::
-; Activate(USERPROFILE . "\app\nvy\Nvy.exe")
-; return
+{
+  Activate("nvim-qt.exe")
+  ; Activate("neovide.exe")
+  ; Activate(EnvGet("USERPROFILE") . "\scoop\apps\goneovim\current\goneovim.exe")
+  ; Activate(EnvGet("USERPROFILE") . "\app\fvim\FVim.exe")
+  return
+}
 
-; for sakura
-; ^F10::
-; Activate("C:\Program Files (x86)\sakura\sakura.exe")
-; return
 
 ; for VSCode
 ; F8::
+; {
 ; Activate3("Code.exe", "C:\Program Files\Microsoft VS Code\Code.exe", "Visual Studio Code")
 ; return
+; }
 
 ; for chrome
 ; F11::
@@ -116,12 +112,14 @@ return
 
 ; for Edge
 F11::
-Activate("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
-return
+{
+  Activate("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
+  return
+}
 
 ; for vivaldi
 ; F11::
-; Activate(USERPROFILE . "\scoop\apps\vivaldi\current\Application\vivaldi.exe")
+; Activate(EnvGet("USERPROFILE") . "\scoop\apps\vivaldi\current\Application\vivaldi.exe")
 ; return
 
 ; for firefox
@@ -131,7 +129,7 @@ return
 
 ; for Brave
 ; F11::
-; Activate(USERPROFILE . "\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe")
+; Activate(EnvGet("USERPROFILE") . "\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe")
 ; return
 
 ; for cmd.exe
@@ -146,32 +144,34 @@ return
 
 ; for pwsh.exe
 ; F12::
-; Activate(USERPROFILE . "\scoop\shims\pwsh.exe")
+; Activate(EnvGet("USERPROFILE") . "\scoop\shims\pwsh.exe")
 ; return
 
 ; for Terminus
 ; F12::
-; Toggle(USERPROFILE . "\scoop\apps\terminus\current\Terminus.exe")
-; ToggleExe("Terminus.exe", USERPROFILE . "\AppData\Local\Programs\Terminus\Terminus.exe")
+; Toggle(EnvGet("USERPROFILE") . "\scoop\apps\terminus\current\Terminus.exe")
+; ToggleExe("Terminus.exe", EnvGet("USERPROFILE") . "\AppData\Local\Programs\Terminus\Terminus.exe")
 ; return
 
 F12::
-If (FileExist(USERPROFILE . "\.usewez")) {
-  Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
-  return
-} else {
-  ToggleExe("WindowsTerminal.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
-  return
+{
+  If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usewez")) {
+    Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
+    return
+  } else {
+    ToggleExe("WindowsTerminal.exe", EnvGet("USERPROFILE") . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
+    return
+  }
 }
 
 ; for Hyper
 ; F12::
-; Toggle(USERPROFILE . "\AppData\Local\Programs\hyper\Hyper.exe")
+; Toggle(EnvGet("USERPROFILE") . "\AppData\Local\Programs\hyper\Hyper.exe")
 ; return
 
 ; for Fluent Terminal
 ; F12::
-; Activate3("FluentTerminal.App.exe", USERPROFILE . "\AppData\Local\Microsoft\WindowsApps\flute.exe", "Fluent")
+; Activate3("FluentTerminal.App.exe", EnvGet("USERPROFILE") . "\AppData\Local\Microsoft\WindowsApps\flute.exe", "Fluent")
 ; return
 ; for Edge
 ; F11::
@@ -180,86 +180,26 @@ If (FileExist(USERPROFILE . "\.usewez")) {
 
 ; for cfiler
 ^F10::
-Activate("C:\Program Files (x86)\cfiler\cfiler.exe")
-return
+{
+  Activate("C:\Program Files (x86)\cfiler\cfiler.exe")
+  return
+}
 
 ; for slack
 ^F11::
-Activate(USERPROFILE . "\AppData\Local\slack\slack.exe")
-; Activate3("slack.exe", "C:\Program Files\slack\slack.exe", "slack")
-;Activate3("slack.exe", USERPROFILE . "\AppData\Local\slack\slack.exe", "slack")
-return
-
-; for AFxW
-; F11::
-; Activate(USERPROFILE . "\app\afxw\AFXW.EXE")
-; return
-
-; for NynFi
-; F11::
-; Activate(USERPROFILE . "\app\nyanfi64\NyanFi.exe")
-; return
-
-; For Visual Studio
-^[::
-;if WinActive("ahk_class Chrome_WidgetWin_1") or WinActive("ahk_class Vim") or WinActive("ahk_class Qt5QWindowIcon") {
-  Send {Esc}
-  IME_SET(0)
-;} else {
-;  Send {Esc}
-;}
-return
-; ^[::Send {Esc}
+{
+  Activate(EnvGet("USERPROFILE") . "\AppData\Local\slack\slack.exe")
+  ; Activate3("slack.exe", "C:\Program Files\slack\slack.exe", "slack")
+  ;Activate3("slack.exe", EnvGet("USERPROFILE") . "\AppData\Local\slack\slack.exe", "slack")
+  return
+}
 
 SC079::IME_SET(1)
 SC07B::IME_SET(0)
 
-; ^[::Send {Esc}{vk1Dsc07B}
-; for Windows 8.1
-;SendInput !{TAB}
-; for persistent script
-; ^!v::
-#F10::
-target_wid := WinExist("A")
-saveclip := Clipboard
-Clipboard := ""
-SendInput ^c
-ClipWait, 0.1
-if (Clipboard = "")
-{
-    SendInput ^a^c
-    ClipWait, 0.1
+~Esc::IME_SET(0)
+^[::{
+  Send "{Esc}"
+  IME_SET(0)
 }
-tempfile := A_Temp . "\ahkexted.eml"
-file := FileOpen(tempfile, "w")
-if !IsObject(file)
-{
-    MsgBox Cannot open "%tempfile%" for writing.
-    return
-}
-file.Write(Clipboard)
-file.Close()
-Clipboard := saveclip
-
-; RunWait "C:\Program Files\Microsoft VS Code\Code.exe" %tempfile%
-; RunWait "C:\tools\vim\vim90\gvim.exe" "--cmd" "let g:singleton#disable=1" %tempfile%
-RunWait "C:\Program Files\Neovim\bin\nvim-qt.exe" %tempfile%
-
-file := FileOpen(tempfile, "r")
-if !IsObject(file)
-{
-    MsgBox Cannot open "%tempfile%" for reading.
-    return
-}
-Clipboard := file.Read()
-file.Close()
-FileDelete, %tempfile%
-
-WinActivate ahk_id %target_wid%
-WinWaitActive, ahk_id %target_wid%, , 2
-if (Clipboard = "")
-    SendInput {DEL}
-else
-    SendInput ^v
-return
 
