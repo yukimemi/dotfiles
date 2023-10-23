@@ -199,7 +199,8 @@ export const libs: Plug[] = [
   },
   {
     url: "Exafunction/codeium.vim",
-    enabled: async ({ denops }) => await exists(ensure(await fn.expand(denops, "~/.codeium"), is.String)),
+    enabled: async ({ denops }) =>
+      await exists(ensure(await fn.expand(denops, "~/.codeium"), is.String)),
   },
   {
     url: "lambdalisue/vim-findent",
