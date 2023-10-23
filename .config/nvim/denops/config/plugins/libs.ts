@@ -1,14 +1,17 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/10/11 12:21:31.
+// Last Change : 2023/10/23 12:17:17.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.4/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
+import { exists } from "https://deno.land/std@0.204.0/fs/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
@@ -196,7 +199,7 @@ export const libs: Plug[] = [
   },
   {
     url: "Exafunction/codeium.vim",
-    enabled: Deno.build.os !== "windows",
+    enabled: async ({ denops }) => await exists(ensure(await fn.expand(denops, "~/.codeium"), is.String)),
   },
   {
     url: "lambdalisue/vim-findent",
