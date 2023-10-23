@@ -74,6 +74,9 @@ function a {
 function gp {
   git pull --rebase
 }
+function gpu {
+  git push
+}
 
 # git ignore for PowerShell
 Function gig {
