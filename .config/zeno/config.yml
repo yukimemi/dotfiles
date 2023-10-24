@@ -151,7 +151,8 @@ snippets:
     keyword: uda
     snippet: deno run --allow-all https://deno.land/x/udd/main.ts **/*.ts
   # molt
-    keyword: Install molt
+  - name: Install molt
+    keyword: molt
     snippet: deno install --allow-env --allow-read --allow-net --allow-write --allow-run=git --name=molt https://deno.land/x/molt/cli.ts
   # youtube-dl
   - name: Install yt-dlp (youtube-dl)
