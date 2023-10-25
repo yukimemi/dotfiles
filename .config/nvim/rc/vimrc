@@ -1,0 +1,76 @@
+"---------------------------------------------------------------------------
+" Shougo's .vimrc
+"---------------------------------------------------------------------------
+" profile start profile.txt
+" profile file ~/work/*
+" profile file ~/.cache/dpp/nvim/state.vim
+" profile func dpp#*
+
+if &compatible
+  set nocompatible
+endif
+
+" Set augroup.
+augroup MyAutoCmd
+  autocmd!
+  autocmd FileType,Syntax,BufNewFile,BufNew,BufRead *?
+        \ call vimrc#on_filetype()
+augroup END
+
+" Minimal options
+if exists('+termguicolors') && !has('gui_running')
+  set termguicolors
+endif
+set shortmess=aTIcFoOsSW showtabline=0 laststatus=0
+set noruler noshowcmd noshowmode
+
+" Height of the command line.
+try
+  set cmdheight=0
+
+  " For recording messages
+  autocmd MyAutoCmd CmdlineEnter,RecordingEnter * set cmdheight=1
+  autocmd MyAutoCmd CmdlineLeave,RecordingLeave * set cmdheight=0
+catch
+  set cmdheight=1
+endtry
+
+" Show title.
+set title titlelen=95
+" Title string.
+let &g:titlestring = [
+      \   "%{expand('%:p:~:.')}",
+      \   "%<\(%{fnamemodify(getcwd(), ':~')}\)",
+      \   "%(%y%m%r%)",
+      \ ]->join()
+
+if has('nvim')
+  " Use cursor shape feature
+  set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,
+        \i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+
+  " Use new loader
+  lua if vim.loader then vim.loader.enable() end
+endif
+
+" NOTE: Colorscheme must be initialized in the first.
+colorscheme candy
+
+" Use English interface.
+language message C
+
+if filereadable(expand('~/.secret_vimrc'))
+  source ~/.secret_vimrc
+endif
+
+const base_path = fnamemodify(expand('<sfile>'), ':h')
+
+execute 'source' base_path .. '/dpp.vim'
+
+"---------------------------------------------------------------------------
+
+if !empty(argv())
+  call vimrc#on_filetype()
+endif
+
+set secure
