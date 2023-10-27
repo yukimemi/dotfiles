@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2023/10/22 00:15:42.
+// Last Change : 2023/10/26 23:39:05.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.6/mod.ts";
@@ -51,7 +51,7 @@ export const lsp: Plug[] = [
           await denops.cmd(`lua require("aerial").setup()`);
         },
       },
-      { url: "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
+      { url: "https://git.sr.ht/~whynothugo/lsp_lines.nvim", enabled: false },
       { url: "lukas-reineke/lsp-format.nvim" },
       {
         url: "nvimtools/none-ls.nvim",
@@ -145,10 +145,10 @@ export const lsp: Plug[] = [
           })
           require("mason-lspconfig").setup()
           require("lsp-format").setup()
-          require("lsp_lines").setup()
+          -- require("lsp_lines").setup()
           vim.diagnostic.config({
-            virtual_text = false,
-            virtual_lines = { only_current_line = true },
+            virtual_text = true,
+            -- virtual_lines = { only_current_line = true },
           })
           local lspconfig = require("lspconfig")
 
