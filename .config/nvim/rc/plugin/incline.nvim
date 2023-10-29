@@ -1,0 +1,35 @@
+if !g:plugin_use_incline
+  finish
+endif
+
+lua << EOF
+require('incline').setup({
+  window = {
+    width = 'fit',
+    placement = { horizontal = 'right', vertical = 'top' },
+    margin = {
+      horizontal = { left = 1, right = 0 },
+      vertical = { bottom = 0, top = 1 },
+    },
+    padding = { left = 1, right = 1 },
+    padding_char = ' ',
+    winhighlight = {
+      Normal = 'TreesitterContext',
+    },
+  },
+  hide = {
+    -- focused_win = true,
+  },
+  render = function(props)
+    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':t')
+    local icon, color = require('nvim-web-devicons').get_icon_color(filename)
+    return {
+      { icon, guifg = color },
+      { ' ' },
+      { filename },
+    }
+  end
+})
+EOF
+
+" vim: ft=vim ts=2 sw=2 sts=2:

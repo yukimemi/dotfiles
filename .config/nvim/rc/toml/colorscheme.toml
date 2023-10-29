@@ -1,0 +1,127 @@
+[[plugins]]
+repo = 'vim/colorschemes'
+
+[[plugins]]
+repo = 'rafi/awesome-vim-colorschemes'
+
+[[plugins]]
+repo = "NLKNguyen/papercolor-theme"
+
+[[plugins]]
+repo = 'bluz71/vim-nightfly-guicolors'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+
+[[plugins]]
+repo = 'drewtempelmeyer/palenight.vim'
+
+[[plugins]]
+repo = 'folke/tokyonight.nvim'
+if = 'has("nvim")'
+
+[[plugins]]
+repo = 'gkeep/iceberg-dark'
+
+[[plugins]]
+repo = 'joshdick/onedark.vim'
+
+[[plugins]]
+repo = 'kjssad/quantum.vim'
+
+[[plugins]]
+repo = 'rhysd/vim-color-spring-night'
+
+[[plugins]]
+repo = 'romgrk/github-light.vim'
+
+[[plugins]]
+repo = 'sainnhe/gruvbox-material'
+hook_add = '''
+source $BASE_DIR/plugin/gruvbox-material.vim
+'''
+
+[[plugins]]
+repo = 'doums/darcula'
+
+[[plugins]]
+repo = 'severij/vadelma'
+
+[[plugins]]
+repo = 'yuttie/hydrangea-vim'
+
+[[plugins]]
+repo = 'glepnir/zephyr-nvim'
+if = 'has("nvim")'
+
+[[plugins]]
+repo = 'adrian5/oceanic-next-vim'
+
+[[plugins]]
+repo = 'sainnhe/edge'
+hook_add = '''
+source $BASE_DIR/plugin/edge.vim
+'''
+
+[[plugins]]
+repo = 'tiagovla/tokyodark.nvim'
+hook_add = '''
+source $BASE_DIR/plugin/tokyodark.nvim
+'''
+if = 'has("nvim")'
+
+[[plugins]]
+repo = 'ChristianChiarulli/nvcode-color-schemes.vim'
+
+[[plugins]]
+repo = 'rafamadriz/neon'
+if = 'has("nvim")'
+
+[[plugins]]
+repo = 'Matsuuu/pinkmare'
+hook_add = '''
+source $BASE_DIR/plugin/pinkmare.vim
+'''
+
+[[plugins]]
+repo = 'srcery-colors/srcery-vim'
+
+[[plugins]]
+repo = 'RRethy/nvim-base16'
+if = 'has("nvim")'
+
+[[plugins]]
+repo = 'marko-cerovac/material.nvim'
+if = 'has("nvim")'
+
+[[plugins]]
+repo = 'fenetikm/falcon'
+
+[[plugins]]
+repo = 'PHSix/nvim-hybrid'
+if = 'has("nvim")'
+
+[[plugins]]
+repo = '4513ECHO/vim-colors-hatsunemiku'
+
+[[plugins]]
+repo = 'rhysd/vim-color-splatoon'
+if = "has('gui')"
+
+[[plugins]]
+repo = 'tinted-theming/base16-vim'
+if = '!has("nvim")'
+
+[[plugins]]
+repo = 'catppuccin/nvim'
+name = 'catppuccin-nvim'
+if = 'has("nvim")'
+[[plugins]]
+repo = 'catppuccin/vim'
+name = 'catppuccin-vim'
+if = '!has("nvim")'
+
+[[plugins]]
+repo = 'cocopon/inspecthi.vim'
+on_cmd = 'Inspecthi'
+

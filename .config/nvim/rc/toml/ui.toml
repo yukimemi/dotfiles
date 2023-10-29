@@ -1,0 +1,6 @@
+[[plugins]]
+repo = 'lukas-reineke/indent-blankline.nvim'
+on_source = 'nvim-treesitter'
+hooks_file = '$BASE_DIR/plugin/indent-blankline.nvim'
+
+

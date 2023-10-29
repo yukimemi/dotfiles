@@ -1,0 +1,171 @@
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+on_event = ['BufRead', 'CursorHold']
+hook_post_update = 'TSUpdate'
+lua_source = '''
+  require('nvim-treesitter.configs').setup {
+    ensure_installed = 'all',
+    additional_vim_regex_highlighting = true,
+    highlight = {
+      enable = true,
+      disable = function(lang, buf)
+        if (lang == 'vimdoc' or lang == 'diff'
+          or lang == 'gitcommit' or lang == 'swift') then
+          return true
+        end
+        local max_filesize = 50 * 1024 -- 50 KB
+        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+        if ok and stats and stats.size > max_filesize then
+          return true
+        end
+      end,
+    },
+  }
+'''
+
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+lua_source = '''
+  -- NOTE: Disable lsp watcher. Too slow on linux
+  -- https://github.com/neovim/neovim/issues/23725#issuecomment-1561364086
+  require('vim.lsp._watchfiles')._watchfunc = function()
+    return function() end
+  end
+
+  vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      update_in_insert = false,
+      virtual_text = {
+        format = function(diagnostic)
+          return string.format(
+            '%s (%s: %s)',
+            diagnostic.message,
+            diagnostic.source,
+            diagnostic.code
+          )
+        end
+      },
+  })
+'''
+
+[[plugins]]
+repo = 'williamboman/mason-lspconfig.nvim'
+on_source = 'nvim-lspconfig'
+lua_source = '''
+  -- https://zenn.dev/kawarimidoll/articles/2b57745045b225
+  require('mason-lspconfig').setup_handlers({
+    function(server_name)
+      local nvim_lsp = require('lspconfig')
+      local opts = {}
+
+      if server_name == 'vtsls' then
+        -- NOTE: Must be node directory
+        if vim.fn.findfile('package.json', '.;') == '' then
+          return
+        end
+
+        opts.root_dir = nvim_lsp.util.root_pattern('package.json')
+      elseif server_name == 'denols' then
+        -- NOTE: Disable denols.  It is too slow.
+        return
+      elseif server_name == 'solargraph' then
+        opts.single_file_support = true
+        opts.capabilities = {}
+      elseif server_name == 'lua_ls' then
+        opts = {
+          settings = {
+            Lua = {
+              runtime = {
+                -- Tell the language server which version of Lua you're using
+                -- (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+              },
+              diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {
+                  'vim',
+                  'require'
+                },
+              },
+              workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+              },
+              -- Do not send telemetry data
+              telemetry = {
+                enable = false,
+              },
+            },
+          },
+        }
+      end
+
+      nvim_lsp[server_name].setup(opts)
+    end
+  })
+'''
+
+[[plugins]]
+repo = 'williamboman/mason.nvim'
+depends = 'nvim-lspconfig'
+on_event = ['BufRead']
+lua_source = '''
+  require('mason').setup()
+'''
+
+[[plugins]]
+repo = 'MunifTanjim/nui.nvim'
+
+[[plugins]]
+repo = 'folke/noice.nvim'
+depends = ['nui.nvim', 'nvim-notify']
+on_event = 'VimEnter'
+lua_source = '''
+  require('noice').setup({
+    lsp = {
+      override = {
+        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        ["vim.lsp.util.stylize_markdown"] = true,
+      },
+    },
+    presets = {
+      bottom_search = true,
+      command_palette = false,
+      long_message_to_split = true,
+      inc_rename = false,
+      lsp_doc_border = false,
+    },
+    cmdline = {
+      view = "cmdline",
+    },
+  })
+'''
+
+[[plugins]]
+repo = 'rcarriga/nvim-notify'
+on_lua = 'notify'
+lua_source = '''
+  require('notify').setup({
+    render = "minimal",
+    stages = "static",
+    timeout = 1000,
+  })
+'''
+
+[[plugins]]
+repo = 'atusy/tsnode-marker.nvim'
+if = false
+depends = 'nvim-treesitter'
+on_ft = 'markdown'
+lua_source = '''
+  vim.api.nvim_create_autocmd('FileType', {
+    group = vim.api.nvim_create_augroup('tsnode-marker-markdown', {}),
+    pattern = 'markdown',
+    callback = function(ctx)
+      require('tsnode-marker').set_automark(ctx.buf, {
+        target = { 'code_fence_content' }, -- list of target node types
+        hl_group = 'CursorLine', -- highlight group
+      })
+    end,
+  })
+'''

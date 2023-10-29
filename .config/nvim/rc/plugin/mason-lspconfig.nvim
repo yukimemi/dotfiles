@@ -1,0 +1,12 @@
+if !g:plugin_use_nvimlsp
+  finish
+endif
+
+lua << EOF
+require("mason-lspconfig").setup({
+  ensure_installed = vim.g.lsp_use_servers,
+  automatic_installation = true,
+})
+EOF
+
+" vim: fdm=marker expandtab fdc=3 ft=vim ts=2 sw=2 sts=2:

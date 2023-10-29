@@ -4,25 +4,19 @@ if !($CACHE->isdirectory())
 endif
 
 function InitPlugin(plugin)
-  " Search from ~/work directory
-  let dir = '~/work/'->expand() .. a:plugin->fnamemodify(':t')
+  " Search from $CACHE directory
+  let dir = $CACHE .. '/dpp/repos/github.com/' .. a:plugin
   if !(dir->isdirectory())
-    " Search from $CACHE directory
-    let dir = $CACHE .. '/dpp/repos/github.com/' .. a:plugin
-    if !(dir->isdirectory())
-      " Install plugin automatically.
-      execute '!git clone https://github.com/' .. a:plugin dir
-    endif
+    " Install plugin automatically.
+    execute '!git clone https://github.com/' .. a:plugin dir
   endif
 
-  execute 'set runtimepath^='
-        \ .. dir->fnamemodify(':p')->substitute('[/\\]$', '', '')
+  execute 'set runtimepath^=' .. dir->fnamemodify(':p')->substitute('[/\\]$', '', '')
 endfunction
 
 " NOTE: dpp.vim path must be added
 call InitPlugin('Shougo/dpp.vim')
 call InitPlugin('Shougo/dpp-ext-lazy')
-
 
 "---------------------------------------------------------------------------
 " dpp configurations.

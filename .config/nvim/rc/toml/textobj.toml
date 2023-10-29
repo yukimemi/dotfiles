@@ -1,0 +1,40 @@
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'kana/vim-textobj-entire'
+depends = 'vim-textobj-user'
+on_source = 'vim-textobj-user'
+
+[[plugins]]
+repo = 'kana/vim-textobj-indent'
+depends = 'vim-textobj-user'
+on_source = 'vim-textobj-user'
+
+[[plugins]]
+repo = 'kana/vim-textobj-line'
+depends = 'vim-textobj-user'
+on_source = 'vim-textobj-user'
+
+[[plugins]]
+repo = 'gilligan/textobj-lastpaste'
+depends = 'vim-textobj-user'
+on_source = 'vim-textobj-user'
+
+[[plugins]]
+repo = 'machakann/vim-swap'
+depends = 'vim-textobj-user'
+on_source = 'vim-textobj-user'
+
+[[plugins]]
+repo = 'yuki-yano/vim-textobj-generics'
+depends = 'vim-textobj-user'
+on_source = 'vim-textobj-user'
+
+[[plugins]]
+repo = 'KosukeMizuno/vim-textobj-dein'
+depends = ['vim-textobj-user', 'open-browser.vim']
+on_source = 'vim-textobj-user'
+hooks_file = '$BASE_DIR/plugin/vim-textobj-dein.vim'
+

@@ -29,23 +29,28 @@ export class Config extends BaseConfig {
     const hasWindows = await fn.has(args.denops, "win32");
 
     const inlineVimrcs = [
-      "$BASE_DIR/options.rc.vim",
-      "$BASE_DIR/mappings.rc.vim",
-      "$BASE_DIR/filetype.rc.vim",
+      "$BASE_DIR/options.vim",
+      "$BASE_DIR/mappings.vim",
+      "$BASE_DIR/filetype.vim",
     ];
     if (hasNvim) {
-      inlineVimrcs.push("$BASE_DIR/neovim.rc.vim");
+      inlineVimrcs.push("$BASE_DIR/neovim.vim");
     } else if (await fn.has(args.denops, "gui_running")) {
-      inlineVimrcs.push("$BASE_DIR/gui.rc.vim");
+      inlineVimrcs.push("$BASE_DIR/gui.vim");
     }
     if (hasWindows) {
-      inlineVimrcs.push("$BASE_DIR/windows.rc.vim");
+      inlineVimrcs.push("$BASE_DIR/windows.vim");
     } else {
-      inlineVimrcs.push("$BASE_DIR/unix.rc.vim");
+      inlineVimrcs.push("$BASE_DIR/unix.vim");
     }
 
     args.contextBuilder.setGlobal({
       inlineVimrcs,
+      extParams: {
+        installer: {
+          checkDiff: true,
+        },
+      },
       protocols: ["git"],
     });
 
@@ -55,8 +60,8 @@ export class Config extends BaseConfig {
     const tomls: Toml[] = [];
     for (
       const toml of [
-        "$BASE_DIR/merge.toml",
-        "$BASE_DIR/dpp.toml",
+        "$BASE_DIR/toml/merge.toml",
+        "$BASE_DIR/toml/dpp.toml",
       ]
     ) {
       tomls.push(await args.dpp.extAction(
@@ -76,11 +81,15 @@ export class Config extends BaseConfig {
     }
     for (
       const toml of [
-        "$BASE_DIR/lazy.toml",
-        "$BASE_DIR/denops.toml",
-        "$BASE_DIR/ddc.toml",
-        "$BASE_DIR/ddu.toml",
-        hasNvim ? "$BASE_DIR/neovim.toml" : "$BASE_DIR/vim.toml",
+        "$BASE_DIR/toml/lazy.toml",
+        "$BASE_DIR/toml/textobj.toml",
+        "$BASE_DIR/toml/operator.toml",
+        "$BASE_DIR/toml/denops.toml",
+        "$BASE_DIR/toml/ddc.toml",
+        "$BASE_DIR/toml/ddu.toml",
+        "$BASE_DIR/toml/neovim.toml",
+        "$BASE_DIR/toml/colorscheme.toml",
+        "$BASE_DIR/toml/ui.toml",
       ]
     ) {
       tomls.push(await args.dpp.extAction(

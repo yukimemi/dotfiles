@@ -1,0 +1,97 @@
+[[plugins]]
+repo = 'Shougo/junkfile.vim'
+on_source = ['ddu.vim']
+hook_add = '''
+  nnoremap se <Cmd>Ddu junkfile -source-option-junkfile-volatile<CR>
+'''
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
+on_ft = ['qf']
+[plugins.ftplugin]
+qf = '''
+  nnoremap <buffer> r <Cmd>Qfreplace<CR>
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-qfedit'
+on_ft = ['qf']
+
+[[plugins]]
+repo = 'previm/previm'
+on_cmd = 'PrevimOpen'
+
+[[plugins]]
+repo = 'lambdalisue/vim-findent'
+
+[[plugins]]
+repo = 'tweekmonster/helpful.vim'
+on_cmd = 'HelpfulVersion'
+
+[[plugins]]
+repo = 'rhysd/vim-gfm-syntax'
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'machakann/vim-vimhelplint'
+on_ft = 'help'
+[plugins.ftplugin]
+help = '''
+  nnoremap <buffer> ,r  <Cmd>VimhelpLint!<CR>
+'''
+
+[[plugins]]
+repo = 'mattn/vim-goimports'
+on_ft = 'go'
+hook_source = '''
+  let g:goimports_simplify = v:true
+'''
+
+[[plugins]]
+repo = 'dag/vim2hs'
+on_ft = 'haskell'
+hook_source = '''
+  let g:haskell_conceal = v:false
+'''
+
+[[plugins]]
+repo = 'github/copilot.vim'
+if = false
+on_cmd = 'Copilot'
+hook_source = '''
+  let g:copilot_no_maps = v:true
+  "let g:copilot_node_command = '/snap/bin/node'
+  let g:copilot_hide_during_completion = 0
+  imap <silent><expr> <C-g> copilot#Accept()
+  imap <silent><expr> <C-n> copilot#Next()
+  imap <silent><expr> <C-p> copilot#Previous()
+
+  " Enable copilot for text files
+  let g:copilot_filetypes = #{
+    \   gitcommit: v:true,
+    \   markdown: v:true,
+    \   text: v:true,
+    \   yaml: v:true,
+    \   ddu-ff-filter: v:false,
+    \ }
+'''
+
+[[plugins]]
+repo = 'Exafunction/codeium.vim'
+on_cmd = ['Codeium']
+on_event = ['InsertEnter']
+
+[[plugins]]
+repo = 'kaarmu/typst.vim'
+on_ft = 'typst'
+
+[[plugins]]
+repo = 'rbtnn/vim-vimscript_lasterror'
+on_event = 'VimEnter'
+on_cmd = 'VimscriptLastError'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+hooks_file = '$BASE_DIR/plugin/open-browser.vim'
+
+

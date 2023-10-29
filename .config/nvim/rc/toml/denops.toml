@@ -1,0 +1,143 @@
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+
+[[plugins]]
+repo = 'skanehira/denops-silicon.vim'
+depends = 'denops.vim'
+hook_source = '''
+  let g:silicon_options = #{
+      \   font: 'Courier 10 Pitch',
+      \   no_line_number: v:true,
+      \   no_round_corner: v:false,
+      \   no_window_controls: v:false,
+      \   background_color: '#ffffff',
+      \   line_offset: 1,
+      \   line_pad: 2,
+      \   pad_horiz: 10,
+      \   pad_vert: 10,
+      \   shadow_blur_radius: 0,
+      \   shadow_color: '#555555',
+      \   shadow_offset_x: 0,
+      \   shadow_offset_y: 0,
+      \   tab_width: 4,
+      \   theme: 'Solarized (dark)',
+      \ }
+'''
+
+[[plugins]]
+repo = 'lambdalisue/kensaku.vim'
+depends = 'denops.vim'
+denops_wait = false
+
+[[plugins]]
+repo = 'kuuote/lspoints'
+on_event = ['BufRead']
+depends = 'denops.vim'
+hook_source = '''
+call lspoints#load_extensions([
+        \   'nvim_diagnostics',
+        \ ])
+
+function s:attach_ls() abort
+  if &l:filetype ==# 'typescript' || &l:filetype ==# 'typescriptreact'
+    " Deno lsp
+
+    " Check "package.json" exists
+    if findfile('package.json', '.;') !=# ''
+      return
+    endif
+
+    call lspoints#attach('denols', #{
+            \   cmd: ['deno', 'lsp'],
+            \   initializationOptions: #{
+            \     enable: v:true,
+            \     lint: v:true,
+            \     documentPreloadLimit: 10,
+            \     unstable: v:true,
+            \     suggest: #{
+            \       autoImports: v:false,
+            \     },
+            \   },
+            \ })
+  endif
+endfunction
+
+call s:attach_ls()
+autocmd MyAutoCmd FileType * call s:attach_ls()
+'''
+
+[[plugins]]
+repo = 'yukimemi/dps-ahdr'
+# repo = '~/src/github.com/yukimemi/dps-ahdr'
+depends = 'denops.vim'
+on_source = 'denops.vim'
+denops_wait = false
+hooks_file = '$BASE_DIR/plugin/dps-ahdr.vim'
+
+[[plugins]]
+repo = 'yukimemi/dps-autocursor'
+# repo = '~/src/github.com/yukimemi/dps-autocursor'
+depends = 'denops.vim'
+on_source = 'denops.vim'
+denops_wait = false
+hooks_file = '$BASE_DIR/plugin/dps-autocursor.vim'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'yukimemi/dps-autobackup'
+# repo = '~/src/github.com/yukimemi/dps-autobackup'
+depends = 'denops.vim'
+on_source = 'denops.vim'
+denops_wait = false
+hooks_file = '$BASE_DIR/plugin/dps-autobackup.vim'
+on_event = ['CursorHold', 'FocusLost', 'BufWritePre']
+
+[[plugins]]
+repo = 'yukimemi/dps-autodate'
+# repo = '~/src/github.com/yukimemi/dps-autodate'
+depends = 'denops.vim'
+on_source = 'denops.vim'
+denops_wait = false
+hooks_file = '$BASE_DIR/plugin/dps-autodate.vim'
+on_event = ['CursorHold', 'FocusLost', 'BufWritePre']
+
+[[plugins]]
+repo = 'yukimemi/dps-asyngrep'
+# repo = '~/src/github.com/yukimemi/dps-asyngrep'
+depends = 'denops.vim'
+on_source = 'denops.vim'
+denops_wait = false
+hooks_file = '$BASE_DIR/plugin/dps-asyngrep.vim'
+
+[[plugins]]
+repo = 'yukimemi/dps-walk'
+# repo = '~/src/github.com/yukimemi/dps-walk'
+depends = 'denops.vim'
+on_source = 'denops.vim'
+denops_wait = false
+hooks_file = '$BASE_DIR/plugin/dps-walk.vim'
+
+[[plugins]]
+repo = 'yukimemi/dps-randomcolorscheme'
+# repo = '~/src/github.com/yukimemi/dps-randomcolorscheme'
+depends = 'denops.vim'
+on_source = 'denops.vim'
+denops_wait = false
+hooks_file = '$BASE_DIR/plugin/dps-randomcolorscheme.vim'
+
+[[plugins]]
+repo = 'yukimemi/dps-hitori'
+# repo = '~/src/github.com/yukimemi/dps-hitori'
+depends = 'denops.vim'
+on_source = 'denops.vim'
+denops_wait = false
+hooks_file = '$BASE_DIR/plugin/dps-hitori.vim'
+
+[[plugins]]
+repo = 'yukimemi/dps-chronicle'
+# repo = '~/src/github.con/yukimemi/dps-chronicle'
+depends = 'denops.vim'
+on_source = 'denops.vim'
+denops_wait = false
+hooks_file = '$BASE_DIR/plugin/dps-chronicle.vim'
+

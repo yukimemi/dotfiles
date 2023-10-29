@@ -1,0 +1,42 @@
+[[plugins]]
+repo = 'kana/vim-operator-user'
+on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'yuki-yano/vim-operator-replace'
+depends = 'vim-operator-user'
+on_map = { n = '<Plug>' }
+hooks_file = '$BASE_DIR/plugin/vim-operator-replace.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-operator-stay-cursor'
+depends = 'vim-operator-user'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+depends = 'vim-operator-user'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'osyo-manga/vim-operator-highlighter'
+depends = 'vim-operator-user'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'thinca/vim-operator-sequence'
+if = false
+depends = 'vim-operator-user'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'tyru/operator-html-escape.vim'
+depends = 'vim-operator-user'
+hooks_file = '$BASE_DIR/plugin/operator-html-escape.vim'
+on_map = { n = '<Plug>' }
+
+[[plugins]]
+repo = 'tommcdo/vim-exchange'
+if = false
+on_event = ['CursorHold', 'FocusLost']
+
