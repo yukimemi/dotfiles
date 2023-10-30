@@ -78,6 +78,7 @@ hook_source = '''
 
 [[plugins]]
 repo = 'Exafunction/codeium.vim'
+if = 'isdirectory(expand("~/.codeium"))'
 on_cmd = ['Codeium']
 on_event = ['InsertEnter']
 
@@ -94,4 +95,16 @@ on_cmd = 'VimscriptLastError'
 repo = 'tyru/open-browser.vim'
 hooks_file = '$BASE_DIR/plugin/open-browser.vim'
 
+[[plugins]]
+repo = 'dstein64/vim-startuptime'
+on_cmd = 'StartupTime'
+
+[[plugins]]
+repo = 'thinca/vim-ambicmd'
+on_event = 'VimEnter'
+hooks_file = '$BASE_DIR/plugin/vim-ambicmd.vim'
+
+[[plugins]]
+repo = 'tyru/capture.vim'
+on_cmd = 'Capture'
 

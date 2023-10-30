@@ -13,18 +13,19 @@ if has('win32')
   " set guifont=Consolas:h12
   " set guifont=Inconsolata:h12
   " set guifont=HackGen:h12
-  set guifont=Firge:h12
+  " set guifont=Firge:h12
+  " set guifont=Firge:h12
 
   " Number of pixel lines inserted between characters.
-  set linespace=2
+  " set linespace=2
 
   " Use DirectWrite
   "set renderoptions=type:directx
 
   " Width of window.
-  set columns=230
+  " set columns=230
   " Height of window.
-  set lines=55
+  " set lines=55
 else
   " For Linux.
 
@@ -45,7 +46,7 @@ endif
 
 " Don't override colorscheme.
 if !('g:colors_name'->exists())
-  colorscheme candy
+  colorscheme habamax
 endif
 
 "---------------------------------------------------------------------------
@@ -75,3 +76,25 @@ set guioptions+=d
 " Don't flick cursor.
 set guicursor&
 set guicursor+=a:blinkon0
+
+if ':GuiFont'->exists()
+  GuiFont! PlemolJP Console NF:h10
+endif
+
+if ':GuiTabline'->exists()
+  GuiTabline 0
+endif
+
+if ':GuiPopupmenu'->exists()
+  GuiPopupmenu 0
+endif
+
+if ':GuiScrollBar'->exists()
+  GuiScrollBar 0
+endif
+
+if 'GuiWindowOpacity'->exists()
+  GuiWindowOpacity 0.9
+endif
+
+

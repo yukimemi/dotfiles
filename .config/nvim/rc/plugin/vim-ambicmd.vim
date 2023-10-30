@@ -1,7 +1,10 @@
+" hook_add {{{
 let g:ambicmd#show_completion_menu = 1
 
 " silent! packadd vim-ambicmd
+" }}}
 
+" hook_source {{{
 Keymap c <expr> <space> ambicmd#expand("\<space>")
 Keymap c <expr> <cr>    ambicmd#expand("\<cr>")
 Keymap c <expr> <c-f>   ambicmd#expand("\<right>")
@@ -12,5 +15,4 @@ function! s:init_cmdwin() abort
   Keymap i <buffer> <expr> <cr>    ambicmd#expand("\<cr>")
   " startinsert!
 endfunction
-
-
+" }}}

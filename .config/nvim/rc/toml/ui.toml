@@ -3,4 +3,8 @@ repo = 'lukas-reineke/indent-blankline.nvim'
 on_source = 'nvim-treesitter'
 hooks_file = '$BASE_DIR/plugin/indent-blankline.nvim'
 
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+on_event = ['CursorHold', 'FocusLost']
+hooks_file = '$BASE_DIR/plugin/lualine.lua'
 

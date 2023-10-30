@@ -21,6 +21,7 @@ set inccommand=nosplit
 
 set pumblend=10
 set winblend=10
+set laststatus=3
 
 " Modifiable terminal
 autocmd MyAutoCmd TermOpen * setlocal modifiable
@@ -39,8 +40,3 @@ if 'g:neovide'->exists()
   let g:neovide_hide_mouse_when_typing = v:true
 endif
 
-if has('win32')
-  set guifont=Firge:h13
-else
-  set guifont=Monospace:h10
-endif

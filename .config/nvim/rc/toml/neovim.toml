@@ -4,7 +4,7 @@ on_event = ['BufRead', 'CursorHold']
 hook_post_update = 'TSUpdate'
 lua_source = '''
   require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'markdown', 'rust' },
+    ensure_installed = { 'markdown', 'rust', 'vim', 'typescript', 'lua' },
     additional_vim_regex_highlighting = true,
     highlight = {
       enable = true,
@@ -118,6 +118,7 @@ repo = 'MunifTanjim/nui.nvim'
 
 [[plugins]]
 repo = 'folke/noice.nvim'
+if = '!has("win32")'
 depends = ['nui.nvim', 'nvim-notify']
 on_event = 'VimEnter'
 lua_source = '''

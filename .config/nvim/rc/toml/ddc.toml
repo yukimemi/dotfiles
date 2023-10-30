@@ -75,6 +75,7 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-source-codeium'
+if = 'isdirectory(expand("~/.codeium"))'
 on_source = 'ddc.vim'
 
 [[plugins]]

@@ -15,6 +15,7 @@ function InitPlugin(plugin)
 endfunction
 
 " NOTE: dpp.vim path must be added
+call InitPlugin('vim-denops/denops.vim')
 call InitPlugin('Shougo/dpp.vim')
 call InitPlugin('Shougo/dpp-ext-lazy')
 
@@ -35,13 +36,12 @@ if dpp#min#load_state(s:dpp_base)
         \   'Shougo/dpp-ext-local',
         \   'Shougo/dpp-ext-toml',
         \   'Shougo/dpp-protocol-git',
-        \   'vim-denops/denops.vim',
         \ ]
     call InitPlugin(s:plugin)
   endfor
 
   " NOTE: Manual load is needed...
-  runtime! plugin/denops.vim
+  " runtime! plugin/denops.vim
 
   autocmd MyAutoCmd User DenopsReady
         \ call dpp#make_state(s:dpp_base, '$BASE_DIR/dpp.ts'->expand())

@@ -60,6 +60,8 @@ let &g:undodir = &directory
 set virtualedit=block
 set keywordprg=:help
 
+set clipboard=unnamedplus
+
 autocmd MyAutoCmd InsertLeave *
       \ : if &paste
       \ |   setlocal nopaste
@@ -168,7 +170,7 @@ set display=lastline
 set display+=uhex
 
 set conceallevel=2
-set colorcolumn=80
+set colorcolumn=100
 
 if '+previewpopup'->exists()
   set previewpopup=height:10,width:60
