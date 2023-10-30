@@ -1,6 +1,6 @@
 " hook_add {{{
 let g:ahdr_debug = v:false
-let g:ahdr_cfg_path = $VIM_PATH . "/ahdr.toml"
+let g:ahdr_cfg_path = expand('~/.config/ahdr/ahdr.toml')
 
 augroup MyAutoCmdAhdr | autocmd! | augroup END
 

@@ -70,8 +70,7 @@ autocmd MyAutoCmd FileType * call s:attach_ls()
 repo = 'yukimemi/dps-ahdr'
 # repo = '~/src/github.com/yukimemi/dps-ahdr'
 depends = 'denops.vim'
-on_source = 'denops.vim'
-denops_wait = false
+on_cmd = ['DenopsAhdr', 'DenopsAhdrDebug']
 hooks_file = '$BASE_DIR/plugin/dps-ahdr.vim'
 
 [[plugins]]
@@ -87,42 +86,35 @@ on_event = ['CursorHold', 'FocusLost']
 repo = 'yukimemi/dps-autobackup'
 # repo = '~/src/github.com/yukimemi/dps-autobackup'
 depends = 'denops.vim'
-on_source = 'denops.vim'
-denops_wait = false
-hooks_file = '$BASE_DIR/plugin/dps-autobackup.vim'
 on_event = ['CursorHold', 'FocusLost', 'BufWritePre']
+hooks_file = '$BASE_DIR/plugin/dps-autobackup.vim'
 
 [[plugins]]
 repo = 'yukimemi/dps-autodate'
 # repo = '~/src/github.com/yukimemi/dps-autodate'
 depends = 'denops.vim'
-on_source = 'denops.vim'
-denops_wait = false
-hooks_file = '$BASE_DIR/plugin/dps-autodate.vim'
 on_event = ['CursorHold', 'FocusLost', 'BufWritePre']
+hooks_file = '$BASE_DIR/plugin/dps-autodate.vim'
 
 [[plugins]]
 repo = 'yukimemi/dps-asyngrep'
 # repo = '~/src/github.com/yukimemi/dps-asyngrep'
 depends = 'denops.vim'
-on_source = 'denops.vim'
-denops_wait = false
+on_cmd = 'Agp'
 hooks_file = '$BASE_DIR/plugin/dps-asyngrep.vim'
 
 [[plugins]]
 repo = 'yukimemi/dps-walk'
 # repo = '~/src/github.com/yukimemi/dps-walk'
 depends = 'denops.vim'
-on_source = 'denops.vim'
-denops_wait = false
+on_cmd = ['DenopsWalk', 'DenopsWalkBufferDir']
 hooks_file = '$BASE_DIR/plugin/dps-walk.vim'
 
 [[plugins]]
 repo = 'yukimemi/dps-randomcolorscheme'
 # repo = '~/src/github.com/yukimemi/dps-randomcolorscheme'
 depends = 'denops.vim'
-on_source = 'denops.vim'
-denops_wait = false
+on_event = ['CursorHold', 'FocusLost']
 hooks_file = '$BASE_DIR/plugin/dps-randomcolorscheme.vim'
 
 [[plugins]]

@@ -37,19 +37,10 @@ Keymap c <C-f>          <Right>
 Keymap c <C-n>          <Down>
 Keymap c <C-p>          <Up>
 Keymap c <C-g>          <C-c>
-Keymap c <C-k> <Cmd>call setcmdline(
-      \ getcmdpos() ==# 1 ? '' : getcmdline()[:getcmdpos() - 2])<CR>
+Keymap c <C-k> <Cmd>call setcmdline(getcmdpos() ==# 1 ? '' : getcmdline()[:getcmdpos() - 2])<CR>
 
 " Set autoread.
-Keymap n <space>ar <Cmd>call vimrc#toggle_option('autoread')<CR>
-" Set spell check.
-Keymap n <space>p  <Cmd>call vimrc#toggle_option('spell')<CR>
-      \ <Cmd>set spelllang=en_us<CR>
-      \ <Cmd>set spelllang+=cjk<CR>
-Keymap n <space>w
-      \ <Cmd>call vimrc#toggle_option('wrap')<CR>
-Keymap n <Space>c
-      \ <Cmd>call <SID>toggle_conceal()<CR>
+Keymap n <Space>c <Cmd>call <SID>toggle_conceal()<CR>
 
 function s:toggle_conceal() abort
   if &l:conceallevel == 0
@@ -59,11 +50,6 @@ function s:toggle_conceal() abort
   endif
   setlocal conceallevel?
 endfunction
-
-" Easily edit current buffer
-Keymap n <expr> <space>e
-      \ '%'->bufname() !=# '' ? '<Cmd>edit %<CR>' : ''
-
 
 Keymap nx j gj
 Keymap nx k gk
