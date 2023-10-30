@@ -45,7 +45,8 @@ export const telescope: Plug[] = [
       {
         url: "danielfalk/smart-open.nvim",
         // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim" && Deno.build.os !== "windows" && false,
+        enabled: async ({ denops }) =>
+          denops.meta.host === "nvim" && Deno.build.os !== "windows" && false,
         dependencies: [
           { url: "kkharji/sqlite.lua" },
           { url: "nvim-telescope/telescope.nvim" },
