@@ -1,3 +1,59 @@
+# ========== Visual ===============================================================================
+[[plugins]]
+repo = 'lukas-reineke/indent-blankline.nvim'
+on_source = 'nvim-treesitter'
+hooks_file = '$BASE_DIR/plugin/indent-blankline.nvim'
+
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+on_event = ['CursorHold', 'FocusLost']
+hooks_file = '$BASE_DIR/plugin/lualine.lua'
+
+[[plugins]]
+repo = 'kyazdani42/nvim-web-devicons'
+
+[[plugins]]
+repo = 'RRethy/vim-illuminate'
+on_event = ['CursorHold', 'FocusLost']
+hooks_file = '$BASE_DIR/plugin/vim-illuminate.vim'
+
+[[plugins]]
+repo = 'LumaKernel/nvim-visual-eof.lua'
+hooks_file = '$BASE_DIR/plugin/nvim-visual-eof.lua'
+
+[[plugins]]
+repo = 'DanilaMihailov/beacon.nvim'
+on_event = ['CursorHold', 'FocusLost']
+hooks_file = '$BASE_DIR/plugin/beacon.nvim'
+
+[[plugins]]
+repo = 'gen740/SmoothCursor.nvim'
+on_event = ['CursorHold', 'FocusLost']
+hooks_file = '$BASE_DIR/plugin/SmoothCursor.lua'
+
+[[plugins]]
+repo = 'uga-rosa/ccc.nvim'
+on_event = ['CursorHold', 'FocusLost']
+on_cmd = 'CccPick'
+hooks_file = '$BASE_DIR/plugin/ccc.lua'
+
+[[plugins]]
+repo = 'stevearc/stickybuf.nvim'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'lewis6991/gitsigns.nvim'
+on_event = ['CursorHold', 'FocusLost']
+hooks_file = '$BASE_DIR/plugin/gitsigns.lua'
+
+# ========== Comment ==============================================================================
+[[plugins]]
+repo = 'uga-rosa/contextment.vim'
+depends = ['context_filetype.vim']
+on_event = ['BufRead']
+hooks_file = '$BASE_DIR/plugin/contextment.lua'
+
+# ========== Treesitter ===========================================================================
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 on_event = ['BufRead', 'CursorHold']
@@ -23,6 +79,7 @@ lua_source = '''
   }
 '''
 
+# ========== Lsp ==================================================================================
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 lua_source = '''
@@ -114,7 +171,24 @@ lua_source = '''
 '''
 
 [[plugins]]
+repo = 'j-hui/fidget.nvim'
+rev = 'lagacy'
+on_source = 'nvim-lspconfig'
+hooks_file = '$BASE_DIR/plugin/fidget.lua'
+
+# ========== Motion ===============================================================================
+[[plugins]]
+repo = 'yuki-yano/zero.nvim'
+on_event = ['CursorHold', 'FocusLost', 'BufRead']
+hooks_file = '$BASE_DIR/plugin/zero.lua'
+
+
+# ========== Utility ==============================================================================
+[[plugins]]
 repo = 'MunifTanjim/nui.nvim'
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
 
 [[plugins]]
 repo = 'folke/noice.nvim'
@@ -145,14 +219,42 @@ lua_source = '''
 [[plugins]]
 repo = 'rcarriga/nvim-notify'
 on_lua = 'notify'
+on_event = ['BufRead']
 lua_source = '''
   require('notify').setup({
     render = "minimal",
-    stages = "static",
+    stages = "slide",
     timeout = 1000,
   })
+  vim.notify = require("notify")
 '''
 
+[[plugins]]
+repo = 'hrsh7th/nvim-insx'
+on_event = ['InsertEnter']
+lua_source = '''
+  require('insx.preset.standard').setup()
+'''
+
+[[plugins]]
+repo = 'monaqa/dial.nvim'
+on_event = ['CursorHold', 'FocusLost']
+hooks_file = '$BASE_DIR/plugin/dial.lua'
+
+[[plugins]]
+repo = 'kevinhwang91/nvim-bqf'
+on_ft = 'qf'
+
+[[plugins]]
+repo = 'stevearc/aerial.nvim'
+hooks_file = '$BASE_DIR/plugin/aerial.lua'
+
+[[plugins]]
+repo = 'folke/which-key.nvim'
+on_event = ['CursorHold', 'FocusLost']
+hooks_file = '$BASE_DIR/plugin/which-key.lua'
+
+# ========== Markdown =============================================================================
 [[plugins]]
 repo = 'atusy/tsnode-marker.nvim'
 if = false

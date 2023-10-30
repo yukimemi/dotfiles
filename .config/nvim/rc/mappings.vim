@@ -93,8 +93,6 @@ Keymap n <c-l> <c-w>l
 Keymap n <c-j> <c-w>j
 Keymap n <c-k> <c-w>k
 
-Keymap n M m
-
 " Smart <C-f>, <C-b>.
 Keymap nx <expr> <C-f> max([winheight(0) - 2, 1])
       \ .. '<C-d>' .. (line('w$') >= line('$') ? 'L' : 'M')

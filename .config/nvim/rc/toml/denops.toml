@@ -34,36 +34,36 @@ repo = 'kuuote/lspoints'
 on_event = ['BufRead']
 depends = 'denops.vim'
 hook_source = '''
-call lspoints#load_extensions([
-        \   'nvim_diagnostics',
-        \ ])
+  call lspoints#load_extensions([
+          \   'nvim_diagnostics',
+          \ ])
 
-function s:attach_ls() abort
-  if &l:filetype ==# 'typescript' || &l:filetype ==# 'typescriptreact'
-    " Deno lsp
+  function s:attach_ls() abort
+    if &l:filetype ==# 'typescript' || &l:filetype ==# 'typescriptreact'
+      " Deno lsp
 
-    " Check "package.json" exists
-    if findfile('package.json', '.;') !=# ''
-      return
+      " Check "package.json" exists
+      if findfile('package.json', '.;') !=# ''
+        return
+      endif
+
+      call lspoints#attach('denols', #{
+              \   cmd: ['deno', 'lsp'],
+              \   initializationOptions: #{
+              \     enable: v:true,
+              \     lint: v:true,
+              \     documentPreloadLimit: 10,
+              \     unstable: v:true,
+              \     suggest: #{
+              \       autoImports: v:false,
+              \     },
+              \   },
+              \ })
     endif
+  endfunction
 
-    call lspoints#attach('denols', #{
-            \   cmd: ['deno', 'lsp'],
-            \   initializationOptions: #{
-            \     enable: v:true,
-            \     lint: v:true,
-            \     documentPreloadLimit: 10,
-            \     unstable: v:true,
-            \     suggest: #{
-            \       autoImports: v:false,
-            \     },
-            \   },
-            \ })
-  endif
-endfunction
-
-call s:attach_ls()
-autocmd MyAutoCmd FileType * call s:attach_ls()
+  call s:attach_ls()
+  autocmd MyAutoCmd FileType * call s:attach_ls()
 '''
 
 [[plugins]]
@@ -132,4 +132,21 @@ depends = 'denops.vim'
 on_source = 'denops.vim'
 denops_wait = false
 hooks_file = '$BASE_DIR/plugin/dps-chronicle.vim'
+
+[[plugins]]
+repo = 'yuki-yano/fuzzy-motion.vim'
+depends = 'denops.vim'
+on_cmd = 'FuzzyMotion'
+hooks_file = '$BASE_DIR/plugin/fuzzy-motion.vim'
+
+[[plugins]]
+repo = 'lambdalisue/gin.vim'
+depends = ['denops.vim', 'askpass.vim', 'guise.vim']
+hooks_file = '$BASE_DIR/plugin/gin.vim'
+
+[[plugins]]
+repo = 'lambdalisue/askpass.vim'
+
+[[plugins]]
+repo = 'lambdalisue/guise.vim'
 

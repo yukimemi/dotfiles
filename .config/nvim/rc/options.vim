@@ -105,11 +105,7 @@ if has('gui_running')
 endif
 
 set list
-if has('win32')
-   set listchars=tab:>-,trail:-,precedes:<
-else
-   set listchars=tab:▸\ ,trail:-,precedes:«,nbsp:%
-endif
+set listchars=tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%
 
 set report=1000
 

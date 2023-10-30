@@ -60,8 +60,8 @@ export class Config extends BaseConfig {
     const tomls: Toml[] = [];
     for (
       const toml of [
-        "$BASE_DIR/toml/merge.toml",
         "$BASE_DIR/toml/dpp.toml",
+        "$BASE_DIR/toml/start.toml",
       ]
     ) {
       tomls.push(await args.dpp.extAction(
@@ -87,9 +87,8 @@ export class Config extends BaseConfig {
         "$BASE_DIR/toml/denops.toml",
         "$BASE_DIR/toml/ddc.toml",
         "$BASE_DIR/toml/ddu.toml",
-        "$BASE_DIR/toml/neovim.toml",
         "$BASE_DIR/toml/colorscheme.toml",
-        "$BASE_DIR/toml/ui.toml",
+        hasNvim ? "$BASE_DIR/toml/neovim.toml" : "$BASE_DIR/toml/vim.toml",
       ]
     ) {
       tomls.push(await args.dpp.extAction(

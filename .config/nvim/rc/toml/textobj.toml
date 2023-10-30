@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'kana/vim-textobj-user'
-on_event = 'VimEnter'
+on_event = 'BufRead'
 
 [[plugins]]
 repo = 'kana/vim-textobj-entire'
@@ -34,6 +34,7 @@ on_source = 'vim-textobj-user'
 
 [[plugins]]
 repo = 'KosukeMizuno/vim-textobj-dein'
+if = false
 depends = ['vim-textobj-user', 'open-browser.vim']
 on_source = 'vim-textobj-user'
 hooks_file = '$BASE_DIR/plugin/vim-textobj-dein.vim'

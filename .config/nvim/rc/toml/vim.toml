@@ -1,0 +1,5 @@
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+if = "!has('nvim')"
+hooks_file = '$BASE_DIR/plugin/indentLine.vim'
+

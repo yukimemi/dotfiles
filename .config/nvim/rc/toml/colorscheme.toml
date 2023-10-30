@@ -65,10 +65,8 @@ source $BASE_DIR/plugin/edge.vim
 
 [[plugins]]
 repo = 'tiagovla/tokyodark.nvim'
-hook_add = '''
-source $BASE_DIR/plugin/tokyodark.nvim
-'''
 if = 'has("nvim")'
+hooks_file = '$BASE_DIR/plugin/tokyodark.nvim'
 
 [[plugins]]
 repo = 'ChristianChiarulli/nvcode-color-schemes.vim'
@@ -79,9 +77,6 @@ if = 'has("nvim")'
 
 [[plugins]]
 repo = 'Matsuuu/pinkmare'
-hook_add = '''
-source $BASE_DIR/plugin/pinkmare.vim
-'''
 
 [[plugins]]
 repo = 'srcery-colors/srcery-vim'

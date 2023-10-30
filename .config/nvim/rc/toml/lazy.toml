@@ -1,6 +1,8 @@
+# ========== Utility ==============================================================================
 [[plugins]]
 repo = 'Shougo/junkfile.vim'
-on_source = ['ddu.vim']
+on_source = 'ddu.vim'
+on_cmd = 'JunkfileOpen'
 hook_add = '''
   nnoremap se <Cmd>Ddu junkfile -source-option-junkfile-volatile<CR>
 '''
@@ -27,32 +29,6 @@ repo = 'lambdalisue/vim-findent'
 [[plugins]]
 repo = 'tweekmonster/helpful.vim'
 on_cmd = 'HelpfulVersion'
-
-[[plugins]]
-repo = 'rhysd/vim-gfm-syntax'
-on_ft = 'markdown'
-
-[[plugins]]
-repo = 'machakann/vim-vimhelplint'
-on_ft = 'help'
-[plugins.ftplugin]
-help = '''
-  nnoremap <buffer> ,r  <Cmd>VimhelpLint!<CR>
-'''
-
-[[plugins]]
-repo = 'mattn/vim-goimports'
-on_ft = 'go'
-hook_source = '''
-  let g:goimports_simplify = v:true
-'''
-
-[[plugins]]
-repo = 'dag/vim2hs'
-on_ft = 'haskell'
-hook_source = '''
-  let g:haskell_conceal = v:false
-'''
 
 [[plugins]]
 repo = 'github/copilot.vim'
@@ -83,15 +59,6 @@ on_cmd = ['Codeium']
 on_event = ['InsertEnter']
 
 [[plugins]]
-repo = 'kaarmu/typst.vim'
-on_ft = 'typst'
-
-[[plugins]]
-repo = 'rbtnn/vim-vimscript_lasterror'
-on_event = 'VimEnter'
-on_cmd = 'VimscriptLastError'
-
-[[plugins]]
 repo = 'tyru/open-browser.vim'
 hooks_file = '$BASE_DIR/plugin/open-browser.vim'
 
@@ -107,4 +74,113 @@ hooks_file = '$BASE_DIR/plugin/vim-ambicmd.vim'
 [[plugins]]
 repo = 'tyru/capture.vim'
 on_cmd = 'Capture'
+
+[[plugins]]
+repo = "andymass/vim-matchup"
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'LeafCage/yankround.vim'
+on_event = ['CursorHold', 'FocusLost', 'BufRead']
+hooks_file = '$BASE_DIR/plugin/yankround.vim'
+
+[[plugins]]
+repo = 'thinca/vim-prettyprint'
+on_cmd = 'PP'
+
+[[plugins]]
+repo = 'thinca/vim-partedit'
+on_cmd = 'Partedit'
+hooks_file = '$BASE_DIR/plugin/vim-partedit.vim'
+
+[[plugins]]
+repo = 'christoomey/vim-tmux-navigator'
+if = '!has("win32")'
+
+[[plugins]]
+repo = 'glidenote/memolist.vim'
+hooks_file = '$BASE_DIR/plugin/memolist.vim'
+on_cmd = ['MemoList', 'MemoNew', 'MemoGrep']
+
+[[plugins]]
+repo = 'rhysd/committia.vim'
+on_event = 'VimEnter'
+
+[[plugins]]
+repo = 'rhysd/conflict-marker.vim'
+on_event = ['CursorHold', 'FocusLost']
+
+# ========== Visual ===============================================================================
+[[plugins]]
+repo = 'lambdalisue/seethrough.vim'
+if = "!has('gui')"
+
+[[plugins]]
+repo = "ntpeters/vim-better-whitespace"
+hooks_file = '$BASE_DIR/plugin/vim-better-whitespace.vim'
+on_cmd = 'StripWhiteSpace'
+on_event = ['CursorHold', 'FocusLost']
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+hook_add = '''
+let g:context_filetype#ignore_patterns = {
+    \ 'toml': ['^\s*#\s*'],
+    \ }
+'''
+
+[[plugins]]
+repo = 'unblevable/quick-scope'
+on_event = ['CursorHold', 'FocusLost']
+hooks_file = '$BASE_DIR/plugin/quick-scope.vim'
+
+# ========== Motion ===============================================================================
+[[plugins]]
+repo = 'haya14busa/vim-edgemotion'
+hooks_file = '$BASE_DIR/plugin/vim-edgemotion.vim'
+
+[[plugins]]
+repo = 'Bakudankun/BackAndForward.vim'
+hooks_file = '$BASE_DIR/plugin/BackAndForward.vim'
+
+# ========== Markdown =============================================================================
+[[plugins]]
+repo = 'rhysd/vim-gfm-syntax'
+on_ft = 'markdown'
+
+
+# ========== Help =================================================================================
+[[plugins]]
+repo = 'machakann/vim-vimhelplint'
+on_ft = 'help'
+[plugins.ftplugin]
+help = '''
+  nnoremap <buffer> ,r  <Cmd>VimhelpLint!<CR>
+'''
+
+# ========== Go ===================================================================================
+[[plugins]]
+repo = 'mattn/vim-goimports'
+on_ft = 'go'
+hook_source = '''
+  let g:goimports_simplify = v:true
+'''
+
+# ========== Haskell ==============================================================================
+[[plugins]]
+repo = 'dag/vim2hs'
+on_ft = 'haskell'
+hook_source = '''
+  let g:haskell_conceal = v:false
+'''
+
+# ========== typst ================================================================================
+[[plugins]]
+repo = 'kaarmu/typst.vim'
+on_ft = 'typst'
+
+# ========== vimscript ============================================================================
+[[plugins]]
+repo = 'rbtnn/vim-vimscript_lasterror'
+on_cmd = 'VimscriptLastError'
 
