@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2023/10/31 23:04:07.
+// Last Change : 2023/11/01 01:04:42.
 // =============================================================================
 
 import { cmp } from "./plugins/cmp.ts";
@@ -35,8 +35,8 @@ import { util } from "./plugins/util.ts";
 import { memo } from "./plugins/memo.ts";
 
 export const plugins = [
-  ...libs,
   ...denops,
+  ...libs,
   ...memo,
   ...ddu,
   ...tmux,
