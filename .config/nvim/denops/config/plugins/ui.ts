@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/10/08 08:28:49.
+// Last Change : 2023/10/31 23:23:47.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.6/mod.ts";
@@ -256,11 +256,6 @@ export const ui: Plug[] = [
     after: async ({ denops }) => {
       await denops.cmd(`lua require("barbecue").setup()`);
     },
-  },
-  {
-    url: "kevinhwang91/nvim-bqf",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
   },
   {
     url: "tzachar/highlight-undo.nvim",

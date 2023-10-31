@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/10/09 18:56:57.
+// Last Change : 2023/10/31 23:29:28.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.6/mod.ts";
@@ -10,6 +10,8 @@ import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
+
+import { pluginStatus } from "../main.ts";
 
 export const util: Plug[] = [
   {
@@ -486,6 +488,14 @@ export const util: Plug[] = [
     enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hydrate").setup()`);
+    },
+  },
+  {
+    url: "kevinhwang91/nvim-bqf",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("bqf").setup()`);
     },
   },
 ];

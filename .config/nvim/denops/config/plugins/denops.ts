@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/10/20 21:07:58.
+// Last Change : 2023/10/31 23:43:47.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.6/mod.ts";
@@ -12,7 +12,7 @@ import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import * as nvimFn from "https://deno.land/x/denops_std@v5.0.1/function/nvim/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const denops: Plug[] = [
@@ -21,9 +21,71 @@ export const denops: Plug[] = [
     enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-autocursor",
     before: async ({ denops }) => {
-      await globals.set(denops, "autocursor_debug", false);
-      await globals.set(denops, "autocursor_notify", false);
-      await globals.set(denops, "autocursor_ignore_filetypes", [
+      await vars.g.set(denops, "autocursor_debug", false);
+      await vars.g.set(denops, "autocursor_notify", false);
+      await vars.g.set(denops, "autocursor_cursorline", {
+        enable: true,
+        events: [
+          {
+            name: [
+              "BufEnter",
+              "CmdwinLeave",
+              "CursorHold",
+              "CursorHoldI",
+              "FocusGained",
+              "FocusLost",
+              "InsertLeave",
+              "ModeChanged",
+              "TextChanged",
+              "VimResized",
+              "WinEnter",
+            ],
+            set: true,
+            wait: 0,
+          },
+          {
+            name: [
+              "CursorMoved",
+              "CursorMovedI",
+              "InsertEnter",
+            ],
+            set: false,
+            wait: 100,
+          },
+        ],
+      });
+      await vars.g.set(denops, "autocursor_cursorcolumn", {
+        enable: true,
+        events: [
+          {
+            name: [
+              "BufEnter",
+              "CmdwinLeave",
+              "CursorHold",
+              "CursorHoldI",
+              "FocusGained",
+              "FocusLost",
+              "InsertLeave",
+              "ModeChanged",
+              "TextChanged",
+              "VimResized",
+              "WinEnter",
+            ],
+            set: true,
+            wait: 100,
+          },
+          {
+            name: [
+              "CursorMoved",
+              "CursorMovedI",
+              "InsertEnter",
+            ],
+            set: false,
+            wait: 100,
+          },
+        ],
+      });
+      await vars.g.set(denops, "autocursor_ignore_filetypes", [
         "ctrlp",
         "ddu-ff",
         "ddu-ff-filter",
@@ -39,17 +101,17 @@ export const denops: Plug[] = [
     url: "yukimemi/dps-autobackup",
     dst: "~/src/github.com/yukimemi/dps-autobackup",
     before: async ({ denops }) => {
-      await globals.set(denops, "autobackup_debug", false);
-      await globals.set(denops, "autobackup_enable", true);
-      await globals.set(denops, "autobackup_echo", false);
-      await globals.set(denops, "autobackup_notify", false);
-      await globals.set(denops, "autobackup_use_ui_select", false);
-      await globals.set(denops, "autobackup_events", [
+      await vars.g.set(denops, "autobackup_debug", false);
+      await vars.g.set(denops, "autobackup_enable", true);
+      await vars.g.set(denops, "autobackup_echo", false);
+      await vars.g.set(denops, "autobackup_notify", false);
+      await vars.g.set(denops, "autobackup_use_ui_select", false);
+      await vars.g.set(denops, "autobackup_events", [
         "CursorHold",
         "BufWritePre",
         "InsertLeave",
       ]);
-      await globals.set(denops, "autobackup_ignore_filetypes", [
+      await vars.g.set(denops, "autobackup_ignore_filetypes", [
         "csv",
         "ctrlp",
         "ddu-ff",
@@ -70,8 +132,8 @@ export const denops: Plug[] = [
     enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-asyngrep",
     before: async ({ denops }) => {
-      await globals.set(denops, "asyngrep_debug", false);
-      await globals.set(
+      await vars.g.set(denops, "asyngrep_debug", false);
+      await vars.g.set(
         denops,
         "asyngrep_cfg_path",
         await fn.expand(denops, "~/.config/asyngrep/asyngrep.toml"),
@@ -124,11 +186,11 @@ export const denops: Plug[] = [
       `,
     },
     before: async ({ denops }) => {
-      await globals.set(denops, "chronicle_debug", false);
-      await globals.set(denops, "chronicle_echo", false);
-      await globals.set(denops, "chronicle_notify", false);
-      await globals.set(denops, "chronicle_read_path", `~/.cache/chronicle/read`);
-      await globals.set(denops, "chronicle_write_path", `~/.cache/chronicle/write`);
+      await vars.g.set(denops, "chronicle_debug", false);
+      await vars.g.set(denops, "chronicle_echo", false);
+      await vars.g.set(denops, "chronicle_notify", false);
+      await vars.g.set(denops, "chronicle_read_path", `~/.cache/chronicle/read`);
+      await vars.g.set(denops, "chronicle_write_path", `~/.cache/chronicle/write`);
       await mapping.map(denops, "mr", "<cmd>OpenChronicleRead<cr>", { mode: "n" });
       await mapping.map(denops, "me", "<cmd>OpenChronicleWrite<cr>", { mode: "n" });
       await mapping.map(denops, "mo", "<cmd>copen<cr>", { mode: "n" });
@@ -138,9 +200,9 @@ export const denops: Plug[] = [
     url: "yukimemi/dps-autodate",
     dst: "~/src/github.com/yukimemi/dps-autodate",
     before: async ({ denops }) => {
-      await globals.set(denops, "autodate_debug", false);
-      await globals.set(denops, "autodate_notify", true);
-      await globals.set(denops, "autodate_config", {
+      await vars.g.set(denops, "autodate_debug", false);
+      await vars.g.set(denops, "autodate_notify", true);
+      await vars.g.set(denops, "autodate_config", {
         xml: {
           replace: [
             [
@@ -217,12 +279,13 @@ export const denops: Plug[] = [
     enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-walk",
     before: async ({ denops }) => {
-      await globals.set(denops, "walk_debug", false);
-      await globals.set(denops, "walk_no_mapping", false);
+      await vars.g.set(denops, "walk_debug", false);
+      await vars.g.set(denops, "walk_no_mapping", false);
 
       await mapping.map(denops, "mw", "<cmd>DenopsWalk<cr>", { mode: "n" });
       await mapping.map(denops, "ms", "<cmd>DenopsWalk --path=~/src<cr>", { mode: "n" });
       await mapping.map(denops, "mD", "<cmd>DenopsWalk --path=~/.dotfiles<cr>", { mode: "n" });
+      await mapping.map(denops, "mC", "<cmd>DenopsWalk --path=~/.cache<cr>", { mode: "n" });
       await mapping.map(denops, "md", "<cmd>DenopsWalkBufferDir<cr>", { mode: "n" });
       await mapping.map(denops, "mM", "<cmd>DenopsWalk --path=~/.memolist<cr>", {
         mode: "n",
@@ -332,23 +395,23 @@ export const denops: Plug[] = [
       },
     ],
     before: async ({ denops }) => {
-      await globals.set(denops, "randomcolorscheme_debug", false);
-      await globals.set(denops, "randomcolorscheme_echo", false);
-      await globals.set(denops, "randomcolorscheme_notify", true);
-      await globals.set(denops, "randomcolorscheme_interval", 1800);
-      // await globals.set(denops, "randomcolorscheme_checkwait", 30000);
-      await globals.set(denops, "randomcolorscheme_disables", [
+      await vars.g.set(denops, "randomcolorscheme_debug", false);
+      await vars.g.set(denops, "randomcolorscheme_echo", false);
+      await vars.g.set(denops, "randomcolorscheme_notify", true);
+      await vars.g.set(denops, "randomcolorscheme_interval", 1800);
+      // await vars.g.set(denops, "randomcolorscheme_checkwait", 30000);
+      await vars.g.set(denops, "randomcolorscheme_disables", [
         "evening",
         "default",
         "blue",
       ]);
-      await globals.set(
+      await vars.g.set(
         denops,
         "randomcolorscheme_path",
         await fn.expand(denops, "~/.config/randomcolorscheme/colorscheme.toml"),
       );
-      await globals.set(denops, "randomcolorscheme_notmatch", "[Ll]ight");
-      await globals.set(denops, "randomcolorscheme_background", "dark");
+      await vars.g.set(denops, "randomcolorscheme_notmatch", "[Ll]ight");
+      await vars.g.set(denops, "randomcolorscheme_background", "dark");
 
       await mapping.map(denops, "<space>ro", "<cmd>ChangeColorscheme<cr>", {
         mode: "n",
@@ -373,12 +436,12 @@ export const denops: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     before: async ({ denops }) => {
-      await globals.set(denops, "hitori_debug", false);
-      await globals.set(denops, "hitori_enable", true);
-      await globals.set(denops, "hitori_quit", true);
-      await globals.set(denops, "hitori_opener", "vsplit");
+      await vars.g.set(denops, "hitori_debug", false);
+      await vars.g.set(denops, "hitori_enable", true);
+      await vars.g.set(denops, "hitori_quit", true);
+      await vars.g.set(denops, "hitori_opener", "vsplit");
 
-      await globals.set(denops, "hitori_ignore_patterns", [
+      await vars.g.set(denops, "hitori_ignore_patterns", [
         ".tmp$",
         ".diff$",
         ".dump$",
@@ -390,8 +453,8 @@ export const denops: Plug[] = [
     url: "yukimemi/dps-ahdr",
     dst: "~/src/github.com/yukimemi/dps-ahdr",
     before: async ({ denops }) => {
-      await globals.set(denops, "ahdr_debug", false);
-      await globals.set(denops, "ahdr_cfg_path", "~/.config/ahdr/ahdr.toml");
+      await vars.g.set(denops, "ahdr_debug", false);
+      await vars.g.set(denops, "ahdr_cfg_path", "~/.config/ahdr/ahdr.toml");
 
       await nvimFn.nvim_create_user_command(
         denops,
