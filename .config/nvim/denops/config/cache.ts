@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2023/08/25 22:15:10.
+// Last Change : 2023/11/01 19:26:33.
 // =============================================================================
 
 export function cacheVim() {
@@ -22,19 +22,50 @@ export function cacheVim() {
 export function cacheLua() {
   return {
     script: `
-      vim.g.loaded_2html_plugin = 1
-      vim.g.loaded_gzip = 1
-      vim.g.loaded_man = 1
-      vim.g.loaded_matchit = 1
-      vim.g.loaded_matchparen = 1
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-      vim.g.loaded_remote_plugins = 1
-      vim.g.loaded_shada_plugin = 1
-      vim.g.loaded_spellfile_plugin = 1
-      vim.g.loaded_tarPlugin = 1
-      vim.g.loaded_tutor_mode_plugin = 1
-      vim.g.loaded_zipPlugin = 1
+      -- Move to window using the <ctrl> movement keys
+      vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
+      vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
+      vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
+      vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
+
+      vim.keymap.set("n", "<space><space>", "<cmd>update<cr>", { silent = true })
+      vim.keymap.set("n", "<tab>", "%", { silent = true })
+      vim.keymap.set("i", "<c-l>", "<C-g>U<Right>", { silent = true })
+
+      vim.keymap.set({ "n", "x" }, "gh", "^", { silent = true })
+      vim.keymap.set({ "n", "x" }, "gl", "$", { silent = true })
+
+      vim.keymap.set("c", "<c-b>", "<Left>", { silent = true })
+      vim.keymap.set("c", "<c-f>", "<Right>", { silent = true })
+      vim.keymap.set("c", "<c-a>", "<Home>", { silent = true })
+      vim.keymap.set("c", "<c-e>", "<End>", { silent = true })
+      vim.keymap.set("c", "<c-d>", "<Del>", { silent = true })
+      vim.keymap.set("c", "<c-y>", "<c-r>", { silent = true })
+      vim.keymap.set("c", "<c-p>", "<Up>", { silent = true })
+      vim.keymap.set("c", "<c-n>", "<Down>", { silent = true })
+
+      -- s prefix mappings
+      vim.keymap.set("n", "s", "<Nop>", { silent = true })
+      vim.keymap.set("n", "s0", "<cmd>only<cr>", { silent = true })
+      vim.keymap.set("n", "s=", "<c-w>=", { silent = true })
+      vim.keymap.set("n", "sH", "<c-w>H", { silent = true })
+      vim.keymap.set("n", "sJ", "<c-w>J", { silent = true })
+      vim.keymap.set("n", "sK", "<c-w>K", { silent = true })
+      vim.keymap.set("n", "sL", "<c-w>L", { silent = true })
+      vim.keymap.set("n", "sO", "<cmd>tabonly<cr>", { silent = true })
+      vim.keymap.set("n", "sQ", "<cmd>qa<cr>", { silent = true })
+      vim.keymap.set("n", "sbk", "<cmd>bd!<cr>", { silent = true })
+      vim.keymap.set("n", "sbq", "<cmd>q!<cr>", { silent = true })
+      vim.keymap.set("n", "sn", "<cmd>bn<cr>", { silent = true })
+      vim.keymap.set("n", "so", "<c-w>_<c-w>|", { silent = true })
+      vim.keymap.set("n", "sp", "<cmd>bp<cr>", { silent = true })
+      vim.keymap.set("n", "sq", "<cmd>q<cr>", { silent = true })
+      vim.keymap.set("n", "sr", "<c-w>r", { silent = true })
+      vim.keymap.set("n", "sh", "<cmd>sp<cr>", { silent = true })
+      vim.keymap.set("n", "st", "<cmd>tabnew<cr>", { silent = true })
+      vim.keymap.set("n", "sv", "<cmd>vs<cr>", { silent = true })
+      vim.keymap.set("n", "sw", "<c-w>w", { silent = true })
+
     `,
     path: "~/.config/nvim/plugin/dvpm_cache.lua",
   };
