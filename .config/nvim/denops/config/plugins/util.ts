@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/10/31 23:29:28.
+// Last Change : 2023/11/01 21:50:28.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.6/mod.ts";
@@ -206,7 +206,7 @@ export const util: Plug[] = [
   { url: "chrisbra/Recover.vim" },
   {
     url: "anuvyklack/windows.nvim",
-    enabled: false,
+    enabled: true,
     dependencies: [
       { url: "anuvyklack/middleclass" },
       { url: "anuvyklack/animation.nvim" },

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2023/11/01 00:54:29.
+// Last Change : 2023/11/02 00:19:59.
 // =============================================================================
 
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -129,6 +129,23 @@ export async function setOption(denops: Denops) {
             endif
           endfunction
         augroup END
+      `,
+    );
+    await helper.execute(
+      denops,
+      `
+        " https://zenn.dev/vim_jp/articles/f23938c7df2dd9
+        function s:show_qf_lists()
+          let l:qnr = 1
+          while qnr <= 10
+            let l:list = getqflist({"nr": qnr, "title": v:true, "id": 0})
+            if l:list["nr"] > 0
+              echo l:qnr .. ": " .. l:list["title"] .. ": " .. l:list["id"]
+            endif
+            let l:qnr = l:qnr + 1
+          endwhile
+        endfunction
+        command! ShowQfLists call <sid>show_qf_lists()
       `,
     );
   });

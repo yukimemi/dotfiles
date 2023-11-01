@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : keymap.ts
 // Author      : yukimemi
-// Last Change : 2023/09/01 20:33:00.
+// Last Change : 2023/11/01 21:58:17.
 // =============================================================================
 
 import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
@@ -9,6 +9,7 @@ import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v5.0.1/batch/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import { focusFloating, openBufDir, reviewMode } from "./util.ts";
 
 export async function setKeymapPre(denops: Denops) {
@@ -96,6 +97,20 @@ export async function setKeymapPre(denops: Denops) {
 
     await mapping.map(denops, "<c-n>", "gt", { mode: "n" });
     await mapping.map(denops, "<c-p>", "gT", { mode: "n" });
+
+    autocmd.group(denops, "MyQuickfixMapping", (helper) => {
+      helper.remove("*");
+      helper.define(
+        "FileType",
+        "qf",
+        `call <SID>${denops.name}_notify("${
+          lambda.register(denops, async () => {
+            await mapping.map(denops, "<c-n>", "<cmd>cnewer<cr>", { mode: "n", buffer: true });
+            await mapping.map(denops, "<c-p>", "<cmd>colder<cr>", { mode: "n", buffer: true });
+          })
+        }", [])`,
+      );
+    });
 
     await focusFloating(denops);
   });

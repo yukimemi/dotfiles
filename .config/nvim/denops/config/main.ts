@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2023/11/01 08:23:05.
+// Last Change : 2023/11/01 21:23:32.
 // =============================================================================
 
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -53,14 +53,14 @@ export const pluginStatus = {
 
 export async function main(denops: Denops): Promise<void> {
   const starttime = performance.now();
-  // await notify(denops, `dvpm main start !`);
+  await notify(denops, `dvpm main start !`);
   pluginStatus.vscode = await fn.exists(denops, "g:vscode");
   await pre(denops);
   const dvpm = await dvpmExec(denops);
   await post(denops);
 
   const elapsed = performance.now() - starttime;
-  // await notify(denops, [`Config load completed !`, `Elapsed: (${elapsed})`]);
+  await notify(denops, [`Config load completed !`, `Elapsed: (${elapsed})`]);
 
   await dvpm.cache(cacheLua());
   await dvpm.cache(cacheVim());
