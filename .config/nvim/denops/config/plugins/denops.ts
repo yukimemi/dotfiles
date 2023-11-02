@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/11/01 19:22:51.
+// Last Change : 2023/11/02 20:50:22.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.6/mod.ts";
@@ -182,6 +182,8 @@ export const denops: Plug[] = [
         let g:chronicle_notify = v:true
         let g:chronicle_read_path = '~/.cache/chronicle/read'
         let g:chronicle_write_path = '~/.cache/chronicle/write'
+      `,
+      after: `
         nnoremap mr <cmd>OpenChronicleRead<cr>
         nnoremap me <cmd>OpenChronicleWrite<cr>
         nnoremap mo <cmd>copen<cr>
