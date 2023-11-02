@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : init.lua
 -- Author      : yukimemi
--- Last Change : 2023/10/20 21:02:56.
+-- Last Change : 2023/11/03 08:38:30.
 -- =============================================================================
 
 if vim.loader then
@@ -12,6 +12,9 @@ if not vim.loop.fs_stat(denops) then
   vim.fn.system({ "git", "clone", "https://github.com/vim-denops/denops.vim", denops })
 end
 vim.opt.runtimepath:prepend(denops)
+
+local dvpm_cache = vim.fn.expand("~/.cache/nvim/dvpm/cache")
+vim.opt.runtimepath:prepend(dvpm_cache)
 
 vim.g.loaded_2html_plugin = 1
 vim.g.loaded_gzip = 1

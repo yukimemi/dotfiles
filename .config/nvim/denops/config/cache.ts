@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2023/11/01 19:26:33.
+// Last Change : 2023/11/03 08:45:00.
 // =============================================================================
 
 export function cacheVim() {
@@ -15,7 +15,7 @@ export function cacheVim() {
       endif
       au MyAutoCmd SwapExists * let v:swapchoice = 'o'
     `,
-    path: "~/.config/nvim/plugin/dvpm_cache.vim",
+    path: "~/.cache/nvim/dvpm/cache/plugin/dvpm_cache.vim",
   };
 }
 
@@ -67,6 +67,6 @@ export function cacheLua() {
       vim.keymap.set("n", "sw", "<c-w>w", { silent = true })
 
     `,
-    path: "~/.config/nvim/plugin/dvpm_cache.lua",
+    path: "~/.cache/nvim/dvpm/cache/plugin/dvpm_cache.lua",
   };
 }

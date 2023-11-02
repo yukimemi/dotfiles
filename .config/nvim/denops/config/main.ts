@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2023/11/01 21:23:32.
+// Last Change : 2023/11/03 08:40:05.
 // =============================================================================
 
 import { type Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -99,8 +99,8 @@ async function dvpmExec(denops: Denops) {
   const base_path = denops.meta.host === "nvim" ? "~/.cache/nvim/dvpm" : "~/.cache/vim/dvpm";
   const base = ensure(await fn.expand(denops, base_path), is.String);
   const cache_path = denops.meta.host === "nvim"
-    ? "~/.config/nvim/plugin/dvpm_plugin_cache.vim"
-    : "~/.config/vim/plugin/dvpm_plugin_cache.vim";
+    ? "~/.cache/nvim/dvpm/cache/plugin/dvpm_plugin_cache.vim"
+    : "~/.cache/vim/dvpm/cache/pluguin/dvpm_plugin_cache.vim";
   const cache = ensure(await fn.expand(denops, cache_path), is.String);
   const dvpm = await Dvpm.begin(denops, {
     base,
