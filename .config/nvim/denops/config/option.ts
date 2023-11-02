@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2023/11/02 00:19:59.
+// Last Change : 2023/11/02 16:36:29.
 // =============================================================================
 
 import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
@@ -47,6 +47,7 @@ export async function setOption(denops: Denops) {
       denops,
       "tab:\¦\ ,trail:-,extends:»,precedes:«,nbsp:%",
     );
+    await option.more.set(denops, false);
     await option.mouse.set(denops, "a");
     await option.number.set(denops, true);
     await option.pumheight.set(denops, 30);
