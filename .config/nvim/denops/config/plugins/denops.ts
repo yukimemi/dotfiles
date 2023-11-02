@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/11/02 20:50:22.
+// Last Change : 2023/11/02 21:49:43.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.6/mod.ts";
@@ -272,6 +272,23 @@ export const denops: Plug[] = [
     url: "yukimemi/dps-walk",
     enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-walk",
+    cache: {
+      enabled: true,
+      before: `
+        let g:walk_debug = v:false
+        let g:walk_no_mapping = v:false
+      `,
+      after: `
+        nnoremap mw <cmd>DenopsWalk<cr>
+        nnoremap ms <cmd>DenopsWalk --path=~/src<cr>
+        nnoremap mD <cmd>DenopsWalk --path=~/.dotfiles<cr>
+        nnoremap mC <cmd>DenopsWalk --path=~/.cache<cr>
+        nnoremap md <cmd>DenopsWalkBufferDir<cr>
+        nnoremap mM <cmd>DenopsWalk --path=~/.memolist<cr>
+        nnoremap <space>wc <cmd>DenopsWalk --path=~/.cache<cr>
+        nnoremap <space>wj <cmd>DenopsWalk --path=~/.cache/junkfile<cr>
+      `,
+    },
     before: async ({ denops }) => {
       await vars.g.set(denops, "walk_debug", false);
       await vars.g.set(denops, "walk_no_mapping", false);
