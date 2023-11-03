@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/11/03 18:30:46.
+// Last Change : 2023/11/04 00:55:26.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -455,6 +455,7 @@ export const denops: Plug[] = [
       await vars.g.set(denops, "hitori_debug", false);
       await vars.g.set(denops, "hitori_enable", true);
       await vars.g.set(denops, "hitori_quit", true);
+      await vars.g.set(denops, "hitori_wsl", true);
       await vars.g.set(denops, "hitori_opener", "vsplit");
 
       await vars.g.set(denops, "hitori_ignore_patterns", [
