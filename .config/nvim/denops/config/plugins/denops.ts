@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/11/02 21:49:43.
+// Last Change : 2023/11/03 18:30:46.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.3.6/mod.ts";
@@ -401,6 +401,11 @@ export const denops: Plug[] = [
       },
       {
         url: "kihachi2000/yash.nvim",
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
+      },
+      {
+        url: "craftzdog/solarized-osaka.nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
