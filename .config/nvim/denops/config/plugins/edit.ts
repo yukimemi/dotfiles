@@ -4,7 +4,7 @@
 // Last Change : 2023/10/07 22:15:40.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.3.6/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.4.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
@@ -13,7 +13,7 @@ import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 
 import { pluginStatus } from "../main.ts";
-import { ensureDir } from "https://deno.land/std@0.204.0/fs/ensure_dir.ts";
+import { ensureDir } from "https://deno.land/std@0.205.0/fs/ensure_dir.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
 
 export const edit: Plug[] = [
