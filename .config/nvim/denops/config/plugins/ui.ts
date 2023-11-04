@@ -1,17 +1,17 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/11/04 10:44:42.
+// Last Change : 2023/11/04 15:12:02.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import * as nvimFn from "https://deno.land/x/denops_std@v5.0.1/function/nvim/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/variable.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 
 import { pluginStatus } from "../main.ts";
 
@@ -35,7 +35,7 @@ export const ui: Plug[] = [
   {
     url: "unblevable/quick-scope",
     before: async ({ denops }) => {
-      await globals.set(denops, "qs_lazy_highlight", 1);
+      await vars.g.set(denops, "qs_lazy_highlight", 1);
     },
   },
   { url: "itchyny/vim-parenmatch" },

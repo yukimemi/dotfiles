@@ -1,16 +1,15 @@
 // =============================================================================
 // File        : statusline.ts
 // Author      : yukimemi
-// Last Change : 2023/11/04 13:57:20.
+// Last Change : 2023/11/04 15:27:39.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/variable.ts";
 import { pluginStatus } from "../main.ts";
 
 export const statusline: Plug[] = [
@@ -90,20 +89,22 @@ export const statusline: Plug[] = [
             lambda.register(
               denops,
               async () => {
-                const icon = "  :";
-                const bufnr = await fn.bufnr(denops);
-                const clients = await denops.call(`luaeval`, `vim.lsp.get_clients(_A)`, {
-                  bufnr: bufnr,
-                });
-                // console.log({ clients });
-                // const clientNames = clients.length > 0
-                //   ? clients.map((x) => x.name).join(" / ")
-                //   : "None";
-                // await vars.g.set(
-                //   denops,
-                //   "lsp_client_names",
-                //   icon + clientNames,
-                // );
+                await execute(
+                  denops,
+                  `
+                    lua << EOB
+                      local icon = "  : "
+                      local bufnr = vim.fn.bufnr()
+                      local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+                      local clientNames = table.concat(vim.tbl_map(function(client) return client.name end, clients), ' / ')
+                      if clientNames == "" then
+                        vim.g.lsp_client_names = icon .. "No LSP"
+                      else
+                        vim.g.lsp_client_names = icon .. clientNames
+                      end
+                    EOB
+                  `,
+                );
               },
             )
           }", [])`,
@@ -121,7 +122,7 @@ export const statusline: Plug[] = [
       {
         url: "vim-airline/vim-airline-themes",
         after: async ({ denops }) => {
-          await globals.set(denops, "airline_theme", "zenburn");
+          await vars.g.set(denops, "airline_theme", "zenburn");
         },
       },
     ],

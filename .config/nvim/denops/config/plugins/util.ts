@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/11/01 21:50:28.
+// Last Change : 2023/11/04 15:16:54.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -498,4 +498,5 @@ export const util: Plug[] = [
       await denops.call(`luaeval`, `require("bqf").setup()`);
     },
   },
+  { url: "thinca/vim-prettyprint" },
 ];
