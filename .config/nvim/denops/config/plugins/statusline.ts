@@ -1,13 +1,17 @@
 // =============================================================================
 // File        : statusline.ts
 // Author      : yukimemi
-// Last Change : 2023/08/18 22:15:55.
+// Last Change : 2023/11/04 13:57:20.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
 
-import { pluginStatus } from "../main.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/variable.ts";
+import { pluginStatus } from "../main.ts";
 
 export const statusline: Plug[] = [
   {
@@ -40,7 +44,7 @@ export const statusline: Plug[] = [
           },
           ignore_focus: [],
           always_divide_middle: true,
-          globalstatus: false,
+          globalstatus: true,
           refresh: {
             statusline: 1000,
             tabline: 1000,
@@ -50,7 +54,7 @@ export const statusline: Plug[] = [
         sections: {
           lualine_a: ["mode"],
           lualine_b: ["branch", "diff", "diagnostics"],
-          lualine_c: ["filename"],
+          lualine_c: ["filename", "location", "g:lsp_client_names"],
           lualine_x: [
             "g:colors_name",
             "g:randomcolorscheme_priority",
@@ -67,7 +71,7 @@ export const statusline: Plug[] = [
           lualine_a: [],
           lualine_b: [],
           lualine_c: ["filename"],
-          lualine_x: ["location"],
+          lualine_x: [],
           lualine_y: [],
           lualine_z: [],
         },
@@ -75,6 +79,35 @@ export const statusline: Plug[] = [
         winbar: [],
         inactive_winbar: [],
         extensions: [],
+      });
+
+      await autocmd.group(denops, "MyLualineLsp", (helper) => {
+        helper.remove("*");
+        helper.define(
+          ["CursorHold", "LspAttach", "FocusLost"],
+          "*",
+          `call <SID>${denops.name}_notify("${
+            lambda.register(
+              denops,
+              async () => {
+                const icon = "  :";
+                const bufnr = await fn.bufnr(denops);
+                const clients = await denops.call(`luaeval`, `vim.lsp.get_clients(_A)`, {
+                  bufnr: bufnr,
+                });
+                // console.log({ clients });
+                // const clientNames = clients.length > 0
+                //   ? clients.map((x) => x.name).join(" / ")
+                //   : "None";
+                // await vars.g.set(
+                //   denops,
+                //   "lsp_client_names",
+                //   icon + clientNames,
+                // );
+              },
+            )
+          }", [])`,
+        );
       });
     },
   },

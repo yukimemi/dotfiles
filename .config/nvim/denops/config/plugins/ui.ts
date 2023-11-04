@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/10/31 23:23:47.
+// Last Change : 2023/11/04 10:44:42.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -30,7 +30,7 @@ export const ui: Plug[] = [
   {
     url: "RRethy/vim-illuminate",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode && false,
   },
   {
     url: "unblevable/quick-scope",
