@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/11/05 09:11:39.
+// Last Change : 2023/11/05 21:11:41.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -501,5 +501,20 @@ export const util: Plug[] = [
   { url: "thinca/vim-prettyprint" },
   {
     url: "skanehira/denops-silicon.vim",
+  },
+  {
+    url: "VidocqH/data-viewer.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    dependencies: [
+      { url: "nvim-lua/plenary.nvim" },
+      {
+        url: "kkharji/sqlite.lua",
+        enabled: Deno.build.os !== "windows",
+      },
+    ],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("data-viewer").setup()`);
+    },
   },
 ];
