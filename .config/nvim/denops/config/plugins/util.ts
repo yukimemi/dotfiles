@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/11/04 15:16:54.
+// Last Change : 2023/11/05 09:11:39.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -499,4 +499,7 @@ export const util: Plug[] = [
     },
   },
   { url: "thinca/vim-prettyprint" },
+  {
+    url: "skanehira/denops-silicon.vim",
+  },
 ];

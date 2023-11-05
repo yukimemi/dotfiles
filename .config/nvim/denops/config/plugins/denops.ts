@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/11/04 00:55:26.
+// Last Change : 2023/11/05 11:49:59.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -406,6 +406,11 @@ export const denops: Plug[] = [
       },
       {
         url: "craftzdog/solarized-osaka.nvim",
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
+      },
+      {
+        url: "arrow2nd/aqua",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
