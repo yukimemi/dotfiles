@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2023/10/07 22:15:40.
+// Last Change : 2023/11/07 00:07:06.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -215,6 +215,14 @@ export const edit: Plug[] = [
           `let b:typo_did_setup = 1`,
         );
       });
+    },
+  },
+  {
+    url: "VidocqH/auto-indent.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("auto-indent").setup()`);
     },
   },
 ];
