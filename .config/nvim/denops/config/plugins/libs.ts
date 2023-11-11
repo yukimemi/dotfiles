@@ -17,7 +17,7 @@ import { pluginStatus } from "../main.ts";
 
 export const libs: Plug[] = [
   {
-    url: "vim-denops/denops.vim",
+    url: "https://github.com/vim-denops/denops.vim",
     cache: {
       // deno-lint-ignore require-await
       enabled: async ({ denops }) => denops.meta.platform === "windows" && false,
@@ -27,24 +27,24 @@ export const libs: Plug[] = [
     },
   },
   {
-    url: "vim-denops/denops-shared-server.vim",
+    url: "https://github.com/vim-denops/denops-shared-server.vim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.platform === "windows",
   },
   {
-    url: "LunarVim/bigfile.nvim",
+    url: "https://github.com/LunarVim/bigfile.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     cache: { enabled: true },
   },
   {
-    url: "tani/vim-artemis",
+    url: "https://github.com/tani/vim-artemis",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     cache: { enabled: true },
   },
   {
-    url: "rcarriga/nvim-notify",
+    url: "https://github.com/rcarriga/nvim-notify",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
       denops.meta.host === "nvim" && pluginStatus.nvimnotify &&
@@ -72,7 +72,7 @@ export const libs: Plug[] = [
     },
   },
   {
-    url: "vigoux/notifier.nvim",
+    url: "https://github.com/vigoux/notifier.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
       denops.meta.host === "nvim" && pluginStatus.notifier &&
@@ -97,18 +97,18 @@ export const libs: Plug[] = [
     },
   },
   {
-    url: "nvim-lua/plenary.nvim",
+    url: "https://github.com/nvim-lua/plenary.nvim",
     cache: { enabled: false },
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
   },
   {
-    url: "MunifTanjim/nui.nvim",
+    url: "https://github.com/MunifTanjim/nui.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
   },
   {
-    url: "stevearc/dressing.nvim",
+    url: "https://github.com/stevearc/dressing.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
@@ -116,7 +116,7 @@ export const libs: Plug[] = [
     },
   },
   {
-    url: "nvim-tree/nvim-web-devicons",
+    url: "https://github.com/nvim-tree/nvim-web-devicons",
     cache: { enabled: false },
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
@@ -127,13 +127,13 @@ export const libs: Plug[] = [
     },
   },
   {
-    url: "folke/noice.nvim",
+    url: "https://github.com/folke/noice.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
       denops.meta.host === "nvim" && !pluginStatus.vscode && denops.meta.platform !== "windows",
     dependencies: [
-      { url: "MunifTanjim/nui.nvim" },
-      { url: "rcarriga/nvim-notify" },
+      { url: "https://github.com/MunifTanjim/nui.nvim" },
+      { url: "https://github.com/rcarriga/nvim-notify" },
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("noice").setup(_A)`, {
@@ -156,26 +156,26 @@ export const libs: Plug[] = [
       });
     },
   },
-  { url: "kana/vim-repeat" },
-  { url: "mattn/vim-findroot" },
+  { url: "https://github.com/kana/vim-repeat" },
+  { url: "https://github.com/mattn/vim-findroot" },
   {
-    url: "tyru/open-browser.vim",
+    url: "https://github.com/tyru/open-browser.vim",
     before: async ({ denops }) => {
       await vars.g.set(denops, "netrw_nogx", 1);
       await mapping.map(denops, "gx", "<Plug>(openbrowser-smart-search)", { mode: ["n", "x"] });
     },
   },
-  { url: "lambdalisue/readablefold.vim" },
-  { url: "lambdalisue/kensaku.vim" },
+  { url: "https://github.com/lambdalisue/readablefold.vim" },
+  { url: "https://github.com/lambdalisue/kensaku.vim" },
   {
-    url: "ryanoasis/vim-devicons",
+    url: "https://github.com/ryanoasis/vim-devicons",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim",
     // deno-lint-ignore require-await
     clone: async ({ denops }) => denops.meta.host === "vim",
   },
   {
-    url: "folke/which-key.nvim",
+    url: "https://github.com/folke/which-key.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode && false,
     after: async ({ denops }) => {
@@ -183,7 +183,7 @@ export const libs: Plug[] = [
     },
   },
   {
-    url: "liuchengxu/vim-which-key",
+    url: "https://github.com/liuchengxu/vim-which-key",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim",
     // deno-lint-ignore require-await
@@ -198,12 +198,12 @@ export const libs: Plug[] = [
     },
   },
   {
-    url: "Exafunction/codeium.vim",
+    url: "https://github.com/Exafunction/codeium.vim",
     enabled: async ({ denops }) =>
       await exists(ensure(await fn.expand(denops, "~/.codeium"), is.String)),
   },
   {
-    url: "lambdalisue/vim-findent",
+    url: "https://github.com/lambdalisue/vim-findent",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim",
     // deno-lint-ignore require-await
@@ -218,7 +218,7 @@ export const libs: Plug[] = [
     },
   },
   {
-    url: "hrsh7th/nvim-dansa",
+    url: "https://github.com/hrsh7th/nvim-dansa",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
@@ -242,5 +242,5 @@ export const libs: Plug[] = [
       });
     },
   },
-  { url: "yuki-yano/dedent-yank.vim" },
+  { url: "https://github.com/yuki-yano/dedent-yank.vim" },
 ];

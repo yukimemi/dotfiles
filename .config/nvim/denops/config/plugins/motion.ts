@@ -12,7 +12,7 @@ import { pluginStatus } from "../main.ts";
 
 export const motion: Plug[] = [
   {
-    url: "haya14busa/vim-edgemotion",
+    url: "https://github.com/haya14busa/vim-edgemotion",
     before: async ({ denops }) => {
       await mapping.map(denops, "sj", "<Plug>(edgemotion-j)", {
         mode: ["n", "x"],
@@ -23,7 +23,7 @@ export const motion: Plug[] = [
     },
   },
   {
-    url: "yuki-yano/fuzzy-motion.vim",
+    url: "https://github.com/yuki-yano/fuzzy-motion.vim",
     before: async ({ denops }) => {
       await globals.set(denops, "fuzzy_motion_auto_jump", false);
       await globals.set(denops, "fuzzy_motion_disable_match_highlight", false);
@@ -32,7 +32,7 @@ export const motion: Plug[] = [
     },
   },
   {
-    url: "yuki-yano/zero.nvim",
+    url: "https://github.com/yuki-yano/zero.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
@@ -40,7 +40,7 @@ export const motion: Plug[] = [
     },
   },
   {
-    url: "Bakudankun/BackAndForward.vim",
+    url: "https://github.com/Bakudankun/BackAndForward.vim",
     enabled: !pluginStatus.vscode,
     before: async ({ denops }) => {
       await mapping.map(denops, "gH", "<Plug>(backandforward-back)", {
@@ -52,7 +52,7 @@ export const motion: Plug[] = [
     },
   },
   {
-    url: "chaoren/vim-wordmotion",
+    url: "https://github.com/chaoren/vim-wordmotion",
     enabled: false,
   },
 ];

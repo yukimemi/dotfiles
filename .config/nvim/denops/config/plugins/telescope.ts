@@ -10,20 +10,20 @@ import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 
 export const telescope: Plug[] = [
   {
-    url: "nvim-telescope/telescope.nvim",
+    url: "https://github.com/nvim-telescope/telescope.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     dependencies: [
-      { url: "folke/which-key.nvim" },
-      { url: "folke/trouble.nvim" },
-      { url: "nvim-telescope/telescope-file-browser.nvim" },
-      { url: "nvim-telescope/telescope-project.nvim" },
-      { url: "nvim-telescope/telescope-symbols.nvim" },
+      { url: "https://github.com/folke/which-key.nvim" },
+      { url: "https://github.com/folke/trouble.nvim" },
+      { url: "https://github.com/nvim-telescope/telescope-file-browser.nvim" },
+      { url: "https://github.com/nvim-telescope/telescope-project.nvim" },
+      { url: "https://github.com/nvim-telescope/telescope-symbols.nvim" },
       {
-        url: "fdschmidt93/telescope-egrepify.nvim",
+        url: "https://github.com/fdschmidt93/telescope-egrepify.nvim",
         dependencies: [
-          { url: "nvim-lua/plenary.nvim" },
-          { url: "nvim-telescope/telescope.nvim" },
+          { url: "https://github.com/nvim-lua/plenary.nvim" },
+          { url: "https://github.com/nvim-telescope/telescope.nvim" },
         ],
         after: async ({ denops }) => {
           await execute(
@@ -37,19 +37,19 @@ export const telescope: Plug[] = [
         },
       },
       {
-        url: "tom-anders/telescope-vim-bookmarks.nvim",
+        url: "https://github.com/tom-anders/telescope-vim-bookmarks.nvim",
         dependencies: [
-          { url: "MattesGroeger/vim-bookmarks" },
+          { url: "https://github.com/MattesGroeger/vim-bookmarks" },
         ],
       },
       {
-        url: "danielfalk/smart-open.nvim",
+        url: "https://github.com/danielfalk/smart-open.nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) =>
           denops.meta.host === "nvim" && Deno.build.os !== "windows" && false,
         dependencies: [
-          { url: "kkharji/sqlite.lua" },
-          { url: "nvim-telescope/telescope.nvim" },
+          { url: "https://github.com/kkharji/sqlite.lua" },
+          { url: "https://github.com/nvim-telescope/telescope.nvim" },
         ],
         after: async ({ denops }) => {
           await execute(

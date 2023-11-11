@@ -12,7 +12,7 @@ import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
 
 export const todo: Plug[] = [
   {
-    url: "arnarg/todotxt.nvim",
+    url: "https://github.com/arnarg/todotxt.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {

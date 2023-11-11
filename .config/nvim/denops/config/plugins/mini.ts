@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : mini.ts
 // Author      : yukimemi
-// Last Change : 2023/10/20 20:33:42.
+// Last Change : 2023/11/11 22:29:15.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -11,7 +11,7 @@ import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
 
 export const mini: Plug[] = [
   {
-    url: "echasnovski/mini.nvim",
+    url: "https://github.com/echasnovski/mini.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {

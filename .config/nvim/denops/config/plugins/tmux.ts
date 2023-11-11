@@ -8,7 +8,7 @@ import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
 
 export const tmux: Plug[] = [
   {
-    url: "christoomey/vim-tmux-navigator",
+    url: "https://github.com/christoomey/vim-tmux-navigator",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.platform !== "windows",
   },

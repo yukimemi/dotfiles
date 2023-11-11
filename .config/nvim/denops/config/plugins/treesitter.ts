@@ -12,7 +12,7 @@ import { pluginStatus } from "../main.ts";
 
 export const treesitter: Plug[] = [
   {
-    url: "nvim-treesitter/nvim-treesitter",
+    url: "https://github.com/nvim-treesitter/nvim-treesitter",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
@@ -40,8 +40,8 @@ export const treesitter: Plug[] = [
     },
   },
   {
-    url: "yioneko/nvim-yati",
-    dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
+    url: "https://github.com/yioneko/nvim-yati",
+    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
@@ -74,8 +74,8 @@ export const treesitter: Plug[] = [
     },
   },
   {
-    url: "nvim-treesitter/nvim-treesitter-context",
-    dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
+    url: "https://github.com/nvim-treesitter/nvim-treesitter-context",
+    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
@@ -83,21 +83,21 @@ export const treesitter: Plug[] = [
     },
   },
   {
-    url: "windwp/nvim-ts-autotag",
+    url: "https://github.com/windwp/nvim-ts-autotag",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
-    dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
+    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("nvim-ts-autotag").setup()`);
     },
   },
   {
-    url: "monaqa/nvim-treesitter-clipping",
+    url: "https://github.com/monaqa/nvim-treesitter-clipping",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     dependencies: [
-      { url: "nvim-treesitter/nvim-treesitter" },
-      { url: "thinca/vim-partedit" },
+      { url: "https://github.com/nvim-treesitter/nvim-treesitter" },
+      { url: "https://github.com/thinca/vim-partedit" },
     ],
     after: async ({ denops }) => {
       await mapping.map(
@@ -115,9 +115,9 @@ export const treesitter: Plug[] = [
     },
   },
   {
-    url: "HiPhish/rainbow-delimiters.nvim",
+    url: "https://github.com/HiPhish/rainbow-delimiters.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
-    dependencies: [{ url: "nvim-treesitter/nvim-treesitter" }],
+    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
   },
 ];

@@ -12,10 +12,10 @@ import { pluginStatus } from "../main.ts";
 
 export const test: Plug[] = [
   {
-    url: "vim-test/vim-test",
+    url: "https://github.com/vim-test/vim-test",
     enabled: !pluginStatus.vscode,
     dependencies: [
-      { url: "skywind3000/asyncrun.vim" },
+      { url: "https://github.com/skywind3000/asyncrun.vim" },
     ],
     before: async ({ denops }) => {
       await vars.g.set(denops, "test#strategy", "floaterm");

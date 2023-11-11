@@ -11,7 +11,7 @@ import { pluginStatus } from "../main.ts";
 
 export const git: Plug[] = [
   {
-    url: "lewis6991/gitsigns.nvim",
+    url: "https://github.com/lewis6991/gitsigns.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     after: async ({ denops }) => {
@@ -67,11 +67,11 @@ export const git: Plug[] = [
     },
   },
   {
-    url: "lambdalisue/gin.vim",
+    url: "https://github.com/lambdalisue/gin.vim",
     enabled: !pluginStatus.vscode,
     dependencies: [
-      { url: "lambdalisue/askpass.vim" },
-      { url: "lambdalisue/guise.vim" },
+      { url: "https://github.com/lambdalisue/askpass.vim" },
+      { url: "https://github.com/lambdalisue/guise.vim" },
     ],
     before: async ({ denops }) => {
       await mapping.map(denops, "<space>gs", "<cmd>GinStatus<cr>", {
@@ -97,7 +97,7 @@ export const git: Plug[] = [
     },
   },
   {
-    url: "skanehira/denops-gh.vim",
+    url: "https://github.com/skanehira/denops-gh.vim",
     enabled: false,
   },
 ];

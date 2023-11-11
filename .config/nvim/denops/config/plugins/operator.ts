@@ -10,16 +10,16 @@ import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 
 export const operator: Plug[] = [
   {
-    url: "osyo-manga/vim-operator-stay-cursor",
-    dependencies: [{ url: "kana/vim-operator-user" }],
+    url: "https://github.com/osyo-manga/vim-operator-stay-cursor",
+    dependencies: [{ url: "https://github.com/kana/vim-operator-user" }],
   },
   {
-    url: "machakann/vim-sandwich",
-    dependencies: [{ url: "kana/vim-operator-user" }],
+    url: "https://github.com/machakann/vim-sandwich",
+    dependencies: [{ url: "https://github.com/kana/vim-operator-user" }],
   },
   {
-    url: "tyru/operator-html-escape.vim",
-    dependencies: [{ url: "kana/vim-operator-user" }],
+    url: "https://github.com/tyru/operator-html-escape.vim",
+    dependencies: [{ url: "https://github.com/kana/vim-operator-user" }],
     before: async ({ denops }) => {
       await mapping.map(denops, "<c-h>", "<Plug>(operator-html-escape)", {
         mode: "x",
@@ -30,8 +30,8 @@ export const operator: Plug[] = [
     },
   },
   {
-    url: "yuki-yano/vim-operator-replace",
-    dependencies: [{ url: "kana/vim-operator-user" }],
+    url: "https://github.com/yuki-yano/vim-operator-replace",
+    dependencies: [{ url: "https://github.com/kana/vim-operator-user" }],
     before: async ({ denops }) => {
       await mapping.map(denops, "_", "<Plug>(operator-replace)", {
         mode: ["n", "x"],

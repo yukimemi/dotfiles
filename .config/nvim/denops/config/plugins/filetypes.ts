@@ -16,7 +16,7 @@ import { pluginStatus } from "../main.ts";
 export const filetypes: Plug[] = [
   // all filetypes
   {
-    url: "uga-rosa/scorpeon.vim",
+    url: "https://github.com/uga-rosa/scorpeon.vim",
     enabled: !pluginStatus.vscode && false,
     before: async ({ denops }) => {
       await globals.set(denops, "scorpeon_extensions_path", [
@@ -35,22 +35,22 @@ export const filetypes: Plug[] = [
     },
     dependencies: [
       {
-        url: "microsoft/vscode",
+        url: "https://github.com/microsoft/vscode",
         dst: "~/.cache/vscode",
         enabled: false,
       },
       {
-        url: "saem/vscode-nim",
+        url: "https://github.com/saem/vscode-nim",
         dst: "~/.cache/scorpeon/nim",
         enabled: false,
       },
       {
-        url: "oovm/vscode-toml",
+        url: "https://github.com/oovm/vscode-toml",
         dst: "~/.cache/scorpeon/toml",
         enabled: false,
       },
       {
-        url: "emilast/vscode-logfile-highlighter",
+        url: "https://github.com/emilast/vscode-logfile-highlighter",
         dst: "~/.cache/scorpeon/log",
         enabled: false,
       },
@@ -58,7 +58,7 @@ export const filetypes: Plug[] = [
   },
   // plantuml
   {
-    url: "aklt/plantuml-syntax",
+    url: "https://github.com/aklt/plantuml-syntax",
     enabled: !pluginStatus.vscode,
     before: async ({ denops }) => {
       await autocmd.group(denops, "MyPlantUml", (helper) => {
@@ -73,9 +73,9 @@ export const filetypes: Plug[] = [
   },
   // markdown
   {
-    url: "tani/glance-vim",
+    url: "https://github.com/tani/glance-vim",
     enabled: true,
-    dependencies: [{ url: "tani/podium" }],
+    dependencies: [{ url: "https://github.com/tani/podium" }],
     before: async ({ denops }) => {
       await globals.set(denops, "glance#markdown_breaks", true);
       await globals.set(denops, "glance#markdown_html", true);
@@ -93,7 +93,7 @@ export const filetypes: Plug[] = [
     },
   },
   {
-    url: "iamcco/markdown-preview.nvim",
+    url: "https://github.com/iamcco/markdown-preview.nvim",
     enabled: false,
     build: async ({ denops }) => {
       await denops.call("mkdp#util#install");
@@ -105,10 +105,10 @@ export const filetypes: Plug[] = [
     },
   },
   {
-    url: "previm/previm",
+    url: "https://github.com/previm/previm",
     enabled: !pluginStatus.vscode && false,
     dependencies: [
-      { url: "tyru/open-browser.vim" },
+      { url: "https://github.com/tyru/open-browser.vim" },
     ],
     before: async ({ denops }) => {
       await globals.set(denops, "previm_enable_realtime", 1);
@@ -127,11 +127,11 @@ export const filetypes: Plug[] = [
       ]);
     },
   },
-  { url: "dhruvasagar/vim-table-mode" },
+  { url: "https://github.com/dhruvasagar/vim-table-mode" },
   // vim
-  { url: "machakann/vim-vimhelplint" },
+  { url: "https://github.com/machakann/vim-vimhelplint" },
   {
-    url: "4513ECHO/vim-vimhelp-hoptag",
+    url: "https://github.com/4513ECHO/vim-vimhelp-hoptag",
     enabled: !pluginStatus.vscode,
     after: async ({ denops }) => {
       await autocmd.group(denops, "MyVimHelpHopTag", (helper) => {
@@ -164,7 +164,7 @@ export const filetypes: Plug[] = [
   },
   // Rust
   {
-    url: "Saecki/crates.nvim",
+    url: "https://github.com/Saecki/crates.nvim",
     enabled: !pluginStatus.vscode,
     after: async ({ denops }) => {
       await autocmd.group(denops, "MyRustSettings", (helper) => {
@@ -179,7 +179,7 @@ export const filetypes: Plug[] = [
   },
   // kdl
   {
-    url: "imsnif/kdl.vim",
+    url: "https://github.com/imsnif/kdl.vim",
     before: async ({ denops }) => {
       await autocmd.group(denops, "MyKdl", (helper) => {
         helper.remove("*");
@@ -193,6 +193,6 @@ export const filetypes: Plug[] = [
   },
   // deno
   {
-    url: "lambdalisue/deno-cache.vim",
+    url: "https://github.com/lambdalisue/deno-cache.vim",
   },
 ];

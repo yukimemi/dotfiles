@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : terminal.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:38:32.
+// Last Change : 2023/11/11 22:29:14.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -11,7 +11,7 @@ import { pluginStatus } from "../main.ts";
 
 export const terminal: Plug[] = [
   {
-    url: "voldikss/vim-floaterm",
+    url: "https://github.com/voldikss/vim-floaterm",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     before: async ({ denops }) => {

@@ -14,7 +14,7 @@ import { pluginStatus } from "../main.ts";
 
 export const statusline: Plug[] = [
   {
-    url: "rebelot/heirline.nvim",
+    url: "https://github.com/rebelot/heirline.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => pluginStatus.heirline && denops.meta.host === "nvim",
     after: async ({ denops }) => {
@@ -27,7 +27,7 @@ export const statusline: Plug[] = [
     },
   },
   {
-    url: "nvim-lualine/lualine.nvim",
+    url: "https://github.com/nvim-lualine/lualine.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => pluginStatus.lualine && denops.meta.host === "nvim",
     after: async ({ denops }) => {
@@ -113,14 +113,14 @@ export const statusline: Plug[] = [
     },
   },
   {
-    url: "vim-airline/vim-airline",
+    url: "https://github.com/vim-airline/vim-airline",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim" && true,
     // deno-lint-ignore require-await
     clone: async ({ denops }) => denops.meta.host === "vim",
     dependencies: [
       {
-        url: "vim-airline/vim-airline-themes",
+        url: "https://github.com/vim-airline/vim-airline-themes",
         after: async ({ denops }) => {
           await vars.g.set(denops, "airline_theme", "zenburn");
         },
@@ -128,7 +128,7 @@ export const statusline: Plug[] = [
     ],
   },
   {
-    url: "itchyny/lightline.vim",
+    url: "https://github.com/itchyny/lightline.vim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim" && false,
     // deno-lint-ignore require-await

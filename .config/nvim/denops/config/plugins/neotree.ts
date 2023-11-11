@@ -11,13 +11,13 @@ import { pluginStatus } from "../main.ts";
 
 export const neotree: Plug[] = [
   {
-    url: "nvim-neo-tree/neo-tree.nvim",
+    url: "https://github.com/nvim-neo-tree/neo-tree.nvim",
     enabled: !pluginStatus.vscode && !pluginStatus.coc && pluginStatus.neotree,
     dependencies: [
-      { url: "nvim-lua/plenary.nvim" },
-      { url: "nvim-tree/nvim-web-devicons" },
-      { url: "MunifTanjim/nui.nvim" },
-      { url: "s1n7ax/nvim-window-picker" },
+      { url: "https://github.com/nvim-lua/plenary.nvim" },
+      { url: "https://github.com/nvim-tree/nvim-web-devicons" },
+      { url: "https://github.com/MunifTanjim/nui.nvim" },
+      { url: "https://github.com/s1n7ax/nvim-window-picker" },
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("neo-tree").setup(_A)`, {

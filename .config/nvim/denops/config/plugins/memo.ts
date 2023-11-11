@@ -14,7 +14,7 @@ import { pluginStatus } from "../main.ts";
 
 export const memo: Plug[] = [
   {
-    url: "vimwiki/vimwiki",
+    url: "https://github.com/vimwiki/vimwiki",
     enabled: pluginStatus.vimwiki,
     before: async ({ denops }) => {
       await vars.g.set(denops, "vimwiki_list", [
@@ -27,7 +27,7 @@ export const memo: Plug[] = [
     },
   },
   {
-    url: "glidenote/memolist.vim",
+    url: "https://github.com/glidenote/memolist.vim",
     before: async ({ denops }) => {
       await vars.g.set(
         denops,
@@ -46,7 +46,7 @@ export const memo: Plug[] = [
     },
   },
   {
-    url: "Furkanzmc/zettelkasten.nvim",
+    url: "https://github.com/Furkanzmc/zettelkasten.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
     after: async ({ denops }) => {
@@ -57,10 +57,10 @@ export const memo: Plug[] = [
     },
   },
   {
-    url: "renerocksai/telekasten.nvim",
+    url: "https://github.com/renerocksai/telekasten.nvim",
     dependencies: [
-      { url: "nvim-telescope/telescope.nvim" },
-      { url: "renerocksai/calendar-vim" },
+      { url: "https://github.com/nvim-telescope/telescope.nvim" },
+      { url: "https://github.com/renerocksai/calendar-vim" },
     ],
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",

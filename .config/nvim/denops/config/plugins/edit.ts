@@ -18,14 +18,14 @@ import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
 
 export const edit: Plug[] = [
   {
-    url: "editorconfig/editorconfig-vim",
+    url: "https://github.com/editorconfig/editorconfig-vim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim",
     // deno-lint-ignore require-await
     clone: async ({ denops }) => denops.meta.host === "vim",
   },
   {
-    url: "monaqa/dial.nvim",
+    url: "https://github.com/monaqa/dial.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
@@ -81,7 +81,7 @@ export const edit: Plug[] = [
     },
   },
   {
-    url: "windwp/nvim-autopairs",
+    url: "https://github.com/windwp/nvim-autopairs",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
       denops.meta.host === "nvim" && pluginStatus.autopairs &&
@@ -91,7 +91,7 @@ export const edit: Plug[] = [
     },
   },
   {
-    url: "hrsh7th/nvim-insx",
+    url: "https://github.com/hrsh7th/nvim-insx",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
       denops.meta.host === "nvim" && pluginStatus.insx && !pluginStatus.vscode,
@@ -100,7 +100,7 @@ export const edit: Plug[] = [
     },
   },
   {
-    url: "altermo/ultimate-autopair.nvim",
+    url: "https://github.com/altermo/ultimate-autopair.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
       denops.meta.host === "nvim" && pluginStatus.ultimatepair && !pluginStatus.vscode,
@@ -109,8 +109,8 @@ export const edit: Plug[] = [
     },
   },
   {
-    url: "uga-rosa/contextment.vim",
-    dependencies: [{ url: "Shougo/context_filetype.vim" }],
+    url: "https://github.com/uga-rosa/contextment.vim",
+    dependencies: [{ url: "https://github.com/Shougo/context_filetype.vim" }],
     before: async ({ denops }) => {
       await mapping.map(denops, "gcc", "<Plug>(contextment)", { mode: "x" });
       await mapping.map(denops, "gcc", "<Plug>(contextment-line)", {
@@ -119,7 +119,7 @@ export const edit: Plug[] = [
     },
   },
   {
-    url: "gbprod/yanky.nvim",
+    url: "https://github.com/gbprod/yanky.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
       denops.meta.host === "nvim" && pluginStatus.yanky && !pluginStatus.vscode,
@@ -156,7 +156,7 @@ export const edit: Plug[] = [
     },
   },
   {
-    url: "LeafCage/yankround.vim",
+    url: "https://github.com/LeafCage/yankround.vim",
     enabled: pluginStatus.yankround && !pluginStatus.vscode,
     before: async ({ denops }) => {
       await ensureDir(
@@ -191,10 +191,10 @@ export const edit: Plug[] = [
       );
     },
   },
-  { url: "thinca/vim-qfreplace" },
-  { url: "itchyny/vim-qfedit" },
+  { url: "https://github.com/thinca/vim-qfreplace" },
+  { url: "https://github.com/itchyny/vim-qfedit" },
   {
-    url: "tani/vim-typo",
+    url: "https://github.com/tani/vim-typo",
     enabled: false,
     before: async ({ denops }) => {
       await autocmd.group(denops, "MyTypoSettings", (helper) => {
@@ -218,7 +218,7 @@ export const edit: Plug[] = [
     },
   },
   {
-    url: "VidocqH/auto-indent.nvim",
+    url: "https://github.com/VidocqH/auto-indent.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {

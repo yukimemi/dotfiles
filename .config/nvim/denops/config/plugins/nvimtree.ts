@@ -11,10 +11,10 @@ import { pluginStatus } from "../main.ts";
 
 export const nvimtree: Plug[] = [
   {
-    url: "nvim-tree/nvim-tree.lua",
+    url: "https://github.com/nvim-tree/nvim-tree.lua",
     enabled: !pluginStatus.vscode && !pluginStatus.coc && pluginStatus.nvimtree,
     dependencies: [
-      { url: "nvim-tree/nvim-web-devicons" },
+      { url: "https://github.com/nvim-tree/nvim-web-devicons" },
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("nvim-tree").setup()`);

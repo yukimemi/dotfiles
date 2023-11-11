@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/09/07 23:09:29.
+// Last Change : 2023/11/11 22:19:46.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
@@ -17,21 +17,21 @@ import { pluginStatus } from "../main.ts";
 
 export const ddc: Plug[] = [
   {
-    url: "Shougo/ddc.vim",
+    url: "https://github.com/Shougo/ddc.vim",
     enabled: pluginStatus.ddc && !pluginStatus.vscode,
     dependencies: [
       // matcher, sorter, converter
-      { url: "tani/ddc-fuzzy" },
-      { url: "Shougo/ddc-filter-matcher_head" },
-      { url: "Shougo/ddc-filter-matcher_length" },
-      { url: "Shougo/ddc-filter-matcher_vimregexp" },
-      { url: "Shougo/ddc-filter-sorter_rank" },
-      { url: "Shougo/ddc-filter-converter_remove_overlap" },
-      { url: "Shougo/ddc-filter-converter_truncate_abbr" },
+      { url: "https://github.com/tani/ddc-fuzzy" },
+      { url: "https://github.com/Shougo/ddc-filter-matcher_head" },
+      { url: "https://github.com/Shougo/ddc-filter-matcher_length" },
+      { url: "https://github.com/Shougo/ddc-filter-matcher_vimregexp" },
+      { url: "https://github.com/Shougo/ddc-filter-sorter_rank" },
+      { url: "https://github.com/Shougo/ddc-filter-converter_remove_overlap" },
+      { url: "https://github.com/Shougo/ddc-filter-converter_truncate_abbr" },
 
       // ui
       {
-        url: "Shougo/pum.vim",
+        url: "https://github.com/Shougo/pum.vim",
         after: async ({ denops }) => {
           await denops.call("pum#set_option", {
             use_complete: false,
@@ -48,16 +48,16 @@ export const ddc: Plug[] = [
           });
         },
       },
-      { url: "Shougo/ddc-ui-pum" },
-      { url: "Shougo/ddc-ui-inline" },
+      { url: "https://github.com/Shougo/ddc-ui-pum" },
+      { url: "https://github.com/Shougo/ddc-ui-inline" },
 
       // snippet
       {
-        url: "hrsh7th/vim-vsnip",
+        url: "https://github.com/hrsh7th/vim-vsnip",
         dependencies: [
-          { url: "hrsh7th/vim-vsnip-integ", enabled: false },
-          { url: "uga-rosa/ddc-source-vsnip" },
-          { url: "rafamadriz/friendly-snippets" },
+          { url: "https://github.com/hrsh7th/vim-vsnip-integ", enabled: false },
+          { url: "https://github.com/uga-rosa/ddc-source-vsnip" },
+          { url: "https://github.com/rafamadriz/friendly-snippets" },
         ],
         before: async ({ denops }) => {
           await vars.g.set(
@@ -85,24 +85,24 @@ export const ddc: Plug[] = [
       },
 
       // sources
-      { url: "LumaKernel/ddc-file" },
-      { url: "LumaKernel/ddc-run" },
-      { url: "Shougo/ddc-source-around" },
-      { url: "Shougo/ddc-source-cmdline" },
-      { url: "Shougo/ddc-source-cmdline-history" },
-      { url: "Shougo/ddc-source-input" },
-      { url: "Shougo/ddc-source-line" },
-      { url: "Shougo/ddc-source-nvim-lsp" },
-      { url: "Shougo/ddc-source-omni" },
-      { url: "Shougo/ddc-source-rg" },
-      { url: "delphinus/ddc-treesitter" },
-      { url: "matsui54/ddc-buffer" },
-      { url: "uga-rosa/ddc-source-nvim-lua" },
+      { url: "https://github.com/LumaKernel/ddc-file" },
+      { url: "https://github.com/LumaKernel/ddc-run" },
+      { url: "https://github.com/Shougo/ddc-source-around" },
+      { url: "https://github.com/Shougo/ddc-source-cmdline" },
+      { url: "https://github.com/Shougo/ddc-source-cmdline-history" },
+      { url: "https://github.com/Shougo/ddc-source-input" },
+      { url: "https://github.com/Shougo/ddc-source-line" },
+      { url: "https://github.com/Shougo/ddc-source-nvim-lsp" },
+      { url: "https://github.com/Shougo/ddc-source-omni" },
+      { url: "https://github.com/Shougo/ddc-source-rg" },
+      { url: "https://github.com/delphinus/ddc-treesitter" },
+      { url: "https://github.com/matsui54/ddc-buffer" },
+      { url: "https://github.com/uga-rosa/ddc-source-nvim-lua" },
 
       {
-        url: "uga-rosa/ddc-nvim-lsp-setup",
+        url: "https://github.com/uga-rosa/ddc-nvim-lsp-setup",
         dependencies: [
-          { url: "neovim/nvim-lspconfig" },
+          { url: "https://github.com/neovim/nvim-lspconfig" },
         ],
         after: async ({ denops }) => {
           await denops.call(`luaeval`, `require("ddc_nvim_lsp_setup").setup()`);
@@ -110,10 +110,10 @@ export const ddc: Plug[] = [
       },
       // popup, signature
       {
-        url: "uga-rosa/ddc-previewer-floating",
+        url: "https://github.com/uga-rosa/ddc-previewer-floating",
         enabled: false,
         dependencies: [
-          { url: "Shougo/pum.vim" },
+          { url: "https://github.com/Shougo/pum.vim" },
         ],
         after: async ({ denops }) => {
           await denops.call(`luaeval`, `require("ddc_previewer_floating").setup(_A)`, {
@@ -122,7 +122,7 @@ export const ddc: Plug[] = [
         },
       },
       {
-        url: "matsui54/denops-popup-preview.vim",
+        url: "https://github.com/matsui54/denops-popup-preview.vim",
         enabled: false,
         before: async ({ denops }) => {
           await globals.set(denops, "popup_preview_config", {
@@ -136,7 +136,7 @@ export const ddc: Plug[] = [
         },
       },
       {
-        url: "matsui54/denops-signature_help",
+        url: "https://github.com/matsui54/denops-signature_help",
         enabled: false,
         after: async ({ denops }) => {
           await denops.call(`signature_help#enable`);

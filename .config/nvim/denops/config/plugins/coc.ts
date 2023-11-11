@@ -18,12 +18,12 @@ import { pluginStatus } from "../main.ts";
 
 export const coc: Plug[] = [
   {
-    url: "neoclide/coc.nvim",
+    url: "https://github.com/neoclide/coc.nvim",
     enabled: pluginStatus.coc && !pluginStatus.vscode,
     dependencies: [
-      { url: "weirongxu/coc-explorer" },
+      { url: "https://github.com/weirongxu/coc-explorer" },
       {
-        url: "gelguy/wilder.nvim",
+        url: "https://github.com/gelguy/wilder.nvim",
         after: async ({ denops }) => {
           await execute(
             denops,

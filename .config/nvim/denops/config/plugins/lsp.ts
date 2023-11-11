@@ -11,27 +11,27 @@ import { pluginStatus } from "../main.ts";
 
 export const lsp: Plug[] = [
   {
-    url: "neovim/nvim-lspconfig",
+    url: "https://github.com/neovim/nvim-lspconfig",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
       denops.meta.host === "nvim" && !pluginStatus.coc && !pluginStatus.vscode,
     dependencies: [
       {
-        url: "j-hui/fidget.nvim",
+        url: "https://github.com/j-hui/fidget.nvim",
         branch: "legacy",
         after: async ({ denops }) => {
           await denops.cmd(`lua require("fidget").setup()`);
         },
       },
       {
-        url: "zbirenbaum/neodim",
+        url: "https://github.com/zbirenbaum/neodim",
         enabled: false,
         after: async ({ denops }) => {
           await denops.call(`luaeval`, `require("neodim").setup()`);
         },
       },
       {
-        url: "hrsh7th/nvim-linkedit",
+        url: "https://github.com/hrsh7th/nvim-linkedit",
         after: async ({ denops }) => {
           await denops.call(
             `luaeval`,
@@ -44,42 +44,42 @@ export const lsp: Plug[] = [
           );
         },
       },
-      { url: "SmiteshP/nvim-navic" },
+      { url: "https://github.com/SmiteshP/nvim-navic" },
       {
-        url: "stevearc/aerial.nvim",
+        url: "https://github.com/stevearc/aerial.nvim",
         after: async ({ denops }) => {
           await denops.cmd(`lua require("aerial").setup()`);
         },
       },
       { url: "https://git.sr.ht/~whynothugo/lsp_lines.nvim", enabled: false },
-      { url: "lukas-reineke/lsp-format.nvim" },
+      { url: "https://github.com/lukas-reineke/lsp-format.nvim" },
       {
-        url: "nvimtools/none-ls.nvim",
+        url: "https://github.com/nvimtools/none-ls.nvim",
       },
-      { url: "williamboman/mason.nvim" },
+      { url: "https://github.com/williamboman/mason.nvim" },
       {
-        url: "williamboman/mason-lspconfig.nvim",
+        url: "https://github.com/williamboman/mason-lspconfig.nvim",
         dependencies: [
-          { url: "neovim/nvim-lspconfig" },
-          { url: "williamboman/mason.nvim" },
+          { url: "https://github.com/neovim/nvim-lspconfig" },
+          { url: "https://github.com/williamboman/mason.nvim" },
         ],
       },
       {
-        url: "folke/neodev.nvim",
-        dependencies: [{ url: "neovim/nvim-lspconfig" }],
+        url: "https://github.com/folke/neodev.nvim",
+        dependencies: [{ url: "https://github.com/neovim/nvim-lspconfig" }],
         after: async ({ denops }) => {
           await denops.cmd(`lua require("neodev").setup()`);
         },
       },
       {
-        url: "folke/neoconf.nvim",
-        dependencies: [{ url: "neovim/nvim-lspconfig" }],
+        url: "https://github.com/folke/neoconf.nvim",
+        dependencies: [{ url: "https://github.com/neovim/nvim-lspconfig" }],
         after: async ({ denops }) => {
           await denops.cmd(`lua require("neoconf").setup()`);
         },
       },
       {
-        url: "onsails/lspkind.nvim",
+        url: "https://github.com/onsails/lspkind.nvim",
         after: async ({ denops }) => {
           await denops.call(`luaeval`, `require("lspkind").init(_A)`, {
             // defines how annotations are shown
@@ -97,7 +97,7 @@ export const lsp: Plug[] = [
         },
       },
       {
-        url: "simrat39/rust-tools.nvim",
+        url: "https://github.com/simrat39/rust-tools.nvim",
         after: async ({ denops }) => {
           await execute(
             denops,

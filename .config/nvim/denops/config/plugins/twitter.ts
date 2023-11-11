@@ -13,7 +13,7 @@ import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 
 export const twitter: Plug[] = [
   {
-    url: "skanehira/denops-twihi.vim",
+    url: "https://github.com/skanehira/denops-twihi.vim",
     enabled: false,
     clone: false,
     after: async ({ denops }) => {

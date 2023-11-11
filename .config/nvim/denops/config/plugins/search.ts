@@ -12,9 +12,9 @@ import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const search: Plug[] = [
-  { url: "lambdalisue/reword.vim" },
+  { url: "https://github.com/lambdalisue/reword.vim" },
   {
-    url: "haya14busa/vim-asterisk",
+    url: "https://github.com/haya14busa/vim-asterisk",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host !== "nvim",
     after: async ({ denops }) => {
@@ -33,7 +33,7 @@ export const search: Plug[] = [
     },
   },
   {
-    url: "monaqa/modesearch.nvim",
+    url: "https://github.com/monaqa/modesearch.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && pluginStatus.modesearch,
     after: async ({ denops }) => {
@@ -70,10 +70,10 @@ export const search: Plug[] = [
     },
   },
   {
-    url: "lambdalisue/kensaku-search.vim",
+    url: "https://github.com/lambdalisue/kensaku-search.vim",
     enabled: false,
     dependencies: [
-      { url: "lambdalisue/kensaku.vim" },
+      { url: "https://github.com/lambdalisue/kensaku.vim" },
     ],
     after: async ({ denops }) => {
       await mapping.map(denops, "<cr>", "<Plug>(kensaku-search-replace)<cr>", {

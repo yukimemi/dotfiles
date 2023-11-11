@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/11/07 00:09:34.
+// Last Change : 2023/11/11 22:29:16.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -17,7 +17,7 @@ import { pluginStatus } from "../main.ts";
 
 export const denops: Plug[] = [
   {
-    url: "yukimemi/dps-autocursor",
+    url: "https://github.com/yukimemi/dps-autocursor",
     enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-autocursor",
     before: async ({ denops }) => {
@@ -98,7 +98,7 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "yukimemi/dps-autobackup",
+    url: "https://github.com/yukimemi/dps-autobackup",
     dst: "~/src/github.com/yukimemi/dps-autobackup",
     before: async ({ denops }) => {
       await vars.g.set(denops, "autobackup_debug", false);
@@ -128,7 +128,7 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "yukimemi/dps-asyngrep",
+    url: "https://github.com/yukimemi/dps-asyngrep",
     enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-asyngrep",
     before: async ({ denops }) => {
@@ -172,7 +172,7 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "yukimemi/dps-chronicle",
+    url: "https://github.com/yukimemi/dps-chronicle",
     dst: "~/src/github.com/yukimemi/dps-chronicle",
     cache: {
       enabled: true,
@@ -191,7 +191,7 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "yukimemi/dps-autodate",
+    url: "https://github.com/yukimemi/dps-autodate",
     dst: "~/src/github.com/yukimemi/dps-autodate",
     before: async ({ denops }) => {
       await vars.g.set(denops, "autodate_debug", false);
@@ -269,7 +269,7 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "yukimemi/dps-walk",
+    url: "https://github.com/yukimemi/dps-walk",
     enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-walk",
     cache: {
@@ -308,114 +308,114 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "yukimemi/dps-randomcolorscheme",
+    url: "https://github.com/yukimemi/dps-randomcolorscheme",
     enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-randomcolorscheme",
     dependencies: [
-      { url: "4513ECHO/vim-colors-hatsunemiku" },
-      { url: "ChristianChiarulli/nvcode-color-schemes.vim" },
-      { url: "KeitaNakamura/neodark.vim" },
-      { url: "NLKNguyen/papercolor-theme" },
-      { url: "liuchengxu/space-vim-dark" },
-      { url: "PHSix/nvim-hybrid" },
-      { url: "adrian5/oceanic-next-vim" },
-      { url: "bluz71/vim-nightfly-guicolors" },
-      { url: "cocopon/iceberg.vim" },
-      { url: "doums/darcula" },
-      { url: "drewtempelmeyer/palenight.vim" },
-      { url: "fenetikm/falcon" },
-      { url: "gkeep/iceberg-dark" },
-      { url: "joshdick/onedark.vim" },
-      { url: "kjssad/quantum.vim" },
-      { url: "rafamadriz/neon" },
-      { url: "rafi/awesome-vim-colorschemes" },
-      { url: "rhysd/vim-color-spring-night" },
-      { url: "sainnhe/edge" },
-      { url: "sainnhe/gruvbox-material" },
-      { url: "severij/vadelma" },
-      { url: "srcery-colors/srcery-vim" },
-      { url: "aereal/vim-colors-japanesque" },
-      { url: "yuttie/hydrangea-vim" },
-      { url: "Rigellute/rigel" },
-      { url: "kyoh86/momiji" },
-      { url: "sigmavim/kyotonight" },
+      { url: "https://github.com/4513ECHO/vim-colors-hatsunemiku" },
+      { url: "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim" },
+      { url: "https://github.com/KeitaNakamura/neodark.vim" },
+      { url: "https://github.com/NLKNguyen/papercolor-theme" },
+      { url: "https://github.com/liuchengxu/space-vim-dark" },
+      { url: "https://github.com/PHSix/nvim-hybrid" },
+      { url: "https://github.com/adrian5/oceanic-next-vim" },
+      { url: "https://github.com/bluz71/vim-nightfly-guicolors" },
+      { url: "https://github.com/cocopon/iceberg.vim" },
+      { url: "https://github.com/doums/darcula" },
+      { url: "https://github.com/drewtempelmeyer/palenight.vim" },
+      { url: "https://github.com/fenetikm/falcon" },
+      { url: "https://github.com/gkeep/iceberg-dark" },
+      { url: "https://github.com/joshdick/onedark.vim" },
+      { url: "https://github.com/kjssad/quantum.vim" },
+      { url: "https://github.com/rafamadriz/neon" },
+      { url: "https://github.com/rafi/awesome-vim-colorschemes" },
+      { url: "https://github.com/rhysd/vim-color-spring-night" },
+      { url: "https://github.com/sainnhe/edge" },
+      { url: "https://github.com/sainnhe/gruvbox-material" },
+      { url: "https://github.com/severij/vadelma" },
+      { url: "https://github.com/srcery-colors/srcery-vim" },
+      { url: "https://github.com/aereal/vim-colors-japanesque" },
+      { url: "https://github.com/yuttie/hydrangea-vim" },
+      { url: "https://github.com/Rigellute/rigel" },
+      { url: "https://github.com/kyoh86/momiji" },
+      { url: "https://github.com/sigmavim/kyotonight" },
       {
-        url: "rhysd/vim-color-splatoon",
+        url: "https://github.com/rhysd/vim-color-splatoon",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "vim",
       },
       {
-        url: "Matsuuu/pinkmare",
+        url: "https://github.com/Matsuuu/pinkmare",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
-        url: "lourenci/github-colors",
+        url: "https://github.com/lourenci/github-colors",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
-        url: "rebelot/kanagawa.nvim",
+        url: "https://github.com/rebelot/kanagawa.nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
-        url: "folke/tokyonight.nvim",
+        url: "https://github.com/folke/tokyonight.nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
-        url: "glepnir/zephyr-nvim",
+        url: "https://github.com/glepnir/zephyr-nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
-        url: "tiagovla/tokyodark.nvim",
+        url: "https://github.com/tiagovla/tokyodark.nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
-        url: "marko-cerovac/material.nvim",
+        url: "https://github.com/marko-cerovac/material.nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
-        url: "RRethy/nvim-base16",
+        url: "https://github.com/RRethy/nvim-base16",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
       },
       {
-        url: "catppuccin/nvim",
+        url: "https://github.com/catppuccin/nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
-        url: "rose-pine/neovim",
+        url: "https://github.com/rose-pine/neovim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
-        url: "Allianaab2m/penumbra.nvim",
+        url: "https://github.com/Allianaab2m/penumbra.nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
-        url: "kihachi2000/yash.nvim",
+        url: "https://github.com/kihachi2000/yash.nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
-        url: "craftzdog/solarized-osaka.nvim",
+        url: "https://github.com/craftzdog/solarized-osaka.nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
-        url: "arrow2nd/aqua",
+        url: "https://github.com/arrow2nd/aqua",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
-        url: "oxfist/night-owl.nvim",
+        url: "https://github.com/oxfist/night-owl.nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
@@ -457,7 +457,7 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "yukimemi/dps-hitori",
+    url: "https://github.com/yukimemi/dps-hitori",
     dst: "~/src/github.com/yukimemi/dps-hitori",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
@@ -477,7 +477,7 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "yukimemi/dps-ahdr",
+    url: "https://github.com/yukimemi/dps-ahdr",
     dst: "~/src/github.com/yukimemi/dps-ahdr",
     before: async ({ denops }) => {
       await vars.g.set(denops, "ahdr_debug", false);
