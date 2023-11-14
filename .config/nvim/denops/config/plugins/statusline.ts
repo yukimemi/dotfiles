@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : statusline.ts
 // Author      : yukimemi
-// Last Change : 2023/11/04 15:27:39.
+// Last Change : 2023/11/14 18:32:28.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -93,7 +93,7 @@ export const statusline: Plug[] = [
                   denops,
                   `
                     lua << EOB
-                      local icon = "  : "
+                      local icon = ""
                       local bufnr = vim.fn.bufnr()
                       local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
                       local clientNames = table.concat(vim.tbl_map(function(client) return client.name end, clients), ' / ')
