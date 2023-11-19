@@ -1,0 +1,14 @@
+# =============================================================================
+# File        : pnpm.zsh
+# Author      : yukimemi
+# Last Change : 2023/11/19 10:26:16.
+# =============================================================================
+
+# pnpm
+if is_mac; then
+  export PNPM_HOME="${HOME}/Library/pnpm"
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+fi

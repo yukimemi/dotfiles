@@ -1,17 +1,19 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/11/11 22:19:46.
+// Last Change : 2023/11/19 10:01:36.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
 import { Denops } from "https://deno.land/x/denops_core@v5.0.0/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/execute.ts";
+import { exists } from "https://deno.land/std@0.207.0/fs/exists.ts";
 import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
@@ -75,10 +77,10 @@ export const ddc: Plug[] = [
               smap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'
 
               " Jump forward or backward
-              imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-              smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-              imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-              smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+              " imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+              " smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+              " imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+              " smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
             `,
           );
         },
@@ -88,6 +90,11 @@ export const ddc: Plug[] = [
       { url: "https://github.com/LumaKernel/ddc-file" },
       { url: "https://github.com/LumaKernel/ddc-run" },
       { url: "https://github.com/Shougo/ddc-source-around" },
+      {
+        url: "https://github.com/Shougo/ddc-source-codeium",
+        enabled: async ({ denops }) =>
+          await exists(ensure(await fn.expand(denops, "~/.codeium"), is.String)),
+      },
       { url: "https://github.com/Shougo/ddc-source-cmdline" },
       { url: "https://github.com/Shougo/ddc-source-cmdline-history" },
       { url: "https://github.com/Shougo/ddc-source-input" },
@@ -220,7 +227,9 @@ export const ddc: Plug[] = [
           "TextChangedT",
         ],
         backspaceCompletion: true,
-        sources: ["nvim-lsp", "around", "vsnip", "file", "rg"],
+        sources: await exists(ensure(await fn.expand(denops, "~/.codeium"), is.String))
+          ? ["codeium", "nvim-lsp", "around", "vsnip", "file", "rg"]
+          : ["nvim-lsp", "around", "vsnip", "file", "rg"],
         cmdlineSources: {
           ":": ["cmdline", "cmdline-history", "around"],
           "@": ["input", "cmdline-history", "file", "around"],
@@ -243,6 +252,12 @@ export const ddc: Plug[] = [
           buffer: { mark: "" },
           line: { mark: "" },
           vsnip: { mark: "" },
+          codeium: {
+            mark: "",
+            matchers: [],
+            minAutoCompleteLength: 0,
+            isVolatile: true,
+          },
           file: {
             mark: "",
             isVolatile: true,
@@ -307,6 +322,18 @@ export const ddc: Plug[] = [
         `<cmd>call pum#map#insert_relative(-1, "empty")<cr>`,
         { mode: "i" },
       );
+      await mapping.map(
+        denops,
+        "<c-f>",
+        `<cmd>call pum#map#confirm_word()<cr>`,
+        { mode: "i" },
+      );
+      // await mapping.map(
+      //   denops,
+      //   "<c-e>",
+      //   `<cmd>call pum#map#confirm()<cr>`,
+      //   { mode: "i" },
+      // );
       await mapping.map(
         denops,
         "<c-space>",

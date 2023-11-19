@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/11/11 22:29:16.
+// Last Change : 2023/11/19 11:14:11.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -179,7 +179,7 @@ export const denops: Plug[] = [
       before: `
         let g:chronicle_debug = v:false
         let g:chronicle_echo = v:false
-        let g:chronicle_notify = v:true
+        let g:chronicle_notify = v:false
         let g:chronicle_read_path = '~/.cache/chronicle/read'
         let g:chronicle_write_path = '~/.cache/chronicle/write'
       `,

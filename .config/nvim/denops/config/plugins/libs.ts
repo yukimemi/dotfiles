@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/10/23 12:17:17.
+// Last Change : 2023/11/19 10:05:49.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -201,6 +201,13 @@ export const libs: Plug[] = [
     url: "https://github.com/Exafunction/codeium.vim",
     enabled: async ({ denops }) =>
       await exists(ensure(await fn.expand(denops, "~/.codeium"), is.String)),
+    after: async ({ denops }) => {
+      await mapping.map(denops, "<c-e>", "codeium#Accept()", {
+        mode: "i",
+        expr: true,
+        nowait: true,
+      });
+    },
   },
   {
     url: "https://github.com/lambdalisue/vim-findent",

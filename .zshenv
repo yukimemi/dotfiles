@@ -1,17 +1,22 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2023/09/18 12:02:15.
+# Last Change : 2023/11/19 10:11:29.
 # =============================================================================
 
 # For time.
 # zmodload zsh/zprof
 
 # Useful functions.
-is_linux() { [[ $SHELL_PLATFORM == 'linux' || $SHELL_PLATFORM == 'bsd' ]]; }
-is_osx() { [[ $SHELL_PLATFORM == 'osx' ]]; }
-is_bsd() { [[ $SHELL_PLATFORM == 'bsd' || $SHELL_PLATFORM == 'osx' ]]; }
-is_cygwin() { [[ $SHELL_PLATFORM == 'cygwin' ]]; }
+function is_mac() {
+  [[ "$(uname -s)" == "Darwin" ]]
+}
+function is_linux() {
+  [[ "$(uname -s)" == "Linux" ]]
+}
+function is_wsl() {
+  [[ "$(uname -r)" =~ "microsoft" ]]
+}
 
 # Env setting
 
