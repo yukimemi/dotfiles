@@ -367,3 +367,8 @@ if (Test-Path($ChocolateyProfile)) {
   Import-Module "$ChocolateyProfile"
 }
 
+# fnm
+if (Get-Command fnm -ErrorAction SilentlyContinue) {
+  fnm env --use-on-cd | Out-String | Invoke-Expression
+}
+
