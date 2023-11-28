@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/11/11 22:29:56.
+// Last Change : 2023/11/27 23:37:17.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -30,7 +30,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/RRethy/vim-illuminate",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode && false,
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
   },
   {
     url: "https://github.com/unblevable/quick-scope",
@@ -335,7 +335,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/nvim-zh/colorful-winsep.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode && false,
     after: async ({ denops }) => {
       await denops.cmd(`lua require("colorful-winsep").setup()`);
     },

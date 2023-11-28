@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2023/10/26 23:39:05.
+// Last Change : 2023/11/27 23:57:56.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -52,7 +52,41 @@ export const lsp: Plug[] = [
         },
       },
       { url: "https://git.sr.ht/~whynothugo/lsp_lines.nvim", enabled: false },
-      { url: "https://github.com/lukas-reineke/lsp-format.nvim" },
+      { url: "https://github.com/lukas-reineke/lsp-format.nvim", enabled: false },
+      {
+        url: "https://github.com/stevearc/conform.nvim",
+        after: async ({ denops }) => {
+          await execute(denops,
+            `
+              lua << EOB
+                require("conform").setup({
+                  format_on_save = {
+                    -- These options will be passed to conform.format()
+                    timeout_ms = 500,
+                    lsp_fallback = true,
+                  },
+                })
+              EOB
+            `
+          );
+        }
+      },
+      {
+        url: "https://github.com/mfussenegger/nvim-lint",
+        after: async ({ denops }) => {
+          await execute(denops,
+            `
+              lua << EOB
+                vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+                  callback = function()
+                    require("lint").try_lint()
+                  end,
+                })
+              EOB
+            `
+          );
+        }
+      },
       {
         url: "https://github.com/nvimtools/none-ls.nvim",
       },
@@ -144,7 +178,7 @@ export const lsp: Plug[] = [
             },
           })
           require("mason-lspconfig").setup()
-          require("lsp-format").setup()
+          -- require("lsp-format").setup()
           -- require("lsp_lines").setup()
           vim.diagnostic.config({
             virtual_text = true,
@@ -154,7 +188,7 @@ export const lsp: Plug[] = [
 
           local function on_attach(client, bufnr)
             require("nvim-navic").attach(client, bufnr)
-            require("lsp-format").on_attach(client, bufnr)
+            -- require("lsp-format").on_attach(client, bufnr)
 
             local opts = { noremap = true, silent = true, buffer = bufnr }
             vim.keymap.set(
