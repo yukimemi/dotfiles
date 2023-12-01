@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/11/19 10:01:36.
+// Last Change : 2023/12/01 21:31:39.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
@@ -99,7 +99,7 @@ export const ddc: Plug[] = [
       { url: "https://github.com/Shougo/ddc-source-cmdline-history" },
       { url: "https://github.com/Shougo/ddc-source-input" },
       { url: "https://github.com/Shougo/ddc-source-line" },
-      { url: "https://github.com/Shougo/ddc-source-nvim-lsp" },
+      { url: "https://github.com/Shougo/ddc-source-lsp" },
       { url: "https://github.com/Shougo/ddc-source-omni" },
       { url: "https://github.com/Shougo/ddc-source-rg" },
       { url: "https://github.com/delphinus/ddc-treesitter" },
@@ -107,12 +107,12 @@ export const ddc: Plug[] = [
       { url: "https://github.com/uga-rosa/ddc-source-nvim-lua" },
 
       {
-        url: "https://github.com/uga-rosa/ddc-nvim-lsp-setup",
+        url: "https://github.com/uga-rosa/ddc-source-lsp-setup",
         dependencies: [
           { url: "https://github.com/neovim/nvim-lspconfig" },
         ],
         after: async ({ denops }) => {
-          await denops.call(`luaeval`, `require("ddc_nvim_lsp_setup").setup()`);
+          await denops.call(`luaeval`, `require("ddc_source_lsp_setup").setup()`);
         },
       },
       // popup, signature
@@ -228,8 +228,8 @@ export const ddc: Plug[] = [
         ],
         backspaceCompletion: true,
         sources: await exists(ensure(await fn.expand(denops, "~/.codeium"), is.String))
-          ? ["codeium", "nvim-lsp", "around", "vsnip", "file", "rg"]
-          : ["nvim-lsp", "around", "vsnip", "file", "rg"],
+          ? ["codeium", "lsp", "around", "vsnip", "file", "rg"]
+          : ["lsp", "around", "vsnip", "file", "rg"],
         cmdlineSources: {
           ":": ["cmdline", "cmdline-history", "around"],
           "@": ["input", "cmdline-history", "file", "around"],
@@ -267,7 +267,7 @@ export const ddc: Plug[] = [
             mark: "",
             minAutoCompleteLength: 5,
           },
-          "nvim-lsp": {
+          "lsp": {
             mark: "󱐋",
             forceCompletionPattern: "\\.\\w*|::\\w*|->\\w*",
             dup: "force",
@@ -297,7 +297,7 @@ export const ddc: Plug[] = [
           file: {
             filenameChars: "[:keyword:].",
           },
-          "nvim-lsp": {
+          "lsp": {
             enableResolveItem: true,
             enableAdditionalTextEdit: true,
           },
