@@ -372,3 +372,9 @@ if (Get-Command fnm -ErrorAction SilentlyContinue) {
   fnm env --use-on-cd | Out-String | Invoke-Expression
 }
 
+# pnpm
+if (Get-Command pnpm -ErrorAction SilentlyContinue) {
+  $env:PNPM_HOME = [System.IO.Path]::Combine($env:USERPROFILE, 'AppData\Local\pnpm\store')
+  [System.Environment]::SetEnvironmentVariable("PNPM_HOME", $env:PNPM_HOME, [System.EnvironmentVariableTarget]::User)
+}
+
