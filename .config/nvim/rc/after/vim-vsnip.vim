@@ -1,3 +1,9 @@
+" =============================================================================
+" File        : vim-vsnip.vim
+" Author      : yukimemi
+" Last Change : 2023/12/04 01:33:36.
+" =============================================================================
+
 " Expand or jump
 imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'
 smap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'

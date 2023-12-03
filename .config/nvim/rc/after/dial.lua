@@ -1,3 +1,9 @@
+-- =============================================================================
+-- File        : dial.lua
+-- Author      : yukimemi
+-- Last Change : 2023/12/04 01:32:19.
+-- =============================================================================
+
 local augend = require("dial.augend")
 require("dial.config").augends:register_group({
   default = {

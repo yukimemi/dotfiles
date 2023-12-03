@@ -1,3 +1,9 @@
+-- =============================================================================
+-- File        : autolist.lua
+-- Author      : yukimemi
+-- Last Change : 2023/12/04 01:32:07.
+-- =============================================================================
+
 local autolist = require("autolist")
 autolist.setup()
 autolist.create_mapping_hook("i", "<CR>", autolist.new)

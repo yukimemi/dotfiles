@@ -1,3 +1,9 @@
+-- =============================================================================
+-- File        : telescope.lua
+-- Author      : yukimemi
+-- Last Change : 2023/12/04 01:33:32.
+-- =============================================================================
+
 local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
 

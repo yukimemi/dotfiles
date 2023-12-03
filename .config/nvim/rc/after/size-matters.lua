@@ -1,3 +1,9 @@
+-- =============================================================================
+-- File        : size-matters.lua
+-- Author      : yukimemi
+-- Last Change : 2023/12/04 01:33:27.
+-- =============================================================================
+
 require("size-matters").setup({
   default_mappings = false,
   -- font resize step size

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/03 21:10:45.
+// Last Change : 2023/12/04 01:28:13.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
@@ -13,7 +13,6 @@ import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
 import * as op from "https://deno.land/x/denops_std@v5.1.0/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.1.0/variable/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v5.1.0/helper/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const coc: Plug[] = [

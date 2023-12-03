@@ -1,3 +1,9 @@
+-- =============================================================================
+-- File        : wilder.lua
+-- Author      : yukimemi
+-- Last Change : 2023/12/04 01:33:40.
+-- =============================================================================
+
 local wilder = require('wilder')
 wilder.setup({ modes = { ':', '/', '?' } })
 -- Disable Python remote plugin

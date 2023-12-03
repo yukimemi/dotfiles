@@ -1,3 +1,9 @@
+-- =============================================================================
+-- File        : modesearch.lua
+-- Author      : yukimemi
+-- Last Change : 2023/12/04 01:32:37.
+-- =============================================================================
+
 vim.keymap.set("n", "/", function() return require("modesearch").keymap.prompt.show("rawstr") end, { expr = true })
 vim.keymap.set(
   "c",

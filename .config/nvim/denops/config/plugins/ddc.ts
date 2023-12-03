@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/03 21:12:12.
+// Last Change : 2023/12/04 01:27:23.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
@@ -12,7 +12,6 @@ import * as vars from "https://deno.land/x/denops_std@v5.1.0/variable/mod.ts";
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 import { Denops } from "https://deno.land/x/denops_core@v5.0.0/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v5.1.0/helper/execute.ts";
 import { exists } from "https://deno.land/std@0.208.0/fs/exists.ts";
 import { pluginStatus } from "../main.ts";
 
@@ -65,7 +64,7 @@ export const ddc: Plug[] = [
           await vars.g.set(
             denops,
             "vsnip_snippet_dir",
-            await fn.expand(denops, "~/.config/nvim/vsnip"),
+            await fn.expand(denops, "~/.config/nvim/snippets"),
           );
         },
         afterFile: "~/.config/nvim/rc/after/vim-vsnip.vim",
@@ -118,6 +117,19 @@ export const ddc: Plug[] = [
             is.String,
           );
           await denops.call(`denippet#load`, powershell, "ps1");
+
+          const userSnippetsDir = ensure(
+            await fn.expand(denops, "~/.config/nvim/snippets"),
+            is.String,
+          );
+          for await (
+            const dirEntry of Deno.readDir(userSnippetsDir)
+          ) {
+            await denops.call(
+              `denippet#load`,
+              await fn.expand(denops, `${userSnippetsDir}/${dirEntry.name}`),
+            );
+          }
         },
       },
 

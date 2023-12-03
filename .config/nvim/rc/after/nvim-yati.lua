@@ -1,3 +1,9 @@
+-- =============================================================================
+-- File        : nvim-yati.lua
+-- Author      : yukimemi
+-- Last Change : 2023/12/04 01:33:16.
+-- =============================================================================
+
 require("nvim-treesitter.configs").setup({
   yati = {
     enable = true,
@@ -14,6 +20,6 @@ require("nvim-treesitter.configs").setup({
     default_fallback = "auto"
   },
   indent = {
-    enable = false           -- disable builtin indent module
+    enable = false -- disable builtin indent module
   }
 })
