@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/01 21:31:39.
+// Last Change : 2023/12/03 11:19:02.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
@@ -14,7 +14,6 @@ import { Denops } from "https://deno.land/x/denops_core@v5.0.0/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/execute.ts";
 import { exists } from "https://deno.land/std@0.207.0/fs/exists.ts";
-import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const ddc: Plug[] = [
@@ -56,6 +55,7 @@ export const ddc: Plug[] = [
       // snippet
       {
         url: "https://github.com/hrsh7th/vim-vsnip",
+        enabled: false,
         dependencies: [
           { url: "https://github.com/hrsh7th/vim-vsnip-integ", enabled: false },
           { url: "https://github.com/uga-rosa/ddc-source-vsnip" },
@@ -85,6 +85,56 @@ export const ddc: Plug[] = [
           );
         },
       },
+      {
+        url: "https://github.com/uga-rosa/denippet.vim",
+        dependencies: [
+          {
+            url: "https://github.com/microsoft/vscode",
+            dst: "~/.cache/vscode",
+            enabled: false,
+          },
+          {
+            url: "https://github.com/PowerShell/vscode-powershell",
+            dst: "~/.cache/vscode-powershell",
+            enabled: false,
+          },
+        ],
+        after: async ({ denops }) => {
+          await mapping.map(denops, "<c-j>", "<Plug>(denippet-expand-or-jump)", {
+            mode: "i",
+            noremap: true,
+          });
+          await mapping.map(denops, "<c-j>", "<Plug>(denippet-jump-next)", {
+            mode: "s",
+            noremap: true,
+          });
+          await mapping.map(denops, "<c-k>", "<Plug>(denippet-jump-prev)", {
+            mode: "s",
+            noremap: true,
+          });
+          const html = ensure(
+            await fn.expand(denops, "~/.cache/vscode/extensions/html/snippets/html.code-snippets"),
+            is.String,
+          );
+          await denops.call(`denippet#load`, html, "html");
+          const cs = ensure(
+            await fn.expand(
+              denops,
+              "~/.cache/vscode/extensions/csharp/snippets/csharp.code-snippets",
+            ),
+            is.String,
+          );
+          await denops.call(`denippet#load`, cs, "cs");
+          const powershell = ensure(
+            await fn.expand(
+              denops,
+              "~/.cache/vscode-powershell/snippets/PowerShell.json",
+            ),
+            is.String,
+          );
+          await denops.call(`denippet#load`, powershell, "ps1");
+        },
+      },
 
       // sources
       { url: "https://github.com/LumaKernel/ddc-file" },
@@ -105,9 +155,9 @@ export const ddc: Plug[] = [
       { url: "https://github.com/delphinus/ddc-treesitter" },
       { url: "https://github.com/matsui54/ddc-buffer" },
       { url: "https://github.com/uga-rosa/ddc-source-nvim-lua" },
-
       {
         url: "https://github.com/uga-rosa/ddc-source-lsp-setup",
+        enabled: false,
         dependencies: [
           { url: "https://github.com/neovim/nvim-lspconfig" },
         ],
@@ -132,7 +182,7 @@ export const ddc: Plug[] = [
         url: "https://github.com/matsui54/denops-popup-preview.vim",
         enabled: false,
         before: async ({ denops }) => {
-          await globals.set(denops, "popup_preview_config", {
+          await vars.g.set(denops, "popup_preview_config", {
             delay: 50,
             border: true,
             supportVsnip: true,
@@ -228,8 +278,8 @@ export const ddc: Plug[] = [
         ],
         backspaceCompletion: true,
         sources: await exists(ensure(await fn.expand(denops, "~/.codeium"), is.String))
-          ? ["codeium", "lsp", "around", "vsnip", "file", "rg"]
-          : ["lsp", "around", "vsnip", "file", "rg"],
+          ? ["codeium", "lsp", "denippet", "around", "file", "rg"]
+          : ["lsp", "denippet", "around", "file", "rg"],
         cmdlineSources: {
           ":": ["cmdline", "cmdline-history", "around"],
           "@": ["input", "cmdline-history", "file", "around"],
@@ -253,11 +303,12 @@ export const ddc: Plug[] = [
           line: { mark: "" },
           vsnip: { mark: "" },
           codeium: {
-            mark: "",
+            mark: "",
             matchers: [],
             minAutoCompleteLength: 0,
             isVolatile: true,
           },
+          denippet: { mark: "" },
           file: {
             mark: "",
             isVolatile: true,
