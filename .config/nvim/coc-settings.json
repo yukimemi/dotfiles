@@ -53,5 +53,6 @@
         "buftypes": []
       }
     }
-  }
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }
