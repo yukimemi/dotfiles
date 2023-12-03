@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2023/09/10 10:28:05.
+// Last Change : 2023/12/02 21:59:36.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
@@ -11,9 +11,9 @@ import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
 import * as op from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const coc: Plug[] = [
@@ -67,7 +67,7 @@ export const coc: Plug[] = [
     ],
     branch: "release",
     before: async ({ denops }) => {
-      await globals.set(denops, "coc_global_extensions", [
+      await vars.g.set(denops, "coc_global_extensions", [
         "@yaegassy/coc-tailwindcss3",
         "coc-deno",
         "coc-diagnostic",
@@ -192,11 +192,7 @@ export const coc: Plug[] = [
 
       // Formatting selected code
       await mapping.map(denops, "<leader>f", "<Plug>(coc-format-selected)", {
-        mode: "x",
-        silent: true,
-      });
-      await mapping.map(denops, "<leader>f", "<Plug>(coc-format-selected)", {
-        mode: "n",
+        mode: ["n", "x"],
         silent: true,
       });
 
