@@ -61,9 +61,9 @@ local function on_attach(client, bufnr)
   vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename" }))
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
   vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "References" }))
-  vim.keymap.set("n", "<space>F", function()
-    vim.lsp.buf.format({ async = true })
-  end, vim.tbl_extend("force", opts, { desc = "Format code" }))
+  -- vim.keymap.set("n", "<space>F", function()
+  --   vim.lsp.buf.format({ async = true })
+  -- end, vim.tbl_extend("force", opts, { desc = "Format code" }))
 end
 
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -83,7 +83,7 @@ local options = {
 }
 
 require("mason-lspconfig").setup_handlers({
-  function(server_name)           -- default handler
+  function(server_name) -- default handler
     lspconfig[server_name].setup(options)
   end,
   efm = function()
