@@ -1,16 +1,16 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2023/11/05 12:37:46.
+// Last Change : 2023/12/03 18:55:01.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.1.0/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.1.0/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.1.0/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const filetypes: Plug[] = [
@@ -19,11 +19,11 @@ export const filetypes: Plug[] = [
     url: "https://github.com/uga-rosa/scorpeon.vim",
     enabled: !pluginStatus.vscode && false,
     before: async ({ denops }) => {
-      await globals.set(denops, "scorpeon_extensions_path", [
+      await vars.g.set(denops, "scorpeon_extensions_path", [
         await fn.expand(denops, "~/.cache/vscode/extensions"),
         await fn.expand(denops, "~/.cache/scorpeon"),
       ]);
-      await globals.set(denops, "scorpeon_highlight", {
+      await vars.g.set(denops, "scorpeon_highlight", {
         enable: ["log", "toml", "nim"],
       });
       await autocmd.group(denops, "MyScorpeon", (helper) => {
@@ -77,15 +77,15 @@ export const filetypes: Plug[] = [
     enabled: true,
     dependencies: [{ url: "https://github.com/tani/podium" }],
     before: async ({ denops }) => {
-      await globals.set(denops, "glance#markdown_breaks", true);
-      await globals.set(denops, "glance#markdown_html", true);
-      await globals.set(denops, "glance#plugins", [
+      await vars.g.set(denops, "glance#markdown_breaks", true);
+      await vars.g.set(denops, "glance#markdown_html", true);
+      await vars.g.set(denops, "glance#plugins", [
         "https://esm.sh/markdown-it-emoji",
         "https://esm.sh/markdown-it-highlightjs",
         "https://esm.sh/markdown-it-mermaid-plugin",
       ]);
 
-      // await globals.set(
+      // await vars.g.set(
       //   denops,
       //   "glance#config",
       //   `file:///${await fn.expand(denops, "~/.config/glance/init.ts")}`,
@@ -99,9 +99,9 @@ export const filetypes: Plug[] = [
       await denops.call("mkdp#util#install");
     },
     before: async ({ denops }) => {
-      await globals.set(denops, "mkdp_auto_close", 0);
-      await globals.set(denops, "mkdp_refresh_slow ", 0);
-      // await globals.set(denops, "mkdp_theme ", "dark");
+      await vars.g.set(denops, "mkdp_auto_close", 0);
+      await vars.g.set(denops, "mkdp_refresh_slow ", 0);
+      // await vars.g.set(denops, "mkdp_theme ", "dark");
     },
   },
   {
@@ -111,9 +111,9 @@ export const filetypes: Plug[] = [
       { url: "https://github.com/tyru/open-browser.vim" },
     ],
     before: async ({ denops }) => {
-      await globals.set(denops, "previm_enable_realtime", 1);
-      await globals.set(denops, "previm_show_header", 0);
-      await globals.set(denops, "previm_extra_libraries", [
+      await vars.g.set(denops, "previm_enable_realtime", 1);
+      await vars.g.set(denops, "previm_show_header", 0);
+      await vars.g.set(denops, "previm_extra_libraries", [
         {
           name: "githubcss",
           files: [

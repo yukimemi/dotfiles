@@ -1,16 +1,16 @@
 // =============================================================================
 // File        : fern.ts
 // Author      : yukimemi
-// Last Change : 2023/09/10 00:44:06.
+// Last Change : 2023/12/03 18:55:46.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/variable.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.1.0/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.1.0/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.1.0/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const fern: Plug[] = [
@@ -56,10 +56,10 @@ export const fern: Plug[] = [
       },
     ],
     before: async ({ denops }) => {
-      await globals.set(denops, "loaded_netrwPlugin", 1);
-      await globals.set(denops, "fern#default_hidden", 1);
-      await globals.set(denops, "fern#renderer", "nerdfont");
-      await globals.set(denops, "fern#renderer#nerdfont#indent_makers", 1);
+      await vars.g.set(denops, "loaded_netrwPlugin", 1);
+      await vars.g.set(denops, "fern#default_hidden", 1);
+      await vars.g.set(denops, "fern#renderer", "nerdfont");
+      await vars.g.set(denops, "fern#renderer#nerdfont#indent_makers", 1);
 
       await mapping.map(
         denops,

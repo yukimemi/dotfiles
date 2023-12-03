@@ -1,20 +1,20 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2023/11/07 00:07:06.
+// Last Change : 2023/12/03 21:13:32.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.1.0/function/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.1.0/variable/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.1.0/helper/mod.ts";
 
 import { pluginStatus } from "../main.ts";
-import { ensureDir } from "https://deno.land/std@0.205.0/fs/ensure_dir.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
+import { ensureDir } from "https://deno.land/std@0.208.0/fs/ensure_dir.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
 
 export const edit: Plug[] = [
   {
@@ -28,44 +28,8 @@ export const edit: Plug[] = [
     url: "https://github.com/monaqa/dial.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
+    afterFile: "~/.config/nvim/rc/after/dial.lua",
     after: async ({ denops }) => {
-      await execute(
-        denops,
-        `
-          lua << EOB
-            local augend = require("dial.augend")
-            require("dial.config").augends:register_group({
-              default = {
-                augend.integer.alias.decimal,
-                augend.integer.alias.hex,
-                augend.date.new {
-                  pattern = "%Y/%m/%d",
-                  default_kind = "day",
-                },
-                augend.date.new {
-                  pattern = "%Y-%m-%d",
-                  default_kind = "day",
-                },
-                augend.date.new {
-                  pattern = "%m/%d",
-                  default_kind = "day",
-                  only_valid = true,
-                },
-                augend.date.new {
-                  pattern = "%H:%M",
-                  default_kind = "day",
-                  only_valid = true,
-                },
-                augend.constant.alias.ja_weekday_full,
-                augend.case.new({
-                  types = {"camelCase", "snake_case", "PascalCase", "SCREAMING_SNAKE_CASE"},
-                  cyclic = true,
-                }),
-              },
-            })
-          EOB
-        `,
-      );
       await mapping.map(denops, "<c-a>", `<Plug>(dial-increment)`, {
         mode: "n",
       });

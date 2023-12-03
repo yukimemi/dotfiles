@@ -4,14 +4,14 @@
 // Last Change : 2023/11/27 23:37:17.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import * as nvimFn from "https://deno.land/x/denops_std@v5.0.1/function/nvim/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.1.0/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.1.0/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
+import * as nvimFn from "https://deno.land/x/denops_std@v5.1.0/function/nvim/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.1.0/variable/mod.ts";
 
 import { pluginStatus } from "../main.ts";
 

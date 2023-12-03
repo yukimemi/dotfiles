@@ -4,15 +4,15 @@
 // Last Change : 2023/09/11 16:01:03.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import * as op from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v5.0.1/batch/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.1.0/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.1.0/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
+import * as op from "https://deno.land/x/denops_std@v5.1.0/option/mod.ts";
+import { batch } from "https://deno.land/x/denops_std@v5.1.0/batch/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const ddu: Plug[] = [

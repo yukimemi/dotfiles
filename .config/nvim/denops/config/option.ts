@@ -1,21 +1,21 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2023/11/02 16:36:29.
+// Last Change : 2023/12/03 18:46:32.
 // =============================================================================
 
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.1.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import * as helper from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
-import * as nvimOption from "https://deno.land/x/denops_std@v5.0.1/option/nvim/mod.ts";
-import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v5.0.1/batch/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
-import { ensureDir } from "https://deno.land/std@0.205.0/fs/ensure_dir.ts";
-import { stdpath } from "https://deno.land/x/denops_std@v5.0.1/function/nvim/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.1.0/function/mod.ts";
+import * as helper from "https://deno.land/x/denops_std@v5.1.0/helper/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.1.0/lambda/mod.ts";
+import * as nvimOption from "https://deno.land/x/denops_std@v5.1.0/option/nvim/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v5.1.0/option/mod.ts";
+import { batch } from "https://deno.land/x/denops_std@v5.1.0/batch/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
+import { ensureDir } from "https://deno.land/std@0.208.0/fs/ensure_dir.ts";
+import { stdpath } from "https://deno.land/x/denops_std@v5.1.0/function/nvim/mod.ts";
 
 export async function setOption(denops: Denops) {
   const backupdir = denops.meta.host === "nvim"
@@ -33,7 +33,7 @@ export async function setOption(denops: Denops) {
 
     await option.backup.set(denops, false);
     await option.backupdir.set(denops, backupdir);
-    await option.colorcolumn.set(denops, 100);
+    await option.colorcolumn.set(denops, "100");
     await option.completeopt.set(denops, "menu,menuone,noselect");
     await option.completeslash.set(denops, "slash");
     await option.confirm.set(denops, true);
@@ -93,7 +93,7 @@ export async function setOption(denops: Denops) {
     await autocmd.group(denops, "MyAutoCmd", (helper) => {
       helper.remove("*");
       helper.define(
-        "FileType",
+        ["FileType", "BufRead"],
         "*",
         `set fo-=c fo-=r fo-=o`,
       );

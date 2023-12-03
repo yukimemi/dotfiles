@@ -1,16 +1,16 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/09/02 12:03:18.
+// Last Change : 2023/12/03 18:47:25.
 // =============================================================================
 
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import * as fs from "https://deno.land/std@0.205.0/fs/mod.ts";
-import * as helper from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
-import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
-import type { Denops } from "https://deno.land/x/denops_std@v5.0.1/mod.ts";
-import { is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.1.0/function/mod.ts";
+import * as fs from "https://deno.land/std@0.208.0/fs/mod.ts";
+import * as helper from "https://deno.land/x/denops_std@v5.1.0/helper/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v5.1.0/option/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.1.0/variable/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.1.0/mod.ts";
+import { is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v0.2.0/mod.ts";
 
 const useNvimNotify = true;
@@ -121,24 +121,24 @@ export async function focusFloating(denops: Denops) {
   await helper.execute(
     denops,
     `
-    lua << EOB
-      vim.keymap.set({ 'n' }, '<C-w><C-w>', function()
-        if vim.fn.empty(vim.api.nvim_win_get_config(vim.fn.win_getid()).relative) == 0 then
-          vim.cmd([[wincmd p]])
-          return
-        end
-
-        for winnr = 1, vim.fn.winnr('$') do
-          local winid = vim.fn.win_getid(winnr)
-          local conf = vim.api.nvim_win_get_config(winid)
-          if conf.focusable and vim.fn.empty(conf.relative) == 0 then
-            vim.fn.win_gotoid(winid)
+      lua << EOB
+        vim.keymap.set({ 'n' }, '<C-w><C-w>', function()
+          if vim.fn.empty(vim.api.nvim_win_get_config(vim.fn.win_getid()).relative) == 0 then
+            vim.cmd([[wincmd p]])
             return
           end
-        end
-        vim.cmd([[normal! <C-w><C-w>]])
-      end)
-    EOB
+
+          for winnr = 1, vim.fn.winnr('$') do
+            local winid = vim.fn.win_getid(winnr)
+            local conf = vim.api.nvim_win_get_config(winid)
+            if conf.focusable and vim.fn.empty(conf.relative) == 0 then
+              vim.fn.win_gotoid(winid)
+              return
+            end
+          end
+          vim.cmd([[normal! <C-w><C-w>]])
+        end)
+      EOB
   `,
   );
 }

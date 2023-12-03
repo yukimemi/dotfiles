@@ -1,18 +1,18 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/11/19 11:14:11.
+// Last Change : 2023/12/03 16:48:14.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import * as nvimFn from "https://deno.land/x/denops_std@v5.0.1/function/nvim/mod.ts";
-import * as option from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.1.0/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.1.0/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
+import * as nvimFn from "https://deno.land/x/denops_std@v5.1.0/function/nvim/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v5.1.0/option/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.1.0/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const denops: Plug[] = [
@@ -176,18 +176,8 @@ export const denops: Plug[] = [
     dst: "~/src/github.com/yukimemi/dps-chronicle",
     cache: {
       enabled: true,
-      before: `
-        let g:chronicle_debug = v:false
-        let g:chronicle_echo = v:false
-        let g:chronicle_notify = v:false
-        let g:chronicle_read_path = '~/.cache/chronicle/read'
-        let g:chronicle_write_path = '~/.cache/chronicle/write'
-      `,
-      after: `
-        nnoremap mr <cmd>OpenChronicleRead<cr>
-        nnoremap me <cmd>OpenChronicleWrite<cr>
-        nnoremap mo <cmd>copen<cr>
-      `,
+      beforeFile: "~/.config/nvim/rc/before/dps-chronicle.vim",
+      afterFile: "~/.config/nvim/rc/after/dps-chronicle.vim",
     },
   },
   {
@@ -272,23 +262,6 @@ export const denops: Plug[] = [
     url: "https://github.com/yukimemi/dps-walk",
     enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-walk",
-    cache: {
-      enabled: true,
-      before: `
-        let g:walk_debug = v:false
-        let g:walk_no_mapping = v:false
-      `,
-      after: `
-        nnoremap mw <cmd>DenopsWalk<cr>
-        nnoremap ms <cmd>DenopsWalk --path=~/src<cr>
-        nnoremap mD <cmd>DenopsWalk --path=~/.dotfiles<cr>
-        nnoremap mC <cmd>DenopsWalk --path=~/.cache<cr>
-        nnoremap md <cmd>DenopsWalkBufferDir<cr>
-        nnoremap mM <cmd>DenopsWalk --path=~/.memolist<cr>
-        nnoremap <space>wc <cmd>DenopsWalk --path=~/.cache<cr>
-        nnoremap <space>wj <cmd>DenopsWalk --path=~/.cache/junkfile<cr>
-      `,
-    },
     before: async ({ denops }) => {
       await vars.g.set(denops, "walk_debug", false);
       await vars.g.set(denops, "walk_no_mapping", false);

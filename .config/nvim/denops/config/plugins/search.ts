@@ -1,13 +1,13 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2023/09/23 13:44:35.
+// Last Change : 2023/12/03 21:18:32.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 
-import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.1.0/helper/mod.ts";
 
 import { pluginStatus } from "../main.ts";
 
@@ -36,38 +36,7 @@ export const search: Plug[] = [
     url: "https://github.com/monaqa/modesearch.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && pluginStatus.modesearch,
-    after: async ({ denops }) => {
-      await execute(
-        denops,
-        `
-        lua << EOB
-          vim.keymap.set("n", "/", function() return require("modesearch").keymap.prompt.show("rawstr") end, { expr = true })
-          vim.keymap.set(
-            "c",
-            "<C-x>",
-            function() return require("modesearch").keymap.mode.cycle({ "rawstr", "migemo", "regexp" }) end,
-            { expr = true }
-          )
-          require("modesearch").setup({
-            modes = {
-              rawstr = {
-                prompt = "[rawstr]/",
-                converter = function(query) return [[\\V]] .. vim.fn.escape(query, [[/\\]]) end,
-              },
-              regexp = {
-                prompt = "[regexp]/",
-                converter = function(query) return [[\\v]] .. vim.fn.escape(query, [[/]]) end,
-              },
-              migemo = {
-                prompt = "[migemo]/",
-                converter = function(query) return [[\\v]] .. vim.fn["kensaku#query"](query) end,
-              },
-            },
-          })
-        EOB
-      `,
-      );
-    },
+    afterFile: "~/.config/nvim/rc/after/modesearch.lua",
   },
   {
     url: "https://github.com/lambdalisue/kensaku-search.vim",

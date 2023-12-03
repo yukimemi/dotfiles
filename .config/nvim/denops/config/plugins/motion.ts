@@ -1,13 +1,13 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2023/08/27 22:11:55.
+// Last Change : 2023/12/03 18:52:25.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 
-import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.1.0/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const motion: Plug[] = [
@@ -25,9 +25,9 @@ export const motion: Plug[] = [
   {
     url: "https://github.com/yuki-yano/fuzzy-motion.vim",
     before: async ({ denops }) => {
-      await globals.set(denops, "fuzzy_motion_auto_jump", false);
-      await globals.set(denops, "fuzzy_motion_disable_match_highlight", false);
-      await globals.set(denops, "fuzzy_motion_matchers", ["fzf", "kensaku"]);
+      await vars.g.set(denops, "fuzzy_motion_auto_jump", false);
+      await vars.g.set(denops, "fuzzy_motion_disable_match_highlight", false);
+      await vars.g.set(denops, "fuzzy_motion_matchers", ["fzf", "kensaku"]);
       await mapping.map(denops, "ss", "<cmd>FuzzyMotion<cr>", { mode: "n" });
     },
   },

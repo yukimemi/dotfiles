@@ -1,15 +1,15 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/11/11 22:29:13.
+// Last Change : 2023/12/03 21:33:57.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.1.0/function/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.1.0/variable/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.1.0/helper/mod.ts";
 
 import { pluginStatus } from "../main.ts";
 
@@ -270,57 +270,13 @@ export const util: Plug[] = [
     url: "https://github.com/tenxsoydev/size-matters.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
-    after: async ({ denops }) => {
-      await mapping.map(denops, "+", "<cmd>FontSizeUp<cr>", { mode: "n" });
-      await mapping.map(denops, "-", "<cmd>FontSizeDown<cr>", { mode: "n" });
-      await execute(
-        denops,
-        `
-        lua << EOB
-          require("size-matters").setup({
-            default_mappings = true,
-            -- font resize step size
-            step_size = 1,
-            notifications = {
-              -- default value is true if notify is installed else false
-              enable = false,
-              -- ms how long a notifiation will be shown
-              timeout = 150,
-              -- depending on the client and if using multigrid, the time it takes for the client to re-render
-              -- after a font size change can affect the position of the notification. Displaying it with a delay remedies this.
-              delay = 200,
-            },
-            reset_font = vim.api.nvim_get_option("guifont"), -- Font loaded when using the reset cmd / shortcut
-          })
-        EOB
-        `,
-      );
-    },
+    afterFile: "~/.config/nvim/rc/after/size-matters.lua",
   },
   {
     url: "https://github.com/gaoDean/autolist.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
-    after: async ({ denops }) => {
-      await execute(
-        denops,
-        `
-        lua << EOB
-          local autolist = require("autolist")
-          autolist.setup()
-          autolist.create_mapping_hook("i", "<CR>", autolist.new)
-          autolist.create_mapping_hook("i", "<Tab>", autolist.indent)
-          autolist.create_mapping_hook("i", "<S-Tab>", autolist.indent, "<C-D>")
-          autolist.create_mapping_hook("n", "o", autolist.new)
-          autolist.create_mapping_hook("n", "O", autolist.new_before)
-          autolist.create_mapping_hook("n", ">>", autolist.indent)
-          autolist.create_mapping_hook("n", "<<", autolist.indent)
-          autolist.create_mapping_hook("n", "<C-r>", autolist.force_recalculate)
-          autolist.create_mapping_hook("n", "<leader>x", autolist.invert_entry, "")
-        EOB
-        `,
-      );
-    },
+    afterFile: "~/.config/nvim/rc/after/autolist.lua",
   },
   {
     url: "https://github.com/thinca/vim-winenv",
@@ -396,42 +352,16 @@ export const util: Plug[] = [
     url: "https://github.com/rgroli/other.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
-    after: async ({ denops }) => {
-      await denops.cmd(`lua require("other-nvim").setup(_A)`, {
-        mappings: [
-          "livewire",
-          "angular",
-          "laravel",
-          "rails",
-          "golang",
-        ],
-      });
-    },
+    afterFile: "~/.config/nvim/rc/after/other.lua",
   },
   {
     url: "https://github.com/kuuote/jsonyaml.vim",
-    after: async ({ denops }) => {
-      await execute(
-        denops,
-        `
-          command! -range=% JY call denops#request('jsonyaml', 'jsonYAML', [<line1>, <line2>])
-          command! -range=% YJ call denops#request('jsonyaml', 'yamlJSON', [<line1>, <line2>])
-        `,
-      );
-    },
+    afterFile: "~/.config/nvim/rc/after/jsonyaml.vim",
   },
   {
     url: "https://github.com/yukimemi/jsontoml.vim",
     dst: "~/src/github.com/yukimemi/jsontoml.vim",
-    after: async ({ denops }) => {
-      await execute(
-        denops,
-        `
-          command! -range=% JT call denops#request('jsontoml', 'jsonTOML', [<line1>, <line2>])
-          command! -range=% TJ call denops#request('jsontoml', 'tomlJSON', [<line1>, <line2>])
-        `,
-      );
-    },
+    afterFile: "~/.config/nvim/rc/after/jsontoml.vim",
   },
   {
     url: "https://github.com/bennypowers/nvim-regexplainer",
@@ -499,9 +429,7 @@ export const util: Plug[] = [
     },
   },
   { url: "https://github.com/thinca/vim-prettyprint" },
-  {
-    url: "https://github.com/skanehira/denops-silicon.vim",
-  },
+  { url: "https://github.com/skanehira/denops-silicon.vim" },
   {
     url: "https://github.com/VidocqH/data-viewer.nvim",
     // deno-lint-ignore require-await

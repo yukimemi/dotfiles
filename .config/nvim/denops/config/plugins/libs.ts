@@ -1,18 +1,17 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/11/19 10:05:49.
+// Last Change : 2023/12/03 19:00:05.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
-import { exists } from "https://deno.land/std@0.205.0/fs/mod.ts";
-import { globals } from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.1.0/function/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.1.0/variable/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
+import { exists } from "https://deno.land/std@0.208.0/fs/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const libs: Plug[] = [
@@ -50,16 +49,10 @@ export const libs: Plug[] = [
       denops.meta.host === "nvim" && pluginStatus.nvimnotify &&
       !pluginStatus.vscode,
     cache: {
-      after: `
-        lua << EOB
-          require("notify").setup({
-            render = "compact",
-            stages = "slide",
-          })
-          vim.notify = require("notify")
-        EOB
-      `,
+      enabled: false,
+      afterFile: "~/.config/nvim/rc/after/nvim-notify.lua",
     },
+    afterFile: "~/.config/nvim/rc/after/nvim-notify.lua",
     after: async ({ denops }) => {
       await mapping.map(
         denops,
@@ -78,12 +71,7 @@ export const libs: Plug[] = [
       denops.meta.host === "nvim" && pluginStatus.notifier &&
       !pluginStatus.vscode,
     cache: {
-      after: `
-        lua << EOB
-          require("notifier").setup()
-          vim.notify = require("notifier")
-        EOB
-      `,
+      afterFile: "~/.config/nvim/rc/after/notifier.lua",
     },
     after: async ({ denops }) => {
       await mapping.map(
@@ -216,8 +204,8 @@ export const libs: Plug[] = [
     // deno-lint-ignore require-await
     clone: async ({ denops }) => denops.meta.host === "vim",
     before: async ({ denops }) => {
-      await globals.set(denops, "findent#enable_warnings", 1);
-      await globals.set(denops, "findent#enable_messages", 1);
+      await vars.g.set(denops, "findent#enable_warnings", 1);
+      await vars.g.set(denops, "findent#enable_messages", 1);
       await autocmd.group(denops, "MyFindent", (helper) => {
         helper.remove("*");
         helper.define("BufRead", "*", "Findent");
@@ -228,26 +216,7 @@ export const libs: Plug[] = [
     url: "https://github.com/hrsh7th/nvim-dansa",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("dansa").setup(_A)`, {
-        // The offset to specify how much lines to use.
-        scan_offset: 100,
-
-        // The count for cut-off the indent candidate.
-        cutoff_count: 5,
-
-        // The settings for tab-indentation or when it cannot be guessed.
-        default: {
-          expandtab: true,
-          space: {
-            shiftwidth: 2,
-          },
-          tab: {
-            shiftwidth: 4,
-          },
-        },
-      });
-    },
+    afterFile: "~/.config/nvim/rc/after/nvim-dansa.lua",
   },
   { url: "https://github.com/yuki-yano/dedent-yank.vim" },
 ];

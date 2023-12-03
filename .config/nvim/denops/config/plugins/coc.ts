@@ -1,19 +1,19 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/02 21:59:36.
+// Last Change : 2023/12/03 21:10:45.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.5.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.0.1/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.0.1/function/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v5.0.1/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.0.1/mapping/mod.ts";
-import * as op from "https://deno.land/x/denops_std@v5.0.1/option/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v5.0.1/variable/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.10.0/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v5.0.1/helper/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.1.0/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.1.0/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
+import * as op from "https://deno.land/x/denops_std@v5.1.0/option/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.1.0/variable/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.1.0/helper/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const coc: Plug[] = [
@@ -24,45 +24,7 @@ export const coc: Plug[] = [
       { url: "https://github.com/weirongxu/coc-explorer" },
       {
         url: "https://github.com/gelguy/wilder.nvim",
-        after: async ({ denops }) => {
-          await execute(
-            denops,
-            `
-              lua << EOB
-                local wilder = require('wilder')
-                wilder.setup({ modes = { ':', '/', '?' } })
-                -- Disable Python remote plugin
-                wilder.set_option('use_python_remote_plugin', 0)
-
-                wilder.set_option('pipeline', {
-                  wilder.branch(
-                    wilder.cmdline_pipeline({
-                      fuzzy = 1,
-                    }),
-                    wilder.vim_search_pipeline()
-                  )
-                })
-
-                wilder.set_option('renderer', wilder.renderer_mux({
-                  [':'] = wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
-                    highlighter = wilder.basic_highlighter(),
-                    left = {
-                      ' ',
-                      wilder.popupmenu_devicons()
-                    },
-                    right = {
-                      ' ',
-                      wilder.popupmenu_scrollbar()
-                    },
-                  })),
-                  ['/'] = wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
-                    highlighter = wilder.basic_highlighter(),
-                  })),
-                }))
-              EOB
-            `,
-          );
-        },
+        afterFile: "~/.config/nvim/rc/after/wilder.lua",
       },
     ],
     branch: "release",
