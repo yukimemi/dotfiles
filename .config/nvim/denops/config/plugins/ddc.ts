@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/04 01:27:23.
+// Last Change : 2023/12/08 23:39:26.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
@@ -34,7 +34,6 @@ export const ddc: Plug[] = [
         url: "https://github.com/Shougo/pum.vim",
         after: async ({ denops }) => {
           await denops.call("pum#set_option", {
-            use_complete: false,
             // item_orders: ["kind", "space", "abbr", "space", "menu"],
             scrollbar_char: "┃",
             offset_cmdrow: 0,
