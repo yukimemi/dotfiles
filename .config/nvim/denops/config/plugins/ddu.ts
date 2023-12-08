@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2023/12/08 23:46:52.
+// Last Change : 2023/12/09 00:41:56.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
@@ -40,7 +40,10 @@ export const ddu: Plug[] = [
       { url: "https://github.com/Shougo/ddu-source-register" },
       { url: "https://github.com/Shougo/ddu-ui-ff" },
       { url: "https://github.com/Shougo/ddu-ui-filer" },
-      { url: "https://github.com/Shougo/junkfile.vim" },
+      {
+        url: "https://github.com/Shougo/junkfile.vim",
+        afterFile: "~/.config/nvim/rc/after/junkfile.vim",
+      },
       { url: "https://github.com/kamecha/ddu-source-jumplist" },
       { url: "https://github.com/kuuote/ddu-filter-fuse" },
       { url: "https://github.com/kuuote/ddu-source-git_status" },
