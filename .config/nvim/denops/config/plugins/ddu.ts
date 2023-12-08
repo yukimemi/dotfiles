@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2023/09/11 16:01:03.
+// Last Change : 2023/12/08 23:46:52.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
@@ -621,6 +621,9 @@ export const ddu: Plug[] = [
         "merge",
       ]);
       denops.call(`ddu#load`, "kind", ["file"]);
+    },
+    build: async ({ denops }) => {
+      await denops.call(`ddu#set_static_import_path`);
     },
   },
 ];

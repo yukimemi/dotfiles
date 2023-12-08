@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/08 23:39:26.
+// Last Change : 2023/12/08 23:48:00.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
@@ -424,6 +424,9 @@ export const ddc: Plug[] = [
       } else {
         await denops.call(`ddc#enable`, { context_filetype: "context_filetype" });
       }
+    },
+    build: async ({ denops }) => {
+      await denops.call(`ddc#set_static_import_path`);
     },
   },
 ];
