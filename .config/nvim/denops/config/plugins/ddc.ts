@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/08 23:48:00.
+// Last Change : 2023/12/09 00:37:08.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
@@ -153,7 +153,6 @@ export const ddc: Plug[] = [
       { url: "https://github.com/uga-rosa/ddc-source-nvim-lua" },
       {
         url: "https://github.com/uga-rosa/ddc-source-lsp-setup",
-        enabled: false,
         dependencies: [
           { url: "https://github.com/neovim/nvim-lspconfig" },
         ],
