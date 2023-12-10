@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2023/12/09 00:41:56.
+// Last Change : 2023/12/10 12:37:33.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
@@ -336,9 +336,6 @@ export const ddu: Plug[] = [
                       highlights: {
                         floating: "Normal",
                         floatingBorder: "Normal",
-                      },
-                      autoAction: {
-                        name: "preview",
                       },
                     },
                     filer: {
