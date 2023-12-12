@@ -1,11 +1,13 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2023/10/31 23:11:59.
+// Last Change : 2023/12/13 00:01:30.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 
+import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v5.1.0/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
 import { pluginStatus } from "../main.ts";
 
@@ -93,6 +95,64 @@ export const git: Plug[] = [
       });
       await mapping.map(denops, "<space>gp", "<cmd>Gin push<cr>", {
         mode: "n",
+      });
+
+      await autocmd.group(denops, "MyGin", (helper) => {
+        helper.remove("*");
+        helper.define(
+          "FileType",
+          ["gin-diff", "gin-log", "gin-status"],
+          `call <SID>${denops.name}_notify("${
+            lambda.register(
+              denops,
+              async () => {
+                await mapping.map(denops, "c", "<cmd>Gin commit -v<cr>", {
+                  mode: "n",
+                  buffer: true,
+                });
+                await mapping.map(denops, "s", "<cmd>GinStatus<cr>", {
+                  mode: "n",
+                  buffer: true,
+                });
+                await mapping.map(denops, "L", "<cmd>GinLog --graph --oneline<cr>", {
+                  mode: "n",
+                  buffer: true,
+                });
+                await mapping.map(denops, "d", "<cmd>GinDiff --cached<cr>", {
+                  mode: "n",
+                  buffer: true,
+                });
+                await mapping.map(denops, "p", "<cmd>Gin push<cr>", {
+                  mode: "n",
+                  buffer: true,
+                });
+                await mapping.map(denops, "P", "<cmd>Gin pull<cr>", {
+                  mode: "n",
+                  buffer: true,
+                });
+              },
+            )
+          }", [])`,
+        );
+        helper.define(
+          "FileType",
+          "gin-status",
+          `call <SID>${denops.name}_notify("${
+            lambda.register(
+              denops,
+              async () => {
+                await mapping.map(denops, "h", "<Plug>(gin-action-stage)", {
+                  mode: "n",
+                  buffer: true,
+                });
+                await mapping.map(denops, "l", "<Plug>(gin-action-unstage)", {
+                  mode: "n",
+                  buffer: true,
+                });
+              },
+            )
+          }", [])`,
+        );
       });
     },
   },
