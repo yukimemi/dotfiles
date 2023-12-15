@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/11/27 23:37:17.
+// Last Change : 2023/12/15 22:16:17.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
@@ -356,4 +356,5 @@ export const ui: Plug[] = [
       await denops.cmd(`lua require("flirt").setup()`);
     },
   },
+  { url: "https://github.com/gw31415/scrollUptoLastLine.vim" },
 ];
