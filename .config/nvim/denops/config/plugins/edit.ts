@@ -6,14 +6,14 @@
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.1.0/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.1.0/function/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v5.1.0/variable/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.1.0/mapping/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v5.1.0/helper/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.2.0/function/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.2.0/variable/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.2.0/mapping/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.2.0/helper/mod.ts";
 
 import { pluginStatus } from "../main.ts";
-import { ensureDir } from "https://deno.land/std@0.208.0/fs/ensure_dir.ts";
+import { ensureDir } from "https://deno.land/std@0.209.0/fs/ensure_dir.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
 
 export const edit: Plug[] = [

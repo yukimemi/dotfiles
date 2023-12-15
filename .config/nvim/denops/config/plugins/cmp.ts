@@ -5,7 +5,7 @@
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v5.1.0/helper/execute.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.2.0/helper/execute.ts";
 import { pluginStatus } from "../main.ts";
 
 export const cmp: Plug[] = [
