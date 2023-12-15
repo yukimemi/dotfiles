@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/12/15 22:16:17.
+// Last Change : 2023/12/15 22:18:12.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
@@ -16,7 +16,7 @@ import * as vars from "https://deno.land/x/denops_std@v5.2.0/variable/mod.ts";
 import { pluginStatus } from "../main.ts";
 
 export const ui: Plug[] = [
-  { url: "https://github.com/lambdalisue/seethrough.vim", enabled: false },
+  { url: "https://github.com/lambdalisue/seethrough.vim" },
   { url: "https://github.com/andymass/vim-matchup" },
   { url: "https://github.com/mopp/smartnumber.vim" },
   {
