@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/12/17 10:05:16.
+// Last Change : 2023/12/17 16:16:59.
 // =============================================================================
 
 import * as fn from "https://deno.land/x/denops_std@v5.2.0/function/mod.ts";
@@ -109,12 +109,27 @@ export async function reviewMode(denops: Denops, stop = false) {
   }
 }
 
+async function wsl2win(path: string): Promise<string> {
+  const cmd = new Deno.Command("wslpath", {
+    args: ["-w", path],
+  });
+  const { stdout } = await cmd.output();
+  return new TextDecoder().decode(stdout).trim();
+}
+
 export async function openBufDir(denops: Denops) {
   const bufname = await fn.bufname(denops);
-  const bufdir = await fn.fnamemodify(denops, bufname, ":p:h");
-  console.log({ bufdir });
-  if (await fs.exists(bufdir)) {
-    systemopen(bufdir);
+  let bufdir = await fn.fnamemodify(denops, bufname, ":p:h");
+  if (await fn.has(denops, "wsl")) {
+    bufdir = await wsl2win(bufdir);
+    (new Deno.Command("explorer.exe", {
+      args: [bufdir],
+    })).output();
+  } else {
+    console.log({ bufdir });
+    if (await fs.exists(bufdir)) {
+      systemopen(bufdir);
+    }
   }
 }
 

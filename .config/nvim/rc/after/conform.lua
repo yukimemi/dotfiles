@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : conform.lua
 -- Author      : yukimemi
--- Last Change : 2023/12/04 01:32:12.
+-- Last Change : 2023/12/17 15:50:04.
 -- =============================================================================
 
 local conform = require("conform")
@@ -12,6 +12,14 @@ conform.setup({
     timeout_ms = 500,
     lsp_fallback = true,
   },
+  formatters_by_ft = {
+    typescriptreact = {
+      "deno_fmt"
+    },
+    json = {
+      "deno_fmt"
+    }
+  }
 })
 
 vim.keymap.set("n", "<leader>F", function()
