@@ -53,6 +53,62 @@ header = '''
 @exit /b %errorlevel%
 '''
 
+[[ps1]]
+name = "defaultcmdpwsh"
+prefix = ""
+suffix = ""
+dst = "../cmd"
+ext = ".cmd"
+header = '''
+@set __SCRIPTPATH=%~f0&@pwsh -NoProfile -ExecutionPolicy ByPass -InputFormat None -Command "$s=[scriptblock]::create((gc -enc utf8 -li \"%~f0\"|?{$_.readcount -gt 2})-join\"`n\");&$s" %*
+@exit /b %errorlevel%
+'''
+
+[[ps1]]
+name = "pausecmdpwsh"
+prefix = ""
+suffix = ""
+dst = "../cmd"
+ext = ".cmd"
+header = '''
+@set __SCRIPTPATH=%~f0&@pwsh -NoProfile -ExecutionPolicy ByPass -InputFormat None -Command "$s=[scriptblock]::create((gc -enc utf8 -li \"%~f0\"|?{$_.readcount -gt 2})-join\"`n\");&$s" %*&@pause
+@exit /b %errorlevel%
+'''
+
+[[ps1]]
+name = "waitcmdpwsh"
+prefix = ""
+suffix = ""
+dst = "../cmd"
+ext = ".cmd"
+header = '''
+@set __SCRIPTPATH=%~f0&@pwsh -NoProfile -ExecutionPolicy ByPass -InputFormat None -Command "$s=[scriptblock]::create((gc -enc utf8 -li \"%~f0\"|?{$_.readcount -gt 2})-join\"`n\");&$s" %*&@ping -n 30 localhost > nul
+@exit /b %errorlevel%
+'''
+
+[[ps1]]
+name = "defaultcmdhiddenpwsh"
+prefix = ""
+suffix = ""
+dst = "../cmd"
+ext = ".cmd"
+header = '''
+@set __SCRIPTPATH=%~f0&@pwsh -NoProfile -ExecutionPolicy ByPass -InputFormat None -WindowStyle Hidden -Command "$s=[scriptblock]::create((gc -enc utf8 -li \"%~f0\"|?{$_.readcount -gt 2})-join\"`n\");&$s" %*
+@exit /b %errorlevel%
+'''
+
+[[ps1]]
+name = "waitcmdhiddenpwsh"
+prefix = ""
+suffix = ""
+dst = "../cmd"
+ext = ".cmd"
+header = '''
+@set __SCRIPTPATH=%~f0&@pwsh -NoProfile -ExecutionPolicy ByPass -InputFormat None -WindowStyle Hidden -Command "$s=[scriptblock]::create((gc -enc utf8 -li \"%~f0\"|?{$_.readcount -gt 2})-join\"`n\");&$s" %*&@ping -n 30 localhost > nul
+@exit /b %errorlevel%
+'''
+
+
 [[javascript]]
 name = "default"
 prefix = ""

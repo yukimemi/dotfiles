@@ -1,16 +1,18 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/12/03 18:47:25.
+// Last Change : 2023/12/17 10:05:16.
 // =============================================================================
 
 import * as fn from "https://deno.land/x/denops_std@v5.2.0/function/mod.ts";
 import * as fs from "https://deno.land/std@0.209.0/fs/mod.ts";
 import * as helper from "https://deno.land/x/denops_std@v5.2.0/helper/mod.ts";
+import * as nvimFn from "https://deno.land/x/denops_std@v5.2.0/function/nvim/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v5.2.0/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.2.0/variable/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v5.2.0/mod.ts";
-import { is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
+import { join } from "https://deno.land/std@0.209.0/path/join.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v0.2.0/mod.ts";
 
 const useNvimNotify = true;
@@ -141,4 +143,9 @@ export async function focusFloating(denops: Denops) {
       EOB
   `,
   );
+}
+
+export async function removeShada(denops: Denops) {
+  const shadaDir = join(ensure(await nvimFn.stdpath(denops, "state"), is.String), "shada");
+  await Deno.remove(shadaDir, { recursive: true });
 }

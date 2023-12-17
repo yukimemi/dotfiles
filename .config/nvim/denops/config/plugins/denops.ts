@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2023/12/03 16:48:14.
+// Last Change : 2023/12/17 10:03:07.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
@@ -469,6 +469,27 @@ export const denops: Plug[] = [
                   "BufWritePost",
                   "<buffer>",
                   "DenopsAhdr waitcmd",
+                  {},
+                );
+              });
+            },
+          )
+        }", [])`,
+        {},
+      );
+      await nvimFn.nvim_create_user_command(
+        denops,
+        "DenopsAhdrPwshDebug",
+        `call denops#notify("${denops.name}", "${
+          lambda.register(
+            denops,
+            async () => {
+              await autocmd.group(denops, "MyAhdr", (helper) => {
+                helper.remove("*");
+                helper.define(
+                  "BufWritePost",
+                  "<buffer>",
+                  "DenopsAhdr waitcmdpwsh",
                   {},
                 );
               });

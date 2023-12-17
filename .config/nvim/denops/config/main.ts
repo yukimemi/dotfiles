@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2023/11/03 08:40:05.
+// Last Change : 2023/12/17 10:02:28.
 // =============================================================================
 
 import { type Denops } from "https://deno.land/x/denops_std@v5.2.0/mod.ts";
@@ -15,6 +15,7 @@ import { notify } from "./util.ts";
 import { plugins } from "./plugins.ts";
 import { setFiletype } from "./filetype.ts";
 import { setKeymapPost, setKeymapPre } from "./keymap.ts";
+import { setCommandPost, setCommandPre } from "./command.ts";
 import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setNvy } from "./nvy.ts";
@@ -74,10 +75,12 @@ async function pre(denops: Denops): Promise<void> {
 
   await setFiletype(denops);
   await setOption(denops);
+  await setCommandPre(denops);
   await setKeymapPre(denops);
 }
 
 async function post(denops: Denops): Promise<void> {
+  await setCommandPost(denops);
   await setKeymapPost(denops);
   await vimInit(denops);
 }

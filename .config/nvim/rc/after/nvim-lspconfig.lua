@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-lspconfig.lua
 -- Author      : yukimemi
--- Last Change : 2023/12/04 01:32:54.
+-- Last Change : 2023/12/16 21:11:19.
 -- =============================================================================
 
 require("mason").setup({
@@ -159,6 +159,7 @@ require("mason-lspconfig").setup_handlers({
           codeFormatting = {
             preset = "OTBS",
             ignoreOneLineBlock = false,
+            useCorrectCasing = true,
           },
         },
       },
