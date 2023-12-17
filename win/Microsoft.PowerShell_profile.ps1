@@ -77,6 +77,9 @@ function gp {
 function gpu {
   git push
 }
+function gbr {
+  git browse
+}
 
 # git ignore for PowerShell
 Function gig {
