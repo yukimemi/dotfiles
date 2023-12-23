@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/23 21:01:30.
+// Last Change : 2023/12/23 21:47:37.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
@@ -377,7 +377,7 @@ export const ddc: Plug[] = [
       await mapping.map(
         denops,
         "<tab>",
-        `pum#map#confirm()`,
+        `pum#visible() ? '<cmd>call pum#map#confirm()<cr>' : '<tab>'`,
         { mode: "i", noremap: true, expr: true },
       );
       await mapping.map(
