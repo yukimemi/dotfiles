@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2023/12/03 19:00:05.
+// Last Change : 2023/12/23 18:25:42.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
@@ -189,6 +189,9 @@ export const libs: Plug[] = [
     url: "https://github.com/Exafunction/codeium.vim",
     enabled: async ({ denops }) =>
       await exists(ensure(await fn.expand(denops, "~/.codeium"), is.String)),
+    before: async ({ denops }) => {
+      await vars.g.set(denops, "codeium_no_map_tab", true);
+    },
     after: async ({ denops }) => {
       await mapping.map(denops, "<c-e>", "codeium#Accept()", {
         mode: "i",

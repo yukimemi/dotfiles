@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/13 19:27:32.
+// Last Change : 2023/12/23 18:21:47.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
@@ -359,13 +359,13 @@ export const ddc: Plug[] = [
       await mapping.map(
         denops,
         "<c-n>",
-        `<cmd>call pum#map#insert_relative(+1, "empty")<cr>`,
+        `<cmd>call pum#map#select_relative(+1, "empty")<cr>`,
         { mode: "i" },
       );
       await mapping.map(
         denops,
         "<c-p>",
-        `<cmd>call pum#map#insert_relative(-1, "empty")<cr>`,
+        `<cmd>call pum#map#select_relative(-1, "empty")<cr>`,
         { mode: "i" },
       );
       await mapping.map(
@@ -374,12 +374,12 @@ export const ddc: Plug[] = [
         `<cmd>call pum#map#confirm_word()<cr>`,
         { mode: "i" },
       );
-      // await mapping.map(
-      //   denops,
-      //   "<c-e>",
-      //   `<cmd>call pum#map#confirm()<cr>`,
-      //   { mode: "i" },
-      // );
+      await mapping.map(
+        denops,
+        "<tab>",
+        `<cmd>call pum#map#confirm()<cr>`,
+        { mode: "i" },
+      );
       await mapping.map(
         denops,
         "<c-space>",
