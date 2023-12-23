@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2023/12/03 21:13:32.
+// Last Change : 2023/12/23 21:06:11.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
@@ -184,7 +184,7 @@ export const edit: Plug[] = [
   {
     url: "https://github.com/VidocqH/auto-indent.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("auto-indent").setup()`);
     },

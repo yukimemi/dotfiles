@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/23 18:21:47.
+// Last Change : 2023/12/23 21:01:30.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
@@ -360,35 +360,42 @@ export const ddc: Plug[] = [
         denops,
         "<c-n>",
         `<cmd>call pum#map#select_relative(+1, "empty")<cr>`,
-        { mode: "i" },
+        { mode: "i", noremap: true },
       );
       await mapping.map(
         denops,
         "<c-p>",
         `<cmd>call pum#map#select_relative(-1, "empty")<cr>`,
-        { mode: "i" },
+        { mode: "i", noremap: true },
       );
       await mapping.map(
         denops,
         "<c-f>",
-        `<cmd>call pum#map#confirm_word()<cr>`,
-        { mode: "i" },
+        `pum#map#confirm_word()`,
+        { mode: "i", noremap: true, expr: true },
       );
       await mapping.map(
         denops,
         "<tab>",
-        `<cmd>call pum#map#confirm()<cr>`,
-        { mode: "i" },
+        `pum#map#confirm()`,
+        { mode: "i", noremap: true, expr: true },
       );
       await mapping.map(
         denops,
         "<c-space>",
-        `<cmd>call ddc#map#manual_complete()<cr>`,
-        { mode: "i" },
+        `ddc#map#manual_complete()`,
+        { mode: "i", noremap: true, expr: true },
       );
-      await mapping.map(denops, "<c-c>", `<cmd>call pum#close()<cr>`, {
-        mode: "i",
-      });
+      await mapping.map(
+        denops,
+        "<c-c>",
+        `pum#visible() ? '<cmd>call pum#map#cancel()<cr>' : '<c-c>'`,
+        {
+          mode: "i",
+          noremap: true,
+          expr: true,
+        },
+      );
       // for commandline.
       await mapping.map(
         denops,

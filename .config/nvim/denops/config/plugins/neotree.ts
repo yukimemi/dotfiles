@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : neotree.ts
 // Author      : yukimemi
-// Last Change : 2023/09/23 15:46:38.
+// Last Change : 2023/12/23 21:07:37.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
@@ -27,6 +27,11 @@ export const neotree: Plug[] = [
               "/": "noop",
               "l": "open",
             },
+          },
+          filtered_items: {
+            hide_dotfiles: false,
+            hide_gitignored: true,
+            hide_hidden: false,
           },
         },
       });
