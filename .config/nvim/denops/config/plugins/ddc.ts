@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/23 21:47:37.
+// Last Change : 2023/12/24 22:57:16.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
@@ -317,7 +317,8 @@ export const ddc: Plug[] = [
             mark: "󱐋",
             forceCompletionPattern: "\\.\\w*|::\\w*|->\\w*",
             dup: "force",
-            converters: ["converter_fuzzy", "converter_lsp-kind"],
+            sorters: ["sorter_lsp-kind"],
+            converters: ["converter_kind_labels"],
           },
           "nvim-lua": {
             mark: "󰢱",
@@ -346,6 +347,46 @@ export const ddc: Plug[] = [
           "lsp": {
             enableResolveItem: true,
             enableAdditionalTextEdit: true,
+          },
+        },
+        filterParams: {
+          converter_kind_labels: {
+            kindLabels: {
+              Text: "",
+              Method: "",
+              Function: "",
+              Constructor: "",
+              Field: "",
+              Variable: "",
+              Class: "",
+              Interface: "",
+              Module: "",
+              Property: "",
+              Unit: "",
+              Value: "",
+              Enum: "",
+              Keyword: "",
+              Snippet: "",
+              Color: "",
+              File: "",
+              Reference: "",
+              Folder: "",
+              EnumMember: "",
+              Constant: "",
+              Struct: "",
+              Event: "",
+              Operator: "",
+              TypeParameter: "",
+            },
+            kindHlGroups: {
+              Method: "Function",
+              Function: "Function",
+              Constructor: "Function",
+              Field: "Identifier",
+              Variable: "Identifier",
+              Class: "Structure",
+              Interface: "Structure",
+            },
           },
         },
       });
