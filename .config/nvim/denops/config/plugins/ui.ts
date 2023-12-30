@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/12/30 11:03:58.
+// Last Change : 2023/12/30 21:21:21.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.6.1/mod.ts";
@@ -192,7 +192,23 @@ export const ui: Plug[] = [
     enabled: async ({ denops }) =>
       denops.meta.host === "nvim" && pluginStatus.hlchunk && !pluginStatus.vscode,
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("hlchunk").setup()`);
+      await denops.call(`luaeval`, `require("hlchunk").setup(_A)`, {
+        chunk: {
+          enable: true,
+          notify: true,
+        },
+        indent: {
+          enable: true,
+          use_treesitter: false,
+        },
+        line_num: {
+          enable: true,
+          use_treesitter: true,
+        },
+        blank: {
+          enable: true,
+        },
+      });
     },
   },
   {
