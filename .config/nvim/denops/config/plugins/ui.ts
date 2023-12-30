@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2023/12/15 22:18:12.
+// Last Change : 2023/12/30 11:03:58.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.6.1/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.2.0/function/mod.ts";
@@ -286,26 +286,6 @@ export const ui: Plug[] = [
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode && false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("satellite").setup()`);
-    },
-  },
-  {
-    url: "https://github.com/goolord/alpha-nvim",
-    enabled: false,
-    clone: false,
-    cache: {
-      after: `
-        lua require("alpha").setup(require("alpha.themes.startify").config)
-      `,
-    },
-  },
-  {
-    url: "https://github.com/startup-nvim/startup.nvim",
-    enabled: false,
-    clone: false,
-    cache: {
-      after: `
-        lua require("startup").setup({theme = "startify"})
-      `,
     },
   },
   {

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : keybind.zsh
 # Author      : yukimemi
-# Last Change : 2023/12/17 15:04:22.
+# Last Change : 2023/12/30 20:31:53.
 # =============================================================================
 
 bindkey -v
@@ -39,8 +39,8 @@ function my_lazy_keybindings() {
   bindkey -M menuselect 'l' vi-forward-char
 
   # reassign tab for zsh-autocomplete.
-  # bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-  # bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+  bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+  bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 }
 zvm_after_init_commands+=(my_lazy_keybindings)
 

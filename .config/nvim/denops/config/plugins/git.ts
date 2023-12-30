@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2023/12/13 00:01:30.
+// Last Change : 2023/12/30 20:54:01.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.6.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.6.1/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v5.2.0/lambda/mod.ts";
@@ -142,11 +142,11 @@ export const git: Plug[] = [
               denops,
               async () => {
                 await mapping.map(denops, "h", "<Plug>(gin-action-stage)", {
-                  mode: "n",
+                  mode: ["n", "x"],
                   buffer: true,
                 });
                 await mapping.map(denops, "l", "<Plug>(gin-action-unstage)", {
-                  mode: "n",
+                  mode: ["n", "x"],
                   buffer: true,
                 });
               },
