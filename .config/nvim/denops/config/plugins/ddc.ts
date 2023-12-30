@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/24 22:57:16.
+// Last Change : 2023/12/30 10:31:43.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
@@ -124,6 +124,9 @@ export const ddc: Plug[] = [
           for await (
             const dirEntry of Deno.readDir(userSnippetsDir)
           ) {
+            if (!dirEntry.name.endsWith(".toml")) {
+              continue;
+            }
             await denops.call(
               `denippet#load`,
               await fn.expand(denops, `${userSnippetsDir}/${dirEntry.name}`),
