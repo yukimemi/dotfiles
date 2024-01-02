@@ -11,7 +11,7 @@ import * as fn from "https://deno.land/x/denops_std@v5.2.0/function/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v5.2.0/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.2.0/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.2.0/variable/mod.ts";
-import { pluginStatus } from "../main.ts";
+import { pluginStatus } from "../pluginstatus.ts";
 
 export const fern: Plug[] = [
   {

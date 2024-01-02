@@ -10,7 +10,7 @@ import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.2.0/helper/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v5.2.0/lambda/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.2.0/variable/mod.ts";
-import { pluginStatus } from "../main.ts";
+import { pluginStatus } from "../pluginstatus.ts";
 
 export const statusline: Plug[] = [
   {

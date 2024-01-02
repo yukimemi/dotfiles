@@ -12,7 +12,7 @@ import * as vars from "https://deno.land/x/denops_std@v5.2.0/variable/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.2.0/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.2.0/helper/mod.ts";
 
-import { pluginStatus } from "../main.ts";
+import { pluginStatus } from "../pluginstatus.ts";
 import { ensureDir } from "https://deno.land/std@0.210.0/fs/ensure_dir.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
 

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2023/12/31 20:40:23.
+// Last Change : 2024/01/02 23:34:33.
 // =============================================================================
 
 import { type Denops } from "https://deno.land/x/denops_std@v5.2.0/mod.ts";
@@ -13,6 +13,7 @@ import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v5.2.0/helper/mod.ts";
 import { notify } from "./util.ts";
 import { plugins } from "./plugins.ts";
+import { pluginStatus } from "./pluginstatus.ts";
 import { setFiletype } from "./filetype.ts";
 import { setKeymapPost, setKeymapPre } from "./keymap.ts";
 import { setCommandPost, setCommandPre } from "./command.ts";
@@ -22,35 +23,6 @@ import { setNvy } from "./nvy.ts";
 import { setFvim } from "./fvim.ts";
 import { setOption } from "./option.ts";
 import { cacheLua, cacheVim } from "./cache.ts";
-
-export const pluginStatus = {
-  autopairs: false,
-  barbecue: true,
-  bufferline: false,
-  buffertabs: false,
-  cmp: false,
-  coc: true,
-  ddc: false,
-  ddu: true,
-  fern: false,
-  heirline: false,
-  hlchunk: false,
-  indentblankline: true,
-  insx: true,
-  lualine: true,
-  modesearch: false,
-  neotree: true,
-  notifier: false,
-  nvimnotify: true,
-  nvimtree: false,
-  snipewin: true,
-  ultimatepair: false,
-  vimwiki: false,
-  vscode: false,
-  windowpicker: false,
-  yankround: true,
-  yanky: false,
-};
 
 export async function main(denops: Denops): Promise<void> {
   const starttime = performance.now();

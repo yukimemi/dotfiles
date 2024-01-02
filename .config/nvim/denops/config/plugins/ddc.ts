@@ -13,7 +13,7 @@ import type { Plug } from "https://deno.land/x/dvpm@3.6.1/mod.ts";
 import { Denops } from "https://deno.land/x/denops_core@v5.0.0/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
 import { exists } from "https://deno.land/std@0.210.0/fs/exists.ts";
-import { pluginStatus } from "../main.ts";
+import { pluginStatus } from "../pluginstatus.ts";
 
 export const ddc: Plug[] = [
   {

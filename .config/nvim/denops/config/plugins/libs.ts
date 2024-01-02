@@ -12,11 +12,12 @@ import * as mapping from "https://deno.land/x/denops_std@v5.2.0/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.2.0/variable/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
 import { exists } from "https://deno.land/std@0.210.0/fs/mod.ts";
-import { pluginStatus } from "../main.ts";
+import { pluginStatus } from "../pluginstatus.ts";
 
 export const libs: Plug[] = [
   {
     url: "https://github.com/vim-denops/denops.vim",
+    branch: "v5.0.0",
     cache: {
       // deno-lint-ignore require-await
       enabled: async ({ denops }) => denops.meta.platform === "windows" && false,

@@ -8,7 +8,7 @@ import type { Plug } from "https://deno.land/x/dvpm@3.6.1/mod.ts";
 
 import * as mapping from "https://deno.land/x/denops_std@v5.2.0/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.2.0/variable/mod.ts";
-import { pluginStatus } from "../main.ts";
+import { pluginStatus } from "../pluginstatus.ts";
 
 export const motion: Plug[] = [
   {

@@ -13,7 +13,7 @@ import * as mapping from "https://deno.land/x/denops_std@v5.2.0/mapping/mod.ts";
 import * as op from "https://deno.land/x/denops_std@v5.2.0/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.2.0/variable/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
-import { pluginStatus } from "../main.ts";
+import { pluginStatus } from "../pluginstatus.ts";
 
 export const coc: Plug[] = [
   {
