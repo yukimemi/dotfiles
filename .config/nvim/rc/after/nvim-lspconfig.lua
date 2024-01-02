@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-lspconfig.lua
 -- Author      : yukimemi
--- Last Change : 2023/12/16 21:11:19.
+-- Last Change : 2023/12/31 20:28:03.
 -- =============================================================================
 
 require("mason").setup({
@@ -74,7 +74,7 @@ end
 
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
--- local capabilities = require("ddc_nvim_lsp").make_client_capabilities()
+-- local capabilities = require("ddc_source_lsp").make_client_capabilities()
 -- capabilities.textDocument.foldingRange = {
 --   dynamicRegistration = false,
 --   lineFoldingOnly = true,

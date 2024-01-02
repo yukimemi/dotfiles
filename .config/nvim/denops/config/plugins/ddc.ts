@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/30 10:31:43.
+// Last Change : 2023/12/31 20:25:16.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
@@ -56,7 +56,7 @@ export const ddc: Plug[] = [
         enabled: false,
         dependencies: [
           { url: "https://github.com/hrsh7th/vim-vsnip-integ", enabled: false },
-          { url: "https://github.com/uga-rosa/ddc-source-vsnip" },
+          { url: "https://github.com/uga-rosa/ddc-source-vsnip", enabled: false },
           { url: "https://github.com/rafamadriz/friendly-snippets" },
         ],
         before: async ({ denops }) => {
