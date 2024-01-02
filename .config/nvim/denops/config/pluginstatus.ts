@@ -32,4 +32,3 @@ export const pluginStatus = {
   yankround: true,
   yanky: false,
 };
-
