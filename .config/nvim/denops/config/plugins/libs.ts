@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/01/03 14:26:45.
+// Last Change : 2024/01/03 20:00:46.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.7.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.7.1/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.2.0/function/mod.ts";
@@ -17,7 +17,7 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const libs: Plug[] = [
   {
     url: "https://github.com/vim-denops/denops.vim",
-    branch: "v6-pre",
+    // branch: "v6-pre",
     cache: {
       // deno-lint-ignore require-await
       enabled: async ({ denops }) => denops.meta.platform === "windows" && false,
