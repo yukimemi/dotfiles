@@ -1,6 +1,6 @@
 {
-  "suggest.enablePreselect": false,
   "suggest.noselect": true,
+  "suggest.virtualText": true,
   "[typescript][typescriptreact][rust][xml][lua][ps1]": {
     "coc.preferences.formatOnSave": true
   },

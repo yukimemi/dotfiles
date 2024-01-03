@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2023/12/04 01:28:13.
+// Last Change : 2024/01/03 14:20:56.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.7.0/mod.ts";
@@ -14,6 +14,7 @@ import * as op from "https://deno.land/x/denops_std@v5.2.0/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v5.2.0/variable/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
 import { pluginStatus } from "../pluginstatus.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.2.0/helper/mod.ts";
 
 export const coc: Plug[] = [
   {
@@ -62,15 +63,51 @@ export const coc: Plug[] = [
       await mapping.map(denops, "<c-j>", "<Plug>(coc-snippets-expand-jump)", {
         mode: "i",
       });
+      await mapping.map(denops, "<c-j>", "<Plug>(coc-snippets-select)", {
+        mode: "v",
+      });
       // Use <leader>x for convert visual selected code to snippet
       await mapping.map(denops, "<leader>x", "<Plug>(coc-convert-snippet)", {
         mode: "x",
       });
-      // Use <c-space> to trigger completion
-      await mapping.map(denops, "<c-space>", "coc#refresh()", {
-        silent: true,
+      await vars.g.set(denops, "coc_snippet_next", "<c-j>");
+      await vars.g.set(denops, "coc_snippet_prev", "<c-k>");
+
+      await execute(
+        denops,
+        `
+          inoremap <silent><expr> <TAB>
+                \\ coc#pum#visible() ? coc#_select_confirm() :
+                \\ coc#expandableOrJumpable() ? "\\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\\<CR>" :
+                \\ CheckBackspace() ? "\\<TAB>" :
+                \\ coc#refresh()
+
+          function! CheckBackspace() abort
+            let col = col('.') - 1
+            return !col || getline('.')[col - 1]  =~# '\s'
+          endfunction
+        `,
+      );
+
+      await mapping.map(denops, "<c-n>", `coc#pum#visible() ? coc#pum#next(0) : "\\<c-n>"`, {
         expr: true,
         mode: "i",
+        noremap: true,
+        silent: true,
+      });
+      await mapping.map(denops, "<c-p>", `coc#pum#visible() ? coc#pum#prev(0) : "\\<c-p>"`, {
+        expr: true,
+        mode: "i",
+        noremap: true,
+        silent: true,
+      });
+
+      // Use <c-space> to trigger completion
+      await mapping.map(denops, "<c-space>", "coc#refresh()", {
+        expr: true,
+        mode: "i",
+        noremap: true,
+        silent: true,
       });
       await mapping.map(denops, "[d", "<Plug>(coc-diagnostic-prev)", {
         silent: true,
