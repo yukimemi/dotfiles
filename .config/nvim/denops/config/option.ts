@@ -18,17 +18,16 @@ import { ensureDir } from "https://deno.land/std@0.210.0/fs/ensure_dir.ts";
 import { stdpath } from "https://deno.land/x/denops_std@v5.2.0/function/nvim/mod.ts";
 
 export async function setOption(denops: Denops) {
-  const backupdir =
-    denops.meta.host === "nvim"
-      ? ensure(await stdpath(denops, "cache"), is.String)
-      : ensure(await fn.expand(denops, "~/.cache/vim/back"), is.String);
+  const backupdir = denops.meta.host === "nvim"
+    ? ensure(await stdpath(denops, "cache"), is.String)
+    : ensure(await fn.expand(denops, "~/.cache/vim/back"), is.String);
   await ensureDir(backupdir);
 
   await batch(denops, async (denops: Denops) => {
     await option.encoding.set(denops, "utf-8");
     await option.fileencodings.set(
       denops,
-      "ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1"
+      "ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1",
     );
     await option.fileformats.set(denops, "unix,dos,mac");
 
@@ -46,7 +45,7 @@ export async function setOption(denops: Denops) {
     await option.list.set(denops, true);
     await option.listchars.set(
       denops,
-      "tab:¦ ,trail:-,extends:»,precedes:«,nbsp:%"
+      "tab:¦ ,trail:-,extends:»,precedes:«,nbsp:%",
     );
     await option.more.set(denops, false);
     await option.mouse.set(denops, "a");
@@ -97,21 +96,23 @@ export async function setOption(denops: Denops) {
       helper.define(
         "BufReadPost",
         "*",
-        `call <SID>${denops.name}_notify("${lambda.register(
-          denops,
-          async () => {
-            const lastpos = await fn.line(denops, `'"`);
-            const lastLine = await fn.line(denops, "$");
-            if (lastpos > 0 && lastpos <= lastLine) {
-              // await denops.cmd('normal! g`"');
-            }
-          }
-        )}", [])`
+        `call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              const lastpos = await fn.line(denops, `'"`);
+              const lastLine = await fn.line(denops, "$");
+              if (lastpos > 0 && lastpos <= lastLine) {
+                // await denops.cmd('normal! g`"');
+              }
+            },
+          )
+        }", [])`,
       );
       helper.define(
         ["CursorHold", "FocusGained", "FocusLost"],
         "*",
-        `silent! checktime`
+        `silent! checktime`,
       );
     });
 
@@ -129,7 +130,7 @@ export async function setOption(denops: Denops) {
             endif
           endfunction
         augroup END
-      `
+      `,
     );
     await helper.execute(
       denops,
@@ -146,7 +147,7 @@ export async function setOption(denops: Denops) {
           endwhile
         endfunction
         command! ShowQfLists call <sid>show_qf_lists()
-      `
+      `,
     );
   });
 }
