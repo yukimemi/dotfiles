@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/12/04 01:27:52.
+// Last Change : 2024/01/06 01:34:13.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.7.2/mod.ts";
@@ -443,5 +443,11 @@ export const util: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("data-viewer").setup()`);
     },
+  },
+  {
+    url: "https://github.com/atusy/treemonkey.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    afterFile: "~/.config/nvim/rc/after/treemonkey.lua",
   },
 ];
