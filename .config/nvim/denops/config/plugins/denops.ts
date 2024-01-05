@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/01/03 11:35:50.
+// Last Change : 2024/01/06 01:24:10.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.7.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.7.2/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v5.2.0/function/mod.ts";
@@ -391,6 +391,19 @@ export const denops: Plug[] = [
         url: "https://github.com/oxfist/night-owl.nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
+      },
+      {
+        url: "https://github.com/scottmckendry/cyberdream.nvim",
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
+        after: async ({ denops }) => {
+          await denops.call(`luaeval`, `require("cyberdream").setup(_A)`, {
+            transparent: true,
+            italic_comments: true,
+            hide_fillchars: true,
+            boarderless_telescope: true,
+          });
+        },
       },
     ],
     before: async ({ denops }) => {
