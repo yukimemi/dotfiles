@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/01/06 01:24:10.
+// Last Change : 2024/01/06 09:28:18.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.7.2/mod.ts";
@@ -185,7 +185,7 @@ export const denops: Plug[] = [
     dst: "~/src/github.com/yukimemi/dps-autodate",
     before: async ({ denops }) => {
       await vars.g.set(denops, "autodate_debug", false);
-      await vars.g.set(denops, "autodate_notify", true);
+      await vars.g.set(denops, "autodate_notify", false);
       await vars.g.set(denops, "autodate_config", {
         xml: {
           replace: [
@@ -393,6 +393,17 @@ export const denops: Plug[] = [
         enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
+        url: "https://github.com/crispybaccoon/evergarden",
+        // deno-lint-ignore require-await
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
+        after: async ({ denops }) => {
+          await denops.call(`luaeval`, `require("evergarden").setup(_A)`, {
+            transparent_background: true,
+            constrast_dark: "medium",
+          });
+        },
+      },
+      {
         url: "https://github.com/scottmckendry/cyberdream.nvim",
         // deno-lint-ignore require-await
         enabled: async ({ denops }) => denops.meta.host === "nvim",
@@ -410,7 +421,7 @@ export const denops: Plug[] = [
       await vars.g.set(denops, "randomcolorscheme_debug", false);
       await vars.g.set(denops, "randomcolorscheme_echo", false);
       await vars.g.set(denops, "randomcolorscheme_notify", true);
-      await vars.g.set(denops, "randomcolorscheme_interval", 600);
+      await vars.g.set(denops, "randomcolorscheme_interval", 100);
       // await globals.set(denops, "randomcolorscheme_checkwait", 30000);
       await vars.g.set(denops, "randomcolorscheme_disables", [
         "evening",

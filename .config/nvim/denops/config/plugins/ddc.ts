@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/01/03 20:31:29.
+// Last Change : 2024/01/06 01:48:32.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
@@ -35,6 +35,8 @@ export const ddc: Plug[] = [
         after: async ({ denops }) => {
           await denops.call("pum#set_option", {
             // item_orders: ["kind", "space", "abbr", "space", "menu"],
+            auto_confirm_time: 0,
+            auto_select: false,
             scrollbar_char: "┃",
             offset_cmdrow: 0,
             offset_cmdcol: 0,

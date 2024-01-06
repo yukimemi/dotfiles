@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/01/06 01:34:13.
+// Last Change : 2024/01/06 01:41:39.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.7.2/mod.ts";
@@ -449,5 +449,13 @@ export const util: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     afterFile: "~/.config/nvim/rc/after/treemonkey.lua",
+  },
+  {
+    url: "https://github.com/ariel-frischer/bmessages.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("bmessages").setup()`);
+    },
   },
 ];
