@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/01/03 14:28:30.
+// Last Change : 2024/01/06 13:41:08.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.0/mod.ts";
@@ -104,10 +104,12 @@ export const lsp: Plug[] = [
         },
       },
       {
-        url: "https://github.com/simrat39/rust-tools.nvim",
-        enabled: false,
-        afterFile: "~/.config/nvim/rc/after/rust-tools.lua",
-        dependencies: [{ url: "https://github.com/neovim/nvim-lspconfig" }],
+        url: "https://github.com/mrcjkb/rustaceanvim",
+        afterFile: "~/.config/nvim/rc/after/rustaceanvim.lua",
+        dependencies: [
+          { url: "https://github.com/neovim/nvim-lspconfig" },
+          { url: "https://github.com/SmiteshP/nvim-navic" },
+        ],
       },
     ],
     afterFile: "~/.config/nvim/rc/after/nvim-lspconfig.lua",
