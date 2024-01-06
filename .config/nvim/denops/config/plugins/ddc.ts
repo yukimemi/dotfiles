@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/01/06 01:48:32.
+// Last Change : 2024/01/06 12:54:20.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
@@ -13,6 +13,7 @@ import type { Plug } from "https://deno.land/x/dvpm@3.7.2/mod.ts";
 import { Denops } from "https://deno.land/x/denops_core@v6.0.2/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.11.0/mod.ts";
 import { exists } from "https://deno.land/std@0.211.0/fs/exists.ts";
+import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const ddc: Plug[] = [
@@ -477,7 +478,11 @@ export const ddc: Plug[] = [
         await denops.call(`ddc#enable`, { context_filetype: "context_filetype" });
       }
     },
-    build: async ({ denops }) => {
+    build: async ({ denops, info }) => {
+      if (!info.isLoad) {
+        return;
+      }
+      await notify(denops, `call ddc#set_static_import_path()`);
       await denops.call(`ddc#set_static_import_path`);
     },
   },
