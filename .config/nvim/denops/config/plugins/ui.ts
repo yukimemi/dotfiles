@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/01/03 20:55:31.
+// Last Change : 2024/01/06 16:14:48.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.0/mod.ts";
@@ -22,9 +22,21 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/lukas-reineke/virt-column.nvim",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && pluginStatus.virtcolumn && !pluginStatus.vscode,
     after: async ({ denops }) => {
-      await denops.cmd(`lua require("virt-column").setup()`);
+      await denops.call(`luaeval`, `require("virt-column").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/ecthelionvi/NeoColumn.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && pluginStatus.neocolumn && !pluginStatus.vscode,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("NeoColumn").setup(_A)`, {
+        NeoColumn: 100,
+      });
     },
   },
   {
@@ -103,8 +115,8 @@ export const ui: Plug[] = [
           body: [
             { cursor: "★", texthl: "SmoothCursorRed" },
             { cursor: "☆", texthl: "SmoothCursorOrange" },
-            { cursor: "●", texthl: "SmoothCursorYellow" },
-            { cursor: "●", texthl: "SmoothCursorGreen" },
+            { cursor: "󱐋", texthl: "SmoothCursorYellow" },
+            { cursor: "󱐌", texthl: "SmoothCursorGreen" },
             { cursor: "•", texthl: "SmoothCursorAqua" },
             { cursor: ".", texthl: "SmoothCursorBlue" },
             { cursor: ".", texthl: "SmoothCursorPurple" },
