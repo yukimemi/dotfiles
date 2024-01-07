@@ -372,6 +372,10 @@ snippets:
     snippet: go install github.com/Songmu/ghg/cmd/ghg@latest
   - name: Install volta
     snippet: curl https://get.volta.sh | bash
+  - name: Install ollama
+    snippet: curl https://ollama.ai/install.sh | sh
+  - name: Install csvlens
+    snippet: cargo install csvlens
 
   # build
   - name: Build neovim (Ubuntu)

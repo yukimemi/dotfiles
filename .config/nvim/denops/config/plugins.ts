@@ -1,13 +1,14 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2023/12/30 19:37:08.
+// Last Change : 2024/01/07 11:29:12.
 // =============================================================================
 
 import { cmp } from "./plugins/cmp.ts";
 import { coc } from "./plugins/coc.ts";
 import { ddc } from "./plugins/ddc.ts";
 import { ddu } from "./plugins/ddu.ts";
+import { ai } from "./plugins/ai.ts";
 import { denops } from "./plugins/denops.ts";
 import { edit } from "./plugins/edit.ts";
 import { fern } from "./plugins/fern.ts";
@@ -35,35 +36,6 @@ import { startup } from "./plugins/startup.ts";
 import { util } from "./plugins/util.ts";
 import { memo } from "./plugins/memo.ts";
 
-export const pluginStatus = {
-  autopairs: false,
-  barbecue: true,
-  bufferline: false,
-  buffertabs: false,
-  cmp: false,
-  coc: true,
-  ddc: false,
-  ddu: true,
-  fern: false,
-  heirline: false,
-  hlchunk: false,
-  indentblankline: true,
-  insx: true,
-  lualine: true,
-  modesearch: false,
-  neotree: true,
-  notifier: false,
-  nvimnotify: true,
-  nvimtree: false,
-  snipewin: true,
-  ultimatepair: false,
-  vimwiki: false,
-  vscode: false,
-  windowpicker: false,
-  yankround: true,
-  yanky: false,
-};
-
 export const plugins = [
   ...denops,
   ...libs,
@@ -71,6 +43,7 @@ export const plugins = [
   ...ddu,
   ...tmux,
   ...coc,
+  ...ui,
   ...mini,
   ...telescope,
   ...search,
@@ -78,6 +51,7 @@ export const plugins = [
   ...neotree,
   ...nvimtree,
   ...ddc,
+  ...ai,
   ...cmp,
   ...lsp,
   ...treesitter,
@@ -88,7 +62,7 @@ export const plugins = [
   ...git,
   ...textobj,
   ...operator,
-  ...ui,
+  ...ai,
   ...statusline,
   ...twitter,
   ...terminal,
