@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/01/07 11:29:12.
+// Last Change : 2024/01/08 02:14:17.
 // =============================================================================
 
 import { cmp } from "./plugins/cmp.ts";
@@ -62,7 +62,6 @@ export const plugins = [
   ...git,
   ...textobj,
   ...operator,
-  ...ai,
   ...statusline,
   ...twitter,
   ...terminal,
