@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/01/06 12:54:20.
+// Last Change : 2024/01/08 02:42:49.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
@@ -204,10 +204,6 @@ export const ddc: Plug[] = [
     after: async ({ denops }) => {
       // commandline settings.
       const cmdLinePre = async (denops: Denops, mode: string) => {
-        const prevBufConfig = await denops.call("ddc#custom#get_buffer");
-        if (prevBufConfig) {
-          await vars.b.set(denops, "ddc_prev_buffer_config", prevBufConfig);
-        }
         if (mode === ":") {
           await denops.call("ddc#custom#patch_buffer", "sourceOptions", {
             _: {
@@ -224,14 +220,6 @@ export const ddc: Plug[] = [
             "DDCCmdlineLeave",
             `call <SID>${denops.name}_notify("${
               lambda.register(denops, async () => {
-                // Restore config.
-                if (await fn.exists(denops, "b:ddc_prev_buffer_config")) {
-                  await denops.call(
-                    "ddc#custom#set_buffer",
-                    await vars.b.get(denops, "ddc_prev_buffer_config"),
-                  );
-                  await vars.b.remove(denops, "ddc_prev_buffer_config");
-                }
               })
             }", [])`,
             { once: true },
