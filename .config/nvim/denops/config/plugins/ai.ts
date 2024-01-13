@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/01/13 13:16:47.
+// Last Change : 2024/01/13 13:17:32.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -46,37 +46,6 @@ export const ai: Plug[] = [
         temperature: 0.9,
       };
       await vars.g.set(denops, "futago_generation_config", gegerationConfig);
-    },
-    cache: {
-      enabled: false,
-      before: `
-        let g:futago_debug = v:true
-        let g:futago_chat_path = "~/.cache/nvim/futago/chat"
-        let g:futago_log_file = "~/.cache/nvim/futago/log/futago.log"
-        let g:futago_model = "gemini-pro"
-        let g:futago_safety_settings = [
-              \\ {
-              \\   "category": "HARM_CATEGORY_HATE_SPEECH",
-              \\   "threshold": "BLOCK_NONE",
-              \\ },
-              \\ {
-              \\   "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-              \\   "threshold": "BLOCK_NONE",
-              \\ },
-              \\ {
-              \\   "category": "HARM_CATEGORY_HARASSMENT",
-              \\   "threshold": "BLOCK_NONE",
-              \\ },
-              \\ {
-              \\   "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-              \\   "threshold": "BLOCK_NONE",
-              \\ }
-              \\ ]
-        let g:futago_generation_config = {
-              \\   "temperature": 0.9,
-              \\   "maxOutputTokens": 256,
-              \\ }
-      `,
     },
   },
 ];
