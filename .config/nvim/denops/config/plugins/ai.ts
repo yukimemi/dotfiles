@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/01/13 13:17:32.
+// Last Change : 2024/01/13 13:21:45.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -19,7 +19,7 @@ export const ai: Plug[] = [
     url: "https://github.com/yukimemi/futago.vim",
     dst: "~/src/github.com/yukimemi/futago.vim",
     before: async ({ denops }) => {
-      await vars.g.set(denops, "futago_debug", true);
+      await vars.g.set(denops, "futago_debug", false);
       await vars.g.set(denops, "futago_chat_path", `~/.cache/nvim/futago/chat`);
       await vars.g.set(denops, "futago_log_file", `~/.cache/nvim/futago/log/futago.log`);
       await vars.g.set(denops, "futago_model", "gemini-pro");
