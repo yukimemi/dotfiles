@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : plugins.toml
 # Author      : yukimemi
-# Last Change : 2023/12/30 20:32:24.
+# Last Change : 2024/01/09 23:36:16.
 # =============================================================================
 
 shell = "zsh"
@@ -33,9 +33,9 @@ use = ['zeno.zsh']
 [plugins.zsh-vi-mode]
 github = "jeffreytse/zsh-vi-mode"
 
-[plugins.zsh-autocomplete]
-github = "marlonrichert/zsh-autocomplete"
-apply = ["defer"]
+# [plugins.zsh-autocomplete]
+# github = "marlonrichert/zsh-autocomplete"
+# apply = ["defer"]
 
 [plugins.zsh-history-substring-search]
 github = "zsh-users/zsh-history-substring-search"
