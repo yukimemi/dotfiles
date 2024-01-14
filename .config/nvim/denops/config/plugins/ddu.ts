@@ -12,7 +12,7 @@ import * as lambda from "https://deno.land/x/denops_std@v5.2.0/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v5.2.0/mapping/mod.ts";
 import * as op from "https://deno.land/x/denops_std@v5.2.0/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v5.2.0/batch/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.14.0/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.14.1/mod.ts";
 import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
