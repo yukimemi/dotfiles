@@ -4,13 +4,13 @@
 // Last Change : 2023/12/17 16:16:59.
 // =============================================================================
 
-import * as fn from "https://deno.land/x/denops_std@v5.2.0/function/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.3.0/function/mod.ts";
 import * as fs from "https://deno.land/std@0.212.0/fs/mod.ts";
-import * as helper from "https://deno.land/x/denops_std@v5.2.0/helper/mod.ts";
-import * as nvimFn from "https://deno.land/x/denops_std@v5.2.0/function/nvim/mod.ts";
-import * as option from "https://deno.land/x/denops_std@v5.2.0/option/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v5.2.0/variable/mod.ts";
-import type { Denops } from "https://deno.land/x/denops_std@v5.2.0/mod.ts";
+import * as helper from "https://deno.land/x/denops_std@v5.3.0/helper/mod.ts";
+import * as nvimFn from "https://deno.land/x/denops_std@v5.3.0/function/nvim/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v5.3.0/option/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.3.0/variable/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v5.3.0/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.14.1/mod.ts";
 import { join } from "https://deno.land/std@0.212.0/path/join.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v0.2.0/mod.ts";

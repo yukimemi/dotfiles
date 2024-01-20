@@ -6,11 +6,11 @@
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.2.0/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.2.0/function/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v5.2.0/variable/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.2.0/mapping/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v5.2.0/helper/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v5.3.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v5.3.0/function/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v5.3.0/variable/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v5.3.0/mapping/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v5.3.0/helper/mod.ts";
 
 import { pluginStatus } from "../pluginstatus.ts";
 import { ensureDir } from "https://deno.land/std@0.212.0/fs/ensure_dir.ts";
