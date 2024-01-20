@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/01/08 02:14:17.
+// Last Change : 2024/01/20 22:12:36.
 // =============================================================================
 
 import { cmp } from "./plugins/cmp.ts";
@@ -9,6 +9,7 @@ import { coc } from "./plugins/coc.ts";
 import { ddc } from "./plugins/ddc.ts";
 import { ddu } from "./plugins/ddu.ts";
 import { ai } from "./plugins/ai.ts";
+import { run } from "./plugins/run.ts";
 import { denops } from "./plugins/denops.ts";
 import { edit } from "./plugins/edit.ts";
 import { fern } from "./plugins/fern.ts";
@@ -66,6 +67,7 @@ export const plugins = [
   ...twitter,
   ...terminal,
   ...test,
+  ...run,
   ...filetypes,
   ...startup,
 ];

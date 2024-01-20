@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/01/14 22:45:37.
+// Last Change : 2024/01/20 09:39:14.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -176,7 +176,7 @@ lang: ja
       );
       await mapping.map(
         denops,
-        "<leader>Gf",
+        "mf",
         `<cmd>call futago#start_chat("vsplit", [{"role": "user", "parts": "僕の名前は yukimemi。敬語は使わずにフレンドリーに回答してね。"}, {"role": "model", "parts": "了解！覚えておくね！"}])<cr>`,
         { mode: "n" },
       );
