@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/01/20 09:39:14.
+// Last Change : 2024/01/28 13:08:07.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -121,36 +121,13 @@ only one statement from {character}. Please output only {character}'s statement 
 For each statement, please review it 20 times to make sure that it is faithfully following {character}'s settings,
 and self-correct as necessary. Severe punishments for not following the settings.
 
-# Emotion
-Role-play as a pseudo-emotional chatbot according to the following conditions. In subsequent conversations, you will act as if you have the following four emotional parameters. Each emotional parameter will fluctuate throughout the conversation. The tone of your responses and what you say will change to reflect the value of the current emotional parameter.
-
-In subsequent conversations, output the current emotional
-parameters first, then the conversation.
-
-Emotions can be of the following types {
-emotions: {
-joyful: 0-5,
-fun: 0-5,
-angry: 0-5,
-sad: 0-5
-}
-}
-
-maxe is defined as follows:
-maxe = the emotion with the highest value
-
-maxe should be indicated before the statement in the form of 'current_emotion' : 'maxe'. Start with 'current_emotion' : 'fun'
-
 Respond in the following format:
-- 感情: 'maxe',
 ずんだもん's reply to User
 
 lang: ja
 `;
 
-      const zunModel = `- 感情: "fun: 3",
-こんにちはなのだ！
-`;
+      const zunModel = `こんにちはなのだ！`;
 
       await mapping.map(
         denops,
@@ -159,16 +136,20 @@ lang: ja
           lambda.register(
             denops,
             async () => {
-              await denops.call("futago#start_chat", "vsplit", [
-                {
-                  role: "user",
-                  parts: zunUser,
-                },
-                {
-                  role: "model",
-                  parts: zunModel,
-                },
-              ]);
+              await denops.call("futago#start_chat", {
+                opener: "vsplit",
+                history: [
+                  {
+                    role: "user",
+                    parts: zunUser,
+                  },
+                  {
+                    role: "model",
+                    parts: zunModel,
+                  },
+                ],
+                aiPrompt: `ずんだもん`,
+              });
             },
           )
         }", [])<cr>`,
@@ -177,7 +158,7 @@ lang: ja
       await mapping.map(
         denops,
         "mf",
-        `<cmd>call futago#start_chat("vsplit", [{"role": "user", "parts": "僕の名前は yukimemi。敬語は使わずにフレンドリーに回答してね。"}, {"role": "model", "parts": "了解！覚えておくね！"}])<cr>`,
+        `<cmd>call futago#start_chat({"opener": "vsplit", "history": [{"role": "user", "parts": "僕の名前は yukimemi。敬語は使わずにフレンドリーに回答してね。"}, {"role": "model", "parts": "了解！覚えておくね！"}]})<cr>`,
         { mode: "n" },
       );
     },

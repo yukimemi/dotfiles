@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : test.ts
 // Author      : yukimemi
-// Last Change : 2023/10/08 12:12:03.
+// Last Change : 2024/01/28 10:30:49.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -18,9 +18,9 @@ export const test: Plug[] = [
       { url: "https://github.com/skywind3000/asyncrun.vim" },
     ],
     before: async ({ denops }) => {
-      await vars.g.set(denops, "test#strategy", "floaterm");
+      await vars.g.set(denops, "test#strategy", "neovim");
       await vars.g.set(denops, "test#javascript#denotest#options", {
-        all: "--no-check --unstable -A",
+        all: "--no-check --unstable-kv -A",
       });
     },
     after: async ({ denops }) => {

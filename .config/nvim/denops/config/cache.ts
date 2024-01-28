@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2023/11/03 08:45:00.
+// Last Change : 2024/01/28 15:17:34.
 // =============================================================================
 
 export function cacheVim() {
@@ -14,6 +14,16 @@ export function cacheVim() {
               \\ | echomsg 'startuptime: ' .. reltimestr(s:startuptime)
       endif
       au MyAutoCmd SwapExists * let v:swapchoice = 'o'
+
+      nnoremap <space>Fc <Cmd>call futago#start_chat({
+        \\ "opener": "vsplit",
+        \\ "history": [
+        \\   {"role": "user", "parts": "僕の名前は yukimemi"},
+        \\   {"role": "model", "parts": "了解！覚えておくね"}
+        \\ ],
+        \\ "humanPrompt": "yukimemi"
+        \\ })<cr>
+
     `,
     path: "~/.cache/nvim/dvpm/cache/plugin/dvpm_cache.vim",
   };

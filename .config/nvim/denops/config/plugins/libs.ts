@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/01/04 08:04:02.
+// Last Change : 2024/01/28 09:37:25.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -18,13 +18,7 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/vim-denops/denops.vim",
     branch: "v6-pre",
-    cache: {
-      // deno-lint-ignore require-await
-      enabled: async ({ denops }) => denops.meta.platform === "windows" && false,
-      before: `
-        let g:denops_server_addr = '127.0.0.1:32123'
-      `,
-    },
+    cache: { beforeFile: `~/.config/nvim/rc/after/denops.lua` },
   },
   {
     url: "https://github.com/vim-denops/denops-shared-server.vim",
