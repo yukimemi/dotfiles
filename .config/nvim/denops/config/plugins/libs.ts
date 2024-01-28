@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/01/28 15:37:10.
+// Last Change : 2024/01/28 15:39:02.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -18,7 +18,7 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/vim-denops/denops.vim",
     branch: "v6-pre",
-    cache: { beforeFile: `~/.config/nvim/rc/after/denops.lua` },
+    cache: { beforeFile: `~/.config/nvim/rc/before/denops.lua` },
   },
   {
     url: "https://github.com/vim-denops/denops-shared-server.vim",
