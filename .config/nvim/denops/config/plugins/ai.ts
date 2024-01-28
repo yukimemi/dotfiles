@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/01/28 13:08:07.
+// Last Change : 2024/01/28 18:51:47.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -121,9 +121,6 @@ only one statement from {character}. Please output only {character}'s statement 
 For each statement, please review it 20 times to make sure that it is faithfully following {character}'s settings,
 and self-correct as necessary. Severe punishments for not following the settings.
 
-Respond in the following format:
-ずんだもん's reply to User
-
 lang: ja
 `;
 
@@ -158,7 +155,7 @@ lang: ja
       await mapping.map(
         denops,
         "mf",
-        `<cmd>call futago#start_chat({"opener": "vsplit", "history": [{"role": "user", "parts": "僕の名前は yukimemi。敬語は使わずにフレンドリーに回答してね。"}, {"role": "model", "parts": "了解！覚えておくね！"}]})<cr>`,
+        `<cmd>call futago#start_chat({"opener": "vsplit", "humanPrompt": "yukimemi", "history": [{"role": "user", "parts": "僕の名前は yukimemi。敬語は使わずにフレンドリーに回答してね。"}, {"role": "model", "parts": "了解！覚えておくね！"}]})<cr>`,
         { mode: "n" },
       );
     },
