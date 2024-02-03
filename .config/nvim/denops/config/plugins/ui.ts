@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/01/06 16:14:48.
+// Last Change : 2024/02/03 14:53:17.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -235,23 +235,11 @@ export const ui: Plug[] = [
     url: "https://github.com/b0o/incline.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("incline").setup(_A)`, {
-        window: {
-          width: "fit",
-          placement: { horizontal: "right", vertical: "top" },
-          margin: {
-            horizontal: { left: 1, right: 0 },
-            vertical: { bottom: 0, top: 1 },
-          },
-          padding: { left: 1, right: 1 },
-          padding_char: " ",
-          winhighlight: {
-            Normal: "TreesitterContext",
-          },
-        },
-      });
-    },
+    dependencies: [
+      { url: "https://github.com/nvim-tree/nvim-web-devicons" },
+      { url: "https://github.com/lewis6991/gitsigns.nvim" },
+    ],
+    afterFile: `~/.config/nvim/rc/after/incline.lua`,
   },
   {
     url: "https://github.com/akinsho/bufferline.nvim",
