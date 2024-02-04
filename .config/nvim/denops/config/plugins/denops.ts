@@ -6,13 +6,13 @@
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v5.3.0/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v5.3.0/function/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v5.3.0/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v5.3.0/mapping/mod.ts";
-import * as nvimFn from "https://deno.land/x/denops_std@v5.3.0/function/nvim/mod.ts";
-import * as option from "https://deno.land/x/denops_std@v5.3.0/option/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v5.3.0/variable/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v6.0.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.0.0/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v6.0.0/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v6.0.0/mapping/mod.ts";
+import * as nvimFn from "https://deno.land/x/denops_std@v6.0.0/function/nvim/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v6.0.0/option/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.0.0/variable/mod.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const denops: Plug[] = [
