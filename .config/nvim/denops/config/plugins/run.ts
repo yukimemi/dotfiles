@@ -4,7 +4,7 @@
 // Last Change : 2024/01/20 22:22:33.
 // =============================================================================
 
-import * as vars from "https://deno.land/x/denops_std@v6.0.0/variable/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.0.1/variable/mod.ts";
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
 
 export const run: Plug[] = [

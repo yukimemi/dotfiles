@@ -4,13 +4,13 @@
 // Last Change : 2024/01/02 23:34:33.
 // =============================================================================
 
-import { type Denops } from "https://deno.land/x/denops_std@v6.0.0/mod.ts";
+import { type Denops } from "https://deno.land/x/denops_std@v6.0.1/mod.ts";
 import { type Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
 
-import * as fn from "https://deno.land/x/denops_std@v6.0.0/function/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.0.1/function/mod.ts";
 import { Dvpm } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.14.1/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v6.0.0/helper/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v6.0.1/helper/mod.ts";
 import { notify } from "./util.ts";
 import { plugins } from "./plugins.ts";
 import { pluginStatus } from "./pluginstatus.ts";
