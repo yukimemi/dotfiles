@@ -15,7 +15,7 @@ import { ensure, is } from "https://deno.land/x/unknownutil@v3.15.0/mod.ts";
 import { join } from "https://deno.land/std@0.215.0/path/join.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v0.2.0/mod.ts";
 
-const useNvimNotify = true;
+const useNvimNotify = false;
 
 export async function notify(
   denops: Denops,
