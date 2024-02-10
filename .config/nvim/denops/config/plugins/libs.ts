@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/02/04 22:14:14.
+// Last Change : 2024/02/10 16:11:56.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -35,6 +35,14 @@ export const libs: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     cache: { enabled: true },
+  },
+  {
+    url: "https://github.com/j-hui/fidget.nvim",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) =>
+      denops.meta.host === "nvim" && pluginStatus.fidget &&
+      !pluginStatus.vscode,
+    cache: { afterFile: "~/.config/nvim/rc/after/fidget.lua" },
   },
   {
     url: "https://github.com/rcarriga/nvim-notify",

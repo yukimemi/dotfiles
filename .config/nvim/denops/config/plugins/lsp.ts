@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/01/06 13:41:08.
+// Last Change : 2024/02/10 15:44:59.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -15,13 +15,6 @@ export const lsp: Plug[] = [
     enabled: async ({ denops }) =>
       denops.meta.host === "nvim" && !pluginStatus.coc && !pluginStatus.vscode,
     dependencies: [
-      {
-        url: "https://github.com/j-hui/fidget.nvim",
-        branch: "legacy",
-        after: async ({ denops }) => {
-          await denops.cmd(`lua require("fidget").setup()`);
-        },
-      },
       {
         url: "https://github.com/zbirenbaum/neodim",
         enabled: false,
