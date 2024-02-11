@@ -1,33 +1,31 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2024/02/10 17:42:27.
+// Last Change : 2024/02/11 18:26:23.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
-
 import * as mapping from "https://deno.land/x/denops_std@v6.0.1/mapping/mod.ts";
-
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const search: Plug[] = [
   { url: "https://github.com/lambdalisue/reword.vim" },
   {
     url: "https://github.com/haya14busa/vim-asterisk",
-    after: async ({ denops }) => {
-      await mapping.map(denops, "*", "<Plug>(asterisk-z*)zv", {
-        mode: ["n", "o", "x"],
-      });
-      await mapping.map(denops, "g*", "<Plug>(asterisk-gz*)zv", {
-        mode: ["n", "o", "x"],
-      });
-      await mapping.map(denops, "#", "<Plug>(asterisk-z#)zv", {
-        mode: ["n", "o", "x"],
-      });
-      await mapping.map(denops, "g#", "<Plug>(asterisk-gz#)zv", {
-        mode: ["n", "o", "x"],
-      });
-    },
+    // after: async ({ denops }) => {
+    //   await mapping.map(denops, "*", "<Plug>(asterisk-z*)zv", {
+    //     mode: ["n", "o", "x"],
+    //   });
+    //   await mapping.map(denops, "g*", "<Plug>(asterisk-gz*)zv", {
+    //     mode: ["n", "o", "x"],
+    //   });
+    //   await mapping.map(denops, "#", "<Plug>(asterisk-z#)zv", {
+    //     mode: ["n", "o", "x"],
+    //   });
+    //   await mapping.map(denops, "g#", "<Plug>(asterisk-gz#)zv", {
+    //     mode: ["n", "o", "x"],
+    //   });
+    // },
   },
   {
     url: "https://github.com/monaqa/modesearch.nvim",

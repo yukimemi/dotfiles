@@ -80,8 +80,8 @@ F9::
 ; for Teams
 ^F12::
 {
-  Activate(EnvGet("APPDATA") . "Local\Microsoft\Teams\current\Teams.exe")
-  ; Activate("C:\Program Files\WindowsApps\MSTeams_23272.2707.2453.769_x86__8wekyb3d8bbwe\ms-teams.exe")
+  ; Activate(EnvGet("APPDATA") . "Local\Microsoft\Teams\current\Teams.exe")
+  Activate("C:\Program Files\WindowsApps\MSTeams_23272.2707.2453.769_x86__8wekyb3d8bbwe\ms-teams.exe")
   return
 }
 
