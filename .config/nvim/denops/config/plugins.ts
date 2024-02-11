@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/01/20 22:12:36.
+// Last Change : 2024/01/15 19:38:59.
 // =============================================================================
 
 import { cmp } from "./plugins/cmp.ts";
@@ -52,7 +52,6 @@ export const plugins = [
   ...neotree,
   ...nvimtree,
   ...ddc,
-  ...ai,
   ...cmp,
   ...lsp,
   ...treesitter,
@@ -70,4 +69,5 @@ export const plugins = [
   ...run,
   ...filetypes,
   ...startup,
+  ...ai,
 ];

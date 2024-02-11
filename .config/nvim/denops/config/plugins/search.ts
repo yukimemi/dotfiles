@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2023/12/16 12:33:28.
+// Last Change : 2024/02/10 17:42:27.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -46,5 +46,9 @@ export const search: Plug[] = [
         mode: "c",
       });
     },
+  },
+  {
+    url: "https://github.com/kevinhwang91/nvim-hlslens",
+    afterFile: "~/.config/nvim/rc/after/nvim-hlslens.lua",
   },
 ];
