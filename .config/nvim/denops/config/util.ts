@@ -11,7 +11,7 @@ import * as nvimFn from "https://deno.land/x/denops_std@v6.0.1/function/nvim/mod
 import * as option from "https://deno.land/x/denops_std@v6.0.1/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.0.1/variable/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v6.0.1/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.15.0/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.16.0/mod.ts";
 import { join } from "https://deno.land/std@0.215.0/path/join.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v0.2.0/mod.ts";
 
