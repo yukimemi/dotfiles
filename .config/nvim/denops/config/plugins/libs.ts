@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/02/10 16:11:56.
+// Last Change : 2024/02/17 10:03:27.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -123,7 +123,6 @@ export const libs: Plug[] = [
       denops.meta.host === "nvim" && !pluginStatus.vscode && denops.meta.platform !== "windows",
     dependencies: [
       { url: "https://github.com/MunifTanjim/nui.nvim" },
-      { url: "https://github.com/rcarriga/nvim-notify" },
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("noice").setup(_A)`, {
