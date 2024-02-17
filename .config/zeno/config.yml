@@ -3,12 +3,12 @@ snippets:
   - name: git
     keyword: g
     snippet: git
-  - name: git status
+  - name: jj status
     keyword: s
-    snippet: git status --short --branch
-  - name: git diff
+    snippet: jj st
+  - name: jj diff
     keyword: d
-    snippet: git diff
+    snippet: jj diff
   - name: git diff --cached
     keyword: dc
     snippet: git diff --cached
@@ -39,6 +39,9 @@ snippets:
   - name: git foresta
     keyword: gl
     snippet: git foresta | bat
+  - name: jj log
+    keyword: jl
+    snippet: jj log
   - name: git log --oneline
     keyword: glo
     snippet: git log --oneline
