@@ -41,7 +41,7 @@ snippets:
     snippet: git foresta | bat
   - name: jj log
     keyword: jl
-    snippet: jj log
+    snippet: jj l
   - name: git log --oneline
     keyword: glo
     snippet: git log --oneline
