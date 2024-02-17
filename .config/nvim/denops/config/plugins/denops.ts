@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/01/06 09:28:18.
+// Last Change : 2024/02/17 13:22:44.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -305,6 +305,7 @@ export const denops: Plug[] = [
       { url: "https://github.com/rhysd/vim-color-spring-night" },
       { url: "https://github.com/sainnhe/edge" },
       { url: "https://github.com/sainnhe/gruvbox-material" },
+      { url: "https://github.com/ellisonleao/gruvbox.nvim" },
       { url: "https://github.com/severij/vadelma" },
       { url: "https://github.com/srcery-colors/srcery-vim" },
       { url: "https://github.com/aereal/vim-colors-japanesque" },

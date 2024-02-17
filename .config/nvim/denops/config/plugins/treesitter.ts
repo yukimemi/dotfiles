@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : treesitter.ts
 // Author      : yukimemi
-// Last Change : 2023/12/03 21:37:51.
+// Last Change : 2024/02/17 13:25:53.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -65,5 +65,10 @@ export const treesitter: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
     dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
+  },
+  {
+    url: "https://github.com/4513ECHO/treesitter-compat-highlights.nvim",
+    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
+    afterFile: "~/.config/nvim/rc/after/treesitter-compat-highlights.lua",
   },
 ];

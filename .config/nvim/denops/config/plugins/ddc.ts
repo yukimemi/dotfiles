@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/01/08 02:42:49.
+// Last Change : 2024/02/17 13:13:12.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v6.0.1/autocmd/mod.ts";
@@ -38,15 +38,16 @@ export const ddc: Plug[] = [
             // item_orders: ["kind", "space", "abbr", "space", "menu"],
             auto_confirm_time: 0,
             auto_select: false,
-            scrollbar_char: "┃",
-            offset_cmdrow: 0,
+            border: "none",
+            follow_cursor: false,
             offset_cmdcol: 0,
             padding: false,
-            reversed: false,
-            border: "none",
             preview: true,
             preview_border: "none",
             preview_width: 80,
+            reversed: false,
+            scrollbar_char: "┃",
+            use_setline: false,
           });
         },
       },
@@ -291,13 +292,13 @@ export const ddc: Plug[] = [
           buffer: { mark: "" },
           line: { mark: "" },
           vsnip: { mark: "" },
+          denippet: { mark: "" },
           codeium: {
             mark: "",
             matchers: [],
             minAutoCompleteLength: 0,
             isVolatile: true,
           },
-          denippet: { mark: "" },
           file: {
             mark: "",
             isVolatile: true,
@@ -305,7 +306,8 @@ export const ddc: Plug[] = [
           },
           rg: {
             mark: "",
-            minAutoCompleteLength: 5,
+            minAutoCompleteLength: 3,
+            enabledIf: "finddir('.git', ';') != ''",
           },
           "lsp": {
             mark: "󱐋",

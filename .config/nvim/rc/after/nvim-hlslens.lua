@@ -1,10 +1,15 @@
 -- =============================================================================
 -- File        : nvim-hlslens.lua
 -- Author      : yukimemi
--- Last Change : 2024/02/11 22:46:50.
+-- Last Change : 2024/02/17 12:51:56.
 -- =============================================================================
 
-require('hlslens').setup()
+require('hlslens').setup({
+  enable_incsearch = true,
+  calm_down = true,
+  nearest_only = false,
+  nearest_float_when = 'always'
+}, false)
 
 local kopts = { noremap = true, silent = true }
 

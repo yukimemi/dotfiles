@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/01/28 15:37:20.
+// Last Change : 2024/02/17 13:35:28.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -428,7 +428,7 @@ export const util: Plug[] = [
     },
   },
   { url: "https://github.com/thinca/vim-prettyprint" },
-  { url: "https://github.com/skanehira/denops-silicon.vim", enabled: false },
+  { url: "https://github.com/skanehira/denops-silicon.vim" },
   {
     url: "https://github.com/VidocqH/data-viewer.nvim",
     // deno-lint-ignore require-await

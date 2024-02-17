@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2024/02/11 18:26:23.
+// Last Change : 2024/02/17 11:10:56.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -10,23 +10,7 @@ import { pluginStatus } from "../pluginstatus.ts";
 
 export const search: Plug[] = [
   { url: "https://github.com/lambdalisue/reword.vim" },
-  {
-    url: "https://github.com/haya14busa/vim-asterisk",
-    // after: async ({ denops }) => {
-    //   await mapping.map(denops, "*", "<Plug>(asterisk-z*)zv", {
-    //     mode: ["n", "o", "x"],
-    //   });
-    //   await mapping.map(denops, "g*", "<Plug>(asterisk-gz*)zv", {
-    //     mode: ["n", "o", "x"],
-    //   });
-    //   await mapping.map(denops, "#", "<Plug>(asterisk-z#)zv", {
-    //     mode: ["n", "o", "x"],
-    //   });
-    //   await mapping.map(denops, "g#", "<Plug>(asterisk-gz#)zv", {
-    //     mode: ["n", "o", "x"],
-    //   });
-    // },
-  },
+  { url: "https://github.com/haya14busa/vim-asterisk" },
   {
     url: "https://github.com/monaqa/modesearch.nvim",
     // deno-lint-ignore require-await
@@ -47,6 +31,9 @@ export const search: Plug[] = [
   },
   {
     url: "https://github.com/kevinhwang91/nvim-hlslens",
+    dependencies: [
+      { url: "https://github.com/haya14busa/vim-asterisk" },
+    ],
     afterFile: "~/.config/nvim/rc/after/nvim-hlslens.lua",
   },
 ];

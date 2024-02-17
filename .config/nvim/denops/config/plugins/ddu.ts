@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/01/06 12:52:31.
+// Last Change : 2024/02/17 13:21:00.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -330,7 +330,7 @@ export const ddu: Plug[] = [
                       prompt: "»",
                       split: "horizontal",
                       startAutoAction: true,
-                      startFilter: true,
+                      startFilter: false,
                       filterSplitDirection: "floating",
                       filterFloatingPosition: "bottom",
                       previewHeight: height,
