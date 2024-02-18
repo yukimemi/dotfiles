@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/02/17 13:22:44.
+// Last Change : 2024/02/18 10:25:11.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -455,8 +455,8 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "https://github.com/yukimemi/dps-hitori",
-    dst: "~/src/github.com/yukimemi/dps-hitori",
+    url: "https://github.com/yukimemi/hitori.vim",
+    dst: "~/src/github.com/yukimemi/hitori.vim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "nvim",
     before: async ({ denops }) => {
