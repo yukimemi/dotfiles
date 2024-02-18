@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/02/18 14:57:22.
+// Last Change : 2024/02/18 20:14:26.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -470,6 +470,7 @@ export const denops: Plug[] = [
         ".tmp$",
         ".diff$",
         ".dump$",
+        ".jjdescription$",
         "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$",
       ]);
     },
