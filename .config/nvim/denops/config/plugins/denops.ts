@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/02/18 10:25:11.
+// Last Change : 2024/02/18 14:57:22.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -281,9 +281,9 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "https://github.com/yukimemi/dps-randomcolorscheme",
+    url: "https://github.com/yukimemi/spectrism.vim",
     enabled: !pluginStatus.vscode,
-    dst: "~/src/github.com/yukimemi/dps-randomcolorscheme",
+    dst: "~/src/github.com/yukimemi/spectrism.vim",
     dependencies: [
       { url: "https://github.com/4513ECHO/vim-colors-hatsunemiku" },
       { url: "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim" },
@@ -356,7 +356,7 @@ export const denops: Plug[] = [
       {
         url: "https://github.com/RRethy/nvim-base16",
         // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
+        enabled: async ({ denops }) => denops.meta.host === "nvim",
       },
       {
         url: "https://github.com/catppuccin/nvim",
@@ -419,23 +419,23 @@ export const denops: Plug[] = [
       },
     ],
     before: async ({ denops }) => {
-      await vars.g.set(denops, "randomcolorscheme_debug", false);
-      await vars.g.set(denops, "randomcolorscheme_echo", false);
-      await vars.g.set(denops, "randomcolorscheme_notify", true);
-      await vars.g.set(denops, "randomcolorscheme_interval", 100);
-      // await globals.set(denops, "randomcolorscheme_checkwait", 30000);
-      await vars.g.set(denops, "randomcolorscheme_disables", [
+      await vars.g.set(denops, "spectrism_debug", false);
+      await vars.g.set(denops, "spectrism_echo", false);
+      await vars.g.set(denops, "spectrism_notify", true);
+      await vars.g.set(denops, "spectrism_interval", 100);
+      // await globals.set(denops, "spectrism_checkwait", 30000);
+      await vars.g.set(denops, "spectrism_disables", [
         "evening",
         "default",
         "blue",
       ]);
       await vars.g.set(
         denops,
-        "randomcolorscheme_path",
-        await fn.expand(denops, "~/.config/randomcolorscheme/colorscheme.toml"),
+        "spectrism_path",
+        await fn.expand(denops, "~/.config/spectrism/colorscheme.toml"),
       );
-      await vars.g.set(denops, "randomcolorscheme_notmatch", "[Ll]ight");
-      await vars.g.set(denops, "randomcolorscheme_background", "dark");
+      await vars.g.set(denops, "spectrism_notmatch", "[Ll]ight");
+      await vars.g.set(denops, "spectrism_background", "dark");
 
       await mapping.map(denops, "<space>ro", "<cmd>ChangeColorscheme<cr>", {
         mode: "n",
