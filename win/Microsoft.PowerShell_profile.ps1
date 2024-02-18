@@ -63,10 +63,13 @@ function g {
   git $args
 }
 function s {
-  git status
+  jj st
 }
 function d {
-  git diff $args
+  jj diff $args
+}
+function jl {
+  jj l $args
 }
 function a {
   git add $args

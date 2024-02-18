@@ -6,3 +6,4 @@ email = "yukimemi@gmail.com"
 
 [ui]
 default-command = "log"
+editor = "nvim"

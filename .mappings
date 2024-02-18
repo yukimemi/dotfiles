@@ -29,6 +29,7 @@
   "~/AppData/Local/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json",
 ]
 ".glaze-wm" = "~/.glaze-wm"
+".config/jj" = "~/AppData/Roaming/jj"
 
 [darwin]
 ".config/espanso" = "~/Library/Preferences/espanso"
