@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/02/18 20:14:26.
+// Last Change : 2024/02/18 20:17:49.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -172,12 +172,12 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "https://github.com/yukimemi/dps-chronicle",
-    dst: "~/src/github.com/yukimemi/dps-chronicle",
+    url: "https://github.com/yukimemi/chronicle.vim",
+    dst: "~/src/github.com/yukimemi/chronicle.vim",
     cache: {
       enabled: true,
-      beforeFile: "~/.config/nvim/rc/before/dps-chronicle.vim",
-      afterFile: "~/.config/nvim/rc/after/dps-chronicle.vim",
+      beforeFile: "~/.config/nvim/rc/before/chronicle.vim",
+      afterFile: "~/.config/nvim/rc/after/chronicle.vim",
     },
   },
   {
