@@ -4,7 +4,7 @@ Copy and paste it.
 
 ```sh
 curl -fsS https://pkgx.sh | sh
-cargo install --git https://github.com/ubnt-intrepid/dot.git
+pkgx cargo install --git https://github.com/ubnt-intrepid/dot.git
 dot init yukimemi/dotfiles
 
 # and then
