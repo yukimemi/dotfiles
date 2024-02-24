@@ -5,7 +5,7 @@
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v6.0.1/mapping/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v6.1.0/mapping/mod.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const search: Plug[] = [

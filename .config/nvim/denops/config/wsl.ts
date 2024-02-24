@@ -4,10 +4,10 @@
 // Last Change : 2023/12/03 18:51:13.
 // =============================================================================
 
-import type { Denops } from "https://deno.land/x/denops_std@v6.0.1/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.0.1/variable/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v6.1.0/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.1.0/variable/mod.ts";
 
-import * as fn from "https://deno.land/x/denops_std@v6.0.1/function/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.1.0/function/mod.ts";
 
 export async function setWsl(denops: Denops) {
   if (!(await fn.has(denops, "wsl"))) {
