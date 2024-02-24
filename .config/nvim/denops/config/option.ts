@@ -4,18 +4,18 @@
 // Last Change : 2024/01/03 12:01:28.
 // =============================================================================
 
-import type { Denops } from "https://deno.land/x/denops_std@v6.0.1/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v6.1.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v6.0.1/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.0.1/function/mod.ts";
-import * as helper from "https://deno.land/x/denops_std@v6.0.1/helper/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v6.0.1/lambda/mod.ts";
-import * as nvimOption from "https://deno.land/x/denops_std@v6.0.1/option/nvim/mod.ts";
-import * as option from "https://deno.land/x/denops_std@v6.0.1/option/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v6.0.1/batch/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v6.1.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.1.0/function/mod.ts";
+import * as helper from "https://deno.land/x/denops_std@v6.1.0/helper/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v6.1.0/lambda/mod.ts";
+import * as nvimOption from "https://deno.land/x/denops_std@v6.1.0/option/nvim/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v6.1.0/option/mod.ts";
+import { batch } from "https://deno.land/x/denops_std@v6.1.0/batch/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.16.3/mod.ts";
 import { ensureDir } from "https://deno.land/std@0.217.0/fs/ensure_dir.ts";
-import { stdpath } from "https://deno.land/x/denops_std@v6.0.1/function/nvim/mod.ts";
+import { stdpath } from "https://deno.land/x/denops_std@v6.1.0/function/nvim/mod.ts";
 
 export async function setOption(denops: Denops) {
   const backupdir = denops.meta.host === "nvim"
