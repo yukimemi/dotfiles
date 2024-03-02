@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/02/17 13:35:28.
+// Last Change : 2024/03/02 17:50:39.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -457,5 +457,9 @@ export const util: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("bmessages").setup()`);
     },
+  },
+  {
+    url: "https://github.com/m00qek/baleia.nvim",
+    afterFile: "~/.config/nvim/rc/after/baleia.vim",
   },
 ];
