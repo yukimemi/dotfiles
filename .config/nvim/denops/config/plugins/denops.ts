@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/02/24 23:00:15.
+// Last Change : 2024/03/02 22:57:08.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -98,20 +98,20 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "https://github.com/yukimemi/dps-autobackup",
-    dst: "~/src/github.com/yukimemi/dps-autobackup",
+    url: "https://github.com/yukimemi/silentsaver.vim",
+    dst: "~/src/github.com/yukimemi/silentsaver.vim",
     before: async ({ denops }) => {
-      await vars.g.set(denops, "autobackup_debug", false);
-      await vars.g.set(denops, "autobackup_enable", true);
-      await vars.g.set(denops, "autobackup_echo", false);
-      await vars.g.set(denops, "autobackup_notify", false);
-      await vars.g.set(denops, "autobackup_use_ui_select", false);
-      await vars.g.set(denops, "autobackup_events", [
+      await vars.g.set(denops, "silentsaver_debug", false);
+      await vars.g.set(denops, "silentsaver_enable", true);
+      await vars.g.set(denops, "silentsaver_echo", false);
+      await vars.g.set(denops, "silentsaver_notify", true);
+      await vars.g.set(denops, "silentsaver_use_ui_select", false);
+      await vars.g.set(denops, "silentsaver_events", [
         "CursorHold",
         "BufWritePre",
         "InsertLeave",
       ]);
-      await vars.g.set(denops, "autobackup_ignore_filetypes", [
+      await vars.g.set(denops, "silentsaver_ignore_filetypes", [
         "csv",
         "ctrlp",
         "ddu-ff",
