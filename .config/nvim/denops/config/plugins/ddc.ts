@@ -11,7 +11,7 @@ import * as mapping from "https://deno.land/x/denops_std@v6.3.0/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.3.0/variable/mod.ts";
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
 import { Denops } from "https://deno.land/x/denops_core@v6.0.5/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.16.3/mod.ts";
+import { ensure, is } from "https://deno.land/x/unknownutil@v3.17.0/mod.ts";
 import { exists } from "https://deno.land/std@0.218.2/fs/exists.ts";
 import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
