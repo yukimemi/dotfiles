@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2024/01/03 14:20:56.
+// Last Change : 2024/03/08 16:41:37.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -30,7 +30,6 @@ export const coc: Plug[] = [
     branch: "release",
     before: async ({ denops }) => {
       await vars.g.set(denops, "coc_global_extensions", [
-        "@yaegassy/coc-tailwindcss3",
         "coc-deno",
         "coc-diagnostic",
         "coc-explorer",
