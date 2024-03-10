@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cmp.ts
 // Author      : yukimemi
-// Last Change : 2024/03/09 00:04:16.
+// Last Change : 2024/03/10 09:27:37.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -19,8 +19,6 @@ export const cmp: Plug[] = [
       { url: "https://github.com/dmitmel/cmp-cmdline-history" },
       { url: "https://github.com/hrsh7th/cmp-path" },
       { url: "https://github.com/hrsh7th/cmp-vsnip" },
-      { url: "https://github.com/hrsh7th/vim-vsnip" },
-      { url: "https://github.com/hrsh7th/vim-vsnip-integ" },
       { url: "https://github.com/lukas-reineke/cmp-rg" },
       { url: "https://github.com/ray-x/cmp-treesitter" },
       { url: "https://github.com/yutkat/cmp-mocword" },
@@ -37,6 +35,11 @@ export const cmp: Plug[] = [
           { url: "https://github.com/yuki-yano/tsnip.nvim" },
           { url: "https://github.com/hrsh7th/nvim-cmp" },
         ],
+      },
+      { url: "https://github.com/hrsh7th/vim-vsnip-integ" },
+      {
+        url: "https://github.com/hrsh7th/vim-vsnip",
+        afterFile: "~/.config/nvim/rc/after/vim-vsnip.vim",
       },
     ],
     afterFile: `~/.config/nvim/rc/after/nvim-cmp.lua`,

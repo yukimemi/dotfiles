@@ -1,10 +1,11 @@
 -- =============================================================================
 -- File        : nvim-treesitter.lua
 -- Author      : yukimemi
--- Last Change : 2023/12/04 01:33:08.
+-- Last Change : 2024/03/10 12:12:07.
 -- =============================================================================
 
 require("nvim-treesitter.configs").setup({
+  ensure_installed = "all",
   sync_install = false,
   highlight = {
     enable = true,

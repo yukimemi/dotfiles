@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/02/17 13:13:12.
+// Last Change : 2024/03/10 12:15:36.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v6.3.0/autocmd/mod.ts";
@@ -47,7 +47,7 @@ export const ddc: Plug[] = [
             preview_width: 80,
             reversed: false,
             scrollbar_char: "┃",
-            use_setline: false,
+            use_setline: true,
           });
         },
       },

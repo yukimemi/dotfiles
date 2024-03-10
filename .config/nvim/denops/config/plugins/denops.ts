@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/03/02 22:57:08.
+// Last Change : 2024/03/10 18:05:53.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -50,7 +50,7 @@ export const denops: Plug[] = [
               "InsertEnter",
             ],
             set: false,
-            wait: 1000,
+            wait: 3000,
           },
         ],
       });
@@ -81,7 +81,7 @@ export const denops: Plug[] = [
               "InsertEnter",
             ],
             set: false,
-            wait: 1000,
+            wait: 3000,
           },
         ],
       });
