@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2024/03/10 18:16:13.
+// Last Change : 2024/03/17 12:36:28.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -13,8 +13,7 @@ export const search: Plug[] = [
   { url: "https://github.com/haya14busa/vim-asterisk" },
   {
     url: "https://github.com/monaqa/modesearch.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && pluginStatus.modesearch,
+    enabled: pluginStatus.modesearch,
     afterFile: "~/.config/nvim/rc/after/modesearch.lua",
   },
   {

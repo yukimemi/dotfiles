@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/03/02 17:50:39.
+// Last Change : 2024/03/17 12:44:26.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -28,8 +28,6 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/ahmedkhalf/project.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("project_nvim").setup(_A)`, {
         // Manual mode doesn't automatically change your root directory, so you have
@@ -79,8 +77,6 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/uga-rosa/ccc.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ccc").setup(_A)`, {
         highlighter: {
@@ -193,8 +189,6 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/stevearc/stickybuf.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.cmd(`lua require("stickybuf").setup()`);
     },
@@ -267,14 +261,11 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/tenxsoydev/size-matters.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     afterFile: "~/.config/nvim/rc/after/size-matters.lua",
   },
   {
     url: "https://github.com/gaoDean/autolist.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
+    enabled: false,
     afterFile: "~/.config/nvim/rc/after/autolist.lua",
   },
   {
@@ -283,8 +274,6 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/folke/todo-comments.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     dependencies: [
       { url: "https://github.com/nvim-lua/plenary.nvim" },
     ],
@@ -322,8 +311,6 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/kevinhwang91/nvim-fundo",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     dependencies: [
       { url: "https://github.com/kevinhwang91/promise-async" },
     ],
@@ -337,8 +324,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/m4xshen/hardtime.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
+    enabled: false,
     dependencies: [
       { url: "https://github.com/nvim-lua/plenary.nvim" },
       { url: "https://github.com/MunifTanjim/nui.nvim" },
@@ -349,8 +335,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/rgroli/other.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
+    enabled: false,
     afterFile: "~/.config/nvim/rc/after/other.lua",
   },
   {
@@ -364,8 +349,6 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/bennypowers/nvim-regexplainer",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     dependencies: [
       { url: "https://github.com/nvim-treesitter/nvim-treesitter" },
       { url: "https://github.com/MunifTanjim/nui.nvim" },
@@ -402,8 +385,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/tamton-aquib/zone.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && Deno.build.os !== "windows",
+    enabled: Deno.build.os !== "windows",
     clone: false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("zone").setup(_A)`, {
@@ -413,16 +395,14 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/stefanlogue/hydrate.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
+    enabled: false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hydrate").setup()`);
     },
   },
   {
     url: "https://github.com/kevinhwang91/nvim-bqf",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("bqf").setup()`);
     },
@@ -431,8 +411,6 @@ export const util: Plug[] = [
   { url: "https://github.com/skanehira/denops-silicon.vim" },
   {
     url: "https://github.com/VidocqH/data-viewer.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     dependencies: [
       { url: "https://github.com/nvim-lua/plenary.nvim" },
       {
@@ -446,14 +424,10 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/atusy/treemonkey.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     afterFile: "~/.config/nvim/rc/after/treemonkey.lua",
   },
   {
     url: "https://github.com/ariel-frischer/bmessages.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("bmessages").setup()`);
     },

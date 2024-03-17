@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/03/10 12:15:36.
+// Last Change : 2024/03/17 11:03:35.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v6.3.0/autocmd/mod.ts";
@@ -461,12 +461,7 @@ export const ddc: Plug[] = [
         },
       );
 
-      if (denops.meta.host === "nvim") {
-        await denops.call(`ddc#enable`, { context_filetype: "treesiters" });
-        // await denops.cmd(`lua require("ddc_previewer_floating").enable()`);
-      } else {
-        await denops.call(`ddc#enable`, { context_filetype: "context_filetype" });
-      }
+      await denops.call(`ddc#enable`, { context_filetype: "treesiters" });
     },
     build: async ({ denops, info }) => {
       if (!info.isLoad) {

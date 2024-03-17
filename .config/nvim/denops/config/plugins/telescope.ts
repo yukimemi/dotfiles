@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : telescope.ts
 // Author      : yukimemi
-// Last Change : 2023/12/03 13:22:18.
+// Last Change : 2024/03/17 12:37:10.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -9,8 +9,6 @@ import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
 export const telescope: Plug[] = [
   {
     url: "https://github.com/nvim-telescope/telescope.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     dependencies: [
       { url: "https://github.com/folke/which-key.nvim" },
       { url: "https://github.com/folke/trouble.nvim" },

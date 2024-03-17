@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : wiki.ts
 // Author      : yukimemi
-// Last Change : 2023/10/17 23:26:53.
+// Last Change : 2024/03/17 12:34:01.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -47,8 +47,7 @@ export const memo: Plug[] = [
   },
   {
     url: "https://github.com/Furkanzmc/zettelkasten.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
+    enabled: false,
     after: async ({ denops }) => {
       const zettelkastenPath = await fn.expand(denops, "~/.zettelkasten");
       await denops.call(`luaeval`, `require("zettelkasten").setup(_A)`, {
@@ -62,8 +61,6 @@ export const memo: Plug[] = [
       { url: "https://github.com/nvim-telescope/telescope.nvim" },
       { url: "https://github.com/renerocksai/calendar-vim" },
     ],
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("telekasten").setup(_A)`, {
         home: await fn.expand(denops, "~/.zettelkasten"),

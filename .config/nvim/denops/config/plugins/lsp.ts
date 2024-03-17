@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/02/10 15:44:59.
+// Last Change : 2024/03/17 14:16:16.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -11,9 +11,7 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const lsp: Plug[] = [
   {
     url: "https://github.com/neovim/nvim-lspconfig",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) =>
-      denops.meta.host === "nvim" && !pluginStatus.coc && !pluginStatus.vscode,
+    enabled: !pluginStatus.coc && !pluginStatus.vscode,
     dependencies: [
       {
         url: "https://github.com/zbirenbaum/neodim",

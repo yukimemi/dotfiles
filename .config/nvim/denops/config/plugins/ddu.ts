@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/02/17 13:21:00.
+// Last Change : 2024/03/17 11:04:06.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -67,8 +67,7 @@ export const ddu: Plug[] = [
       },
       {
         url: "https://github.com/matsui54/ddu-vim-ui-select",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
+        enabled: false,
       },
       {
         url: "https://github.com/yukimemi/ddu-source-chronicle",

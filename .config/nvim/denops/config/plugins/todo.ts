@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : todo.ts
 // Author      : yukimemi
-// Last Change : 2023/09/25 01:22:03.
+// Last Change : 2024/03/17 12:37:44.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -13,8 +13,6 @@ import { ensure, is } from "https://deno.land/x/unknownutil@v3.17.0/mod.ts";
 export const todo: Plug[] = [
   {
     url: "https://github.com/arnarg/todotxt.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       const todo_path = ensure(await fn.expand(denops, "~/.todo.txt"), is.String);
       await ensureFile(todo_path);

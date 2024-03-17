@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/03/10 18:05:53.
+// Last Change : 2024/03/17 11:06:28.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -312,91 +312,24 @@ export const denops: Plug[] = [
       { url: "https://github.com/yuttie/hydrangea-vim" },
       { url: "https://github.com/Rigellute/rigel" },
       { url: "https://github.com/kyoh86/momiji" },
+      { url: "https://github.com/Matsuuu/pinkmare" },
       { url: "https://github.com/sigmavim/kyotonight" },
-      {
-        url: "https://github.com/rhysd/vim-color-splatoon",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "vim",
-      },
-      {
-        url: "https://github.com/Matsuuu/pinkmare",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/lourenci/github-colors",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/rebelot/kanagawa.nvim",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/folke/tokyonight.nvim",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/glepnir/zephyr-nvim",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/tiagovla/tokyodark.nvim",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/marko-cerovac/material.nvim",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/RRethy/nvim-base16",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/catppuccin/nvim",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/rose-pine/neovim",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/Allianaab2m/penumbra.nvim",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/kihachi2000/yash.nvim",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/craftzdog/solarized-osaka.nvim",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/arrow2nd/aqua",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
-      {
-        url: "https://github.com/oxfist/night-owl.nvim",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
-      },
+      { url: "https://github.com/lourenci/github-colors" },
+      { url: "https://github.com/rebelot/kanagawa.nvim" },
+      { url: "https://github.com/folke/tokyonight.nvim" },
+      { url: "https://github.com/glepnir/zephyr-nvim" },
+      { url: "https://github.com/tiagovla/tokyodark.nvim" },
+      { url: "https://github.com/marko-cerovac/material.nvim" },
+      { url: "https://github.com/RRethy/nvim-base16" },
+      { url: "https://github.com/catppuccin/nvim" },
+      { url: "https://github.com/rose-pine/neovim" },
+      { url: "https://github.com/Allianaab2m/penumbra.nvim" },
+      { url: "https://github.com/kihachi2000/yash.nvim" },
+      { url: "https://github.com/craftzdog/solarized-osaka.nvim" },
+      { url: "https://github.com/arrow2nd/aqua" },
+      { url: "https://github.com/oxfist/night-owl.nvim" },
       {
         url: "https://github.com/crispybaccoon/evergarden",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
         after: async ({ denops }) => {
           await denops.call(`luaeval`, `require("evergarden").setup(_A)`, {
             transparent_background: true,
@@ -406,8 +339,6 @@ export const denops: Plug[] = [
       },
       {
         url: "https://github.com/scottmckendry/cyberdream.nvim",
-        // deno-lint-ignore require-await
-        enabled: async ({ denops }) => denops.meta.host === "nvim",
         after: async ({ denops }) => {
           await denops.call(`luaeval`, `require("cyberdream").setup(_A)`, {
             transparent: true,
@@ -457,8 +388,6 @@ export const denops: Plug[] = [
   {
     url: "https://github.com/yukimemi/hitori.vim",
     dst: "~/src/github.com/yukimemi/hitori.vim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     before: async ({ denops }) => {
       await vars.g.set(denops, "hitori_debug", false);
       await vars.g.set(denops, "hitori_enable", true);

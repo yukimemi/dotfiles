@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2023/12/23 21:06:11.
+// Last Change : 2024/03/17 11:07:57.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -26,8 +26,6 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/monaqa/dial.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     afterFile: "~/.config/nvim/rc/after/dial.lua",
     after: async ({ denops }) => {
       await mapping.map(denops, "<c-a>", `<Plug>(dial-increment)`, {
@@ -46,28 +44,21 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/windwp/nvim-autopairs",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) =>
-      denops.meta.host === "nvim" && pluginStatus.autopairs &&
-      !pluginStatus.vscode,
+    enabled: pluginStatus.autopairs && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await execute(denops, `lua require("nvim-autopairs").setup()`);
     },
   },
   {
     url: "https://github.com/hrsh7th/nvim-insx",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) =>
-      denops.meta.host === "nvim" && pluginStatus.insx && !pluginStatus.vscode,
+    enabled: pluginStatus.insx && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.cmd(`lua require('insx.preset.standard').setup()`);
     },
   },
   {
     url: "https://github.com/altermo/ultimate-autopair.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) =>
-      denops.meta.host === "nvim" && pluginStatus.ultimatepair && !pluginStatus.vscode,
+    enabled: pluginStatus.ultimatepair && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require('ultimate-autopair').setup()`);
     },
@@ -84,9 +75,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/gbprod/yanky.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) =>
-      denops.meta.host === "nvim" && pluginStatus.yanky && !pluginStatus.vscode,
+    enabled: pluginStatus.yanky && !pluginStatus.vscode,
     after: async ({ denops }) => {
       await mapping.map(denops, "p", "<Plug>(YankyPutAfter)", {
         mode: ["n", "x"],
@@ -183,8 +172,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/VidocqH/auto-indent.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && false,
+    enabled: false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("auto-indent").setup()`);
     },

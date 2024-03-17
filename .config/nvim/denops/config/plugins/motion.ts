@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2023/12/03 18:52:25.
+// Last Change : 2024/03/17 12:34:15.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -33,8 +33,6 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/yuki-yano/zero.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
     after: async ({ denops }) => {
       await denops.cmd(`lua require("zero").setup()`);
     },

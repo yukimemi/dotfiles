@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 10:40:56.
+// Last Change : 2024/03/17 11:08:32.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -14,8 +14,7 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const git: Plug[] = [
   {
     url: "https://github.com/lewis6991/gitsigns.nvim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("gitsigns").setup(_A)`, {
         signcolumn: true,
@@ -163,7 +162,7 @@ export const git: Plug[] = [
   {
     url: "https://github.com/rhysd/committia.vim",
     cache: {
-      beforeFile: `~/.config/nvim/rc/before/committia.vim`
+      beforeFile: `~/.config/nvim/rc/before/committia.vim`,
     },
   },
 ];
