@@ -120,7 +120,7 @@ export const libs: Plug[] = [
     url: "https://github.com/folke/noice.nvim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) =>
-      denops.meta.host === "nvim" && !pluginStatus.vscode && denops.meta.platform !== "windows",
+      denops.meta.host === "nvim" && !pluginStatus.vscode,
     dependencies: [
       { url: "https://github.com/MunifTanjim/nui.nvim" },
     ],

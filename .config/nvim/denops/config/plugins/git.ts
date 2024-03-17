@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2023/12/30 20:54:01.
+// Last Change : 2024/03/17 10:40:56.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
@@ -159,5 +159,11 @@ export const git: Plug[] = [
   {
     url: "https://github.com/skanehira/denops-gh.vim",
     enabled: false,
+  },
+  {
+    url: "https://github.com/rhysd/committia.vim",
+    cache: {
+      beforeFile: `~/.config/nvim/rc/before/committia.vim`
+    },
   },
 ];
