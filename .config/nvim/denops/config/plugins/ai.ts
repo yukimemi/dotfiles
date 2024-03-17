@@ -5,15 +5,15 @@
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.3.0/variable/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v6.3.0/mapping/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v6.3.0/lambda/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v6.4.0/lambda/mod.ts";
 import {
   GenerationConfig,
   HarmBlockThreshold,
   HarmCategory,
   SafetySetting,
-} from "https://esm.sh/@google/generative-ai@0.2.1";
+} from "https://esm.sh/@google/generative-ai@0.3.0";
 
 export const ai: Plug[] = [
   { url: "https://github.com/kyoh86/denops-ollama.vim" },

@@ -4,12 +4,12 @@
 // Last Change : 2023/12/03 18:52:09.
 // =============================================================================
 
-import * as lambda from "https://deno.land/x/denops_std@v6.3.0/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v6.3.0/mapping/mod.ts";
-import type { Denops } from "https://deno.land/x/denops_std@v6.3.0/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v6.3.0/batch/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.3.0/variable/mod.ts";
-import * as autocmd from "https://deno.land/x/denops_std@v6.3.0/autocmd/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v6.4.0/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v6.4.0/mod.ts";
+import { batch } from "https://deno.land/x/denops_std@v6.4.0/batch/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v6.4.0/autocmd/mod.ts";
 import { focusFloating, openBufDir, reviewMode } from "./util.ts";
 
 export async function setKeymapPre(denops: Denops) {

@@ -6,12 +6,12 @@
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.1/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v6.3.0/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.3.0/function/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v6.3.0/mapping/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.3.0/variable/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v6.4.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.4.0/function/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
 import { ensure, is } from "https://deno.land/x/unknownutil@v3.17.0/mod.ts";
-import { exists } from "https://deno.land/std@0.218.2/fs/mod.ts";
+import { exists } from "https://deno.land/std@0.220.1/fs/mod.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const libs: Plug[] = [
