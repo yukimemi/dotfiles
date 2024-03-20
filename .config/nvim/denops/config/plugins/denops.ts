@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 11:06:28.
+// Last Change : 2024/03/20 23:23:12.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.3/mod.ts";
@@ -328,6 +328,7 @@ export const denops: Plug[] = [
       { url: "https://github.com/craftzdog/solarized-osaka.nvim" },
       { url: "https://github.com/arrow2nd/aqua" },
       { url: "https://github.com/oxfist/night-owl.nvim" },
+      { url: "https://github.com/AlessandroYorba/Alduin" },
       {
         url: "https://github.com/crispybaccoon/evergarden",
         after: async ({ denops }) => {

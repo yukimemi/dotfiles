@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 12:44:26.
+// Last Change : 2024/03/20 23:14:05.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.3/mod.ts";
@@ -435,5 +435,9 @@ export const util: Plug[] = [
   {
     url: "https://github.com/m00qek/baleia.nvim",
     afterFile: "~/.config/nvim/rc/after/baleia.vim",
+  },
+  {
+    url: "https://github.com/bloznelis/before.nvim",
+    afterFile: "~/.config/nvim/rc/after/before.lua",
   },
 ];

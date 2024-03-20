@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 11:08:32.
+// Last Change : 2024/03/21 00:27:41.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.3/mod.ts";
@@ -129,6 +129,15 @@ export const git: Plug[] = [
                   mode: "n",
                   buffer: true,
                 });
+                await mapping.map(
+                  denops,
+                  "a",
+                  `<cmd>lua require("telescope.builtin").keymaps({ default_text = "gin-action " })<cr>`,
+                  {
+                    mode: "n",
+                    buffer: true,
+                  },
+                );
               },
             )
           }", [])`,
