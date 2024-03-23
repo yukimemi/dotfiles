@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 11:07:57.
+// Last Change : 2024/03/23 19:17:25.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.8.3/mod.ts";
@@ -139,7 +139,7 @@ export const edit: Plug[] = [
       await mapping.map(
         denops,
         "<c-p>",
-        `yankround#is_active() ? "<Plug>(yankround-prev)" : "gT"`,
+        `yankround#is_active() ? "<Plug>(yankround-prev)" : "<cmd>Clap<cr>"`,
         { mode: "n", expr: true },
       );
     },
