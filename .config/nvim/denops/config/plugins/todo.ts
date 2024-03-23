@@ -4,7 +4,7 @@
 // Last Change : 2024/03/17 12:37:44.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.8.3/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v6.4.0/function/mod.ts";
 import { ensureFile } from "https://deno.land/std@0.220.1/fs/ensure_file.ts";

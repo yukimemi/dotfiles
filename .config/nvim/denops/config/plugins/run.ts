@@ -5,7 +5,7 @@
 // =============================================================================
 
 import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@3.8.3/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
 
 export const run: Plug[] = [
   {

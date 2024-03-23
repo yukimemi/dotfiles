@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 12:36:28.
+// Last Change : 2024/03/23 20:02:15.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.8.3/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
@@ -33,7 +33,7 @@ export const search: Plug[] = [
     dependencies: [
       { url: "https://github.com/haya14busa/vim-asterisk" },
     ],
-    afterFile: "~/.config/nvim/rc/after/nvim-hlslens.lua",
+    beforeSourceFile: "~/.config/nvim/rc/beforeSource/nvim-hlslens.lua",
   },
   {
     url: "https://github.com/nvim-pack/nvim-spectre",

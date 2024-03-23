@@ -4,7 +4,7 @@
 // Last Change : 2023/08/26 13:16:46.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.8.3/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
 
 export const tmux: Plug[] = [
   {
