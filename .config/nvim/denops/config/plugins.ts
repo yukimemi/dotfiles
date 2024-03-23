@@ -1,10 +1,11 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/03/02 17:52:47.
+// Last Change : 2024/03/23 15:45:45.
 // =============================================================================
 
 import { ai } from "./plugins/ai.ts";
+import { clap } from "./plugins/clap.ts";
 import { cmp } from "./plugins/cmp.ts";
 import { coc } from "./plugins/coc.ts";
 import { ddc } from "./plugins/ddc.ts";
@@ -43,6 +44,7 @@ export const plugins = [
   ...libs,
   ...memo,
   ...ddu,
+  ...clap,
   ...fall,
   ...tmux,
   ...coc,

@@ -379,6 +379,8 @@ snippets:
     snippet: curl https://ollama.ai/install.sh | sh
   - name: Install csvlens
     snippet: cargo install csvlens
+  - name: Install jnv
+    snippet: cargo install jnv
 
   # build
   - name: Build neovim (Ubuntu)
