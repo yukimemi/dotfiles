@@ -1,12 +1,13 @@
 " =============================================================================
 " File        : vim-clap.vim
 " Author      : yukimemi
-" Last Change : 2024/03/23 19:31:30.
+" Last Change : 2024/03/24 16:44:14.
 " =============================================================================
 
 let g:clap_layout = { 'relative': 'editor', 'row': '20%', 'col': '20%' }
 let g:clap_popup_border = 'nil'
 let g:clap_theme = 'material_design_dark'
+let g:clap_provider_live_grep_opts = '--no-heading --vimgrep --smart-case --hidden --no-ignore --regexp -g "!.git/"'
 
 nnoremap <c-p> <cmd>Clap<cr>
 
