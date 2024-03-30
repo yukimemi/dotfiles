@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2024/03/23 15:41:38.
+// Last Change : 2024/03/30 10:53:46.
 // =============================================================================
 
 export const pluginStatus = {
@@ -21,11 +21,11 @@ export const pluginStatus = {
   insx: true,
   lualine: true,
   modesearch: false,
-  neotree: true,
+  neotree: false,
   notifier: false,
   nvimnotify: false,
   fidget: true,
-  nvimtree: false,
+  nvimtree: true,
   snipewin: true,
   ultimatepair: false,
   vimwiki: false,
