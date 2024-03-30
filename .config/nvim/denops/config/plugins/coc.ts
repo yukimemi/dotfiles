@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2024/03/08 16:41:37.
+// Last Change : 2024/03/30 14:30:40.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -12,7 +12,7 @@ import * as lambda from "https://deno.land/x/denops_std@v6.4.0/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
 import * as op from "https://deno.land/x/denops_std@v6.4.0/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.17.0/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 import { execute } from "https://deno.land/x/denops_std@v6.4.0/helper/mod.ts";
 
@@ -147,7 +147,7 @@ export const coc: Plug[] = [
               if (["vim", "help"].some((t) => t === ft)) {
                 await denops.cmd(`silent! h ${cw}`);
               } else if (
-                ensure(await denops.call(`coc#rpc#ready`), is.Number) === 1
+                z.number().parse(await denops.call(`coc#rpc#ready`)) === 1
               ) {
                 await denops.call("CocActionAsync", "doHover");
               } else {

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2024/03/23 19:17:25.
+// Last Change : 2024/03/30 13:52:09.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -14,7 +14,7 @@ import { execute } from "https://deno.land/x/denops_std@v6.4.0/helper/mod.ts";
 
 import { pluginStatus } from "../pluginstatus.ts";
 import { ensureDir } from "https://deno.land/std@0.221.0/fs/ensure_dir.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.17.0/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 export const edit: Plug[] = [
   {
@@ -112,9 +112,7 @@ export const edit: Plug[] = [
     url: "https://github.com/LeafCage/yankround.vim",
     enabled: pluginStatus.yankround && !pluginStatus.vscode,
     before: async ({ denops }) => {
-      await ensureDir(
-        ensure(await fn.expand(denops, `~/.cache/yankround`), is.String),
-      );
+      await ensureDir(z.string().parse(await fn.expand(denops, `~/.cache/yankround`)));
     },
     after: async ({ denops }) => {
       await vars.g.set(denops, "yankround_max_history", 10000);

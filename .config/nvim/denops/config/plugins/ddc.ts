@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 11:03:35.
+// Last Change : 2024/03/30 14:33:12.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v6.4.0/autocmd/mod.ts";
@@ -11,7 +11,7 @@ import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
 import { Denops } from "https://deno.land/x/denops_core@v6.0.5/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.17.0/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 import { exists } from "https://deno.land/std@0.221.0/fs/exists.ts";
 import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
@@ -99,31 +99,27 @@ export const ddc: Plug[] = [
             mode: "s",
             noremap: true,
           });
-          const html = ensure(
+          const html = z.string().parse(
             await fn.expand(denops, "~/.cache/vscode/extensions/html/snippets/html.code-snippets"),
-            is.String,
           );
           await denops.call(`denippet#load`, html, "html");
-          const cs = ensure(
+          const cs = z.string().parse(
             await fn.expand(
               denops,
               "~/.cache/vscode/extensions/csharp/snippets/csharp.code-snippets",
             ),
-            is.String,
           );
           await denops.call(`denippet#load`, cs, "cs");
-          const powershell = ensure(
+          const powershell = z.string().parse(
             await fn.expand(
               denops,
               "~/.cache/vscode-powershell/snippets/PowerShell.json",
             ),
-            is.String,
           );
           await denops.call(`denippet#load`, powershell, "ps1");
 
-          const userSnippetsDir = ensure(
+          const userSnippetsDir = z.string().parse(
             await fn.expand(denops, "~/.config/nvim/snippets"),
-            is.String,
           );
           for await (
             const dirEntry of Deno.readDir(userSnippetsDir)
@@ -146,13 +142,12 @@ export const ddc: Plug[] = [
       {
         url: "https://github.com/Shougo/ddc-source-codeium",
         enabled: async ({ denops }) =>
-          await exists(ensure(await fn.expand(denops, "~/.codeium"), is.String)),
+          await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))),
       },
       { url: "https://github.com/Shougo/ddc-source-cmdline" },
       { url: "https://github.com/Shougo/ddc-source-cmdline-history" },
       { url: "https://github.com/Shougo/ddc-source-input" },
       { url: "https://github.com/Shougo/ddc-source-line" },
-      { url: "https://github.com/Shougo/ddc-source-lsp" },
       { url: "https://github.com/Shougo/ddc-source-omni" },
       { url: "https://github.com/Shougo/ddc-source-rg" },
       { url: "https://github.com/delphinus/ddc-treesitter" },
@@ -162,6 +157,7 @@ export const ddc: Plug[] = [
         url: "https://github.com/uga-rosa/ddc-source-lsp-setup",
         dependencies: [
           { url: "https://github.com/neovim/nvim-lspconfig" },
+          { url: "https://github.com/Shougo/ddc-source-lsp" },
         ],
         after: async ({ denops }) => {
           await denops.call(`luaeval`, `require("ddc_source_lsp_setup").setup()`);
@@ -267,7 +263,7 @@ export const ddc: Plug[] = [
           "TextChangedT",
         ],
         backspaceCompletion: true,
-        sources: await exists(ensure(await fn.expand(denops, "~/.codeium"), is.String))
+        sources: await exists(z.string().parse(await fn.expand(denops, "~/.codeium")))
           ? ["codeium", "lsp", "denippet", "around", "file", "rg"]
           : ["lsp", "denippet", "around", "file", "rg"],
         cmdlineSources: {

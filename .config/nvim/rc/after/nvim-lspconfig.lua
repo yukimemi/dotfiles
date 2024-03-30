@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-lspconfig.lua
 -- Author      : yukimemi
--- Last Change : 2024/01/06 15:39:48.
+-- Last Change : 2024/03/30 13:38:27.
 -- =============================================================================
 
 require("mason").setup({
@@ -139,22 +139,6 @@ require("mason-lspconfig").setup_handlers({
   end,
   ["rust_analyzer"] = function()
     -- Use rustaceanvim instead
-    -- lspconfig["rust_analyzer"].setup(vim.tbl_deep_extend("force", options, {
-    --   settings = {
-    --     ["rust-analyzer"] = {
-    --       cargo = { allFeatures = true },
-    --       checkOnSave = {
-    --         command = "clippy",
-    --         extraArgs = { "--no-deps" },
-    --       },
-    --       diagnostics = {
-    --         enable = true,
-    --         -- disabled = { "unresolved-proc-macro" },
-    --         enableExperimental = true,
-    --       },
-    --     },
-    --   },
-    -- }))
   end,
   ["lua_ls"] = function()
     lspconfig["lua_ls"].setup(vim.tbl_deep_extend("force", options, {

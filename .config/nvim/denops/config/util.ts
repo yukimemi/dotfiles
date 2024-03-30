@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2023/12/17 16:16:59.
+// Last Change : 2024/03/30 14:30:03.
 // =============================================================================
 
 import * as fn from "https://deno.land/x/denops_std@v6.4.0/function/mod.ts";
@@ -11,7 +11,7 @@ import * as nvimFn from "https://deno.land/x/denops_std@v6.4.0/function/nvim/mod
 import * as option from "https://deno.land/x/denops_std@v6.4.0/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v6.4.0/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.17.0/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 import { join } from "https://deno.land/std@0.221.0/path/join.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v0.2.0/mod.ts";
 
@@ -38,7 +38,8 @@ export async function notify(
           { msg, timeout: opt?.timeout || 5000 },
         );
       } else {
-        const message = is.ArrayOf(is.String)(msg) ? msg.join("\r") : msg;
+        const result = z.string().array().safeParse(msg);
+        const message = result.success ? result.data.join("\r") : msg;
         await helper.execute(
           denops,
           `lua vim.notify([[${message}]], vim.log.levels.INFO)`,
@@ -161,6 +162,6 @@ export async function focusFloating(denops: Denops) {
 }
 
 export async function removeShada(denops: Denops) {
-  const shadaDir = join(ensure(await nvimFn.stdpath(denops, "state"), is.String), "shada");
+  const shadaDir = join(z.string().parse(await nvimFn.stdpath(denops, "state")), "shada");
   await Deno.remove(shadaDir, { recursive: true });
 }

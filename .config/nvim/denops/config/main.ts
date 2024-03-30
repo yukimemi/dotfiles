@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2024/01/02 23:34:33.
+// Last Change : 2024/03/30 14:23:31.
 // =============================================================================
 
 import { type Denops } from "https://deno.land/x/denops_std@v6.4.0/mod.ts";
@@ -9,7 +9,7 @@ import { type Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v6.4.0/function/mod.ts";
 import { Dvpm } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.17.0/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v6.4.0/helper/mod.ts";
 import { notify } from "./util.ts";
 import { plugins } from "./plugins.ts";
@@ -72,11 +72,11 @@ async function vimInit(denops: Denops) {
 
 async function dvpmExec(denops: Denops) {
   const base_path = denops.meta.host === "nvim" ? "~/.cache/nvim/dvpm" : "~/.cache/vim/dvpm";
-  const base = ensure(await fn.expand(denops, base_path), is.String);
+  const base = z.string().parse(await fn.expand(denops, base_path));
   const cache_path = denops.meta.host === "nvim"
     ? "~/.cache/nvim/dvpm/cache/plugin/dvpm_plugin_cache.vim"
     : "~/.cache/vim/dvpm/cache/pluguin/dvpm_plugin_cache.vim";
-  const cache = ensure(await fn.expand(denops, cache_path), is.String);
+  const cache = z.string().parse(await fn.expand(denops, cache_path));
   const dvpm = await Dvpm.begin(denops, {
     base,
     cache,

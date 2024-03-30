@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 11:04:06.
+// Last Change : 2024/03/30 14:31:02.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -12,7 +12,7 @@ import * as lambda from "https://deno.land/x/denops_std@v6.4.0/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
 import * as op from "https://deno.land/x/denops_std@v6.4.0/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v6.4.0/batch/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.17.0/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
@@ -40,7 +40,6 @@ export const ddu: Plug[] = [
       { url: "https://github.com/Shougo/ddu-source-path_history" },
       { url: "https://github.com/Shougo/ddu-source-register" },
       { url: "https://github.com/Shougo/ddu-ui-ff" },
-      { url: "https://github.com/Shougo/ddu-ui-filer" },
       {
         url: "https://github.com/Shougo/junkfile.vim",
         afterFile: "~/.config/nvim/rc/after/junkfile.vim",
@@ -72,6 +71,18 @@ export const ddu: Plug[] = [
       {
         url: "https://github.com/yukimemi/ddu-source-chronicle",
         dst: "~/src/github.com/yukimemi/ddu-source-chronicle",
+      },
+      {
+        url: "https://github.com/Shougo/ddu-ui-filer",
+        after: async ({ denops }) => {
+          if (pluginStatus.ddufiler) {
+            await mapping.map(
+              denops,
+              "<space>e",
+              "<Cmd>Ddu -name=filer-`win_getid()` -ui=filer -resume -sync file -source-option-file-path=`t:->get('ddu_ui_filer_path', getcwd())` -source-option-file-columns=filename<CR>",
+            );
+          }
+        },
       },
     ],
     before: async ({ denops }) => {
@@ -271,7 +282,7 @@ export const ddu: Plug[] = [
                       input: await fn.input(
                         denops,
                         "Pattern: ",
-                        ensure(await fn.expand(denops, "<cword>"), is.String),
+                        z.string().parse(await fn.expand(denops, "<cword>")),
                       ),
                     },
                   },
@@ -320,7 +331,7 @@ export const ddu: Plug[] = [
                   ui: "ff",
                   uiOptions: {
                     filer: {
-                      toggle: false,
+                      toggle: true,
                     },
                   },
                   uiParams: {

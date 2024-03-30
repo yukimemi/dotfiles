@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2024/01/03 12:01:28.
+// Last Change : 2024/03/30 14:24:13.
 // =============================================================================
 
 import type { Denops } from "https://deno.land/x/denops_std@v6.4.0/mod.ts";
@@ -13,14 +13,14 @@ import * as lambda from "https://deno.land/x/denops_std@v6.4.0/lambda/mod.ts";
 import * as nvimOption from "https://deno.land/x/denops_std@v6.4.0/option/nvim/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v6.4.0/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v6.4.0/batch/mod.ts";
-import { ensure, is } from "https://deno.land/x/unknownutil@v3.17.0/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 import { ensureDir } from "https://deno.land/std@0.221.0/fs/ensure_dir.ts";
 import { stdpath } from "https://deno.land/x/denops_std@v6.4.0/function/nvim/mod.ts";
 
 export async function setOption(denops: Denops) {
   const backupdir = denops.meta.host === "nvim"
-    ? ensure(await stdpath(denops, "cache"), is.String)
-    : ensure(await fn.expand(denops, "~/.cache/vim/back"), is.String);
+    ? z.string().parse(await stdpath(denops, "cache"))
+    : z.string().parse(await fn.expand(denops, "~/.cache/vim/back"));
   await ensureDir(backupdir);
 
   await batch(denops, async (denops: Denops) => {
