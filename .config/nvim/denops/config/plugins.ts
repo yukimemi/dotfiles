@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/03/23 15:45:45.
+// Last Change : 2024/03/30 16:13:30.
 // =============================================================================
 
 import { ai } from "./plugins/ai.ts";
@@ -23,6 +23,7 @@ import { mini } from "./plugins/mini.ts";
 import { motion } from "./plugins/motion.ts";
 import { neotree } from "./plugins/neotree.ts";
 import { nvimtree } from "./plugins/nvimtree.ts";
+import { oil } from "./plugins/oil.ts";
 import { operator } from "./plugins/operator.ts";
 import { run } from "./plugins/run.ts";
 import { search } from "./plugins/search.ts";
@@ -47,6 +48,7 @@ export const plugins = [
   ...clap,
   ...fall,
   ...tmux,
+  ...oil,
   ...coc,
   ...ui,
   ...mini,

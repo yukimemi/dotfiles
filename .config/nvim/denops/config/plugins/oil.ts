@@ -1,20 +1,20 @@
 // =============================================================================
-// File        : nvimtree.ts
+// File        : oil.ts
 // Author      : yukimemi
-// Last Change : 2024/03/30 17:39:27.
+// Last Change : 2024/03/30 14:51:20.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
 
 import { pluginStatus } from "../pluginstatus.ts";
 
-export const nvimtree: Plug[] = [
+export const oil: Plug[] = [
   {
-    url: "https://github.com/nvim-tree/nvim-tree.lua",
-    enabled: !pluginStatus.vscode && pluginStatus.nvimtree,
+    url: "https://github.com/stevearc/oil.nvim",
+    enabled: !pluginStatus.vscode && pluginStatus.oil,
     dependencies: [
       { url: "https://github.com/nvim-tree/nvim-web-devicons" },
     ],
-    afterFile: `~/.config/nvim/rc/after/nvim-tree.lua`,
+    afterFile: "~/.config/nvim/rc/after/oil.lua",
   },
 ];
