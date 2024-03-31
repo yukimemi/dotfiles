@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/03/30 14:31:02.
+// Last Change : 2024/03/24 23:06:50.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -296,7 +296,7 @@ export const ddu: Plug[] = [
       await mapping.map(
         denops,
         "<leader>dr",
-        "<cmd>Ddu -name=search -resume -ui-param-ff-startFilter=v:false<cr>",
+        "<cmd>Ddu -name=search -resume<cr>",
         { mode: "n" },
       );
     },

@@ -7,6 +7,14 @@ matches:
         params:
           format: "%H:%M"
 
+  - trigger: ";date"
+    replace: "{{mytime}}"
+    vars:
+      - name: mytime
+        type: date
+        params:
+          format: "%Y/%m/%d"
+
   - trigger: ";tomorrow"
     replace: "{{mytime}}"
     vars:
