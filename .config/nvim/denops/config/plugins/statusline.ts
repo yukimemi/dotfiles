@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : statusline.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 12:37:02.
+// Last Change : 2024/03/31 10:13:39.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -54,7 +54,7 @@ export const statusline: Plug[] = [
           lualine_c: ["filename", "location", "g:lsp_client_names"],
           lualine_x: [
             "g:colors_name",
-            "g:randomcolorscheme_priority",
+            "g:spectrism_priority",
             "o:background",
             "encoding",
             "vim.bo.bomb and '💣' or ''",

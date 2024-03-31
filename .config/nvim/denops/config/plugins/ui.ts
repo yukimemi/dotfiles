@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 12:41:39.
+// Last Change : 2024/03/31 13:57:32.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -301,7 +301,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/nvim-zh/colorful-winsep.nvim",
-    enabled: !pluginStatus.vscode && false,
+    enabled: !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.cmd(`lua require("colorful-winsep").setup()`);
     },
@@ -315,7 +315,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/tamton-aquib/flirt.nvim",
-    enabled: !pluginStatus.vscode && false,
+    enabled: !pluginStatus.vscode && Deno.build.os !== "windows",
     after: async ({ denops }) => {
       await denops.cmd(`lua require("flirt").setup()`);
     },

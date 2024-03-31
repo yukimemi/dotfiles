@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2023/12/17 10:38:15.
+// Last Change : 2024/03/31 12:22:32.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -174,6 +174,122 @@ export const filetypes: Plug[] = [
           ["BufNewFile", "BufRead"],
           "*.rs,*.toml",
           `lua require("crates").setup()`,
+        );
+        helper.define(
+          ["BufNewFile", "BufRead"],
+          "Cargo.toml",
+          `call <SID>${denops.name}_notify("${
+            lambda.register(
+              denops,
+              async () => {
+                await mapping.map(
+                  denops,
+                  "<leader>ct",
+                  "<cmd>lua require('crates').toggle()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+                await mapping.map(
+                  denops,
+                  "<leader>cr",
+                  "<cmd>lua require('crates').reload()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+                await mapping.map(
+                  denops,
+                  "<leader>cv",
+                  "<cmd>lua require('crates').show_versions_popup()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+                await mapping.map(
+                  denops,
+                  "<leader>cf",
+                  "<cmd>lua require('crates').show_features_popup()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+                await mapping.map(
+                  denops,
+                  "<leader>cd",
+                  "<cmd>lua require('crates').show_dependencies_popup()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+
+                await mapping.map(
+                  denops,
+                  "<leader>cu",
+                  "<cmd>lua require('crates').update_crate()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+                await mapping.map(
+                  denops,
+                  "<leader>cu",
+                  "<cmd>lua require('crates').update_crates()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+                await mapping.map(
+                  denops,
+                  "<leader>ca",
+                  "<cmd>lua require('crates').update_all_crates()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+                await mapping.map(
+                  denops,
+                  "<leader>cU",
+                  "<cmd>lua require('crates').upgrade_crate()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+                await mapping.map(
+                  denops,
+                  "<leader>cU",
+                  "<cmd>lua require('crates').upgrade_crates()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+                await mapping.map(
+                  denops,
+                  "<leader>cA",
+                  "<cmd>lua require('crates').upgrade_all_crates()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+
+                await mapping.map(
+                  denops,
+                  "<leader>cx",
+                  "<cmd>lua require('crates').expand_plain_crate_to_inline_table()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+                await mapping.map(
+                  denops,
+                  "<leader>cX",
+                  "<cmd>lua require('crates').extract_crate_into_table()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+
+                await mapping.map(
+                  denops,
+                  "<leader>cH",
+                  "<cmd>lua require('crates').open_homepage()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+                await mapping.map(
+                  denops,
+                  "<leader>cR",
+                  "<cmd>lua require('crates').open_repository()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+                await mapping.map(
+                  denops,
+                  "<leader>cD",
+                  "<cmd>lua require('crates').open_documentation()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+                await mapping.map(
+                  denops,
+                  "<leader>cC",
+                  "<cmd>lua require('crates').open_crates_io()<cr>",
+                  { mode: "n", buffer: true, silent: true, noremap: true },
+                );
+              },
+            )
+          }", [])`,
         );
       });
     },
