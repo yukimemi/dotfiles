@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2024/03/30 13:52:09.
+// Last Change : 2024/03/31 15:07:53.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -173,6 +173,12 @@ export const edit: Plug[] = [
     enabled: false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("auto-indent").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/andrewferrier/wrapping.nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("wrapping").setup()`);
     },
   },
 ];
