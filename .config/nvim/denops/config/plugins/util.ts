@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/03/20 23:14:05.
+// Last Change : 2024/04/01 19:51:02.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -440,4 +440,7 @@ export const util: Plug[] = [
     url: "https://github.com/bloznelis/before.nvim",
     afterFile: "~/.config/nvim/rc/after/before.lua",
   },
+  {
+    url: "https://github.com/lambdalisue/suda.vim"
+  }
 ];
