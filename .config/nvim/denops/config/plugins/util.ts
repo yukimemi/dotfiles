@@ -441,6 +441,6 @@ export const util: Plug[] = [
     afterFile: "~/.config/nvim/rc/after/before.lua",
   },
   {
-    url: "https://github.com/lambdalisue/suda.vim"
-  }
+    url: "https://github.com/lambdalisue/suda.vim",
+  },
 ];
