@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/04/01 19:51:02.
+// Last Change : 2024/04/07 08:24:42.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -442,5 +442,22 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/lambdalisue/suda.vim",
+  },
+  {
+    url: "https://github.com/mistricky/codesnap.nvim",
+    clone: Deno.build.os !== "windows",
+    afterFile: "~/.config/nvim/rc/after/codesnap.lua",
+    build: async ({ info }) => {
+      const output = await (new Deno.Command("make", {
+        args: [],
+        cwd: info.dst,
+      })).output();
+      if (output.stdout.length) {
+        console.log(new TextDecoder().decode(output.stdout));
+      }
+      if (output.stderr.length) {
+        console.log(new TextDecoder().decode(output.stderr));
+      }
+    },
   },
 ];
