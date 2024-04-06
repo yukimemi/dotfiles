@@ -381,6 +381,8 @@ snippets:
     snippet: cargo install csvlens
   - name: Install jnv
     snippet: cargo install jnv
+  - name: Install cargo-machete
+    snippet: cargo install cargo-machete
 
   # build
   - name: Build neovim (Ubuntu)
