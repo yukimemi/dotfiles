@@ -9,6 +9,7 @@ alias dc = git diff --cached
 alias a = git add
 alias s = git status
 alias gpu = git push
+alias gp = git pull
 alias c = clear
 alias b = cd ..
 alias t = exit
