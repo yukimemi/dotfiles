@@ -1,0 +1,14 @@
+alias l = ls
+alias la = ls -a
+alias ll = ls -l
+alias lla = ls -la
+alias e = nvim
+alias g = git
+alias d = git diff
+alias dc = git diff --cached
+alias a = git add
+alias s = git status
+alias gpu = git push
+alias c = clear
+alias b = cd ..
+alias t = exit

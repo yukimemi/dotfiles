@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 14:16:16.
+// Last Change : 2024/04/06 20:09:15.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -53,6 +53,8 @@ export const lsp: Plug[] = [
       },
       {
         url: "https://github.com/nvimtools/none-ls.nvim",
+        dependencies: [{ url: "https://github.com/nvim-lua/plenary.nvim" }],
+        afterFile: "~/.config/nvim/rc/after/none-ls.lua",
       },
       { url: "https://github.com/williamboman/mason.nvim" },
       {

@@ -12,6 +12,7 @@
 [windows]
 ".config/rhq" = "~/AppData/Roaming/rhq"
 ".config/helix" = "~/AppData/Roaming/helix"
+".config/nushell" = "~/AppData/Roaming/nushell"
 ".config/nvim" = ["~/vimfiles", "~/AppData/Local/nvim"]
 ".vimrc" = "~/_vimrc"
 ".gvimrc" = "~/_gvimrc"

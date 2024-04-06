@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2024/03/31 12:22:32.
+// Last Change : 2024/04/06 19:40:18.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -311,5 +311,11 @@ export const filetypes: Plug[] = [
   // deno
   {
     url: "https://github.com/lambdalisue/deno-cache.vim",
+  },
+  // nushell
+  {
+    url: "https://github.com/LhKipp/nvim-nu",
+    dependencies: [{ url: "https://github.com/nvimtools/none-ls.nvim" }],
+    afterFile: "~/.config/nvim/rc/after/nvim-nu.lua",
   },
 ];
