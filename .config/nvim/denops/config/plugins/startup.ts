@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : startup.ts
 // Author      : yukimemi
-// Last Change : 2023/12/30 20:52:46.
+// Last Change : 2024/04/07 08:52:28.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -9,7 +9,6 @@ import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
 export const startup: Plug[] = [
   {
     url: "https://github.com/goolord/alpha-nvim",
-    enabled: false,
     clone: false,
     cache: {
       after: `
@@ -19,7 +18,6 @@ export const startup: Plug[] = [
   },
   {
     url: "https://github.com/startup-nvim/startup.nvim",
-    enabled: false,
     clone: false,
     cache: {
       after: `
@@ -29,10 +27,17 @@ export const startup: Plug[] = [
   },
   {
     url: "https://github.com/willothy/veil.nvim",
-    enabled: false,
     clone: false,
     cache: {
       afterFile: "~/.config/nvim/rc/after/veil.lua",
+    },
+  },
+  {
+    url: "https://github.com/ChuyB/billboard.nvim",
+    clone: false,
+    cache: {
+      enabled: false,
+      afterFile: "~/.config/nvim/rc/after/billboard.lua",
     },
   },
 ];

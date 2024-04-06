@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/03/31 13:57:32.
+// Last Change : 2024/04/07 08:54:45.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -321,4 +321,8 @@ export const ui: Plug[] = [
     },
   },
   { url: "https://github.com/gw31415/scrollUptoLastLine.vim" },
+  {
+    url: "https://github.com/moyiz/command-and-cursor.nvim",
+    afterFile: "~/.config/nvim/rc/after/command-and-cursor.lua",
+  },
 ];
