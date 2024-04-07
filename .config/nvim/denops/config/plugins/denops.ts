@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/03/20 23:23:12.
+// Last Change : 2024/04/07 16:55:05.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -17,9 +17,9 @@ import { pluginStatus } from "../pluginstatus.ts";
 
 export const denops: Plug[] = [
   {
-    url: "https://github.com/yukimemi/dps-autocursor",
+    url: "https://github.com/yukimemi/autocursor.vim",
     enabled: !pluginStatus.vscode,
-    dst: "~/src/github.com/yukimemi/dps-autocursor",
+    dst: "~/src/github.com/yukimemi/autocursor.vim",
     before: async ({ denops }) => {
       await vars.g.set(denops, "autocursor_debug", false);
       await vars.g.set(denops, "autocursor_notify", false);
@@ -259,23 +259,20 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "https://github.com/yukimemi/dps-walk",
+    url: "https://github.com/yukimemi/scanwalker.vim",
     enabled: !pluginStatus.vscode,
-    dst: "~/src/github.com/yukimemi/dps-walk",
+    dst: "~/src/github.com/yukimemi/scanwalker.vim",
     before: async ({ denops }) => {
-      await vars.g.set(denops, "walk_debug", false);
-      await vars.g.set(denops, "walk_no_mapping", false);
-
-      await mapping.map(denops, "mw", "<cmd>DenopsWalk<cr>", { mode: "n" });
-      await mapping.map(denops, "ms", "<cmd>DenopsWalk --path=~/src<cr>", { mode: "n" });
-      await mapping.map(denops, "mD", "<cmd>DenopsWalk --path=~/.dotfiles<cr>", { mode: "n" });
-      await mapping.map(denops, "mC", "<cmd>DenopsWalk --path=~/.cache<cr>", { mode: "n" });
-      await mapping.map(denops, "md", "<cmd>DenopsWalkBufferDir<cr>", { mode: "n" });
-      await mapping.map(denops, "mM", "<cmd>DenopsWalk --path=~/.memolist<cr>", {
+      await mapping.map(denops, "mw", "<cmd>ScanWalk<cr>", { mode: "n" });
+      await mapping.map(denops, "ms", "<cmd>ScanWalk --path=~/src<cr>", { mode: "n" });
+      await mapping.map(denops, "mD", "<cmd>ScanWalk --path=~/.dotfiles<cr>", { mode: "n" });
+      await mapping.map(denops, "mC", "<cmd>ScanWalk --path=~/.cache<cr>", { mode: "n" });
+      await mapping.map(denops, "md", "<cmd>ScanWalkBufferDir<cr>", { mode: "n" });
+      await mapping.map(denops, "mM", "<cmd>ScanWalk --path=~/.memolist<cr>", {
         mode: "n",
       });
-      await mapping.map(denops, "<space>wc", "<cmd>DenopsWalk --path=~/.cache<cr>", { mode: "n" });
-      await mapping.map(denops, "<space>wj", "<cmd>DenopsWalk --path=~/.cache/junkfile<cr>", {
+      await mapping.map(denops, "<space>wc", "<cmd>ScanWalk --path=~/.cache<cr>", { mode: "n" });
+      await mapping.map(denops, "<space>wj", "<cmd>ScanWalk --path=~/.cache/junkfile<cr>", {
         mode: "n",
       });
     },

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2024/04/06 19:40:18.
+// Last Change : 2024/04/07 16:09:25.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
@@ -294,6 +294,8 @@ export const filetypes: Plug[] = [
       });
     },
   },
+  // cargo-make
+  { url: "https://github.com/nastevens/vim-cargo-make" },
   // kdl
   {
     url: "https://github.com/imsnif/kdl.vim",
