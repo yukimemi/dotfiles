@@ -7,7 +7,7 @@
 import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v6.4.0/function/mod.ts";
-import { ensureFile } from "https://deno.land/std@0.221.0/fs/ensure_file.ts";
+import { ensureFile } from "https://deno.land/std@0.222.0/fs/ensure_file.ts";
 import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 export const todo: Plug[] = [
