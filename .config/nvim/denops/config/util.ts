@@ -5,14 +5,14 @@
 // =============================================================================
 
 import * as fn from "https://deno.land/x/denops_std@v6.4.0/function/mod.ts";
-import * as fs from "https://deno.land/std@0.222.0/fs/mod.ts";
+import * as fs from "https://deno.land/std@0.222.1/fs/mod.ts";
 import * as helper from "https://deno.land/x/denops_std@v6.4.0/helper/mod.ts";
 import * as nvimFn from "https://deno.land/x/denops_std@v6.4.0/function/nvim/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v6.4.0/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v6.4.0/mod.ts";
 import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
-import { join } from "https://deno.land/std@0.222.0/path/join.ts";
+import { join } from "https://deno.land/std@0.222.1/path/join.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v1.0.0/mod.ts";
 
 const useNvimNotify = false;
