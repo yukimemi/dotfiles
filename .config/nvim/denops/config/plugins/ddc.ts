@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/03/30 14:33:12.
+// Last Change : 2024/04/13 23:24:02.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v6.4.0/autocmd/mod.ts";
@@ -9,7 +9,7 @@ import * as fn from "https://deno.land/x/denops_std@v6.4.0/function/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v6.4.0/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
 import { Denops } from "https://deno.land/x/denops_core@v6.0.5/mod.ts";
 import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 import { exists } from "https://deno.land/std@0.222.1/fs/exists.ts";
@@ -78,6 +78,7 @@ export const ddc: Plug[] = [
           {
             url: "https://github.com/microsoft/vscode",
             dst: "~/.cache/vscode",
+            depth: 1,
             enabled: false,
           },
           {

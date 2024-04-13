@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2024/04/07 16:09:25.
+// Last Change : 2024/04/14 00:03:58.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.9.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v6.4.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v6.4.0/function/mod.ts";
@@ -37,6 +37,7 @@ export const filetypes: Plug[] = [
       {
         url: "https://github.com/microsoft/vscode",
         dst: "~/.cache/vscode",
+        depth: 1,
         enabled: false,
       },
       {
