@@ -13,9 +13,8 @@ REM ======================================================================
 
 pushd "%cmdDir%"
 
-winget install Microsoft.VisualStudio.2022.BuildTools
-winget install RustLang.Rustup
-
+winget install -q gsudo
+winget install -q RustLang.Rustup
 winget install -q Microsoft.WindowsTerminal
 winget install -q Microsoft.PowerToys
 winget install -q Git.Git
