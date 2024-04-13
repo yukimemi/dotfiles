@@ -13,6 +13,9 @@ REM ======================================================================
 
 pushd "%cmdDir%"
 
+winget install Microsoft.VisualStudio.2022.BuildTools
+winget install RustLang.Rustup
+
 winget install -q Microsoft.WindowsTerminal
 winget install -q Microsoft.PowerToys
 winget install -q Git.Git
@@ -24,9 +27,7 @@ winget install -q Microsoft.VisualStudioCode
 winget install -q Neovim.Neovim
 winget install -q WinMerge.WinMerge
 winget install -q SlackTechnologies.Slack
-winget install -q Microsoft.VisualStudio.2022.BuildTools
 winget install -q Chocolatey.Chocolatey
-winget install -q RustLang.Rustup
 winget install -q zig.zig
 winget install -q GoLang.Go
 winget install -q Microsoft.PowerShell
@@ -42,5 +43,4 @@ pause
 popd
 
 exit /b %exitCode%
-
 
