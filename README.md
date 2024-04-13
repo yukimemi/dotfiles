@@ -36,8 +36,8 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/yukimemi/dotfiles/main
 ```bat
 git config --global core.autocrlf false
 git clone https://github.com/yukimemi/dotfiles .dotfiles
-cargo install --git https://github.com/ubnt-intrepid/dot.git
 rustup default stable
+cargo install --git https://github.com/ubnt-intrepid/dot.git
 cd .dotfiles
 sudo dot link
 ```
