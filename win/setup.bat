@@ -15,6 +15,7 @@ pushd "%cmdDir%"
 
 winget install -q gsudo
 winget install -q RustLang.Rustup
+winget install -q DenoLand.Deno
 winget install -q Microsoft.WindowsTerminal
 winget install -q Microsoft.PowerToys
 winget install -q Git.Git
