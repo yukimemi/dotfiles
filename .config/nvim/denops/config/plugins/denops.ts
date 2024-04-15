@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/04/15 14:13:28.
+// Last Change : 2024/04/15 22:23:07.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
@@ -181,12 +181,12 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "https://github.com/yukimemi/dps-autodate",
-    dst: "~/src/github.com/yukimemi/dps-autodate",
+    url: "https://github.com/yukimemi/autoreplacer.vim",
+    dst: "~/src/github.com/yukimemi/autoreplacer.vim",
     before: async ({ denops }) => {
-      await vars.g.set(denops, "autodate_debug", false);
-      await vars.g.set(denops, "autodate_notify", false);
-      await vars.g.set(denops, "autodate_config", {
+      await vars.g.set(denops, "autoreplacer_debug", false);
+      await vars.g.set(denops, "autoreplacer_notify", false);
+      await vars.g.set(denops, "autoreplacer_config", {
         xml: {
           replace: [
             [
