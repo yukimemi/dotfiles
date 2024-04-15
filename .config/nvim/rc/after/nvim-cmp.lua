@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-cmp.lua
 -- Author      : yukimemi
--- Last Change : 2024/03/09 00:06:30.
+-- Last Change : 2024/04/15 10:49:00.
 -- =============================================================================
 
 local cmp = require("cmp")
@@ -36,8 +36,8 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "vsnip" },
     { name = "rg" },
-    { name = 'mocword' },
-    { name = 'tsnip' },
+    -- { name = "mocword" },
+    { name = "tsnip" },
     { name = "treesitter" },
     { name = "path" },
     { name = "nerdfont" },

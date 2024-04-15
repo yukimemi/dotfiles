@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cmp.ts
 // Author      : yukimemi
-// Last Change : 2024/03/08 19:35:52.
+// Last Change : 2024/04/15 10:49:23.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
@@ -21,13 +21,16 @@ export const cmp: Plug[] = [
       { url: "https://github.com/hrsh7th/cmp-vsnip" },
       { url: "https://github.com/lukas-reineke/cmp-rg" },
       { url: "https://github.com/ray-x/cmp-treesitter" },
-      { url: "https://github.com/yutkat/cmp-mocword" },
+      {
+        url: "https://github.com/yutkat/cmp-mocword",
+        enabled: false,
+      },
       { url: "https://github.com/chrisgrieser/cmp-nerdfont" },
       { url: "https://github.com/rafamadriz/friendly-snippets" },
       { url: "https://github.com/onsails/lspkind.nvim" },
       {
         url: "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help",
-        enabled: false,
+        enabled: true,
       },
       {
         url: "https://github.com/KentoOgata/cmp-tsnip",

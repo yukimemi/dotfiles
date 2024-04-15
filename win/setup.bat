@@ -33,6 +33,7 @@ winget install -q GoLang.Go
 winget install -q Microsoft.PowerShell
 winget install -q Neovide.Neovide
 winget install -q BurntSushi.ripgrep.MSVC
+winget install -q sharkdp.bat
 winget install -q junegunn.fzf
 winget install -q ajeetdsouza.zoxide
 

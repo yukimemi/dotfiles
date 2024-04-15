@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2024/03/30 14:24:13.
+// Last Change : 2024/04/14 22:52:14.
 // =============================================================================
 
 import type { Denops } from "https://deno.land/x/denops_std@v6.4.0/mod.ts";
@@ -34,7 +34,7 @@ export async function setOption(denops: Denops) {
     await option.backup.set(denops, false);
     await option.backupdir.set(denops, backupdir);
     await option.colorcolumn.set(denops, "100");
-    await option.completeopt.set(denops, "menu,menuone,noselect,noinsert");
+    await option.completeopt.set(denops, "menuone,noinsert");
     await option.completeslash.set(denops, "slash");
     await option.confirm.set(denops, true);
     await option.expandtab.set(denops, true);
