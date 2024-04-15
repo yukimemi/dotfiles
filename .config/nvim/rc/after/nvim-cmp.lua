@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-cmp.lua
 -- Author      : yukimemi
--- Last Change : 2024/04/15 10:49:00.
+-- Last Change : 2024/04/15 22:15:36.
 -- =============================================================================
 
 local cmp = require("cmp")
@@ -31,6 +31,9 @@ cmp.setup({
       end
       fallback()
     end, { "i", "c" }),
+    ["<C-e>"] = cmp.mapping(function(fallback)
+      fallback()
+    end, { "i" }),
   }),
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
