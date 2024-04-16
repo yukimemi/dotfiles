@@ -12,7 +12,7 @@ import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
 import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
 import { Denops } from "https://deno.land/x/denops_core@v6.0.6/mod.ts";
 import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
-import { exists } from "https://deno.land/std@0.222.1/fs/exists.ts";
+import { exists } from "https://deno.land/std@0.223.0/fs/exists.ts";
 import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
