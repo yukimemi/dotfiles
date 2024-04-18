@@ -10,7 +10,7 @@ import * as autocmd from "https://deno.land/x/denops_std@v6.4.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v6.4.0/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
-import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.23.0-beta.0/mod.ts";
 import { exists } from "https://deno.land/std@0.223.0/fs/mod.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
