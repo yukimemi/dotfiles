@@ -11,7 +11,7 @@ general:
   # when focusing the current workspace.
   toggle_workspace_on_refocus: true
   # Whether to show floating windows as always on top.
-  show_floating_on_top: false
+  show_floating_on_top: true
   # Amount to move floating windows by (eg. when using `alt+<hjkl>` on a floating window)
   floating_window_move_amount: "5%"
   # Whether to globally enable/disable window transition animations (on minimize, close,
@@ -116,6 +116,9 @@ window_rules:
     match_title: "Bookmark.*"
 
   - command: "ignore"
+    match_title: "VimExcel.*"
+
+  - command: "ignore"
     match_process_name: "clnch"
 
   - command: "ignore"
@@ -124,10 +127,10 @@ window_rules:
   - command: "ignore"
     match_process_name: "copyq"
 
-  - command: "move to workspace 2"
+  - command: "move to workspace 3"
     match_process_name: "mstsc"
 
-  - command: "move to workspace 3"
+  - command: "move to workspace 4"
     match_process_name: "OUTLOOK"
 
   # Launches system dialogs as floating by default (eg. File Explorer save/open dialog).
@@ -224,8 +227,8 @@ keybindings:
 
   # Launch CMD terminal (alternatively `exec wt` or `exec %ProgramFiles%/Git/git-bash.exe`
   # to start Windows Terminal and Git Bash respectively.
-  - command: "exec cmd"
-    binding: "Alt+Enter"
+  # - command: "exec cmd"
+  #   binding: "Alt+Enter"
 
   # Focus the workspace that last had focus.
   - command: "focus workspace recent"

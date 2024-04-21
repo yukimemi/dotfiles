@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-cmp.lua
 -- Author      : yukimemi
--- Last Change : 2024/04/15 22:15:36.
+-- Last Change : 2024/04/20 16:40:31.
 -- =============================================================================
 
 local cmp = require("cmp")
@@ -91,4 +91,10 @@ cmp.setup.cmdline(":", {
   }, {
     { name = "cmdline" },
   }),
+})
+
+cmp.setup.filetype({ "clap_input" }, {
+  completion = {
+    autocomplete = false,
+  },
 })

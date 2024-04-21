@@ -1,0 +1,182 @@
+## Log configuration.
+[log]
+# Specify the max log level.
+max-level = "debug"
+# Specify the log target to enable more detailed logging.
+#
+# Particularly useful for the debugging purpose.
+#
+# ```toml
+# [log]
+# log-target = "maple_core::stdio_server=trace,rpc=debug"
+# ```
+log-target = ""
+
+## Winbar configuration.
+[winbar]
+# Whether to enable the winbar.
+enable = false
+# Specify the display style for the file path in winbar.
+file-path-style = "one-segment-per-component"
+
+## Matcher configuration.
+[matcher]
+# Specify how the results are sorted.
+tiebreak = "score,-begin,-end,-length"
+[plugin.colorizer]
+# Whether to enable this plugin.
+enable = true
+
+[plugin.cursorword]
+# Whether to enable this plugin.
+enable = true
+# Whether to ignore the comment line
+ignore-comment-line = false
+# Disable the plugin when the file matches this pattern.
+ignore-files = "*.toml,*.json,*.yml,*.log,tmp"
+
+[plugin.ctags]
+# Whether to enable this plugin.
+enable = false
+# Disable this plugin if the file size exceeds the max size limit.
+#
+# By default the max file size limit is 4MiB.
+max-file-size = 4194304
+
+[plugin.git]
+# Whether to enable this plugin.
+enable = true
+
+[plugin.linter]
+# Whether to enable this plugin.
+enable = false
+
+[plugin.lsp]
+# Whether to enable this plugin.
+enable = true
+# Whether to include the declaration when invoking `ClapAction lsp.reference`.
+include-declaration = false
+# Specify the list of filetypes for which the lsp plugin will be disabled.
+#
+# If a filetype is included in this list, the Language Server Protocol (LSP) plugin
+# will not be activated for files with that particular type.
+filetype-blocklist = []
+# Specifies custom languages that are not built into vim-clap.
+#
+# This config allows to define a new language or override the default value
+# of the built-in language config. Note that if you are defining a new language,
+# (check out the full list of supported languages by default in `languages.toml`),
+# you need to provide associated language server configurations as well.
+#
+# # Example
+#
+# ```toml
+# [[plugin.lsp.language]]
+# name = "erlang"
+# file-types = ["erlang"]
+# root-markers = ["rebar.config"]
+# language-servers = ["erlang-ls"]
+#
+# [plugin.lsp.language-server.erlang-ls]
+# command = "erlang_ls"
+# ```
+language = []
+
+# Specify language server configurations.
+#
+# # Example
+#
+# ```toml
+# [plugin.lsp.language-server.rust-analyzer]
+# procMacro.enable = false
+# procMacro.attributes.enable = false
+# diagnostics.disabled = [ "unresolved-proc-macro" ]
+# ```
+[plugin.lsp.language-server]
+
+[plugin.markdown]
+# Whether to enable this plugin.
+enable = true
+
+# Specify the strategy of tree-sitter rendering.
+#
+# The default strategy is to render the entire buffer until the
+# file size exceeds 256 KiB.
+#
+#
+# Possible values:
+# - `visual-lines`: Always render the visual lines only.
+# - `entire-buffer-up-to-limit`: Render the entire buffer until
+# the buffer size exceeds the size limit (in bytes).
+#
+# # Example
+#
+# ```toml
+# [plugin.syntax.render-strategy]
+# strategy = "visual-lines"
+# ```
+[plugin.syntax.render-strategy]
+strategy = "entire-buffer-up-to-limit"
+file-size-limit = 262144
+
+## Provider (fuzzy picker) configuration.
+[provider]
+# Whether to share the input history among providers.
+share-input-history = false
+# Specify the syntax highlight engine for the provider preview.
+#
+# Possible values: `vim`, `sublime-syntax` and `tree-sitter`
+preview-highlight-engine = "vim"
+
+# Ignore configuration per project, with paths specified as
+# absolute path or relative to the home directory.
+[provider.project-ignores]
+
+# Ignore configuration per provider.
+#
+# There are multiple ignore settings, with priorities as follows:
+# `provider_ignores` > `provider_ignores` > `global_ignore`
+[provider.provider-ignores]
+
+# Delay in milliseconds before handling the the user query.
+#
+# When the delay is set not-zero, some intermediate inputs
+# may be dropped if user types too fast.
+#
+# By default the debounce is set to 200ms to all providers.
+#
+# # Example
+#
+# ```toml
+# [provider.debounce]
+# # Set debounce to 100ms for files provider specifically.
+# "files" = 100
+# ```
+[provider.debounce]
+
+## Global ignore configuration.
+[global-ignore]
+# Whether to ignore the comment line when applicable.
+ignore-comments = false
+# Whether to include only results from files tracked by git, if in a git repository.
+git-tracked-only = false
+# Patterns for ignoring files based on their names.
+#
+# For instance, to exclude results from files whose names contain "test" for
+# the dumb_jump provider:
+#
+# ```toml
+# [provider.provider-ignores.dumb_jump]
+# ignore-file-name-pattern = ["test"]
+# ```
+ignore-file-name-pattern = []
+# Patterns for ignoring files based on their paths.
+#
+# For instance, to exclude the results from the folder whose names contain `test`
+# in the project `~/src/github.com/vim/vim`:
+#
+# ```toml
+# [provider.project-ignores."~/src/github.com/vim/vim"]
+# ignore-file-path-pattern = ["test"]
+# ```
+ignore-file-path-pattern = []

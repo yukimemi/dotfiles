@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/04/15 22:23:07.
+// Last Change : 2024/04/21 20:59:22.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
@@ -185,7 +185,7 @@ export const denops: Plug[] = [
     dst: "~/src/github.com/yukimemi/autoreplacer.vim",
     before: async ({ denops }) => {
       await vars.g.set(denops, "autoreplacer_debug", false);
-      await vars.g.set(denops, "autoreplacer_notify", false);
+      await vars.g.set(denops, "autoreplacer_notify", true);
       await vars.g.set(denops, "autoreplacer_config", {
         xml: {
           replace: [
@@ -314,7 +314,7 @@ export const denops: Plug[] = [
       { url: "https://github.com/lourenci/github-colors" },
       { url: "https://github.com/rebelot/kanagawa.nvim" },
       { url: "https://github.com/folke/tokyonight.nvim" },
-      { url: "https://github.com/glepnir/zephyr-nvim" },
+      { url: "https://github.com/nvimdev/zephyr-nvim" },
       { url: "https://github.com/tiagovla/tokyodark.nvim" },
       { url: "https://github.com/marko-cerovac/material.nvim" },
       { url: "https://github.com/RRethy/nvim-base16" },
@@ -326,6 +326,7 @@ export const denops: Plug[] = [
       { url: "https://github.com/arrow2nd/aqua" },
       { url: "https://github.com/oxfist/night-owl.nvim" },
       { url: "https://github.com/AlessandroYorba/Alduin" },
+      { url: "https://github.com/polirritmico/monokai-nightasty.nvim" },
       {
         url: "https://github.com/crispybaccoon/evergarden",
         after: async ({ denops }) => {
@@ -391,7 +392,7 @@ export const denops: Plug[] = [
       await vars.g.set(denops, "hitori_enable", true);
       await vars.g.set(denops, "hitori_quit", true);
       await vars.g.set(denops, "hitori_wsl", true);
-      await vars.g.set(denops, "hitori_opener", "vsplit");
+      await vars.g.set(denops, "hitori_opener", "edit");
 
       await vars.g.set(denops, "hitori_ignore_patterns", [
         ".tmp$",

@@ -1,10 +1,11 @@
 // =============================================================================
 // File        : clap.ts
 // Author      : yukimemi
-// Last Change : 2024/03/23 19:29:12.
+// Last Change : 2024/04/20 15:56:29.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.4.0/function/mod.ts";
 
 import { pluginStatus } from "../pluginstatus.ts";
 
@@ -13,18 +14,28 @@ export const clap: Plug[] = [
     url: "https://github.com/liuchengxu/vim-clap",
     enabled: pluginStatus.clap && !pluginStatus.vscode,
     afterFile: "~/.config/nvim/rc/after/vim-clap.vim",
-    build: async ({ denops }) => {
-      await denops.call(`clap#installer#force_download`);
+    build: async ({ denops, info }) => {
+      if (!info.isUpdate) {
+        return;
+      }
       const install = async (command: string, args: string[]) => {
-        const cmd = new Deno.Command(command, { args });
+        const cmd = new Deno.Command(command, { args, cwd: info.dst });
         const output = await cmd.output();
-        console.log(new TextDecoder().decode(output.stdout));
+        if (output.stdout.length) {
+          console.log(new TextDecoder().decode(output.stdout));
+        }
         if (output.stderr.length) {
           console.error(new TextDecoder().decode(output.stderr));
         }
       };
-      await install("cargo", ["install", "fd-find"]);
-      await install("cargo", ["install", "ripgrep"]);
+      if (!(await fn.executable(denops, `fd`))) {
+        await install("cargo", ["install", "fd-find"]);
+      }
+      if (!(await fn.executable(denops, `rg`))) {
+        await install("cargo", ["install", "ripgrep"]);
+      }
+      // await install("cargo", ["build", "--release"]);
+      await denops.call(`clap#installer#download_binary`);
     },
   },
 ];
