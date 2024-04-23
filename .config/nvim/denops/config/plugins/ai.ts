@@ -13,7 +13,7 @@ import {
   HarmBlockThreshold,
   HarmCategory,
   SafetySetting,
-} from "https://esm.sh/@google/generative-ai@0.7.1";
+} from "https://esm.sh/@google/generative-ai@0.8.0";
 
 export const ai: Plug[] = [
   { url: "https://github.com/kyoh86/denops-ollama.vim" },
