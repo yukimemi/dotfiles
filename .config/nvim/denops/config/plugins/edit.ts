@@ -13,7 +13,7 @@ import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v6.4.0/helper/mod.ts";
 
 import { pluginStatus } from "../pluginstatus.ts";
-import { ensureDir } from "https://deno.land/std@0.223.0/fs/ensure_dir.ts";
+import { ensureDir } from "https://deno.land/std@0.224.0/fs/ensure_dir.ts";
 import { z } from "https://deno.land/x/zod@v3.23.4/mod.ts";
 
 export const edit: Plug[] = [
