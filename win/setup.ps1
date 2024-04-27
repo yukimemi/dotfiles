@@ -40,7 +40,7 @@ function New-Shortcut {
 
 Install-RequiredModules
 
-$target = Join-Path -Path $PSScriptRoot -ChildPath "win\AutoHotkey\AutoHotkey.ahk"
+$target = Join-Path -Path $env:USERPROFILE -ChildPath ".dotfiles\win\AutoHotkey\AutoHotkey.ahk"
 $link = Join-Path -Path $env:APPDATA -ChildPath "Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
 New-Shortcut -link $link -target $target
 
