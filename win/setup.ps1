@@ -33,6 +33,7 @@ function New-Shortcut {
   $wsh = New-Object -ComObject WScript.Shell
   $shortcut = $wsh.CreateShortcut($link)
   $shortcut.TargetPath = $target
+  $shortcut.WorkingDirectory = Split-Path -Path $target
   Write-Host "Created shortcut: ${link} -> ${target}"
   $shortcut.Save()
 }
