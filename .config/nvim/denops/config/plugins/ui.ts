@@ -331,5 +331,5 @@ export const ui: Plug[] = [
     after: async ({ denops }) => {
       await denops.cmd(`lua require("snake_cursor").setup()`);
     },
-  }
+  },
 ];
