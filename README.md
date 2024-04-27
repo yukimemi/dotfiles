@@ -27,8 +27,8 @@ Reboot.
 - Execute setup.bat
 
 ```bat
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/yukimemi/dotfiles/main/win/setup.bat" -OutFile "setup.bat"
-& .\setup.bat
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/yukimemi/dotfiles/main/win/setup.ps1" -OutFile "setup.ps1"
+powershell -File .\setup.ps1
 ```
 
 - dot init
