@@ -383,6 +383,9 @@ if (Get-Command pnpm -ErrorAction SilentlyContinue) {
 
 
 # proto
+if (!(Get-Command proto -ErrorAction SilentlyContinue)) {
+  irm https://moonrepo.dev/install/proto.ps1 | iex
+}
 $env:PROTO_HOME = Join-Path $HOME ".proto"
 $env:PATH = @(
   (Join-Path $env:PROTO_HOME "shims"),
