@@ -1,8 +1,10 @@
 " =============================================================================
 " File        : vim-vsnip.vim
 " Author      : yukimemi
-" Last Change : 2024/04/15 13:54:10.
+" Last Change : 2024/04/27 18:17:41.
 " =============================================================================
+
+let g:vsnip_snippet_dir = expand("~/.config/nvim/snippets")
 
 " NOTE: You can use other key to expand snippet.
 

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/04/27 15:25:07.
+// Last Change : 2024/04/27 17:57:08.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
@@ -328,6 +328,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/adelarsq/snake_cursor.nvim",
+    enabled: false,
     after: async ({ denops }) => {
       await denops.cmd(`lua require("snake_cursor").setup()`);
     },

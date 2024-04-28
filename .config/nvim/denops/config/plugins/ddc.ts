@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/04/13 23:24:02.
+// Last Change : 2024/04/27 20:12:42.
 // =============================================================================
 
 import * as autocmd from "https://deno.land/x/denops_std@v6.4.0/autocmd/mod.ts";
@@ -93,11 +93,11 @@ export const ddc: Plug[] = [
             noremap: true,
           });
           await mapping.map(denops, "<c-j>", "<Plug>(denippet-jump-next)", {
-            mode: "s",
+            mode: ["i", "s"],
             noremap: true,
           });
           await mapping.map(denops, "<c-k>", "<Plug>(denippet-jump-prev)", {
-            mode: "s",
+            mode: ["i", "s"],
             noremap: true,
           });
           const html = z.string().parse(

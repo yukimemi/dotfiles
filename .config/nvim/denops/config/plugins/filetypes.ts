@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2024/04/14 00:03:58.
+// Last Change : 2024/04/27 20:45:59.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
@@ -57,6 +57,7 @@ export const filetypes: Plug[] = [
       },
     ],
   },
+  { url: "https://github.com/sheerun/vim-polyglot" },
   // plantuml
   {
     url: "https://github.com/aklt/plantuml-syntax",
