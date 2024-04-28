@@ -3,3 +3,6 @@ dotnet = "github:Phault/proto-dotnet-plugin"
 dprint = "source:https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/dprint/plugin.toml"
 gojq = "source:https://raw.githubusercontent.com/stk0vrfl0w/proto-toml-plugins/main/plugins/gojq.toml"
 uv = "source:https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/uv/plugin.toml"
+
+[settings]
+auto-install = true
