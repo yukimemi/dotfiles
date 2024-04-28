@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/04/28 14:37:56.
+// Last Change : 2024/04/28 16:00:31.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
@@ -467,6 +467,7 @@ export const util: Plug[] = [
   { url: "https://github.com/tweekmonster/helpful.vim" },
   {
     url: "https://github.com/fabridamicelli/cronex.nvim",
+    enabled: false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("cronex").setup()`);
     },

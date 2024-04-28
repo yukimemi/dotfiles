@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : edgy.lua
 -- Author      : yukimemi
--- Last Change : 2024/04/28 14:49:28.
+-- Last Change : 2024/04/28 16:39:49.
 -- =============================================================================
 
 require("edgy").setup({
@@ -24,10 +24,10 @@ require("edgy").setup({
       end,
     },
     "Trouble",
-    { ft = "qf", title = "QuickFix" },
+    { ft = "qf",            title = "QuickFix" },
     {
       ft = "help",
-      size = { height = 20 },
+      size = { height = 30 },
       -- only show help buffers
       filter = function(buf)
         return vim.bo[buf].buftype == "help"

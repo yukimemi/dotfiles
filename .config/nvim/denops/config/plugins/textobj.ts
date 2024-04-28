@@ -1,10 +1,11 @@
 // =============================================================================
 // File        : textobj.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:38:42.
+// Last Change : 2024/04/28 16:38:22.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
 
 export const textobj: Plug[] = [
   {
@@ -27,5 +28,18 @@ export const textobj: Plug[] = [
   {
     url: "https://github.com/yuki-yano/vim-textobj-generics",
     dependencies: [{ url: "https://github.com/machakann/vim-textobj-functioncall" }],
+  },
+  {
+    url: "https://github.com/terryma/vim-expand-region",
+    before: async ({ denops }) => {
+      await mapping.map(denops, "+", `<Plug>(expand_region_expand)`, {
+        mode: "x",
+        silent: true,
+      });
+      await mapping.map(denops, "-", `<Plug>(expand_region_shrink)`, {
+        mode: "x",
+        silent: true,
+      });
+    },
   },
 ];

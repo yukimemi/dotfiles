@@ -58,7 +58,11 @@ $target = Join-Path -Path $env:USERPROFILE -ChildPath ".dotfiles\win\AutoHotkey\
 $link = Join-Path -Path $env:APPDATA -ChildPath "Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
 New-Shortcut -link $link -target $target
 
-$target = "C:\Program Files (x86)\clnch\clnch.exe"
+$target = Join-Path -Path $env:USERPROFILE -ChildPath "app\clnch\clnch.exe"
 $link = Join-Path -Path $env:APPDATA -ChildPath "Microsoft\Windows\Start Menu\Programs\Startup\clnch.lnk"
+New-Shortcut -link $link -target $target
+
+$target = Join-Path -Path $env:USERPROFILE -ChildPath "app\AlterDnD\AlterDnD64.exe"
+$link = Join-Path -Path $env:APPDATA -ChildPath "Microsoft\Windows\Start Menu\Programs\Startup\AlterDnD64.lnk"
 New-Shortcut -link $link -target $target
 
