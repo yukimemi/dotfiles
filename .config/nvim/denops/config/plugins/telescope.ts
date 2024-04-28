@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : telescope.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 12:37:10.
+// Last Change : 2024/04/28 14:26:07.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
@@ -43,6 +43,7 @@ export const telescope: Plug[] = [
       },
       {
         url: "https://github.com/tom-anders/telescope-vim-bookmarks.nvim",
+        enabled: false,
         dependencies: [
           { url: "https://github.com/MattesGroeger/vim-bookmarks" },
           { url: "https://github.com/nvim-telescope/telescope.nvim" },

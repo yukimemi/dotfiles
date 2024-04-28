@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/04/27 17:57:08.
+// Last Change : 2024/04/28 14:48:30.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
@@ -18,7 +18,8 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const ui: Plug[] = [
   { url: "https://github.com/lambdalisue/seethrough.vim" },
   { url: "https://github.com/andymass/vim-matchup" },
-  { url: "https://github.com/mopp/smartnumber.vim" },
+  { url: "https://github.com/mopp/smartnumber.vim", enabled: false },
+  { url: "https://github.com/sitiom/nvim-numbertoggle", enabled: true },
   {
     url: "https://github.com/lukas-reineke/virt-column.nvim",
     enabled: pluginStatus.virtcolumn && !pluginStatus.vscode,
@@ -264,9 +265,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/folke/edgy.nvim",
     enabled: !pluginStatus.vscode,
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("edgy").setup()`);
-    },
+    afterFile: `~/.config/nvim/rc/after/edgy.lua`,
   },
   {
     url: "https://github.com/lewis6991/satellite.nvim",
@@ -331,6 +330,18 @@ export const ui: Plug[] = [
     enabled: false,
     after: async ({ denops }) => {
       await denops.cmd(`lua require("snake_cursor").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/luukvbaal/statuscol.nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("statuscol").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/petertriho/nvim-scrollbar",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("scrollbar").setup()`);
     },
   },
 ];

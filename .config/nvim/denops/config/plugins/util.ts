@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/04/16 00:34:27.
+// Last Change : 2024/04/28 14:37:56.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
@@ -476,5 +476,9 @@ export const util: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("licenser").setup()`);
     },
+  },
+  {
+    url: "https://github.com/tomasky/bookmarks.nvim",
+    afterFile: `~/.config/nvim/rc/after/bookmarks.lua`,
   },
 ];
