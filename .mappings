@@ -53,6 +53,6 @@
 ".inputrc" = "~/.inputrc"
 ".tmux.conf" = "~/.tmux.conf"
 ".xmodmap" = "~/.xmodmap"
-"win/Microsoft.PowerShell_profile.ps1" = "~/.config/PowerShell/Microsoft.PowerShell_profile.ps1"
+"win/Microsoft.PowerShell_profile.ps1" = "~/.config/powershell/Microsoft.PowerShell_profile.ps1"
 
 # vim: ft=toml:
