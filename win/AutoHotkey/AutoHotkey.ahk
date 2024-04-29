@@ -88,13 +88,16 @@ F9::
 ; for neovim-qt
 F10::
 {
-  Activate("nvim-qt.exe")
-  ; Activate("neovide.exe")
+  If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\useneovide")) {
+    Activate("neovide.exe")
+    return
+  } else {
+    Activate("nvim-qt.exe")
   ; Activate(EnvGet("USERPROFILE") . "\scoop\apps\goneovim\current\goneovim.exe")
   ; Activate(EnvGet("USERPROFILE") . "\app\fvim\FVim.exe")
-  return
+    return
+  }
 }
-
 
 ; for VSCode
 ; F8::
