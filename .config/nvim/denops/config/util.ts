@@ -1,9 +1,10 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/03/30 14:30:03.
+// Last Change : 2024/04/29 21:42:40.
 // =============================================================================
 
+import * as buffer from "https://deno.land/x/denops_std@v6.4.0/buffer/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v6.4.0/function/mod.ts";
 import * as fs from "https://deno.land/std@0.224.0/fs/mod.ts";
 import * as helper from "https://deno.land/x/denops_std@v6.4.0/helper/mod.ts";
@@ -11,9 +12,10 @@ import * as nvimFn from "https://deno.land/x/denops_std@v6.4.0/function/nvim/mod
 import * as option from "https://deno.land/x/denops_std@v6.4.0/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v6.4.0/mod.ts";
-import { z } from "https://deno.land/x/zod@v3.23.4/mod.ts";
+import { format } from "https://deno.land/std@0.224.0/datetime/mod.ts";
 import { join } from "https://deno.land/std@0.224.0/path/join.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v1.0.0/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.23.4/mod.ts";
 
 const useNvimNotify = false;
 
@@ -85,11 +87,11 @@ export async function reviewMode(denops: Denops, stop = false) {
     if (await fn.exists(denops, "g:neovide")) {
       await vars.g.set(denops, "neovide_transparency", 0.9);
     }
-    await denops.cmd(`EnableRandomColorscheme`);
-    await denops.cmd(`EnableAutoCursorColumn`);
-    await denops.cmd(`IlluminateResume`);
-    await denops.cmd(`SmoothCursorFancyOn`);
-    await denops.cmd(`QuickScopeToggle`);
+    await denops.cmd(`silent! EnableRandomColorscheme`);
+    await denops.cmd(`silent! EnableAutoCursorColumn`);
+    await denops.cmd(`silent! IlluminateResume`);
+    await denops.cmd(`silent! SmoothCursorFancyOn`);
+    await denops.cmd(`silent! QuickScopeToggle`);
     await denops.cmd(`silent! FontReset`);
   } else {
     await option.wrap.set(denops, true);
@@ -100,12 +102,12 @@ export async function reviewMode(denops: Denops, stop = false) {
     if (await fn.exists(denops, "g:neovide")) {
       await vars.g.set(denops, "neovide_transparency", 1.0);
     }
-    await denops.cmd(`DisableRandomColorscheme`);
-    await denops.cmd(`DisableAutoCursorColumn`);
-    await denops.cmd(`IlluminatePause`);
-    await denops.cmd(`SmoothCursorFancyOff`);
-    await denops.cmd(`QuickScopeToggle`);
-    await denops.cmd(`colorscheme oceanic_material`);
+    await denops.cmd(`silent! DisableRandomColorscheme`);
+    await denops.cmd(`silent! DisableAutoCursorColumn`);
+    await denops.cmd(`silent! IlluminatePause`);
+    await denops.cmd(`silent! SmoothCursorFancyOff`);
+    await denops.cmd(`silent! QuickScopeToggle`);
+    await denops.cmd(`silent! colorscheme oceanic_material`);
     await helper.execute(denops, `silent! FontSizeUp 3`);
   }
 }
@@ -164,4 +166,42 @@ export async function focusFloating(denops: Denops) {
 export async function removeShada(denops: Denops) {
   const shadaDir = join(z.string().parse(await nvimFn.stdpath(denops, "state")), "shada");
   await Deno.remove(shadaDir, { recursive: true });
+}
+
+export async function zennCreate(denops: Denops, title: string, type = "tech") {
+  const date = format(new Date(), "yyyy-MM-dd");
+  const slug = `${date}_${title}`;
+  const cmd = new Deno.Command("deno", {
+    args: [
+      "run",
+      "-A",
+      "npm:zenn-cli@latest",
+      "new:article",
+      "--slug",
+      slug,
+      "--type",
+      type,
+    ],
+  });
+  const { stdout } = await cmd.output();
+  console.log(new TextDecoder().decode(stdout).trim());
+  const gitRoot = (await (new Deno.Command("git", {
+    args: ["rev-parse", "--show-toplevel"],
+    cwd: await fn.getcwd(denops),
+  })).output()).stdout;
+  const article = join(new TextDecoder().decode(gitRoot).trim(), "articles", `${slug}.md`);
+  await buffer.open(denops, article);
+}
+
+export async function zennPreview(denops: Denops) {
+  const bufname = await fn.bufname(denops);
+  await helper.execute(
+    denops,
+    `
+      bo term deno run -A --unstable-fs npm:zenn-cli@latest preview
+      sleep
+      OpenBrowser localhost:8000
+    `,
+  );
+  await buffer.open(denops, bufname);
 }
