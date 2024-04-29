@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/04/28 14:48:30.
+// Last Change : 2024/04/29 22:35:36.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.2/mod.ts";
@@ -314,7 +314,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/tamton-aquib/flirt.nvim",
-    enabled: !pluginStatus.vscode && Deno.build.os !== "windows",
+    enabled: !pluginStatus.vscode && Deno.build.os !== "windows" && false,
     after: async ({ denops }) => {
       await denops.cmd(`lua require("flirt").setup()`);
     },

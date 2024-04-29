@@ -1,102 +1,104 @@
 -- =============================================================================
 -- File        : wezterm.lua
 -- Author      : yukimemi
--- Last Change : 2024/03/02 15:30:21.
+-- Last Change : 2024/04/29 22:07:28.
 -- =============================================================================
 
 -- https://karukichi-blog.netlify.app/blogs/wezterm
-local status, wezterm = pcall(require, 'wezterm')
-if (not status) then return end
+local status, wezterm = pcall(require, "wezterm")
+if not status then
+  return
+end
 local mux = wezterm.mux
 
 local function day_of_week_ja(w_num)
   if w_num == 1 then
-    return '日'
+    return "日"
   elseif w_num == 2 then
-    return '月'
+    return "月"
   elseif w_num == 3 then
-    return '火'
+    return "火"
   elseif w_num == 4 then
-    return '水'
+    return "水"
   elseif w_num == 5 then
-    return '木'
+    return "木"
   elseif w_num == 6 then
-    return '金'
+    return "金"
   elseif w_num == 7 then
-    return '土'
+    return "土"
   end
 end
 
-wezterm.on('update-status', function(window, pane)
-  local wday = os.date('*t').wday
-  local wday_ja = string.format('(%s) ', day_of_week_ja(wday))
-  local date = wezterm.strftime('📆 %Y-%m-%d ' .. wday_ja .. '⏰ %H:%M:%S');
+wezterm.on("update-status", function(window, pane)
+  local wday = os.date("*t").wday
+  local wday_ja = string.format("(%s) ", day_of_week_ja(wday))
+  local date = wezterm.strftime("📆 %Y-%m-%d " .. wday_ja .. "⏰ %H:%M:%S")
 
-  local bat = ''
+  local bat = ""
 
   for _, b in ipairs(wezterm.battery_info()) do
-    local battery_state_of_charge = b.state_of_charge * 100;
-    local battery_icon = ''
+    local battery_state_of_charge = b.state_of_charge * 100
+    local battery_icon = ""
 
     if battery_state_of_charge >= 80 then
-      battery_icon = '🌕 '
+      battery_icon = "🌕 "
     elseif battery_state_of_charge >= 70 then
-      battery_icon = '🌖 '
+      battery_icon = "🌖 "
     elseif battery_state_of_charge >= 60 then
-      battery_icon = '🌖 '
+      battery_icon = "🌖 "
     elseif battery_state_of_charge >= 50 then
-      battery_icon = '🌗 '
+      battery_icon = "🌗 "
     elseif battery_state_of_charge >= 40 then
-      battery_icon = '🌗 '
+      battery_icon = "🌗 "
     elseif battery_state_of_charge >= 30 then
-      battery_icon = '🌘 '
+      battery_icon = "🌘 "
     elseif battery_state_of_charge >= 20 then
-      battery_icon = '🌘 '
+      battery_icon = "🌘 "
     else
-      battery_icon = '🌑 '
+      battery_icon = "🌑 "
     end
 
-    bat = string.format('%s%.0f%% ', battery_icon, battery_state_of_charge)
+    bat = string.format("%s%.0f%% ", battery_icon, battery_state_of_charge)
   end
 
-  window:set_right_status(wezterm.format {
-    { Text = date .. '  ' .. bat },
-  })
+  window:set_right_status(wezterm.format({
+    { Text = date .. "  " .. bat },
+  }))
 end)
 
-wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local tab_index = tab.tab_index + 1
 
-  if tab.is_active and string.match(tab.active_pane.title, 'Copy mode:') ~= nil then
-    return string.format(' %d %s ', tab_index, 'Copy mode...')
+  if tab.is_active and string.match(tab.active_pane.title, "Copy mode:") ~= nil then
+    return string.format(" %d %s ", tab_index, "Copy mode...")
   end
 
-  return string.format(' %d ', tab_index)
+  return string.format(" %d ", tab_index)
 end)
 
 local base_colors = {
-  dark = '#172331',
-  yellow = '#ffe64d'
+  dark = "#172331",
+  yellow = "#ffe64d",
 }
 
 local colors = {
-  cursor_bg = base_colors['yellow'],
-  split = '#6fc3df',
+  cursor_bg = base_colors["yellow"],
+  split = "#6fc3df",
   -- the foreground color of selected text
-  selection_fg = base_colors['dark'],
+  selection_fg = base_colors["dark"],
   -- the background color of selected text
-  selection_bg = base_colors['yellow'],
+  selection_bg = base_colors["yellow"],
   tab_bar = {
-    background = base_colors['dark'],
+    background = base_colors["dark"],
     -- The active tab is the one that has focus in the window
     active_tab = {
-      bg_color = 'aliceblue',
-      fg_color = base_colors['dark'],
+      bg_color = "aliceblue",
+      fg_color = base_colors["dark"],
     },
     -- plus button hidden
     new_tab = {
-      bg_color = base_colors['dark'],
-      fg_color = base_colors['dark'],
+      bg_color = base_colors["dark"],
+      fg_color = base_colors["dark"],
     },
   },
 }
@@ -110,7 +112,7 @@ return {
   adjust_window_size_when_changing_font_size = false,
   audible_bell = "Disabled",
   -- color_scheme = 'Popping and Locking',
-  color_scheme = 'Catppuccin Mocha',
+  color_scheme = "Catppuccin Mocha",
   -- color_scheme = 'nightfox',
   colors = colors,
   front_end = "WebGpu",
@@ -121,7 +123,7 @@ return {
   use_fancy_tab_bar = false,
   use_ime = true,
   window_background_opacity = 0.90,
-  font_size = 11.0,
+  font_size = 18.0,
   font = wezterm.font_with_fallback({
     "PlemolJP Console NF",
     "UDEV Gothic NF",
