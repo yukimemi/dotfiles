@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/04/06 20:09:15.
+// Last Change : 2024/04/30 21:22:50.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.2/mod.ts";
@@ -63,6 +63,13 @@ export const lsp: Plug[] = [
           { url: "https://github.com/neovim/nvim-lspconfig" },
           { url: "https://github.com/williamboman/mason.nvim" },
         ],
+      },
+      {
+        url: "https://github.com/zapling/mason-conform.nvim",
+        enabled: false,
+        after: async ({ denops }) => {
+          await denops.cmd(`lua require("mason-conform").setup()`);
+        },
       },
       {
         url: "https://github.com/folke/neodev.nvim",

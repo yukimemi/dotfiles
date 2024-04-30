@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/01/29 11:40:01.
+// Last Change : 2024/04/30 21:12:55.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.2/mod.ts";
@@ -19,6 +19,7 @@ export const ai: Plug[] = [
   { url: "https://github.com/kyoh86/denops-ollama.vim" },
   {
     url: "https://github.com/yukimemi/futago.vim",
+    enabled: false,
     dst: "~/src/github.com/yukimemi/futago.vim",
     before: async ({ denops }) => {
       await vars.g.set(denops, "futago_debug", false);

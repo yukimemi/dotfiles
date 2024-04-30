@@ -115,9 +115,16 @@ F10::
 ; return
 
 ; for Edge
+; F11::
+; {
+;   Activate("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
+;   return
+; }
+
+; for Arc
 F11::
 {
-  Activate("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
+  Activate("Arc.exe")
   return
 }
 
