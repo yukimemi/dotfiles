@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2024/01/28 16:10:12.
+// Last Change : 2024/05/02 08:36:32.
 // =============================================================================
 
 export function cacheVim() {
@@ -22,6 +22,9 @@ export function cacheVim() {
 export function cacheLua() {
   return {
     script: `
+      -- options.
+      vim.o.fileencodings = "ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1"
+
       -- Move to window using the <ctrl> movement keys
       vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
       vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
