@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2024/03/31 15:07:53.
+// Last Change : 2024/05/02 18:45:56.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.2/mod.ts";
@@ -146,7 +146,7 @@ export const edit: Plug[] = [
   { url: "https://github.com/itchyny/vim-qfedit" },
   {
     url: "https://github.com/tani/vim-typo",
-    enabled: false,
+    enabled: true,
     before: async ({ denops }) => {
       await autocmd.group(denops, "MyTypoSettings", (helper) => {
         helper.remove("*");

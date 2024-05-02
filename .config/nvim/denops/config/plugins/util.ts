@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/04/28 16:00:31.
+// Last Change : 2024/05/02 20:36:39.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.2/mod.ts";
@@ -481,5 +481,17 @@ export const util: Plug[] = [
   {
     url: "https://github.com/tomasky/bookmarks.nvim",
     afterFile: `~/.config/nvim/rc/after/bookmarks.lua`,
+  },
+  {
+    url: "https://github.com/itchyny/calendar.vim",
+    enabled: false,
+    after: async ({ denops }) => {
+      await mapping.map(
+        denops,
+        "mc",
+        "<cmd>Calendar -view=year -split=vertical -position=right -width=27<cr>",
+        { mode: "n" },
+      );
+    },
   },
 ];

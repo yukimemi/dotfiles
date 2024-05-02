@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/04/30 21:22:50.
+// Last Change : 2024/05/02 16:16:47.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.10.2/mod.ts";
@@ -37,9 +37,7 @@ export const lsp: Plug[] = [
       { url: "https://github.com/SmiteshP/nvim-navic" },
       {
         url: "https://github.com/stevearc/aerial.nvim",
-        after: async ({ denops }) => {
-          await denops.cmd(`lua require("aerial").setup()`);
-        },
+        afterFile: `~/.config/nvim/rc/after/aerial.lua`,
       },
       { url: "https://git.sr.ht/~whynothugo/lsp_lines.nvim", enabled: false },
       { url: "https://github.com/lukas-reineke/lsp-format.nvim", enabled: false },
