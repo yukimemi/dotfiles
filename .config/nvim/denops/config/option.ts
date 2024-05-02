@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2024/04/14 22:52:14.
+// Last Change : 2024/05/03 08:52:29.
 // =============================================================================
 
 import type { Denops } from "https://deno.land/x/denops_std@v6.4.0/mod.ts";
@@ -110,7 +110,7 @@ export async function setOption(denops: Denops) {
         }", [])`,
       );
       helper.define(
-        ["CursorHold", "FocusGained", "FocusLost"],
+        ["FocusGained", "FocusLost"],
         "*",
         `silent! checktime`,
       );
