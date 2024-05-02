@@ -1,13 +1,14 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/03/30 16:13:30.
+// Last Change : 2024/05/02 13:12:59.
 // =============================================================================
 
 import { ai } from "./plugins/ai.ts";
 import { clap } from "./plugins/clap.ts";
 import { cmp } from "./plugins/cmp.ts";
 import { coc } from "./plugins/coc.ts";
+import { colors } from "./plugins/colors.ts";
 import { ddc } from "./plugins/ddc.ts";
 import { ddu } from "./plugins/ddu.ts";
 import { denops } from "./plugins/denops.ts";
@@ -76,4 +77,5 @@ export const plugins = [
   ...filetypes,
   ...startup,
   ...ai,
+  ...colors,
 ];
