@@ -15,7 +15,7 @@ import type { Denops } from "https://deno.land/x/denops_std@v6.4.0/mod.ts";
 import { format } from "https://deno.land/std@0.224.0/datetime/mod.ts";
 import { join } from "https://deno.land/std@0.224.0/path/join.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v1.0.0/mod.ts";
-import { z } from "https://deno.land/x/zod@v3.23.5/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.23.6/mod.ts";
 
 const useNvimNotify = false;
 
