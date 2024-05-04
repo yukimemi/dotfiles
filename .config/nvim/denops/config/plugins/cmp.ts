@@ -4,7 +4,7 @@
 // Last Change : 2024/04/27 20:16:15.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.10.2/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.11.0/mod.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const cmp: Plug[] = [

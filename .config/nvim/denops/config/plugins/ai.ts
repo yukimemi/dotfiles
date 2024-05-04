@@ -4,7 +4,7 @@
 // Last Change : 2024/05/03 08:55:25.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.10.2/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.11.0/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v6.4.0/lambda/mod.ts";
@@ -13,7 +13,7 @@ import {
   HarmBlockThreshold,
   HarmCategory,
   SafetySetting,
-} from "https://esm.sh/@google/generative-ai@0.9.0";
+} from "https://esm.sh/@google/generative-ai@0.10.0";
 
 export const ai: Plug[] = [
   { url: "https://github.com/kyoh86/denops-ollama.vim" },
