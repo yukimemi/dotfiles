@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/04/06 14:19:39.
+// Last Change : 2024/05/06 18:52:33.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.11.0/mod.ts";
@@ -135,6 +135,10 @@ export const libs: Plug[] = [
       await vars.g.set(denops, "netrw_nogx", 1);
       await mapping.map(denops, "gx", "<Plug>(openbrowser-smart-search)", { mode: ["n", "x"] });
     },
+  },
+  {
+    url: "https://github.com/tyru/open-browser-github.vim",
+    dependencies: [{ url: "https://github.com/tyru/open-browser.vim" }],
   },
   { url: "https://github.com/lambdalisue/readablefold.vim" },
   { url: "https://github.com/lambdalisue/kensaku.vim" },

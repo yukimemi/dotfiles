@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : treesitter.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 12:39:03.
+// Last Change : 2024/05/06 17:35:10.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.11.0/mod.ts";
@@ -41,18 +41,8 @@ export const treesitter: Plug[] = [
       { url: "https://github.com/thinca/vim-partedit" },
     ],
     after: async ({ denops }) => {
-      await mapping.map(
-        denops,
-        "<space>C",
-        "<Plug>(ts-clipping-clip)",
-        { mode: "n" },
-      );
-      await mapping.map(
-        denops,
-        "<space>C",
-        "<Plug>(ts-clipping-select)",
-        { mode: ["x", "o"] },
-      );
+      await mapping.map(denops, "<space>C", "<Plug>(ts-clipping-clip)", { mode: "n" });
+      await mapping.map(denops, "<space>C", "<Plug>(ts-clipping-select)", { mode: ["x", "o"] });
     },
   },
   {
@@ -64,5 +54,10 @@ export const treesitter: Plug[] = [
     url: "https://github.com/4513ECHO/treesitter-compat-highlights.nvim",
     dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
     afterFile: "~/.config/nvim/rc/after/treesitter-compat-highlights.lua",
+  },
+  {
+    url: "https://github.com/Wansmer/treesj",
+    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
+    afterFile: "~/.config/nvim/rc/after/treesj.lua",
   },
 ];

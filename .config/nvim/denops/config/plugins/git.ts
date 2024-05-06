@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/03/21 00:27:41.
+// Last Change : 2024/05/06 18:53:56.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.11.0/mod.ts";
@@ -172,6 +172,16 @@ export const git: Plug[] = [
     url: "https://github.com/rhysd/committia.vim",
     cache: {
       beforeFile: `~/.config/nvim/rc/before/committia.vim`,
+    },
+  },
+  {
+    url: "https://github.com/sindrets/diffview.nvim",
+    afterFile: `~/.config/nvim/rc/after/diffview.lua`,
+  },
+  {
+    url: "https://github.com/linrongbin16/gitlinker.nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("gitlinker").setup()`);
     },
   },
 ];

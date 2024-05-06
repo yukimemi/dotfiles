@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2024/04/27 20:45:59.
+// Last Change : 2024/05/06 19:00:52.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.11.0/mod.ts";
@@ -131,6 +131,12 @@ export const filetypes: Plug[] = [
     },
   },
   { url: "https://github.com/dhruvasagar/vim-table-mode" },
+  { url: "https://github.com/ixru/nvim-markdown" },
+  {
+    url: "https://github.com/MeanderingProgrammer/markdown.nvim",
+    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
+    afterFile: "~/.config/nvim/rc/after/markdown.lua",
+  },
   // vim
   { url: "https://github.com/machakann/vim-vimhelplint" },
   {

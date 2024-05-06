@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/04/29 22:35:36.
+// Last Change : 2024/05/06 16:32:14.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.11.0/mod.ts";
@@ -202,7 +202,7 @@ export const ui: Plug[] = [
           use_treesitter: true,
         },
         blank: {
-          enable: true,
+          enable: false,
         },
       });
     },
@@ -222,6 +222,11 @@ export const ui: Plug[] = [
       { url: "https://github.com/lewis6991/gitsigns.nvim" },
     ],
     afterFile: `~/.config/nvim/rc/after/incline.lua`,
+  },
+  {
+    url: "https://github.com/romgrk/barbar.nvim",
+    enabled: !pluginStatus.vscode && pluginStatus.barbar,
+    afterFile: `~/.config/nvim/rc/after/barbar.lua`,
   },
   {
     url: "https://github.com/akinsho/bufferline.nvim",
