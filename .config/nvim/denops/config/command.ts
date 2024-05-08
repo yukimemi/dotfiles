@@ -4,12 +4,12 @@
 // Last Change : 2024/04/29 21:31:40.
 // =============================================================================
 
-import * as lambda from "https://deno.land/x/denops_std@v6.4.0/lambda/mod.ts";
-import * as nvimFn from "https://deno.land/x/denops_std@v6.4.0/function/nvim/mod.ts";
-import type { Denops } from "https://deno.land/x/denops_std@v6.4.0/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v6.4.0/batch/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v6.4.2/lambda/mod.ts";
+import * as nvimFn from "https://deno.land/x/denops_std@v6.4.2/function/nvim/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v6.4.2/mod.ts";
+import { batch } from "https://deno.land/x/denops_std@v6.4.2/batch/mod.ts";
 import { removeShada, zennCreate, zennPreview } from "./util.ts";
-import { z } from "https://deno.land/x/zod@v3.23.6/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.23.7/mod.ts";
 
 export async function setCommandPre(_denops: Denops) {
 }
