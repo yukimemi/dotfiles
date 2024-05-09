@@ -13,7 +13,7 @@ import * as lambda from "https://deno.land/x/denops_std@v6.4.2/lambda/mod.ts";
 import * as nvimOption from "https://deno.land/x/denops_std@v6.4.2/option/nvim/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v6.4.2/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v6.4.2/batch/mod.ts";
-import { z } from "https://deno.land/x/zod@v3.23.7/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 import { ensureDir } from "https://deno.land/std@0.224.0/fs/ensure_dir.ts";
 import { stdpath } from "https://deno.land/x/denops_std@v6.4.2/function/nvim/mod.ts";
 

@@ -9,7 +9,7 @@ import * as nvimFn from "https://deno.land/x/denops_std@v6.4.2/function/nvim/mod
 import type { Denops } from "https://deno.land/x/denops_std@v6.4.2/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v6.4.2/batch/mod.ts";
 import { removeShada, zennCreate, zennPreview } from "./util.ts";
-import { z } from "https://deno.land/x/zod@v3.23.7/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 
 export async function setCommandPre(_denops: Denops) {
 }

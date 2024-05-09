@@ -9,7 +9,7 @@ import { type Plug } from "https://deno.land/x/dvpm@3.11.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v6.4.2/function/mod.ts";
 import { Dvpm } from "https://deno.land/x/dvpm@3.11.0/mod.ts";
-import { z } from "https://deno.land/x/zod@v3.23.7/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v6.4.2/helper/mod.ts";
 import { notify } from "./util.ts";
 import { plugins } from "./plugins.ts";
