@@ -18,11 +18,12 @@ zsh
 - First Install BuildTools
 
 ```bat
-winget install Microsoft.VisualStudio.2022.BuildTools
+winget install Microsoft.VisualStudio.2022.BuildTools --override "--add Microsoft.VisualStudio.Workload.VCTools"
 ```
 
-After installed, open Visual Studio Installer and add C++ Desktop app.
-Reboot.
+After installed, reboot OS.
+
+[Use command-line parameters to install Visual Studio | Microsoft Learn](https://learn.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio)
 
 - Execute setup.bat
 
