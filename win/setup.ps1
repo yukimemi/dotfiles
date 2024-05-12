@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2024/05/06 22:58:11.
+  .Last Change : 2024/05/11 15:06:33.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -95,6 +95,7 @@ function Install-RequiredModules {
   $nvimMsi = Join-Path $env:tmp "nvim-win64.msi"
   Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
   & msiexec /i $nvimMsi /quiet
+  sudo choco install -y zig
 }
 
 <#

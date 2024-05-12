@@ -1,115 +1,77 @@
 -- =============================================================================
 -- File        : markdown.lua
 -- Author      : yukimemi
--- Last Change : 2024/05/06 19:00:06.
+-- Last Change : 2024/05/07 01:50:31.
 -- =============================================================================
 
-require("render-markdown").setup({
-  -- Configure whether Markdown should be rendered by default or not
-  start_enabled = true,
-  -- Capture groups that get pulled from markdown
-  markdown_query = [[
-        (atx_heading [
-            (atx_h1_marker)
-            (atx_h2_marker)
-            (atx_h3_marker)
-            (atx_h4_marker)
-            (atx_h5_marker)
-            (atx_h6_marker)
-        ] @heading)
-
-        (thematic_break) @dash
-
-        (fenced_code_block) @code
-
-        [
-            (list_marker_plus)
-            (list_marker_minus)
-            (list_marker_star)
-        ] @list_marker
-
-        (task_list_marker_unchecked) @checkbox_unchecked
-        (task_list_marker_checked) @checkbox_checked
-
-        (block_quote (block_quote_marker) @quote_marker)
-        (block_quote (paragraph (inline (block_continuation) @quote_marker)))
-
-        (pipe_table) @table
-        (pipe_table_header) @table_head
-        (pipe_table_delimiter_row) @table_delim
-        (pipe_table_row) @table_row
-    ]],
-  -- Capture groups that get pulled from inline markdown
-  inline_query = [[
-        (code_span) @code
-    ]],
-  -- The level of logs to write to file: vim.fn.stdpath('state') .. '/render-markdown.log'
-  -- Only intended to be used for plugin development / debugging
-  log_level = "error",
-  -- Filetypes this plugin will run on
-  file_types = { "markdown" },
-  -- Vim modes that will show a rendered view of the markdown file
-  -- All other modes will be uneffected by this plugin
-  render_modes = { "n", "c" },
-  -- Characters that will replace the # at the start of headings
-  headings = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
-  -- Character to use for the horizontal break
-  dash = "—",
-  -- Character to use for the bullet points in lists
-  bullets = { "●", "○", "◆", "◇" },
-  checkbox = {
-    -- Character that will replace the [ ] in unchecked checkboxes
-    unchecked = "󰄱 ",
-    -- Character that will replace the [x] in checked checkboxes
-    checked = " ",
-  },
-  -- Character that will replace the > at the start of block quotes
-  quote = "┃",
-  -- See :h 'conceallevel' for more information about meaning of values
-  conceal = {
-    -- conceallevel used for buffer when not being rendered, get user setting
-    default = vim.opt.conceallevel:get(),
-    -- conceallevel used for buffer when being rendered
-    rendered = 3,
-  },
-  -- Add a line above and below tables to complete look, ends up like a window
-  fat_tables = true,
-  -- Define the highlight groups to use when rendering various components
-  highlights = {
-    heading = {
-      -- Background of heading line
-      backgrounds = { "DiffAdd", "DiffChange", "DiffDelete" },
-      -- Foreground of heading character only
-      foregrounds = {
-        "markdownH1",
-        "markdownH2",
-        "markdownH3",
-        "markdownH4",
-        "markdownH5",
-        "markdownH6",
+require("nvim-treesitter.configs").setup({
+  markdown = {
+    enable = true,
+    -- Disable all keymaps by setting mappings field to 'false'.
+    -- Selectively disable keymaps by setting corresponding field to 'false'.
+    mappings = {
+      inline_surround_toggle = "gs", -- (string|boolean) toggle inline style
+      inline_surround_toggle_line = "gss", -- (string|boolean) line-wise toggle inline style
+      inline_surround_delete = "ds", -- (string|boolean) delete emphasis surrounding cursor
+      inline_surround_change = "cs", -- (string|boolean) change emphasis surrounding cursor
+      link_add = "gl", -- (string|boolean) add link
+      link_follow = "gx", -- (string|boolean) follow link
+      go_curr_heading = "]c", -- (string|boolean) set cursor to current section heading
+      go_parent_heading = "]p", -- (string|boolean) set cursor to parent section heading
+      go_next_heading = "]]", -- (string|boolean) set cursor to next section heading
+      go_prev_heading = "[[", -- (string|boolean) set cursor to previous section heading
+    },
+    inline_surround = {
+      -- For the emphasis, strong, strikethrough, and code fields:
+      -- * 'key': used to specify an inline style in toggle, delete, and change operations
+      -- * 'txt': text inserted when toggling or changing to the corresponding inline style
+      emphasis = {
+        key = "i",
+        txt = "*",
+      },
+      strong = {
+        key = "b",
+        txt = "**",
+      },
+      strikethrough = {
+        key = "s",
+        txt = "~~",
+      },
+      code = {
+        key = "c",
+        txt = "`",
       },
     },
-    -- Horizontal break
-    dash = "LineNr",
-    -- Code blocks
-    code = "ColorColumn",
-    -- Bullet points in list
-    bullet = "Normal",
-    checkbox = {
-      -- Unchecked checkboxes
-      unchecked = "@markup.list.unchecked",
-      -- Checked checkboxes
-      checked = "@markup.heading",
+    link = {
+      paste = {
+        enable = true, -- whether to convert URLs to links on paste
+      },
     },
-    table = {
-      -- Header of a markdown table
-      head = "@markup.heading",
-      -- Non header rows in a markdown table
-      row = "Normal",
+    toc = {
+      -- Comment text to flag headings/sections for omission in table of contents.
+      omit_heading = "toc omit heading",
+      omit_section = "toc omit section",
+      -- Cycling list markers to use in table of contents.
+      -- Use '.' and ')' for ordered lists.
+      markers = { "-" },
     },
-    -- LaTeX blocks
-    latex = "@markup.math",
-    -- Quote character in a block quote
-    quote = "@markup.quote",
+    -- Hook functions allow for overriding or extending default behavior.
+    -- Called with a table of options and a fallback function with default behavior.
+    -- Signature: fun(opts: table, fallback: fun())
+    hooks = {
+      -- Called when following links. Provided the following options:
+      -- * 'dest' (string): the link destination
+      -- * 'use_default_app' (boolean|nil): whether to open the destination with default application
+      --   (refer to documentation on <Plug> mappings for explanation of when this option is used)
+      follow_link = nil,
+    },
+    on_attach = function(bufnr)
+      local map = vim.keymap.set
+      local opts = { buffer = bufnr }
+      map({ "n", "i" }, "<M-l><M-o>", "<Cmd>MDListItemBelow<CR>", opts)
+      map({ "n", "i" }, "<M-L><M-O>", "<Cmd>MDListItemAbove<CR>", opts)
+      map("n", "<M-c>", "<Cmd>MDTaskToggle<CR>", opts)
+      map("x", "<M-c>", ":MDTaskToggle<CR>", opts)
+    end,
   },
 })

@@ -1,16 +1,16 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2024/05/06 19:00:52.
+// Last Change : 2024/05/12 10:44:08.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.11.0/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v6.4.2/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.4.2/function/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v6.4.2/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v6.4.2/mapping/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.4.2/variable/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v6.4.0/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.4.0/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v6.4.0/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.4.0/variable/mod.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const filetypes: Plug[] = [
@@ -135,6 +135,12 @@ export const filetypes: Plug[] = [
   {
     url: "https://github.com/MeanderingProgrammer/markdown.nvim",
     dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
+    afterFile: "~/.config/nvim/rc/after/render-markdown.lua",
+  },
+  {
+    url: "https://github.com/tadmccorkle/markdown.nvim",
+    enabled: false,
+    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }, { url: "https://github.com/tree-sitter-grammars/tree-sitter-markdown" }],
     afterFile: "~/.config/nvim/rc/after/markdown.lua",
   },
   // vim
