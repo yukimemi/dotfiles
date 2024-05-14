@@ -5,9 +5,9 @@
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.11.0/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.4.2/variable/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v6.4.2/mapping/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v6.4.2/lambda/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.4.3/variable/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v6.4.3/mapping/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v6.4.3/lambda/mod.ts";
 import {
   GenerationConfig,
   HarmBlockThreshold,

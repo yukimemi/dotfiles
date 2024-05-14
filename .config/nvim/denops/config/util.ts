@@ -4,14 +4,14 @@
 // Last Change : 2024/04/29 21:42:40.
 // =============================================================================
 
-import * as buffer from "https://deno.land/x/denops_std@v6.4.2/buffer/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.4.2/function/mod.ts";
+import * as buffer from "https://deno.land/x/denops_std@v6.4.3/buffer/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.4.3/function/mod.ts";
 import * as fs from "https://deno.land/std@0.224.0/fs/mod.ts";
-import * as helper from "https://deno.land/x/denops_std@v6.4.2/helper/mod.ts";
-import * as nvimFn from "https://deno.land/x/denops_std@v6.4.2/function/nvim/mod.ts";
-import * as option from "https://deno.land/x/denops_std@v6.4.2/option/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.4.2/variable/mod.ts";
-import type { Denops } from "https://deno.land/x/denops_std@v6.4.2/mod.ts";
+import * as helper from "https://deno.land/x/denops_std@v6.4.3/helper/mod.ts";
+import * as nvimFn from "https://deno.land/x/denops_std@v6.4.3/function/nvim/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v6.4.3/option/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.4.3/variable/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v6.4.3/mod.ts";
 import { format } from "https://deno.land/std@0.224.0/datetime/mod.ts";
 import { join } from "https://deno.land/std@0.224.0/path/join.ts";
 import { systemopen } from "https://deno.land/x/systemopen@v1.0.0/mod.ts";
