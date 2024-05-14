@@ -4,9 +4,9 @@
 // Last Change : 2023/07/16 00:40:00.
 // =============================================================================
 
-import type { Denops } from "https://deno.land/x/denops_std@v6.4.2/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.4.2/function/mod.ts";
-import * as buffer from "https://deno.land/x/denops_std@v6.4.2/buffer/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v6.4.3/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.4.3/function/mod.ts";
+import * as buffer from "https://deno.land/x/denops_std@v6.4.3/buffer/mod.ts";
 
 import { notify } from "./util.ts";
 
