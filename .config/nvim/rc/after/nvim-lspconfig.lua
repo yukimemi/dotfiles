@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-lspconfig.lua
 -- Author      : yukimemi
--- Last Change : 2024/03/30 13:38:27.
+-- Last Change : 2024/05/15 10:48:29.
 -- =============================================================================
 
 require("mason").setup({
@@ -186,5 +186,10 @@ require("mason-lspconfig").setup_handlers({
         },
       },
     }))
-  end
+  end,
+  bicep = function()
+    lspconfig["bicep"].setup(vim.tbl_deep_extend("force", options, {
+      single_file_support = true,
+    }))
+  end,
 })

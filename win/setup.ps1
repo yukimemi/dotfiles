@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2024/05/11 15:06:33.
+  .Last Change : 2024/05/12 17:06:55.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -89,6 +89,7 @@ function Install-RequiredModules {
   winget install -q Neovide.Neovide
   winget install -q BurntSushi.ripgrep.MSVC
   winget install -q sharkdp.bat
+  winget install -q dandavision.delta
   winget install -q junegunn.fzf
   winget install -q ajeetdsouza.zoxide
   # winget install -q Neovim.Neovim

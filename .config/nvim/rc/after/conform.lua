@@ -1,15 +1,13 @@
 -- =============================================================================
 -- File        : conform.lua
 -- Author      : yukimemi
--- Last Change : 2023/12/17 15:50:04.
+-- Last Change : 2024/05/12 18:30:51.
 -- =============================================================================
 
 local conform = require("conform")
 
 conform.setup({
-  format_on_save = {
-    -- These options will be passed to conform.format()
-    timeout_ms = 500,
+  format_after_save = {
     lsp_fallback = true,
   },
   formatters_by_ft = {
