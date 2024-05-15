@@ -4,11 +4,11 @@
 // Last Change : 2024/04/07 10:08:12.
 // =============================================================================
 
-import type { Denops } from "https://deno.land/x/denops_std@v6.4.3/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
 
-import * as option from "https://deno.land/x/denops_std@v6.4.3/option/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.4.3/variable/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.4.3/function/mod.ts";
+import * as option from "https://deno.land/x/denops_std@v6.5.0/option/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.5.0/variable/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
 
 export async function setNeovide(denops: Denops) {
   if (!(await fn.exists(denops, "g:neovide"))) {
