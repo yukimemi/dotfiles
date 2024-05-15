@@ -78,3 +78,5 @@
 	required = true
 [rerere]
 	enabled = true
+[ogh]
+	root = ~/src

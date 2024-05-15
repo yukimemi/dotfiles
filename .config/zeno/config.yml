@@ -157,6 +157,9 @@ snippets:
   - name: Install molt
     keyword: molt
     snippet: deno install --allow-env --allow-read --allow-net --allow-write --allow-run=git --name=molt https://deno.land/x/molt/cli.ts
+  # ogh
+  - name: Install ogh
+    snippet: deno install --allow-net --allow-run --allow-read --allow-env -f -g jsr:@lambdalisue/ogh
   # youtube-dl
   - name: Install yt-dlp (youtube-dl)
     keyword: install-yt-dlp
