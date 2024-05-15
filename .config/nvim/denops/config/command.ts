@@ -4,10 +4,10 @@
 // Last Change : 2024/04/29 21:31:40.
 // =============================================================================
 
-import * as lambda from "https://deno.land/x/denops_std@v6.4.3/lambda/mod.ts";
-import * as nvimFn from "https://deno.land/x/denops_std@v6.4.3/function/nvim/mod.ts";
-import type { Denops } from "https://deno.land/x/denops_std@v6.4.3/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v6.4.3/batch/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v6.5.0/lambda/mod.ts";
+import * as nvimFn from "https://deno.land/x/denops_std@v6.5.0/function/nvim/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+import { batch } from "https://deno.land/x/denops_std@v6.5.0/batch/mod.ts";
 import { removeShada, zennCreate, zennPreview } from "./util.ts";
 import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 
