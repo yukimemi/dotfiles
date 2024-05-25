@@ -157,6 +157,9 @@ snippets:
   - name: Install molt
     keyword: molt
     snippet: deno install --allow-env --allow-read --allow-net --allow-write --allow-run=git --name=molt https://deno.land/x/molt/cli.ts
+  - name: std to jsr
+    keyword: stdtojsr
+    snippet: deno run -A jsr:@omochice/replace-std-to-jsr
   # ogh
   - name: Install ogh
     snippet: deno install --allow-net --allow-run --allow-read --allow-env -f -g jsr:@lambdalisue/ogh

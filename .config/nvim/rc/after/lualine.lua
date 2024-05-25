@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : lualine.lua
 -- Author      : yukimemi
--- Last Change : 2024/05/06 17:42:55.
+-- Last Change : 2024/05/25 13:16:47.
 -- =============================================================================
 
 -- Eviline config for lualine
@@ -167,7 +167,7 @@ ins_left({
   function()
     local msg = "No Active Lsp"
     local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-    local clients = vim.lsp.get_active_clients()
+    local clients = vim.lsp.get_clients()
     if next(clients) == nil then
       return msg
     end
