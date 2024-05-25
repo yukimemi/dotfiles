@@ -1,10 +1,10 @@
 -- =============================================================================
 -- File        : nvim-dansa.lua
 -- Author      : yukimemi
--- Last Change : 2023/12/04 01:32:45.
+-- Last Change : 2024/05/09 00:50:49.
 -- =============================================================================
 
-local dansa = require('dansa')
+local dansa = require("dansa")
 
 -- global settings.
 dansa.setup({
@@ -25,6 +25,16 @@ dansa.setup({
     },
     tab = {
       shiftwidth = 4,
-    }
-  }
+    },
+  },
+})
+
+-- per filetype settings.
+dansa.setup.filetype({ "go", "xml" }, {
+  default = {
+    expandtab = false,
+    tab = {
+      shiftwidth = 4,
+    },
+  },
 })
