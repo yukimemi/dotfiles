@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/03/24 23:06:50.
+// Last Change : 2024/05/28 23:01:02.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.12.0/mod.ts";
@@ -576,8 +576,8 @@ export const ddu: Plug[] = [
           }", [])`,
         );
         helper.define(
-          "FileType",
-          "ddu-ff-filter",
+          "User",
+          "Ddu:ui:ff:openFilterWindow",
           `call <SID>${denops.name}_notify("${
             lambda.register(
               denops,
@@ -586,26 +586,59 @@ export const ddu: Plug[] = [
                   await mapping.map(
                     denops,
                     "<cr>",
-                    "<esc><cmd>call ddu#ui#do_action('itemAction')<cr>",
-                    { mode: "i", buffer: true, silent: true },
+                    "<cr><cmd>call ddu#ui#do_action('itemAction')<cr>",
+                    { mode: "c", silent: true, noremap: true },
                   );
                   await mapping.map(
                     denops,
                     "<esc>",
                     "<esc><cmd>call ddu#ui#do_action('closeFilterWindow')<cr>",
-                    { mode: "i", buffer: true, silent: true, nowait: true },
+                    { mode: "c", silent: true, noremap: true, nowait: true },
                   );
                   await mapping.map(
                     denops,
                     "<c-j>",
                     `<cmd>call ddu#ui#do_action('cursorNext')<cr>`,
-                    { mode: "i", buffer: true, silent: true },
+                    { mode: "c", silent: true, noremap: true },
                   );
                   await mapping.map(
                     denops,
                     "<c-k>",
                     `<cmd>call ddu#ui#do_action('cursorPrevious')<cr>`,
-                    { mode: "i", buffer: true, silent: true },
+                    { mode: "c", silent: true, noremap: true },
+                  );
+                });
+              },
+            )
+          }", [])`,
+        );
+        helper.define(
+          "User",
+          "Ddu:ui:ff:closeFilterWindow",
+          `call <SID>${denops.name}_notify("${
+            lambda.register(
+              denops,
+              async () => {
+                await batch(denops, async (denops) => {
+                  await mapping.unmap(
+                    denops,
+                    "<cr>",
+                    { mode: "c" },
+                  );
+                  await mapping.unmap(
+                    denops,
+                    "<esc>",
+                    { mode: "c" },
+                  );
+                  await mapping.unmap(
+                    denops,
+                    "<c-j>",
+                    { mode: "c" },
+                  );
+                  await mapping.unmap(
+                    denops,
+                    "<c-k>",
+                    { mode: "c" },
                   );
                 });
               },

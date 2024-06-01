@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/05/02 20:36:39.
+// Last Change : 2024/05/19 23:09:35.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.12.0/mod.ts";
@@ -186,6 +186,10 @@ export const util: Plug[] = [
         expr: true,
       });
     },
+    cache: {
+      beforeFile: "~/.config/nvim/rc/before/vim-ambicmd.vim",
+      afterFile: "~/.config/nvim/rc/after/vim-ambicmd.vim",
+    }
   },
   {
     url: "https://github.com/stevearc/stickybuf.nvim",
