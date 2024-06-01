@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/05/28 23:01:02.
+// Last Change : 2024/06/01 23:52:13.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.12.0/mod.ts";
@@ -583,16 +583,17 @@ export const ddu: Plug[] = [
               denops,
               async () => {
                 await batch(denops, async (denops) => {
+                  await denops.call(`ddu#ui#ff#save_cmaps`, ["<cr>", "<esc>", "<c-j>", "<c-k>"]);
                   await mapping.map(
                     denops,
                     "<cr>",
-                    "<cr><cmd>call ddu#ui#do_action('itemAction')<cr>",
+                    "<esc><cmd>call ddu#ui#do_action('itemAction')<cr>",
                     { mode: "c", silent: true, noremap: true },
                   );
                   await mapping.map(
                     denops,
                     "<esc>",
-                    "<esc><cmd>call ddu#ui#do_action('closeFilterWindow')<cr>",
+                    "<esc><cmd>call ddu#ui#do_action('quit')<cr>",
                     { mode: "c", silent: true, noremap: true, nowait: true },
                   );
                   await mapping.map(
@@ -619,28 +620,7 @@ export const ddu: Plug[] = [
             lambda.register(
               denops,
               async () => {
-                await batch(denops, async (denops) => {
-                  await mapping.unmap(
-                    denops,
-                    "<cr>",
-                    { mode: "c" },
-                  );
-                  await mapping.unmap(
-                    denops,
-                    "<esc>",
-                    { mode: "c" },
-                  );
-                  await mapping.unmap(
-                    denops,
-                    "<c-j>",
-                    { mode: "c" },
-                  );
-                  await mapping.unmap(
-                    denops,
-                    "<c-k>",
-                    { mode: "c" },
-                  );
-                });
+                await denops.call(`ddu#ui#ff#restore_cmaps`);
               },
             )
           }", [])`,
