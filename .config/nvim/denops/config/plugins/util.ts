@@ -189,7 +189,7 @@ export const util: Plug[] = [
     cache: {
       beforeFile: "~/.config/nvim/rc/before/vim-ambicmd.vim",
       afterFile: "~/.config/nvim/rc/after/vim-ambicmd.vim",
-    }
+    },
   },
   {
     url: "https://github.com/stevearc/stickybuf.nvim",
