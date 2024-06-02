@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/06/01 23:52:13.
+// Last Change : 2024/06/02 00:15:12.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.12.0/mod.ts";
@@ -593,7 +593,7 @@ export const ddu: Plug[] = [
                   await mapping.map(
                     denops,
                     "<esc>",
-                    "<esc><cmd>call ddu#ui#do_action('quit')<cr>",
+                    "<cr><esc>",
                     { mode: "c", silent: true, noremap: true, nowait: true },
                   );
                   await mapping.map(
