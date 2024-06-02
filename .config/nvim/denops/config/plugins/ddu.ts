@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/06/02 00:15:12.
+// Last Change : 2024/06/02 11:24:10.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.12.0/mod.ts";
@@ -337,7 +337,7 @@ export const ddu: Plug[] = [
                   uiParams: {
                     ff: {
                       ignoreEmpty: true,
-                      prompt: "»",
+                      prompt: "» ",
                       split: "horizontal",
                       startAutoAction: true,
                       startFilter: false,

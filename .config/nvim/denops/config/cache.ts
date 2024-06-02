@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2024/05/03 08:53:56.
+// Last Change : 2024/06/03 08:53:56.
 // =============================================================================
 
 export function cacheVim() {
@@ -70,6 +70,11 @@ export function cacheLua() {
       vim.keymap.set("n", "st", "<cmd>tabnew<cr>", { silent = true })
       vim.keymap.set("n", "sv", "<cmd>vs<cr>", { silent = true })
       vim.keymap.set("n", "sw", "<c-w>w", { silent = true })
+
+      vim.keymap.set({"n", "x"}, "H", "H<Plug>(H)")
+      vim.keymap.set({"n", "x"}, "L", "L<Plug>(L)")
+      vim.keymap.set({"n", "x"}, "<Plug>(H)H", "<PageUp>H<Plug>(H)")
+      vim.keymap.set({"n", "x"}, "<Plug>(L)L", "<PageDown>Lzb<Plug>(L)")
 
     `,
     path: "~/.cache/nvim/dvpm/cache/plugin/dvpm_cache.lua",
