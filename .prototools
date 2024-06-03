@@ -1,3 +1,5 @@
+deno = "1.44.0"
+
 [plugins]
 dotnet = "github:Phault/proto-dotnet-plugin"
 dprint = "source:https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/dprint/plugin.toml"
