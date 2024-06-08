@@ -9,10 +9,10 @@ import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
 import * as lambda from "https://deno.land/x/denops_std@v6.5.0/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v6.5.0/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.5.0/variable/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@3.12.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
 import { Denops } from "https://deno.land/x/denops_core@v6.1.0/mod.ts";
 import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
-import { exists } from "jsr:@std/fs@0.224.0/exists";
+import { exists } from "jsr:@std/fs@0.229.2/exists";
 import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 

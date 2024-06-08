@@ -4,14 +4,14 @@
 // Last Change : 2024/05/06 18:52:33.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.12.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v6.5.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v6.5.0/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.5.0/variable/mod.ts";
 import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
-import { exists } from "jsr:@std/fs@0.224.0";
+import { exists } from "jsr:@std/fs@0.229.2";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const libs: Plug[] = [
