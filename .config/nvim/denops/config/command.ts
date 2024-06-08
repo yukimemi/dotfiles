@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : command.ts
 // Author      : yukimemi
-// Last Change : 2024/04/29 21:31:40.
+// Last Change : 2024/06/08 20:38:30.
 // =============================================================================
 
 import * as lambda from "https://deno.land/x/denops_std@v6.5.0/lambda/mod.ts";
@@ -39,5 +39,6 @@ export async function setCommandPost(denops: Denops) {
       lambda.register(denops, async () => await zennPreview(denops))
     }", [<f-args>])
       `);
+    await denops.cmd(`command! DenopsFixCache call denops#cache#update(#{reload: v:true})`);
   });
 }

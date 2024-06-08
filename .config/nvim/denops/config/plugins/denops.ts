@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/05/25 22:03:25.
+// Last Change : 2024/06/08 21:27:06.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.12.0/mod.ts";
@@ -104,7 +104,7 @@ export const denops: Plug[] = [
       await vars.g.set(denops, "silentsaver_debug", false);
       await vars.g.set(denops, "silentsaver_enable", true);
       await vars.g.set(denops, "silentsaver_echo", false);
-      await vars.g.set(denops, "silentsaver_notify", true);
+      await vars.g.set(denops, "silentsaver_notify", false);
       await vars.g.set(denops, "silentsaver_use_ui_select", false);
       await vars.g.set(denops, "silentsaver_events", [
         "CursorHold",

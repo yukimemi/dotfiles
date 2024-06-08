@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/05/19 23:09:35.
+// Last Change : 2024/06/08 21:23:27.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.12.0/mod.ts";
@@ -445,7 +445,10 @@ export const util: Plug[] = [
     afterFile: "~/.config/nvim/rc/after/before.lua",
   },
   {
-    url: "https://github.com/lambdalisue/suda.vim",
+    url: "https://github.com/lambdalisue/vim-suda",
+    before: async ({ denops }) => {
+      await vars.g.set(denops, "suda#noninteractive", 1);
+    },
   },
   {
     url: "https://github.com/mistricky/codesnap.nvim",
@@ -497,5 +500,8 @@ export const util: Plug[] = [
         { mode: "n" },
       );
     },
+  },
+  {
+    url: "https://github.com/Milly/deno-protocol.vim",
   },
 ];

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/05/02 16:16:47.
+// Last Change : 2024/06/08 21:07:25.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.12.0/mod.ts";
@@ -70,10 +70,10 @@ export const lsp: Plug[] = [
         },
       },
       {
-        url: "https://github.com/folke/neodev.nvim",
+        url: "https://github.com/folke/lazydev.nvim",
         dependencies: [{ url: "https://github.com/neovim/nvim-lspconfig" }],
         after: async ({ denops }) => {
-          await denops.cmd(`lua require("neodev").setup()`);
+          await denops.cmd(`lua require("lazydev").setup()`);
         },
       },
       {
