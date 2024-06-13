@@ -6,7 +6,7 @@
 
 import * as buffer from "https://deno.land/x/denops_std@v6.5.0/buffer/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
-import * as fs from "jsr:@std/fs@0.229.2";
+import * as fs from "jsr:@std/fs@0.229.3";
 import * as helper from "https://deno.land/x/denops_std@v6.5.0/helper/mod.ts";
 import * as nvimFn from "https://deno.land/x/denops_std@v6.5.0/function/nvim/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v6.5.0/option/mod.ts";

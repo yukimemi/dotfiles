@@ -11,7 +11,7 @@ import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v6.5.0/mapping/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.5.0/variable/mod.ts";
 import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
-import { exists } from "jsr:@std/fs@0.229.2";
+import { exists } from "jsr:@std/fs@0.229.3";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const libs: Plug[] = [
