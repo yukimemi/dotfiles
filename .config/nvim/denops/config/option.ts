@@ -14,7 +14,7 @@ import * as nvimOption from "https://deno.land/x/denops_std@v6.5.0/option/nvim/m
 import * as option from "https://deno.land/x/denops_std@v6.5.0/option/mod.ts";
 import { batch } from "https://deno.land/x/denops_std@v6.5.0/batch/mod.ts";
 import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
-import { ensureDir } from "jsr:@std/fs@0.229.2/ensure-dir";
+import { ensureDir } from "jsr:@std/fs@0.229.3/ensure-dir";
 import { stdpath } from "https://deno.land/x/denops_std@v6.5.0/function/nvim/mod.ts";
 
 export async function setOption(denops: Denops) {
