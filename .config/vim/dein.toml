@@ -1,7 +1,7 @@
 # =============================================================================
 # File       : dein.toml
 # Author     : yukimemi
-# Last Change: 2023/04/16 18:42:11.
+# Last Change: 2024/06/15 23:19:17.
 # =============================================================================
 
 # ==================== Dein ======================
@@ -78,15 +78,15 @@ if = 1
 on_event = ["CursorHold", "InsertEnter", "CursorMoved", "FocusLost"]
 
 [[plugins]]
-repo = "lambdalisue/glyph-palette.vim"
+repo = "lambdalisue/vim-glyph-palette"
 if = "g:plugin_use_fern"
 
 [[plugins]]
-repo = "lambdalisue/nerdfont.vim"
+repo = "lambdalisue/vim-nerdfont"
 if = "g:plugin_use_fern"
 
 [[plugins]]
-repo = 'lambdalisue/seethrough.vim'
+repo = 'lambdalisue/vim-seethrough'
 if = "!has('gui')"
 
 [[plugins]]
@@ -482,7 +482,7 @@ if = 1
 on_map = { v = '<Plug>(EasyAlign)' }
 
 [[plugins]]
-repo = "lambdalisue/readablefold.vim"
+repo = "lambdalisue/vim-readablefold"
 if = 1
 on_event = ['CursorHold', 'FocusLost']
 
@@ -857,11 +857,11 @@ source $VIM_PATH/rc/startup.nvim
 
 
 [[plugins]]
-repo = 'lambdalisue/mr.vim'
+repo = 'lambdalisue/vim-mr'
 lazy = 1
 
 [[plugins]]
-repo = 'lambdalisue/mr-quickfix.vim'
+repo = 'lambdalisue/vim-mr-quickfix'
 depends = 'mr.vim'
 on_cmd = ['Mru', 'Mrw']
 hook_add = '''
@@ -869,7 +869,7 @@ source $VIM_PATH/rc/mr-quickfix.vim
 '''
 
 [[plugins]]
-repo = 'lambdalisue/fin.vim'
+repo = 'lambdalisue/vim-fin'
 if = 0
 on_cmd = 'Fin'
 hook_add = '''
@@ -945,7 +945,7 @@ if = 1
 lazy = 1
 
 [[plugins]]
-repo = 'lambdalisue/gina.vim'
+repo = 'lambdalisue/vim-gina'
 hook_add = '''
 source $VIM_PATH/rc/gina.vim
 '''
@@ -1565,15 +1565,15 @@ depends = 'denops.vim'
 on_cmd = 'GhostStart'
 
 [[plugins]]
-repo = 'lambdalisue/askpass.vim'
+repo = 'lambdalisue/vim-askpass'
 lazy = 1
 
 [[plugins]]
-repo = 'lambdalisue/guise.vim'
+repo = 'lambdalisue/vim-guise'
 depends = 'denops.vim'
 
 [[plugins]]
-repo = 'lambdalisue/gin.vim'
+repo = 'lambdalisue/vim-gin'
 depends = ['denops.vim', 'askpass.vim', 'guise.vim']
 hook_add = '''
 source $VIM_PATH/rc/gin.vim
@@ -1985,33 +1985,33 @@ on_event = ['CursorHold', 'FocusLost']
 # ==================== Filetree ==================
 
 [[plugins]]
-repo = 'lambdalisue/fern.vim'
+repo = 'lambdalisue/vim-fern'
 hook_add = '''
 source $VIM_PATH/rc/fern.vim
 '''
 if = "g:plugin_use_fern"
 on_cmd = 'Fern'
 [[plugins]]
-repo = 'lambdalisue/fern-git-status.vim'
+repo = 'lambdalisue/vim-fern-git-status'
 on_source = 'fern.vim'
 [[plugins]]
-repo = 'lambdalisue/fern-git.vim'
+repo = 'lambdalisue/vim-fern-git'
 on_source = 'fern.vim'
 [[plugins]]
-repo = 'lambdalisue/fern-mapping-git.vim'
+repo = 'lambdalisue/vim-fern-mapping-git'
 on_source = 'fern.vim'
 [[plugins]]
-repo = 'lambdalisue/fern-bookmark.vim'
+repo = 'lambdalisue/vim-fern-bookmark'
 on_source = 'fern.vim'
 [[plugins]]
-repo = 'lambdalisue/fern-comparator-lexical.vim'
+repo = 'lambdalisue/vim-fern-comparator-lexical'
 on_source = 'fern.vim'
 [[plugins]]
-repo = 'lambdalisue/fern-renderer-nerdfont.vim'
+repo = 'lambdalisue/vim-fern-renderer-nerdfont'
 depends = ['nerdfont.vim', 'glyph-palette.vim']
 on_source = 'fern.vim'
 [[plugins]]
-repo = 'lambdalisue/fern-hijack.vim'
+repo = 'lambdalisue/vim-fern-hijack'
 on_source = 'fern.vim'
 
 [[plugins]]
@@ -2168,7 +2168,7 @@ on_ft = ['ps1', 'typescript']
 on_map = '<Plug>'
 
 [[plugins]]
-repo = 'lambdalisue/vim-quickrun-neovim-job'
+repo = 'lambdalisue/vim-quickrun-ne-job'
 if = "g:plugin_use_quickrun"
 lazy = 1
 

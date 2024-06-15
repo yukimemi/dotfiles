@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/06/08 21:23:27.
+// Last Change : 2024/06/15 22:24:21.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
@@ -228,7 +228,6 @@ export const util: Plug[] = [
             "aerial",
             "ddu",
             "ddu-ff",
-            "ddu-filter",
           ],
         },
         animation: {

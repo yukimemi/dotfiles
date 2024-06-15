@@ -1,5 +1,5 @@
 return {
-  "lambdalisue/kensaku.vim",
+  "lambdalisue/vim-kensaku",
 
   lazy = false,
 

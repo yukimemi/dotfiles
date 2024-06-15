@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/06/15 22:17:03.
+// Last Change : 2024/06/15 23:20:25.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
@@ -62,7 +62,7 @@ export const ddu: Plug[] = [
       { url: "https://github.com/Milly/ddu-filter-merge" },
       {
         url: "https://github.com/Milly/ddu-filter-kensaku",
-        dependencies: [{ url: "https://github.com/lambdalisue/kensaku.vim" }],
+        dependencies: [{ url: "https://github.com/lambdalisue/vim-kensaku" }],
       },
       {
         url: "https://github.com/matsui54/ddu-vim-ui-select",

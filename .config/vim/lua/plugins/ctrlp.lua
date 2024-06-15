@@ -28,7 +28,7 @@ return {
     {
       "tsuyoshicho/ctrlp-mr.vim",
       dependencies = {
-        "lambdalisue/mr.vim",
+        "lambdalisue/vim-mr",
       },
     },
     {
@@ -40,27 +40,27 @@ return {
     {
       "ompugao/ctrlp-kensaku",
       dependencies = {
-        "lambdalisue/kensaku.vim",
+        "lambdalisue/vim-kensaku",
       },
-    }
+    },
   },
 
   keys = {
-    { "<space>cH", "<cmd>CtrlPCommandLine<cr>", mode = { "n", "x" } },
-    { "<space>cM", "<cmd>CtrlPMark<cr>", mode = "n" },
+    { "<space>cH", "<cmd>CtrlPCommandLine<cr>",   mode = { "n", "x" } },
+    { "<space>cM", "<cmd>CtrlPMark<cr>",          mode = "n" },
     { "<space>cS", "<cmd>CtrlPSearchHistory<cr>", mode = "n" },
-    { "<space>cb", "<cmd>CtrlPBuffer<cr>", mode = "n" },
-    { "<space>cc", "<cmd>CtrlP ~/.cache<cr>", mode = "n" },
+    { "<space>cb", "<cmd>CtrlPBuffer<cr>",        mode = "n" },
+    { "<space>cc", "<cmd>CtrlP ~/.cache<cr>",     mode = "n" },
     -- { "<space>cl", "<cmd>CtrlPLauncher<cr>", mode = "n" },
-    { "<space>cd", "<cmd>CtrlP ~/.dotfiles<cr>", mode = "n" },
-    { "<space>cD", "<cmd>CtrlPCurFile<cr>", mode = "n" },
-    { "<space>cf", "<cmd>CtrlPFiletype<cr>", mode = "n" },
-    { "<space>cm", "<cmd>CtrlPMemolist<cr>", mode = "n" },
-    { "<space>cp", "<cmd>CtrlP<cr>", mode = "n" },
-    { "<space>cs", "<cmd>CtrlP ~/src<cr>", mode = "n" },
-    { "<space>cr", "<cmd>CtrlPMRMrr<cr>", mode = "n" },
-    { "<space>cu", "<cmd>CtrlPMRMru<cr>", mode = "n" },
-    { "<space>cw", "<cmd>CtrlPMRMrw<cr>", mode = "n" },
+    { "<space>cd", "<cmd>CtrlP ~/.dotfiles<cr>",  mode = "n" },
+    { "<space>cD", "<cmd>CtrlPCurFile<cr>",       mode = "n" },
+    { "<space>cf", "<cmd>CtrlPFiletype<cr>",      mode = "n" },
+    { "<space>cm", "<cmd>CtrlPMemolist<cr>",      mode = "n" },
+    { "<space>cp", "<cmd>CtrlP<cr>",              mode = "n" },
+    { "<space>cs", "<cmd>CtrlP ~/src<cr>",        mode = "n" },
+    { "<space>cr", "<cmd>CtrlPMRMrr<cr>",         mode = "n" },
+    { "<space>cu", "<cmd>CtrlPMRMru<cr>",         mode = "n" },
+    { "<space>cw", "<cmd>CtrlPMRMrw<cr>",         mode = "n" },
   },
 
   init = function()

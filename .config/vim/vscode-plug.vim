@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : vscode-plug.vim
 " Author      : yukimemi
-" Last Change : 2023/04/03 12:03:00.
+" Last Change : 2024/06/15 23:16:44.
 " =============================================================================
 
 " Plugin:
@@ -44,7 +44,7 @@ Plug 'yukimemi/dps-ahdr'
 Plug 'yukimemi/dps-autodate'
 Plug 'yukimemi/dps-autobackup'
 Plug 'yuki-yano/fuzzy-motion.vim'
-Plug 'lambdalisue/kensaku.vim'
+Plug 'lambdalisue/vim-kensaku'
 
 " Plug 'asvetliakov/vim-easymotion'
 

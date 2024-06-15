@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : fern.ts
 // Author      : yukimemi
-// Last Change : 2023/12/03 18:55:46.
+// Last Change : 2024/06/15 23:17:33.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
@@ -15,44 +15,44 @@ import { pluginStatus } from "../pluginstatus.ts";
 
 export const fern: Plug[] = [
   {
-    url: "https://github.com/lambdalisue/fern.vim",
+    url: "https://github.com/lambdalisue/vim-fern",
     enabled: !pluginStatus.vscode && !pluginStatus.coc && pluginStatus.fern,
     dependencies: [
       {
-        url: "https://github.com/lambdalisue/fern-hijack.vim",
-        dependencies: [{ url: "https://github.com/lambdalisue/fern.vim" }],
+        url: "https://github.com/lambdalisue/vim-fern-hijack",
+        dependencies: [{ url: "https://github.com/lambdalisue/vim-fern" }],
       },
       {
-        url: "https://github.com/lambdalisue/fern-git-status.vim",
-        dependencies: [{ url: "https://github.com/lambdalisue/fern.vim" }],
+        url: "https://github.com/lambdalisue/vim-fern-git-status",
+        dependencies: [{ url: "https://github.com/lambdalisue/vim-fern" }],
       },
       {
-        url: "https://github.com/lambdalisue/fern-git.vim",
-        dependencies: [{ url: "https://github.com/lambdalisue/fern.vim" }],
+        url: "https://github.com/lambdalisue/vim-fern-git",
+        dependencies: [{ url: "https://github.com/lambdalisue/vim-fern" }],
       },
       {
-        url: "https://github.com/lambdalisue/fern-mapping-git.vim",
-        dependencies: [{ url: "https://github.com/lambdalisue/fern.vim" }],
+        url: "https://github.com/lambdalisue/vim-fern-mapping-git",
+        dependencies: [{ url: "https://github.com/lambdalisue/vim-fern" }],
       },
       {
-        url: "https://github.com/lambdalisue/fern-bookmark.vim",
-        dependencies: [{ url: "https://github.com/lambdalisue/fern.vim" }],
+        url: "https://github.com/lambdalisue/vim-fern-bookmark",
+        dependencies: [{ url: "https://github.com/lambdalisue/vim-fern" }],
       },
       {
-        url: "https://github.com/lambdalisue/fern-comparator-lexical.vim",
-        dependencies: [{ url: "https://github.com/lambdalisue/fern.vim" }],
+        url: "https://github.com/lambdalisue/vim-fern-comparator-lexical",
+        dependencies: [{ url: "https://github.com/lambdalisue/vim-fern" }],
       },
       {
-        url: "https://github.com/lambdalisue/fern-renderer-nerdfont.vim",
+        url: "https://github.com/lambdalisue/vim-fern-renderer-nerdfont",
         dependencies: [
-          { url: "https://github.com/lambdalisue/glyph-palette.vim" },
-          { url: "https://github.com/lambdalisue/nerdfont.vim" },
-          { url: "https://github.com/lambdalisue/fern.vim" },
+          { url: "https://github.com/lambdalisue/vim-glyph-palette" },
+          { url: "https://github.com/lambdalisue/vim-nerdfont" },
+          { url: "https://github.com/lambdalisue/vim-fern" },
         ],
       },
       {
         url: "https://github.com/hrsh7th/fern-mapping-collapse-or-leave.vim",
-        dependencies: [{ url: "https://github.com/lambdalisue/fern.vim" }],
+        dependencies: [{ url: "https://github.com/lambdalisue/vim-fern" }],
       },
     ],
     before: async ({ denops }) => {

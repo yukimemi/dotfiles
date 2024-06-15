@@ -1,5 +1,5 @@
 return {
-  "lambdalisue/fern.vim",
+  "lambdalisue/vim-fern",
 
   enabled = vim.g.plugin_use_fern,
 
@@ -17,17 +17,17 @@ return {
   },
 
   dependencies = {
-    "lambdalisue/fern-hijack.vim",
-    "lambdalisue/fern-git-status.vim",
-    "lambdalisue/fern-git.vim",
-    "lambdalisue/fern-mapping-git.vim",
-    "lambdalisue/fern-bookmark.vim",
-    "lambdalisue/fern-comparator-lexical.vim",
+    "lambdalisue/vim-fern-hijack",
+    "lambdalisue/vim-fern-git-status",
+    "lambdalisue/vim-fern-git",
+    "lambdalisue/vim-fern-mapping-git",
+    "lambdalisue/vim-fern-bookmark",
+    "lambdalisue/vim-fern-comparator-lexical",
     {
-      "lambdalisue/fern-renderer-nerdfont.vim",
+      "lambdalisue/vim-fern-renderer-nerdfont",
       dependencies = {
-        "lambdalisue/glyph-palette.vim",
-        "lambdalisue/nerdfont.vim",
+        "lambdalisue/vim-glyph-palette",
+        "lambdalisue/vim-nerdfont",
       },
     },
   },

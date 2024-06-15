@@ -1,8 +1,8 @@
 return {
-  "lambdalisue/kensaku-search.vim",
+  "lambdalisue/vim-kensaku-search",
 
   dependencies = {
-    "lambdalisue/kensaku.vim",
+    "lambdalisue/vim-kensaku",
   },
 
   keys = {

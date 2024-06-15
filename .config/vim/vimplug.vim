@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : vimplug.vim
 " Author      : yukimemi
-" Last Change : 2020/12/23 15:09:04.
+" Last Change : 2024/06/15 23:19:48.
 " =============================================================================
 
 " Plugin: {{{1
@@ -58,8 +58,8 @@ Pg 'itchyny/vim-external'
 Pg 'itchyny/vim-highlighturl'
 Pg 'itchyny/vim-parenmatch'
 Pg 'jeffkreeftmeijer/vim-numbertoggle'
-Pg 'lambdalisue/glyph-palette.vim'
-Pg 'lambdalisue/nerdfont.vim'
+Pg 'lambdalisue/vim-glyph-palette'
+Pg 'lambdalisue/vim-nerdfont'
 Pg 'luochen1990/rainbow'
 Pg 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
 Pg 'mattn/vimtweak', {'if': g:is_windows}
@@ -83,14 +83,14 @@ Pg 'suy/vim-ctrlp-commandline'
 
 " Fern:
 if g:plugin_use_fern
-  Pg 'lambdalisue/fern.vim'
-  Pg 'lambdalisue/fern-bookmark.vim'
-  Pg 'lambdalisue/fern-comparator-lexical.vim'
-  Pg 'lambdalisue/fern-git-status.vim'
-  Pg 'lambdalisue/fern-git.vim'
-  Pg 'lambdalisue/fern-hijack.vim'
-  Pg 'lambdalisue/fern-mapping-git.vim'
-  Pg 'lambdalisue/fern-renderer-nerdfont.vim'
+  Pg 'lambdalisue/vim-fern'
+  Pg 'lambdalisue/vim-fern-bookmark'
+  Pg 'lambdalisue/vim-fern-comparator-lexical'
+  Pg 'lambdalisue/vim-fern-git-status'
+  Pg 'lambdalisue/vim-fern-git'
+  Pg 'lambdalisue/vim-fern-hijack'
+  Pg 'lambdalisue/vim-fern-mapping-git'
+  Pg 'lambdalisue/vim-fern-renderer-nerdfont'
 endif
 
 " Molder:
@@ -123,7 +123,7 @@ Pg 'osyo-manga/vim-operator-stay-cursor'
 Pg 'haya14busa/vim-asterisk'
 
 " Git:
-Pg 'lambdalisue/gina.vim'
+Pg 'lambdalisue/vim-gina'
 
 " Comment:
 Pg 'tyru/caw.vim'

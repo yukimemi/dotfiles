@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : jetpack.vim
 " Author      : yukimemi
-" Last Change : 2022/11/29 15:03:57.
+" Last Change : 2024/06/15 23:20:19.
 " =============================================================================
 
 " Plugin:
@@ -64,7 +64,7 @@ Pg 'andymass/vim-matchup', {'event': g:lazy_events}
 Pg 'itchyny/vim-cursorword', {'event': g:lazy_events}
 Pg 'itchyny/vim-highlighturl', {'event': g:lazy_events}
 Pg 'itchyny/vim-parenmatch', {'event': g:lazy_events}
-Pg 'lambdalisue/seethrough.vim', {'if': !has('gui')}
+Pg 'lambdalisue/vim-seethrough', {'if': !has('gui')}
 Pg 'lukas-reineke/indent-blankline.nvim', {'if': has('nvim'), 'event': g:lazy_events}
 Pg 'luochen1990/rainbow', {'event': g:lazy_events}
 Pg 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
@@ -99,17 +99,17 @@ Pg 'suy/vim-ctrlp-commandline', {'cmd': 'CtrlPCmdHistory'}
 
 " Fern:
 if g:plugin_use_fern
-  Pg 'lambdalisue/fern.vim', {'cmd': ['Fern']}
+  Pg 'lambdalisue/vim-fern', {'cmd': ['Fern']}
 
-  Pg 'lambdalisue/fern-bookmark.vim', {'event': g:lazy_events}
-  Pg 'lambdalisue/fern-comparator-lexical.vim', {'event': g:lazy_events}
-  Pg 'lambdalisue/fern-git-status.vim', {'event': g:lazy_events}
-  Pg 'lambdalisue/fern-git.vim', {'event': g:lazy_events}
-  Pg 'lambdalisue/fern-hijack.vim', {'event': g:lazy_events}
-  Pg 'lambdalisue/fern-mapping-git.vim', {'event': g:lazy_events}
-  Pg 'lambdalisue/fern-renderer-nerdfont.vim', {'event': g:lazy_events}
-  Pg 'lambdalisue/glyph-palette.vim', {'event': g:lazy_events}
-  Pg 'lambdalisue/nerdfont.vim', {'event': g:lazy_events}
+  Pg 'lambdalisue/vim-fern-bookmark', {'event': g:lazy_events}
+  Pg 'lambdalisue/vim-fern-comparator-lexical', {'event': g:lazy_events}
+  Pg 'lambdalisue/vim-fern-git-status', {'event': g:lazy_events}
+  Pg 'lambdalisue/vim-fern-git', {'event': g:lazy_events}
+  Pg 'lambdalisue/vim-fern-hijack', {'event': g:lazy_events}
+  Pg 'lambdalisue/vim-fern-mapping-git', {'event': g:lazy_events}
+  Pg 'lambdalisue/vim-fern-renderer-nerdfont', {'event': g:lazy_events}
+  Pg 'lambdalisue/vim-glyph-palette', {'event': g:lazy_events}
+  Pg 'lambdalisue/vim-nerdfont', {'event': g:lazy_events}
 endif
 
 " Textobj:
@@ -139,12 +139,12 @@ Pg 'inside/vim-search-pulse', {'event': g:lazy_events}
 
 " Git:
 if g:plugin_use_gin
-  Pg 'lambdalisue/askpass.vim', {'event': 'BufRead'}
-  Pg 'lambdalisue/gin.vim', {'event': 'BufRead'}
-  Pg 'lambdalisue/guise.vim', {'event': 'BufRead'}
+  Pg 'lambdalisue/vim-askpass', {'event': 'BufRead'}
+  Pg 'lambdalisue/vim-gin', {'event': 'BufRead'}
+  Pg 'lambdalisue/vim-guise', {'event': 'BufRead'}
 endif
 if g:plugin_use_gina
-  Pg 'lambdalisue/gina.vim', {'cmd': 'Gina'}
+  Pg 'lambdalisue/vim-gina', {'cmd': 'Gina'}
 endif
 
 " Tmux:
@@ -166,7 +166,7 @@ Pg 'aiya000/aho-bakaup.vim', {'event': 'BufWritePre'}
 Pg 'cohama/lexima.vim', {'if': g:plugin_use_lexima}
 Pg 'glidenote/memolist.vim', {'cmd': ['MemoNew', 'MemoList', 'MemoGrep']}
 Pg 'haya14busa/vim-edgemotion', {'map': ['<Plug>(edgemotion-j)', '<Plug>(edgemotion-k)']}
-Pg 'lambdalisue/mr.vim', {'event': ['JetpackCtrlpVimPre']}
+Pg 'lambdalisue/vim-mr', {'event': ['JetpackCtrlpVimPre']}
 Pg 'lambdalisue/vim-findent', {'cmd': 'Findent'}
 Pg 'mattn/vim-lexiv', {'if': g:plugin_use_lexiv}
 Pg 'mattn/vim-sonictemplate', {'cmd': 'Template'}

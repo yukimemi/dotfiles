@@ -21,9 +21,9 @@ Pg 'itchyny/vim-cursorword', {'event': g:lazy_events}
 Pg 'itchyny/vim-highlighturl', {'event': g:lazy_events}
 Pg 'itchyny/vim-parenmatch', {'event': g:lazy_events}
 Pg 'kyazdani42/nvim-web-devicons'
-Pg 'lambdalisue/glyph-palette.vim', {'event': 'VimEnter', 'if': g:plugin_use_fern}
-Pg 'lambdalisue/nerdfont.vim', {'event': 'VimEnter', 'if': g:plugin_use_fern}
-Pg 'lambdalisue/seethrough.vim', {'if': !has('gui')}
+Pg 'lambdalisue/vim-glyph-palette', {'event': 'VimEnter', 'if': g:plugin_use_fern}
+Pg 'lambdalisue/vim-nerdfont', {'event': 'VimEnter', 'if': g:plugin_use_fern}
+Pg 'lambdalisue/vim-seethrough', {'if': !has('gui')}
 Pg 'lukas-reineke/indent-blankline.nvim', {'if': has('nvim'), 'event': 'VimEnter'}
 Pg 'luochen1990/rainbow', {'event': g:lazy_events}
 Pg 'mattn/transparency-windows-vim', {'if': g:is_windows && !has('nvim')}
@@ -83,9 +83,9 @@ Pg 'hrsh7th/vim-seak', {'event': 'BufRead'}
 Pg 'itchyny/vim-winfix', {'event': 'BufRead'}
 Pg 'junegunn/vim-easy-align', {'event': g:lazy_events}
 Pg 'kwkarlwang/bufresize.nvim', {'event': g:lazy_events}
-Pg 'lambdalisue/mr-quickfix.vim'
-Pg 'lambdalisue/mr.vim'
-Pg 'lambdalisue/readablefold.vim', {'event': g:lazy_events}
+Pg 'lambdalisue/vim-mr-quickfix'
+Pg 'lambdalisue/vim-mr'
+Pg 'lambdalisue/vim-readablefold', {'event': g:lazy_events}
 Pg 'lambdalisue/vim-backslash', {'ft': 'vim'}
 Pg 'lambdalisue/vim-findent', {'cmd': 'Findent'}
 Pg 'lilydjwg/colorizer', {'event': g:lazy_events}
@@ -128,7 +128,7 @@ Pg 'twitvim/twitvim', {'event': 'VimEnter'}
 
 " Git:
 Pg 'itchyny/vim-gitbranch', {'event': 'VimEnter'}
-Pg 'lambdalisue/gina.vim', {'cmd': 'Gina'}
+Pg 'lambdalisue/vim-gina', {'cmd': 'Gina'}
 Pg 'rhysd/committia.vim', {'if': !g:is_windows}
 Pg 'rhysd/conflict-marker.vim', {'event': 'VimEnter'}
 
@@ -255,15 +255,15 @@ if g:plugin_use_galaxyline
 endif
 
 if g:plugin_use_fern
-  Pg 'lambdalisue/fern.vim'
-  Pg 'lambdalisue/fern-hijack.vim'
+  Pg 'lambdalisue/vim-fern'
+  Pg 'lambdalisue/vim-fern-hijack'
 
-  Pg 'lambdalisue/fern-bookmark.vim', {'event': 'VimEnter'}
-  Pg 'lambdalisue/fern-comparator-lexical.vim', {'event': 'VimEnter'}
-  Pg 'lambdalisue/fern-git-status.vim', {'event': 'VimEnter'}
-  Pg 'lambdalisue/fern-git.vim', {'event': 'VimEnter'}
-  Pg 'lambdalisue/fern-mapping-git.vim', {'event': 'VimEnter'}
-  Pg 'lambdalisue/fern-renderer-nerdfont.vim', {'event': 'VimEnter'}
+  Pg 'lambdalisue/vim-fern-bookmark', {'event': 'VimEnter'}
+  Pg 'lambdalisue/vim-fern-comparator-lexical', {'event': 'VimEnter'}
+  Pg 'lambdalisue/vim-fern-git-status', {'event': 'VimEnter'}
+  Pg 'lambdalisue/vim-fern-git', {'event': 'VimEnter'}
+  Pg 'lambdalisue/vim-fern-mapping-git', {'event': 'VimEnter'}
+  Pg 'lambdalisue/vim-fern-renderer-nerdfont', {'event': 'VimEnter'}
 endif
 
 if g:plugin_use_molder
@@ -338,7 +338,7 @@ endif
 " Runner:
 if plugin_use_quickrun
   Pg 'thinca/vim-quickrun', {'event': 'VimEnter'}
-  Pg 'lambdalisue/vim-quickrun-neovim-job', {'event': 'VimEnter'}
+  Pg 'lambdalisue/vim-quickrun-ne-job', {'event': 'VimEnter'}
 endif
 
 " Treesitter:

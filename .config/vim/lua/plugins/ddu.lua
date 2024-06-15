@@ -27,7 +27,7 @@ return {
     {
       "Milly/ddu-filter-kensaku",
       dependencies = {
-        "lambdalisue/kensaku.vim",
+        "lambdalisue/vim-kensaku",
       },
     },
 
@@ -62,13 +62,13 @@ return {
     {
       "shun/ddu-source-rg",
       dependencies = {
-        "lambdalisue/kensaku.vim",
+        "lambdalisue/vim-kensaku",
       },
     },
     {
       "kuuote/ddu-source-mr",
       dependencies = {
-        "lambdalisue/mr.vim",
+        "lambdalisue/vim-mr",
       },
     },
     "tennashi/ddu-source-github",

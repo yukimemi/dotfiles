@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/05/06 18:53:56.
+// Last Change : 2024/06/15 23:16:04.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
@@ -68,11 +68,11 @@ export const git: Plug[] = [
     },
   },
   {
-    url: "https://github.com/lambdalisue/gin.vim",
+    url: "https://github.com/lambdalisue/vim-gin",
     enabled: !pluginStatus.vscode,
     dependencies: [
-      { url: "https://github.com/lambdalisue/askpass.vim" },
-      { url: "https://github.com/lambdalisue/guise.vim" },
+      { url: "https://github.com/lambdalisue/vim-askpass" },
+      { url: "https://github.com/lambdalisue/vim-guise" },
     ],
     before: async ({ denops }) => {
       await mapping.map(denops, "<space>gs", "<cmd>GinStatus<cr>", {

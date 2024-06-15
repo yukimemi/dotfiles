@@ -5,7 +5,7 @@ return {
 
   dependencies = {
     "vim-denops/denops.vim",
-    "lambdalisue/kensaku.vim",
+    "lambdalisue/vim-kensaku",
   },
 
   init = function()

@@ -1,12 +1,12 @@
 return {
-  "lambdalisue/gin.vim",
+  "lambdalisue/vim-gin",
 
   lazy = false,
 
   dependencies = {
     "vim-denops/denops.vim",
-    "lambdalisue/askpass.vim",
-    "lambdalisue/guise.vim",
+    "lambdalisue/vim-askpass",
+    "lambdalisue/vim-guise",
   },
 
   init = function()

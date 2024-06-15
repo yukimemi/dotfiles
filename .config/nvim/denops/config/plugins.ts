@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/05/02 13:12:59.
+// Last Change : 2024/06/15 23:10:14.
 // =============================================================================
 
 import { ai } from "./plugins/ai.ts";
@@ -44,6 +44,7 @@ import { util } from "./plugins/util.ts";
 export const plugins = [
   ...denops,
   ...libs,
+  ...git,
   ...memo,
   ...ddu,
   ...clap,
@@ -66,7 +67,6 @@ export const plugins = [
   ...util,
   ...motion,
   ...edit,
-  ...git,
   ...textobj,
   ...operator,
   ...statusline,

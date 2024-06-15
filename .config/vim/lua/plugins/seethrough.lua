@@ -1,5 +1,5 @@
 return {
-  "lambdalisue/seethrough.vim",
+  "lambdalisue/vim-seethrough",
 
   event = "VeryLazy",
 }

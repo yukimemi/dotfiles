@@ -1,7 +1,13 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "--single-branch", "https://github.com/folke/lazy.nvim.git",
-    lazypath })
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--single-branch",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+  })
 end
 vim.opt.runtimepath:prepend(lazypath)
 
@@ -60,7 +66,7 @@ require("lazy").setup({
       {
         "kuuote/ddu-source-mr",
         dependencies = {
-          "lambdalisue/mr.vim",
+          "lambdalisue/vim-mr",
         },
       },
     },
@@ -70,8 +76,11 @@ require("lazy").setup({
       vim.keymap.set("n", "<space>du", "<cmd>Ddu mr<cr>")
       vim.keymap.set("n", "<space>dw", "<cmd>Ddu mr -source-param-kind='mrw'<cr>")
       vim.keymap.set("n", "<space>db", "<cmd>Ddu buffer<cr>")
-      vim.keymap.set("n", "<space>df",
-        "<cmd>Ddu file_point `finddir('.git', ';') != '' ? 'file_external' : 'file_rec'`<cr>")
+      vim.keymap.set(
+        "n",
+        "<space>df",
+        "<cmd>Ddu file_point `finddir('.git', ';') != '' ? 'file_external' : 'file_rec'`<cr>"
+      )
       vim.keymap.set("n", "<space>dR", "<cmd>Ddu -buffer-name=register register -ui-param-autoResize<cr>")
       vim.keymap.set("n", "<space>dd", "<cmd>Ddu file_rec -source-option-path=`fnamemodify(bufname(), ':p:h')`<cr>")
       vim.keymap.set("n", "<space>dc", "<cmd>Ddu file_rec -source-option-path=`expand('~/.cache')`<cr>")
@@ -80,8 +89,11 @@ require("lazy").setup({
       vim.keymap.set("n", "<space>dS", "<cmd>Ddu file_rec -source-option-path=`expand('~/src')`<cr>")
       vim.keymap.set("n", "<space>dH", "<cmd>Ddu help<cr>")
       vim.keymap.set("n", "<space>dh", "<cmd>Ddu command_history<cr>")
-      vim.keymap.set("n", "<space>ds",
-        "<cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-input=`input('Pattern: ')`<cr>")
+      vim.keymap.set(
+        "n",
+        "<space>ds",
+        "<cmd>Ddu -name=search rg -ui-param-ignoreEmpty -source-param-input=`input('Pattern: ')`<cr>"
+      )
       vim.keymap.set("n", "<space>dr", "<cmd>Ddu -name=search -resume<cr>")
     end,
 
@@ -92,7 +104,7 @@ require("lazy").setup({
           ["_"] = {
             ignoreCase = true,
             matchers = { "matcher_fzf" },
-          }
+          },
         },
         sourceParams = {
           file_external = {
@@ -148,13 +160,18 @@ require("lazy").setup({
         callback = function()
           vim.keymap.set("i", "<cr>", "<cmd>call ddu#ui#ff#do_action('itemAction')<cr>", { buffer = true })
           vim.keymap.set("i", "<esc>", "<esc><cmd>call ddu#ui#ff#close()<cr>", { nowait = true, buffer = true })
-          vim.keymap.set("i", "<c-j>",
+          vim.keymap.set(
+            "i",
+            "<c-j>",
             [[<cmd>call ddu#ui#ff#execute('call cursor(line(".") % line("$") + 1, 0)<bar>redraw')<cr>]],
-            { buffer = true })
-          vim.keymap.set("i", "<c-k>",
-            [[<cmd>call ddu#ui#ff#execute('call cursor((line(".") - 2 + line("$")) % line("$") + 1, 0)<bar>redraw')<cr>]]
-            ,
-            { buffer = true })
+            { buffer = true }
+          )
+          vim.keymap.set(
+            "i",
+            "<c-k>",
+            [[<cmd>call ddu#ui#ff#execute('call cursor((line(".") - 2 + line("$")) % line("$") + 1, 0)<bar>redraw')<cr>]],
+            { buffer = true }
+          )
         end,
       })
 
@@ -170,22 +187,49 @@ require("lazy").setup({
           vim.keymap.set("n", "p", "<cmd>call ddu#ui#ff#do_action('preview')<cr>", { buffer = true })
           vim.keymap.set("n", "q", "<cmd>call ddu#ui#ff#do_action('quit')<cr>", { buffer = true })
           vim.keymap.set("n", "c", "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'cd'})<cr>", { buffer = true })
-          vim.keymap.set("n", "d", "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<cr>",
-            { buffer = true })
-          vim.keymap.set("n", "e", "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<cr>", { buffer = true })
-          vim.keymap.set("n", "E", "<cmd>call ddu#ui#ff#do_action('itemAction', {'params': eval(input('params: '))})<cr>"
-            ,
-            { buffer = true })
-          vim.keymap.set("n", "v",
+          vim.keymap.set(
+            "n",
+            "d",
+            "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<cr>",
+            { buffer = true }
+          )
+          vim.keymap.set(
+            "n",
+            "e",
+            "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<cr>",
+            { buffer = true }
+          )
+          vim.keymap.set(
+            "n",
+            "E",
+            "<cmd>call ddu#ui#ff#do_action('itemAction', {'params': eval(input('params: '))})<cr>",
+            { buffer = true }
+          )
+          vim.keymap.set(
+            "n",
+            "v",
             "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open', 'params': {'command': 'vsplit'}})<cr>",
-            { buffer = true })
-          vim.keymap.set("n", "N", "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'new'})<cr>", { buffer = true })
-          vim.keymap.set("n", "r", "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'quickfix'})<cr>",
-            { buffer = true })
+            { buffer = true }
+          )
+          vim.keymap.set(
+            "n",
+            "N",
+            "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'new'})<cr>",
+            { buffer = true }
+          )
+          vim.keymap.set(
+            "n",
+            "r",
+            "<cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'quickfix'})<cr>",
+            { buffer = true }
+          )
           vim.keymap.set("n", "<esc>", "<cmd>call ddu#ui#ff#do_action('quit')<cr>", { nowait = true, buffer = true })
-          vim.keymap.set("n", "u",
+          vim.keymap.set(
+            "n",
+            "u",
             "<cmd>call ddu#ui#ff#do_action('updateOptions', {'sourceOptions': {'_': {'matchers': []}}})<cr>",
-            { buffer = true })
+            { buffer = true }
+          )
         end,
       })
     end,
