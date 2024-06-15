@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : fern.ts
 // Author      : yukimemi
-// Last Change : 2024/06/15 23:17:33.
+// Last Change : 2024/06/15 23:35:03.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
@@ -24,10 +24,6 @@ export const fern: Plug[] = [
       },
       {
         url: "https://github.com/lambdalisue/vim-fern-git-status",
-        dependencies: [{ url: "https://github.com/lambdalisue/vim-fern" }],
-      },
-      {
-        url: "https://github.com/lambdalisue/vim-fern-git",
         dependencies: [{ url: "https://github.com/lambdalisue/vim-fern" }],
       },
       {
