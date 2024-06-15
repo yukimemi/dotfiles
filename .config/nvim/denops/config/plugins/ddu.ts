@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/06/02 11:24:10.
+// Last Change : 2024/06/15 22:17:03.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
@@ -316,145 +316,150 @@ export const ddu: Plug[] = [
       );
 
       // global settings.
-      await autocmd.group(denops, "MyDduSettings", (helper) => {
-        helper.remove("*");
-        helper.define(
-          ["VimResized", "VimEnter"],
-          "*",
-          `call <SID>${denops.name}_notify("${
-            lambda.register(
-              denops,
-              async () => {
-                const lines = await op.lines.get(denops);
-                const height = Math.floor(lines * 0.5);
-                await denops.call("ddu#custom#patch_global", {
-                  ui: "ff",
-                  uiOptions: {
-                    filer: {
-                      toggle: true,
-                    },
-                  },
-                  uiParams: {
-                    ff: {
-                      ignoreEmpty: true,
-                      prompt: "» ",
-                      split: "horizontal",
-                      startAutoAction: true,
-                      startFilter: false,
-                      filterSplitDirection: "floating",
-                      filterFloatingPosition: "bottom",
-                      previewHeight: height,
-                      highlights: {
-                        floating: "Normal",
-                        floatingBorder: "Normal",
-                      },
-                    },
-                    filer: {
-                      split: "vertical",
-                      sort: "filename",
-                      filterSplitDirection: "botleft",
-                      sortTreesFirst: true,
-                      previewSplit: "no",
-                      toggle: true,
-                      winWidth: 40,
-                    },
-                  },
-                  sourceOptions: {
-                    _: {
-                      ignoreCase: true,
-                      matchers: ["merge"],
-                      converters: ["converter_devicon"],
-                    },
-                    file_rec: {
-                      converters: ["converter_devicon", "converter_hl_dir"],
-                    },
-                    chronicle: {
-                      converters: ["converter_devicon", "converter_hl_dir"],
-                    },
-                  },
-                  sourceParams: {
-                    file_rec: {
-                      chunkSize: 50,
-                    },
-                    external_git: {
-                      cmd: ["git", "ls-files", "-co", "--exclude-standard"],
-                    },
-                    external_fd: {
-                      cmd: [
-                        "fd",
-                        "--hidden",
-                        "--no-ignore",
-                        "--exclude",
-                        "node_modules",
-                        "--exclude",
-                        ".git",
-                      ],
-                      updateItems: 50000,
-                    },
-                    rg: {
-                      args: [
-                        "--hidden",
-                        "--ignore-case",
-                        "--column",
-                        "--no-heading",
-                        "--color",
-                        "never",
-                        "--json",
-                        "--glob",
-                        "!node_modules/**",
-                        "--glob",
-                        "!**/.git/**",
-                      ],
-                      inputType: "regex",
-                    },
-                  },
-                  kindOptions: {
-                    action: { defaultAction: "do" },
-                    command: { defaultAction: "edit" },
-                    command_history: { defaultAction: "edit" },
-                    search_history: { defaultAction: "edit" },
-                    file: { defaultAction: "open" },
-                    help: { defaultAction: "open" },
-                    readme_viewer: { defaultAction: "open" },
-                    source: { defaultAction: "execute" },
-                    ui_select: { defaultAction: "select" },
-                    url: { defaultAction: "browse" },
-                    word: { defaultAction: "append" },
-                  },
-                  actionOptions: {
-                    narrow: {
-                      quit: false,
-                    },
-                    tabopen: {
-                      quit: false,
-                    },
-                  },
-                  filterParams: {
-                    matcher_fzf: {
-                      highlightMatched: "Search",
-                    },
-                    matcher_fuse: {
-                      highlightMatched: "Search",
-                    },
-                    matcher_kensaku: {
-                      highlightMatched: "Search",
-                    },
-                    merge: {
-                      highlightMatched: "Search",
-                      filters: [
-                        {
-                          name: "matcher_kensaku",
-                          weight: 2.0,
-                        },
-                        "matcher_fzf",
-                      ],
-                    },
-                  },
-                });
+      await denops.call("ddu#custom#patch_global", {
+        ui: "ff",
+        uiOptions: {
+          filer: {
+            toggle: true,
+          },
+        },
+        uiParams: {
+          ff: {
+            ignoreEmpty: true,
+            prompt: "» ",
+            split: "floating",
+            floatingBorder: "rounded",
+            startAutoAction: true,
+            autoAction: {
+              name: "preview",
+            },
+            filterSplitDirection: "floating",
+            filterFloatingPosition: "bottom",
+            highlights: {
+              floating: "Normal",
+              floatingBorder: "Normal",
+            },
+            winRow: "(&lines - min([70, &lines - 8]) - 3) / 2",
+            previewRow: "(&lines - min([70, &lines - 8]) - 3) / 2",
+            winHeight: "min([70, &lines - 8])",
+            previewHeight: "min([70, &lines - 8])",
+            winCol: "&columns / 10",
+            previewCol: "&columns / 2",
+            winWidth: "&columns * 4 / 10 - 2",
+            previewWidth: "&columns * 4 / 10 - 2",
+            previewFloating: true,
+            previewFloatingBorder: "rounded",
+            previewSplit: "vertical",
+            previewWindowOptions: [
+              ["&signcolumn", "no"],
+              ["&foldcolumn", 0],
+              ["&foldenable", 0],
+              ["&number", 0],
+              ["&wrap", 0],
+              ["&scrolloff", 0],
+            ],
+          },
+          filer: {
+            split: "vertical",
+            sort: "filename",
+            filterSplitDirection: "botleft",
+            sortTreesFirst: true,
+            previewSplit: "no",
+            toggle: true,
+            winWidth: 40,
+          },
+        },
+        sourceOptions: {
+          _: {
+            ignoreCase: true,
+            matchers: ["merge"],
+            converters: ["converter_devicon"],
+          },
+          file_rec: {
+            converters: ["converter_devicon", "converter_hl_dir"],
+          },
+          chronicle: {
+            converters: ["converter_devicon", "converter_hl_dir"],
+          },
+        },
+        sourceParams: {
+          file_rec: {
+            chunkSize: 50,
+          },
+          external_git: {
+            cmd: ["git", "ls-files", "-co", "--exclude-standard"],
+          },
+          external_fd: {
+            cmd: [
+              "fd",
+              "--hidden",
+              "--no-ignore",
+              "--exclude",
+              "node_modules",
+              "--exclude",
+              ".git",
+            ],
+            updateItems: 50000,
+          },
+          rg: {
+            args: [
+              "--hidden",
+              "--ignore-case",
+              "--column",
+              "--no-heading",
+              "--color",
+              "never",
+              "--json",
+              "--glob",
+              "!node_modules/**",
+              "--glob",
+              "!**/.git/**",
+            ],
+            inputType: "regex",
+          },
+        },
+        kindOptions: {
+          action: { defaultAction: "do" },
+          command: { defaultAction: "edit" },
+          command_history: { defaultAction: "edit" },
+          search_history: { defaultAction: "edit" },
+          file: { defaultAction: "open" },
+          help: { defaultAction: "open" },
+          readme_viewer: { defaultAction: "open" },
+          source: { defaultAction: "execute" },
+          ui_select: { defaultAction: "select" },
+          url: { defaultAction: "browse" },
+          word: { defaultAction: "append" },
+        },
+        actionOptions: {
+          narrow: {
+            quit: false,
+          },
+          tabopen: {
+            quit: false,
+          },
+        },
+        filterParams: {
+          matcher_fzf: {
+            highlightMatched: "Search",
+          },
+          matcher_fuse: {
+            highlightMatched: "Search",
+          },
+          matcher_kensaku: {
+            highlightMatched: "Search",
+          },
+          merge: {
+            highlightMatched: "Search",
+            filters: [
+              {
+                name: "matcher_kensaku",
+                weight: 2.0,
               },
-            )
-          }", [])`,
-        );
+              "matcher_fzf",
+            ],
+          },
+        },
       });
 
       await autocmd.group(denops, "MyDduUiFfMapping", (helper) => {
@@ -467,6 +472,7 @@ export const ddu: Plug[] = [
               denops,
               async () => {
                 await batch(denops, async (denops) => {
+                  await op.signcolumn.setLocal(denops, "auto");
                   await op.cursorline.setLocal(denops, true);
                   await mapping.map(
                     denops,
