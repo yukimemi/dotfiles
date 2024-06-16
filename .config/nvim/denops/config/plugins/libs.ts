@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/06/15 23:17:43.
+// Last Change : 2024/06/16 15:24:47.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
@@ -116,12 +116,13 @@ export const libs: Plug[] = [
         },
         presets: {
           bottom_search: true,
-          command_palette: false,
+          command_palette: true,
           long_message_to_split: true,
           inc_rename: false,
           lsp_doc_border: false,
         },
         cmdline: {
+          enabled: true,
           view: "cmdline",
         },
       });
