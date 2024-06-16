@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/05/02 13:13:52.
+// Last Change : 2024/06/16 15:51:35.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
@@ -49,6 +49,7 @@ export const colors: Plug[] = [
       { url: "https://github.com/sigmavim/kyotonight" },
       { url: "https://github.com/lourenci/github-colors" },
       { url: "https://github.com/rebelot/kanagawa.nvim" },
+      { url: "https://github.com/sho-87/kanagawa-paper.nvim" },
       { url: "https://github.com/folke/tokyonight.nvim" },
       { url: "https://github.com/nvimdev/zephyr-nvim" },
       { url: "https://github.com/tiagovla/tokyodark.nvim" },
