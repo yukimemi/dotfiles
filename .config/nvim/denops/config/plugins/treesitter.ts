@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : treesitter.ts
 // Author      : yukimemi
-// Last Change : 2024/05/06 17:35:10.
+// Last Change : 2024/06/16 15:58:53.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
@@ -59,5 +59,15 @@ export const treesitter: Plug[] = [
     url: "https://github.com/Wansmer/treesj",
     dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
     afterFile: "~/.config/nvim/rc/after/treesj.lua",
+  },
+  {
+    url: "https://github.com/razak17/tailwind-fold.nvim",
+    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
+    afterFile: "~/.config/nvim/rc/after/tailwind-fold.lua",
+  },
+  {
+    url: "https://github.com/luckasRanarison/tailwind-tools.nvim",
+    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
+    afterFile: "~/.config/nvim/rc/after/tailwind-tools.lua",
   },
 ];
