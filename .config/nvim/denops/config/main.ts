@@ -5,7 +5,7 @@
 // =============================================================================
 
 import { type Denops } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@3.12.0/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
 import { Dvpm } from "https://deno.land/x/dvpm@3.12.0/mod.ts";

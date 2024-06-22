@@ -4,9 +4,9 @@
 // Last Change : 2024/03/17 14:16:00.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.10.1/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
 
-import * as mapping from "https://deno.land/x/denops_std@v6.4.0/mapping/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v6.5.0/mapping/mod.ts";
 
 export const mini: Plug[] = [
   {
