@@ -1,17 +1,20 @@
 // =============================================================================
 // File        : telescope.ts
 // Author      : yukimemi
-// Last Change : 2024/05/06 17:36:31.
+// Last Change : 2024/06/09 20:29:16.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.13.1/mod.ts";
 
 export const telescope: Plug[] = [
   {
     url: "https://github.com/nvim-telescope/telescope.nvim",
     dependencies: [
       { url: "https://github.com/folke/which-key.nvim" },
-      { url: "https://github.com/folke/trouble.nvim" },
+      {
+        url: "https://github.com/folke/trouble.nvim",
+        enabled: false,
+      },
       { url: "https://github.com/nvim-telescope/telescope-symbols.nvim" },
       {
         url: "https://github.com/nvim-telescope/telescope-file-browser.nvim",

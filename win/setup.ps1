@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2024/05/12 17:06:55.
+  .Last Change : 2024/06/16 20:51:30.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -69,6 +69,10 @@ function New-Shortcut {
     Install require apps.
 #>
 function Install-RequiredModules {
+  $nvimMsi = Join-Path $env:tmp "nvim-win64.msi"
+  Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
+  & msiexec /i $nvimMsi /quiet
+  # winget install -q Neovim.Neovim
   winget install -q gsudo
   winget install -q RustLang.Rustup
   winget install -q DenoLand.Deno
@@ -92,10 +96,7 @@ function Install-RequiredModules {
   winget install -q dandavision.delta
   winget install -q junegunn.fzf
   winget install -q ajeetdsouza.zoxide
-  # winget install -q Neovim.Neovim
-  $nvimMsi = Join-Path $env:tmp "nvim-win64.msi"
-  Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
-  & msiexec /i $nvimMsi /quiet
+  sudo winget install hluk.CopyQ
   sudo choco install -y zig
 }
 

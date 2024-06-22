@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/04/29 21:42:40.
+// Last Change : 2024/06/14 11:09:28.
 // =============================================================================
 
 import * as buffer from "https://deno.land/x/denops_std@v6.5.0/buffer/mod.ts";
@@ -87,7 +87,7 @@ export async function reviewMode(denops: Denops, stop = false) {
     if (await fn.exists(denops, "g:neovide")) {
       await vars.g.set(denops, "neovide_transparency", 0.9);
     }
-    await denops.cmd(`silent! EnableRandomColorscheme`);
+    await denops.cmd(`silent! EnableSpectrism`);
     await denops.cmd(`silent! EnableAutoCursorColumn`);
     await denops.cmd(`silent! IlluminateResume`);
     await denops.cmd(`silent! SmoothCursorFancyOn`);
@@ -102,7 +102,7 @@ export async function reviewMode(denops: Denops, stop = false) {
     if (await fn.exists(denops, "g:neovide")) {
       await vars.g.set(denops, "neovide_transparency", 1.0);
     }
-    await denops.cmd(`silent! DisableRandomColorscheme`);
+    await denops.cmd(`silent! DisableSpectrism`);
     await denops.cmd(`silent! DisableAutoCursorColumn`);
     await denops.cmd(`silent! IlluminatePause`);
     await denops.cmd(`silent! SmoothCursorFancyOff`);

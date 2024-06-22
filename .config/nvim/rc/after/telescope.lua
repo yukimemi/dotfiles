@@ -1,11 +1,10 @@
 -- =============================================================================
 -- File        : telescope.lua
 -- Author      : yukimemi
--- Last Change : 2023/12/04 01:33:32.
+-- Last Change : 2024/06/09 20:42:36.
 -- =============================================================================
 
 local actions = require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
 
 local telescope = require("telescope")
 local borderless = false
@@ -15,7 +14,6 @@ telescope.setup({
     layout_strategy = "horizontal",
     mappings = {
       i = {
-        ["<c-t>"] = trouble.open_with_trouble,
         ["<C-Down>"] = require("telescope.actions").cycle_history_next,
         ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
       },

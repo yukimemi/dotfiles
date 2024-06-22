@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/06/08 21:07:25.
+// Last Change : 2024/06/09 20:41:39.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.13.1/mod.ts";
 
 import { pluginStatus } from "../pluginstatus.ts";
 
@@ -109,6 +109,9 @@ export const lsp: Plug[] = [
           { url: "https://github.com/SmiteshP/nvim-navic" },
         ],
       },
+      {
+        url: "https://github.com/folke/trouble.nvim",
+      }
     ],
     afterFile: "~/.config/nvim/rc/after/nvim-lspconfig.lua",
   },

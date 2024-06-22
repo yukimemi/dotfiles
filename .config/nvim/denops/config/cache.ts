@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2024/06/03 08:53:56.
+// Last Change : 2024/06/16 20:33:34.
 // =============================================================================
 
 export function cacheVim() {
@@ -14,6 +14,8 @@ export function cacheVim() {
               \\ | echomsg 'startuptime: ' .. reltimestr(s:startuptime)
       endif
       au MyAutoCmd SwapExists * let v:swapchoice = 'o'
+      au MyAutoCmd BufReadPost * if &ff!=unix | keepp %s/\\r$//e | endif
+      command! DenopsFixCache call denops#cache#update(#{reload: v:true})
     `,
     path: "~/.cache/nvim/dvpm/cache/plugin/dvpm_cache.vim",
   };

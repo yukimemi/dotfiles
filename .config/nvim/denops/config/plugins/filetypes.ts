@@ -4,7 +4,7 @@
 // Last Change : 2024/06/15 23:16:36.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.13.1/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v6.5.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
@@ -134,6 +134,7 @@ export const filetypes: Plug[] = [
   { url: "https://github.com/ixru/nvim-markdown" },
   {
     url: "https://github.com/MeanderingProgrammer/markdown.nvim",
+    enabled: false,
     dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
     afterFile: "~/.config/nvim/rc/after/render-markdown.lua",
   },
