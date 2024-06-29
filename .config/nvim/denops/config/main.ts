@@ -1,11 +1,11 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2024/03/30 14:23:31.
+// Last Change : 2024/06/29 21:00:02.
 // =============================================================================
 
-import { type Denops } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
+import type { Denops, Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@3.13.1/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
 import { Dvpm } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
@@ -24,7 +24,7 @@ import { setFvim } from "./fvim.ts";
 import { setOption } from "./option.ts";
 import { cacheLua, cacheVim } from "./cache.ts";
 
-export async function main(denops: Denops): Promise<void> {
+export const main: Entrypoint = async (denops) => {
   const starttime = performance.now();
   await notify(denops, `dvpm main start !`);
   pluginStatus.vscode = await fn.exists(denops, "g:vscode");
@@ -37,7 +37,7 @@ export async function main(denops: Denops): Promise<void> {
 
   await dvpm.cache(cacheLua());
   await dvpm.cache(cacheVim());
-}
+};
 
 async function pre(denops: Denops): Promise<void> {
   await setNeovimQt(denops);

@@ -1,8 +1,4 @@
 {
-  "lint-staged": {
-    "*": "deno task lint && deno task fmt",
-    "deno.jsonc": "deno task setup-hooks"
-  },
   "tasks": {
     "hooks:install": "deno run --allow-read=deno.json,.git/hooks/ --allow-write=.git/hooks/ jsr:@hongminhee/deno-task-hooks",
     "run": "deno run --allow-env --allow-read --allow-net",
@@ -19,7 +15,8 @@
     "setup-hooks": "deno run --allow-read --allow-run https://pax.deno.dev/kawarimidoll/deno-dev-template/scripts/setup-hooks.ts",
     "hooks:pre-commit": "deno task ci",
     "hooks:pre-push": "deno task ci",
-    "update": "deno run --allow-env --allow-read --allow-write --allow-run --allow-net jsr:@molt/cli -w ./.config/nvim/denops/config/main.ts",
+    "update": "deno run --allow-env --allow-read --allow-write --allow-run --allow-net jsr:@molt/cli ./.config/nvim/denops/config/main.ts",
+    "update:write": "deno task -q update --write",
     "update:commit": "deno task -q update --commit --pre-commit=fmt,lint"
   },
   "fmt": {

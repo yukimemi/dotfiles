@@ -1,8 +1,44 @@
 # =============================================================================
 # File        : base.yml
 # Author      : yukimemi
-# Last Change : 2024/06/17 15:08:36.
+# Last Change : 2024/06/22 17:43:15.
 # =============================================================================
+
+global_vars:
+  - name: "today"
+    type: date
+    params:
+      format: "%Y/%m/%d"
+  - name: "day1"
+    type: date
+    params:
+      format: "%Y/%m/%d"
+      offset: 86400
+  - name: "day2"
+    type: date
+    params:
+      format: "%Y/%m/%d"
+      offset: 172800
+  - name: "day3"
+    type: date
+    params:
+      format: "%Y/%m/%d"
+      offset: 259200
+  - name: "day4"
+    type: date
+    params:
+      format: "%Y/%m/%d"
+      offset: 345600
+  - name: "day5"
+    type: date
+    params:
+      format: "%Y/%m/%d"
+      offset: 432000
+  - name: "day6"
+    type: date
+    params:
+      format: "%Y/%m/%d"
+      offset: 518400
 
 matches:
   - trigger: ";now"
@@ -14,12 +50,7 @@ matches:
           format: "%H:%M"
 
   - trigger: ";date"
-    replace: "{{mytime}}"
-    vars:
-      - name: mytime
-        type: date
-        params:
-          format: "%Y/%m/%d"
+    replace: "{{today}}"
 
   - trigger: ";tomorrow"
     replace: "{{mytime}}"
@@ -38,3 +69,70 @@ matches:
         params:
           format: "%x"
           offset: -86400
+  - trigger: ";cfin"
+    replace: |
+      Write-Host "[info] Currently ordering a double shot of espresso..."
+
+      $sig = @"
+      [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+      public static extern void SetThreadExecutionState(uint esFlags);
+      "@
+
+      $ES_CONTINUOUS = [uint32]"0x80000000"
+      $ES_DISPLAY_REQUIRED = [uint32]"0x00000002"
+      $ES_SYSTEM_REQUIRED = [uint32]"0x00000001"
+
+      $stes = Add-Type -MemberDefinition $sig -Name System -Namespace Win32 -PassThru
+
+      [void]$stes::SetThreadExecutionState($ES_SYSTEM_REQUIRED -bor $ES_DISPLAY_REQUIRED -bor $ES_CONTINUOUS)
+
+      Read-Host "[info] Enter if you want to exit ..."
+      Write-Host "[info] No more espressos left behind the counter."
+  - trigger: ";evsign"
+    replace: |
+      Get-WinEvent -FilterHashtable @{
+        LogName = 'Security'
+        ID = 4624, 4634
+      } | ForEach-Object {
+        $eventXml = [xml]$_.ToXml()
+        $eventData = $eventXml.Event.EventData.Data
+        $action = if ($_.Id -eq 4624) {
+          "LogOn"
+        } else {
+          "LogOff"
+        }
+        [PSCustomObject]@{
+          Time = $_.TimeCreated
+          Action = $action
+          TargetUserSid = ($eventData | ? { $_.Name -eq 'TargetUserSid' }).'#text'
+          TargetUserName = ($eventData | ? { $_.Name -eq 'TargetUserName' }).'#text'
+          TargetDomainName = ($eventData | ? { $_.Name -eq 'TargetDomainName' }).'#text'
+          TargetLogonId = ($eventData | ? { $_.Name -eq 'TargetLogonId' }).'#text'
+          LogonType = ($eventData | ? { $_.Name -eq 'LogonType' }).'#text'
+          LogonProcessName = ($eventData | ? { $_.Name -eq 'LogonProcessName' }).'#text'
+          AuthenticationPackageName = ($eventData | ? { $_.Name -eq 'AuthenticationPackageName' }).'#text'
+          WorkstationName = ($eventData | ? { $_.Name -eq 'WorkstationName' }).'#text'
+          LogonGuid = ($eventData | ? { $_.Name -eq 'LogonGuid' }).'#text'
+          ProcessId = ($eventData | ? { $_.Name -eq 'ProcessId' }).'#text'
+          ProcessName = ($eventData | ? { $_.Name -eq 'ProcessName' }).'#text'
+          IpAddress = ($eventData | ? { $_.Name -eq 'IpAddress' }).'#text'
+          IpPort = ($eventData | ? { $_.Name -eq 'IpPort' }).'#text'
+          ImpersonationLevel = ($eventData | ? { $_.Name -eq 'ImpersonationLevel' }).'#text'
+          RestrictedAdminMode = ($eventData | ? { $_.Name -eq 'RestrictedAdminMode' }).'#text'
+          TargetOutboundUserName = ($eventData | ? { $_.Name -eq 'TargetOutboundUserName' }).'#text'
+          TargetOutboundDomainName = ($eventData | ? { $_.Name -eq 'TargetOutboundDomainName' }).'#text'
+          VirtualAccount = ($eventData | ? { $_.Name -eq 'VirtualAccount' }).'#text'
+          TargetLinkedLogonId = ($eventData | ? { $_.Name -eq 'TargetLinkedLogonId' }).'#text'
+          ElevatedToken = ($eventData | ? { $_.Name -eq 'ElevatedToken' }).'#text'
+        }
+      }
+  - trigger: ";tomd"
+    replace: "({{form.title}})[{{link}}]"
+    vars:
+      - name: "link"
+        type: "clipboard"
+      - name: "form"
+        type: "form"
+        params:
+          layout: "Title: [[title]]"
+

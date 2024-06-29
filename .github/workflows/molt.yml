@@ -1,3 +1,9 @@
+# =============================================================================
+# File        : molt.yml
+# Author      : yukimemi
+# Last Change : 2024/06/29 19:44:12.
+# =============================================================================
+
 name: molt
 
 on:
@@ -41,7 +47,7 @@ jobs:
         run: |
           {
             echo 'MOLT_RESULT<<EOF'
-            deno task update
+            deno task update:commit
             echo EOF
           } >> $GITHUB_OUTPUT
 

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/06/15 23:16:04.
+// Last Change : 2024/06/29 20:55:14.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.0/mod.ts";
@@ -44,9 +44,6 @@ export const git: Plug[] = [
           relative: "cursor",
           row: 0,
           col: 1,
-        },
-        yadm: {
-          enable: false,
         },
       });
       await mapping.map(
