@@ -47,7 +47,7 @@ jobs:
         run: |
           {
             echo 'MOLT_RESULT<<EOF'
-            deno task update:commit
+            deno task update:write
             echo EOF
           } >> $GITHUB_OUTPUT
 
