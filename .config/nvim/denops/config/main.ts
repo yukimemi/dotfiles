@@ -5,10 +5,10 @@
 // =============================================================================
 
 import type { Denops, Entrypoint } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import { type Plug } from "https://deno.land/x/dvpm@3.14.5/mod.ts";
+import { type Plug } from "https://deno.land/x/dvpm@3.14.6/mod.ts";
 
 import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
-import { Dvpm } from "https://deno.land/x/dvpm@3.14.4/mod.ts";
+import { Dvpm } from "https://deno.land/x/dvpm@3.14.6/mod.ts";
 import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 import { execute } from "https://deno.land/x/denops_std@v6.5.0/helper/mod.ts";
 import { notify } from "./util.ts";
