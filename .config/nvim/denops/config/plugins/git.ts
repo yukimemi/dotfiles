@@ -1,13 +1,11 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/06/29 20:55:14.
+// Last Change : 2024/06/30 19:31:19.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.1/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v6.5.0/autocmd/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v6.5.0/lambda/mod.ts";
 import * as mapping from "https://deno.land/x/denops_std@v6.5.0/mapping/mod.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
@@ -71,94 +69,8 @@ export const git: Plug[] = [
       { url: "https://github.com/lambdalisue/vim-askpass" },
       { url: "https://github.com/lambdalisue/vim-guise" },
     ],
-    before: async ({ denops }) => {
-      await mapping.map(denops, "<space>gs", "<cmd>GinStatus<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "<space>gc", "<cmd>Gin commit -v<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "<space>gb", "<cmd>GinBranch<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "<space>gg", "<cmd>Gin grep<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "<space>gd", "<cmd>GinDiff<cr>", { mode: "n" });
-      await mapping.map(denops, "<space>gl", "<cmd>GinLog<cr>", { mode: "n" });
-      await mapping.map(denops, "<space>gL", "<cmd>GinLog -p -- %<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "<space>gp", "<cmd>Gin push<cr>", {
-        mode: "n",
-      });
-
-      await autocmd.group(denops, "MyGin", (helper) => {
-        helper.remove("*");
-        helper.define(
-          "FileType",
-          ["gin-diff", "gin-log", "gin-status"],
-          `call <SID>${denops.name}_notify("${
-            lambda.register(
-              denops,
-              async () => {
-                await mapping.map(denops, "c", "<cmd>Gin commit -v<cr>", {
-                  mode: "n",
-                  buffer: true,
-                });
-                await mapping.map(denops, "s", "<cmd>GinStatus<cr>", {
-                  mode: "n",
-                  buffer: true,
-                });
-                await mapping.map(denops, "L", "<cmd>GinLog --graph --oneline<cr>", {
-                  mode: "n",
-                  buffer: true,
-                });
-                await mapping.map(denops, "d", "<cmd>GinDiff --cached<cr>", {
-                  mode: "n",
-                  buffer: true,
-                });
-                await mapping.map(denops, "p", "<cmd>Gin push<cr>", {
-                  mode: "n",
-                  buffer: true,
-                });
-                await mapping.map(denops, "P", "<cmd>Gin pull<cr>", {
-                  mode: "n",
-                  buffer: true,
-                });
-                await mapping.map(
-                  denops,
-                  "a",
-                  `<cmd>lua require("telescope.builtin").keymaps({ default_text = "gin-action " })<cr>`,
-                  {
-                    mode: "n",
-                    buffer: true,
-                  },
-                );
-              },
-            )
-          }", [])`,
-        );
-        helper.define(
-          "FileType",
-          "gin-status",
-          `call <SID>${denops.name}_notify("${
-            lambda.register(
-              denops,
-              async () => {
-                await mapping.map(denops, "h", "<Plug>(gin-action-stage)", {
-                  mode: ["n", "x"],
-                  buffer: true,
-                });
-                await mapping.map(denops, "l", "<Plug>(gin-action-unstage)", {
-                  mode: ["n", "x"],
-                  buffer: true,
-                });
-              },
-            )
-          }", [])`,
-        );
-      });
+    cache: {
+      beforeFile: `~/.config/nvim/rc/before/vim-gin.vim`,
     },
   },
   {
