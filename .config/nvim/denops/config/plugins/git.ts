@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/06/30 19:31:19.
+// Last Change : 2024/06/30 22:58:58.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.6/mod.ts";
@@ -70,7 +70,7 @@ export const git: Plug[] = [
       { url: "https://github.com/lambdalisue/vim-guise" },
     ],
     cache: {
-      beforeFile: `~/.config/nvim/rc/before/vim-gin.vim`,
+      beforeFile: `~/.config/nvim/rc/before/vim-gin.lua`,
     },
   },
   {
