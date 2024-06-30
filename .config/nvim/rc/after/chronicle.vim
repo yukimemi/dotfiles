@@ -1,7 +1,7 @@
 " =============================================================================
-" File        : dps-chronicle.vim
+" File        : chronicle.vim
 " Author      : yukimemi
-" Last Change : 2023/12/04 01:32:23.
+" Last Change : 2024/06/30 20:44:21.
 " =============================================================================
 
 nnoremap mr <cmd>OpenChronicleRead<cr>
