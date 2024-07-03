@@ -1,27 +1,27 @@
 // =============================================================================
 // File        : startup.ts
 // Author      : yukimemi
-// Last Change : 2024/04/07 08:52:28.
+// Last Change : 2024/07/03 00:55:23.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.14.7/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.13.1/mod.ts";
 
 export const startup: Plug[] = [
   {
     url: "https://github.com/goolord/alpha-nvim",
+    dependencies: [{ url: "https://github.com/nvim-tree/nvim-web-devicons" }],
     clone: false,
     cache: {
-      after: `
-        lua require("alpha").setup(require("alpha.themes.startify").config)
-      `,
+      afterFile: `~/.config/nvim/rc/after/alpha-nvim.lua`,
     },
   },
   {
     url: "https://github.com/startup-nvim/startup.nvim",
+    dependencies: [{ url: "https://github.com/nvim-lua/plenary.nvim" }],
     clone: false,
     cache: {
       after: `
-        lua require("startup").setup({theme = "startify"})
+        lua require("startup").setup({theme = "dashboard"})
       `,
     },
   },

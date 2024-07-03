@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : base.yml
 # Author      : yukimemi
-# Last Change : 2024/06/22 17:43:15.
+# Last Change : 2024/06/30 12:20:15.
 # =============================================================================
 
 global_vars:
@@ -50,7 +50,12 @@ matches:
           format: "%H:%M"
 
   - trigger: ";date"
-    replace: "{{today}}"
+    replace: "{{mytime}}"
+    vars:
+      - name: mytime
+        type: date
+        params:
+          format: "%Y/%m/%d"
 
   - trigger: ";tomorrow"
     replace: "{{mytime}}"

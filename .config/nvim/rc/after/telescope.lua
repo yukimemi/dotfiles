@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : telescope.lua
 -- Author      : yukimemi
--- Last Change : 2024/06/09 20:42:36.
+-- Last Change : 2024/07/03 00:56:04.
 -- =============================================================================
 
 local actions = require("telescope.actions")
@@ -11,7 +11,7 @@ local borderless = false
 
 telescope.setup({
   defaults = {
-    layout_strategy = "horizontal",
+    layout_strategy = "vertical",
     mappings = {
       i = {
         ["<C-Down>"] = require("telescope.actions").cycle_history_next,

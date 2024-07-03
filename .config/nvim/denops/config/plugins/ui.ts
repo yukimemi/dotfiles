@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/06/15 23:11:10.
+// Last Change : 2024/07/03 00:55:45.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.14.7/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.13.1/mod.ts";
 
 import * as autocmd from "https://deno.land/x/denops_std@v6.5.0/autocmd/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
@@ -18,8 +18,8 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const ui: Plug[] = [
   { url: "https://github.com/lambdalisue/vim-seethrough" },
   { url: "https://github.com/andymass/vim-matchup" },
-  { url: "https://github.com/mopp/smartnumber.vim", enabled: false },
-  { url: "https://github.com/sitiom/nvim-numbertoggle", enabled: true },
+  { url: "https://github.com/mopp/smartnumber.vim", enabled: true },
+  { url: "https://github.com/sitiom/nvim-numbertoggle", enabled: false },
   {
     url: "https://github.com/lukas-reineke/virt-column.nvim",
     enabled: pluginStatus.virtcolumn && !pluginStatus.vscode,

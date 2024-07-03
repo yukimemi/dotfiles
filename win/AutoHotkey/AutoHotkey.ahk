@@ -1,3 +1,9 @@
+; =============================================================================
+; File        : AutoHotkey.ahk
+; Author      : yukimemi
+; Last Change : 2024/06/09 01:27:20.
+; =============================================================================
+
 #Include "IME.ahk"
 
 SetTitleMatchMode(2)
@@ -115,18 +121,18 @@ F10::
 ; return
 
 ; for Edge
-; F11::
-; {
-;   Activate("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
-;   return
-; }
-
-; for Arc
 F11::
 {
-  Activate("Arc.exe")
+  Activate("msedge.exe")
   return
 }
+
+; for Arc
+; F11::
+; {
+;   Activate("Arc.exe")
+;   return
+; }
 
 ; for vivaldi
 ; F11::
@@ -192,7 +198,7 @@ F12::
 ; for cfiler
 ^F10::
 {
-  Activate("C:\Program Files (x86)\cfiler\cfiler.exe")
+  Activate(EnvGet("USERPROFILE") . "\app\cfiler\cfiler.exe")
   return
 }
 

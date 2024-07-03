@@ -1,3 +1,9 @@
+# =============================================================================
+# File        : config.yaml
+# Author      : yukimemi
+# Last Change : 2024/06/29 18:44:31.
+# =============================================================================
+
 gaps:
   inner_gap: 7
   outer_gap: 7
@@ -74,6 +80,9 @@ window_rules:
     match_process_name: "Taskmgr"
 
   - command: "ignore"
+    match_title: "ファイル名を指定して実行"
+
+  - command: "ignore"
     match_process_name: "cfiler"
     match_title: "ドライブ選択.*"
 
@@ -118,7 +127,25 @@ window_rules:
     match_title: "Bookmark.*"
 
   - command: "ignore"
+    match_title: "形式を選択して貼り付け"
+
+  - command: "ignore"
+    match_title: "セルの.*"
+
+  - command: "ignore"
+    match_title: "連続データ"
+
+  - command: "ignore"
+    match_title: "検索と置換"
+
+  - command: "ignore"
     match_title: "VimExcel.*"
+
+  - command: "ignore"
+    match_title: "Microsoft Excel"
+
+  - command: "ignore"
+    match_process_name: "copyq"
 
   - command: "ignore"
     match_process_name: "clnch"
@@ -192,8 +219,8 @@ keybindings:
 
   # As an alternative to the resize keybindings above, resize mode enables resizing via
   # HJKL or arrow keys. The binding mode is defined above with the name "resize".
-  - command: "binding mode resize"
-    binding: "Alt+R"
+  # - command: "binding mode resize"
+  #   binding: "Alt+R"
 
   # Change tiling direction. This determines where new tiling windows will be inserted.
   - command: "tiling direction toggle"
