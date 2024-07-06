@@ -1,8 +1,14 @@
+# =============================================================================
+# File        : starship.toml
+# Author      : yukimemi
+# Last Change : 2024/07/06 20:56:17.
+# =============================================================================
+
 format = """$all"""
 right_format = """$time"""
 
 [os]
-disabled = false
+disabled = true
 format = "$symbol ($style) "
 style = "bold blue"
 
@@ -26,7 +32,7 @@ threshold = -1
 style = "bold dimmed blue"
 
 [character]
-success_symbol = "[▶▶](purple)"
-error_symbol = "[▶▶](red)"
-vimcmd_symbol = "[◀◀](green)"
+success_symbol = "[➤ ](#F05F8D)"
+error_symbol = "[➤ ](red)"
+vimcmd_symbol = "[◀◀ ](green)"
 

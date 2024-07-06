@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : plugins.toml
 # Author      : yukimemi
-# Last Change : 2024/01/09 23:36:16.
+# Last Change : 2024/07/06 20:43:02.
 # =============================================================================
 
 shell = "zsh"
@@ -12,9 +12,9 @@ defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
-[plugins.powerlevel10k]
-github = "romkatv/powerlevel10k"
-use = ['{{ name }}.zsh-theme']
+# [plugins.powerlevel10k]
+# github = "romkatv/powerlevel10k"
+# use = ['{{ name }}.zsh-theme']
 
 # [plugins.spaceship]
 # github = "spaceship-prompt/spaceship-prompt"
