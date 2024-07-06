@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/06/16 15:51:35.
+// Last Change : 2024/07/06 22:18:31.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.7/mod.ts";
@@ -26,6 +26,7 @@ export const colors: Plug[] = [
       { url: "https://github.com/adrian5/oceanic-next-vim" },
       { url: "https://github.com/bluz71/vim-nightfly-guicolors" },
       { url: "https://github.com/cocopon/iceberg.vim" },
+      { url: "https://github.com/ray-x/aurora" },
       { url: "https://github.com/doums/darcula" },
       { url: "https://github.com/drewtempelmeyer/palenight.vim" },
       { url: "https://github.com/masroof-maindak/swamp.nvim" },
