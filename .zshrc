@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2023/10/13 00:08:43.
+# Last Change : 2024/07/06 20:40:21.
 # =============================================================================
 
 #
@@ -37,7 +37,7 @@ ensure_zcompiled "$HOME/.zshrc"
 export SHELDON_CONFIG_DIR="$HOME/.config/sheldon"
 sheldon_cache="$SHELDON_CONFIG_DIR/sheldon.zsh"
 sheldon_toml="$SHELDON_CONFIG_DIR/plugins.toml"
-(( $+commands[sheldon] )) || cargo install sheldon
+(( $+commands[sheldon] )) || curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
 if [[ ! -r "$sheldon_cache" || "$sheldon_toml" -nt "$sheldon_cache" ]]; then
   sheldon source > $sheldon_cache
 fi
