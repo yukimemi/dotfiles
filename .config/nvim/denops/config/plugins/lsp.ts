@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/06/09 20:41:39.
+// Last Change : 2024/07/06 22:14:53.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.7/mod.ts";
@@ -48,6 +48,12 @@ export const lsp: Plug[] = [
       {
         url: "https://github.com/mfussenegger/nvim-lint",
         afterFile: "~/.config/nvim/rc/after/nvim-lint.lua",
+      },
+      {
+        url: "https://github.com/pojokcodeid/auto-lint.nvim",
+        after: async ({ denops }) => {
+          await denops.call(`luaeval`, `require("auto-lint").setup()`);
+        },
       },
       {
         url: "https://github.com/nvimtools/none-ls.nvim",
