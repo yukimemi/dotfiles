@@ -1,0 +1,28 @@
+" =============================================================================
+" File        : .vimdrc
+" Author      : yukimemi
+" Last Change : 2024/07/07 22:22:58.
+" =============================================================================
+
+" Write to your .vindrc.
+set cmd_fontname = PlemolJP Console NF
+inoremap <ctrl-shift-f> <easyclick><click_left>
+inoremap <ctrl-shift-s> <switch_window><easyclick><click_left>
+noremap <ctrl-1> :!notepad<cr>
+
+set cursor_accel = 10
+
+" write in your .vindrc
+set easyclick_bgcolor=E67E22
+set easyclick_fontcolor=34495E
+set easyclick_fontname=Consolas
+set easyclick_fontsize=18
+set easyclick_fontweight=600
+
+" Equivalent to conventional suppress_for_vim
+autocmd AppEnter,EdiNormalEnter vim.exe <to_resident>
+autocmd AppEnter,EdiNormalEnter nvim.exe <to_resident>
+autocmd AppEnter,EdiNormalEnter nvim-qt.exe <to_resident>
+autocmd AppEnter,EdiNormalEnter WindowsTerminal.exe <to_resident>
+
+" vim: ft=vim :

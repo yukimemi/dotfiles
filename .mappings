@@ -8,6 +8,7 @@
 ".zshenv" = "~/.zshenv"
 ".zshrc" = "~/.zshrc"
 ".p10k.zsh" = "~/.p10k.zsh"
+".win-vind" = "~/.win-vind"
 
 [windows]
 ".config/rhq" = "~/AppData/Roaming/rhq"
