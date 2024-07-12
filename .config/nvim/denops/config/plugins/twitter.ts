@@ -6,10 +6,10 @@
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.7/mod.ts";
 
-import { batch } from "https://deno.land/x/denops_std@v6.5.0/batch/mod.ts";
-import * as autocmd from "https://deno.land/x/denops_std@v6.5.0/autocmd/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v6.5.0/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v6.5.0/mapping/mod.ts";
+import { batch } from "https://deno.land/x/denops_std@v6.5.1/batch/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v6.5.1/autocmd/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v6.5.1/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v6.5.1/mapping/mod.ts";
 
 export const twitter: Plug[] = [
   {
