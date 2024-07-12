@@ -4,9 +4,9 @@
 // Last Change : 2023/10/23 20:17:38.
 // =============================================================================
 
-import type { Denops } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v6.5.0/helper/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v6.5.1/mod.ts";
+import { execute } from "https://deno.land/x/denops_std@v6.5.1/helper/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
 
 export async function setNeovimQt(denops: Denops) {
   if (await fn.exists(denops, ":GuiFont")) {

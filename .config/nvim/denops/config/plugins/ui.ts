@@ -6,12 +6,12 @@
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.7/mod.ts";
 
-import * as autocmd from "https://deno.land/x/denops_std@v6.5.0/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v6.5.0/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v6.5.0/mapping/mod.ts";
-import * as nvimFn from "https://deno.land/x/denops_std@v6.5.0/function/nvim/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.5.0/variable/mod.ts";
+import * as autocmd from "https://deno.land/x/denops_std@v6.5.1/autocmd/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
+import * as lambda from "https://deno.land/x/denops_std@v6.5.1/lambda/mod.ts";
+import * as mapping from "https://deno.land/x/denops_std@v6.5.1/mapping/mod.ts";
+import * as nvimFn from "https://deno.land/x/denops_std@v6.5.1/function/nvim/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.5.1/variable/mod.ts";
 
 import { pluginStatus } from "../pluginstatus.ts";
 

@@ -6,7 +6,7 @@
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.7/mod.ts";
 
-import * as vars from "https://deno.land/x/denops_std@v6.5.0/variable/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.5.1/variable/mod.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const statusline: Plug[] = [
