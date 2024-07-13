@@ -12,8 +12,8 @@ import * as nvimFn from "https://deno.land/x/denops_std@v6.5.1/function/nvim/mod
 import * as option from "https://deno.land/x/denops_std@v6.5.1/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.5.1/variable/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v6.5.1/mod.ts";
-import { format } from "jsr:@std/datetime@0.224.2";
-import { join } from "jsr:@std/path@0.225.2/join";
+import { format } from "jsr:@std/datetime@0.224.3";
+import { join } from "jsr:@std/path@1.0.0/join";
 import { systemopen } from "https://deno.land/x/systemopen@v1.0.0/mod.ts";
 import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 
