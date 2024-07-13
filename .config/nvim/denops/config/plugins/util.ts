@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/06/15 22:24:21.
+// Last Change : 2024/07/13 20:44:04.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.7/mod.ts";
@@ -503,4 +503,5 @@ export const util: Plug[] = [
   {
     url: "https://github.com/Milly/deno-protocol.vim",
   },
+  { url: "https://github.com/vim-jp-radio/vim-jp-radio.vim" },
 ];

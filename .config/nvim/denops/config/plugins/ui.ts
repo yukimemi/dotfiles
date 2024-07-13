@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/07/13 20:20:10.
+// Last Change : 2024/07/13 20:51:17.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.7/mod.ts";
@@ -26,6 +26,17 @@ export const ui: Plug[] = [
       await vars.o.set(denops, "sidescrolloff", 36);
       await vars.g.set(denops, "neominimap", {
         auto_enable: true,
+        exclude_filetypes: [
+          "help",
+          "ddu-ff",
+        ],
+        exclude_buftypes: [
+          "nofile",
+          "nowrite",
+          "quickfix",
+          "terminal",
+          "prompt",
+        ],
       });
     },
   },
@@ -56,6 +67,11 @@ export const ui: Plug[] = [
     before: async ({ denops }) => {
       await vars.g.set(denops, "qs_lazy_highlight", 1);
     },
+  },
+  {
+    url: "https://github.com/mei28/luminate.nvim",
+    enabled: false,
+    afterFile: `~/.config/nvim/rc/after/luminate.lua`,
   },
   { url: "https://github.com/itchyny/vim-parenmatch" },
   { url: "https://github.com/ntpeters/vim-better-whitespace" },
