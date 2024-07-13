@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2024/06/15 23:16:36.
+// Last Change : 2024/07/13 20:00:15.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.7/mod.ts";
@@ -145,6 +145,10 @@ export const filetypes: Plug[] = [
       url: "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
     }],
     afterFile: "~/.config/nvim/rc/after/markdown.lua",
+  },
+  {
+    url: "https://github.com/roodolv/markdown-toggle.nvim",
+    afterFile: "~/.config/nvim/rc/after/markdown-toggle.lua",
   },
   // vim
   { url: "https://github.com/machakann/vim-vimhelplint" },
