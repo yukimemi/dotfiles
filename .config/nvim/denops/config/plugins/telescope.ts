@@ -4,7 +4,7 @@
 // Last Change : 2024/07/03 00:55:33.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.14.7/mod.ts";
+import type { Plug } from "https://deno.land/x/dvpm@3.15.0/mod.ts";
 
 export const telescope: Plug[] = [
   {
