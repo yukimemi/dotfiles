@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/07/03 00:55:45.
+// Last Change : 2024/07/13 20:20:10.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.14.7/mod.ts";
@@ -20,6 +20,15 @@ export const ui: Plug[] = [
   { url: "https://github.com/andymass/vim-matchup" },
   { url: "https://github.com/mopp/smartnumber.vim", enabled: true },
   { url: "https://github.com/sitiom/nvim-numbertoggle", enabled: false },
+  {
+    url: "https://github.com/Isrothy/neominimap.nvim",
+    before: async ({ denops }) => {
+      await vars.o.set(denops, "sidescrolloff", 36);
+      await vars.g.set(denops, "neominimap", {
+        auto_enable: true,
+      });
+    },
+  },
   {
     url: "https://github.com/lukas-reineke/virt-column.nvim",
     enabled: pluginStatus.virtcolumn && !pluginStatus.vscode,
