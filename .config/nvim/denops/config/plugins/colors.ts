@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/07/06 22:18:31.
+// Last Change : 2024/07/14 10:42:21.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.15.0/mod.ts";
@@ -90,8 +90,8 @@ export const colors: Plug[] = [
       await vars.g.set(denops, "spectrism_debug", false);
       await vars.g.set(denops, "spectrism_echo", false);
       await vars.g.set(denops, "spectrism_notify", true);
-      await vars.g.set(denops, "spectrism_interval", 100);
-      // await globals.set(denops, "spectrism_checkwait", 30000);
+      await vars.g.set(denops, "spectrism_interval", 300);
+      await vars.g.set(denops, "spectrism_checkwait", 1000);
       await vars.g.set(denops, "spectrism_disables", [
         "evening",
         "default",
@@ -100,7 +100,7 @@ export const colors: Plug[] = [
       await vars.g.set(
         denops,
         "spectrism_path",
-        await fn.expand(denops, "~/.config/spectrism/colorscheme.toml"),
+        await fn.expand(denops, "~/.cache/nvim/spectrism/colorscheme.toml"),
       );
       await vars.g.set(denops, "spectrism_notmatch", "[Ll]ight");
       await vars.g.set(denops, "spectrism_background", "dark");

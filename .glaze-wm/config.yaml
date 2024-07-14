@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2024/06/29 18:44:31.
+# Last Change : 2024/07/12 01:15:53.
 # =============================================================================
 
 gaps:
@@ -81,6 +81,12 @@ window_rules:
 
   - command: "ignore"
     match_title: "ファイル名を指定して実行"
+
+  - command: "ignore"
+    match_title: "使用中のファイル"
+
+  - command: "ignore"
+    match_title: "Windows セキュリティ"
 
   - command: "ignore"
     match_process_name: "cfiler"
