@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/07/14 10:42:21.
+// Last Change : 2024/07/14 22:17:24.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.15.0/mod.ts";
@@ -65,6 +65,7 @@ export const colors: Plug[] = [
       { url: "https://github.com/oxfist/night-owl.nvim" },
       { url: "https://github.com/AlessandroYorba/Alduin" },
       { url: "https://github.com/polirritmico/monokai-nightasty.nvim" },
+      { url: "https://github.com/cseelus/vim-colors-lucid" },
       {
         url: "https://github.com/crispybaccoon/evergarden",
         after: async ({ denops }) => {
