@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/07/06 22:18:10.
+// Last Change : 2024/07/14 21:52:27.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.15.0/mod.ts";
@@ -118,6 +118,16 @@ export const lsp: Plug[] = [
       },
       {
         url: "https://github.com/folke/trouble.nvim",
+      },
+      {
+        url: "https://github.com/rachartier/tiny-inline-diagnostic.nvim",
+        after: async ({ denops }) => {
+          await denops.call(`luaeval`, `require("tiny-inline-diagnostic").setup()`);
+        },
+      },
+      {
+        url: "https://github.com/chrisgrieser/nvim-lsp-endhints",
+        afterFile: `~/.config/nvim/rc/after/nvim-lsp-endhints.lua`,
       },
     ],
     afterFile: "~/.config/nvim/rc/after/nvim-lspconfig.lua",

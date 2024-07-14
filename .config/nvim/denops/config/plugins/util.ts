@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/07/13 20:44:04.
+// Last Change : 2024/07/14 21:42:25.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.15.0/mod.ts";
@@ -504,4 +504,26 @@ export const util: Plug[] = [
     url: "https://github.com/Milly/deno-protocol.vim",
   },
   { url: "https://github.com/vim-jp-radio/vim-jp-radio.vim" },
+  {
+    url: "https://github.com/fouladi/ccrypt-wrapper.nvim",
+    enabled: false,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("ccrypt-wrapper").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/mei28/qfc.nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("qfc").setup(_A)`, {
+        enabled: true,
+        timeout: 10000,
+      });
+    },
+  },
+  {
+    url: "https://github.com/juliuswaldmann/here.nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("here")`);
+    },
+  },
 ];

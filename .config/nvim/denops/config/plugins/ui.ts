@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/07/13 20:51:17.
+// Last Change : 2024/07/14 21:45:07.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.15.0/mod.ts";
@@ -22,6 +22,7 @@ export const ui: Plug[] = [
   { url: "https://github.com/sitiom/nvim-numbertoggle", enabled: false },
   {
     url: "https://github.com/Isrothy/neominimap.nvim",
+    enabled: false,
     before: async ({ denops }) => {
       await vars.o.set(denops, "sidescrolloff", 36);
       await vars.g.set(denops, "neominimap", {
@@ -373,5 +374,12 @@ export const ui: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("scrollbar").setup()`);
     },
+  },
+  {
+    url: "https://github.com/shortcuts/no-neck-pain.nvim",
+    enabled: false,
+  },
+  {
+    url: "https://github.com/haolian9/gary.nvim",
   },
 ];
