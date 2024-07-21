@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/07/03 00:54:59.
+// Last Change : 2024/07/21 18:56:36.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.15.1/mod.ts";
@@ -92,5 +92,9 @@ export const git: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("gitlinker").setup()`);
     },
+  },
+  {
+    url: "https://github.com/pwntester/octo.nvim",
+    afterFile: `~/.config/nvim/rc/after/octo.lua`,
   },
 ];

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 12:34:15.
+// Last Change : 2024/07/21 19:20:42.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.15.1/mod.ts";
@@ -39,12 +39,30 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/Bakudankun/BackAndForward.vim",
-    enabled: !pluginStatus.vscode,
+    enabled: !pluginStatus.vscode && false,
     before: async ({ denops }) => {
       await mapping.map(denops, "gH", "<Plug>(backandforward-back)", {
         mode: "n",
       });
       await mapping.map(denops, "gL", "<Plug>(backandforward-forward)", {
+        mode: "n",
+      });
+    },
+  },
+  {
+    url: "https://github.com/thinca/vim-poslist",
+    enabled: !pluginStatus.vscode && true,
+    before: async ({ denops }) => {
+      await mapping.map(denops, "<c-o>", "<Plug>(poslist-prev-pos)", {
+        mode: ["n", "x"],
+      });
+      await mapping.map(denops, "<c-i>", "<Plug>(poslist-next-pos)", {
+        mode: ["n", "x"],
+      });
+      await mapping.map(denops, "gH", "<Plug>(poslist-prev-buf)", {
+        mode: "n",
+      });
+      await mapping.map(denops, "gL", "<Plug>(poslist-next-buf)", {
         mode: "n",
       });
     },
