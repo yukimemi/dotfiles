@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : before.lua
 -- Author      : yukimemi
--- Last Change : 2024/03/23 15:40:09.
+-- Last Change : 2024/07/15 20:21:05.
 -- =============================================================================
 
 local before = require('before')
@@ -20,10 +20,10 @@ before.setup({
 -- vim.keymap.set('n', '<C-l>', before.jump_to_next_edit, {})
 
 -- Look for previous edits in quickfix list
-vim.keymap.set('n', '<leader>oq', before.show_edits_in_quickfix, {})
+-- vim.keymap.set('n', '<leader>oq', before.show_edits_in_quickfix, {})
 
 -- Look for previous edits in telescope (needs telescope, obviously)
-vim.keymap.set('n', '<leader>oe', before.show_edits_in_telescope, {})
+-- vim.keymap.set('n', '<leader>oe', before.show_edits_in_telescope, {})
 
 -- You can provide telescope opts to the picker as show_edits_in_telescope argument:
 -- vim.keymap.set('n', '<leader>oe', function()

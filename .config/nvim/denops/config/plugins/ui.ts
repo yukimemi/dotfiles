@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/07/14 21:45:07.
+// Last Change : 2024/07/15 18:28:02.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.15.1/mod.ts";
@@ -69,6 +69,7 @@ export const ui: Plug[] = [
       await vars.g.set(denops, "qs_lazy_highlight", 1);
     },
   },
+  { url: "https://github.com/deris/vim-shot-f" },
   {
     url: "https://github.com/mei28/luminate.nvim",
     enabled: false,
