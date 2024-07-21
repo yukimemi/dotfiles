@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/07/14 21:42:25.
+// Last Change : 2024/07/21 18:21:37.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.15.1/mod.ts";
@@ -468,6 +468,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/tani/dmacro.nvim",
+    enabled: false,
     afterFile: "~/.config/nvim/rc/after/dmacro.lua",
   },
   { url: "https://github.com/tweekmonster/helpful.vim" },
