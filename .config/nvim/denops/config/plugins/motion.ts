@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2024/07/21 19:20:42.
+// Last Change : 2024/07/27 09:36:13.
 // =============================================================================
 
 import type { Plug } from "https://deno.land/x/dvpm@3.15.1/mod.ts";
@@ -71,4 +71,5 @@ export const motion: Plug[] = [
     url: "https://github.com/chaoren/vim-wordmotion",
     enabled: false,
   },
+  { url: "https://github.com/psliwka/vim-smoothie" },
 ];

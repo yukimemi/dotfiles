@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : neovide.ts
 // Author      : yukimemi
-// Last Change : 2024/04/07 10:08:12.
+// Last Change : 2024/07/27 16:55:12.
 // =============================================================================
 
 import type { Denops } from "https://deno.land/x/denops_std@v6.5.1/mod.ts";
@@ -28,6 +28,7 @@ export async function setNeovide(denops: Denops) {
   await vars.g.set(denops, "neovide_cursor_vfx_mode", "railgun");
   await vars.g.set(denops, "neovide_cursor_animate_in_insert_mode", true);
   await vars.g.set(denops, "neovide_cursor_animate_command_line", true);
+
   if (denops.meta.platform === "windows") {
     await option.guifont.set(denops, `${fontName}:h10:#h-none`);
     await option.guifontwide.set(denops, `${fontName}:h10:#h-none`);
@@ -35,4 +36,8 @@ export async function setNeovide(denops: Denops) {
     await option.guifont.set(denops, `${fontName}:h14:#h-none`);
     await option.guifontwide.set(denops, `${fontName}:h14:#h-none`);
   }
+
+  // For performance.
+  // await vars.g.set(denops, "neovide_no_idle", true);
+  // await vars.g.set(denops, "neovide_refresh_rate", 30);
 }
