@@ -6,14 +6,14 @@
 
 import * as buffer from "https://deno.land/x/denops_std@v6.5.1/buffer/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
-import * as fs from "jsr:@std/fs@0.229.3";
+import * as fs from "jsr:@std/fs@1.0.0";
 import * as helper from "https://deno.land/x/denops_std@v6.5.1/helper/mod.ts";
 import * as nvimFn from "https://deno.land/x/denops_std@v6.5.1/function/nvim/mod.ts";
 import * as option from "https://deno.land/x/denops_std@v6.5.1/option/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v6.5.1/variable/mod.ts";
 import type { Denops } from "https://deno.land/x/denops_std@v6.5.1/mod.ts";
 import { format } from "jsr:@std/datetime@0.224.3";
-import { join } from "jsr:@std/path@1.0.1/join";
+import { join } from "jsr:@std/path@1.0.2/join";
 import { systemopen } from "https://deno.land/x/systemopen@v1.0.0/mod.ts";
 import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
 
