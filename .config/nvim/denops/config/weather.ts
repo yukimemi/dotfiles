@@ -1,12 +1,12 @@
 // =============================================================================
 // File        : weather.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:40:00.
+// Last Change : 2024/07/27 22:23:13.
 // =============================================================================
 
-import type { Denops } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
-import * as buffer from "https://deno.land/x/denops_std@v6.5.0/buffer/mod.ts";
+import type { Denops } from "jsr:@denops/std@7.0.0";
+import * as fn from "jsr:@denops/std@7.0.0/function";
+import * as buffer from "jsr:@denops/std@7.0.0/buffer";
 
 import { notify } from "./util.ts";
 

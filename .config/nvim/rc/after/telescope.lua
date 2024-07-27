@@ -1,10 +1,8 @@
 -- =============================================================================
 -- File        : telescope.lua
 -- Author      : yukimemi
--- Last Change : 2024/07/03 00:56:04.
+-- Last Change : 2024/07/27 22:06:00.
 -- =============================================================================
-
-local actions = require("telescope.actions")
 
 local telescope = require("telescope")
 local borderless = false

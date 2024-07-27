@@ -1,13 +1,13 @@
 // =============================================================================
 // File        : wsl.ts
 // Author      : yukimemi
-// Last Change : 2023/12/03 18:51:13.
+// Last Change : 2024/07/27 22:23:12.
 // =============================================================================
 
-import type { Denops } from "https://deno.land/x/denops_std@v6.5.0/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.5.0/variable/mod.ts";
+import type { Denops } from "jsr:@denops/std@7.0.0";
+import * as vars from "jsr:@denops/std@7.0.0/variable";
 
-import * as fn from "https://deno.land/x/denops_std@v6.5.0/function/mod.ts";
+import * as fn from "jsr:@denops/std@7.0.0/function";
 
 export async function setWsl(denops: Denops) {
   if (!(await fn.has(denops, "wsl"))) {

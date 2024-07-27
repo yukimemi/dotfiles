@@ -4,15 +4,15 @@
 // Last Change : 2024/06/22 16:49:19.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.15.2/mod.ts";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.0.0";
 
-import * as autocmd from "https://deno.land/x/denops_std@v6.5.1/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v6.5.1/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v6.5.1/mapping/mod.ts";
-import * as op from "https://deno.land/x/denops_std@v6.5.1/option/mod.ts";
-import { batch } from "https://deno.land/x/denops_std@v6.5.1/batch/mod.ts";
-import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
+import * as autocmd from "jsr:@denops/std@7.0.0/autocmd";
+import * as fn from "jsr:@denops/std@7.0.0/function";
+import * as lambda from "jsr:@denops/std@7.0.0/lambda";
+import * as mapping from "jsr:@denops/std@7.0.0/mapping";
+import * as op from "jsr:@denops/std@7.0.0/option";
+import { batch } from "jsr:@denops/std@7.0.0/batch";
+import { z } from "npm:zod@3.23.8";
 import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 

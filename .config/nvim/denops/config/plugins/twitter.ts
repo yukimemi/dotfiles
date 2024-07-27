@@ -4,12 +4,12 @@
 // Last Change : 2023/07/16 00:38:51.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.15.2/mod.ts";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.0.0";
 
-import { batch } from "https://deno.land/x/denops_std@v6.5.1/batch/mod.ts";
-import * as autocmd from "https://deno.land/x/denops_std@v6.5.1/autocmd/mod.ts";
-import * as lambda from "https://deno.land/x/denops_std@v6.5.1/lambda/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v6.5.1/mapping/mod.ts";
+import { batch } from "jsr:@denops/std@7.0.0/batch";
+import * as autocmd from "jsr:@denops/std@7.0.0/autocmd";
+import * as lambda from "jsr:@denops/std@7.0.0/lambda";
+import * as mapping from "jsr:@denops/std@7.0.0/mapping";
 
 export const twitter: Plug[] = [
   {

@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : todo.ts
 // Author      : yukimemi
-// Last Change : 2024/03/30 14:31:48.
+// Last Change : 2024/07/27 22:22:06.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.15.2/mod.ts";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.0.0";
 
-import * as fn from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
+import * as fn from "jsr:@denops/std@7.0.0/function";
 import { ensureFile } from "jsr:@std/fs@1.0.0/ensure-file";
-import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
+import { z } from "npm:zod@3.23.8";
 
 export const todo: Plug[] = [
   {

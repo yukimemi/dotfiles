@@ -1,20 +1,20 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2024/05/02 18:45:56.
+// Last Change : 2024/07/27 22:12:33.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.15.2/mod.ts";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.0.0";
 
-import * as autocmd from "https://deno.land/x/denops_std@v6.5.1/autocmd/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.5.1/variable/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v6.5.1/mapping/mod.ts";
-import { execute } from "https://deno.land/x/denops_std@v6.5.1/helper/mod.ts";
+import * as autocmd from "jsr:@denops/std@7.0.0/autocmd";
+import * as fn from "jsr:@denops/std@7.0.0/function";
+import * as vars from "jsr:@denops/std@7.0.0/variable";
+import * as mapping from "jsr:@denops/std@7.0.0/mapping";
+import { execute } from "jsr:@denops/std@7.0.0/helper";
 
 import { pluginStatus } from "../pluginstatus.ts";
 import { ensureDir } from "jsr:@std/fs@1.0.0/ensure-dir";
-import { z } from "https://deno.land/x/zod@v3.23.8/mod.ts";
+import { z } from "npm:zod@3.23.8";
 
 export const edit: Plug[] = [
   {
@@ -142,7 +142,12 @@ export const edit: Plug[] = [
       );
     },
   },
-  { url: "https://github.com/thinca/vim-qfreplace" },
+  {
+    url: "https://github.com/thinca/vim-qfreplace",
+    before: async ({ denops }) => {
+      await vars.g.set(denops, "qfreplace_no_save", 0);
+    },
+  },
   { url: "https://github.com/itchyny/vim-qfedit" },
   {
     url: "https://github.com/tani/vim-typo",

@@ -4,9 +4,9 @@
 // Last Change : 2024/05/06 17:35:48.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.15.2/mod.ts";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.0.0";
 
-import * as vars from "https://deno.land/x/denops_std@v6.5.1/variable/mod.ts";
+import * as vars from "jsr:@denops/std@7.0.0/variable";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const statusline: Plug[] = [

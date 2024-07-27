@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : wiki.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 12:34:01.
+// Last Change : 2024/07/27 22:27:31.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.15.2/mod.ts";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.0.0";
 
-import * as fn from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v6.5.1/mapping/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v6.5.1/variable/mod.ts";
+import * as fn from "jsr:@denops/std@7.0.0/function";
+import * as mapping from "jsr:@denops/std@7.0.0/mapping";
+import * as vars from "jsr:@denops/std@7.0.0/variable";
 
 import { pluginStatus } from "../pluginstatus.ts";
 

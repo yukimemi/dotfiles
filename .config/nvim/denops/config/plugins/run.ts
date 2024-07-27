@@ -1,11 +1,11 @@
 // =============================================================================
 // File        : run.ts
 // Author      : yukimemi
-// Last Change : 2024/05/06 16:57:33.
+// Last Change : 2024/07/27 22:27:25.
 // =============================================================================
 
-import * as vars from "https://deno.land/x/denops_std@v6.5.1/variable/mod.ts";
-import type { Plug } from "https://deno.land/x/dvpm@3.15.2/mod.ts";
+import * as vars from "jsr:@denops/std@7.0.0/variable";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.0.0";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const run: Plug[] = [

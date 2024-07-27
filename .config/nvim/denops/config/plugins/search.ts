@@ -1,11 +1,11 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2024/06/15 23:16:17.
+// Last Change : 2024/07/27 22:27:20.
 // =============================================================================
 
-import type { Plug } from "https://deno.land/x/dvpm@3.15.2/mod.ts";
-import * as mapping from "https://deno.land/x/denops_std@v6.5.1/mapping/mod.ts";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.0.0";
+import * as mapping from "jsr:@denops/std@7.0.0/mapping";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const search: Plug[] = [
