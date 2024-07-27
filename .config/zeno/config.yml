@@ -1,3 +1,9 @@
+# =============================================================================
+# File        : config.yml
+# Author      : yukimemi
+# Last Change : 2024/07/27 20:54:01.
+# =============================================================================
+
 snippets:
   # Git
   - name: git
@@ -155,8 +161,8 @@ snippets:
     snippet: deno run --allow-all https://deno.land/x/udd/main.ts **/*.ts
   # molt
   - name: Install molt
-    keyword: molt
-    snippet: deno install --allow-env --allow-read --allow-net --allow-write --allow-run=git --name=molt https://deno.land/x/molt/cli.ts
+    keyword: install-molt
+    snippet: deno install -f --allow-env --allow-read --allow-net --allow-write --allow-run=git --name=molt https://deno.land/x/molt/cli.ts
   - name: std to jsr
     keyword: stdtojsr
     snippet: deno run -A jsr:@omochice/replace-std-to-jsr
