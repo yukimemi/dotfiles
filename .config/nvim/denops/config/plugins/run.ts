@@ -5,7 +5,7 @@
 // =============================================================================
 
 import * as vars from "jsr:@denops/std@7.0.0/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@4.0.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const run: Plug[] = [
