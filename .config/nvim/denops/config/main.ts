@@ -8,7 +8,7 @@ import type { Denops, Entrypoint } from "jsr:@denops/std@7.0.0";
 import { type Plug } from "jsr:@yukimemi/dvpm@4.0.2";
 
 import * as fn from "jsr:@denops/std@7.0.0/function";
-import { Dvpm } from "jsr:@yukimemi/dvpm@4.0.0";
+import { Dvpm } from "jsr:@yukimemi/dvpm@4.0.2";
 import { z } from "npm:zod@3.23.8";
 import { execute } from "jsr:@denops/std@7.0.0/helper";
 import { notify } from "./util.ts";
