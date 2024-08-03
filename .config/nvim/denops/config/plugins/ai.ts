@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/05/03 08:55:25.
+// Last Change : 2024/08/03 13:13:19.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -16,7 +16,10 @@ import {
 } from "https://esm.sh/@google/generative-ai@0.16.0";
 
 export const ai: Plug[] = [
-  { url: "https://github.com/kyoh86/denops-ollama.vim" },
+  {
+    url: "https://github.com/kyoh86/denops-ollama.vim",
+    enabled: false,
+  },
   {
     url: "https://github.com/yukimemi/futago.vim",
     enabled: true,
