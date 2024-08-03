@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : neotree.ts
 // Author      : yukimemi
-// Last Change : 2024/07/27 22:27:35.
+// Last Change : 2024/08/03 10:55:16.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -13,6 +13,7 @@ export const neotree: Plug[] = [
   {
     url: "https://github.com/nvim-neo-tree/neo-tree.nvim",
     enabled: !pluginStatus.vscode && !pluginStatus.coc && pluginStatus.neotree,
+    cache: { afterFile: `~/.config/nvim/rc/after/neo-tree.lua` },
     dependencies: [
       { url: "https://github.com/nvim-lua/plenary.nvim" },
       { url: "https://github.com/nvim-tree/nvim-web-devicons" },

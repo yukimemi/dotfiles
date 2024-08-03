@@ -1,12 +1,18 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2024/06/09 01:27:20.
+; Last Change : 2024/07/28 23:30:12.
 ; =============================================================================
 
 #Include "IME.ahk"
 
 SetTitleMatchMode(2)
+
+OnError LogError
+LogError(exception, mode) {
+  FileAppend "Error on line " exception.Line ": " exception.Message "`n", "error.log"
+  return true
+}
 
 ; #z::Run www.autohotkey.com
 
