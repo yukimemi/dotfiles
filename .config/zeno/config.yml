@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yml
 # Author      : yukimemi
-# Last Change : 2024/07/27 20:54:01.
+# Last Change : 2024/08/03 22:00:10.
 # =============================================================================
 
 snippets:
@@ -395,6 +395,8 @@ snippets:
     snippet: cargo install jnv
   - name: Install cargo-machete
     snippet: cargo install cargo-machete
+  - name: Install gibo
+    snippet: go install github.com/simonwhitaker/gibo@latest
 
   # build
   - name: Build neovim (Ubuntu)
