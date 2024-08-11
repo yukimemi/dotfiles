@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/08/04 13:13:08.
+// Last Change : 2024/08/11 19:37:43.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -87,6 +87,12 @@ export const colors: Plug[] = [
             hide_fillchars: true,
             boarderless_telescope: true,
           });
+        },
+      },
+      {
+        url: "https://github.com/0xstepit/flow.nvim",
+        after: async ({ denops }) => {
+          await denops.call(`luaeval`, `require("flow").setup()`);
         },
       },
     ],

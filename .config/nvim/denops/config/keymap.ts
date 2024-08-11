@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : keymap.ts
 // Author      : yukimemi
-// Last Change : 2023/12/03 18:52:09.
+// Last Change : 2024/08/11 18:48:25.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.0.0/lambda";
@@ -97,6 +97,13 @@ export async function setKeymapPre(denops: Denops) {
 
     await mapping.map(denops, "<c-n>", "gt", { mode: "n" });
     await mapping.map(denops, "<c-p>", "gT", { mode: "n" });
+
+    await mapping.map(
+      denops,
+      "/",
+      `complete_info(['mode']).mode == 'files' && complete_info(['selected']).selected >= 0 ? '<c-x><c-f>' : '/'`,
+      { mode: "i", expr: true },
+    );
 
     autocmd.group(denops, "MyQuickfixMapping", (helper) => {
       helper.remove("*");
