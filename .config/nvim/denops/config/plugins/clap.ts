@@ -5,7 +5,7 @@
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
-import * as fn from "jsr:@denops/std@7.0.0/function";
+import * as fn from "jsr:@denops/std@7.0.3/function";
 
 import { pluginStatus } from "../pluginstatus.ts";
 
