@@ -1,3 +1,9 @@
+# =============================================================================
+# File        : .mappings
+# Author      : yukimemi
+# Last Change : 2024/08/11 16:29:48.
+# =============================================================================
+
 [general]
 ".config" = "~/.config"
 ".editorconfig" = "~/.editorconfig"
@@ -30,7 +36,7 @@
   "~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json",
   "~/AppData/Local/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json",
 ]
-".glaze-wm" = "~/.glaze-wm"
+".glzr/glazewm/config.yaml" = "~/.glzr/glazewm/config.yaml"
 ".config/jj" = "~/AppData/Roaming/jj"
 
 [darwin]

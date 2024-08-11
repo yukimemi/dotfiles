@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/06/08 21:27:06.
+// Last Change : 2024/08/04 14:24:52.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -182,6 +182,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/autoreplacer.vim",
+    enabled: true,
     dst: "~/src/github.com/yukimemi/autoreplacer.vim",
     before: async ({ denops }) => {
       await vars.g.set(denops, "autoreplacer_debug", false);
