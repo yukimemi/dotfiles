@@ -6,15 +6,15 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
 
-import * as autocmd from "jsr:@denops/std@7.0.0/autocmd";
-import * as fn from "jsr:@denops/std@7.0.0/function";
-import * as lambda from "jsr:@denops/std@7.0.0/lambda";
-import * as mapping from "jsr:@denops/std@7.0.0/mapping";
-import * as op from "jsr:@denops/std@7.0.0/option";
-import * as vars from "jsr:@denops/std@7.0.0/variable";
+import * as autocmd from "jsr:@denops/std@7.0.3/autocmd";
+import * as fn from "jsr:@denops/std@7.0.3/function";
+import * as lambda from "jsr:@denops/std@7.0.3/lambda";
+import * as mapping from "jsr:@denops/std@7.0.3/mapping";
+import * as op from "jsr:@denops/std@7.0.3/option";
+import * as vars from "jsr:@denops/std@7.0.3/variable";
 import { z } from "npm:zod@3.23.8";
 import { pluginStatus } from "../pluginstatus.ts";
-import { execute } from "jsr:@denops/std@7.0.0/helper";
+import { execute } from "jsr:@denops/std@7.0.3/helper";
 
 export const coc: Plug[] = [
   {

@@ -4,10 +4,10 @@
 // Last Change : 2024/07/27 22:23:12.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@7.0.0";
-import * as vars from "jsr:@denops/std@7.0.0/variable";
+import type { Denops } from "jsr:@denops/std@7.0.3";
+import * as vars from "jsr:@denops/std@7.0.3/variable";
 
-import * as fn from "jsr:@denops/std@7.0.0/function";
+import * as fn from "jsr:@denops/std@7.0.3/function";
 
 export async function setWsl(denops: Denops) {
   if (!(await fn.has(denops, "wsl"))) {
