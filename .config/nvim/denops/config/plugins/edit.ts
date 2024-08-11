@@ -13,7 +13,7 @@ import * as mapping from "jsr:@denops/std@7.0.3/mapping";
 import { execute } from "jsr:@denops/std@7.0.3/helper";
 
 import { pluginStatus } from "../pluginstatus.ts";
-import { ensureDir } from "jsr:@std/fs@1.0.0/ensure-dir";
+import { ensureDir } from "jsr:@std/fs@1.0.1/ensure-dir";
 import { z } from "npm:zod@3.23.8";
 
 export const edit: Plug[] = [
