@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2024/07/27 22:12:33.
+// Last Change : 2024/08/12 02:13:10.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -131,7 +131,7 @@ export const edit: Plug[] = [
       await mapping.map(
         denops,
         "<c-n>",
-        `yankround#is_active() ? "<Plug>(yankround-prev)" : "gt"`,
+        `yankround#is_active() ? "<Plug>(yankround-next)" : "gt"`,
         { mode: "n", expr: true },
       );
       await mapping.map(
