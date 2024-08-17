@@ -92,6 +92,8 @@ function Install-RequiredModules {
   winget install -q Microsoft.PowerShell
   winget install -q Neovide.Neovide
   winget install -q BurntSushi.ripgrep.MSVC
+  winget install -q bootandy.dust
+  winget install -q Byron.dua-cli
   winget install -q sharkdp.bat
   winget install -q dandavision.delta
   winget install -q junegunn.fzf
