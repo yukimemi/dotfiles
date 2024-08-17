@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2024/08/12 01:05:01.
+# Last Change : 2024/08/16 21:35:36.
 # =============================================================================
 
 general:
@@ -102,6 +102,45 @@ window_rules:
         window_class: { regex: 'HwndWrapper*' }
 
       - window_process: { equals: 'copyq' }
+      - window_process: { equals: 'rapture' }
+      - window_process: { equals: 'clnch' }
+
+      - window_process: { equals: 'cfiler' }
+        window_title: { regex: 'cfiler - \[.*\]' }
+      - window_process: { equals: 'cfiler' }
+        window_title: { regex: 'image viewer' }
+      - window_process: { equals: 'cfiler' }
+        window_title: { regex: 'ジャンプ' }
+      - window_process: { equals: 'cfiler' }
+        window_title: { regex: 'コピー' }
+      - window_process: { equals: 'cfiler' }
+        window_title: { regex: '移動' }
+      - window_process: { equals: 'cfiler' }
+        window_title: { regex: '履歴' }
+      - window_process: { equals: 'cfiler' }
+        window_title: { regex: 'ドライブ選択' }
+      - window_process: { equals: 'cfiler' }
+        window_title: { regex: 'ファイル名の一括変換' }
+      - window_process: { equals: 'cfiler' }
+        window_title: { regex: 'ファイル情報の一括変更' }
+      - window_process: { equals: 'cfiler' }
+        window_title: { regex: 'ごみ箱への投棄の確認' }
+
+      - window_process: { equals: 'EXCEL' }
+        window_title: { regex: '検索と置換' }
+
+      - window_title: { regex: 'Windows セキュリティ' }
+      - window_title: { equals: 'ファイル名を指定して実行' }
+
+      - window_class: { equals: "ThunderDFrame" }
+
+  - commands: ['move --workspace 3', 'focus --workspace 3']
+    match:
+      - window_process: { equals: 'olk' }
+
+  - commands: ['move --workspace 4', 'focus --workspace 4']
+    match:
+      - window_process: { equals: 'mstsc' }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
@@ -211,8 +250,8 @@ keybindings:
   # Launch CMD terminal. Alternatively, use `shell-exec wt` or
   # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start Windows
   # Terminal and Git Bash respectively.
-  - commands: ['shell-exec cmd']
-    bindings: ['alt+enter']
+  # - commands: ['shell-exec cmd']
+  #   bindings: ['alt+enter']
 
   # Focus the next/previous workspace defined in `workspaces` config.
   - commands: ['focus --next-workspace']

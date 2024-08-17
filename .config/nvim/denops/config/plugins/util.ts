@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/07/21 18:21:37.
+// Last Change : 2024/08/15 11:04:44.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -322,7 +322,7 @@ export const util: Plug[] = [
     },
     after: async ({ denops }) => {
       await vars.o.set(denops, "undofile", true);
-      await denops.cmd(`lua require("fundo").setup()`);
+      await denops.call(`luaeval`, `require("fundo").setup()`);
     },
   },
   {
