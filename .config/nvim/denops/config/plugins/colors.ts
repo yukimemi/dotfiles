@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/08/11 19:37:43.
+// Last Change : 2024/08/18 11:06:46.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -93,6 +93,12 @@ export const colors: Plug[] = [
         url: "https://github.com/0xstepit/flow.nvim",
         after: async ({ denops }) => {
           await denops.call(`luaeval`, `require("flow").setup()`);
+        },
+      },
+      {
+        url: "https://github.com/rmehri01/onenord.nvim",
+        after: async ({ denops }) => {
+          await denops.call(`luaeval`, `require("onenord").setup()`);
         },
       },
     ],
