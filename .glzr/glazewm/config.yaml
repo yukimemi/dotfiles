@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2024/08/16 21:35:36.
+# Last Change : 2024/08/17 20:02:02.
 # =============================================================================
 
 general:
@@ -129,7 +129,7 @@ window_rules:
       - window_process: { equals: 'EXCEL' }
         window_title: { regex: '検索と置換' }
 
-      - window_title: { regex: 'Windows セキュリティ' }
+      - window_title: { equals: 'Windows セキュリティ' }
       - window_title: { equals: 'ファイル名を指定して実行' }
 
       - window_class: { equals: "ThunderDFrame" }
