@@ -32,7 +32,7 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/yukimemi/dotfiles/main
 powershell -File .\setup.ps1
 ```
 
-- dot init
+- dot link
 
 ```bat
 git config --global core.autocrlf false
