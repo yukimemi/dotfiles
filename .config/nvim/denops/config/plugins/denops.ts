@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/08/04 14:24:52.
+// Last Change : 2024/08/18 10:59:31.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -90,7 +90,8 @@ export const denops: Plug[] = [
         "ddu-ff",
         "ddu-ff-filter",
         "ddu-filer",
-        "dpswalk",
+        "scanwalker",
+        "scanwalker-filter",
         "list",
         "qf",
         "quickfix",
@@ -117,7 +118,8 @@ export const denops: Plug[] = [
         "ddu-ff",
         "ddu-ff-filter",
         "ddu-filer",
-        "dpswalk",
+        "scanwalker",
+        "scanwalker-filter",
         "gin-diff",
         "gin-status",
         "list",

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2024/08/12 02:13:10.
+// Last Change : 2024/08/18 10:39:52.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -162,8 +162,8 @@ export const edit: Plug[] = [
             "ddu-ff",
             "ddu-ff-filter",
             "ddu-filer",
-            "dpswalk",
-            "dpswalk-filter",
+            "scanwalker",
+            "scanwalker-filter",
             "list",
             "qf",
             "quickfix",
