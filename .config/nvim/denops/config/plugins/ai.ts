@@ -13,7 +13,7 @@ import {
   HarmBlockThreshold,
   HarmCategory,
   SafetySetting,
-} from "https://esm.sh/@google/generative-ai@0.17.0";
+} from "https://esm.sh/@google/generative-ai@0.17.1";
 
 export const ai: Plug[] = [
   {
