@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/07/21 18:56:36.
+// Last Change : 2024/08/24 17:51:48.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -85,6 +85,7 @@ export const git: Plug[] = [
   },
   {
     url: "https://github.com/sindrets/diffview.nvim",
+    enabled: false,
     afterFile: `~/.config/nvim/rc/after/diffview.lua`,
   },
   {

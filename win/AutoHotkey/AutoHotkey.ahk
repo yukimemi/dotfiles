@@ -1,26 +1,65 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2024/07/28 23:30:12.
+; Last Change : 2024/08/18 19:01:21.
 ; =============================================================================
-
-#Include "IME.ahk"
 
 SetTitleMatchMode(2)
 
+#Include "IME.ahk"
+#Include "VirtualDesktopAccessor.ahk"
+
+LOG_INFO_PATH := "info.log"
+LOG_ERROR_PATH := "error.log"
+
+log_info(msg) {
+  global LOG_INFO_PATH
+  currentDateTime := FormatTime(, "yyyy/MM/dd(ddd) HH:mm:ss")
+  FileAppend(currentDateTime " - " msg "`n", LOG_INFO_PATH)
+  return
+}
+log_error(msg) {
+  global LOG_ERROR_PATH
+  currentDateTime := FormatTime(, "yyyy/MM/dd(ddd) HH:mm:ss")
+  FileAppend(currentDateTime " - " msg "`n", LOG_ERROR_PATH)
+  return
+}
+
 OnError LogError
 LogError(exception, mode) {
-  FileAppend "Error on line " exception.Line ": " exception.Message "`n", "error.log"
+  log_error("Error on line " exception.Line ": " exception.Message)
   return true
 }
 
-; #z::Run www.autohotkey.com
+ToggleWindow(ProcessPath) {
+  ProcessName := StrSplit(ProcessPath, "\").Pop()
+  log_info("ProcessPath: " ProcessPath ", ProcessName: " ProcessName)
+  if ProcessExist(ProcessName) {
+    log_info("Process exist !")
+    hwnd := WinGetList("ahk_exe " ProcessName)[0]
+    log_info("ProcessName: " ProcessName ", hwnd: " hwnd)
+    dn := GetWindowDesktopNumber(hwnd)
+    log_info("DesktopNumber " dn)
+    result := GoToDesktopNumber(dn)
+    log_info("GoToDesktopNumber result: " result)
+
+    if WinActive("ahk_id " hwnd) {
+      WinMinimize("ahk_id " hwnd)
+    } else {
+      WinActivate("ahk_id " hwnd)
+    }
+  } else {
+    log_info("Process not found !")
+    Run(ProcessPath)
+  }
+  return
+}
 
 Toggle(app) {
   SplitPath(app, &file)
   ErrorLevel := ProcessExist(file)
   if (ErrorLevel != 0)
-    if WinActive("ahk_pid" . ErrorLevel)
+    if WinActive("ahk_pid " ErrorLevel)
       WinMinimize("A")
     else
       WinActivate("ahk_pid " ErrorLevel)
@@ -32,7 +71,7 @@ Toggle(app) {
 ToggleExe(app, exe) {
   ErrorLevel := ProcessExist(app)
   if (ErrorLevel != 0)
-    if WinActive("ahk_pid" . ErrorLevel)
+    if WinActive("ahk_pid " ErrorLevel)
       WinMinimize("A")
     else
       WinActivate("ahk_pid " ErrorLevel)
@@ -73,13 +112,8 @@ Activate3(app, cmd, title) {
 ; for Outlook
 ^F9::
 {
-  If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usenewoutlook")) {
-    Activate("C:\Program Files\WindowsApps\Microsoft.OutlookForWindows_1.2023.1011.100_x64__8wekyb3d8bbwe\olk.exe")
-    return
-  } else {
-    Activate("C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE")
-    return
-  }
+  Activate(EnvGet("LOCALAPPDATA") "\Microsoft\WindowsApps\olk.exe")
+  return
 }
 
 ; for Excel
@@ -92,8 +126,7 @@ F9::
 ; for Teams
 ^F12::
 {
-  ; Activate(EnvGet("APPDATA") . "Local\Microsoft\Teams\current\Teams.exe")
-  Activate("C:\Program Files\WindowsApps\MSTeams_23272.2707.2453.769_x86__8wekyb3d8bbwe\ms-teams.exe")
+  Activate(EnvGet("LOCALAPPDATA") "\Microsoft\WindowsApps\ms-teams.exe")
   return
 }
 
@@ -105,8 +138,6 @@ F10::
     return
   } else {
     Activate("nvim-qt.exe")
-  ; Activate(EnvGet("USERPROFILE") . "\scoop\apps\goneovim\current\goneovim.exe")
-  ; Activate(EnvGet("USERPROFILE") . "\app\fvim\FVim.exe")
     return
   }
 }
@@ -182,7 +213,7 @@ F12::
     Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
     return
   } else {
-    ToggleExe("WindowsTerminal.exe", EnvGet("USERPROFILE") . "\AppData\Local\Microsoft\WindowsApps\wt.exe")
+    Toggle("C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.20.11781.0_x64__8wekyb3d8bbwe\WindowsTerminal.exe")
     return
   }
 }
