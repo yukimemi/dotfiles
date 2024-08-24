@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cmp.ts
 // Author      : yukimemi
-// Last Change : 2024/04/27 20:16:15.
+// Last Change : 2024/08/25 08:49:21.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -39,7 +39,7 @@ export const cmp: Plug[] = [
       { url: "https://github.com/hrsh7th/vim-vsnip-integ" },
       {
         url: "https://github.com/hrsh7th/vim-vsnip",
-        afterFile: "~/.config/nvim/rc/after/vim-vsnip.vim",
+        afterFile: `~/.config/nvim/rc/after/vim-vsnip.vim`,
       },
     ],
     afterFile: `~/.config/nvim/rc/after/nvim-cmp.lua`,
