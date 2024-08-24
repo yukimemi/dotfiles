@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/08/18 11:06:46.
+// Last Change : 2024/08/24 20:46:53.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -55,6 +55,8 @@ export const colors: Plug[] = [
       { url: "https://github.com/nvimdev/zephyr-nvim" },
       { url: "https://github.com/tiagovla/tokyodark.nvim" },
       { url: "https://github.com/marko-cerovac/material.nvim" },
+      { url: "https://github.com/ayu-theme/ayu-vim" },
+      { url: "https://github.com/savq/melange-nvim" },
       {
         url: "https://github.com/RRethy/nvim-base16",
         enabled: false,
@@ -69,6 +71,7 @@ export const colors: Plug[] = [
       { url: "https://github.com/AlessandroYorba/Alduin" },
       { url: "https://github.com/polirritmico/monokai-nightasty.nvim" },
       { url: "https://github.com/cseelus/vim-colors-lucid" },
+      { url: "https://github.com/projekt0n/github-nvim-theme" },
       {
         url: "https://github.com/crispybaccoon/evergarden",
         after: async ({ denops }) => {
