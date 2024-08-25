@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/08/12 12:50:34.
+// Last Change : 2024/08/25 09:40:12.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -414,7 +414,6 @@ export const ui: Plug[] = [
     url: "https://github.com/shortcuts/no-neck-pain.nvim",
     enabled: false,
   },
-  {
-    url: "https://github.com/haolian9/gary.nvim",
-  },
+  { url: "https://github.com/haolian9/gary.nvim" },
+  { url: "https://github.com/thinca/vim-zenspace" },
 ];
