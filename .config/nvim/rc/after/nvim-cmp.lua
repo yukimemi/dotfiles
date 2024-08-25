@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-cmp.lua
 -- Author      : yukimemi
--- Last Change : 2024/07/09 19:55:46.
+-- Last Change : 2024/08/25 09:10:34.
 -- =============================================================================
 
 local cmp = require("cmp")
@@ -34,6 +34,8 @@ cmp.setup({
     ["<C-e>"] = cmp.mapping(function(fallback)
       fallback()
     end, { "i" }),
+    ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
   }),
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
@@ -88,7 +90,6 @@ cmp.setup.cmdline(":", {
   }),
   sources = cmp.config.sources({
     { name = "path" },
-  }, {
     { name = "cmdline" },
   }),
 })
