@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/07/14 21:52:27.
+// Last Change : 2024/08/25 08:08:36.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -73,21 +73,21 @@ export const lsp: Plug[] = [
         url: "https://github.com/zapling/mason-conform.nvim",
         enabled: false,
         after: async ({ denops }) => {
-          await denops.cmd(`lua require("mason-conform").setup()`);
+          await denops.call(`luaeval`, `require("mason-conform").setup()`);
         },
       },
       {
         url: "https://github.com/folke/lazydev.nvim",
         dependencies: [{ url: "https://github.com/neovim/nvim-lspconfig" }],
         after: async ({ denops }) => {
-          await denops.cmd(`lua require("lazydev").setup()`);
+          await denops.call(`luaeval`, `require("lazydev").setup()`);
         },
       },
       {
         url: "https://github.com/folke/neoconf.nvim",
         dependencies: [{ url: "https://github.com/neovim/nvim-lspconfig" }],
         after: async ({ denops }) => {
-          await denops.cmd(`lua require("neoconf").setup()`);
+          await denops.call(`luaeval`, `require("neoconf").setup()`);
         },
       },
       {
