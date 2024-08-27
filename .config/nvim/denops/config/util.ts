@@ -12,7 +12,7 @@ import * as nvimFn from "jsr:@denops/std@7.1.0/function/nvim";
 import * as option from "jsr:@denops/std@7.1.0/option";
 import * as vars from "jsr:@denops/std@7.1.0/variable";
 import type { Denops } from "jsr:@denops/std@7.1.0";
-import { format } from "jsr:@std/datetime@0.225.0";
+import { format } from "jsr:@std/datetime@0.225.1";
 import { join } from "jsr:@std/path@1.0.2/join";
 import { systemopen } from "jsr:@lambdalisue/systemopen@1.0.0";
 import { z } from "npm:zod@3.23.8";
