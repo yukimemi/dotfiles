@@ -6,7 +6,7 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
 
-import * as mapping from "jsr:@denops/std@7.0.3/mapping";
+import * as mapping from "jsr:@denops/std@7.1.0/mapping";
 
 export const operator: Plug[] = [
   {

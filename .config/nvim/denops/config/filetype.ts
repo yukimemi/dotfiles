@@ -4,11 +4,11 @@
 // Last Change : 2023/07/16 00:39:11.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@7.0.3";
+import type { Denops } from "jsr:@denops/std@7.1.0";
 
-import { batch } from "jsr:@denops/std@7.0.3/batch";
-import * as autocmd from "jsr:@denops/std@7.0.3/autocmd";
-import * as vars from "jsr:@denops/std@7.0.3/variable";
+import { batch } from "jsr:@denops/std@7.1.0/batch";
+import * as autocmd from "jsr:@denops/std@7.1.0/autocmd";
+import * as vars from "jsr:@denops/std@7.1.0/variable";
 
 export async function setFiletype(denops: Denops) {
   await batch(denops, async (denops: Denops) => {

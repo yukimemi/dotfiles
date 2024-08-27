@@ -4,16 +4,16 @@
 // Last Change : 2024/07/27 22:30:00.
 // =============================================================================
 
-import * as buffer from "jsr:@denops/std@7.0.3/buffer";
-import * as fn from "jsr:@denops/std@7.0.3/function";
-import * as fs from "jsr:@std/fs@1.0.1";
-import * as helper from "jsr:@denops/std@7.0.3/helper";
-import * as nvimFn from "jsr:@denops/std@7.0.3/function/nvim";
-import * as option from "jsr:@denops/std@7.0.3/option";
-import * as vars from "jsr:@denops/std@7.0.3/variable";
-import type { Denops } from "jsr:@denops/std@7.0.3";
-import { format } from "jsr:@std/datetime@0.225.0";
-import { join } from "jsr:@std/path@1.0.2/join";
+import * as buffer from "jsr:@denops/std@7.1.0/buffer";
+import * as fn from "jsr:@denops/std@7.1.0/function";
+import * as fs from "jsr:@std/fs@1.0.2";
+import * as helper from "jsr:@denops/std@7.1.0/helper";
+import * as nvimFn from "jsr:@denops/std@7.1.0/function/nvim";
+import * as option from "jsr:@denops/std@7.1.0/option";
+import * as vars from "jsr:@denops/std@7.1.0/variable";
+import type { Denops } from "jsr:@denops/std@7.1.0";
+import { format } from "jsr:@std/datetime@0.225.1";
+import { join } from "jsr:@std/path@1.0.3/join";
 import { systemopen } from "jsr:@lambdalisue/systemopen@1.0.0";
 import { z } from "npm:zod@3.23.8";
 
