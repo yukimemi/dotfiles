@@ -14,7 +14,7 @@ import * as nvimOption from "jsr:@denops/std@7.1.0/option/nvim";
 import * as option from "jsr:@denops/std@7.1.0/option";
 import { batch } from "jsr:@denops/std@7.1.0/batch";
 import { z } from "npm:zod@3.23.8";
-import { ensureDir } from "jsr:@std/fs@1.0.1/ensure-dir";
+import { ensureDir } from "jsr:@std/fs@1.0.2/ensure-dir";
 import { stdpath } from "jsr:@denops/std@7.1.0/function/nvim";
 
 export async function setOption(denops: Denops) {

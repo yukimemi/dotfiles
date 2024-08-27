@@ -11,7 +11,7 @@ import * as fn from "jsr:@denops/std@7.1.0/function";
 import * as mapping from "jsr:@denops/std@7.1.0/mapping";
 import * as vars from "jsr:@denops/std@7.1.0/variable";
 import { z } from "npm:zod@3.23.8";
-import { exists } from "jsr:@std/fs@1.0.1";
+import { exists } from "jsr:@std/fs@1.0.2";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const libs: Plug[] = [
