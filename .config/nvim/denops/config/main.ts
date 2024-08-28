@@ -4,13 +4,13 @@
 // Last Change : 2024/07/27 22:00:11.
 // =============================================================================
 
-import type { Denops, Entrypoint } from "jsr:@denops/std@7.1.0";
+import type { Denops, Entrypoint } from "jsr:@denops/std@7.1.1";
 import { type Plug } from "jsr:@yukimemi/dvpm@4.0.2";
 
-import * as fn from "jsr:@denops/std@7.1.0/function";
+import * as fn from "jsr:@denops/std@7.1.1/function";
 import { Dvpm } from "jsr:@yukimemi/dvpm@4.0.2";
 import { z } from "npm:zod@3.23.8";
-import { execute } from "jsr:@denops/std@7.1.0/helper";
+import { execute } from "jsr:@denops/std@7.1.1/helper";
 import { notify } from "./util.ts";
 import { plugins } from "./plugins.ts";
 import { pluginStatus } from "./pluginstatus.ts";

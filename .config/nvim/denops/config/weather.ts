@@ -4,9 +4,9 @@
 // Last Change : 2024/07/27 22:23:13.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@7.1.0";
-import * as fn from "jsr:@denops/std@7.1.0/function";
-import * as buffer from "jsr:@denops/std@7.1.0/buffer";
+import type { Denops } from "jsr:@denops/std@7.1.1";
+import * as fn from "jsr:@denops/std@7.1.1/function";
+import * as buffer from "jsr:@denops/std@7.1.1/buffer";
 
 import { notify } from "./util.ts";
 
