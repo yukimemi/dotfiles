@@ -4,18 +4,18 @@
 // Last Change : 2024/08/25 09:35:32.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@7.1.0";
+import type { Denops } from "jsr:@denops/std@7.1.1";
 
-import * as autocmd from "jsr:@denops/std@7.1.0/autocmd";
-import * as fn from "jsr:@denops/std@7.1.0/function";
-import * as helper from "jsr:@denops/std@7.1.0/helper";
-import * as lambda from "jsr:@denops/std@7.1.0/lambda";
-import * as nvimOption from "jsr:@denops/std@7.1.0/option/nvim";
-import * as option from "jsr:@denops/std@7.1.0/option";
-import { batch } from "jsr:@denops/std@7.1.0/batch";
+import * as autocmd from "jsr:@denops/std@7.1.1/autocmd";
+import * as fn from "jsr:@denops/std@7.1.1/function";
+import * as helper from "jsr:@denops/std@7.1.1/helper";
+import * as lambda from "jsr:@denops/std@7.1.1/lambda";
+import * as nvimOption from "jsr:@denops/std@7.1.1/option/nvim";
+import * as option from "jsr:@denops/std@7.1.1/option";
+import { batch } from "jsr:@denops/std@7.1.1/batch";
 import { z } from "npm:zod@3.23.8";
 import { ensureDir } from "jsr:@std/fs@1.0.2/ensure-dir";
-import { stdpath } from "jsr:@denops/std@7.1.0/function/nvim";
+import { stdpath } from "jsr:@denops/std@7.1.1/function/nvim";
 
 export async function setOption(denops: Denops) {
   const backupdir = denops.meta.host === "nvim"
