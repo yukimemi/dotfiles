@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cmp.ts
 // Author      : yukimemi
-// Last Change : 2024/08/25 08:49:21.
+// Last Change : 2024/08/31 01:17:29.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -41,6 +41,7 @@ export const cmp: Plug[] = [
         url: "https://github.com/hrsh7th/vim-vsnip",
         afterFile: `~/.config/nvim/rc/after/vim-vsnip.vim`,
       },
+      { url: "https://github.com/teramako/cmp-cmdline-prompt.nvim" },
     ],
     afterFile: `~/.config/nvim/rc/after/nvim-cmp.lua`,
   },

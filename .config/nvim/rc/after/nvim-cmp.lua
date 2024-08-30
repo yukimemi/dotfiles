@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-cmp.lua
 -- Author      : yukimemi
--- Last Change : 2024/08/25 09:10:34.
+-- Last Change : 2024/08/31 01:30:04.
 -- =============================================================================
 
 local cmp = require("cmp")
@@ -92,6 +92,21 @@ cmp.setup.cmdline(":", {
     { name = "path" },
     { name = "cmdline" },
   }),
+})
+
+cmp.setup.cmdline("@", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = "cmdline-prompt" },
+  }),
+  sorting = {
+    comparators = { cmp.config.compare.order },
+  },
+  -- window = {
+  --   completion = {
+  --     col_offset = 5,
+  --   }
+  -- },
 })
 
 cmp.setup.filetype({ "clap_input" }, {
