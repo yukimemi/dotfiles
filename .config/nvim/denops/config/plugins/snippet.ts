@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : snippet.ts
 // Author      : yukimemi
-// Last Change : 2024/08/31 14:25:44.
+// Last Change : 2024/08/31 14:45:18.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.1.1/function";
@@ -12,6 +12,18 @@ import { pluginStatus } from "../pluginstatus.ts";
 import { z } from "npm:zod@3.23.8";
 
 export const snippet: Plug[] = [
+  { url: "https://github.com/rafamadriz/friendly-snippets" },
+  {
+    url: "https://github.com/microsoft/vscode",
+    dst: "~/.cache/vscode",
+    depth: 1,
+    enabled: false,
+  },
+  {
+    url: "https://github.com/PowerShell/vscode-powershell",
+    dst: "~/.cache/vscode-powershell",
+    enabled: false,
+  },
   {
     url: "https://github.com/hrsh7th/vim-vsnip",
     enabled: pluginStatus.vsnip,
@@ -21,7 +33,6 @@ export const snippet: Plug[] = [
         url: "https://github.com/uga-rosa/ddc-source-vsnip",
         enabled: pluginStatus.vsnip && pluginStatus.ddc,
       },
-      { url: "https://github.com/rafamadriz/friendly-snippets" },
     ],
     before: async ({ denops }) => {
       await vars.g.set(
@@ -35,20 +46,6 @@ export const snippet: Plug[] = [
   {
     url: "https://github.com/uga-rosa/denippet.vim",
     enabled: pluginStatus.denippet,
-    dependencies: [
-      {
-        url: "https://github.com/microsoft/vscode",
-        dst: "~/.cache/vscode",
-        depth: 1,
-        enabled: false,
-      },
-      {
-        url: "https://github.com/PowerShell/vscode-powershell",
-        dst: "~/.cache/vscode-powershell",
-        enabled: false,
-      },
-      { url: "https://github.com/rafamadriz/friendly-snippets" },
-    ],
     after: async ({ denops }) => {
       await mapping.map(denops, "<c-j>", "<Plug>(denippet-expand-or-jump)", {
         mode: "i",
