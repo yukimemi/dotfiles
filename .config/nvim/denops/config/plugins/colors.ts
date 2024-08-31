@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/08/24 20:46:53.
+// Last Change : 2024/08/31 19:11:04.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -29,7 +29,6 @@ export const colors: Plug[] = [
       { url: "https://github.com/ray-x/aurora" },
       { url: "https://github.com/doums/darcula" },
       { url: "https://github.com/drewtempelmeyer/palenight.vim" },
-      { url: "https://github.com/masroof-maindak/swamp.nvim" },
       { url: "https://github.com/fenetikm/falcon" },
       { url: "https://github.com/gkeep/iceberg-dark" },
       { url: "https://github.com/joshdick/onedark.vim" },
