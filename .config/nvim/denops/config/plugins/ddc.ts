@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/07/27 22:30:46.
+// Last Change : 2024/08/31 14:14:06.
 // =============================================================================
 
 import * as autocmd from "jsr:@denops/std@7.1.1/autocmd";
@@ -53,88 +53,6 @@ export const ddc: Plug[] = [
       },
       { url: "https://github.com/Shougo/ddc-ui-pum" },
       { url: "https://github.com/Shougo/ddc-ui-inline" },
-
-      // snippet
-      {
-        url: "https://github.com/hrsh7th/vim-vsnip",
-        enabled: false,
-        dependencies: [
-          { url: "https://github.com/hrsh7th/vim-vsnip-integ", enabled: false },
-          { url: "https://github.com/uga-rosa/ddc-source-vsnip", enabled: false },
-          { url: "https://github.com/rafamadriz/friendly-snippets" },
-        ],
-        before: async ({ denops }) => {
-          await vars.g.set(
-            denops,
-            "vsnip_snippet_dir",
-            await fn.expand(denops, "~/.config/nvim/snippets"),
-          );
-        },
-        afterFile: "~/.config/nvim/rc/after/vim-vsnip.vim",
-      },
-      {
-        url: "https://github.com/uga-rosa/denippet.vim",
-        dependencies: [
-          {
-            url: "https://github.com/microsoft/vscode",
-            dst: "~/.cache/vscode",
-            depth: 1,
-            enabled: false,
-          },
-          {
-            url: "https://github.com/PowerShell/vscode-powershell",
-            dst: "~/.cache/vscode-powershell",
-            enabled: false,
-          },
-        ],
-        after: async ({ denops }) => {
-          await mapping.map(denops, "<c-j>", "<Plug>(denippet-expand-or-jump)", {
-            mode: "i",
-            noremap: true,
-          });
-          await mapping.map(denops, "<c-j>", "<Plug>(denippet-jump-next)", {
-            mode: ["i", "s"],
-            noremap: true,
-          });
-          await mapping.map(denops, "<c-k>", "<Plug>(denippet-jump-prev)", {
-            mode: ["i", "s"],
-            noremap: true,
-          });
-          const html = z.string().parse(
-            await fn.expand(denops, "~/.cache/vscode/extensions/html/snippets/html.code-snippets"),
-          );
-          await denops.call(`denippet#load`, html, "html");
-          const cs = z.string().parse(
-            await fn.expand(
-              denops,
-              "~/.cache/vscode/extensions/csharp/snippets/csharp.code-snippets",
-            ),
-          );
-          await denops.call(`denippet#load`, cs, "cs");
-          const powershell = z.string().parse(
-            await fn.expand(
-              denops,
-              "~/.cache/vscode-powershell/snippets/PowerShell.json",
-            ),
-          );
-          await denops.call(`denippet#load`, powershell, "ps1");
-
-          const userSnippetsDir = z.string().parse(
-            await fn.expand(denops, "~/.config/nvim/snippets"),
-          );
-          for await (
-            const dirEntry of Deno.readDir(userSnippetsDir)
-          ) {
-            if (!dirEntry.name.endsWith(".toml")) {
-              continue;
-            }
-            await denops.call(
-              `denippet#load`,
-              await fn.expand(denops, `${userSnippetsDir}/${dirEntry.name}`),
-            );
-          }
-        },
-      },
 
       // sources
       { url: "https://github.com/LumaKernel/ddc-file" },

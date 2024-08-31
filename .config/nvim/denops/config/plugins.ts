@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/06/15 23:10:14.
+// Last Change : 2024/08/31 14:17:44.
 // =============================================================================
 
 import { ai } from "./plugins/ai.ts";
@@ -31,6 +31,7 @@ import { search } from "./plugins/search.ts";
 import { startup } from "./plugins/startup.ts";
 import { statusline } from "./plugins/statusline.ts";
 import { telescope } from "./plugins/telescope.ts";
+import { snippet } from "./plugins/snippet.ts";
 import { terminal } from "./plugins/terminal.ts";
 import { test } from "./plugins/test.ts";
 import { textobj } from "./plugins/textobj.ts";
@@ -38,6 +39,7 @@ import { tmux } from "./plugins/tmux.ts";
 import { todo } from "./plugins/todo.ts";
 import { treesitter } from "./plugins/treesitter.ts";
 import { twitter } from "./plugins/twitter.ts";
+import { bluesky } from "./plugins/bluesky.ts";
 import { ui } from "./plugins/ui.ts";
 import { util } from "./plugins/util.ts";
 
@@ -71,6 +73,8 @@ export const plugins = [
   ...operator,
   ...statusline,
   ...twitter,
+  ...bluesky,
+  ...snippet,
   ...terminal,
   ...test,
   ...run,

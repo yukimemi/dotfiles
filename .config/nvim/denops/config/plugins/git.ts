@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/08/24 17:51:48.
+// Last Change : 2024/08/31 09:17:18.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -96,6 +96,11 @@ export const git: Plug[] = [
   },
   {
     url: "https://github.com/pwntester/octo.nvim",
+    dependencies: [
+      { url: "https://github.com/nvim-lua/plenary.nvim" },
+      { url: "https://github.com/nvim-telescope/telescope.nvim" },
+      { url: "https://github.com/nvim-tree/nvim-web-devicons" },
+    ],
     afterFile: `~/.config/nvim/rc/after/octo.lua`,
   },
 ];

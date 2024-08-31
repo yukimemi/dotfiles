@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-cmp.lua
 -- Author      : yukimemi
--- Last Change : 2024/08/31 01:30:04.
+-- Last Change : 2024/08/31 14:42:16.
 -- =============================================================================
 
 local cmp = require("cmp")
@@ -9,7 +9,8 @@ local cmp = require("cmp")
 cmp.setup({
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
+      -- vim.fn["vsnip#anonymous"](args.body)
+      vim.fn["denippet#anonymous"](args.body)
     end,
   },
   window = {
@@ -39,7 +40,8 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
-    { name = "vsnip" },
+    -- { name = "vsnip" },
+    { name = "denippet" },
     { name = "rg" },
     -- { name = "mocword" },
     { name = "tsnip" },
@@ -102,11 +104,6 @@ cmp.setup.cmdline("@", {
   sorting = {
     comparators = { cmp.config.compare.order },
   },
-  -- window = {
-  --   completion = {
-  --     col_offset = 5,
-  --   }
-  -- },
 })
 
 cmp.setup.filetype({ "clap_input" }, {
