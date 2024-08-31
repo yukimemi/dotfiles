@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/08/03 13:13:19.
+// Last Change : 2024/08/31 17:19:03.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -16,6 +16,14 @@ import {
 } from "https://esm.sh/@google/generative-ai@0.17.1";
 
 export const ai: Plug[] = [
+  {
+    url: "https://github.com/nomnivore/ollama.nvim",
+    dependencies: [
+      { url: "https://github.com/nvim-lua/plenary.nvim" },
+      { url: "https://github.com/stevearc/dressing.nvim" },
+    ],
+    afterFile: "~/.config/nvim/rc/after/ollama.lua",
+  },
   {
     url: "https://github.com/kyoh86/denops-ollama.vim",
     enabled: false,

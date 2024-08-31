@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-cmp.lua
 -- Author      : yukimemi
--- Last Change : 2024/08/31 14:42:16.
+-- Last Change : 2024/08/31 17:49:01.
 -- =============================================================================
 
 local cmp = require("cmp")
@@ -24,17 +24,17 @@ cmp.setup({
     ["<C-c>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
     ["<tab>"] = cmp.mapping.confirm({ select = true }),
-    ["<C-k>"] = cmp.mapping.confirm({ select = false }),
-    ["<C-j>"] = cmp.mapping.confirm({ select = false }),
-    ["<C-f>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        return cmp.complete_common_string()
-      end
-      fallback()
-    end, { "i", "c" }),
-    ["<C-e>"] = cmp.mapping(function(fallback)
-      fallback()
-    end, { "i" }),
+    -- ["<C-k>"] = cmp.mapping.confirm({ select = false }),
+    -- ["<C-j>"] = cmp.mapping.confirm({ select = false }),
+    -- ["<C-f>"] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     return cmp.complete_common_string()
+    --   end
+    --   fallback()
+    -- end, { "i", "c" }),
+    -- ["<C-e>"] = cmp.mapping(function(fallback)
+    --   fallback()
+    -- end, { "i" }),
     ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
     ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
   }),

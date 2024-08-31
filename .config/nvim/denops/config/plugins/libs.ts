@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/07/03 00:55:12.
+// Last Change : 2024/08/31 17:30:41.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -178,7 +178,7 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/Exafunction/codeium.vim",
     enabled: async ({ denops }) =>
-      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))),
+      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) && false,
     before: async ({ denops }) => {
       await vars.g.set(denops, "codeium_no_map_tab", true);
     },
@@ -189,6 +189,12 @@ export const libs: Plug[] = [
         nowait: true,
       });
     },
+  },
+  {
+    url: "https://github.com/monkoose/neocodeium",
+    enabled: async ({ denops }) =>
+      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) && true,
+    afterFile: "~/.config/nvim/rc/after/neocodeium.lua",
   },
   {
     url: "https://github.com/lambdalisue/vim-findent",

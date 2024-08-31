@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : snippet.ts
 // Author      : yukimemi
-// Last Change : 2024/08/31 14:45:18.
+// Last Change : 2024/08/31 17:42:07.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.1.1/function";
@@ -47,15 +47,15 @@ export const snippet: Plug[] = [
     url: "https://github.com/uga-rosa/denippet.vim",
     enabled: pluginStatus.denippet,
     after: async ({ denops }) => {
-      await mapping.map(denops, "<c-j>", "<Plug>(denippet-expand-or-jump)", {
+      await mapping.map(denops, "<tab>", "<Plug>(denippet-expand-or-jump)", {
         mode: "i",
         noremap: true,
       });
-      await mapping.map(denops, "<c-j>", "<Plug>(denippet-jump-next)", {
+      await mapping.map(denops, "<tab>", "<Plug>(denippet-jump-next)", {
         mode: ["i", "s"],
         noremap: true,
       });
-      await mapping.map(denops, "<c-k>", "<Plug>(denippet-jump-prev)", {
+      await mapping.map(denops, "<s-tab>", "<Plug>(denippet-jump-prev)", {
         mode: ["i", "s"],
         noremap: true,
       });
