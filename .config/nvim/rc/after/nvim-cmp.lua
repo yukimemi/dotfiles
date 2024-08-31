@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-cmp.lua
 -- Author      : yukimemi
--- Last Change : 2024/08/31 18:11:09.
+-- Last Change : 2024/08/31 19:55:26.
 -- =============================================================================
 
 local cmp = require("cmp")
@@ -76,9 +76,11 @@ cmp.setup.cmdline({ "/", "?" }, {
       fallback()
     end, { "c" }),
   }),
-  sources = {
-    { name = "buffer" },
-  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp_document_symbol' }
+  }, {
+    { name = 'buffer' }
+  }),
 })
 
 cmp.setup.cmdline(":", {
