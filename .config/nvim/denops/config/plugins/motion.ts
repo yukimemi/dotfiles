@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2024/07/27 22:22:07.
+// Last Change : 2024/08/31 19:38:54.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -74,5 +74,10 @@ export const motion: Plug[] = [
   {
     url: "https://github.com/psliwka/vim-smoothie",
     enabled: false,
+  },
+  {
+    url: "https://github.com/declancm/cinnamon.nvim",
+    enabled: false,
+    afterFile: "~/.config/nvim/rc/after/cinnamon.lua",
   },
 ];
