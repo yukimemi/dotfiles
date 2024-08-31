@@ -1,13 +1,26 @@
 // =============================================================================
 // File        : bluesky.ts
-// Last Change : 2024/08/31 14:19:14.
-// Last Change : 2024/08/31 14:19:14.
+// Author      : yukimemi
+// Last Change : 2024/08/31 15:10:42.
 // =============================================================================
 
+import * as mapping from "jsr:@denops/std@7.1.1/mapping";
+import * as vars from "jsr:@denops/std@7.1.1/variable";
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
 
 export const bluesky: Plug[] = [
   {
     url: "https://github.com/basyura/dsky.vim",
+    after: async ({ denops }) => {
+      await vars.g.set(denops, "dsky_id", "yukimemi");
+      await vars.g.set(denops, "dsky_password", Deno.env.get("DSKY_PASSWORD"));
+
+      await mapping.map(denops, "<space>Th", "<cmd>DSkyTimeline<cr>", {
+        mode: "n",
+      });
+      await mapping.map(denops, "<space>Tm", "<cmd>DSkyNotifications<cr>", {
+        mode: "n",
+      });
+    },
   },
 ];
