@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/09/01 11:01:28.
+// Last Change : 2024/09/01 14:12:29.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -528,6 +528,12 @@ export const util: Plug[] = [
     url: "https://github.com/juliuswaldmann/here.nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("here")`);
+    },
+  },
+  {
+    url: "https://github.com/HakonHarnes/img-clip.nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("img-clip").setup()`);
     },
   },
 ];
