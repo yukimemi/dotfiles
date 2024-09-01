@@ -1,13 +1,12 @@
 // =============================================================================
 // File        : weather.ts
 // Author      : yukimemi
-// Last Change : 2024/07/27 22:23:13.
+// Last Change : 2024/09/01 11:03:43.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@7.1.1";
-import * as fn from "jsr:@denops/std@7.1.1/function";
 import * as buffer from "jsr:@denops/std@7.1.1/buffer";
-
+import * as fn from "jsr:@denops/std@7.1.1/function";
+import type { Denops } from "jsr:@denops/std@7.1.1";
 import { notify } from "./util.ts";
 
 export async function bufOpenWeather(denops: Denops) {

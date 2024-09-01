@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2024/08/25 09:35:32.
+// Last Change : 2024/09/01 11:03:21.
 // =============================================================================
 
 import type { Denops } from "jsr:@denops/std@7.1.1";
@@ -13,9 +13,9 @@ import * as lambda from "jsr:@denops/std@7.1.1/lambda";
 import * as nvimOption from "jsr:@denops/std@7.1.1/option/nvim";
 import * as option from "jsr:@denops/std@7.1.1/option";
 import { batch } from "jsr:@denops/std@7.1.1/batch";
-import { z } from "npm:zod@3.23.8";
 import { ensureDir } from "jsr:@std/fs@1.0.2/ensure-dir";
 import { stdpath } from "jsr:@denops/std@7.1.1/function/nvim";
+import { z } from "npm:zod@3.23.8";
 
 export async function setOption(denops: Denops) {
   const backupdir = denops.meta.host === "nvim"

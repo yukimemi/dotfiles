@@ -1,10 +1,11 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/08/31 14:17:44.
+// Last Change : 2024/09/01 11:03:05.
 // =============================================================================
 
 import { ai } from "./plugins/ai.ts";
+import { bluesky } from "./plugins/bluesky.ts";
 import { clap } from "./plugins/clap.ts";
 import { cmp } from "./plugins/cmp.ts";
 import { coc } from "./plugins/coc.ts";
@@ -28,10 +29,10 @@ import { oil } from "./plugins/oil.ts";
 import { operator } from "./plugins/operator.ts";
 import { run } from "./plugins/run.ts";
 import { search } from "./plugins/search.ts";
+import { snippet } from "./plugins/snippet.ts";
 import { startup } from "./plugins/startup.ts";
 import { statusline } from "./plugins/statusline.ts";
 import { telescope } from "./plugins/telescope.ts";
-import { snippet } from "./plugins/snippet.ts";
 import { terminal } from "./plugins/terminal.ts";
 import { test } from "./plugins/test.ts";
 import { textobj } from "./plugins/textobj.ts";
@@ -39,7 +40,6 @@ import { tmux } from "./plugins/tmux.ts";
 import { todo } from "./plugins/todo.ts";
 import { treesitter } from "./plugins/treesitter.ts";
 import { twitter } from "./plugins/twitter.ts";
-import { bluesky } from "./plugins/bluesky.ts";
 import { ui } from "./plugins/ui.ts";
 import { util } from "./plugins/util.ts";
 

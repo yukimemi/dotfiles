@@ -1,28 +1,27 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2024/07/27 22:00:11.
+// Last Change : 2024/09/01 11:05:41.
 // =============================================================================
 
-import type { Denops, Entrypoint } from "jsr:@denops/std@7.1.1";
-import { type Plug } from "jsr:@yukimemi/dvpm@4.0.2";
-
 import * as fn from "jsr:@denops/std@7.1.1/function";
+import type { Denops, Entrypoint } from "jsr:@denops/std@7.1.1";
 import { Dvpm } from "jsr:@yukimemi/dvpm@4.0.2";
-import { z } from "npm:zod@3.23.8";
+import { cacheLua, cacheVim } from "./cache.ts";
 import { execute } from "jsr:@denops/std@7.1.1/helper";
 import { notify } from "./util.ts";
-import { plugins } from "./plugins.ts";
 import { pluginStatus } from "./pluginstatus.ts";
-import { setFiletype } from "./filetype.ts";
-import { setKeymapPost, setKeymapPre } from "./keymap.ts";
+import { plugins } from "./plugins.ts";
 import { setCommandPost, setCommandPre } from "./command.ts";
+import { setFiletype } from "./filetype.ts";
+import { setFvim } from "./fvim.ts";
+import { setKeymapPost, setKeymapPre } from "./keymap.ts";
 import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setNvy } from "./nvy.ts";
-import { setFvim } from "./fvim.ts";
 import { setOption } from "./option.ts";
-import { cacheLua, cacheVim } from "./cache.ts";
+import { type Plug } from "jsr:@yukimemi/dvpm@4.0.2";
+import { z } from "npm:zod@3.23.8";
 
 export const main: Entrypoint = async (denops) => {
   const starttime = performance.now();
