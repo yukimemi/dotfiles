@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/08/15 11:04:44.
+// Last Change : 2024/09/01 11:01:28.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -411,7 +411,10 @@ export const util: Plug[] = [
     },
   },
   { url: "https://github.com/thinca/vim-prettyprint" },
-  { url: "https://github.com/skanehira/denops-silicon.vim" },
+  {
+    url: "https://github.com/skanehira/denops-silicon.vim",
+    enabled: false,
+  },
   {
     url: "https://github.com/VidocqH/data-viewer.nvim",
     dependencies: [
