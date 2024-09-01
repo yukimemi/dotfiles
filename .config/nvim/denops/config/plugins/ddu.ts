@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/06/22 16:49:19.
+// Last Change : 2024/08/27 00:31:04.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -23,7 +23,10 @@ export const ddu: Plug[] = [
     cache: { enabled: false },
     dependencies: [
       { url: "https://github.com/4513ECHO/ddu-kind-url" },
-      { url: "https://github.com/4513ECHO/ddu-source-emoji" },
+      {
+        url: "https://github.com/4513ECHO/ddu-source-emoji",
+        enabled: false,
+      },
       { url: "https://github.com/4513ECHO/ddu-source-source" },
       { url: "https://github.com/4513ECHO/vim-readme-viewer" },
       { url: "https://github.com/Shougo/ddu-column-filename" },

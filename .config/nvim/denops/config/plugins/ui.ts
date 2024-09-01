@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/08/25 09:40:12.
+// Last Change : 2024/08/25 13:01:12.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -75,7 +75,7 @@ export const ui: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("eyeliner").setup(_A)`, {
         // show highlights only after keypress
-        highlight_on_key: false,
+        highlight_on_key: true,
 
         // dim all other characters if set to true (recommended!)
         dim: true,
