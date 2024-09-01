@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/09/01 11:26:03.
+// Last Change : 2024/09/01 17:07:06.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -16,6 +16,15 @@ import {
 } from "https://esm.sh/@google/generative-ai@0.17.1";
 
 export const ai: Plug[] = [
+  {
+    url: "https://github.com/olimorris/codecompanion.nvim",
+    dependencies: [
+      { url: "https://github.com/nvim-lua/plenary.nvim" },
+      { url: "https://github.com/nvim-telescope/telescope.nvim" },
+      { url: "https://github.com/nvim-treesitter/nvim-treesitter" },
+    ],
+    afterFile: "~/.config/nvim/rc/after/codecompanion.lua",
+  },
   {
     url: "https://github.com/yetone/avante.nvim",
     dependencies: [
