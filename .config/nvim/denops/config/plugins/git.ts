@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/08/31 09:17:18.
+// Last Change : 2024/09/01 17:20:47.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -102,5 +102,11 @@ export const git: Plug[] = [
       { url: "https://github.com/nvim-tree/nvim-web-devicons" },
     ],
     afterFile: `~/.config/nvim/rc/after/octo.lua`,
+  },
+  {
+    url: "https://github.com/akinsho/git-conflict.nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("git-conflict").setup()`);
+    },
   },
 ];
