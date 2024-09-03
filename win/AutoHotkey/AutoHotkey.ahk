@@ -1,13 +1,12 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2024/08/18 19:01:21.
+; Last Change : 2024/09/03 23:57:37.
 ; =============================================================================
 
 SetTitleMatchMode(2)
 
 #Include "IME.ahk"
-#Include "VirtualDesktopAccessor.ahk"
 
 LOG_INFO_PATH := "info.log"
 LOG_ERROR_PATH := "error.log"
@@ -29,30 +28,6 @@ OnError LogError
 LogError(exception, mode) {
   log_error("Error on line " exception.Line ": " exception.Message)
   return true
-}
-
-ToggleWindow(ProcessPath) {
-  ProcessName := StrSplit(ProcessPath, "\").Pop()
-  log_info("ProcessPath: " ProcessPath ", ProcessName: " ProcessName)
-  if ProcessExist(ProcessName) {
-    log_info("Process exist !")
-    hwnd := WinGetList("ahk_exe " ProcessName)[0]
-    log_info("ProcessName: " ProcessName ", hwnd: " hwnd)
-    dn := GetWindowDesktopNumber(hwnd)
-    log_info("DesktopNumber " dn)
-    result := GoToDesktopNumber(dn)
-    log_info("GoToDesktopNumber result: " result)
-
-    if WinActive("ahk_id " hwnd) {
-      WinMinimize("ahk_id " hwnd)
-    } else {
-      WinActivate("ahk_id " hwnd)
-    }
-  } else {
-    log_info("Process not found !")
-    Run(ProcessPath)
-  }
-  return
 }
 
 Toggle(app) {

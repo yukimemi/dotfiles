@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/08/25 13:01:12.
+// Last Change : 2024/09/01 21:25:32.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -72,33 +72,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/jinh0/eyeliner.nvim",
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("eyeliner").setup(_A)`, {
-        // show highlights only after keypress
-        highlight_on_key: true,
-
-        // dim all other characters if set to true (recommended!)
-        dim: true,
-
-        // set the maximum number of characters eyeliner.nvim will check from
-        // your current cursor position; this is useful if you are dealing with
-        // large files: see https://github.com/jinh0/eyeliner.nvim/issues/41
-        max_length: 9999,
-
-        // filetypes for which eyeliner should be disabled;
-        // e.g., to disable on help files:
-        // disabled_filetypes : {"help"}
-        disabled_filetypes: {},
-
-        // buftypes for which eyeliner should be disabled
-        // e.g., disabled_buftypes : {"nofile"}
-        disabled_buftypes: {},
-
-        // add eyeliner to f/F/t/T keymaps;
-        // see section on advanced configuration for more information
-        default_keymaps: true,
-      });
-    },
+    afterFile: `~/.config/nvim/rc/after/eyeliner.lua`,
   },
   {
     url: "https://github.com/deris/vim-shot-f",
