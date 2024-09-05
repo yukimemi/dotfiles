@@ -13,7 +13,7 @@ import * as lambda from "jsr:@denops/std@7.1.1/lambda";
 import * as nvimOption from "jsr:@denops/std@7.1.1/option/nvim";
 import * as option from "jsr:@denops/std@7.1.1/option";
 import { batch } from "jsr:@denops/std@7.1.1/batch";
-import { ensureDir } from "jsr:@std/fs@1.0.2/ensure-dir";
+import { ensureDir } from "jsr:@std/fs@1.0.3/ensure-dir";
 import { stdpath } from "jsr:@denops/std@7.1.1/function/nvim";
 import { z } from "npm:zod@3.23.8";
 
