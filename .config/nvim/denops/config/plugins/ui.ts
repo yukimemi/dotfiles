@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/09/01 21:25:32.
+// Last Change : 2024/09/08 18:47:17.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -309,7 +309,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/lewis6991/satellite.nvim",
-    enabled: !pluginStatus.vscode && false,
+    enabled: !pluginStatus.vscode && pluginStatus.satellite,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("satellite").setup()`);
     },
@@ -380,6 +380,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/petertriho/nvim-scrollbar",
+    enabled: pluginStatus.scrollbar,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("scrollbar").setup()`);
     },

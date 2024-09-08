@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2024/08/31 14:14:36.
+// Last Change : 2024/09/08 18:47:08.
 // =============================================================================
 
 export const pluginStatus = {
@@ -10,6 +10,8 @@ export const pluginStatus = {
   barbecue: false,
   bufferline: false,
   buffertabs: false,
+  scrollbar: false,
+  satellite: true,
   cmp: true,
   coc: false,
   oil: false,
