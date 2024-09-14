@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/09/01 14:12:29.
+// Last Change : 2024/09/14 23:10:57.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -535,5 +535,10 @@ export const util: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("img-clip").setup()`);
     },
+  },
+  {
+    url: "https://github.com/stevearc/quicker.nvim",
+    enabled: false,
+    afterFile: "~/.config/nvim/rc/after/quicker.lua",
   },
 ];
