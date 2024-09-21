@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/08/31 19:24:36.
+// Last Change : 2024/09/21 16:51:21.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -120,7 +120,7 @@ export const colors: Plug[] = [
       await vars.g.set(denops, "spectrism_notmatch", "[Ll]ight");
       await vars.g.set(denops, "spectrism_background", "dark");
 
-      await mapping.map(denops, "<space>ro", "<cmd>ChangeColorscheme<cr>", {
+      await mapping.map(denops, "<space>co", "<cmd>ChangeColorscheme<cr>", {
         mode: "n",
       });
       await mapping.map(

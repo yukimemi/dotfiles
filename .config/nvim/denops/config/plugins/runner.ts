@@ -1,14 +1,15 @@
 // =============================================================================
-// File        : run.ts
+// File        : runner.ts
 // Author      : yukimemi
-// Last Change : 2024/07/27 22:27:25.
+// Last Change : 2024/09/21 16:49:37.
 // =============================================================================
 
+import * as mapping from "jsr:@denops/std@7.1.1/mapping";
 import * as vars from "jsr:@denops/std@7.1.1/variable";
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
 import { pluginStatus } from "../pluginstatus.ts";
 
-export const run: Plug[] = [
+export const runner: Plug[] = [
   {
     url: "https://github.com/thinca/vim-quickrun",
     enabled: pluginStatus.quickrun,
@@ -22,6 +23,7 @@ export const run: Plug[] = [
           runner: "nvimterm",
         },
       });
+      await mapping.map(denops, "<space>r", "<Plug>(quickrun)");
     },
   },
   {
