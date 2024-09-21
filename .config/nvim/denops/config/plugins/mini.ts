@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : mini.ts
 // Author      : yukimemi
-// Last Change : 2024/03/17 14:16:00.
+// Last Change : 2024/09/21 16:58:59.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -27,5 +27,6 @@ export const mini: Plug[] = [
       // pick.
       await denops.call(`luaeval`, `require('mini.pick').setup()`);
     },
+    afterFile: `~/.config/nvim/rc/after/mini.lua`,
   },
 ];
