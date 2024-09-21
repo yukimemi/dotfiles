@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/08/31 17:30:41.
+// Last Change : 2024/09/16 11:26:39.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -155,7 +155,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/folke/which-key.nvim",
-    enabled: !pluginStatus.vscode,
+    enabled: !pluginStatus.vscode && false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("which-key").setup()`);
     },

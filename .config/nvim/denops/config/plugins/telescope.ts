@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : telescope.ts
 // Author      : yukimemi
-// Last Change : 2024/07/03 00:55:33.
+// Last Change : 2024/09/16 11:27:06.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
@@ -14,7 +14,10 @@ export const telescope: Plug[] = [
       afterFile: "~/.config/nvim/rc/after/telescope.lua",
     },
     dependencies: [
-      { url: "https://github.com/folke/which-key.nvim" },
+      {
+        url: "https://github.com/folke/which-key.nvim",
+        enabled: false,
+      },
       {
         url: "https://github.com/folke/trouble.nvim",
         enabled: false,

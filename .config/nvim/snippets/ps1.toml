@@ -10,7 +10,7 @@ body = """
     - cfg: json config.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2023/12/16 17:22:16.
+  .Last Change : 2024/09/15 01:16:03.
 #>
 param([string]\\$cfg)
 
@@ -89,7 +89,7 @@ function Start-Init {
   \\$app.Add("logFile", [System.IO.Path]::Combine(\\$app.logDir, "\\$(\\$app.cmdName)_\\$(\\$app.now).log"))
   \\$app.Add("logName", [System.IO.Path]::GetFileNameWithoutExtension(\\$app.logFile))
   \\$app.Add("logFileName", [System.IO.Path]::GetFileName(\\$app.logFile))
-  New-Item -Force -ItemType Directory (Split-Path -Parent \\$app.logDir) > \\$null
+  New-Item -Force -ItemType Directory \\$app.logDir | Out-Null
   Start-Transcript \\$app.logFile
 
   # const value.
@@ -149,5 +149,5 @@ function Start-Main {
 
 # Call main.
 Start-Main
-exit $app.result
+exit \\$app.result
 """
