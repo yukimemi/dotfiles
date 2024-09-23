@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : molt.yml
 # Author      : yukimemi
-# Last Change : 2024/08/12 01:09:37.
+# Last Change : 2024/09/23 19:01:48.
 # =============================================================================
 
 name: molt
@@ -34,7 +34,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: denoland/setup-deno@v1
       - run: deno task ci
-      - uses: hasundue/molt-action@v1
+      - uses: hasundue/molt-action@v1.0.2
         with:
           labels: automerge
           token: ${{ steps.app-token.outputs.token }}
+          config: false
+          source: "**/*.ts"
