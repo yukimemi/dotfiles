@@ -9,7 +9,7 @@ import * as fn from "jsr:@denops/std@7.1.1/function";
 import * as lambda from "jsr:@denops/std@7.1.1/lambda";
 import * as mapping from "jsr:@denops/std@7.1.1/mapping";
 import * as vars from "jsr:@denops/std@7.1.1/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@4.0.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
 import { Denops } from "jsr:@denops/std@7.1.1";
 import { z } from "npm:zod@3.23.8";
 import { exists } from "jsr:@std/fs@1.0.3/exists";

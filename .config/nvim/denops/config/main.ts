@@ -6,7 +6,7 @@
 
 import * as fn from "jsr:@denops/std@7.1.1/function";
 import type { Denops, Entrypoint } from "jsr:@denops/std@7.1.1";
-import { Dvpm } from "jsr:@yukimemi/dvpm@4.0.2";
+import { Dvpm } from "jsr:@yukimemi/dvpm@4.1.1";
 import { cacheLua, cacheVim } from "./cache.ts";
 import { execute } from "jsr:@denops/std@7.1.1/helper";
 import { notify } from "./util.ts";
