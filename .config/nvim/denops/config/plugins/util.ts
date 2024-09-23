@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/09/14 23:10:57.
+// Last Change : 2024/09/24 01:31:27.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
@@ -540,5 +540,9 @@ export const util: Plug[] = [
     url: "https://github.com/stevearc/quicker.nvim",
     enabled: false,
     afterFile: "~/.config/nvim/rc/after/quicker.lua",
+  },
+  {
+    url: "https://github.com/thinca/vim-localrc",
+    cache: { enabled: true },
   },
 ];
