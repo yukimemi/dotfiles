@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yml
 # Author      : yukimemi
-# Last Change : 2024/08/03 22:00:10.
+# Last Change : 2024/09/28 08:50:07.
 # =============================================================================
 
 snippets:
@@ -241,6 +241,8 @@ snippets:
   # Install
   - name: Install deno-cache-injector
     snippet: deno install -r -f -n deno-cache-injector --allow-env --allow-read --allow-write https://raw.githubusercontent.com/kuuote/deno-cache-injector/main/injector.ts
+  - name: Install deno-cache-injector (Windows)
+    snippet: deno install -r -f -n deno-cache-injector --allow-env --allow-read --allow-write https://raw.githubusercontent.com/yukimemi/deno-cache-injector/main/injector.ts
   - name: Install denon
     snippet: deno install -qAf --unstable https://deno.land/x/denon/denon.ts
   - name: Install packup

@@ -1,11 +1,23 @@
 -- =============================================================================
 -- File        : nvim-treesitter.lua
 -- Author      : yukimemi
--- Last Change : 2024/07/13 09:32:19.
+-- Last Change : 2024/09/28 09:38:48.
 -- =============================================================================
 
 require("nvim-treesitter.configs").setup({
-  ensure_installed = { "markdown_inline" },
+  ensure_installed = {
+    "c",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "nu",
+    "powershell",
+    "query",
+    "rust",
+    "typescript",
+    "vim",
+    "vimdoc",
+  },
   sync_install = false,
   auto_install = true,
   highlight = {

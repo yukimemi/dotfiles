@@ -4,16 +4,16 @@
 // Last Change : 2024/08/18 10:39:52.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
 
-import * as autocmd from "jsr:@denops/std@7.1.1/autocmd";
-import * as fn from "jsr:@denops/std@7.1.1/function";
-import * as vars from "jsr:@denops/std@7.1.1/variable";
-import * as mapping from "jsr:@denops/std@7.1.1/mapping";
-import { execute } from "jsr:@denops/std@7.1.1/helper";
+import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
+import * as fn from "jsr:@denops/std@7.2.0/function";
+import * as vars from "jsr:@denops/std@7.2.0/variable";
+import * as mapping from "jsr:@denops/std@7.2.0/mapping";
+import { execute } from "jsr:@denops/std@7.2.0/helper";
 
 import { pluginStatus } from "../pluginstatus.ts";
-import { ensureDir } from "jsr:@std/fs@1.0.3/ensure-dir";
+import { ensureDir } from "jsr:@std/fs@1.0.4/ensure-dir";
 import { z } from "npm:zod@3.23.8";
 
 export const edit: Plug[] = [

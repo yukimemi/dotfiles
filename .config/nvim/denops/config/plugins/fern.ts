@@ -4,13 +4,13 @@
 // Last Change : 2024/06/15 23:35:03.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
 
-import * as autocmd from "jsr:@denops/std@7.1.1/autocmd";
-import * as fn from "jsr:@denops/std@7.1.1/function";
-import * as lambda from "jsr:@denops/std@7.1.1/lambda";
-import * as mapping from "jsr:@denops/std@7.1.1/mapping";
-import * as vars from "jsr:@denops/std@7.1.1/variable";
+import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
+import * as fn from "jsr:@denops/std@7.2.0/function";
+import * as lambda from "jsr:@denops/std@7.2.0/lambda";
+import * as mapping from "jsr:@denops/std@7.2.0/mapping";
+import * as vars from "jsr:@denops/std@7.2.0/variable";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const fern: Plug[] = [

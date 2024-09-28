@@ -4,11 +4,11 @@
 // Last Change : 2024/09/01 11:05:41.
 // =============================================================================
 
-import * as fn from "jsr:@denops/std@7.1.1/function";
-import type { Denops, Entrypoint } from "jsr:@denops/std@7.1.1";
-import { Dvpm } from "jsr:@yukimemi/dvpm@4.1.1";
+import * as fn from "jsr:@denops/std@7.2.0/function";
+import type { Denops, Entrypoint } from "jsr:@denops/std@7.2.0";
+import { Dvpm } from "jsr:@yukimemi/dvpm@4.2.0";
 import { cacheLua, cacheVim } from "./cache.ts";
-import { execute } from "jsr:@denops/std@7.1.1/helper";
+import { execute } from "jsr:@denops/std@7.2.0/helper";
 import { notify } from "./util.ts";
 import { pluginStatus } from "./pluginstatus.ts";
 import { plugins } from "./plugins.ts";
@@ -20,7 +20,7 @@ import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setNvy } from "./nvy.ts";
 import { setOption } from "./option.ts";
-import { type Plug } from "jsr:@yukimemi/dvpm@4.0.2";
+import { type Plug } from "jsr:@yukimemi/dvpm@4.2.0";
 import { z } from "npm:zod@3.23.8";
 
 export const main: Entrypoint = async (denops) => {

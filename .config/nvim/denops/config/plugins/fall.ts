@@ -4,8 +4,8 @@
 // Last Change : 2024/06/03 23:33:50.
 // =============================================================================
 
-import * as mapping from "jsr:@denops/std@7.1.1/mapping";
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
+import * as mapping from "jsr:@denops/std@7.2.0/mapping";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const fall: Plug[] = [

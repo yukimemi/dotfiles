@@ -4,9 +4,9 @@
 // Last Change : 2024/09/21 16:58:59.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
 
-import * as mapping from "jsr:@denops/std@7.1.1/mapping";
+import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 
 export const mini: Plug[] = [
   {

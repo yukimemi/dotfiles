@@ -4,9 +4,9 @@
 // Last Change : 2024/05/06 17:35:48.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
 
-import * as vars from "jsr:@denops/std@7.1.1/variable";
+import * as vars from "jsr:@denops/std@7.2.0/variable";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const statusline: Plug[] = [

@@ -4,14 +4,14 @@
 // Last Change : 2024/08/27 00:31:04.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
 
-import * as autocmd from "jsr:@denops/std@7.1.1/autocmd";
-import * as fn from "jsr:@denops/std@7.1.1/function";
-import * as lambda from "jsr:@denops/std@7.1.1/lambda";
-import * as mapping from "jsr:@denops/std@7.1.1/mapping";
-import * as op from "jsr:@denops/std@7.1.1/option";
-import { batch } from "jsr:@denops/std@7.1.1/batch";
+import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
+import * as fn from "jsr:@denops/std@7.2.0/function";
+import * as lambda from "jsr:@denops/std@7.2.0/lambda";
+import * as mapping from "jsr:@denops/std@7.2.0/mapping";
+import * as op from "jsr:@denops/std@7.2.0/option";
+import { batch } from "jsr:@denops/std@7.2.0/batch";
 import { z } from "npm:zod@3.23.8";
 import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";

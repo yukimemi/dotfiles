@@ -4,15 +4,15 @@
 // Last Change : 2024/08/31 14:14:06.
 // =============================================================================
 
-import * as autocmd from "jsr:@denops/std@7.1.1/autocmd";
-import * as fn from "jsr:@denops/std@7.1.1/function";
-import * as lambda from "jsr:@denops/std@7.1.1/lambda";
-import * as mapping from "jsr:@denops/std@7.1.1/mapping";
-import * as vars from "jsr:@denops/std@7.1.1/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
-import { Denops } from "jsr:@denops/std@7.1.1";
+import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
+import * as fn from "jsr:@denops/std@7.2.0/function";
+import * as lambda from "jsr:@denops/std@7.2.0/lambda";
+import * as mapping from "jsr:@denops/std@7.2.0/mapping";
+import * as vars from "jsr:@denops/std@7.2.0/variable";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import { Denops } from "jsr:@denops/std@7.2.0";
 import { z } from "npm:zod@3.23.8";
-import { exists } from "jsr:@std/fs@1.0.3/exists";
+import { exists } from "jsr:@std/fs@1.0.4/exists";
 import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 

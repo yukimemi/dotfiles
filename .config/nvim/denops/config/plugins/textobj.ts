@@ -4,8 +4,8 @@
 // Last Change : 2024/04/28 16:38:22.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
-import * as mapping from "jsr:@denops/std@7.1.1/mapping";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 
 export const textobj: Plug[] = [
   {

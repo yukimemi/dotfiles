@@ -4,8 +4,8 @@
 // Last Change : 2024/04/20 15:56:29.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
-import * as fn from "jsr:@denops/std@7.1.1/function";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import * as fn from "jsr:@denops/std@7.2.0/function";
 
 import { pluginStatus } from "../pluginstatus.ts";
 

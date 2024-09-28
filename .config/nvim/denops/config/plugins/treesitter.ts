@@ -4,9 +4,9 @@
 // Last Change : 2024/07/27 22:25:47.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
 
-import * as mapping from "jsr:@denops/std@7.1.1/mapping";
+import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const treesitter: Plug[] = [

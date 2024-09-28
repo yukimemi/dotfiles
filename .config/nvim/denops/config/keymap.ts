@@ -4,12 +4,12 @@
 // Last Change : 2024/09/08 19:52:20.
 // =============================================================================
 
-import * as lambda from "jsr:@denops/std@7.1.1/lambda";
-import * as mapping from "jsr:@denops/std@7.1.1/mapping";
-import type { Denops } from "jsr:@denops/std@7.1.1";
-import { batch } from "jsr:@denops/std@7.1.1/batch";
-import * as vars from "jsr:@denops/std@7.1.1/variable";
-import * as autocmd from "jsr:@denops/std@7.1.1/autocmd";
+import * as lambda from "jsr:@denops/std@7.2.0/lambda";
+import * as mapping from "jsr:@denops/std@7.2.0/mapping";
+import type { Denops } from "jsr:@denops/std@7.2.0";
+import { batch } from "jsr:@denops/std@7.2.0/batch";
+import * as vars from "jsr:@denops/std@7.2.0/variable";
+import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
 import { focusFloating, openBufDir, reviewMode } from "./util.ts";
 
 export async function setKeymapPre(denops: Denops) {

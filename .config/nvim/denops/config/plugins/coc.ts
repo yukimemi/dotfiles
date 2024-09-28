@@ -4,17 +4,17 @@
 // Last Change : 2024/03/30 14:30:40.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
 
-import * as autocmd from "jsr:@denops/std@7.1.1/autocmd";
-import * as fn from "jsr:@denops/std@7.1.1/function";
-import * as lambda from "jsr:@denops/std@7.1.1/lambda";
-import * as mapping from "jsr:@denops/std@7.1.1/mapping";
-import * as op from "jsr:@denops/std@7.1.1/option";
-import * as vars from "jsr:@denops/std@7.1.1/variable";
+import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
+import * as fn from "jsr:@denops/std@7.2.0/function";
+import * as lambda from "jsr:@denops/std@7.2.0/lambda";
+import * as mapping from "jsr:@denops/std@7.2.0/mapping";
+import * as op from "jsr:@denops/std@7.2.0/option";
+import * as vars from "jsr:@denops/std@7.2.0/variable";
 import { z } from "npm:zod@3.23.8";
 import { pluginStatus } from "../pluginstatus.ts";
-import { execute } from "jsr:@denops/std@7.1.1/helper";
+import { execute } from "jsr:@denops/std@7.2.0/helper";
 
 export const coc: Plug[] = [
   {

@@ -1,19 +1,19 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/09/01 17:07:06.
+// Last Change : 2024/09/28 09:07:12.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
-import * as vars from "jsr:@denops/std@7.1.1/variable";
-import * as mapping from "jsr:@denops/std@7.1.1/mapping";
-import * as lambda from "jsr:@denops/std@7.1.1/lambda";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import * as vars from "jsr:@denops/std@7.2.0/variable";
+import * as mapping from "jsr:@denops/std@7.2.0/mapping";
+import * as lambda from "jsr:@denops/std@7.2.0/lambda";
 import {
   GenerationConfig,
   HarmBlockThreshold,
   HarmCategory,
   SafetySetting,
-} from "https://esm.sh/@google/generative-ai@0.19.0";
+} from "https://esm.sh/@google/generative-ai@0.20.0";
 
 export const ai: Plug[] = [
   {
@@ -27,6 +27,7 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/yetone/avante.nvim",
+    enabled: false,
     dependencies: [
       { url: "https://github.com/stevearc/dressing.nvim" },
       { url: "https://github.com/nvim-lua/plenary.nvim" },

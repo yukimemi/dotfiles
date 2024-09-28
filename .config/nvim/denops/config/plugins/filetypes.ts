@@ -1,16 +1,16 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2024/07/13 20:00:15.
+// Last Change : 2024/09/28 09:28:02.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
 
-import * as autocmd from "jsr:@denops/std@7.1.1/autocmd";
-import * as fn from "jsr:@denops/std@7.1.1/function";
-import * as lambda from "jsr:@denops/std@7.1.1/lambda";
-import * as mapping from "jsr:@denops/std@7.1.1/mapping";
-import * as vars from "jsr:@denops/std@7.1.1/variable";
+import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
+import * as fn from "jsr:@denops/std@7.2.0/function";
+import * as lambda from "jsr:@denops/std@7.2.0/lambda";
+import * as mapping from "jsr:@denops/std@7.2.0/mapping";
+import * as vars from "jsr:@denops/std@7.2.0/variable";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const filetypes: Plug[] = [
@@ -338,7 +338,10 @@ export const filetypes: Plug[] = [
   // nushell
   {
     url: "https://github.com/LhKipp/nvim-nu",
-    dependencies: [{ url: "https://github.com/nvimtools/none-ls.nvim" }],
-    afterFile: "~/.config/nvim/rc/after/nvim-nu.lua",
+    dependencies: [
+      { url: "https://github.com/nvim-treesitter/nvim-treesitter" },
+      { url: "https://github.com/nvimtools/none-ls.nvim" },
+    ],
+    beforeSourceFile: "~/.config/nvim/rc/after/nvim-nu.lua",
   },
 ];

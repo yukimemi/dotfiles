@@ -4,9 +4,9 @@
 // Last Change : 2024/09/21 16:49:37.
 // =============================================================================
 
-import * as mapping from "jsr:@denops/std@7.1.1/mapping";
-import * as vars from "jsr:@denops/std@7.1.1/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@4.1.1";
+import * as mapping from "jsr:@denops/std@7.2.0/mapping";
+import * as vars from "jsr:@denops/std@7.2.0/variable";
+import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const runner: Plug[] = [
