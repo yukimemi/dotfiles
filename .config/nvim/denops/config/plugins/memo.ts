@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : wiki.ts
 // Author      : yukimemi
-// Last Change : 2024/07/27 22:27:31.
+// Last Change : 2024/09/28 13:06:09.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
@@ -57,6 +57,7 @@ export const memo: Plug[] = [
   },
   {
     url: "https://github.com/renerocksai/telekasten.nvim",
+    enabled: false,
     dependencies: [
       { url: "https://github.com/nvim-telescope/telescope.nvim" },
       { url: "https://github.com/renerocksai/calendar-vim" },
