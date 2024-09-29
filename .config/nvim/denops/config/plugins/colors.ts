@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 18:50:44.
+// Last Change : 2024/09/30 00:49:23.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
@@ -9,7 +9,6 @@ import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 import * as fn from "jsr:@denops/std@7.2.0/function";
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import * as vars from "jsr:@denops/std@7.2.0/variable";
-import { pluginStatus } from "../pluginstatus.ts";
 
 export const colors: Plug[] = [
   {

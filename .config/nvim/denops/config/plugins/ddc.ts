@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/08/31 14:14:06.
+// Last Change : 2024/09/30 00:47:56.
 // =============================================================================
 
 import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
@@ -58,7 +58,7 @@ export const ddc: Plug[] = [
     url: "https://github.com/uga-rosa/ddc-previewer-floating",
     enabled: false,
     dependencies: [
-      { url: "https://github.com/Shougo/pum.vim" },
+      "https://github.com/Shougo/pum.vim",
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ddc_previewer_floating").setup(_A)`, {

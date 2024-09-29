@@ -1,13 +1,12 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 18:48:41.
+// Last Change : 2024/09/30 00:48:59.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
-import { pluginStatus } from "../pluginstatus.ts";
 
 export const git: Plug[] = [
   {

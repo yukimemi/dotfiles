@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2024/03/30 14:30:40.
+// Last Change : 2024/09/30 00:43:24.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
@@ -17,17 +17,19 @@ import { pluginStatus } from "../pluginstatus.ts";
 import { execute } from "jsr:@denops/std@7.2.0/helper";
 
 export const coc: Plug[] = [
+  { url: "https://github.com/weirongxu/coc-explorer" },
+  {
+    url: "https://github.com/gelguy/wilder.nvim",
+    afterFile: "~/.config/nvim/rc/after/wilder.lua",
+  },
   {
     url: "https://github.com/neoclide/coc.nvim",
     enabled: pluginStatus.coc && !pluginStatus.vscode,
     dependencies: [
-      { url: "https://github.com/weirongxu/coc-explorer" },
-      {
-        url: "https://github.com/gelguy/wilder.nvim",
-        afterFile: "~/.config/nvim/rc/after/wilder.lua",
-      },
+      "https://github.com/weirongxu/coc-explorer",
+      "https://github.com/gelguy/wilder.nvim",
     ],
-    branch: "release",
+    rev: "release",
     before: async ({ denops }) => {
       await vars.g.set(denops, "coc_global_extensions", [
         "coc-deno",
