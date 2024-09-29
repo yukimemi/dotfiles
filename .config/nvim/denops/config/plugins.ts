@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 20:12:15.
+// Last Change : 2024/09/29 22:56:52.
 // =============================================================================
 
 import { ai } from "./plugins/ai.ts";
@@ -37,7 +37,7 @@ import { terminal } from "./plugins/terminal.ts";
 import { test } from "./plugins/test.ts";
 import { textobj } from "./plugins/textobj.ts";
 import { tmux } from "./plugins/tmux.ts";
-// import { todo } from "./plugins/todo.ts";
+import { todo } from "./plugins/todo.ts";
 import { treesitter } from "./plugins/treesitter.ts";
 // import { twitter } from "./plugins/twitter.ts";
 import { ui } from "./plugins/ui.ts";
@@ -65,7 +65,7 @@ export const plugins = [
   ...cmp,
   ...lsp,
   ...treesitter,
-  // ...todo,
+  ...todo,
   ...util,
   ...motion,
   ...edit,
