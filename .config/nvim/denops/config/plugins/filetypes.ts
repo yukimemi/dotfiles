@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2024/09/28 09:28:02.
+// Last Change : 2024/09/29 20:55:00.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
 import * as fn from "jsr:@denops/std@7.2.0/function";
@@ -14,6 +14,27 @@ import * as vars from "jsr:@denops/std@7.2.0/variable";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const filetypes: Plug[] = [
+  {
+    url: "https://github.com/microsoft/vscode",
+    dst: "~/.cache/vscode",
+    depth: 1,
+    enabled: false,
+  },
+  {
+    url: "https://github.com/saem/vscode-nim",
+    dst: "~/.cache/scorpeon/nim",
+    enabled: false,
+  },
+  {
+    url: "https://github.com/oovm/vscode-toml",
+    dst: "~/.cache/scorpeon/toml",
+    enabled: false,
+  },
+  {
+    url: "https://github.com/emilast/vscode-logfile-highlighter",
+    dst: "~/.cache/scorpeon/log",
+    enabled: false,
+  },
   // all filetypes
   {
     url: "https://github.com/uga-rosa/scorpeon.vim",
@@ -34,27 +55,10 @@ export const filetypes: Plug[] = [
       });
     },
     dependencies: [
-      {
-        url: "https://github.com/microsoft/vscode",
-        dst: "~/.cache/vscode",
-        depth: 1,
-        enabled: false,
-      },
-      {
-        url: "https://github.com/saem/vscode-nim",
-        dst: "~/.cache/scorpeon/nim",
-        enabled: false,
-      },
-      {
-        url: "https://github.com/oovm/vscode-toml",
-        dst: "~/.cache/scorpeon/toml",
-        enabled: false,
-      },
-      {
-        url: "https://github.com/emilast/vscode-logfile-highlighter",
-        dst: "~/.cache/scorpeon/log",
-        enabled: false,
-      },
+      "https://github.com/microsoft/vscode",
+      "https://github.com/saem/vscode-nim",
+      "https://github.com/oovm/vscode-toml",
+      "https://github.com/emilast/vscode-logfile-highlighter",
     ],
   },
   { url: "https://github.com/sheerun/vim-polyglot" },
@@ -74,10 +78,11 @@ export const filetypes: Plug[] = [
     },
   },
   // markdown
+  { url: "https://github.com/tani/podium" },
   {
     url: "https://github.com/tani/glance-vim",
     enabled: false,
-    dependencies: [{ url: "https://github.com/tani/podium" }],
+    dependencies: ["https://github.com/tani/podium"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "glance#markdown_breaks", true);
       await vars.g.set(denops, "glance#markdown_html", true);
@@ -110,9 +115,7 @@ export const filetypes: Plug[] = [
   {
     url: "https://github.com/previm/previm",
     enabled: !pluginStatus.vscode && true,
-    dependencies: [
-      { url: "https://github.com/tyru/open-browser.vim" },
-    ],
+    dependencies: ["https://github.com/tyru/open-browser.vim"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "previm_enable_realtime", 1);
       await vars.g.set(denops, "previm_show_header", 0);
@@ -135,15 +138,17 @@ export const filetypes: Plug[] = [
   {
     url: "https://github.com/MeanderingProgrammer/markdown.nvim",
     enabled: false,
-    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
+    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/render-markdown.lua",
   },
+  { url: "https://github.com/tree-sitter-grammars/tree-sitter-markdown" },
   {
     url: "https://github.com/tadmccorkle/markdown.nvim",
     enabled: false,
-    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }, {
-      url: "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
-    }],
+    dependencies: [
+      "https://github.com/nvim-treesitter/nvim-treesitter",
+      "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
+    ],
     afterFile: "~/.config/nvim/rc/after/markdown.lua",
   },
   {
@@ -339,9 +344,9 @@ export const filetypes: Plug[] = [
   {
     url: "https://github.com/LhKipp/nvim-nu",
     dependencies: [
-      { url: "https://github.com/nvim-treesitter/nvim-treesitter" },
-      { url: "https://github.com/nvimtools/none-ls.nvim" },
+      "https://github.com/nvim-treesitter/nvim-treesitter",
+      "https://github.com/nvimtools/none-ls.nvim",
     ],
-    beforeSourceFile: "~/.config/nvim/rc/after/nvim-nu.lua",
+    beforeFile: "~/.config/nvim/rc/after/nvim-nu.lua",
   },
 ];

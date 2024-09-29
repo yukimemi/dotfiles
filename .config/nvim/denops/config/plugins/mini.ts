@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : mini.ts
 // Author      : yukimemi
-// Last Change : 2024/09/21 16:58:59.
+// Last Change : 2024/09/29 01:18:20.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 

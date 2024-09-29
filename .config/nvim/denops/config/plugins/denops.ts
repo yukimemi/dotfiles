@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/08/18 10:59:31.
+// Last Change : 2024/09/29 10:37:55.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
 import * as fn from "jsr:@denops/std@7.2.0/function";
@@ -176,6 +176,9 @@ export const denops: Plug[] = [
   {
     url: "https://github.com/yukimemi/chronicle.vim",
     dst: "~/src/github.com/yukimemi/chronicle.vim",
+    dependencies: [
+      "https://github.com/vim-denops/denops.vim",
+    ],
     cache: {
       enabled: true,
       beforeFile: "~/.config/nvim/rc/before/chronicle.vim",

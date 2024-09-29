@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/08/27 00:31:04.
+// Last Change : 2024/09/29 19:23:00.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
 import * as fn from "jsr:@denops/std@7.2.0/function";
@@ -18,75 +18,106 @@ import { pluginStatus } from "../pluginstatus.ts";
 
 export const ddu: Plug[] = [
   {
+    url: "https://github.com/Shougo/junkfile.vim",
+    afterFile: "~/.config/nvim/rc/after/junkfile.vim",
+  },
+  {
+    url: "https://github.com/Milly/ddu-filter-kensaku",
+    dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
+  },
+  {
+    url: "https://github.com/yukimemi/ddu-source-chronicle",
+    dst: "~/src/github.com/yukimemi/ddu-source-chronicle",
+  },
+  {
+    url: "https://github.com/Shougo/ddu-ui-filer",
+    after: async ({ denops }) => {
+      if (pluginStatus.ddufiler) {
+        await mapping.map(
+          denops,
+          "<space>e",
+          "<Cmd>Ddu -name=filer-`win_getid()` -ui=filer -resume -sync file -source-option-file-path=`t:->get('ddu_ui_filer_path', getcwd())` -source-option-file-columns=filename<CR>",
+        );
+      }
+    },
+  },
+  { url: "https://github.com/4513ECHO/ddu-kind-url" },
+  { url: "https://github.com/4513ECHO/ddu-source-source" },
+  { url: "https://github.com/4513ECHO/vim-readme-viewer" },
+  { url: "https://github.com/Shougo/ddu-column-filename" },
+  { url: "https://github.com/Shougo/ddu-commands.vim" },
+  { url: "https://github.com/Shougo/ddu-kind-file" },
+  { url: "https://github.com/Shougo/ddu-kind-word" },
+  { url: "https://github.com/Shougo/ddu-source-action" },
+  { url: "https://github.com/Shougo/ddu-source-dummy" },
+  { url: "https://github.com/Shougo/ddu-source-file" },
+  { url: "https://github.com/Shougo/ddu-source-file_old" },
+  { url: "https://github.com/Shougo/ddu-source-file_point" },
+  { url: "https://github.com/Shougo/ddu-source-file_rec" },
+  { url: "https://github.com/Shougo/ddu-source-line" },
+  { url: "https://github.com/Shougo/ddu-source-path_history" },
+  { url: "https://github.com/Shougo/ddu-source-register" },
+  { url: "https://github.com/Shougo/ddu-ui-ff" },
+  { url: "https://github.com/kamecha/ddu-source-jumplist" },
+  { url: "https://github.com/kuuote/ddu-filter-fuse" },
+  { url: "https://github.com/kuuote/ddu-source-git_status" },
+  { url: "https://github.com/kyoh86/ddu-filter-converter_hl_dir" },
+  { url: "https://github.com/kyoh86/ddu-source-command" },
+  { url: "https://github.com/matsui54/ddu-source-command_history" },
+  { url: "https://github.com/matsui54/ddu-source-file_external" },
+  { url: "https://github.com/matsui54/ddu-source-help" },
+  { url: "https://github.com/shun/ddu-source-buffer" },
+  { url: "https://github.com/shun/ddu-source-rg" },
+  { url: "https://github.com/uga-rosa/ddu-filter-converter_devicon" },
+  { url: "https://github.com/uga-rosa/ddu-source-lsp" },
+  { url: "https://github.com/uga-rosa/ddu-source-search_history" },
+  { url: "https://github.com/yuki-yano/ddu-filter-fzf" },
+  { url: "https://github.com/yuki-yano/ddu-source-nvim-notify" },
+  { url: "https://github.com/Milly/ddu-filter-merge" },
+  { url: "https://github.com/Milly/ddu-filter-kensaku" },
+  { url: "https://github.com/yukimemi/ddu-source-chronicle" },
+  { url: "https://github.com/Shougo/ddu-ui-filer" },
+  {
     url: "https://github.com/Shougo/ddu.vim",
-    enabled: pluginStatus.ddu && !pluginStatus.vscode,
+    enabled: pluginStatus.ddu,
     cache: { enabled: false },
     dependencies: [
-      { url: "https://github.com/4513ECHO/ddu-kind-url" },
-      {
-        url: "https://github.com/4513ECHO/ddu-source-emoji",
-        enabled: false,
-      },
-      { url: "https://github.com/4513ECHO/ddu-source-source" },
-      { url: "https://github.com/4513ECHO/vim-readme-viewer" },
-      { url: "https://github.com/Shougo/ddu-column-filename" },
-      { url: "https://github.com/Shougo/ddu-commands.vim" },
-      { url: "https://github.com/Shougo/ddu-kind-file" },
-      { url: "https://github.com/Shougo/ddu-kind-word" },
-      { url: "https://github.com/Shougo/ddu-source-action" },
-      { url: "https://github.com/Shougo/ddu-source-dummy" },
-      { url: "https://github.com/Shougo/ddu-source-file" },
-      { url: "https://github.com/Shougo/ddu-source-file_old" },
-      { url: "https://github.com/Shougo/ddu-source-file_point" },
-      { url: "https://github.com/Shougo/ddu-source-file_rec" },
-      { url: "https://github.com/Shougo/ddu-source-line" },
-      { url: "https://github.com/Shougo/ddu-source-path_history" },
-      { url: "https://github.com/Shougo/ddu-source-register" },
-      { url: "https://github.com/Shougo/ddu-ui-ff" },
-      {
-        url: "https://github.com/Shougo/junkfile.vim",
-        afterFile: "~/.config/nvim/rc/after/junkfile.vim",
-      },
-      { url: "https://github.com/kamecha/ddu-source-jumplist" },
-      { url: "https://github.com/kuuote/ddu-filter-fuse" },
-      { url: "https://github.com/kuuote/ddu-source-git_status" },
-      { url: "https://github.com/kyoh86/ddu-filter-converter_hl_dir" },
-      { url: "https://github.com/kyoh86/ddu-source-command" },
-      { url: "https://github.com/matsui54/ddu-source-command_history" },
-      { url: "https://github.com/matsui54/ddu-source-file_external" },
-      { url: "https://github.com/matsui54/ddu-source-help" },
-      { url: "https://github.com/shun/ddu-source-buffer" },
-      { url: "https://github.com/shun/ddu-source-rg" },
-      { url: "https://github.com/uga-rosa/ddu-filter-converter_devicon" },
-      { url: "https://github.com/uga-rosa/ddu-source-lsp" },
-      { url: "https://github.com/uga-rosa/ddu-source-search_history" },
-      { url: "https://github.com/yuki-yano/ddu-filter-fzf" },
-      { url: "https://github.com/yuki-yano/ddu-source-nvim-notify" },
-      { url: "https://github.com/Milly/ddu-filter-merge" },
-      {
-        url: "https://github.com/Milly/ddu-filter-kensaku",
-        dependencies: [{ url: "https://github.com/lambdalisue/vim-kensaku" }],
-      },
-      {
-        url: "https://github.com/matsui54/ddu-vim-ui-select",
-        enabled: false,
-      },
-      {
-        url: "https://github.com/yukimemi/ddu-source-chronicle",
-        dst: "~/src/github.com/yukimemi/ddu-source-chronicle",
-      },
-      {
-        url: "https://github.com/Shougo/ddu-ui-filer",
-        after: async ({ denops }) => {
-          if (pluginStatus.ddufiler) {
-            await mapping.map(
-              denops,
-              "<space>e",
-              "<Cmd>Ddu -name=filer-`win_getid()` -ui=filer -resume -sync file -source-option-file-path=`t:->get('ddu_ui_filer_path', getcwd())` -source-option-file-columns=filename<CR>",
-            );
-          }
-        },
-      },
+      "https://github.com/4513ECHO/ddu-kind-url",
+      "https://github.com/4513ECHO/ddu-source-source",
+      "https://github.com/4513ECHO/vim-readme-viewer",
+      "https://github.com/Shougo/ddu-column-filename",
+      "https://github.com/Shougo/ddu-commands.vim",
+      "https://github.com/Shougo/ddu-kind-file",
+      "https://github.com/Shougo/ddu-kind-word",
+      "https://github.com/Shougo/ddu-source-action",
+      "https://github.com/Shougo/ddu-source-dummy",
+      "https://github.com/Shougo/ddu-source-file",
+      "https://github.com/Shougo/ddu-source-file_old",
+      "https://github.com/Shougo/ddu-source-file_point",
+      "https://github.com/Shougo/ddu-source-file_rec",
+      "https://github.com/Shougo/ddu-source-line",
+      "https://github.com/Shougo/ddu-source-path_history",
+      "https://github.com/Shougo/ddu-source-register",
+      "https://github.com/Shougo/ddu-ui-ff",
+      "https://github.com/kamecha/ddu-source-jumplist",
+      "https://github.com/kuuote/ddu-filter-fuse",
+      "https://github.com/kuuote/ddu-source-git_status",
+      "https://github.com/kyoh86/ddu-filter-converter_hl_dir",
+      "https://github.com/kyoh86/ddu-source-command",
+      "https://github.com/matsui54/ddu-source-command_history",
+      "https://github.com/matsui54/ddu-source-file_external",
+      "https://github.com/matsui54/ddu-source-help",
+      "https://github.com/shun/ddu-source-buffer",
+      "https://github.com/shun/ddu-source-rg",
+      "https://github.com/uga-rosa/ddu-filter-converter_devicon",
+      "https://github.com/uga-rosa/ddu-source-lsp",
+      "https://github.com/uga-rosa/ddu-source-search_history",
+      "https://github.com/yuki-yano/ddu-filter-fzf",
+      "https://github.com/yuki-yano/ddu-source-nvim-notify",
+      "https://github.com/Milly/ddu-filter-merge",
+      "https://github.com/Milly/ddu-filter-kensaku",
+      "https://github.com/yukimemi/ddu-source-chronicle",
+      "https://github.com/Shougo/ddu-ui-filer",
     ],
     before: async ({ denops }) => {
       await mapping.map(denops, "q:", "<cmd>Ddu command_history<cr>", {

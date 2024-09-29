@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/09/16 11:26:39.
+// Last Change : 2024/09/29 16:02:47.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
 import * as fn from "jsr:@denops/std@7.2.0/function";
@@ -104,7 +104,7 @@ export const libs: Plug[] = [
     url: "https://github.com/folke/noice.nvim",
     enabled: !pluginStatus.vscode,
     dependencies: [
-      { url: "https://github.com/MunifTanjim/nui.nvim" },
+      "https://github.com/MunifTanjim/nui.nvim",
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("noice").setup(_A)`, {
@@ -142,7 +142,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/tyru/open-browser-github.vim",
-    dependencies: [{ url: "https://github.com/tyru/open-browser.vim" }],
+    dependencies: ["https://github.com/tyru/open-browser.vim"],
   },
   { url: "https://github.com/lambdalisue/vim-readablefold" },
   { url: "https://github.com/lambdalisue/vim-kensaku" },

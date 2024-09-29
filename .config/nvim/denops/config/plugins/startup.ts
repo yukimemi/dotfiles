@@ -4,12 +4,12 @@
 // Last Change : 2024/07/03 00:55:23.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 export const startup: Plug[] = [
   {
     url: "https://github.com/goolord/alpha-nvim",
-    dependencies: [{ url: "https://github.com/nvim-tree/nvim-web-devicons" }],
+    dependencies: ["https://github.com/nvim-tree/nvim-web-devicons"],
     clone: false,
     cache: {
       afterFile: `~/.config/nvim/rc/after/alpha-nvim.lua`,
@@ -17,7 +17,7 @@ export const startup: Plug[] = [
   },
   {
     url: "https://github.com/startup-nvim/startup.nvim",
-    dependencies: [{ url: "https://github.com/nvim-lua/plenary.nvim" }],
+    dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     clone: false,
     cache: {
       after: `

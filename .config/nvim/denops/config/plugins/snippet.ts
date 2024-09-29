@@ -1,13 +1,13 @@
 // =============================================================================
 // File        : snippet.ts
 // Author      : yukimemi
-// Last Change : 2024/08/31 17:42:07.
+// Last Change : 2024/09/29 19:14:17.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.2.0/function";
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import * as vars from "jsr:@denops/std@7.2.0/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 import { pluginStatus } from "../pluginstatus.ts";
 import { z } from "npm:zod@3.23.8";
 
@@ -22,17 +22,23 @@ export const snippet: Plug[] = [
   {
     url: "https://github.com/PowerShell/vscode-powershell",
     dst: "~/.cache/vscode-powershell",
+    depth: 1,
     enabled: false,
+  },
+  {
+    url: "https://github.com/uga-rosa/ddc-source-vsnip",
+    enabled: pluginStatus.vsnip && pluginStatus.ddc,
+  },
+  {
+    url: "https://github.com/hrsh7th/vim-vsnip-integ",
+    enabled: pluginStatus.vsnip,
   },
   {
     url: "https://github.com/hrsh7th/vim-vsnip",
     enabled: pluginStatus.vsnip,
     dependencies: [
-      { url: "https://github.com/hrsh7th/vim-vsnip-integ" },
-      {
-        url: "https://github.com/uga-rosa/ddc-source-vsnip",
-        enabled: pluginStatus.vsnip && pluginStatus.ddc,
-      },
+      "https://github.com/hrsh7th/vim-vsnip-integ",
+      "https://github.com/uga-rosa/ddc-source-vsnip",
     ],
     before: async ({ denops }) => {
       await vars.g.set(

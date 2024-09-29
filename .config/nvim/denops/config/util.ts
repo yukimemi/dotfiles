@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/07/27 22:30:00.
+// Last Change : 2024/09/29 22:17:22.
 // =============================================================================
 
 import * as buffer from "jsr:@denops/std@7.2.0/buffer";
@@ -40,7 +40,7 @@ export async function notify(
           { msg, timeout: opt?.timeout || 5000 },
         );
       } else {
-        const result = z.string().array().safeParse(msg);
+        const result = z.array(z.string()).safeParse(msg);
         const message = result.success ? result.data.join("\r") : msg;
         await helper.execute(
           denops,
@@ -204,4 +204,8 @@ export async function zennPreview(denops: Denops) {
     `,
   );
   await buffer.open(denops, bufname);
+}
+
+export async function openLog(denops: Denops, path: string) {
+  await buffer.open(denops, path);
 }

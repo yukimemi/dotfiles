@@ -4,7 +4,7 @@
 // Last Change : 2024/09/28 09:07:12.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 import * as vars from "jsr:@denops/std@7.2.0/variable";
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import * as lambda from "jsr:@denops/std@7.2.0/lambda";
@@ -19,9 +19,9 @@ export const ai: Plug[] = [
   {
     url: "https://github.com/olimorris/codecompanion.nvim",
     dependencies: [
-      { url: "https://github.com/nvim-lua/plenary.nvim" },
-      { url: "https://github.com/nvim-telescope/telescope.nvim" },
-      { url: "https://github.com/nvim-treesitter/nvim-treesitter" },
+      "https://github.com/nvim-lua/plenary.nvim",
+      "https://github.com/nvim-telescope/telescope.nvim",
+      "https://github.com/nvim-treesitter/nvim-treesitter",
     ],
     afterFile: "~/.config/nvim/rc/after/codecompanion.lua",
   },
@@ -29,18 +29,18 @@ export const ai: Plug[] = [
     url: "https://github.com/yetone/avante.nvim",
     enabled: false,
     dependencies: [
-      { url: "https://github.com/stevearc/dressing.nvim" },
-      { url: "https://github.com/nvim-lua/plenary.nvim" },
-      { url: "https://github.com/MunifTanjim/nui.nvim" },
-      { url: "https://github.com/nvim-tree/nvim-web-devicons" },
+      "https://github.com/stevearc/dressing.nvim",
+      "https://github.com/nvim-lua/plenary.nvim",
+      "https://github.com/MunifTanjim/nui.nvim",
+      "https://github.com/nvim-tree/nvim-web-devicons",
     ],
     afterFile: "~/.config/nvim/rc/after/avante.lua",
   },
   {
     url: "https://github.com/nomnivore/ollama.nvim",
     dependencies: [
-      { url: "https://github.com/nvim-lua/plenary.nvim" },
-      { url: "https://github.com/stevearc/dressing.nvim" },
+      "https://github.com/nvim-lua/plenary.nvim",
+      "https://github.com/stevearc/dressing.nvim",
     ],
     afterFile: "~/.config/nvim/rc/after/ollama.lua",
   },

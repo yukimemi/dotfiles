@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : wiki.ts
 // Author      : yukimemi
-// Last Change : 2024/09/28 13:06:09.
+// Last Change : 2024/09/29 19:21:49.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import * as fn from "jsr:@denops/std@7.2.0/function";
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
@@ -56,11 +56,15 @@ export const memo: Plug[] = [
     },
   },
   {
+    url: "https://github.com/renerocksai/calendar-vim",
+    enabled: false,
+  },
+  {
     url: "https://github.com/renerocksai/telekasten.nvim",
     enabled: false,
     dependencies: [
-      { url: "https://github.com/nvim-telescope/telescope.nvim" },
-      { url: "https://github.com/renerocksai/calendar-vim" },
+      "https://github.com/nvim-telescope/telescope.nvim",
+      "https://github.com/renerocksai/calendar-vim",
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("telekasten").setup(_A)`, {

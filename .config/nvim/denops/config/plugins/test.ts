@@ -1,21 +1,22 @@
 // =============================================================================
 // File        : test.ts
 // Author      : yukimemi
-// Last Change : 2024/01/28 10:30:49.
+// Last Change : 2024/09/29 19:27:24.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import * as vars from "jsr:@denops/std@7.2.0/variable";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const test: Plug[] = [
+  { url: "https://github.com/skywind3000/asyncrun.vim" },
   {
     url: "https://github.com/vim-test/vim-test",
     enabled: !pluginStatus.vscode,
     dependencies: [
-      { url: "https://github.com/skywind3000/asyncrun.vim" },
+      "https://github.com/skywind3000/asyncrun.vim",
     ],
     before: async ({ denops }) => {
       await vars.g.set(denops, "test#strategy", "neovim");

@@ -4,7 +4,7 @@
 // Last Change : 2024/03/30 17:39:27.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import { pluginStatus } from "../pluginstatus.ts";
 
@@ -13,7 +13,7 @@ export const nvimtree: Plug[] = [
     url: "https://github.com/nvim-tree/nvim-tree.lua",
     enabled: !pluginStatus.vscode && pluginStatus.nvimtree,
     dependencies: [
-      { url: "https://github.com/nvim-tree/nvim-web-devicons" },
+      "https://github.com/nvim-tree/nvim-web-devicons",
     ],
     afterFile: `~/.config/nvim/rc/after/nvim-tree.lua`,
   },

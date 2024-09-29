@@ -4,7 +4,7 @@
 // Last Change : 2024/08/03 10:55:16.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import { pluginStatus } from "../pluginstatus.ts";
@@ -15,10 +15,10 @@ export const neotree: Plug[] = [
     enabled: !pluginStatus.vscode && !pluginStatus.coc && pluginStatus.neotree,
     cache: { afterFile: `~/.config/nvim/rc/after/neo-tree.lua` },
     dependencies: [
-      { url: "https://github.com/nvim-lua/plenary.nvim" },
-      { url: "https://github.com/nvim-tree/nvim-web-devicons" },
-      { url: "https://github.com/MunifTanjim/nui.nvim" },
-      { url: "https://github.com/s1n7ax/nvim-window-picker" },
+      "https://github.com/nvim-lua/plenary.nvim",
+      "https://github.com/nvim-tree/nvim-web-devicons",
+      "https://github.com/MunifTanjim/nui.nvim",
+      "https://github.com/s1n7ax/nvim-window-picker",
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("neo-tree").setup(_A)`, {

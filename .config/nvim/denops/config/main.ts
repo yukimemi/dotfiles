@@ -1,15 +1,20 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2024/09/01 11:05:41.
+// Last Change : 2024/09/29 22:21:54.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.2.0/function";
+import * as log from "jsr:@std/log@0.224.8";
 import type { Denops, Entrypoint } from "jsr:@denops/std@7.2.0";
-import { Dvpm } from "jsr:@yukimemi/dvpm@4.2.0";
+import { Dvpm } from "jsr:@yukimemi/dvpm@5.0.6";
 import { cacheLua, cacheVim } from "./cache.ts";
+import { dir } from "jsr:@cross/dir@1.1.0";
+import { ensureFile } from "jsr:@std/fs@1.0.4/ensure-file";
 import { execute } from "jsr:@denops/std@7.2.0/helper";
-import { notify } from "./util.ts";
+import * as lambda from "jsr:@denops/std@7.2.0/lambda";
+import { join } from "jsr:@std/path@1.0.6/join";
+import { notify, openLog } from "./util.ts";
 import { pluginStatus } from "./pluginstatus.ts";
 import { plugins } from "./plugins.ts";
 import { setCommandPost, setCommandPre } from "./command.ts";
@@ -20,8 +25,28 @@ import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setNvy } from "./nvy.ts";
 import { setOption } from "./option.ts";
-import { type Plug } from "jsr:@yukimemi/dvpm@4.2.0";
 import { z } from "npm:zod@3.23.8";
+
+const logPath = join(await dir("cache"), "dvpm", `dvpm_${new Date().getTime()}.log`);
+await ensureFile(logPath);
+
+log.setup({
+  handlers: {
+    console: new log.ConsoleHandler("INFO"),
+    file: new log.FileHandler("DEBUG", {
+      filename: logPath,
+      formatter: (record) =>
+        `${record.datetime.toLocaleTimeString()} ${record.levelName} ${record.msg}`,
+    }),
+  },
+
+  loggers: {
+    dvpm: {
+      level: "DEBUG",
+      handlers: ["console", "file"],
+    },
+  },
+});
 
 export const main: Entrypoint = async (denops) => {
   const starttime = performance.now();
@@ -33,7 +58,13 @@ export const main: Entrypoint = async (denops) => {
 
   const elapsed = performance.now() - starttime;
   await notify(denops, [`Config load completed !`, `Elapsed: (${elapsed})`]);
+  console.log(`Elapsed: (${elapsed})`);
 
+  await denops.cmd(`
+    command! -nargs=0 DvpmOpenLog call s:${denops.name}_notify("${
+    lambda.register(denops, async () => await openLog(denops, logPath))
+  }", [])
+      `);
   await dvpm.cache(cacheLua());
   await dvpm.cache(cacheVim());
 };
@@ -79,14 +110,11 @@ async function dvpmExec(denops: Denops) {
   const dvpm = await Dvpm.begin(denops, {
     base,
     cache,
-    debug: false,
-    profile: false,
     notify: true,
     concurrency: denops.meta.platform === "windows" ? 5 : 13,
-    logarg: [],
   });
 
-  await Promise.all(plugins.map((p: Plug) => dvpm.add(p)));
+  await Promise.all(plugins.map((p) => dvpm.add(p)));
 
   await dvpm.end();
 

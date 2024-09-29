@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2024/08/18 10:39:52.
+// Last Change : 2024/09/29 18:56:28.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
 import * as fn from "jsr:@denops/std@7.2.0/function";
@@ -63,9 +63,10 @@ export const edit: Plug[] = [
       await denops.call(`luaeval`, `require('ultimate-autopair').setup()`);
     },
   },
+  { url: "https://github.com/Shougo/context_filetype.vim" },
   {
     url: "https://github.com/uga-rosa/contextment.vim",
-    dependencies: [{ url: "https://github.com/Shougo/context_filetype.vim" }],
+    dependencies: ["https://github.com/Shougo/context_filetype.vim"],
     before: async ({ denops }) => {
       await mapping.map(denops, "gcc", "<Plug>(contextment)", { mode: "x" });
       await mapping.map(denops, "gcc", "<Plug>(contextment-line)", {

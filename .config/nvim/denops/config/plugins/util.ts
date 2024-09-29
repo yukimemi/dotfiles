@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/09/24 01:31:27.
+// Last Change : 2024/09/29 19:07:18.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import * as fn from "jsr:@denops/std@7.2.0/function";
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
@@ -201,12 +201,14 @@ export const util: Plug[] = [
   { url: "https://github.com/vim-jp/vital.vim" },
   { url: "https://github.com/hrsh7th/vim-vital-vs" },
   { url: "https://github.com/chrisbra/Recover.vim" },
+  { url: "https://github.com/anuvyklack/middleclass" },
+  { url: "https://github.com/anuvyklack/animation.nvim" },
   {
     url: "https://github.com/anuvyklack/windows.nvim",
     enabled: true,
     dependencies: [
-      { url: "https://github.com/anuvyklack/middleclass" },
-      { url: "https://github.com/anuvyklack/animation.nvim" },
+      "https://github.com/anuvyklack/middleclass",
+      "https://github.com/anuvyklack/animation.nvim",
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("windows").setup(_A)`, {
@@ -278,7 +280,7 @@ export const util: Plug[] = [
   {
     url: "https://github.com/folke/todo-comments.nvim",
     dependencies: [
-      { url: "https://github.com/nvim-lua/plenary.nvim" },
+      "https://github.com/nvim-lua/plenary.nvim",
     ],
     after: async ({ denops }) => {
       await denops.cmd(`lua require("todo-comments").setup()`);
@@ -313,9 +315,12 @@ export const util: Plug[] = [
     },
   },
   {
+    url: "https://github.com/kevinhwang91/promise-async",
+  },
+  {
     url: "https://github.com/kevinhwang91/nvim-fundo",
     dependencies: [
-      { url: "https://github.com/kevinhwang91/promise-async" },
+      "https://github.com/kevinhwang91/promise-async",
     ],
     build: async ({ denops }) => {
       await denops.cmd(`lua require("fundo").install()`);
@@ -329,8 +334,8 @@ export const util: Plug[] = [
     url: "https://github.com/m4xshen/hardtime.nvim",
     enabled: false,
     dependencies: [
-      { url: "https://github.com/nvim-lua/plenary.nvim" },
-      { url: "https://github.com/MunifTanjim/nui.nvim" },
+      "https://github.com/nvim-lua/plenary.nvim",
+      "https://github.com/MunifTanjim/nui.nvim",
     ],
     after: async ({ denops }) => {
       await denops.cmd(`lua require("hardtime").setup()`);
@@ -353,8 +358,8 @@ export const util: Plug[] = [
   {
     url: "https://github.com/bennypowers/nvim-regexplainer",
     dependencies: [
-      { url: "https://github.com/nvim-treesitter/nvim-treesitter" },
-      { url: "https://github.com/MunifTanjim/nui.nvim" },
+      "https://github.com/nvim-treesitter/nvim-treesitter",
+      "https://github.com/MunifTanjim/nui.nvim",
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("regexplainer").setup(_A)`, {
@@ -416,13 +421,14 @@ export const util: Plug[] = [
     enabled: false,
   },
   {
+    url: "https://github.com/kkharji/sqlite.lua",
+    enabled: Deno.build.os !== "windows",
+  },
+  {
     url: "https://github.com/VidocqH/data-viewer.nvim",
     dependencies: [
-      { url: "https://github.com/nvim-lua/plenary.nvim" },
-      {
-        url: "https://github.com/kkharji/sqlite.lua",
-        enabled: Deno.build.os !== "windows",
-      },
+      "https://github.com/nvim-lua/plenary.nvim",
+      "https://github.com/kkharji/sqlite.lua",
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("data-viewer").setup()`);
@@ -487,6 +493,10 @@ export const util: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("licenser").setup()`);
     },
+  },
+  {
+    url: "https://github.com/MattesGroeger/vim-bookmarks",
+    enabled: false,
   },
   {
     url: "https://github.com/tomasky/bookmarks.nvim",

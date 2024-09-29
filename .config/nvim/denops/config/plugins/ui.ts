@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/09/18 20:52:50.
+// Last Change : 2024/09/29 16:06:54.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
 import * as fn from "jsr:@denops/std@7.2.0/function";
@@ -43,14 +43,14 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/lukas-reineke/virt-column.nvim",
-    enabled: pluginStatus.virtcolumn && !pluginStatus.vscode,
+    enabled: pluginStatus.virtcolumn,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("virt-column").setup()`);
     },
   },
   {
     url: "https://github.com/ecthelionvi/NeoColumn.nvim",
-    enabled: pluginStatus.neocolumn && !pluginStatus.vscode,
+    enabled: pluginStatus.neocolumn,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("NeoColumn").setup(_A)`, {
         NeoColumn: 100,
@@ -59,9 +59,9 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/RRethy/vim-illuminate",
-    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
+    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim" && !pluginStatus.vscode,
+    enabled: async ({ denops }) => denops.meta.host === "nvim",
   },
   {
     url: "https://github.com/unblevable/quick-scope",
@@ -211,8 +211,8 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/lukas-reineke/indent-blankline.nvim",
-    enabled: pluginStatus.indentblankline && !pluginStatus.vscode,
-    dependencies: [{ url: "https://github.com/nvim-treesitter/nvim-treesitter" }],
+    enabled: pluginStatus.indentblankline,
+    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ibl").setup(_A)`, {
         indent: { char: `▏` },
@@ -221,7 +221,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/shellRaining/hlchunk.nvim",
-    enabled: pluginStatus.hlchunk && !pluginStatus.vscode,
+    enabled: pluginStatus.hlchunk,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hlchunk").setup(_A)`, {
         chunk: {
@@ -251,21 +251,20 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/b0o/incline.nvim",
-    enabled: !pluginStatus.vscode,
     dependencies: [
-      { url: "https://github.com/nvim-tree/nvim-web-devicons" },
-      { url: "https://github.com/lewis6991/gitsigns.nvim" },
+      "https://github.com/nvim-tree/nvim-web-devicons",
+      "https://github.com/lewis6991/gitsigns.nvim",
     ],
     afterFile: `~/.config/nvim/rc/after/incline.lua`,
   },
   {
     url: "https://github.com/romgrk/barbar.nvim",
-    enabled: !pluginStatus.vscode && pluginStatus.barbar,
+    enabled: pluginStatus.barbar,
     afterFile: `~/.config/nvim/rc/after/barbar.lua`,
   },
   {
     url: "https://github.com/akinsho/bufferline.nvim",
-    enabled: !pluginStatus.vscode && pluginStatus.bufferline,
+    enabled: pluginStatus.bufferline,
     after: async ({ denops }) => {
       await denops.cmd(`lua require("bufferline").setup()`);
     },
@@ -280,10 +279,10 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/utilyre/barbecue.nvim",
     // HEAD
-    enabled: pluginStatus.barbecue && !pluginStatus.vscode,
+    enabled: pluginStatus.barbecue,
     dependencies: [
-      { url: "https://github.com/SmiteshP/nvim-navic" },
-      { url: "https://github.com/nvim-tree/nvim-web-devicons" },
+      "https://github.com/SmiteshP/nvim-navic",
+      "https://github.com/nvim-tree/nvim-web-devicons",
     ],
     after: async ({ denops }) => {
       await denops.cmd(`lua require("barbecue").setup()`);
@@ -304,12 +303,11 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/folke/edgy.nvim",
-    enabled: !pluginStatus.vscode,
     afterFile: `~/.config/nvim/rc/after/edgy.lua`,
   },
   {
     url: "https://github.com/lewis6991/satellite.nvim",
-    enabled: !pluginStatus.vscode && pluginStatus.satellite,
+    enabled: pluginStatus.satellite,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("satellite").setup()`);
     },
@@ -340,21 +338,19 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/nvim-zh/colorful-winsep.nvim",
-    enabled: !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.cmd(`lua require("colorful-winsep").setup()`);
     },
   },
   {
     url: "https://github.com/Aasim-A/scrollEOF.nvim",
-    enabled: !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.cmd(`lua require("scrollEOF").setup()`);
     },
   },
   {
     url: "https://github.com/tamton-aquib/flirt.nvim",
-    enabled: !pluginStatus.vscode && Deno.build.os !== "windows" && false,
+    enabled: Deno.build.os !== "windows" && false,
     after: async ({ denops }) => {
       await denops.cmd(`lua require("flirt").setup()`);
     },

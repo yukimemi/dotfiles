@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-lspconfig.lua
 -- Author      : yukimemi
--- Last Change : 2024/05/15 10:48:29.
+-- Last Change : 2024/09/29 21:10:14.
 -- =============================================================================
 
 require("mason").setup({
@@ -17,6 +17,8 @@ vim.diagnostic.config({
   virtual_text = true,
   -- virtual_lines = { only_current_line = true },
 })
+require("neoconf").setup()
+
 local lspconfig = require("lspconfig")
 
 local function on_attach(client, bufnr)
@@ -63,14 +65,14 @@ require("mason-lspconfig").setup_handlers({
               lintCommand = "luacheck --no-color --quiet --config ~/.config/.luacheckrc -",
               lintFormats = {
                 "%f:%l:%c: %m",
-              }
-            }
-          }
-        }
+              },
+            },
+          },
+        },
       },
       filetypes = {
         "lua",
-      }
+      },
     }))
   end,
   denols = function()
@@ -89,12 +91,6 @@ require("mason-lspconfig").setup_handlers({
           },
         },
       },
-    }))
-  end,
-  tsserver = function()
-    lspconfig["tsserver"].setup(vim.tbl_deep_extend("force", options, {
-      root_dir = lspconfig.util.root_pattern("package.json"),
-      single_file_support = false,
     }))
   end,
   vtsls = function()

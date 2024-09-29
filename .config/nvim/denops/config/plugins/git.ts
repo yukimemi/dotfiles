@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/09/01 17:20:47.
+// Last Change : 2024/09/29 18:48:41.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import { pluginStatus } from "../pluginstatus.ts";
@@ -12,7 +12,6 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const git: Plug[] = [
   {
     url: "https://github.com/lewis6991/gitsigns.nvim",
-    enabled: !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("gitsigns").setup(_A)`, {
         signcolumn: true,
@@ -62,12 +61,13 @@ export const git: Plug[] = [
       );
     },
   },
+  { url: "https://github.com/lambdalisue/vim-askpass" },
+  { url: "https://github.com/lambdalisue/vim-guise" },
   {
     url: "https://github.com/lambdalisue/vim-gin",
-    enabled: !pluginStatus.vscode,
     dependencies: [
-      { url: "https://github.com/lambdalisue/vim-askpass" },
-      { url: "https://github.com/lambdalisue/vim-guise" },
+      "https://github.com/lambdalisue/vim-askpass",
+      "https://github.com/lambdalisue/vim-guise",
     ],
     cache: {
       beforeFile: `~/.config/nvim/rc/before/vim-gin.lua`,
@@ -97,9 +97,9 @@ export const git: Plug[] = [
   {
     url: "https://github.com/pwntester/octo.nvim",
     dependencies: [
-      { url: "https://github.com/nvim-lua/plenary.nvim" },
-      { url: "https://github.com/nvim-telescope/telescope.nvim" },
-      { url: "https://github.com/nvim-tree/nvim-web-devicons" },
+      "https://github.com/nvim-lua/plenary.nvim",
+      "https://github.com/nvim-telescope/telescope.nvim",
+      "https://github.com/nvim-tree/nvim-web-devicons",
     ],
     afterFile: `~/.config/nvim/rc/after/octo.lua`,
   },

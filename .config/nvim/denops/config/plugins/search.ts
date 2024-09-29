@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2024/07/27 22:27:20.
+// Last Change : 2024/09/29 18:53:17.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@4.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import { pluginStatus } from "../pluginstatus.ts";
 
@@ -16,11 +16,12 @@ export const search: Plug[] = [
     enabled: pluginStatus.modesearch,
     afterFile: "~/.config/nvim/rc/after/modesearch.lua",
   },
+  { url: "https://github.com/lambdalisue/vim-kensaku" },
   {
     url: "https://github.com/lambdalisue/vim-kensaku-search",
     enabled: false,
     dependencies: [
-      { url: "https://github.com/lambdalisue/vim-kensaku" },
+      "https://github.com/lambdalisue/vim-kensaku",
     ],
     after: async ({ denops }) => {
       await mapping.map(denops, "<cr>", "<Plug>(kensaku-search-replace)<cr>", {
@@ -31,9 +32,9 @@ export const search: Plug[] = [
   {
     url: "https://github.com/kevinhwang91/nvim-hlslens",
     dependencies: [
-      { url: "https://github.com/haya14busa/vim-asterisk" },
+      "https://github.com/haya14busa/vim-asterisk",
     ],
-    beforeSourceFile: "~/.config/nvim/rc/beforeSource/nvim-hlslens.lua",
+    beforeFile: "~/.config/nvim/rc/beforeSource/nvim-hlslens.lua",
   },
   {
     url: "https://github.com/nvim-pack/nvim-spectre",
