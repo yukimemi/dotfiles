@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 22:21:54.
+// Last Change : 2024/09/30 00:40:05.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.2.0/function";
@@ -50,7 +50,6 @@ log.setup({
 
 export const main: Entrypoint = async (denops) => {
   const starttime = performance.now();
-  await notify(denops, `dvpm main start !`);
   pluginStatus.vscode = await fn.exists(denops, "g:vscode");
   await pre(denops);
   const dvpm = await dvpmExec(denops);
