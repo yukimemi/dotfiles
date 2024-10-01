@@ -1,11 +1,10 @@
 // =============================================================================
 // File        : cmp.ts
 // Author      : yukimemi
-// Last Change : 2024/10/01 23:13:51.
+// Last Change : 2024/10/02 00:29:21.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
-import { pluginStatus } from "../pluginstatus.ts";
 
 export const cmp: Plug[] = [
   { url: "https://github.com/hrsh7th/cmp-nvim-lsp" },
@@ -33,7 +32,6 @@ export const cmp: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/nvim-cmp",
-    enabled: pluginStatus.cmp && !pluginStatus.vscode,
     dependencies: [
       "https://github.com/hrsh7th/cmp-nvim-lsp",
       "https://github.com/hrsh7th/cmp-buffer",

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : fern.ts
 // Author      : yukimemi
-// Last Change : 2024/09/30 00:46:47.
+// Last Change : 2024/10/02 00:31:04.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -11,7 +11,6 @@ import * as fn from "jsr:@denops/std@7.2.0/function";
 import * as lambda from "jsr:@denops/std@7.2.0/lambda";
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import * as vars from "jsr:@denops/std@7.2.0/variable";
-import { pluginStatus } from "../pluginstatus.ts";
 
 export const fern: Plug[] = [
   {
@@ -51,7 +50,6 @@ export const fern: Plug[] = [
   },
   {
     url: "https://github.com/lambdalisue/vim-fern",
-    enabled: !pluginStatus.vscode && !pluginStatus.coc && pluginStatus.fern,
     dependencies: [
       "https://github.com/lambdalisue/vim-fern-hijack",
       "https://github.com/lambdalisue/vim-fern-git-status",

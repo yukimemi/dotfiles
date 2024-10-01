@@ -1,20 +1,18 @@
 // =============================================================================
 // File        : test.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 19:27:24.
+// Last Change : 2024/10/01 23:58:52.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
 
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import * as vars from "jsr:@denops/std@7.2.0/variable";
-import { pluginStatus } from "../pluginstatus.ts";
 
 export const test: Plug[] = [
   { url: "https://github.com/skywind3000/asyncrun.vim" },
   {
     url: "https://github.com/vim-test/vim-test",
-    enabled: !pluginStatus.vscode,
     dependencies: [
       "https://github.com/skywind3000/asyncrun.vim",
     ],

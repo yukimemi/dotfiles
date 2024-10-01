@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : neotree.ts
 // Author      : yukimemi
-// Last Change : 2024/08/03 10:55:16.
+// Last Change : 2024/10/02 00:32:18.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -12,7 +12,7 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const neotree: Plug[] = [
   {
     url: "https://github.com/nvim-neo-tree/neo-tree.nvim",
-    enabled: !pluginStatus.vscode && !pluginStatus.coc && pluginStatus.neotree,
+    enabled: pluginStatus.neotree,
     cache: { afterFile: `~/.config/nvim/rc/after/neo-tree.lua` },
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",

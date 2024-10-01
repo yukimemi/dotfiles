@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 19:23:00.
+// Last Change : 2024/10/02 00:30:16.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -79,7 +79,6 @@ export const ddu: Plug[] = [
   { url: "https://github.com/Shougo/ddu-ui-filer" },
   {
     url: "https://github.com/Shougo/ddu.vim",
-    enabled: pluginStatus.ddu,
     cache: { enabled: false },
     dependencies: [
       "https://github.com/4513ECHO/ddu-kind-url",

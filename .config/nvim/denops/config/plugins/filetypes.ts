@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 20:55:00.
+// Last Change : 2024/10/02 00:01:08.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -65,7 +65,6 @@ export const filetypes: Plug[] = [
   // plantuml
   {
     url: "https://github.com/aklt/plantuml-syntax",
-    enabled: !pluginStatus.vscode,
     before: async ({ denops }) => {
       await autocmd.group(denops, "MyPlantUml", (helper) => {
         helper.remove("*");
@@ -114,7 +113,7 @@ export const filetypes: Plug[] = [
   },
   {
     url: "https://github.com/previm/previm",
-    enabled: !pluginStatus.vscode && true,
+    enabled: true,
     dependencies: ["https://github.com/tyru/open-browser.vim"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "previm_enable_realtime", 1);
@@ -159,7 +158,6 @@ export const filetypes: Plug[] = [
   { url: "https://github.com/machakann/vim-vimhelplint" },
   {
     url: "https://github.com/4513ECHO/vim-vimhelp-hoptag",
-    enabled: !pluginStatus.vscode,
     after: async ({ denops }) => {
       await autocmd.group(denops, "MyVimHelpHopTag", (helper) => {
         helper.remove("*");
@@ -192,7 +190,6 @@ export const filetypes: Plug[] = [
   // Rust
   {
     url: "https://github.com/Saecki/crates.nvim",
-    enabled: !pluginStatus.vscode,
     after: async ({ denops }) => {
       await autocmd.group(denops, "MyRustSettings", (helper) => {
         helper.remove("*");

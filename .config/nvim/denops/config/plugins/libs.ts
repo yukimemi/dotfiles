@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 16:02:47.
+// Last Change : 2024/10/02 00:02:44.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -30,17 +30,16 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/tani/vim-artemis",
-    enabled: !pluginStatus.vscode,
     cache: { enabled: true },
   },
   {
     url: "https://github.com/j-hui/fidget.nvim",
-    enabled: pluginStatus.fidget && !pluginStatus.vscode,
+    enabled: pluginStatus.fidget,
     cache: { afterFile: "~/.config/nvim/rc/after/fidget.lua" },
   },
   {
     url: "https://github.com/rcarriga/nvim-notify",
-    enabled: pluginStatus.nvimnotify && !pluginStatus.vscode,
+    enabled: pluginStatus.nvimnotify,
     cache: {
       enabled: false,
       afterFile: "~/.config/nvim/rc/after/nvim-notify.lua",
@@ -59,7 +58,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/vigoux/notifier.nvim",
-    enabled: pluginStatus.notifier && !pluginStatus.vscode,
+    enabled: pluginStatus.notifier,
     cache: {
       afterFile: "~/.config/nvim/rc/after/notifier.lua",
     },
@@ -77,15 +76,10 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/nvim-lua/plenary.nvim",
     cache: { enabled: false },
-    enabled: !pluginStatus.vscode,
   },
-  {
-    url: "https://github.com/MunifTanjim/nui.nvim",
-    enabled: !pluginStatus.vscode,
-  },
+  { url: "https://github.com/MunifTanjim/nui.nvim" },
   {
     url: "https://github.com/stevearc/dressing.nvim",
-    enabled: !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("dressing").setup()`);
     },
@@ -93,7 +87,6 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/nvim-tree/nvim-web-devicons",
     cache: { enabled: false },
-    enabled: !pluginStatus.vscode,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("nvim-web-devicons").setup(_A)`, {
         default: true,
@@ -102,7 +95,6 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/folke/noice.nvim",
-    enabled: !pluginStatus.vscode,
     dependencies: [
       "https://github.com/MunifTanjim/nui.nvim",
     ],
@@ -155,7 +147,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/folke/which-key.nvim",
-    enabled: !pluginStatus.vscode && false,
+    enabled: false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("which-key").setup()`);
     },
@@ -213,7 +205,6 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/nvim-dansa",
-    enabled: !pluginStatus.vscode,
     afterFile: "~/.config/nvim/rc/after/nvim-dansa.lua",
   },
   { url: "https://github.com/yuki-yano/dedent-yank.vim" },

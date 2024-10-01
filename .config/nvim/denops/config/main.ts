@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2024/09/30 00:40:05.
+// Last Change : 2024/10/02 00:03:47.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.2.0/function";
@@ -15,7 +15,6 @@ import { execute } from "jsr:@denops/std@7.2.0/helper";
 import * as lambda from "jsr:@denops/std@7.2.0/lambda";
 import { join } from "jsr:@std/path@1.0.6/join";
 import { notify, openLog } from "./util.ts";
-import { pluginStatus } from "./pluginstatus.ts";
 import { plugins } from "./plugins.ts";
 import { setCommandPost, setCommandPre } from "./command.ts";
 import { setFiletype } from "./filetype.ts";
@@ -50,7 +49,6 @@ log.setup({
 
 export const main: Entrypoint = async (denops) => {
   const starttime = performance.now();
-  pluginStatus.vscode = await fn.exists(denops, "g:vscode");
   await pre(denops);
   const dvpm = await dvpmExec(denops);
   await post(denops);

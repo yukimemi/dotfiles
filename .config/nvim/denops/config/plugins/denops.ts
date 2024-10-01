@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 10:37:55.
+// Last Change : 2024/10/01 23:58:35.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -13,12 +13,10 @@ import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import * as nvimFn from "jsr:@denops/std@7.2.0/function/nvim";
 import * as option from "jsr:@denops/std@7.2.0/option";
 import * as vars from "jsr:@denops/std@7.2.0/variable";
-import { pluginStatus } from "../pluginstatus.ts";
 
 export const denops: Plug[] = [
   {
     url: "https://github.com/yukimemi/autocursor.vim",
-    enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/autocursor.vim",
     before: async ({ denops }) => {
       await vars.g.set(denops, "autocursor_debug", false);
@@ -131,7 +129,6 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/dps-asyngrep",
-    enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/dps-asyngrep",
     before: async ({ denops }) => {
       await vars.g.set(denops, "asyngrep_debug", false);
@@ -266,7 +263,6 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/scanwalker.vim",
-    enabled: !pluginStatus.vscode,
     dst: "~/src/github.com/yukimemi/scanwalker.vim",
     before: async ({ denops }) => {
       await mapping.map(denops, "mw", "<cmd>ScanWalk<cr>", { mode: "n" });

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 18:56:28.
+// Last Change : 2024/10/01 23:59:50.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -44,21 +44,21 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/windwp/nvim-autopairs",
-    enabled: pluginStatus.autopairs && !pluginStatus.vscode,
+    enabled: pluginStatus.autopairs,
     after: async ({ denops }) => {
       await execute(denops, `lua require("nvim-autopairs").setup()`);
     },
   },
   {
     url: "https://github.com/hrsh7th/nvim-insx",
-    enabled: pluginStatus.insx && !pluginStatus.vscode,
+    enabled: pluginStatus.insx,
     after: async ({ denops }) => {
       await denops.cmd(`lua require('insx.preset.standard').setup()`);
     },
   },
   {
     url: "https://github.com/altermo/ultimate-autopair.nvim",
-    enabled: pluginStatus.ultimatepair && !pluginStatus.vscode,
+    enabled: pluginStatus.ultimatepair,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require('ultimate-autopair').setup()`);
     },
@@ -76,7 +76,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/gbprod/yanky.nvim",
-    enabled: pluginStatus.yanky && !pluginStatus.vscode,
+    enabled: pluginStatus.yanky,
     after: async ({ denops }) => {
       await mapping.map(denops, "p", "<Plug>(YankyPutAfter)", {
         mode: ["n", "x"],
@@ -111,7 +111,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/LeafCage/yankround.vim",
-    enabled: pluginStatus.yankround && !pluginStatus.vscode,
+    enabled: pluginStatus.yankround,
     before: async ({ denops }) => {
       await ensureDir(z.string().parse(await fn.expand(denops, `~/.cache/yankround`)));
     },

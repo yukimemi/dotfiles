@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2024/09/30 00:43:24.
+// Last Change : 2024/10/02 00:22:27.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -13,7 +13,6 @@ import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import * as op from "jsr:@denops/std@7.2.0/option";
 import * as vars from "jsr:@denops/std@7.2.0/variable";
 import { z } from "npm:zod@3.23.8";
-import { pluginStatus } from "../pluginstatus.ts";
 import { execute } from "jsr:@denops/std@7.2.0/helper";
 
 export const coc: Plug[] = [
@@ -24,7 +23,6 @@ export const coc: Plug[] = [
   },
   {
     url: "https://github.com/neoclide/coc.nvim",
-    enabled: pluginStatus.coc && !pluginStatus.vscode,
     dependencies: [
       "https://github.com/weirongxu/coc-explorer",
       "https://github.com/gelguy/wilder.nvim",

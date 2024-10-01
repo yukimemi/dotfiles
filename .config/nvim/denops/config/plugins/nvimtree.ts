@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : nvimtree.ts
 // Author      : yukimemi
-// Last Change : 2024/03/30 17:39:27.
+// Last Change : 2024/10/01 23:58:45.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -11,7 +11,7 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const nvimtree: Plug[] = [
   {
     url: "https://github.com/nvim-tree/nvim-tree.lua",
-    enabled: !pluginStatus.vscode && pluginStatus.nvimtree,
+    enabled: pluginStatus.nvimtree,
     dependencies: [
       "https://github.com/nvim-tree/nvim-web-devicons",
     ],

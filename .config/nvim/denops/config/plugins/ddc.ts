@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/09/30 00:47:56.
+// Last Change : 2024/10/02 00:18:44.
 // =============================================================================
 
 import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
@@ -14,7 +14,6 @@ import { Denops } from "jsr:@denops/std@7.2.0";
 import { z } from "npm:zod@3.23.8";
 import { exists } from "jsr:@std/fs@1.0.4/exists";
 import { notify } from "../util.ts";
-import { pluginStatus } from "../pluginstatus.ts";
 
 export const ddc: Plug[] = [
   // ui
@@ -56,7 +55,6 @@ export const ddc: Plug[] = [
   // popup, signature
   {
     url: "https://github.com/uga-rosa/ddc-previewer-floating",
-    enabled: false,
     dependencies: [
       "https://github.com/Shougo/pum.vim",
     ],
@@ -68,7 +66,6 @@ export const ddc: Plug[] = [
   },
   {
     url: "https://github.com/matsui54/denops-popup-preview.vim",
-    enabled: false,
     before: async ({ denops }) => {
       await vars.g.set(denops, "popup_preview_config", {
         delay: 50,
@@ -82,14 +79,36 @@ export const ddc: Plug[] = [
   },
   {
     url: "https://github.com/matsui54/denops-signature_help",
-    enabled: false,
     after: async ({ denops }) => {
       await denops.call(`signature_help#enable`);
     },
   },
+  { url: "https://github.com/tani/ddc-fuzzy" },
+  { url: "https://github.com/Shougo/ddc-filter-matcher_head" },
+  { url: "https://github.com/Shougo/ddc-filter-matcher_length" },
+  { url: "https://github.com/Shougo/ddc-filter-matcher_vimregexp" },
+  { url: "https://github.com/Shougo/ddc-filter-sorter_rank" },
+  { url: "https://github.com/Shougo/ddc-filter-converter_remove_overlap" },
+  { url: "https://github.com/Shougo/ddc-filter-converter_truncate_abbr" },
+  { url: "https://github.com/Shougo/pum.vim" },
+  { url: "https://github.com/Shougo/ddc-ui-pum" },
+  { url: "https://github.com/Shougo/ddc-ui-inline" },
+  { url: "https://github.com/LumaKernel/ddc-file" },
+  { url: "https://github.com/LumaKernel/ddc-run" },
+  { url: "https://github.com/Shougo/ddc-source-around" },
+  { url: "https://github.com/Shougo/ddc-source-codeium" },
+  { url: "https://github.com/Shougo/ddc-source-cmdline" },
+  { url: "https://github.com/Shougo/ddc-source-cmdline-history" },
+  { url: "https://github.com/Shougo/ddc-source-input" },
+  { url: "https://github.com/Shougo/ddc-source-line" },
+  { url: "https://github.com/Shougo/ddc-source-omni" },
+  { url: "https://github.com/Shougo/ddc-source-rg" },
+  { url: "https://github.com/delphinus/ddc-treesitter" },
+  { url: "https://github.com/matsui54/ddc-buffer" },
+  { url: "https://github.com/uga-rosa/ddc-source-nvim-lua" },
+  { url: "https://github.com/uga-rosa/ddc-source-lsp-setup" },
   {
     url: "https://github.com/Shougo/ddc.vim",
-    enabled: pluginStatus.ddc && !pluginStatus.vscode,
     dependencies: [
       // matcher, sorter, converter
       "https://github.com/tani/ddc-fuzzy",
