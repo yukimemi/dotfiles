@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : cmp.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 16:01:50.
+// Last Change : 2024/10/01 23:13:51.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.0.6";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const cmp: Plug[] = [
@@ -49,7 +49,6 @@ export const cmp: Plug[] = [
       "https://github.com/hrsh7th/cmp-nvim-lsp-document-symbol",
       "https://github.com/KentoOgata/cmp-tsnip",
       "https://github.com/yuki-yano/tsnip.nvim",
-      "https://github.com/hrsh7th/nvim-cmp",
       "https://github.com/uga-rosa/cmp-denippet",
       "https://github.com/uga-rosa/denippet.nvim",
       "https://github.com/teramako/cmp-cmdline-prompt.nvim",
