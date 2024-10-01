@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : operator.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 18:52:14.
+// Last Change : 2024/10/02 00:58:49.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -31,7 +31,7 @@ export const operator: Plug[] = [
     },
   },
   {
-    url: "https://github.com/yuki-yano/vim-operator-replace",
+    url: "https://github.com/kana/vim-operator-replace",
     dependencies: ["https://github.com/kana/vim-operator-user"],
     before: async ({ denops }) => {
       await mapping.map(denops, "_", "<Plug>(operator-replace)", {
