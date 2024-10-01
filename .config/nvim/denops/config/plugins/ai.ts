@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/09/28 09:07:12.
+// Last Change : 2024/09/30 23:47:16.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -38,6 +38,7 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/nomnivore/ollama.nvim",
+    enabled: false,
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/stevearc/dressing.nvim",

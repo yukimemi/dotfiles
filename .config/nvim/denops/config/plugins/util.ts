@@ -75,6 +75,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/uga-rosa/ccc.nvim",
+    enabled: false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ccc").setup(_A)`, {
         highlighter: {
