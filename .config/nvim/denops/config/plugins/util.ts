@@ -88,7 +88,7 @@ export const util: Plug[] = [
   { url: "https://github.com/NvChad/volt" },
   {
     url: "https://github.com/NvChad/minty",
-    dependencies: [ "https://github.com/NvChad/volt" ],
+    dependencies: ["https://github.com/NvChad/volt"],
   },
   {
     url: "https://github.com/junegunn/vim-easy-align",

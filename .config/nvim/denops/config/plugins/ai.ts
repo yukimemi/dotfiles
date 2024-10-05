@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/09/30 23:47:16.
+// Last Change : 2024/10/05 13:33:53.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -51,7 +51,7 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/futago.vim",
-    enabled: true,
+    enabled: false,
     dst: "~/src/github.com/yukimemi/futago.vim",
     before: async ({ denops }) => {
       await vars.g.set(denops, "futago_debug", false);
