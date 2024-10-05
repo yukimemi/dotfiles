@@ -1,10 +1,11 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2024/10/05 14:25:24.
+// Last Change : 2024/10/05 16:57:38.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.2.0/function";
+import * as lambda from "jsr:@denops/std@7.2.0/lambda";
 import * as log from "jsr:@std/log@0.224.8";
 import type { Denops, Entrypoint } from "jsr:@denops/std@7.2.0";
 import { Dvpm } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -12,7 +13,6 @@ import { cacheLua, cacheVim } from "./cache.ts";
 import { dir } from "jsr:@cross/dir@1.1.0";
 import { ensureFile } from "jsr:@std/fs@1.0.4/ensure-file";
 import { execute } from "jsr:@denops/std@7.2.0/helper";
-import * as lambda from "jsr:@denops/std@7.2.0/lambda";
 import { join } from "jsr:@std/path@1.0.6/join";
 import { notify, openLog } from "./util.ts";
 import { plugins } from "./plugins.ts";
