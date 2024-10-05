@@ -14,53 +14,7 @@ import * as vars from "jsr:@denops/std@7.2.0/variable";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const filetypes: Plug[] = [
-  {
-    url: "https://github.com/microsoft/vscode",
-    dst: "~/.cache/vscode",
-    depth: 1,
-    enabled: false,
-  },
-  {
-    url: "https://github.com/saem/vscode-nim",
-    dst: "~/.cache/scorpeon/nim",
-    enabled: false,
-  },
-  {
-    url: "https://github.com/oovm/vscode-toml",
-    dst: "~/.cache/scorpeon/toml",
-    enabled: false,
-  },
-  {
-    url: "https://github.com/emilast/vscode-logfile-highlighter",
-    dst: "~/.cache/scorpeon/log",
-    enabled: false,
-  },
   // all filetypes
-  {
-    url: "https://github.com/uga-rosa/scorpeon.vim",
-    enabled: !pluginStatus.vscode && false,
-    before: async ({ denops }) => {
-      await vars.g.set(denops, "scorpeon_extensions_path", [
-        await fn.expand(denops, "~/.cache/vscode/extensions"),
-        await fn.expand(denops, "~/.cache/scorpeon"),
-      ]);
-      await vars.g.set(denops, "scorpeon_highlight", {
-        enable: ["log", "toml", "nim"],
-      });
-      await autocmd.group(denops, "MyScorpeon", (helper) => {
-        helper.remove("*");
-        helper.define(["BufNewFile", "BufRead"], "*.log", "setl ft=log");
-        helper.define(["BufNewFile", "BufRead"], "*.nim", "setl ft=nim");
-        helper.define(["BufNewFile", "BufRead"], "*.toml", "setl ft=toml");
-      });
-    },
-    dependencies: [
-      "https://github.com/microsoft/vscode",
-      "https://github.com/saem/vscode-nim",
-      "https://github.com/oovm/vscode-toml",
-      "https://github.com/emilast/vscode-logfile-highlighter",
-    ],
-  },
   { url: "https://github.com/sheerun/vim-polyglot" },
   // plantuml
   {

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/10/03 09:29:01.
+// Last Change : 2024/10/05 10:05:58.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -84,6 +84,11 @@ export const util: Plug[] = [
         },
       });
     },
+  },
+  { url: "https://github.com/NvChad/volt" },
+  {
+    url: "https://github.com/NvChad/minty",
+    dependencies: [ "https://github.com/NvChad/volt" ],
   },
   {
     url: "https://github.com/junegunn/vim-easy-align",

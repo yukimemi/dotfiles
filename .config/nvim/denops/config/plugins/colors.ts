@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/10/05 09:38:04.
+// Last Change : 2024/10/05 10:19:15.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -57,6 +57,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/jsit/toast.vim" },
   { url: "https://github.com/kihachi2000/yash.nvim" },
   { url: "https://github.com/kjssad/quantum.vim" },
+  { url: "https://github.com/kwsp/halcyon-neovim" },
   { url: "https://github.com/kyoh86/momiji" },
   { url: "https://github.com/ldelossa/vimdark" },
   { url: "https://github.com/leviosa42/vim-github-theme" },
@@ -85,7 +86,6 @@ export const colors: Plug[] = [
   { url: "https://github.com/rebelot/kanagawa.nvim" },
   { url: "https://github.com/rhysd/vim-color-spring-night" },
   { url: "https://github.com/romgrk/github-light.vim" },
-  { url: "https://github.com/rose-pine" },
   { url: "https://github.com/rose-pine/neovim" },
   { url: "https://github.com/sainnhe/edge" },
   { url: "https://github.com/sainnhe/gruvbox-material" },
@@ -103,7 +103,6 @@ export const colors: Plug[] = [
   { url: "https://github.com/zacanger/angr.vim" },
   { url: "https://github.com/zefei/cake16" },
   { url: "https://github.com/zenbones-theme/zenbones.nvim" },
-  { url: "https://tinted-theming.github.io/base16-gallery" },
   {
     url: "https://github.com/crispybaccoon/evergarden",
     after: async ({ denops }) => {
@@ -188,6 +187,7 @@ export const colors: Plug[] = [
       "https://github.com/jsit/toast.vim",
       "https://github.com/kihachi2000/yash.nvim",
       "https://github.com/kjssad/quantum.vim",
+      "https://github.com/kwsp/halcyon-neovim",
       "https://github.com/kyoh86/momiji",
       "https://github.com/ldelossa/vimdark",
       "https://github.com/leviosa42/vim-github-theme",
@@ -217,7 +217,6 @@ export const colors: Plug[] = [
       "https://github.com/rhysd/vim-color-spring-night",
       "https://github.com/rmehri01/onenord.nvim",
       "https://github.com/romgrk/github-light.vim",
-      "https://github.com/rose-pine",
       "https://github.com/rose-pine/neovim",
       "https://github.com/sainnhe/edge",
       "https://github.com/sainnhe/gruvbox-material",
@@ -236,7 +235,6 @@ export const colors: Plug[] = [
       "https://github.com/zacanger/angr.vim",
       "https://github.com/zefei/cake16",
       "https://github.com/zenbones-theme/zenbones.nvim",
-      "https://tinted-theming.github.io/base16-gallery",
     ],
     before: async ({ denops }) => {
       await vars.g.set(denops, "spectrism_debug", false);
