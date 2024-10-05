@@ -55,7 +55,7 @@ export const main: Entrypoint = async (denops) => {
 
   const elapsed = performance.now() - starttime;
   await notify(denops, [`Config load completed !`, `Elapsed: (${elapsed})`]);
-  console.log(`Elapsed: (${elapsed})`);
+  console.log(`Config load completed ! Elapsed: (${elapsed})`);
 
   await denops.cmd(`
     command! -nargs=0 DvpmOpenLog call s:${denops.name}_notify("${
