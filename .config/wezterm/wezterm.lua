@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : wezterm.lua
 -- Author      : yukimemi
--- Last Change : 2024/10/05 15:04:39.
+-- Last Change : 2024/10/06 00:27:49.
 -- =============================================================================
 
 -- https://karukichi-blog.netlify.app/blogs/wezterm
@@ -103,6 +103,25 @@ local colors = {
   },
 }
 
+local function is_found(str, pattern)
+  return string.find(str, pattern) ~= nil
+end
+
+local function platform()
+  local is_win = is_found(wezterm.target_triple, "windows")
+  local is_linux = is_found(wezterm.target_triple, "linux")
+  local is_mac = is_found(wezterm.target_triple, "apple")
+  local os = is_win and "windows" or is_linux and "linux" or is_mac and "mac" or "unknown"
+  return {
+    os = os,
+    is_win = is_win,
+    is_linux = is_linux,
+    is_mac = is_mac,
+  }
+end
+
+local os = platform()
+
 wezterm.on("gui-startup", function(cmd)
   local tab, pane, window = mux.spawn_window(cmd or {})
   -- window:gui_window():maximize()
@@ -123,7 +142,7 @@ return {
   use_fancy_tab_bar = false,
   use_ime = true,
   window_background_opacity = 0.90,
-  font_size = 12.0,
+  font_size = os.is_mac and 20.0 or 12.0,
   font = wezterm.font_with_fallback({
     "PlemolJP Console NF",
     "UDEV Gothic NF",
