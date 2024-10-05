@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/10/05 10:05:58.
+// Last Change : 2024/10/05 19:41:46.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -557,5 +557,9 @@ export const util: Plug[] = [
   {
     url: "https://github.com/thinca/vim-localrc",
     cache: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/junkfile.vim",
+    afterFile: "~/.config/nvim/rc/after/junkfile.vim",
   },
 ];

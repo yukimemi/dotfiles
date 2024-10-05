@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/10/02 00:30:16.
+// Last Change : 2024/10/05 19:43:16.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -18,18 +18,6 @@ import { pluginStatus } from "../pluginstatus.ts";
 
 export const ddu: Plug[] = [
   {
-    url: "https://github.com/Shougo/junkfile.vim",
-    afterFile: "~/.config/nvim/rc/after/junkfile.vim",
-  },
-  {
-    url: "https://github.com/Milly/ddu-filter-kensaku",
-    dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
-  },
-  {
-    url: "https://github.com/yukimemi/ddu-source-chronicle",
-    dst: "~/src/github.com/yukimemi/ddu-source-chronicle",
-  },
-  {
     url: "https://github.com/Shougo/ddu-ui-filer",
     after: async ({ denops }) => {
       if (pluginStatus.ddufiler) {
@@ -41,9 +29,19 @@ export const ddu: Plug[] = [
       }
     },
   },
+  {
+    url: "https://github.com/Milly/ddu-filter-kensaku",
+    dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
+  },
+  {
+    url: "https://github.com/yukimemi/ddu-source-chronicle",
+    dst: "~/src/github.com/yukimemi/ddu-source-chronicle",
+  },
   { url: "https://github.com/4513ECHO/ddu-kind-url" },
   { url: "https://github.com/4513ECHO/ddu-source-source" },
   { url: "https://github.com/4513ECHO/vim-readme-viewer" },
+  { url: "https://github.com/Milly/ddu-filter-kensaku" },
+  { url: "https://github.com/Milly/ddu-filter-merge" },
   { url: "https://github.com/Shougo/ddu-column-filename" },
   { url: "https://github.com/Shougo/ddu-commands.vim" },
   { url: "https://github.com/Shougo/ddu-kind-file" },
@@ -58,6 +56,7 @@ export const ddu: Plug[] = [
   { url: "https://github.com/Shougo/ddu-source-path_history" },
   { url: "https://github.com/Shougo/ddu-source-register" },
   { url: "https://github.com/Shougo/ddu-ui-ff" },
+  { url: "https://github.com/Shougo/ddu-ui-filer" },
   { url: "https://github.com/kamecha/ddu-source-jumplist" },
   { url: "https://github.com/kuuote/ddu-filter-fuse" },
   { url: "https://github.com/kuuote/ddu-source-git_status" },
@@ -73,10 +72,7 @@ export const ddu: Plug[] = [
   { url: "https://github.com/uga-rosa/ddu-source-search_history" },
   { url: "https://github.com/yuki-yano/ddu-filter-fzf" },
   { url: "https://github.com/yuki-yano/ddu-source-nvim-notify" },
-  { url: "https://github.com/Milly/ddu-filter-merge" },
-  { url: "https://github.com/Milly/ddu-filter-kensaku" },
   { url: "https://github.com/yukimemi/ddu-source-chronicle" },
-  { url: "https://github.com/Shougo/ddu-ui-filer" },
   {
     url: "https://github.com/Shougo/ddu.vim",
     cache: { enabled: false },
@@ -84,6 +80,8 @@ export const ddu: Plug[] = [
       "https://github.com/4513ECHO/ddu-kind-url",
       "https://github.com/4513ECHO/ddu-source-source",
       "https://github.com/4513ECHO/vim-readme-viewer",
+      "https://github.com/Milly/ddu-filter-kensaku",
+      "https://github.com/Milly/ddu-filter-merge",
       "https://github.com/Shougo/ddu-column-filename",
       "https://github.com/Shougo/ddu-commands.vim",
       "https://github.com/Shougo/ddu-kind-file",
@@ -98,6 +96,8 @@ export const ddu: Plug[] = [
       "https://github.com/Shougo/ddu-source-path_history",
       "https://github.com/Shougo/ddu-source-register",
       "https://github.com/Shougo/ddu-ui-ff",
+      "https://github.com/Shougo/ddu-ui-filer",
+      "https://github.com/Shougo/junkfile.vim",
       "https://github.com/kamecha/ddu-source-jumplist",
       "https://github.com/kuuote/ddu-filter-fuse",
       "https://github.com/kuuote/ddu-source-git_status",
@@ -113,10 +113,7 @@ export const ddu: Plug[] = [
       "https://github.com/uga-rosa/ddu-source-search_history",
       "https://github.com/yuki-yano/ddu-filter-fzf",
       "https://github.com/yuki-yano/ddu-source-nvim-notify",
-      "https://github.com/Milly/ddu-filter-merge",
-      "https://github.com/Milly/ddu-filter-kensaku",
       "https://github.com/yukimemi/ddu-source-chronicle",
-      "https://github.com/Shougo/ddu-ui-filer",
     ],
     before: async ({ denops }) => {
       await mapping.map(denops, "q:", "<cmd>Ddu command_history<cr>", {
