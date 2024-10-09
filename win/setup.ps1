@@ -73,6 +73,7 @@ function Install-RequiredModules {
   Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
   & msiexec /i $nvimMsi /quiet
   # winget install -q Neovim.Neovim
+  winget install -q wez.wezterm
   winget install -q astral-sh.uv
   winget install -q gerardog.gsudo
   winget install -q NuShell.NuShell
