@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/10/06 00:25:30.
+// Last Change : 2024/10/08 13:41:45.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -17,8 +17,8 @@ import { pluginStatus } from "../pluginstatus.ts";
 
 export const ui: Plug[] = [
   { url: "https://github.com/lambdalisue/vim-seethrough" },
-  { url: "https://github.com/andymass/vim-matchup" },
-  { url: "https://github.com/mopp/smartnumber.vim", enabled: true },
+  { url: "https://github.com/andymass/vim-matchup", enabled: false },
+  { url: "https://github.com/mopp/smartnumber.vim", enabled: false },
   { url: "https://github.com/sitiom/nvim-numbertoggle", enabled: false },
   {
     url: "https://github.com/Isrothy/neominimap.nvim",
@@ -290,7 +290,6 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/tzachar/highlight-undo.nvim",
-    enabled: false,
     after: async ({ denops }) => {
       await denops.call(
         `luaeval`,

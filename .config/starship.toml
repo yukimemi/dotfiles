@@ -1,11 +1,13 @@
 # =============================================================================
 # File        : starship.toml
 # Author      : yukimemi
-# Last Change : 2024/07/06 20:56:17.
+# Last Change : 2024/10/09 21:16:38.
 # =============================================================================
 
 format = """$all"""
 right_format = """$time"""
+scan_timeout = 10
+command_timeout = 10
 
 [os]
 disabled = true
@@ -36,3 +38,5 @@ success_symbol = "[➤ ](#F05F8D)"
 error_symbol = "[➤ ](red)"
 vimcmd_symbol = "[◀◀ ](green)"
 
+[python]
+disabled = true
