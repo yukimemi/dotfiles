@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : size-matters.lua
 -- Author      : yukimemi
--- Last Change : 2023/12/04 01:33:27.
+-- Last Change : 2024/10/10 08:22:20.
 -- =============================================================================
 
 require("size-matters").setup({
@@ -17,7 +17,7 @@ require("size-matters").setup({
     -- after a font size change can affect the position of the notification. Displaying it with a delay remedies this.
     delay = 200,
   },
-  reset_font = vim.api.nvim_get_option("guifont"), -- Font loaded when using the reset cmd / shortcut
+  reset_font = vim.api.nvim_get_option_value("guifont"), -- Font loaded when using the reset cmd / shortcut
 })
 
 vim.keymap.set("n", "+", "<cmd>FontSizeUp<cr>")

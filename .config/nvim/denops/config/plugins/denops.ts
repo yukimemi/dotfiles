@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/10/01 23:58:35.
+// Last Change : 2024/10/10 08:43:39.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -93,6 +93,8 @@ export const denops: Plug[] = [
         "list",
         "qf",
         "quickfix",
+        "NvimTree",
+        "TelescopePrompt",
       ]);
     },
   },
@@ -124,6 +126,8 @@ export const denops: Plug[] = [
         "log",
         "qf",
         "quickfix",
+        "NvimTree",
+        "TelescopePrompt",
       ]);
     },
   },

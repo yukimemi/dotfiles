@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : eyeliner.lua
 -- Author      : yukimemi
--- Last Change : 2024/09/01 21:24:33.
+-- Last Change : 2024/10/10 08:39:33.
 -- =============================================================================
 
 require 'eyeliner'.setup({
@@ -9,7 +9,7 @@ require 'eyeliner'.setup({
   highlight_on_key = true,
 
   -- dim all other characters if set to true (recommended!)
-  dim = truefalse,
+  dim = true,
 
   -- set the maximum number of characters eyeliner.nvim will check from
   -- your current cursor position; this is useful if you are dealing with

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/10/08 13:41:45.
+// Last Change : 2024/10/10 08:45:10.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -74,10 +74,7 @@ export const ui: Plug[] = [
     url: "https://github.com/jinh0/eyeliner.nvim",
     afterFile: `~/.config/nvim/rc/after/eyeliner.lua`,
   },
-  {
-    url: "https://github.com/deris/vim-shot-f",
-    enabled: false,
-  },
+  { url: "https://github.com/deris/vim-shot-f", enabled: false },
   {
     url: "https://github.com/mei28/luminate.nvim",
     enabled: false,
@@ -91,39 +88,14 @@ export const ui: Plug[] = [
       await denops.cmd(`lua require("visual-eof").setup()`);
     },
   },
-  { url: "https://github.com/DanilaMihailov/beacon.nvim" },
+  { url: "https://github.com/DanilaMihailov/beacon.nvim", enabled: false },
   {
     url: "https://github.com/mvllow/modes.nvim",
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("modes").setup(_A)`, {
-        colors: {
-          copy: "#f5c359",
-          delete: "#c75c6a",
-          insert: "#78ccc5",
-          visual: "#9745be",
-        },
-
-        // Set opacity for cursorline and number background
-        line_opacity: 0.15,
-
-        // Enable cursor highlights
-        set_cursor: true,
-
-        // Enable cursorline initially, and disable cursorline for inactive windows
-        // or ignored filetypes
-        set_cursorline: true,
-
-        // Enable line number highlights to match cursorline
-        set_number: true,
-
-        // Disable modes highlights in specified filetypes
-        // Please PR commonly ignored filetypes
-        ignore_filetypes: ["NvimTree", "TelescopePrompt"],
-      });
-    },
+    afterFile: `~/.config/nvim/rc/after/modes.lua`,
   },
   {
     url: "https://github.com/gen740/SmoothCursor.nvim",
+    enabled: false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("smoothcursor").setup(_A)`, {
         autostart: true,
