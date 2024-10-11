@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/10/10 08:45:10.
+// Last Change : 2024/10/10 11:55:07.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -18,7 +18,7 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const ui: Plug[] = [
   { url: "https://github.com/lambdalisue/vim-seethrough" },
   { url: "https://github.com/andymass/vim-matchup", enabled: false },
-  { url: "https://github.com/mopp/smartnumber.vim", enabled: false },
+  { url: "https://github.com/mopp/smartnumber.vim", enabled: true },
   { url: "https://github.com/sitiom/nvim-numbertoggle", enabled: false },
   {
     url: "https://github.com/Isrothy/neominimap.nvim",
@@ -262,6 +262,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/tzachar/highlight-undo.nvim",
+    enabled: false,
     after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
@@ -327,7 +328,7 @@ export const ui: Plug[] = [
       await denops.cmd(`lua require("flirt").setup()`);
     },
   },
-  { url: "https://github.com/gw31415/scrollUptoLastLine.vim" },
+  { url: "https://github.com/gw31415/scrollUptoLastLine.vim", enabled: false },
   {
     url: "https://github.com/moyiz/command-and-cursor.nvim",
     enabled: false,
@@ -357,6 +358,6 @@ export const ui: Plug[] = [
     url: "https://github.com/shortcuts/no-neck-pain.nvim",
     enabled: false,
   },
-  { url: "https://github.com/haolian9/gary.nvim" },
+  { url: "https://github.com/haolian9/gary.nvim", enabled: false },
   { url: "https://github.com/thinca/vim-zenspace" },
 ];

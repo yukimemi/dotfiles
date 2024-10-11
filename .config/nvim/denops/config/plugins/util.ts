@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/10/10 08:38:15.
+// Last Change : 2024/10/10 11:55:39.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -501,7 +501,7 @@ export const util: Plug[] = [
     },
   },
   { url: "https://github.com/Milly/deno-protocol.vim" },
-  { url: "https://github.com/vim-jp-radio/vim-jp-radio.vim" },
+  { url: "https://github.com/vim-jp-radio/vim-jp-radio.vim", enabled: false },
   {
     url: "https://github.com/fouladi/ccrypt-wrapper.nvim",
     enabled: false,
@@ -526,6 +526,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/HakonHarnes/img-clip.nvim",
+    enabled: false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("img-clip").setup()`);
     },
