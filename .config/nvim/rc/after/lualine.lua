@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : lualine.lua
 -- Author      : yukimemi
--- Last Change : 2024/05/25 13:16:47.
+-- Last Change : 2024/10/12 21:50:56.
 -- =============================================================================
 
 -- Eviline config for lualine
@@ -185,6 +185,13 @@ ins_left({
 ins_left({
   "overseer",
   color = { fg = colors.orange },
+})
+
+ins_right({
+  function()
+    return require("pomodoro").get_pomodoro_status()
+  end,
+  color = { fg = colors.violet, gui = "bold" },
 })
 
 -- Add components to right sections

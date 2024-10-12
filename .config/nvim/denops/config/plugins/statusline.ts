@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : statusline.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 23:15:34.
+// Last Change : 2024/10/12 21:47:46.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -24,6 +24,9 @@ export const statusline: Plug[] = [
   {
     url: "https://github.com/nvim-lualine/lualine.nvim",
     enabled: pluginStatus.lualine,
+    dependencies: [
+      "https://github.com/QuentinGruber/pomodoro.nvim",
+    ],
     afterFile: `~/.config/nvim/rc/after/lualine.lua`,
   },
   {
