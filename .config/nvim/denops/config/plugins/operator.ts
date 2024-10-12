@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : operator.ts
 // Author      : yukimemi
-// Last Change : 2024/10/02 00:58:49.
+// Last Change : 2024/10/13 01:44:06.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -20,6 +20,7 @@ export const operator: Plug[] = [
   },
   {
     url: "https://github.com/tyru/operator-html-escape.vim",
+    enabled: false,
     dependencies: ["https://github.com/kana/vim-operator-user"],
     before: async ({ denops }) => {
       await mapping.map(denops, "<c-h>", "<Plug>(operator-html-escape)", {
