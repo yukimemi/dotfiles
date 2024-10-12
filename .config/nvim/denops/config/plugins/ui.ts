@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/10/10 11:55:07.
+// Last Change : 2024/10/12 23:53:09.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -43,10 +43,14 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/lukas-reineke/virt-column.nvim",
-    enabled: pluginStatus.virtcolumn,
+    enabled: pluginStatus.virt_column,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("virt-column").setup()`);
     },
+  },
+  {
+    url: "https://github.com/xiyaowong/virtcolumn.nvim",
+    enabled: pluginStatus.virtcolumn,
   },
   {
     url: "https://github.com/ecthelionvi/NeoColumn.nvim",
@@ -360,4 +364,11 @@ export const ui: Plug[] = [
   },
   { url: "https://github.com/haolian9/gary.nvim", enabled: false },
   { url: "https://github.com/thinca/vim-zenspace" },
+  {
+    url: "https://github.com/Abizrh/beastie.nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("beastie").setup()`);
+    },
+  },
+  { url: "https://github.com/ikouchiha47/games.nvim" },
 ];

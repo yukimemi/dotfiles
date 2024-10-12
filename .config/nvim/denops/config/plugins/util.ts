@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/10/12 21:47:09.
+// Last Change : 2024/10/13 00:08:23.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -86,11 +86,14 @@ export const util: Plug[] = [
       });
     },
   },
-  { url: "https://github.com/NvChad/volt", enabled: false },
+  { url: "https://github.com/NvChad/volt", enabled: true },
   {
     url: "https://github.com/NvChad/minty",
-    enabled: false,
+    enabled: true,
     dependencies: ["https://github.com/NvChad/volt"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("minty").setup()`);
+    },
   },
   {
     url: "https://github.com/junegunn/vim-easy-align",
@@ -280,9 +283,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/folke/todo-comments.nvim",
-    dependencies: [
-      "https://github.com/nvim-lua/plenary.nvim",
-    ],
+    dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     after: async ({ denops }) => {
       await denops.cmd(`lua require("todo-comments").setup()`);
     },
@@ -417,6 +418,10 @@ export const util: Plug[] = [
   },
   { url: "https://github.com/thinca/vim-prettyprint" },
   { url: "https://github.com/skanehira/denops-silicon.vim", enabled: false },
+  {
+    url: "https://github.com/michaelrommel/nvim-silicon",
+    afterFile: "~/.config/nvim/rc/after/nvim-silicon.lua",
+  },
   {
     url: "https://github.com/kkharji/sqlite.lua",
     enabled: Deno.build.os !== "windows",
@@ -557,5 +562,18 @@ export const util: Plug[] = [
   {
     url: "https://github.com/QuentinGruber/pomodoro.nvim",
     afterFile: "~/.config/nvim/rc/after/pomodoro.lua",
+  },
+  {
+    url: "https://github.com/Zeioth/hot-reload.nvim",
+    dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("hot-reload").eetup()`);
+    },
+  },
+  {
+    url: "https://github.com/BlankTiger/aqf.nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("aqf").setup()`);
+    },
   },
 ];

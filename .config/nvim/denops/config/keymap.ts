@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : keymap.ts
 // Author      : yukimemi
-// Last Change : 2024/09/08 19:52:20.
+// Last Change : 2024/10/12 23:31:34.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.2.0/lambda";
@@ -101,6 +101,10 @@ export async function setKeymapPre(denops: Denops) {
     // https://blog.atusy.net/2024/09/06/linewise-zf/
     await mapping.map(denops, "zf", "zfV", { mode: "n" });
     await mapping.map(denops, "zf", "mode() ==# 'V' ? 'zf' : 'Vzf'", { mode: "v", expr: true });
+
+    // https://zenn.dev/vim_jp/articles/43d021f461f3a4#%E7%A9%BA%E8%A1%8C%E3%81%A7%E3%81%AE%E7%B7%A8%E9%9B%86%E9%96%8B%E5%A7%8B%E6%99%82%E3%81%AB%E8%87%AA%E5%8B%95%E3%81%A7%E3%82%A4%E3%83%B3%E3%83%87%E3%83%B3%E3%83%88
+    await mapping.map(denops, "i", `empty(getline('.')) ? '"_cc' : 'i'`, { mode: "n", expr: true });
+    await mapping.map(denops, "A", `empty(getline('.')) ? '"_cc' : 'A'`, { mode: "n", expr: true });
 
     await mapping.map(
       denops,

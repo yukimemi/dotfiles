@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : lualine.lua
 -- Author      : yukimemi
--- Last Change : 2024/10/12 21:50:56.
+-- Last Change : 2024/10/13 00:04:40.
 -- =============================================================================
 
 -- Eviline config for lualine
@@ -89,7 +89,7 @@ ins_left({
   function()
     return "▊"
   end,
-  color = { fg = colors.magenta }, -- Sets highlighting of component
+  color = { fg = colors.magenta },   -- Sets highlighting of component
   padding = { left = 0, right = 1 }, -- We don't need space before this
 })
 
@@ -182,6 +182,7 @@ ins_left({
   icon = " LSP:",
   color = { fg = "#ffffff", gui = "bold" },
 })
+ins_left({ "lsp-status" })
 ins_left({
   "overseer",
   color = { fg = colors.orange },
@@ -196,7 +197,7 @@ ins_right({
 
 -- Add components to right sections
 ins_right({
-  "o:encoding", -- option component same as &encoding in viml
+  "o:encoding",       -- option component same as &encoding in viml
   fmt = string.upper, -- i'm not sure why it's upper case either ;)
   cond = conditions.hide_in_width,
   color = { fg = colors.green, gui = "bold" },

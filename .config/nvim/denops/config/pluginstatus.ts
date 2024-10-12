@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2024/10/12 21:09:25.
+// Last Change : 2024/10/12 23:53:02.
 // =============================================================================
 
 export const pluginStatus = {
@@ -43,6 +43,7 @@ export const pluginStatus = {
   windows: true,
   yankround: true,
   yanky: false,
+  virt_column: false,
   virtcolumn: true,
   neocolumn: false,
   quickrun: true,

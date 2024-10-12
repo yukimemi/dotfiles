@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/10/05 10:19:15.
+// Last Change : 2024/10/12 23:44:59.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -99,10 +99,23 @@ export const colors: Plug[] = [
   { url: "https://github.com/tiagovla/tokyodark.nvim" },
   { url: "https://github.com/tobi-wan-kenobi/zengarden" },
   { url: "https://github.com/yasukotelin/shirotelin" },
+  { url: "https://github.com/yorik1984/newpaper.nvim" },
   { url: "https://github.com/yuttie/hydrangea-vim" },
   { url: "https://github.com/zacanger/angr.vim" },
   { url: "https://github.com/zefei/cake16" },
   { url: "https://github.com/zenbones-theme/zenbones.nvim" },
+  {
+    url: "https://github.com/Zeioth/neon.nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("neon").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/diegoulloao/neofusion.nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("neofusion").setup()`);
+    },
+  },
   {
     url: "https://github.com/crispybaccoon/evergarden",
     after: async ({ denops }) => {
@@ -152,6 +165,7 @@ export const colors: Plug[] = [
       "https://github.com/PHSix/nvim-hybrid",
       "https://github.com/RRethy/nvim-base16",
       "https://github.com/Rigellute/rigel",
+      "https://github.com/Zeioth/neon.nvim",
       "https://github.com/adrian5/oceanic-next-vim",
       "https://github.com/aereal/vim-colors-japanesque",
       "https://github.com/ajlende/atlas.vim",
@@ -169,6 +183,7 @@ export const colors: Plug[] = [
       "https://github.com/cseelus/vim-colors-lucid",
       "https://github.com/daltonmenezes/aura-theme",
       "https://github.com/daschw/leaf.nvim",
+      "https://github.com/diegoulloao/neofusion.nvim",
       "https://github.com/doums/darcula",
       "https://github.com/dracula/vim",
       "https://github.com/drewtempelmeyer/palenight.vim",
@@ -231,6 +246,7 @@ export const colors: Plug[] = [
       "https://github.com/tiagovla/tokyodark.nvim",
       "https://github.com/tobi-wan-kenobi/zengarden",
       "https://github.com/yasukotelin/shirotelin",
+      "https://github.com/yorik1984/newpaper.nvim",
       "https://github.com/yuttie/hydrangea-vim",
       "https://github.com/zacanger/angr.vim",
       "https://github.com/zefei/cake16",
