@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/10/02 00:33:48.
+// Last Change : 2024/10/12 20:39:35.
 // =============================================================================
 
 import { pluginStatus } from "./pluginstatus.ts";
@@ -10,6 +10,7 @@ import { ai } from "./plugins/ai.ts";
 import { bluesky } from "./plugins/bluesky.ts";
 import { clap } from "./plugins/clap.ts";
 import { cmp } from "./plugins/cmp.ts";
+import { blink } from "./plugins/blink.ts";
 import { coc } from "./plugins/coc.ts";
 import { colors } from "./plugins/colors.ts";
 import { ddc } from "./plugins/ddc.ts";
@@ -89,6 +90,9 @@ if (pluginStatus.coc) {
 }
 if (pluginStatus.cmp) {
   plugins.push(...cmp);
+}
+if (pluginStatus.blink) {
+  plugins.push(...blink);
 }
 if (pluginStatus.ddu) {
   plugins.push(...ddu);
