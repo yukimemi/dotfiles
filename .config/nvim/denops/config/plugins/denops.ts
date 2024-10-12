@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/10/10 08:43:39.
+// Last Change : 2024/10/12 12:02:06.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -84,17 +84,23 @@ export const denops: Plug[] = [
         ],
       });
       await vars.g.set(denops, "autocursor_ignore_filetypes", [
+        "NvimTree",
+        "TelescopePrompt",
+        "aerial",
+        "coc-explorer",
         "ctrlp",
+        "ddu",
         "ddu-ff",
         "ddu-ff-filter",
         "ddu-filer",
-        "scanwalker",
-        "scanwalker-filter",
+        "gundo",
         "list",
+        "neo-tree",
         "qf",
         "quickfix",
-        "NvimTree",
-        "TelescopePrompt",
+        "scanwalker",
+        "scanwalker-filter",
+        "undotree",
       ]);
     },
   },
@@ -113,21 +119,27 @@ export const denops: Plug[] = [
         "InsertLeave",
       ]);
       await vars.g.set(denops, "silentsaver_ignore_filetypes", [
+        "NvimTree",
+        "TelescopePrompt",
+        "aerial",
+        "coc-explorer",
         "csv",
         "ctrlp",
+        "ddu",
         "ddu-ff",
         "ddu-ff-filter",
         "ddu-filer",
-        "scanwalker",
-        "scanwalker-filter",
         "gin-diff",
         "gin-status",
+        "gundo",
         "list",
         "log",
+        "neo-tree",
         "qf",
         "quickfix",
-        "NvimTree",
-        "TelescopePrompt",
+        "scanwalker",
+        "scanwalker-filter",
+        "undotree",
       ]);
     },
   },

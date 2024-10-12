@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/10/10 11:55:39.
+// Last Change : 2024/10/12 12:01:39.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -214,13 +214,22 @@ export const util: Plug[] = [
           buftype: ["quickfix"],
           filetype: [
             "NvimTree",
-            "neo-tree",
-            "coc-explorer",
-            "undotree",
-            "gundo",
+            "TelescopePrompt",
             "aerial",
+            "coc-explorer",
+            "ctrlp",
             "ddu",
             "ddu-ff",
+            "ddu-ff-filter",
+            "ddu-filer",
+            "gundo",
+            "list",
+            "neo-tree",
+            "qf",
+            "quickfix",
+            "scanwalker",
+            "scanwalker-filter",
+            "undotree",
           ],
         },
         animation: {
