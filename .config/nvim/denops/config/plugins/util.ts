@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/10/12 12:01:39.
+// Last Change : 2024/10/12 21:10:16.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
@@ -9,6 +9,7 @@ import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
 import * as fn from "jsr:@denops/std@7.2.0/function";
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import * as vars from "jsr:@denops/std@7.2.0/variable";
+import { pluginStatus } from "../pluginstatus.ts";
 
 export const util: Plug[] = [
   {
@@ -192,11 +193,11 @@ export const util: Plug[] = [
   { url: "https://github.com/vim-jp/vital.vim", enabled: false },
   { url: "https://github.com/hrsh7th/vim-vital-vs", enabled: false },
   { url: "https://github.com/chrisbra/Recover.vim" },
-  { url: "https://github.com/anuvyklack/middleclass", enabled: false },
-  { url: "https://github.com/anuvyklack/animation.nvim", enabled: false },
+  { url: "https://github.com/anuvyklack/middleclass", enabled: pluginStatus.windows },
+  { url: "https://github.com/anuvyklack/animation.nvim", enabled: pluginStatus.windows },
   {
     url: "https://github.com/anuvyklack/windows.nvim",
-    enabled: false,
+    enabled: pluginStatus.windows,
     dependencies: [
       "https://github.com/anuvyklack/middleclass",
       "https://github.com/anuvyklack/animation.nvim",
