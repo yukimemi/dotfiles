@@ -1,9 +1,7 @@
 -- =============================================================================
 -- File        : dmacro.lua
 -- Author      : yukimemi
--- Last Change : 2024/04/07 08:42:28.
+-- Last Change : 2024/10/12 21:07:51.
 -- =============================================================================
 
-require("dmacro").setup({
-  dmacro_key = "<Down>", --  you need to set the dmacro_key
-})
+vim.keymap.set({ "i", "n" }, '<Down>', '<Plug>(dmacro-play-macro)')
