@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/10/13 18:38:03.
+// Last Change : 2024/10/13 21:44:01.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -291,6 +291,9 @@ export const denops: Plug[] = [
       });
       await mapping.map(denops, "<space>wc", "<cmd>AsyncWalk --path=~/.cache<cr>", { mode: "n" });
       await mapping.map(denops, "<space>wj", "<cmd>AsyncWalk --path=~/.cache/junkfile<cr>", {
+        mode: "n",
+      });
+      await mapping.map(denops, "<space>wr", "<cmd>AsyncWalkResume<cr>", {
         mode: "n",
       });
     },
