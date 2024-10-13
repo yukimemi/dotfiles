@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/10/12 12:02:06.
+// Last Change : 2024/10/13 18:38:03.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -98,8 +98,8 @@ export const denops: Plug[] = [
         "neo-tree",
         "qf",
         "quickfix",
-        "scanwalker",
-        "scanwalker-filter",
+        "asyncwalker",
+        "asyncwalker-filter",
         "undotree",
       ]);
     },
@@ -137,51 +137,51 @@ export const denops: Plug[] = [
         "neo-tree",
         "qf",
         "quickfix",
-        "scanwalker",
-        "scanwalker-filter",
+        "asyncwalker",
+        "asyncwalker-filter",
         "undotree",
       ]);
     },
   },
   {
-    url: "https://github.com/yukimemi/dps-asyngrep",
-    dst: "~/src/github.com/yukimemi/dps-asyngrep",
+    url: "https://github.com/yukimemi/asyncsearcher.vim",
+    dst: "~/src/github.com/yukimemi/asyncsearcher.vim",
     before: async ({ denops }) => {
-      await vars.g.set(denops, "asyngrep_debug", false);
+      await vars.g.set(denops, "asyncsearcher_debug", false);
       await vars.g.set(
         denops,
-        "asyngrep_cfg_path",
-        await fn.expand(denops, "~/.config/asyngrep/asyngrep.toml"),
+        "asyncsearcher_cfg_path",
+        await fn.expand(denops, "~/.config/asyncsearcher/asyncsearcher.toml"),
       );
       await option.grepformat.set(denops, "%f:%l:%c:%m");
 
-      await mapping.map(denops, "<space>ss", "<cmd>Agp<cr>", { mode: "n" });
-      await mapping.map(denops, "<space>sr", "<cmd>Agp --tool=ripgrep<cr>", {
+      await mapping.map(denops, "<space>ss", "<cmd>AsyncSearch<cr>", { mode: "n" });
+      await mapping.map(denops, "<space>sr", "<cmd>AsyncSearch --tool=ripgrep<cr>", {
         mode: "n",
       });
-      await mapping.map(denops, "<space>sp", "<cmd>Agp --tool=pt<cr>", {
+      await mapping.map(denops, "<space>sp", "<cmd>AsyncSearch --tool=pt<cr>", {
         mode: "n",
       });
-      await mapping.map(denops, "<space>sj", "<cmd>Agp --tool=jvgrep<cr>", {
+      await mapping.map(denops, "<space>sj", "<cmd>AsyncSearch --tool=jvgrep<cr>", {
         mode: "n",
       });
 
       await mapping.map(
         denops,
         "<space>sS",
-        "<cmd>Agp --tool=default-all<cr>",
+        "<cmd>AsyncSearch --tool=default-all<cr>",
         { mode: "n" },
       );
       await mapping.map(
         denops,
         "<space>sR",
-        "<cmd>Agp --tool=ripgrep-all<cr>",
+        "<cmd>AsyncSearch --tool=ripgrep-all<cr>",
         { mode: "n" },
       );
-      await mapping.map(denops, "<space>sP", "<cmd>Agp --tool=pt-all<cr>", {
+      await mapping.map(denops, "<space>sP", "<cmd>AsyncSearch --tool=pt-all<cr>", {
         mode: "n",
       });
-      await mapping.map(denops, "<space>sJ", "<cmd>Agp --tool=jvgrep-all<cr>", {
+      await mapping.map(denops, "<space>sJ", "<cmd>AsyncSearch --tool=jvgrep-all<cr>", {
         mode: "n",
       });
     },
@@ -278,19 +278,19 @@ export const denops: Plug[] = [
     },
   },
   {
-    url: "https://github.com/yukimemi/scanwalker.vim",
-    dst: "~/src/github.com/yukimemi/scanwalker.vim",
+    url: "https://github.com/yukimemi/asyncwalker.vim",
+    dst: "~/src/github.com/yukimemi/asyncwalker.vim",
     before: async ({ denops }) => {
-      await mapping.map(denops, "mw", "<cmd>ScanWalk<cr>", { mode: "n" });
-      await mapping.map(denops, "ms", "<cmd>ScanWalk --path=~/src<cr>", { mode: "n" });
-      await mapping.map(denops, "mD", "<cmd>ScanWalk --path=~/.dotfiles<cr>", { mode: "n" });
-      await mapping.map(denops, "mC", "<cmd>ScanWalk --path=~/.cache<cr>", { mode: "n" });
-      await mapping.map(denops, "md", "<cmd>ScanWalkBufferDir<cr>", { mode: "n" });
-      await mapping.map(denops, "mM", "<cmd>ScanWalk --path=~/.memolist<cr>", {
+      await mapping.map(denops, "mw", "<cmd>AsyncWalk<cr>", { mode: "n" });
+      await mapping.map(denops, "ms", "<cmd>AsyncWalk --path=~/src<cr>", { mode: "n" });
+      await mapping.map(denops, "mD", "<cmd>AsyncWalk --path=~/.dotfiles<cr>", { mode: "n" });
+      await mapping.map(denops, "mC", "<cmd>AsyncWalk --path=~/.cache<cr>", { mode: "n" });
+      await mapping.map(denops, "md", "<cmd>AsyncWalkBufferDir<cr>", { mode: "n" });
+      await mapping.map(denops, "mM", "<cmd>AsyncWalk --path=~/.memolist<cr>", {
         mode: "n",
       });
-      await mapping.map(denops, "<space>wc", "<cmd>ScanWalk --path=~/.cache<cr>", { mode: "n" });
-      await mapping.map(denops, "<space>wj", "<cmd>ScanWalk --path=~/.cache/junkfile<cr>", {
+      await mapping.map(denops, "<space>wc", "<cmd>AsyncWalk --path=~/.cache<cr>", { mode: "n" });
+      await mapping.map(denops, "<space>wj", "<cmd>AsyncWalk --path=~/.cache/junkfile<cr>", {
         mode: "n",
       });
     },

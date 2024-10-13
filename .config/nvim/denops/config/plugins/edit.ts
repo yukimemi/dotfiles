@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2024/10/01 23:59:50.
+// Last Change : 2024/10/13 18:05:59.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -152,7 +152,7 @@ export const edit: Plug[] = [
   { url: "https://github.com/itchyny/vim-qfedit" },
   {
     url: "https://github.com/tani/vim-typo",
-    enabled: true,
+    enabled: false,
     before: async ({ denops }) => {
       await autocmd.group(denops, "MyTypoSettings", (helper) => {
         helper.remove("*");
