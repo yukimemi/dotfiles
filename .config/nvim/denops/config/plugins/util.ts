@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/10/13 00:08:23.
+// Last Change : 2024/10/13 11:36:00.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
 
 import * as fn from "jsr:@denops/std@7.2.0/function";
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
@@ -567,7 +567,7 @@ export const util: Plug[] = [
     url: "https://github.com/Zeioth/hot-reload.nvim",
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("hot-reload").eetup()`);
+      await denops.call(`luaeval`, `require("hot-reload").setup({})`);
     },
   },
   {

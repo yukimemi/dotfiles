@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : neotree.ts
 // Author      : yukimemi
-// Last Change : 2024/10/02 00:32:18.
+// Last Change : 2024/10/13 12:43:25.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
 
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 import { pluginStatus } from "../pluginstatus.ts";
@@ -18,7 +18,7 @@ export const neotree: Plug[] = [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/nvim-tree/nvim-web-devicons",
       "https://github.com/MunifTanjim/nui.nvim",
-      "https://github.com/s1n7ax/nvim-window-picker",
+      // "https://github.com/s1n7ax/nvim-window-picker",
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("neo-tree").setup(_A)`, {

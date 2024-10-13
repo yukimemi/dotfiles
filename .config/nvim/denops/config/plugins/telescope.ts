@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : telescope.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 18:43:22.
+// Last Change : 2024/10/13 12:41:32.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
 
 export const telescope: Plug[] = [
   {
@@ -52,13 +52,12 @@ export const telescope: Plug[] = [
       afterFile: "~/.config/nvim/rc/after/telescope.lua",
     },
     dependencies: [
-      "https://github.com/folke/which-key.nvim",
       "https://github.com/folke/trouble.nvim",
       "https://github.com/nvim-telescope/telescope-symbols.nvim",
       "https://github.com/nvim-telescope/telescope-file-browser.nvim",
       "https://github.com/nvim-telescope/telescope-project.nvim",
       "https://github.com/fdschmidt93/telescope-egrepify.nvim",
-      "https://github.com/tom-anders/telescope-vim-bookmarks.nvim",
+      // "https://github.com/tom-anders/telescope-vim-bookmarks.nvim",
     ],
   },
 ];

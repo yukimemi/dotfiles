@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : blink.ts
 // Author      : yukimemi
-// Last Change : 2024/10/13 00:35:20.
+// Last Change : 2024/10/13 12:46:04.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.0.7";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
 
 export const blink: Plug[] = [
   {
@@ -12,6 +12,9 @@ export const blink: Plug[] = [
     dependencies: ["https://github.com/rafamadriz/friendly-snippets"],
     afterFile: `~/.config/nvim/rc/after/blink.lua`,
     build: async ({ info }) => {
+      if (!info.isLoad && info.isUpdate) {
+        return;
+      }
       const build = async (command: string, args: string[]) => {
         console.log(`blink.cmp build start: "${command}" "${args.join(" ")}"`);
         const cmd = new Deno.Command(command, { args, cwd: info.dst });
