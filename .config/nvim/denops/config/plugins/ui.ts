@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/10/13 01:44:21.
+// Last Change : 2024/10/13 23:01:50.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -64,8 +64,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/RRethy/vim-illuminate",
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "nvim",
+    enabled: true,
   },
   {
     url: "https://github.com/unblevable/quick-scope",
@@ -84,7 +83,7 @@ export const ui: Plug[] = [
     enabled: false,
     afterFile: `~/.config/nvim/rc/after/luminate.lua`,
   },
-  { url: "https://github.com/itchyny/vim-parenmatch" },
+  { url: "https://github.com/itchyny/vim-parenmatch", enabled: false },
   { url: "https://github.com/ntpeters/vim-better-whitespace" },
   {
     url: "https://github.com/LumaKernel/nvim-visual-eof.lua",
