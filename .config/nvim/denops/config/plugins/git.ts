@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/09/30 00:48:59.
+// Last Change : 2024/10/14 11:51:13.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -107,5 +107,10 @@ export const git: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("git-conflict").setup()`);
     },
+  },
+  {
+    url: "https://github.com/2KAbhishek/octohub.nvim",
+    enabled: false,
+    afterFile: `~/.config/nvim/rc/after/octohub.lua`,
   },
 ];

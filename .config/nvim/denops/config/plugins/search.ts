@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 18:53:17.
+// Last Change : 2024/10/14 12:01:07.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -34,7 +34,7 @@ export const search: Plug[] = [
     dependencies: [
       "https://github.com/haya14busa/vim-asterisk",
     ],
-    beforeFile: "~/.config/nvim/rc/beforeSource/nvim-hlslens.lua",
+    beforeFile: "~/.config/nvim/rc/before/nvim-hlslens.lua",
   },
   {
     url: "https://github.com/nvim-pack/nvim-spectre",
