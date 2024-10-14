@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-treesitter.lua
 -- Author      : yukimemi
--- Last Change : 2024/10/02 01:04:11.
+-- Last Change : 2024/10/14 17:20:30.
 -- =============================================================================
 
 require("nvim-treesitter.configs").setup({
@@ -16,6 +16,7 @@ require("nvim-treesitter.configs").setup({
     "typescript",
     "vim",
     "vimdoc",
+    "xml",
   },
   sync_install = false,
   auto_install = true,
