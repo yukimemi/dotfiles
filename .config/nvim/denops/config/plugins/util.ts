@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/10/13 11:36:00.
+// Last Change : 2024/10/14 12:59:02.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -195,7 +195,10 @@ export const util: Plug[] = [
   { url: "https://github.com/ryoppippi/bad-apple.vim", enabled: false },
   { url: "https://github.com/vim-jp/vital.vim", enabled: false },
   { url: "https://github.com/hrsh7th/vim-vital-vs", enabled: false },
-  { url: "https://github.com/chrisbra/Recover.vim" },
+  {
+    url: "https://github.com/chrisbra/Recover.vim",
+    cache: { enabled: true },
+  },
   { url: "https://github.com/anuvyklack/middleclass", enabled: pluginStatus.windows },
   { url: "https://github.com/anuvyklack/animation.nvim", enabled: pluginStatus.windows },
   {
