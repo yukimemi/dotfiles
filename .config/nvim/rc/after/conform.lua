@@ -1,14 +1,17 @@
 -- =============================================================================
 -- File        : conform.lua
 -- Author      : yukimemi
--- Last Change : 2024/05/12 18:30:51.
+-- Last Change : 2024/10/14 22:28:38.
 -- =============================================================================
 
 local conform = require("conform")
 
 conform.setup({
-  format_after_save = {
-    lsp_fallback = true,
+  default_format_opts = {
+    lsp_format = "fallback",
+  },
+  format_on_save = {
+    timeout_ms = 500,
   },
   formatters_by_ft = {
     typescriptreact = {

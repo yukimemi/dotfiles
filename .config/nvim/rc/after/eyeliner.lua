@@ -1,12 +1,12 @@
 -- =============================================================================
 -- File        : eyeliner.lua
 -- Author      : yukimemi
--- Last Change : 2024/10/10 08:39:33.
+-- Last Change : 2024/10/14 21:31:41.
 -- =============================================================================
 
 require 'eyeliner'.setup({
   -- show highlights only after keypress
-  highlight_on_key = true,
+  highlight_on_key = false,
 
   -- dim all other characters if set to true (recommended!)
   dim = true,
