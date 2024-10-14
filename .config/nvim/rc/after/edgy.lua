@@ -1,8 +1,11 @@
 -- =============================================================================
 -- File        : edgy.lua
 -- Author      : yukimemi
--- Last Change : 2024/08/25 08:56:08.
+-- Last Change : 2024/10/14 12:25:28.
 -- =============================================================================
+
+vim.opt.laststatus = 3
+vim.opt.splitkeep = "screen"
 
 require("edgy").setup({
   bottom = {
@@ -64,6 +67,10 @@ require("edgy").setup({
       open = "Neotree position=top buffers",
     },
     {
+      title = function()
+        local buf_name = vim.api.nvim_buf_get_name(0) or "[No Name]"
+        return vim.fn.fnamemodify(buf_name, ":t")
+      end,
       ft = "Outline",
       pinned = true,
       open = "SymbolsOutlineOpen",
