@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/10/02 00:02:44.
+// Last Change : 2024/10/12 14:38:54.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -26,7 +26,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/LunarVim/bigfile.nvim",
-    cache: { enabled: true },
+    cache: { afterFile: `~/.config/nvim/rc/after/bigfile.lua` },
   },
   {
     url: "https://github.com/tani/vim-artemis",

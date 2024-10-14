@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/10/13 21:44:01.
+// Last Change : 2024/10/12 10:14:38.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -233,8 +233,8 @@ export const denops: Plug[] = [
         ps1: {
           replace: [
             [
-              "/^(s*.Last Change: ).*/i",
-              '$1${format(now, "yyyy/MM/dd HH:mm:ss")}',
+              `/^(\\s*.Last Change\\s*: ).*\\./i`,
+              '$1${format(now, "yyyy/MM/dd HH:mm:ss")}.',
             ],
             [
               '/^(.*"version", ")[0-9_]+(".*)/i',
