@@ -1,23 +1,13 @@
 -- =============================================================================
 -- File        : nvim-treesitter.lua
 -- Author      : yukimemi
--- Last Change : 2024/10/14 17:20:30.
+-- Last Change : 2024/10/14 19:45:36.
 -- =============================================================================
 
+
+require("nvim-treesitter.install").prefer_git = true
+
 require("nvim-treesitter.configs").setup({
-  ensure_installed = {
-    "c",
-    "lua",
-    "markdown",
-    "markdown_inline",
-    "powershell",
-    "query",
-    "rust",
-    "typescript",
-    "vim",
-    "vimdoc",
-    "xml",
-  },
   sync_install = false,
   auto_install = true,
   highlight = {

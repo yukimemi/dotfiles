@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : treesitter.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 16:04:16.
+// Last Change : 2024/10/14 19:28:15.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -11,6 +11,12 @@ import * as mapping from "jsr:@denops/std@7.2.0/mapping";
 export const treesitter: Plug[] = [
   {
     url: "https://github.com/nvim-treesitter/nvim-treesitter",
+    build: async ({ denops, info }) => {
+      if (!info.isLoad || !info.isUpdate) {
+        return;
+      }
+      await denops.cmd("TSUpdate");
+    },
     afterFile: "~/.config/nvim/rc/after/nvim-treesitter.lua",
   },
   {
