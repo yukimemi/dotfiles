@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/10/13 23:01:50.
+// Last Change : 2024/10/15 23:44:58.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -187,12 +187,16 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/lukas-reineke/indent-blankline.nvim",
     enabled: pluginStatus.indentblankline,
-    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
+    dependencies: [
+      "https://github.com/nvim-treesitter/nvim-treesitter",
+      // "https://github.com/HiPhish/rainbow-delimiters.nvim",
+    ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ibl").setup(_A)`, {
         indent: { char: `▏` },
       });
     },
+    // afterFile: `~/.config/nvim/rc/after/indent-blankline.lua`,
   },
   {
     url: "https://github.com/shellRaining/hlchunk.nvim",
@@ -370,4 +374,8 @@ export const ui: Plug[] = [
     },
   },
   { url: "https://github.com/ikouchiha47/games.nvim" },
+  {
+    url: "https://github.com/sethen/line-number-change-mode.nvim",
+    afterFile: "~/.config/nvim/rc/after/line-number-change-mode.lua",
+  },
 ];
