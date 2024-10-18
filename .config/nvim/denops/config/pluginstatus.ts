@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2024/10/14 12:08:11.
+// Last Change : 2024/10/18 23:40:09.
 // =============================================================================
 
 export const pluginStatus = {
@@ -40,7 +40,7 @@ export const pluginStatus = {
   vimwiki: false,
   vscode: false,
   windowpicker: false,
-  windows: false,
+  windows: true,
   yankround: true,
   yanky: false,
   virt_column: false,
