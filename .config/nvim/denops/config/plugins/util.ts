@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/10/14 12:59:02.
+// Last Change : 2024/10/18 20:20:49.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -268,7 +268,7 @@ export const util: Plug[] = [
   {
     url: "https://github.com/simeji/winresizer",
     before: async ({ denops }) => {
-      await vars.g.set(denops, "winresizer_gui_enable", 1);
+      await vars.g.set(denops, "winresizer_gui_enable", 0);
     },
   },
   {

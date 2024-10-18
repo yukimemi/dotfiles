@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : conform.lua
 -- Author      : yukimemi
--- Last Change : 2024/10/14 22:28:38.
+-- Last Change : 2024/10/18 19:18:52.
 -- =============================================================================
 
 local conform = require("conform")
@@ -11,7 +11,7 @@ conform.setup({
     lsp_format = "fallback",
   },
   format_on_save = {
-    timeout_ms = 500,
+    timeout_ms = 5000,
   },
   formatters_by_ft = {
     typescriptreact = {
@@ -25,7 +25,7 @@ conform.setup({
 
 vim.keymap.set("n", "<leader>F", function()
   conform.format({
-    timeout_ms = 1000,
+    timeout_ms = 30000,
     lsp_fallback = true,
   })
 end, { desc = "Format code" })
