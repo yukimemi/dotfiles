@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2024/10/05 13:42:52.
+// Last Change : 2024/10/14 22:09:58.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -292,6 +292,7 @@ export const filetypes: Plug[] = [
   // nushell
   {
     url: "https://github.com/LhKipp/nvim-nu",
+    enabled: false,
     build: async ({ denops }) => {
       await denops.cmd("TSUpdate nu");
     },

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/10/15 23:44:58.
+// Last Change : 2024/10/14 21:51:04.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -16,7 +16,7 @@ import * as vars from "jsr:@denops/std@7.2.0/variable";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const ui: Plug[] = [
-  { url: "https://github.com/lambdalisue/vim-seethrough" },
+  { url: "https://github.com/lambdalisue/vim-seethrough", enabled: true },
   { url: "https://github.com/andymass/vim-matchup", enabled: false },
   { url: "https://github.com/mopp/smartnumber.vim", enabled: true },
   { url: "https://github.com/sitiom/nvim-numbertoggle", enabled: false },

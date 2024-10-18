@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/10/13 12:43:59.
+// Last Change : 2024/10/14 22:11:30.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -47,6 +47,7 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/nvimtools/none-ls.nvim",
+    enabled: false,
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     afterFile: "~/.config/nvim/rc/after/none-ls.lua",
   },
@@ -117,10 +118,10 @@ export const lsp: Plug[] = [
       "https://github.com/SmiteshP/nvim-navic",
       "https://github.com/folke/neoconf.nvim",
       "https://github.com/folke/trouble.nvim",
-      "https://github.com/nvimtools/none-ls.nvim",
       "https://github.com/onsails/lspkind.nvim",
       "https://github.com/williamboman/mason-lspconfig.nvim",
       "https://github.com/williamboman/mason.nvim",
+      // "https://github.com/nvimtools/none-ls.nvim",
       // "https://github.com/zapling/mason-conform.nvim",
     ],
     afterFile: "~/.config/nvim/rc/after/nvim-lspconfig.lua",

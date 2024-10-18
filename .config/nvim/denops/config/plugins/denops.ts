@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/10/12 10:14:38.
+// Last Change : 2024/10/14 21:39:23.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -87,6 +87,8 @@ export const denops: Plug[] = [
         "NvimTree",
         "TelescopePrompt",
         "aerial",
+        "asyncwalker",
+        "asyncwalker-filter",
         "coc-explorer",
         "ctrlp",
         "ddu",
@@ -98,8 +100,6 @@ export const denops: Plug[] = [
         "neo-tree",
         "qf",
         "quickfix",
-        "asyncwalker",
-        "asyncwalker-filter",
         "undotree",
       ]);
     },
@@ -122,6 +122,8 @@ export const denops: Plug[] = [
         "NvimTree",
         "TelescopePrompt",
         "aerial",
+        "asyncwalker",
+        "asyncwalker-filter",
         "coc-explorer",
         "csv",
         "ctrlp",
@@ -137,8 +139,6 @@ export const denops: Plug[] = [
         "neo-tree",
         "qf",
         "quickfix",
-        "asyncwalker",
-        "asyncwalker-filter",
         "undotree",
       ]);
     },
@@ -189,18 +189,14 @@ export const denops: Plug[] = [
   {
     url: "https://github.com/yukimemi/chronicle.vim",
     dst: "~/src/github.com/yukimemi/chronicle.vim",
-    dependencies: [
-      "https://github.com/vim-denops/denops.vim",
-    ],
+    dependencies: ["https://github.com/vim-denops/denops.vim"],
     cache: {
-      enabled: true,
       beforeFile: "~/.config/nvim/rc/before/chronicle.vim",
       afterFile: "~/.config/nvim/rc/after/chronicle.vim",
     },
   },
   {
     url: "https://github.com/yukimemi/autoreplacer.vim",
-    enabled: true,
     dst: "~/src/github.com/yukimemi/autoreplacer.vim",
     before: async ({ denops }) => {
       await vars.g.set(denops, "autoreplacer_debug", false);
