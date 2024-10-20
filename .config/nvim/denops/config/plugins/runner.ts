@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : runner.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 19:27:42.
+// Last Change : 2024/10/19 13:10:22.
 // =============================================================================
 
 import * as mapping from "jsr:@denops/std@7.2.0/mapping";
@@ -25,7 +25,7 @@ export const runner: Plug[] = [
           runner: "nvimterm",
         },
       });
-      await mapping.map(denops, "<space>r", "<Plug>(quickrun)");
+      await mapping.map(denops, "<space>qr", "<Plug>(quickrun)", { mode: ["n", "x", "v"] });
     },
   },
   {

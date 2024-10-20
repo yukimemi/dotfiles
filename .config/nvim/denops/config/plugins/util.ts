@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/10/18 20:20:49.
+// Last Change : 2024/10/19 21:07:24.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -564,6 +564,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/QuentinGruber/pomodoro.nvim",
+    enabled: false,
     afterFile: "~/.config/nvim/rc/after/pomodoro.lua",
   },
   {

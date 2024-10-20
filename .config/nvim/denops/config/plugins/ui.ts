@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/10/19 08:35:39.
+// Last Change : 2024/10/19 19:21:53.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -128,7 +128,25 @@ export const ui: Plug[] = [
         threshold: 3,
         disable_float_win: false,
         enabled_filetypes: null,
-        disabled_filetypes: ["ddu-ff", "ddu-ff-filter", "coc-explorer", "fern"],
+        disabled_filetypes: [
+        "NvimTree",
+        "TelescopePrompt",
+        "aerial",
+        "asyncwalker",
+        "asyncwalker-filter",
+        "coc-explorer",
+        "ctrlp",
+        "ddu",
+        "ddu-ff",
+        "ddu-ff-filter",
+        "ddu-filer",
+        "gundo",
+        "list",
+        "neo-tree",
+        "qf",
+        "quickfix",
+        "undotree",
+        ],
       });
 
       await autocmd.group(denops, "MySmoothCursor", (helper) => {
