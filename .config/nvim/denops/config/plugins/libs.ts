@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/10/12 14:38:54.
+// Last Change : 2024/10/21 23:12:12.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -123,7 +123,10 @@ export const libs: Plug[] = [
       });
     },
   },
-  { url: "https://github.com/kana/vim-repeat" },
+  {
+    url: "https://github.com/kana/vim-repeat",
+    enabled: false,
+  },
   { url: "https://github.com/mattn/vim-findroot" },
   {
     url: "https://github.com/tyru/open-browser.vim",

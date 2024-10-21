@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/10/19 21:07:24.
+// Last Change : 2024/10/21 21:41:18.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -578,6 +578,13 @@ export const util: Plug[] = [
     url: "https://github.com/BlankTiger/aqf.nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("aqf").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/smilhey/ed-cmd.nvim",
+    enabled: false,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("ed-cmd").setup({})`);
     },
   },
 ];
