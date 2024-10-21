@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/10/12 12:15:21.
+// Last Change : 2024/10/21 23:44:37.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -48,6 +48,27 @@ export const ai: Plug[] = [
   {
     url: "https://github.com/kyoh86/denops-ollama.vim",
     enabled: false,
+  },
+  {
+    url: "https://github.com/mattn/vim-gemini",
+    enabled: false,
+    build: async ({ info }) => {
+      if (!info.isLoad || !info.isUpdate) {
+        return;
+      }
+      const install = async (command: string, args: string[]) => {
+        console.log(`mattn/gemini install:: "${command}" "${args.join(" ")}"`);
+        const cmd = new Deno.Command(command, { args, cwd: info.dst });
+        const output = await cmd.output();
+        if (output.stdout.length) {
+          console.log(new TextDecoder().decode(output.stdout));
+        }
+        if (output.stderr.length) {
+          console.error(new TextDecoder().decode(output.stderr));
+        }
+      };
+      await install("go", ["install", "github.com/mattn/gemini@latest"]);
+    },
   },
   {
     url: "https://github.com/yukimemi/futago.vim",
