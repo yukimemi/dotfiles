@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/10/14 21:39:23.
+// Last Change : 2024/10/23 00:29:52.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -279,9 +279,9 @@ export const denops: Plug[] = [
     before: async ({ denops }) => {
       await mapping.map(denops, "mw", "<cmd>AsyncWalk<cr>", { mode: "n" });
       await mapping.map(denops, "ms", "<cmd>AsyncWalk --path=~/src<cr>", { mode: "n" });
-      await mapping.map(denops, "mD", "<cmd>AsyncWalk --path=~/.dotfiles<cr>", { mode: "n" });
+      await mapping.map(denops, "md", "<cmd>AsyncWalk --path=~/.dotfiles<cr>", { mode: "n" });
       await mapping.map(denops, "mC", "<cmd>AsyncWalk --path=~/.cache<cr>", { mode: "n" });
-      await mapping.map(denops, "md", "<cmd>AsyncWalkBufferDir<cr>", { mode: "n" });
+      await mapping.map(denops, "mb", "<cmd>AsyncWalkBufferDir<cr>", { mode: "n" });
       await mapping.map(denops, "mM", "<cmd>AsyncWalk --path=~/.memolist<cr>", {
         mode: "n",
       });

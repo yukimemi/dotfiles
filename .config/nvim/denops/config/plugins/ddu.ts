@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/10/05 19:43:16.
+// Last Change : 2024/10/23 00:30:36.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -136,7 +136,7 @@ export const ddu: Plug[] = [
       );
       await mapping.map(
         denops,
-        "<leader>db",
+        "<leader>d,",
         "<cmd>Ddu -name=buffer buffer<cr>",
         { mode: "n" },
       );
@@ -167,7 +167,7 @@ export const ddu: Plug[] = [
       });
       await mapping.map(
         denops,
-        "<leader>dd",
+        "<leader>db",
         `<cmd>call <SID>${denops.name}_notify("${
           lambda.register(
             denops,
@@ -241,7 +241,7 @@ export const ddu: Plug[] = [
       );
       await mapping.map(
         denops,
-        "<leader>dD",
+        "<leader>dd",
         `<cmd>call <SID>${denops.name}_notify("${
           lambda.register(
             denops,
