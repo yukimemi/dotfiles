@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : operator.ts
 // Author      : yukimemi
-// Last Change : 2024/10/13 01:44:06.
+// Last Change : 2024/10/25 00:02:24.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -13,6 +13,11 @@ export const operator: Plug[] = [
   {
     url: "https://github.com/osyo-manga/vim-operator-stay-cursor",
     dependencies: ["https://github.com/kana/vim-operator-user"],
+    after: async ({ denops }) => {
+      await mapping.map(denops, "y", "<Plug>(operator-stay-cursor-yank)", {
+        mode: ["n", "x", "v"],
+      });
+    },
   },
   {
     url: "https://github.com/machakann/vim-sandwich",

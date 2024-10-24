@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : lualine.lua
 -- Author      : yukimemi
--- Last Change : 2024/10/13 00:04:40.
+-- Last Change : 2024/10/24 23:57:00.
 -- =============================================================================
 
 -- Eviline config for lualine
@@ -73,6 +73,7 @@ local config = {
     lualine_c = {},
     lualine_x = {},
   },
+  extensions = {}
 }
 
 -- Inserts a component in lualine_c at left section
