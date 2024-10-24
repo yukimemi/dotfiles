@@ -6,14 +6,14 @@
 
 import * as buffer from "jsr:@denops/std@7.2.0/buffer";
 import * as fn from "jsr:@denops/std@7.2.0/function";
-import * as fs from "jsr:@std/fs@1.0.4";
+import * as fs from "jsr:@std/fs@1.0.5";
 import * as helper from "jsr:@denops/std@7.2.0/helper";
 import * as nvimFn from "jsr:@denops/std@7.2.0/function/nvim";
 import * as option from "jsr:@denops/std@7.2.0/option";
 import * as vars from "jsr:@denops/std@7.2.0/variable";
 import type { Denops } from "jsr:@denops/std@7.2.0";
 import { format } from "jsr:@std/datetime@0.225.2";
-import { join } from "jsr:@std/path@1.0.6/join";
+import { join } from "jsr:@std/path@1.0.7/join";
 import { systemopen } from "jsr:@lambdalisue/systemopen@1.0.0";
 import { z } from "npm:zod@3.23.8";
 
