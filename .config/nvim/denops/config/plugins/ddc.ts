@@ -12,7 +12,7 @@ import * as vars from "jsr:@denops/std@7.2.0/variable";
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
 import { Denops } from "jsr:@denops/std@7.2.0";
 import { z } from "npm:zod@3.23.8";
-import { exists } from "jsr:@std/fs@1.0.4/exists";
+import { exists } from "jsr:@std/fs@1.0.5/exists";
 import { notify } from "../util.ts";
 
 export const ddc: Plug[] = [
