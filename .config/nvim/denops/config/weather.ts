@@ -4,9 +4,9 @@
 // Last Change : 2024/09/01 11:03:43.
 // =============================================================================
 
-import * as buffer from "jsr:@denops/std@7.2.0/buffer";
-import * as fn from "jsr:@denops/std@7.2.0/function";
-import type { Denops } from "jsr:@denops/std@7.2.0";
+import * as buffer from "jsr:@denops/std@7.3.0/buffer";
+import * as fn from "jsr:@denops/std@7.3.0/function";
+import type { Denops } from "jsr:@denops/std@7.3.0";
 import { notify } from "./util.ts";
 
 export async function bufOpenWeather(denops: Denops) {
