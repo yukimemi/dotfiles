@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/10/19 19:21:53.
+// Last Change : 2024/10/26 13:17:17.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
@@ -395,5 +395,11 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/sethen/line-number-change-mode.nvim",
     afterFile: "~/.config/nvim/rc/after/line-number-change-mode.lua",
+  },
+  {
+    url: "https://github.com/sedm0784/vim-rainbow-trails",
+    after: async ({ denops }) => {
+      await denops.cmd(`RainbowTrails`);
+    },
   },
 ];
