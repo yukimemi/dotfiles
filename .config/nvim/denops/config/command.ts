@@ -4,10 +4,10 @@
 // Last Change : 2024/06/16 20:33:49.
 // =============================================================================
 
-import * as lambda from "jsr:@denops/std@7.2.0/lambda";
-import * as nvimFn from "jsr:@denops/std@7.2.0/function/nvim";
-import type { Denops } from "jsr:@denops/std@7.2.0";
-import { batch } from "jsr:@denops/std@7.2.0/batch";
+import * as lambda from "jsr:@denops/std@7.3.0/lambda";
+import * as nvimFn from "jsr:@denops/std@7.3.0/function/nvim";
+import type { Denops } from "jsr:@denops/std@7.3.0";
+import { batch } from "jsr:@denops/std@7.3.0/batch";
 import { removeShada, zennCreate, zennPreview } from "./util.ts";
 import { z } from "npm:zod@3.23.8";
 

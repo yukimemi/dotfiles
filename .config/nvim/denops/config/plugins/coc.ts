@@ -6,14 +6,14 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.9";
 
-import * as autocmd from "jsr:@denops/std@7.2.0/autocmd";
-import * as fn from "jsr:@denops/std@7.2.0/function";
-import * as lambda from "jsr:@denops/std@7.2.0/lambda";
-import * as mapping from "jsr:@denops/std@7.2.0/mapping";
-import * as op from "jsr:@denops/std@7.2.0/option";
-import * as vars from "jsr:@denops/std@7.2.0/variable";
+import * as autocmd from "jsr:@denops/std@7.3.0/autocmd";
+import * as fn from "jsr:@denops/std@7.3.0/function";
+import * as lambda from "jsr:@denops/std@7.3.0/lambda";
+import * as mapping from "jsr:@denops/std@7.3.0/mapping";
+import * as op from "jsr:@denops/std@7.3.0/option";
+import * as vars from "jsr:@denops/std@7.3.0/variable";
 import { z } from "npm:zod@3.23.8";
-import { execute } from "jsr:@denops/std@7.2.0/helper";
+import { execute } from "jsr:@denops/std@7.3.0/helper";
 
 export const coc: Plug[] = [
   { url: "https://github.com/weirongxu/coc-explorer" },

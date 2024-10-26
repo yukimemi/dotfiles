@@ -4,15 +4,15 @@
 // Last Change : 2024/10/05 16:57:38.
 // =============================================================================
 
-import * as fn from "jsr:@denops/std@7.2.0/function";
-import * as lambda from "jsr:@denops/std@7.2.0/lambda";
+import * as fn from "jsr:@denops/std@7.3.0/function";
+import * as lambda from "jsr:@denops/std@7.3.0/lambda";
 import * as log from "jsr:@std/log@0.224.9";
-import type { Denops, Entrypoint } from "jsr:@denops/std@7.2.0";
+import type { Denops, Entrypoint } from "jsr:@denops/std@7.3.0";
 import { Dvpm } from "jsr:@yukimemi/dvpm@5.0.9";
 import { cacheLua, cacheVim } from "./cache.ts";
 import { dir } from "jsr:@cross/dir@1.1.0";
 import { ensureFile } from "jsr:@std/fs@1.0.5/ensure-file";
-import { execute } from "jsr:@denops/std@7.2.0/helper";
+import { execute } from "jsr:@denops/std@7.3.0/helper";
 import { join } from "jsr:@std/path@1.0.7/join";
 import { notify, openLog } from "./util.ts";
 import { plugins } from "./plugins.ts";
