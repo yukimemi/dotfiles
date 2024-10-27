@@ -1,17 +1,14 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/10/27 16:36:19.
+// Last Change : 2024/10/27 18:09:51.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.10";
 
 import * as autocmd from "jsr:@denops/std@7.3.0/autocmd";
-import * as fn from "jsr:@denops/std@7.3.0/function";
 import * as lambda from "jsr:@denops/std@7.3.0/lambda";
-import * as mapping from "jsr:@denops/std@7.3.0/mapping";
 import * as nvimFn from "jsr:@denops/std@7.3.0/function/nvim";
-import * as option from "jsr:@denops/std@7.3.0/option";
 import * as vars from "jsr:@denops/std@7.3.0/variable";
 
 export const denops: Plug[] = [
@@ -146,44 +143,9 @@ export const denops: Plug[] = [
   {
     url: "https://github.com/yukimemi/asyncsearcher.vim",
     dst: "~/src/github.com/yukimemi/asyncsearcher.vim",
-    before: async ({ denops }) => {
-      await vars.g.set(denops, "asyncsearcher_debug", false);
-      await vars.g.set(
-        denops,
-        "asyncsearcher_cfg_path",
-        await fn.expand(denops, "~/.config/asyncsearcher/asyncsearcher.toml"),
-      );
-      await option.grepformat.set(denops, "%f:%l:%c:%m");
-
-      await mapping.map(denops, "<space>ss", "<cmd>AsyncSearch<cr>", { mode: "n" });
-      await mapping.map(denops, "<space>sr", "<cmd>AsyncSearch --tool=ripgrep<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "<space>sp", "<cmd>AsyncSearch --tool=pt<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "<space>sj", "<cmd>AsyncSearch --tool=jvgrep<cr>", {
-        mode: "n",
-      });
-
-      await mapping.map(
-        denops,
-        "<space>sS",
-        "<cmd>AsyncSearch --tool=default-all<cr>",
-        { mode: "n" },
-      );
-      await mapping.map(
-        denops,
-        "<space>sR",
-        "<cmd>AsyncSearch --tool=ripgrep-all<cr>",
-        { mode: "n" },
-      );
-      await mapping.map(denops, "<space>sP", "<cmd>AsyncSearch --tool=pt-all<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "<space>sJ", "<cmd>AsyncSearch --tool=jvgrep-all<cr>", {
-        mode: "n",
-      });
+    dependencies: ["https://github.com/vim-denops/denops.vim"],
+    cache: {
+      beforeFile: "~/.config/nvim/rc/before/asyncsearcher.lua",
     },
   },
   {
