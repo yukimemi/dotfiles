@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/10/27 16:27:18.
+// Last Change : 2024/10/27 16:36:19.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.10";
@@ -276,6 +276,7 @@ export const denops: Plug[] = [
   {
     url: "https://github.com/yukimemi/asyncwalker.vim",
     dst: "~/src/github.com/yukimemi/asyncwalker.vim",
+    dependencies: ["https://github.com/vim-denops/denops.vim"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/asyncwalker.lua",
     },
