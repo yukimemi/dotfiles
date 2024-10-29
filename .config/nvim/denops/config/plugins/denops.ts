@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/10/27 18:09:51.
+// Last Change : 2024/10/28 13:50:12.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.10";
@@ -229,7 +229,7 @@ export const denops: Plug[] = [
           ],
           event: "BufWritePre",
           pat: ["*.toml"],
-          head: 50,
+          head: 55,
           tail: 5,
         },
       });
