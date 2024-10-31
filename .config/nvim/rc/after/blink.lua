@@ -1,13 +1,11 @@
 -- =============================================================================
 -- File        : blink.lua
 -- Author      : yukimemi
--- Last Change : 2024/10/14 18:48:19.
+-- Last Change : 2024/10/30 11:05:26.
 -- =============================================================================
 
 require("blink-cmp").setup({
-  keymap = {
-    show_documentation = "<C-k>",
-  },
+  keymap = "default",
 
   trigger = {
     signature_help = {
