@@ -1,11 +1,17 @@
 -- =============================================================================
 -- File        : blink.lua
 -- Author      : yukimemi
--- Last Change : 2024/10/30 11:05:26.
+-- Last Change : 2024/11/02 14:38:12.
 -- =============================================================================
 
 require("blink-cmp").setup({
-  keymap = "default",
+  keymap = {
+    preset = "default",
+    ['<C-e>'] = { 'hide', 'fallback' },
+    ['<Tab>'] = { 'select_and_accept', 'fallback' },
+    ['<C-k>'] = { 'snippet_forward', 'fallback' },
+    ['<C-j>'] = { 'snippet_backward', 'fallback' },
+  },
 
   trigger = {
     signature_help = {
