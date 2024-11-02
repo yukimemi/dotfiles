@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/10/26 13:17:17.
+// Last Change : 2024/11/02 23:32:45.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.13";
@@ -219,6 +219,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/shellRaining/hlchunk.nvim",
     enabled: pluginStatus.hlchunk,
+    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hlchunk").setup(_A)`, {
         chunk: {
@@ -227,7 +228,7 @@ export const ui: Plug[] = [
         },
         indent: {
           enable: true,
-          use_treesitter: false,
+          use_treesitter: true,
         },
         line_num: {
           enable: true,
