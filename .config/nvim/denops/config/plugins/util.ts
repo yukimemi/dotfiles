@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/11/02 17:05:47.
+// Last Change : 2024/11/02 19:54:17.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.13";
@@ -586,5 +586,9 @@ export const util: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ed-cmd").setup({})`);
     },
+  },
+  {
+    url: "https://github.com/ThePrimeagen/refactoring.nvim",
+    afterFile: "~/.config/nvim/rc/after/refactoring.lua",
   },
 ];

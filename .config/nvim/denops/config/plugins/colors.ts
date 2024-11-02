@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/10/21 23:47:24.
+// Last Change : 2024/11/02 20:32:32.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.13";
@@ -99,6 +99,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/sts10/vim-pink-moon" },
   { url: "https://github.com/tiagovla/tokyodark.nvim" },
   { url: "https://github.com/tobi-wan-kenobi/zengarden" },
+  { url: "https://github.com/wadackel/vim-dogrun" },
   { url: "https://github.com/yasukotelin/shirotelin" },
   { url: "https://github.com/yorik1984/newpaper.nvim" },
   { url: "https://github.com/yuttie/hydrangea-vim" },
@@ -247,6 +248,7 @@ export const colors: Plug[] = [
       "https://github.com/sts10/vim-pink-moon",
       "https://github.com/tiagovla/tokyodark.nvim",
       "https://github.com/tobi-wan-kenobi/zengarden",
+      "https://github.com/wadackel/vim-dogrun",
       "https://github.com/yasukotelin/shirotelin",
       "https://github.com/yorik1984/newpaper.nvim",
       "https://github.com/yuttie/hydrangea-vim",

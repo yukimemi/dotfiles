@@ -4,6 +4,15 @@
     "actions": 
     [
         {
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "id": "User.copy.644BA8F2",
+            "keys": "ctrl+c"
+        },
+        {
             "command": "unbound",
             "keys": "ctrl+v"
         },
@@ -14,11 +23,10 @@
         {
             "command": 
             {
-                "action": "copy",
-                "singleLine": false
+                "action": "quakeMode"
             },
-            "id": "User.copy.644BA8F2",
-            "keys": "ctrl+c"
+            "id": "User.quakeMode.F1E129A4",
+            "keys": "f12"
         },
         {
             "command": 
@@ -29,14 +37,6 @@
             },
             "id": "User.splitPane.A6751878",
             "keys": "alt+shift+d"
-        },
-        {
-            "command": 
-            {
-                "action": "quakeMode"
-            },
-            "id": "User.quakeMode.F1E129A4",
-            "keys": "f12"
         },
         {
             "command": "find",
@@ -120,6 +120,12 @@
                 "hidden": false,
                 "name": "Git Bash",
                 "source": "Git"
+            },
+            {
+                "guid": "{47302f9c-1ac4-566c-aa3e-8cf29889d6ab}",
+                "hidden": false,
+                "name": "Nushell",
+                "source": "nu"
             }
         ]
     },

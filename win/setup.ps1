@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2024/10/03 22:03:03.
+  .Last Change : 2024/11/02 19:49:34.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -73,6 +73,7 @@ function Install-RequiredModules {
   Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
   & msiexec /i $nvimMsi /quiet
   # winget install -q Neovim.Neovim
+  winget install -q sxyazi.yazi
   winget install -q wez.wezterm
   winget install -q astral-sh.uv
   winget install -q gerardog.gsudo
