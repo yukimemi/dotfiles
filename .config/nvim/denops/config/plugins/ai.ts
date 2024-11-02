@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/11/03 00:22:09.
+// Last Change : 2024/11/03 02:06:41.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.13";
@@ -192,11 +192,11 @@ lang: ja
                 history: [
                   {
                     role: "user",
-                    parts: zunUser,
+                    parts: [{ text: zunUser }],
                   },
                   {
                     role: "model",
-                    parts: zunModel,
+                    parts: [{ text: zunModel }],
                   },
                 ],
                 aiPrompt: `ずんだもん`,
