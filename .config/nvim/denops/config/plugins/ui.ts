@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/11/02 23:32:45.
+// Last Change : 2024/11/03 18:04:32.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.0.13";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
 
 import * as autocmd from "jsr:@denops/std@7.3.0/autocmd";
 import * as fn from "jsr:@denops/std@7.3.0/function";
@@ -395,6 +395,7 @@ export const ui: Plug[] = [
   { url: "https://github.com/ikouchiha47/games.nvim" },
   {
     url: "https://github.com/sethen/line-number-change-mode.nvim",
+    dependencies: ["https://github.com/catppuccin/nvim"],
     afterFile: "~/.config/nvim/rc/after/line-number-change-mode.lua",
   },
   {

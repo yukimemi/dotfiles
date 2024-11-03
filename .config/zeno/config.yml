@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yml
 # Author      : yukimemi
-# Last Change : 2024/10/01 23:10:11.
+# Last Change : 2024/11/03 12:45:50.
 # =============================================================================
 
 snippets:
@@ -342,9 +342,11 @@ snippets:
   - name: Install xc
     snippet: go install github.com/joerdav/xc/cmd/xc@latest
   - name: Install hitori (neovide)
-    snippet: deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/hitori.vim/main/cmd/hitori_neovide.ts
+    snippet: deno install --global --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/hitori.vim/main/cmd/hitori_neovide.ts
+  - name: Install hitori (nvim-qt)
+    snippet: deno install --global --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/hitori.vim/main/cmd/hitori_nvim-qt.ts
   - name: Install hitori
-    snippet: deno install --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/hitori.vim/main/cmd/hitori_nvim.ts
+    snippet: deno install --global --force --allow-net --allow-run --allow-read --name hitori https://raw.githubusercontent.com/yukimemi/hitori.vim/main/cmd/hitori_nvim.ts
   - name: Install gifsicle
     snippet: brew install gifsicle
   - name: Install bsky

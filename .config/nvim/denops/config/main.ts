@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2024/10/05 16:57:38.
+// Last Change : 2024/11/03 14:57:38.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.3.0/function";
 import * as lambda from "jsr:@denops/std@7.3.0/lambda";
 import * as log from "jsr:@std/log@0.224.9";
 import type { Denops, Entrypoint } from "jsr:@denops/std@7.3.0";
-import { Dvpm } from "jsr:@yukimemi/dvpm@5.0.13";
+import { Dvpm } from "jsr:@yukimemi/dvpm@5.0.14";
 import { cacheLua, cacheVim } from "./cache.ts";
 import { dir } from "jsr:@cross/dir@1.1.0";
 import { ensureFile } from "jsr:@std/fs@1.0.5/ensure-file";
@@ -49,8 +49,9 @@ log.setup({
 
 export const main: Entrypoint = async (denops) => {
   const starttime = performance.now();
+  const dvpm = await dvpmCreate(denops);
   await pre(denops);
-  const dvpm = await dvpmExec(denops);
+  await dvpmExec(dvpm);
   await post(denops);
 
   const elapsed = performance.now() - starttime;
@@ -97,13 +98,13 @@ async function vimInit(denops: Denops) {
   );
 }
 
-async function dvpmExec(denops: Denops) {
-  const base_path = denops.meta.host === "nvim" ? "~/.cache/nvim/dvpm" : "~/.cache/vim/dvpm";
-  const base = z.string().parse(await fn.expand(denops, base_path));
-  const cache_path = denops.meta.host === "nvim"
+async function dvpmCreate(denops: Denops): Promise<Dvpm> {
+  const basePath = denops.meta.host === "nvim" ? "~/.cache/nvim/dvpm" : "~/.cache/vim/dvpm";
+  const base = z.string().parse(await fn.expand(denops, basePath));
+  const cachePath = denops.meta.host === "nvim"
     ? "~/.cache/nvim/dvpm/cache/plugin/dvpm_plugin_cache.vim"
     : "~/.cache/vim/dvpm/cache/pluguin/dvpm_plugin_cache.vim";
-  const cache = z.string().parse(await fn.expand(denops, cache_path));
+  const cache = z.string().parse(await fn.expand(denops, cachePath));
   const dvpm = await Dvpm.begin(denops, {
     base,
     cache,
@@ -111,9 +112,10 @@ async function dvpmExec(denops: Denops) {
     concurrency: denops.meta.platform === "windows" ? 5 : 13,
   });
 
-  await Promise.all(plugins.map((p) => dvpm.add(p)));
-
-  await dvpm.end();
-
   return dvpm;
+}
+
+async function dvpmExec(dvpm: Dvpm): Promise<void> {
+  await Promise.all(plugins.map((p) => dvpm.add(p)));
+  await dvpm.end();
 }

@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/10/21 23:12:12.
+// Last Change : 2024/11/03 15:11:39.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.0.13";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
 
 import * as autocmd from "jsr:@denops/std@7.3.0/autocmd";
 import * as fn from "jsr:@denops/std@7.3.0/function";
@@ -17,7 +17,12 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const libs: Plug[] = [
   {
     url: "https://github.com/vim-denops/denops.vim",
+    dependencies: ["https://github.com/thinca/vim-localrc"],
     cache: { beforeFile: `~/.config/nvim/rc/before/denops.lua` },
+  },
+  {
+    url: "https://github.com/thinca/vim-localrc",
+    cache: { enabled: true },
   },
   {
     url: "https://github.com/vim-denops/denops-shared-server.vim",

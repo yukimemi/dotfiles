@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/10/14 22:11:30.
+// Last Change : 2024/11/03 18:02:36.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.0.13";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
 
 import { pluginStatus } from "../pluginstatus.ts";
 
@@ -55,7 +55,6 @@ export const lsp: Plug[] = [
   {
     url: "https://github.com/williamboman/mason-lspconfig.nvim",
     dependencies: [
-      "https://github.com/neovim/nvim-lspconfig",
       "https://github.com/williamboman/mason.nvim",
     ],
   },

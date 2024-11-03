@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/11/02 20:32:32.
+// Last Change : 2024/11/03 18:06:16.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.0.13";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
 
 import * as fn from "jsr:@denops/std@7.3.0/function";
 import * as mapping from "jsr:@denops/std@7.3.0/mapping";
@@ -107,12 +107,6 @@ export const colors: Plug[] = [
   { url: "https://github.com/zefei/cake16" },
   { url: "https://github.com/zenbones-theme/zenbones.nvim" },
   {
-    url: "https://github.com/Zeioth/neon.nvim",
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("neon").setup()`);
-    },
-  },
-  {
     url: "https://github.com/diegoulloao/neofusion.nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("neofusion").setup()`);
@@ -167,7 +161,6 @@ export const colors: Plug[] = [
       "https://github.com/PHSix/nvim-hybrid",
       "https://github.com/RRethy/nvim-base16",
       "https://github.com/Rigellute/rigel",
-      "https://github.com/Zeioth/neon.nvim",
       "https://github.com/adrian5/oceanic-next-vim",
       "https://github.com/aereal/vim-colors-japanesque",
       "https://github.com/ajlende/atlas.vim",

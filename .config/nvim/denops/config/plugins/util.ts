@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/11/02 19:54:17.
+// Last Change : 2024/11/03 15:11:44.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.0.13";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
 
 import * as fn from "jsr:@denops/std@7.3.0/function";
 import * as mapping from "jsr:@denops/std@7.3.0/mapping";
@@ -553,10 +553,6 @@ export const util: Plug[] = [
     url: "https://github.com/stevearc/quicker.nvim",
     enabled: false,
     afterFile: "~/.config/nvim/rc/after/quicker.lua",
-  },
-  {
-    url: "https://github.com/thinca/vim-localrc",
-    cache: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/junkfile.vim",
