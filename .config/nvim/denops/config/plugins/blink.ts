@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : blink.ts
 // Author      : yukimemi
-// Last Change : 2024/11/02 17:06:59.
+// Last Change : 2024/11/04 00:12:15.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
@@ -13,6 +13,9 @@ export const blink: Plug[] = [
     dependencies: ["https://github.com/rafamadriz/friendly-snippets"],
     afterFile: `~/.config/nvim/rc/after/blink.lua`,
     build: async ({ denops, info }) => {
+      if (denops.meta.platform === "windows" || denops.meta.platform === "mac") {
+        return;
+      }
       if (!info.isLoad || !info.isUpdate) {
         return;
       }

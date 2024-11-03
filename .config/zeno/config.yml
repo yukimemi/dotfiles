@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yml
 # Author      : yukimemi
-# Last Change : 2024/11/03 12:45:50.
+# Last Change : 2024/11/03 23:47:50.
 # =============================================================================
 
 snippets:
@@ -88,6 +88,9 @@ snippets:
   - name: Filter Neovim
     keyword: fe
     snippet: fd -H -E "**/.git/**" -E "**/node_modules/**" -t f | __filter_execute nvim
+  - name: Jump Cd
+    keyword: jd
+    snippet: fd -H -E "**/.git/**" -E "**/node_modules/**" -t d | __filter_execute cd
   - name: hitori
     keyword: h
     snippet: hitori

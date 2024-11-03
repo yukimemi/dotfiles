@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : blink.lua
 -- Author      : yukimemi
--- Last Change : 2024/11/02 14:38:12.
+-- Last Change : 2024/11/04 00:10:26.
 -- =============================================================================
 
 require("blink-cmp").setup({
@@ -32,6 +32,13 @@ require("blink-cmp").setup({
     },
     signature_help = {
       border = "single",
+    },
+  },
+
+  fuzzy = {
+    prebuilt_binaries = {
+      download = true,
+      force_version = "v0.5.1",
     },
   },
 })
