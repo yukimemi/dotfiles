@@ -1,16 +1,17 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/10/12 20:39:35.
+// Last Change : 2024/11/04 15:44:04.
 // =============================================================================
 
 import { pluginStatus } from "./pluginstatus.ts";
 
 import { ai } from "./plugins/ai.ts";
+import { blink } from "./plugins/blink.ts";
 import { bluesky } from "./plugins/bluesky.ts";
+import { care } from "./plugins/care.ts";
 import { clap } from "./plugins/clap.ts";
 import { cmp } from "./plugins/cmp.ts";
-import { blink } from "./plugins/blink.ts";
 import { coc } from "./plugins/coc.ts";
 import { colors } from "./plugins/colors.ts";
 import { ddc } from "./plugins/ddc.ts";
@@ -47,39 +48,39 @@ import { ui } from "./plugins/ui.ts";
 import { util } from "./plugins/util.ts";
 
 const plugins = [
-  ...denops,
-  ...libs,
-  ...git,
-  ...memo,
+  ...ai,
+  ...bluesky,
   ...clap,
+  ...colors,
+  ...denops,
+  ...edit,
   ...fall,
-  ...tmux,
-  ...oil,
-  ...ui,
+  ...filetypes,
+  ...git,
+  ...libs,
+  ...lsp,
+  ...memo,
   ...mini,
-  ...telescope,
-  ...search,
+  ...motion,
   ...neotree,
   ...nvimtree,
-  ...lsp,
-  ...treesitter,
-  ...todo,
-  ...util,
-  ...motion,
-  ...edit,
-  ...textobj,
+  ...oil,
   ...operator,
-  ...statusline,
-  ...twitter,
-  ...bluesky,
+  ...runner,
+  ...search,
   ...snippet,
+  ...startup,
+  ...statusline,
+  ...telescope,
   ...terminal,
   ...test,
-  ...runner,
-  ...filetypes,
-  ...startup,
-  ...ai,
-  ...colors,
+  ...textobj,
+  ...tmux,
+  ...todo,
+  ...treesitter,
+  ...twitter,
+  ...ui,
+  ...util,
 ];
 
 if (pluginStatus.ddc) {
@@ -93,6 +94,9 @@ if (pluginStatus.cmp) {
 }
 if (pluginStatus.blink) {
   plugins.push(...blink);
+}
+if (pluginStatus.care) {
+  plugins.push(...care);
 }
 if (pluginStatus.ddu) {
   plugins.push(...ddu);
