@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/11/03 15:11:44.
+// Last Change : 2024/11/04 19:46:06.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
@@ -86,10 +86,10 @@ export const util: Plug[] = [
       });
     },
   },
-  { url: "https://github.com/NvChad/volt", enabled: true },
+  { url: "https://github.com/NvChad/volt", enabled: false },
   {
     url: "https://github.com/NvChad/minty",
-    enabled: true,
+    enabled: false,
     dependencies: ["https://github.com/NvChad/volt"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("minty").setup()`);
@@ -188,8 +188,9 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/stevearc/stickybuf.nvim",
+    enabled: false,
     after: async ({ denops }) => {
-      await denops.cmd(`lua require("stickybuf").setup()`);
+      await denops.call(`luaeval`, `require("stickybuf").setup()`);
     },
   },
   { url: "https://github.com/ryoppippi/bad-apple.vim", enabled: false },
@@ -288,7 +289,7 @@ export const util: Plug[] = [
     url: "https://github.com/folke/todo-comments.nvim",
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     after: async ({ denops }) => {
-      await denops.cmd(`lua require("todo-comments").setup()`);
+      await denops.call(`luaeval`, `require("todo-comments").setup()`);
     },
   },
   {
@@ -328,7 +329,7 @@ export const util: Plug[] = [
       "https://github.com/kevinhwang91/promise-async",
     ],
     build: async ({ denops }) => {
-      await denops.cmd(`lua require("fundo").install()`);
+      await denops.call(`luaeval`, `require("fundo").install()`);
     },
     after: async ({ denops }) => {
       await vars.o.set(denops, "undofile", true);
@@ -343,7 +344,7 @@ export const util: Plug[] = [
       "https://github.com/MunifTanjim/nui.nvim",
     ],
     after: async ({ denops }) => {
-      await denops.cmd(`lua require("hardtime").setup()`);
+      await denops.call(`luaeval`, `require("hardtime").setup()`);
     },
   },
   {
@@ -366,6 +367,9 @@ export const util: Plug[] = [
       "https://github.com/nvim-treesitter/nvim-treesitter",
       "https://github.com/MunifTanjim/nui.nvim",
     ],
+    build: async ({ denops }) => {
+      await denops.cmd("TSUpdate regex");
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("regexplainer").setup(_A)`, {
         mode: "narrative",
@@ -442,16 +446,19 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/atusy/treemonkey.nvim",
+    enabled: false,
     afterFile: "~/.config/nvim/rc/after/treemonkey.lua",
   },
   {
     url: "https://github.com/ariel-frischer/bmessages.nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("bmessages").setup()`);
+      await mapping.map(denops, "<space>bm", "<cmd>Bmessages<cr>", { mode: "n", "noremap": true });
     },
   },
   {
     url: "https://github.com/m00qek/baleia.nvim",
+    enabled: false,
     afterFile: "~/.config/nvim/rc/after/baleia.vim",
   },
   {
@@ -532,7 +539,7 @@ export const util: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("qfc").setup(_A)`, {
         enabled: true,
-        timeout: 10000,
+        timeout: 30000,
       });
     },
   },

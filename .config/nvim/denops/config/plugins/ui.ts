@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/11/03 23:54:23.
+// Last Change : 2024/11/04 19:06:38.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
@@ -88,10 +88,13 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/LumaKernel/nvim-visual-eof.lua",
     after: async ({ denops }) => {
-      await denops.cmd(`lua require("visual-eof").setup()`);
+      await denops.call(`luaeval`, `require("visual-eof").setup()`);
     },
   },
-  { url: "https://github.com/DanilaMihailov/beacon.nvim", enabled: false },
+  {
+    url: "https://github.com/DanilaMihailov/beacon.nvim",
+    enabled: true,
+  },
   {
     url: "https://github.com/mvllow/modes.nvim",
     afterFile: `~/.config/nvim/rc/after/modes.lua`,
@@ -245,6 +248,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/b0o/incline.nvim",
     dependencies: [
+      "https://github.com/SmiteshP/nvim-navic",
       "https://github.com/nvim-tree/nvim-web-devicons",
       "https://github.com/lewis6991/gitsigns.nvim",
     ],
@@ -259,26 +263,25 @@ export const ui: Plug[] = [
     url: "https://github.com/akinsho/bufferline.nvim",
     enabled: pluginStatus.bufferline,
     after: async ({ denops }) => {
-      await denops.cmd(`lua require("bufferline").setup()`);
+      await denops.call(`luaeval`, `require("bufferline").setup()`);
     },
   },
   {
     url: "https://github.com/tomiis4/BufferTabs.nvim",
     enabled: pluginStatus.buffertabs,
     after: async ({ denops }) => {
-      await denops.cmd(`lua require("buffertabs").setup()`);
+      await denops.call(`luaeval`, `require("buffertabs").setup()`);
     },
   },
   {
     url: "https://github.com/utilyre/barbecue.nvim",
-    // HEAD
     enabled: pluginStatus.barbecue,
     dependencies: [
       "https://github.com/SmiteshP/nvim-navic",
       "https://github.com/nvim-tree/nvim-web-devicons",
     ],
     after: async ({ denops }) => {
-      await denops.cmd(`lua require("barbecue").setup()`);
+      await denops.call(`luaeval`, `require("barbecue").setup()`);
     },
   },
   {
@@ -333,20 +336,20 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/nvim-zh/colorful-winsep.nvim",
     after: async ({ denops }) => {
-      await denops.cmd(`lua require("colorful-winsep").setup()`);
+      await denops.call(`luaeval`, `require("colorful-winsep").setup()`);
     },
   },
   {
     url: "https://github.com/Aasim-A/scrollEOF.nvim",
     after: async ({ denops }) => {
-      await denops.cmd(`lua require("scrollEOF").setup()`);
+      await denops.call(`luaeval`, `require("scrollEOF").setup()`);
     },
   },
   {
     url: "https://github.com/tamton-aquib/flirt.nvim",
     enabled: Deno.build.os !== "windows" && false,
     after: async ({ denops }) => {
-      await denops.cmd(`lua require("flirt").setup()`);
+      await denops.call(`luaeval`, `require("flirt").setup()`);
     },
   },
   { url: "https://github.com/gw31415/scrollUptoLastLine.vim", enabled: false },
@@ -359,7 +362,7 @@ export const ui: Plug[] = [
     url: "https://github.com/adelarsq/snake_cursor.nvim",
     enabled: false,
     after: async ({ denops }) => {
-      await denops.cmd(`lua require("snake_cursor").setup()`);
+      await denops.call(`luaeval`, `require("snake_cursor").setup()`);
     },
   },
   {
