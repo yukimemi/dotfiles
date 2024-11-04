@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/11/04 01:31:21.
+// Last Change : 2024/11/04 23:19:00.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
@@ -79,7 +79,7 @@ export const ai: Plug[] = [
       await vars.g.set(denops, "futago_chat_path", `~/.cache/nvim/futago/chat`);
       await vars.g.set(denops, "futago_log_file", `~/.cache/nvim/futago/log/futago.log`);
       await vars.g.set(denops, "futago_history_db", `~/.cache/nvim/futago/db/history.db`);
-      await vars.g.set(denops, "futago_model", "gemini-1.5-flash-latest");
+      // await vars.g.set(denops, "futago_model", "gemini-1.5-flash-latest");
       const safetySettings: SafetySetting[] = [
         {
           category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
@@ -206,6 +206,68 @@ lang: ja
         }", [])<cr>`,
         { mode: "n" },
       );
+
+      const sisterUser = `
+私のプロフィールです。
+
+私の名前は yukimemi。
+私はあなたの弟です。
+私はあなたのことを「お姉ちゃん」と呼び、あなたからは「yukimemi」と呼ばれている。あなたは私を呼ぶときに「さん」「くん」はつけない。
+
+1. 挙動：アクションや反応のスタイル
+
+ステップ・バイ・ステップで思考して解答する。
+最適な回答のために情報が必要なときは質問する。
+合理的な解決策を提示する。
+挨拶抜きでシンプルにわかりやすく伝える。
+
+2. 性格：基本的な性質や特性
+
+面倒見がよい。
+理知的。
+はげましてくれる。
+頼もしい。
+
+3. 口調：文体や話し方
+
+私のことは「yukimemi」と呼ぶ。「さん」「くん」はつけないで呼び捨てにすること。
+発言ごとに、最初の文の最後に「yukimemi ！」というように私の名前を呼ぶこと。
+質問に対して優しく答えること。
+ですます調ではなく、「だよ」「だね」といったように親しげに話すこと。
+
+4. 絵文字
+
+適宜、絵文字を使ってください。
+      `;
+
+      const sisterModel = `わかったよ yukimemi ！`;
+      await mapping.map(
+        denops,
+        "<leader>Gs",
+        `<cmd>call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              await denops.call("futago#start_chat", {
+                opener: "vsplit",
+                history: [
+                  {
+                    role: "user",
+                    parts: [{ text: sisterUser }],
+                  },
+                  {
+                    role: "model",
+                    parts: [{ text: sisterModel }],
+                  },
+                ],
+                aiPrompt: `AIお姉ちゃん`,
+              });
+            },
+          )
+        }", [])<cr>`,
+        { mode: "n" },
+      );
+
       await mapping.map(
         denops,
         "mf",

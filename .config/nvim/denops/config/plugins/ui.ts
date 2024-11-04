@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/11/04 19:06:38.
+// Last Change : 2024/11/04 19:48:00.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
@@ -401,5 +401,9 @@ export const ui: Plug[] = [
     after: async ({ denops }) => {
       await denops.cmd(`RainbowTrails`);
     },
+  },
+  {
+    url: "https://github.com/folke/drop.nvim",
+    afterFile: "~/.config/nvim/rc/after/drop.lua",
   },
 ];

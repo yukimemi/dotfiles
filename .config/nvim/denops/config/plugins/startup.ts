@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : startup.ts
 // Author      : yukimemi
-// Last Change : 2024/10/12 22:00:44.
+// Last Change : 2024/11/04 19:48:02.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
@@ -39,9 +39,5 @@ export const startup: Plug[] = [
       enabled: false,
       afterFile: "~/.config/nvim/rc/after/billboard.lua",
     },
-  },
-  {
-    url: "https://github.com/folke/drop.nvim",
-    afterFile: "~/.config/nvim/rc/after/drop.lua",
   },
 ];

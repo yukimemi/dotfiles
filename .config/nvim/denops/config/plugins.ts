@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/11/04 15:44:04.
+// Last Change : 2024/11/04 22:14:25.
 // =============================================================================
 
 import { pluginStatus } from "./pluginstatus.ts";
@@ -46,6 +46,7 @@ import { treesitter } from "./plugins/treesitter.ts";
 import { twitter } from "./plugins/twitter.ts";
 import { ui } from "./plugins/ui.ts";
 import { util } from "./plugins/util.ts";
+import { yazi } from "./plugins/yazi.ts";
 
 const plugins = [
   ...ai,
@@ -55,6 +56,7 @@ const plugins = [
   ...denops,
   ...edit,
   ...fall,
+  ...filetypes,
   ...filetypes,
   ...git,
   ...libs,
@@ -81,6 +83,7 @@ const plugins = [
   ...twitter,
   ...ui,
   ...util,
+  ...yazi,
 ];
 
 if (pluginStatus.ddc) {
