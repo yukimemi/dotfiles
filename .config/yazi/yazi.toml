@@ -1,0 +1,17 @@
+# =============================================================================
+# File        : yazi.toml
+# Author      : yukimemi
+# Last Change : 2024/11/08 11:47:40.
+# =============================================================================
+
+# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[opener]
+edit = [
+	{ run = '${EDITOR:-hitori} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+	{ run = 'hitori %*', orphan = true, desc = "hitori", for = "windows" },
+	{ run = 'hitori %*', block = true, desc = "hitori (block)", for = "windows" },
+]
+

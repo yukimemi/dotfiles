@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2024/11/04 20:05:54.
+// Last Change : 2024/11/08 17:59:13.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
@@ -120,7 +120,7 @@ export const lsp: Plug[] = [
       "https://github.com/onsails/lspkind.nvim",
       "https://github.com/williamboman/mason-lspconfig.nvim",
       "https://github.com/williamboman/mason.nvim",
-      "https://github.com/Saghen/blink.cmp",
+      // "https://github.com/Saghen/blink.cmp",
       // "https://github.com/nvimtools/none-ls.nvim",
       // "https://github.com/zapling/mason-conform.nvim",
     ],

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : .mappings
 # Author      : yukimemi
-# Last Change : 2024/08/11 16:29:48.
+# Last Change : 2024/11/05 13:57:08.
 # =============================================================================
 
 [general]
@@ -20,6 +20,7 @@
 ".config/rhq" = "~/AppData/Roaming/rhq"
 ".config/helix" = "~/AppData/Roaming/helix"
 ".config/nushell" = "~/AppData/Roaming/nushell"
+".config/yazi" = "~/AppData/Roaming/yazi/config"
 ".config/nvim" = ["~/vimfiles", "~/AppData/Local/nvim"]
 ".vimrc" = "~/_vimrc"
 ".gvimrc" = "~/_gvimrc"

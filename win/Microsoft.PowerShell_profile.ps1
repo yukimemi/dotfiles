@@ -1,3 +1,9 @@
+# =============================================================================
+# File        : Microsoft.PowerShell_profile.ps1
+# Author      : yukimemi
+# Last Change : 2024/11/09 00:12:09.
+# =============================================================================
+
 # module
 # Install-Module -Force -Scope CurrentUser core
 # Install-Module -Force -Scope CurrentUser ZLocation
@@ -114,9 +120,9 @@ function cd-ls {
     Invoke-Expression $funcs
     $z = & {
       if (Is-Windows) {
-        (Join-Path $env:USERPROFILE ".z")
+        (Join-Path $env:USERPROFILE ".cdhistory")
       } else {
-        (Join-Path $env:HOME ".z")
+        (Join-Path $env:HOME ".cdhistory")
       }
     }
     $path | Add-Content -Encoding utf8 $z
@@ -228,24 +234,27 @@ function Trim-Cd {
   }
 }
 function rhl {
-  rhq list | __FILTER | Trim-Cd
+  rhq list | __FILTER | Select-Object -First 1 | Trim-Cd
 }
 function ghl {
-  ghr list | __FILTER | Trim-Cd
+  ghr list | __FILTER | Select-Object -First 1 | Trim-Cd
+}
+function jd {
+  Get-ChildItem -Force -Directory -Recurse | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | Trim-Cd
 }
 
 # Remove-Alias r
 Remove-Item alias:r
 function r {
   if (Get-Command trash -ErrorAction SilentlyContinue) {
-    trash $(Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER)
+    trash $(Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1)
   } else {
-    Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER | RemoveTo-Trash
+    Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | RemoveTo-Trash
   }
 }
 
 function fe {
-  fd | __FILTER | nvim
+  nvim $(fd -H -t f | __FILTER | Select-Object -First 1)
 }
 
 function v {
@@ -331,20 +340,20 @@ Set-PSReadLineKeyHandler -Key 'Ctrl+w' -Function BackwardDeleteWord
 
 # z.
 function _j1 {
-  z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | Trim-Cd
+  z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | Select-Object -First 1 | Trim-Cd
 }
 
 function _j2 {
   $z = & {
     if (Is-Windows) {
-      (Join-Path $env:USERPROFILE ".z")
+      (Join-Path $env:USERPROFILE ".cdhistory")
     } else {
-      (Join-Path $env:HOME ".z")
+      (Join-Path $env:HOME ".cdhistory")
     }
   }
   $c = Get-Content $z
   [array]::Reverse($c)
-  $c | __FILTER | Trim-Cd
+  $c | __FILTER | Select-Object -First 1 | Trim-Cd
   # Get-Content $z | __FILTER | Trim-Cd
   Get-Job | Stop-Job -PassThru | Remove-Job -Force
 }
@@ -354,10 +363,18 @@ function j {
 }
 
 # zoxide.
-# Invoke-Expression (& {
-#     $hook = if ($PSVersionTable.PSVersion.Major -lt 6) { 'prompt' } else { 'pwd' }
-#     (zoxide init --hook $hook powershell) -join "`n"
-#   })
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
+# yazi
+function y {
+  $tmp = [System.IO.Path]::GetTempFileName()
+  yazi $args --cwd-file="$tmp"
+  $cwd = Get-Content -Path $tmp
+  if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
+    Set-Location -LiteralPath $cwd
+  }
+  Remove-Item -Path $tmp
+}
 
 # hash.
 function Get-FileAndHash {
@@ -384,7 +401,7 @@ if (Get-Command pnpm -ErrorAction SilentlyContinue) {
 
 # proto
 if (!(Get-Command proto -ErrorAction SilentlyContinue)) {
-  irm https://moonrepo.dev/install/proto.ps1 | iex
+  Invoke-RestMethod https://moonrepo.dev/install/proto.ps1 | Invoke-Expression
 }
 $env:PROTO_HOME = Join-Path $HOME ".proto"
 $env:PATH = @(
