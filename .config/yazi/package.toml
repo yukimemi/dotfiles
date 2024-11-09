@@ -1,7 +1,7 @@
 [plugin]
 deps = [
-	{ use = "yazi-rs/plugins:max-preview", rev = "4adba4e" },
-	{ use = "yazi-rs/plugins:hide-preview", rev = "4adba4e" },
+	{ use = "yazi-rs/plugins:max-preview", rev = "dc11879" },
+	{ use = "yazi-rs/plugins:hide-preview", rev = "dc11879" },
 	{ use = "Reledia/miller", rev = "40e0265" },
 	{ use = "GrzegorzKozub/mdcat", rev = "1706af4" },
 	{ use = "KKV9/command", rev = "dc9b483" },

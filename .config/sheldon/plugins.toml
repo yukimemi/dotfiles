@@ -1,13 +1,13 @@
 # =============================================================================
 # File        : plugins.toml
 # Author      : yukimemi
-# Last Change : 2024/07/06 20:43:02.
+# Last Change : 2024/11/10 08:22:49.
 # =============================================================================
 
 shell = "zsh"
 
 [templates]
-defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks | get: \"post\" | nl }}"
+defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
