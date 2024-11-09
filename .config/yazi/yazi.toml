@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : yazi.toml
 # Author      : yukimemi
-# Last Change : 2024/11/08 11:47:40.
+# Last Change : 2024/11/09 14:25:13.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -12,6 +12,16 @@
 edit = [
 	{ run = '${EDITOR:-hitori} "$@"', desc = "$EDITOR", block = true, for = "unix" },
 	{ run = 'hitori %*', orphan = true, desc = "hitori", for = "windows" },
-	{ run = 'hitori %*', block = true, desc = "hitori (block)", for = "windows" },
 ]
-
+[plugin]
+prepend_previewers = [
+	{ mime = "text/csv", run = "miller" },
+	{ name = "*.md", run = "mdcat" },
+	# Archive previewer
+	{ mime = "application/*zip",            run = "ouch" },
+	{ mime = "application/x-tar",           run = "ouch" },
+	{ mime = "application/x-bzip2",         run = "ouch" },
+	{ mime = "application/x-7z-compressed", run = "ouch" },
+	{ mime = "application/x-rar",           run = "ouch" },
+	{ mime = "application/x-xz",            run = "ouch" },
+]

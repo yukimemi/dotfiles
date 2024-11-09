@@ -98,6 +98,13 @@ export const libs: Plug[] = [
     },
   },
   {
+    url: "https://github.com/rachartier/tiny-devicons-auto-colors.nvim",
+    dependencies: ["https://github.com/nvim-tree/nvim-web-devicons"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("tiny-devicons-auto-colors").setup()`);
+    },
+  },
+  {
     url: "https://github.com/folke/noice.nvim",
     dependencies: [
       "https://github.com/MunifTanjim/nui.nvim",

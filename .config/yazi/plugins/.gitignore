@@ -1,0 +1,19 @@
+# =============================================================================
+# File        : .gitignore
+# Author      : yukimemi
+# Last Change : 2024/11/09 15:56:04.
+# =============================================================================
+
+augment-command.yazi/
+command.yazi/
+dual-pane.yazi/
+hide-preview.yazi/
+lazygit.yazi/
+max-preview.yazi/
+mdcat.yazi/
+miller.yazi/
+ouch.yazi/
+projects.yazi/
+starship.yazi/
+system-clipboard.yazi/
+yamb.yazi/

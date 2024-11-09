@@ -44,7 +44,8 @@
             "keys": "ctrl+shift+f"
         },
         {
-            "command": "paste"
+            "command": "paste",
+            "id": "User.paste"
         }
     ],
     "alwaysShowTabs": false,
@@ -63,7 +64,7 @@
         "defaults": 
         {
             "antialiasingMode": "cleartype",
-            "backgroundImage": null,
+            "backgroundImage": "desktopWallpaper",
             "backgroundImageOpacity": 0.1,
             "backgroundImageStretchMode": "uniformToFill",
             "bellStyle": "window",
@@ -102,18 +103,6 @@
                 "hidden": false,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
-            },
-            {
-                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-                "hidden": true,
-                "name": "Ubuntu",
-                "source": "Windows.Terminal.Wsl"
-            },
-            {
-                "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",
-                "hidden": false,
-                "name": "Ubuntu",
-                "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
             },
             {
                 "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",

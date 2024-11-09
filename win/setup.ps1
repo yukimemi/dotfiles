@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2024/11/02 19:49:34.
+  .Last Change : 2024/11/09 14:03:00.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -74,6 +74,7 @@ function Install-RequiredModules {
   & msiexec /i $nvimMsi /quiet
   # winget install -q Neovim.Neovim
   winget install -q sxyazi.yazi
+  winget install -q JesseDuffield.lazygit
   winget install -q wez.wezterm
   winget install -q astral-sh.uv
   winget install -q gerardog.gsudo
@@ -108,6 +109,17 @@ function Install-RequiredModules {
 
 <#
   .SYNOPSIS
+    Set-RequiredEnv
+  .DESCRIPTION
+    setx required env
+#>
+function Set-RequiredEnv {
+  setx CARGO_NET_GIT_FETCH_WITH_CLI "true"
+  setx YAZI_FILE_ONE "C:\Program Files\Git\usr\bin\file.exe"
+}
+
+<#
+  .SYNOPSIS
     Main
   .DESCRIPTION
     Execute main
@@ -123,6 +135,8 @@ function Start-Main {
 
   try {
     log "[Start-Main] Start"
+
+    Set-RequiredEnv
 
     Install-RequiredModules
 
