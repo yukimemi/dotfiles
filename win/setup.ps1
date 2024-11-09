@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2024/11/09 14:03:00.
+  .Last Change : 2024/11/09 17:39:26.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -120,6 +120,18 @@ function Set-RequiredEnv {
 
 <#
   .SYNOPSIS
+    Install-RequiredCargo
+  .DESCRIPTION
+    Install cargo modules
+#>
+function Install-RequiredCargo {
+  cargo install ouch
+  cargo install yazi-fm
+  cargo install yazi-cli
+}
+
+<#
+  .SYNOPSIS
     Main
   .DESCRIPTION
     Execute main
@@ -139,6 +151,7 @@ function Start-Main {
     Set-RequiredEnv
 
     Install-RequiredModules
+    Install-RequiredCargo
 
     $target = Join-Path -Path $env:USERPROFILE -ChildPath ".dotfiles\win\AutoHotkey\AutoHotkey.ahk"
     $link = Join-Path -Path $env:APPDATA -ChildPath "Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : yazi.ts
 // Author      : yukimemi
-// Last Change : 2024/11/04 22:25:27.
+// Last Change : 2024/11/09 17:39:10.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
@@ -13,7 +13,7 @@ export const yazi: Plug[] = [
     url: "https://github.com/mikavilpas/yazi.nvim",
     enabled: pluginStatus.yazi,
     cache: { afterFile: `~/.config/nvim/rc/after/yazi.lua` },
-    build: async ({ denops, info }) => {
+    build: async ({ info }) => {
       if (!info.isUpdate) {
         return;
       }

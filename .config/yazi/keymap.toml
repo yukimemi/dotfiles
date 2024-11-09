@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : keymap.toml
 # Author      : yukimemi
-# Last Change : 2024/11/09 15:50:34.
+# Last Change : 2024/11/09 18:13:27.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -268,10 +268,6 @@ on = ["<Left>"]
 run = "plugin augment-command --args='leave --no-skip'"
 desc = "Go back to the parent directory"
 [[manager.prepend_keymap]]
-on = ["O"]
-run = "plugin augment-command --args='open --interactive'"
-desc = "Open selected files interactively"
-[[manager.prepend_keymap]]
 on = ["u"]
 run = ["select_all --state=false", "unyank"]
 desc = "Unselect all files and also unyank cut files"
@@ -293,8 +289,12 @@ run = "plugin augment-command --args='remove --permanently'"
 desc = "Permanently delete the files"
 [[manager.prepend_keymap]]
 on = ["o"]
-run = "plugin augment-command --args='editor'"
-desc = "Open files with the default editor"
+run = "plugin augment-command --args='open'"
+desc = "Open files"
+# [[manager.prepend_keymap]]
+# on = ["O"]
+# run = "plugin augment-command --args='open --interactive'"
+# desc = "Open selected files interactively"
 [[manager.prepend_keymap]]
 on = ["i"]
 run = "plugin augment-command --args='pager'"

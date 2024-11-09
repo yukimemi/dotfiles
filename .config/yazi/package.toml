@@ -1,5 +1,19 @@
 [plugin]
-deps = [{ use = "yazi-rs/plugins:max-preview", rev = "4adba4e" }, { use = "yazi-rs/plugins:hide-preview", rev = "4adba4e" }, { use = "Reledia/miller", rev = "40e0265" }, { use = "GrzegorzKozub/mdcat", rev = "1706af4" }, { use = "KKV9/command", rev = "dc9b483" }, { use = "dawsers/dual-pane", rev = "c2fed12" }, { use = "Rolv-Apneseth/starship", rev = "77a65f5" }, { use = "hankertrix/augment-command", rev = "b408191" }, { use = "orhnk/system-clipboard", rev = "7775a80" }, { use = "Lil-Dank/lazygit", rev = "c82794f" }, { use = "MasouShizuka/projects", rev = "7a1dc37" }, { use = "h-hg/yamb", rev = "0598b8d" }, { use = "ndtoan96/ouch", rev = "d13f7c0" }]
+deps = [
+	{ use = "yazi-rs/plugins:max-preview", rev = "4adba4e" },
+	{ use = "yazi-rs/plugins:hide-preview", rev = "4adba4e" },
+	{ use = "Reledia/miller", rev = "40e0265" },
+	{ use = "GrzegorzKozub/mdcat", rev = "1706af4" },
+	{ use = "KKV9/command", rev = "dc9b483" },
+	{ use = "dawsers/dual-pane", rev = "c2fed12" },
+	{ use = "Rolv-Apneseth/starship", rev = "77a65f5" },
+	{ use = "hankertrix/augment-command", rev = "b408191" },
+	{ use = "orhnk/system-clipboard", rev = "7775a80" },
+	{ use = "Lil-Dank/lazygit", rev = "c82794f" },
+	{ use = "MasouShizuka/projects", rev = "7a1dc37" },
+	{ use = "h-hg/yamb", rev = "0598b8d" },
+	{ use = "ndtoan96/ouch", rev = "d13f7c0" },
+]
 
 [flavor]
 deps = []
