@@ -1,14 +1,11 @@
 -- =============================================================================
 -- File        : init.lua
 -- Author      : yukimemi
--- Last Change : 2024/11/09 15:19:16.
+-- Last Change : 2024/11/10 10:28:04.
 -- =============================================================================
 
 -- https://github.com/dawsers/dual-pane.yazi
 require("dual-pane"):setup()
-
--- https://github.com/Rolv-Apneseth/starship.yazi
-require("starship"):setup()
 
 -- https://github.com/hankertrix/augment-command.yazi
 require("augment-command"):setup({

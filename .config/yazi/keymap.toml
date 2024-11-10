@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : keymap.toml
 # Author      : yukimemi
-# Last Change : 2024/11/09 18:13:27.
+# Last Change : 2024/11/10 10:27:44.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -13,12 +13,6 @@
 on = "T"
 run = "plugin --sync max-preview"
 desc = "Maximize or restore preview"
-
-# https://github.com/yazi-rs/plugins/tree/main/hide-preview.yazi
-[[manager.prepend_keymap]]
-on = "T"
-run = "plugin --sync hide-preview"
-desc = "Hide or show preview"
 
 # https://github.com/KKV9/command.yazi
 [[manager.prepend_keymap]]

@@ -1,12 +1,16 @@
+# =============================================================================
+# File        : package.toml
+# Author      : yukimemi
+# Last Change : 2024/11/09 18:13:27.
+# =============================================================================
+
 [plugin]
 deps = [
 	{ use = "yazi-rs/plugins:max-preview", rev = "dc11879" },
-	{ use = "yazi-rs/plugins:hide-preview", rev = "dc11879" },
 	{ use = "Reledia/miller", rev = "40e0265" },
 	{ use = "GrzegorzKozub/mdcat", rev = "1706af4" },
 	{ use = "KKV9/command", rev = "dc9b483" },
 	{ use = "dawsers/dual-pane", rev = "c2fed12" },
-	{ use = "Rolv-Apneseth/starship", rev = "77a65f5" },
 	{ use = "hankertrix/augment-command", rev = "b408191" },
 	{ use = "orhnk/system-clipboard", rev = "7775a80" },
 	{ use = "Lil-Dank/lazygit", rev = "c82794f" },
