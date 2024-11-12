@@ -6,9 +6,9 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
 
-import * as fn from "jsr:@denops/std@7.3.0/function";
-import * as mapping from "jsr:@denops/std@7.3.0/mapping";
-import * as vars from "jsr:@denops/std@7.3.0/variable";
+import * as fn from "jsr:@denops/std@7.3.1/function";
+import * as mapping from "jsr:@denops/std@7.3.1/mapping";
+import * as vars from "jsr:@denops/std@7.3.1/variable";
 
 import { pluginStatus } from "../pluginstatus.ts";
 
