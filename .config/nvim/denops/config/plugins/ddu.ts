@@ -6,12 +6,12 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
 
-import * as autocmd from "jsr:@denops/std@7.3.1/autocmd";
-import * as fn from "jsr:@denops/std@7.3.1/function";
-import * as lambda from "jsr:@denops/std@7.3.1/lambda";
-import * as mapping from "jsr:@denops/std@7.3.1/mapping";
-import * as op from "jsr:@denops/std@7.3.1/option";
-import { batch } from "jsr:@denops/std@7.3.1/batch";
+import * as autocmd from "jsr:@denops/std@7.3.2/autocmd";
+import * as fn from "jsr:@denops/std@7.3.2/function";
+import * as lambda from "jsr:@denops/std@7.3.2/lambda";
+import * as mapping from "jsr:@denops/std@7.3.2/mapping";
+import * as op from "jsr:@denops/std@7.3.2/option";
+import { batch } from "jsr:@denops/std@7.3.2/batch";
 import { z } from "npm:zod@3.23.8";
 import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";

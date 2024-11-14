@@ -4,10 +4,10 @@
 // Last Change : 2023/07/16 00:39:41.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@7.3.1";
+import type { Denops } from "jsr:@denops/std@7.3.2";
 
-import * as option from "jsr:@denops/std@7.3.1/option";
-import * as fn from "jsr:@denops/std@7.3.1/function";
+import * as option from "jsr:@denops/std@7.3.2/option";
+import * as fn from "jsr:@denops/std@7.3.2/function";
 
 export async function setNvy(denops: Denops) {
   if (!(await fn.exists(denops, "g:nvy"))) {

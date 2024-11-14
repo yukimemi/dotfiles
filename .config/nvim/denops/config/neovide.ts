@@ -4,11 +4,11 @@
 // Last Change : 2024/08/25 10:36:35.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@7.3.1";
+import type { Denops } from "jsr:@denops/std@7.3.2";
 
-import * as option from "jsr:@denops/std@7.3.1/option";
-import * as vars from "jsr:@denops/std@7.3.1/variable";
-import * as fn from "jsr:@denops/std@7.3.1/function";
+import * as option from "jsr:@denops/std@7.3.2/option";
+import * as vars from "jsr:@denops/std@7.3.2/variable";
+import * as fn from "jsr:@denops/std@7.3.2/function";
 
 export async function setNeovide(denops: Denops) {
   if (!(await fn.exists(denops, "g:neovide"))) {
