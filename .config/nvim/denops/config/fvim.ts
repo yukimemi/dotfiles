@@ -4,13 +4,13 @@
 // Last Change : 2023/12/03 18:43:23.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@7.3.1";
+import type { Denops } from "jsr:@denops/std@7.3.2";
 
-import * as fn from "jsr:@denops/std@7.3.1/function";
-import * as mapping from "jsr:@denops/std@7.3.1/mapping";
-import * as option from "jsr:@denops/std@7.3.1/option";
-import { batch } from "jsr:@denops/std@7.3.1/batch";
-import { execute } from "jsr:@denops/std@7.3.1/helper";
+import * as fn from "jsr:@denops/std@7.3.2/function";
+import * as mapping from "jsr:@denops/std@7.3.2/mapping";
+import * as option from "jsr:@denops/std@7.3.2/option";
+import { batch } from "jsr:@denops/std@7.3.2/batch";
+import { execute } from "jsr:@denops/std@7.3.2/helper";
 
 export async function setFvim(denops: Denops) {
   if (!(await fn.exists(denops, "g:fvim_loaded"))) {
