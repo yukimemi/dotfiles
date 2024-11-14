@@ -6,7 +6,7 @@
 
 import * as fn from "jsr:@denops/std@7.3.2/function";
 import * as lambda from "jsr:@denops/std@7.3.2/lambda";
-import * as log from "jsr:@std/log@0.224.9";
+import * as log from "jsr:@std/log@0.224.10";
 import type { Denops, Entrypoint } from "jsr:@denops/std@7.3.2";
 import { Dvpm } from "jsr:@yukimemi/dvpm@5.0.14";
 import { cacheLua, cacheVim } from "./cache.ts";
