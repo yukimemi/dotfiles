@@ -1,3 +1,9 @@
+// =============================================================================
+// File        : config.ts
+// Author      : yukimemi
+// Last Change : 2024/11/16 22:02:16.
+// =============================================================================
+
 import type { Entrypoint } from "jsr:@vim-fall/config@^0.17.3";
 import { composeRenderers } from "jsr:@vim-fall/std@^0.7.0";
 import * as builtin from "jsr:@vim-fall/std@^0.7.0/builtin";

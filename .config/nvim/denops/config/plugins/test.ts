@@ -1,10 +1,11 @@
 // =============================================================================
 // File        : test.ts
 // Author      : yukimemi
-// Last Change : 2024/10/01 23:58:52.
+// Last Change : 2024/11/16 22:00:37.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
+import { pluginStatus } from "../pluginstatus.ts";
 
 import * as mapping from "jsr:@denops/std@7.3.2/mapping";
 import * as vars from "jsr:@denops/std@7.3.2/variable";
@@ -13,6 +14,7 @@ export const test: Plug[] = [
   { url: "https://github.com/skywind3000/asyncrun.vim" },
   {
     url: "https://github.com/vim-test/vim-test",
+    enabled: pluginStatus.vimtest,
     dependencies: [
       "https://github.com/skywind3000/asyncrun.vim",
     ],
@@ -39,5 +41,20 @@ export const test: Plug[] = [
         mode: "n",
       });
     },
+  },
+  { url: "https://github.com/nvim-neotest/nvim-nio" },
+  { url: "https://github.com/nvim-lua/plenary.nvim" },
+  { url: "https://github.com/antoinemadec/FixCursorHold.nvim" },
+  { url: "https://github.com/nvim-treesitter/nvim-treesitter" },
+  {
+    url: "https://github.com/nvim-neotest/neotest",
+    enabled: pluginStatus.neotest,
+    dependencies: [
+      "https://github.com/nvim-neotest/nvim-nio",
+      "https://github.com/nvim-lua/plenary.nvim",
+      "https://github.com/antoinemadec/FixCursorHold.nvim",
+      "https://github.com/nvim-treesitter/nvim-treesitter",
+    ],
+    afterFile: "~/.config/nvim/rc/after/neotest.lua",
   },
 ];
