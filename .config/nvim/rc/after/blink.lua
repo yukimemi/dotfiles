@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : blink.lua
 -- Author      : yukimemi
--- Last Change : 2024/11/08 17:56:49.
+-- Last Change : 2024/11/16 13:05:02.
 -- =============================================================================
 
 require("blink-cmp").setup({
@@ -34,8 +34,6 @@ require("blink-cmp").setup({
     documentation = {
       border = "single",
       auto_show = true,
-      auto_show_delay_ms = 500,
-      update_delay_ms = 50,
     },
     signature_help = {
       border = "single",

@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2024/11/15 11:49:56.
+; Last Change : 2024/11/16 12:22:20.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -215,7 +215,7 @@ F12::
 ;}
 ^F10::
 {
-  Activate3("yazi.exe", "yazi.exe", "Yazi")
+  Activate3("yazi.exe", "yazi.exe", "Yazi:")
 }
 
 ; for slack
