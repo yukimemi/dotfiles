@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/11/12 00:18:15.
+// Last Change : 2024/11/16 18:18:16.
 // =============================================================================
 
 import * as autocmd from "jsr:@denops/std@7.3.2/autocmd";
@@ -21,19 +21,14 @@ export const ddc: Plug[] = [
     url: "https://github.com/Shougo/pum.vim",
     after: async ({ denops }) => {
       await denops.call("pum#set_option", {
-        // item_orders: ["kind", "space", "abbr", "space", "menu"],
         auto_confirm_time: 0,
         auto_select: false,
         border: "none",
         follow_cursor: false,
         offset_cmdcol: 0,
         padding: false,
-        preview: true,
-        preview_border: "none",
-        preview_width: 80,
-        reversed: false,
         scrollbar_char: "┃",
-        use_setline: true,
+        use_setline: false,
       });
     },
   },

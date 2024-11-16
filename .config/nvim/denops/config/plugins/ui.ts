@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/11/06 10:51:35.
+// Last Change : 2024/11/16 21:10:55.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
@@ -84,7 +84,22 @@ export const ui: Plug[] = [
     afterFile: `~/.config/nvim/rc/after/luminate.lua`,
   },
   { url: "https://github.com/itchyny/vim-parenmatch", enabled: false },
-  { url: "https://github.com/ntpeters/vim-better-whitespace" },
+  {
+    url: "https://github.com/ntpeters/vim-better-whitespace",
+    after: async ({ denops }) => {
+      await vars.g.set(denops, "better_whitespace_filetypes_blacklist", [
+        "diff",
+        "git",
+        "gitcommit",
+        "unite",
+        "qf",
+        "help",
+        "markdown",
+        "fugitive",
+        "fall-help",
+      ]);
+    },
+  },
   {
     url: "https://github.com/LumaKernel/nvim-visual-eof.lua",
     after: async ({ denops }) => {
