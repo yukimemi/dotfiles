@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : snippet.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 19:14:17.
+// Last Change : 2024/11/10 12:48:28.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.3.2/function";
@@ -76,13 +76,13 @@ export const snippet: Plug[] = [
         ),
       );
       await denops.call(`denippet#load`, cs, "cs");
-      const powershell = z.string().parse(
-        await fn.expand(
-          denops,
-          "~/.cache/vscode-powershell/snippets/PowerShell.json",
-        ),
-      );
-      await denops.call(`denippet#load`, powershell, "ps1");
+      // const powershell = z.string().parse(
+      //   await fn.expand(
+      //     denops,
+      //     "~/.cache/vscode-powershell/snippets/PowerShell.json",
+      //   ),
+      // );
+      // await denops.call(`denippet#load`, powershell, "ps1");
 
       const userSnippetsDir = z.string().parse(
         await fn.expand(denops, "~/.config/nvim/snippets"),

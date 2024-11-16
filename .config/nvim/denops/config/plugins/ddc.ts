@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/10/02 00:18:44.
+// Last Change : 2024/11/12 00:18:15.
 // =============================================================================
 
 import * as autocmd from "jsr:@denops/std@7.3.2/autocmd";
@@ -83,30 +83,30 @@ export const ddc: Plug[] = [
       await denops.call(`signature_help#enable`);
     },
   },
-  { url: "https://github.com/tani/ddc-fuzzy" },
+  { url: "https://github.com/LumaKernel/ddc-file" },
+  { url: "https://github.com/LumaKernel/ddc-run" },
+  { url: "https://github.com/Shougo/ddc-filter-converter_remove_overlap" },
+  { url: "https://github.com/Shougo/ddc-filter-converter_truncate_abbr" },
   { url: "https://github.com/Shougo/ddc-filter-matcher_head" },
   { url: "https://github.com/Shougo/ddc-filter-matcher_length" },
   { url: "https://github.com/Shougo/ddc-filter-matcher_vimregexp" },
   { url: "https://github.com/Shougo/ddc-filter-sorter_rank" },
-  { url: "https://github.com/Shougo/ddc-filter-converter_remove_overlap" },
-  { url: "https://github.com/Shougo/ddc-filter-converter_truncate_abbr" },
-  { url: "https://github.com/Shougo/pum.vim" },
-  { url: "https://github.com/Shougo/ddc-ui-pum" },
-  { url: "https://github.com/Shougo/ddc-ui-inline" },
-  { url: "https://github.com/LumaKernel/ddc-file" },
-  { url: "https://github.com/LumaKernel/ddc-run" },
   { url: "https://github.com/Shougo/ddc-source-around" },
-  { url: "https://github.com/Shougo/ddc-source-codeium" },
   { url: "https://github.com/Shougo/ddc-source-cmdline" },
   { url: "https://github.com/Shougo/ddc-source-cmdline-history" },
+  { url: "https://github.com/Shougo/ddc-source-codeium" },
   { url: "https://github.com/Shougo/ddc-source-input" },
   { url: "https://github.com/Shougo/ddc-source-line" },
+  { url: "https://github.com/Shougo/ddc-source-lsp" },
   { url: "https://github.com/Shougo/ddc-source-omni" },
   { url: "https://github.com/Shougo/ddc-source-rg" },
+  { url: "https://github.com/Shougo/ddc-ui-inline" },
+  { url: "https://github.com/Shougo/ddc-ui-pum" },
+  { url: "https://github.com/Shougo/pum.vim" },
   { url: "https://github.com/delphinus/ddc-treesitter" },
   { url: "https://github.com/matsui54/ddc-buffer" },
+  { url: "https://github.com/tani/ddc-fuzzy" },
   { url: "https://github.com/uga-rosa/ddc-source-nvim-lua" },
-  { url: "https://github.com/uga-rosa/ddc-source-lsp-setup" },
   {
     url: "https://github.com/Shougo/ddc.vim",
     dependencies: [
@@ -243,8 +243,8 @@ export const ddc: Plug[] = [
           },
           rg: {
             mark: "",
-            minAutoCompleteLength: 3,
-            enabledIf: "finddir('.git', ';') != ''",
+            // minAutoCompleteLength: 1,
+            // enabledIf: "finddir('.git', ';') != ''",
           },
           "lsp": {
             mark: "󱐋",

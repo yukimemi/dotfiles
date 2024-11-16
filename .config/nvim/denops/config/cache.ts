@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2024/08/03 12:51:21.
+// Last Change : 2024/11/10 15:18:16.
 // =============================================================================
 
 export function cacheVim() {
@@ -15,6 +15,11 @@ export function cacheVim() {
       endif
       au MyAutoCmd SwapExists * let v:swapchoice = 'o'
       command! DenopsFixCache call denops#cache#update(#{reload: v:true})
+
+      " https://daisuzu.hatenablog.com/entry/2018/12/13/012608
+      command! -bar ToScratch setlocal buftype=nofile bufhidden=hide noswapfile
+      command! -nargs=1 -complete=command L <mods> new | ToScratch | call setline(1, split(execute(<q-args>), '\\n'))
+      cnoremap <c-c> <home>L <cr>
     `,
     path: "~/.cache/nvim/dvpm/cache/plugin/dvpm_cache.vim",
   };
@@ -23,6 +28,21 @@ export function cacheVim() {
 export function cacheLua() {
   return {
     script: `
+      -- Disable default plugins
+      vim.g.loaded_2html_plugin = 1
+      vim.g.loaded_gzip = 1
+      vim.g.loaded_man = 1
+      vim.g.loaded_matchit = 1
+      vim.g.loaded_matchparen = 1
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+      vim.g.loaded_remote_plugins = 1
+      vim.g.loaded_shada_plugin = 1
+      vim.g.loaded_spellfile_plugin = 1
+      vim.g.loaded_tarPlugin = 1
+      vim.g.loaded_tutor_mode_plugin = 1
+      vim.g.loaded_zipPlugin = 1
+
       -- options.
       vim.o.fileencodings = "ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1"
       vim.o.fileformats = "unix,dos,mac"

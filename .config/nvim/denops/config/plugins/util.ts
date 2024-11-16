@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/11/04 19:46:06.
+// Last Change : 2024/11/10 15:23:35.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
@@ -12,12 +12,7 @@ import * as vars from "jsr:@denops/std@7.3.2/variable";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const util: Plug[] = [
-  {
-    url: "https://github.com/tyru/capture.vim",
-    after: async ({ denops }) => {
-      await mapping.map(denops, "<C-c>", "<home>Capture <cr>", { mode: "c" });
-    },
-  },
+  { url: "https://github.com/tyru/capture.vim", enabled: false },
   { url: "https://github.com/dstein64/vim-startuptime" },
   {
     url: "https://github.com/thinca/vim-partedit",

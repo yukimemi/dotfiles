@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2024/11/08 18:04:08.
+// Last Change : 2024/11/10 12:42:19.
 // =============================================================================
 
 export const pluginStatus = {
@@ -13,12 +13,12 @@ export const pluginStatus = {
   buffertabs: false,
   care: false,
   clap: false,
-  cmp: true,
+  cmp: false,
   coc: false,
-  ddc: false,
+  ddc: true,
   ddu: true,
   ddufiler: false,
-  denippet: false,
+  denippet: true,
   fall: false,
   fern: false,
   fidget: true,

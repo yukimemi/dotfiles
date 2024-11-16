@@ -95,6 +95,10 @@ desc = "Merge current tab to other projects"
 on = ["M", "M"]
 run = "plugin projects --args='merge all'"
 desc = "Merge current project to other projects"
+[[manager.prepend_keymap]]
+on = [ "q" ]
+run = "plugin projects --args=quit"
+desc = "Save last project and exit the process"
 
 # https://github.com/ndtoan96/ouch.yazi
 [[manager.prepend_keymap]]
@@ -102,6 +106,13 @@ on = ["c", "a"]
 run = "plugin ouch --args=zip"
 desc = "Compress with ouch"
 
+# https://yazi-rs.github.io/docs/tips#cd-to-git-root
+[[manager.prepend_keymap]]
+on = [ "g", "r" ]
+run = '''
+	shell 'ya pub dds-cd --str "$(git rev-parse --show-toplevel)"' --confirm
+'''
+desc = "Goto git root"
 [[manager.prepend_keymap]]
 on = ["g", "d"]
 run = "cd ~/.dotfiles"

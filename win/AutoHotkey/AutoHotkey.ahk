@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2024/11/08 08:59:44.
+; Last Change : 2024/11/15 11:49:56.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -208,10 +208,14 @@ F12::
 ; return
 
 ; for cfiler
+;^F10::
+;{
+;  Activate(EnvGet("USERPROFILE") . "\app\cfiler\cfiler.exe")
+;  return
+;}
 ^F10::
 {
-  Activate(EnvGet("USERPROFILE") . "\app\cfiler\cfiler.exe")
-  return
+  Activate3("yazi.exe", "yazi.exe", "Yazi")
 }
 
 ; for slack

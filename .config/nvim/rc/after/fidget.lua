@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : fidget.lua
 -- Author      : yukimemi
--- Last Change : 2024/09/28 13:14:13.
+-- Last Change : 2024/11/10 13:14:13.
 -- =============================================================================
 
 require("fidget").setup({
@@ -10,4 +10,4 @@ require("fidget").setup({
   },
 })
 
-vim.keymap.set("n", "<space>fl", "<cmd>Capture Fidget history<cr>", { desc = "Fidget history" })
+vim.keymap.set("n", "<space>fl", "<cmd>L Fidget history<cr>", { desc = "Fidget history" })

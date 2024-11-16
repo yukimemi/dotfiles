@@ -1,27 +1,33 @@
 # =============================================================================
 # File        : yazi.toml
 # Author      : yukimemi
-# Last Change : 2024/11/09 14:25:13.
+# Last Change : 2024/11/13 19:52:35.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
+[manager]
+linemode = "mtime"
+
 [opener]
 edit = [
 	{ run = '${EDITOR:-hitori} "$@"', desc = "$EDITOR", block = true, for = "unix" },
 	{ run = 'hitori %*', orphan = true, desc = "hitori", for = "windows" },
 ]
+
 [plugin]
+prepend_preloaders = [{ mime = "application/pdf", run = "none" }]
 prepend_previewers = [
 	{ mime = "text/csv", run = "miller" },
 	{ name = "*.md", run = "mdcat" },
 	# Archive previewer
-	{ mime = "application/*zip",            run = "ouch" },
-	{ mime = "application/x-tar",           run = "ouch" },
-	{ mime = "application/x-bzip2",         run = "ouch" },
+	{ mime = "application/*zip", run = "ouch" },
+	{ mime = "application/x-tar", run = "ouch" },
+	{ mime = "application/x-bzip2", run = "ouch" },
 	{ mime = "application/x-7z-compressed", run = "ouch" },
-	{ mime = "application/x-rar",           run = "ouch" },
-	{ mime = "application/x-xz",            run = "ouch" },
+	{ mime = "application/x-rar", run = "ouch" },
+	{ mime = "application/x-xz", run = "ouch" },
+	{ mime = "application/pdf", run = "none" },
 ]
