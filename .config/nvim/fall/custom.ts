@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : custom.ts
 // Author      : yukimemi
-// Last Change : 2024/11/17 19:46:36.
+// Last Change : 2024/11/17 20:06:29.
 // =============================================================================
 
 import type { Entrypoint } from "jsr:@vim-fall/custom@^0.1.0";
@@ -421,6 +421,7 @@ export const main: Entrypoint = (
     "chronicle:read",
     refineSource(
       chronicle("read"),
+      builtin.refiner.exists,
       builtin.refiner.relativePath,
     ),
     {
@@ -448,6 +449,7 @@ export const main: Entrypoint = (
     "chronicle:write",
     refineSource(
       chronicle("write"),
+      builtin.refiner.exists,
       builtin.refiner.relativePath,
     ),
     {
