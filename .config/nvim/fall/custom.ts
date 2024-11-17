@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : custom.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 01:59:40.
+// Last Change : 2024/11/18 02:12:51.
 // =============================================================================
 
 import type { Entrypoint } from "jsr:@vim-fall/custom@0.1.0";
 import { composeRenderers, refineCurator, refineSource } from "jsr:@vim-fall/std@0.9.0";
 import * as builtin from "jsr:@vim-fall/std@0.9.0/builtin";
 import { SEPARATOR } from "jsr:@std/path@1.0.8/constants";
-import { chronicle } from "jsr:@yukimemi/chronicle@1.0.0";
+import { chronicle } from "jsr:@yukimemi/fall-source-chronicle@1.0.0";
 
 const myPathActions = {
   ...builtin.action.defaultOpenActions,
