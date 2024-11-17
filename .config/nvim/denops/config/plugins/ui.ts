@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/11/16 21:10:55.
+// Last Change : 2024/11/17 20:01:59.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
@@ -96,6 +96,8 @@ export const ui: Plug[] = [
         "help",
         "markdown",
         "fugitive",
+        "fall-input",
+        "fall-list",
         "fall-help",
       ]);
     },
@@ -164,6 +166,9 @@ export const ui: Plug[] = [
           "qf",
           "quickfix",
           "undotree",
+          "fall-input",
+          "fall-list",
+          "fall-help",
         ],
       });
 

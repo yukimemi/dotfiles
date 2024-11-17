@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/11/10 15:23:35.
+// Last Change : 2024/11/17 20:01:39.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
@@ -233,6 +233,9 @@ export const util: Plug[] = [
             "scanwalker",
             "scanwalker-filter",
             "undotree",
+            "fall-input",
+            "fall-list",
+            "fall-help",
           ],
         },
         animation: {

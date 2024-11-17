@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/10/28 13:50:12.
+// Last Change : 2024/11/17 20:01:10.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
@@ -98,6 +98,9 @@ export const denops: Plug[] = [
         "qf",
         "quickfix",
         "undotree",
+        "fall-input",
+        "fall-list",
+        "fall-help",
       ]);
     },
   },
@@ -137,6 +140,9 @@ export const denops: Plug[] = [
         "qf",
         "quickfix",
         "undotree",
+        "fall-input",
+        "fall-list",
+        "fall-help",
       ]);
     },
   },
