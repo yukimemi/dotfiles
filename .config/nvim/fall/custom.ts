@@ -1,28 +1,14 @@
 // =============================================================================
 // File        : custom.ts
 // Author      : yukimemi
-// Last Change : 2024/11/17 21:10:12.
+// Last Change : 2024/11/18 01:59:40.
 // =============================================================================
 
-import type { Entrypoint } from "jsr:@vim-fall/custom@^0.1.0";
-import {
-  composeRenderers,
-  defineSource,
-  refineCurator,
-  refineSource,
-  Source,
-} from "jsr:@vim-fall/std@^0.8.0";
-import * as vars from "jsr:@denops/std@7.3.2/variable";
-import * as builtin from "jsr:@vim-fall/std@^0.8.0/builtin";
-import { SEPARATOR } from "jsr:@std/path@^1.0.8/constants";
-import { TextLineStream } from "jsr:@std/streams@^1.0.8/text-line-stream";
-
-// NOTE:
-//
-// Install https://github.com/BurntSushi/ripgrep to use 'builtin.curator.rg'
-// Install https://www.nerdfonts.com/ to use 'builtin.renderer.nerdfont'
-// Install https://github.com/thinca/vim-qfreplace to use 'Qfreplace'
-//
+import type { Entrypoint } from "jsr:@vim-fall/custom@0.1.0";
+import { composeRenderers, refineCurator, refineSource } from "jsr:@vim-fall/std@0.8.0";
+import * as builtin from "jsr:@vim-fall/std@0.8.0/builtin";
+import { SEPARATOR } from "jsr:@std/path@1.0.8/constants";
+import { chronicle } from "jsr:@yukimemi/chronicle@1.0.0";
 
 const myPathActions = {
   ...builtin.action.defaultOpenActions,
@@ -123,40 +109,6 @@ const myFilterDirectory = (path: string) => {
   }
   return true;
 };
-
-type Detail = {
-  /**
-   * Absolute path of the chronicle file.
-   */
-  path: string;
-};
-type ChronicleOptions = "read" | "write";
-
-function chronicle(options: Readonly<ChronicleOptions> = "read"): Source<Detail> {
-  return defineSource(async function* (denops, { args }, { signal }) {
-    const filepath = options == "write"
-      ? await vars.g.get(denops, "chronicle_write_path")
-      : options == "read"
-      ? await vars.g.get(denops, "chronicle_read_path")
-      : args[0];
-    const file = await Deno.open(
-      await denops.eval("fnamemodify(expand(path), ':p')", { path: filepath }) as string,
-    );
-    const lineStream = file.readable
-      .pipeThrough(new TextDecoderStream())
-      .pipeThrough(new TextLineStream());
-
-    let id = 0;
-    for await (const line of lineStream) {
-      signal?.throwIfAborted();
-      yield {
-        id: id++,
-        value: line,
-        detail: { path: line },
-      };
-    }
-  });
-}
 
 export const main: Entrypoint = (
   {
@@ -418,7 +370,7 @@ export const main: Entrypoint = (
   definePickerFromSource(
     "chronicle:read",
     refineSource(
-      chronicle("read"),
+      chronicle({ mode: "read" }),
       builtin.refiner.exists,
       builtin.refiner.relativePath,
     ),
@@ -446,7 +398,7 @@ export const main: Entrypoint = (
   definePickerFromSource(
     "chronicle:write",
     refineSource(
-      chronicle("write"),
+      chronicle({ mode: "write" }),
       builtin.refiner.exists,
       builtin.refiner.relativePath,
     ),
