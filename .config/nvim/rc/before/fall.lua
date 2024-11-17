@@ -4,7 +4,7 @@
 -- Last Change : 2024/11/17 19:35:46.
 -- =============================================================================
 
-vim.keymap.set("n", "mw", "<cmd>Fall file<cr>", { desc = "Fall file" })
+vim.keymap.set("n", "<space>lf", "<cmd>Fall file<cr>", { desc = "Fall file" })
 vim.keymap.set("n", "<space>la", "<cmd>Fall file:all<cr>", { desc = "Fall file:all" })
 
 vim.keymap.set("n", "md", "<cmd>Fall file ~/.dotfiles<cr>", { desc = "Fall dotfiles" })
