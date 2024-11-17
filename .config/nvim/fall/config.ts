@@ -11,8 +11,8 @@ import {
   refineCurator,
   refineSource,
   Source,
-} from "jsr:@vim-fall/std@^0.7.1";
-import * as builtin from "jsr:@vim-fall/std@^0.7.1/builtin";
+} from "jsr:@vim-fall/std@^0.8.0";
+import * as builtin from "jsr:@vim-fall/std@^0.8.0/builtin";
 import { SEPARATOR } from "jsr:@std/path@^1.0.8/constants";
 // import { TextLineStream } from "jsr:@std/streams@1.0.8/text-line-stream";
 
