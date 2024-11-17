@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : custom.ts
 // Author      : yukimemi
-// Last Change : 2024/11/17 20:06:29.
+// Last Change : 2024/11/17 20:33:46.
 // =============================================================================
 
 import type { Entrypoint } from "jsr:@vim-fall/custom@^0.1.0";
@@ -12,6 +12,7 @@ import {
   refineSource,
   Source,
 } from "jsr:@vim-fall/std@^0.8.0";
+import * as vars from "jsr:@denops/std@7.3.2/variable";
 import * as builtin from "jsr:@vim-fall/std@^0.8.0/builtin";
 import { SEPARATOR } from "jsr:@std/path@^1.0.8/constants";
 
@@ -133,9 +134,9 @@ type ChronicleOptions = "read" | "write";
 function chronicle(options: Readonly<ChronicleOptions> = "read"): Source<Detail> {
   return defineSource(async function* (denops, { args }, { signal }) {
     const filepath = options == "write"
-      ? "~/.cache/chronicle/write"
+      ? await vars.g.get(denops, "chronicle_write_path")
       : options == "read"
-      ? "~/.cache/chronicle/read"
+      ? await vars.g.get(denops, "chronicle_read_path")
       : args[0];
     // const file = await Deno.open(await denops.eval("fnamemodify(expand(path), ':p')", { path: filepath }) as string);
     // const lineStream = file.readable
