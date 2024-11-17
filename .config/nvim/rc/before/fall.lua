@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : fall.lua
 -- Author      : yukimemi
--- Last Change : 2024/11/17 08:34:20.
+-- Last Change : 2024/11/17 19:35:46.
 -- =============================================================================
 
 vim.keymap.set("n", "mw", "<cmd>Fall file<cr>", { desc = "Fall file" })
@@ -18,3 +18,7 @@ vim.keymap.set("n", "<space>lr", "<cmd>Fall rg<cr>", { desc = "Fall rg" })
 vim.keymap.set("n", "<space>lg", "<cmd>Fall git-grep<cr>", { desc = "Fall git-grep" })
 vim.keymap.set("n", "<space>ll", "<cmd>Fall line<cr>", { desc = "Fall line" })
 vim.keymap.set("n", "<space>lh", "<cmd>Fall help<cr>", { desc = "Fall help" })
+
+-- chronicle.vim
+vim.keymap.set("n", "mr", "<cmd>Fall chronicle:read<cr>", { desc = "Fall chronicle:read" })
+vim.keymap.set("n", "mw", "<cmd>Fall chronicle:write<cr>", { desc = "Fall chronicle:write" })

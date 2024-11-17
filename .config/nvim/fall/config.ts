@@ -1,17 +1,20 @@
 // =============================================================================
 // File        : config.ts
 // Author      : yukimemi
-// Last Change : 2024/11/16 22:34:31.
+// Last Change : 2024/11/17 19:34:10.
 // =============================================================================
 
 import type { Entrypoint } from "jsr:@vim-fall/config@^0.17.3";
 import {
   composeRenderers,
+  defineSource,
   refineCurator,
   refineSource,
+  Source,
 } from "jsr:@vim-fall/std@^0.7.1";
 import * as builtin from "jsr:@vim-fall/std@^0.7.1/builtin";
 import { SEPARATOR } from "jsr:@std/path@^1.0.8/constants";
+// import { TextLineStream } from "jsr:@std/streams@1.0.8/text-line-stream";
 
 // NOTE:
 //
@@ -120,6 +123,44 @@ const myFilterDirectory = (path: string) => {
   }
   return true;
 };
+
+type Detail = {
+  /**
+   * Absolute path of the file.
+   */
+  path: string;
+};
+type ChronicleOptions = "read" | "write";
+
+function chronicle(options: Readonly<ChronicleOptions> = "read"): Source<Detail> {
+  return defineSource(async function* (denops, { args }, { signal }) {
+    const filepath = options == "write"
+      ? "~/.cache/chronicle/write"
+      : options == "read"
+      ? "~/.cache/chronicle/read"
+      : args[0];
+    // const file = await Deno.open(await denops.eval("fnamemodify(expand(path), ':p')", { path: filepath }) as string);
+    // const lineStream = file.readable
+    //   .pipeThrough(new TextDecoderStream())
+    //   .pipeThrough(new TextLineStream());
+
+    const fileContent = await Deno.readTextFile(
+      await denops.eval("fnamemodify(expand(path), ':p')", { path: filepath }) as string,
+    );
+    const lines = fileContent.split("\n").reverse();
+
+    let id = 0;
+    // for await (const line of lineStream) {
+    for await (const line of lines) {
+      signal?.throwIfAborted();
+      yield {
+        id: id++,
+        value: line,
+        detail: { path: line },
+      };
+    }
+  });
+}
 
 export const main: Entrypoint = (
   {
@@ -297,4 +338,59 @@ export const main: Entrypoint = (
     },
     defaultAction: "help",
   });
+
+  defineItemPickerFromSource(
+    "chronicle:read",
+    refineSource(
+      chronicle("read"),
+      builtin.refiner.relativePath,
+    ),
+    {
+      matchers: [builtin.matcher.fzf],
+      sorters: [
+        builtin.sorter.noop,
+      ],
+      renderers: [
+        composeRenderers(
+          builtin.renderer.smartPath,
+          builtin.renderer.nerdfont,
+        ),
+        builtin.renderer.nerdfont,
+        builtin.renderer.noop,
+      ],
+      previewers: [builtin.previewer.file],
+      actions: {
+        ...myPathActions,
+        ...myMiscActions,
+      },
+      defaultAction: "open",
+    },
+  );
+  defineItemPickerFromSource(
+    "chronicle:write",
+    refineSource(
+      chronicle("write"),
+      builtin.refiner.relativePath,
+    ),
+    {
+      matchers: [builtin.matcher.fzf],
+      sorters: [
+        builtin.sorter.noop,
+      ],
+      renderers: [
+        composeRenderers(
+          builtin.renderer.smartPath,
+          builtin.renderer.nerdfont,
+        ),
+        builtin.renderer.nerdfont,
+        builtin.renderer.noop,
+      ],
+      previewers: [builtin.previewer.file],
+      actions: {
+        ...myPathActions,
+        ...myMiscActions,
+      },
+      defaultAction: "open",
+    },
+  );
 };

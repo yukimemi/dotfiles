@@ -6,17 +6,17 @@
 
 [plugin]
 deps = [
-	{ use = "yazi-rs/plugins:max-preview", rev = "dc11879" },
+	{ use = "yazi-rs/plugins:max-preview", rev = "4a6edc3" },
 	{ use = "Reledia/miller", rev = "40e0265" },
 	{ use = "GrzegorzKozub/mdcat", rev = "1706af4" },
 	{ use = "KKV9/command", rev = "dc9b483" },
 	{ use = "dawsers/dual-pane", rev = "c2fed12" },
-	{ use = "hankertrix/augment-command", rev = "b408191" },
+	{ use = "hankertrix/augment-command", rev = "fe145ac" },
 	{ use = "orhnk/system-clipboard", rev = "7775a80" },
 	{ use = "Lil-Dank/lazygit", rev = "c82794f" },
 	{ use = "MasouShizuka/projects", rev = "7a1dc37" },
 	{ use = "h-hg/yamb", rev = "0598b8d" },
-	{ use = "ndtoan96/ouch", rev = "d13f7c0" },
+	{ use = "ndtoan96/ouch", rev = "db14883" },
 ]
 
 [flavor]

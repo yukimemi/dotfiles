@@ -4,15 +4,6 @@
     "actions": 
     [
         {
-            "command": 
-            {
-                "action": "copy",
-                "singleLine": false
-            },
-            "id": "User.copy.644BA8F2",
-            "keys": "ctrl+c"
-        },
-        {
             "command": "unbound",
             "keys": "ctrl+v"
         },
@@ -23,10 +14,11 @@
         {
             "command": 
             {
-                "action": "quakeMode"
+                "action": "copy",
+                "singleLine": false
             },
-            "id": "User.quakeMode.F1E129A4",
-            "keys": "f12"
+            "id": "User.copy.644BA8F2",
+            "keys": "ctrl+c"
         },
         {
             "command": 
@@ -37,6 +29,14 @@
             },
             "id": "User.splitPane.A6751878",
             "keys": "alt+shift+d"
+        },
+        {
+            "command": 
+            {
+                "action": "quakeMode"
+            },
+            "id": "User.quakeMode.F1E129A4",
+            "keys": "f12"
         },
         {
             "command": "find",
@@ -115,6 +115,18 @@
                 "hidden": false,
                 "name": "Nushell",
                 "source": "nu"
+            },
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": true,
+                "name": "Ubuntu",
+                "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
             }
         ]
     },
