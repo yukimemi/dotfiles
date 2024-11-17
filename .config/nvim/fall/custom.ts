@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : custom.ts
 // Author      : yukimemi
-// Last Change : 2024/11/17 20:33:46.
+// Last Change : 2024/11/17 21:10:12.
 // =============================================================================
 
 import type { Entrypoint } from "jsr:@vim-fall/custom@^0.1.0";
@@ -15,6 +15,7 @@ import {
 import * as vars from "jsr:@denops/std@7.3.2/variable";
 import * as builtin from "jsr:@vim-fall/std@^0.8.0/builtin";
 import { SEPARATOR } from "jsr:@std/path@^1.0.8/constants";
+import { TextLineStream } from "jsr:@std/streams@^1.0.8/text-line-stream";
 
 // NOTE:
 //
@@ -125,7 +126,7 @@ const myFilterDirectory = (path: string) => {
 
 type Detail = {
   /**
-   * Absolute path of the file.
+   * Absolute path of the chronicle file.
    */
   path: string;
 };
@@ -138,19 +139,15 @@ function chronicle(options: Readonly<ChronicleOptions> = "read"): Source<Detail>
       : options == "read"
       ? await vars.g.get(denops, "chronicle_read_path")
       : args[0];
-    // const file = await Deno.open(await denops.eval("fnamemodify(expand(path), ':p')", { path: filepath }) as string);
-    // const lineStream = file.readable
-    //   .pipeThrough(new TextDecoderStream())
-    //   .pipeThrough(new TextLineStream());
-
-    const fileContent = await Deno.readTextFile(
+    const file = await Deno.open(
       await denops.eval("fnamemodify(expand(path), ':p')", { path: filepath }) as string,
     );
-    const lines = fileContent.split("\n").reverse();
+    const lineStream = file.readable
+      .pipeThrough(new TextDecoderStream())
+      .pipeThrough(new TextLineStream());
 
     let id = 0;
-    // for await (const line of lineStream) {
-    for await (const line of lines) {
+    for await (const line of lineStream) {
       signal?.throwIfAborted();
       yield {
         id: id++,
