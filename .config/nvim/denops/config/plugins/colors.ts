@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/11/03 18:06:16.
+// Last Change : 2024/11/18 22:17:08.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.2.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
 
 import * as fn from "jsr:@denops/std@7.3.2/function";
 import * as mapping from "jsr:@denops/std@7.3.2/mapping";
@@ -146,7 +146,6 @@ export const colors: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/spectrism.vim",
-    dst: "~/src/github.com/yukimemi/spectrism.vim",
     dependencies: [
       "https://github.com/0xstepit/flow.nvim",
       "https://github.com/4513ECHO/vim-colors-hatsunemiku",

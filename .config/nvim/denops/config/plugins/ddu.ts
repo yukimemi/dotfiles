@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/10/23 00:30:36.
+// Last Change : 2024/11/18 22:17:36.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.2.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
 
 import * as autocmd from "jsr:@denops/std@7.3.2/autocmd";
 import * as fn from "jsr:@denops/std@7.3.2/function";
@@ -33,10 +33,7 @@ export const ddu: Plug[] = [
     url: "https://github.com/Milly/ddu-filter-kensaku",
     dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
   },
-  {
-    url: "https://github.com/yukimemi/ddu-source-chronicle",
-    dst: "~/src/github.com/yukimemi/ddu-source-chronicle",
-  },
+  { url: "https://github.com/yukimemi/ddu-source-chronicle" },
   { url: "https://github.com/4513ECHO/ddu-kind-url" },
   { url: "https://github.com/4513ECHO/ddu-source-source" },
   { url: "https://github.com/4513ECHO/vim-readme-viewer" },

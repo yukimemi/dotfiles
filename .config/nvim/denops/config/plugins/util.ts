@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 14:16:23.
+// Last Change : 2024/11/18 22:17:25.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.2.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
 
 import * as fn from "jsr:@denops/std@7.3.2/function";
 import * as mapping from "jsr:@denops/std@7.3.2/mapping";
@@ -356,7 +356,6 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/jsontoml.vim",
-    dst: "~/src/github.com/yukimemi/jsontoml.vim",
     afterFile: "~/.config/nvim/rc/after/jsontoml.vim",
   },
   {

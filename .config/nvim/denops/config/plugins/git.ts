@@ -5,7 +5,7 @@
 // =============================================================================
 
 import * as mapping from "jsr:@denops/std@7.3.2/mapping";
-import type { Plug } from "jsr:@yukimemi/dvpm@5.2.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const git: Plug[] = [

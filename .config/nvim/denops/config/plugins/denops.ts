@@ -4,7 +4,7 @@
 // Last Change : 2024/11/17 21:06:35.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.2.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
 
 import * as autocmd from "jsr:@denops/std@7.3.2/autocmd";
 import * as lambda from "jsr:@denops/std@7.3.2/lambda";
@@ -14,7 +14,6 @@ import * as vars from "jsr:@denops/std@7.3.2/variable";
 export const denops: Plug[] = [
   {
     url: "https://github.com/yukimemi/autocursor.vim",
-    dst: "~/src/github.com/yukimemi/autocursor.vim",
     before: async ({ denops }) => {
       await vars.g.set(denops, "autocursor_debug", false);
       await vars.g.set(denops, "autocursor_notify", false);
@@ -106,7 +105,6 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/silentsaver.vim",
-    dst: "~/src/github.com/yukimemi/silentsaver.vim",
     before: async ({ denops }) => {
       await vars.g.set(denops, "silentsaver_debug", false);
       await vars.g.set(denops, "silentsaver_enable", true);
@@ -148,7 +146,6 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/asyncsearcher.vim",
-    dst: "~/src/github.com/yukimemi/asyncsearcher.vim",
     dependencies: ["https://github.com/vim-denops/denops.vim"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/asyncsearcher.lua",
@@ -156,7 +153,6 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/chronicle.vim",
-    dst: "~/src/github.com/yukimemi/chronicle.vim",
     dependencies: ["https://github.com/vim-denops/denops.vim"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/chronicle.vim",
@@ -165,7 +161,6 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/autoreplacer.vim",
-    dst: "~/src/github.com/yukimemi/autoreplacer.vim",
     before: async ({ denops }) => {
       await vars.g.set(denops, "autoreplacer_debug", false);
       await vars.g.set(denops, "autoreplacer_notify", true);
@@ -243,7 +238,6 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/asyncwalker.vim",
-    dst: "~/src/github.com/yukimemi/asyncwalker.vim",
     dependencies: ["https://github.com/vim-denops/denops.vim"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/asyncwalker.lua",
@@ -251,7 +245,6 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/hitori.vim",
-    dst: "~/src/github.com/yukimemi/hitori.vim",
     enabled: Deno.build.os !== "linux",
     before: async ({ denops }) => {
       await vars.g.set(denops, "hitori_debug", false);
@@ -271,7 +264,6 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/dps-ahdr",
-    dst: "~/src/github.com/yukimemi/dps-ahdr",
     before: async ({ denops }) => {
       await vars.g.set(denops, "ahdr_debug", false);
       await vars.g.set(denops, "ahdr_cfg_path", "~/.config/ahdr/ahdr.toml");

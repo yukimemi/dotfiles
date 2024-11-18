@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2024/11/10 15:18:16.
+// Last Change : 2024/11/18 22:29:29.
 // =============================================================================
 
 export function cacheVim() {
@@ -14,14 +14,13 @@ export function cacheVim() {
               \\ | echomsg 'startuptime: ' .. reltimestr(s:startuptime)
       endif
       au MyAutoCmd SwapExists * let v:swapchoice = 'o'
-      command! DenopsFixCache call denops#cache#update(#{reload: v:true})
 
       " https://daisuzu.hatenablog.com/entry/2018/12/13/012608
       command! -bar ToScratch setlocal buftype=nofile bufhidden=hide noswapfile
       command! -nargs=1 -complete=command L <mods> new | ToScratch | call setline(1, split(execute(<q-args>), '\\n'))
       cnoremap <c-c> <home>L <cr>
     `,
-    path: "~/.cache/nvim/dvpm/cache/plugin/dvpm_cache.vim",
+    path: "~/.config/nvim/plugin/dvpm_cache.vim",
   };
 }
 
@@ -101,6 +100,6 @@ export function cacheLua() {
       vim.keymap.set({"n", "x"}, "<Plug>(L)L", "<PageDown>Lzb<Plug>(L)")
 
     `,
-    path: "~/.cache/nvim/dvpm/cache/plugin/dvpm_cache.lua",
+    path: "~/.config/nvim/plugin/dvpm_cache.lua",
   };
 }
