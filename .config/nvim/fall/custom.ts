@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : custom.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 02:22:58.
+// Last Change : 2024/11/18 10:50:00.
 // =============================================================================
 
 import type { Entrypoint } from "jsr:@vim-fall/custom@0.1.0";
 import { composeRenderers, refineCurator, refineSource } from "jsr:@vim-fall/std@0.10.0";
 import * as builtin from "jsr:@vim-fall/std@0.10.0/builtin";
 import { SEPARATOR } from "jsr:@std/path@1.0.8/constants";
-import { chronicle } from "jsr:@yukimemi/fall-source-chronicle@1.0.1";
+import { chronicle } from "jsr:@yukimemi/fall-source-chronicle@1.0.2";
 
 const myPathActions = {
   ...builtin.action.defaultOpenActions,
@@ -275,6 +275,9 @@ export const main: Entrypoint = (
       ...builtin.action.defaultBufferActions,
     },
     defaultAction: "open",
+    coordinator: builtin.coordinator.modern({
+      hidePreview: true,
+    }),
   });
 
   definePickerFromSource(

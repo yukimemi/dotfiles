@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2024/11/09 00:12:09.
+# Last Change : 2024/11/18 11:01:40.
 # =============================================================================
 
 # module
@@ -374,6 +374,16 @@ function y {
     Set-Location -LiteralPath $cwd
   }
   Remove-Item -Path $tmp
+}
+
+# molt
+function Update-WithMolt {
+  param([string]$path = $pwd)
+  Get-ChildItem -Force -Recurse -File $path | Where-Object {
+    $_.Extension -eq ".ts"
+  } | ForEach-Object {
+    molt -w $_.FullName
+  }
 }
 
 # hash.
