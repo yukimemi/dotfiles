@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : test.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 17:44:38.
+// Last Change : 2024/11/18 20:56:41.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.1.7";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.2.0";
 import { pluginStatus } from "../pluginstatus.ts";
 
 import * as mapping from "jsr:@denops/std@7.3.2/mapping";
@@ -43,9 +43,7 @@ export const test: Plug[] = [
     },
   },
   { url: "https://github.com/nvim-neotest/nvim-nio" },
-  { url: "https://github.com/nvim-lua/plenary.nvim" },
   { url: "https://github.com/antoinemadec/FixCursorHold.nvim" },
-  { url: "https://github.com/nvim-treesitter/nvim-treesitter" },
   {
     url: "https://github.com/nvim-neotest/neotest",
     enabled: pluginStatus.neotest,

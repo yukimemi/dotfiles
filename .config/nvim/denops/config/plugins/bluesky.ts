@@ -6,7 +6,7 @@
 
 import * as mapping from "jsr:@denops/std@7.3.2/mapping";
 import * as vars from "jsr:@denops/std@7.3.2/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@5.1.7";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.2.0";
 
 export const bluesky: Plug[] = [
   {

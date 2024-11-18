@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : cmp.ts
 // Author      : yukimemi
-// Last Change : 2024/10/02 00:29:21.
+// Last Change : 2024/11/18 20:54:55.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.1.7";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.2.0";
 
 export const cmp: Plug[] = [
   { url: "https://github.com/hrsh7th/cmp-nvim-lsp" },
@@ -16,7 +16,6 @@ export const cmp: Plug[] = [
   { url: "https://github.com/lukas-reineke/cmp-rg" },
   { url: "https://github.com/ray-x/cmp-treesitter" },
   { url: "https://github.com/chrisgrieser/cmp-nerdfont" },
-  { url: "https://github.com/onsails/lspkind.nvim" },
   { url: "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help" },
   { url: "https://github.com/hrsh7th/cmp-nvim-lsp-document-symbol" },
   { url: "https://github.com/uga-rosa/cmp-denippet" },
