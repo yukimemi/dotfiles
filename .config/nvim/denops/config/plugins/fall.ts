@@ -4,7 +4,7 @@
 // Last Change : 2024/11/17 21:16:20.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.1.2";
 
 export const fall: Plug[] = [
   { url: "https://github.com/lambdalisue/vim-fall-source-mr" },

@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2024/11/10 15:25:24.
+// Last Change : 2024/11/18 09:00:03.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.3.2/function";
 import * as lambda from "jsr:@denops/std@7.3.2/lambda";
 import * as log from "jsr:@std/log@0.224.10";
 import type { Denops, Entrypoint } from "jsr:@denops/std@7.3.2";
-import { Dvpm } from "jsr:@yukimemi/dvpm@5.0.14";
+import { Dvpm } from "jsr:@yukimemi/dvpm@5.1.2";
 import { cacheLua, cacheVim } from "./cache.ts";
 import { dir } from "jsr:@cross/dir@1.1.0";
 import { ensureFile } from "jsr:@std/fs@1.0.5/ensure-file";
@@ -56,7 +56,6 @@ export const main: Entrypoint = async (denops) => {
 
   const elapsed = performance.now() - starttime;
   await notify(denops, [`Config load completed !`, `Elapsed: (${elapsed})`]);
-  console.log(`Config load completed ! Elapsed: (${elapsed})`);
 
   await denops.cmd(`
     command! -nargs=0 DvpmOpenLog call s:${denops.name}_notify("${

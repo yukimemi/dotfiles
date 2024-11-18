@@ -1,12 +1,12 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/10/14 11:51:13.
+// Last Change : 2024/11/18 09:17:02.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.0.14";
-
 import * as mapping from "jsr:@denops/std@7.3.2/mapping";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.1.2";
+import { pluginStatus } from "../pluginstatus.ts";
 
 export const git: Plug[] = [
   {
@@ -95,6 +95,7 @@ export const git: Plug[] = [
   },
   {
     url: "https://github.com/pwntester/octo.nvim",
+    enabled: pluginStatus.telescope,
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/nvim-telescope/telescope.nvim",
