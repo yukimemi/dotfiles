@@ -4,7 +4,7 @@
 // Last Change : 2024/11/17 20:01:59.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.1.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.1.7";
 
 import * as autocmd from "jsr:@denops/std@7.3.2/autocmd";
 import * as fn from "jsr:@denops/std@7.3.2/function";

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 08:54:53.
+// Last Change : 2024/11/18 14:04:53.
 // =============================================================================
 
 export const pluginStatus = {
@@ -18,7 +18,7 @@ export const pluginStatus = {
   ddc: false,
   ddu: false,
   ddufiler: false,
-  denippet: false,
+  denippet: true,
   fall: true,
   fern: false,
   fidget: true,
@@ -47,7 +47,7 @@ export const pluginStatus = {
   virt_column: false,
   virtcolumn: true,
   vscode: false,
-  vsnip: true,
+  vsnip: false,
   windowpicker: false,
   windows: false,
   yankround: true,

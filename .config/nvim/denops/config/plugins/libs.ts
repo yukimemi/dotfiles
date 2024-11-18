@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/11/04 21:28:55.
+// Last Change : 2024/11/18 16:20:59.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.1.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.1.7";
 
 import * as autocmd from "jsr:@denops/std@7.3.2/autocmd";
 import * as fn from "jsr:@denops/std@7.3.2/function";
@@ -151,7 +151,6 @@ export const libs: Plug[] = [
     dependencies: ["https://github.com/tyru/open-browser.vim"],
   },
   { url: "https://github.com/lambdalisue/vim-readablefold" },
-  { url: "https://github.com/lambdalisue/vim-kensaku" },
   {
     url: "https://github.com/ryanoasis/vim-devicons",
     // deno-lint-ignore require-await

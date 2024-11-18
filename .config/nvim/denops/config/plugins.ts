@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 08:55:13.
+// Last Change : 2024/11/18 16:14:34.
 // =============================================================================
 
 import { pluginStatus } from "./pluginstatus.ts";
@@ -55,7 +55,6 @@ const plugins = [
   ...colors,
   ...denops,
   ...edit,
-  ...filetypes,
   ...filetypes,
   ...git,
   ...libs,

@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/11/17 20:01:39.
+// Last Change : 2024/11/18 14:16:23.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.1.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.1.7";
 
 import * as fn from "jsr:@denops/std@7.3.2/function";
 import * as mapping from "jsr:@denops/std@7.3.2/mapping";
@@ -591,5 +591,11 @@ export const util: Plug[] = [
   {
     url: "https://github.com/ThePrimeagen/refactoring.nvim",
     afterFile: "~/.config/nvim/rc/after/refactoring.lua",
+  },
+  {
+    url: "https://github.com/nil-two/vim-incopen",
+    enabled: false,
+    beforeFile: "~/.config/nvim/rc/before/vim-incopen.vim",
+    afterFile: "~/.config/nvim/rc/after/vim-incopen.vim",
   },
 ];
