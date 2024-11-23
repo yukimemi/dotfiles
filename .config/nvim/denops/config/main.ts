@@ -6,12 +6,12 @@
 
 import * as fn from "jsr:@denops/std@7.3.2/function";
 import * as lambda from "jsr:@denops/std@7.3.2/lambda";
-import * as log from "jsr:@std/log@0.224.10";
+import * as log from "jsr:@std/log@0.224.11";
 import type { Denops, Entrypoint } from "jsr:@denops/std@7.3.2";
 import { Dvpm } from "jsr:@yukimemi/dvpm@5.2.2";
 import { cacheLua, cacheVim } from "./cache.ts";
 import { dir } from "jsr:@cross/dir@1.1.0";
-import { ensureFile } from "jsr:@std/fs@1.0.5/ensure-file";
+import { ensureFile } from "jsr:@std/fs@1.0.6/ensure-file";
 import { execute } from "jsr:@denops/std@7.3.2/helper";
 import { join } from "jsr:@std/path@1.0.8/join";
 import { notify, openLog } from "./util.ts";

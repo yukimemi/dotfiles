@@ -6,7 +6,7 @@
 
 import * as buffer from "jsr:@denops/std@7.3.2/buffer";
 import * as fn from "jsr:@denops/std@7.3.2/function";
-import * as fs from "jsr:@std/fs@1.0.5";
+import * as fs from "jsr:@std/fs@1.0.6";
 import * as helper from "jsr:@denops/std@7.3.2/helper";
 import * as nvimFn from "jsr:@denops/std@7.3.2/function/nvim";
 import * as option from "jsr:@denops/std@7.3.2/option";
