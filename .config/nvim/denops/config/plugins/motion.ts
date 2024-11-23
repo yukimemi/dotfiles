@@ -1,11 +1,12 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2024/10/02 00:03:33.
+// Last Change : 2024/11/22 02:19:50.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
 
+import { pluginStatus } from "../pluginstatus.ts";
 import * as mapping from "jsr:@denops/std@7.3.2/mapping";
 import * as vars from "jsr:@denops/std@7.3.2/variable";
 
@@ -23,11 +24,19 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/yuki-yano/fuzzy-motion.vim",
+    enabled: pluginStatus.fuzzymotion,
     before: async ({ denops }) => {
       await vars.g.set(denops, "fuzzy_motion_auto_jump", false);
       await vars.g.set(denops, "fuzzy_motion_disable_match_highlight", false);
       await vars.g.set(denops, "fuzzy_motion_matchers", ["fzf", "kensaku"]);
       await mapping.map(denops, "ss", "<cmd>FuzzyMotion<cr>", { mode: "n" });
+    },
+  },
+  {
+    url: "https://github.com/lambdalisue/vim-initial",
+    enabled: pluginStatus.initial,
+    after: async ({ denops }) => {
+      await mapping.map(denops, "ss", "<cmd>Initial<cr>", { mode: "n" });
     },
   },
   {

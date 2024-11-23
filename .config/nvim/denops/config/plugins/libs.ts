@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 22:32:24.
+// Last Change : 2024/11/19 13:11:43.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
@@ -101,6 +101,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/rachartier/tiny-devicons-auto-colors.nvim",
+    enabled: false,
     dependencies: ["https://github.com/nvim-tree/nvim-web-devicons"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("tiny-devicons-auto-colors").setup()`);

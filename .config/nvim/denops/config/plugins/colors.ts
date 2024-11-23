@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 22:17:08.
+// Last Change : 2024/11/20 11:55:02.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
@@ -108,6 +108,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/zenbones-theme/zenbones.nvim" },
   {
     url: "https://github.com/diegoulloao/neofusion.nvim",
+    enabled: false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("neofusion").setup()`);
     },

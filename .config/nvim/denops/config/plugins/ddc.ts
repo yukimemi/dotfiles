@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/11/16 18:18:16.
+// Last Change : 2024/11/23 12:33:01.
 // =============================================================================
 
 import * as autocmd from "jsr:@denops/std@7.3.2/autocmd";
@@ -89,7 +89,6 @@ export const ddc: Plug[] = [
   { url: "https://github.com/Shougo/ddc-source-around" },
   { url: "https://github.com/Shougo/ddc-source-cmdline" },
   { url: "https://github.com/Shougo/ddc-source-cmdline-history" },
-  { url: "https://github.com/Shougo/ddc-source-codeium" },
   { url: "https://github.com/Shougo/ddc-source-input" },
   { url: "https://github.com/Shougo/ddc-source-line" },
   { url: "https://github.com/Shougo/ddc-source-lsp" },
@@ -97,7 +96,6 @@ export const ddc: Plug[] = [
   { url: "https://github.com/Shougo/ddc-source-rg" },
   { url: "https://github.com/Shougo/ddc-ui-inline" },
   { url: "https://github.com/Shougo/ddc-ui-pum" },
-  { url: "https://github.com/Shougo/pum.vim" },
   { url: "https://github.com/delphinus/ddc-treesitter" },
   { url: "https://github.com/matsui54/ddc-buffer" },
   { url: "https://github.com/tani/ddc-fuzzy" },

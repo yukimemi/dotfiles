@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : custom.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 10:50:00.
+// Last Change : 2024/11/23 11:57:56.
 // =============================================================================
 
 import type { Entrypoint } from "jsr:@vim-fall/custom@0.1.0";
@@ -103,7 +103,7 @@ const myFilterDirectory = (path: string) => {
     "target", // Rust
   ];
   for (const exclude of excludes) {
-    if (path.includes(`${SEPARATOR}${exclude}${SEPARATOR}`)) {
+    if (path.endsWith(`${SEPARATOR}${exclude}`)) {
       return false;
     }
   }

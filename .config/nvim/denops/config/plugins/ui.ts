@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/11/17 20:01:59.
+// Last Change : 2024/11/22 01:18:56.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
@@ -426,5 +426,11 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/folke/drop.nvim",
     afterFile: "~/.config/nvim/rc/after/drop.lua",
+  },
+  {
+    url: "https://github.com/mawkler/hml.nvim",
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("hml").setup()`);
+    },
   },
 ];

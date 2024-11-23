@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 22:17:42.
+// Last Change : 2024/11/21 10:45:52.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
@@ -77,7 +77,7 @@ export const ai: Plug[] = [
       await vars.g.set(denops, "futago_chat_path", `~/.cache/nvim/futago/chat`);
       await vars.g.set(denops, "futago_log_file", `~/.cache/nvim/futago/log/futago.log`);
       await vars.g.set(denops, "futago_history_db", `~/.cache/nvim/futago/db/history.db`);
-      await vars.g.set(denops, "futago_model", "gemini-1.5-flash-latest");
+      await vars.g.set(denops, "futago_model", "gemini-exp-1114");
       const safetySettings: SafetySetting[] = [
         {
           category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 22:17:36.
+// Last Change : 2024/11/23 14:46:40.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
@@ -33,11 +33,9 @@ export const ddu: Plug[] = [
     url: "https://github.com/Milly/ddu-filter-kensaku",
     dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
   },
-  { url: "https://github.com/yukimemi/ddu-source-chronicle" },
   { url: "https://github.com/4513ECHO/ddu-kind-url" },
   { url: "https://github.com/4513ECHO/ddu-source-source" },
   { url: "https://github.com/4513ECHO/vim-readme-viewer" },
-  { url: "https://github.com/Milly/ddu-filter-kensaku" },
   { url: "https://github.com/Milly/ddu-filter-merge" },
   { url: "https://github.com/Shougo/ddu-column-filename" },
   { url: "https://github.com/Shougo/ddu-commands.vim" },
@@ -53,7 +51,6 @@ export const ddu: Plug[] = [
   { url: "https://github.com/Shougo/ddu-source-path_history" },
   { url: "https://github.com/Shougo/ddu-source-register" },
   { url: "https://github.com/Shougo/ddu-ui-ff" },
-  { url: "https://github.com/Shougo/ddu-ui-filer" },
   { url: "https://github.com/kamecha/ddu-source-jumplist" },
   { url: "https://github.com/kuuote/ddu-filter-fuse" },
   { url: "https://github.com/kuuote/ddu-source-git_status" },
@@ -72,7 +69,10 @@ export const ddu: Plug[] = [
   { url: "https://github.com/yukimemi/ddu-source-chronicle" },
   {
     url: "https://github.com/Shougo/ddu.vim",
-    cache: { enabled: false },
+    cache: {
+      enabled: true,
+      afterFile: `~/.config/nvim/rc/after/ddu.vim`,
+    },
     dependencies: [
       "https://github.com/4513ECHO/ddu-kind-url",
       "https://github.com/4513ECHO/ddu-source-source",
@@ -113,55 +113,6 @@ export const ddu: Plug[] = [
       "https://github.com/yukimemi/ddu-source-chronicle",
     ],
     before: async ({ denops }) => {
-      await mapping.map(denops, "q:", "<cmd>Ddu command_history<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "q/", "<cmd>Ddu search_history<cr>", {
-        mode: "n",
-      });
-      await mapping.map(
-        denops,
-        "<leader>dM",
-        "<cmd>Ddu -name=source source<cr>",
-        { mode: "n" },
-      );
-      await mapping.map(
-        denops,
-        "<leader>dO",
-        "<cmd>Ddu -name=old file_old<cr>",
-        { mode: "n" },
-      );
-      await mapping.map(
-        denops,
-        "<leader>d,",
-        "<cmd>Ddu -name=buffer buffer<cr>",
-        { mode: "n" },
-      );
-      await mapping.map(
-        denops,
-        "<leader>df",
-        `<cmd>Ddu -name=files external_fd<cr>`,
-        { mode: "n" },
-      );
-      await mapping.map(
-        denops,
-        "<leader>do",
-        `<cmd>Ddu -name=chronicle-read chronicle -source-param-chronicle-kind='read'<cr>`,
-        {
-          mode: "n",
-        },
-      );
-      await mapping.map(
-        denops,
-        "<leader>dw",
-        `<cmd>Ddu -name=chronicle-write chronicle -source-param-chronicle-kind='write'<cr>`,
-        {
-          mode: "n",
-        },
-      );
-      await mapping.map(denops, "<leader>dh", `<cmd>Ddu -name=help help<cr>`, {
-        mode: "n",
-      });
       await mapping.map(
         denops,
         "<leader>db",
@@ -227,28 +178,6 @@ export const ddu: Plug[] = [
                     name: "file_rec",
                     options: {
                       path: await fn.expand(denops, "~/src"),
-                    },
-                  },
-                ],
-              });
-            },
-          )
-        }", [])<cr>`,
-        { mode: "n" },
-      );
-      await mapping.map(
-        denops,
-        "<leader>dd",
-        `<cmd>call <SID>${denops.name}_notify("${
-          lambda.register(
-            denops,
-            async () => {
-              await denops.call("ddu#start", {
-                sources: [
-                  {
-                    name: "file_rec",
-                    options: {
-                      path: await fn.expand(denops, "~/.dotfiles"),
                     },
                   },
                 ],
