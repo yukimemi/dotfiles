@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : custom.ts
 // Author      : yukimemi
-// Last Change : 2024/11/23 11:57:56.
+// Last Change : 2024/11/24 00:04:19.
 // =============================================================================
 
 import type { Entrypoint } from "jsr:@vim-fall/custom@0.1.0";
@@ -383,6 +383,7 @@ export const main: Entrypoint = (
         sorters: [builtin.sorter.noop],
         renderers: [
           composeRenderers(builtin.renderer.smartPath, builtin.renderer.nerdfont),
+          builtin.renderer.nerdfont,
           builtin.renderer.noop,
         ],
         previewers: [builtin.previewer.file],
