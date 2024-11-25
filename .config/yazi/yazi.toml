@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : yazi.toml
 # Author      : yukimemi
-# Last Change : 2024/11/16 12:08:29.
+# Last Change : 2024/11/24 22:20:45.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -22,7 +22,7 @@ prepend_rules = [{ name = "*/", use = ["reveal", "open", "edit"] }]
 append_rules = [{ name = "*", use = ["open", "reveal", "edit"] }]
 
 [plugin]
-prepend_preloaders = [{ mime = "application/pdf", run = "none" }]
+prepend_preloaders = [{ mime = "application/pdf", run = "noop" }]
 prepend_previewers = [
 	{ mime = "text/csv", run = "miller" },
 	{ name = "*.md", run = "mdcat" },

@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : fall.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 12:08:58.
+// Last Change : 2024/11/24 20:38:36.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
 
 export const fall: Plug[] = [
   {
-    url: "https://github.com/vim-fall/vim-fall",
+    url: "https://github.com/vim-fall/fall.vim",
     dependencies: [
       "https://github.com/vim-denops/denops.vim",
       "https://github.com/yukimemi/chronicle.vim",
