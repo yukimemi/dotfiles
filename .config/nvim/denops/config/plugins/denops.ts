@@ -6,10 +6,10 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
 
-import * as autocmd from "jsr:@denops/std@7.3.2/autocmd";
-import * as lambda from "jsr:@denops/std@7.3.2/lambda";
-import * as nvimFn from "jsr:@denops/std@7.3.2/function/nvim";
-import * as vars from "jsr:@denops/std@7.3.2/variable";
+import * as autocmd from "jsr:@denops/std@7.4.0/autocmd";
+import * as lambda from "jsr:@denops/std@7.4.0/lambda";
+import * as nvimFn from "jsr:@denops/std@7.4.0/function/nvim";
+import * as vars from "jsr:@denops/std@7.4.0/variable";
 
 export const denops: Plug[] = [
   {

@@ -7,8 +7,8 @@
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
 import { pluginStatus } from "../pluginstatus.ts";
 
-import * as mapping from "jsr:@denops/std@7.3.2/mapping";
-import * as vars from "jsr:@denops/std@7.3.2/variable";
+import * as mapping from "jsr:@denops/std@7.4.0/mapping";
+import * as vars from "jsr:@denops/std@7.4.0/variable";
 
 export const test: Plug[] = [
   { url: "https://github.com/skywind3000/asyncrun.vim" },
