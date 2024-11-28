@@ -6,7 +6,7 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
 
-import * as mapping from "jsr:@denops/std@7.3.2/mapping";
+import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const neotree: Plug[] = [
