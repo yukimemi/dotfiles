@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/11/19 13:11:43.
+// Last Change : 2024/11/29 02:03:34.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
@@ -29,6 +29,9 @@ export const libs: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.platform === "windows",
     cache: { beforeFile: `~/.config/nvim/rc/before/denops-shared-server.vim` },
+    build: async ({ denops }) => {
+      await denops.call(`denops_shared_server#install`);
+    },
   },
   {
     url: "https://github.com/LunarVim/bigfile.nvim",
