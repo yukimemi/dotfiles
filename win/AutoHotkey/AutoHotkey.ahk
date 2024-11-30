@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2024/11/22 01:25:17.
+; Last Change : 2024/11/30 10:04:10.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -133,9 +133,16 @@ F10::
 ; return
 
 ; for Edge
+; F11::
+; {
+;   Activate("msedge.exe")
+;   return
+; }
+
+; for Zenn
 F11::
 {
-  Activate("msedge.exe")
+  Activate("zen.exe")
   return
 }
 
