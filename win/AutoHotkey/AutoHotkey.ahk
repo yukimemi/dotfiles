@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2024/11/30 10:04:10.
+; Last Change : 2024/11/27 13:46:32.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -105,7 +105,7 @@ F9::
   return
 }
 
-; for neovim-qt
+; for neovim
 F10::
 {
   If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\useneovide")) {
@@ -113,6 +113,7 @@ F10::
     return
   } else {
     Activate("nvim-qt.exe")
+    ; Activate3("nvim.exe", "nvim.exe", "Neovim")
     return
   }
 }
@@ -133,16 +134,9 @@ F10::
 ; return
 
 ; for Edge
-; F11::
-; {
-;   Activate("msedge.exe")
-;   return
-; }
-
-; for Zenn
 F11::
 {
-  Activate("zen.exe")
+  Activate("msedge.exe")
   return
 }
 

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/11/17 21:06:35.
+// Last Change : 2024/11/26 21:17:22.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
@@ -114,7 +114,6 @@ export const denops: Plug[] = [
       await vars.g.set(denops, "silentsaver_events", [
         "CursorHold",
         "BufWritePre",
-        "InsertLeave",
       ]);
       await vars.g.set(denops, "silentsaver_ignore_filetypes", [
         "NvimTree",

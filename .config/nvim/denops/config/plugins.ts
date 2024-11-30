@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 16:14:34.
+// Last Change : 2024/11/26 21:24:52.
 // =============================================================================
 
 import { pluginStatus } from "./pluginstatus.ts";
@@ -19,6 +19,7 @@ import { ddu } from "./plugins/ddu.ts";
 import { denops } from "./plugins/denops.ts";
 import { edit } from "./plugins/edit.ts";
 import { fall } from "./plugins/fall.ts";
+import { deck } from "./plugins/deck.ts";
 import { fern } from "./plugins/fern.ts";
 import { filetypes } from "./plugins/filetypes.ts";
 import { git } from "./plugins/git.ts";
@@ -85,6 +86,9 @@ const plugins = [
 
 if (pluginStatus.telescope) {
   plugins.push(...telescope);
+}
+if (pluginStatus.deck) {
+  plugins.push(...deck);
 }
 if (pluginStatus.fall) {
   plugins.push(...fall);

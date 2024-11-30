@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/11/22 01:18:56.
+// Last Change : 2024/11/27 01:03:43.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
@@ -223,6 +223,13 @@ export const ui: Plug[] = [
           }", [])`,
         );
       });
+    },
+  },
+  {
+    url: "https://github.com/sphamba/smear-cursor.nvim",
+    enabled: false,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("smear_cursor").setup()`);
     },
   },
   {

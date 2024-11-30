@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : fall.lua
 -- Author      : yukimemi
--- Last Change : 2024/11/24 20:39:46.
+-- Last Change : 2024/11/27 01:10:13.
 -- =============================================================================
 
 vim.keymap.set("n", "<space>lf", "<cmd>Fall file<cr>", { desc = "Fall file" })
@@ -25,8 +25,8 @@ vim.keymap.set("n", "<space>ll", "<cmd>Fall line<cr>", { desc = "Fall line" })
 vim.keymap.set("n", "<space>lh", "<cmd>Fall help<cr>", { desc = "Fall help" })
 
 -- chronicle.vim
-vim.keymap.set("n", "mr", "<cmd>Fall chronicle:read<cr>", { desc = "Fall chronicle:read" })
-vim.keymap.set("n", "mw", "<cmd>Fall chronicle:write<cr>", { desc = "Fall chronicle:write" })
+vim.keymap.set("n", "<space>mr", "<cmd>Fall chronicle:read<cr>", { desc = "Fall chronicle:read" })
+vim.keymap.set("n", "<space>mw", "<cmd>Fall chronicle:write<cr>", { desc = "Fall chronicle:write" })
 
 vim.api.nvim_create_autocmd("User", {
   group = vim.api.nvim_create_augroup("MyFallPickerEnter", { clear = true }),
@@ -37,11 +37,3 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
-vim.api.nvim_create_autocmd("User", {
-  group = vim.api.nvim_create_augroup("MyFallPickerLeave", { clear = true }),
-  pattern = "FallPickerLeave:*",
-  callback = function()
-    vim.keymap.set("c", "<c-n>", '<down>', { nowait = true })
-    vim.keymap.set("c", "<c-p>", '<up>', { nowait = true })
-  end,
-})

@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : telescope.lua
 -- Author      : yukimemi
--- Last Change : 2023/12/04 01:29:58.
+-- Last Change : 2024/11/28 11:25:12.
 -- =============================================================================
 
 --------------------------------------------------------------------------------
@@ -9,7 +9,7 @@
 --------------------------------------------------------------------------------
 vim.keymap.set("n", "<space>ff", "<cmd>Telescope<cr>", { desc = "Telescope" })
 
-vim.keymap.set("n", "<space>fS", function()
+vim.keymap.set("n", "ms", function()
   require("telescope.builtin").find_files({ cwd = "~/src" })
 end, { desc = "Find src file" })
 
@@ -20,27 +20,27 @@ vim.keymap.set("n", "<space>fp", function()
   require("telescope").extensions.project.project()
 end, { desc = "Find Project" })
 
-vim.keymap.set("n", "<space>fg", "<cmd>Telescope git_files<cr>", { desc = "Find git files" })
+vim.keymap.set("n", "mg", "<cmd>Telescope git_files<cr>", { desc = "Find git files" })
 
-vim.keymap.set("n", "<space>fd", function()
+vim.keymap.set("n", "mb", function()
   local bufname = vim.fn.bufname()
   local bufdir = vim.fn.fnamemodify(bufname, ":p:h")
   require("telescope.builtin").find_files({ cwd = bufdir })
 end, { desc = "Find file on buffer dir" })
 
-vim.keymap.set("n", "<space>fD", function()
+vim.keymap.set("n", "md", function()
   require("telescope.builtin").git_files({ cwd = "~/.dotfiles" })
 end, { desc = "Find Dot File" })
 
-vim.keymap.set("n", "<space>fc", function()
-  require("telescope.builtin").git_files({ cwd = "~/.cache" })
+vim.keymap.set("n", "mC", function()
+  require("telescope.builtin").find_files({ cwd = "~/.cache" })
 end, { desc = "Find Cache File" })
 
-vim.keymap.set("n", "<space>fm", function()
+vim.keymap.set("n", "mM", function()
   require("telescope.builtin").find_files({ cwd = "~/.memolist" })
 end, { desc = "Find memolist file" })
 
-vim.keymap.set("n", "<space>fj", function()
+vim.keymap.set("n", "mj", function()
   require("telescope.builtin").find_files({ cwd = "~/.cache/junkfile" })
 end, { desc = "Find junk file" })
 

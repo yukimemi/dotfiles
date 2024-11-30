@@ -1,11 +1,11 @@
 -- =============================================================================
 -- File        : telescope.lua
 -- Author      : yukimemi
--- Last Change : 2024/07/27 22:06:00.
+-- Last Change : 2024/11/27 09:42:32.
 -- =============================================================================
 
 local telescope = require("telescope")
-local borderless = false
+local borderless = true
 
 telescope.setup({
   defaults = {

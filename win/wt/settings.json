@@ -80,7 +80,6 @@
         {
             "antialiasingMode": "cleartype",
             "backgroundImage": "desktopWallpaper",
-            "backgroundImageAlignment": "bottomRight",
             "backgroundImageOpacity": 0.1,
             "backgroundImageStretchMode": "uniformToFill",
             "bellStyle": "window",
@@ -145,22 +144,16 @@
                 "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
             },
             {
-                "guid": "{c34ec0b5-526d-5f10-ae00-c3213ecf5841}",
+                "guid": "{07e0254f-21e4-5994-9de2-ef433c5c2435}",
                 "hidden": false,
                 "name": "Developer Command Prompt for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
             },
             {
-                "guid": "{6790fc5d-75ea-5f24-9b85-e3233f1dea00}",
+                "guid": "{b246989c-663d-5991-b73a-3227cb7e6a36}",
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{aab79973-318f-43b6-a9bc-b4096493753f}",
-                "hidden": false,
-                "name": "Nushell",
-                "source": "nu"
             }
         ]
     },

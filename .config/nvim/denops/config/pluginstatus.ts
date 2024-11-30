@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2024/11/25 11:51:33.
+// Last Change : 2024/11/27 01:14:45.
 // =============================================================================
 
 export const pluginStatus = {
@@ -11,22 +11,23 @@ export const pluginStatus = {
   blink: false,
   bufferline: false,
   buffertabs: false,
-  care: false,
-  fuzzymotion: true,
-  initial: false,
+  care: true,
   clap: false,
-  cmp: true,
+  cmp: false,
   coc: false,
   ddc: false,
   ddu: false,
   ddufiler: false,
+  deck: false,
   denippet: true,
-  fall: true,
+  fall: false,
   fern: false,
   fidget: true,
+  fuzzymotion: true,
   heirline: false,
   hlchunk: true,
   indentblankline: false,
+  initial: false,
   insx: true,
   lualine: true,
   modesearch: false,
@@ -42,7 +43,7 @@ export const pluginStatus = {
   satellite: false,
   scrollbar: false,
   snipewin: true,
-  telescope: false,
+  telescope: true,
   ultimatepair: false,
   vimtest: true,
   vimwiki: false,

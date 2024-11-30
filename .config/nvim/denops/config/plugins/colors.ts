@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/11/20 11:55:02.
+// Last Change : 2024/11/26 21:14:16.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
@@ -53,6 +53,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/gruvbox-community/gruvbox" },
   { url: "https://github.com/habamax/vim-gruvbit" },
   { url: "https://github.com/ingram1107/vim-zhi" },
+  { url: "https://github.com/jonathanfilip/vim-lucius" },
   { url: "https://github.com/joshdick/onedark.vim" },
   { url: "https://github.com/jsit/toast.vim" },
   { url: "https://github.com/kihachi2000/yash.nvim" },
@@ -193,6 +194,7 @@ export const colors: Plug[] = [
       "https://github.com/gruvbox-community/gruvbox",
       "https://github.com/habamax/vim-gruvbit",
       "https://github.com/ingram1107/vim-zhi",
+      "https://github.com/jonathanfilip/vim-lucius",
       "https://github.com/joshdick/onedark.vim",
       "https://github.com/jsit/toast.vim",
       "https://github.com/kihachi2000/yash.nvim",
