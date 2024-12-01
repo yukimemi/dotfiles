@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : yazi.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 08:57:38.
+// Last Change : 2024/12/01 11:35:35.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.0";
@@ -15,9 +15,6 @@ export const yazi: Plug[] = [
     enabled: pluginStatus.yazi,
     cache: { afterFile: `~/.config/nvim/rc/after/yazi.lua` },
     build: async ({ info }) => {
-      if (!info.isUpdate) {
-        return;
-      }
       const install = async (command: string, args: string[]) => {
         const cmd = new Deno.Command(command, { args, cwd: info.dst });
         const output = await cmd.output();

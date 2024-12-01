@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/11/21 10:45:52.
+// Last Change : 2024/12/01 11:35:04.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.0";
@@ -52,9 +52,6 @@ export const ai: Plug[] = [
     url: "https://github.com/mattn/vim-gemini",
     enabled: false,
     build: async ({ info }) => {
-      if (!info.isLoad || !info.isUpdate) {
-        return;
-      }
       const install = async (command: string, args: string[]) => {
         console.log(`mattn/gemini install:: "${command}" "${args.join(" ")}"`);
         const cmd = new Deno.Command(command, { args, cwd: info.dst });

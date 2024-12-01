@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : clap.ts
 // Author      : yukimemi
-// Last Change : 2024/10/01 23:57:27.
+// Last Change : 2024/12/01 11:35:20.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.0";
@@ -15,9 +15,6 @@ export const clap: Plug[] = [
     enabled: pluginStatus.clap,
     afterFile: "~/.config/nvim/rc/after/vim-clap.vim",
     build: async ({ denops, info }) => {
-      if (!info.isUpdate) {
-        return;
-      }
       const install = async (command: string, args: string[]) => {
         const cmd = new Deno.Command(command, { args, cwd: info.dst });
         const output = await cmd.output();
