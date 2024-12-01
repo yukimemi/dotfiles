@@ -4,7 +4,7 @@
 // Last Change : 2024/12/01 11:41:18.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.5.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
 import * as fn from "jsr:@denops/std@7.4.0/function";
 
 export const clap: Plug[] = [
