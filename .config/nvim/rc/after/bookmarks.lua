@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : bookmarks.lua
 -- Author      : yukimemi
--- Last Change : 2024/04/28 14:40:12.
+-- Last Change : 2024/12/01 09:47:59.
 -- =============================================================================
 
 require("bookmarks").setup({
@@ -24,3 +24,4 @@ require("bookmarks").setup({
     map("n", "ma", bm.bookmark_list)   -- show marked file list in quickfix window
   end,
 })
+

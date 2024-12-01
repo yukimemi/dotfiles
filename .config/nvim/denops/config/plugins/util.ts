@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 22:17:25.
+// Last Change : 2024/12/01 09:48:26.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.2.2";
@@ -505,9 +505,10 @@ export const util: Plug[] = [
       await denops.call(`luaeval`, `require("licenser").setup()`);
     },
   },
-  { url: "https://github.com/MattesGroeger/vim-bookmarks", enabled: false },
+  { url: "https://github.com/MattesGroeger/vim-bookmarks", enabled: pluginStatus.vimbookmarks },
   {
     url: "https://github.com/tomasky/bookmarks.nvim",
+    enabled: pluginStatus.bookmarks,
     afterFile: `~/.config/nvim/rc/after/bookmarks.lua`,
   },
   {
