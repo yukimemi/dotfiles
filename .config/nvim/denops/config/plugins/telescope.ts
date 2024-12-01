@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : telescope.ts
 // Author      : yukimemi
-// Last Change : 2024/12/01 10:10:31.
+// Last Change : 2024/12/01 10:38:09.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.3.0";
@@ -51,6 +51,7 @@ export const telescope: Plug[] = [
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/folke/trouble.nvim",
+      "https://github.com/nvim-telescope/telescope-frecency.nvim",
     ],
   },
 ];
