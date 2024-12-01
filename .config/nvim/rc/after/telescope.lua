@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : telescope.lua
 -- Author      : yukimemi
--- Last Change : 2024/12/01 10:04:33.
+-- Last Change : 2024/12/01 10:35:49.
 -- =============================================================================
 
 local telescope = require("telescope")
@@ -77,7 +77,7 @@ vim.keymap.set("n", "mj", function()
   require("telescope.builtin").find_files({ cwd = "~/.cache/junkfile" })
 end, { desc = "Find junk file" })
 
-vim.keymap.set("n", "<space>fo", "<cmd>Telescope oldfiles<cr>", { desc = "Open Old File" })
+-- vim.keymap.set("n", "<space>fo", "<cmd>Telescope oldfiles<cr>", { desc = "Open Old File" })
 
 --------------------------------------------------------------------------------
 -- Prefix "b" (vim-bookmarks) --

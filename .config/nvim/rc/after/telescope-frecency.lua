@@ -1,9 +1,8 @@
 -- =============================================================================
 -- File        : telescope-frecency.lua
 -- Author      : yukimemi
--- Last Change : 2024/12/01 08:50:12.
+-- Last Change : 2024/12/01 10:35:31.
 -- =============================================================================
 
 require("telescope").load_extension("frecency")
-vim.keymap.set("n", "<c-p>", "<cmd>Telescope frecency<cr>", { desc = "Open the frecency list" })
-
+vim.keymap.set("n", "<space>fo", "<cmd>Telescope frecency<cr>", { desc = "Open the frecency list" })
