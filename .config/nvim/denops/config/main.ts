@@ -8,7 +8,7 @@ import * as fn from "jsr:@denops/std@7.4.0/function";
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
 import * as log from "jsr:@std/log@0.224.11";
 import type { Denops, Entrypoint } from "jsr:@denops/std@7.4.0";
-import { Dvpm } from "jsr:@yukimemi/dvpm@5.4.1";
+import { Dvpm } from "jsr:@yukimemi/dvpm@5.4.2";
 import { cacheLua, cacheVim } from "./cache.ts";
 import { dir } from "jsr:@cross/dir@1.1.0";
 import { ensureFile } from "jsr:@std/fs@1.0.6/ensure-file";

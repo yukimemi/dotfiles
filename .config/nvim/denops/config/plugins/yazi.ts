@@ -4,7 +4,7 @@
 // Last Change : 2024/11/18 08:57:38.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.4.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.4.2";
 
 import { pluginStatus } from "../pluginstatus.ts";
 
