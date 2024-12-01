@@ -1,18 +1,15 @@
 // =============================================================================
 // File        : clap.ts
 // Author      : yukimemi
-// Last Change : 2024/12/01 11:35:20.
+// Last Change : 2024/12/01 11:41:18.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.0";
 import * as fn from "jsr:@denops/std@7.4.0/function";
 
-import { pluginStatus } from "../pluginstatus.ts";
-
 export const clap: Plug[] = [
   {
     url: "https://github.com/liuchengxu/vim-clap",
-    enabled: pluginStatus.clap,
     afterFile: "~/.config/nvim/rc/after/vim-clap.vim",
     build: async ({ denops, info }) => {
       const install = async (command: string, args: string[]) => {
