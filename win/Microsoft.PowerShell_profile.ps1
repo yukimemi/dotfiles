@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2024/11/18 11:01:40.
+# Last Change : 2024/12/03 00:48:54.
 # =============================================================================
 
 # module
@@ -299,6 +299,9 @@ if (Get-Command peco -ErrorAction SilentlyContinue) {
 }
 if (Get-Command gof -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER gof
+}
+if (Get-Command tv -ErrorAction SilentlyContinue) {
+  Set-Alias __FILTER tv
 }
 # Remove-Alias ls
 if (Is-Windows) {
