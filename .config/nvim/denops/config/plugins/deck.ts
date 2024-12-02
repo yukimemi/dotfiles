@@ -9,7 +9,6 @@ import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
 export const deck: Plug[] = [
   {
     url: "https://github.com/hrsh7th/nvim-deck",
-    rev: "dev",
     cache: { afterFile: "~/.config/nvim/rc/after/nvim-deck.lua" },
   },
 ];

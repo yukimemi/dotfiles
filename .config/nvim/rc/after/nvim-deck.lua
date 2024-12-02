@@ -1,102 +1,63 @@
 -- =============================================================================
 -- File        : nvim-deck.lua
 -- Author      : yukimemi
--- Last Change : 2024/11/26 22:19:58.
+-- Last Change : 2024/12/03 00:39:38.
 -- =============================================================================
 
 local deck = require('deck')
 
--- Add recent files.
-vim.api.nvim_create_autocmd('BufEnter', {
+-- Apply pre-defined easy settings.
+-- For manual configuration, refer to the code in `deck/easy.lua`.
+require('deck.easy').setup()
+
+-- Set up buffer-specific key mappings for nvim-deck.
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'DeckStart',
   callback = function(e)
-    local bufname = vim.api.nvim_buf_get_name(0)
-    if vim.fn.filereadable(bufname) == 1 then
-      require('deck.builtin.source.recent_files').add(vim.fs.normalize(bufname))
-    end
+    local ctx = e.data.ctx --[[@as deck.Context]]
+    ctx.keymap('n', '<Tab>', deck.action_mapping('choose_action'))
+    ctx.keymap('n', '<C-l>', deck.action_mapping('refresh'))
+    ctx.keymap('n', 'i', deck.action_mapping('prompt'))
+    ctx.keymap('n', 'a', deck.action_mapping('prompt'))
+    ctx.keymap('n', '@', deck.action_mapping('toggle_select'))
+    ctx.keymap('n', '*', deck.action_mapping('toggle_select_all'))
+    ctx.keymap('n', 'p', deck.action_mapping('toggle_preview_mode'))
+    ctx.keymap('n', 'd', deck.action_mapping('delete'))
+    ctx.keymap('n', '<CR>', deck.action_mapping('default'))
+    ctx.keymap('n', 'o', deck.action_mapping('open'))
+    ctx.keymap('n', 'O', deck.action_mapping('open_keep'))
+    ctx.keymap('n', 's', deck.action_mapping('open_s'))
+    ctx.keymap('n', 'v', deck.action_mapping('open_v'))
+    ctx.keymap('n', 'N', deck.action_mapping('create'))
+    ctx.keymap('n', '<C-u>', deck.action_mapping('scroll_preview_up'))
+    ctx.keymap('n', '<C-d>', deck.action_mapping('scroll_preview_down'))
+
+    -- If you want to start the filter by default, call ctx.prompt() here
+    ctx.prompt()
   end
 })
 
--- Add recent dirs.
-vim.api.nvim_create_autocmd('DirChanged', {
-  callback = function(e)
-    require('deck.builtin.source.recent_dirs').add(e.cwd)
-  end
-})
+-- Example key bindings for launching nvim-deck sources. (These mapping required `deck.easy` calls.)
+vim.keymap.set('n', '<Leader>ff', '<Cmd>Deck files<CR>', { desc = 'Show recent files, buffers, and more' })
+vim.keymap.set('n', '<Leader>gr', '<Cmd>Deck grep<CR>', { desc = 'Start grep search' })
+vim.keymap.set('n', '<Leader>gi', '<Cmd>Deck git<CR>', { desc = 'Open git launcher' })
+vim.keymap.set('n', '<Leader>he', '<Cmd>Deck helpgrep<CR>', { desc = 'Live grep all help tags' })
 
--- Example `open` action for file-kind.
-deck.register_action({
-  name = 'open',
-  resolve = function(ctx)
-    local item = ctx.get_cursor_item()
-    return item and item.filename
-  end,
-  execute = function(item)
-    vim.cmd('edit ' .. item.filename)
-  end,
-})
-
--- Register built-ins.
-for _, action in pairs(require('deck.builtin.action')) do
-  deck.register_action(action)
-end
-for _, previewer in pairs(require('deck.builtin.previewer')) do
-  deck.register_previewer(previewer)
-end
-for _, decorator in pairs(require('deck.builtin.decorator')) do
-  deck.register_decorator(decorator)
-end
-
--- Example setup keymaps.
-require('deck').setup({
-  default_start_config = {
-    mapping = {
-      ['<Tab>'] = 'choose_action',
-      ['<C-l>'] = 'refresh',
-      ['i'] = 'prompt',
-      ['a'] = 'prompt',
-      ['<space>'] = 'toggle_select',
-      ['*'] = 'toggle_select_all',
-      ['p'] = 'toggle_preview_mode',
-      ['<C-k>'] = 'scroll_preview_up',
-      ['<C-j>'] = 'scroll_preview_down',
-      ['<CR>'] = { 'default', 'open' },
-    }
-  }
-})
-
--- Example keymap for listing files recursively.
-vim.keymap.set('n', '<space>df', function()
-  deck.start({
-    -- require('deck.builtin.source.recent_files')(),
-    require('deck.builtin.source.buffers')(),
-    require('deck.builtin.source.files')({
-      root_dir = vim.fn.getcwd(),
-    })
-  })
-end)
-
--- Open recent deck window.
-vim.keymap.set('n', '<space>;', function()
-  local context = deck.get_history()[1]
-  if context then
-    context.show()
+-- Show the latest deck context.
+vim.keymap.set('n', '<Leader>;', function()
+  local ctx = require('deck').get_history()[1]
+  if ctx then
+    ctx.show()
   end
 end)
 
--- Do default action on next item of recent deck context.
-vim.keymap.set('n', '<C-n>', function()
-  local context = deck.get_history()[1]
-  if context then
-    context.set_cursor(context.get_cursor() + 1)
-    context.do_action('default')
+-- Do default action on next item.
+vim.keymap.set('n', '<Leader>n', function()
+  local ctx = require('deck').get_history()[1]
+  if ctx then
+    ctx.set_cursor(ctx.get_cursor() + 1)
+    ctx.do_action('default')
   end
 end)
 
--- Do default action on prev item of recent deck context.
-vim.keymap.set('n', '<C-p>', function()
-  local context = deck.get_history()[1]
-  if context then
-    context.set_cursor(context.get_cursor() - 1)
-    context.do_action('default')
-  end
-end)
+
