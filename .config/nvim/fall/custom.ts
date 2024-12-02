@@ -5,8 +5,8 @@
 // =============================================================================
 
 import type { Entrypoint } from "jsr:@vim-fall/custom@0.1.0";
-import { composeRenderers, refineCurator, refineSource } from "jsr:@vim-fall/std@0.10.0";
-import * as builtin from "jsr:@vim-fall/std@0.10.0/builtin";
+import { composeRenderers, refineCurator, refineSource } from "jsr:@vim-fall/std@0.10.1";
+import * as builtin from "jsr:@vim-fall/std@0.10.1/builtin";
 import { SEPARATOR } from "jsr:@std/path@1.0.8/constants";
 import { chronicle } from "jsr:@yukimemi/fall-source-chronicle@1.0.2";
 
