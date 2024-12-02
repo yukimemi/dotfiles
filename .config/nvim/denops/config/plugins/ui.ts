@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/11/27 01:03:43.
+// Last Change : 2024/12/02 11:12:04.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -432,6 +432,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/folke/drop.nvim",
+    enabled: false,
     afterFile: "~/.config/nvim/rc/after/drop.lua",
   },
   {

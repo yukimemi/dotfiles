@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2024/12/03 00:48:54.
+# Last Change : 2024/12/03 01:30:46.
 # =============================================================================
 
 # module
@@ -291,9 +291,6 @@ Remove-Item alias:cd
 Set-Alias cd cd-ls
 # Set-Alias cd cdls
 # filter tool.
-if (Get-Command fzf -ErrorAction SilentlyContinue) {
-  Set-Alias __FILTER fzf
-}
 if (Get-Command peco -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER peco
 }
@@ -302,6 +299,9 @@ if (Get-Command gof -ErrorAction SilentlyContinue) {
 }
 if (Get-Command tv -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER tv
+}
+if (Get-Command fzf -ErrorAction SilentlyContinue) {
+  Set-Alias __FILTER fzf
 }
 # Remove-Alias ls
 if (Is-Windows) {
