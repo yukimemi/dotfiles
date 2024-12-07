@@ -12,10 +12,6 @@
             "id": "User.copy.644BA8F2"
         },
         {
-            "command": "find",
-            "id": "User.find"
-        },
-        {
             "command": 
             {
                 "action": "splitPane",
@@ -25,8 +21,8 @@
             "id": "User.splitPane.A6751878"
         },
         {
-            "command": "paste",
-            "id": "User.paste"
+            "command": "find",
+            "id": "User.find"
         },
         {
             "command": 
@@ -34,6 +30,10 @@
                 "action": "quakeMode"
             },
             "id": "User.quakeMode.F1E129A4"
+        },
+        {
+            "command": "paste",
+            "id": "User.paste"
         }
     ],
     "alwaysShowTabs": false,
@@ -43,24 +43,24 @@
     "keybindings": 
     [
         {
-            "id": "User.find",
-            "keys": "ctrl+shift+f"
-        },
-        {
             "id": null,
             "keys": "ctrl+v"
+        },
+        {
+            "id": "User.find",
+            "keys": "ctrl+shift+f"
         },
         {
             "id": null,
             "keys": "win+sc(41)"
         },
         {
-            "id": "User.quakeMode.F1E129A4",
-            "keys": "f12"
-        },
-        {
             "id": "User.copy.644BA8F2",
             "keys": "ctrl+c"
+        },
+        {
+            "id": "User.quakeMode.F1E129A4",
+            "keys": "f12"
         },
         {
             "id": "User.splitPane.A6751878",
@@ -151,6 +151,18 @@
             },
             {
                 "guid": "{b246989c-663d-5991-b73a-3227cb7e6a36}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{1c051b2d-4bc0-5635-8dd4-12288686d59a}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{d71e4b91-0ddb-5a40-91b8-6c69de810579}",
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"

@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-treesitter.lua
 -- Author      : yukimemi
--- Last Change : 2024/10/14 19:45:36.
+-- Last Change : 2024/12/03 19:54:00.
 -- =============================================================================
 
 
@@ -32,3 +32,6 @@ require("nvim-treesitter.configs").setup({
     end,
   },
 })
+
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
