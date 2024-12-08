@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/11/29 02:03:34.
+// Last Change : 2024/12/08 21:30:54.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -191,10 +191,25 @@ export const libs: Plug[] = [
     enabled: async ({ denops }) =>
       await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) && false,
     before: async ({ denops }) => {
-      await vars.g.set(denops, "codeium_no_map_tab", true);
+      await vars.g.set(denops, "codeium_disable_bindings", 1);
     },
     after: async ({ denops }) => {
+      await mapping.map(denops, "<c-f>", "codeium#AcceptNextWord()", {
+        mode: "i",
+        expr: true,
+        nowait: true,
+      });
       await mapping.map(denops, "<c-e>", "codeium#Accept()", {
+        mode: "i",
+        expr: true,
+        nowait: true,
+      });
+      await mapping.map(denops, "<c-j>", "codeium#CycleCompletions(1)", {
+        mode: "i",
+        expr: true,
+        nowait: true,
+      });
+      await mapping.map(denops, "<c-k>", "codeium#CycleCompletions(-1)", {
         mode: "i",
         expr: true,
         nowait: true,
