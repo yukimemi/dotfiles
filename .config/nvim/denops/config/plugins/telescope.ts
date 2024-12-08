@@ -1,13 +1,23 @@
 // =============================================================================
 // File        : telescope.ts
 // Author      : yukimemi
-// Last Change : 2024/12/01 20:11:55.
+// Last Change : 2024/12/08 00:12:18.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const telescope: Plug[] = [
+  {
+    url: "https://github.com/yukimemi/telescope-chronicle.nvim",
+    dependencies: [
+      "https://github.com/nvim-telescope/telescope.nvim",
+      "https://github.com/yukimemi/chronicle.vim",
+    ],
+    cache: {
+      afterFile: "~/.config/nvim/rc/after/telescope-chronicle.lua",
+    },
+  },
   {
     url: "https://github.com/nvim-telescope/telescope-frecency.nvim",
     dependencies: ["https://github.com/nvim-telescope/telescope.nvim"],
