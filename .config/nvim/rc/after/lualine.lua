@@ -230,7 +230,10 @@ ins_right({
 })
 
 ins_right({
-  require("neocodeium").get_status,
+  function()
+    local s1, s2 = require("neocodeium").get_status()
+    return s1 .. ":" .. s2
+  end,
   icon = "🤖",
   color = { fg = colors.red, gui = "bold" },
 })
