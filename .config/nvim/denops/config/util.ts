@@ -15,7 +15,7 @@ import type { Denops } from "jsr:@denops/std@7.4.0";
 import { format } from "jsr:@std/datetime@0.225.2";
 import { join } from "jsr:@std/path@1.0.8/join";
 import { systemopen } from "jsr:@lambdalisue/systemopen@1.0.0";
-import { z } from "npm:zod@3.23.8";
+import { z } from "npm:zod@3.24.1";
 
 const useNvimNotify = false;
 
