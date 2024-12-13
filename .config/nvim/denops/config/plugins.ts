@@ -1,13 +1,14 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/12/01 11:41:08.
+// Last Change : 2024/12/09 02:02:04.
 // =============================================================================
 
 import { pluginStatus } from "./pluginstatus.ts";
 
 import { ai } from "./plugins/ai.ts";
 import { blink } from "./plugins/blink.ts";
+import { compl } from "./plugins/compl.ts";
 import { bluesky } from "./plugins/bluesky.ts";
 import { care } from "./plugins/care.ts";
 import { clap } from "./plugins/clap.ts";
@@ -104,6 +105,9 @@ if (pluginStatus.coc) {
 }
 if (pluginStatus.cmp) {
   plugins.push(...cmp);
+}
+if (pluginStatus.compl) {
+  plugins.push(...compl);
 }
 if (pluginStatus.blink) {
   plugins.push(...blink);

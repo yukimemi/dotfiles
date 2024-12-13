@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : telescope.ts
 // Author      : yukimemi
-// Last Change : 2024/12/08 00:12:18.
+// Last Change : 2024/12/09 09:48:24.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -36,7 +36,9 @@ export const telescope: Plug[] = [
   {
     url: "https://github.com/fdschmidt93/telescope-egrepify.nvim",
     dependencies: ["https://github.com/nvim-telescope/telescope.nvim"],
-    afterFile: "~/.config/nvim/rc/after/telescope-egrepify.lua",
+    cache: {
+      afterFile: "~/.config/nvim/rc/after/telescope-egrepify.lua",
+    },
   },
   {
     url: "https://github.com/tom-anders/telescope-vim-bookmarks.nvim",

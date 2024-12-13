@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2024/11/23 12:33:01.
+// Last Change : 2024/12/10 14:42:23.
 // =============================================================================
 
 import * as autocmd from "jsr:@denops/std@7.4.0/autocmd";
@@ -29,6 +29,7 @@ export const ddc: Plug[] = [
         padding: false,
         scrollbar_char: "┃",
         use_setline: false,
+        insert_preview: true,
       });
     },
   },

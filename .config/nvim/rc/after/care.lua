@@ -1,18 +1,25 @@
 -- =============================================================================
 -- File        : care.lua
 -- Author      : yukimemi
--- Last Change : 2024/11/04 15:26:52.
+-- Last Change : 2024/12/09 02:16:39.
 -- =============================================================================
 
-vim.keymap.set("i", "<c-k>", function()
-  vim.snippet.jump(1)
-end)
-vim.keymap.set("i", "<c-j>", function()
-  vim.snippet.jump(-1)
-end)
+vim.keymap.set({ "i", "s" }, "<C-k>", function()
+  if vim.snippet.active { direction = 1 } then
+    return "<cmd>lua vim.snippet.jump(1)<cr>"
+  end
+end, { expr = true })
+
+vim.keymap.set({ "i", "s" }, "<C-j>", function()
+  if vim.snippet.active { direction = -1 } then
+    return "<cmd>lua vim.snippet.jump(-1)<cr>"
+  end
+end, { expr = true })
+
 vim.keymap.set("i", "<c-space>", function()
   require("care").api.complete()
 end)
+
 vim.keymap.set("i", "<c-e>", "<Plug>(CareClose)")
 vim.keymap.set("i", "<tab>", "<Plug>(CareConfirm)")
 vim.keymap.set("i", "<c-n>", "<Plug>(CareSelectNext)")
