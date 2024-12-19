@@ -12,7 +12,7 @@ import type { Denops, Entrypoint } from "jsr:@denops/std@7.4.0";
 import { Dvpm } from "jsr:@yukimemi/dvpm@5.5.2";
 import { cacheLua, cacheVim } from "./cache.ts";
 import { dir } from "jsr:@cross/dir@1.1.0";
-import { ensureFile } from "jsr:@std/fs@1.0.6/ensure-file";
+import { ensureFile } from "jsr:@std/fs@1.0.7/ensure-file";
 import { execute } from "jsr:@denops/std@7.4.0/helper";
 import { join } from "jsr:@std/path@1.0.8/join";
 import { notify, openLog } from "./util.ts";
