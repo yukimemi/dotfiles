@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : telescope.lua
 -- Author      : yukimemi
--- Last Change : 2024/12/11 11:22:48.
+-- Last Change : 2024/12/16 11:45:41.
 -- =============================================================================
 
 local telescope = require("telescope")
@@ -32,14 +32,6 @@ telescope.setup({
       "!**/node_modules/**",
       "--glob",
       "!**/.git/**",
-    }
-  },
-  pickers = {
-    find_files = {
-      theme = "ivy",
-    },
-    git_files = {
-      theme = "ivy",
     }
   },
   extensions = {
