@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2024/12/03 01:30:46.
+# Last Change : 2024/12/23 20:50:45.
 # =============================================================================
 
 # module
@@ -322,8 +322,9 @@ Set-Alias h hitori
 # Readline setting.
 Set-PSReadLineOption -EditMode Vi
 Set-PSReadLineOption -ViModeIndicator cursor
-
-Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+if ($PSVersionTable.PSVersion.Major -ge 7) {
+  Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+}
 Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function AcceptNextSuggestionWord
 Set-PSReadLineKeyHandler -Key 'Ctrl+e' -Function AcceptSuggestion
 

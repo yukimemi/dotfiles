@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/12/20 16:49:00.
+// Last Change : 2024/12/23 15:07:07.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -18,6 +18,7 @@ import {
 export const ai: Plug[] = [
   {
     url: "https://github.com/olimorris/codecompanion.nvim",
+    enabled: false,
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/nvim-treesitter/nvim-treesitter",

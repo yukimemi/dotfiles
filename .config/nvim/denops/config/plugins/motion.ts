@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2024/11/26 21:09:21.
+// Last Change : 2024/12/23 20:34:03.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -30,6 +30,13 @@ export const motion: Plug[] = [
       await vars.g.set(denops, "fuzzy_motion_disable_match_highlight", false);
       await vars.g.set(denops, "fuzzy_motion_matchers", ["fzf", "kensaku"]);
       await mapping.map(denops, "ss", "<cmd>FuzzyMotion<cr>", { mode: "n" });
+    },
+  },
+  {
+    url: "https://github.com/folke/flash.nvim",
+    enabled: pluginStatus.flash,
+    cache: {
+      afterFile: `~/.config/nvim/rc/after/flash.lua`,
     },
   },
   {
