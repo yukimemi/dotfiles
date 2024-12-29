@@ -1,22 +1,22 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2024/12/11 14:34:44.
+// Last Change : 2024/12/29 17:25:47.
 // =============================================================================
 
 export const pluginStatus = {
   autopairs: false,
   barbar: false,
   barbecue: false,
-  blink: false,
-  compl: false,
+  blink: true,
   bookmarks: true,
   bufferline: false,
   buffertabs: false,
   care: false,
   clap: false,
-  cmp: true,
+  cmp: false,
   coc: false,
+  compl: false,
   ddc: false,
   ddu: false,
   ddufiler: false,
@@ -25,10 +25,11 @@ export const pluginStatus = {
   fall: false,
   fern: false,
   fidget: true,
-  fuzzymotion: false,
   flash: true,
+  fuzzymotion: false,
   heirline: false,
   hlchunk: false,
+  incline: false,
   indentblankline: true,
   initial: false,
   insx: true,

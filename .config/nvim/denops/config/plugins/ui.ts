@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/12/02 11:12:04.
+// Last Change : 2024/12/29 20:03:26.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -111,9 +111,20 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/DanilaMihailov/beacon.nvim",
     enabled: true,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("beacon").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/cxwx/specs.nvim",
+    enabled: false,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("specs").setup(_A)`, {});
+    },
   },
   {
     url: "https://github.com/mvllow/modes.nvim",
+    enabled: false,
     afterFile: `~/.config/nvim/rc/after/modes.lua`,
   },
   {
@@ -274,6 +285,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/b0o/incline.nvim",
+    enabled: pluginStatus.incline,
     dependencies: [
       "https://github.com/SmiteshP/nvim-navic",
       "https://github.com/nvim-tree/nvim-web-devicons",

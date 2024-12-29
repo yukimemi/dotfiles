@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/12/26 13:39:38.
+// Last Change : 2024/12/29 20:06:40.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -270,9 +270,14 @@ lang: ja
         `<cmd>call futago#start_chat({"opener": "vsplit", "humanPrompt": "yukimemi", "history": [{"role": "user", "parts": [{ "text": "僕の名前は yukimemi。敬語は使わずにフレンドリーに回答してね。" }]}, {"role": "model", "parts": [{ "text": "了解！覚えておくね！" }]}]})<cr>`,
         { mode: "n" },
       );
-      await mapping.map(denops, "gC", `<cmd>call futago#git_commit()<cr>`, {
-        mode: "n",
-      });
+      await mapping.map(
+        denops,
+        "gC",
+        `<cmd>call futago#git_commit({"model": "gemini-2.0-flash-exp"})<cr>`,
+        {
+          mode: "n",
+        },
+      );
     },
   },
 ];

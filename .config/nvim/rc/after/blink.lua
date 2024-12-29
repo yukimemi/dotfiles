@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : blink.lua
 -- Author      : yukimemi
--- Last Change : 2024/12/07 20:28:30.
+-- Last Change : 2024/12/29 17:44:10.
 -- =============================================================================
 
 require("blink-cmp").setup({
@@ -12,31 +12,12 @@ require("blink-cmp").setup({
     ['<C-k>'] = { 'snippet_forward', 'fallback' },
     ['<C-j>'] = { 'snippet_backward', 'fallback' },
   },
-
-  trigger = {
-    signature_help = {
-      enabled = true,
-    },
+  completion = {
+    menu = { border = 'single' },
+    documentation = { window = { border = 'single' } },
   },
-
-  fuzzy = {
-    prebuilt_binaries = {
-      download = true,
-      force_version = "v0.7.3",
-    },
-  },
-
-  windows = {
-    autocomplete = {
-      border = "single",
-      selection = "manual",
-    },
-    documentation = {
-      border = "single",
-      auto_show = true,
-    },
-    signature_help = {
-      border = "single",
-    },
+  signature = {
+    enabled = true,
+    window = { border = 'single' },
   },
 })
