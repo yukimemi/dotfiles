@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/12/29 20:06:40.
+// Last Change : 2024/12/29 20:20:07.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -277,6 +277,9 @@ lang: ja
         {
           mode: "n",
         },
+      );
+      await denops.cmd(
+        `command! -nargs=0 FutagoCommit call futago#git_commit({"model": "gemini-2.0-flash-exp"})`,
       );
     },
   },

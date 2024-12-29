@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 22:17:22.
+// Last Change : 2024/12/29 20:17:22.
 // =============================================================================
 
 import * as buffer from "jsr:@denops/std@7.4.0/buffer";
@@ -166,6 +166,7 @@ export async function focusFloating(denops: Denops) {
 export async function removeShada(denops: Denops) {
   const shadaDir = join(z.string().parse(await nvimFn.stdpath(denops, "state")), "shada");
   await Deno.remove(shadaDir, { recursive: true });
+  console.log(`shada dir remove done !`);
 }
 
 export async function zennCreate(denops: Denops, title: string, type = "tech") {
