@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 09:17:02.
+// Last Change : 2024/12/30 22:26:36.
 // =============================================================================
 
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
@@ -45,7 +45,7 @@ export const git: Plug[] = [
       await mapping.map(
         denops,
         "]g",
-        `<cmd>lua require("gitsigns").next_hunk()<cr>`,
+        `<cmd>lua require("gitsigns").nav_hunk("next")<cr>`,
         {
           mode: "n",
         },
@@ -53,7 +53,7 @@ export const git: Plug[] = [
       await mapping.map(
         denops,
         "[g",
-        `<cmd>lua require("gitsigns").prev_hunk()<cr>`,
+        `<cmd>lua require("gitsigns").nav_hunk("prev")<cr>`,
         {
           mode: "n",
         },
