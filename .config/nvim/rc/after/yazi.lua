@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : yazi.lua
 -- Author      : yukimemi
--- Last Change : 2024/11/04 22:12:35.
+-- Last Change : 2024/12/24 11:37:12.
 -- =============================================================================
 
 require("yazi").setup({
@@ -11,5 +11,5 @@ require("yazi").setup({
   },
 })
 
-vim.keymap.set("n", "<c-up>", "<cmd>Yazi cwd<cr>", { desc = "Open the yazi in working directory" })
-vim.keymap.set("n", "<up>", "<cmd>Yazi toggle<cr>", { desc = "Resume the yazi session" })
+vim.keymap.set("n", "<up>", "<cmd>Yazi cwd<cr>", { desc = "Open the yazi in working directory" })
+vim.keymap.set("n", "<c-up>", "<cmd>Yazi toggle<cr>", { desc = "Resume the yazi session" })
