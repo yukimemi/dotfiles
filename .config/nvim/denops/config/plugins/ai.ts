@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/12/29 20:20:07.
+// Last Change : 2024/12/30 15:02:53.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -75,7 +75,7 @@ export const ai: Plug[] = [
       await vars.g.set(denops, "futago_chat_path", `~/.cache/nvim/futago/chat`);
       await vars.g.set(denops, "futago_log_file", `~/.cache/nvim/futago/log/futago.log`);
       await vars.g.set(denops, "futago_history_db", `~/.cache/nvim/futago/db/history.db`);
-      await vars.g.set(denops, "futago_model", "gemini-2.0-flash-thinking-exp");
+      // await vars.g.set(denops, "futago_model", "gemini-2.0-flash-thinking-exp");
       const safetySettings: SafetySetting[] = [
         {
           category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
@@ -245,6 +245,7 @@ lang: ja
             denops,
             async () => {
               await denops.call("futago#start_chat", {
+                model: "gemini-2.0-flash-thinking-exp",
                 opener: "vsplit",
                 history: [
                   {
@@ -267,19 +268,8 @@ lang: ja
       await mapping.map(
         denops,
         "mf",
-        `<cmd>call futago#start_chat({"opener": "vsplit", "humanPrompt": "yukimemi", "history": [{"role": "user", "parts": [{ "text": "僕の名前は yukimemi。敬語は使わずにフレンドリーに回答してね。" }]}, {"role": "model", "parts": [{ "text": "了解！覚えておくね！" }]}]})<cr>`,
+        `<cmd>call futago#start_chat({"model": "gemini-2.0-flash-thinking-exp", "opener": "vsplit", "humanPrompt": "yukimemi", "history": [{"role": "user", "parts": [{ "text": "僕の名前は yukimemi。敬語は使わずにフレンドリーに回答してね。" }]}, {"role": "model", "parts": [{ "text": "了解！覚えておくね！" }]}]})<cr>`,
         { mode: "n" },
-      );
-      await mapping.map(
-        denops,
-        "gC",
-        `<cmd>call futago#git_commit({"model": "gemini-2.0-flash-exp"})<cr>`,
-        {
-          mode: "n",
-        },
-      );
-      await denops.cmd(
-        `command! -nargs=0 FutagoCommit call futago#git_commit({"model": "gemini-2.0-flash-exp"})`,
       );
     },
   },
