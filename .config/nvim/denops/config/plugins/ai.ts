@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/12/30 22:17:31.
+// Last Change : 2024/12/31 12:14:26.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -14,6 +14,7 @@ import {
   HarmCategory,
   SafetySetting,
 } from "npm:@google/generative-ai@0.21.0";
+import { execCommand } from "../util.ts";
 
 export const ai: Plug[] = [
   {
@@ -52,19 +53,8 @@ export const ai: Plug[] = [
   {
     url: "https://github.com/mattn/vim-gemini",
     enabled: false,
-    build: async ({ info }) => {
-      const install = async (command: string, args: string[]) => {
-        console.log(`mattn/gemini install:: "${command}" "${args.join(" ")}"`);
-        const cmd = new Deno.Command(command, { args, cwd: info.dst });
-        const output = await cmd.output();
-        if (output.stdout.length) {
-          console.log(new TextDecoder().decode(output.stdout));
-        }
-        if (output.stderr.length) {
-          console.error(new TextDecoder().decode(output.stderr));
-        }
-      };
-      await install("go", ["install", "github.com/mattn/gemini@latest"]);
+    build: async ({ denops, info }) => {
+      await execCommand(denops, "go", ["install", "github.com/mattn/gemini@latest"], info.dst);
     },
   },
   {

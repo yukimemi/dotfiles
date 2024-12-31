@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/12/01 09:48:26.
+// Last Change : 2024/12/31 10:22:46.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -10,6 +10,7 @@ import * as fn from "jsr:@denops/std@7.4.0/function";
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 import * as vars from "jsr:@denops/std@7.4.0/variable";
 import { pluginStatus } from "../pluginstatus.ts";
+import { execCommand } from "../util.ts";
 
 export const util: Plug[] = [
   { url: "https://github.com/tyru/capture.vim", enabled: false },
@@ -473,17 +474,8 @@ export const util: Plug[] = [
     url: "https://github.com/mistricky/codesnap.nvim",
     clone: Deno.build.os !== "windows",
     afterFile: "~/.config/nvim/rc/after/codesnap.lua",
-    build: async ({ info }) => {
-      const output = await (new Deno.Command("make", {
-        args: [],
-        cwd: info.dst,
-      })).output();
-      if (output.stdout.length) {
-        console.log(new TextDecoder().decode(output.stdout));
-      }
-      if (output.stderr.length) {
-        console.log(new TextDecoder().decode(output.stderr));
-      }
+    build: async ({ denops, info }) => {
+      await execCommand(denops, "make", [], info.dst);
     },
   },
   {

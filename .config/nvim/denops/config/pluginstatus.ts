@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2024/12/30 22:20:53.
+// Last Change : 2024/12/31 12:14:50.
 // =============================================================================
 
 export const pluginStatus = {
@@ -58,7 +58,7 @@ export const pluginStatus = {
   vsnip: false,
   windowpicker: false,
   windows: false,
-  yankround: true,
-  yanky: false,
+  yankround: false,
+  yanky: true,
   yazi: true,
 };

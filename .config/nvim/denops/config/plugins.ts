@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/12/09 02:02:04.
+// Last Change : 2024/12/31 11:45:17.
 // =============================================================================
 
 import { pluginStatus } from "./pluginstatus.ts";
@@ -53,7 +53,6 @@ import { yazi } from "./plugins/yazi.ts";
 const plugins = [
   ...ai,
   ...bluesky,
-  ...clap,
   ...colors,
   ...denops,
   ...edit,

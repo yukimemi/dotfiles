@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/12/09 14:03:11.
+// Last Change : 2024/12/31 10:53:12.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -139,6 +139,10 @@ export const libs: Plug[] = [
         },
       });
     },
+  },
+  {
+    url: "https://github.com/kamalsacranie/nvim-mapper",
+    cache: { enabled: true },
   },
   {
     url: "https://github.com/kana/vim-repeat",

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2024/10/13 18:05:59.
+// Last Change : 2024/12/31 11:39:42.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -98,7 +98,7 @@ export const edit: Plug[] = [
       });
       await denops.call(`luaeval`, `require("yanky").setup(_A)`, {
         ring: {
-          history_length: 300,
+          history_length: 3000,
           storage: "shada",
           sync_with_numbered_registers: true,
           cancel_event: "update",
