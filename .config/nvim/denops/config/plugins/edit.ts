@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 00:26:35.
+// Last Change : 2025/01/02 01:25:18.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.7.0";
@@ -51,6 +51,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/nvim-insx",
+    profiles: ["default"],
     enabled: pluginStatus.insx,
     after: async ({ denops }) => {
       await denops.cmd(`lua require('insx.preset.standard').setup()`);

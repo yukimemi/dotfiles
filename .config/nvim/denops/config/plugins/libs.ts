@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/01/01 18:00:59.
+// Last Change : 2025/01/02 01:24:34.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.7.0";
@@ -207,6 +207,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/Exafunction/codeium.vim",
+    profiles: ["default"],
     enabled: async ({ denops }) =>
       await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) &&
       denops.meta.platform === "windows",
@@ -238,6 +239,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/monkoose/neocodeium",
+    profiles: ["default"],
     enabled: async ({ denops }) =>
       await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) &&
       denops.meta.platform !== "windows",
