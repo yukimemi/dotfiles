@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2024/12/24 12:08:33.
+// Last Change : 2025/01/02 01:56:03.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.7.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
 
 import * as autocmd from "jsr:@denops/std@7.4.0/autocmd";
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
@@ -54,8 +54,10 @@ export const filetypes: Plug[] = [
   {
     url: "https://github.com/iamcco/markdown-preview.nvim",
     enabled: false,
-    build: async ({ denops }) => {
-      await denops.call("mkdp#util#install");
+    build: async ({ denops, info }) => {
+      if (info.isUpdate && info.isLoad) {
+        await denops.call("mkdp#util#install");
+      }
     },
     before: async ({ denops }) => {
       await vars.g.set(denops, "mkdp_auto_close", 0);
@@ -293,8 +295,10 @@ export const filetypes: Plug[] = [
   {
     url: "https://github.com/LhKipp/nvim-nu",
     enabled: false,
-    build: async ({ denops }) => {
-      await denops.cmd("TSUpdate nu");
+    build: async ({ denops, info }) => {
+      if (info.isUpdate && info.isLoad) {
+        await denops.cmd("TSUpdate nu");
+      }
     },
     dependencies: [
       "https://github.com/nvim-treesitter/nvim-treesitter",

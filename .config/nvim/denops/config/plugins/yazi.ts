@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : yazi.ts
 // Author      : yukimemi
-// Last Change : 2024/12/31 10:21:24.
+// Last Change : 2025/01/02 01:49:18.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.7.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
 
 import { pluginStatus } from "../pluginstatus.ts";
 import { execCommand } from "../util.ts";
@@ -16,8 +16,10 @@ export const yazi: Plug[] = [
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     enabled: pluginStatus.yazi,
     cache: { afterFile: `~/.config/nvim/rc/after/yazi.lua` },
-    build: async ({ denops }) => {
-      await execCommand(denops, "cargo", ["install", "yazi-fm", "yazi-cli"]);
+    build: async ({ denops, info }) => {
+      if (info.isUpdate && info.isLoad) {
+        await execCommand(denops, "cargo", ["install", "yazi-fm", "yazi-cli"]);
+      }
     },
   },
 ];

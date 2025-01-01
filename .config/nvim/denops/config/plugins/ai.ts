@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2024/12/31 12:14:26.
+// Last Change : 2025/01/02 01:50:17.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.7.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
 import * as vars from "jsr:@denops/std@7.4.0/variable";
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
@@ -54,7 +54,9 @@ export const ai: Plug[] = [
     url: "https://github.com/mattn/vim-gemini",
     enabled: false,
     build: async ({ denops, info }) => {
-      await execCommand(denops, "go", ["install", "github.com/mattn/gemini@latest"], info.dst);
+      if (info.isUpdate && info.isLoad) {
+        await execCommand(denops, "go", ["install", "github.com/mattn/gemini@latest"], info.dst);
+      }
     },
   },
   {

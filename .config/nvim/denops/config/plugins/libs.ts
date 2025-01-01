@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 01:24:34.
+// Last Change : 2025/01/02 01:51:45.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.7.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
 
 import * as autocmd from "jsr:@denops/std@7.4.0/autocmd";
 import * as fn from "jsr:@denops/std@7.4.0/function";
@@ -31,8 +31,10 @@ export const libs: Plug[] = [
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.platform === "windows",
     cache: { beforeFile: `~/.config/nvim/rc/before/denops-shared-server.vim` },
-    build: async ({ denops }) => {
-      await denops.call(`denops_shared_server#install`);
+    build: async ({ denops, info }) => {
+      if (info.isUpdate && info.isLoad) {
+        await denops.call(`denops_shared_server#install`);
+      }
     },
   },
   {

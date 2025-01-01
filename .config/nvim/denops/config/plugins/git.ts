@@ -1,11 +1,11 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2025/01/01 20:33:37.
+// Last Change : 2025/01/02 01:50:03.
 // =============================================================================
 
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
-import type { Plug } from "jsr:@yukimemi/dvpm@5.7.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
 import { pluginStatus } from "../pluginstatus.ts";
 import { execCommand } from "../util.ts";
 
@@ -126,12 +126,14 @@ export const git: Plug[] = [
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     afterFile: `~/.config/nvim/rc/after/lazygit.lua`,
     build: async ({ denops, info }) => {
-      await execCommand(
-        denops,
-        "go",
-        ["install", "github.com/jesseduffield/lazygit@latest"],
-        info.dst,
-      );
+      if (info.isUpdate && info.isLoad) {
+        await execCommand(
+          denops,
+          "go",
+          ["install", "github.com/jesseduffield/lazygit@latest"],
+          info.dst,
+        );
+      }
     },
   },
 ];

@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 01:31:23.
+// Last Change : 2025/01/02 01:58:12.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.7.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
 
 import * as fn from "jsr:@denops/std@7.4.0/function";
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
@@ -330,7 +330,10 @@ export const util: Plug[] = [
     dependencies: [
       "https://github.com/kevinhwang91/promise-async",
     ],
-    build: async ({ denops }) => {
+    build: async ({ denops, info }) => {
+      if (!info.isLoad) {
+        return;
+      }
       await denops.call(`luaeval`, `require("fundo").install()`);
     },
     after: async ({ denops }) => {
@@ -368,7 +371,10 @@ export const util: Plug[] = [
       "https://github.com/nvim-treesitter/nvim-treesitter",
       "https://github.com/MunifTanjim/nui.nvim",
     ],
-    build: async ({ denops }) => {
+    build: async ({ denops, info }) => {
+      if (!info.isLoad) {
+        return;
+      }
       await denops.cmd("TSUpdate regex");
     },
     after: async ({ denops }) => {
@@ -478,6 +484,9 @@ export const util: Plug[] = [
     clone: Deno.build.os !== "windows",
     afterFile: "~/.config/nvim/rc/after/codesnap.lua",
     build: async ({ denops, info }) => {
+      if (!info.isLoad) {
+        return;
+      }
       await execCommand(denops, "make", [], info.dst);
     },
   },
