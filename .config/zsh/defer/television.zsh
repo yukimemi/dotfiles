@@ -1,9 +1,9 @@
 # =============================================================================
-# File        : fzf.zsh
+# File        : television.zsh
 # Author      : yukimemi
-# Last Change : 2025/01/01 14:23:02.
+# Last Change : 2025/01/01 13:47:05.
 # =============================================================================
 
-(( $+commands[fzf] )) || pkgx install fzf
-source <(fzf --zsh)
+(( $+commands[tv] )) || cargo install television
+eval "$(tv init zsh)"
 

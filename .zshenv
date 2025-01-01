@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2023/11/19 10:11:29.
+# Last Change : 2025/01/01 14:16:41.
 # =============================================================================
 
 # For time.
@@ -114,7 +114,10 @@ export GSR_SHOW_BEHIND=1
 
 export MOCWORD_DATA="${HOME}/.config/mocword/mocword.sqlite"
 
-export __FILTER_TOOL=fzf
+# filter tool.
+(( $+commands[fzf] )) && export __FILTER_TOOL=fzf
+(( $+commands[tv] )) && export __FILTER_TOOL=tv
+(( $+commands[sk] )) && export __FILTER_TOOL=sk
 
 # neovide.
 export NEOVIDE_MULTIGRID=1

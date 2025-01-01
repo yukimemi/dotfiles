@@ -1,9 +1,8 @@
 # =============================================================================
-# File        : fzf.zsh
+# File        : skim.zsh
 # Author      : yukimemi
-# Last Change : 2025/01/01 14:23:02.
+# Last Change : 2025/01/01 14:26:36.
 # =============================================================================
 
-(( $+commands[fzf] )) || pkgx install fzf
-source <(fzf --zsh)
+(( $+commands[sk] )) || cargo install skim
 
