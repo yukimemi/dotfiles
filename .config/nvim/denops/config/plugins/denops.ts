@@ -4,7 +4,7 @@
 // Last Change : 2025/01/01 19:58:57.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.6.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.7.0";
 
 import * as autocmd from "jsr:@denops/std@7.4.0/autocmd";
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
@@ -105,6 +105,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/silentsaver.vim",
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "silentsaver_debug", false);
       await vars.g.set(denops, "silentsaver_enable", true);
@@ -162,6 +163,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/autoreplacer.vim",
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "autoreplacer_debug", false);
       await vars.g.set(denops, "autoreplacer_notify", true);
@@ -246,6 +248,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/hitori.vim",
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "hitori_debug", false);
       await vars.g.set(denops, "hitori_enable", true);

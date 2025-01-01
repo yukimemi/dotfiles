@@ -4,7 +4,7 @@
 // Last Change : 2024/12/31 10:25:04.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.6.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.7.0";
 import { execCommand } from "../util.ts";
 
 export const blink: Plug[] = [

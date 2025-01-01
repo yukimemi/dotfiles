@@ -4,7 +4,7 @@
 // Last Change : 2024/12/23 20:34:03.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.6.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.7.0";
 
 import { pluginStatus } from "../pluginstatus.ts";
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
@@ -13,6 +13,7 @@ import * as vars from "jsr:@denops/std@7.4.0/variable";
 export const motion: Plug[] = [
   {
     url: "https://github.com/haya14busa/vim-edgemotion",
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await mapping.map(denops, "sj", "<Plug>(edgemotion-j)", {
         mode: ["n", "x"],
@@ -34,6 +35,7 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/folke/flash.nvim",
+    profiles: ["minimal"],
     enabled: pluginStatus.flash,
     cache: {
       afterFile: `~/.config/nvim/rc/after/flash.lua`,
@@ -54,6 +56,7 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/Bakudankun/BackAndForward.vim",
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await mapping.map(denops, "gH", "<Plug>(backandforward-back)", {
         mode: "n",

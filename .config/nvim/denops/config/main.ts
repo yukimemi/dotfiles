@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 00:45:13.
+// Last Change : 2025/01/02 01:19:14.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.4.0/function";
@@ -9,7 +9,7 @@ import * as autocmd from "jsr:@denops/std@7.4.0/autocmd";
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
 import * as log from "jsr:@std/log@0.224.12";
 import type { Denops, Entrypoint } from "jsr:@denops/std@7.4.0";
-import { Dvpm } from "jsr:@yukimemi/dvpm@5.6.0";
+import { Dvpm } from "jsr:@yukimemi/dvpm@5.7.0";
 import { cacheLua, cacheVim } from "./cache.ts";
 import { dir } from "jsr:@cross/dir@1.1.0";
 import { ensureFile } from "jsr:@std/fs@1.0.8/ensure-file";
@@ -115,7 +115,6 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
     base,
     cache,
     notify: true,
-    profile: false,
     profiles: ["minimal"],
     concurrency: denops.meta.platform === "windows" ? 5 : 13,
   });
