@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2024/12/30 22:26:36.
+// Last Change : 2025/01/01 19:20:00.
 // =============================================================================
 
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
@@ -113,5 +113,10 @@ export const git: Plug[] = [
     url: "https://github.com/2KAbhishek/octohub.nvim",
     enabled: false,
     afterFile: `~/.config/nvim/rc/after/octohub.lua`,
+  },
+  {
+    url: "https://github.com/kdheepak/lazygit.nvim",
+    dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
+    afterFile: `~/.config/nvim/rc/after/lazygit.lua`,
   },
 ];

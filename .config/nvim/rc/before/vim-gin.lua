@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : vim-gin.lua
 -- Author      : yukimemi
--- Last Change : 2024/09/01 16:58:05.
+-- Last Change : 2025/01/01 19:21:37.
 -- =============================================================================
 
 local map = vim.keymap.set
@@ -14,7 +14,7 @@ map("n", "<space>gd", "<cmd>GinDiff<cr>", opts)
 map("n", "<space>gl", "<cmd>GinLog<cr>", opts)
 map("n", "<space>gL", "<cmd>GinLog -p -- %<cr>", opts)
 map("n", "<space>gp", "<cmd>Gin push<cr>", opts)
-map("n", "<space>gg", ":<c-u>Gin grep ", opts)
+-- map("n", "<space>gg", ":<c-u>Gin grep ", opts)
 
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("MyGinStatus", { clear = true }),
