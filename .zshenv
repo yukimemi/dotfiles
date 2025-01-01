@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2025/01/01 14:16:41.
+# Last Change : 2025/01/01 20:17:03.
 # =============================================================================
 
 # For time.
@@ -24,8 +24,9 @@ function is_wsl() {
 export LANG=ja_JP.UTF-8
 export LC_CTYPE="ja_JP.UTF-8"
 export SHELL=zsh
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=hitori
+export VISUAL=hitori
+export GIT_EDITOR=hitori
 export PAGER=bat
 
 # Unique path.

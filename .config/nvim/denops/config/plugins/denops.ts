@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2024/11/26 21:17:22.
+// Last Change : 2025/01/01 19:58:57.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -244,7 +244,6 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/hitori.vim",
-    enabled: Deno.build.os !== "linux",
     before: async ({ denops }) => {
       await vars.g.set(denops, "hitori_debug", false);
       await vars.g.set(denops, "hitori_enable", true);

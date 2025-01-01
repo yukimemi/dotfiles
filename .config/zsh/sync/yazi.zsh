@@ -1,8 +1,10 @@
 # =============================================================================
 # File        : yazi.zsh
 # Author      : yukimemi
-# Last Change : 2024/11/10 08:18:57.
+# Last Change : 2025/01/01 14:44:28.
 # =============================================================================
+
+(( $+commands[yazi] )) || cargo install yazi-cli yazi-fm
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
