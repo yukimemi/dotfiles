@@ -32,6 +32,7 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/SmiteshP/nvim-navic",
+    profiles: ["minimal"],
   },
   {
     url: "https://github.com/stevearc/aerial.nvim",
@@ -51,9 +52,13 @@ export const lsp: Plug[] = [
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     afterFile: "~/.config/nvim/rc/after/none-ls.lua",
   },
-  { url: "https://github.com/williamboman/mason.nvim" },
+  {
+    url: "https://github.com/williamboman/mason.nvim",
+    profiles: ["minimal"],
+  },
   {
     url: "https://github.com/williamboman/mason-lspconfig.nvim",
+    profiles: ["minimal"],
     dependencies: [
       "https://github.com/williamboman/mason.nvim",
     ],
@@ -72,9 +77,13 @@ export const lsp: Plug[] = [
       await denops.call(`luaeval`, `require("lazydev").setup()`);
     },
   },
-  { url: "https://github.com/folke/neoconf.nvim" },
+  {
+    url: "https://github.com/folke/neoconf.nvim",
+    profiles: ["minimal"],
+  },
   {
     url: "https://github.com/onsails/lspkind.nvim",
+    profiles: ["minimal"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("lspkind").init(_A)`, {
         // defines how annotations are shown
@@ -115,6 +124,7 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/neovim/nvim-lspconfig",
+    profiles: ["minimal"],
     enabled: !pluginStatus.coc,
     dependencies: [
       "https://github.com/SmiteshP/nvim-navic",
@@ -123,9 +133,6 @@ export const lsp: Plug[] = [
       "https://github.com/onsails/lspkind.nvim",
       "https://github.com/williamboman/mason-lspconfig.nvim",
       "https://github.com/williamboman/mason.nvim",
-      // "https://github.com/Saghen/blink.cmp",
-      // "https://github.com/nvimtools/none-ls.nvim",
-      // "https://github.com/zapling/mason-conform.nvim",
     ],
     afterFile: "~/.config/nvim/rc/after/nvim-lspconfig.lua",
   },
