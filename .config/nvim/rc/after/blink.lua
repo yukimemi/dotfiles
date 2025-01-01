@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : blink.lua
 -- Author      : yukimemi
--- Last Change : 2024/12/30 15:37:40.
+-- Last Change : 2025/01/01 17:54:13.
 -- =============================================================================
 
 require("blink-cmp").setup({
@@ -25,6 +25,7 @@ require("blink-cmp").setup({
     },
     menu = { border = 'single' },
     documentation = { window = { border = 'single' } },
+    ghost_text = { enabled = false },
   },
   signature = {
     enabled = true,

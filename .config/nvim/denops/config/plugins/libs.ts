@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2024/12/31 10:53:12.
+// Last Change : 2025/01/01 18:00:59.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
@@ -193,7 +193,8 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/Exafunction/codeium.vim",
     enabled: async ({ denops }) =>
-      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) && true,
+      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) &&
+      denops.meta.platform === "windows",
     before: async ({ denops }) => {
       await vars.g.set(denops, "codeium_disable_bindings", 1);
     },
@@ -223,7 +224,8 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/monkoose/neocodeium",
     enabled: async ({ denops }) =>
-      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) && false,
+      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) &&
+      denops.meta.platform !== "windows",
     afterFile: "~/.config/nvim/rc/after/neocodeium.lua",
   },
   {
