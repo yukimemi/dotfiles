@@ -33,4 +33,4 @@ function _lazygit_toggle()
   lazygit:toggle()
 end
 
-vim.keymap.set("n", "<space>gg", "<cmd>lua _lazygit_toggle()<cr>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<space>gg", "<cmd>lua _lazygit_toggle()<cr>", { noremap = true, silent = true })

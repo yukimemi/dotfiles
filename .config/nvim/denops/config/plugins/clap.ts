@@ -4,7 +4,7 @@
 // Last Change : 2024/12/31 10:24:19.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.6.0";
 import * as fn from "jsr:@denops/std@7.4.0/function";
 import { execCommand } from "../util.ts";
 

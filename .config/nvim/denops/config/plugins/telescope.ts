@@ -4,12 +4,13 @@
 // Last Change : 2024/12/09 09:48:24.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.6.0";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const telescope: Plug[] = [
   {
     url: "https://github.com/yukimemi/telescope-chronicle.nvim",
+    profiles: ["minimal"],
     dependencies: [
       "https://github.com/nvim-telescope/telescope.nvim",
       "https://github.com/yukimemi/chronicle.vim",
@@ -57,6 +58,7 @@ export const telescope: Plug[] = [
   },
   {
     url: "https://github.com/nvim-telescope/telescope.nvim",
+    profiles: ["minimal"],
     cache: {
       afterFile: "~/.config/nvim/rc/after/telescope.lua",
     },

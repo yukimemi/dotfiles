@@ -4,7 +4,7 @@
 // Last Change : 2024/12/31 12:14:26.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.6.0";
 import * as vars from "jsr:@denops/std@7.4.0/variable";
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
@@ -59,6 +59,7 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/futago.vim",
+    profiles: ["minimal"],
     enabled: true,
     before: async ({ denops }) => {
       await vars.g.set(denops, "futago_debug", false);

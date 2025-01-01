@@ -4,7 +4,7 @@
 // Last Change : 2024/11/08 17:59:13.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.6.0";
 
 import { pluginStatus } from "../pluginstatus.ts";
 
@@ -109,7 +109,10 @@ export const lsp: Plug[] = [
     url: "https://github.com/chrisgrieser/nvim-lsp-endhints",
     afterFile: `~/.config/nvim/rc/after/nvim-lsp-endhints.lua`,
   },
-  { url: "https://github.com/folke/trouble.nvim" },
+  {
+    url: "https://github.com/folke/trouble.nvim",
+    profiles: ["minimal"],
+  },
   {
     url: "https://github.com/neovim/nvim-lspconfig",
     enabled: !pluginStatus.coc,

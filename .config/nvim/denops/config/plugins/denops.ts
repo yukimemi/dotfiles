@@ -4,7 +4,7 @@
 // Last Change : 2025/01/01 19:58:57.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.6.0";
 
 import * as autocmd from "jsr:@denops/std@7.4.0/autocmd";
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
@@ -145,6 +145,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/asyncsearcher.vim",
+    profiles: ["minimal"],
     dependencies: ["https://github.com/vim-denops/denops.vim"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/asyncsearcher.lua",
@@ -152,6 +153,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/chronicle.vim",
+    profiles: ["minimal"],
     dependencies: ["https://github.com/vim-denops/denops.vim"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/chronicle.vim",

@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2024/12/31 11:39:42.
+// Last Change : 2025/01/02 00:26:35.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.6.0";
 
 import * as autocmd from "jsr:@denops/std@7.4.0/autocmd";
 import * as fn from "jsr:@denops/std@7.4.0/function";
@@ -76,6 +76,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/gbprod/yanky.nvim",
+    profiles: ["minimal"],
     enabled: pluginStatus.yanky,
     after: async ({ denops }) => {
       await mapping.map(denops, "p", "<Plug>(YankyPutAfter)", {
@@ -145,6 +146,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/thinca/vim-qfreplace",
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "qfreplace_no_save", 0);
     },

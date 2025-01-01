@@ -4,7 +4,7 @@
 // Last Change : 2025/01/01 18:00:59.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.6.0";
 
 import * as autocmd from "jsr:@denops/std@7.4.0/autocmd";
 import * as fn from "jsr:@denops/std@7.4.0/function";
@@ -17,6 +17,7 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const libs: Plug[] = [
   {
     url: "https://github.com/vim-denops/denops.vim",
+    profiles: ["minimal"],
     cache: { beforeFile: `~/.config/nvim/rc/before/denops.vim` },
   },
   {
@@ -25,6 +26,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/vim-denops/denops-shared-server.vim",
+    profiles: ["minimal"],
     dependencies: ["https://github.com/vim-denops/denops.vim"],
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.platform === "windows",
@@ -39,10 +41,12 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/tani/vim-artemis",
+    profiles: ["minimal"],
     cache: { enabled: true },
   },
   {
     url: "https://github.com/j-hui/fidget.nvim",
+    profiles: ["minimal"],
     enabled: pluginStatus.fidget,
     cache: { afterFile: "~/.config/nvim/rc/after/fidget.lua" },
   },
@@ -84,17 +88,23 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/nvim-lua/plenary.nvim",
+    profiles: ["minimal"],
     cache: { enabled: false },
   },
-  { url: "https://github.com/MunifTanjim/nui.nvim" },
+  {
+    url: "https://github.com/MunifTanjim/nui.nvim",
+    profiles: ["minimal"],
+  },
   {
     url: "https://github.com/stevearc/dressing.nvim",
+    profiles: ["minimal"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("dressing").setup()`);
     },
   },
   {
     url: "https://github.com/nvim-tree/nvim-web-devicons",
+    profiles: ["minimal"],
     cache: { enabled: false },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("nvim-web-devicons").setup(_A)`, {
@@ -112,6 +122,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/folke/noice.nvim",
+    profiles: ["minimal"],
     dependencies: [
       "https://github.com/MunifTanjim/nui.nvim",
     ],
@@ -142,13 +153,17 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/kamalsacranie/nvim-mapper",
+    profiles: ["minimal"],
     cache: { enabled: true },
   },
   {
     url: "https://github.com/kana/vim-repeat",
     enabled: false,
   },
-  { url: "https://github.com/mattn/vim-findroot" },
+  {
+    url: "https://github.com/mattn/vim-findroot",
+    profiles: ["minimal"],
+  },
   {
     url: "https://github.com/tyru/open-browser.vim",
     before: async ({ denops }) => {

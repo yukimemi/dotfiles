@@ -5,7 +5,7 @@
 // =============================================================================
 
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
-import type { Plug } from "jsr:@yukimemi/dvpm@5.5.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@5.6.0";
 import { pluginStatus } from "../pluginstatus.ts";
 import { execCommand } from "../util.ts";
 
@@ -61,10 +61,17 @@ export const git: Plug[] = [
       );
     },
   },
-  { url: "https://github.com/lambdalisue/vim-askpass" },
-  { url: "https://github.com/lambdalisue/vim-guise" },
+  {
+    url: "https://github.com/lambdalisue/vim-askpass",
+    profiles: ["minimal"],
+  },
+  {
+    url: "https://github.com/lambdalisue/vim-guise",
+    profiles: ["minimal"],
+  },
   {
     url: "https://github.com/lambdalisue/vim-gin",
+    profiles: ["minimal"],
     dependencies: [
       "https://github.com/lambdalisue/vim-askpass",
       "https://github.com/lambdalisue/vim-guise",
