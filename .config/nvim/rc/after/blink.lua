@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : blink.lua
 -- Author      : yukimemi
--- Last Change : 2025/01/01 17:54:13.
+-- Last Change : 2025/01/01 20:55:48.
 -- =============================================================================
 
 require("blink-cmp").setup({
@@ -12,9 +12,7 @@ require("blink-cmp").setup({
     ['<C-k>'] = { 'snippet_forward', 'fallback' },
     ['<C-j>'] = { 'snippet_backward', 'fallback' },
     cmdline = {
-      preset = "enter",
-      ['<Tab>'] = { 'select_next', 'fallback' },
-      ['<S-Tab>'] = { 'select_prev', 'fallback' },
+      preset = "none",
     },
   },
   completion = {
