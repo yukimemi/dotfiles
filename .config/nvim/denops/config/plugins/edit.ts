@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 01:25:18.
+// Last Change : 2025/01/02 13:44:24.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
@@ -67,6 +67,7 @@ export const edit: Plug[] = [
   { url: "https://github.com/Shougo/context_filetype.vim" },
   {
     url: "https://github.com/uga-rosa/contextment.vim",
+    profiles: ["minimal"],
     dependencies: ["https://github.com/Shougo/context_filetype.vim"],
     before: async ({ denops }) => {
       await mapping.map(denops, "gcc", "<Plug>(contextment)", { mode: "x" });

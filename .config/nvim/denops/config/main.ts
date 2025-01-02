@@ -115,8 +115,8 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
     base,
     cache,
     notify: true,
-    // profiles: ["minimal", "default", "full"],
-    profiles: ["minimal"],
+    profiles: ["minimal", "default", "full"],
+    // profiles: ["minimal"],
     concurrency: denops.meta.platform === "windows" ? 5 : 13,
   });
 
