@@ -4,7 +4,7 @@
 // Last Change : 2024/12/09 02:14:22.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@6.0.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@6.0.1";
 
 export const compl: Plug[] = [
   {
