@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2024/12/29 20:11:14.
+// Last Change : 2025/01/02 13:59:29.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
@@ -149,6 +149,7 @@ export const colors: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/spectrism.vim",
+    profiles: ["default"],
     dependencies: [
       "https://github.com/0xstepit/flow.nvim",
       "https://github.com/4513ECHO/vim-colors-hatsunemiku",
@@ -257,7 +258,7 @@ export const colors: Plug[] = [
       await vars.g.set(denops, "spectrism_debug", false);
       await vars.g.set(denops, "spectrism_echo", false);
       await vars.g.set(denops, "spectrism_notify", true);
-      await vars.g.set(denops, "spectrism_interval", 300);
+      await vars.g.set(denops, "spectrism_interval", 60);
       await vars.g.set(denops, "spectrism_checkwait", 1000);
       await vars.g.set(denops, "spectrism_disables", [
         "evening",

@@ -64,10 +64,13 @@ export const edit: Plug[] = [
       await denops.call(`luaeval`, `require('ultimate-autopair').setup()`);
     },
   },
-  { url: "https://github.com/Shougo/context_filetype.vim" },
+  {
+    url: "https://github.com/Shougo/context_filetype.vim",
+    profiles: ["default"],
+  },
   {
     url: "https://github.com/uga-rosa/contextment.vim",
-    profiles: ["minimal"],
+    profiles: ["default"],
     dependencies: ["https://github.com/Shougo/context_filetype.vim"],
     before: async ({ denops }) => {
       await mapping.map(denops, "gcc", "<Plug>(contextment)", { mode: "x" });
