@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 14:05:31.
+// Last Change : 2025/01/02 14:43:34.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
@@ -180,6 +180,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/thinca/vim-ambicmd",
+    profiles: ["minimal"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/vim-ambicmd.vim",
       afterFile: "~/.config/nvim/rc/after/vim-ambicmd.vim",
@@ -304,7 +305,10 @@ export const util: Plug[] = [
       after: `call singleton#enable()`,
     },
   },
-  { url: "https://github.com/skanehira/denops-translate.vim" },
+  {
+    url: "https://github.com/skanehira/denops-translate.vim",
+    profiles: ["default"],
+  },
   {
     url: "https://github.com/mattn/vim-sonictemplate",
     before: async ({ denops }) => {
