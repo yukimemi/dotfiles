@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2025/01/01 19:58:57.
+// Last Change : 2025/01/02 11:05:51.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
@@ -14,6 +14,7 @@ import * as vars from "jsr:@denops/std@7.4.0/variable";
 export const denops: Plug[] = [
   {
     url: "https://github.com/yukimemi/autocursor.vim",
+    profiles: ["default"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "autocursor_debug", false);
       await vars.g.set(denops, "autocursor_notify", false);
@@ -163,7 +164,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/autoreplacer.vim",
-    profiles: ["minimal"],
+    profiles: ["default"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "autoreplacer_debug", false);
       await vars.g.set(denops, "autoreplacer_notify", true);
@@ -248,7 +249,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/hitori.vim",
-    profiles: ["minimal"],
+    profiles: ["default"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "hitori_debug", false);
       await vars.g.set(denops, "hitori_enable", true);

@@ -1,24 +1,30 @@
 // =============================================================================
 // File        : textobj.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 18:57:37.
+// Last Change : 2025/01/02 11:04:41.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 
 export const textobj: Plug[] = [
-  { url: "https://github.com/kana/vim-textobj-user" },
+  {
+    url: "https://github.com/kana/vim-textobj-user",
+    profiles: ["default"],
+  },
   {
     url: "https://github.com/kana/vim-textobj-entire",
+    profiles: ["default"],
     dependencies: ["https://github.com/kana/vim-textobj-user"],
   },
   {
     url: "https://github.com/kana/vim-textobj-indent",
+    profiles: ["default"],
     dependencies: ["https://github.com/kana/vim-textobj-user"],
   },
   {
     url: "https://github.com/kana/vim-textobj-line",
+    profiles: ["default"],
     dependencies: ["https://github.com/kana/vim-textobj-user"],
   },
   {

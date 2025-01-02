@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : operator.ts
 // Author      : yukimemi
-// Last Change : 2024/10/26 14:00:32.
+// Last Change : 2025/01/02 11:05:06.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
@@ -9,7 +9,10 @@ import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 
 export const operator: Plug[] = [
-  { url: "https://github.com/kana/vim-operator-user" },
+  {
+    url: "https://github.com/kana/vim-operator-user",
+    profiles: ["default"],
+  },
   {
     url: "https://github.com/osyo-manga/vim-operator-stay-cursor",
     enabled: false,
@@ -22,6 +25,7 @@ export const operator: Plug[] = [
   },
   {
     url: "https://github.com/machakann/vim-sandwich",
+    profiles: ["default"],
     dependencies: ["https://github.com/kana/vim-operator-user"],
   },
   {
@@ -39,6 +43,7 @@ export const operator: Plug[] = [
   },
   {
     url: "https://github.com/kana/vim-operator-replace",
+    profiles: ["default"],
     dependencies: ["https://github.com/kana/vim-operator-user"],
     before: async ({ denops }) => {
       await mapping.map(denops, "_", "<Plug>(operator-replace)", {
