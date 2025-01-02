@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 14:43:34.
+// Last Change : 2025/01/02 18:38:53.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -277,6 +277,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/tenxsoydev/size-matters.nvim",
+    profiles: ["default"],
     afterFile: "~/.config/nvim/rc/after/size-matters.lua",
   },
   {
