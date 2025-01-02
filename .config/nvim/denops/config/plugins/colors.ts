@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 14:15:00.
+// Last Change : 2025/01/02 18:04:30.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.1";
@@ -16,6 +16,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/Allianaab2m/penumbra.nvim" },
   { url: "https://github.com/Badacadabra/vim-archery" },
   { url: "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim" },
+  { url: "https://github.com/masisz/ashikaga.nvim" },
   { url: "https://github.com/FrenzyExists/aquarium-vim" },
   { url: "https://github.com/KeitaNakamura/neodark.vim" },
   { url: "https://github.com/Matsuuu/pinkmare" },
@@ -170,6 +171,7 @@ export const colors: Plug[] = [
       "https://github.com/4513ECHO/vim-colors-hatsunemiku",
       "https://github.com/AlessandroYorba/Alduin",
       "https://github.com/Allianaab2m/penumbra.nvim",
+      "https://github.com/masisz/ashikaga.nvim",
       "https://github.com/Badacadabra/vim-archery",
       "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim",
       "https://github.com/FrenzyExists/aquarium-vim",

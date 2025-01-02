@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : treesitter.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 10:31:14.
+// Last Change : 2025/01/02 18:15:26.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.1";
@@ -11,6 +11,7 @@ import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 export const treesitter: Plug[] = [
   {
     url: "https://github.com/nvim-treesitter/nvim-treesitter",
+    profiles: ["full"],
     build: async ({ denops, info }) => {
       if (info.isLoad) {
         await denops.cmd("TSUpdate");
@@ -25,6 +26,7 @@ export const treesitter: Plug[] = [
   },
   {
     url: "https://github.com/nvim-treesitter/nvim-treesitter-context",
+    profiles: ["full"],
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/nvim-treesitter-context.lua",
   },
@@ -46,6 +48,7 @@ export const treesitter: Plug[] = [
   },
   {
     url: "https://github.com/HiPhish/rainbow-delimiters.nvim",
+    profiles: ["full"],
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
   },
   {

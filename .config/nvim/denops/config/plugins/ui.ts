@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 15:09:53.
+// Last Change : 2025/01/02 18:17:04.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.1";
@@ -50,6 +50,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/xiyaowong/virtcolumn.nvim",
+    profiles: ["default"],
     enabled: pluginStatus.virtcolumn,
   },
   {
@@ -246,6 +247,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/lukas-reineke/indent-blankline.nvim",
+    profiles: ["full"],
     enabled: pluginStatus.indentblankline,
     dependencies: [
       "https://github.com/nvim-treesitter/nvim-treesitter",
@@ -255,6 +257,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/shellRaining/hlchunk.nvim",
+    profiles: ["full"],
     enabled: pluginStatus.hlchunk,
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     after: async ({ denops }) => {
