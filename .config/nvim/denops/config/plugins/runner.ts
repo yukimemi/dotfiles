@@ -6,7 +6,7 @@
 
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 import * as vars from "jsr:@denops/std@7.4.0/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@6.0.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@6.0.1";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const runner: Plug[] = [

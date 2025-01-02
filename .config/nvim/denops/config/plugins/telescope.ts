@@ -4,7 +4,7 @@
 // Last Change : 2024/12/09 09:48:24.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@6.0.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@6.0.1";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const telescope: Plug[] = [
