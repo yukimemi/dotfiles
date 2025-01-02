@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 11:05:51.
+// Last Change : 2025/01/02 13:49:40.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
@@ -243,28 +243,12 @@ export const denops: Plug[] = [
   {
     url: "https://github.com/yukimemi/asyncwalker.vim",
     dependencies: ["https://github.com/vim-denops/denops.vim"],
-    cache: {
-      beforeFile: "~/.config/nvim/rc/before/asyncwalker.lua",
-    },
+    cache: { beforeFile: "~/.config/nvim/rc/before/asyncwalker.lua" },
   },
   {
     url: "https://github.com/yukimemi/hitori.vim",
     profiles: ["default"],
-    before: async ({ denops }) => {
-      await vars.g.set(denops, "hitori_debug", false);
-      await vars.g.set(denops, "hitori_enable", true);
-      await vars.g.set(denops, "hitori_quit", true);
-      await vars.g.set(denops, "hitori_wsl", true);
-      await vars.g.set(denops, "hitori_opener", "edit");
-
-      await vars.g.set(denops, "hitori_ignore_patterns", [
-        ".tmp$",
-        ".diff$",
-        ".dump$",
-        ".jjdescription$",
-        "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$",
-      ]);
-    },
+    cache: { beforeFile: "~/.config/nvim/rc/before/hitori.lua" },
   },
   {
     url: "https://github.com/yukimemi/dps-ahdr",
