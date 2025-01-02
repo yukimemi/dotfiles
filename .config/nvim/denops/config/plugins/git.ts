@@ -63,19 +63,13 @@ export const git: Plug[] = [
   },
   {
     url: "https://github.com/lambdalisue/vim-askpass",
-    profiles: ["minimal"],
   },
   {
     url: "https://github.com/lambdalisue/vim-guise",
-    profiles: ["minimal"],
   },
   {
     url: "https://github.com/lambdalisue/vim-gin",
     profiles: ["minimal"],
-    dependencies: [
-      "https://github.com/lambdalisue/vim-askpass",
-      "https://github.com/lambdalisue/vim-guise",
-    ],
     beforeFile: `~/.config/nvim/rc/before/vim-gin.lua`,
   },
   {

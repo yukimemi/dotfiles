@@ -136,7 +136,7 @@ export async function setOption(denops: Denops) {
       denops,
       `
         " https://zenn.dev/vim_jp/articles/f23938c7df2dd9
-        function s:show_qf_lists()
+        function! s:show_qf_lists() abort
           let l:qnr = 1
           while qnr <= 10
             let l:list = getqflist({"nr": qnr, "title": v:true, "id": 0})

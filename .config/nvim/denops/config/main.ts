@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 01:24:14.
+// Last Change : 2025/01/02 13:31:34.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.4.0/function";
@@ -115,7 +115,8 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
     base,
     cache,
     notify: true,
-    profiles: ["minimal", "default", "full"],
+    // profiles: ["minimal", "default", "full"],
+    profiles: ["minimal"],
     concurrency: denops.meta.platform === "windows" ? 5 : 13,
   });
 
