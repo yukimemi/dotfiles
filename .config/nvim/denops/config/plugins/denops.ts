@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 13:49:40.
+// Last Change : 2025/01/02 21:48:58.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -106,7 +106,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/silentsaver.vim",
-    profiles: ["minimal"],
+    profiles: ["default"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "silentsaver_debug", false);
       await vars.g.set(denops, "silentsaver_enable", true);
@@ -148,15 +148,13 @@ export const denops: Plug[] = [
   {
     url: "https://github.com/yukimemi/asyncsearcher.vim",
     profiles: ["minimal"],
-    dependencies: ["https://github.com/vim-denops/denops.vim"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/asyncsearcher.lua",
     },
   },
   {
     url: "https://github.com/yukimemi/chronicle.vim",
-    profiles: ["minimal"],
-    dependencies: ["https://github.com/vim-denops/denops.vim"],
+    profiles: ["default"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/chronicle.vim",
       afterFile: "~/.config/nvim/rc/after/chronicle.vim",
@@ -242,7 +240,6 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/asyncwalker.vim",
-    dependencies: ["https://github.com/vim-denops/denops.vim"],
     cache: { beforeFile: "~/.config/nvim/rc/before/asyncwalker.lua" },
   },
   {

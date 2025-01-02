@@ -43,12 +43,12 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/tani/vim-artemis",
-    profiles: ["minimal"],
+    profiles: ["default"],
     cache: { enabled: true },
   },
   {
     url: "https://github.com/j-hui/fidget.nvim",
-    profiles: ["minimal"],
+    profiles: ["default"],
     enabled: pluginStatus.fidget,
     cache: { afterFile: "~/.config/nvim/rc/after/fidget.lua" },
   },
@@ -95,18 +95,18 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/MunifTanjim/nui.nvim",
-    profiles: ["minimal"],
+    profiles: ["default"],
   },
   {
     url: "https://github.com/stevearc/dressing.nvim",
-    profiles: ["minimal"],
+    profiles: ["default"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("dressing").setup()`);
     },
   },
   {
     url: "https://github.com/nvim-tree/nvim-web-devicons",
-    profiles: ["minimal"],
+    profiles: ["default"],
     cache: { enabled: false },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("nvim-web-devicons").setup(_A)`, {
@@ -124,7 +124,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/folke/noice.nvim",
-    profiles: ["minimal"],
+    profiles: ["default"],
     dependencies: [
       "https://github.com/MunifTanjim/nui.nvim",
     ],
@@ -155,7 +155,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/kamalsacranie/nvim-mapper",
-    profiles: ["minimal"],
+    profiles: ["default"],
     cache: { enabled: true },
   },
   {
@@ -164,7 +164,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/mattn/vim-findroot",
-    profiles: ["minimal"],
+    profiles: ["default"],
   },
   {
     url: "https://github.com/tyru/open-browser.vim",

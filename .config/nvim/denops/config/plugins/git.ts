@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 14:24:40.
+// Last Change : 2025/01/02 21:42:57.
 // =============================================================================
 
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
@@ -70,7 +70,7 @@ export const git: Plug[] = [
   },
   {
     url: "https://github.com/lambdalisue/vim-gin",
-    profiles: ["minimal"],
+    profiles: ["default"],
     beforeFile: `~/.config/nvim/rc/before/vim-gin.lua`,
   },
   {

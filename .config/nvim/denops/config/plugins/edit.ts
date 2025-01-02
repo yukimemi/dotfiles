@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 13:44:24.
+// Last Change : 2025/01/02 21:49:17.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -81,7 +81,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/gbprod/yanky.nvim",
-    profiles: ["minimal"],
+    profiles: ["default"],
     enabled: pluginStatus.yanky,
     after: async ({ denops }) => {
       await mapping.map(denops, "p", "<Plug>(YankyPutAfter)", {
