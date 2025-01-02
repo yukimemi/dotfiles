@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 14:01:17.
+// Last Change : 2025/01/02 14:49:18.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.4.0/function";
@@ -48,7 +48,7 @@ log.setup({
   },
 });
 
-export const main: Entrypoint = async (denops) => {
+export const main: Entrypoint = async (denops: Denops) => {
   const starttime = performance.now();
   autocmd.define(
     denops,
