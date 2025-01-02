@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2024/12/29 20:03:26.
+// Last Change : 2025/01/02 15:09:53.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.1";
@@ -129,6 +129,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/gen740/SmoothCursor.nvim",
+    profiles: ["full"],
     enabled: true,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("smoothcursor").setup(_A)`, {
