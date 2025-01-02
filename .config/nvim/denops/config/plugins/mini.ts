@@ -4,7 +4,7 @@
 // Last Change : 2024/11/04 22:27:06.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@6.0.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
 
 export const mini: Plug[] = [
   {
