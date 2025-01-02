@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 01:58:12.
+// Last Change : 2025/01/02 14:05:31.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
@@ -430,7 +430,10 @@ export const util: Plug[] = [
       await denops.call(`luaeval`, `require("bqf").setup()`);
     },
   },
-  { url: "https://github.com/thinca/vim-prettyprint" },
+  {
+    url: "https://github.com/thinca/vim-prettyprint",
+    profiles: ["default"],
+  },
   { url: "https://github.com/skanehira/denops-silicon.vim", enabled: false },
   {
     url: "https://github.com/michaelrommel/nvim-silicon",

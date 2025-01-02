@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 13:59:29.
+// Last Change : 2025/01/02 14:15:00.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@5.8.0";
@@ -22,7 +22,10 @@ export const colors: Plug[] = [
   { url: "https://github.com/NLKNguyen/papercolor-theme" },
   { url: "https://github.com/PHSix/nvim-hybrid" },
   { url: "https://github.com/RRethy/nvim-base16" },
-  { url: "https://github.com/Rigellute/rigel" },
+  {
+    url: "https://github.com/Rigellute/rigel",
+    profiles: ["default"],
+  },
   { url: "https://github.com/Styzex/Sonomin.nvim" },
   { url: "https://github.com/adrian5/oceanic-next-vim" },
   { url: "https://github.com/aereal/vim-colors-japanesque" },
@@ -34,7 +37,10 @@ export const colors: Plug[] = [
   { url: "https://github.com/ayu-theme/ayu-vim" },
   { url: "https://github.com/bluz71/vim-nightfly-colors" },
   { url: "https://github.com/bluz71/vim-nightfly-guicolors" },
-  { url: "https://github.com/catppuccin/nvim" },
+  {
+    url: "https://github.com/catppuccin/nvim",
+    profiles: ["default"],
+  },
   { url: "https://github.com/cocopon/iceberg.vim" },
   { url: "https://github.com/craftzdog/solarized-osaka.nvim" },
   { url: "https://github.com/cseelus/vim-colors-lucid" },
@@ -48,7 +54,10 @@ export const colors: Plug[] = [
   { url: "https://github.com/eihigh/vim-aomi-grayscale" },
   { url: "https://github.com/ellisonleao/gruvbox.nvim" },
   { url: "https://github.com/fenetikm/falcon" },
-  { url: "https://github.com/folke/tokyonight.nvim" },
+  {
+    url: "https://github.com/folke/tokyonight.nvim",
+    profiles: ["default"],
+  },
   { url: "https://github.com/gkapfham/vim-vitamin-onec" },
   { url: "https://github.com/gkeep/iceberg-dark" },
   { url: "https://github.com/gruvbox-community/gruvbox" },
@@ -90,8 +99,14 @@ export const colors: Plug[] = [
   { url: "https://github.com/rhysd/vim-color-spring-night" },
   { url: "https://github.com/romgrk/github-light.vim" },
   { url: "https://github.com/rose-pine/neovim" },
-  { url: "https://github.com/sainnhe/edge" },
-  { url: "https://github.com/sainnhe/gruvbox-material" },
+  {
+    url: "https://github.com/sainnhe/edge",
+    profiles: ["default"],
+  },
+  {
+    url: "https://github.com/sainnhe/gruvbox-material",
+    profiles: ["default"],
+  },
   { url: "https://github.com/savq/melange-nvim" },
   { url: "https://github.com/severij/vadelma" },
   { url: "https://github.com/shaunsingh/nord.nvim" },

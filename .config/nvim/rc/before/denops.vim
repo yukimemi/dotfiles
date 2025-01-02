@@ -1,15 +1,15 @@
 " =============================================================================
 " File        : denops.vim
 " Author      : yukimemi
-" Last Change : 2024/11/18 23:53:55.
+" Last Change : 2025/01/02 14:07:06.
 " =============================================================================
 
 let g:denops#server#deno_args = ['-q', '--no-lock', '--unstable-kv', '--unstable-ffi', '-A']
 
-" Interrupt the process of plugins via <C-c>
-nnoremap <silent> <C-c> <Cmd>call denops#interrupt()<CR><C-c>
-inoremap <silent> <C-c> <Cmd>call denops#interrupt()<CR><C-c>
-cnoremap <silent> <C-c> <Cmd>call denops#interrupt()<CR><C-c>
+" Interrupt the process of plugins via <c-c>
+nnoremap <silent> <c-c> <Cmd>call denops#interrupt()<cr><C-c>
+inoremap <silent> <c-c> <Cmd>call denops#interrupt()<cr><C-c>
+" cnoremap <silent> <c-c> <Cmd>call denops#interrupt()<cr><C-c>
 
 " Restart Denops server
 command! DenopsRestart call denops#server#restart()
