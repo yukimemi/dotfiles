@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 01:56:03.
+// Last Change : 2025/01/03 10:37:13.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -67,6 +67,7 @@ export const filetypes: Plug[] = [
   },
   {
     url: "https://github.com/previm/previm",
+    profiles: ["full"],
     enabled: true,
     dependencies: ["https://github.com/tyru/open-browser.vim"],
     before: async ({ denops }) => {
@@ -90,11 +91,15 @@ export const filetypes: Plug[] = [
   { url: "https://github.com/ixru/nvim-markdown" },
   {
     url: "https://github.com/MeanderingProgrammer/render-markdown.nvim",
+    profiles: ["full"],
     enabled: true,
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/render-markdown.lua",
   },
-  { url: "https://github.com/tree-sitter-grammars/tree-sitter-markdown" },
+  {
+    url: "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
+    profiles: ["full"],
+  },
   {
     url: "https://github.com/tadmccorkle/markdown.nvim",
     enabled: false,
@@ -144,6 +149,7 @@ export const filetypes: Plug[] = [
   // Rust
   {
     url: "https://github.com/Saecki/crates.nvim",
+    profiles: ["full"],
     after: async ({ denops }) => {
       await autocmd.group(denops, "MyRustSettings", (helper) => {
         helper.remove("*");
@@ -290,6 +296,7 @@ export const filetypes: Plug[] = [
   // deno
   {
     url: "https://github.com/lambdalisue/vim-deno-cache",
+    profiles: ["full"],
   },
   // nushell
   {

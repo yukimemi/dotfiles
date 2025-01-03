@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : runner.ts
 // Author      : yukimemi
-// Last Change : 2024/10/19 13:10:22.
+// Last Change : 2025/01/03 10:39:46.
 // =============================================================================
 
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
@@ -30,9 +30,12 @@ export const runner: Plug[] = [
   },
   {
     url: "https://github.com/stevearc/overseer.nvim",
+    profiles: ["full"],
     enabled: pluginStatus.overseer,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("overseer").setup()`);
+      await mapping.map(denops, "<space>t", "<cmd>OverseerToggle<cr>", { mode: ["n", "x", "v"] });
+      await mapping.map(denops, "<space>r", "<cmd>OverseerRun<cr>", { mode: "n" });
     },
   },
 ];

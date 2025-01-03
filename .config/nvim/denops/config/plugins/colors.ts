@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 18:04:30.
+// Last Change : 2025/01/03 10:40:39.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -295,7 +295,7 @@ export const colors: Plug[] = [
       });
       await mapping.map(
         denops,
-        "<space>rd",
+        "<space>Rd",
         "<cmd>DisableThisColorscheme<cr>",
         { mode: "n" },
       );
