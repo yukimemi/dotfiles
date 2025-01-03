@@ -1,11 +1,14 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 18:17:48.
+// Last Change : 2025/01/03 10:17:23.
 // =============================================================================
 
 export const pluginStatus = {
   autopairs: false,
+  sg: false,
+  codeium: false,
+  necodeium: true,
   barbar: false,
   barbecue: false,
   blink: true,

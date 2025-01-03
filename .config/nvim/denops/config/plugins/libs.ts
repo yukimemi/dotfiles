@@ -1,17 +1,14 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 12:13:12.
+// Last Change : 2025/01/03 10:01:27.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
 
 import * as autocmd from "jsr:@denops/std@7.4.0/autocmd";
-import * as fn from "jsr:@denops/std@7.4.0/function";
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 import * as vars from "jsr:@denops/std@7.4.0/variable";
-import { z } from "npm:zod@3.24.1";
-import { exists } from "jsr:@std/fs@1.0.8";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const libs: Plug[] = [
@@ -206,46 +203,6 @@ export const libs: Plug[] = [
         mode: ["n", "x"],
       });
     },
-  },
-  {
-    url: "https://github.com/Exafunction/codeium.vim",
-    profiles: ["default"],
-    enabled: async ({ denops }) =>
-      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) &&
-      denops.meta.platform === "windows",
-    before: async ({ denops }) => {
-      await vars.g.set(denops, "codeium_disable_bindings", 1);
-    },
-    after: async ({ denops }) => {
-      await mapping.map(denops, "<c-f>", "codeium#AcceptNextWord()", {
-        mode: "i",
-        expr: true,
-        nowait: true,
-      });
-      await mapping.map(denops, "<c-e>", "codeium#Accept()", {
-        mode: "i",
-        expr: true,
-        nowait: true,
-      });
-      await mapping.map(denops, "<c-j>", "codeium#CycleCompletions(1)", {
-        mode: "i",
-        expr: true,
-        nowait: true,
-      });
-      await mapping.map(denops, "<c-k>", "codeium#CycleCompletions(-1)", {
-        mode: "i",
-        expr: true,
-        nowait: true,
-      });
-    },
-  },
-  {
-    url: "https://github.com/monkoose/neocodeium",
-    profiles: ["default"],
-    enabled: async ({ denops }) =>
-      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) &&
-      denops.meta.platform !== "windows",
-    afterFile: "~/.config/nvim/rc/after/neocodeium.lua",
   },
   {
     url: "https://github.com/lambdalisue/vim-findent",

@@ -43,3 +43,5 @@ export GOROOT=$(go env GOROOT)
 export GOPATH=$HOME/.ghq
 
 export PATH="$HOME/.poetry/bin:$PATH"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

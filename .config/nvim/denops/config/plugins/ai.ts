@@ -1,22 +1,66 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 21:46:33.
+// Last Change : 2025/01/03 10:01:17.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
-import * as vars from "jsr:@denops/std@7.4.0/variable";
-import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
+import * as mapping from "jsr:@denops/std@7.4.0/mapping";
+import * as vars from "jsr:@denops/std@7.4.0/variable";
+import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
+import { execCommand } from "../util.ts";
+import { pluginStatus } from "../pluginstatus.ts";
 import {
   GenerationConfig,
   HarmBlockThreshold,
   HarmCategory,
   SafetySetting,
 } from "npm:@google/generative-ai@0.21.0";
-import { execCommand } from "../util.ts";
 
 export const ai: Plug[] = [
+  {
+    url: "https://github.com/sourcegraph/sg.nvim",
+    profiles: ["default"],
+    enabled: pluginStatus.sg,
+    dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
+    afterFile: "~/.config/nvim/rc/after/sg.lua",
+  },
+  {
+    url: "https://github.com/Exafunction/codeium.vim",
+    profiles: ["default"],
+    enabled: pluginStatus.codeium,
+    before: async ({ denops }) => {
+      await vars.g.set(denops, "codeium_disable_bindings", 1);
+    },
+    after: async ({ denops }) => {
+      await mapping.map(denops, "<c-f>", "codeium#AcceptNextWord()", {
+        mode: "i",
+        expr: true,
+        nowait: true,
+      });
+      await mapping.map(denops, "<c-e>", "codeium#Accept()", {
+        mode: "i",
+        expr: true,
+        nowait: true,
+      });
+      await mapping.map(denops, "<c-j>", "codeium#CycleCompletions(1)", {
+        mode: "i",
+        expr: true,
+        nowait: true,
+      });
+      await mapping.map(denops, "<c-k>", "codeium#CycleCompletions(-1)", {
+        mode: "i",
+        expr: true,
+        nowait: true,
+      });
+    },
+  },
+  {
+    url: "https://github.com/monkoose/neocodeium",
+    profiles: ["default"],
+    enabled: pluginStatus.necodeium,
+    afterFile: "~/.config/nvim/rc/after/neocodeium.lua",
+  },
   {
     url: "https://github.com/olimorris/codecompanion.nvim",
     enabled: false,
