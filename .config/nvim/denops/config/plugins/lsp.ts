@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 14:01:04.
+// Last Change : 2025/01/04 07:02:26.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -18,6 +18,7 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/nvim-linkedit",
+    profiles: ["full"],
     after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
@@ -36,14 +37,17 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/stevearc/aerial.nvim",
+    profiles: ["full"],
     afterFile: `~/.config/nvim/rc/after/aerial.lua`,
   },
   {
     url: "https://github.com/stevearc/conform.nvim",
+    profiles: ["full"],
     afterFile: "~/.config/nvim/rc/after/conform.lua",
   },
   {
     url: "https://github.com/mfussenegger/nvim-lint",
+    profiles: ["full"],
     afterFile: "~/.config/nvim/rc/after/nvim-lint.lua",
   },
   {
@@ -102,6 +106,7 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/mrcjkb/rustaceanvim",
+    profiles: ["full"],
     afterFile: "~/.config/nvim/rc/after/rustaceanvim.lua",
     dependencies: [
       "https://github.com/neovim/nvim-lspconfig",
