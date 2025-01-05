@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : wiki.ts
 // Author      : yukimemi
-// Last Change : 2024/09/29 19:21:49.
+// Last Change : 2025/01/05 15:15:53.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -28,6 +28,7 @@ export const memo: Plug[] = [
   },
   {
     url: "https://github.com/glidenote/memolist.vim",
+    profiles: ["default"],
     before: async ({ denops }) => {
       await vars.g.set(
         denops,

@@ -1,22 +1,21 @@
 # =============================================================================
 # File        : package.toml
 # Author      : yukimemi
-# Last Change : 2024/12/03 20:29:39.
+# Last Change : 2025/01/05 14:37:06.
 # =============================================================================
 
 [plugin]
 deps = [
-	{ use = "yazi-rs/plugins:max-preview", rev = "600614a" },
-	{ use = "Reledia/miller", rev = "40e0265" },
-	{ use = "GrzegorzKozub/mdcat", rev = "d3d5089" },
-	{ use = "KKV9/command", rev = "95a29be" },
-	{ use = "dawsers/dual-pane", rev = "c2fed12" },
-	{ use = "hankertrix/augment-command", rev = "70d7d7b" },
-	{ use = "orhnk/system-clipboard", rev = "7775a80" },
-	{ use = "Lil-Dank/lazygit", rev = "c82794f" },
-	{ use = "MasouShizuka/projects", rev = "ba8d00b" },
-	{ use = "h-hg/yamb", rev = "108347b" },
-	{ use = "ndtoan96/ouch", rev = "b869886" },
+  { use = "yazi-rs/plugins:max-preview", rev = "600614a" },
+  { use = "Reledia/miller", rev = "40e0265" },
+  { use = "GrzegorzKozub/mdcat", rev = "d3d5089" },
+  { use = "KKV9/command", rev = "95a29be" },
+  { use = "hankertrix/augment-command", rev = "70d7d7b" },
+  { use = "orhnk/system-clipboard", rev = "7775a80" },
+  { use = "Lil-Dank/lazygit", rev = "c82794f" },
+  { use = "MasouShizuka/projects", rev = "ba8d00b" },
+  { use = "h-hg/yamb", rev = "108347b" },
+  { use = "ndtoan96/ouch", rev = "b869886" },
 ]
 
 [flavor]

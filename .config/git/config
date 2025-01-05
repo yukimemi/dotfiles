@@ -14,7 +14,7 @@
 	a = add
 	br = branch
 	di = diff
-	k = log --graph --pretty
+	k = log --graph --pretty --name-status
 	info = remote show origin
 	l  = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset'
 	ln = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset' --name-status
