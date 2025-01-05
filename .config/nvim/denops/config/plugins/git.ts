@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2025/01/05 11:03:48.
+// Last Change : 2025/01/02 21:42:57.
 // =============================================================================
 
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
@@ -71,7 +71,7 @@ export const git: Plug[] = [
   {
     url: "https://github.com/lambdalisue/vim-gin",
     profiles: ["default"],
-    cache: { beforeFile: `~/.config/nvim/rc/before/vim-gin.lua` },
+    beforeFile: `~/.config/nvim/rc/before/vim-gin.lua`,
   },
   {
     url: "https://github.com/skanehira/denops-gh.vim",

@@ -1,13 +1,10 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/01/05 12:35:11.
+// Last Change : 2025/01/03 10:01:17.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
-import * as fn from "jsr:@denops/std@7.4.0/function";
-import { z } from "npm:zod@3.24.1";
-import { exists } from "jsr:@std/fs@1.0.8";
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 import * as vars from "jsr:@denops/std@7.4.0/variable";
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -23,16 +20,15 @@ import {
 export const ai: Plug[] = [
   {
     url: "https://github.com/sourcegraph/sg.nvim",
-    profiles: ["full"],
+    profiles: ["default"],
     enabled: pluginStatus.sg,
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     afterFile: "~/.config/nvim/rc/after/sg.lua",
   },
   {
     url: "https://github.com/Exafunction/codeium.vim",
-    profiles: ["full"],
-    enabled: async ({ denops }) =>
-      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) && pluginStatus.codeium,
+    profiles: ["default"],
+    enabled: pluginStatus.codeium,
     before: async ({ denops }) => {
       await vars.g.set(denops, "codeium_disable_bindings", 1);
     },
@@ -61,10 +57,8 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/monkoose/neocodeium",
-    profiles: ["full"],
-    enabled: async ({ denops }) =>
-      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) &&
-      pluginStatus.necodeium,
+    profiles: ["default"],
+    enabled: pluginStatus.necodeium,
     afterFile: "~/.config/nvim/rc/after/neocodeium.lua",
   },
   {
