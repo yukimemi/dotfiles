@@ -1,14 +1,11 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2025/01/03 10:17:23.
+// Last Change : 2025/01/05 12:32:10.
 // =============================================================================
 
 export const pluginStatus = {
   autopairs: false,
-  sg: false,
-  codeium: false,
-  necodeium: true,
   barbar: false,
   barbecue: false,
   blink: true,
@@ -19,6 +16,7 @@ export const pluginStatus = {
   clap: false,
   cmp: false,
   coc: false,
+  codeium: false,
   compl: false,
   ddc: false,
   ddu: false,
@@ -38,6 +36,7 @@ export const pluginStatus = {
   insx: true,
   lualine: true,
   modesearch: false,
+  necodeium: true,
   neocolumn: false,
   neotest: false,
   neotree: false,
@@ -49,6 +48,7 @@ export const pluginStatus = {
   quickrun: true,
   satellite: false,
   scrollbar: false,
+  sg: false,
   snipewin: true,
   telescope: true,
   ultimatepair: false,
