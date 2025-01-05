@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 18:38:53.
+// Last Change : 2025/01/05 12:29:51.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -25,7 +25,13 @@ export const util: Plug[] = [
     },
   },
   {
+    url: "https://github.com/mattn/vim-findroot",
+    enabled: false,
+    profiles: ["default"],
+  },
+  {
     url: "https://github.com/ahmedkhalf/project.nvim",
+    profiles: ["default"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("project_nvim").setup(_A)`, {
         // Manual mode doesn't automatically change your root directory, so you have
@@ -59,11 +65,11 @@ export const util: Plug[] = [
         exclude_dirs: [],
 
         // Show hidden files in telescope
-        show_hidden: false,
+        show_hidden: true,
 
         // When set to false, you will get a message when project.nvim changes your
         // directory.
-        silent_chdir: true,
+        silent_chdir: false,
 
         // What scope to change the directory, valid options are
         // * global (default)
