@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 21:48:58.
+// Last Change : 2025/01/09 02:23:31.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -249,6 +249,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/dps-ahdr",
+    profiles: ["default"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "ahdr_debug", false);
       await vars.g.set(denops, "ahdr_cfg_path", "~/.config/ahdr/ahdr.toml");

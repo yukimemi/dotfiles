@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2025/01/01 14:34:50.
+; Last Change : 2025/01/07 23:22:41.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -190,7 +190,7 @@ F12::
     return
   } else {
     ; Toggle("C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.21.2911.0_x64__8wekyb3d8bbwe\WindowsTerminal.exe", "PowerShell")
-    Activate3("WindowsTerminal.exe", "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.21.2911.0_x64__8wekyb3d8bbwe\WindowsTerminal.exe", "PowerShell")
+    Activate3("WindowsTerminal.exe", "C:\Program Files\WindowsApps\Microsoft.WindowsTerminalPreview_1.22.3232.0_x64__8wekyb3d8bbwe\WindowsTerminal.exe", "PowerShell")
     return
   }
 }
