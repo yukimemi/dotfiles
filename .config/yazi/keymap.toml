@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : keymap.toml
 # Author      : yukimemi
-# Last Change : 2025/01/05 14:37:22.
+# Last Change : 2025/01/09 16:49:17.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -192,7 +192,7 @@ run = "plugin augment-command --args='leave --no-skip'"
 desc = "Go back to the parent directory"
 [[manager.prepend_keymap]]
 on = ["u"]
-run = ["select_all --state=false", "unyank"]
+run = ["toggle_all --state=false", "unyank"]
 desc = "Unselect all files and also unyank cut files"
 [[manager.prepend_keymap]]
 on = ["p"]

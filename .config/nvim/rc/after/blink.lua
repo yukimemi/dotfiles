@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : blink.lua
 -- Author      : yukimemi
--- Last Change : 2025/01/01 20:55:48.
+-- Last Change : 2025/01/09 17:38:41.
 -- =============================================================================
 
 require("blink-cmp").setup({
@@ -17,9 +17,10 @@ require("blink-cmp").setup({
   },
   completion = {
     list = {
-      selection = function(ctx)
-        return ctx.mode == 'cmdline' and 'manual' or 'manual'
-      end
+      selection = {
+        preselect = false,
+        auto_insert = false,
+      },
     },
     menu = { border = 'single' },
     documentation = { window = { border = 'single' } },
