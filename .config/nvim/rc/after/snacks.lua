@@ -1,15 +1,24 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2025/01/19 18:09:13.
+-- Last Change : 2025/01/19 20:53:32.
 -- =============================================================================
 
 require("snacks").setup({
+  animate = {
+    enabled = true,
+  },
+  bufdelete = {
+    enabled = true,
+  },
   bigfile = {
     enabled = true,
   },
   dashboard = {
     enabled = false,
+  },
+  debug = {
+    enabled = true,
   },
   input = {
     enabled = true,
@@ -21,6 +30,12 @@ require("snacks").setup({
     enabled = true,
   },
   quickfile = {
+    enabled = true,
+  },
+  indent = {
+    enabled = true,
+  },
+  lazygit = {
     enabled = true,
   },
   scope = {
@@ -46,6 +61,17 @@ require("snacks").setup({
   },
 })
 
+-- Snacks.jump
+vim.keymap.set("n", "<space>jj", function() Snacks.words.jump(1, true) end, { desc = "Jump next" })
+vim.keymap.set("n", "<space>jk", function() Snacks.words.jump(-1, true) end, { desc = "Jump prev" })
+
+-- Snacks.lazygit
+vim.keymap.set("n", "<space>L", function() Snacks.lazygit() end, { desc = "LazyGit" })
+
+-- Snacks.bufdelete
+vim.keymap.set("n", "sbd", function() Snacks.bufdelete() end, { desc = "Delete buffer" })
+
+-- Snacks.picker
 vim.keymap.set("n", "<space>ff", function() Snacks.picker() end, { desc = "Snacks picker" })
 vim.keymap.set("n", "<space>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
 vim.keymap.set("n", "<space>/", function() Snacks.picker.grep() end, { desc = "Grep" })
@@ -64,7 +90,11 @@ vim.keymap.set("n", "mC", function() Snacks.picker.files({ cwd = "~/.cache" }) e
 vim.keymap.set("n", "mM", function() Snacks.picker.files({ cwd = "~/.memolist" }) end, { desc = "Find memolist file" })
 vim.keymap.set("n", "mj", function() Snacks.picker.files({ cwd = "~/.cache/junkfile" }) end,
   { desc = "Find junk file" })
-
+vim.keymap.set("n", "mb", function()
+  local bufname = vim.fn.bufname()
+  local bufdir = vim.fn.fnamemodify(bufname, ":p:h")
+  Snacks.picker.files({ cwd = bufdir })
+end, { desc = "Find file on buffer dir" })
 vim.keymap.set("n", "<space>sb", function() Snacks.picker.lines() end, { desc = "Buffer Lines" })
 vim.keymap.set("n", "<space>sB", function() Snacks.picker.grep_buffers() end, { desc = "Grep Open Buffers" })
 vim.keymap.set("n", "<space>sg", function() Snacks.picker.grep() end, { desc = "Grep" })
