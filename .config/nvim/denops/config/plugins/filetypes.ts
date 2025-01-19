@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2025/01/03 10:37:13.
+// Last Change : 2025/01/18 12:46:36.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -111,6 +111,7 @@ export const filetypes: Plug[] = [
   },
   {
     url: "https://github.com/roodolv/markdown-toggle.nvim",
+    profiles: ["default"],
     afterFile: "~/.config/nvim/rc/after/markdown-toggle.lua",
   },
   // vim

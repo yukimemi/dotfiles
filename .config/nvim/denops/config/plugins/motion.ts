@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 21:46:37.
+// Last Change : 2025/01/14 00:03:48.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -25,6 +25,7 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/yuki-yano/fuzzy-motion.vim",
+    profiles: ["default"],
     enabled: pluginStatus.fuzzymotion,
     before: async ({ denops }) => {
       await vars.g.set(denops, "fuzzy_motion_auto_jump", false);

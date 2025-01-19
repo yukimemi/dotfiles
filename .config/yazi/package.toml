@@ -7,7 +7,6 @@
 [plugin]
 deps = [
   { use = "yazi-rs/plugins:max-preview", rev = "e4aaf43" },
-  { use = "Reledia/miller", rev = "40e0265" },
   { use = "GrzegorzKozub/mdcat", rev = "d3d5089" },
   { use = "KKV9/command", rev = "95a29be" },
   { use = "hankertrix/augment-command", rev = "c0fd61f" },

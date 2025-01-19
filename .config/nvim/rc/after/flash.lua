@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : flash.lua
 -- Author      : yukimemi
--- Last Change : 2024/12/30 22:28:58.
+-- Last Change : 2025/01/14 01:09:33.
 -- =============================================================================
 
 require("flash").setup({
@@ -12,6 +12,12 @@ require("flash").setup({
   label = {
     rainbow = {
       enabled = true,
+    },
+  },
+  modes = {
+    char = {
+      enabled = true,
+      multi_line = false,
     },
   },
 })

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : keymap.toml
 # Author      : yukimemi
-# Last Change : 2025/01/09 16:49:17.
+# Last Change : 2025/01/18 16:12:30.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -110,7 +110,7 @@ desc = "Compress with ouch"
 [[manager.prepend_keymap]]
 on = ["g", "r"]
 run = '''
-	shell 'ya pub dds-cd --str "$(git rev-parse --show-toplevel)"' --confirm
+	shell 'ya emit cd "$(git rev-parse --show-toplevel)"'
 '''
 desc = "Goto git root"
 [[manager.prepend_keymap]]

@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2024/12/30 22:57:26.
+  .Last Change : 2025/01/18 11:26:08.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -73,6 +73,7 @@ function Install-RequiredModules {
   Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
   & msiexec /i $nvimMsi /quiet
   # winget install -q Neovim.Neovim
+  winget install -q gerardog.gsudo
   winget install -q Slackadays.Clipboard
   winget install -q YS-L.csvlens
   winget install -q sxyazi.yazi
@@ -80,7 +81,6 @@ function Install-RequiredModules {
   winget install -q JesseDuffield.lazygit
   winget install -q wez.wezterm
   winget install -q astral-sh.uv
-  winget install -q gerardog.gsudo
   winget install -q NuShell.NuShell
   winget install -q RustLang.Rustup
   winget install -q DenoLand.Deno
@@ -106,7 +106,7 @@ function Install-RequiredModules {
   winget install -q dandavision.delta
   winget install -q junegunn.fzf
   winget install -q ajeetdsouza.zoxide
-  sudo winget install hluk.CopyQ
+  winget install -q hluk.CopyQ
   sudo choco install -y zig
 }
 
