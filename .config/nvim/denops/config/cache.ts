@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2024/11/18 22:29:29.
+// Last Change : 2025/01/19 18:26:55.
 // =============================================================================
 
 export function cacheVim() {
@@ -51,48 +51,48 @@ export function cacheLua() {
       vim.g.maplocalleader = "\\\\";
 
       -- Move to window using the <ctrl> movement keys
-      vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
-      vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
-      vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
-      vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
+      vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true, noremap = true })
+      vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true, noremap = true })
+      vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true, noremap = true })
+      vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true, noremap = true })
 
-      vim.keymap.set("n", "<space><space>", "<cmd>update<cr>", { silent = true })
-      vim.keymap.set("n", "<tab>", "%", { silent = true })
-      vim.keymap.set("i", "<c-l>", "<C-g>U<Right>", { silent = true })
+      vim.keymap.set("n", "<space><space>", "<cmd>update<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "<tab>", "%", { silent = true, noremap = true })
+      vim.keymap.set("i", "<c-l>", "<C-g>U<Right>", { silent = true, noremap = true })
 
-      vim.keymap.set({ "n", "x" }, "gh", "^", { silent = true })
-      vim.keymap.set({ "n", "x" }, "gl", "$", { silent = true })
+      vim.keymap.set({ "n", "x" }, "gh", "^", { silent = true, noremap = true })
+      vim.keymap.set({ "n", "x" }, "gl", "$", { silent = true, noremap = true })
 
-      vim.keymap.set("c", "<c-b>", "<Left>", { silent = true })
-      vim.keymap.set("c", "<c-f>", "<Right>", { silent = true })
-      vim.keymap.set("c", "<c-a>", "<Home>", { silent = true })
-      vim.keymap.set("c", "<c-e>", "<End>", { silent = true })
-      vim.keymap.set("c", "<c-d>", "<Del>", { silent = true })
-      vim.keymap.set("c", "<c-y>", "<c-r>", { silent = true })
-      vim.keymap.set("c", "<c-p>", "<Up>", { silent = true })
-      vim.keymap.set("c", "<c-n>", "<Down>", { silent = true })
+      vim.keymap.set("c", "<c-b>", "<Left>", { silent = true, noremap = true })
+      vim.keymap.set("c", "<c-f>", "<Right>", { silent = true, noremap = true })
+      vim.keymap.set("c", "<c-a>", "<Home>", { silent = true, noremap = true })
+      vim.keymap.set("c", "<c-e>", "<End>", { silent = true, noremap = true })
+      vim.keymap.set("c", "<c-d>", "<Del>", { silent = true, noremap = true })
+      vim.keymap.set("c", "<c-y>", "<c-r>", { silent = true, noremap = true })
+      vim.keymap.set("c", "<c-p>", "<Up>", { silent = true, noremap = true })
+      vim.keymap.set("c", "<c-n>", "<Down>", { silent = true, noremap = true })
 
       -- s prefix mappings
-      vim.keymap.set("n", "s", "<Nop>", { silent = true })
-      vim.keymap.set("n", "s0", "<cmd>only<cr>", { silent = true })
-      vim.keymap.set("n", "s=", "<c-w>=", { silent = true })
-      vim.keymap.set("n", "sH", "<c-w>H", { silent = true })
-      vim.keymap.set("n", "sJ", "<c-w>J", { silent = true })
-      vim.keymap.set("n", "sK", "<c-w>K", { silent = true })
-      vim.keymap.set("n", "sL", "<c-w>L", { silent = true })
-      vim.keymap.set("n", "sO", "<cmd>tabonly<cr>", { silent = true })
-      vim.keymap.set("n", "sQ", "<cmd>qa<cr>", { silent = true })
-      vim.keymap.set("n", "sbk", "<cmd>bd!<cr>", { silent = true })
-      vim.keymap.set("n", "sbq", "<cmd>q!<cr>", { silent = true })
-      vim.keymap.set("n", "sn", "<cmd>bn<cr>", { silent = true })
-      vim.keymap.set("n", "so", "<c-w>_<c-w>|", { silent = true })
-      vim.keymap.set("n", "sp", "<cmd>bp<cr>", { silent = true })
-      vim.keymap.set("n", "sq", "<cmd>q<cr>", { silent = true })
-      vim.keymap.set("n", "sr", "<c-w>r", { silent = true })
-      vim.keymap.set("n", "sh", "<cmd>sp<cr>", { silent = true })
-      vim.keymap.set("n", "st", "<cmd>tabnew<cr>", { silent = true })
-      vim.keymap.set("n", "sv", "<cmd>vs<cr>", { silent = true })
-      vim.keymap.set("n", "sw", "<c-w>w", { silent = true })
+      vim.keymap.set("n", "s", "<Nop>", { silent = true, noremap = true })
+      vim.keymap.set("n", "s0", "<cmd>only<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "s=", "<c-w>=", { silent = true, noremap = true })
+      vim.keymap.set("n", "sH", "<c-w>H", { silent = true, noremap = true })
+      vim.keymap.set("n", "sJ", "<c-w>J", { silent = true, noremap = true })
+      vim.keymap.set("n", "sK", "<c-w>K", { silent = true, noremap = true })
+      vim.keymap.set("n", "sL", "<c-w>L", { silent = true, noremap = true })
+      vim.keymap.set("n", "sO", "<cmd>tabonly<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "sQ", "<cmd>qa<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "sbk", "<cmd>bd!<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "sbq", "<cmd>q!<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "sn", "<cmd>bn<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "so", "<c-w>_<c-w>|", { silent = true, noremap = true })
+      vim.keymap.set("n", "sp", "<cmd>bp<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "sq", "<cmd>q<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "sr", "<c-w>r", { silent = true, noremap = true })
+      vim.keymap.set("n", "sh", "<cmd>sp<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "st", "<cmd>tabnew<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "sv", "<cmd>vs<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "sw", "<c-w>w", { silent = true, noremap = true })
 
       vim.keymap.set({"n", "x"}, "H", "H<Plug>(H)")
       vim.keymap.set({"n", "x"}, "L", "L<Plug>(L)")
