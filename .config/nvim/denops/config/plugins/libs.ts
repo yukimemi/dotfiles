@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/01/05 12:28:49.
+// Last Change : 2025/01/19 17:59:09.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -180,25 +180,9 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/folke/which-key.nvim",
-    enabled: false,
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("which-key").setup()`);
-    },
-  },
-  {
-    url: "https://github.com/liuchengxu/vim-which-key",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "vim",
-    // deno-lint-ignore require-await
-    clone: async ({ denops }) => denops.meta.host === "vim",
-    after: async ({ denops }) => {
-      await mapping.map(denops, "<leader>", "<cmd>WhichKey '<space>'<cr>", {
-        mode: ["n", "x"],
-      });
-      await mapping.map(denops, "<localleader>", "<cmd>WhichKey '\\'<cr>", {
-        mode: ["n", "x"],
-      });
-    },
+    profiles: ["default"],
+    enabled: true,
+    afterFile: `~/.config/nvim/rc/after/which-key.lua`,
   },
   {
     url: "https://github.com/lambdalisue/vim-findent",

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2024/12/31 11:45:17.
+// Last Change : 2025/01/19 13:37:13.
 // =============================================================================
 
 import { pluginStatus } from "./pluginstatus.ts";
@@ -28,6 +28,7 @@ import { libs } from "./plugins/libs.ts";
 import { lsp } from "./plugins/lsp.ts";
 import { memo } from "./plugins/memo.ts";
 import { mini } from "./plugins/mini.ts";
+import { snacks } from "./plugins/snacks.ts";
 import { motion } from "./plugins/motion.ts";
 import { neotree } from "./plugins/neotree.ts";
 import { nvimtree } from "./plugins/nvimtree.ts";
@@ -62,6 +63,7 @@ const plugins = [
   ...lsp,
   ...memo,
   ...mini,
+  ...snacks,
   ...motion,
   ...neotree,
   ...nvimtree,
