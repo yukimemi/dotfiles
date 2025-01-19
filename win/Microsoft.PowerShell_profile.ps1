@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2024/12/23 20:50:45.
+# Last Change : 2025/01/19 21:14:07.
 # =============================================================================
 
 # module
@@ -272,7 +272,6 @@ function Install-Pip {
 }
 
 # Alias.
-Set-Alias gomi RemoveTo-Trash
 if (Is-Windows) {
   Remove-Item alias:rm
 }
