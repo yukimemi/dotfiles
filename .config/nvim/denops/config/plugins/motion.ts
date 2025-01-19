@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2025/01/14 00:03:48.
+// Last Change : 2025/01/19 22:03:19.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -51,6 +51,7 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/yuki-yano/zero.nvim",
+    profiles: ["default"],
     after: async ({ denops }) => {
       await denops.cmd(`lua require("zero").setup()`);
     },
