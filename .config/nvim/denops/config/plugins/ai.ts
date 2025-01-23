@@ -7,7 +7,7 @@
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
 import * as fn from "jsr:@denops/std@7.4.0/function";
 import { z } from "npm:zod@3.24.1";
-import { exists } from "jsr:@std/fs@1.0.9";
+import { exists } from "jsr:@std/fs@1.0.10";
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 import * as vars from "jsr:@denops/std@7.4.0/variable";
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
