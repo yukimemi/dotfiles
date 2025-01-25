@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/01/19 17:59:09.
+// Last Change : 2025/01/25 15:10:05.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -23,7 +23,6 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/vim-denops/denops-shared-server.vim",
-    profiles: ["default"],
     dependencies: ["https://github.com/vim-denops/denops.vim"],
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.platform === "windows",
