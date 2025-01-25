@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2025/01/19 18:57:25.
+// Last Change : 2025/01/23 13:52:41.
 // =============================================================================
 
 export const pluginStatus = {
@@ -50,7 +50,7 @@ export const pluginStatus = {
   scrollbar: false,
   sg: false,
   snipewin: true,
-  telescope: false,
+  telescope: true,
   ultimatepair: false,
   vimbookmarks: false,
   vimtest: true,

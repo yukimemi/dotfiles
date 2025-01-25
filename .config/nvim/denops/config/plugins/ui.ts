@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/01/11 12:46:29.
+// Last Change : 2025/01/24 01:40:53.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
@@ -457,5 +457,9 @@ export const ui: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hml").setup()`);
     },
+  },
+  {
+    url: "https://github.com/itchyny/vim-highlighturl",
+    profiles: ["colors"],
   },
 ];
