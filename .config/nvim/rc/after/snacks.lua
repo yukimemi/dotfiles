@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2025/01/25 10:05:49.
+-- Last Change : 2025/01/25 15:09:11.
 -- =============================================================================
 
 require("snacks").setup({
@@ -72,7 +72,6 @@ vim.keymap.set("n", "<space>L", function() Snacks.lazygit() end, { desc = "LazyG
 vim.keymap.set("n", "sbd", function() Snacks.bufdelete() end, { desc = "Delete buffer" })
 
 if false then
-  -- Snacks.picker
   vim.keymap.set("n", "<space>ff", function() Snacks.picker() end, { desc = "Snacks picker" })
   vim.keymap.set("n", "<space>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
   vim.keymap.set("n", "<space>/", function() Snacks.picker.grep() end, { desc = "Grep" })
