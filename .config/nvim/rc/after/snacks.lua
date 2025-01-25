@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2025/01/25 15:09:11.
+-- Last Change : 2025/01/25 21:35:23.
 -- =============================================================================
 
 require("snacks").setup({
@@ -61,6 +61,15 @@ require("snacks").setup({
   },
 })
 
+-- Snacks.debug
+_G.dd = function(...)
+  Snacks.debug.inspect(...)
+end
+_G.bt = function()
+  Snacks.debug.backtrace()
+end
+vim.print = _G.dd
+
 -- Snacks.jump
 vim.keymap.set("n", "<space>jj", function() Snacks.words.jump(1, true) end, { desc = "Jump next" })
 vim.keymap.set("n", "<space>jk", function() Snacks.words.jump(-1, true) end, { desc = "Jump prev" })
@@ -98,7 +107,8 @@ if false then
   vim.keymap.set("n", "<space>sb", function() Snacks.picker.lines() end, { desc = "Buffer Lines" })
   vim.keymap.set("n", "<space>sB", function() Snacks.picker.grep_buffers() end, { desc = "Grep Open Buffers" })
   vim.keymap.set("n", "<space>sg", function() Snacks.picker.grep() end, { desc = "Grep" })
-  vim.keymap.set({ "n", "x" }, "<space>sw", function() Snacks.picker.grep_word() end, { desc = "Visual selection or word" })
+  vim.keymap.set({ "n", "x" }, "<space>sw", function() Snacks.picker.grep_word() end,
+    { desc = "Visual selection or word" })
 
   vim.keymap.set("n", "<space>hh", function() Snacks.picker.help() end, { desc = "Help Pages" })
   vim.keymap.set("n", "<space>hk", function() Snacks.picker.keymaps() end, { desc = "Keymaps" })

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/01/19 17:05:15.
+// Last Change : 2025/01/25 17:23:42.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.1.0";
@@ -562,6 +562,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/juliuswaldmann/here.nvim",
+    profiles: ["default"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("here")`);
     },
