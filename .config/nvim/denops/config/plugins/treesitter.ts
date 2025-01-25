@@ -4,7 +4,7 @@
 // Last Change : 2025/01/02 21:46:39.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@6.0.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@6.1.0";
 
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 
