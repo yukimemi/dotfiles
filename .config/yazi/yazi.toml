@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : yazi.toml
 # Author      : yukimemi
-# Last Change : 2025/01/09 10:39:39.
+# Last Change : 2025/01/25 13:41:07.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -14,7 +14,7 @@ linemode = "mtime"
 [opener]
 edit = [
 	{ run = '${EDITOR:-hitori} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-	{ run = 'hitori %*', orphan = true, desc = "hitori", for = "windows" },
+	{ run = 'hitori %*', orphan = true, block = false, desc = "hitori", for = "windows" },
 ]
 
 [open]

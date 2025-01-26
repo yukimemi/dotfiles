@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : neovide.ts
 // Author      : yukimemi
-// Last Change : 2024/11/17 14:50:37.
+// Last Change : 2025/01/25 14:07:16.
 // =============================================================================
 
 import type { Denops } from "jsr:@denops/std@7.4.0";
@@ -15,10 +15,10 @@ export async function setNeovide(denops: Denops) {
     return;
   }
 
-  const fontName = "HackGen Console NF";
+  // const fontName = "HackGen Console NF";
   // const fontName = "UDEV Gothic NFLG";
   // const fontName = "Cascadia Mono NF";
-  // const fontName = "PlemolJP Console NF";
+  const fontName = "PlemolJP Console NF";
   // const fontName = "Bizin Gothic NF";
 
   await vars.g.set(denops, "neovide_transparency", 0.95);

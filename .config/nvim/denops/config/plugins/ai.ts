@@ -118,7 +118,8 @@ export const ai: Plug[] = [
       await vars.g.set(denops, "futago_chat_path", `~/.cache/nvim/futago/chat`);
       await vars.g.set(denops, "futago_log_file", `~/.cache/nvim/futago/log/futago.log`);
       await vars.g.set(denops, "futago_history_db", `~/.cache/nvim/futago/db/history.db`);
-      // await vars.g.set(denops, "futago_model", "gemini-2.0-flash-thinking-exp");
+      await vars.g.set(denops, "futago_model", "gemini-2.0-flash-thinking-exp");
+      await vars.g.set(denops, "futago_git_model", "gemini-2.0-flash-exp");
       const safetySettings: SafetySetting[] = [
         {
           category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
@@ -288,7 +289,6 @@ lang: ja
             denops,
             async () => {
               await denops.call("futago#start_chat", {
-                model: "gemini-2.0-flash-thinking-exp",
                 opener: "vsplit",
                 history: [
                   {
@@ -311,7 +311,7 @@ lang: ja
       await mapping.map(
         denops,
         "mf",
-        `<cmd>call futago#start_chat({"model": "gemini-2.0-flash-thinking-exp", "opener": "vsplit", "humanPrompt": "yukimemi", "history": [{"role": "user", "parts": [{ "text": "僕の名前は yukimemi。敬語は使わずにフレンドリーに回答してね。" }]}, {"role": "model", "parts": [{ "text": "了解！覚えておくね！" }]}]})<cr>`,
+        `<cmd>call futago#start_chat({ "opener": "vsplit", "humanPrompt": "yukimemi", "history": [{"role": "user", "parts": [{ "text": "僕の名前は yukimemi。敬語は使わずにフレンドリーに回答してね。" }]}, {"role": "model", "parts": [{ "text": "了解！覚えておくね！" }]}]})<cr>`,
         { mode: "n" },
       );
     },
