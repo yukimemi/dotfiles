@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-deck.lua
 -- Author      : yukimemi
--- Last Change : 2025/01/26 01:23:02.
+-- Last Change : 2025/01/26 19:30:23.
 -- =============================================================================
 
 local deck = require('deck')
@@ -53,48 +53,10 @@ vim.api.nvim_create_autocmd('User', {
 
     ctx.set_preview_mode(true)
     ctx.prompt()
+
+    vim.opt.cursorline = true
   end
 })
-
-deck.register_start_preset('chronicle_read', function()
-  deck.start({
-    name = 'chronicle_read',
-    execute = function(ctx)
-      for _, line in ipairs(vim.fn.readfile(vim.g.chronicle_read_path)) do
-        ctx.item({
-          display_text = line,
-          data = {
-            filename = line,
-          },
-        })
-      end
-      ctx.done()
-    end,
-    actions = {
-      require('deck').alias_action('default', 'open'),
-    },
-  })
-end)
-
-deck.register_start_preset('chronicle_write', function()
-  deck.start({
-    name = 'chronicle_write',
-    execute = function(ctx)
-      for _, line in ipairs(vim.fn.readfile(vim.g.chronicle_write_path)) do
-        ctx.item({
-          display_text = line,
-          data = {
-            filename = line,
-          },
-        })
-      end
-      ctx.done()
-    end,
-    actions = {
-      require('deck').alias_action('default', 'open'),
-    },
-  })
-end)
 
 deck.register_start_preset('git_files', function()
   local result = vim.system({ 'git', 'rev-parse', '--show-toplevel' }, { cwd = vim.fn.getcwd(), text = true }):wait()
@@ -111,8 +73,6 @@ vim.keymap.set('n', '<space>gi', '<Cmd>Deck git<CR>', { desc = 'Open git launche
 vim.keymap.set('n', '<space>he', '<Cmd>Deck helpgrep<CR>', { desc = 'Live grep all help tags' })
 
 vim.keymap.set('n', 'mg', '<Cmd>Deck git_files<CR>', { desc = 'Git files' })
-vim.keymap.set('n', 'mw', '<Cmd>Deck chronicle_write<CR>', { desc = 'Chronicle write' })
-vim.keymap.set('n', 'mr', '<Cmd>Deck chronicle_read<CR>', { desc = 'Chronicle read' })
 
 vim.keymap.set('n', 'md', function()
   deck.start(require('deck.builtin.source.files')({
