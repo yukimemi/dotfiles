@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:38:19.
+// Last Change : 2025/01/26 16:52:35.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@6.1.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@6.1.1";
 
 import * as fn from "jsr:@denops/std@7.4.0/function";
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
