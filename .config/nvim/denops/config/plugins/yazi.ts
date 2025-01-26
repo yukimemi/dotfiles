@@ -1,11 +1,12 @@
 // =============================================================================
 // File        : yazi.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:38:18.
+// Last Change : 2025/01/26 23:01:22.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.1.1";
 
+import * as fn from "jsr:@denops/std@7.4.0/function";
 import { pluginStatus } from "../pluginstatus.ts";
 import { execCommand } from "../util.ts";
 
@@ -17,8 +18,11 @@ export const yazi: Plug[] = [
     enabled: pluginStatus.yazi,
     cache: { afterFile: `~/.config/nvim/rc/after/yazi.lua` },
     build: async ({ denops, info }) => {
-      if (info.isUpdate && info.isLoad) {
-        await execCommand(denops, "cargo", ["install", "yazi-fm", "yazi-cli"]);
+      if (info.isUpdate && info.isLoad && (await fn.executable(denops, "ya")) < 1) {
+        await execCommand(denops, "cargo", ["install", "yazi-cli"]);
+      }
+      if (info.isUpdate && info.isLoad && (await fn.executable(denops, "yazi")) < 1) {
+        await execCommand(denops, "cargo", ["install", "yazi-fm"]);
       }
     },
   },
