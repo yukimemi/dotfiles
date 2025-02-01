@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-deck.lua
 -- Author      : yukimemi
--- Last Change : 2025/01/26 19:30:23.
+-- Last Change : 2025/02/01 09:26:03.
 -- =============================================================================
 
 local deck = require('deck')
@@ -73,6 +73,15 @@ vim.keymap.set('n', '<space>gi', '<Cmd>Deck git<CR>', { desc = 'Open git launche
 vim.keymap.set('n', '<space>he', '<Cmd>Deck helpgrep<CR>', { desc = 'Live grep all help tags' })
 
 vim.keymap.set('n', 'mg', '<Cmd>Deck git_files<CR>', { desc = 'Git files' })
+
+vim.keymap.set("n", "mb", function()
+  local bufname = vim.fn.bufname()
+  local bufdir = vim.fn.fnamemodify(bufname, ":p:h")
+  deck.start(require('deck.builtin.source.files')({
+    root_dir = bufdir,
+    ignore_globs = { '**/node_modules/', '**/.git/' },
+  }))
+end, { desc = "files on buffer dir" })
 
 vim.keymap.set('n', 'md', function()
   deck.start(require('deck.builtin.source.files')({

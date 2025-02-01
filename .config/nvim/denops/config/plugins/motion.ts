@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:39:01.
+// Last Change : 2025/02/01 09:22:40.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.1.1";
@@ -103,5 +103,10 @@ export const motion: Plug[] = [
     url: "https://github.com/karb94/neoscroll.nvim",
     enabled: false,
     afterFile: "~/.config/nvim/rc/after/neoscroll.lua",
+  },
+  {
+    url: "https://github.com/hrsh7th/nvim-swm",
+    profiles: ["default"],
+    afterFile: "~/.config/nvim/rc/after/nvim-swim.lua",
   },
 ];
