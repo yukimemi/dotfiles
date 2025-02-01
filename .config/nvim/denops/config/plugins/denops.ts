@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 17:51:32.
+// Last Change : 2025/02/01 16:02:55.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.0";
@@ -115,6 +115,11 @@ export const denops: Plug[] = [
       await vars.g.set(denops, "silentsaver_notify", true);
       await vars.g.set(denops, "silentsaver_use_ui_select", false);
       await vars.g.set(denops, "silentsaver_events", [
+        "BufEnter",
+        "FocusGained",
+        "FocusLost",
+        "WinEnter",
+        "InsertLeave",
         "CursorHold",
         "BufWritePre",
       ]);

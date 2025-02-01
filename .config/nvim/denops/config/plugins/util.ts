@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 16:52:35.
+// Last Change : 2025/02/01 12:16:30.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.0";
@@ -26,7 +26,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/mattn/vim-findroot",
-    enabled: false,
+    enabled: true,
     profiles: ["default"],
   },
   {
