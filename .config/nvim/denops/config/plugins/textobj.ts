@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : textobj.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 11:04:41.
+// Last Change : 2025/02/01 16:47:36.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.0";
@@ -31,7 +31,10 @@ export const textobj: Plug[] = [
     url: "https://github.com/gilligan/textobj-lastpaste",
     dependencies: ["https://github.com/kana/vim-textobj-user"],
   },
-  { url: "https://github.com/machakann/vim-swap" },
+  {
+    url: "https://github.com/machakann/vim-swap",
+    profiles: ["default"],
+  },
   { url: "https://github.com/machakann/vim-textobj-functioncall" },
   {
     url: "https://github.com/yuki-yano/vim-textobj-generics",
