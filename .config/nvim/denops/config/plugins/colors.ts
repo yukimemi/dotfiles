@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 13:35:40.
+// Last Change : 2025/02/01 16:54:23.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.0";
@@ -16,7 +16,6 @@ export const colors: Plug[] = [
   { url: "https://github.com/Allianaab2m/penumbra.nvim", profiles: ["colors"] },
   { url: "https://github.com/Badacadabra/vim-archery", profiles: ["colors"] },
   { url: "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim", profiles: ["colors"] },
-  { url: "https://github.com/masisz/ashikaga.nvim", profiles: ["colors"] },
   { url: "https://github.com/FrenzyExists/aquarium-vim", profiles: ["colors"] },
   { url: "https://github.com/KeitaNakamura/neodark.vim", profiles: ["colors"] },
   { url: "https://github.com/Matsuuu/pinkmare", profiles: ["colors"] },
@@ -50,6 +49,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/ellisonleao/gruvbox.nvim", profiles: ["colors"] },
   { url: "https://github.com/fenetikm/falcon", profiles: ["colors"] },
   { url: "https://github.com/folke/tokyonight.nvim", profiles: ["default"] },
+  { url: "https://github.com/futsuuu/vim-robot", profiles: ["colors"] },
   { url: "https://github.com/gkapfham/vim-vitamin-onec", profiles: ["colors"] },
   { url: "https://github.com/gkeep/iceberg-dark", profiles: ["colors"] },
   { url: "https://github.com/gruvbox-community/gruvbox", profiles: ["colors"] },
@@ -71,6 +71,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/machakann/vim-colorscheme-kemonofriends", profiles: ["colors"] },
   { url: "https://github.com/machakann/vim-colorscheme-tatami", profiles: ["colors"] },
   { url: "https://github.com/marko-cerovac/material.nvim", profiles: ["colors"] },
+  { url: "https://github.com/masisz/ashikaga.nvim", profiles: ["colors"] },
   { url: "https://github.com/maxmx03/solarized.nvim", profiles: ["colors"] },
   { url: "https://github.com/miikanissi/modus-themes.nvim", profiles: ["colors"] },
   { url: "https://github.com/nickburlett/vim-colors-stylus", profiles: ["colors"] },
@@ -161,7 +162,6 @@ export const colors: Plug[] = [
       "https://github.com/4513ECHO/vim-colors-hatsunemiku",
       "https://github.com/AlessandroYorba/Alduin",
       "https://github.com/Allianaab2m/penumbra.nvim",
-      "https://github.com/masisz/ashikaga.nvim",
       "https://github.com/Badacadabra/vim-archery",
       "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim",
       "https://github.com/FrenzyExists/aquarium-vim",
@@ -199,6 +199,7 @@ export const colors: Plug[] = [
       "https://github.com/ellisonleao/gruvbox.nvim",
       "https://github.com/fenetikm/falcon",
       "https://github.com/folke/tokyonight.nvim",
+      "https://github.com/futsuuu/vim-robot",
       "https://github.com/gkapfham/vim-vitamin-onec",
       "https://github.com/gkeep/iceberg-dark",
       "https://github.com/gruvbox-community/gruvbox",
@@ -220,6 +221,7 @@ export const colors: Plug[] = [
       "https://github.com/machakann/vim-colorscheme-kemonofriends",
       "https://github.com/machakann/vim-colorscheme-tatami",
       "https://github.com/marko-cerovac/material.nvim",
+      "https://github.com/masisz/ashikaga.nvim",
       "https://github.com/maxmx03/solarized.nvim",
       "https://github.com/miikanissi/modus-themes.nvim",
       "https://github.com/nickburlett/vim-colors-stylus",

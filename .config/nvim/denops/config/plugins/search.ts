@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 11:06:46.
+// Last Change : 2025/02/01 17:00:34.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.0";
@@ -19,7 +19,10 @@ export const search: Plug[] = [
     enabled: pluginStatus.modesearch,
     afterFile: "~/.config/nvim/rc/after/modesearch.lua",
   },
-  { url: "https://github.com/lambdalisue/vim-kensaku" },
+  {
+    url: "https://github.com/lambdalisue/vim-kensaku",
+    profiles: ["default"],
+  },
   {
     url: "https://github.com/lambdalisue/vim-kensaku-search",
     enabled: false,

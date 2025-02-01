@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 09:22:40.
+// Last Change : 2025/02/01 16:58:32.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.0";
@@ -40,6 +40,15 @@ export const motion: Plug[] = [
     enabled: pluginStatus.flash,
     cache: {
       afterFile: `~/.config/nvim/rc/after/flash.lua`,
+    },
+  },
+  {
+    url: "https://github.com/atusy/jab.nvim",
+    profiles: ["default"],
+    enabled: pluginStatus.jab,
+    dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
+    cache: {
+      afterFile: `~/.config/nvim/rc/after/jab.lua`,
     },
   },
   {
