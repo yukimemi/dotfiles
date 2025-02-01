@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 17:30:57.
+// Last Change : 2025/02/01 19:47:57.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
@@ -69,7 +69,8 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/olimorris/codecompanion.nvim",
-    enabled: false,
+    profiles: ["full"],
+    enabled: true,
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/nvim-treesitter/nvim-treesitter",
@@ -79,7 +80,7 @@ export const ai: Plug[] = [
   {
     url: "https://github.com/yetone/avante.nvim",
     profiles: ["full"],
-    enabled: true,
+    enabled: false,
     dependencies: [
       "https://github.com/stevearc/dressing.nvim",
       "https://github.com/nvim-lua/plenary.nvim",

@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-cmp.lua
 -- Author      : yukimemi
--- Last Change : 2024/11/18 14:04:33.
+-- Last Change : 2025/02/01 19:55:09.
 -- =============================================================================
 
 local cmp = require("cmp")
@@ -49,6 +49,7 @@ cmp.setup({
     { name = "path" },
     { name = "nerdfont" },
     { name = "emoji" },
+    { name = "codecompanion" },
   }, {
     { name = "buffer" },
   }, {
