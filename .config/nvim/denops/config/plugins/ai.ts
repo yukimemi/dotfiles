@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 13:35:44.
+// Last Change : 2025/02/01 17:30:57.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
@@ -10,7 +10,7 @@ import { z } from "npm:zod@3.24.1";
 import { exists } from "jsr:@std/fs@1.0.11";
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 import * as vars from "jsr:@denops/std@7.4.0/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@6.2.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
 import { execCommand } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 import {
@@ -78,13 +78,28 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/yetone/avante.nvim",
-    enabled: false,
+    profiles: ["full"],
+    enabled: true,
     dependencies: [
       "https://github.com/stevearc/dressing.nvim",
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/MunifTanjim/nui.nvim",
       "https://github.com/nvim-tree/nvim-web-devicons",
     ],
+    build: async ({ denops, info }) => {
+      if (info.isUpdate && info.isLoad) {
+        if (denops.meta.platform === "windows") {
+          await execCommand(denops, "powershell", [
+            "-ExecutionPolicy",
+            "Bypass",
+            "-File",
+            "Build.ps1",
+          ], info.dst);
+        } else {
+          await execCommand(denops, "make", [], info.dst);
+        }
+      }
+    },
     afterFile: "~/.config/nvim/rc/after/avante.lua",
   },
   {

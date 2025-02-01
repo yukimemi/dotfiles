@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2024/12/31 10:19:11.
+// Last Change : 2025/02/01 17:32:50.
 // =============================================================================
 
 import * as buffer from "jsr:@denops/std@7.4.0/buffer";
@@ -171,6 +171,7 @@ export async function removeShada(denops: Denops) {
 
 export async function execCommand(denops: Denops, command: string, args: string[], cwd?: string) {
   const cmd = new Deno.Command(command, { args, cwd });
+  console.log(`» ${command} ${args.join(" ")}`);
   const output = await cmd.output();
   if (output.stdout.length) {
     await notify(denops, new TextDecoder().decode(output.stdout));
