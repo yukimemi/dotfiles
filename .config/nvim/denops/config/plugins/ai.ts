@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 19:47:57.
+// Last Change : 2025/02/05 00:38:29.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
@@ -127,6 +127,7 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/futago.vim",
+    // dst: `~/src/github.com/yukimemi/futago.vim`,
     profiles: ["minimal"],
     enabled: true,
     before: async ({ denops }) => {
@@ -327,7 +328,7 @@ lang: ja
       await mapping.map(
         denops,
         "mf",
-        `<cmd>call futago#start_chat({ "opener": "vsplit", "humanPrompt": "yukimemi", "history": [{"role": "user", "parts": [{ "text": "僕の名前は yukimemi。敬語は使わずにフレンドリーに回答してね。" }]}, {"role": "model", "parts": [{ "text": "了解！覚えておくね！" }]}]})<cr>`,
+        `<cmd>call futago#start_chat({"opener": "vsplit", "humanPrompt": "yukimemi", "history": [{"role": "user", "parts": [{ "text": "僕の名前は yukimemi。敬語は使わずにフレンドリーに回答してね。" }]}, {"role": "model", "parts": [{ "text": "了解！覚えておくね！" }]}]})<cr>`,
         { mode: "n" },
       );
     },

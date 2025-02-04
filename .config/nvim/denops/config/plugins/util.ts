@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 12:16:30.
+// Last Change : 2025/02/02 22:27:56.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -69,7 +69,7 @@ export const util: Plug[] = [
 
         // When set to false, you will get a message when project.nvim changes your
         // directory.
-        silent_chdir: false,
+        silent_chdir: true,
 
         // What scope to change the directory, valid options are
         // * global (default)
