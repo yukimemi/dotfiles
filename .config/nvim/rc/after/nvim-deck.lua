@@ -1,10 +1,11 @@
 -- =============================================================================
 -- File        : nvim-deck.lua
 -- Author      : yukimemi
--- Last Change : 2025/02/01 09:26:03.
+-- Last Change : 2025/02/08 11:58:02.
 -- =============================================================================
 
 local deck = require('deck')
+vim.ui.select = deck.ui_select
 
 -- Apply pre-defined easy settings.
 -- For manual configuration, refer to the code in `deck/easy.lua`.
