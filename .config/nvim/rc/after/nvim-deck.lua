@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-deck.lua
 -- Author      : yukimemi
--- Last Change : 2025/02/09 15:40:55.
+-- Last Change : 2025/02/09 21:23:47.
 -- =============================================================================
 
 local deck = require('deck')
@@ -105,7 +105,7 @@ vim.keymap.set('n', 'mC', function()
 end, { desc = 'cache files' })
 vim.keymap.set('n', 'mM', function()
   deck.start(require('deck.builtin.source.files')({
-    root_dir = vim.fn.expand('~/.memolit'),
+    root_dir = vim.fn.expand('~/.memolist'),
     ignore_globs = { '**/node_modules/', '**/.git/' },
   }))
 end, { desc = 'memolit files' })
