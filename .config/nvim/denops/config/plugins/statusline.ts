@@ -1,12 +1,13 @@
 // =============================================================================
 // File        : statusline.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:38:42.
+// Last Change : 2025/02/09 13:37:24.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
 
 import { pluginStatus } from "../pluginstatus.ts";
+import * as vars from "jsr:@denops/std@7.4.0/variable";
 
 export const statusline: Plug[] = [
   {
@@ -37,9 +38,39 @@ export const statusline: Plug[] = [
   },
   {
     url: "https://github.com/itchyny/lightline.vim",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "vim" && false,
-    // deno-lint-ignore require-await
-    clone: async ({ denops }) => denops.meta.host === "vim",
+    profiles: ["default"],
+    enabled: pluginStatus.lightline,
+    before: async ({ denops }) => {
+      await vars.g.set(denops, "lightline", {
+        colorscheme: "rosepine",
+        active: {
+          left: [
+            ["mode", "paste"],
+            ["colorscheme", "bomb"],
+            ["gitbranch", "readonly", "filename", "modified"],
+          ],
+          right: [
+            ["lineinfo"],
+            ["percent"],
+            ["fileformat", "fileencoding", "filetype"],
+          ],
+        },
+        inactive: {
+          left: [
+            ["mode"],
+            ["gitbranch", "filename", "modified"],
+          ],
+          right: [
+            ["fileformat", "fileencoding", "filetype"],
+          ],
+        },
+        component: {
+          bomb: '%{&bomb?"BOM":""}',
+          readonly: '%{&readonly?"RO":""}',
+          modified: '%{&modified?"+":""}',
+          colorscheme: "%{g:colors_name}",
+        },
+      });
+    },
   },
 ];
