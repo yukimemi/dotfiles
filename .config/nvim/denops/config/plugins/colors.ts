@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 16:54:23.
+// Last Change : 2025/02/09 10:01:30.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -267,8 +267,8 @@ export const colors: Plug[] = [
       await vars.g.set(denops, "spectrism_debug", false);
       await vars.g.set(denops, "spectrism_echo", false);
       await vars.g.set(denops, "spectrism_notify", true);
-      await vars.g.set(denops, "spectrism_interval", 60);
-      await vars.g.set(denops, "spectrism_checkwait", 1000);
+      await vars.g.set(denops, "spectrism_interval", 3600);
+      await vars.g.set(denops, "spectrism_checkwait", 3000);
       await vars.g.set(denops, "spectrism_disables", [
         "evening",
         "default",
