@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-deck.lua
 -- Author      : yukimemi
--- Last Change : 2025/02/08 11:58:02.
+-- Last Change : 2025/02/09 15:40:55.
 -- =============================================================================
 
 local deck = require('deck')
@@ -72,6 +72,7 @@ vim.keymap.set('n', '<space>ff', '<Cmd>Deck files<CR>', { desc = 'Show recent fi
 vim.keymap.set('n', '<space>gr', '<Cmd>Deck grep<CR>', { desc = 'Start grep search' })
 vim.keymap.set('n', '<space>gi', '<Cmd>Deck git<CR>', { desc = 'Open git launcher' })
 vim.keymap.set('n', '<space>he', '<Cmd>Deck helpgrep<CR>', { desc = 'Live grep all help tags' })
+vim.keymap.set('n', '<space>,', '<Cmd>Deck buffers<CR>', { desc = 'Deck buffers' })
 
 vim.keymap.set('n', 'mg', '<Cmd>Deck git_files<CR>', { desc = 'Git files' })
 
