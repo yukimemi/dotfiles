@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/02/02 22:27:56.
+// Last Change : 2025/02/08 23:57:04.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -81,7 +81,8 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/uga-rosa/ccc.nvim",
-    enabled: false,
+    profiles: ["full"],
+    enabled: true,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ccc").setup(_A)`, {
         highlighter: {
