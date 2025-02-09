@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : lualine.lua
 -- Author      : yukimemi
--- Last Change : 2024/12/08 21:40:09.
+-- Last Change : 2025/02/09 13:40:23.
 -- =============================================================================
 
 -- Eviline config for lualine
@@ -53,6 +53,9 @@ local config = {
       normal = { c = { fg = colors.fg, bg = colors.bg } },
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
     },
+    disabled_filetypes = {
+      statusline = { "deck" }
+    }
   },
   sections = {
     -- these are to remove the defaults
