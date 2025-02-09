@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : terminal.ts
 // Author      : yukimemi
-// Last Change : 2025/02/09 10:34:51.
+// Last Change : 2025/02/09 10:38:42.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -11,6 +11,7 @@ import * as lambda from "jsr:@denops/std@7.4.0/lambda";
 import * as mapping from "jsr:@denops/std@7.4.0/mapping";
 import * as op from "jsr:@denops/std@7.4.0/option";
 import { batch } from "jsr:@denops/std@7.4.0/batch";
+import { pluginStatus } from "../pluginstatus.ts";
 
 export const terminal: Plug[] = [
   {
@@ -30,16 +31,18 @@ export const terminal: Plug[] = [
   },
   {
     url: "https://github.com/Shougo/ddt-ui-shell",
+    enabled: pluginStatus.ddt,
     profiles: ["default"],
   },
   {
     url: "https://github.com/Shougo/ddt-ui-terminal",
+    enabled: pluginStatus.ddt,
     profiles: ["default"],
   },
   {
     url: "https://github.com/Shougo/ddt.vim",
+    enabled: pluginStatus.ddt,
     profiles: ["default"],
-    enabled: true,
     dependencies: [
       "https://github.com/Shougo/ddt-ui-shell",
       "https://github.com/Shougo/ddt-ui-terminal",
