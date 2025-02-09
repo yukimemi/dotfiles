@@ -161,7 +161,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/chronicle.vim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/chronicle.vim",
       afterFile: "~/.config/nvim/rc/after/chronicle.vim",
