@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2025/01/07 23:22:41.
+; Last Change : 2025/02/10 09:45:28.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -87,8 +87,13 @@ Activate3(app, cmd, title) {
 ; for Outlook
 ^F9::
 {
-  Activate(EnvGet("LOCALAPPDATA") "\Microsoft\WindowsApps\olk.exe")
-  return
+  If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usenewoutlook")) {
+    Activate(EnvGet("LOCALAPPDATA") "\Microsoft\WindowsApps\olk.exe")
+    return
+  } else {
+    Activate("C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE")
+    return
+  }
 }
 
 ; for Excel
