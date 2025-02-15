@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/02/05 00:38:29.
+// Last Change : 2025/02/15 15:19:14.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
@@ -102,6 +102,12 @@ export const ai: Plug[] = [
       }
     },
     afterFile: "~/.config/nvim/rc/after/avante.lua",
+  },
+  {
+    url: "https://github.com/augmentcode/augment.vim",
+    profiles: ["full"],
+    enabled: pluginStatus.augment,
+    beforeFile: "~/.config/nvim/rc/before/augment.lua",
   },
   {
     url: "https://github.com/nomnivore/ollama.nvim",

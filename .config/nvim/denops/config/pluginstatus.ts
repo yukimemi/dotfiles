@@ -1,15 +1,15 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2025/02/09 13:38:47.
+// Last Change : 2025/02/15 15:22:54.
 // =============================================================================
 
 export const pluginStatus = {
+  augment: false,
   autopairs: false,
   barbar: false,
   barbecue: false,
   blink: false,
-  jab: false,
   bookmarks: true,
   bufferline: false,
   buffertabs: false,
@@ -20,6 +20,7 @@ export const pluginStatus = {
   codeium: false,
   compl: false,
   ddc: false,
+  ddt: false,
   ddu: false,
   ddufiler: false,
   deck: true,
@@ -35,9 +36,9 @@ export const pluginStatus = {
   indentblankline: false,
   initial: false,
   insx: true,
-  ddt: false,
-  lualine: true,
+  jab: false,
   lightline: false,
+  lualine: true,
   modesearch: false,
   necodeium: true,
   neocolumn: false,
@@ -48,9 +49,9 @@ export const pluginStatus = {
   nvimtree: false,
   oil: false,
   overseer: true,
-  quickrun: true,
   qfreplace: true,
   quicker: true,
+  quickrun: true,
   satellite: false,
   scrollbar: false,
   sg: false,
