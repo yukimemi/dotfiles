@@ -5,7 +5,7 @@ body = """
 rem ============================================================================
 rem File        : ${TM_FILENAME}
 rem Author      : yukimemi
-rem Last Change : 2023/12/24 00:08:08.
+rem Last Change : 2025/02/11 22:39:58.
 rem ============================================================================
 
 rem setlocal enabledelayedexpansion
@@ -21,9 +21,9 @@ set cmdFileName=%~nx0
 
 pushd "%cmdDir%"
 
-set log="%cmdDir%%cmdName%_%computername%_%now%.log"
+set BATLOGPATH="%cmdDir%%cmdName%_%computername%_%now%.log"
 
-rem call :main >> %log% 2>&1
+rem call :main >> %BATLOGPATH% 2>&1
 call :main
 
 set exitCode=%errorlevel%
@@ -35,8 +35,15 @@ popd
 
 exit /b %exitCode%
 
+rem ============================================================================
 :main
 
 exit /b %errorlevel%
-"""
 
+rem ============================================================================
+:log
+set msg=%*
+set tm=%time: =0%
+echo %date% %tm% %msg%
+exit /b
+"""
