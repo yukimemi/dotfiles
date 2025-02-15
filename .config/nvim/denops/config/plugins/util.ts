@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/02/08 23:57:04.
+// Last Change : 2025/02/13 20:26:25.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -587,6 +587,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/Shougo/junkfile.vim",
+    profiles: ["default"],
     afterFile: "~/.config/nvim/rc/after/junkfile.vim",
   },
   {
