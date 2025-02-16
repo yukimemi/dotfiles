@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/02/15 15:19:14.
+// Last Change : 2025/02/16 19:51:27.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.4.0/lambda";
@@ -82,7 +82,6 @@ export const ai: Plug[] = [
     profiles: ["full"],
     enabled: false,
     dependencies: [
-      "https://github.com/stevearc/dressing.nvim",
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/MunifTanjim/nui.nvim",
       "https://github.com/nvim-tree/nvim-web-devicons",
@@ -114,7 +113,6 @@ export const ai: Plug[] = [
     enabled: false,
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
-      "https://github.com/stevearc/dressing.nvim",
     ],
     afterFile: "~/.config/nvim/rc/after/ollama.lua",
   },

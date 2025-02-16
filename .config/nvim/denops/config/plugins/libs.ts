@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 13:35:46.
+// Last Change : 2025/02/16 19:50:03.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -95,7 +95,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/stevearc/dressing.nvim",
-    profiles: ["default"],
+    enabled: false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("dressing").setup()`);
     },
