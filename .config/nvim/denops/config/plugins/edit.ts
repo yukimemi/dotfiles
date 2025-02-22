@@ -6,11 +6,11 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
 
-import * as autocmd from "jsr:@denops/std@7.4.0/autocmd";
-import * as fn from "jsr:@denops/std@7.4.0/function";
-import * as vars from "jsr:@denops/std@7.4.0/variable";
-import * as mapping from "jsr:@denops/std@7.4.0/mapping";
-import { execute } from "jsr:@denops/std@7.4.0/helper";
+import * as autocmd from "jsr:@denops/std@7.5.0/autocmd";
+import * as fn from "jsr:@denops/std@7.5.0/function";
+import * as vars from "jsr:@denops/std@7.5.0/variable";
+import * as mapping from "jsr:@denops/std@7.5.0/mapping";
+import { execute } from "jsr:@denops/std@7.5.0/helper";
 
 import { pluginStatus } from "../pluginstatus.ts";
 import { ensureDir } from "jsr:@std/fs@1.0.13/ensure-dir";

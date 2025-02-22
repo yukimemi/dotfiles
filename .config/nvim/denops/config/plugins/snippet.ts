@@ -4,9 +4,9 @@
 // Last Change : 2025/02/01 09:37:20.
 // =============================================================================
 
-import * as fn from "jsr:@denops/std@7.4.0/function";
-import * as mapping from "jsr:@denops/std@7.4.0/mapping";
-import * as vars from "jsr:@denops/std@7.4.0/variable";
+import * as fn from "jsr:@denops/std@7.5.0/function";
+import * as mapping from "jsr:@denops/std@7.5.0/mapping";
+import * as vars from "jsr:@denops/std@7.5.0/variable";
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
 import { pluginStatus } from "../pluginstatus.ts";
 import { z } from "npm:zod@3.24.2";

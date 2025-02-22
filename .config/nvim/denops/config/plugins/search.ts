@@ -5,7 +5,7 @@
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
-import * as mapping from "jsr:@denops/std@7.4.0/mapping";
+import * as mapping from "jsr:@denops/std@7.5.0/mapping";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const search: Plug[] = [
