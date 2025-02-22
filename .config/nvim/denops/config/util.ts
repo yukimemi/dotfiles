@@ -4,14 +4,14 @@
 // Last Change : 2025/02/01 17:32:50.
 // =============================================================================
 
-import * as buffer from "jsr:@denops/std@7.4.0/buffer";
-import * as fn from "jsr:@denops/std@7.4.0/function";
+import * as buffer from "jsr:@denops/std@7.5.0/buffer";
+import * as fn from "jsr:@denops/std@7.5.0/function";
 import * as fs from "jsr:@std/fs@1.0.13";
-import * as helper from "jsr:@denops/std@7.4.0/helper";
-import * as nvimFn from "jsr:@denops/std@7.4.0/function/nvim";
-import * as option from "jsr:@denops/std@7.4.0/option";
-import * as vars from "jsr:@denops/std@7.4.0/variable";
-import type { Denops } from "jsr:@denops/std@7.4.0";
+import * as helper from "jsr:@denops/std@7.5.0/helper";
+import * as nvimFn from "jsr:@denops/std@7.5.0/function/nvim";
+import * as option from "jsr:@denops/std@7.5.0/option";
+import * as vars from "jsr:@denops/std@7.5.0/variable";
+import type { Denops } from "jsr:@denops/std@7.5.0";
 import { format } from "jsr:@std/datetime@0.225.3";
 import { join } from "jsr:@std/path@1.0.8/join";
 import { systemopen } from "jsr:@lambdalisue/systemopen@1.0.0";
