@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-deck.lua
 -- Author      : yukimemi
--- Last Change : 2025/02/09 21:23:47.
+-- Last Change : 2025/02/22 15:19:31.
 -- =============================================================================
 
 local deck = require('deck')
@@ -35,6 +35,7 @@ vim.api.nvim_create_autocmd('User', {
     ctx.keymap('n', 's', deck.action_mapping('open_split'))
     ctx.keymap('n', 'v', deck.action_mapping('open_vsplit'))
     ctx.keymap('n', 'c', deck.action_mapping('create'))
+    ctx.keymap('n', 'w', deck.action_mapping('write'))
     ctx.keymap('n', '<C-u>', deck.action_mapping('scroll_preview_up'))
     ctx.keymap('n', '<C-d>', deck.action_mapping('scroll_preview_down'))
 
@@ -59,6 +60,29 @@ vim.api.nvim_create_autocmd('User', {
   end
 })
 
+--key-mapping for explorer source (requires `require('deck.easy').setup()`).
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'DeckStart:explorer',
+  callback = function(e)
+    local ctx = e.data.ctx --[[@as deck.Context]]
+    ctx.keymap('n', 'h', deck.action_mapping('explorer.collapse'))
+    ctx.keymap('n', 'l', deck.action_mapping('explorer.expand'))
+    ctx.keymap('n', '.', deck.action_mapping('explorer.toggle_dotfiles'))
+    ctx.keymap('n', 'c', deck.action_mapping('explorer.clipboard.save_copy'))
+    ctx.keymap('n', 'm', deck.action_mapping('explorer.clipboard.save_move'))
+    ctx.keymap('n', 'p', deck.action_mapping('explorer.clipboard.paste'))
+    ctx.keymap('n', 'x', deck.action_mapping('explorer.clipboard.paste'))
+    ctx.keymap('n', '<Leader>ff', deck.action_mapping('explorer.dirs'))
+    ctx.keymap('n', 'P', deck.action_mapping('toggle_preview_mode'))
+    ctx.keymap('n', '~', function()
+      ctx.do_action('explorer.get_api').set_cwd(vim.fs.normalize('~'))
+    end)
+    ctx.keymap('n', '\\', function()
+      ctx.do_action('explorer.get_api').set_cwd(vim.fs.normalize('/'))
+    end)
+  end
+})
+
 deck.register_start_preset('git_files', function()
   local result = vim.system({ 'git', 'rev-parse', '--show-toplevel' }, { cwd = vim.fn.getcwd(), text = true }):wait()
   deck.start(require('deck.builtin.source.files')({
@@ -73,6 +97,7 @@ vim.keymap.set('n', '<space>gr', '<Cmd>Deck grep<CR>', { desc = 'Start grep sear
 vim.keymap.set('n', '<space>gi', '<Cmd>Deck git<CR>', { desc = 'Open git launcher' })
 vim.keymap.set('n', '<space>he', '<Cmd>Deck helpgrep<CR>', { desc = 'Live grep all help tags' })
 vim.keymap.set('n', '<space>,', '<Cmd>Deck buffers<CR>', { desc = 'Deck buffers' })
+vim.keymap.set('n', 'ge', '<Cmd>Deck explorer<CR>', { desc = 'Deck explorer' })
 
 vim.keymap.set('n', 'mg', '<Cmd>Deck git_files<CR>', { desc = 'Git files' })
 
@@ -84,6 +109,15 @@ vim.keymap.set("n", "mb", function()
     ignore_globs = { '**/node_modules/', '**/.git/' },
   }))
 end, { desc = "files on buffer dir" })
+
+vim.keymap.set("n", "gE", function()
+  local bufname = vim.fn.bufname()
+  local bufdir = vim.fn.fnamemodify(bufname, ":p:h")
+  deck.start(require('deck.builtin.source.explorer')({
+    cwd = bufdir,
+    mode = "drawer",
+  }))
+end, { desc = "Explorer on buffer dir" })
 
 vim.keymap.set('n', 'md', function()
   deck.start(require('deck.builtin.source.files')({

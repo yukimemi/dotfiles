@@ -3,6 +3,7 @@
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "actions": [],
     "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "keybindings": [],
     "newTabMenu": 
     [
         {
@@ -18,7 +19,8 @@
             "colorScheme": "One Half Dark",
             "font": 
             {
-                "face": "PlemolJP Console NF"
+                "face": "PlemolJP Console NF",
+                "size": 11
             },
             "opacity": 90
         },

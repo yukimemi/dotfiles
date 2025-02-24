@@ -30,8 +30,8 @@
 	quotepath = false
 	editor = nvim
 [ghq]
-	root = ~/.cache/nvim/pack/minpac
-	root = ~/.go/src
+	root = ~/.cache/nvim/dvpm
+	root = ~/go/src
 	root = ~/src
 [merge]
 	tool = "nvim -d"

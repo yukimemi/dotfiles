@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : yazi.toml
 # Author      : yukimemi
-# Last Change : 2025/01/25 13:41:07.
+# Last Change : 2025/02/16 22:49:48.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -13,24 +13,37 @@ linemode = "mtime"
 
 [opener]
 edit = [
-	{ run = '${EDITOR:-hitori} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-	{ run = 'hitori %*', orphan = true, block = false, desc = "hitori", for = "windows" },
+  { run = '${EDITOR:-hitori} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+  { run = 'hitori %*', orphan = true, block = false, desc = "hitori", for = "windows" },
+]
+diff = [
+  { run = '%LOCALAPPDATA%\Programs\WinMerge\WinMergeU.exe %*', orphan = true, block = false, desc = "WinMerge", for = "windows" },
+]
+backup = [
+  { run = '%USERPROFILE%\src\github.com\yukimemi\bat\backup-old.bat %*', orphan = true, block = false, desc = "Backup", for = "windows" },
 ]
 
 [open]
-prepend_rules = [{ name = "*/", use = ["reveal", "open", "edit"] }]
-append_rules = [{ name = "*", use = ["open", "reveal", "edit"] }]
+prepend_rules = [
+  { name = "*/", use = [
+    "reveal",
+    "open",
+    "edit",
+    "diff",
+  ] },
+  { name = "*", use = [
+    "open",
+    "reveal",
+    "edit",
+    "backup",
+    "diff",
+  ] },
+]
 
 [plugin]
 prepend_preloaders = [{ mime = "application/pdf", run = "noop" }]
 prepend_previewers = [
-	{ name = "*.md", run = "mdcat" },
-	# Archive previewer
-	{ mime = "application/*zip", run = "ouch" },
-	{ mime = "application/x-tar", run = "ouch" },
-	{ mime = "application/x-bzip2", run = "ouch" },
-	{ mime = "application/x-7z-compressed", run = "ouch" },
-	{ mime = "application/x-rar", run = "ouch" },
-	{ mime = "application/x-xz", run = "ouch" },
-	{ mime = "application/pdf", run = "noop" },
+  { name = "*.md", run = "mdcat" },
+  { name = "*.zip", run = "ouch" },
+  { mime = "application/pdf", run = "noop" },
 ]

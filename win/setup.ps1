@@ -94,7 +94,7 @@ function Install-RequiredModules {
   winget install -q Starship.Starship
   winget install -q Microsoft.VisualStudioCode
   winget install -q WinMerge.WinMerge
-  winget install -q SlackTechnologies.Slack
+  # winget install -q SlackTechnologies.Slack
   winget install -q Chocolatey.Chocolatey
   winget install -q zig.zig
   winget install -q GoLang.Go

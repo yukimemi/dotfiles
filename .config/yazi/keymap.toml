@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : keymap.toml
 # Author      : yukimemi
-# Last Change : 2025/02/11 17:31:06.
+# Last Change : 2025/02/17 00:27:30.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -25,6 +25,12 @@ desc = "Yazi command prompt"
 on = "<C-y>"
 run = ["plugin system-clipboard"]
 desc = "Copy to system clipboard"
+# https://github.com/orhnk/system-clipboard.yazi/issues/3
+# Dose not work for me ...
+[[manager.prepend_keymap]]
+on = "<C-p>"
+run = "shell 'cb paste' --block"
+desc = "Paste from clipboard"
 
 # https://github.com/Lil-Dank/lazygit.yazi
 [[manager.prepend_keymap]]
@@ -34,35 +40,35 @@ desc = "run lazygit"
 
 # https://github.com/h-hg/yamb.yazi
 [[manager.prepend_keymap]]
-on = ["m", "a"]
+on = ["u", "a"]
 run = "plugin yamb save"
 desc = "Add bookmark"
 [[manager.prepend_keymap]]
-on = ["m", "g"]
+on = ["u", "g"]
 run = "plugin yamb jump_by_key"
 desc = "Jump bookmark by key"
 [[manager.prepend_keymap]]
-on = ["m", "G"]
+on = ["u", "G"]
 run = "plugin yamb jump_by_fzf"
 desc = "Jump bookmark by fzf"
 [[manager.prepend_keymap]]
-on = ["m", "d"]
+on = ["u", "d"]
 run = "plugin yamb delete_by_key"
 desc = "Delete bookmark by key"
 [[manager.prepend_keymap]]
-on = ["m", "D"]
+on = ["u", "D"]
 run = "plugin yamb delete_by_fzf"
 desc = "Delete bookmark by fzf"
 [[manager.prepend_keymap]]
-on = ["m", "A"]
+on = ["u", "A"]
 run = "plugin yamb delete_all"
 desc = "Delete all bookmarks"
 [[manager.prepend_keymap]]
-on = ["m", "r"]
+on = ["u", "r"]
 run = "plugin yamb rename_by_key"
 desc = "Rename bookmark by key"
 [[manager.prepend_keymap]]
-on = ["m", "R"]
+on = ["u", "R"]
 run = "plugin yamb rename_by_fzf"
 desc = "Rename bookmark by fzf"
 
@@ -117,12 +123,10 @@ desc = "Goto git root"
 on = ["g", "d"]
 run = "cd ~/.dotfiles"
 desc = "Goto dotfiles"
-
 [[manager.prepend_keymap]]
 on = ["g", "b"]
 run = "cd ~/Box"
 desc = "Goto Box"
-
 [[manager.prepend_keymap]]
 on = ["g", "D"]
 run = "cd ~/Downloads"
@@ -134,7 +138,6 @@ on = ["g", "n"]
 run = "cd n:"
 desc = "Goto N drive"
 for = "windows"
-
 [[manager.prepend_keymap]]
 on = ["g", "o"]
 run = "cd %OneDrive%"
@@ -190,10 +193,6 @@ desc = "Go back to the parent directory"
 on = ["<Left>"]
 run = "plugin augment-command 'leave --no-skip'"
 desc = "Go back to the parent directory"
-[[manager.prepend_keymap]]
-on = ["u"]
-run = ["toggle_all --state=false", "unyank"]
-desc = "Unselect all files and also unyank cut files"
 [[manager.prepend_keymap]]
 on = ["p"]
 run = "plugin augment-command 'paste'"
