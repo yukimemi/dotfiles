@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : statusline.ts
 // Author      : yukimemi
-// Last Change : 2025/02/09 13:37:24.
+// Last Change : 2025/03/02 19:53:19.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -72,5 +72,11 @@ export const statusline: Plug[] = [
         },
       });
     },
+  },
+  {
+    url: "https://github.com/tar80/staba.nvim",
+    profiles: ["default"],
+    enabled: pluginStatus.staba,
+    afterFile: `~/.config/nvim/rc/after/staba.lua`,
   },
 ];
