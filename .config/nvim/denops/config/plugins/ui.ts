@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 13:35:36.
+// Last Change : 2025/03/02 15:28:30.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -64,6 +64,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/RRethy/vim-illuminate",
+    profiles: ["default"],
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     enabled: true,
   },
@@ -76,6 +77,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/jinh0/eyeliner.nvim",
+    profiles: ["default"],
     afterFile: `~/.config/nvim/rc/after/eyeliner.lua`,
   },
   { url: "https://github.com/deris/vim-shot-f", enabled: false },
