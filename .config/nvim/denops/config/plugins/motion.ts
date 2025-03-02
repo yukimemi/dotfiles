@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 16:58:32.
+// Last Change : 2025/03/02 15:23:20.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -50,6 +50,12 @@ export const motion: Plug[] = [
     cache: {
       afterFile: `~/.config/nvim/rc/after/jab.lua`,
     },
+  },
+  {
+    url: "https://github.com/FluxxField/smart-motion.nvim",
+    profiles: ["default"],
+    enabled: pluginStatus.smartmotion,
+    afterFile: `~/.config/nvim/rc/after/smart-motion.lua`,
   },
   {
     url: "https://github.com/lambdalisue/vim-initial",
