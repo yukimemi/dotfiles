@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : keymap.toml
 # Author      : yukimemi
-# Last Change : 2025/02/17 00:27:30.
+# Last Change : 2025/03/03 00:51:17.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -40,35 +40,35 @@ desc = "run lazygit"
 
 # https://github.com/h-hg/yamb.yazi
 [[manager.prepend_keymap]]
-on = ["u", "a"]
+on = ["m", "a"]
 run = "plugin yamb save"
 desc = "Add bookmark"
 [[manager.prepend_keymap]]
-on = ["u", "g"]
+on = ["m", "g"]
 run = "plugin yamb jump_by_key"
 desc = "Jump bookmark by key"
 [[manager.prepend_keymap]]
-on = ["u", "G"]
+on = ["m", "G"]
 run = "plugin yamb jump_by_fzf"
 desc = "Jump bookmark by fzf"
 [[manager.prepend_keymap]]
-on = ["u", "d"]
+on = ["m", "d"]
 run = "plugin yamb delete_by_key"
 desc = "Delete bookmark by key"
 [[manager.prepend_keymap]]
-on = ["u", "D"]
+on = ["m", "D"]
 run = "plugin yamb delete_by_fzf"
 desc = "Delete bookmark by fzf"
 [[manager.prepend_keymap]]
-on = ["u", "A"]
+on = ["m", "A"]
 run = "plugin yamb delete_all"
 desc = "Delete all bookmarks"
 [[manager.prepend_keymap]]
-on = ["u", "r"]
+on = ["m", "r"]
 run = "plugin yamb rename_by_key"
 desc = "Rename bookmark by key"
 [[manager.prepend_keymap]]
-on = ["u", "R"]
+on = ["m", "R"]
 run = "plugin yamb rename_by_fzf"
 desc = "Rename bookmark by fzf"
 

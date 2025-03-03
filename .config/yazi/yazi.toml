@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : yazi.toml
 # Author      : yukimemi
-# Last Change : 2025/02/16 22:49:48.
+# Last Change : 2025/03/02 23:53:52.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -9,7 +9,7 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [manager]
-linemode = "mtime"
+linemode = "size_and_mtime"
 
 [opener]
 edit = [
