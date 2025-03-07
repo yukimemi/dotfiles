@@ -18,7 +18,7 @@ import {
   HarmBlockThreshold,
   HarmCategory,
   SafetySetting,
-} from "npm:@google/generative-ai@0.23.0";
+} from "npm:@google/generative-ai@0.24.0";
 
 export const ai: Plug[] = [
   {
