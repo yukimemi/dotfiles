@@ -13,7 +13,7 @@ import * as vars from "jsr:@denops/std@7.5.0/variable";
 export const motion: Plug[] = [
   {
     url: "https://github.com/haya14busa/vim-edgemotion",
-    profiles: ["default"],
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await mapping.map(denops, "sj", "<Plug>(edgemotion-j)", {
         mode: ["n", "x"],
@@ -44,7 +44,7 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/atusy/jab.nvim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     enabled: pluginStatus.jab,
     dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
     cache: {
@@ -73,7 +73,7 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/Bakudankun/BackAndForward.vim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await mapping.map(denops, "gH", "<Plug>(backandforward-back)", {
         mode: "n",

@@ -41,7 +41,7 @@ function M.config()
             return ret:len() > 2000 and "navic error" or ret
           end,
           cond = function()
-            local navic = require("nvim-navic")
+            -- local navic = require("nvim-navic")
             return navic.is_available()
           end,
           color = { fg = "#ff9e64" },

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:39:21.
+// Last Change : 2025/03/20 14:45:46.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -51,7 +51,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/nvim-insx",
-    profiles: ["default"],
+    profiles: ["minimal"],
     enabled: pluginStatus.insx,
     after: async ({ denops }) => {
       await denops.cmd(`lua require('insx.preset.standard').setup()`);
@@ -66,11 +66,11 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/Shougo/context_filetype.vim",
-    profiles: ["default"],
+    profiles: ["minimal"],
   },
   {
     url: "https://github.com/uga-rosa/contextment.vim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     dependencies: ["https://github.com/Shougo/context_filetype.vim"],
     before: async ({ denops }) => {
       await mapping.map(denops, "gcc", "<Plug>(contextment)", { mode: "x" });
@@ -81,7 +81,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/gbprod/yanky.nvim",
-    profiles: ["default"],
+    profiles: ["yank"],
     enabled: pluginStatus.yanky,
     after: async ({ denops }) => {
       await mapping.map(denops, "p", "<Plug>(YankyPutAfter)", {

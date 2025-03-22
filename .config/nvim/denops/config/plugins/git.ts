@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:39:39.
+// Last Change : 2025/03/18 01:37:22.
 // =============================================================================
 
 import * as mapping from "jsr:@denops/std@7.5.0/mapping";
@@ -12,7 +12,7 @@ import { execCommand } from "../util.ts";
 export const git: Plug[] = [
   {
     url: "https://github.com/lewis6991/gitsigns.nvim",
-    profiles: ["default"],
+    profiles: ["git"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("gitsigns").setup(_A)`, {
         signcolumn: true,
@@ -70,7 +70,7 @@ export const git: Plug[] = [
   },
   {
     url: "https://github.com/lambdalisue/vim-gin",
-    profiles: ["default"],
+    profiles: ["git"],
     cache: { beforeFile: `~/.config/nvim/rc/before/vim-gin.lua` },
   },
   {

@@ -5,7 +5,7 @@ function M.on_attach(client, bufnr)
   vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
   -- you can also put keymaps in here
-  require("nvim-navic").attach(client, bufnr)
+  -- require("nvim-navic").attach(client, bufnr)
   -- require("lsp-format").on_attach(client, bufnr)
 
   local opts = { noremap = true, silent = true, buffer = bufnr }

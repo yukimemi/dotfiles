@@ -404,6 +404,8 @@ snippets:
     snippet: cargo install cargo-machete
   - name: Install gibo
     snippet: go install github.com/simonwhitaker/gibo@latest
+  - name: Install nvs
+    snippet: go install github.com/y3owk1n/nvs@latest
 
   # build
   - name: Build neovim (Ubuntu)

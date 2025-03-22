@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2025/02/17 10:19:11.
+// Last Change : 2025/03/20 14:43:50.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -91,7 +91,7 @@ export const filetypes: Plug[] = [
   { url: "https://github.com/ixru/nvim-markdown" },
   {
     url: "https://github.com/MeanderingProgrammer/render-markdown.nvim",
-    profiles: ["full"],
+    profiles: ["markdown"],
     enabled: true,
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/render-markdown.lua",
@@ -317,7 +317,7 @@ export const filetypes: Plug[] = [
   // log
   {
     url: "https://github.com/fei6409/log-highlight.nvim",
-    profiles: ["full"],
+    profiles: ["log"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require('log-highlight').setup()`);
     },

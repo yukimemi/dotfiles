@@ -77,7 +77,7 @@ export async function setOption(denops: Denops) {
       // await option.cmdheight.set(denops, 0);
       await nvimOption.inccommand.set(denops, "nosplit");
       await nvimOption.pumblend.set(denops, 10);
-      await option.laststatus.set(denops, 3);
+      await option.laststatus.set(denops, 0);
       await option.clipboard.set(denops, "unnamedplus");
     } else {
       await option.laststatus.set(denops, 2);

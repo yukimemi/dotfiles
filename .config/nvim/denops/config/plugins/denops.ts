@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2025/02/22 11:27:49.
+// Last Change : 2025/03/09 14:09:51.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -14,7 +14,7 @@ import * as vars from "jsr:@denops/std@7.5.0/variable";
 export const denops: Plug[] = [
   {
     url: "https://github.com/yukimemi/autocursor.vim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "autocursor_debug", false);
       await vars.g.set(denops, "autocursor_notify", false);
@@ -27,8 +27,6 @@ export const denops: Plug[] = [
               "CmdwinLeave",
               "CursorHold",
               "CursorHoldI",
-              "FocusGained",
-              "FocusLost",
               "InsertLeave",
               "ModeChanged",
               "TextChanged",
@@ -58,8 +56,6 @@ export const denops: Plug[] = [
               "CmdwinLeave",
               "CursorHold",
               "CursorHoldI",
-              "FocusGained",
-              "FocusLost",
               "InsertLeave",
               "ModeChanged",
               "TextChanged",
@@ -107,7 +103,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/silentsaver.vim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "silentsaver_debug", false);
       await vars.g.set(denops, "silentsaver_enable", true);
@@ -116,8 +112,6 @@ export const denops: Plug[] = [
       await vars.g.set(denops, "silentsaver_diff_vertical", true);
       await vars.g.set(denops, "silentsaver_use_ui_select", false);
       await vars.g.set(denops, "silentsaver_events", [
-        "BufEnter",
-        "FocusLost",
         "CursorHold",
         "BufWritePre",
       ]);
@@ -167,7 +161,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/autoreplacer.vim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "autoreplacer_debug", false);
       await vars.g.set(denops, "autoreplacer_notify", true);
@@ -249,12 +243,12 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/hitori.vim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     cache: { beforeFile: "~/.config/nvim/rc/before/hitori.lua" },
   },
   {
     url: "https://github.com/yukimemi/dps-ahdr",
-    profiles: ["default"],
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "ahdr_debug", false);
       await vars.g.set(denops, "ahdr_cfg_path", "~/.config/ahdr/ahdr.toml");

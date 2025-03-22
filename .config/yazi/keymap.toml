@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : keymap.toml
 # Author      : yukimemi
-# Last Change : 2025/03/03 00:51:17.
+# Last Change : 2025/03/15 14:10:47.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -123,6 +123,10 @@ desc = "Goto git root"
 on = ["g", "d"]
 run = "cd ~/.dotfiles"
 desc = "Goto dotfiles"
+[[manager.prepend_keymap]]
+on = ["g", "s"]
+run = "cd ~/src"
+desc = "Goto src"
 [[manager.prepend_keymap]]
 on = ["g", "b"]
 run = "cd ~/Box"

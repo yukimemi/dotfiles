@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/02/15 21:18:46.
+  .Last Change : 2025/03/16 09:05:21.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -76,15 +76,10 @@ function Install-RequiredModules {
   winget install -q topgrade-rs.topgrade
   winget install -q gerardog.gsudo
   winget install -q Slackadays.Clipboard
-  winget install -q YS-L.csvlens
-  winget install -q sxyazi.yazi
   winget install -q Flameshot.Flameshot
   winget install -q JesseDuffield.lazygit
-  winget install -q wez.wezterm
-  winget install -q astral-sh.uv
   winget install -q NuShell.NuShell
   winget install -q RustLang.Rustup
-  winget install -q DenoLand.Deno
   winget install -q Microsoft.WindowsTerminal
   winget install -q Microsoft.PowerToys
   winget install -q Git.Git
@@ -100,13 +95,6 @@ function Install-RequiredModules {
   winget install -q GoLang.Go
   winget install -q Microsoft.PowerShell
   winget install -q Neovide.Neovide
-  winget install -q BurntSushi.ripgrep.MSVC
-  winget install -q bootandy.dust
-  winget install -q Byron.dua-cli
-  winget install -q sharkdp.bat
-  winget install -q dandavision.delta
-  winget install -q junegunn.fzf
-  winget install -q ajeetdsouza.zoxide
   winget install -q hluk.CopyQ
   sudo choco install -y zig
 }
@@ -132,6 +120,14 @@ function Install-RequiredCargo {
   cargo install ouch
   cargo install yazi-fm
   cargo install yazi-cli
+  cargo install dua-cli
+  cargo install du-dust
+  cargo install zoxide
+  cargo install television
+  cargo install git-delta
+  cargo install bat
+  cargo install ripgrep
+  cargo install starship
 }
 
 <#
@@ -153,6 +149,9 @@ function Start-Main {
     log "[Start-Main] Start"
 
     Set-RequiredEnv
+
+    Invoke-RestMethod https://deno.land/install.ps1 | Invoke-Expression
+    Invoke-RestMethod https://astral.sh/uv/install.ps1 | Invoke-Expression
 
     Install-RequiredModules
     Install-RequiredCargo

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:39:08.
+// Last Change : 2025/03/16 16:23:18.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -33,7 +33,8 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/SmiteshP/nvim-navic",
-    profiles: ["default"],
+    profiles: ["lsp"],
+    enabled: false,
   },
   {
     url: "https://github.com/stevearc/aerial.nvim",
@@ -42,12 +43,12 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/stevearc/conform.nvim",
-    profiles: ["full"],
+    profiles: ["lsp"],
     afterFile: "~/.config/nvim/rc/after/conform.lua",
   },
   {
     url: "https://github.com/mfussenegger/nvim-lint",
-    profiles: ["full"],
+    profiles: ["lsp"],
     afterFile: "~/.config/nvim/rc/after/nvim-lint.lua",
   },
   {
@@ -58,11 +59,11 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/williamboman/mason.nvim",
-    profiles: ["default"],
+    profiles: ["lsp"],
   },
   {
     url: "https://github.com/williamboman/mason-lspconfig.nvim",
-    profiles: ["default"],
+    profiles: ["lsp"],
     dependencies: [
       "https://github.com/williamboman/mason.nvim",
     ],
@@ -83,11 +84,11 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/folke/neoconf.nvim",
-    profiles: ["default"],
+    profiles: ["lsp"],
   },
   {
     url: "https://github.com/onsails/lspkind.nvim",
-    profiles: ["default"],
+    profiles: ["lsp"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("lspkind").init(_A)`, {
         // defines how annotations are shown
@@ -106,7 +107,7 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/mrcjkb/rustaceanvim",
-    profiles: ["full"],
+    profiles: ["lsp"],
     afterFile: "~/.config/nvim/rc/after/rustaceanvim.lua",
     dependencies: [
       "https://github.com/neovim/nvim-lspconfig",
@@ -129,7 +130,7 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/neovim/nvim-lspconfig",
-    profiles: ["default"],
+    profiles: ["lsp"],
     enabled: !pluginStatus.coc,
     dependencies: [
       "https://github.com/SmiteshP/nvim-navic",

@@ -9,7 +9,7 @@ import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
 export const snacks: Plug[] = [
   {
     url: "https://github.com/folke/snacks.nvim",
-    profiles: ["default"],
-    afterFile: `~/.config/nvim/rc/after/snacks.lua`,
+    profiles: ["minimal"],
+    cache: { afterFile: `~/.config/nvim/rc/after/snacks.lua` },
   },
 ];

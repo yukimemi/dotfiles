@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-lspconfig.lua
 -- Author      : yukimemi
--- Last Change : 2024/11/04 20:10:28.
+-- Last Change : 2025/03/16 16:23:36.
 -- =============================================================================
 
 require("mason").setup({
@@ -22,7 +22,7 @@ require("neoconf").setup()
 local lspconfig = require("lspconfig")
 
 local function on_attach(client, bufnr)
-  require("nvim-navic").attach(client, bufnr)
+  -- require("nvim-navic").attach(client, bufnr)
   require("lsp").on_attach(client, bufnr)
 end
 

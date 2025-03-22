@@ -87,11 +87,10 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/nvim-lua/plenary.nvim",
     profiles: ["minimal"],
-    cache: { enabled: false },
   },
   {
     url: "https://github.com/MunifTanjim/nui.nvim",
-    profiles: ["default"],
+    profiles: ["minimal"],
   },
   {
     url: "https://github.com/stevearc/dressing.nvim",
@@ -102,7 +101,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/nvim-tree/nvim-web-devicons",
-    profiles: ["default"],
+    profiles: ["minimal"],
     cache: { enabled: false },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("nvim-web-devicons").setup(_A)`, {
@@ -203,4 +202,8 @@ export const libs: Plug[] = [
     afterFile: "~/.config/nvim/rc/after/nvim-dansa.lua",
   },
   { url: "https://github.com/yuki-yano/dedent-yank.vim" },
+  {
+    url: "https://github.com/kevinhwang91/promise-async",
+    profiles: ["lsp"],
+  },
 ];

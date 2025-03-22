@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : keymap.ts
 // Author      : yukimemi
-// Last Change : 2025/01/19 18:25:13.
+// Last Change : 2025/03/17 09:39:03.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.5.0/lambda";
@@ -11,6 +11,7 @@ import { batch } from "jsr:@denops/std@7.5.0/batch";
 import * as vars from "jsr:@denops/std@7.5.0/variable";
 import * as autocmd from "jsr:@denops/std@7.5.0/autocmd";
 import { focusFloating, openBufDir, reviewMode } from "./util.ts";
+import { notifyinfo } from "./showinfo.ts";
 
 export async function setKeymapPre(denops: Denops) {
   await batch(denops, async (denops: Denops) => {
@@ -185,6 +186,15 @@ export async function setKeymapPost(denops: Denops) {
       "<leader>o",
       `<cmd>call <SID>${denops.name}_notify("${
         lambda.register(denops, async () => await openBufDir(denops))
+      }", [])<cr>`,
+      { mode: "n", noremap: true },
+    );
+
+    await mapping.map(
+      denops,
+      "<c-g>",
+      `<cmd>call <SID>${denops.name}_notify("${
+        lambda.register(denops, async () => await notifyinfo(denops))
       }", [])<cr>`,
       { mode: "n", noremap: true },
     );

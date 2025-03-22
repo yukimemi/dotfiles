@@ -10,7 +10,7 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const telescope: Plug[] = [
   {
     url: "https://github.com/yukimemi/telescope-chronicle.nvim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     dependencies: [
       "https://github.com/nvim-telescope/telescope.nvim",
       "https://github.com/yukimemi/chronicle.vim",

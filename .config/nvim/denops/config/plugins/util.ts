@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/02/17 00:35:21.
+// Last Change : 2025/03/20 21:47:30.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -31,7 +31,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/ahmedkhalf/project.nvim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("project_nvim").setup(_A)`, {
         // Manual mode doesn't automatically change your root directory, so you have
@@ -337,7 +337,6 @@ export const util: Plug[] = [
       );
     },
   },
-  { url: "https://github.com/kevinhwang91/promise-async" },
   {
     url: "https://github.com/kevinhwang91/nvim-fundo",
     dependencies: [
@@ -533,6 +532,7 @@ export const util: Plug[] = [
   { url: "https://github.com/MattesGroeger/vim-bookmarks", enabled: pluginStatus.vimbookmarks },
   {
     url: "https://github.com/tomasky/bookmarks.nvim",
+    profiles: ["mark"],
     enabled: pluginStatus.bookmarks,
     afterFile: `~/.config/nvim/rc/after/bookmarks.lua`,
   },
@@ -568,7 +568,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/juliuswaldmann/here.nvim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("here")`);
     },

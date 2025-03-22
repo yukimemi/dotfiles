@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/03/02 15:28:30.
+// Last Change : 2025/03/16 13:13:31.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -463,5 +463,16 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/itchyny/vim-highlighturl",
     profiles: ["colors"],
+  },
+  {
+    url: "https://github.com/Bekaboo/dropbar.nvim",
+    profiles: ["full"],
+    afterFile: "~/.config/nvim/rc/after/dropbar.lua",
+  },
+  {
+    url: "https://github.com/kevinhwang91/nvim-ufo",
+    dependencies: ["https://github.com/kevinhwang91/promise-async"],
+    profiles: ["lsp"],
+    afterFile: "~/.config/nvim/rc/after/nvim-ufo.lua",
   },
 ];

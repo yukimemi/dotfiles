@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : size-matters.lua
 -- Author      : yukimemi
--- Last Change : 2024/10/14 18:00:26.
+-- Last Change : 2025/03/16 13:43:35.
 -- =============================================================================
 
 require("size-matters").setup({
@@ -21,4 +21,4 @@ require("size-matters").setup({
 })
 
 vim.keymap.set("n", "+", "<cmd>FontSizeUp<cr>")
-vim.keymap.set("n", "-", "<cmd>FontSizeDown<cr>")
+vim.keymap.set("n", "<c-_>", "<cmd>FontSizeDown<cr>")

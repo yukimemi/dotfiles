@@ -1,15 +1,15 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2025/01/26 22:52:30.
+-- Last Change : 2025/03/20 22:13:21.
 -- =============================================================================
 
 require("snacks").setup({
   animate = {
-    enabled = true,
+    enabled = false,
   },
   bufdelete = {
-    enabled = true,
+    enabled = false,
   },
   bigfile = {
     enabled = true,
@@ -25,12 +25,13 @@ require("snacks").setup({
   },
   notifier = {
     enabled = true,
+    width = { min = 40, max = 0.9 },
   },
   notify = {
     enabled = true,
   },
   quickfile = {
-    enabled = true,
+    enabled = false,
   },
   indent = {
     enabled = true,
@@ -57,7 +58,7 @@ require("snacks").setup({
     enabled = false,
   },
   picker = {
-    enabled = false,
+    enabled = true,
   },
 })
 
@@ -78,13 +79,19 @@ vim.keymap.set("n", "<space>jk", function() Snacks.words.jump(-1, true) end, { d
 vim.keymap.set("n", "<space>L", function() Snacks.lazygit() end, { desc = "LazyGit" })
 
 -- Snacks.bufdelete
-vim.keymap.set("n", "sbd", function() Snacks.bufdelete() end, { desc = "Delete buffer" })
+-- vim.keymap.set("n", "sbd", function() Snacks.bufdelete() end, { desc = "Delete buffer" })
 
-if false then
-  vim.keymap.set("n", "<space>ff", function() Snacks.picker() end, { desc = "Snacks picker" })
+-- Snacks.notifier
+vim.keymap.set("n", "<space>nl", function() Snacks.notifier.show_history() end, { desc = "Snacks history" })
+
+if true then
+  vim.keymap.set("n", "<space>S", function() Snacks.picker() end, { desc = "Snacks picker" })
+  vim.keymap.set("n", "<space>ff", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
   vim.keymap.set("n", "<space>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
   vim.keymap.set("n", "<space>/", function() Snacks.picker.grep() end, { desc = "Grep" })
   vim.keymap.set("n", "<space>:", function() Snacks.picker.command_history() end, { desc = "Command History" })
+  vim.keymap.set("n", "<space>n", function() Snacks.picker.notifications() end, { desc = "Notification History" })
+  vim.keymap.set("n", "<space>e", function() Snacks.explorer() end, { desc = "File Explorer" })
 
   vim.keymap.set("n", "mg", function() Snacks.picker.git_files() end, { desc = "Find git files" })
   vim.keymap.set("n", "mc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
@@ -116,9 +123,19 @@ if false then
   vim.keymap.set("n", "<space>sr", function() Snacks.picker.resume() end, { desc = "Resume" })
   vim.keymap.set("n", "<space>pp", function() Snacks.picker.projects() end, { desc = "Projects" })
 
+  -- lsp
   vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "LSP definitions" })
   vim.keymap.set("n", "gi", function() Snacks.picker.lsp_implementations() end, { desc = "LSP implementations" })
   vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "LSP references" })
   vim.keymap.set("n", "gt", function() Snacks.picker.lsp_type_definitions() end, { desc = "LSP type definitions" })
   vim.keymap.set("n", "gs", function() Snacks.picker.lsp_symbols() end, { desc = "LSP symbols" })
+
+  -- git
+  vim.keymap.set("n", "<space>gb", function() Snacks.picker.git_branches() end, { desc = "Git Branches" })
+  vim.keymap.set("n", "<space>gl", function() Snacks.picker.git_log() end, { desc = "Git Log" })
+  -- vim.keymap.set("n", "<space>gL", function() Snacks.picker.git_log_line() end, { desc = "Git Log Line" })
+  vim.keymap.set("n", "<space>gs", function() Snacks.picker.git_status() end, { desc = "Git Status" })
+  -- vim.keymap.set("n", "<space>gS", function() Snacks.picker.git_stash() end, { desc = "Git Stash" })
+  vim.keymap.set("n", "<space>gd", function() Snacks.picker.git_diff() end, { desc = "Git Diff (Hunks)" })
+  vim.keymap.set("n", "<space>gf", function() Snacks.picker.git_log_file() end, { desc = "Git Log File" })
 end

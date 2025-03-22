@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 17:32:50.
+// Last Change : 2025/03/19 01:59:24.
 // =============================================================================
 
 import * as buffer from "jsr:@denops/std@7.5.0/buffer";
@@ -17,16 +17,14 @@ import { join } from "jsr:@std/path@1.0.8/join";
 import { systemopen } from "jsr:@lambdalisue/systemopen@1.0.0";
 import { z } from "npm:zod@3.24.2";
 
-const useNvimNotify = false;
-
 export async function notify(
   denops: Denops,
   msg: string | string[],
-  opt?: { timeout?: number },
+  opt?: { timeout?: number; type?: string },
 ) {
   if (denops.meta.host === "nvim") {
     try {
-      if (useNvimNotify) {
+      if (opt?.type === "nvim-notify") {
         await denops.call(
           `luaeval`,
           `
@@ -38,6 +36,15 @@ export async function notify(
             })
           `,
           { msg, timeout: opt?.timeout || 5000 },
+        );
+      } else if (opt?.type === "snacks") {
+        await denops.call(
+          `luaeval`,
+          `Snacks.notify.notify(_A.msg, _A.opts)`,
+          {
+            msg,
+            opts: { timeout: opt?.timeout || 5000 },
+          },
         );
       } else {
         const result = z.array(z.string()).safeParse(msg);

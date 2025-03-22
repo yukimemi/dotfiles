@@ -11,10 +11,11 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const nvimtree: Plug[] = [
   {
     url: "https://github.com/nvim-tree/nvim-tree.lua",
+    profiles: ["filer"],
     enabled: pluginStatus.nvimtree,
     dependencies: [
       "https://github.com/nvim-tree/nvim-web-devicons",
     ],
-    afterFile: `~/.config/nvim/rc/after/nvim-tree.lua`,
+    cache: { afterFile: `~/.config/nvim/rc/after/nvim-tree.lua` },
   },
 ];

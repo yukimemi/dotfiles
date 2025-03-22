@@ -10,21 +10,21 @@ import * as mapping from "jsr:@denops/std@7.5.0/mapping";
 export const textobj: Plug[] = [
   {
     url: "https://github.com/kana/vim-textobj-user",
-    profiles: ["default"],
+    profiles: ["textobj"],
   },
   {
     url: "https://github.com/kana/vim-textobj-entire",
-    profiles: ["default"],
+    profiles: ["textobj"],
     dependencies: ["https://github.com/kana/vim-textobj-user"],
   },
   {
     url: "https://github.com/kana/vim-textobj-indent",
-    profiles: ["default"],
+    profiles: ["textobj"],
     dependencies: ["https://github.com/kana/vim-textobj-user"],
   },
   {
     url: "https://github.com/kana/vim-textobj-line",
-    profiles: ["default"],
+    profiles: ["textobj"],
     dependencies: ["https://github.com/kana/vim-textobj-user"],
   },
   {
@@ -33,7 +33,7 @@ export const textobj: Plug[] = [
   },
   {
     url: "https://github.com/machakann/vim-swap",
-    profiles: ["default"],
+    profiles: ["textobj"],
   },
   { url: "https://github.com/machakann/vim-textobj-functioncall" },
   {

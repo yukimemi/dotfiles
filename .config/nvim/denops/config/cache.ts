@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2025/01/19 18:26:55.
+// Last Change : 2025/03/16 14:07:53.
 // =============================================================================
 
 export function cacheVim() {
@@ -19,6 +19,26 @@ export function cacheVim() {
       command! -bar ToScratch setlocal buftype=nofile bufhidden=hide noswapfile
       command! -nargs=1 -complete=command L <mods> new | ToScratch | call setline(1, split(execute(<q-args>), '\\n'))
       cnoremap <c-c> <home>L <cr>
+      " https://leafcage.hateblo.jp/entry/2013/04/24/053113
+      nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
+      nnoremap <silent>z- zMzvzc
+      nnoremap <silent>z0 :<c-u>set foldlevel=<c-r>=foldlevel('.')<cr><cr>
+      nnoremap <silent>- <cmd>call <SID>smart_foldcloser()<cr>
+      function! s:smart_foldcloser()
+        if foldlevel('.') == 0
+          norm! zM
+          return
+        endif
+        let foldc_lnum = foldclosed('.')
+        norm! zc
+        if foldc_lnum == -1
+          return
+        endif
+        if foldclosed('.') != foldc_lnum
+          return
+        endif
+        norm! zM
+      endfunction
     `,
     path: "~/.config/nvim/plugin/dvpm_cache.vim",
   };
@@ -99,6 +119,28 @@ export function cacheLua() {
       vim.keymap.set({"n", "x"}, "<Plug>(H)H", "<PageUp>H<Plug>(H)")
       vim.keymap.set({"n", "x"}, "<Plug>(L)L", "<PageDown>Lzb<Plug>(L)")
 
+      --- fold
+      -- vim.keymap.set('n', 'l', function()
+      --   if vim.fn.foldclosed('.') ~= -1 then
+      --     return 'zo'
+      --   else
+      --     return 'l'
+      --   end
+      -- end, { expr = true })
+      -- vim.keymap.set('n', '<c-y>', function()
+      --   if vim.fn.foldlevel('.') == 0 then
+      --     return 'zM'
+      --   end
+      --   local foldc_lnum = vim.fn.foldclosed('.')
+      --   return 'zc'
+      --   if foldc_lnum == -1 then
+      --     return
+      --   end
+      --   if vim.fn.foldclosed('.') ~= foldc_lnum then
+      --     return
+      --   end
+      --   return 'zM'
+      -- end, { expr = true })
     `,
     path: "~/.config/nvim/plugin/dvpm_cache.lua",
   };

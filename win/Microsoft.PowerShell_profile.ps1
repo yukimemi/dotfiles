@@ -296,11 +296,11 @@ if (Get-Command peco -ErrorAction SilentlyContinue) {
 if (Get-Command gof -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER gof
 }
-if (Get-Command tv -ErrorAction SilentlyContinue) {
-  Set-Alias __FILTER tv
-}
 if (Get-Command fzf -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER fzf
+}
+if (Get-Command tv -ErrorAction SilentlyContinue) {
+  Set-Alias __FILTER tv
 }
 # Remove-Alias ls
 if (Is-Windows) {
@@ -410,16 +410,4 @@ if (Get-Command pnpm -ErrorAction SilentlyContinue) {
   $env:PNPM_HOME = [System.IO.Path]::Combine($env:USERPROFILE, 'AppData\Local\pnpm\store')
   [System.Environment]::SetEnvironmentVariable("PNPM_HOME", $env:PNPM_HOME, [System.EnvironmentVariableTarget]::User)
 }
-
-
-# proto
-if (!(Get-Command proto -ErrorAction SilentlyContinue)) {
-  Invoke-RestMethod https://moonrepo.dev/install/proto.ps1 | Invoke-Expression
-}
-$env:PROTO_HOME = Join-Path $HOME ".proto"
-$env:PATH = @(
-  (Join-Path $env:PROTO_HOME "shims"),
-  (Join-Path $env:PROTO_HOME "bin"),
-  $env:PATH
-) -join [IO.PATH]::PathSeparator
 

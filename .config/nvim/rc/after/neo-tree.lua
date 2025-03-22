@@ -10,6 +10,7 @@ require("neo-tree").setup({
       mappings = {
         ["/"] = "noop",
         ["l"] = "open",
+        ["h"] = "navigate_up",
       },
     },
     filtered_items = {
@@ -20,4 +21,4 @@ require("neo-tree").setup({
   },
 })
 
-vim.keymap.set("n", "<space>e", "<cmd>Neotree focus filesystem left reveal_force_cwd<cr>")
+vim.keymap.set("n", "ge", "<cmd>Neotree focus filesystem left reveal_force_cwd<cr>")

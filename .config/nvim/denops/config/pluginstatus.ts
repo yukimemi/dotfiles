@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2025/03/02 20:10:43.
+// Last Change : 2025/03/15 20:47:17.
 // =============================================================================
 
 export const pluginStatus = {
@@ -9,13 +9,13 @@ export const pluginStatus = {
   autopairs: false,
   barbar: false,
   barbecue: false,
-  blink: false,
+  blink: true,
   bookmarks: true,
   bufferline: false,
   buffertabs: false,
   care: false,
   clap: false,
-  cmp: true,
+  cmp: false,
   coc: false,
   codeium: false,
   compl: false,
@@ -23,7 +23,7 @@ export const pluginStatus = {
   ddt: false,
   ddu: false,
   ddufiler: false,
-  deck: true,
+  deck: false,
   denippet: true,
   fall: false,
   fern: false,
@@ -44,7 +44,7 @@ export const pluginStatus = {
   necodeium: true,
   neocolumn: false,
   neotest: false,
-  neotree: false,
+  neotree: true,
   notifier: false,
   nvimnotify: false,
   nvimtree: false,
@@ -71,5 +71,5 @@ export const pluginStatus = {
   windows: false,
   yankround: false,
   yanky: true,
-  yazi: true,
+  yazi: false,
 };

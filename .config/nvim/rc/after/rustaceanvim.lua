@@ -11,7 +11,7 @@ vim.g.rustaceanvim = {
   -- LSP configuration
   server = {
     on_attach = function(client, bufnr)
-      require("nvim-navic").attach(client, bufnr)
+      -- require("nvim-navic").attach(client, bufnr)
       require("lsp").on_attach(client, bufnr)
     end,
     default_settings = {

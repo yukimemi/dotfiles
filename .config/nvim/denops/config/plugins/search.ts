@@ -21,7 +21,7 @@ export const search: Plug[] = [
   },
   {
     url: "https://github.com/lambdalisue/vim-kensaku",
-    profiles: ["default"],
+    profiles: ["minimal"],
   },
   {
     url: "https://github.com/lambdalisue/vim-kensaku-search",

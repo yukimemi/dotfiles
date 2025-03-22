@@ -59,29 +59,32 @@ Activate(app) {
   SplitPath(app, &file)
   ErrorLevel := ProcessExist(file)
   if (ErrorLevel != 0)
-      WinActivate("ahk_pid " ErrorLevel)
-    else
-      Run(app)
+    WinActivate("ahk_pid " ErrorLevel)
+  else
+    Run(app)
   return
 }
 
 Activate2(app, cmd) {
   ErrorLevel := ProcessExist(app)
   if (ErrorLevel != 0)
-      WinActivate("ahk_pid " ErrorLevel)
-    else
-      Run(cmd)
+    WinActivate("ahk_pid " ErrorLevel)
+  else
+    Run(cmd)
   return
 }
 
 Activate3(app, cmd, title) {
   ErrorLevel := ProcessExist(app)
   if (ErrorLevel != 0) {
+    if WinExist(title) {
       WinActivate(title)
-  } else {
+    } else {
       Run(cmd)
+    }
+  } else {
+    Run(cmd)
   }
-  return
 }
 
 ; for Outlook
@@ -117,8 +120,8 @@ F10::
     Activate("neovide.exe")
     return
   } else {
-    Activate("nvim-qt.exe")
-    ; Activate3("nvim.exe", "nvim.exe", "Neovim")
+    ; Activate("nvim-qt.exe")
+    Activate3("nvim.exe", "nvim.exe", "nvim")
     return
   }
 }

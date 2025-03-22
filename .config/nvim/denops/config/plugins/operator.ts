@@ -11,7 +11,7 @@ import * as mapping from "jsr:@denops/std@7.5.0/mapping";
 export const operator: Plug[] = [
   {
     url: "https://github.com/kana/vim-operator-user",
-    profiles: ["default"],
+    profiles: ["operator"],
   },
   {
     url: "https://github.com/osyo-manga/vim-operator-stay-cursor",
@@ -25,7 +25,7 @@ export const operator: Plug[] = [
   },
   {
     url: "https://github.com/machakann/vim-sandwich",
-    profiles: ["default"],
+    profiles: ["operator"],
     dependencies: ["https://github.com/kana/vim-operator-user"],
   },
   {
@@ -43,7 +43,7 @@ export const operator: Plug[] = [
   },
   {
     url: "https://github.com/kana/vim-operator-replace",
-    profiles: ["default"],
+    profiles: ["operator"],
     dependencies: ["https://github.com/kana/vim-operator-user"],
     before: async ({ denops }) => {
       await mapping.map(denops, "_", "<Plug>(operator-replace)", {

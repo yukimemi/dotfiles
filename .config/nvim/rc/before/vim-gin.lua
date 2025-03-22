@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : vim-gin.lua
 -- Author      : yukimemi
--- Last Change : 2025/01/05 11:00:12.
+-- Last Change : 2025/03/20 22:13:24.
 -- =============================================================================
 
 local map = vim.keymap.set
@@ -10,11 +10,11 @@ local opts = { noremap = true, silent = true }
 vim.g.gin_log_persistent_args = {'++emojify'}
 vim.g.gin_log_disable_default_mappings = 1
 
-map("n", "<space>gs", "<cmd>GinStatus<cr>", opts)
+map("n", "<space>gS", "<cmd>GinStatus<cr>", opts)
 map("n", "<space>gc", "<cmd>Gin commit -v<cr>", opts)
-map("n", "<space>gb", "<cmd>GinBranch<cr>", opts)
-map("n", "<space>gd", "<cmd>GinDiff<cr>", opts)
-map("n", "<space>gl", "<cmd>GinLog<cr>", opts)
+-- map("n", "<space>gb", "<cmd>GinBranch<cr>", opts)
+-- map("n", "<space>gd", "<cmd>GinDiff<cr>", opts)
+-- map("n", "<space>gl", "<cmd>GinLog<cr>", opts)
 map("n", "<space>gL", "<cmd>GinLog -p -- %<cr>", opts)
 map("n", "<space>gp", "<cmd>Gin push<cr>", opts)
 -- map("n", "<space>gg", ":<c-u>Gin grep ", opts)

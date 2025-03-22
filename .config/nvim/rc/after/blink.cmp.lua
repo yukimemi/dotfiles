@@ -1,7 +1,7 @@
 -- =============================================================================
--- File        : blink.lua
+-- File        : blink.cmp.lua
 -- Author      : yukimemi
--- Last Change : 2025/01/09 17:38:41.
+-- Last Change : 2025/03/16 02:05:54.
 -- =============================================================================
 
 require("blink-cmp").setup({
@@ -11,9 +11,17 @@ require("blink-cmp").setup({
     ['<Tab>'] = { 'select_and_accept', 'fallback' },
     ['<C-k>'] = { 'snippet_forward', 'fallback' },
     ['<C-j>'] = { 'snippet_backward', 'fallback' },
-    cmdline = {
-      preset = "none",
-    },
+    ['<C-p>'] = { 'select_prev', 'fallback' },
+    ['<C-n>'] = { 'select_next', 'fallback' },
+  },
+  cmdline = {
+    enabled = true,
+    keymap = {
+      preset = "cmdline",
+    }
+  },
+  term = {
+    enabled = false,
   },
   completion = {
     list = {
@@ -23,7 +31,10 @@ require("blink-cmp").setup({
       },
     },
     menu = { border = 'single' },
-    documentation = { window = { border = 'single' } },
+    documentation = {
+      auto_show = true,
+      window = { border = 'single' }
+    },
     ghost_text = { enabled = false },
   },
   signature = {

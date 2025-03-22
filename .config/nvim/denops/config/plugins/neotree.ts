@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : neotree.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 21:42:58.
+// Last Change : 2025/03/20 22:20:18.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
@@ -12,13 +12,13 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const neotree: Plug[] = [
   {
     url: "https://github.com/nvim-neo-tree/neo-tree.nvim",
+    profiles: ["filer"],
     enabled: pluginStatus.neotree,
     cache: { afterFile: `~/.config/nvim/rc/after/neo-tree.lua` },
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/nvim-tree/nvim-web-devicons",
       "https://github.com/MunifTanjim/nui.nvim",
-      // "https://github.com/s1n7ax/nvim-window-picker",
     ],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("neo-tree").setup(_A)`, {
@@ -38,7 +38,7 @@ export const neotree: Plug[] = [
       });
       await mapping.map(
         denops,
-        "<leader>e",
+        "ge",
         `<cmd>Neotree focus filesystem left reveal_force_cwd<cr>`,
         { mode: "n" },
       );
