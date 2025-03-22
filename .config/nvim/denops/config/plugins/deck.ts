@@ -4,7 +4,7 @@
 // Last Change : 2025/02/09 13:15:52.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
 
 export const deck: Plug[] = [
   {

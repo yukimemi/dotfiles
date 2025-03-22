@@ -1,29 +1,31 @@
 // =============================================================================
 // File        : snippet.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 09:37:20.
+// Last Change : 2025/03/22 15:12:26.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.5.0/function";
 import * as mapping from "jsr:@denops/std@7.5.0/mapping";
 import * as vars from "jsr:@denops/std@7.5.0/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
 import { pluginStatus } from "../pluginstatus.ts";
 import { z } from "npm:zod@3.24.2";
 
 export const snippet: Plug[] = [
   {
     url: "https://github.com/rafamadriz/friendly-snippets",
-    profiles: ["default"],
+    profiles: ["minimal"],
   },
   {
     url: "https://github.com/microsoft/vscode",
+    clone: true,
     dst: "~/.cache/vscode",
     depth: 1,
     enabled: false,
   },
   {
     url: "https://github.com/PowerShell/vscode-powershell",
+    clone: true,
     dst: "~/.cache/vscode-powershell",
     depth: 1,
     enabled: false,

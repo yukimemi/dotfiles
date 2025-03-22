@@ -10,7 +10,7 @@ import { z } from "npm:zod@3.24.2";
 import { exists } from "jsr:@std/fs@1.0.14";
 import * as mapping from "jsr:@denops/std@7.5.0/mapping";
 import * as vars from "jsr:@denops/std@7.5.0/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@6.2.2";
+import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
 import { execCommand } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 import {
