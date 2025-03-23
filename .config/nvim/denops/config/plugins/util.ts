@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/03/22 13:25:05.
+// Last Change : 2025/03/23 18:04:51.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
@@ -285,7 +285,8 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/tenxsoydev/size-matters.nvim",
-    profiles: ["default"],
+    profiles: ["minimal"],
+    enabled: async ({ denops }) => await fn.exists(denops, "g:neovide"),
     afterFile: "~/.config/nvim/rc/after/size-matters.lua",
   },
   {

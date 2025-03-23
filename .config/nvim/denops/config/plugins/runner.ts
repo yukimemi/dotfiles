@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : runner.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 13:35:41.
+// Last Change : 2025/03/23 18:08:36.
 // =============================================================================
 
 import * as mapping from "jsr:@denops/std@7.5.0/mapping";
@@ -10,10 +10,11 @@ import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const runner: Plug[] = [
-  { url: "https://github.com/lambdalisue/vim-quickrun-neovim-job" },
-  { url: "https://github.com/statiolake/vim-quickrun-runner-nvimterm" },
+  { url: "https://github.com/lambdalisue/vim-quickrun-neovim-job", profiles: ["runner"] },
+  { url: "https://github.com/statiolake/vim-quickrun-runner-nvimterm", profiles: ["runner"] },
   {
     url: "https://github.com/thinca/vim-quickrun",
+    profiles: ["runner"],
     enabled: pluginStatus.quickrun,
     dependencies: [
       "https://github.com/lambdalisue/vim-quickrun-neovim-job",
@@ -30,7 +31,7 @@ export const runner: Plug[] = [
   },
   {
     url: "https://github.com/stevearc/overseer.nvim",
-    profiles: ["full"],
+    profiles: ["runner"],
     enabled: pluginStatus.overseer,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("overseer").setup()`);

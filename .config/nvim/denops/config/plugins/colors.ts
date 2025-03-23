@@ -90,7 +90,10 @@ export const colors: Plug[] = [
   { url: "https://github.com/ramojus/mellifluous.nvim", profiles: ["colors"] },
   { url: "https://github.com/ray-x/aurora", profiles: ["colors"] },
   { url: "https://github.com/rebelot/kanagawa.nvim", profiles: ["colors"] },
-  { url: "https://github.com/rhysd/vim-color-spring-night", profiles: ["colors", "favaritecolors"] },
+  {
+    url: "https://github.com/rhysd/vim-color-spring-night",
+    profiles: ["colors", "favaritecolors"],
+  },
   { url: "https://github.com/romgrk/github-light.vim", profiles: ["colors"] },
   { url: "https://github.com/rose-pine/neovim", profiles: ["colors", "favaritecolors"] },
   { url: "https://github.com/sainnhe/edge", profiles: ["default", "favaritecolors"] },

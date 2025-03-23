@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/02/16 19:51:27.
+// Last Change : 2025/03/23 18:01:20.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.5.0/lambda";
@@ -23,14 +23,14 @@ import {
 export const ai: Plug[] = [
   {
     url: "https://github.com/sourcegraph/sg.nvim",
-    profiles: ["full"],
+    profiles: ["ai"],
     enabled: pluginStatus.sg,
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     afterFile: "~/.config/nvim/rc/after/sg.lua",
   },
   {
     url: "https://github.com/Exafunction/codeium.vim",
-    profiles: ["full"],
+    profiles: ["ai"],
     enabled: async ({ denops }) =>
       await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) && pluginStatus.codeium,
     before: async ({ denops }) => {
@@ -61,7 +61,7 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/monkoose/neocodeium",
-    profiles: ["full"],
+    profiles: ["ai"],
     enabled: async ({ denops }) =>
       await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) &&
       pluginStatus.necodeium,
@@ -69,8 +69,8 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/olimorris/codecompanion.nvim",
-    profiles: ["full"],
-    enabled: true,
+    profiles: ["ai"],
+    enabled: false,
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/nvim-treesitter/nvim-treesitter",
@@ -79,7 +79,7 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/yetone/avante.nvim",
-    profiles: ["full"],
+    profiles: ["ai"],
     enabled: false,
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
@@ -104,7 +104,7 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/augmentcode/augment.vim",
-    profiles: ["full"],
+    profiles: ["ai"],
     enabled: pluginStatus.augment,
     beforeFile: "~/.config/nvim/rc/before/augment.lua",
   },
@@ -132,7 +132,7 @@ export const ai: Plug[] = [
   {
     url: "https://github.com/yukimemi/futago.vim",
     // dst: `~/src/github.com/yukimemi/futago.vim`,
-    profiles: ["minimal"],
+    profiles: ["ai"],
     enabled: true,
     before: async ({ denops }) => {
       await vars.g.set(denops, "futago_debug", false);
