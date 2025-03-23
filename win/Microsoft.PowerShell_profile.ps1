@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/01/19 21:14:07.
+# Last Change : 2025/03/22 15:21:29.
 # =============================================================================
 
 # module
@@ -269,6 +269,10 @@ function Install-Pip {
   Invoke-WebRequest -sSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py
   .\python .\get-pip.py
   Remove-Item .\get-pip.py
+}
+
+function Install-Aider {
+  powershell -ExecutionPolicy ByPass -c "irm https://aider.chat/install.ps1 | iex"
 }
 
 # Alias.

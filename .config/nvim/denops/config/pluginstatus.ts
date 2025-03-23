@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2025/03/15 20:47:17.
+// Last Change : 2025/03/22 16:41:40.
 // =============================================================================
 
 export const pluginStatus = {
@@ -44,7 +44,7 @@ export const pluginStatus = {
   necodeium: true,
   neocolumn: false,
   neotest: false,
-  neotree: true,
+  neotree: false,
   notifier: false,
   nvimnotify: false,
   nvimtree: false,
@@ -71,5 +71,5 @@ export const pluginStatus = {
   windows: false,
   yankround: false,
   yanky: true,
-  yazi: false,
+  yazi: true,
 };

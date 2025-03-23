@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/03/20 21:47:30.
+// Last Change : 2025/03/22 13:25:05.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
@@ -438,7 +438,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/kevinhwang91/nvim-bqf",
-    profiles: ["full"],
+    profiles: ["quickfix"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("bqf").setup(_A)`, {
         auto_enable: true,
@@ -582,7 +582,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/stevearc/quicker.nvim",
-    profiles: ["default"],
+    profiles: ["quickfix"],
     enabled: pluginStatus.quicker,
     afterFile: "~/.config/nvim/rc/after/quicker.lua",
   },
