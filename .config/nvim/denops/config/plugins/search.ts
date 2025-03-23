@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 17:00:34.
+// Last Change : 2025/03/24 01:07:48.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
@@ -50,5 +50,10 @@ export const search: Plug[] = [
   {
     url: "https://github.com/cshuaimin/ssr.nvim",
     afterFile: "~/.config/nvim/rc/after/ssr.lua",
+  },
+  {
+    url: "https://github.com/MagicDuck/grug-far.nvim",
+    profiles: ["search"],
+    afterFile: "~/.config/nvim/rc/after/grug-far.lua",
   },
 ];
