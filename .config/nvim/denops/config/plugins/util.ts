@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/03/23 18:04:51.
+// Last Change : 2025/03/25 16:41:21.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
@@ -16,7 +16,7 @@ export const util: Plug[] = [
   { url: "https://github.com/tyru/capture.vim", enabled: false },
   {
     url: "https://github.com/dstein64/vim-startuptime",
-    profiles: ["default"],
+    profiles: ["minimal"],
   },
   {
     url: "https://github.com/thinca/vim-partedit",

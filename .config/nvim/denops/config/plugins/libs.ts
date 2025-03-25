@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/02/16 19:50:03.
+// Last Change : 2025/03/25 16:39:41.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
@@ -178,7 +178,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/folke/which-key.nvim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     enabled: true,
     afterFile: `~/.config/nvim/rc/after/which-key.lua`,
   },
@@ -199,6 +199,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/nvim-dansa",
+    profiles: ["minimal"],
     afterFile: "~/.config/nvim/rc/after/nvim-dansa.lua",
   },
   { url: "https://github.com/yuki-yano/dedent-yank.vim" },
