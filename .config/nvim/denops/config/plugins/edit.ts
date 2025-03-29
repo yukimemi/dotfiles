@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/03/20 14:45:46.
+// Last Change : 2025/03/29 20:37:39.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
@@ -151,7 +151,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/thinca/vim-qfreplace",
-    profiles: ["default"],
+    profiles: ["minimal"],
     enabled: pluginStatus.qfreplace,
     before: async ({ denops }) => {
       await vars.g.set(denops, "qfreplace_no_save", 0);
