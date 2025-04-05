@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/03/16 13:13:31.
+// Last Change : 2025/03/30 07:58:02.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
@@ -462,7 +462,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/itchyny/vim-highlighturl",
-    profiles: ["colors"],
+    profiles: ["colors", "favaritecolors"],
   },
   {
     url: "https://github.com/Bekaboo/dropbar.nvim",
