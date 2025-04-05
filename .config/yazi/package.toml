@@ -21,8 +21,8 @@ hash = "65fff40a0060fe4b1c42d49d29f770fd"
 
 [[plugin.deps]]
 use = "hankertrix/augment-command"
-rev = "7c20850"
-hash = "adeb11c4bdb0594b65237bbd438484ca"
+rev = "c448bc3"
+hash = "b1956cbe1f2514232df99accbe0d292"
 
 [[plugin.deps]]
 use = "orhnk/system-clipboard"
@@ -31,8 +31,8 @@ hash = "9b8f2573da54334b04747e51556040cc"
 
 [[plugin.deps]]
 use = "Lil-Dank/lazygit"
-rev = "9f924e3"
-hash = "2b0c33928986f126d5c5a4cac31a6b46"
+rev = "7a08a09"
+hash = "a1fa2b3e1826c3a34804ea8c548e9f80"
 
 [[plugin.deps]]
 use = "MasouShizuka/projects"
@@ -46,8 +46,8 @@ hash = "e11b980e5635f0fbabd80931b1a1347e"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
-rev = "ce6fb75"
-hash = "ed6c185514109d7c5463f609282b220c"
+rev = "558188d"
+hash = "2d0afef7b50747c543c4304004a72cec"
 
 [flavor]
 deps = []
