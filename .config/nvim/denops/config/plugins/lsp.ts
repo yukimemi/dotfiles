@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2025/03/16 16:23:18.
+// Last Change : 2025/03/30 22:03:10.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
@@ -107,7 +107,7 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/mrcjkb/rustaceanvim",
-    profiles: ["lsp"],
+    profiles: ["rust"],
     afterFile: "~/.config/nvim/rc/after/rustaceanvim.lua",
     dependencies: [
       "https://github.com/neovim/nvim-lspconfig",

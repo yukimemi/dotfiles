@@ -28,7 +28,7 @@ export const memo: Plug[] = [
   },
   {
     url: "https://github.com/glidenote/memolist.vim",
-    profiles: ["minimal"],
+    profiles: ["memo"],
     before: async ({ denops }) => {
       await vars.g.set(
         denops,

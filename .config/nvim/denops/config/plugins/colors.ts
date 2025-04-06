@@ -147,7 +147,7 @@ export const colors: Plug[] = [
   },
   {
     url: "https://github.com/0xstepit/flow.nvim",
-    profiles: ["colors"],
+    profiles: ["colors", "favaritecolors"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("flow").setup()`);
     },

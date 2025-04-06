@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : showinfo.ts
 // Author      : yukimemi
-// Last Change : 2025/03/19 00:47:15.
+// Last Change : 2025/03/30 08:06:42.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.5.0/function";
@@ -18,6 +18,7 @@ export async function notifyinfo(denops: Denops) {
       denops,
       "spectrism_priority",
     )}]`,
+    `pwd: [${await fn.getcwd(denops)}]`,
     `path: [${await fn.expand(denops, "%:p")}]`,
     `encoding: [${await op.fileencoding.get(denops)}]`,
     `fileformat: [${await op.fileformat.get(denops)}]`,

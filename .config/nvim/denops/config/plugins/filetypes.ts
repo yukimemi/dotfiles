@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2025/03/20 14:43:50.
+// Last Change : 2025/03/30 22:02:37.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
@@ -150,7 +150,7 @@ export const filetypes: Plug[] = [
   // Rust
   {
     url: "https://github.com/Saecki/crates.nvim",
-    profiles: ["full"],
+    profiles: ["rust"],
     after: async ({ denops }) => {
       await autocmd.group(denops, "MyRustSettings", (helper) => {
         helper.remove("*");
