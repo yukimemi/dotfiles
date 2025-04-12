@@ -1,13 +1,13 @@
 # =============================================================================
 # File        : package.toml
 # Author      : yukimemi
-# Last Change : 2025/02/11 17:25:30.
+# Last Change : 2025/04/12 20:33:18.
 # =============================================================================
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:max-preview"
-rev = "8945e54"
-hash = "15b2ff7f6563c14d5b2e93b3e9da35de"
+rev = "7a9f5b1"
+hash = "1ff988b9c40f436d4cc1e33763eb089c"
 
 [[plugin.deps]]
 use = "GrzegorzKozub/mdcat"
@@ -21,12 +21,12 @@ hash = "65fff40a0060fe4b1c42d49d29f770fd"
 
 [[plugin.deps]]
 use = "hankertrix/augment-command"
-rev = "c448bc3"
-hash = "b1956cbe1f2514232df99accbe0d292"
+rev = "adebde0"
+hash = "eef0510c86fa6400f59ad03e0206e817"
 
 [[plugin.deps]]
 use = "orhnk/system-clipboard"
-rev = "7775a80"
+rev = "efb8f03"
 hash = "9b8f2573da54334b04747e51556040cc"
 
 [[plugin.deps]]
@@ -36,18 +36,18 @@ hash = "a1fa2b3e1826c3a34804ea8c548e9f80"
 
 [[plugin.deps]]
 use = "MasouShizuka/projects"
-rev = "ac57d0a"
-hash = "9f45b6c6a55d9992ad80091ab8112c24"
+rev = "4f11ecc"
+hash = "17fa17295d27864f62875f06a77f72e7"
 
 [[plugin.deps]]
 use = "h-hg/yamb"
-rev = "3f7c51f"
-hash = "e11b980e5635f0fbabd80931b1a1347e"
+rev = "22af003"
+hash = "7cc42012a7c2099f80064d228feb8d44"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
-rev = "558188d"
-hash = "2d0afef7b50747c543c4304004a72cec"
+rev = "73b7842"
+hash = "1b2f25c9a34b98e596c65bd3e84c51ef"
 
 [flavor]
 deps = []
