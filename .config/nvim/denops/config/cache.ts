@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2025/03/16 14:07:53.
+// Last Change : 2025/04/20 20:01:07.
 // =============================================================================
 
 export function cacheVim() {
@@ -66,6 +66,11 @@ export function cacheLua() {
       vim.o.fileencodings = "ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1"
       vim.o.fileformats = "unix,dos,mac"
       vim.o.clipboard = "unnamedplus";
+
+      if vim.fn.has('win32') == 1 then
+        vim.o.shell = 'pwsh'
+        vim.o.shellcmdflag = '-c'
+      end
 
       vim.g.mapleader = " ";
       vim.g.maplocalleader = "\\\\";

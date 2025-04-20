@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : terminal.ts
 // Author      : yukimemi
-// Last Change : 2025/04/20 00:51:23.
+// Last Change : 2025/04/20 19:54:46.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
@@ -42,7 +42,7 @@ export const terminal: Plug[] = [
   {
     url: "https://github.com/xb-bx/editable-term.nvim",
     profiles: ["terminal"],
-    afterFile: `~/.config/nvim/rc/after/editable-term.lua`,
+    cache: { afterFile: `~/.config/nvim/rc/after/editable-term.lua` },
   },
   {
     url: "https://github.com/Shougo/ddt.vim",
