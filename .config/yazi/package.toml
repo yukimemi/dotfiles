@@ -1,23 +1,13 @@
 # =============================================================================
 # File        : package.toml
 # Author      : yukimemi
-# Last Change : 2025/04/12 20:33:18.
+# Last Change : 2025/04/20 21:42:58.
 # =============================================================================
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:max-preview"
-rev = "7a9f5b1"
+rev = "b12a9ab"
 hash = "1ff988b9c40f436d4cc1e33763eb089c"
-
-[[plugin.deps]]
-use = "GrzegorzKozub/mdcat"
-rev = "d3d5089"
-hash = "40c20e6c1085d1f45309b9f148bf4f6e"
-
-[[plugin.deps]]
-use = "KKV9/command"
-rev = "95a29be"
-hash = "65fff40a0060fe4b1c42d49d29f770fd"
 
 [[plugin.deps]]
 use = "hankertrix/augment-command"
@@ -46,8 +36,8 @@ hash = "7cc42012a7c2099f80064d228feb8d44"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
-rev = "73b7842"
-hash = "1b2f25c9a34b98e596c65bd3e84c51ef"
+rev = "2496cd9"
+hash = "5b9dea47776a30946cfbf83232d18fb1"
 
 [flavor]
 deps = []
