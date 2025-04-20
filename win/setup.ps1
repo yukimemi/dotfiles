@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/03/16 09:05:21.
+  .Last Change : 2025/04/19 15:15:30.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -96,6 +96,7 @@ function Install-RequiredModules {
   winget install -q Microsoft.PowerShell
   winget install -q Neovide.Neovide
   winget install -q hluk.CopyQ
+  winget install -q dalance.procs
   sudo choco install -y zig
 }
 

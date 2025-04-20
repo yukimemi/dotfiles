@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2025/04/06 21:01:24.
+// Last Change : 2025/04/20 00:54:19.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.5.0/function";
@@ -124,14 +124,15 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
       "log",
       "lsp",
       "mark",
-      "rust",
       "markdown",
       "memo",
       "minimal",
       "operator",
       "quickfix",
       "runner",
+      "rust",
       "search",
+      "terminal",
       "textobj",
       "treesitter",
       "yank",
