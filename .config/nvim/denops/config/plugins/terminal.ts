@@ -25,8 +25,8 @@ export const terminal: Plug[] = [
   },
   {
     url: "https://github.com/akinsho/toggleterm.nvim",
-    profiles: ["default"],
-    enabled: false,
+    profiles: ["terminal"],
+    enabled: true,
     cache: { afterFile: `~/.config/nvim/rc/after/toggleterm.lua` },
   },
   {

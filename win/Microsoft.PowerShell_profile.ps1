@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/03/22 15:21:29.
+# Last Change : 2025/04/22 00:57:07.
 # =============================================================================
 
 # module
@@ -88,7 +88,7 @@ function gbr {
 }
 
 # git ignore for PowerShell
-Function gig {
+function gig {
   param(
     [Parameter(Mandatory = $true)]
     [string[]]$list
@@ -158,7 +158,7 @@ function t {
 function RemoveTo-Trash {
   # https://qiita.com/Zuishin/items/1fa77bccd111b55f7bf6
   [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Path')]
-  Param (
+  param (
     [SupportsWildCards()]
     [Parameter(
       Mandatory = $true,
@@ -180,11 +180,11 @@ function RemoveTo-Trash {
     )]
     [string[]]$LiteralPath
   )
-  Begin {
+  begin {
     $shell = New-Object -ComObject Shell.Application
     $trash = $shell.NameSpace(10)
   }
-  Process {
+  process {
     $Path = $Path.Trim()
     $Path = $Path -replace '^[^A-Z]+', ""
     if ($PSBoundParameters.ContainsKey('Path')) {

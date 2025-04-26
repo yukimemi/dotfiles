@@ -1,13 +1,15 @@
 -- =============================================================================
 -- File        : toggleterm.lua
 -- Author      : yukimemi
--- Last Change : 2025/01/01 21:21:54.
+-- Last Change : 2025/04/24 23:58:24.
 -- =============================================================================
 
 local toggleterm = require("toggleterm")
 local Terminal   = require('toggleterm.terminal').Terminal
 
-toggleterm.setup()
+toggleterm.setup({
+  direction = "float"
+})
 
 vim.keymap.set("n", "<c-s>", "<cmd>ToggleTerm<cr>", { noremap = true, silent = true })
 
@@ -33,4 +35,4 @@ function _lazygit_toggle()
   lazygit:toggle()
 end
 
--- vim.keymap.set("n", "<space>gg", "<cmd>lua _lazygit_toggle()<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<space>gg", "<cmd>lua _lazygit_toggle()<cr>", { noremap = true, silent = true })

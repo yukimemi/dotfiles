@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : editarble-term.lua
 -- Author      : yukimemi
--- Last Change : 2025/04/20 21:51:12.
+-- Last Change : 2025/04/23 02:35:15.
 -- =============================================================================
 
 local editableterm = require('editable-term')
@@ -14,8 +14,8 @@ editableterm.setup({
   },
 })
 
-if vim.fn.has('win32') == 1 then
-  vim.keymap.set("n", "<c-s>", "<cmd>terminal pwsh<cr>", { noremap = true, silent = true })
-else
-  vim.keymap.set("n", "<c-s>", "<cmd>terminal<cr>", { noremap = true, silent = true })
-end
+-- if vim.fn.has('win32') == 1 then
+--   vim.keymap.set("n", "<c-s>", "<cmd>terminal pwsh<cr>", { noremap = true, silent = true })
+-- else
+--   vim.keymap.set("n", "<c-s>", "<cmd>terminal<cr>", { noremap = true, silent = true })
+-- end
