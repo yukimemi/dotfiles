@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/04/20 00:26:43.
+// Last Change : 2025/04/27 08:05:55.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.5.0/lambda";
@@ -29,7 +29,7 @@ export const ai: Plug[] = [
     afterFile: "~/.config/nvim/rc/after/sg.lua",
   },
   {
-    url: "https://github.com/Exafunction/codeium.vim",
+    url: "https://github.com/Exafunction/windsurf.vim",
     profiles: ["ai"],
     enabled: async ({ denops }) =>
       await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) && pluginStatus.codeium,

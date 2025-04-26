@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2025/03/22 16:41:40.
+// Last Change : 2025/04/27 08:03:28.
 // =============================================================================
 
 export const pluginStatus = {
@@ -17,7 +17,7 @@ export const pluginStatus = {
   clap: false,
   cmp: false,
   coc: false,
-  codeium: false,
+  codeium: true,
   compl: false,
   ddc: false,
   ddt: false,
@@ -41,7 +41,7 @@ export const pluginStatus = {
   lualine: true,
   staba: false,
   modesearch: false,
-  necodeium: true,
+  necodeium: false,
   neocolumn: false,
   neotest: false,
   neotree: false,
