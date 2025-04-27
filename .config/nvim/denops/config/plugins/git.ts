@@ -5,7 +5,7 @@
 // =============================================================================
 
 import * as mapping from "jsr:@denops/std@7.5.0/mapping";
-import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@7.0.1";
 import { pluginStatus } from "../pluginstatus.ts";
 import { execCommand } from "../util.ts";
 
