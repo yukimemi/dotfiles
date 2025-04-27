@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/03/25 16:41:21.
+// Last Change : 2025/04/27 11:06:28.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.0";
@@ -626,5 +626,10 @@ export const util: Plug[] = [
     enabled: false,
     beforeFile: "~/.config/nvim/rc/before/vim-incopen.vim",
     afterFile: "~/.config/nvim/rc/after/vim-incopen.vim",
+  },
+  {
+    url: "https://github.com/t9md/vim-quickhl",
+    profiles: ["minimal"],
+    afterFile: "~/.config/nvim/rc/after/vim-quickhl.vim",
   },
 ];

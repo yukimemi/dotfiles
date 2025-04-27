@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : codecompanion.lua
 -- Author      : yukimemi
--- Last Change : 2025/02/01 21:23:54.
+-- Last Change : 2025/04/27 20:16:36.
 -- =============================================================================
 
 require("codecompanion").setup({
@@ -22,11 +22,10 @@ require("codecompanion").setup({
       return require("codecompanion.adapters").extend("gemini", {
         schema = {
           model = {
-            default = "gemini-2.0-flash-thinking-exp",
+            default = "gemini-2.5-flash-preview-04-17",
           },
         },
       })
     end,
   },
 })
-
