@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/04/22 00:57:07.
+# Last Change : 2025/04/29 07:09:27.
 # =============================================================================
 
 # module
@@ -414,4 +414,10 @@ if (Get-Command pnpm -ErrorAction SilentlyContinue) {
   $env:PNPM_HOME = [System.IO.Path]::Combine($env:USERPROFILE, 'AppData\Local\pnpm\store')
   [System.Environment]::SetEnvironmentVariable("PNPM_HOME", $env:PNPM_HOME, [System.EnvironmentVariableTarget]::User)
 }
+
+# mise
+if (Get-Command mise -ErrorAction SilentlyContinue) {
+  mise activate pwsh | Out-String | Invoke-Expression
+}
+
 

@@ -7,4 +7,5 @@ asdf_compat = true
 go = "1.21.1"
 dust = "0.8.6"
 jless = "0.9.0"
+deno = "2.2.12"
 
