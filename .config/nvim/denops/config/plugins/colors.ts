@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/03/30 22:40:28.
+// Last Change : 2025/04/29 00:33:48.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.1";
@@ -22,7 +22,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/NLKNguyen/papercolor-theme", profiles: ["colors"] },
   { url: "https://github.com/PHSix/nvim-hybrid", profiles: ["colors"] },
   { url: "https://github.com/RRethy/nvim-base16", profiles: ["colors"] },
-  { url: "https://github.com/Rigellute/rigel", profiles: ["default"] },
+  { url: "https://github.com/Rigellute/rigel", profiles: ["colors"] },
   { url: "https://github.com/Styzex/Sonomin.nvim", profiles: ["colors"] },
   { url: "https://github.com/adrian5/oceanic-next-vim", profiles: ["colors"] },
   { url: "https://github.com/aereal/vim-colors-japanesque", profiles: ["colors"] },
@@ -34,7 +34,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/ayu-theme/ayu-vim", profiles: ["colors"] },
   { url: "https://github.com/bluz71/vim-nightfly-colors", profiles: ["colors"] },
   { url: "https://github.com/bluz71/vim-nightfly-guicolors", profiles: ["colors"] },
-  { url: "https://github.com/catppuccin/nvim", profiles: ["default"] },
+  { url: "https://github.com/catppuccin/nvim", profiles: ["colors"] },
   { url: "https://github.com/cocopon/iceberg.vim", profiles: ["colors"] },
   { url: "https://github.com/craftzdog/solarized-osaka.nvim", profiles: ["colors"] },
   { url: "https://github.com/cseelus/vim-colors-lucid", profiles: ["colors"] },
@@ -48,7 +48,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/eihigh/vim-aomi-grayscale", profiles: ["colors"] },
   { url: "https://github.com/ellisonleao/gruvbox.nvim", profiles: ["colors"] },
   { url: "https://github.com/fenetikm/falcon", profiles: ["colors"] },
-  { url: "https://github.com/folke/tokyonight.nvim", profiles: ["default", "favaritecolors"] },
+  { url: "https://github.com/folke/tokyonight.nvim", profiles: ["colors", "favaritecolors"] },
   { url: "https://github.com/futsuuu/vim-robot", profiles: ["colors"] },
   { url: "https://github.com/gkapfham/vim-vitamin-onec", profiles: ["colors"] },
   { url: "https://github.com/gkeep/iceberg-dark", profiles: ["colors"] },
@@ -97,8 +97,8 @@ export const colors: Plug[] = [
   { url: "https://github.com/romgrk/github-light.vim", profiles: ["colors"] },
   { url: "https://github.com/rose-pine/neovim", profiles: ["colors", "favaritecolors"] },
   { url: "https://github.com/sponkurtus2/angelic.nvim", profiles: ["colors", "favaritecolors"] },
-  { url: "https://github.com/sainnhe/edge", profiles: ["default", "favaritecolors"] },
-  { url: "https://github.com/sainnhe/gruvbox-material", profiles: ["default", "favaritecolors"] },
+  { url: "https://github.com/sainnhe/edge", profiles: ["colors", "favaritecolors"] },
+  { url: "https://github.com/sainnhe/gruvbox-material", profiles: ["colors", "favaritecolors"] },
   { url: "https://github.com/savq/melange-nvim", profiles: ["colors"] },
   { url: "https://github.com/severij/vadelma", profiles: ["colors"] },
   { url: "https://github.com/shaunsingh/nord.nvim", profiles: ["colors"] },
@@ -160,7 +160,7 @@ export const colors: Plug[] = [
     },
   },
   {
-    url: "https://github.com/yukimemi/spectrism.vim",
+    url: "https://github.com/yukimemi/lumiris.vim",
     profiles: ["colors", "favaritecolors"],
     dependencies: [
       "https://github.com/0xstepit/flow.nvim",
@@ -271,23 +271,23 @@ export const colors: Plug[] = [
       "https://github.com/zenbones-theme/zenbones.nvim",
     ],
     before: async ({ denops }) => {
-      await vars.g.set(denops, "spectrism_debug", false);
-      await vars.g.set(denops, "spectrism_echo", false);
-      await vars.g.set(denops, "spectrism_notify", true);
-      await vars.g.set(denops, "spectrism_interval", 3600);
-      await vars.g.set(denops, "spectrism_checkwait", 3000);
-      await vars.g.set(denops, "spectrism_disables", [
+      await vars.g.set(denops, "lumiris_debug", false);
+      await vars.g.set(denops, "lumiris_echo", false);
+      await vars.g.set(denops, "lumiris_notify", true);
+      await vars.g.set(denops, "lumiris_interval", 3600);
+      await vars.g.set(denops, "lumiris_checkwait", 3000);
+      await vars.g.set(denops, "lumiris_disables", [
         "evening",
         "default",
         "blue",
       ]);
       await vars.g.set(
         denops,
-        "spectrism_path",
-        await fn.expand(denops, "~/.cache/nvim/spectrism/colorscheme.toml"),
+        "lumiris_path",
+        await fn.expand(denops, "~/.cache/nvim/lumiris/colorscheme.toml"),
       );
-      await vars.g.set(denops, "spectrism_notmatch", "[Ll]ight");
-      await vars.g.set(denops, "spectrism_background", "dark");
+      await vars.g.set(denops, "lumiris_notmatch", "[Ll]ight");
+      await vars.g.set(denops, "lumiris_background", "dark");
 
       await mapping.map(denops, "<space>co", "<cmd>ChangeColorscheme<cr>", {
         mode: "n",
