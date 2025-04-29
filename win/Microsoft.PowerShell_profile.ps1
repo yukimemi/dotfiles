@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/04/29 07:09:27.
+# Last Change : 2025/04/29 20:41:20.
 # =============================================================================
 
 # module
@@ -418,6 +418,8 @@ if (Get-Command pnpm -ErrorAction SilentlyContinue) {
 # mise
 if (Get-Command mise -ErrorAction SilentlyContinue) {
   mise activate pwsh | Out-String | Invoke-Expression
+} else {
+  winget install jdx.mise
 }
 
 
