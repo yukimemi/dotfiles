@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/05/03 18:05:05.
+# Last Change : 2025/05/05 07:44:24.
 # =============================================================================
 
 # module
@@ -238,6 +238,9 @@ function rhl {
 }
 function ghl {
   ghr list | __FILTER | Select-Object -First 1 | Trim-Cd
+}
+function gsl {
+  gsr "${env:USERPROFILE}\src" | __FILTER | Select-Object -First 1 | Trim-Cd
 }
 function jd {
   Get-ChildItem -Force -Directory -Recurse | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | Trim-Cd
