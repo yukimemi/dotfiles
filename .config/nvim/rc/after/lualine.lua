@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : lualine.lua
 -- Author      : yukimemi
--- Last Change : 2025/02/09 13:40:23.
+-- Last Change : 2025/05/03 08:23:41.
 -- =============================================================================
 
 -- Eviline config for lualine
@@ -245,7 +245,7 @@ ins_right({
   "g:colors_name",
 })
 ins_right({
-  "g:spectrism_priority",
+  "g:lumiris_priority",
   color = { fg = colors.cyan },
 })
 ins_right({

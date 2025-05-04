@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2025/03/30 22:03:10.
+// Last Change : 2025/05/03 17:27:55.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.1";
@@ -38,7 +38,7 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/stevearc/aerial.nvim",
-    profiles: ["full"],
+    profiles: ["lsp"],
     afterFile: `~/.config/nvim/rc/after/aerial.lua`,
   },
   {

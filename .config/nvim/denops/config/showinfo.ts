@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : showinfo.ts
 // Author      : yukimemi
-// Last Change : 2025/04/06 20:56:34.
+// Last Change : 2025/05/03 08:23:30.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.5.0/function";
@@ -23,7 +23,7 @@ export async function notifyinfo(denops: Denops) {
     "------------------------------",
     `colorscheme: [${await vars.g.get(denops, "colors_name")}], priority: [${await vars.g.get(
       denops,
-      "spectrism_priority",
+      "lumiris_priority",
     )}]`,
     `pwd: [${await fn.getcwd(denops)}]`,
     `path: [${await fn.expand(denops, "%:p")}]`,
