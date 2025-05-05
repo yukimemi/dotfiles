@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-lspconfig.lua
 -- Author      : yukimemi
--- Last Change : 2025/03/16 16:23:36.
+-- Last Change : 2025/05/05 20:21:19.
 -- =============================================================================
 
 require("mason").setup({
@@ -141,8 +141,10 @@ require("mason-lspconfig").setup_handlers({
       single_file_support = true,
       settings = {
         Lua = {
+          runtime = { version = "LuaJIT" },
           workspace = {
             checkThirdParty = false,
+            library = vim.api.nvim_get_runtime_file("", true),
           },
           completion = {
             workspaceWord = true,
