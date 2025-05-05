@@ -1,12 +1,10 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2025/05/03 17:27:55.
+// Last Change : 2025/05/05 20:36:38.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.1";
-
-import { pluginStatus } from "../pluginstatus.ts";
 
 export const lsp: Plug[] = [
   {
@@ -67,6 +65,7 @@ export const lsp: Plug[] = [
     dependencies: [
       "https://github.com/williamboman/mason.nvim",
     ],
+    afterFile: "~/.config/nvim/rc/after/mason-lspconfig.lua",
   },
   {
     url: "https://github.com/zapling/mason-conform.nvim",
@@ -77,6 +76,7 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/folke/lazydev.nvim",
+    profiles: ["lsp"],
     dependencies: ["https://github.com/neovim/nvim-lspconfig"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("lazydev").setup()`);
@@ -116,12 +116,14 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/rachartier/tiny-inline-diagnostic.nvim",
+    profiles: ["lsp"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("tiny-inline-diagnostic").setup()`);
     },
   },
   {
     url: "https://github.com/chrisgrieser/nvim-lsp-endhints",
+    profiles: ["lsp"],
     afterFile: `~/.config/nvim/rc/after/nvim-lsp-endhints.lua`,
   },
   {
@@ -131,11 +133,11 @@ export const lsp: Plug[] = [
   {
     url: "https://github.com/neovim/nvim-lspconfig",
     profiles: ["lsp"],
-    enabled: !pluginStatus.coc,
     dependencies: [
       "https://github.com/SmiteshP/nvim-navic",
       "https://github.com/folke/neoconf.nvim",
       "https://github.com/folke/trouble.nvim",
+      "https://github.com/hrsh7th/nvim-cmp",
       "https://github.com/onsails/lspkind.nvim",
       "https://github.com/williamboman/mason-lspconfig.nvim",
       "https://github.com/williamboman/mason.nvim",
