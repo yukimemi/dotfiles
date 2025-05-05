@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/05/05 19:41:01.
+// Last Change : 2025/05/06 02:03:16.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.5.0/lambda";
@@ -150,7 +150,6 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/futago.vim",
-    // dst: `~/src/github.com/yukimemi/futago.vim`,
     profiles: ["ai"],
     enabled: true,
     before: async ({ denops }) => {
