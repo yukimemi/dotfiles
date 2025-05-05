@@ -6,3 +6,4 @@
 *.zwc
 *.dat
 .aider*
+!.aider.conf.yml

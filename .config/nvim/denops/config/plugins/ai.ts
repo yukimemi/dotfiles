@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/05/05 14:28:24.
+// Last Change : 2025/05/05 19:41:01.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.5.0/lambda";
@@ -30,8 +30,8 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/GeorgesAlkhouri/nvim-aider",
+    enabled: false,
     profiles: ["ai"],
-    enabled: pluginStatus.aider,
     afterFile: "~/.config/nvim/rc/after/nvim-aider.lua",
   },
   {

@@ -1,0 +1,13 @@
+# =============================================================================
+# File        : .aider.conf.yml
+# Author      : yukimemi
+# Last Change : 2025/05/05 18:39:02.
+# =============================================================================
+
+model: gemini-exp
+
+voice-language: ja
+
+chat-language: ja
+
+line-endings: lf
