@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2024/09/01 11:03:21.
+// Last Change : 2025/05/05 13:37:52.
 // =============================================================================
 
 import type { Denops } from "jsr:@denops/std@7.5.0";
@@ -74,7 +74,7 @@ export async function setOption(denops: Denops) {
     await option.wrap.set(denops, false);
 
     if (denops.meta.host === "nvim") {
-      // await option.cmdheight.set(denops, 0);
+      await option.cmdheight.set(denops, 0);
       await nvimOption.inccommand.set(denops, "nosplit");
       await nvimOption.pumblend.set(denops, 10);
       await option.laststatus.set(denops, 0);

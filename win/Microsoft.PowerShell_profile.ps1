@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/05/05 07:44:24.
+# Last Change : 2025/05/05 13:59:13.
 # =============================================================================
 
 # module
@@ -23,6 +23,13 @@
 # Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 # Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile ubuntu-2004.appx -UseBasicParsing
 # Add-AppxPackage .\ubuntu-2004.appx
+
+# mise
+if (Get-Command mise -ErrorAction SilentlyContinue) {
+  mise activate pwsh | Out-String | Invoke-Expression
+} else {
+  cargo install mise
+}
 
 # Utility functions.
 function Is-Windows {
@@ -417,12 +424,4 @@ if (Get-Command pnpm -ErrorAction SilentlyContinue) {
   $env:PNPM_HOME = [System.IO.Path]::Combine($env:USERPROFILE, 'AppData\Local\pnpm\store')
   [System.Environment]::SetEnvironmentVariable("PNPM_HOME", $env:PNPM_HOME, [System.EnvironmentVariableTarget]::User)
 }
-
-# mise
-if (Get-Command mise -ErrorAction SilentlyContinue) {
-  mise activate pwsh | Out-String | Invoke-Expression
-} else {
-  cargo install mise
-}
-
 

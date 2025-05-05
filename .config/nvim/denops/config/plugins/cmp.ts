@@ -1,39 +1,39 @@
 // =============================================================================
 // File        : cmp.ts
 // Author      : yukimemi
-// Last Change : 2025/01/09 20:28:54.
+// Last Change : 2025/05/05 14:02:43.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.1";
 
 export const cmp: Plug[] = [
-  { url: "https://github.com/hrsh7th/cmp-nvim-lsp", profiles: ["default"] },
-  { url: "https://github.com/hrsh7th/cmp-buffer", profiles: ["default"] },
-  { url: "https://github.com/hrsh7th/cmp-emoji", profiles: ["default"] },
-  { url: "https://github.com/hrsh7th/cmp-cmdline", profiles: ["default"] },
-  { url: "https://github.com/dmitmel/cmp-cmdline-history", profiles: ["default"] },
-  { url: "https://github.com/hrsh7th/cmp-path", profiles: ["default"] },
-  { url: "https://github.com/lukas-reineke/cmp-rg", profiles: ["default"] },
-  { url: "https://github.com/ray-x/cmp-treesitter", profiles: ["default"] },
-  { url: "https://github.com/chrisgrieser/cmp-nerdfont", profiles: ["default"] },
-  { url: "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help", profiles: ["default"] },
-  { url: "https://github.com/hrsh7th/cmp-nvim-lsp-document-symbol", profiles: ["default"] },
-  { url: "https://github.com/uga-rosa/cmp-denippet", profiles: ["default"] },
-  { url: "https://github.com/uga-rosa/denippet.nvim", profiles: ["default"] },
-  { url: "https://github.com/teramako/cmp-cmdline-prompt.nvim", profiles: ["default"] },
+  { url: "https://github.com/hrsh7th/cmp-nvim-lsp", profiles: ["cmp"] },
+  { url: "https://github.com/hrsh7th/cmp-buffer", profiles: ["cmp"] },
+  { url: "https://github.com/hrsh7th/cmp-emoji", profiles: ["cmp"] },
+  { url: "https://github.com/hrsh7th/cmp-cmdline", profiles: ["cmp"] },
+  { url: "https://github.com/dmitmel/cmp-cmdline-history", profiles: ["cmp"] },
+  { url: "https://github.com/hrsh7th/cmp-path", profiles: ["cmp"] },
+  { url: "https://github.com/lukas-reineke/cmp-rg", profiles: ["cmp"] },
+  { url: "https://github.com/ray-x/cmp-treesitter", profiles: ["cmp"] },
+  { url: "https://github.com/chrisgrieser/cmp-nerdfont", profiles: ["cmp"] },
+  { url: "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help", profiles: ["cmp"] },
+  { url: "https://github.com/hrsh7th/cmp-nvim-lsp-document-symbol", profiles: ["cmp"] },
+  { url: "https://github.com/uga-rosa/cmp-denippet", profiles: ["cmp"] },
+  { url: "https://github.com/uga-rosa/denippet.nvim", profiles: ["cmp"] },
+  { url: "https://github.com/teramako/cmp-cmdline-prompt.nvim", profiles: ["cmp"] },
   {
     url: "https://github.com/KentoOgata/cmp-tsnip",
-    profiles: ["default"],
+    profiles: ["cmp"],
     enabled: false,
   },
   {
     url: "https://github.com/yuki-yano/tsnip.nvim",
-    profiles: ["default"],
+    profiles: ["cmp"],
     enabled: false,
   },
   {
     url: "https://github.com/hrsh7th/nvim-cmp",
-    profiles: ["default"],
+    profiles: ["cmp"],
     dependencies: [
       "https://github.com/hrsh7th/cmp-nvim-lsp",
       "https://github.com/hrsh7th/cmp-buffer",

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/04/27 15:06:26.
+// Last Change : 2025/05/05 14:11:21.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.5.0/lambda";
@@ -29,10 +29,15 @@ export const ai: Plug[] = [
     afterFile: "~/.config/nvim/rc/after/sg.lua",
   },
   {
+    url: "https://github.com/GeorgesAlkhouri/nvim-aider",
+    profiles: ["ai"],
+  },
+  {
     url: "https://github.com/Exafunction/windsurf.vim",
     profiles: ["ai"],
     enabled: async ({ denops }) =>
-      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) && pluginStatus.codeium,
+      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) &&
+      denops.meta.host === "vim" && pluginStatus.codeium,
     before: async ({ denops }) => {
       await vars.g.set(denops, "codeium_disable_bindings", 1);
     },
@@ -58,6 +63,18 @@ export const ai: Plug[] = [
         nowait: true,
       });
     },
+  },
+  {
+    url: "https://github.com/Exafunction/windsurf.nvim",
+    profiles: ["ai"],
+    enabled: async ({ denops }) =>
+      await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) &&
+      denops.meta.host === "nvim" && pluginStatus.codeium,
+    dependencies: [
+      "https://github.com/nvim-lua/plenary.nvim",
+      "https://github.com/hrsh7th/nvim-cmp",
+    ],
+    afterFile: `~/.config/nvim/rc/after/windsurf.lua`,
   },
   {
     url: "https://github.com/monkoose/neocodeium",

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : snippet.ts
 // Author      : yukimemi
-// Last Change : 2025/03/22 15:12:26.
+// Last Change : 2025/05/05 14:04:39.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.5.0/function";
@@ -14,7 +14,7 @@ import { z } from "npm:zod@3.24.3";
 export const snippet: Plug[] = [
   {
     url: "https://github.com/rafamadriz/friendly-snippets",
-    profiles: ["minimal"],
+    profiles: ["snippet"],
   },
   {
     url: "https://github.com/microsoft/vscode",
@@ -36,12 +36,12 @@ export const snippet: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/vim-vsnip-integ",
-    profiles: ["default"],
+    profiles: ["snippet"],
     enabled: pluginStatus.vsnip,
   },
   {
     url: "https://github.com/hrsh7th/vim-vsnip",
-    profiles: ["default"],
+    profiles: ["snippet"],
     enabled: pluginStatus.vsnip,
     dependencies: [
       "https://github.com/hrsh7th/vim-vsnip-integ",
@@ -58,7 +58,7 @@ export const snippet: Plug[] = [
   },
   {
     url: "https://github.com/uga-rosa/denippet.vim",
-    profiles: ["default"],
+    profiles: ["snippet"],
     enabled: pluginStatus.denippet,
     after: async ({ denops }) => {
       await mapping.map(denops, "<tab>", "<Plug>(denippet-expand-or-jump)", {

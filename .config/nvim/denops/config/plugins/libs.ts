@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/03/25 16:39:41.
+// Last Change : 2025/05/05 13:53:52.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.1";
@@ -119,7 +119,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/folke/noice.nvim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     dependencies: [
       "https://github.com/MunifTanjim/nui.nvim",
     ],
