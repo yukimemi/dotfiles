@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : windsurf.lua
 -- Author      : yukimemi
--- Last Change : 2025/05/05 14:17:21.
+-- Last Change : 2025/05/05 14:23:22.
 -- =============================================================================
 
 require("codeium").setup({
@@ -40,9 +40,9 @@ require("codeium").setup({
       -- Clear the virtual text.
       clear = false,
       -- Cycle to the next completion.
-      next = "<C-]>",
+      next = "<M-]>",
       -- Cycle to the previous completion.
-      prev = "<C-[>",
+      prev = "<M-[>",
     }
   }
 })

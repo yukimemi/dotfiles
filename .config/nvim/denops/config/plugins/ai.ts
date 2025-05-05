@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/05/05 14:11:21.
+// Last Change : 2025/05/05 14:28:24.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.5.0/lambda";
@@ -31,6 +31,8 @@ export const ai: Plug[] = [
   {
     url: "https://github.com/GeorgesAlkhouri/nvim-aider",
     profiles: ["ai"],
+    enabled: pluginStatus.aider,
+    afterFile: "~/.config/nvim/rc/after/nvim-aider.lua",
   },
   {
     url: "https://github.com/Exafunction/windsurf.vim",
