@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/04/29 00:33:48.
+// Last Change : 2025/05/06 15:31:48.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
@@ -50,6 +50,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/fenetikm/falcon", profiles: ["colors"] },
   { url: "https://github.com/folke/tokyonight.nvim", profiles: ["colors", "favaritecolors"] },
   { url: "https://github.com/futsuuu/vim-robot", profiles: ["colors"] },
+  { url: "https://github.com/yazeed1s/oh-lucy.nvim", profiles: ["colors"] },
   { url: "https://github.com/gkapfham/vim-vitamin-onec", profiles: ["colors"] },
   { url: "https://github.com/gkeep/iceberg-dark", profiles: ["colors"] },
   { url: "https://github.com/gruvbox-community/gruvbox", profiles: ["colors"] },
@@ -236,6 +237,7 @@ export const colors: Plug[] = [
       "https://github.com/oxfist/night-owl.nvim",
       "https://github.com/pbrisbin/vim-colors-off",
       "https://github.com/pineapplegiant/spaceduck",
+      "https://github.com/yazeed1s/oh-lucy.nvim",
       "https://github.com/polirritmico/monokai-nightasty.nvim",
       "https://github.com/projekt0n/caret.nvim",
       "https://github.com/projekt0n/github-nvim-theme",
