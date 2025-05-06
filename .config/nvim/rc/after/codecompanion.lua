@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : codecompanion.lua
 -- Author      : yukimemi
--- Last Change : 2025/05/05 20:10:21.
+-- Last Change : 2025/05/06 10:14:32.
 -- =============================================================================
 
 require("codecompanion").setup({
@@ -30,7 +30,7 @@ require("codecompanion").setup({
   },
 })
 
-vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+-- vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "<spaceLocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>",
   { noremap = true, silent = true })
 vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })

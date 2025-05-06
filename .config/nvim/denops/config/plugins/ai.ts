@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/05/06 02:03:16.
+// Last Change : 2025/05/06 12:44:53.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@7.5.0/lambda";
@@ -10,15 +10,10 @@ import { z } from "npm:zod@3.24.4";
 import { exists } from "jsr:@std/fs@1.0.17";
 import * as mapping from "jsr:@denops/std@7.5.0/mapping";
 import * as vars from "jsr:@denops/std@7.5.0/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@7.0.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 import { execCommand } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
-import {
-  GenerationConfig,
-  HarmBlockThreshold,
-  HarmCategory,
-  SafetySetting,
-} from "npm:@google/generative-ai@0.24.1";
+import { HarmBlockThreshold, HarmCategory, SafetySetting } from "npm:@google/generative-ai@0.24.1";
 
 export const ai: Plug[] = [
   {
@@ -178,10 +173,6 @@ export const ai: Plug[] = [
         },
       ];
       await vars.g.set(denops, "futago_safety_settings", safetySettings);
-      const generationConfig: GenerationConfig = {
-        temperature: 0.9,
-      };
-      await vars.g.set(denops, "futago_generation_config", generationConfig);
 
       // https://zenn.dev/niwatoro/articles/180f6185c382bb
       const zunUser = `character = ずんだもん
@@ -339,6 +330,7 @@ lang: ja
                     parts: [{ text: sisterModel }],
                   },
                 ],
+                humanPrompt: `yukimemi`,
                 aiPrompt: `AIお姉ちゃん`,
               });
             },

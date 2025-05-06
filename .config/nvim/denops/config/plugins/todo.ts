@@ -4,7 +4,7 @@
 // Last Change : 2025/02/01 13:35:37.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.0.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 
 import * as fn from "jsr:@denops/std@7.5.0/function";
 import { ensureFile } from "jsr:@std/fs@1.0.17/ensure-file";

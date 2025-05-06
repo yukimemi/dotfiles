@@ -4,7 +4,7 @@
 // Last Change : 2025/01/26 11:38:38.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.0.1";
+import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 
 export const tmux: Plug[] = [
   {
