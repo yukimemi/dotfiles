@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2025/03/18 01:37:22.
+// Last Change : 2025/05/06 15:36:11.
 // =============================================================================
 
 import * as mapping from "jsr:@denops/std@7.5.0/mapping";
@@ -85,7 +85,7 @@ export const git: Plug[] = [
   },
   {
     url: "https://github.com/sindrets/diffview.nvim",
-    enabled: false,
+    profiles: ["git"],
     afterFile: `~/.config/nvim/rc/after/diffview.lua`,
   },
   {
