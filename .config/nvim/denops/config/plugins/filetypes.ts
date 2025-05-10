@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2025/04/14 00:24:29.
+// Last Change : 2025/05/06 19:47:01.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
@@ -87,7 +87,10 @@ export const filetypes: Plug[] = [
       ]);
     },
   },
-  { url: "https://github.com/dhruvasagar/vim-table-mode" },
+  {
+    url: "https://github.com/dhruvasagar/vim-table-mode",
+    profiles: ["markdown"],
+  },
   { url: "https://github.com/ixru/nvim-markdown" },
   {
     url: "https://github.com/MeanderingProgrammer/render-markdown.nvim",

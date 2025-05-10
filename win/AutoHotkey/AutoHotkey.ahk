@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2025/02/10 09:45:28.
+; Last Change : 2025/05/10 14:33:09.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -121,7 +121,7 @@ F10::
     return
   } else {
     ; Activate("nvim-qt.exe")
-    Activate3("nvim.exe", "nvim.exe", "nvim")
+    Activate3("nvim.exe", "wt nvim.cmd", "nvim.cmd")
     return
   }
 }
