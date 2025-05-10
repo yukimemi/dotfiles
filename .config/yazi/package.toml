@@ -1,18 +1,13 @@
 # =============================================================================
 # File        : package.toml
 # Author      : yukimemi
-# Last Change : 2025/04/20 21:42:58.
+# Last Change : 2025/05/10 17:53:12.
 # =============================================================================
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:max-preview"
-rev = "b12a9ab"
-hash = "1ff988b9c40f436d4cc1e33763eb089c"
-
-[[plugin.deps]]
 use = "hankertrix/augment-command"
-rev = "adebde0"
-hash = "eef0510c86fa6400f59ad03e0206e817"
+rev = "15a75d8"
+hash = "374139554462a9dfc10dc8bfd0b01b19"
 
 [[plugin.deps]]
 use = "orhnk/system-clipboard"
