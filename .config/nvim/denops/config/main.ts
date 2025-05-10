@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2025/05/05 14:12:43.
+// Last Change : 2025/05/10 20:52:07.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@7.5.0/function";
@@ -127,6 +127,7 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
       "mark",
       "markdown",
       "memo",
+      "mini",
       "minimal",
       "operator",
       "quickfix",

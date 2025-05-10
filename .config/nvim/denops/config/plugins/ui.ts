@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/03/30 08:11:27.
+// Last Change : 2025/05/10 20:51:16.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
@@ -90,6 +90,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/ntpeters/vim-better-whitespace",
     profiles: ["default"],
+    enabled: pluginStatus.betterwhitespace,
     after: async ({ denops }) => {
       await vars.g.set(denops, "better_whitespace_filetypes_blacklist", [
         "diff",

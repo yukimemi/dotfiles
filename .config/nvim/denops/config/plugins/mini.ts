@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : mini.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:39:07.
+// Last Change : 2025/05/10 20:53:07.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
@@ -9,6 +9,7 @@ import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 export const mini: Plug[] = [
   {
     url: "https://github.com/echasnovski/mini.nvim",
+    profiles: ["mini"],
     after: async ({ denops }) => {
       // animate.
       if (denops.meta.platform !== "windows") {
@@ -17,6 +18,9 @@ export const mini: Plug[] = [
 
       // splitjoin.
       await denops.call(`luaeval`, `require("mini.splitjoin").setup()`);
+
+      // trailspace.
+      await denops.call(`luaeval`, `require("mini.trailspace").setup()`);
     },
     afterFile: `~/.config/nvim/rc/after/mini.lua`,
   },
