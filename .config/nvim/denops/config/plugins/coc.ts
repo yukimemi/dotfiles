@@ -12,7 +12,7 @@ import * as lambda from "jsr:@denops/std@7.5.0/lambda";
 import * as mapping from "jsr:@denops/std@7.5.0/mapping";
 import * as op from "jsr:@denops/std@7.5.0/option";
 import * as vars from "jsr:@denops/std@7.5.0/variable";
-import { z } from "npm:zod@3.25.7";
+import { z } from "npm:zod@3.25.13";
 import { execute } from "jsr:@denops/std@7.5.0/helper";
 
 export const coc: Plug[] = [
