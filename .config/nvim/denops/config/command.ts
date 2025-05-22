@@ -9,7 +9,7 @@ import * as nvimFn from "jsr:@denops/std@7.5.0/function/nvim";
 import type { Denops } from "jsr:@denops/std@7.5.0";
 import { batch } from "jsr:@denops/std@7.5.0/batch";
 import { removeShada, zennCreate, zennPreview } from "./util.ts";
-import { z } from "npm:zod@3.25.13";
+import { z } from "npm:zod@3.25.20";
 
 export async function setCommandPre(_denops: Denops) {
 }
