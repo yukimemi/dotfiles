@@ -25,7 +25,7 @@ import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setNvy } from "./nvy.ts";
 import { setOption } from "./option.ts";
-import { z } from "npm:zod@3.25.23";
+import { z } from "npm:zod@3.25.28";
 
 const logPath = join(await dir("cache"), "dvpm", `dvpm_${new Date().getTime()}.log`);
 await ensureFile(logPath);
