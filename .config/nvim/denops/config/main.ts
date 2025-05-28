@@ -14,7 +14,7 @@ import { cacheLua, cacheVim } from "./cache.ts";
 import { dir } from "jsr:@cross/dir@1.1.0";
 import { ensureFile } from "jsr:@std/fs@1.0.17/ensure-file";
 import { execute } from "jsr:@denops/std@7.5.0/helper";
-import { join } from "jsr:@std/path@1.0.9/join";
+import { join } from "jsr:@std/path@1.1.0/join";
 import { notify, openLog } from "./util.ts";
 import { plugins } from "./plugins.ts";
 import { setCommandPost, setCommandPre } from "./command.ts";
