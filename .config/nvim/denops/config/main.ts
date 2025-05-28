@@ -14,7 +14,7 @@ import { cacheLua, cacheVim } from "./cache.ts";
 import { dir } from "jsr:@cross/dir@1.1.0";
 import { ensureFile } from "jsr:@std/fs@1.0.17/ensure-file";
 import { execute } from "jsr:@denops/std@7.5.0/helper";
-import { join } from "jsr:@std/path@1.0.9/join";
+import { join } from "jsr:@std/path@1.1.0/join";
 import { notify, openLog } from "./util.ts";
 import { plugins } from "./plugins.ts";
 import { setCommandPost, setCommandPre } from "./command.ts";
@@ -25,7 +25,7 @@ import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setNvy } from "./nvy.ts";
 import { setOption } from "./option.ts";
-import { z } from "npm:zod@3.25.30";
+import { z } from "npm:zod@3.25.32";
 
 const logPath = join(await dir("cache"), "dvpm", `dvpm_${new Date().getTime()}.log`);
 await ensureFile(logPath);
