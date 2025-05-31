@@ -13,9 +13,9 @@ import * as lambda from "jsr:@denops/std@7.5.0/lambda";
 import * as nvimOption from "jsr:@denops/std@7.5.0/option/nvim";
 import * as option from "jsr:@denops/std@7.5.0/option";
 import { batch } from "jsr:@denops/std@7.5.0/batch";
-import { ensureDir } from "jsr:@std/fs@1.0.17/ensure-dir";
+import { ensureDir } from "jsr:@std/fs@1.0.18/ensure-dir";
 import { stdpath } from "jsr:@denops/std@7.5.0/function/nvim";
-import { z } from "npm:zod@3.25.41";
+import { z } from "npm:zod@3.25.42";
 
 export async function setOption(denops: Denops) {
   const backupdir = denops.meta.host === "nvim"

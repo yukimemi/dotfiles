@@ -12,7 +12,7 @@ import type { Denops, Entrypoint } from "jsr:@denops/std@7.5.0";
 import { Dvpm } from "jsr:@yukimemi/dvpm@7.0.3";
 import { cacheLua, cacheVim } from "./cache.ts";
 import { dir } from "jsr:@cross/dir@1.1.0";
-import { ensureFile } from "jsr:@std/fs@1.0.17/ensure-file";
+import { ensureFile } from "jsr:@std/fs@1.0.18/ensure-file";
 import { execute } from "jsr:@denops/std@7.5.0/helper";
 import { join } from "jsr:@std/path@1.1.0/join";
 import { notify, openLog } from "./util.ts";
@@ -25,7 +25,7 @@ import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setNvy } from "./nvy.ts";
 import { setOption } from "./option.ts";
-import { z } from "npm:zod@3.25.41";
+import { z } from "npm:zod@3.25.42";
 
 const logPath = join(await dir("cache"), "dvpm", `dvpm_${new Date().getTime()}.log`);
 await ensureFile(logPath);

@@ -6,7 +6,7 @@
 
 import * as buffer from "jsr:@denops/std@7.5.0/buffer";
 import * as fn from "jsr:@denops/std@7.5.0/function";
-import * as fs from "jsr:@std/fs@1.0.17";
+import * as fs from "jsr:@std/fs@1.0.18";
 import * as helper from "jsr:@denops/std@7.5.0/helper";
 import * as nvimFn from "jsr:@denops/std@7.5.0/function/nvim";
 import * as option from "jsr:@denops/std@7.5.0/option";
@@ -15,7 +15,7 @@ import type { Denops } from "jsr:@denops/std@7.5.0";
 import { format } from "jsr:@std/datetime@0.225.5";
 import { join } from "jsr:@std/path@1.1.0/join";
 import { systemopen } from "jsr:@lambdalisue/systemopen@1.0.0";
-import { z } from "npm:zod@3.25.41";
+import { z } from "npm:zod@3.25.42";
 
 export async function notify(
   denops: Denops,
