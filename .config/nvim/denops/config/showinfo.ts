@@ -9,7 +9,7 @@ import * as op from "jsr:@denops/std@7.5.0/option";
 import * as vars from "jsr:@denops/std@7.5.0/variable";
 import type { Denops } from "jsr:@denops/std@7.5.0";
 import { notify } from "./util.ts";
-import { z } from "npm:zod@3.25.42";
+import { z } from "npm:zod@3.25.47";
 
 type LspClient = {
   id: number;
