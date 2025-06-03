@@ -9,7 +9,7 @@ import * as mapping from "jsr:@denops/std@7.5.0/mapping";
 import * as vars from "jsr:@denops/std@7.5.0/variable";
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 import { pluginStatus } from "../pluginstatus.ts";
-import { z } from "npm:zod@3.25.47";
+import { z } from "npm:zod@3.25.49";
 
 export const snippet: Plug[] = [
   {
