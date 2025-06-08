@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yml
 # Author      : yukimemi
-# Last Change : 2024/11/03 23:47:50.
+# Last Change : 2025/06/08 15:11:53.
 # =============================================================================
 
 snippets:
@@ -294,6 +294,8 @@ snippets:
     snippet: go install github.com/mattn/jvgrep/v5@latest
   - name: Install task
     snippet: go install github.com/go-task/task/v3/cmd/task@latest
+  - name: Install youtubeuploader
+    snippet: go install github.com/porjo/youtubeuploader/cmd/youtubeuploader@latest
   - name: Install asdf
     snippet: brew install asdf
   - name: Install nekome
