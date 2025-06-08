@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.nu
 # Author      : yukimemi
-# Last Change : 2025/06/09 00:38:58.
+# Last Change : 2025/06/09 00:53:49.
 # =============================================================================
 
 # config
@@ -94,3 +94,13 @@ alias j = zi
 const nus_path = $nu.home-path | path join "src" "github.com" "nushell" "nu_scripts"
 use ($nus_path | path join "aliases" "git" "git-aliases.nu") *
 
+# keybindings
+$env.config.keybindings = [
+  {
+    name: "Delete to line start"
+    modifier: control
+    keycode: char_u
+    mode: vi_insert
+    event: { edit: CutFromLineStart }
+  }
+]
