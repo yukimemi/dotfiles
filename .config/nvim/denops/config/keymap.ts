@@ -4,12 +4,12 @@
 // Last Change : 2025/03/17 09:39:03.
 // =============================================================================
 
-import * as lambda from "jsr:@denops/std@7.5.0/lambda";
-import * as mapping from "jsr:@denops/std@7.5.0/mapping";
-import type { Denops } from "jsr:@denops/std@7.5.0";
-import { batch } from "jsr:@denops/std@7.5.0/batch";
-import * as vars from "jsr:@denops/std@7.5.0/variable";
-import * as autocmd from "jsr:@denops/std@7.5.0/autocmd";
+import * as lambda from "jsr:@denops/std@7.5.1/lambda";
+import * as mapping from "jsr:@denops/std@7.5.1/mapping";
+import type { Denops } from "jsr:@denops/std@7.5.1";
+import { batch } from "jsr:@denops/std@7.5.1/batch";
+import * as vars from "jsr:@denops/std@7.5.1/variable";
+import * as autocmd from "jsr:@denops/std@7.5.1/autocmd";
 import { focusFloating, openBufDir, reviewMode } from "./util.ts";
 import { notifyinfo } from "./showinfo.ts";
 

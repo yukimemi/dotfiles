@@ -4,9 +4,9 @@
 // Last Change : 2024/07/27 22:30:45.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@7.5.0";
-import { execute } from "jsr:@denops/std@7.5.0/helper";
-import * as fn from "jsr:@denops/std@7.5.0/function";
+import type { Denops } from "jsr:@denops/std@7.5.1";
+import { execute } from "jsr:@denops/std@7.5.1/helper";
+import * as fn from "jsr:@denops/std@7.5.1/function";
 
 export async function setNeovimQt(denops: Denops) {
   if (await fn.exists(denops, ":GuiFont")) {

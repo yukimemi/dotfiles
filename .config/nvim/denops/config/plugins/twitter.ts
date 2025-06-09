@@ -6,10 +6,10 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 
-import { batch } from "jsr:@denops/std@7.5.0/batch";
-import * as autocmd from "jsr:@denops/std@7.5.0/autocmd";
-import * as lambda from "jsr:@denops/std@7.5.0/lambda";
-import * as mapping from "jsr:@denops/std@7.5.0/mapping";
+import { batch } from "jsr:@denops/std@7.5.1/batch";
+import * as autocmd from "jsr:@denops/std@7.5.1/autocmd";
+import * as lambda from "jsr:@denops/std@7.5.1/lambda";
+import * as mapping from "jsr:@denops/std@7.5.1/mapping";
 
 export const twitter: Plug[] = [
   {
