@@ -6,7 +6,7 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 
-import * as fn from "jsr:@denops/std@7.5.0/function";
+import * as fn from "jsr:@denops/std@7.5.1/function";
 import { pluginStatus } from "../pluginstatus.ts";
 import { execCommand } from "../util.ts";
 
