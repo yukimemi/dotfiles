@@ -6,7 +6,7 @@
 
 import * as lambda from "jsr:@denops/std@7.5.1/lambda";
 import * as fn from "jsr:@denops/std@7.5.1/function";
-import { z } from "npm:zod@3.25.56";
+import { z } from "npm:zod@3.25.57";
 import { exists } from "jsr:@std/fs@1.0.18";
 import * as mapping from "jsr:@denops/std@7.5.1/mapping";
 import * as vars from "jsr:@denops/std@7.5.1/variable";
