@@ -14,7 +14,7 @@ import { execute } from "jsr:@denops/std@7.5.1/helper";
 
 import { pluginStatus } from "../pluginstatus.ts";
 import { ensureDir } from "jsr:@std/fs@1.0.18/ensure-dir";
-import { z } from "npm:zod@3.25.56";
+import { z } from "npm:zod@3.25.57";
 
 export const edit: Plug[] = [
   {
