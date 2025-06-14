@@ -1,15 +1,15 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/05/06 12:44:53.
+// Last Change : 2025/05/24 09:37:35.
 // =============================================================================
 
-import * as lambda from "jsr:@denops/std@7.5.1/lambda";
-import * as fn from "jsr:@denops/std@7.5.1/function";
-import { z } from "npm:zod@3.25.64";
+import * as lambda from "jsr:@denops/std@7.5.0/lambda";
+import * as fn from "jsr:@denops/std@7.5.0/function";
+import { z } from "npm:zod@3.25.56";
 import { exists } from "jsr:@std/fs@1.0.18";
-import * as mapping from "jsr:@denops/std@7.5.1/mapping";
-import * as vars from "jsr:@denops/std@7.5.1/variable";
+import * as mapping from "jsr:@denops/std@7.5.0/mapping";
+import * as vars from "jsr:@denops/std@7.5.0/variable";
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 import { execCommand } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
@@ -152,8 +152,8 @@ export const ai: Plug[] = [
       await vars.g.set(denops, "futago_chat_path", `~/.cache/nvim/futago/chat`);
       await vars.g.set(denops, "futago_log_file", `~/.cache/nvim/futago/log/futago.log`);
       await vars.g.set(denops, "futago_history_db", `~/.cache/nvim/futago/db/history.db`);
-      await vars.g.set(denops, "futago_model", "gemini-2.5-flash-preview-04-17");
-      await vars.g.set(denops, "futago_git_model", "gemini-2.5-flash-preview-04-17");
+      await vars.g.set(denops, "futago_model", "gemini-2.5-flash-preview-05-20");
+      await vars.g.set(denops, "futago_git_model", "gemini-2.5-flash-preview-05-20");
       const safetySettings: SafetySetting[] = [
         {
           category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,

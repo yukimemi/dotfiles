@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : telescope.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 13:35:38.
+// Last Change : 2025/06/01 20:59:36.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
@@ -59,9 +59,7 @@ export const telescope: Plug[] = [
   {
     url: "https://github.com/nvim-telescope/telescope.nvim",
     profiles: ["minimal"],
-    cache: {
-      afterFile: "~/.config/nvim/rc/after/telescope.lua",
-    },
+    cache: { afterFile: "~/.config/nvim/rc/after/telescope.lua" },
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/folke/trouble.nvim",

@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2025/03/20 22:13:21.
+-- Last Change : 2025/05/31 09:46:50.
 -- =============================================================================
 
 require("snacks").setup({
@@ -58,7 +58,7 @@ require("snacks").setup({
     enabled = false,
   },
   picker = {
-    enabled = true,
+    enabled = false,
   },
 })
 
@@ -76,7 +76,7 @@ vim.keymap.set("n", "<space>jj", function() Snacks.words.jump(1, true) end, { de
 vim.keymap.set("n", "<space>jk", function() Snacks.words.jump(-1, true) end, { desc = "Jump prev" })
 
 -- Snacks.lazygit
-vim.keymap.set("n", "<space>L", function() Snacks.lazygit() end, { desc = "LazyGit" })
+vim.keymap.set("n", "<space>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })
 
 -- Snacks.bufdelete
 -- vim.keymap.set("n", "sbd", function() Snacks.bufdelete() end, { desc = "Delete buffer" })
@@ -84,7 +84,7 @@ vim.keymap.set("n", "<space>L", function() Snacks.lazygit() end, { desc = "LazyG
 -- Snacks.notifier
 vim.keymap.set("n", "<space>nl", function() Snacks.notifier.show_history() end, { desc = "Snacks history" })
 
-if true then
+if false then
   vim.keymap.set("n", "<space>S", function() Snacks.picker() end, { desc = "Snacks picker" })
   vim.keymap.set("n", "<space>ff", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
   vim.keymap.set("n", "<space>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
@@ -124,11 +124,11 @@ if true then
   vim.keymap.set("n", "<space>pp", function() Snacks.picker.projects() end, { desc = "Projects" })
 
   -- lsp
-  vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "LSP definitions" })
-  vim.keymap.set("n", "gi", function() Snacks.picker.lsp_implementations() end, { desc = "LSP implementations" })
-  vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "LSP references" })
-  vim.keymap.set("n", "gt", function() Snacks.picker.lsp_type_definitions() end, { desc = "LSP type definitions" })
-  vim.keymap.set("n", "gs", function() Snacks.picker.lsp_symbols() end, { desc = "LSP symbols" })
+  -- vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "LSP definitions" })
+  -- vim.keymap.set("n", "gi", function() Snacks.picker.lsp_implementations() end, { desc = "LSP implementations" })
+  -- vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "LSP references" })
+  -- vim.keymap.set("n", "gt", function() Snacks.picker.lsp_type_definitions() end, { desc = "LSP type definitions" })
+  -- vim.keymap.set("n", "gs", function() Snacks.picker.lsp_symbols() end, { desc = "LSP symbols" })
 
   -- git
   vim.keymap.set("n", "<space>gb", function() Snacks.picker.git_branches() end, { desc = "Git Branches" })

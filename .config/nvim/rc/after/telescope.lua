@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : telescope.lua
 -- Author      : yukimemi
--- Last Change : 2024/12/16 11:45:41.
+-- Last Change : 2025/06/03 00:26:12.
 -- =============================================================================
 
 local telescope = require("telescope")
@@ -32,7 +32,10 @@ telescope.setup({
       "!**/node_modules/**",
       "--glob",
       "!**/.git/**",
-    }
+    },
+    path_display = {
+      "filename_first",
+    },
   },
   extensions = {
     project = {
@@ -119,4 +122,3 @@ vim.keymap.set({ "n", "x" }, "<space>:", "<cmd>Telescope command_history<cr>", {
 vim.keymap.set("n", "<space>gg", function()
   require("telescope.builtin").git_status()
 end, { desc = "Git status" })
-

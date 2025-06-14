@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2025/05/05 20:36:38.
+// Last Change : 2025/06/06 00:48:58.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
@@ -129,6 +129,9 @@ export const lsp: Plug[] = [
   {
     url: "https://github.com/folke/trouble.nvim",
     profiles: ["minimal"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("trouble").setup()`);
+    },
   },
   {
     url: "https://github.com/neovim/nvim-lspconfig",

@@ -65,6 +65,12 @@
                 "hidden": false,
                 "name": "Ubuntu",
                 "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
+            },
+            {
+                "commandline": "C:\\Users\\y-imakawa\\AppData\\Local\\mise\\shims\\nu.cmd",
+                "guid": "{a2ae1a76-93d7-4e83-b171-82f13dd0f961}",
+                "hidden": false,
+                "name": "Nushell"
             }
         ]
     },

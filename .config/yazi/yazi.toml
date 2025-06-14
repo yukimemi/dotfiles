@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : yazi.toml
 # Author      : yukimemi
-# Last Change : 2025/03/02 23:53:52.
+# Last Change : 2025/05/11 01:09:36.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -14,7 +14,7 @@ linemode = "size_and_mtime"
 [opener]
 edit = [
   { run = '${EDITOR:-hitori} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-  { run = 'hitori %*', orphan = true, block = false, desc = "hitori", for = "windows" },
+  { run = 'wt nvim.cmd %*', orphan = true, block = false, desc = "neovim", for = "windows" },
 ]
 diff = [
   { run = '%LOCALAPPDATA%\Programs\WinMerge\WinMergeU.exe %*', orphan = true, block = false, desc = "WinMerge", for = "windows" },

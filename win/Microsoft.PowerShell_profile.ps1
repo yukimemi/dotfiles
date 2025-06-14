@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/05/05 13:59:13.
+# Last Change : 2025/05/10 21:25:05.
 # =============================================================================
 
 # module
@@ -425,3 +425,5 @@ if (Get-Command pnpm -ErrorAction SilentlyContinue) {
   [System.Environment]::SetEnvironmentVariable("PNPM_HOME", $env:PNPM_HOME, [System.EnvironmentVariableTarget]::User)
 }
 
+# Set title.
+$Host.UI.RawUI.WindowTitle = "yukimemi-pwsh"

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/04/27 11:06:28.
+// Last Change : 2025/06/09 10:15:55.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
@@ -495,6 +495,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/lambdalisue/vim-suda",
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "suda#noninteractive", 1);
     },
@@ -589,7 +590,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/Shougo/junkfile.vim",
-    profiles: ["default"],
+    profiles: ["mini"],
     afterFile: "~/.config/nvim/rc/after/junkfile.vim",
   },
   {

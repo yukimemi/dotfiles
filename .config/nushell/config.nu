@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.nu
 # Author      : yukimemi
-# Last Change : 2025/06/09 00:53:49.
+# Last Change : 2025/06/09 01:40:53.
 # =============================================================================
 
 # config
@@ -92,6 +92,9 @@ alias j = zi
 
 # nu_scripts (https://github.com/nushell/nu_scripts)
 const nus_path = $nu.home-path | path join "src" "github.com" "nushell" "nu_scripts"
+if not ($nus_path | path exists) {
+  rhq clone https://github.com/nushell/nu_scripts
+}
 use ($nus_path | path join "aliases" "git" "git-aliases.nu") *
 
 # keybindings

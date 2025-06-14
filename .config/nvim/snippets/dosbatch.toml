@@ -5,7 +5,7 @@ body = """
 rem ============================================================================
 rem File        : ${TM_FILENAME}
 rem Author      : yukimemi
-rem Last Change : 2025/02/11 22:39:58.
+rem Last Change : 2025/05/11 09:06:46.
 rem ============================================================================
 
 rem setlocal enabledelayedexpansion
@@ -23,8 +23,8 @@ pushd "%cmdDir%"
 
 set BATLOGPATH="%cmdDir%%cmdName%_%computername%_%now%.log"
 
-rem call :main >> %BATLOGPATH% 2>&1
-call :main
+rem call :main %* >> %BATLOGPATH% 2>&1
+call :main %*
 
 set exitCode=%errorlevel%
 

@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2025/05/10 14:33:09.
+; Last Change : 2025/05/10 21:25:14.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -197,8 +197,7 @@ F12::
     Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
     return
   } else {
-    ; Toggle("C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.21.2911.0_x64__8wekyb3d8bbwe\WindowsTerminal.exe", "PowerShell")
-    Activate3("WindowsTerminal.exe", "C:\Program Files\WindowsApps\Microsoft.WindowsTerminalPreview_1.22.3232.0_x64__8wekyb3d8bbwe\WindowsTerminal.exe", "PowerShell")
+    Activate3("WindowsTerminal.exe", "wt pwsh", "yukimemi-pwsh")
     return
   }
 }

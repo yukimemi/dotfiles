@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : mason-lspconfig.lua
 -- Author      : yukimemi
--- Last Change : 2025/05/05 20:30:25.
+-- Last Change : 2025/05/10 21:45:17.
 -- =============================================================================
 
 local servers = {
@@ -16,4 +16,5 @@ local servers = {
 require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = servers,
+  automatic_enable = true,
 })

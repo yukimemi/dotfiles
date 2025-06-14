@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2025/05/06 19:47:01.
+// Last Change : 2025/06/09 10:20:17.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
@@ -32,17 +32,18 @@ export const filetypes: Plug[] = [
   { url: "https://github.com/tani/podium" },
   {
     url: "https://github.com/tani/glance-vim",
-    enabled: false,
+    profiles: ["markdown"],
+    enabled: true,
     dependencies: ["https://github.com/tani/podium"],
     before: async ({ denops }) => {
-      await vars.g.set(denops, "glance#markdown_breaks", true);
-      await vars.g.set(denops, "glance#markdown_html", true);
-      await vars.g.set(denops, "glance#plugins", [
-        "https://esm.sh/markdown-it-emoji",
-        "https://esm.sh/markdown-it-highlightjs",
-        "https://esm.sh/markdown-it-mermaid-plugin",
-        "https://esm.sh/markdown-it-plantuml",
-      ]);
+      // await vars.g.set(denops, "glance#markdown_breaks", true);
+      // await vars.g.set(denops, "glance#markdown_html", true);
+      // await vars.g.set(denops, "glance#plugins", [
+      //   "https://esm.sh/markdown-it-emoji",
+      //   "https://esm.sh/markdown-it-highlightjs",
+      //   "https://esm.sh/markdown-it-mermaid-plugin",
+      //   "https://esm.sh/markdown-it-plantuml",
+      // ]);
 
       // await vars.g.set(
       //   denops,
@@ -67,8 +68,8 @@ export const filetypes: Plug[] = [
   },
   {
     url: "https://github.com/previm/previm",
-    profiles: ["full"],
-    enabled: true,
+    profiles: ["markdown"],
+    enabled: false,
     dependencies: ["https://github.com/tyru/open-browser.vim"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "previm_enable_realtime", 1);
