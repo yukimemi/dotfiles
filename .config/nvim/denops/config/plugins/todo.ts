@@ -6,9 +6,9 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 
-import * as fn from "jsr:@denops/std@7.5.0/function";
+import * as fn from "jsr:@denops/std@7.5.1/function";
 import { ensureFile } from "jsr:@std/fs@1.0.18/ensure-file";
-import { z } from "npm:zod@3.25.56";
+import { z } from "npm:zod@3.25.64";
 
 export const todo: Plug[] = [
   {

@@ -6,15 +6,15 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 
-import * as autocmd from "jsr:@denops/std@7.5.0/autocmd";
-import * as fn from "jsr:@denops/std@7.5.0/function";
-import * as vars from "jsr:@denops/std@7.5.0/variable";
-import * as mapping from "jsr:@denops/std@7.5.0/mapping";
-import { execute } from "jsr:@denops/std@7.5.0/helper";
+import * as autocmd from "jsr:@denops/std@7.5.1/autocmd";
+import * as fn from "jsr:@denops/std@7.5.1/function";
+import * as vars from "jsr:@denops/std@7.5.1/variable";
+import * as mapping from "jsr:@denops/std@7.5.1/mapping";
+import { execute } from "jsr:@denops/std@7.5.1/helper";
 
 import { pluginStatus } from "../pluginstatus.ts";
 import { ensureDir } from "jsr:@std/fs@1.0.18/ensure-dir";
-import { z } from "npm:zod@3.25.56";
+import { z } from "npm:zod@3.25.64";
 
 export const edit: Plug[] = [
   {
