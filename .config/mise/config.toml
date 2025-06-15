@@ -10,7 +10,6 @@ binstall = true
 "cargo:cargo-make" = "latest"
 "cargo:bat" = "latest"
 "cargo:du-dust" = "latest"
-"cargo:dua-cli" = "latest"
 "cargo:fd-find" = "latest"
 "cargo:git-delta" = "latest"
 "cargo:lsd" = "latest"
