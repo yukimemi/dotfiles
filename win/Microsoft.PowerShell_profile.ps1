@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/05/10 21:25:05.
+# Last Change : 2025/06/15 10:32:33.
 # =============================================================================
 
 # module
@@ -380,7 +380,9 @@ function j {
 }
 
 # zoxide.
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
+if (Get-Command zoxide -ErrorAction SilentlyContinue) {
+  Invoke-Expression (& { (zoxide init powershell | Out-String) })
+}
 
 # yazi
 function y {
@@ -417,12 +419,6 @@ if (Test-Path($ChocolateyProfile)) {
 # fnm
 if (Get-Command fnm -ErrorAction SilentlyContinue) {
   fnm env --use-on-cd | Out-String | Invoke-Expression
-}
-
-# pnpm
-if (Get-Command pnpm -ErrorAction SilentlyContinue) {
-  $env:PNPM_HOME = [System.IO.Path]::Combine($env:USERPROFILE, 'AppData\Local\pnpm\store')
-  [System.Environment]::SetEnvironmentVariable("PNPM_HOME", $env:PNPM_HOME, [System.EnvironmentVariableTarget]::User)
 }
 
 # Set title.

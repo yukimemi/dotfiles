@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2025/06/09 10:20:17.
+// Last Change : 2025/06/15 15:23:24.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
@@ -35,22 +35,22 @@ export const filetypes: Plug[] = [
     profiles: ["markdown"],
     enabled: true,
     dependencies: ["https://github.com/tani/podium"],
-    before: async ({ denops }) => {
-      // await vars.g.set(denops, "glance#markdown_breaks", true);
-      // await vars.g.set(denops, "glance#markdown_html", true);
-      // await vars.g.set(denops, "glance#plugins", [
-      //   "https://esm.sh/markdown-it-emoji",
-      //   "https://esm.sh/markdown-it-highlightjs",
-      //   "https://esm.sh/markdown-it-mermaid-plugin",
-      //   "https://esm.sh/markdown-it-plantuml",
-      // ]);
+    // before: async ({ denops }) => {
+    // await vars.g.set(denops, "glance#markdown_breaks", true);
+    // await vars.g.set(denops, "glance#markdown_html", true);
+    // await vars.g.set(denops, "glance#plugins", [
+    //   "https://esm.sh/markdown-it-emoji",
+    //   "https://esm.sh/markdown-it-highlightjs",
+    //   "https://esm.sh/markdown-it-mermaid-plugin",
+    //   "https://esm.sh/markdown-it-plantuml",
+    // ]);
 
-      // await vars.g.set(
-      //   denops,
-      //   "glance#config",
-      //   `file:///${await fn.expand(denops, "~/.config/glance/init.ts")}`,
-      // );
-    },
+    // await vars.g.set(
+    //   denops,
+    //   "glance#config",
+    //   `file:///${await fn.expand(denops, "~/.config/glance/init.ts")}`,
+    // );
+    // },
   },
   {
     url: "https://github.com/iamcco/markdown-preview.nvim",

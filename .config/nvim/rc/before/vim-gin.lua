@@ -1,16 +1,16 @@
 -- =============================================================================
 -- File        : vim-gin.lua
 -- Author      : yukimemi
--- Last Change : 2025/03/20 22:13:24.
+-- Last Change : 2025/06/15 15:23:57.
 -- =============================================================================
 
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
-vim.g.gin_log_persistent_args = {'++emojify'}
+vim.g.gin_log_persistent_args = { '++emojify' }
 vim.g.gin_log_disable_default_mappings = 1
 
-map("n", "<space>gS", "<cmd>GinStatus<cr>", opts)
+map("n", "<space>gs", "<cmd>GinStatus<cr>", opts)
 map("n", "<space>gc", "<cmd>Gin commit -v<cr>", opts)
 -- map("n", "<space>gb", "<cmd>GinBranch<cr>", opts)
 -- map("n", "<space>gd", "<cmd>GinDiff<cr>", opts)
@@ -37,4 +37,3 @@ vim.api.nvim_create_autocmd("FileType", {
     bufmap({ "n", "x" }, "l", "<Plug>(gin-action-unstage)")
   end,
 })
-
