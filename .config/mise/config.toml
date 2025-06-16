@@ -6,7 +6,7 @@ verbose = false
 binstall = true
 
 [tools]
-"cargo:cargo-binstall" = "latest"
+cargo-binstall = "latest"
 "cargo:cargo-make" = "latest"
 "cargo:bat" = "latest"
 "cargo:du-dust" = "latest"
@@ -39,8 +39,6 @@ powershell-core = "latest"
 python = "latest"
 rust = "latest"
 rust-analyzer = "latest"
-taplo = "latest"
 uv = "latest"
 vhs = "latest"
 yt-dlp = "latest"
-zig = "latest"
