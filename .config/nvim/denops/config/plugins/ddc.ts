@@ -11,7 +11,7 @@ import * as mapping from "jsr:@denops/std@7.5.1/mapping";
 import * as vars from "jsr:@denops/std@7.5.1/variable";
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 import { Denops } from "jsr:@denops/std@7.5.1";
-import { z } from "npm:zod@3.25.64";
+import { z } from "npm:zod@3.25.67";
 import { exists } from "jsr:@std/fs@1.0.18/exists";
 import { notify } from "../util.ts";
 
