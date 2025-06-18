@@ -9,211 +9,211 @@
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
 # https://github.com/yazi-rs/plugins/tree/main/max-preview.yazi
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "T"
 run = "plugin --sync max-preview"
 desc = "Maximize or restore preview"
 
 # https://github.com/KKV9/command.yazi
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["c", "p"]
 run = "plugin command"
 desc = "Yazi command prompt"
 
 # https://github.com/orhnk/system-clipboard.yazi
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "<C-y>"
 run = ["plugin system-clipboard"]
 desc = "Copy to system clipboard"
 # https://github.com/orhnk/system-clipboard.yazi/issues/3
 # Dose not work for me ...
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "<C-p>"
 run = "shell 'cb paste' --block"
 desc = "Paste from clipboard"
 
 # https://github.com/Lil-Dank/lazygit.yazi
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["g", "i"]
 run = "plugin lazygit"
 desc = "run lazygit"
 
 # https://github.com/h-hg/yamb.yazi
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["m", "a"]
 run = "plugin yamb save"
 desc = "Add bookmark"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["m", "g"]
 run = "plugin yamb jump_by_key"
 desc = "Jump bookmark by key"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["m", "G"]
 run = "plugin yamb jump_by_fzf"
 desc = "Jump bookmark by fzf"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["m", "d"]
 run = "plugin yamb delete_by_key"
 desc = "Delete bookmark by key"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["m", "D"]
 run = "plugin yamb delete_by_fzf"
 desc = "Delete bookmark by fzf"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["m", "A"]
 run = "plugin yamb delete_all"
 desc = "Delete all bookmarks"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["m", "r"]
 run = "plugin yamb rename_by_key"
 desc = "Rename bookmark by key"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["m", "R"]
 run = "plugin yamb rename_by_fzf"
 desc = "Rename bookmark by fzf"
 
 # https://github.com/MasouShizuka/projects.yazi
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["M", "s"]
 run = "plugin projects save"
 desc = "Save current project"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["M", "l"]
 run = "plugin projects load"
 desc = "Load project"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["M", "P"]
 run = "plugin projects load_last"
 desc = "Load last project"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["M", "d"]
 run = "plugin projects delete"
 desc = "Delete project"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["M", "D"]
 run = "plugin projects delete_all"
 desc = "Delete all projects"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["M", "m"]
 run = "plugin projects 'merge current'"
 desc = "Merge current tab to other projects"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["M", "M"]
 run = "plugin projects 'merge all'"
 desc = "Merge current project to other projects"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["q"]
 run = "plugin projects quit"
 desc = "Save last project and exit the process"
 
 # https://github.com/ndtoan96/ouch.yazi
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["c", "a"]
 run = "plugin ouch zip"
 desc = "Compress with ouch"
 
 # https://yazi-rs.github.io/docs/tips#cd-to-git-root
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["g", "r"]
 run = '''
 	shell 'ya emit cd "$(git rev-parse --show-toplevel)"'
 '''
 desc = "Goto git root"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["g", "d"]
 run = "cd ~/.dotfiles"
 desc = "Goto dotfiles"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["g", "s"]
 run = "cd ~/src"
 desc = "Goto src"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["g", "b"]
 run = "cd ~/Box"
 desc = "Goto Box"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["g", "D"]
 run = "cd ~/Downloads"
 desc = "Goto ~/Downloads"
 
 # Windows
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["g", "n"]
 run = "cd n:"
 desc = "Goto N drive"
 for = "windows"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["g", "o"]
 run = "cd %OneDrive%"
 desc = "Goto OneDrive"
 for = "windows"
 
 # https://github.com/hankertrix/augment-command.yazi
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["k"]
 run = "plugin augment-command 'arrow -1'"
 desc = "Move cursor up"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["j"]
 run = "plugin augment-command 'arrow 1'"
 desc = "Move cursor down"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["K"]
 run = "plugin augment-command 'parent-arrow -1'"
 desc = "Move cursor up in the parent directory"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["J"]
 run = "plugin augment-command 'parent-arrow 1'"
 desc = "Move cursor down in the parent directory"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["<C-k>"]
 run = "seek -5"
 desc = "Seek up 5 units in the preview pane"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["<C-j>"]
 run = "seek 5"
 desc = "Seek down 5 units in the preview pane"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["l"]
 run = "plugin augment-command 'enter'"
 desc = "Enter the child directory, or open the file"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["<Enter>"]
 run = "plugin augment-command 'enter'"
 desc = "Enter the child directory, or open the file"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["<S-Enter>"]
 run = "plugin augment-command 'enter --interactive'"
 desc = "Enter the child directory, or open the file interactively"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["<Right>"]
 run = "plugin augment-command 'enter --no-skip'"
 desc = "Enter the child directory, or open the file"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["h"]
 run = "plugin augment-command 'leave'"
 desc = "Go back to the parent directory"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["<Left>"]
 run = "plugin augment-command 'leave --no-skip'"
 desc = "Go back to the parent directory"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["p"]
 run = "plugin augment-command 'paste'"
 desc = "Paste the files"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["P"]
 run = "plugin augment-command 'paste --force'"
 desc = "Paste the files (overwrite if the destination exists)"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["d"]
 run = "plugin augment-command 'remove'"
 desc = "Move the files to the trash"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["D"]
 run = "plugin augment-command 'remove --permanently'"
 desc = "Permanently delete the files"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["o"]
 run = "plugin augment-command 'open'"
 desc = "Open files"
@@ -221,27 +221,27 @@ desc = "Open files"
 # on = ["O"]
 # run = "plugin augment-command 'open --interactive'"
 # desc = "Open selected files interactively"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["i"]
 run = "plugin augment-command 'pager'"
 desc = "Open files with the default pager"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["r"]
 run = "plugin augment-command 'rename --cursor=before_ext'"
 desc = "Rename a file or directory"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["R"]
 run = "plugin augment-command 'rename --empty=all'"
 desc = "Rename file and remove the whole file name"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["I"]
 run = "plugin augment-command 'rename --cursor=start'"
 desc = "Rename file at the start of the file name"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["A"]
 run = "plugin augment-command 'rename --cursor=end'"
 desc = "Rename file with the cursor at the end of the file name"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["C"]
 run = "plugin augment-command 'rename --empty=all'"
 desc = "Rename file and remove the whole file name"
