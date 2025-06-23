@@ -7,7 +7,7 @@
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 
 import { pluginStatus } from "../pluginstatus.ts";
-import * as vars from "jsr:@denops/std@7.5.1/variable";
+import * as vars from "jsr:@denops/std@7.6.0/variable";
 
 export const statusline: Plug[] = [
   {

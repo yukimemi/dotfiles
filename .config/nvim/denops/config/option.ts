@@ -4,17 +4,17 @@
 // Last Change : 2025/05/05 13:37:52.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@7.5.1";
+import type { Denops } from "jsr:@denops/std@7.6.0";
 
-import * as autocmd from "jsr:@denops/std@7.5.1/autocmd";
-import * as fn from "jsr:@denops/std@7.5.1/function";
-import * as helper from "jsr:@denops/std@7.5.1/helper";
-import * as lambda from "jsr:@denops/std@7.5.1/lambda";
-import * as nvimOption from "jsr:@denops/std@7.5.1/option/nvim";
-import * as option from "jsr:@denops/std@7.5.1/option";
-import { batch } from "jsr:@denops/std@7.5.1/batch";
+import * as autocmd from "jsr:@denops/std@7.6.0/autocmd";
+import * as fn from "jsr:@denops/std@7.6.0/function";
+import * as helper from "jsr:@denops/std@7.6.0/helper";
+import * as lambda from "jsr:@denops/std@7.6.0/lambda";
+import * as nvimOption from "jsr:@denops/std@7.6.0/option/nvim";
+import * as option from "jsr:@denops/std@7.6.0/option";
+import { batch } from "jsr:@denops/std@7.6.0/batch";
 import { ensureDir } from "jsr:@std/fs@1.0.18/ensure-dir";
-import { stdpath } from "jsr:@denops/std@7.5.1/function/nvim";
+import { stdpath } from "jsr:@denops/std@7.6.0/function/nvim";
 import { z } from "npm:zod@3.25.67";
 
 export async function setOption(denops: Denops) {
