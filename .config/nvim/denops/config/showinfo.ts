@@ -4,10 +4,10 @@
 // Last Change : 2025/05/03 08:23:30.
 // =============================================================================
 
-import * as fn from "jsr:@denops/std@7.5.1/function";
-import * as op from "jsr:@denops/std@7.5.1/option";
-import * as vars from "jsr:@denops/std@7.5.1/variable";
-import type { Denops } from "jsr:@denops/std@7.5.1";
+import * as fn from "jsr:@denops/std@7.6.0/function";
+import * as op from "jsr:@denops/std@7.6.0/option";
+import * as vars from "jsr:@denops/std@7.6.0/variable";
+import type { Denops } from "jsr:@denops/std@7.6.0";
 import { notify } from "./util.ts";
 import { z } from "npm:zod@3.25.67";
 

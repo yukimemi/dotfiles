@@ -4,8 +4,8 @@
 // Last Change : 2025/02/01 13:35:43.
 // =============================================================================
 
-import * as mapping from "jsr:@denops/std@7.5.1/mapping";
-import * as vars from "jsr:@denops/std@7.5.1/variable";
+import * as mapping from "jsr:@denops/std@7.6.0/mapping";
+import * as vars from "jsr:@denops/std@7.6.0/variable";
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 
 export const bluesky: Plug[] = [

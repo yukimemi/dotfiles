@@ -6,11 +6,11 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 
-import * as autocmd from "jsr:@denops/std@7.5.1/autocmd";
-import * as fn from "jsr:@denops/std@7.5.1/function";
-import * as lambda from "jsr:@denops/std@7.5.1/lambda";
-import * as mapping from "jsr:@denops/std@7.5.1/mapping";
-import * as vars from "jsr:@denops/std@7.5.1/variable";
+import * as autocmd from "jsr:@denops/std@7.6.0/autocmd";
+import * as fn from "jsr:@denops/std@7.6.0/function";
+import * as lambda from "jsr:@denops/std@7.6.0/lambda";
+import * as mapping from "jsr:@denops/std@7.6.0/mapping";
+import * as vars from "jsr:@denops/std@7.6.0/variable";
 
 export const fern: Plug[] = [
   {
