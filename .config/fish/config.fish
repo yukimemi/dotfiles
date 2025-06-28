@@ -46,6 +46,11 @@ set -U FZF_COMPLETE 1
 # rrc. {{{2
 set -x RRC_CONFIG "$HOME/.config/rrc/config.toml"
 
+# Zeno. {{{2
+set -x ZENO_ENABLE_SOCK 1
+set -x ZENO_GIT_CAT "bat --color=always"
+set -x ZENO_GIT_TREE "exa -TFla --icons --git --git-ignore -I .git"
+
 # PATH. {{{2
 if not test -d ~/.local/bin
   mkdir -p ~/.local/bin
