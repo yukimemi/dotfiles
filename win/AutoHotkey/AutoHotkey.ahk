@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2025/06/21 21:47:14.
+; Last Change : 2025/06/29 13:54:30.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -55,16 +55,23 @@ ToggleExe(app, exe) {
   return
 }
 
-ToggleWin(app, cmd, title) {
-  ErrorLevel := ProcessExist(app)
-  if (ErrorLevel != 0) {
-    if WinExist(title) {
-      if WinActive(title) {
-        WinMinimize("A")
-      } else {
-        WinActivate(title)
+ToggleTerminalWin(app, cmd, title_parts) {
+  if (ProcessExist(app)) {
+    for whd in WinGetList("ahk_class CASCADIA_HOSTING_WINDOW_CLASS") {
+      this_title := WinGetTitle(whd)
+      log_info(this_title)
+      ; Split title_parts by comma and check each part
+      for current_part in StrSplit(title_parts, ",") {
+        current_part := Trim(current_part)
+        if InStr(this_title, current_part) {
+          if WinActive(whd) {
+            WinMinimize("A")
+          } else {
+            WinActivate(whd)
+          }
+          return
+        }
       }
-      return
     }
   }
   Run(cmd)
@@ -211,7 +218,7 @@ F12::
     Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
     return
   } else {
-    ToggleWin("WindowsTerminal.exe", "wt pwsh", "yukimemi-pwsh")
+    ToggleTerminalWin("WindowsTerminal.exe", "wt pwsh", "yukimemi-pwsh, Gemini")
     return
   }
 }
