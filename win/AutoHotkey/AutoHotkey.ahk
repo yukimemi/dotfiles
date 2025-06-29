@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2025/05/10 21:25:14.
+; Last Change : 2025/06/21 21:47:14.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -53,6 +53,21 @@ ToggleExe(app, exe) {
   else
     Run(exe)
   return
+}
+
+ToggleWin(app, cmd, title) {
+  ErrorLevel := ProcessExist(app)
+  if (ErrorLevel != 0) {
+    if WinExist(title) {
+      if WinActive(title) {
+        WinMinimize("A")
+      } else {
+        WinActivate(title)
+      }
+      return
+    }
+  }
+  Run(cmd)
 }
 
 Activate(app) {
@@ -117,13 +132,12 @@ F9::
 F10::
 {
   If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\useneovide")) {
-    Activate("neovide.exe")
-    return
-  } else {
-    ; Activate("nvim-qt.exe")
-    Activate3("nvim.exe", "wt nvim.cmd", "nvim.cmd")
-    return
+    return Activate("neovide.exe")
   }
+  If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\useneovimqt")) {
+    return Activate("nvim-qt.exe")
+  }
+  Activate3("nvim.exe", "wt nvim.cmd", "nvim.cmd")
 }
 
 ; for VSCode
@@ -197,7 +211,7 @@ F12::
     Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
     return
   } else {
-    Activate3("WindowsTerminal.exe", "wt pwsh", "yukimemi-pwsh")
+    ToggleWin("WindowsTerminal.exe", "wt pwsh", "yukimemi-pwsh")
     return
   }
 }
@@ -224,7 +238,7 @@ F12::
 ;}
 ^F10::
 {
-  Activate3("yazi.exe", "yazi.exe", "Yazi:")
+  Activate3("yazi.exe", "yazi", "Yazi:")
 }
 
 ; for slack

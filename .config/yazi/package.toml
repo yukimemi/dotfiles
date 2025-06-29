@@ -1,13 +1,7 @@
-# =============================================================================
-# File        : package.toml
-# Author      : yukimemi
-# Last Change : 2025/05/10 17:53:12.
-# =============================================================================
-
 [[plugin.deps]]
 use = "hankertrix/augment-command"
-rev = "15a75d8"
-hash = "374139554462a9dfc10dc8bfd0b01b19"
+rev = "d939163"
+hash = "e32ba0947f8ba9bc53aacfd96bd50884"
 
 [[plugin.deps]]
 use = "orhnk/system-clipboard"
@@ -21,8 +15,8 @@ hash = "a1fa2b3e1826c3a34804ea8c548e9f80"
 
 [[plugin.deps]]
 use = "MasouShizuka/projects"
-rev = "4f11ecc"
-hash = "17fa17295d27864f62875f06a77f72e7"
+rev = "a5e33db"
+hash = "3de26efded35814ba3e55e28f1c389a4"
 
 [[plugin.deps]]
 use = "h-hg/yamb"
@@ -31,8 +25,8 @@ hash = "7cc42012a7c2099f80064d228feb8d44"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
-rev = "2496cd9"
-hash = "5b9dea47776a30946cfbf83232d18fb1"
+rev = "1ee69a5"
+hash = "63679f3daf8551ff8755be38b5ced0f"
 
 [flavor]
 deps = []
