@@ -109,7 +109,7 @@ function Install-RequiredModules {
 function Set-RequiredEnv {
   setx CARGO_NET_GIT_FETCH_WITH_CLI "true"
   setx YAZI_FILE_ONE "C:\Program Files\Git\usr\bin\file.exe"
-  setx PATH "${env:USERPROFILE}\.cargo\bin;${env:USERPROFILE}\.deno\bin;${env:USERPROFILE}\.bun\bin;${env:USERPROFILE}\go\bin;${env:LOCALAPPDATA}\Microsoft\WindowsApps;${env:LOCALAPPDATA}\Programs\Espanso;%APPDATA%\npm;${env:LOCALAPPDATA}\Microsoft\WindowsApps;${env:LOCALAPPDATA}\Microsoft\WinGet\Links;${env:LOCALAPPDATA}\mise\shims"
+  setx PATH "${env:USERPROFILE}\.cargo\bin;${env:USERPROFILE}\.deno\bin;${env:USERPROFILE}\.bun\bin;${env:USERPROFILE}\go\bin;${env:LOCALAPPDATA}\Microsoft\WindowsApps;${env:LOCALAPPDATA}\Programs\Espanso;%APPDATA%\npm;${env:LOCALAPPDATA}\Microsoft\WindowsApps;${env:LOCALAPPDATA}\Microsoft\WinGet\Links;${env:LOCALAPPDATA}\mise\shims;${env:LOCALAPPDATA}\Programs\WinMerge"
 }
 
 <#
