@@ -8,7 +8,7 @@ import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
 
 import * as fn from "jsr:@denops/std@7.6.0/function";
 import { ensureFile } from "jsr:@std/fs@1.0.19/ensure-file";
-import { z } from "npm:zod@4.0.2";
+import { z } from "npm:zod@4.0.5";
 
 export const todo: Plug[] = [
   {
