@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : .mappings
 # Author      : yukimemi
-# Last Change : 2024/11/05 13:57:08.
+# Last Change : 2025/07/19 15:58:44.
 # =============================================================================
 
 [general]
@@ -39,6 +39,8 @@
 ]
 ".glzr/glazewm/config.yaml" = "~/.glzr/glazewm/config.yaml"
 ".config/jj" = "~/AppData/Roaming/jj"
+".config/komorebi/komorebi.json" = "~/komorebi.json"
+".config/komorebi/komorebi.bar.json" = "~/komorebi.bar.json"
 
 [darwin]
 ".config/espanso" = "~/Library/Preferences/espanso"
