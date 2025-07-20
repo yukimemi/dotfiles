@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/07/12 16:54:23.
+# Last Change : 2025/07/20 16:44:20.
 # =============================================================================
 
 # module
@@ -306,8 +306,8 @@ Set-Alias which Get-Command
 Set-Alias df Get-DriveInfoView
 # Remove-Alias cd
 Remove-Item alias:cd
-Set-Alias cd cd-ls
-# Set-Alias cd cdls
+# Set-Alias cd cd-ls
+Set-Alias cd cdls
 # filter tool.
 if (Get-Command peco -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER peco
@@ -381,7 +381,7 @@ function _j2 {
 }
 
 function j {
-  _j2
+  zi
 }
 
 # zoxide.
