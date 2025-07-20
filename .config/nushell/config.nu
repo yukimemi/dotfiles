@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.nu
 # Author      : yukimemi
-# Last Change : 2025/06/09 01:40:53.
+# Last Change : 2025/07/19 22:18:48.
 # =============================================================================
 
 # config
@@ -22,11 +22,11 @@ path add ($env.CARGO_HOME | path join "bin")
 path add ($env.LOCALAPPDATA | path join "Programs" "ExifTool")
 
 # mise
-const mise_init = $nu.temp-path | path join "mise.nu"
-if not ($mise_init | path exists ) {
-  mise activate nu | save -f $mise_init
+const mise_init_path = ($nu.temp-path | path join "mise.nu")
+if not ($mise_init_path | path exists) {
+    mise activate nu | save -f $mise_init_path
 }
-source $mise_init
+source $mise_init_path
 
 # functions
 def lsg [] { ls | sort-by type name -i | grid -c | str trim }
@@ -61,11 +61,11 @@ alias gpu = git push
 alias gp = git pull
 
 # starship
-const starship_init = $nu.temp-path | path join "starship.nu"
-if not ($starship_init | path exists) {
-  starship init nu | save -f $starship_init
+const starship_init_path = ($nu.temp-path | path join "starship.nu")
+if not ($starship_init_path | path exists) {
+    starship init nu | save -f $starship_init_path
 }
-source $starship_init
+source $starship_init_path
 
 def create_left_prompt [] {
   starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
@@ -83,11 +83,11 @@ $env.PROMPT_INDICATOR_VI_NORMAL = "N "
 $env.PROMPT_MULTILINE_INDICATOR = "::: "
 
 # zoxide
-const zoxide_init = $nu.temp-path | path join "zoxide.nu"
-if not ($zoxide_init | path exists) {
-  zoxide init nushell | save -f $zoxide_init
+const zoxide_init_path = ($nu.temp-path | path join "zoxide.nu")
+if not ($zoxide_init_path | path exists) {
+    zoxide init nushell | save -f $zoxide_init_path
 }
-source $zoxide_init
+source $zoxide_init_path
 alias j = zi
 
 # nu_scripts (https://github.com/nushell/nu_scripts)

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/06/09 10:15:55.
+// Last Change : 2025/07/15 20:37:59.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
@@ -286,7 +286,8 @@ export const util: Plug[] = [
   {
     url: "https://github.com/tenxsoydev/size-matters.nvim",
     profiles: ["minimal"],
-    enabled: async ({ denops }) => await fn.exists(denops, "g:neovide"),
+    enabled: async ({ denops }) =>
+      (await fn.exists(denops, "g:neovide")) || (await fn.exists(denops, ":GuiFont")),
     afterFile: "~/.config/nvim/rc/after/size-matters.lua",
   },
   {
@@ -571,8 +572,8 @@ export const util: Plug[] = [
   {
     url: "https://github.com/juliuswaldmann/here.nvim",
     profiles: ["minimal"],
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("here")`);
+    cache: {
+      afterFile: "~/.config/nvim/rc/after/here.lua",
     },
   },
   {

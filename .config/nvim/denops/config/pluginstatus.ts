@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2025/06/30 10:35:48.
+// Last Change : 2025/07/13 09:27:12.
 // =============================================================================
 
 export const pluginStatus = {
@@ -24,7 +24,7 @@ export const pluginStatus = {
   ddt: false,
   ddu: false,
   ddufiler: false,
-  deck: false,
+  deck: true,
   denippet: true,
   fall: false,
   fern: false,
@@ -59,7 +59,7 @@ export const pluginStatus = {
   sg: false,
   smartmotion: false,
   snipewin: true,
-  telescope: true,
+  telescope: false,
   ultimatepair: false,
   vimbookmarks: false,
   vimtest: true,

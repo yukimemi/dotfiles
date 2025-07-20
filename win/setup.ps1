@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/06/29 12:14:00.
+  .Last Change : 2025/07/19 17:26:44.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -64,16 +64,33 @@ function New-Shortcut {
 
 <#
   .SYNOPSIS
+    Install-Neovim
+  .DESCRIPTION
+    Install neovim
+#>
+function Install-Neovim {
+    [CmdletBinding()]
+    [OutputType([void])]
+    param()
+    trap {
+        log "[Install-Neovim] Error $_"; throw $_
+    }
+    $nvimMsi = Join-Path $env:tmp "nvim-win64.msi"
+    Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
+    & msiexec /i $nvimMsi /quiet
+    # winget install -q Neovim.Neovim
+}
+
+<#
+  .SYNOPSIS
     Install-RequiredModules
   .DESCRIPTION
     Install require apps.
 #>
 function Install-RequiredModules {
-  # $nvimMsi = Join-Path $env:tmp "nvim-win64.msi"
-  # Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
-  # & msiexec /i $nvimMsi /quiet
-  # winget install -q Neovim.Neovim
   # winget install -q topgrade-rs.topgrade
+  winget install -q LGUG2Z.komorebi
+  winget install -q LGUG2Z.whkd
   winget install -q gerardog.gsudo
   winget install -q Slackadays.Clipboard
   winget install -q Flameshot.Flameshot
@@ -134,6 +151,37 @@ function Install-RequiredCargo {
 
 <#
   .SYNOPSIS
+    Change-CapsLock2Ctrl
+  .DESCRIPTION
+    Change capslock to ctrl.
+#>
+function Change-CapsLock2Ctrl {
+  [CmdletBinding()]
+  [OutputType([void])]
+  param()
+  trap {
+    log "[Change-CapsLock2Ctrl] Error $_"; throw $_
+  }
+
+  $regPath = "HKLM\SYSTEM\CurrentControlSet\Control\Keyboard Layout"
+  $regValueName = "Scancode Map"
+  # To map Caps Lock (0x3A) to Left Control (0x1D)
+  $regValueData = "0000000000000000020000001d003a0000000000"
+
+  log "Setting Scancode Map to change CapsLock to Ctrl"
+  try {
+    # Use gsudo to run reg.exe with admin privileges
+    $command = "reg add `"$regPath`" /v `"$regValueName`" /t REG_BINARY /d $regValueData /f"
+    gsudo cmd /c $command
+    log "Successfully set Scancode Map. Please reboot your computer to apply the changes." "Yellow"
+  } catch {
+    log "Failed to set Scancode Map. Please make sure you are running this script as an administrator." "Red"
+    log $_ "Red"
+  }
+}
+
+<#
+  .SYNOPSIS
     Main
   .DESCRIPTION
     Execute main
@@ -155,8 +203,11 @@ function Start-Main {
     # Invoke-RestMethod https://deno.land/install.ps1 | Invoke-Expression
     # Invoke-RestMethod https://astral.sh/uv/install.ps1 | Invoke-Expression
 
+    Install-Neovim
     Install-RequiredModules
     # Install-RequiredCargo
+
+    Change-CapsLock2Ctrl
 
     $target = Join-Path -Path $env:USERPROFILE -ChildPath ".dotfiles\win\AutoHotkey\AutoHotkey.ahk"
     $link = Join-Path -Path $env:APPDATA -ChildPath "Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
@@ -181,4 +232,3 @@ function Start-Main {
 
 # Call main.
 Start-Main
-

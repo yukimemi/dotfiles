@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/06/15 10:32:33.
+# Last Change : 2025/07/12 16:54:23.
 # =============================================================================
 
 # module
@@ -29,6 +29,10 @@ if (Get-Command mise -ErrorAction SilentlyContinue) {
   mise activate pwsh | Out-String | Invoke-Expression
 } else {
   cargo install mise
+}
+# rhq
+if (!(Get-Command rhq -ErrorAction SilentlyContinue)) {
+  cargo install --git https://github.com/ubnt-intrepid/rhq.git
 }
 
 # Utility functions.
@@ -133,7 +137,8 @@ function cd-ls {
       }
     }
     $path | Add-Content -Encoding utf8 $z
-    $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) } | Where-Object { Test-Path $_ }
+    # $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) } | Where-Object { Test-Path $_ }
+    $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) }
     [array]::Reverse($c)
     if (Get-Command uq -ErrorAction SilentlyContinue) {
       $c | uq | Set-Variable c
@@ -310,11 +315,11 @@ if (Get-Command peco -ErrorAction SilentlyContinue) {
 if (Get-Command gof -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER gof
 }
-if (Get-Command fzf -ErrorAction SilentlyContinue) {
-  Set-Alias __FILTER fzf
-}
 if (Get-Command tv -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER tv
+}
+if (Get-Command fzf -ErrorAction SilentlyContinue) {
+  Set-Alias __FILTER fzf
 }
 # Remove-Alias ls
 if (Is-Windows) {

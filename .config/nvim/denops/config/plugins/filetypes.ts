@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2025/06/15 15:23:24.
+// Last Change : 2025/07/19 20:04:08.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
@@ -323,7 +323,7 @@ export const filetypes: Plug[] = [
     url: "https://github.com/fei6409/log-highlight.nvim",
     profiles: ["log"],
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require('log-highlight').setup()`);
+      await denops.call(`luaeval`, `require('log-highlight').setup({})`);
     },
   },
 ];
