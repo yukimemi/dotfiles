@@ -10,7 +10,7 @@ import { z } from "npm:zod@4.0.5";
 import { exists } from "jsr:@std/fs@1.0.19";
 import * as mapping from "jsr:@denops/std@7.6.0/mapping";
 import * as vars from "jsr:@denops/std@7.6.0/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
+import type { Plug } from "jsr:@yukimemi/dvpm@7.1.0";
 import { execCommand } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 import { HarmBlockThreshold, HarmCategory, SafetySetting } from "npm:@google/generative-ai@0.24.1";
