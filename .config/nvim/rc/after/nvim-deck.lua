@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-deck.lua
 -- Author      : yukimemi
--- Last Change : 2025/06/01 20:51:23.
+-- Last Change : 2025/07/21 12:38:44.
 -- =============================================================================
 
 local deck = require('deck')
@@ -129,14 +129,12 @@ vim.keymap.set('n', 'ms', function()
   deck.start(require('deck.builtin.source.files')({
     root_dir = vim.fn.expand('~/src'),
     ignore_globs = { '**/node_modules/', '**/.git/' },
-    matcher = require("deck.builtin.matcher").fuzzy,
   }))
 end, { desc = 'src files' })
 vim.keymap.set('n', 'mC', function()
   deck.start(require('deck.builtin.source.files')({
     root_dir = vim.fn.expand('~/.cache'),
     ignore_globs = { '**/node_modules/', '**/.git/' },
-    matcher = require("deck.builtin.matcher").fuzzy,
   }))
 end, { desc = 'cache files' })
 vim.keymap.set('n', 'mM', function()
