@@ -7,7 +7,7 @@
 import * as fn from "jsr:@denops/std@7.6.0/function";
 import * as mapping from "jsr:@denops/std@7.6.0/mapping";
 import * as vars from "jsr:@denops/std@7.6.0/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@7.0.3";
+import type { Plug } from "jsr:@yukimemi/dvpm@7.1.0";
 import { pluginStatus } from "../pluginstatus.ts";
 import { z } from "npm:zod@4.0.5";
 
