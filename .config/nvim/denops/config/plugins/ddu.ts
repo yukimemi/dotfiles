@@ -12,7 +12,7 @@ import * as lambda from "jsr:@denops/std@7.6.0/lambda";
 import * as mapping from "jsr:@denops/std@7.6.0/mapping";
 import * as op from "jsr:@denops/std@7.6.0/option";
 import { batch } from "jsr:@denops/std@7.6.0/batch";
-import { z } from "npm:zod@4.0.15";
+import { z } from "npm:zod@4.0.16";
 import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
