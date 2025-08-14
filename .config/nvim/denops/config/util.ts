@@ -13,7 +13,7 @@ import * as option from "jsr:@denops/std@7.6.0/option";
 import * as vars from "jsr:@denops/std@7.6.0/variable";
 import type { Denops } from "jsr:@denops/std@7.6.0";
 import { format } from "jsr:@std/datetime@0.225.5";
-import { join } from "jsr:@std/path@1.1.1/join";
+import { join } from "jsr:@std/path@1.1.2/join";
 import { systemopen } from "jsr:@lambdalisue/systemopen@1.0.0";
 import { z } from "npm:zod@4.0.17";
 
