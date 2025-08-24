@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-deck.lua
 -- Author      : yukimemi
--- Last Change : 2025/07/21 12:38:44.
+-- Last Change : 2025/08/17 20:28:31.
 -- =============================================================================
 
 local deck = require('deck')
@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd('User', {
       vim.cmd('quit')
     end)
     ctx.keymap('n', '<Tab>', deck.action_mapping('choose_action'))
-    ctx.keymap('n', '<C-l>', deck.action_mapping('refresh'))
+    -- ctx.keymap('n', '<C-l>', deck.action_mapping('refresh'))
     ctx.keymap('n', 'i', deck.action_mapping('prompt'))
     ctx.keymap('n', 'a', deck.action_mapping('prompt'))
     ctx.keymap('n', '@', deck.action_mapping('toggle_select'))

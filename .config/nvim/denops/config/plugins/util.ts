@@ -639,4 +639,17 @@ export const util: Plug[] = [
     profiles: ["minimal"],
     dependencies: ["https://github.com/OXY2DEV/markview.nvim"],
   },
+  {
+    url: "https://github.com/manuuurino/autoread.nvim",
+    profiles: ["minimal"],
+    cache: {
+      after: `
+        lua << EOB
+          require("autoread").setup({
+            cursor_behavior = "scroll_down"
+          })
+        EOB
+      `,
+    },
+  },
 ];

@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : fall.lua
 -- Author      : yukimemi
--- Last Change : 2024/11/27 01:10:13.
+-- Last Change : 2025/08/03 15:44:51.
 -- =============================================================================
 
 vim.keymap.set("n", "<space>lf", "<cmd>Fall file<cr>", { desc = "Fall file" })
@@ -14,7 +14,7 @@ vim.keymap.set("n", "mM", "<cmd>Fall file ~/.memolist<cr>", { desc = "Fall memol
 
 vim.keymap.set("n", "mb", function()
   local bufdir = vim.fn.expand("%:p:h")
-  vim.cmd("Fall file " .. bufdir)
+  vim.cmd("Fall file '" .. bufdir .. "'")
 end, { desc = "Fall buffer dir" })
 
 vim.keymap.set("n", "m,", "<cmd>Fall buffer<cr>", { desc = "Fall buffer" })
@@ -24,16 +24,17 @@ vim.keymap.set("n", "<space>lg", "<cmd>Fall git-grep<cr>", { desc = "Fall git-gr
 vim.keymap.set("n", "<space>ll", "<cmd>Fall line<cr>", { desc = "Fall line" })
 vim.keymap.set("n", "<space>lh", "<cmd>Fall help<cr>", { desc = "Fall help" })
 
+vim.keymap.set("n", "mR", "<cmd>FallResume<cr>", { desc = "FallResume" })
+
 -- chronicle.vim
-vim.keymap.set("n", "<space>mr", "<cmd>Fall chronicle:read<cr>", { desc = "Fall chronicle:read" })
-vim.keymap.set("n", "<space>mw", "<cmd>Fall chronicle:write<cr>", { desc = "Fall chronicle:write" })
+vim.keymap.set("n", "mr", "<cmd>Fall chronicle:read<cr>", { desc = "Fall chronicle:read" })
+vim.keymap.set("n", "mw", "<cmd>Fall chronicle:write<cr>", { desc = "Fall chronicle:write" })
 
-vim.api.nvim_create_autocmd("User", {
-  group = vim.api.nvim_create_augroup("MyFallPickerEnter", { clear = true }),
-  pattern = "FallPickerEnter:*",
-  callback = function()
-    vim.keymap.set("c", "<c-n>", '<Plug>(fall-list-next)', { nowait = true })
-    vim.keymap.set("c", "<c-p>", '<Plug>(fall-list-prev)', { nowait = true })
-  end,
-})
-
+-- vim.api.nvim_create_autocmd("User", {
+--   group = vim.api.nvim_create_augroup("MyFallPickerEnter", { clear = true }),
+--   pattern = "FallPickerEnter:*",
+--   callback = function()
+--     vim.keymap.set("c", "<c-n>", '<Plug>(fall-list-next)', { nowait = true })
+--     vim.keymap.set("c", "<c-p>", '<Plug>(fall-list-prev)', { nowait = true })
+--   end,
+-- })

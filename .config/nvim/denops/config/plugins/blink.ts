@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : blink.ts
 // Author      : yukimemi
-// Last Change : 2025/08/24 10:34:51.
+// Last Change : 2025/08/24 21:37:58.
 // =============================================================================
 
 import { join } from "jsr:@std/path@1.1.2/join";
@@ -12,7 +12,7 @@ import { execCommand } from "../util.ts";
 export const blink: Plug[] = [
   {
     url: "https://github.com/Saghen/blink.cmp",
-    profiles: ["cmp"],
+    profiles: ["completion"],
     dependencies: ["https://github.com/rafamadriz/friendly-snippets"],
     afterFile: `~/.config/nvim/rc/after/blink.cmp.lua`,
     build: async ({ denops, info }) => {
@@ -27,14 +27,16 @@ export const blink: Plug[] = [
         const tempDllPath = join(tempBuildDir, "release", "blink_cmp_fuzzy.dll");
         await execCommand(
           denops,
-          "cargo",
-          ["build", "--release", `--target-dir=${tempBuildDir}`],
+          "rustup",
+          ["run", "nightly", "cargo", "build", "--release", `--target-dir=${tempBuildDir}`],
           info.dst,
         );
         if (!(await exists(tempDllPath))) {
           throw "Build failed ... (blink.cmp)";
         }
-        await Deno.rename(dllPath, oldDllPath);
+        if (await exists(dllPath)) {
+          await Deno.rename(dllPath, oldDllPath);
+        }
         await Deno.copyFile(tempDllPath, dllPath);
       }
     },
