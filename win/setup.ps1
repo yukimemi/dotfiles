@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/07/19 17:26:44.
+  .Last Change : 2025/08/24 11:31:49.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -69,16 +69,16 @@ function New-Shortcut {
     Install neovim
 #>
 function Install-Neovim {
-    [CmdletBinding()]
-    [OutputType([void])]
-    param()
-    trap {
-        log "[Install-Neovim] Error $_"; throw $_
-    }
-    $nvimMsi = Join-Path $env:tmp "nvim-win64.msi"
-    Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
-    & msiexec /i $nvimMsi /quiet
-    # winget install -q Neovim.Neovim
+  [CmdletBinding()]
+  [OutputType([void])]
+  param()
+  trap {
+    log "[Install-Neovim] Error $_"; throw $_
+  }
+  $nvimMsi = Join-Path $env:tmp "nvim-win64.msi"
+  Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
+  & msiexec /i $nvimMsi /quiet
+  # winget install -q Neovim.Neovim
 }
 
 <#
@@ -96,7 +96,7 @@ function Install-RequiredModules {
   winget install -q Flameshot.Flameshot
   # winget install -q JesseDuffield.lazygit
   # winget install -q NuShell.NuShell
-  # winget install -q RustLang.Rustup
+  winget install -q RustLang.Rustup
   winget install -q Microsoft.WindowsTerminal
   winget install -q Microsoft.PowerToys
   winget install -q Git.Git
