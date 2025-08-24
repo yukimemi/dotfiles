@@ -89,6 +89,7 @@ function Install-Neovim {
 #>
 function Install-RequiredModules {
   # winget install -q topgrade-rs.topgrade
+  winget install -q BurntSushi.ripgrep.MSVC
   winget install -q alexpasmantier.television
   winget install -q junegunn.fzf
   winget install -q dandavison.delta
