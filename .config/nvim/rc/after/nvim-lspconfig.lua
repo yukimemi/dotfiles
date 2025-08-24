@@ -1,14 +1,8 @@
 -- =============================================================================
 -- File        : nvim-lspconfig.lua
 -- Author      : yukimemi
--- Last Change : 2025/08/24 09:20:47.
+-- Last Change : 2025/08/24 12:04:51.
 -- =============================================================================
-
-vim.lsp.config('*', {
-  root_markers = { '.git' },
-  -- capabilities = require('cmp_nvim_lsp').default_capabilities(),
-  -- capabilities = require('blink.cmp').get_lsp_capabilities(),
-})
 
 vim.api.nvim_create_user_command('LspHealth', function()
   vim.cmd.checkhealth('vim.lsp')

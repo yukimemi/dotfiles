@@ -1,10 +1,21 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2025/08/24 09:20:20.
+// Last Change : 2025/08/24 11:57:22.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.0";
+import { execute } from "jsr:@denops/std@7.6.0/helper";
+import { pluginStatus } from "../pluginstatus.ts";
+
+const lspDependencies = [
+  "https://github.com/SmiteshP/nvim-navic",
+  "https://github.com/folke/neoconf.nvim",
+  "https://github.com/folke/trouble.nvim",
+  "https://github.com/onsails/lspkind.nvim",
+  "https://github.com/williamboman/mason-lspconfig.nvim",
+  "https://github.com/williamboman/mason.nvim",
+];
 
 export const lsp: Plug[] = [
   {
@@ -136,16 +147,49 @@ export const lsp: Plug[] = [
   {
     url: "https://github.com/neovim/nvim-lspconfig",
     profiles: ["lsp"],
-    dependencies: [
-      "https://github.com/SmiteshP/nvim-navic",
-      "https://github.com/folke/neoconf.nvim",
-      "https://github.com/folke/trouble.nvim",
-      // "https://github.com/hrsh7th/nvim-cmp",
-      // "https://github.com/Saghen/blink.cmp",
-      "https://github.com/onsails/lspkind.nvim",
-      "https://github.com/williamboman/mason-lspconfig.nvim",
-      "https://github.com/williamboman/mason.nvim",
-    ],
+    dependencies: pluginStatus.blink
+      ? [...lspDependencies, "https://github.com/Saghen/blink.cmp"]
+      : pluginStatus.cmp
+      ? [...lspDependencies, "https://github.com/hrsh7th/nvim-cmp"]
+      : lspDependencies,
     afterFile: "~/.config/nvim/rc/after/nvim-lspconfig.lua",
+    after: async ({ denops }) => {
+      if (pluginStatus.cmp) {
+        return await execute(
+          denops,
+          `
+lua << EOB
+vim.lsp.config('*', {
+  root_markers = { '.git' },
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+})
+EOB
+          `,
+        );
+      }
+      if (pluginStatus.blink) {
+        return await execute(
+          denops,
+          `
+lua << EOB
+vim.lsp.config('*', {
+  root_markers = { '.git' },
+  capabilities = require('blink.cmp').get_lsp_capabilities(),
+})
+EOB
+          `,
+        );
+      }
+      return await execute(
+        denops,
+        `
+lua << EOB
+vim.lsp.config('*', {
+  root_markers = { '.git' },
+})
+EOB
+        `,
+      );
+    },
   },
 ];
