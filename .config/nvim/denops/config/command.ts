@@ -4,12 +4,12 @@
 // Last Change : 2024/06/16 20:33:49.
 // =============================================================================
 
-import * as lambda from "jsr:@denops/std@7.6.0/lambda";
-import * as nvimFn from "jsr:@denops/std@7.6.0/function/nvim";
-import type { Denops } from "jsr:@denops/std@7.6.0";
-import { batch } from "jsr:@denops/std@7.6.0/batch";
+import * as lambda from "jsr:@denops/std@8.0.0/lambda";
+import * as nvimFn from "jsr:@denops/std@8.0.0/function/nvim";
+import type { Denops } from "jsr:@denops/std@8.0.0";
+import { batch } from "jsr:@denops/std@8.0.0/batch";
 import { removeShada, zennCreate, zennPreview } from "./util.ts";
-import { z } from "npm:zod@4.1.0";
+import { z } from "npm:zod@4.1.1";
 
 export async function setCommandPre(_denops: Denops) {
 }
