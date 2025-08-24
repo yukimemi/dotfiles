@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2024/08/17 20:02:02.
+# Last Change : 2025/07/24 01:17:03.
 # =============================================================================
 
 general:
@@ -27,14 +27,14 @@ general:
 
 gaps:
   # Gap between adjacent windows.
-  inner_gap: '13px'
+  inner_gap: '10px'
 
   # Gap between windows and the screen edge.
   outer_gap:
     top: '50px'
-    right: '13px'
-    bottom: '13px'
-    left: '13px'
+    right: '10px'
+    bottom: '10px'
+    left: '10px'
 
 window_effects:
   # Visual effects to apply to the focused window.
@@ -48,7 +48,7 @@ window_effects:
   # Visual effects to apply to non-focused windows.
   other_windows:
     border:
-      enabled: true
+      enabled: false
       color: '#a1a1a1'
 
 window_behavior:

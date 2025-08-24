@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/07/15 20:37:59.
+// Last Change : 2025/08/24 11:26:52.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.0";
@@ -633,5 +633,10 @@ export const util: Plug[] = [
     url: "https://github.com/t9md/vim-quickhl",
     profiles: ["minimal"],
     afterFile: "~/.config/nvim/rc/after/vim-quickhl.vim",
+  },
+  {
+    url: "https://github.com/alex-popov-tech/store.nvim",
+    profiles: ["minimal"],
+    dependencies: ["https://github.com/OXY2DEV/markview.nvim"],
   },
 ];

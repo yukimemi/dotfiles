@@ -1,9 +1,11 @@
 // =============================================================================
 // File        : blink.ts
 // Author      : yukimemi
-// Last Change : 2025/03/15 21:31:23.
+// Last Change : 2025/08/24 10:34:51.
 // =============================================================================
 
+import { join } from "jsr:@std/path@1.1.2/join";
+import { exists } from "jsr:@std/fs@1.0.19";
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.0";
 import { execCommand } from "../util.ts";
 
@@ -15,7 +17,25 @@ export const blink: Plug[] = [
     afterFile: `~/.config/nvim/rc/after/blink.cmp.lua`,
     build: async ({ denops, info }) => {
       if (info.isLoad && info.isUpdate) {
-        await execCommand(denops, "cargo", ["build", "--release"], info.dst);
+        if (denops.meta.platform !== "windows") {
+          return await execCommand(denops, "cargo", ["build", "--release"], info.dst);
+        }
+        const targetDir = join(info.dst, "target", "release");
+        const dllPath = join(targetDir, "blink_cmp_fuzzy.dll");
+        const oldDllPath = join(targetDir, "blink_cmp_fuzzy.dll.old");
+        const tempBuildDir = await Deno.makeTempDir();
+        const tempDllPath = join(tempBuildDir, "release", "blink_cmp_fuzzy.dll");
+        await execCommand(
+          denops,
+          "cargo",
+          ["build", "--release", `--target-dir=${tempBuildDir}`],
+          info.dst,
+        );
+        if (!(await exists(tempDllPath))) {
+          throw "Build failed ... (blink.cmp)";
+        }
+        await Deno.rename(dllPath, oldDllPath);
+        await Deno.copyFile(tempDllPath, dllPath);
       }
     },
   },
