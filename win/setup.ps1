@@ -89,8 +89,11 @@ function Install-Neovim {
 #>
 function Install-RequiredModules {
   # winget install -q topgrade-rs.topgrade
-  winget install -q LGUG2Z.komorebi
-  winget install -q LGUG2Z.whkd
+  winget install -q alexpasmantier.television
+  winget install -q junegunn.fzf
+  winget install -q dandavison.delta
+  # winget install -q LGUG2Z.komorebi
+  # winget install -q LGUG2Z.whkd
   winget install -q gerardog.gsudo
   winget install -q Slackadays.Clipboard
   winget install -q Flameshot.Flameshot
