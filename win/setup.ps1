@@ -116,6 +116,7 @@ function Install-RequiredModules {
   winget install -q Microsoft.PowerShell
   winget install -q Neovide.Neovide
   winget install -q hluk.CopyQ
+  winget install -q Byron.dua-cli
   # winget install -q dalance.procs
   sudo choco install -y zig
 }
@@ -202,6 +203,7 @@ function Start-Main {
     log "[Start-Main] Start"
 
     Set-RequiredEnv
+    Change-CapsLock2Ctrl
 
     # Invoke-RestMethod https://deno.land/install.ps1 | Invoke-Expression
     # Invoke-RestMethod https://astral.sh/uv/install.ps1 | Invoke-Expression
@@ -210,7 +212,12 @@ function Start-Main {
     Install-RequiredModules
     # Install-RequiredCargo
 
-    Change-CapsLock2Ctrl
+    # Copy clnch.
+    curl -O https://crftwr.github.io/clnch/download/clnch_340.zip
+    tar zxvf .\clnch_340.zip
+    & robocopy /e /r:1 /w:1 .\clnch ([System.IO.Path]::Combine($env:USERPROFILE, "app\clnch"))
+    Remove-Item -Force .\clnch_340.zip
+    Remove-Item -Force -Recurse .\clnch
 
     $target = Join-Path -Path $env:USERPROFILE -ChildPath ".dotfiles\win\AutoHotkey\AutoHotkey.ahk"
     $link = Join-Path -Path $env:APPDATA -ChildPath "Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
