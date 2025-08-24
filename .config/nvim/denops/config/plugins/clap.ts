@@ -5,7 +5,7 @@
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.0";
-import * as fn from "jsr:@denops/std@7.6.0/function";
+import * as fn from "jsr:@denops/std@8.0.0/function";
 import { execCommand } from "../util.ts";
 
 export const clap: Plug[] = [

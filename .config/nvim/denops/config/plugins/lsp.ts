@@ -5,7 +5,7 @@
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.0";
-import { execute } from "jsr:@denops/std@7.6.0/helper";
+import { execute } from "jsr:@denops/std@8.0.0/helper";
 import { pluginStatus } from "../pluginstatus.ts";
 
 const lspDependencies = [

@@ -5,7 +5,7 @@
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.0";
-import * as mapping from "jsr:@denops/std@7.6.0/mapping";
+import * as mapping from "jsr:@denops/std@8.0.0/mapping";
 
 export const textobj: Plug[] = [
   {

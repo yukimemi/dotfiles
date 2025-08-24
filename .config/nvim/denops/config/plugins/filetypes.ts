@@ -6,10 +6,10 @@
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.0";
 
-import * as autocmd from "jsr:@denops/std@7.6.0/autocmd";
-import * as lambda from "jsr:@denops/std@7.6.0/lambda";
-import * as mapping from "jsr:@denops/std@7.6.0/mapping";
-import * as vars from "jsr:@denops/std@7.6.0/variable";
+import * as autocmd from "jsr:@denops/std@8.0.0/autocmd";
+import * as lambda from "jsr:@denops/std@8.0.0/lambda";
+import * as mapping from "jsr:@denops/std@8.0.0/mapping";
+import * as vars from "jsr:@denops/std@8.0.0/variable";
 
 export const filetypes: Plug[] = [
   // all filetypes

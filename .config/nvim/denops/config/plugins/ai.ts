@@ -4,12 +4,12 @@
 // Last Change : 2025/08/15 19:23:44.
 // =============================================================================
 
-import * as lambda from "jsr:@denops/std@7.6.0/lambda";
-import * as fn from "jsr:@denops/std@7.6.0/function";
+import * as lambda from "jsr:@denops/std@8.0.0/lambda";
+import * as fn from "jsr:@denops/std@8.0.0/function";
 import { z } from "npm:zod@4.1.0";
 import { exists } from "jsr:@std/fs@1.0.19";
-import * as mapping from "jsr:@denops/std@7.6.0/mapping";
-import * as vars from "jsr:@denops/std@7.6.0/variable";
+import * as mapping from "jsr:@denops/std@8.0.0/mapping";
+import * as vars from "jsr:@denops/std@8.0.0/variable";
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.0";
 import { execCommand } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
