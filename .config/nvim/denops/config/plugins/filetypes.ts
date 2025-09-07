@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2025/08/24 09:23:00.
+// Last Change : 2025/08/25 01:09:23.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
@@ -91,6 +91,15 @@ export const filetypes: Plug[] = [
   {
     url: "https://github.com/OXY2DEV/markview.nvim",
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
+    profiles: ["markdown"],
+    enabled: true,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require('markview').setup(_A)`, {
+        experimental: {
+          check_rtp_message: false,
+        },
+      });
+    },
   },
   {
     url: "https://github.com/dhruvasagar/vim-table-mode",
@@ -100,7 +109,7 @@ export const filetypes: Plug[] = [
   {
     url: "https://github.com/MeanderingProgrammer/render-markdown.nvim",
     profiles: ["markdown"],
-    enabled: true,
+    enabled: false,
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/render-markdown.lua",
   },
