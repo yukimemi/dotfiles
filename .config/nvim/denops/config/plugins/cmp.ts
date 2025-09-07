@@ -4,7 +4,7 @@
 // Last Change : 2025/08/03 14:49:29.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.0";
+import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
 
 export const cmp: Plug[] = [
   { url: "https://github.com/hrsh7th/cmp-nvim-lsp", profiles: ["completion"] },
