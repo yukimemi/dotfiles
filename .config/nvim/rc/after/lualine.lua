@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : lualine.lua
 -- Author      : yukimemi
--- Last Change : 2025/05/03 08:23:41.
+-- Last Change : 2025/09/07 10:19:44.
 -- =============================================================================
 
 -- Eviline config for lualine
@@ -230,15 +230,6 @@ ins_right({
     removed = { fg = colors.red },
   },
   cond = conditions.hide_in_width,
-})
-
-ins_right({
-  function()
-    local s1, s2 = require("neocodeium").get_status()
-    return s1 .. ":" .. s2
-  end,
-  icon = "🤖",
-  color = { fg = colors.red, gui = "bold" },
 })
 
 ins_right({

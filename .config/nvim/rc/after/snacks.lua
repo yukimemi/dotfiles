@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2025/05/31 09:46:50.
+-- Last Change : 2025/08/31 12:02:13.
 -- =============================================================================
 
 require("snacks").setup({
@@ -58,7 +58,7 @@ require("snacks").setup({
     enabled = false,
   },
   picker = {
-    enabled = false,
+    enabled = true,
   },
 })
 
@@ -84,7 +84,7 @@ vim.keymap.set("n", "<space>gg", function() Snacks.lazygit() end, { desc = "Lazy
 -- Snacks.notifier
 vim.keymap.set("n", "<space>nl", function() Snacks.notifier.show_history() end, { desc = "Snacks history" })
 
-if false then
+if true then
   vim.keymap.set("n", "<space>S", function() Snacks.picker() end, { desc = "Snacks picker" })
   vim.keymap.set("n", "<space>ff", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
   vim.keymap.set("n", "<space>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
@@ -134,7 +134,7 @@ if false then
   vim.keymap.set("n", "<space>gb", function() Snacks.picker.git_branches() end, { desc = "Git Branches" })
   vim.keymap.set("n", "<space>gl", function() Snacks.picker.git_log() end, { desc = "Git Log" })
   -- vim.keymap.set("n", "<space>gL", function() Snacks.picker.git_log_line() end, { desc = "Git Log Line" })
-  vim.keymap.set("n", "<space>gs", function() Snacks.picker.git_status() end, { desc = "Git Status" })
+  vim.keymap.set("n", "<space>gS", function() Snacks.picker.git_status() end, { desc = "Git Status" })
   -- vim.keymap.set("n", "<space>gS", function() Snacks.picker.git_stash() end, { desc = "Git Stash" })
   vim.keymap.set("n", "<space>gd", function() Snacks.picker.git_diff() end, { desc = "Git Diff (Hunks)" })
   vim.keymap.set("n", "<space>gf", function() Snacks.picker.git_log_file() end, { desc = "Git Log File" })

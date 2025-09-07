@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2025/08/24 09:16:01.
+// Last Change : 2025/09/07 10:47:41.
 // =============================================================================
 
 export const pluginStatus = {
@@ -25,7 +25,7 @@ export const pluginStatus = {
   ddt: false,
   ddu: false,
   ddufiler: false,
-  deck: true,
+  deck: false,
   denippet: true,
   fall: false,
   fern: false,
@@ -40,7 +40,8 @@ export const pluginStatus = {
   insx: true,
   jab: true,
   lightline: false,
-  lualine: true,
+  lualine: false,
+  slimline: true,
   staba: false,
   modesearch: false,
   necodeium: false,

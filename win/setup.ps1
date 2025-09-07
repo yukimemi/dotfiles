@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/08/24 11:31:49.
+  .Last Change : 2025/09/01 02:56:08.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -144,7 +144,7 @@ function Install-RequiredCargo {
   cargo install ouch
   cargo install yazi-fm
   cargo install yazi-cli
-  cargo install dua-cli
+  cargo +nightly install dua-cli
   cargo install du-dust
   cargo install zoxide
   cargo install television

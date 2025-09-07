@@ -28,5 +28,10 @@ use = "ndtoan96/ouch"
 rev = "bb941c4"
 hash = "956b02fe8213e7b92e21a941b9abe764"
 
+[[plugin.deps]]
+use = "mikavilpas/easyjump.yazi:easyjump"
+rev = "50fed39"
+hash = "5b6933fba319214d24d7699942778fc2"
+
 [flavor]
 deps = []

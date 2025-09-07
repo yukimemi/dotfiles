@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : keymap.toml
 # Author      : yukimemi
-# Last Change : 2025/03/15 14:10:47.
+# Last Change : 2025/08/31 23:58:22.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -111,6 +111,12 @@ desc = "Save last project and exit the process"
 on = ["c", "a"]
 run = "plugin ouch zip"
 desc = "Compress with ouch"
+
+# https://github.com/mikavilpas/easyjump.yazi
+[[mgr.prepend_keymap]]
+on = ["i"]
+run = "plugin easyjump"
+desc = "easyjump"
 
 # https://yazi-rs.github.io/docs/tips#cd-to-git-root
 [[mgr.prepend_keymap]]

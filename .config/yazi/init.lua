@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : init.lua
 -- Author      : yukimemi
--- Last Change : 2025/06/21 11:29:02.
+-- Last Change : 2025/08/31 23:57:51.
 -- =============================================================================
 
 -- https://github.com/hankertrix/augment-command.yazi
@@ -31,3 +31,7 @@ function Linemode:size_and_mtime()
   local size = self._file:size()
   return string.format("%s %s", size and ya.readable_size(size) or "-", time)
 end
+
+-- https://github.com/mikavilpas/easyjump.yazi
+-- use the default settings
+require("easyjump"):setup()

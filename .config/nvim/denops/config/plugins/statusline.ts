@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : statusline.ts
 // Author      : yukimemi
-// Last Change : 2025/03/02 19:53:19.
+// Last Change : 2025/09/07 10:34:08.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.0";
@@ -24,12 +24,12 @@ export const statusline: Plug[] = [
   },
   {
     url: "https://github.com/pnx/lualine-lsp-status",
-    profiles: ["default"],
+    profiles: ["statusline"],
     enabled: pluginStatus.lualine,
   },
   {
     url: "https://github.com/nvim-lualine/lualine.nvim",
-    profiles: ["default"],
+    profiles: ["statusline"],
     enabled: pluginStatus.lualine,
     dependencies: [
       "https://github.com/pnx/lualine-lsp-status",
@@ -38,7 +38,7 @@ export const statusline: Plug[] = [
   },
   {
     url: "https://github.com/itchyny/lightline.vim",
-    profiles: ["default"],
+    profiles: ["statusline"],
     enabled: pluginStatus.lightline,
     before: async ({ denops }) => {
       await vars.g.set(denops, "lightline", {
@@ -75,8 +75,14 @@ export const statusline: Plug[] = [
   },
   {
     url: "https://github.com/tar80/staba.nvim",
-    profiles: ["default"],
+    profiles: ["statusline"],
     enabled: pluginStatus.staba,
     afterFile: `~/.config/nvim/rc/after/staba.lua`,
+  },
+  {
+    url: "https://github.com/sschleemilch/slimline.nvim",
+    profiles: ["statusline"],
+    enabled: pluginStatus.slimline,
+    afterFile: `~/.config/nvim/rc/after/slimline.lua`,
   },
 ];

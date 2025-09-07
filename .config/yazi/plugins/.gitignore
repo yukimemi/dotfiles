@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : .gitignore
 # Author      : yukimemi
-# Last Change : 2024/11/09 15:56:04.
+# Last Change : 2025/09/01 01:50:23.
 # =============================================================================
 
 augment-command.yazi/
@@ -17,3 +17,4 @@ projects.yazi/
 starship.yazi/
 system-clipboard.yazi/
 yamb.yazi/
+easyjump.yazi/
