@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddc.ts
 // Author      : yukimemi
-// Last Change : 2025/01/02 21:46:35.
+// Last Change : 2025/09/14 01:07:38.
 // =============================================================================
 
 import * as autocmd from "jsr:@denops/std@8.0.0/autocmd";
@@ -19,6 +19,7 @@ export const ddc: Plug[] = [
   // ui
   {
     url: "https://github.com/Shougo/pum.vim",
+    profiles: ["completion"],
     after: async ({ denops }) => {
       await denops.call("pum#set_option", {
         auto_confirm_time: 0,
@@ -35,11 +36,13 @@ export const ddc: Plug[] = [
   },
   {
     url: "https://github.com/Shougo/ddc-source-codeium",
+    profiles: ["completion"],
     enabled: async ({ denops }) =>
       await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))),
   },
   {
     url: "https://github.com/uga-rosa/ddc-source-lsp-setup",
+    profiles: ["completion"],
     dependencies: [
       "https://github.com/neovim/nvim-lspconfig",
       "https://github.com/Shougo/ddc-source-lsp",
@@ -51,6 +54,7 @@ export const ddc: Plug[] = [
   // popup, signature
   {
     url: "https://github.com/uga-rosa/ddc-previewer-floating",
+    profiles: ["completion"],
     dependencies: [
       "https://github.com/Shougo/pum.vim",
     ],
@@ -62,6 +66,7 @@ export const ddc: Plug[] = [
   },
   {
     url: "https://github.com/matsui54/denops-popup-preview.vim",
+    profiles: ["completion"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "popup_preview_config", {
         delay: 50,
@@ -75,34 +80,39 @@ export const ddc: Plug[] = [
   },
   {
     url: "https://github.com/matsui54/denops-signature_help",
+    profiles: ["completion"],
     after: async ({ denops }) => {
       await denops.call(`signature_help#enable`);
     },
   },
-  { url: "https://github.com/LumaKernel/ddc-file" },
-  { url: "https://github.com/LumaKernel/ddc-run" },
-  { url: "https://github.com/Shougo/ddc-filter-converter_remove_overlap" },
-  { url: "https://github.com/Shougo/ddc-filter-converter_truncate_abbr" },
-  { url: "https://github.com/Shougo/ddc-filter-matcher_head" },
-  { url: "https://github.com/Shougo/ddc-filter-matcher_length" },
-  { url: "https://github.com/Shougo/ddc-filter-matcher_vimregexp" },
-  { url: "https://github.com/Shougo/ddc-filter-sorter_rank" },
-  { url: "https://github.com/Shougo/ddc-source-around" },
-  { url: "https://github.com/Shougo/ddc-source-cmdline" },
-  { url: "https://github.com/Shougo/ddc-source-cmdline-history" },
-  { url: "https://github.com/Shougo/ddc-source-input" },
-  { url: "https://github.com/Shougo/ddc-source-line" },
-  { url: "https://github.com/Shougo/ddc-source-lsp" },
-  { url: "https://github.com/Shougo/ddc-source-omni" },
-  { url: "https://github.com/Shougo/ddc-source-rg" },
-  { url: "https://github.com/Shougo/ddc-ui-inline" },
-  { url: "https://github.com/Shougo/ddc-ui-pum" },
-  { url: "https://github.com/delphinus/ddc-treesitter" },
-  { url: "https://github.com/matsui54/ddc-buffer" },
-  { url: "https://github.com/tani/ddc-fuzzy" },
-  { url: "https://github.com/uga-rosa/ddc-source-nvim-lua" },
+  { url: "https://github.com/LumaKernel/ddc-file", profiles: ["completion"] },
+  { url: "https://github.com/LumaKernel/ddc-run", profiles: ["completion"] },
+  {
+    url: "https://github.com/Shougo/ddc-filter-converter_remove_overlap",
+    profiles: ["completion"],
+  },
+  { url: "https://github.com/Shougo/ddc-filter-converter_truncate_abbr", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-filter-matcher_head", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-filter-matcher_length", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-filter-matcher_vimregexp", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-filter-sorter_rank", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-source-around", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-source-cmdline", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-source-cmdline-history", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-source-input", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-source-line", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-source-lsp", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-source-omni", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-source-rg", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-ui-inline", profiles: ["completion"] },
+  { url: "https://github.com/Shougo/ddc-ui-pum", profiles: ["completion"] },
+  { url: "https://github.com/delphinus/ddc-treesitter", profiles: ["completion"] },
+  { url: "https://github.com/matsui54/ddc-buffer", profiles: ["completion"] },
+  { url: "https://github.com/tani/ddc-fuzzy", profiles: ["completion"] },
+  { url: "https://github.com/uga-rosa/ddc-source-nvim-lua", profiles: ["completion"] },
   {
     url: "https://github.com/Shougo/ddc.vim",
+    profiles: ["completion"],
     dependencies: [
       // matcher, sorter, converter
       "https://github.com/tani/ddc-fuzzy",
@@ -202,9 +212,9 @@ export const ddc: Plug[] = [
           ? ["codeium", "lsp", "denippet", "around", "file", "rg"]
           : ["lsp", "denippet", "around", "file", "rg"],
         cmdlineSources: {
-          ":": ["cmdline", "cmdline-history", "around"],
-          "@": ["input", "cmdline-history", "file", "around"],
-          ">": ["input", "cmdline-history", "file", "around"],
+          ":": ["cmdline", "cmdline_history", "around"],
+          "@": ["input", "cmdline_history", "file", "around"],
+          ">": ["input", "cmdline_history", "file", "around"],
           "/": ["around"],
           "?": ["around"],
           "-": ["around"],
@@ -244,7 +254,7 @@ export const ddc: Plug[] = [
             mark: "󱐋",
             forceCompletionPattern: "\\.\\w*|::\\w*|->\\w*",
             dup: "force",
-            sorters: ["sorter_lsp-kind"],
+            sorters: ["sorter_lsp_kind"],
             converters: ["converter_kind_labels"],
           },
           "nvim-lua": {

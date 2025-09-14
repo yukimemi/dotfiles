@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/08/24 11:26:52.
+// Last Change : 2025/09/14 13:21:56.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
@@ -31,7 +31,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/ahmedkhalf/project.nvim",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("project_nvim").setup(_A)`, {
         // Manual mode doesn't automatically change your root directory, so you have
@@ -187,7 +187,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/thinca/vim-ambicmd",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/vim-ambicmd.vim",
       afterFile: "~/.config/nvim/rc/after/vim-ambicmd.vim",
@@ -278,7 +278,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/simeji/winresizer",
-    profiles: ["default"],
+    profiles: ["default", "core"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "winresizer_gui_enable", 0);
     },

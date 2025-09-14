@@ -1,12 +1,12 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/08/15 19:23:44.
+// Last Change : 2025/09/14 09:17:51.
 // =============================================================================
 
 import * as lambda from "jsr:@denops/std@8.0.0/lambda";
 import * as fn from "jsr:@denops/std@8.0.0/function";
-import { z } from "npm:zod@4.1.8";
+import { z } from "npm:zod@4.1.5";
 import { exists } from "jsr:@std/fs@1.0.19";
 import * as mapping from "jsr:@denops/std@8.0.0/mapping";
 import * as vars from "jsr:@denops/std@8.0.0/variable";
@@ -145,7 +145,7 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/futago.vim",
-    profiles: ["ai"],
+    profiles: ["ai", "core"],
     enabled: true,
     before: async ({ denops }) => {
       await vars.g.set(denops, "futago_debug", false);

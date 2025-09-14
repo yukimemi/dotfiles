@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2025/08/24 11:57:22.
+// Last Change : 2025/09/14 07:07:17.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
@@ -148,7 +148,7 @@ export const lsp: Plug[] = [
     url: "https://github.com/neovim/nvim-lspconfig",
     profiles: ["lsp"],
     dependencies: pluginStatus.blink
-      ? [...lspDependencies, "https://github.com/Saghen/blink.cmp"]
+      ? [...lspDependencies, "https://github.com/saghen/blink.cmp"]
       : pluginStatus.cmp
       ? [...lspDependencies, "https://github.com/hrsh7th/nvim-cmp"]
       : lspDependencies,

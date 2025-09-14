@@ -162,7 +162,7 @@ export const colors: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/lumiris.vim",
-    profiles: ["colors", "favaritecolors"],
+    profiles: ["colors", "favaritecolors", "core"],
     dependencies: [
       "https://github.com/0xstepit/flow.nvim",
       "https://github.com/4513ECHO/vim-colors-hatsunemiku",

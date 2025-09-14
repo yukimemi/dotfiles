@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2025/05/05 13:37:52.
+// Last Change : 2025/09/14 11:17:55.
 // =============================================================================
 
 import type { Denops } from "jsr:@denops/std@8.0.0";
@@ -15,7 +15,7 @@ import * as option from "jsr:@denops/std@8.0.0/option";
 import { batch } from "jsr:@denops/std@8.0.0/batch";
 import { ensureDir } from "jsr:@std/fs@1.0.19/ensure-dir";
 import { stdpath } from "jsr:@denops/std@8.0.0/function/nvim";
-import { z } from "npm:zod@4.1.8";
+import { z } from "npm:zod@4.1.5";
 
 export async function setOption(denops: Denops) {
   const backupdir = denops.meta.host === "nvim"
@@ -77,7 +77,7 @@ export async function setOption(denops: Denops) {
       await option.cmdheight.set(denops, 0);
       await nvimOption.inccommand.set(denops, "nosplit");
       await nvimOption.pumblend.set(denops, 10);
-      await option.laststatus.set(denops, 0);
+      await option.laststatus.set(denops, 3);
       await option.clipboard.set(denops, "unnamedplus");
     } else {
       await option.laststatus.set(denops, 2);

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2025/03/24 01:07:48.
+// Last Change : 2025/09/14 06:43:38.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
@@ -21,7 +21,7 @@ export const search: Plug[] = [
   },
   {
     url: "https://github.com/lambdalisue/vim-kensaku",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
   },
   {
     url: "https://github.com/lambdalisue/vim-kensaku-search",

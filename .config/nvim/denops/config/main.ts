@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2025/09/07 10:15:29.
+// Last Change : 2025/09/14 06:51:12.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@8.0.0/function";
@@ -25,7 +25,7 @@ import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setNvy } from "./nvy.ts";
 import { setOption } from "./option.ts";
-import { z } from "npm:zod@4.1.8";
+import { z } from "npm:zod@4.1.5";
 
 const logPath = join(await dir("cache"), "dvpm", `dvpm_${new Date().getTime()}.log`);
 await ensureFile(logPath);
@@ -115,33 +115,33 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
     base,
     cache,
     notify: true,
-    profiles: [
-      "ai",
-      "colors",
-      "completion",
-      "fall",
-      "favaritecolors",
-      "filer",
-      "git",
-      "log",
-      "lsp",
-      "mark",
-      "markdown",
-      "memo",
-      "mini",
-      "minimal",
-      "operator",
-      "quickfix",
-      "runner",
-      "rust",
-      "search",
-      "snippet",
-      "statusline",
-      "terminal",
-      "textobj",
-      "treesitter",
-      "yank",
-    ],
+    profiles: ["core", "favaritecolors", "lsp", "git"],
+    // profiles: [
+    //   "ai",
+    //   "colors",
+    //   "completion",
+    //   "fall",
+    //   "favaritecolors",
+    //   "filer",
+    //   "git",
+    //   "log",
+    //   "lsp",
+    //   "mark",
+    //   "markdown",
+    //   "memo",
+    //   "minimal",
+    //   "operator",
+    //   "quickfix",
+    //   "runner",
+    //   "rust",
+    //   "search",
+    //   "snippet",
+    //   "statusline",
+    //   "terminal",
+    //   "textobj",
+    //   "treesitter",
+    //   "yank",
+    // ],
     concurrency: denops.meta.platform === "windows" ? 5 : 13,
   });
 

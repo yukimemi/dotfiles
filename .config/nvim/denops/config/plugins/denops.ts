@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2025/03/09 14:09:51.
+// Last Change : 2025/09/08 14:09:09.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
@@ -14,7 +14,7 @@ import * as vars from "jsr:@denops/std@8.0.0/variable";
 export const denops: Plug[] = [
   {
     url: "https://github.com/yukimemi/autocursor.vim",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "autocursor_debug", false);
       await vars.g.set(denops, "autocursor_notify", false);
@@ -103,7 +103,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/silentsaver.vim",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "silentsaver_debug", false);
       await vars.g.set(denops, "silentsaver_enable", true);
@@ -146,14 +146,14 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/asyncsearcher.vim",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/asyncsearcher.lua",
     },
   },
   {
     url: "https://github.com/yukimemi/chronicle.vim",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/chronicle.vim",
       afterFile: "~/.config/nvim/rc/after/chronicle.vim",
@@ -161,7 +161,7 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/autoreplacer.vim",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "autoreplacer_debug", false);
       await vars.g.set(denops, "autoreplacer_notify", true);
@@ -239,16 +239,17 @@ export const denops: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/asyncwalker.vim",
+    profiles: ["minimal", "core"],
     cache: { beforeFile: "~/.config/nvim/rc/before/asyncwalker.lua" },
   },
   {
     url: "https://github.com/yukimemi/hitori.vim",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     cache: { beforeFile: "~/.config/nvim/rc/before/hitori.lua" },
   },
   {
     url: "https://github.com/yukimemi/dps-ahdr",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "ahdr_debug", false);
       await vars.g.set(denops, "ahdr_cfg_path", "~/.config/ahdr/ahdr.toml");

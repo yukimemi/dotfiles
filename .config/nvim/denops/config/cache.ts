@@ -1,18 +1,13 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2025/09/07 06:45:18.
+// Last Change : 2025/09/14 13:26:54.
 // =============================================================================
 
 export function cacheVim() {
   return {
     script: `
       augroup MyAutoCmd | autocmd! | augroup END
-      if !v:vim_did_enter && has('reltime')
-        let s:startuptime = reltime()
-        au MyAutoCmd VimEnter * ++once let s:startuptime = reltime(s:startuptime) | redraw
-              \\ | echomsg 'startuptime: ' .. reltimestr(s:startuptime)
-      endif
       au MyAutoCmd SwapExists * let v:swapchoice = 'o'
 
       " https://daisuzu.hatenablog.com/entry/2018/12/13/012608
@@ -47,6 +42,19 @@ export function cacheVim() {
 export function cacheLua() {
   return {
     script: `
+      -- Startup time
+      local startup_start_time = vim.fn.reltime()
+      local startup_timer_augroup = vim.api.nvim_create_augroup("MyStartupTime", { clear = true })
+      vim.api.nvim_create_autocmd("VimEnter", {
+        group = startup_timer_augroup,
+        once = true,
+        callback = function()
+          local elapsed_time = vim.fn.reltime(startup_start_time)
+          local time_str = vim.fn.reltimestr(elapsed_time)
+          vim.notify('🚀  Neovim startup time:' .. time_str, vim.log.levels.INFO, { title = "Startup Timer" })
+        end,
+      })
+
       -- Disable default plugins
       vim.g.loaded_2html_plugin = 1
       vim.g.loaded_gzip = 1

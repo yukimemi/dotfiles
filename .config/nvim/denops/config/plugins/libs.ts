@@ -14,7 +14,7 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const libs: Plug[] = [
   {
     url: "https://github.com/vim-denops/denops.vim",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     cache: { beforeFile: `~/.config/nvim/rc/before/denops.vim` },
   },
   {
@@ -39,7 +39,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/tani/vim-artemis",
-    profiles: ["default"],
+    profiles: ["default", "core"],
     cache: { enabled: true },
   },
   {
@@ -151,7 +151,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/kamalsacranie/nvim-mapper",
-    profiles: ["default"],
+    profiles: ["default", "core"],
     cache: { enabled: true },
   },
   {
@@ -179,7 +179,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/folke/which-key.nvim",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     enabled: true,
     afterFile: `~/.config/nvim/rc/after/which-key.lua`,
   },
@@ -200,7 +200,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/nvim-dansa",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     afterFile: "~/.config/nvim/rc/after/nvim-dansa.lua",
   },
   { url: "https://github.com/yuki-yano/dedent-yank.vim" },

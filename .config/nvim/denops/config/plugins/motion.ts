@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2025/04/13 23:49:06.
+// Last Change : 2025/09/14 06:43:15.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
@@ -13,7 +13,7 @@ import * as vars from "jsr:@denops/std@8.0.0/variable";
 export const motion: Plug[] = [
   {
     url: "https://github.com/haya14busa/vim-edgemotion",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     before: async ({ denops }) => {
       await mapping.map(denops, "sj", "<Plug>(edgemotion-j)", {
         mode: ["n", "x"],
@@ -25,7 +25,7 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/yuki-yano/fuzzy-motion.vim",
-    profiles: ["default"],
+    profiles: ["minimal"],
     enabled: pluginStatus.fuzzymotion,
     before: async ({ denops }) => {
       await vars.g.set(denops, "fuzzy_motion_auto_jump", false);
@@ -44,7 +44,7 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/atusy/jab.nvim",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     enabled: pluginStatus.jab,
     dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
     cache: {
