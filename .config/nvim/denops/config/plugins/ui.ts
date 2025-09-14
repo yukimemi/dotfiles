@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/05/10 20:51:16.
+// Last Change : 2025/09/14 22:11:45.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
@@ -17,8 +17,16 @@ import { pluginStatus } from "../pluginstatus.ts";
 
 export const ui: Plug[] = [
   { url: "https://github.com/lambdalisue/vim-seethrough", enabled: true },
-  { url: "https://github.com/andymass/vim-matchup", enabled: false },
-  { url: "https://github.com/mopp/smartnumber.vim", enabled: true },
+  {
+    url: "https://github.com/andymass/vim-matchup",
+    profiles: ["core"],
+    afterFile: `~/.config/nvim/rc/after/vim-matchup.lua`,
+  },
+  {
+    url: "https://github.com/mopp/smartnumber.vim",
+    profiles: ["core"],
+    enabled: true,
+  },
   { url: "https://github.com/sitiom/nvim-numbertoggle", enabled: false },
   {
     url: "https://github.com/Isrothy/neominimap.nvim",
@@ -134,7 +142,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/gen740/SmoothCursor.nvim",
-    profiles: ["full"],
+    profiles: ["full", "core"],
     enabled: true,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("smoothcursor").setup(_A)`, {

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/05/06 15:31:48.
+// Last Change : 2025/09/15 08:22:02.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
@@ -77,7 +77,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/miikanissi/modus-themes.nvim", profiles: ["colors"] },
   { url: "https://github.com/neko-night/nvim", profiles: ["colors"] },
   { url: "https://github.com/nickburlett/vim-colors-stylus", profiles: ["colors"] },
-  { url: "https://github.com/nvimdev/oceanic-material", profiles: ["colors"] },
+  { url: "https://github.com/nvimdev/oceanic-material", profiles: ["colors", "favaritecolors"] },
   { url: "https://github.com/nvimdev/zephyr-nvim", profiles: ["colors"] },
   { url: "https://github.com/oxfist/night-owl.nvim", profiles: ["colors"] },
   { url: "https://github.com/pbrisbin/vim-colors-off", profiles: ["colors"] },

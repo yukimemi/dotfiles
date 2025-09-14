@@ -1,18 +1,18 @@
 -- =============================================================================
 -- File        : mini.lua
 -- Author      : yukimemi
--- Last Change : 2025/09/14 13:25:23.
+-- Last Change : 2025/09/14 21:39:25.
 -- =============================================================================
 
-require("mini.notify").setup({})
-require("mini.icons").setup({})
+require("mini.notify").setup()
+require("mini.icons").setup()
 -- require("mini.animate").setup({})
-require("mini.align").setup({})
-require("mini.tabline").setup({})
-require("mini.cursorword").setup({})
-require("mini.hipatterns").setup({})
-require("mini.trailspace").setup({})
-require("mini.visits").setup({})
+require("mini.align").setup()
+require("mini.tabline").setup()
+require("mini.cursorword").setup()
+require("mini.hipatterns").setup()
+require("mini.trailspace").setup()
+require("mini.visits").setup()
 
 -- mini.comment
 require("mini.comment").setup({
@@ -25,11 +25,14 @@ require("mini.comment").setup({
 })
 
 -- mini.files
-require("mini.files").setup({})
-vim.keymap.set("n", "ge", MiniFiles.open, { desc = "Mini files" })
+require("mini.files").setup()
+vim.keymap.set("n", "ge", MiniFiles.open, { desc = "MiniFiles" })
+vim.keymap.set("n", "gE", function()
+  MiniFiles.open(vim.api.nvim_buf_get_name(0))
+end, { desc = "MiniFiles current buffer dir" })
 
 -- mini.pick
-require("mini.pick").setup({})
+require("mini.pick").setup()
 vim.keymap.set("n", "<space>pp", "<cmd>Pick files<cr>", { desc = "MiniPick files" })
 vim.keymap.set("n", "mg", function()
   MiniPick.builtin.files({
@@ -92,7 +95,7 @@ vim.keymap.set("n", "<space>ph", function()
 end, { desc = "MiniPick help" })
 
 -- mini.extra
-require("mini.extra").setup({})
+require("mini.extra").setup()
 
 -- vim.keymap.set("n", "ge", function()
 --   MiniExtra.pickers.explorer()
@@ -107,7 +110,7 @@ require("mini.extra").setup({})
 -- })
 
 -- mini.indentscope
-require("mini.indentscope").setup({})
+require("mini.indentscope").setup()
 
 -- mini.misc
 require("mini.misc").setup({
@@ -131,7 +134,7 @@ require('mini.snippets').setup({
 })
 
 -- mini.splitjoin
-require("mini.splitjoin").setup({})
+require("mini.splitjoin").setup()
 
 -- mini.starter
 -- require("mini.starter").setup({})

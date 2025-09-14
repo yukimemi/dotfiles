@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2025/09/14 06:51:12.
+// Last Change : 2025/09/14 22:11:42.
 // =============================================================================
 
 import * as fn from "jsr:@denops/std@8.0.0/function";
@@ -115,7 +115,7 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
     base,
     cache,
     notify: true,
-    profiles: ["core", "favaritecolors", "lsp", "git"],
+    profiles: ["core", "colors", "lsp", "git", "treesitter"],
     // profiles: [
     //   "ai",
     //   "colors",

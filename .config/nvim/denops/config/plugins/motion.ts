@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2025/09/14 06:43:15.
+// Last Change : 2025/09/15 08:22:16.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
@@ -73,7 +73,7 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/Bakudankun/BackAndForward.vim",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     before: async ({ denops }) => {
       await mapping.map(denops, "gH", "<Plug>(backandforward-back)", {
         mode: "n",
