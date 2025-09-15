@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : treesitter.ts
 // Author      : yukimemi
-// Last Change : 2025/09/14 18:12:42.
+// Last Change : 2025/09/15 16:32:35.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
@@ -15,7 +15,29 @@ export const treesitter: Plug[] = [
     profiles: ["treesitter"],
     build: async ({ denops, info }) => {
       if (info.isLoad) {
-        await denops.cmd("TSUpdate");
+        await denops.call(`luaeval`, `require("nvim-treesitter").install(_A)`, [
+          "bash",
+          "editorconfig",
+          "fish",
+          "git_config",
+          "gitcommit",
+          "gitignore",
+          "go",
+          "html",
+          "javascript",
+          "jq",
+          "lua",
+          "markdown",
+          "markdown_inline",
+          "nu",
+          "powershell",
+          "rust",
+          "tmux",
+          "typescript",
+          "vim",
+          "xml",
+          "yaml",
+        ]);
       }
     },
     afterFile: "~/.config/nvim/rc/after/nvim-treesitter.lua",
