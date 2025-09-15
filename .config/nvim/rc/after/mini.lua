@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : mini.lua
 -- Author      : yukimemi
--- Last Change : 2025/09/14 21:39:25.
+-- Last Change : 2025/09/15 22:15:55.
 -- =============================================================================
 
 require("mini.notify").setup()
@@ -34,6 +34,7 @@ end, { desc = "MiniFiles current buffer dir" })
 -- mini.pick
 require("mini.pick").setup()
 vim.keymap.set("n", "<space>pp", "<cmd>Pick files<cr>", { desc = "MiniPick files" })
+vim.keymap.set("n", "<space>,", "<cmd>Pick buffers<cr>", { desc = "MiniPick buffers" })
 vim.keymap.set("n", "mg", function()
   MiniPick.builtin.files({
     tool = "git",
