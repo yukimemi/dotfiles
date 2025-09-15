@@ -1,31 +1,14 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/09/15 16:20:27.
+# Last Change : 2025/09/15 22:22:00.
 # =============================================================================
 
 # Set title.
 $Host.UI.RawUI.WindowTitle = "yukimemi-pwsh"
 
-# module
-# Install-Module -Force -Scope CurrentUser core
-# Install-Module -Force -Scope CurrentUser ZLocation
-# Install-Module -Force -Scope CurrentUser -AllowClobber Get-ChildItemColor
-# Install-Module -Force -Scope CurrentUser PendingReboot
-# Install-Module -Force -Scope CurrentUser VSSetup
-# Install-Module -Force -Scope CurrentUser Pester
-# Install-Module -Force -Scope CurrentUser MicrosoftTeams
-# Install-Module -Force -Scope CurrentUser VcRedist
-# Install-Module -Force -Scope CurrentUser -AllowClobber Pscx
-# Install-Module -Force -Scope CurrentUser PSReadLine
-# Install-Module -Force -Scope CurrentUser PowerHTML
-# Install-Module -Force -Scope CurrentUser ComputerManagementDsc; Get-DscResource -Module ComputerManagementDsc
-# Install-Module -Force -Scope CurrentUser PSFzf
-
-# wsl
-# Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-# Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile ubuntu-2004.appx -UseBasicParsing
-# Add-AppxPackage .\ubuntu-2004.appx
+# Options.
+$ErrorActionPreference = "Stop"
 
 # mise
 if (Get-Command mise -ErrorAction SilentlyContinue) {
@@ -51,27 +34,10 @@ if (Is-Windows) {
   $env:EDITOR = "hitori"
 }
 
-$ErrorActionPreference = "SilentlyContinue"
-Stop-Transcript | Out-Null
-$ErrorActionPreference = "Stop"
-$transcriptPath = [System.IO.Path]::Combine($env:USERPROFILE, ".cache", "ps1", "logs")
-New-Item -Force -ItemType Directory $transcriptPath | Out-Null
-Start-Transcript -OutputDirectory $transcriptPath
-
 # starship
 if (Get-Command starship -ErrorAction SilentlyContinue) {
   Invoke-Expression (&starship init powershell)
 }
-
-# ZLocation
-# Import-Module ZLocation
-
-# Get-ChildItemColor
-# Import-Module Get-ChildItemColor
-# Pscx
-# if (Is-Windows) {
-#   Import-Module Pscx
-# }
 
 # OS commands.
 function b {
