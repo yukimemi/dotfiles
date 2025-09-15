@@ -1,8 +1,11 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/07/20 16:44:20.
+# Last Change : 2025/09/15 16:20:27.
 # =============================================================================
+
+# Set title.
+$Host.UI.RawUI.WindowTitle = "yukimemi-pwsh"
 
 # module
 # Install-Module -Force -Scope CurrentUser core
@@ -426,5 +429,4 @@ if (Get-Command fnm -ErrorAction SilentlyContinue) {
   fnm env --use-on-cd | Out-String | Invoke-Expression
 }
 
-# Set title.
-$Host.UI.RawUI.WindowTitle = "yukimemi-pwsh"
+Import-Module -Name Microsoft.WinGet.CommandNotFound

@@ -19,7 +19,12 @@
   },
   "lint": {
     "include": [".config/nvim"],
-    "exclude": [".config/nvim/usage_data.json"]
+    "exclude": [".config/nvim/usage_data.json"],
+    "rules": {
+      "exclude": [
+        "no-import-prefix"
+      ]
+    }
   },
   "lock": false
 }
