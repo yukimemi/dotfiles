@@ -429,4 +429,7 @@ if (Get-Command fnm -ErrorAction SilentlyContinue) {
   fnm env --use-on-cd | Out-String | Invoke-Expression
 }
 
-Import-Module -Name Microsoft.WinGet.CommandNotFound
+# pkgx
+if (-not (Get-Command pkgx -ErrorAction SilentlyContinue)) {
+  powershell -Command "irm https://pkgx.sh | iex"
+}
