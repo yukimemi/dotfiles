@@ -1,16 +1,17 @@
 -- =============================================================================
 -- File        : mini.lua
 -- Author      : yukimemi
--- Last Change : 2025/09/21 14:34:16.
+-- Last Change : 2025/09/21 15:09:49.
 -- =============================================================================
 
-require("mini.notify").setup()
-require("mini.icons").setup()
--- require("mini.animate").setup({})
 require("mini.align").setup()
-require("mini.tabline").setup()
+require("mini.animate").setup()
 require("mini.cursorword").setup()
 require("mini.hipatterns").setup()
+require("mini.icons").setup()
+require("mini.map").setup()
+require("mini.notify").setup()
+require("mini.tabline").setup()
 require("mini.trailspace").setup()
 require("mini.visits").setup()
 
