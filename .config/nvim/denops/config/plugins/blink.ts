@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : blink.ts
 // Author      : yukimemi
-// Last Change : 2025/09/14 07:07:55.
+// Last Change : 2025/09/21 17:18:43.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
 export const blink: Plug[] = [
   {

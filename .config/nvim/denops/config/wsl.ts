@@ -1,13 +1,13 @@
 // =============================================================================
 // File        : wsl.ts
 // Author      : yukimemi
-// Last Change : 2024/07/27 22:23:12.
+// Last Change : 2025/09/21 17:06:55.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@8.0.0";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
+import type { Denops } from "@denops/std";
+import * as vars from "@denops/std/variable";
 
-import * as fn from "jsr:@denops/std@8.0.0/function";
+import * as fn from "@denops/std/function";
 
 export async function setWsl(denops: Denops) {
   if (!(await fn.has(denops, "wsl"))) {

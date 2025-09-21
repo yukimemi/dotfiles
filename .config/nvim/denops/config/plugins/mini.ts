@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : mini.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 13:28:08.
+// Last Change : 2025/09/21 17:13:22.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const mini: Plug[] = [

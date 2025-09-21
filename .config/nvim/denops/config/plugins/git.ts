@@ -1,11 +1,11 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2025/05/06 15:36:11.
+// Last Change : 2025/09/21 17:14:08.
 // =============================================================================
 
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
+import * as mapping from "@denops/std/mapping";
 import { pluginStatus } from "../pluginstatus.ts";
 import { execCommand } from "../util.ts";
 

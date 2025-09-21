@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : snacks.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 13:27:32.
+// Last Change : 2025/09/21 17:12:19.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const snacks: Plug[] = [

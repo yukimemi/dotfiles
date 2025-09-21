@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : fall.ts
 // Author      : yukimemi
-// Last Change : 2025/08/03 14:26:48.
+// Last Change : 2025/09/21 17:14:38.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
 export const fall: Plug[] = [
   {

@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : filetype.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:39:11.
+// Last Change : 2025/09/21 17:21:16.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@8.0.0";
+import type { Denops } from "@denops/std";
 
-import { batch } from "jsr:@denops/std@8.0.0/batch";
-import * as autocmd from "jsr:@denops/std@8.0.0/autocmd";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
+import { batch } from "@denops/std/batch";
+import * as autocmd from "@denops/std/autocmd";
+import * as vars from "@denops/std/variable";
 
 export async function setFiletype(denops: Denops) {
   await batch(denops, async (denops: Denops) => {

@@ -1,12 +1,12 @@
 // =============================================================================
 // File        : neotree.ts
 // Author      : yukimemi
-// Last Change : 2025/03/20 22:20:18.
+// Last Change : 2025/09/21 17:13:02.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
+import * as mapping from "@denops/std/mapping";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const neotree: Plug[] = [

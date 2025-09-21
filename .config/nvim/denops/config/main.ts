@@ -1,20 +1,20 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 16:44:37.
+// Last Change : 2025/09/21 17:05:39.
 // =============================================================================
 
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import * as autocmd from "jsr:@denops/std@8.0.0/autocmd";
-import * as lambda from "jsr:@denops/std@8.0.0/lambda";
-import * as log from "jsr:@std/log@0.224.14";
-import type { Denops, Entrypoint } from "jsr:@denops/std@8.0.0";
-import { Dvpm } from "jsr:@yukimemi/dvpm@7.1.1";
+import * as fn from "@denops/std/function";
+import * as autocmd from "@denops/std/autocmd";
+import * as lambda from "@denops/std/lambda";
+import * as log from "@std/log";
+import type { Denops, Entrypoint } from "@denops/std";
+import { Dvpm } from "@yukimemi/dvpm";
 import { cacheLua, cacheVim } from "./cache.ts";
-import { dir } from "jsr:@cross/dir@1.1.0";
-import { ensureFile } from "jsr:@std/fs@1.0.19/ensure-file";
-import { execute } from "jsr:@denops/std@8.0.0/helper";
-import { join } from "jsr:@std/path@1.1.2/join";
+import { dir } from "@cross/dir";
+import { ensureFile } from "@std/fs/ensure-file";
+import { execute } from "@denops/std/helper";
+import { join } from "@std/path/join";
 import { notify, openLog } from "./util.ts";
 import { plugins } from "./plugins.ts";
 import { setCommandPost, setCommandPre } from "./command.ts";
@@ -25,9 +25,13 @@ import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setNvy } from "./nvy.ts";
 import { setOption } from "./option.ts";
-import { z } from "npm:zod@4.1.11";
+import { z } from "zod";
 
-const logPath = join(await dir("cache"), "dvpm", `dvpm_${new Date().getTime()}.log`);
+const logPath = join(
+  await dir("cache"),
+  "dvpm",
+  `dvpm_${new Date().getTime()}.log`,
+);
 await ensureFile(logPath);
 
 log.setup({
@@ -115,7 +119,16 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
     base,
     cache,
     notify: true,
-    profiles: ["core", "colors", "lsp", "git", "treesitter", "textobj", "operator", "filer"],
+    profiles: [
+      "core",
+      "colors",
+      "lsp",
+      "git",
+      "treesitter",
+      "textobj",
+      "operator",
+      "filer",
+    ],
     // profiles: [
     //   "ai",
     //   "colors",

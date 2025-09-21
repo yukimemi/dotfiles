@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2025/09/15 08:22:16.
+// Last Change : 2025/09/21 17:13:14.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
 import { pluginStatus } from "../pluginstatus.ts";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
+import * as mapping from "@denops/std/mapping";
+import * as vars from "@denops/std/variable";
 
 export const motion: Plug[] = [
   {

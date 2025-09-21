@@ -1,0 +1,14 @@
+{
+  "imports": {
+    "@cross/dir": "jsr:@cross/dir@^1.1.0",
+    "@denops/std": "jsr:@denops/std@^8.0.0",
+    "@google/generative-ai": "npm:@google/generative-ai@^0.24.1",
+    "@lambdalisue/systemopen": "jsr:@lambdalisue/systemopen@^1.0.0",
+    "@std/datetime": "jsr:@std/datetime@^0.225.5",
+    "@std/fs": "jsr:@std/fs@^1.0.19",
+    "@std/log": "jsr:@std/log@^0.224.14",
+    "@std/path": "jsr:@std/path@^1.1.2",
+    "@yukimemi/dvpm": "jsr:@yukimemi/dvpm@^8.1.1",
+    "zod": "npm:zod@^4.1.11"
+  }
+}

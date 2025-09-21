@@ -26,5 +26,8 @@
       ]
     }
   },
+  "workspace": [
+    "./.config/nvim/denops/config"
+  ],
   "lock": false
 }

@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : deck.ts
 // Author      : yukimemi
-// Last Change : 2025/02/09 13:15:52.
+// Last Change : 2025/09/21 17:15:23.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
 export const deck: Plug[] = [
   {

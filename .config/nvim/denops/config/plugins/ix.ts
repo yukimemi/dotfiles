@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : ix.ts
 // Author      : yukimemi
-// Last Change : 2025/08/03 14:39:52.
+// Last Change : 2025/09/21 17:13:59.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
 export const ix: Plug[] = [
   {

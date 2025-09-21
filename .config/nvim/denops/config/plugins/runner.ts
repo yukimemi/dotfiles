@@ -1,17 +1,23 @@
 // =============================================================================
 // File        : runner.ts
 // Author      : yukimemi
-// Last Change : 2025/03/23 18:08:36.
+// Last Change : 2025/09/21 17:12:39.
 // =============================================================================
 
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import * as mapping from "@denops/std/mapping";
+import * as vars from "@denops/std/variable";
+import type { Plug } from "@yukimemi/dvpm";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const runner: Plug[] = [
-  { url: "https://github.com/lambdalisue/vim-quickrun-neovim-job", profiles: ["runner"] },
-  { url: "https://github.com/statiolake/vim-quickrun-runner-nvimterm", profiles: ["runner"] },
+  {
+    url: "https://github.com/lambdalisue/vim-quickrun-neovim-job",
+    profiles: ["runner"],
+  },
+  {
+    url: "https://github.com/statiolake/vim-quickrun-runner-nvimterm",
+    profiles: ["runner"],
+  },
   {
     url: "https://github.com/thinca/vim-quickrun",
     profiles: ["runner"],
@@ -26,7 +32,9 @@ export const runner: Plug[] = [
           runner: "nvimterm",
         },
       });
-      await mapping.map(denops, "<space>qr", "<Plug>(quickrun)", { mode: ["n", "x", "v"] });
+      await mapping.map(denops, "<space>qr", "<Plug>(quickrun)", {
+        mode: ["n", "x", "v"],
+      });
     },
   },
   {
@@ -35,8 +43,12 @@ export const runner: Plug[] = [
     enabled: pluginStatus.overseer,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("overseer").setup()`);
-      await mapping.map(denops, "<space>t", "<cmd>OverseerToggle<cr>", { mode: ["n", "x", "v"] });
-      await mapping.map(denops, "<space>r", "<cmd>OverseerRun<cr>", { mode: "n" });
+      await mapping.map(denops, "<space>t", "<cmd>OverseerToggle<cr>", {
+        mode: ["n", "x", "v"],
+      });
+      await mapping.map(denops, "<space>r", "<cmd>OverseerRun<cr>", {
+        mode: "n",
+      });
     },
   },
 ];

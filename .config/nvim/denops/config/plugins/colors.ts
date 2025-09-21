@@ -1,54 +1,87 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/09/15 08:22:02.
+// Last Change : 2025/09/21 17:16:58.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
+import * as fn from "@denops/std/function";
+import * as mapping from "@denops/std/mapping";
+import * as vars from "@denops/std/variable";
 
 export const colors: Plug[] = [
-  { url: "https://github.com/4513ECHO/vim-colors-hatsunemiku", profiles: ["colors"] },
+  {
+    url: "https://github.com/4513ECHO/vim-colors-hatsunemiku",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/AlessandroYorba/Alduin", profiles: ["colors"] },
   { url: "https://github.com/Allianaab2m/penumbra.nvim", profiles: ["colors"] },
   { url: "https://github.com/Badacadabra/vim-archery", profiles: ["colors"] },
-  { url: "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim", profiles: ["colors"] },
+  {
+    url: "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/FrenzyExists/aquarium-vim", profiles: ["colors"] },
   { url: "https://github.com/KeitaNakamura/neodark.vim", profiles: ["colors"] },
-  { url: "https://github.com/Matsuuu/pinkmare", profiles: ["colors", "favaritecolors"] },
-  { url: "https://github.com/NLKNguyen/papercolor-theme", profiles: ["colors"] },
+  {
+    url: "https://github.com/Matsuuu/pinkmare",
+    profiles: ["colors", "favaritecolors"],
+  },
+  {
+    url: "https://github.com/NLKNguyen/papercolor-theme",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/PHSix/nvim-hybrid", profiles: ["colors"] },
   { url: "https://github.com/RRethy/nvim-base16", profiles: ["colors"] },
   { url: "https://github.com/Rigellute/rigel", profiles: ["colors"] },
   { url: "https://github.com/Styzex/Sonomin.nvim", profiles: ["colors"] },
   { url: "https://github.com/adrian5/oceanic-next-vim", profiles: ["colors"] },
-  { url: "https://github.com/aereal/vim-colors-japanesque", profiles: ["colors"] },
+  {
+    url: "https://github.com/aereal/vim-colors-japanesque",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/ajlende/atlas.vim", profiles: ["colors"] },
   { url: "https://github.com/aonemd/quietlight.vim", profiles: ["colors"] },
   { url: "https://github.com/archseer/colibri.vim", profiles: ["colors"] },
   { url: "https://github.com/arrow2nd/aqua", profiles: ["colors"] },
   { url: "https://github.com/atrnh/magical-girl-vim", profiles: ["colors"] },
   { url: "https://github.com/ayu-theme/ayu-vim", profiles: ["colors"] },
-  { url: "https://github.com/bluz71/vim-nightfly-colors", profiles: ["colors"] },
-  { url: "https://github.com/bluz71/vim-nightfly-guicolors", profiles: ["colors"] },
+  {
+    url: "https://github.com/bluz71/vim-nightfly-colors",
+    profiles: ["colors"],
+  },
+  {
+    url: "https://github.com/bluz71/vim-nightfly-guicolors",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/catppuccin/nvim", profiles: ["colors"] },
   { url: "https://github.com/cocopon/iceberg.vim", profiles: ["colors"] },
-  { url: "https://github.com/craftzdog/solarized-osaka.nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/craftzdog/solarized-osaka.nvim",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/cseelus/vim-colors-lucid", profiles: ["colors"] },
   { url: "https://github.com/daltonmenezes/aura-theme", profiles: ["colors"] },
   { url: "https://github.com/daschw/leaf.nvim", profiles: ["colors"] },
   { url: "https://github.com/doums/darcula", profiles: ["colors"] },
   { url: "https://github.com/dracula/vim", profiles: ["colors"] },
-  { url: "https://github.com/drewtempelmeyer/palenight.vim", profiles: ["colors"] },
+  {
+    url: "https://github.com/drewtempelmeyer/palenight.vim",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/echasnovski/mini.base16", profiles: ["colors"] },
-  { url: "https://github.com/eddyekofo94/gruvbox-flat.nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/eddyekofo94/gruvbox-flat.nvim",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/eihigh/vim-aomi-grayscale", profiles: ["colors"] },
   { url: "https://github.com/ellisonleao/gruvbox.nvim", profiles: ["colors"] },
   { url: "https://github.com/fenetikm/falcon", profiles: ["colors"] },
-  { url: "https://github.com/folke/tokyonight.nvim", profiles: ["colors", "favaritecolors"] },
+  {
+    url: "https://github.com/folke/tokyonight.nvim",
+    profiles: ["colors", "favaritecolors"],
+  },
   { url: "https://github.com/futsuuu/vim-robot", profiles: ["colors"] },
   { url: "https://github.com/yazeed1s/oh-lucy.nvim", profiles: ["colors"] },
   { url: "https://github.com/gkapfham/vim-vitamin-onec", profiles: ["colors"] },
@@ -64,29 +97,62 @@ export const colors: Plug[] = [
   { url: "https://github.com/kwsp/halcyon-neovim", profiles: ["colors"] },
   { url: "https://github.com/kyoh86/momiji", profiles: ["colors"] },
   { url: "https://github.com/ldelossa/vimdark", profiles: ["colors"] },
-  { url: "https://github.com/leviosa42/vim-github-theme", profiles: ["colors"] },
+  {
+    url: "https://github.com/leviosa42/vim-github-theme",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/lifepillar/vim-solarized8", profiles: ["colors"] },
   { url: "https://github.com/liuchengxu/space-vim-dark", profiles: ["colors"] },
-  { url: "https://github.com/liuchengxu/space-vim-theme", profiles: ["colors"] },
+  {
+    url: "https://github.com/liuchengxu/space-vim-theme",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/lourenci/github-colors", profiles: ["colors"] },
-  { url: "https://github.com/machakann/vim-colorscheme-kemonofriends", profiles: ["colors"] },
-  { url: "https://github.com/machakann/vim-colorscheme-tatami", profiles: ["colors"] },
-  { url: "https://github.com/marko-cerovac/material.nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/machakann/vim-colorscheme-kemonofriends",
+    profiles: ["colors"],
+  },
+  {
+    url: "https://github.com/machakann/vim-colorscheme-tatami",
+    profiles: ["colors"],
+  },
+  {
+    url: "https://github.com/marko-cerovac/material.nvim",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/masisz/ashikaga.nvim", profiles: ["colors"] },
   { url: "https://github.com/maxmx03/solarized.nvim", profiles: ["colors"] },
-  { url: "https://github.com/miikanissi/modus-themes.nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/miikanissi/modus-themes.nvim",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/neko-night/nvim", profiles: ["colors"] },
-  { url: "https://github.com/nickburlett/vim-colors-stylus", profiles: ["colors"] },
-  { url: "https://github.com/nvimdev/oceanic-material", profiles: ["colors", "favaritecolors"] },
+  {
+    url: "https://github.com/nickburlett/vim-colors-stylus",
+    profiles: ["colors"],
+  },
+  {
+    url: "https://github.com/nvimdev/oceanic-material",
+    profiles: ["colors", "favaritecolors"],
+  },
   { url: "https://github.com/nvimdev/zephyr-nvim", profiles: ["colors"] },
   { url: "https://github.com/oxfist/night-owl.nvim", profiles: ["colors"] },
   { url: "https://github.com/pbrisbin/vim-colors-off", profiles: ["colors"] },
   { url: "https://github.com/pineapplegiant/spaceduck", profiles: ["colors"] },
-  { url: "https://github.com/polirritmico/monokai-nightasty.nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/polirritmico/monokai-nightasty.nvim",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/projekt0n/caret.nvim", profiles: ["colors"] },
-  { url: "https://github.com/projekt0n/github-nvim-theme", profiles: ["colors"] },
+  {
+    url: "https://github.com/projekt0n/github-nvim-theme",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/rafamadriz/neon", profiles: ["colors"] },
-  { url: "https://github.com/rafi/awesome-vim-colorschemes", profiles: ["colors"] },
+  {
+    url: "https://github.com/rafi/awesome-vim-colorschemes",
+    profiles: ["colors"],
+  },
   { url: "https://github.com/rainglow/vim", profiles: ["colors"] },
   { url: "https://github.com/ramojus/mellifluous.nvim", profiles: ["colors"] },
   { url: "https://github.com/ray-x/aurora", profiles: ["colors"] },
@@ -96,15 +162,33 @@ export const colors: Plug[] = [
     profiles: ["colors", "favaritecolors"],
   },
   { url: "https://github.com/romgrk/github-light.vim", profiles: ["colors"] },
-  { url: "https://github.com/rose-pine/neovim", profiles: ["colors", "favaritecolors"] },
-  { url: "https://github.com/sponkurtus2/angelic.nvim", profiles: ["colors", "favaritecolors"] },
-  { url: "https://github.com/sainnhe/edge", profiles: ["colors", "favaritecolors"] },
-  { url: "https://github.com/sainnhe/gruvbox-material", profiles: ["colors", "favaritecolors"] },
+  {
+    url: "https://github.com/rose-pine/neovim",
+    profiles: ["colors", "favaritecolors"],
+  },
+  {
+    url: "https://github.com/sponkurtus2/angelic.nvim",
+    profiles: ["colors", "favaritecolors"],
+  },
+  {
+    url: "https://github.com/sainnhe/edge",
+    profiles: ["colors", "favaritecolors"],
+  },
+  {
+    url: "https://github.com/sainnhe/gruvbox-material",
+    profiles: ["colors", "favaritecolors"],
+  },
   { url: "https://github.com/savq/melange-nvim", profiles: ["colors"] },
   { url: "https://github.com/severij/vadelma", profiles: ["colors"] },
   { url: "https://github.com/shaunsingh/nord.nvim", profiles: ["colors"] },
-  { url: "https://github.com/sho-87/kanagawa-paper.nvim", profiles: ["colors"] },
-  { url: "https://github.com/sigmavim/kyotonight", profiles: ["colors", "favaritecolors"] },
+  {
+    url: "https://github.com/sho-87/kanagawa-paper.nvim",
+    profiles: ["colors"],
+  },
+  {
+    url: "https://github.com/sigmavim/kyotonight",
+    profiles: ["colors", "favaritecolors"],
+  },
   { url: "https://github.com/srcery-colors/srcery-vim", profiles: ["colors"] },
   { url: "https://github.com/sts10/vim-pink-moon", profiles: ["colors"] },
   { url: "https://github.com/tiagovla/tokyodark.nvim", profiles: ["colors"] },
@@ -115,7 +199,10 @@ export const colors: Plug[] = [
   { url: "https://github.com/yuttie/hydrangea-vim", profiles: ["colors"] },
   { url: "https://github.com/zacanger/angr.vim", profiles: ["colors"] },
   { url: "https://github.com/zefei/cake16", profiles: ["colors"] },
-  { url: "https://github.com/zenbones-theme/zenbones.nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/zenbones-theme/zenbones.nvim",
+    profiles: ["colors"],
+  },
   {
     url: "https://github.com/diegoulloao/neofusion.nvim",
     profiles: ["colors"],

@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : care.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:37:52.
+// Last Change : 2025/09/21 17:18:27.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
 export const care: Plug[] = [
   {

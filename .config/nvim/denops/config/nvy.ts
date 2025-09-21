@@ -1,13 +1,13 @@
 // =============================================================================
 // File        : nvy.ts
 // Author      : yukimemi
-// Last Change : 2023/07/16 00:39:41.
+// Last Change : 2025/09/21 17:20:10.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@8.0.0";
+import type { Denops } from "@denops/std";
 
-import * as option from "jsr:@denops/std@8.0.0/option";
-import * as fn from "jsr:@denops/std@8.0.0/function";
+import * as option from "@denops/std/option";
+import * as fn from "@denops/std/function";
 
 export async function setNvy(denops: Denops) {
   if (!(await fn.exists(denops, "g:nvy"))) {

@@ -1,15 +1,15 @@
 // =============================================================================
 // File        : twitter.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:38:35.
+// Last Change : 2025/09/21 17:10:24.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
-import { batch } from "jsr:@denops/std@8.0.0/batch";
-import * as autocmd from "jsr:@denops/std@8.0.0/autocmd";
-import * as lambda from "jsr:@denops/std@8.0.0/lambda";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
+import { batch } from "@denops/std/batch";
+import * as autocmd from "@denops/std/autocmd";
+import * as lambda from "@denops/std/lambda";
+import * as mapping from "@denops/std/mapping";
 
 export const twitter: Plug[] = [
   {

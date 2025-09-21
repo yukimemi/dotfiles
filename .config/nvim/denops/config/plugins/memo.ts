@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : wiki.ts
 // Author      : yukimemi
-// Last Change : 2025/04/17 13:14:41.
+// Last Change : 2025/09/21 17:13:32.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
+import * as fn from "@denops/std/function";
+import * as mapping from "@denops/std/mapping";
+import * as vars from "@denops/std/variable";
 
 import { pluginStatus } from "../pluginstatus.ts";
 
@@ -76,17 +76,56 @@ export const memo: Plug[] = [
       });
 
       // Launch panel if nothing is typed after <leader>z
-      await mapping.map(denops, "<leader>z", "<cmd>Telekasten panel<CR>", { mode: "n" });
+      await mapping.map(denops, "<leader>z", "<cmd>Telekasten panel<CR>", {
+        mode: "n",
+      });
 
       // Most used functions
-      await mapping.map(denops, "<leader>zf", "<cmd>Telekasten find_notes<CR>", { mode: "n" });
-      await mapping.map(denops, "<leader>zg", "<cmd>Telekasten search_notes<CR>", { mode: "n" });
-      await mapping.map(denops, "<leader>zd", "<cmd>Telekasten goto_today<CR>", { mode: "n" });
-      await mapping.map(denops, "<leader>zz", "<cmd>Telekasten follow_link<CR>", { mode: "n" });
-      await mapping.map(denops, "<leader>zn", "<cmd>Telekasten new_note<CR>", { mode: "n" });
-      await mapping.map(denops, "<leader>zc", "<cmd>Telekasten show_calendar<CR>", { mode: "n" });
-      await mapping.map(denops, "<leader>zb", "<cmd>Telekasten show_backlinks<CR>", { mode: "n" });
-      await mapping.map(denops, "<leader>zI", "<cmd>Telekasten insert_img_link<CR>", { mode: "n" });
+      await mapping.map(
+        denops,
+        "<leader>zf",
+        "<cmd>Telekasten find_notes<CR>",
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<leader>zg",
+        "<cmd>Telekasten search_notes<CR>",
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<leader>zd",
+        "<cmd>Telekasten goto_today<CR>",
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<leader>zz",
+        "<cmd>Telekasten follow_link<CR>",
+        { mode: "n" },
+      );
+      await mapping.map(denops, "<leader>zn", "<cmd>Telekasten new_note<CR>", {
+        mode: "n",
+      });
+      await mapping.map(
+        denops,
+        "<leader>zc",
+        "<cmd>Telekasten show_calendar<CR>",
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<leader>zb",
+        "<cmd>Telekasten show_backlinks<CR>",
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "<leader>zI",
+        "<cmd>Telekasten insert_img_link<CR>",
+        { mode: "n" },
+      );
 
       // Call insert link automatically when we start typing a link
       // await mapping.map(denops, "[[", "<cmd>Telekasten insert_link<CR>", { mode: "i" });

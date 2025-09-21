@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : oil.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 13:35:42.
+// Last Change : 2025/09/21 17:12:51.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
 import { pluginStatus } from "../pluginstatus.ts";
 

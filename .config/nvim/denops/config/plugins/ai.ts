@@ -1,19 +1,19 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/09/14 09:17:51.
+// Last Change : 2025/09/21 17:19:28.
 // =============================================================================
 
-import * as lambda from "jsr:@denops/std@8.0.0/lambda";
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import { z } from "npm:zod@4.1.11";
-import { exists } from "jsr:@std/fs@1.0.19";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import * as lambda from "@denops/std/lambda";
+import * as fn from "@denops/std/function";
+import { exists } from "@std/fs";
+import * as mapping from "@denops/std/mapping";
+import * as vars from "@denops/std/variable";
+import type { Plug } from "@yukimemi/dvpm";
 import { execCommand } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
-import { HarmBlockThreshold, HarmCategory, SafetySetting } from "npm:@google/generative-ai@0.24.1";
+import { HarmBlockThreshold, HarmCategory, SafetySetting } from "@google/generative-ai";
+import { z } from "zod";
 
 export const ai: Plug[] = [
   {
@@ -139,7 +139,10 @@ export const ai: Plug[] = [
     enabled: false,
     build: async ({ denops, info }) => {
       if (info.isUpdate && info.isLoad) {
-        await execCommand(denops, "go", ["install", "github.com/mattn/gemini@latest"], info.dst);
+        await execCommand(denops, "go", [
+          "install",
+          "github.com/mattn/gemini@latest",
+        ], info.dst);
       }
     },
   },
@@ -150,8 +153,16 @@ export const ai: Plug[] = [
     before: async ({ denops }) => {
       await vars.g.set(denops, "futago_debug", false);
       await vars.g.set(denops, "futago_chat_path", `~/.cache/nvim/futago/chat`);
-      await vars.g.set(denops, "futago_log_file", `~/.cache/nvim/futago/log/futago.log`);
-      await vars.g.set(denops, "futago_history_db", `~/.cache/nvim/futago/db/history.db`);
+      await vars.g.set(
+        denops,
+        "futago_log_file",
+        `~/.cache/nvim/futago/log/futago.log`,
+      );
+      await vars.g.set(
+        denops,
+        "futago_history_db",
+        `~/.cache/nvim/futago/db/history.db`,
+      );
       await vars.g.set(denops, "futago_model", "gemini-2.5-flash");
       await vars.g.set(denops, "futago_git_model", "gemini-2.5-flash");
       const safetySettings: SafetySetting[] = [

@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : startup.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 13:35:39.
+// Last Change : 2025/09/21 17:12:00.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
 export const startup: Plug[] = [
   {

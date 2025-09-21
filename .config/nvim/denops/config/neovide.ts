@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : neovide.ts
 // Author      : yukimemi
-// Last Change : 2025/04/12 20:39:25.
+// Last Change : 2025/09/21 17:20:30.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@8.0.0";
+import type { Denops } from "@denops/std";
 
-import * as option from "jsr:@denops/std@8.0.0/option";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
-import * as fn from "jsr:@denops/std@8.0.0/function";
+import * as option from "@denops/std/option";
+import * as vars from "@denops/std/variable";
+import * as fn from "@denops/std/function";
 
 export async function setNeovide(denops: Denops) {
   if (!(await fn.exists(denops, "g:neovide"))) {

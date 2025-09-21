@@ -1,21 +1,21 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/09/18 21:23:58.
+// Last Change : 2025/09/21 17:09:01.
 // =============================================================================
 
-import * as buffer from "jsr:@denops/std@8.0.0/buffer";
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import * as fs from "jsr:@std/fs@1.0.19";
-import * as helper from "jsr:@denops/std@8.0.0/helper";
-import * as nvimFn from "jsr:@denops/std@8.0.0/function/nvim";
-import * as option from "jsr:@denops/std@8.0.0/option";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
-import type { Denops } from "jsr:@denops/std@8.0.0";
-import { format } from "jsr:@std/datetime@0.225.5";
-import { join } from "jsr:@std/path@1.1.2/join";
-import { systemopen } from "jsr:@lambdalisue/systemopen@1.0.0";
-import { z } from "npm:zod@4.1.11";
+import * as buffer from "@denops/std/buffer";
+import * as fn from "@denops/std/function";
+import * as fs from "@std/fs";
+import * as helper from "@denops/std/helper";
+import * as nvimFn from "@denops/std/function/nvim";
+import * as option from "@denops/std/option";
+import * as vars from "@denops/std/variable";
+import type { Denops } from "@denops/std";
+import { format } from "@std/datetime";
+import { join } from "@std/path/join";
+import { systemopen } from "@lambdalisue/systemopen";
+import { z } from "zod";
 
 export async function notify(
   denops: Denops,
@@ -171,12 +171,20 @@ export async function focusFloating(denops: Denops) {
 }
 
 export async function removeShada(denops: Denops) {
-  const shadaDir = join(z.string().parse(await nvimFn.stdpath(denops, "state")), "shada");
+  const shadaDir = join(
+    z.string().parse(await nvimFn.stdpath(denops, "state")),
+    "shada",
+  );
   await Deno.remove(shadaDir, { recursive: true });
   console.log(`shada dir remove done !`);
 }
 
-export async function execCommand(denops: Denops, command: string, args: string[], cwd?: string) {
+export async function execCommand(
+  denops: Denops,
+  command: string,
+  args: string[],
+  cwd?: string,
+) {
   const cmd = new Deno.Command(command, { args, cwd });
   console.log(`» ${command} ${args.join(" ")}`);
   const output = await cmd.output();
@@ -209,7 +217,11 @@ export async function zennCreate(denops: Denops, title: string, type = "tech") {
     args: ["rev-parse", "--show-toplevel"],
     cwd: await fn.getcwd(denops),
   })).output()).stdout;
-  const article = join(new TextDecoder().decode(gitRoot).trim(), "articles", `${slug}.md`);
+  const article = join(
+    new TextDecoder().decode(gitRoot).trim(),
+    "articles",
+    `${slug}.md`,
+  );
   await buffer.open(denops, article);
 }
 

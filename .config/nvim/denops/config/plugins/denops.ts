@@ -1,15 +1,15 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 16:54:10.
+// Last Change : 2025/09/21 17:15:10.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
-import * as autocmd from "jsr:@denops/std@8.0.0/autocmd";
-import * as lambda from "jsr:@denops/std@8.0.0/lambda";
-import * as nvimFn from "jsr:@denops/std@8.0.0/function/nvim";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
+import * as autocmd from "@denops/std/autocmd";
+import * as lambda from "@denops/std/lambda";
+import * as nvimFn from "@denops/std/function/nvim";
+import * as vars from "@denops/std/variable";
 
 export const denops: Plug[] = [
   {

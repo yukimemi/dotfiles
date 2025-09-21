@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/09/14 21:48:31.
+// Last Change : 2025/09/21 17:10:00.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
+import * as fn from "@denops/std/function";
+import * as mapping from "@denops/std/mapping";
+import * as vars from "@denops/std/variable";
 import { pluginStatus } from "../pluginstatus.ts";
 import { execCommand } from "../util.ts";
 
@@ -207,8 +207,14 @@ export const util: Plug[] = [
     url: "https://github.com/chrisbra/Recover.vim",
     cache: { enabled: true },
   },
-  { url: "https://github.com/anuvyklack/middleclass", enabled: pluginStatus.windows },
-  { url: "https://github.com/anuvyklack/animation.nvim", enabled: pluginStatus.windows },
+  {
+    url: "https://github.com/anuvyklack/middleclass",
+    enabled: pluginStatus.windows,
+  },
+  {
+    url: "https://github.com/anuvyklack/animation.nvim",
+    enabled: pluginStatus.windows,
+  },
   {
     url: "https://github.com/anuvyklack/windows.nvim",
     enabled: pluginStatus.windows,
@@ -287,7 +293,8 @@ export const util: Plug[] = [
     url: "https://github.com/tenxsoydev/size-matters.nvim",
     profiles: ["minimal", "core"],
     enabled: async ({ denops }) =>
-      (await fn.exists(denops, "g:neovide")) || (await fn.exists(denops, ":GuiFont")),
+      (await fn.exists(denops, "g:neovide")) ||
+      (await fn.exists(denops, ":GuiFont")),
     afterFile: "~/.config/nvim/rc/after/size-matters.lua",
   },
   {
@@ -398,7 +405,18 @@ export const util: Plug[] = [
         auto: true,
 
         // filetypes (i.e. extensions) in which to run the autocommand
-        filetypes: ["html", "js", "cjs", "mjs", "ts", "jsx", "tsx", "cjsx", "mjsx", "ps1"],
+        filetypes: [
+          "html",
+          "js",
+          "cjs",
+          "mjs",
+          "ts",
+          "jsx",
+          "tsx",
+          "cjsx",
+          "mjsx",
+          "ps1",
+        ],
 
         // Whether to log debug messages
         debug: false,
@@ -481,7 +499,10 @@ export const util: Plug[] = [
     url: "https://github.com/ariel-frischer/bmessages.nvim",
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("bmessages").setup()`);
-      await mapping.map(denops, "<space>bm", "<cmd>Bmessages<cr>", { mode: "n", "noremap": true });
+      await mapping.map(denops, "<space>bm", "<cmd>Bmessages<cr>", {
+        mode: "n",
+        "noremap": true,
+      });
     },
   },
   {
@@ -532,7 +553,10 @@ export const util: Plug[] = [
       await denops.call(`luaeval`, `require("licenser").setup()`);
     },
   },
-  { url: "https://github.com/MattesGroeger/vim-bookmarks", enabled: pluginStatus.vimbookmarks },
+  {
+    url: "https://github.com/MattesGroeger/vim-bookmarks",
+    enabled: pluginStatus.vimbookmarks,
+  },
   {
     url: "https://github.com/tomasky/bookmarks.nvim",
     profiles: ["mark"],

@@ -1,11 +1,11 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2025/09/14 07:07:17.
+// Last Change : 2025/09/21 17:13:43.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
-import { execute } from "jsr:@denops/std@8.0.0/helper";
+import type { Plug } from "@yukimemi/dvpm";
+import { execute } from "@denops/std/helper";
 import { pluginStatus } from "../pluginstatus.ts";
 
 const lspDependencies = [

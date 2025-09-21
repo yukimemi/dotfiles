@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 16:45:18.
+// Last Change : 2025/09/21 17:13:53.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
-import * as autocmd from "jsr:@denops/std@8.0.0/autocmd";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
+import * as autocmd from "@denops/std/autocmd";
+import * as mapping from "@denops/std/mapping";
+import * as vars from "@denops/std/variable";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const libs: Plug[] = [
@@ -114,7 +114,10 @@ export const libs: Plug[] = [
     enabled: false,
     dependencies: ["https://github.com/nvim-tree/nvim-web-devicons"],
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("tiny-devicons-auto-colors").setup()`);
+      await denops.call(
+        `luaeval`,
+        `require("tiny-devicons-auto-colors").setup()`,
+      );
     },
   },
   {
@@ -162,7 +165,9 @@ export const libs: Plug[] = [
     url: "https://github.com/tyru/open-browser.vim",
     before: async ({ denops }) => {
       await vars.g.set(denops, "netrw_nogx", 1);
-      await mapping.map(denops, "gx", "<Plug>(openbrowser-smart-search)", { mode: ["n", "x"] });
+      await mapping.map(denops, "gx", "<Plug>(openbrowser-smart-search)", {
+        mode: ["n", "x"],
+      });
     },
   },
   {

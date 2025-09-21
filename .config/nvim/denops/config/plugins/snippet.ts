@@ -1,15 +1,15 @@
 // =============================================================================
 // File        : snippet.ts
 // Author      : yukimemi
-// Last Change : 2025/05/05 14:04:39.
+// Last Change : 2025/09/21 17:12:13.
 // =============================================================================
 
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import * as fn from "@denops/std/function";
+import * as mapping from "@denops/std/mapping";
+import * as vars from "@denops/std/variable";
+import type { Plug } from "@yukimemi/dvpm";
 import { pluginStatus } from "../pluginstatus.ts";
-import { z } from "npm:zod@4.1.11";
+import { z } from "zod";
 
 export const snippet: Plug[] = [
   {
@@ -74,7 +74,10 @@ export const snippet: Plug[] = [
         noremap: true,
       });
       const html = z.string().parse(
-        await fn.expand(denops, "~/.cache/vscode/extensions/html/snippets/html.code-snippets"),
+        await fn.expand(
+          denops,
+          "~/.cache/vscode/extensions/html/snippets/html.code-snippets",
+        ),
       );
       await denops.call(`denippet#load`, html, "html");
       const cs = z.string().parse(

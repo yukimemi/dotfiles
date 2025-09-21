@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : nvimtree.ts
 // Author      : yukimemi
-// Last Change : 2024/10/01 23:58:45.
+// Last Change : 2025/09/21 17:12:56.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
 import { pluginStatus } from "../pluginstatus.ts";
 

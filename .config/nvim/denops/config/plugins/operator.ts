@@ -1,12 +1,12 @@
 // =============================================================================
 // File        : operator.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:38:57.
+// Last Change : 2025/09/21 17:12:46.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
+import * as mapping from "@denops/std/mapping";
 
 export const operator: Plug[] = [
   {

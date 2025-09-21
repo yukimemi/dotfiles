@@ -1,16 +1,16 @@
 // =============================================================================
 // File        : fvim.ts
 // Author      : yukimemi
-// Last Change : 2023/12/03 18:43:23.
+// Last Change : 2025/09/21 17:21:06.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@8.0.0";
+import type { Denops } from "@denops/std";
 
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import * as option from "jsr:@denops/std@8.0.0/option";
-import { batch } from "jsr:@denops/std@8.0.0/batch";
-import { execute } from "jsr:@denops/std@8.0.0/helper";
+import * as fn from "@denops/std/function";
+import * as mapping from "@denops/std/mapping";
+import * as option from "@denops/std/option";
+import { batch } from "@denops/std/batch";
+import { execute } from "@denops/std/helper";
 
 export async function setFvim(denops: Denops) {
   if (!(await fn.exists(denops, "g:fvim_loaded"))) {

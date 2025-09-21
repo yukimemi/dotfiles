@@ -1,18 +1,18 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 13:35:49.
+// Last Change : 2025/09/21 17:15:51.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
-import * as autocmd from "jsr:@denops/std@8.0.0/autocmd";
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import * as lambda from "jsr:@denops/std@8.0.0/lambda";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import * as op from "jsr:@denops/std@8.0.0/option";
-import { batch } from "jsr:@denops/std@8.0.0/batch";
-import { z } from "npm:zod@4.1.11";
+import * as autocmd from "@denops/std/autocmd";
+import * as fn from "@denops/std/function";
+import * as lambda from "@denops/std/lambda";
+import * as mapping from "@denops/std/mapping";
+import * as op from "@denops/std/option";
+import { batch } from "@denops/std/batch";
+import { z } from "zod";
 import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
 
@@ -547,7 +547,12 @@ export const ddu: Plug[] = [
               denops,
               async () => {
                 await batch(denops, async (denops) => {
-                  await denops.call(`ddu#ui#ff#save_cmaps`, ["<cr>", "<esc>", "<c-j>", "<c-k>"]);
+                  await denops.call(`ddu#ui#ff#save_cmaps`, [
+                    "<cr>",
+                    "<esc>",
+                    "<c-j>",
+                    "<c-k>",
+                  ]);
                   await mapping.map(
                     denops,
                     "<cr>",

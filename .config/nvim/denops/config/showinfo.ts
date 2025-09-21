@@ -1,15 +1,15 @@
 // =============================================================================
 // File        : showinfo.ts
 // Author      : yukimemi
-// Last Change : 2025/09/18 21:28:32.
+// Last Change : 2025/09/21 17:09:26.
 // =============================================================================
 
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import * as op from "jsr:@denops/std@8.0.0/option";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
-import type { Denops } from "jsr:@denops/std@8.0.0";
+import * as fn from "@denops/std/function";
+import * as op from "@denops/std/option";
+import * as vars from "@denops/std/variable";
+import type { Denops } from "@denops/std";
 import { notify } from "./util.ts";
-import { z } from "npm:zod@4.1.11";
+import { z } from "zod";
 
 type LspClient = {
   id: number;
@@ -21,7 +21,10 @@ export async function notifyinfo(denops: Denops) {
   await notify(denops, [
     "Show info",
     "------------------------------",
-    `colorscheme: [${await vars.g.get(denops, "colors_name")}], priority: [${await vars.g.get(
+    `colorscheme: [${await vars.g.get(
+      denops,
+      "colors_name",
+    )}], priority: [${await vars.g.get(
       denops,
       "lumiris_priority",
     )}]`,
@@ -37,7 +40,9 @@ export async function notifyinfo(denops: Denops) {
 
 export async function getLspNames(denops: Denops): Promise<string> {
   const bufnr = await fn.bufnr(denops);
-  const clients = await denops.call(`luaeval`, `vim.lsp.get_clients(_A)`, { bufnr }) as LspClient[];
+  const clients = await denops.call(`luaeval`, `vim.lsp.get_clients(_A)`, {
+    bufnr,
+  }) as LspClient[];
   console.log({ clients });
   const names = clients.map((client) => client.name);
   return names.join(", ");

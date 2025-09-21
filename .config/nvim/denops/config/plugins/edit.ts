@@ -1,20 +1,20 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/03/29 20:37:39.
+// Last Change : 2025/09/21 17:14:56.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
-import * as autocmd from "jsr:@denops/std@8.0.0/autocmd";
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import { execute } from "jsr:@denops/std@8.0.0/helper";
+import * as autocmd from "@denops/std/autocmd";
+import * as fn from "@denops/std/function";
+import * as vars from "@denops/std/variable";
+import * as mapping from "@denops/std/mapping";
+import { execute } from "@denops/std/helper";
 
 import { pluginStatus } from "../pluginstatus.ts";
-import { ensureDir } from "jsr:@std/fs@1.0.19/ensure-dir";
-import { z } from "npm:zod@4.1.11";
+import { ensureDir } from "@std/fs/ensure-dir";
+import { z } from "zod";
 
 export const edit: Plug[] = [
   {
@@ -119,7 +119,9 @@ export const edit: Plug[] = [
     url: "https://github.com/LeafCage/yankround.vim",
     enabled: pluginStatus.yankround,
     before: async ({ denops }) => {
-      await ensureDir(z.string().parse(await fn.expand(denops, `~/.cache/yankround`)));
+      await ensureDir(
+        z.string().parse(await fn.expand(denops, `~/.cache/yankround`)),
+      );
     },
     after: async ({ denops }) => {
       await vars.g.set(denops, "yankround_max_history", 10000);

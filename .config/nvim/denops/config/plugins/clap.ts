@@ -1,11 +1,11 @@
 // =============================================================================
 // File        : clap.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:38:59.
+// Last Change : 2025/09/21 17:18:17.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
-import * as fn from "jsr:@denops/std@8.0.0/function";
+import type { Plug } from "@yukimemi/dvpm";
+import * as fn from "@denops/std/function";
 import { execCommand } from "../util.ts";
 
 export const clap: Plug[] = [

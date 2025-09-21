@@ -1,13 +1,13 @@
 // =============================================================================
 // File        : statusline.ts
 // Author      : yukimemi
-// Last Change : 2025/09/14 06:41:46.
+// Last Change : 2025/09/21 17:11:53.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
+import * as vars from "@denops/std/variable";
 import { pluginStatus } from "../pluginstatus.ts";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
 
 export const statusline: Plug[] = [
   {

@@ -1,11 +1,11 @@
 // =============================================================================
 // File        : textobj.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 16:47:36.
+// Last Change : 2025/09/21 17:11:12.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
+import type { Plug } from "@yukimemi/dvpm";
+import * as mapping from "@denops/std/mapping";
 
 export const textobj: Plug[] = [
   {

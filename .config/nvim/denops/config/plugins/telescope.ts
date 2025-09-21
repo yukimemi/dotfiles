@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : telescope.ts
 // Author      : yukimemi
-// Last Change : 2025/06/01 20:59:36.
+// Last Change : 2025/09/21 17:11:42.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const telescope: Plug[] = [
@@ -49,7 +49,10 @@ export const telescope: Plug[] = [
       "https://github.com/nvim-telescope/telescope.nvim",
     ],
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("telescope").load_extension("vim_bookmarks")`);
+      await denops.call(
+        `luaeval`,
+        `require("telescope").load_extension("vim_bookmarks")`,
+      );
     },
   },
   {

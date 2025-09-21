@@ -1,13 +1,13 @@
 // =============================================================================
 // File        : treesitter.ts
 // Author      : yukimemi
-// Last Change : 2025/09/15 22:13:44.
+// Last Change : 2025/09/21 17:10:35.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
-import { execute } from "jsr:@denops/std@8.0.0/helper";
+import type { Plug } from "@yukimemi/dvpm";
+import { execute } from "@denops/std/helper";
 
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
+import * as mapping from "@denops/std/mapping";
 
 export const treesitter: Plug[] = [
   {
@@ -72,8 +72,12 @@ EOB`,
       "https://github.com/thinca/vim-partedit",
     ],
     after: async ({ denops }) => {
-      await mapping.map(denops, "<space>C", "<Plug>(ts-clipping-clip)", { mode: "n" });
-      await mapping.map(denops, "<space>C", "<Plug>(ts-clipping-select)", { mode: ["x", "o"] });
+      await mapping.map(denops, "<space>C", "<Plug>(ts-clipping-clip)", {
+        mode: "n",
+      });
+      await mapping.map(denops, "<space>C", "<Plug>(ts-clipping-select)", {
+        mode: ["x", "o"],
+      });
     },
   },
   {

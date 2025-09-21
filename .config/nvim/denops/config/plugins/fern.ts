@@ -1,16 +1,16 @@
 // =============================================================================
 // File        : fern.ts
 // Author      : yukimemi
-// Last Change : 2025/02/01 13:35:47.
+// Last Change : 2025/09/21 17:14:31.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
-import * as autocmd from "jsr:@denops/std@8.0.0/autocmd";
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import * as lambda from "jsr:@denops/std@8.0.0/lambda";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
+import * as autocmd from "@denops/std/autocmd";
+import * as fn from "@denops/std/function";
+import * as lambda from "@denops/std/lambda";
+import * as mapping from "@denops/std/mapping";
+import * as vars from "@denops/std/variable";
 
 export const fern: Plug[] = [
   {
@@ -106,16 +106,27 @@ export const fern: Plug[] = [
                   `<Plug>(fern-action-open:select)`,
                   { mode: "n", buffer: true },
                 );
-                await mapping.map(denops, "n", `n`, { mode: "n", buffer: true });
-                await mapping.map(denops, "N", `N`, { mode: "n", buffer: true });
+                await mapping.map(denops, "n", `n`, {
+                  mode: "n",
+                  buffer: true,
+                });
+                await mapping.map(denops, "N", `N`, {
+                  mode: "n",
+                  buffer: true,
+                });
                 await mapping.map(denops, "a", `<Plug>(fern-action-new-file)`, {
                   mode: "n",
                   buffer: true,
                 });
-                await mapping.map(denops, "<tab>", `<Plug>(fern-action-choice)`, {
-                  mode: "n",
-                  buffer: true,
-                });
+                await mapping.map(
+                  denops,
+                  "<tab>",
+                  `<Plug>(fern-action-choice)`,
+                  {
+                    mode: "n",
+                    buffer: true,
+                  },
+                );
                 await mapping.map(denops, "s", `<Nop>`, {
                   mode: "n",
                   buffer: true,

@@ -1,19 +1,19 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:38:52.
+// Last Change : 2025/09/21 17:17:30.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
-import * as autocmd from "jsr:@denops/std@8.0.0/autocmd";
-import * as fn from "jsr:@denops/std@8.0.0/function";
-import * as lambda from "jsr:@denops/std@8.0.0/lambda";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import * as op from "jsr:@denops/std@8.0.0/option";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
-import { z } from "npm:zod@4.1.11";
-import { execute } from "jsr:@denops/std@8.0.0/helper";
+import * as autocmd from "@denops/std/autocmd";
+import * as fn from "@denops/std/function";
+import * as lambda from "@denops/std/lambda";
+import * as mapping from "@denops/std/mapping";
+import * as op from "@denops/std/option";
+import * as vars from "@denops/std/variable";
+import { execute } from "@denops/std/helper";
+import { z } from "zod";
 
 export const coc: Plug[] = [
   { url: "https://github.com/weirongxu/coc-explorer" },
@@ -88,18 +88,28 @@ export const coc: Plug[] = [
         `,
       );
 
-      await mapping.map(denops, "<c-n>", `coc#pum#visible() ? coc#pum#next(0) : "\\<c-n>"`, {
-        expr: true,
-        mode: "i",
-        noremap: true,
-        silent: true,
-      });
-      await mapping.map(denops, "<c-p>", `coc#pum#visible() ? coc#pum#prev(0) : "\\<c-p>"`, {
-        expr: true,
-        mode: "i",
-        noremap: true,
-        silent: true,
-      });
+      await mapping.map(
+        denops,
+        "<c-n>",
+        `coc#pum#visible() ? coc#pum#next(0) : "\\<c-n>"`,
+        {
+          expr: true,
+          mode: "i",
+          noremap: true,
+          silent: true,
+        },
+      );
+      await mapping.map(
+        denops,
+        "<c-p>",
+        `coc#pum#visible() ? coc#pum#prev(0) : "\\<c-p>"`,
+        {
+          expr: true,
+          mode: "i",
+          noremap: true,
+          silent: true,
+        },
+      );
 
       // Use <c-space> to trigger completion
       await mapping.map(denops, "<c-space>", "coc#refresh()", {

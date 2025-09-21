@@ -1,15 +1,15 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2025/08/25 01:09:23.
+// Last Change : 2025/09/21 17:14:19.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
-import * as autocmd from "jsr:@denops/std@8.0.0/autocmd";
-import * as lambda from "jsr:@denops/std@8.0.0/lambda";
-import * as mapping from "jsr:@denops/std@8.0.0/mapping";
-import * as vars from "jsr:@denops/std@8.0.0/variable";
+import * as autocmd from "@denops/std/autocmd";
+import * as lambda from "@denops/std/lambda";
+import * as mapping from "@denops/std/mapping";
+import * as vars from "@denops/std/variable";
 
 export const filetypes: Plug[] = [
   // all filetypes

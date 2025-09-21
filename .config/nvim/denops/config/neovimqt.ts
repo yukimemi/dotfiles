@@ -1,12 +1,12 @@
 // =============================================================================
 // File        : neovimqt.ts
 // Author      : yukimemi
-// Last Change : 2024/07/27 22:30:45.
+// Last Change : 2025/09/21 17:20:18.
 // =============================================================================
 
-import type { Denops } from "jsr:@denops/std@8.0.0";
-import { execute } from "jsr:@denops/std@8.0.0/helper";
-import * as fn from "jsr:@denops/std@8.0.0/function";
+import type { Denops } from "@denops/std";
+import { execute } from "@denops/std/helper";
+import * as fn from "@denops/std/function";
 
 export async function setNeovimQt(denops: Denops) {
   if (await fn.exists(denops, ":GuiFont")) {

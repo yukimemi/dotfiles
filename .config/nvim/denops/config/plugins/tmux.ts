@@ -1,10 +1,10 @@
 // =============================================================================
 // File        : tmux.ts
 // Author      : yukimemi
-// Last Change : 2025/01/26 11:38:38.
+// Last Change : 2025/09/21 17:11:02.
 // =============================================================================
 
-import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
+import type { Plug } from "@yukimemi/dvpm";
 
 export const tmux: Plug[] = [
   {
