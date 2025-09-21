@@ -15,7 +15,7 @@ import type { Denops } from "jsr:@denops/std@8.0.0";
 import { format } from "jsr:@std/datetime@0.225.5";
 import { join } from "jsr:@std/path@1.1.2/join";
 import { systemopen } from "jsr:@lambdalisue/systemopen@1.0.0";
-import { z } from "npm:zod@4.1.9";
+import { z } from "npm:zod@4.1.11";
 
 export async function notify(
   denops: Denops,
