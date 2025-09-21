@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2025/08/31 12:02:13.
+-- Last Change : 2025/09/20 11:28:14.
 -- =============================================================================
 
 require("snacks").setup({
@@ -69,7 +69,13 @@ end
 _G.bt = function()
   Snacks.debug.backtrace()
 end
-vim.print = _G.dd
+if vim.fn.has("nvim-0.11") == 1 then
+  vim._print = function(_, ...)
+    dd(...)
+  end
+else
+  vim.print = dd
+end
 
 -- Snacks.jump
 vim.keymap.set("n", "<space>jj", function() Snacks.words.jump(1, true) end, { desc = "Jump next" })

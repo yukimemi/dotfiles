@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/09/01 02:56:08.
+  .Last Change : 2025/09/19 04:37:27.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -92,6 +92,7 @@ function Install-RequiredModules {
   winget install -q BurntSushi.ripgrep.MSVC
   winget install -q alexpasmantier.television
   winget install -q junegunn.fzf
+  winget install -q sharkdp.fd
   winget install -q dandavison.delta
   # winget install -q LGUG2Z.komorebi
   # winget install -q LGUG2Z.whkd
