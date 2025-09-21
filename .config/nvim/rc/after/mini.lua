@@ -1,11 +1,10 @@
 -- =============================================================================
 -- File        : mini.lua
 -- Author      : yukimemi
--- Last Change : 2025/09/21 15:09:49.
+-- Last Change : 2025/09/21 16:38:29.
 -- =============================================================================
 
 require("mini.align").setup()
-require("mini.animate").setup()
 require("mini.cursorword").setup()
 require("mini.hipatterns").setup()
 require("mini.icons").setup()
@@ -32,6 +31,31 @@ require('mini.basics').setup({
     basic = true,
     relnum_in_visual_mode = true,
     silent = false,
+  },
+})
+
+-- mini.animate
+local animate = require('mini.animate')
+require("mini.animate").setup({
+  cursor = {
+    enable = true,
+    timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
+  },
+  scroll = {
+    enable = true,
+    timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
+  },
+  resize = {
+    enable = true,
+    timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
+  },
+  open = {
+    enable = true,
+    timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
+  },
+  close = {
+    enable = true,
+    timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
   },
 })
 
