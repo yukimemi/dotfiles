@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 14:14:25.
+// Last Change : 2025/09/21 16:45:18.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
@@ -86,7 +86,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/nvim-lua/plenary.nvim",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
   },
   {
     url: "https://github.com/MunifTanjim/nui.nvim",
