@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : mini.lua
 -- Author      : yukimemi
--- Last Change : 2025/09/15 22:15:55.
+-- Last Change : 2025/09/21 14:34:16.
 -- =============================================================================
 
 require("mini.notify").setup()
@@ -13,6 +13,26 @@ require("mini.cursorword").setup()
 require("mini.hipatterns").setup()
 require("mini.trailspace").setup()
 require("mini.visits").setup()
+
+-- mini.basic
+require('mini.basics').setup({
+  options = {
+    basic = true,
+    extra_ui = true,
+    win_borders = 'single',
+  },
+  mappings = {
+    basic = true,
+    option_toggle_prefix = [[\]],
+    windows = true,
+    move_with_alt = true,
+  },
+  autocommands = {
+    basic = true,
+    relnum_in_visual_mode = true,
+    silent = false,
+  },
+})
 
 -- mini.comment
 require("mini.comment").setup({
@@ -125,12 +145,26 @@ require("mini.misc").setup({
 local gen_loader = require('mini.snippets').gen_loader
 require('mini.snippets').setup({
   snippets = {
-    -- Load custom file with global snippets first (adjust for Windows)
+    -- Load custom file with global snippets first (order matters)
     gen_loader.from_file('~/.config/nvim/snippets/global.json'),
+
+    -- Or add them here explicitly
+    { prefix = 'cdate', body = '$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE' },
 
     -- Load snippets based on current language by reading files from
     -- "snippets/" subdirectories from 'runtimepath' directories.
     gen_loader.from_lang(),
+
+    -- Load project-local snippets with `gen_loader.from_file()`
+    -- and relative path (file doesn't have to be present)
+    gen_loader.from_file('.vscode/project.code-snippets'),
+
+    -- Custom loader for language-specific project-local snippets
+    function(context)
+      local rel_path = '.vscode/' .. context.lang .. '.code-snippets'
+      if vim.fn.filereadable(rel_path) == 0 then return end
+      return MiniSnippets.read_file(rel_path)
+    end,
   },
 })
 
@@ -145,4 +179,66 @@ require("mini.surround").setup({
   mappings = {
     highlight = nil,
   }
+})
+
+-- mini.keymap
+local map_multistep = require('mini.keymap').map_multistep
+local tab_steps = { 'minisnippets_next', 'minisnippets_expand', 'jump_after_tsnode', 'jump_after_close' }
+map_multistep('i', '<Tab>', tab_steps)
+
+local shifttab_steps = { 'minisnippets_prev', 'jump_before_tsnode', 'jump_before_open' }
+map_multistep('i', '<S-Tab>', shifttab_steps)
+
+-- mini.clue
+local miniclue = require('mini.clue')
+miniclue.setup({
+  triggers = {
+    -- Leader triggers
+    { mode = 'n', keys = '<Leader>' },
+    { mode = 'x', keys = '<Leader>' },
+
+    -- Built-in completion
+    { mode = 'i', keys = '<C-x>' },
+
+    -- `g` key
+    { mode = 'n', keys = 'g' },
+    { mode = 'x', keys = 'g' },
+
+    -- Marks
+    { mode = 'n', keys = "'" },
+    { mode = 'n', keys = '`' },
+    { mode = 'x', keys = "'" },
+    { mode = 'x', keys = '`' },
+
+    -- Registers
+    { mode = 'n', keys = '"' },
+    { mode = 'x', keys = '"' },
+    { mode = 'i', keys = '<C-r>' },
+    { mode = 'c', keys = '<C-r>' },
+
+    -- Window commands
+    { mode = 'n', keys = '<C-w>' },
+
+    -- `z` key
+    { mode = 'n', keys = 'z' },
+    { mode = 'x', keys = 'z' },
+
+    -- `m` key
+    { mode = 'n', keys = 'm' },
+    { mode = 'x', keys = 'm' },
+
+    -- `\` key
+    { mode = 'n', keys = '\\' },
+    { mode = 'x', keys = '\\' },
+  },
+
+  clues = {
+    -- Enhance this by adding descriptions for <Leader> mapping groups
+    miniclue.gen_clues.builtin_completion(),
+    miniclue.gen_clues.g(),
+    miniclue.gen_clues.marks(),
+    miniclue.gen_clues.registers(),
+    miniclue.gen_clues.windows(),
+    miniclue.gen_clues.z(),
+  },
 })

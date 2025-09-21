@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/05/05 18:24:23.
+// Last Change : 2025/09/21 14:14:25.
 // =============================================================================
 
 import type { Plug } from "jsr:@yukimemi/dvpm@7.1.1";
@@ -179,8 +179,8 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/folke/which-key.nvim",
-    profiles: ["minimal", "core"],
-    enabled: true,
+    profiles: ["minimal"],
+    enabled: false,
     afterFile: `~/.config/nvim/rc/after/which-key.lua`,
   },
   {

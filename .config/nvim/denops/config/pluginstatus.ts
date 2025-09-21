@@ -1,15 +1,15 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2025/09/14 12:51:04.
+// Last Change : 2025/09/21 15:07:20.
 // =============================================================================
 
 export const pluginStatus = {
   augment: false,
-  betterwhitespace: false,
   autopairs: false,
   barbar: false,
   barbecue: false,
+  betterwhitespace: false,
   blink: true,
   bookmarks: true,
   bufferline: false,
@@ -17,7 +17,6 @@ export const pluginStatus = {
   care: false,
   clap: false,
   cmp: false,
-  ix: false,
   coc: false,
   codeium: true,
   compl: false,
@@ -26,7 +25,7 @@ export const pluginStatus = {
   ddu: false,
   ddufiler: false,
   deck: false,
-  denippet: true,
+  denippet: false,
   fall: false,
   fern: false,
   fidget: false,
@@ -37,12 +36,12 @@ export const pluginStatus = {
   incline: false,
   indentblankline: false,
   initial: false,
-  insx: true,
+  insx: false,
+  ix: false,
   jab: true,
   lightline: false,
   lualine: false,
-  slimline: true,
-  staba: false,
+  mini: true,
   modesearch: false,
   necodeium: false,
   neocolumn: false,
@@ -59,8 +58,11 @@ export const pluginStatus = {
   satellite: false,
   scrollbar: false,
   sg: false,
+  slimline: true,
   smartmotion: false,
+  snacks: false,
   snipewin: true,
+  staba: false,
   telescope: false,
   ultimatepair: false,
   vimbookmarks: false,
