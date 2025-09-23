@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:19:28.
+// Last Change : 2025/09/23 18:27:04.
 // =============================================================================
 
 import * as lambda from "@denops/std/lambda";
@@ -16,6 +16,11 @@ import { HarmBlockThreshold, HarmCategory, SafetySetting } from "@google/generat
 import { z } from "zod";
 
 export const ai: Plug[] = [
+  {
+    url: "https://github.com/lambdalisue/nvim-aibo",
+    profiles: ["ai"],
+    afterFile: `~/.config/nvim/rc/after/nvim-aibo.lua`,
+  },
   {
     url: "https://github.com/sourcegraph/sg.nvim",
     profiles: ["ai"],

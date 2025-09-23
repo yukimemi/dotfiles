@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:10:00.
+// Last Change : 2025/09/23 18:09:48.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -595,7 +595,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/juliuswaldmann/here.nvim",
-    profiles: ["minimal"],
+    profiles: ["minimal", "core"],
     cache: {
       afterFile: "~/.config/nvim/rc/after/here.lua",
     },

@@ -10,5 +10,6 @@
     "@std/path": "jsr:@std/path@^1.1.2",
     "@yukimemi/dvpm": "jsr:@yukimemi/dvpm@^8.1.1",
     "zod": "npm:zod@^4.1.11"
-  }
+  },
+  "lock": false
 }
