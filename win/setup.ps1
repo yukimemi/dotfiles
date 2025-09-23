@@ -88,6 +88,8 @@ function Install-Neovim {
     Install require apps.
 #>
 function Install-RequiredModules {
+  winget install -q glzr-io.glazewm
+  winget install -q glzr-io.zebar
   # winget install -q topgrade-rs.topgrade
   winget install -q BurntSushi.ripgrep.MSVC
   winget install -q alexpasmantier.television
