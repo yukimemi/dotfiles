@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/09/27 13:46:03.
+// Last Change : 2025/09/28 00:38:57.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -384,6 +384,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/jsontoml.vim",
+    profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/jsontoml.vim",
   },
   {
@@ -619,7 +620,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/Shougo/junkfile.vim",
-    profiles: ["mini"],
+    profiles: ["mini", "core"],
     afterFile: "~/.config/nvim/rc/after/junkfile.vim",
   },
   {
@@ -693,5 +694,10 @@ export const util: Plug[] = [
   {
     url: "https://github.com/lambdalisue/vim-file-protocol",
     profiles: ["core"],
+  },
+  {
+    url: "https://github.com/mihaifm/MegaToggler",
+    profiles: ["core"],
+    afterFile: `~/.config/nvim/rc/after/megatoggler.lua`,
   },
 ];

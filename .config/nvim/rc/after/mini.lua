@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : mini.lua
 -- Author      : yukimemi
--- Last Change : 2025/09/21 16:38:29.
+-- Last Change : 2025/09/28 00:18:34.
 -- =============================================================================
 
 require("mini.align").setup()
@@ -9,9 +9,7 @@ require("mini.cursorword").setup()
 require("mini.hipatterns").setup()
 require("mini.icons").setup()
 require("mini.map").setup()
-require("mini.notify").setup()
 require("mini.tabline").setup()
-require("mini.trailspace").setup()
 require("mini.visits").setup()
 
 -- mini.basic
@@ -33,6 +31,13 @@ require('mini.basics').setup({
     silent = false,
   },
 })
+
+-- mini.notify
+require("mini.notify").setup()
+vim.notify = MiniNotify.make_notify({ ERROR = { duration = 10000 } })
+vim.api.nvim_create_user_command('NotifyHistory', function()
+  MiniNotify.show_history()
+end, { desc = 'Show notify history' })
 
 -- mini.animate
 local animate = require('mini.animate')
@@ -68,6 +73,17 @@ require("mini.comment").setup({
     comment_visual = "gcc"
   }
 })
+
+-- mini.trailspace
+require("mini.trailspace").setup()
+vim.api.nvim_create_user_command(
+  'Trim',
+  function()
+    MiniTrailspace.trim()
+    MiniTrailspace.trim_last_lines()
+  end,
+  { desc = 'Trim trailing space and last blank lines' }
+)
 
 -- mini.files
 require("mini.files").setup()
@@ -143,9 +159,12 @@ end, { desc = "MiniPick help" })
 -- mini.extra
 require("mini.extra").setup()
 
--- vim.keymap.set("n", "ge", function()
---   MiniExtra.pickers.explorer()
--- end, { desc = "MiniExtra explorer" })
+vim.keymap.set("n", "<space>e", function()
+  MiniExtra.pickers.explorer()
+end, { desc = "MiniExtra explorer" })
+vim.keymap.set("n", "mR", function()
+  MiniExtra.pickers.visit_paths()
+end, { desc = "MiniExtra visits" })
 
 -- mini.diff
 -- require("mini.diff").setup({

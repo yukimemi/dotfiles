@@ -1,13 +1,14 @@
 // =============================================================================
 // File        : treesitter.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:10:35.
+// Last Change : 2025/09/28 01:52:17.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
 import { execute } from "@denops/std/helper";
 
 import * as mapping from "@denops/std/mapping";
+import { execCommand } from "../util.ts";
 
 export const treesitter: Plug[] = [
   {
@@ -45,6 +46,10 @@ require("nvim-treesitter").install({
 })
 EOB`,
         );
+        await execCommand(denops, "cargo", [
+          "install",
+          "tree-sitter-cli",
+        ], info.dst);
       }
     },
     afterFile: "~/.config/nvim/rc/after/nvim-treesitter.lua",
