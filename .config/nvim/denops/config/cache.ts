@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2025/09/14 13:26:54.
+// Last Change : 2025/09/23 21:26:39.
 // =============================================================================
 
 export function cacheVim() {
@@ -71,11 +71,11 @@ export function cacheLua() {
       vim.g.loaded_zipPlugin = 1
 
       -- options.
-      vim.o.fileencodings = "ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1"
-      vim.o.fileformats = "unix,dos,mac"
+      -- vim.o.fileencodings = "ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1"
+      -- vim.o.fileformats = "unix,dos,mac"
       vim.o.clipboard = "unnamedplus";
-      vim.o.ignorecase = true
-      vim.o.smartcase = true
+      -- vim.o.ignorecase = true
+      -- vim.o.smartcase = true
 
       vim.g.mapleader = " ";
       vim.g.maplocalleader = "\\\\";

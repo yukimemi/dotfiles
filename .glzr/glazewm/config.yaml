@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2025/07/24 01:17:03.
+# Last Change : 2025/09/23 11:14:07.
 # =============================================================================
 
 general:
@@ -102,6 +102,7 @@ window_rules:
       - window_process: { equals: 'copyq' }
       - window_process: { equals: 'rapture' }
       - window_process: { equals: 'clnch' }
+      - window_process: { equals: 'flameshot' }
 
       - window_process: { equals: 'cfiler' }
         window_title: { regex: 'cfiler - \[.*\]' }

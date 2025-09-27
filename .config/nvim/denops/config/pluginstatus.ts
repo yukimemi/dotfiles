@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2025/09/23 18:29:19.
+// Last Change : 2025/09/23 23:07:02.
 // =============================================================================
 
 export const pluginStatus = {
@@ -12,6 +12,7 @@ export const pluginStatus = {
   betterwhitespace: false,
   blink: true,
   bookmarks: true,
+  bqf: true,
   bufferline: false,
   buffertabs: false,
   care: false,
@@ -52,6 +53,7 @@ export const pluginStatus = {
   nvimtree: false,
   oil: false,
   overseer: true,
+  qfpreview: false,
   qfreplace: true,
   quicker: true,
   quickrun: true,

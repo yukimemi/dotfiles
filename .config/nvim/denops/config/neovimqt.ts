@@ -23,6 +23,6 @@ export async function setNeovimQt(denops: Denops) {
     await execute(denops, "GuiScrollBar 0");
   }
   if (await fn.exists(denops, ":GuiWindowOpacity")) {
-    await execute(denops, "GuiWindowOpacity 0.95");
+    await execute(denops, "GuiWindowOpacity 0.9");
   }
 }

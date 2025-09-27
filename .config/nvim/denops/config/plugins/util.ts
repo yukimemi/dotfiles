@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/09/23 18:09:48.
+// Last Change : 2025/09/27 13:46:03.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -459,11 +459,9 @@ export const util: Plug[] = [
   {
     url: "https://github.com/kevinhwang91/nvim-bqf",
     profiles: ["quickfix"],
+    enabled: pluginStatus.bqf,
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("bqf").setup(_A)`, {
-        auto_enable: true,
-        auto_resize_height: false,
-      });
+      await denops.call(`luaeval`, `require("bqf").setup()`);
     },
   },
   {
@@ -614,6 +612,12 @@ export const util: Plug[] = [
     afterFile: "~/.config/nvim/rc/after/quicker.lua",
   },
   {
+    url: "https://github.com/r0nsha/qfpreview.nvim",
+    profiles: ["quickfix"],
+    enabled: pluginStatus.qfpreview,
+    afterFile: "~/.config/nvim/rc/after/qfpreview.lua",
+  },
+  {
     url: "https://github.com/Shougo/junkfile.vim",
     profiles: ["mini"],
     afterFile: "~/.config/nvim/rc/after/junkfile.vim",
@@ -675,5 +679,19 @@ export const util: Plug[] = [
         EOB
       `,
     },
+  },
+  {
+    url: "https://github.com/chrishrb/gx.nvim",
+    profiles: ["core"],
+    afterFile: `~/.config/nvim/rc/after/gx.lua`,
+  },
+  {
+    url: "https://github.com/lambdalisue/vim-gf-improved",
+    profiles: ["core"],
+    enabled: false,
+  },
+  {
+    url: "https://github.com/lambdalisue/vim-file-protocol",
+    profiles: ["core"],
   },
 ];
