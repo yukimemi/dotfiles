@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:14:56.
+// Last Change : 2025/09/28 08:43:52.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -150,6 +150,12 @@ export const edit: Plug[] = [
         { mode: "n", expr: true },
       );
     },
+  },
+  {
+    url: "https://github.com/yuki-yano/haritsuke.vim",
+    profiles: ["core"],
+    enabled: pluginStatus.haritsuke,
+    afterFile: `~/.config/nvim/rc/after/haritsuke.lua`,
   },
   {
     url: "https://github.com/thinca/vim-qfreplace",
