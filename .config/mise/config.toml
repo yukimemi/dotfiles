@@ -1,6 +1,7 @@
 [settings]
 plugin_autoupdate_last_check_duration = '1 week'
 verbose = false
+experimental = true
 
 [settings.cargo]
 binstall = true
@@ -43,3 +44,4 @@ bun = "latest"
 bottom = "latest"
 starship = "latest"
 zoxide = "latest"
+"github:alexpasmantier/television" = "latest"

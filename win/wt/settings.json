@@ -43,12 +43,6 @@
                 "source": "Windows.Terminal.PowershellCore"
             },
             {
-                "guid": "{47302f9c-1ac4-566c-aa3e-8cf29889d6ab}",
-                "hidden": false,
-                "name": "Nushell",
-                "source": "nu"
-            },
-            {
                 "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
                 "hidden": false,
                 "name": "Git Bash",
@@ -65,12 +59,6 @@
                 "hidden": false,
                 "name": "Ubuntu",
                 "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
-            },
-            {
-                "commandline": "C:\\Users\\y-imakawa\\AppData\\Local\\mise\\shims\\nu.cmd",
-                "guid": "{a2ae1a76-93d7-4e83-b171-82f13dd0f961}",
-                "hidden": false,
-                "name": "Nushell"
             },
             {
                 "guid": "{ae735536-0b03-58f2-9ffa-651f68f43b03}",

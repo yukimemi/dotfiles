@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.nu
 # Author      : yukimemi
-# Last Change : 2025/07/19 22:18:48.
+# Last Change : 2025/09/28 22:36:25.
 # =============================================================================
 
 # config
@@ -21,13 +21,6 @@ path add "~/.local/bin"
 path add ($env.CARGO_HOME | path join "bin")
 path add ($env.LOCALAPPDATA | path join "Programs" "ExifTool")
 
-# mise
-const mise_init_path = ($nu.temp-path | path join "mise.nu")
-if not ($mise_init_path | path exists) {
-    mise activate nu | save -f $mise_init_path
-}
-source $mise_init_path
-
 # functions
 def lsg [] { ls | sort-by type name -i | grid -c | str trim }
 def --env rhl [] {
@@ -41,6 +34,12 @@ def --env cd [target: path = "~"] {
   cd-builtin $target
   ls
 }
+def --env jd [] {
+  cd (ls -a **/* | where type == dir | each { |row| $row.name } | str join (char nl) | fzf | decode utf-8 | str trim)
+}
+def r [] {
+  rm (ls -a | each { |row| $row.name } | str join (char nl) | fzf | decode utf-8 | str trim)
+}
 
 # aliases
 alias l = ls
@@ -51,6 +50,7 @@ alias c = clear
 alias b = cd ..
 alias t = exit
 alias e = nvim
+alias o = start
 ## git
 alias g = git
 alias d = git diff
@@ -59,16 +59,16 @@ alias a = git add
 alias s = git status
 alias gpu = git push
 alias gp = git pull
+alias gr = cd (git rev-parse --show-toplevel)
+
+# mise
+use $mise_path
 
 # starship
-const starship_init_path = ($nu.temp-path | path join "starship.nu")
-if not ($starship_init_path | path exists) {
-    starship init nu | save -f $starship_init_path
-}
-source $starship_init_path
+$env.STARSHIP_SHELL = "nu"
 
 def create_left_prompt [] {
-  starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
+    starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
 }
 
 # Use nushell functions to define your right and left prompt
@@ -83,19 +83,19 @@ $env.PROMPT_INDICATOR_VI_NORMAL = "N "
 $env.PROMPT_MULTILINE_INDICATOR = "::: "
 
 # zoxide
-const zoxide_init_path = ($nu.temp-path | path join "zoxide.nu")
-if not ($zoxide_init_path | path exists) {
-    zoxide init nushell | save -f $zoxide_init_path
-}
-source $zoxide_init_path
+source $zoxide_path
 alias j = zi
 
-# nu_scripts (https://github.com/nushell/nu_scripts)
-const nus_path = $nu.home-path | path join "src" "github.com" "nushell" "nu_scripts"
-if not ($nus_path | path exists) {
-  rhq clone https://github.com/nushell/nu_scripts
+# television
+if (which tv | is-empty) {
+  # cargo binstall television
+  mise use -g github:alexpasmantier/television
 }
-use ($nus_path | path join "aliases" "git" "git-aliases.nu") *
+
+# fzf
+if (which fzf | is-empty) {
+  cargo binstall fzf
+}
 
 # keybindings
 $env.config.keybindings = [
@@ -107,3 +107,6 @@ $env.config.keybindings = [
     event: { edit: CutFromLineStart }
   }
 ]
+
+# nupm
+use $'($nupm_path)/nupm'
