@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:14:19.
+// Last Change : 2025/09/28 17:44:01.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -97,6 +97,10 @@ export const filetypes: Plug[] = [
       await denops.call(`luaeval`, `require('markview').setup(_A)`, {
         experimental: {
           check_rtp_message: false,
+        },
+        preview: {
+          filetypes: ["markdown", "codecompanion"],
+          ignore_buftypes: [],
         },
       });
     },
