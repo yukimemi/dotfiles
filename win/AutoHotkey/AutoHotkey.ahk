@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2025/06/29 13:54:30.
+; Last Change : 2025/09/28 23:16:46.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -214,8 +214,11 @@ F11::
 
 F12::
 {
-  If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usewez")) {
+  if (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usewez")) {
     Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
+    return
+  } else if (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usenu")) {
+    ToggleTerminalWin("WindowsTerminal.exe", "nu", "yukimemi-nu, Gemini")
     return
   } else {
     ToggleTerminalWin("WindowsTerminal.exe", "wt pwsh", "yukimemi-pwsh, Gemini")

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.nu
 # Author      : yukimemi
-# Last Change : 2025/09/28 22:36:25.
+# Last Change : 2025/09/28 23:21:34.
 # =============================================================================
 
 # config
@@ -24,7 +24,7 @@ path add ($env.LOCALAPPDATA | path join "Programs" "ExifTool")
 # functions
 def lsg [] { ls | sort-by type name -i | grid -c | str trim }
 def --env rhl [] {
-  rhq list | tv | cd $in
+  rhq list | fzf | cd $in
 }
 def doc [] {
   config nu --doc | nu-highlight | less -R
@@ -39,6 +39,9 @@ def --env jd [] {
 }
 def r [] {
   rm (ls -a | each { |row| $row.name } | str join (char nl) | fzf | decode utf-8 | str trim)
+}
+def set-wt-title [title: string] {
+  print $"\u{1b}]0;($title)\u{07}"
 }
 
 # aliases
@@ -70,10 +73,15 @@ $env.STARSHIP_SHELL = "nu"
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
 }
+def create_right_prompt [] {
+  if ($nu.os-info.family == "windows") {
+    set-wt-title "yukimemi-nu"
+  }
+}
 
 # Use nushell functions to define your right and left prompt
 $env.PROMPT_COMMAND = { || create_left_prompt }
-$env.PROMPT_COMMAND_RIGHT = ""
+$env.PROMPT_COMMAND_RIGHT = { || create_right_prompt }
 
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
