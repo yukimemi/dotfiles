@@ -1,13 +1,10 @@
 -- =============================================================================
 -- File        : init.lua
 -- Author      : yukimemi
--- Last Change : 2024/11/18 22:03:56.
+-- Last Change : 2025/09/28 11:16:08.
 -- =============================================================================
 
-if vim.loader then
-  vim.loader.enable()
-end
-
+vim.loader.enable()
 local denops = vim.fn.expand("~/.cache/nvim/dvpm/github.com/vim-denops/denops.vim")
 if not vim.uv.fs_stat(denops) then
   vim.fn.system({ "git", "clone", "https://github.com/vim-denops/denops.vim", denops })
