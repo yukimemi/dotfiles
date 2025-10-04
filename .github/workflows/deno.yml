@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : deno.yml
 # Author      : yukimemi
-# Last Change : 2025/10/04 20:25:04.
+# Last Change : 2025/10/04 20:27:39.
 # =============================================================================
 
 name: deno
@@ -36,7 +36,8 @@ jobs:
       - run: deno task ci
       - name: Update deno imports
         id: run-deno-outdated
-        env: NO_COLOR: true
+        env:
+          NO_COLOR: true
         run: |
           {
             echo 'UPDATE_RESULT<<EOF'
