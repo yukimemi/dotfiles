@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : molt.yml
 # Author      : yukimemi
-# Last Change : 2025/10/04 20:00:43.
+# Last Change : 2025/10/04 20:03:01.
 # =============================================================================
 
 name: molt
@@ -38,4 +38,5 @@ jobs:
         with:
           labels: automerge
           token: ${{ steps.app-token.outputs.token }}
+          config: false
           source: "**/deno.json*"
