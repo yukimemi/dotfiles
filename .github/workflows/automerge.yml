@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : automerge.yml
 # Author      : yukimemi
-# Last Change : 2024/08/12 01:09:58.
+# Last Change : 2025/10/04 20:24:00.
 # =============================================================================
 
 name: automerge
@@ -18,9 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: denoland/setup-deno@v1
+      - uses: denoland/setup-deno@v2
       - run: deno task ci
       - uses: "pascalgn/automerge-action@v0.16.3"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-

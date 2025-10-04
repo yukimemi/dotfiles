@@ -1,0 +1,63 @@
+# =============================================================================
+# File        : deno.yml
+# Author      : yukimemi
+# Last Change : 2025/10/04 20:25:04.
+# =============================================================================
+
+name: deno
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 6 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    name: Update
+    permissions: write-all
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.PRIVATE_KEY }}
+
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+      - run: deno task ci
+      - name: Update deno imports
+        id: run-deno-outdated
+        env: NO_COLOR: true
+        run: |
+          {
+            echo 'UPDATE_RESULT<<EOF'
+            deno outdated --update --latest
+            echo EOF
+          } >> $GITHUB_OUTPUT
+      - run: deno task ci
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          labels: automerge
+          branch: update/deno-imports
+          delete-branch: true
+          title: Update Deno imports
+          commit-message: "chore(deps): Update deno imports"
+          body: |
+            Some external modules are stale.
+            <details><summary>Details</summary><div>
+
+            ```
+            ${{ steps.run-deno-outdated.outputs.UPDATE_RESULT }}
+            ```
+
+            </div></details>
