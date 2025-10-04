@@ -12,10 +12,16 @@ import * as vars from "@denops/std/variable";
 
 export const colors: Plug[] = [
   {
+    url: "https://github.com/0xstepit/flow.nvim",
+    profiles: ["colors", "favaritecolors"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("flow").setup()`);
+    },
+  },
+  {
     url: "https://github.com/4513ECHO/vim-colors-hatsunemiku",
     profiles: ["colors"],
   },
-  { url: "https://github.com/monaqa/colorimetry.nvim", profiles: ["colors"] },
   { url: "https://github.com/AlessandroYorba/Alduin", profiles: ["colors"] },
   { url: "https://github.com/Allianaab2m/penumbra.nvim", profiles: ["colors"] },
   { url: "https://github.com/Badacadabra/vim-archery", profiles: ["colors"] },
@@ -62,9 +68,27 @@ export const colors: Plug[] = [
     url: "https://github.com/craftzdog/solarized-osaka.nvim",
     profiles: ["colors"],
   },
+  {
+    url: "https://github.com/crispybaccoon/evergarden",
+    profiles: ["colors"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("evergarden").setup(_A)`, {
+        transparent_background: true,
+        constrast_dark: "medium",
+      });
+    },
+  },
   { url: "https://github.com/cseelus/vim-colors-lucid", profiles: ["colors"] },
   { url: "https://github.com/daltonmenezes/aura-theme", profiles: ["colors"] },
   { url: "https://github.com/daschw/leaf.nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/diegoulloao/neofusion.nvim",
+    profiles: ["colors"],
+    enabled: false,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("neofusion").setup()`);
+    },
+  },
   { url: "https://github.com/doums/darcula", profiles: ["colors"] },
   { url: "https://github.com/dracula/vim", profiles: ["colors"] },
   {
@@ -84,7 +108,6 @@ export const colors: Plug[] = [
     profiles: ["colors", "favaritecolors"],
   },
   { url: "https://github.com/futsuuu/vim-robot", profiles: ["colors"] },
-  { url: "https://github.com/yazeed1s/oh-lucy.nvim", profiles: ["colors"] },
   { url: "https://github.com/gkapfham/vim-vitamin-onec", profiles: ["colors"] },
   { url: "https://github.com/gkeep/iceberg-dark", profiles: ["colors"] },
   { url: "https://github.com/gruvbox-community/gruvbox", profiles: ["colors"] },
@@ -127,6 +150,7 @@ export const colors: Plug[] = [
     url: "https://github.com/miikanissi/modus-themes.nvim",
     profiles: ["colors"],
   },
+  { url: "https://github.com/monaqa/colorimetry.nvim", profiles: ["colors"] },
   { url: "https://github.com/neko-night/nvim", profiles: ["colors"] },
   {
     url: "https://github.com/nickburlett/vim-colors-stylus",
@@ -162,13 +186,16 @@ export const colors: Plug[] = [
     url: "https://github.com/rhysd/vim-color-spring-night",
     profiles: ["colors", "favaritecolors"],
   },
+  {
+    url: "https://github.com/rmehri01/onenord.nvim",
+    profiles: ["colors"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("onenord").setup()`);
+    },
+  },
   { url: "https://github.com/romgrk/github-light.vim", profiles: ["colors"] },
   {
     url: "https://github.com/rose-pine/neovim",
-    profiles: ["colors", "favaritecolors"],
-  },
-  {
-    url: "https://github.com/sponkurtus2/angelic.nvim",
     profiles: ["colors", "favaritecolors"],
   },
   {
@@ -180,48 +207,6 @@ export const colors: Plug[] = [
     profiles: ["colors", "favaritecolors"],
   },
   { url: "https://github.com/savq/melange-nvim", profiles: ["colors"] },
-  { url: "https://github.com/severij/vadelma", profiles: ["colors"] },
-  { url: "https://github.com/shaunsingh/nord.nvim", profiles: ["colors"] },
-  {
-    url: "https://github.com/sho-87/kanagawa-paper.nvim",
-    profiles: ["colors"],
-  },
-  {
-    url: "https://github.com/sigmavim/kyotonight",
-    profiles: ["colors", "favaritecolors"],
-  },
-  { url: "https://github.com/srcery-colors/srcery-vim", profiles: ["colors"] },
-  { url: "https://github.com/sts10/vim-pink-moon", profiles: ["colors"] },
-  { url: "https://github.com/tiagovla/tokyodark.nvim", profiles: ["colors"] },
-  { url: "https://github.com/tobi-wan-kenobi/zengarden", profiles: ["colors"] },
-  { url: "https://github.com/wadackel/vim-dogrun", profiles: ["colors"] },
-  { url: "https://github.com/yasukotelin/shirotelin", profiles: ["colors"] },
-  { url: "https://github.com/yorik1984/newpaper.nvim", profiles: ["colors"] },
-  { url: "https://github.com/yuttie/hydrangea-vim", profiles: ["colors"] },
-  { url: "https://github.com/zacanger/angr.vim", profiles: ["colors"] },
-  { url: "https://github.com/zefei/cake16", profiles: ["colors"] },
-  {
-    url: "https://github.com/zenbones-theme/zenbones.nvim",
-    profiles: ["colors"],
-  },
-  {
-    url: "https://github.com/diegoulloao/neofusion.nvim",
-    profiles: ["colors"],
-    enabled: false,
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("neofusion").setup()`);
-    },
-  },
-  {
-    url: "https://github.com/crispybaccoon/evergarden",
-    profiles: ["colors"],
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("evergarden").setup(_A)`, {
-        transparent_background: true,
-        constrast_dark: "medium",
-      });
-    },
-  },
   {
     url: "https://github.com/scottmckendry/cyberdream.nvim",
     profiles: ["colors"],
@@ -234,19 +219,34 @@ export const colors: Plug[] = [
       });
     },
   },
+  { url: "https://github.com/severij/vadelma", profiles: ["colors"] },
+  { url: "https://github.com/shaunsingh/nord.nvim", profiles: ["colors"] },
   {
-    url: "https://github.com/0xstepit/flow.nvim",
-    profiles: ["colors", "favaritecolors"],
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("flow").setup()`);
-    },
+    url: "https://github.com/sho-87/kanagawa-paper.nvim",
+    profiles: ["colors"],
   },
   {
-    url: "https://github.com/rmehri01/onenord.nvim",
+    url: "https://github.com/sigmavim/kyotonight",
+    profiles: ["colors", "favaritecolors"],
+  },
+  {
+    url: "https://github.com/sponkurtus2/angelic.nvim",
+    profiles: ["colors", "favaritecolors"],
+  },
+  { url: "https://github.com/srcery-colors/srcery-vim", profiles: ["colors"] },
+  { url: "https://github.com/sts10/vim-pink-moon", profiles: ["colors"] },
+  { url: "https://github.com/tiagovla/tokyodark.nvim", profiles: ["colors"] },
+  { url: "https://github.com/tobi-wan-kenobi/zengarden", profiles: ["colors"] },
+  { url: "https://github.com/wadackel/vim-dogrun", profiles: ["colors"] },
+  { url: "https://github.com/yasukotelin/shirotelin", profiles: ["colors"] },
+  { url: "https://github.com/yazeed1s/oh-lucy.nvim", profiles: ["colors"] },
+  { url: "https://github.com/yorik1984/newpaper.nvim", profiles: ["colors"] },
+  { url: "https://github.com/yuttie/hydrangea-vim", profiles: ["colors"] },
+  { url: "https://github.com/zacanger/angr.vim", profiles: ["colors"] },
+  { url: "https://github.com/zefei/cake16", profiles: ["colors"] },
+  {
+    url: "https://github.com/zenbones-theme/zenbones.nvim",
     profiles: ["colors"],
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("onenord").setup()`);
-    },
   },
   {
     url: "https://github.com/yukimemi/lumiris.vim",
@@ -318,6 +318,7 @@ export const colors: Plug[] = [
       "https://github.com/masisz/ashikaga.nvim",
       "https://github.com/maxmx03/solarized.nvim",
       "https://github.com/miikanissi/modus-themes.nvim",
+      "https://github.com/monaqa/colorimetry.nvim",
       "https://github.com/neko-night/nvim",
       "https://github.com/nickburlett/vim-colors-stylus",
       "https://github.com/nvimdev/oceanic-material",
@@ -325,7 +326,6 @@ export const colors: Plug[] = [
       "https://github.com/oxfist/night-owl.nvim",
       "https://github.com/pbrisbin/vim-colors-off",
       "https://github.com/pineapplegiant/spaceduck",
-      "https://github.com/yazeed1s/oh-lucy.nvim",
       "https://github.com/polirritmico/monokai-nightasty.nvim",
       "https://github.com/projekt0n/caret.nvim",
       "https://github.com/projekt0n/github-nvim-theme",
@@ -345,15 +345,16 @@ export const colors: Plug[] = [
       "https://github.com/scottmckendry/cyberdream.nvim",
       "https://github.com/severij/vadelma",
       "https://github.com/shaunsingh/nord.nvim",
-      "https://github.com/sponkurtus2/angelic.nvim",
       "https://github.com/sho-87/kanagawa-paper.nvim",
       "https://github.com/sigmavim/kyotonight",
+      "https://github.com/sponkurtus2/angelic.nvim",
       "https://github.com/srcery-colors/srcery-vim",
       "https://github.com/sts10/vim-pink-moon",
       "https://github.com/tiagovla/tokyodark.nvim",
       "https://github.com/tobi-wan-kenobi/zengarden",
       "https://github.com/wadackel/vim-dogrun",
       "https://github.com/yasukotelin/shirotelin",
+      "https://github.com/yazeed1s/oh-lucy.nvim",
       "https://github.com/yorik1984/newpaper.nvim",
       "https://github.com/yuttie/hydrangea-vim",
       "https://github.com/zacanger/angr.vim",
