@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:16:58.
+// Last Change : 2025/10/05 00:05:13.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -15,6 +15,7 @@ export const colors: Plug[] = [
     url: "https://github.com/4513ECHO/vim-colors-hatsunemiku",
     profiles: ["colors"],
   },
+  { url: "https://github.com/monaqa/colorimetry.nvim", profiles: ["colors"] },
   { url: "https://github.com/AlessandroYorba/Alduin", profiles: ["colors"] },
   { url: "https://github.com/Allianaab2m/penumbra.nvim", profiles: ["colors"] },
   { url: "https://github.com/Badacadabra/vim-archery", profiles: ["colors"] },

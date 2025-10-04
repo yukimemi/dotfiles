@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : mini.lua
 -- Author      : yukimemi
--- Last Change : 2025/10/04 10:37:14.
+-- Last Change : 2025/10/04 20:53:00.
 -- =============================================================================
 
 require("mini.align").setup()
@@ -12,6 +12,7 @@ require("mini.icons").setup()
 require("mini.map").setup()
 require("mini.tabline").setup()
 require("mini.visits").setup()
+require('mini.pairs').setup()
 
 -- mini.basic
 require('mini.basics').setup({
