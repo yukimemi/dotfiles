@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : deno.yml
 # Author      : yukimemi
-# Last Change : 2025/10/04 20:27:39.
+# Last Change : 2025/10/04 20:32:47.
 # =============================================================================
 
 name: deno
@@ -41,7 +41,7 @@ jobs:
         run: |
           {
             echo 'UPDATE_RESULT<<EOF'
-            deno outdated --update --latest
+            deno outdated --update --latest --recursive
             echo EOF
           } >> $GITHUB_OUTPUT
       - run: deno task ci
