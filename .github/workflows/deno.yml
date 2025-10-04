@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : deno.yml
 # Author      : yukimemi
-# Last Change : 2025/10/04 20:32:47.
+# Last Change : 2025/10/04 20:37:40.
 # =============================================================================
 
 name: deno
@@ -34,16 +34,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: denoland/setup-deno@v2
       - run: deno task ci
-      - name: Update deno imports
-        id: run-deno-outdated
-        env:
-          NO_COLOR: true
-        run: |
-          {
-            echo 'UPDATE_RESULT<<EOF'
-            deno outdated --update --latest --recursive
-            echo EOF
-          } >> $GITHUB_OUTPUT
+      - run: deno outdated --update --latest --recursive
       - run: deno task ci
       - uses: peter-evans/create-pull-request@v7
         with:
@@ -53,12 +44,3 @@ jobs:
           delete-branch: true
           title: Update Deno imports
           commit-message: "chore(deps): Update deno imports"
-          body: |
-            Some external modules are stale.
-            <details><summary>Details</summary><div>
-
-            ```
-            ${{ steps.run-deno-outdated.outputs.UPDATE_RESULT }}
-            ```
-
-            </div></details>
