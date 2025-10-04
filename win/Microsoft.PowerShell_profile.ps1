@@ -10,15 +10,20 @@ $Host.UI.RawUI.WindowTitle = "yukimemi-pwsh"
 # Options.
 $ErrorActionPreference = "Stop"
 
+# cargo-binstall
+if (!(Get-Command cargo-binstall -ErrorAction SilentlyContinue)) {
+  cargo install cargo-binstall
+}
+
 # mise
 if (Get-Command mise -ErrorAction SilentlyContinue) {
   mise activate pwsh | Out-String | Invoke-Expression
 } else {
-  cargo install mise
+  cargo binstall mise
 }
 # rhq
 if (!(Get-Command rhq -ErrorAction SilentlyContinue)) {
-  cargo install --git https://github.com/ubnt-intrepid/rhq.git
+  cargo binstall --git https://github.com/ubnt-intrepid/rhq.git
 }
 
 # Utility functions.

@@ -1,10 +1,11 @@
 -- =============================================================================
 -- File        : mini.lua
 -- Author      : yukimemi
--- Last Change : 2025/09/28 00:18:34.
+-- Last Change : 2025/10/04 10:37:14.
 -- =============================================================================
 
 require("mini.align").setup()
+require("mini.bracketed").setup()
 require("mini.cursorword").setup()
 require("mini.hipatterns").setup()
 require("mini.icons").setup()
@@ -40,29 +41,29 @@ vim.api.nvim_create_user_command('NotifyHistory', function()
 end, { desc = 'Show notify history' })
 
 -- mini.animate
-local animate = require('mini.animate')
-require("mini.animate").setup({
-  cursor = {
-    enable = true,
-    timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
-  },
-  scroll = {
-    enable = true,
-    timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
-  },
-  resize = {
-    enable = true,
-    timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
-  },
-  open = {
-    enable = true,
-    timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
-  },
-  close = {
-    enable = true,
-    timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
-  },
-})
+-- local animate = require('mini.animate')
+-- require("mini.animate").setup({
+--   cursor = {
+--     enable = true,
+--     timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
+--   },
+--   scroll = {
+--     enable = true,
+--     timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
+--   },
+--   resize = {
+--     enable = true,
+--     timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
+--   },
+--   open = {
+--     enable = true,
+--     timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
+--   },
+--   close = {
+--     enable = true,
+--     timing = animate.gen_timing.linear({ duration = 50, unit = 'total' }),
+--   },
+-- })
 
 -- mini.comment
 require("mini.comment").setup({
@@ -175,7 +176,7 @@ end, { desc = "MiniExtra visits" })
 -- })
 
 -- mini.indentscope
-require("mini.indentscope").setup()
+-- require("mini.indentscope").setup()
 
 -- mini.misc
 require("mini.misc").setup({
@@ -286,3 +287,9 @@ miniclue.setup({
     miniclue.gen_clues.z(),
   },
 })
+
+-- completion
+-- require("mini.fuzzy").setup()
+-- require("mini.completion").setup()
+-- vim.opt.complete = { '.', 'w', 'k', 'b', 'u' }
+-- vim.opt.completeopt:append('fuzzy')
