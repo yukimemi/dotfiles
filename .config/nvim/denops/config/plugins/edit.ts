@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/09/28 08:43:52.
+// Last Change : 2025/10/05 19:35:48.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -117,6 +117,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/LeafCage/yankround.vim",
+    profiles: ["yank"],
     enabled: pluginStatus.yankround,
     before: async ({ denops }) => {
       await ensureDir(

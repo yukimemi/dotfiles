@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/09/15 22:22:00.
+# Last Change : 2025/10/05 19:12:19.
 # =============================================================================
 
 # Set title.
@@ -262,6 +262,12 @@ function Install-Pip {
 
 function Install-Aider {
   powershell -ExecutionPolicy ByPass -c "irm https://aider.chat/install.ps1 | iex"
+}
+
+function Install-Neovim {
+  $nvimMsi = Join-Path $env:tmp "nvim-win64.msi"
+  Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
+  & msiexec /i $nvimMsi
 }
 
 # Alias.
