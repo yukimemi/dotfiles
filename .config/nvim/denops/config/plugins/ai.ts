@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/09/23 18:27:04.
+// Last Change : 2025/10/05 01:05:16.
 // =============================================================================
 
 import * as lambda from "@denops/std/lambda";
@@ -20,6 +20,11 @@ export const ai: Plug[] = [
     url: "https://github.com/lambdalisue/nvim-aibo",
     profiles: ["ai"],
     afterFile: `~/.config/nvim/rc/after/nvim-aibo.lua`,
+  },
+  {
+    url: "https://github.com/folke/sidekick.nvim",
+    profiles: ["ai"],
+    afterFile: `~/.config/nvim/rc/after/sidekick.lua`,
   },
   {
     url: "https://github.com/sourcegraph/sg.nvim",
