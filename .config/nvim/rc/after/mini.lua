@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : mini.lua
 -- Author      : yukimemi
--- Last Change : 2025/10/04 20:53:00.
+-- Last Change : 2025/10/19 08:26:53.
 -- =============================================================================
 
 require("mini.align").setup()
@@ -103,6 +103,16 @@ vim.keymap.set("n", "mg", function()
     tool = "git",
   })
 end, { desc = "MiniPick git" })
+-- buffer dir
+vim.keymap.set("n", "mb", function()
+  local bufname = vim.fn.bufname()
+  local bufdir = vim.fn.fnamemodify(bufname, ":p:h")
+  MiniPick.builtin.files({}, {
+    source = {
+      cwd = bufdir
+    }
+  })
+end, { desc = "MiniPick buffer dir" })
 -- dotfiles
 vim.keymap.set("n", "md", function()
   MiniPick.builtin.files({
@@ -128,7 +138,7 @@ vim.keymap.set("n", "mM", function()
       cwd = "~/.memolist"
     }
   })
-end)
+end, { desc = "MiniPick memolist" })
 -- cache
 vim.keymap.set("n", "mC", function()
   MiniPick.builtin.files({}, {
@@ -136,7 +146,7 @@ vim.keymap.set("n", "mC", function()
       cwd = "~/.cache"
     }
   })
-end)
+end, { desc = "MiniPick cache" })
 -- chronicle
 vim.keymap.set("n", "mr", function()
   MiniPick.start({
@@ -144,14 +154,14 @@ vim.keymap.set("n", "mr", function()
       items = vim.fn.readfile(vim.g.chronicle_read_path)
     }
   })
-end)
+end, { desc = "MiniPick chronicle read" })
 vim.keymap.set("n", "mw", function()
   MiniPick.start({
     source = {
       items = vim.fn.readfile(vim.g.chronicle_write_path)
     }
   })
-end)
+end, { desc = "MiniPick chronicle write" })
 
 -- help
 vim.keymap.set("n", "<space>ph", function()
@@ -272,6 +282,10 @@ miniclue.setup({
     -- `m` key
     { mode = 'n', keys = 'm' },
     { mode = 'x', keys = 'm' },
+
+    -- `s` key
+    { mode = 'n', keys = 's' },
+    { mode = 'x', keys = 's' },
 
     -- `\` key
     { mode = 'n', keys = '\\' },

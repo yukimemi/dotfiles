@@ -621,7 +621,7 @@ export const util: Plug[] = [
   {
     url: "https://github.com/Shougo/junkfile.vim",
     profiles: ["mini", "core"],
-    afterFile: "~/.config/nvim/rc/after/junkfile.vim",
+    cache: { afterFile: "~/.config/nvim/rc/after/junkfile.vim" },
   },
   {
     url: "https://github.com/QuentinGruber/pomodoro.nvim",

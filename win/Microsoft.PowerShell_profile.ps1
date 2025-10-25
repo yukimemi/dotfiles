@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/10/05 19:12:19.
+# Last Change : 2025/10/06 00:31:08.
 # =============================================================================
 
 # Set title.
@@ -322,6 +322,7 @@ Set-PSReadLineOption -EditMode Vi
 Set-PSReadLineOption -ViModeIndicator cursor
 if ($PSVersionTable.PSVersion.Major -ge 7) {
   Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+  Set-PSReadLineOption -PredictionViewStyle ListView
 }
 Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function AcceptNextSuggestionWord
 Set-PSReadLineKeyHandler -Key 'Ctrl+e' -Function AcceptSuggestion

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:13:14.
+// Last Change : 2025/10/19 08:23:29.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -14,14 +14,7 @@ export const motion: Plug[] = [
   {
     url: "https://github.com/haya14busa/vim-edgemotion",
     profiles: ["minimal", "core"],
-    before: async ({ denops }) => {
-      await mapping.map(denops, "sj", "<Plug>(edgemotion-j)", {
-        mode: ["n", "x"],
-      });
-      await mapping.map(denops, "sk", "<Plug>(edgemotion-k)", {
-        mode: ["n", "x"],
-      });
-    },
+    cache: { after: `~/.config/nvim/rc/after/vim-egdemotion.lua` },
   },
   {
     url: "https://github.com/yuki-yano/fuzzy-motion.vim",
