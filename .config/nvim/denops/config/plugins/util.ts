@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/09/28 00:38:57.
+// Last Change : 2025/10/26 08:35:19.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -31,6 +31,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/ahmedkhalf/project.nvim",
+    enabled: false,
     profiles: ["minimal", "core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("project_nvim").setup(_A)`, {

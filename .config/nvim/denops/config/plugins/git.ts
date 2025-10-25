@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:14:08.
+// Last Change : 2025/10/26 08:32:47.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -72,6 +72,7 @@ export const git: Plug[] = [
     url: "https://github.com/lambdalisue/vim-gin",
     profiles: ["git"],
     cache: { beforeFile: `~/.config/nvim/rc/before/vim-gin.lua` },
+    afterFile: `~/.config/nvim/rc/after/vim-gin.lua`,
   },
   {
     url: "https://github.com/skanehira/denops-gh.vim",

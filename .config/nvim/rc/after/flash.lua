@@ -1,13 +1,13 @@
 -- =============================================================================
 -- File        : flash.lua
 -- Author      : yukimemi
--- Last Change : 2025/02/10 19:35:38.
+-- Last Change : 2025/10/25 23:42:31.
 -- =============================================================================
 
 require("flash").setup({
   search = {
     mode = "search",
-    incremental = false,
+    incremental = true,
   },
   label = {
     rainbow = {
@@ -15,6 +15,9 @@ require("flash").setup({
     },
   },
   modes = {
+    search = {
+      enabled = true,
+    },
     char = {
       enabled = false,
       multi_line = false,
@@ -23,4 +26,3 @@ require("flash").setup({
 })
 
 vim.keymap.set("n", "ss", function() require("flash").jump() end, { desc = "Flash" })
-

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2025/10/19 08:23:29.
+// Last Change : 2025/10/25 23:22:28.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -14,7 +14,7 @@ export const motion: Plug[] = [
   {
     url: "https://github.com/haya14busa/vim-edgemotion",
     profiles: ["minimal", "core"],
-    cache: { after: `~/.config/nvim/rc/after/vim-egdemotion.lua` },
+    cache: { afterFile: `~/.config/nvim/rc/after/vim-edgemotion.lua` },
   },
   {
     url: "https://github.com/yuki-yano/fuzzy-motion.vim",
@@ -29,20 +29,22 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/folke/flash.nvim",
-    profiles: ["default"],
+    profiles: ["default", "core"],
     enabled: pluginStatus.flash,
-    cache: {
-      afterFile: `~/.config/nvim/rc/after/flash.lua`,
-    },
+    cache: { afterFile: `~/.config/nvim/rc/after/flash.lua` },
   },
   {
     url: "https://github.com/atusy/jab.nvim",
     profiles: ["minimal", "core"],
     enabled: pluginStatus.jab,
     dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
-    cache: {
-      afterFile: `~/.config/nvim/rc/after/jab.lua`,
-    },
+    cache: { afterFile: `~/.config/nvim/rc/after/jab.lua` },
+  },
+  {
+    url: "https://github.com/nekowasabi/hellshake-yano.vim",
+    profiles: ["minimal", "core"],
+    enabled: pluginStatus.hellshake,
+    cache: { beforeFile: `~/.config/nvim/rc/before/hellshake-yano.lua` },
   },
   {
     url: "https://github.com/FluxxField/smart-motion.nvim",
@@ -116,5 +118,10 @@ export const motion: Plug[] = [
     url: "https://github.com/hrsh7th/nvim-swm",
     profiles: ["default"],
     afterFile: "~/.config/nvim/rc/after/nvim-swim.lua",
+  },
+  {
+    url: "https://github.com/kamecha/bimove",
+    profiles: ["core"],
+    cache: { beforeFile: `~/.config/nvim/rc/before/bimove.vim` },
   },
 ];
