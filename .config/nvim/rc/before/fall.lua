@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : fall.lua
 -- Author      : yukimemi
--- Last Change : 2025/08/03 15:44:51.
+-- Last Change : 2025/10/26 21:09:46.
 -- =============================================================================
 
 vim.keymap.set("n", "<space>lf", "<cmd>Fall file<cr>", { desc = "Fall file" })
@@ -13,7 +13,7 @@ vim.keymap.set("n", "mC", "<cmd>Fall file ~/.cache<cr>", { desc = "Fall cache" }
 vim.keymap.set("n", "mM", "<cmd>Fall file ~/.memolist<cr>", { desc = "Fall memolist" })
 
 vim.keymap.set("n", "mb", function()
-  local bufdir = vim.fn.expand("%:p:h")
+  local bufdir = string.gsub(vim.fn.fnamemodify(vim.fn.bufname(), ":p:h"), "\\", "/")
   vim.cmd("Fall file '" .. bufdir .. "'")
 end, { desc = "Fall buffer dir" })
 
