@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/10/05 00:05:13.
+// Last Change : 2025/11/02 21:40:18.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -25,6 +25,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/AlessandroYorba/Alduin", profiles: ["colors"] },
   { url: "https://github.com/Allianaab2m/penumbra.nvim", profiles: ["colors"] },
   { url: "https://github.com/Badacadabra/vim-archery", profiles: ["colors"] },
+  { url: "https://github.com/jdsimcoe/abstract.vim", profiles: ["colors"] },
   {
     url: "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim",
     profiles: ["colors"],
@@ -299,6 +300,7 @@ export const colors: Plug[] = [
       "https://github.com/gruvbox-community/gruvbox",
       "https://github.com/habamax/vim-gruvbit",
       "https://github.com/ingram1107/vim-zhi",
+      "https://github.com/jdsimcoe/abstract.vim",
       "https://github.com/jonathanfilip/vim-lucius",
       "https://github.com/joshdick/onedark.vim",
       "https://github.com/jsit/toast.vim",

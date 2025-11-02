@@ -1,12 +1,12 @@
 -- =============================================================================
 -- File        : flash.lua
 -- Author      : yukimemi
--- Last Change : 2025/10/26 11:47:26.
+-- Last Change : 2025/11/02 21:51:54.
 -- =============================================================================
 
 require("flash").setup({
   search = {
-    mode = "search",
+    mode = "exact",
     incremental = true,
   },
   label = {
