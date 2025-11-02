@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : custom.ts
 // Author      : yukimemi
-// Last Change : 2024/11/24 00:04:19.
+// Last Change : 2025/11/02 11:22:44.
 // =============================================================================
 
 import type { Entrypoint } from "jsr:@vim-fall/custom@0.1.0";
 import { composeRenderers, refineCurator, refineSource } from "jsr:@vim-fall/std@0.12.0";
 import * as builtin from "jsr:@vim-fall/std@0.12.0/builtin";
 import { SEPARATOR } from "jsr:@std/path@1.1.2/constants";
-import { chronicle } from "jsr:@yukimemi/fall-source-chronicle@1.0.2";
+import { chronicle } from "jsr:@yukimemi/fall-source-chronicle@1.1.0";
 
 const myPathActions = {
   ...builtin.action.defaultOpenActions,
@@ -382,7 +382,10 @@ export const main: Entrypoint = (
         matchers: [builtin.matcher.fzf],
         sorters: [builtin.sorter.noop],
         renderers: [
-          composeRenderers(builtin.renderer.smartPath, builtin.renderer.nerdfont),
+          composeRenderers(
+            builtin.renderer.smartPath,
+            builtin.renderer.nerdfont,
+          ),
           builtin.renderer.nerdfont,
           builtin.renderer.noop,
         ],
