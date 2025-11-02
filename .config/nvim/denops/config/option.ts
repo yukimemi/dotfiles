@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2025/09/28 20:00:59.
+// Last Change : 2025/11/03 07:24:30.
 // =============================================================================
 
 import type { Denops } from "@denops/std";
@@ -10,6 +10,7 @@ import * as autocmd from "@denops/std/autocmd";
 import * as fn from "@denops/std/function";
 import * as helper from "@denops/std/helper";
 import * as lambda from "@denops/std/lambda";
+// import * as option from "@denops/std/option";
 import { batch } from "@denops/std/batch";
 import { ensureDir } from "@std/fs/ensure-dir";
 import { stdpath } from "@denops/std/function/nvim";

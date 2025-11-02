@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/11/01 20:21:45.
+// Last Change : 2025/11/03 07:26:13.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -25,9 +25,13 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/mopp/smartnumber.vim",
     profiles: ["core"],
+    enabled: false,
+  },
+  {
+    url: "https://github.com/sitiom/nvim-numbertoggle",
+    profiles: ["core"],
     enabled: true,
   },
-  { url: "https://github.com/sitiom/nvim-numbertoggle", enabled: false },
   {
     url: "https://github.com/Isrothy/neominimap.nvim",
     enabled: false,
