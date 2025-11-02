@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:10:12.
+// Last Change : 2025/11/01 20:21:45.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -480,6 +480,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/kevinhwang91/nvim-ufo",
+    enabled: false,
     dependencies: ["https://github.com/kevinhwang91/promise-async"],
     profiles: ["lsp"],
     afterFile: "~/.config/nvim/rc/after/nvim-ufo.lua",
