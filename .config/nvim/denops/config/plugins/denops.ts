@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : denops.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:15:10.
+// Last Change : 2025/11/02 11:14:01.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -248,7 +248,7 @@ export const denops: Plug[] = [
     cache: { beforeFile: "~/.config/nvim/rc/before/hitori.lua" },
   },
   {
-    url: "https://github.com/yukimemi/dps-ahdr",
+    url: "https://github.com/yukimemi/ahdr.vim",
     profiles: ["minimal", "core"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "ahdr_debug", false);
