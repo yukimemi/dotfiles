@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/10/05 13:06:42.
+// Last Change : 2025/11/03 15:49:48.
 // =============================================================================
 
 import * as lambda from "@denops/std/lambda";
@@ -364,6 +364,29 @@ lang: ja
         denops,
         "mf",
         `<cmd>call futago#start_chat({"opener": "vsplit", "humanPrompt": "yukimemi", "history": [{"role": "user", "parts": [{ "text": "僕の名前は yukimemi。敬語は使わずにフレンドリーに回答してね。" }]}, {"role": "model", "parts": [{ "text": "了解！覚えておくね！" }]}]})<cr>`,
+        { mode: "n" },
+      );
+
+      const promptGitCommitInJapanese = `
+You are an expert at following the Conventional Commit specification.
+Given the git diff listed below, please generate a commit message for me.
+**Please write the commit message in Japanese.**
+Do not use code fences (\`\`\`) in your response:
+`;
+
+      await mapping.map(
+        denops,
+        "<space>GG",
+        `<cmd>call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              await denops.call("futago#git_commit", {
+                prompt: promptGitCommitInJapanese,
+              });
+            },
+          )
+        }", [])<cr>`,
         { mode: "n" },
       );
     },
