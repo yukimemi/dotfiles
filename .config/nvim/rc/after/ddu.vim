@@ -1,7 +1,7 @@
 " =============================================================================
 " File        : ddu.vim
 " Author      : yukimemi
-" Last Change : 2024/11/23 14:46:32.
+" Last Change : 2025/11/08 16:31:21.
 " =============================================================================
 
 nnoremap <silent> <space>dd <cmd>Ddu source <cr>
@@ -156,6 +156,8 @@ function s:ddu_ff_filter_my_settings() abort
         \ <Cmd>call ddu#ui#do_action('cursorNext', #{ loop: v:true })<CR>
   cnoremap <C-b>
         \ <Cmd>call ddu#ui#do_action('cursorPrevious', #{ loop: v:true })<CR>
+  cnoremap <CR>
+        \ <Cmd>call ddu#ui#do_action('itemAction')<CR>
   call cmdline#enable()
 endfunction
 

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/10/26 08:35:19.
+// Last Change : 2025/11/08 15:49:53.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -206,6 +206,7 @@ export const util: Plug[] = [
   { url: "https://github.com/hrsh7th/vim-vital-vs", enabled: false },
   {
     url: "https://github.com/chrisbra/Recover.vim",
+    profiles: ["core"],
     cache: { enabled: true },
   },
   {

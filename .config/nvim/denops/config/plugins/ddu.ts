@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:15:51.
+// Last Change : 2025/11/08 17:27:59.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -19,6 +19,7 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const ddu: Plug[] = [
   {
     url: "https://github.com/Shougo/ddu-ui-filer",
+    profiles: ["ff"],
     after: async ({ denops }) => {
       if (pluginStatus.ddufiler) {
         await mapping.map(
@@ -31,48 +32,47 @@ export const ddu: Plug[] = [
   },
   {
     url: "https://github.com/Milly/ddu-filter-kensaku",
+    profiles: ["ff"],
     dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
   },
-  { url: "https://github.com/4513ECHO/ddu-kind-url" },
-  { url: "https://github.com/4513ECHO/ddu-source-source" },
-  { url: "https://github.com/4513ECHO/vim-readme-viewer" },
-  { url: "https://github.com/Milly/ddu-filter-merge" },
-  { url: "https://github.com/Shougo/ddu-column-filename" },
-  { url: "https://github.com/Shougo/ddu-commands.vim" },
-  { url: "https://github.com/Shougo/ddu-kind-file" },
-  { url: "https://github.com/Shougo/ddu-kind-word" },
-  { url: "https://github.com/Shougo/ddu-source-action" },
-  { url: "https://github.com/Shougo/ddu-source-dummy" },
-  { url: "https://github.com/Shougo/ddu-source-file" },
-  { url: "https://github.com/Shougo/ddu-source-file_old" },
-  { url: "https://github.com/Shougo/ddu-source-file_point" },
-  { url: "https://github.com/Shougo/ddu-source-file_rec" },
-  { url: "https://github.com/Shougo/ddu-source-line" },
-  { url: "https://github.com/Shougo/ddu-source-path_history" },
-  { url: "https://github.com/Shougo/ddu-source-register" },
-  { url: "https://github.com/Shougo/ddu-ui-ff" },
-  { url: "https://github.com/kamecha/ddu-source-jumplist" },
-  { url: "https://github.com/kuuote/ddu-filter-fuse" },
-  { url: "https://github.com/kuuote/ddu-source-git_status" },
-  { url: "https://github.com/kyoh86/ddu-filter-converter_hl_dir" },
-  { url: "https://github.com/kyoh86/ddu-source-command" },
-  { url: "https://github.com/matsui54/ddu-source-command_history" },
-  { url: "https://github.com/matsui54/ddu-source-file_external" },
-  { url: "https://github.com/matsui54/ddu-source-help" },
-  { url: "https://github.com/shun/ddu-source-buffer" },
-  { url: "https://github.com/shun/ddu-source-rg" },
-  { url: "https://github.com/uga-rosa/ddu-filter-converter_devicon" },
-  { url: "https://github.com/uga-rosa/ddu-source-lsp" },
-  { url: "https://github.com/uga-rosa/ddu-source-search_history" },
-  { url: "https://github.com/yuki-yano/ddu-filter-fzf" },
-  { url: "https://github.com/yuki-yano/ddu-source-nvim-notify" },
-  { url: "https://github.com/yukimemi/ddu-source-chronicle" },
+  { url: "https://github.com/4513ECHO/ddu-kind-url", profiles: ["ff"] },
+  { url: "https://github.com/4513ECHO/ddu-source-source", profiles: ["ff"] },
+  { url: "https://github.com/4513ECHO/vim-readme-viewer", profiles: ["ff"] },
+  { url: "https://github.com/Milly/ddu-filter-merge", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-column-filename", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-commands.vim", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-kind-file", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-kind-word", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-source-action", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-source-dummy", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-source-file", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-source-file_old", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-source-file_point", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-source-file_rec", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-source-line", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-source-path_history", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-source-register", profiles: ["ff"] },
+  { url: "https://github.com/Shougo/ddu-ui-ff", profiles: ["ff"] },
+  { url: "https://github.com/kamecha/ddu-source-jumplist", profiles: ["ff"] },
+  { url: "https://github.com/kuuote/ddu-filter-fuse", profiles: ["ff"] },
+  { url: "https://github.com/kuuote/ddu-source-git_status", profiles: ["ff"] },
+  { url: "https://github.com/kyoh86/ddu-filter-converter_hl_dir", profiles: ["ff"] },
+  { url: "https://github.com/kyoh86/ddu-source-git_log", profiles: ["ff"] },
+  { url: "https://github.com/kyoh86/ddu-source-command", profiles: ["ff"] },
+  { url: "https://github.com/matsui54/ddu-source-command_history", profiles: ["ff"] },
+  { url: "https://github.com/matsui54/ddu-source-file_external", profiles: ["ff"] },
+  { url: "https://github.com/matsui54/ddu-source-help", profiles: ["ff"] },
+  { url: "https://github.com/shun/ddu-source-buffer", profiles: ["ff"] },
+  { url: "https://github.com/shun/ddu-source-rg", profiles: ["ff"] },
+  { url: "https://github.com/uga-rosa/ddu-filter-converter_devicon", profiles: ["ff"] },
+  { url: "https://github.com/uga-rosa/ddu-source-lsp", profiles: ["ff"] },
+  { url: "https://github.com/uga-rosa/ddu-source-search_history", profiles: ["ff"] },
+  { url: "https://github.com/yuki-yano/ddu-filter-fzf", profiles: ["ff"] },
+  { url: "https://github.com/yuki-yano/ddu-source-nvim-notify", profiles: ["ff"] },
+  { url: "https://github.com/yukimemi/ddu-source-chronicle", profiles: ["ff"] },
   {
     url: "https://github.com/Shougo/ddu.vim",
-    cache: {
-      enabled: true,
-      afterFile: `~/.config/nvim/rc/after/ddu.vim`,
-    },
+    profiles: ["ff"],
     dependencies: [
       "https://github.com/4513ECHO/ddu-kind-url",
       "https://github.com/4513ECHO/ddu-source-source",
@@ -99,6 +99,7 @@ export const ddu: Plug[] = [
       "https://github.com/kuuote/ddu-filter-fuse",
       "https://github.com/kuuote/ddu-source-git_status",
       "https://github.com/kyoh86/ddu-filter-converter_hl_dir",
+      "https://github.com/kyoh86/ddu-source-git_log",
       "https://github.com/kyoh86/ddu-source-command",
       "https://github.com/matsui54/ddu-source-command_history",
       "https://github.com/matsui54/ddu-source-file_external",
@@ -112,6 +113,7 @@ export const ddu: Plug[] = [
       "https://github.com/yuki-yano/ddu-source-nvim-notify",
       "https://github.com/yukimemi/ddu-source-chronicle",
     ],
+    // afterFile: `~/.config/nvim/rc/after/ddu.vim`,
     before: async ({ denops }) => {
       await mapping.map(
         denops,
@@ -167,6 +169,28 @@ export const ddu: Plug[] = [
       );
       await mapping.map(
         denops,
+        "md",
+        `<cmd>call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              await denops.call("ddu#start", {
+                sources: [
+                  {
+                    name: "file_rec",
+                    options: {
+                      path: await fn.expand(denops, "~/.dotfiles"),
+                    },
+                  },
+                ],
+              });
+            },
+          )
+        }", [])<cr>`,
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
         "<leader>dS",
         `<cmd>call <SID>${denops.name}_notify("${
           lambda.register(
@@ -200,6 +224,50 @@ export const ddu: Plug[] = [
                     name: "file_rec",
                     options: {
                       path: await fn.expand(denops, "~/.memolist"),
+                    },
+                  },
+                ],
+              });
+            },
+          )
+        }", [])<cr>`,
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "mw",
+        `<cmd>call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              await denops.call("ddu#start", {
+                sources: [
+                  {
+                    name: "chronicle",
+                    param: {
+                      kind: "write",
+                    },
+                  },
+                ],
+              });
+            },
+          )
+        }", [])<cr>`,
+        { mode: "n" },
+      );
+      await mapping.map(
+        denops,
+        "mr",
+        `<cmd>call <SID>${denops.name}_notify("${
+          lambda.register(
+            denops,
+            async () => {
+              await denops.call("ddu#start", {
+                sources: [
+                  {
+                    name: "chronicle",
+                    param: {
+                      kind: "read",
                     },
                   },
                 ],
@@ -260,12 +328,14 @@ export const ddu: Plug[] = [
       // aliases.
       await denops.call(
         "ddu#custom#alias",
+        "_",
         "source",
         "external_fd",
         "file_external",
       );
       await denops.call(
         "ddu#custom#alias",
+        "_",
         "source",
         "external_git",
         "file_external",
@@ -330,7 +400,7 @@ export const ddu: Plug[] = [
         sourceOptions: {
           _: {
             ignoreCase: true,
-            matchers: ["merge"],
+            matchers: ["matcher_kensaku", "matcher_fzf"],
             converters: ["converter_devicon"],
           },
           file_rec: {
@@ -416,6 +486,7 @@ export const ddu: Plug[] = [
               },
               "matcher_fzf",
             ],
+            unique: true,
           },
         },
       });
@@ -549,22 +620,22 @@ export const ddu: Plug[] = [
                 await batch(denops, async (denops) => {
                   await denops.call(`ddu#ui#ff#save_cmaps`, [
                     "<cr>",
-                    "<esc>",
+                    // "<esc>",
                     "<c-j>",
                     "<c-k>",
                   ]);
                   await mapping.map(
                     denops,
                     "<cr>",
-                    "<esc><cmd>call ddu#ui#do_action('itemAction')<cr>",
+                    "<cr><cmd>call ddu#ui#async_action('itemAction')<cr>",
                     { mode: "c", silent: true, noremap: true },
                   );
-                  await mapping.map(
-                    denops,
-                    "<esc>",
-                    "<cr><esc>",
-                    { mode: "c", silent: true, noremap: true, nowait: true },
-                  );
+                  // await mapping.map(
+                  //   denops,
+                  //   "<esc>",
+                  //   "<cr>",
+                  //   { mode: "c", silent: true, noremap: true, nowait: true },
+                  // );
                   await mapping.map(
                     denops,
                     "<c-j>",
@@ -597,23 +668,23 @@ export const ddu: Plug[] = [
       });
 
       // Initialize ddu
-      denops.call(`ddu#load`, "ui", ["ff"]);
-      denops.call(`ddu#load`, "source", [
-        "chronicle",
-        "external_fd",
-        "external_git",
-        "file",
-        "file_external",
-        "file_point",
-        "file_rec",
-        "rg",
-      ]);
-      denops.call(`ddu#load`, "filter", [
-        "matcher_kensaku",
-        "mather_fzf",
-        "merge",
-      ]);
-      denops.call(`ddu#load`, "kind", ["file"]);
+      // denops.call(`ddu#load`, "ui", ["ff"]);
+      // denops.call(`ddu#load`, "source", [
+      //   "chronicle",
+      //   "external_fd",
+      //   "external_git",
+      //   "file",
+      //   "file_external",
+      //   "file_point",
+      //   "file_rec",
+      //   "rg",
+      // ]);
+      // denops.call(`ddu#load`, "filter", [
+      //   "matcher_kensaku",
+      //   "mather_fzf",
+      //   "merge",
+      // ]);
+      // denops.call(`ddu#load`, "kind", ["file"]);
     },
     build: async ({ denops, info }) => {
       if (!info.isLoad) {
