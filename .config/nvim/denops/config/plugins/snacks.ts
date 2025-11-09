@@ -11,7 +11,7 @@ export const snacks: Plug[] = [
   {
     url: "https://github.com/folke/snacks.nvim",
     enabled: pluginStatus.snacks,
-    profiles: ["minimal", "core"],
+    profiles: ["core"],
     cache: { afterFile: `~/.config/nvim/rc/after/snacks.lua` },
   },
 ];
