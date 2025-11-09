@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2025/11/08 17:30:59.
+// Last Change : 2025/11/09 08:58:07.
 // =============================================================================
 
 export const pluginStatus = {
@@ -13,6 +13,7 @@ export const pluginStatus = {
   blink: true,
   bookmarks: true,
   bqf: true,
+  noice: true,
   bufferline: false,
   buffertabs: false,
   care: false,
@@ -27,7 +28,7 @@ export const pluginStatus = {
   ddufiler: false,
   deck: false,
   denippet: false,
-  fall: true,
+  fall: false,
   fern: false,
   fidget: false,
   flash: true,
@@ -38,13 +39,13 @@ export const pluginStatus = {
   incline: false,
   indentblankline: false,
   initial: false,
-  insx: false,
+  insx: true,
   ix: false,
   jab: false,
   hellshake: false,
   lightline: false,
   lualine: false,
-  mini: true,
+  mini: false,
   modesearch: false,
   necodeium: false,
   neocolumn: false,
@@ -64,7 +65,7 @@ export const pluginStatus = {
   sg: false,
   slimline: true,
   smartmotion: false,
-  snacks: false,
+  snacks: true,
   snipewin: true,
   staba: false,
   telescope: false,

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:13:53.
+// Last Change : 2025/11/09 09:08:05.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -14,7 +14,7 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const libs: Plug[] = [
   {
     url: "https://github.com/vim-denops/denops.vim",
-    profiles: ["minimal", "core"],
+    profiles: ["core"],
     cache: { beforeFile: `~/.config/nvim/rc/before/denops.vim` },
   },
   {
@@ -35,6 +35,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/LunarVim/bigfile.nvim",
+    enabled: false,
     cache: { afterFile: `~/.config/nvim/rc/after/bigfile.lua` },
   },
   {
@@ -93,13 +94,6 @@ export const libs: Plug[] = [
     profiles: ["minimal"],
   },
   {
-    url: "https://github.com/stevearc/dressing.nvim",
-    enabled: false,
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("dressing").setup()`);
-    },
-  },
-  {
     url: "https://github.com/nvim-tree/nvim-web-devicons",
     profiles: ["minimal"],
     cache: { enabled: false },
@@ -123,11 +117,12 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/folke/noice.nvim",
     profiles: ["minimal"],
-    enabled: false,
+    enabled: pluginStatus.noice,
     dependencies: [
       "https://github.com/MunifTanjim/nui.nvim",
     ],
     after: async ({ denops }) => {
+      await vars.o.set(denops, "cmdheight", 0);
       await denops.call(`luaeval`, `require("noice").setup(_A)`, {
         lsp: {
           override: {
@@ -144,7 +139,7 @@ export const libs: Plug[] = [
         },
         cmdline: {
           enabled: true,
-          view: "cmdline",
+          // view: "cmdline",
         },
         notify: {
           enabled: true,
@@ -185,7 +180,7 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/folke/which-key.nvim",
     profiles: ["minimal"],
-    enabled: false,
+    enabled: true,
     afterFile: `~/.config/nvim/rc/after/which-key.lua`,
   },
   {

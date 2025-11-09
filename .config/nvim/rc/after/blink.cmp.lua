@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : blink.cmp.lua
 -- Author      : yukimemi
--- Last Change : 2025/11/03 08:03:23.
+-- Last Change : 2025/11/09 09:05:22.
 -- =============================================================================
 
 require("blink-cmp").setup({
@@ -42,7 +42,7 @@ require("blink-cmp").setup({
       list = {
         selection = {
           preselect = false,
-          auto_insert = false,
+          auto_insert = true,
         },
       },
       menu = {

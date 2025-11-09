@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : blink.ts
 // Author      : yukimemi
-// Last Change : 2025/10/04 21:40:52.
+// Last Change : 2025/11/09 08:31:12.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -46,6 +46,7 @@ export const blink: Plug[] = [
   {
     url: "https://github.com/Saghen/blink.indent",
     profiles: ["default", "core"],
+    enabled: false,
     afterFile: "~/.config/nvim/rc/after/blink.indent.lua",
   },
 ];

@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2025/09/20 11:28:14.
+-- Last Change : 2025/11/09 08:51:37.
 -- =============================================================================
 
 require("snacks").setup({
@@ -20,7 +20,23 @@ require("snacks").setup({
   debug = {
     enabled = true,
   },
+  dim = {
+    enabled = true,
+  },
+  gh = {
+    enabled = true,
+  },
+  git = {
+    enabled = false,
+  },
+  indent = {
+    enabled = true,
+    chunk = { enabled = true },
+  },
   input = {
+    enabled = true,
+  },
+  lazygit = {
     enabled = true,
   },
   notifier = {
@@ -30,34 +46,31 @@ require("snacks").setup({
   notify = {
     enabled = true,
   },
-  quickfile = {
-    enabled = false,
-  },
-  indent = {
+  picker = {
     enabled = true,
   },
-  lazygit = {
+  quickfile = {
     enabled = true,
   },
   scope = {
     enabled = true,
   },
-  scroll = {
+  scratch = {
     enabled = true,
+  },
+  scroll = {
+    enabled = false,
   },
   statuscolumn = {
-    enabled = true,
-  },
-  words = {
     enabled = true,
   },
   terminal = {
     enabled = false,
   },
-  git = {
-    enabled = false,
+  toggle = {
+    enabled = true,
   },
-  picker = {
+  words = {
     enabled = true,
   },
 })
@@ -90,8 +103,13 @@ vim.keymap.set("n", "<space>gg", function() Snacks.lazygit() end, { desc = "Lazy
 -- Snacks.notifier
 vim.keymap.set("n", "<space>nl", function() Snacks.notifier.show_history() end, { desc = "Snacks history" })
 
+-- Snacks.scratch
+vim.keymap.set("n", "<space>.", function() Snacks.scratch() end, { desc = "Toggle Scratch Buffer" })
+vim.keymap.set("n", "<space>S", function() Snacks.scratch.select() end, { desc = "Select Scratch Buffer" })
+
+-- Snacks.picker
 if true then
-  vim.keymap.set("n", "<space>S", function() Snacks.picker() end, { desc = "Snacks picker" })
+  -- vim.keymap.set("n", "<space>S", function() Snacks.picker() end, { desc = "Snacks picker" })
   vim.keymap.set("n", "<space>ff", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
   vim.keymap.set("n", "<space>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
   vim.keymap.set("n", "<space>/", function() Snacks.picker.grep() end, { desc = "Grep" })
@@ -130,11 +148,16 @@ if true then
   vim.keymap.set("n", "<space>pp", function() Snacks.picker.projects() end, { desc = "Projects" })
 
   -- lsp
-  -- vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "LSP definitions" })
-  -- vim.keymap.set("n", "gi", function() Snacks.picker.lsp_implementations() end, { desc = "LSP implementations" })
-  -- vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { desc = "LSP references" })
-  -- vim.keymap.set("n", "gt", function() Snacks.picker.lsp_type_definitions() end, { desc = "LSP type definitions" })
-  -- vim.keymap.set("n", "gs", function() Snacks.picker.lsp_symbols() end, { desc = "LSP symbols" })
+  vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto Definition" })
+  vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto Declaration" })
+  vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, { nowait = true, desc = "References" })
+  vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
+  vim.keymap.set("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto T[y]pe Definition" })
+  vim.keymap.set("n", "gai", function() Snacks.picker.lsp_incoming_calls() end, { desc = "C[a]lls Incoming" })
+  vim.keymap.set("n", "gao", function() Snacks.picker.lsp_outgoing_calls() end, { desc = "C[a]lls Outgoing" })
+  vim.keymap.set("n", "<space>ls", function() Snacks.picker.lsp_symbols() end, { desc = "LSP Symbols" })
+  vim.keymap.set("n", "<space>lS", function() Snacks.picker.lsp_workspace_symbols() end,
+    { desc = "LSP Workspace Symbols" })
 
   -- git
   vim.keymap.set("n", "<space>gb", function() Snacks.picker.git_branches() end, { desc = "Git Branches" })
@@ -144,4 +167,11 @@ if true then
   -- vim.keymap.set("n", "<space>gS", function() Snacks.picker.git_stash() end, { desc = "Git Stash" })
   vim.keymap.set("n", "<space>gd", function() Snacks.picker.git_diff() end, { desc = "Git Diff (Hunks)" })
   vim.keymap.set("n", "<space>gf", function() Snacks.picker.git_log_file() end, { desc = "Git Log File" })
+  -- gh
+  vim.keymap.set("n", "<space>gi", function() Snacks.picker.gh_issue() end, { desc = "GitHub Issues (open)" })
+  vim.keymap.set("n", "<space>gI", function() Snacks.picker.gh_issue({ state = "all" }) end,
+    { desc = "GitHub Issues (all)" })
+  vim.keymap.set("n", "<space>gp", function() Snacks.picker.gh_pr() end, { desc = "GitHub Pull Requests (open)" })
+  vim.keymap.set("n", "<space>gP", function() Snacks.picker.gh_pr({ state = "all" }) end,
+    { desc = "GitHub Pull Requests (all)" })
 end

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2025/10/19 09:12:22.
+// Last Change : 2025/11/09 09:09:46.
 // =============================================================================
 
 export function cacheVim() {
@@ -154,7 +154,8 @@ export function cacheLua() {
 
       local ok, extui = pcall(require, 'vim._extui')
       if ok and extui then
-        pcall(extui.enable, {})
+        -- Disable extui. use noice.nvim
+        -- pcall(extui.enable, {})
       end
     `,
     path: "~/.config/nvim/plugin/dvpm_cache.lua",

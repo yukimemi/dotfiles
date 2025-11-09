@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/11/08 15:49:53.
+// Last Change : 2025/11/09 08:16:08.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -32,7 +32,7 @@ export const util: Plug[] = [
   {
     url: "https://github.com/ahmedkhalf/project.nvim",
     enabled: false,
-    profiles: ["minimal", "core"],
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("project_nvim").setup(_A)`, {
         // Manual mode doesn't automatically change your root directory, so you have
