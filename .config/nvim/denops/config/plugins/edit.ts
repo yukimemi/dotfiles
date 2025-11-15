@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/10/05 19:35:48.
+// Last Change : 2025/11/15 17:47:35.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -203,5 +203,9 @@ export const edit: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("wrapping").setup()`);
     },
+  },
+  {
+    url: "https://github.com/qwavies/smart-backspace.nvim",
+    profiles: ["core"],
   },
 ];

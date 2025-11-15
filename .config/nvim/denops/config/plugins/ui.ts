@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/11/03 07:26:13.
+// Last Change : 2025/11/15 18:24:30.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -25,12 +25,12 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/mopp/smartnumber.vim",
     profiles: ["core"],
-    enabled: false,
+    enabled: true,
   },
   {
     url: "https://github.com/sitiom/nvim-numbertoggle",
     profiles: ["core"],
-    enabled: true,
+    enabled: false,
   },
   {
     url: "https://github.com/Isrothy/neominimap.nvim",
@@ -488,5 +488,21 @@ export const ui: Plug[] = [
     dependencies: ["https://github.com/kevinhwang91/promise-async"],
     profiles: ["lsp"],
     afterFile: "~/.config/nvim/rc/after/nvim-ufo.lua",
+  },
+  {
+    url: "https://github.com/chrisgrieser/nvim-origami",
+    profiles: ["core"],
+    after: async ({ denops }) => {
+      await vars.options.set(denops, "foldlevel", 99);
+      await vars.options.set(denops, "foldlevelstart", 99);
+      await denops.call(`luaeval`, `require("origami").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/zenangst/relativenumber-hints.nvim",
+    profiles: ["core"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("relativenumber_hints").setup()`);
+    },
   },
 ];

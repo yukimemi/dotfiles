@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2025/11/03 07:24:30.
+// Last Change : 2025/11/15 16:59:06.
 // =============================================================================
 
 import type { Denops } from "@denops/std";
@@ -10,7 +10,7 @@ import * as autocmd from "@denops/std/autocmd";
 import * as fn from "@denops/std/function";
 import * as helper from "@denops/std/helper";
 import * as lambda from "@denops/std/lambda";
-// import * as option from "@denops/std/option";
+import * as option from "@denops/std/option";
 import { batch } from "@denops/std/batch";
 import { ensureDir } from "@std/fs/ensure-dir";
 import { stdpath } from "@denops/std/function/nvim";
@@ -29,7 +29,7 @@ export async function setOption(denops: Denops) {
     //   "ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1",
     // );
     // await option.fileformats.set(denops, "unix,dos,mac");
-    //
+
     // await option.backup.set(denops, false);
     // await option.backupdir.set(denops, backupdir);
     // await option.colorcolumn.set(denops, "100");
@@ -50,7 +50,7 @@ export async function setOption(denops: Denops) {
     // await option.mouse.set(denops, "a");
     // await option.number.set(denops, true);
     // await option.pumheight.set(denops, 30);
-    // await option.relativenumber.set(denops, true);
+    await option.relativenumber.set(denops, true);
     // await option.scrolloff.set(denops, 4);
     // await option.sessionoptions.set(denops, "buffers,curdir,tabpages,winsize");
     // await option.shiftround.set(denops, true);
@@ -71,7 +71,7 @@ export async function setOption(denops: Denops) {
     // await option.undolevels.set(denops, 10000);
     // await option.wildmode.set(denops, "longest:full,full");
     // await option.wrap.set(denops, false);
-    //
+
     // if (denops.meta.host === "nvim") {
     //   await option.cmdheight.set(denops, 0);
     //   await nvimOption.inccommand.set(denops, "nosplit");

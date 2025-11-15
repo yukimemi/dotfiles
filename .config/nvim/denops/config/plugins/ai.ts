@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/11/03 15:49:48.
+// Last Change : 2025/11/15 01:17:23.
 // =============================================================================
 
 import * as lambda from "@denops/std/lambda";
@@ -173,8 +173,8 @@ export const ai: Plug[] = [
         "futago_history_db",
         `~/.cache/nvim/futago/db/history.db`,
       );
-      await vars.g.set(denops, "futago_model", "gemini-2.5-flash");
-      await vars.g.set(denops, "futago_git_model", "gemini-2.5-flash");
+      await vars.g.set(denops, "futago_model", "gemini-flash-latest");
+      await vars.g.set(denops, "futago_git_model", "gemini-flash-latest");
       const safetySettings: SafetySetting[] = [
         {
           category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,

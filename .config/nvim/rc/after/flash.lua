@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : flash.lua
 -- Author      : yukimemi
--- Last Change : 2025/11/02 21:51:54.
+-- Last Change : 2025/11/15 18:22:12.
 -- =============================================================================
 
 require("flash").setup({
@@ -16,7 +16,7 @@ require("flash").setup({
   },
   modes = {
     search = {
-      enabled = true,
+      enabled = false,
     },
     char = {
       enabled = false,

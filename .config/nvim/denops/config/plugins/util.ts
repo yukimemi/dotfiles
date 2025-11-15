@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/11/09 08:16:08.
+// Last Change : 2025/11/15 17:51:00.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -556,6 +556,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/MattesGroeger/vim-bookmarks",
+    profiles: ["mark"],
     enabled: pluginStatus.vimbookmarks,
   },
   {
@@ -563,6 +564,14 @@ export const util: Plug[] = [
     profiles: ["mark"],
     enabled: pluginStatus.bookmarks,
     afterFile: `~/.config/nvim/rc/after/bookmarks.lua`,
+  },
+  {
+    url: "https://github.com/walkersumida/fusen.nvim",
+    profiles: ["mark"],
+    enabled: pluginStatus.fusen,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("fusen").setup()`);
+    },
   },
   {
     url: "https://github.com/itchyny/calendar.vim",
