@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/11/15 18:24:30.
+// Last Change : 2025/11/16 09:25:48.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -503,6 +503,13 @@ export const ui: Plug[] = [
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("relativenumber_hints").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/m-demare/hlargs.nvim",
+    profiles: ["core"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("hlargs").setup()`);
     },
   },
 ];
