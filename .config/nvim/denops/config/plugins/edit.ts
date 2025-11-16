@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/11/15 17:47:35.
+// Last Change : 2025/11/16 09:17:53.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -207,5 +207,10 @@ export const edit: Plug[] = [
   {
     url: "https://github.com/qwavies/smart-backspace.nvim",
     profiles: ["core"],
+  },
+  {
+    url: "https://github.com/ysmb-wtsg/in-and-out.nvim",
+    profiles: ["core"],
+    afterFile: `~/.config/nvim/rc/after/in-and-out.lua`,
   },
 ];
