@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yml
 # Author      : yukimemi
-# Last Change : 2025/06/08 15:11:53.
+# Last Change : 2025/11/16 11:00:41.
 # =============================================================================
 
 snippets:
@@ -298,6 +298,8 @@ snippets:
     snippet: go install github.com/porjo/youtubeuploader/cmd/youtubeuploader@latest
   - name: Install asdf
     snippet: brew install asdf
+  - name: Install gwq
+    snippet: go install github.com/d-kuro/gwq/cmd/gwq@latest
   - name: Install nekome
     snippet: brew install arrow2nd/tap/nekome
   - name: Install exercism
