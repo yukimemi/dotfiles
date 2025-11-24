@@ -30,7 +30,7 @@ hash = "2bd799b42b8e42b8ef100310be71f8d1"
 
 [[plugin.deps]]
 use = "mikavilpas/easyjump.yazi:easyjump"
-rev = "d50f6d5"
+rev = "8d71db9"
 hash = "33d34d0e26fd367868e8c4ca5918b2ee"
 
 [flavor]

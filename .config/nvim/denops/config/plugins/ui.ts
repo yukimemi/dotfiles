@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/11/16 09:25:48.
+// Last Change : 2025/11/22 21:04:57.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -500,6 +500,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/zenangst/relativenumber-hints.nvim",
+    enabled: false,
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("relativenumber_hints").setup()`);

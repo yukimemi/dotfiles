@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2025/11/16 09:42:46.
+// Last Change : 2025/11/22 21:06:30.
 // =============================================================================
 
 import type { Denops } from "@denops/std";
@@ -55,11 +55,11 @@ export async function setOption(denops: Denops) {
     await option.sidescrolloff.set(denops, 3);
     await option.termguicolors.set(denops, true);
     // await option.sessionoptions.set(denops, "buffers,curdir,tabpages,winsize");
-    // await option.shiftround.set(denops, true);
-    // await option.shiftwidth.set(denops, 2);
+    await option.shiftround.set(denops, true);
+    await option.shiftwidth.set(denops, 2);
     // await option.showmode.set(denops, false);
     // await option.signcolumn.set(denops, "yes");
-    // await option.smartcase.set(denops, true);
+    await option.smartcase.set(denops, true);
     // await option.smartindent.set(denops, true);
     // await option.spell.set(denops, false);
     // await option.splitbelow.set(denops, true);

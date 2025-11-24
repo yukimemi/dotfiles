@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/10/06 00:31:08.
+# Last Change : 2025/11/24 11:06:20.
 # =============================================================================
 
 # Set title.
@@ -318,26 +318,40 @@ if (Is-Windows) {
 Set-Alias h hitori
 
 # Readline setting.
-Set-PSReadLineOption -EditMode Vi
-Set-PSReadLineOption -ViModeIndicator cursor
-if ($PSVersionTable.PSVersion.Major -ge 7) {
-  Set-PSReadLineOption -PredictionSource HistoryAndPlugin
-  Set-PSReadLineOption -PredictionViewStyle ListView
+$PSReadLineOptions = @{
+  EditMode = "Vi"
+  ViModeIndicator = "Cursor"
 }
-Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function AcceptNextSuggestionWord
-Set-PSReadLineKeyHandler -Key 'Ctrl+e' -Function AcceptSuggestion
+if ($PSVersionTable.PSVersion.Major -ge 7) {
+  $PSReadLineOptions.PredictionSource = "HistoryAndPlugin"
+  $PSReadLineOptions.PredictionViewStyle = "InlineView"
+}
+Set-PSReadLineOption @PSReadLineOptions
 
-Set-PSReadLineKeyHandler -Key 'Shift+Spacebar' -Function PossibleCompletions
+# Toggle PredictionViewStyle between InlineView and ListView
+Set-PSReadLineKeyHandler -Chord Ctrl+Shift+G -ScriptBlock {
+  $current = (Get-PSReadLineOption).PredictionViewStyle
+  if ($current -eq 'InlineView') {
+    Set-PSReadLineOption -PredictionViewStyle ListView
+  } else {
+    Set-PSReadLineOption -PredictionViewStyle InlineView
+  }
+}
 
-Set-PSReadLineKeyHandler -Key 'Ctrl+a' -Function BeginningOfLine
-Set-PSReadLineKeyHandler -Key 'Ctrl+b' -Function BackwardChar
-Set-PSReadLineKeyHandler -Key 'Ctrl+d' -Function DeleteChar
-Set-PSReadLineKeyHandler -Key 'Ctrl+h' -Function BackwardDeleteChar
-Set-PSReadLineKeyHandler -Key 'Ctrl+l' -Function ClearScreen
-Set-PSReadLineKeyHandler -Key 'Ctrl+n' -Function HistorySearchForward
-Set-PSReadLineKeyHandler -Key 'Ctrl+p' -Function HistorySearchBackward
-Set-PSReadLineKeyHandler -Key 'Ctrl+u' -Function BackwardDeleteLine
-Set-PSReadLineKeyHandler -Key 'Ctrl+w' -Function BackwardDeleteWord
+Set-PSReadLineKeyHandler -Chord Ctrl+f -Function AcceptNextSuggestionWord -ViMode Insert
+Set-PSReadLineKeyHandler -Chord Ctrl+e -Function AcceptSuggestion -ViMode Insert
+
+Set-PSReadLineKeyHandler -Chord Shift+Spacebar -Function PossibleCompletions -ViMode Insert
+
+Set-PSReadLineKeyHandler -Chord Ctrl+a -Function BeginningOfLine -ViMode Insert
+Set-PSReadLineKeyHandler -Chord Ctrl+b -Function BackwardChar -ViMode Insert
+Set-PSReadLineKeyHandler -Chord Ctrl+d -Function DeleteChar -ViMode Insert
+Set-PSReadLineKeyHandler -Chord Ctrl+h -Function BackwardDeleteChar -ViMode Insert
+Set-PSReadLineKeyHandler -Chord Ctrl+l -Function ClearScreen -ViMode Insert
+Set-PSReadLineKeyHandler -Chord Ctrl+n -Function HistorySearchForward -ViMode Insert
+Set-PSReadLineKeyHandler -Chord Ctrl+p -Function HistorySearchBackward -ViMode Insert
+Set-PSReadLineKeyHandler -Chord Ctrl+u -Function BackwardDeleteLine -ViMode Insert
+Set-PSReadLineKeyHandler -Chord Ctrl+w -Function BackwardDeleteWord -ViMode Insert
 
 # Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.Count) locations.`n"
 

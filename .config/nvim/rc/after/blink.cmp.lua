@@ -37,6 +37,8 @@ require("blink-cmp").setup({
     enabled = true,
     keymap = {
       preset = "cmdline",
+      ['<C-n>'] = { 'select_next', 'fallback' },
+      ['<C-p>'] = { 'select_prev', 'fallback' },
     },
     completion = {
       list = {

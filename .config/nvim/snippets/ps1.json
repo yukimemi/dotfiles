@@ -10,7 +10,7 @@
     - cfg: json config.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/09/28 00:40:39.
+  .Last Change : 2025/11/22 21:26:15.
 #>
 param([string]\\$cfg)
 
@@ -139,7 +139,7 @@ function Start-Main {
 
     \\$app.result = \\$app.cnst.SUCCESS
   } catch {
-    log \"Error ! \\$_\" \"Red\"
+    log \"Error ! \\$(\\$_ | Out-String)\" \"Red\"
     \\$app.result = \\$app.cnst.ERROR
   } finally {
     log \"[Start-Main] End\"

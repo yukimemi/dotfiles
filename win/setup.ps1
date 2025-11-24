@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/09/23 18:34:18.
+  .Last Change : 2025/11/23 19:47:41.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -88,6 +88,7 @@ function Install-Neovim {
     Install require apps.
 #>
 function Install-RequiredModules {
+  winget install -q raycast -s msstore
   winget install -q glzr-io.glazewm
   winget install -q glzr-io.zebar
   winget install -q Oven-sh.Bun

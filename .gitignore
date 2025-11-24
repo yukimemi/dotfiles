@@ -7,3 +7,4 @@
 *.dat
 .aider*
 !.aider.conf.yml
+.config/raycast-x/
