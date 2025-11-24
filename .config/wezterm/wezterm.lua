@@ -142,7 +142,7 @@ return {
   use_fancy_tab_bar = false,
   use_ime = true,
   window_background_opacity = 0.90,
-  font_size = os.is_mac and 12.0 or 12.0,
+  font_size = os.is_mac and 12.0 or 11.0,
   font = wezterm.font_with_fallback({
     "PlemolJP Console NF",
     "UDEV Gothic NF",

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/11/15 17:51:00.
+// Last Change : 2025/11/25 00:02:45.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -310,6 +310,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/folke/todo-comments.nvim",
+    profiles: ["colors"],
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("todo-comments").setup()`);
@@ -710,5 +711,10 @@ export const util: Plug[] = [
     url: "https://github.com/mihaifm/MegaToggler",
     profiles: ["core"],
     afterFile: `~/.config/nvim/rc/after/megatoggler.lua`,
+  },
+  {
+    url: "https://github.com/folke/persistence.nvim",
+    profiles: ["core"],
+    cache: { afterFile: `~/.config/nvim/rc/after/persistence.lua` },
   },
 ];
