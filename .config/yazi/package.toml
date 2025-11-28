@@ -1,7 +1,7 @@
 [[plugin.deps]]
 use = "hankertrix/augment-command"
-rev = "120406f"
-hash = "e83ccc99739cd500fb1b1014dc45824a"
+rev = "f0e6f44"
+hash = "9bcfdacce6b89dfd039a895c8403e5de"
 
 [[plugin.deps]]
 use = "orhnk/system-clipboard"
@@ -25,12 +25,12 @@ hash = "7cc42012a7c2099f80064d228feb8d44"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
-rev = "0742fff"
-hash = "2bd799b42b8e42b8ef100310be71f8d1"
+rev = "cfb9140"
+hash = "b5067143415bd2d46c0dfa57319ddcef"
 
 [[plugin.deps]]
 use = "mikavilpas/easyjump.yazi:easyjump"
-rev = "8d71db9"
+rev = "126afa6"
 hash = "33d34d0e26fd367868e8c4ca5918b2ee"
 
 [flavor]

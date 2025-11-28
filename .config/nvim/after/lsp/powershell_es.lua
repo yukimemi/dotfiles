@@ -14,6 +14,7 @@ return {
         preset = "OTBS",
         ignoreOneLineBlock = false,
         useCorrectCasing = true,
+        autoCorrectAliases = true,
       },
     },
   },
