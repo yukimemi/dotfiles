@@ -1,57 +1,18 @@
 // =============================================================================
 // File        : treesitter.ts
 // Author      : yukimemi
-// Last Change : 2025/09/28 01:52:17.
+// Last Change : 2025/11/29 01:58:36.
 // =============================================================================
 
-import type { Plug } from "@yukimemi/dvpm";
-import { execute } from "@denops/std/helper";
-
 import * as mapping from "@denops/std/mapping";
-import { execCommand } from "../util.ts";
+import * as vars from "@denops/std/variable";
+import type { Plug } from "@yukimemi/dvpm";
 
 export const treesitter: Plug[] = [
   {
     url: "https://github.com/nvim-treesitter/nvim-treesitter",
     rev: "main",
     profiles: ["treesitter"],
-    build: async ({ denops, info }) => {
-      if (info.isLoad) {
-        await execute(
-          denops,
-          `
-lua << EOB
-require("nvim-treesitter").install({
-  "bash",
-  "editorconfig",
-  "fish",
-  "git_config",
-  "gitcommit",
-  "gitignore",
-  "go",
-  "html",
-  "javascript",
-  "jq",
-  "lua",
-  "markdown",
-  "markdown_inline",
-  "nu",
-  "powershell",
-  "rust",
-  "tmux",
-  "typescript",
-  "vim",
-  "xml",
-  "yaml",
-})
-EOB`,
-        );
-        await execCommand(denops, "cargo", [
-          "install",
-          "tree-sitter-cli",
-        ], info.dst);
-      }
-    },
     afterFile: "~/.config/nvim/rc/after/nvim-treesitter.lua",
   },
   {
@@ -110,5 +71,41 @@ EOB`,
     url: "https://github.com/luckasRanarison/tailwind-tools.nvim",
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/tailwind-tools.lua",
+  },
+  {
+    url: "https://github.com/VonHeikemen/ts-enable.nvim",
+    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
+    profiles: ["treesitter"],
+    before: async ({ denops }) => {
+      await vars.g.set(denops, "ts_enable", {
+        parsers: [
+          "bash",
+          "editorconfig",
+          "fish",
+          "git_config",
+          "gitcommit",
+          "gitignore",
+          "go",
+          "html",
+          "javascript",
+          "jq",
+          "lua",
+          "markdown",
+          "markdown_inline",
+          "nu",
+          "powershell",
+          "rust",
+          "tmux",
+          "typescript",
+          "vim",
+          "xml",
+          "yaml",
+        ],
+        auto_install: true,
+        highlights: true,
+        folds: true,
+        indents: true,
+      });
+    },
   },
 ];
