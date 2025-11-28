@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/11/16 09:17:53.
+// Last Change : 2025/11/29 00:26:09.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -212,5 +212,9 @@ export const edit: Plug[] = [
     url: "https://github.com/ysmb-wtsg/in-and-out.nvim",
     profiles: ["core"],
     afterFile: `~/.config/nvim/rc/after/in-and-out.lua`,
+  },
+  {
+    url: "https://github.com/kana/vim-niceblock",
+    profiles: ["core"],
   },
 ];

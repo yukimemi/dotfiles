@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2025/11/09 08:51:37.
+-- Last Change : 2025/11/28 21:32:38.
 -- =============================================================================
 
 require("snacks").setup({
@@ -48,6 +48,7 @@ require("snacks").setup({
   },
   picker = {
     enabled = true,
+    ui_select = true,
   },
   quickfile = {
     enabled = true,

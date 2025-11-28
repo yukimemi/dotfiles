@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : wiki.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:13:32.
+// Last Change : 2025/11/28 23:31:32.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -129,6 +129,14 @@ export const memo: Plug[] = [
 
       // Call insert link automatically when we start typing a link
       // await mapping.map(denops, "[[", "<cmd>Telekasten insert_link<CR>", { mode: "i" });
+    },
+  },
+  {
+    url: "https://github.com/walkersumida/fusen.nvim",
+    profiles: ["memo"],
+    enabled: pluginStatus.fusen,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("fusen").setup()`);
     },
   },
 ];

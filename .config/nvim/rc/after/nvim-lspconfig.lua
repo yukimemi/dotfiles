@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : nvim-lspconfig.lua
 -- Author      : yukimemi
--- Last Change : 2025/08/24 12:04:51.
+-- Last Change : 2025/11/28 21:35:05.
 -- =============================================================================
 
 vim.api.nvim_create_user_command('LspHealth', function()
@@ -27,3 +27,5 @@ vim.diagnostic.config({
 })
 
 vim.lsp.enable(require('mason-lspconfig').get_installed_servers())
+
+vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
