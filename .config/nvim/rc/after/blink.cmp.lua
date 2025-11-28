@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : blink.cmp.lua
 -- Author      : yukimemi
--- Last Change : 2025/11/09 09:05:22.
+-- Last Change : 2025/11/28 14:45:25.
 -- =============================================================================
 
 require("blink-cmp").setup({
@@ -37,8 +37,8 @@ require("blink-cmp").setup({
     enabled = true,
     keymap = {
       preset = "cmdline",
-      ['<C-n>'] = { 'select_next', 'fallback' },
-      ['<C-p>'] = { 'select_prev', 'fallback' },
+      ['<C-n>'] = { 'fallback_to_mappings' },
+      ['<C-p>'] = { 'fallback_to_mappings' },
     },
     completion = {
       list = {
