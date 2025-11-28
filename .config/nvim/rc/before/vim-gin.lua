@@ -1,23 +1,11 @@
 -- =============================================================================
 -- File        : vim-gin.lua
 -- Author      : yukimemi
--- Last Change : 2025/10/26 08:33:12.
+-- Last Change : 2025/11/28 14:41:19.
 -- =============================================================================
-
-local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
 
 vim.g.gin_log_persistent_args = { '++emojify' }
 vim.g.gin_log_disable_default_mappings = 1
-
-map("n", "<space>gs", "<cmd>GinStatus<cr>", opts)
-map("n", "<space>gc", "<cmd>Gin commit -v<cr>", opts)
--- map("n", "<space>gb", "<cmd>GinBranch<cr>", opts)
--- map("n", "<space>gd", "<cmd>GinDiff<cr>", opts)
--- map("n", "<space>gl", "<cmd>GinLog<cr>", opts)
-map("n", "<space>gL", "<cmd>GinLog -p -- %<cr>", opts)
-map("n", "<space>gp", "<cmd>Gin push<cr>", opts)
--- map("n", "<space>gg", ":<c-u>Gin grep ", opts)
 
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("MyGinStatus", { clear = true }),
@@ -35,5 +23,13 @@ vim.api.nvim_create_autocmd("FileType", {
     bufmap("n", "q", "<cmd>q<cr>")
     bufmap({ "n", "x" }, "h", "<Plug>(gin-action-stage)")
     bufmap({ "n", "x" }, "l", "<Plug>(gin-action-unstage)")
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNew' }, {
+  group = vim.api.nvim_create_augroup("MyGinCd", { clear = true }),
+  pattern = "*",
+  callback = function()
+    vim.cmd("GinLcd")
   end,
 })
