@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2025/10/26 08:32:47.
+// Last Change : 2025/11/28 17:05:03.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -131,5 +131,10 @@ export const git: Plug[] = [
         );
       }
     },
+  },
+  {
+    url: "https://github.com/skanehira/github-actions.nvim",
+    profiles: ["git"],
+    afterFile: `~/.config/nvim/rc/after/github-actions.lua`,
   },
 ];
