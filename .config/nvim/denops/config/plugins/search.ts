@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:12:28.
+// Last Change : 2025/11/29 07:35:51.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -12,7 +12,7 @@ export const search: Plug[] = [
   { url: "https://github.com/lambdalisue/vim-reword" },
   {
     url: "https://github.com/haya14busa/vim-asterisk",
-    profiles: ["default"],
+    profiles: ["core"],
   },
   {
     url: "https://github.com/monaqa/modesearch.nvim",
@@ -37,7 +37,7 @@ export const search: Plug[] = [
   },
   {
     url: "https://github.com/kevinhwang91/nvim-hlslens",
-    profiles: ["default"],
+    profiles: ["search"],
     dependencies: [
       "https://github.com/haya14busa/vim-asterisk",
     ],

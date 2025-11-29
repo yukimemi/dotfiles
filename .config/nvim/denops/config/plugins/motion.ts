@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2025/10/25 23:22:28.
+// Last Change : 2025/11/29 07:35:25.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -29,7 +29,7 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/folke/flash.nvim",
-    profiles: ["default", "core"],
+    profiles: ["core"],
     enabled: pluginStatus.flash,
     cache: { afterFile: `~/.config/nvim/rc/after/flash.lua` },
   },
@@ -48,7 +48,6 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/FluxxField/smart-motion.nvim",
-    profiles: ["default"],
     enabled: pluginStatus.smartmotion,
     afterFile: `~/.config/nvim/rc/after/smart-motion.lua`,
   },
@@ -116,7 +115,6 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/nvim-swm",
-    profiles: ["default"],
     afterFile: "~/.config/nvim/rc/after/nvim-swim.lua",
   },
   {

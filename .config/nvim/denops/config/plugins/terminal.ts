@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : terminal.ts
 // Author      : yukimemi
-// Last Change : 2025/10/05 12:49:12.
+// Last Change : 2025/11/29 07:36:14.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -32,12 +32,12 @@ export const terminal: Plug[] = [
   {
     url: "https://github.com/Shougo/ddt-ui-shell",
     enabled: pluginStatus.ddt,
-    profiles: ["default"],
+    profiles: ["terminal"],
   },
   {
     url: "https://github.com/Shougo/ddt-ui-terminal",
     enabled: pluginStatus.ddt,
-    profiles: ["default"],
+    profiles: ["terminal"],
   },
   {
     url: "https://github.com/xb-bx/editable-term.nvim",
@@ -48,7 +48,7 @@ export const terminal: Plug[] = [
   {
     url: "https://github.com/Shougo/ddt.vim",
     enabled: pluginStatus.ddt,
-    profiles: ["default"],
+    profiles: ["terminal"],
     dependencies: [
       "https://github.com/Shougo/ddt-ui-shell",
       "https://github.com/Shougo/ddt-ui-terminal",

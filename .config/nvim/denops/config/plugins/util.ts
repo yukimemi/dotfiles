@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/11/29 00:27:46.
+// Last Change : 2025/11/29 07:40:48.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -26,8 +26,8 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/mattn/vim-findroot",
-    enabled: true,
-    profiles: ["default"],
+    enabled: false,
+    profiles: ["core"],
   },
   {
     url: "https://github.com/ahmedkhalf/project.nvim",
@@ -286,7 +286,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/simeji/winresizer",
-    profiles: ["default", "core"],
+    profiles: ["core"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "winresizer_gui_enable", 0);
     },
@@ -328,7 +328,6 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/skanehira/denops-translate.vim",
-    profiles: ["default"],
   },
   {
     url: "https://github.com/mattn/vim-sonictemplate",
@@ -537,7 +536,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/tani/dmacro.nvim",
-    profiles: ["default"],
+    profiles: ["core"],
     enabled: true,
     afterFile: "~/.config/nvim/rc/after/dmacro.lua",
   },

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/11/09 09:08:05.
+// Last Change : 2025/11/29 07:34:48.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -40,12 +40,11 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/tani/vim-artemis",
-    profiles: ["default", "core"],
+    profiles: ["core"],
     cache: { enabled: true },
   },
   {
     url: "https://github.com/j-hui/fidget.nvim",
-    profiles: ["default"],
     enabled: pluginStatus.fidget,
     cache: { afterFile: "~/.config/nvim/rc/after/fidget.lua" },
   },
@@ -149,7 +148,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/kamalsacranie/nvim-mapper",
-    profiles: ["default", "core"],
+    profiles: ["core"],
     cache: { enabled: true },
   },
   {

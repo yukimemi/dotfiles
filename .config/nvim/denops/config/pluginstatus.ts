@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2025/11/15 17:50:25.
+// Last Change : 2025/11/29 07:39:59.
 // =============================================================================
 
 export const pluginStatus = {
@@ -9,12 +9,10 @@ export const pluginStatus = {
   autopairs: false,
   barbar: false,
   barbecue: false,
-  betterwhitespace: false,
+  betterwhitespace: true,
   blink: true,
   bookmarks: false,
-  fusen: true,
   bqf: true,
-  noice: true,
   bufferline: false,
   buffertabs: false,
   care: false,
@@ -29,21 +27,24 @@ export const pluginStatus = {
   ddufiler: false,
   deck: false,
   denippet: false,
+  eyeliner: false,
   fall: false,
   fern: false,
   fidget: false,
   flash: true,
+  fusen: true,
   fuzzymotion: false,
   haritsuke: false,
   heirline: false,
+  hellshake: false,
   hlchunk: false,
+  illuminate: true,
   incline: false,
   indentblankline: false,
   initial: false,
   insx: true,
   ix: false,
   jab: false,
-  hellshake: false,
   lightline: false,
   lualine: false,
   mini: false,
@@ -52,6 +53,7 @@ export const pluginStatus = {
   neocolumn: false,
   neotest: false,
   neotree: false,
+  noice: true,
   notifier: false,
   nvimnotify: false,
   nvimtree: false,
@@ -61,6 +63,7 @@ export const pluginStatus = {
   qfreplace: true,
   quicker: true,
   quickrun: true,
+  quickscope: false,
   satellite: false,
   scrollbar: false,
   sg: false,

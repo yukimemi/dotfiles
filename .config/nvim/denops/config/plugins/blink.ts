@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : blink.ts
 // Author      : yukimemi
-// Last Change : 2025/11/09 08:31:12.
+// Last Change : 2025/11/29 07:34:23.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -39,13 +39,12 @@ export const blink: Plug[] = [
   {
     url: "https://github.com/saghen/blink.pairs",
     rev: "v0.3.0",
-    profiles: ["default"],
     dependencies: ["https://github.com/saghen/blink.download"],
     afterFile: "~/.config/nvim/rc/after/blink.pairs.lua",
   },
   {
     url: "https://github.com/Saghen/blink.indent",
-    profiles: ["default", "core"],
+    profiles: ["core"],
     enabled: false,
     afterFile: "~/.config/nvim/rc/after/blink.indent.lua",
   },

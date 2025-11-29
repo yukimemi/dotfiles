@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : tmux.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:11:02.
+// Last Change : 2025/11/29 07:36:42.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -9,7 +9,7 @@ import type { Plug } from "@yukimemi/dvpm";
 export const tmux: Plug[] = [
   {
     url: "https://github.com/christoomey/vim-tmux-navigator",
-    profiles: ["default"],
+    profiles: ["core"],
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.platform !== "windows",
   },
