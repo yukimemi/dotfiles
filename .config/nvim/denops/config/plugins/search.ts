@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2025/11/29 07:35:51.
+// Last Change : 2025/11/30 23:53:00.
 // =============================================================================
 
 import * as mapping from "@denops/std/mapping";
@@ -9,7 +9,11 @@ import type { Plug } from "@yukimemi/dvpm";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const search: Plug[] = [
-  { url: "https://github.com/lambdalisue/vim-reword" },
+  {
+    url: "https://github.com/lambdalisue/vim-reword",
+    enabled: false,
+    profiles: ["search"],
+  },
   {
     url: "https://github.com/haya14busa/vim-asterisk",
     profiles: ["core"],
@@ -17,15 +21,17 @@ export const search: Plug[] = [
   {
     url: "https://github.com/monaqa/modesearch.nvim",
     enabled: pluginStatus.modesearch,
+    profiles: ["search"],
     afterFile: "~/.config/nvim/rc/after/modesearch.lua",
   },
   {
     url: "https://github.com/lambdalisue/vim-kensaku",
-    profiles: ["minimal", "core"],
+    profiles: ["core"],
   },
   {
     url: "https://github.com/lambdalisue/vim-kensaku-search",
     enabled: false,
+    profiles: ["search"],
     dependencies: [
       "https://github.com/lambdalisue/vim-kensaku",
     ],
@@ -45,10 +51,14 @@ export const search: Plug[] = [
   },
   {
     url: "https://github.com/nvim-pack/nvim-spectre",
+    enabled: false,
+    profiles: ["search"],
     afterFile: "~/.config/nvim/rc/after/nvim-spectre.lua",
   },
   {
     url: "https://github.com/cshuaimin/ssr.nvim",
+    enabled: false,
+    profiles: ["search"],
     afterFile: "~/.config/nvim/rc/after/ssr.lua",
   },
   {

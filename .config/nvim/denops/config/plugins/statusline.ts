@@ -13,6 +13,7 @@ export const statusline: Plug[] = [
   {
     url: "https://github.com/rebelot/heirline.nvim",
     enabled: pluginStatus.heirline,
+    profiles: ["statusline"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("heirline").setup(_A)`, {
         statusline: {},

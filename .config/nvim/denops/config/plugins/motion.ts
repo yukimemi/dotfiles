@@ -13,13 +13,13 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const motion: Plug[] = [
   {
     url: "https://github.com/haya14busa/vim-edgemotion",
-    profiles: ["minimal", "core"],
+    profiles: ["core"],
     cache: { afterFile: `~/.config/nvim/rc/after/vim-edgemotion.lua` },
   },
   {
     url: "https://github.com/yuki-yano/fuzzy-motion.vim",
     enabled: pluginStatus.fuzzymotion,
-    profiles: ["minimal"],
+    profiles: ["core"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "fuzzy_motion_auto_jump", false);
       await vars.g.set(denops, "fuzzy_motion_disable_match_highlight", false);
@@ -36,38 +36,40 @@ export const motion: Plug[] = [
   {
     url: "https://github.com/atusy/jab.nvim",
     enabled: pluginStatus.jab,
-    profiles: ["minimal", "core"],
+    profiles: ["core"],
     dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
     cache: { afterFile: `~/.config/nvim/rc/after/jab.lua` },
   },
   {
     url: "https://github.com/nekowasabi/hellshake-yano.vim",
     enabled: pluginStatus.hellshake,
-    profiles: ["minimal", "core"],
+    profiles: ["core"],
     cache: { beforeFile: `~/.config/nvim/rc/before/hellshake-yano.lua` },
   },
   {
     url: "https://github.com/FluxxField/smart-motion.nvim",
     enabled: pluginStatus.smartmotion,
+    profiles: ["motion"],
     afterFile: `~/.config/nvim/rc/after/smart-motion.lua`,
   },
   {
     url: "https://github.com/lambdalisue/vim-initial",
     enabled: pluginStatus.initial,
+    profiles: ["motion"],
     after: async ({ denops }) => {
       await mapping.map(denops, "ss", "<cmd>Initial<cr>", { mode: "n" });
     },
   },
   {
     url: "https://github.com/yuki-yano/zero.nvim",
-    profiles: ["minimal"],
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.cmd(`lua require("zero").setup()`);
     },
   },
   {
     url: "https://github.com/Bakudankun/BackAndForward.vim",
-    profiles: ["minimal", "core"],
+    profiles: ["core"],
     before: async ({ denops }) => {
       await mapping.map(denops, "gH", "<Plug>(backandforward-back)", {
         mode: "n",
@@ -80,6 +82,7 @@ export const motion: Plug[] = [
   {
     url: "https://github.com/thinca/vim-poslist",
     enabled: false,
+    profiles: ["motion"],
     before: async ({ denops }) => {
       await mapping.map(denops, "<c-o>", "<Plug>(poslist-prev-pos)", {
         mode: ["n", "x"],
@@ -98,23 +101,28 @@ export const motion: Plug[] = [
   {
     url: "https://github.com/chaoren/vim-wordmotion",
     enabled: false,
+    profiles: ["motion"],
   },
   {
     url: "https://github.com/psliwka/vim-smoothie",
     enabled: false,
+    profiles: ["motion"],
   },
   {
     url: "https://github.com/declancm/cinnamon.nvim",
     enabled: false,
+    profiles: ["motion"],
     afterFile: "~/.config/nvim/rc/after/cinnamon.lua",
   },
   {
     url: "https://github.com/karb94/neoscroll.nvim",
     enabled: false,
+    profiles: ["motion"],
     afterFile: "~/.config/nvim/rc/after/neoscroll.lua",
   },
   {
     url: "https://github.com/hrsh7th/nvim-swm",
+    profiles: ["motion"],
     afterFile: "~/.config/nvim/rc/after/nvim-swim.lua",
   },
   {

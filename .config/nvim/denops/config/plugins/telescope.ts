@@ -10,7 +10,7 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const telescope: Plug[] = [
   {
     url: "https://github.com/yukimemi/telescope-chronicle.nvim",
-    profiles: ["minimal"],
+    profiles: ["ff"],
     dependencies: [
       "https://github.com/nvim-telescope/telescope.nvim",
       "https://github.com/yukimemi/chronicle.vim",
@@ -21,21 +21,25 @@ export const telescope: Plug[] = [
   },
   {
     url: "https://github.com/nvim-telescope/telescope-frecency.nvim",
+    profiles: ["ff"],
     dependencies: ["https://github.com/nvim-telescope/telescope.nvim"],
     afterFile: "~/.config/nvim/rc/after/telescope-frecency.lua",
   },
   {
     url: "https://github.com/nvim-telescope/telescope-file-browser.nvim",
+    profiles: ["ff"],
     dependencies: ["https://github.com/nvim-telescope/telescope.nvim"],
     afterFile: "~/.config/nvim/rc/after/telescope-file-browser.lua",
   },
   {
     url: "https://github.com/nvim-telescope/telescope-project.nvim",
+    profiles: ["ff"],
     dependencies: ["https://github.com/nvim-telescope/telescope.nvim"],
     afterFile: "~/.config/nvim/rc/after/telescope-project.lua",
   },
   {
     url: "https://github.com/fdschmidt93/telescope-egrepify.nvim",
+    profiles: ["ff"],
     dependencies: ["https://github.com/nvim-telescope/telescope.nvim"],
     cache: {
       afterFile: "~/.config/nvim/rc/after/telescope-egrepify.lua",
@@ -44,6 +48,7 @@ export const telescope: Plug[] = [
   {
     url: "https://github.com/tom-anders/telescope-vim-bookmarks.nvim",
     enabled: pluginStatus.vimbookmarks,
+    profiles: ["ff"],
     dependencies: [
       "https://github.com/MattesGroeger/vim-bookmarks",
       "https://github.com/nvim-telescope/telescope.nvim",
@@ -57,11 +62,12 @@ export const telescope: Plug[] = [
   },
   {
     url: "https://github.com/nvim-telescope/telescope-symbols.nvim",
+    profiles: ["ff"],
     dependencies: ["https://github.com/nvim-telescope/telescope.nvim"],
   },
   {
     url: "https://github.com/nvim-telescope/telescope.nvim",
-    profiles: ["minimal"],
+    profiles: ["ff"],
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/folke/trouble.nvim",

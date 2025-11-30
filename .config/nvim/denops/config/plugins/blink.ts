@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : blink.ts
 // Author      : yukimemi
-// Last Change : 2025/11/29 07:34:23.
+// Last Change : 2025/12/01 00:42:08.
 // =============================================================================
 
 import { exists } from "@std/fs";
@@ -11,12 +11,20 @@ import type { Plug } from "@yukimemi/dvpm";
 export const blink: Plug[] = [
   {
     url: "https://github.com/saghen/blink.download",
-    profiles: ["core"],
+    profiles: ["completion"],
+  },
+  {
+    url: "https://github.com/mikavilpas/blink-ripgrep.nvim",
+    profiles: ["completion"],
+    rev: "v2.2.0",
   },
   {
     url: "https://github.com/saghen/blink.cmp",
-    profiles: ["completion", "core"],
-    dependencies: ["https://github.com/rafamadriz/friendly-snippets"],
+    profiles: ["completion"],
+    dependencies: [
+      "https://github.com/rafamadriz/friendly-snippets",
+      "https://github.com/mikavilpas/blink-ripgrep.nvim",
+    ],
     rev: "v1.7.0",
     build: async ({ denops, info }) => {
       if (info.isLoad && info.isUpdate) {
@@ -38,6 +46,8 @@ export const blink: Plug[] = [
   },
   {
     url: "https://github.com/saghen/blink.pairs",
+    enabled: false,
+    profiles: ["completion"],
     dependencies: ["https://github.com/saghen/blink.download"],
     rev: "v0.3.0",
     afterFile: "~/.config/nvim/rc/after/blink.pairs.lua",

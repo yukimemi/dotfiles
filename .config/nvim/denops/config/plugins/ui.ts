@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/11/29 13:12:50.
+// Last Change : 2025/11/30 22:40:14.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -16,7 +16,11 @@ import * as vars from "@denops/std/variable";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const ui: Plug[] = [
-  { url: "https://github.com/lambdalisue/vim-seethrough", enabled: true },
+  {
+    url: "https://github.com/lambdalisue/vim-seethrough",
+    enabled: true,
+    profiles: ["ui"],
+  },
   {
     url: "https://github.com/andymass/vim-matchup",
     profiles: ["core"],
@@ -69,6 +73,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/ecthelionvi/NeoColumn.nvim",
     enabled: pluginStatus.neocolumn,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("NeoColumn").setup(_A)`, {
         NeoColumn: 100,
@@ -84,6 +89,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/unblevable/quick-scope",
     enabled: pluginStatus.quickscope,
+    profiles: ["ui"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "qs_lazy_highlight", 1);
     },
@@ -94,13 +100,22 @@ export const ui: Plug[] = [
     profiles: ["ui"],
     afterFile: `~/.config/nvim/rc/after/eyeliner.lua`,
   },
-  { url: "https://github.com/deris/vim-shot-f", enabled: false },
+  {
+    url: "https://github.com/deris/vim-shot-f",
+    enabled: false,
+    profiles: ["ui"],
+  },
   {
     url: "https://github.com/mei28/luminate.nvim",
     enabled: false,
+    profiles: ["ui"],
     afterFile: `~/.config/nvim/rc/after/luminate.lua`,
   },
-  { url: "https://github.com/itchyny/vim-parenmatch", enabled: false },
+  {
+    url: "https://github.com/itchyny/vim-parenmatch",
+    enabled: false,
+    profiles: ["ui"],
+  },
   {
     url: "https://github.com/ntpeters/vim-better-whitespace",
     enabled: pluginStatus.betterwhitespace,
@@ -139,6 +154,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/cxwx/specs.nvim",
     enabled: false,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("specs").setup(_A)`, {});
     },
@@ -146,6 +162,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/mvllow/modes.nvim",
     enabled: false,
+    profiles: ["ui"],
     afterFile: `~/.config/nvim/rc/after/modes.lua`,
   },
   {
@@ -261,6 +278,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/sphamba/smear-cursor.nvim",
     enabled: false,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("smear_cursor").setup()`);
     },
@@ -302,6 +320,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/Yggdroot/indentLine",
+    profiles: ["ui"],
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim",
     // deno-lint-ignore require-await
@@ -321,11 +340,13 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/romgrk/barbar.nvim",
     enabled: pluginStatus.barbar,
+    profiles: ["ui"],
     afterFile: `~/.config/nvim/rc/after/barbar.lua`,
   },
   {
     url: "https://github.com/akinsho/bufferline.nvim",
     enabled: pluginStatus.bufferline,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("bufferline").setup()`);
     },
@@ -333,6 +354,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/tomiis4/BufferTabs.nvim",
     enabled: pluginStatus.buffertabs,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("buffertabs").setup()`);
     },
@@ -340,6 +362,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/utilyre/barbecue.nvim",
     enabled: pluginStatus.barbecue,
+    profiles: ["ui"],
     dependencies: [
       "https://github.com/SmiteshP/nvim-navic",
       "https://github.com/nvim-tree/nvim-web-devicons",
@@ -351,6 +374,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/tzachar/highlight-undo.nvim",
     enabled: false,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
@@ -364,11 +388,13 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/folke/edgy.nvim",
+    profiles: ["ui"],
     afterFile: `~/.config/nvim/rc/after/edgy.lua`,
   },
   {
     url: "https://github.com/lewis6991/satellite.nvim",
     enabled: pluginStatus.satellite,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("satellite").setup()`);
     },
@@ -376,6 +402,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/4513ECHO/vim-snipewin",
     enabled: pluginStatus.snipewin,
+    profiles: ["ui"],
     before: async ({ denops }) => {
       await mapping.map(denops, "sw", "<Plug>(snipewin)", { mode: "n" });
     },
@@ -383,6 +410,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/s1n7ax/nvim-window-picker",
     enabled: pluginStatus.windowpicker,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("window-picker").setup(_A)`, {
         hint: "floating-big-letter",
@@ -399,12 +427,14 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/nvim-zh/colorful-winsep.nvim",
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("colorful-winsep").setup()`);
     },
   },
   {
     url: "https://github.com/Aasim-A/scrollEOF.nvim",
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("scrollEOF").setup()`);
     },
@@ -412,25 +442,29 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/tamton-aquib/flirt.nvim",
     enabled: Deno.build.os !== "windows" && false,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("flirt").setup()`);
     },
   },
-  { url: "https://github.com/gw31415/scrollUptoLastLine.vim", enabled: false },
+  { url: "https://github.com/gw31415/scrollUptoLastLine.vim", enabled: false, profiles: ["ui"] },
   {
     url: "https://github.com/moyiz/command-and-cursor.nvim",
     enabled: false,
+    profiles: ["ui"],
     afterFile: "~/.config/nvim/rc/after/command-and-cursor.lua",
   },
   {
     url: "https://github.com/adelarsq/snake_cursor.nvim",
     enabled: false,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("snake_cursor").setup()`);
     },
   },
   {
     url: "https://github.com/luukvbaal/statuscol.nvim",
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("statuscol").setup()`);
     },
@@ -438,6 +472,7 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/petertriho/nvim-scrollbar",
     enabled: pluginStatus.scrollbar,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("scrollbar").setup()`);
     },
@@ -445,24 +480,28 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/shortcuts/no-neck-pain.nvim",
     enabled: false,
+    profiles: ["ui"],
   },
-  { url: "https://github.com/haolian9/gary.nvim", enabled: false },
-  { url: "https://github.com/thinca/vim-zenspace" },
+  { url: "https://github.com/haolian9/gary.nvim", enabled: false, profiles: ["ui"] },
+  { url: "https://github.com/thinca/vim-zenspace", profiles: ["ui"] },
   {
     url: "https://github.com/Abizrh/beastie.nvim",
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("beastie").setup()`);
     },
   },
-  { url: "https://github.com/ikouchiha47/games.nvim" },
+  { url: "https://github.com/ikouchiha47/games.nvim", profiles: ["ui"] },
   {
     url: "https://github.com/sethen/line-number-change-mode.nvim",
+    profiles: ["ui"],
     dependencies: ["https://github.com/catppuccin/nvim"],
     afterFile: "~/.config/nvim/rc/after/line-number-change-mode.lua",
   },
   {
     url: "https://github.com/sedm0784/vim-rainbow-trails",
     enabled: false,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.cmd(`RainbowTrails`);
     },
@@ -475,6 +514,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/mawkler/hml.nvim",
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hml").setup()`);
     },
@@ -485,13 +525,13 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/Bekaboo/dropbar.nvim",
-    profiles: ["full"],
+    profiles: ["ui"],
     afterFile: "~/.config/nvim/rc/after/dropbar.lua",
   },
   {
     url: "https://github.com/kevinhwang91/nvim-ufo",
     enabled: false,
-    profiles: ["lsp"],
+    profiles: ["ui"],
     dependencies: ["https://github.com/kevinhwang91/promise-async"],
     afterFile: "~/.config/nvim/rc/after/nvim-ufo.lua",
   },

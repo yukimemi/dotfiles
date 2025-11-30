@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : bluesky.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:18:36.
+// Last Change : 2025/11/30 23:37:06.
 // =============================================================================
 
 import * as mapping from "@denops/std/mapping";
@@ -11,6 +11,7 @@ import type { Plug } from "@yukimemi/dvpm";
 export const bluesky: Plug[] = [
   {
     url: "https://github.com/basyura/dsky.vim",
+    profiles: ["bluesky"],
     after: async ({ denops }) => {
       await vars.g.set(denops, "dsky_id", "yukimemi");
       await vars.g.set(denops, "dsky_password", Deno.env.get("DSKY_PASSWORD"));

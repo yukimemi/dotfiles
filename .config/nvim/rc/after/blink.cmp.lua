@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : blink.cmp.lua
 -- Author      : yukimemi
--- Last Change : 2025/11/28 14:45:25.
+-- Last Change : 2025/12/01 00:43:49.
 -- =============================================================================
 
 require("blink-cmp").setup({
@@ -14,6 +14,16 @@ require("blink-cmp").setup({
     ['<C-j>'] = { 'snippet_backward', 'fallback' },
     ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
     ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
+  },
+  sources = {
+    default = { 'lsp', 'buffer', 'snippets', 'path', 'ripgrep' },
+    providers = {
+      ripgrep = {
+        module = "blink-ripgrep",
+        name = "Ripgrep",
+        opts = {},
+      },
+    },
   },
   completion = {
     list = {

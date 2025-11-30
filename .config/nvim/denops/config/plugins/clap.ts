@@ -11,6 +11,7 @@ import { execCommand } from "../util.ts";
 export const clap: Plug[] = [
   {
     url: "https://github.com/liuchengxu/vim-clap",
+    profiles: ["ff"],
     build: async ({ denops, info }) => {
       if (info.isUpdate && info.isLoad) {
         if (!(await fn.executable(denops, `fd`))) {

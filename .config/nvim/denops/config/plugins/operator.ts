@@ -16,6 +16,7 @@ export const operator: Plug[] = [
   {
     url: "https://github.com/osyo-manga/vim-operator-stay-cursor",
     enabled: false,
+    profiles: ["operator"],
     dependencies: ["https://github.com/kana/vim-operator-user"],
     after: async ({ denops }) => {
       await mapping.map(denops, "y", "<Plug>(operator-stay-cursor-yank)", {
@@ -31,6 +32,7 @@ export const operator: Plug[] = [
   {
     url: "https://github.com/tyru/operator-html-escape.vim",
     enabled: false,
+    profiles: ["operator"],
     dependencies: ["https://github.com/kana/vim-operator-user"],
     before: async ({ denops }) => {
       await mapping.map(denops, "<c-h>", "<Plug>(operator-html-escape)", {

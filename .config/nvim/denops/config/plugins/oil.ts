@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : oil.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:12:51.
+// Last Change : 2025/12/01 00:52:31.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -12,6 +12,7 @@ export const oil: Plug[] = [
   {
     url: "https://github.com/stevearc/oil.nvim",
     enabled: pluginStatus.oil,
+    profiles: ["filer"],
     dependencies: [
       "https://github.com/nvim-tree/nvim-web-devicons",
     ],

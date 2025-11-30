@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/11/29 07:40:48.
+// Last Change : 2025/12/01 00:39:58.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -13,13 +13,18 @@ import { pluginStatus } from "../pluginstatus.ts";
 import { execCommand } from "../util.ts";
 
 export const util: Plug[] = [
-  { url: "https://github.com/tyru/capture.vim", enabled: false },
+  {
+    url: "https://github.com/tyru/capture.vim",
+    enabled: false,
+    profiles: ["core"],
+  },
   {
     url: "https://github.com/dstein64/vim-startuptime",
-    profiles: ["minimal"],
+    profiles: ["core"],
   },
   {
     url: "https://github.com/thinca/vim-partedit",
+    profiles: ["core"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "partedit#opener", "vsplit");
     },
@@ -83,7 +88,7 @@ export const util: Plug[] = [
   {
     url: "https://github.com/uga-rosa/ccc.nvim",
     enabled: true,
-    profiles: ["full"],
+    profiles: ["colors"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ccc").setup(_A)`, {
         highlighter: {
@@ -93,10 +98,15 @@ export const util: Plug[] = [
       });
     },
   },
-  { url: "https://github.com/NvChad/volt", enabled: false },
+  {
+    url: "https://github.com/NvChad/volt",
+    enabled: false,
+    profiles: ["core"],
+  },
   {
     url: "https://github.com/NvChad/minty",
     enabled: false,
+    profiles: ["core"],
     dependencies: ["https://github.com/NvChad/volt"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("minty").setup()`);
@@ -104,6 +114,8 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/junegunn/vim-easy-align",
+    enabled: false,
+    profiles: ["core"],
     before: async ({ denops }) => {
       await mapping.map(denops, "<enter>", "<Plug>(EasyAlign)", { mode: "v" });
       await vars.g.set(denops, "easy_align_delimiters", {
@@ -188,7 +200,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/thinca/vim-ambicmd",
-    profiles: ["minimal", "core"],
+    profiles: ["core"],
     cache: {
       beforeFile: "~/.config/nvim/rc/before/vim-ambicmd.vim",
       afterFile: "~/.config/nvim/rc/after/vim-ambicmd.vim",
@@ -197,13 +209,26 @@ export const util: Plug[] = [
   {
     url: "https://github.com/stevearc/stickybuf.nvim",
     enabled: false,
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("stickybuf").setup()`);
     },
   },
-  { url: "https://github.com/ryoppippi/bad-apple.vim", enabled: false },
-  { url: "https://github.com/vim-jp/vital.vim", enabled: false },
-  { url: "https://github.com/hrsh7th/vim-vital-vs", enabled: false },
+  {
+    url: "https://github.com/ryoppippi/bad-apple.vim",
+    enabled: false,
+    profiles: ["core"],
+  },
+  {
+    url: "https://github.com/vim-jp/vital.vim",
+    enabled: false,
+    profiles: ["core"],
+  },
+  {
+    url: "https://github.com/hrsh7th/vim-vital-vs",
+    enabled: false,
+    profiles: ["core"],
+  },
   {
     url: "https://github.com/chrisbra/Recover.vim",
     profiles: ["core"],
@@ -212,14 +237,17 @@ export const util: Plug[] = [
   {
     url: "https://github.com/anuvyklack/middleclass",
     enabled: pluginStatus.windows,
+    profiles: ["ui"],
   },
   {
     url: "https://github.com/anuvyklack/animation.nvim",
     enabled: pluginStatus.windows,
+    profiles: ["ui"],
   },
   {
     url: "https://github.com/anuvyklack/windows.nvim",
     enabled: pluginStatus.windows,
+    profiles: ["ui"],
     dependencies: [
       "https://github.com/anuvyklack/middleclass",
       "https://github.com/anuvyklack/animation.nvim",
@@ -296,21 +324,23 @@ export const util: Plug[] = [
     enabled: async ({ denops }) =>
       (await fn.exists(denops, "g:neovide")) ||
       (await fn.exists(denops, ":GuiFont")),
-    profiles: ["minimal", "core"],
+    profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/size-matters.lua",
   },
   {
     url: "https://github.com/gaoDean/autolist.nvim",
     enabled: false,
+    profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/autolist.lua",
   },
   {
     url: "https://github.com/thinca/vim-winenv",
     enabled: Deno.build.os === "windows",
+    profiles: ["core"],
   },
   {
     url: "https://github.com/folke/todo-comments.nvim",
-    profiles: ["colors"],
+    profiles: ["ui"],
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("todo-comments").setup()`);
@@ -322,15 +352,18 @@ export const util: Plug[] = [
     enabled: async ({ denops }) => denops.meta.host === "vim",
     // deno-lint-ignore require-await
     clone: async ({ denops }) => denops.meta.host === "vim",
+    profiles: ["core"],
     cache: {
       after: `call singleton#enable()`,
     },
   },
   {
     url: "https://github.com/skanehira/denops-translate.vim",
+    profiles: ["core"],
   },
   {
     url: "https://github.com/mattn/vim-sonictemplate",
+    profiles: ["core"],
     before: async ({ denops }) => {
       await vars.g.set(
         denops,
@@ -350,6 +383,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/kevinhwang91/nvim-fundo",
+    profiles: ["core"],
     dependencies: [
       "https://github.com/kevinhwang91/promise-async",
     ],
@@ -367,6 +401,7 @@ export const util: Plug[] = [
   {
     url: "https://github.com/m4xshen/hardtime.nvim",
     enabled: false,
+    profiles: ["core"],
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/MunifTanjim/nui.nvim",
@@ -378,10 +413,12 @@ export const util: Plug[] = [
   {
     url: "https://github.com/rgroli/other.nvim",
     enabled: false,
+    profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/other.lua",
   },
   {
     url: "https://github.com/kuuote/jsonyaml.vim",
+    profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/jsonyaml.vim",
   },
   {
@@ -391,6 +428,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/bennypowers/nvim-regexplainer",
+    profiles: ["core"],
     dependencies: [
       "https://github.com/nvim-treesitter/nvim-treesitter",
       "https://github.com/MunifTanjim/nui.nvim",
@@ -444,7 +482,8 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/tamton-aquib/zone.nvim",
-    enabled: Deno.build.os !== "windows",
+    enabled: Deno.build.os !== "windows" && false,
+    profiles: ["ui"],
     clone: false,
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("zone").setup(_A)`, {
@@ -455,6 +494,7 @@ export const util: Plug[] = [
   {
     url: "https://github.com/stefanlogue/hydrate.nvim",
     enabled: false,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hydrate").setup()`);
     },
@@ -471,18 +511,25 @@ export const util: Plug[] = [
     url: "https://github.com/thinca/vim-prettyprint",
     profiles: ["core"],
   },
-  { url: "https://github.com/skanehira/denops-silicon.vim", enabled: false },
+  {
+    url: "https://github.com/skanehira/denops-silicon.vim",
+    enabled: false,
+    profiles: ["core"],
+  },
   {
     url: "https://github.com/michaelrommel/nvim-silicon",
+    profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/nvim-silicon.lua",
   },
   {
     url: "https://github.com/kkharji/sqlite.lua",
     enabled: Deno.build.os !== "windows",
+    profiles: ["core"],
   },
   {
     url: "https://github.com/VidocqH/data-viewer.nvim",
     enabled: false,
+    profiles: ["ui"],
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/kkharji/sqlite.lua",
@@ -494,10 +541,12 @@ export const util: Plug[] = [
   {
     url: "https://github.com/atusy/treemonkey.nvim",
     enabled: false,
+    profiles: ["filer"],
     afterFile: "~/.config/nvim/rc/after/treemonkey.lua",
   },
   {
     url: "https://github.com/ariel-frischer/bmessages.nvim",
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("bmessages").setup()`);
       await mapping.map(denops, "<space>bm", "<cmd>Bmessages<cr>", {
@@ -509,22 +558,26 @@ export const util: Plug[] = [
   {
     url: "https://github.com/m00qek/baleia.nvim",
     enabled: false,
+    profiles: ["filer"],
     afterFile: "~/.config/nvim/rc/after/baleia.vim",
   },
   {
     url: "https://github.com/bloznelis/before.nvim",
     enabled: false,
+    profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/before.lua",
   },
   {
     url: "https://github.com/lambdalisue/vim-suda",
-    profiles: ["minimal"],
+    profiles: ["core"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "suda#noninteractive", 1);
     },
   },
   {
     url: "https://github.com/mistricky/codesnap.nvim",
+    enabled: false,
+    profiles: ["core"],
     clone: Deno.build.os !== "windows",
     build: async ({ denops, info }) => {
       if (!info.isLoad) {
@@ -540,16 +593,21 @@ export const util: Plug[] = [
     profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/dmacro.lua",
   },
-  { url: "https://github.com/tweekmonster/helpful.vim" },
+  {
+    url: "https://github.com/tweekmonster/helpful.vim",
+    profiles: ["core"],
+  },
   {
     url: "https://github.com/fabridamicelli/cronex.nvim",
     enabled: false,
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("cronex").setup()`);
     },
   },
   {
     url: "https://github.com/Diogo-ss/licenser.nvim",
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("licenser").setup()`);
     },
@@ -568,6 +626,7 @@ export const util: Plug[] = [
   {
     url: "https://github.com/itchyny/calendar.vim",
     enabled: false,
+    profiles: ["memo"],
     after: async ({ denops }) => {
       await mapping.map(
         denops,
@@ -577,17 +636,26 @@ export const util: Plug[] = [
       );
     },
   },
-  { url: "https://github.com/Milly/deno-protocol.vim" },
-  { url: "https://github.com/vim-jp-radio/vim-jp-radio.vim", enabled: false },
+  {
+    url: "https://github.com/Milly/deno-protocol.vim",
+    profiles: ["core"],
+  },
+  {
+    url: "https://github.com/vim-jp-radio/vim-jp-radio.vim",
+    enabled: false,
+    profiles: ["core"],
+  },
   {
     url: "https://github.com/fouladi/ccrypt-wrapper.nvim",
     enabled: false,
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ccrypt-wrapper").setup()`);
     },
   },
   {
     url: "https://github.com/mei28/qfc.nvim",
+    profiles: ["quickfix"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("qfc").setup(_A)`, {
         enabled: true,
@@ -597,7 +665,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/juliuswaldmann/here.nvim",
-    profiles: ["minimal", "core"],
+    profiles: ["core"],
     cache: {
       afterFile: "~/.config/nvim/rc/after/here.lua",
     },
@@ -605,9 +673,14 @@ export const util: Plug[] = [
   {
     url: "https://github.com/HakonHarnes/img-clip.nvim",
     enabled: false,
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("img-clip").setup()`);
     },
+  },
+  {
+    url: "https://github.com/itchyny/vim-qfedit",
+    profiles: ["quickfix"],
   },
   {
     url: "https://github.com/stevearc/quicker.nvim",
@@ -623,16 +696,18 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/Shougo/junkfile.vim",
-    profiles: ["mini", "core"],
+    profiles: ["core"],
     cache: { afterFile: "~/.config/nvim/rc/after/junkfile.vim" },
   },
   {
     url: "https://github.com/QuentinGruber/pomodoro.nvim",
     enabled: false,
+    profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/pomodoro.lua",
   },
   {
     url: "https://github.com/Zeioth/hot-reload.nvim",
+    profiles: ["core"],
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hot-reload").setup({})`);
@@ -640,6 +715,8 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/BlankTiger/aqf.nvim",
+    enabled: false,
+    profiles: ["quickfix"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("aqf").setup()`);
     },
@@ -647,33 +724,37 @@ export const util: Plug[] = [
   {
     url: "https://github.com/smilhey/ed-cmd.nvim",
     enabled: false,
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ed-cmd").setup({})`);
     },
   },
   {
     url: "https://github.com/ThePrimeagen/refactoring.nvim",
+    profiles: ["lsp"],
     afterFile: "~/.config/nvim/rc/after/refactoring.lua",
   },
   {
     url: "https://github.com/nil-two/vim-incopen",
     enabled: false,
+    profiles: ["core"],
     beforeFile: "~/.config/nvim/rc/before/vim-incopen.vim",
     afterFile: "~/.config/nvim/rc/after/vim-incopen.vim",
   },
   {
     url: "https://github.com/t9md/vim-quickhl",
-    profiles: ["minimal"],
+    enabled: false,
+    profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/vim-quickhl.vim",
   },
   {
     url: "https://github.com/alex-popov-tech/store.nvim",
-    profiles: ["minimal"],
+    profiles: ["core"],
     dependencies: ["https://github.com/OXY2DEV/markview.nvim"],
   },
   {
     url: "https://github.com/manuuurino/autoread.nvim",
-    profiles: ["minimal"],
+    profiles: ["core"],
     cache: {
       after: `
         lua << EOB

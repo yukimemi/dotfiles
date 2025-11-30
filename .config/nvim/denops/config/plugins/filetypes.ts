@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2025/09/28 17:44:01.
+// Last Change : 2025/11/30 23:46:53.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -13,10 +13,14 @@ import * as vars from "@denops/std/variable";
 
 export const filetypes: Plug[] = [
   // all filetypes
-  { url: "https://github.com/sheerun/vim-polyglot" },
+  {
+    url: "https://github.com/sheerun/vim-polyglot",
+    profiles: ["core"],
+  },
   // plantuml
   {
     url: "https://github.com/aklt/plantuml-syntax",
+    profiles: ["core"],
     before: async ({ denops }) => {
       await autocmd.group(denops, "MyPlantUml", (helper) => {
         helper.remove("*");
@@ -29,16 +33,21 @@ export const filetypes: Plug[] = [
     },
   },
   // markdown
-  { url: "https://github.com/tani/podium" },
+  {
+    url: "https://github.com/tani/podium",
+    enabled: false,
+    profiles: ["markdown"],
+  },
   {
     url: "https://github.com/tani/glance-vim",
-    enabled: true,
+    enabled: false,
     profiles: ["markdown"],
     dependencies: ["https://github.com/tani/podium"],
   },
   {
     url: "https://github.com/iamcco/markdown-preview.nvim",
     enabled: false,
+    profiles: ["markdown"],
     build: async ({ denops, info }) => {
       if (info.isUpdate && info.isLoad) {
         await denops.call("mkdp#util#install");
@@ -93,7 +102,10 @@ export const filetypes: Plug[] = [
     url: "https://github.com/dhruvasagar/vim-table-mode",
     profiles: ["markdown"],
   },
-  { url: "https://github.com/ixru/nvim-markdown" },
+  {
+    url: "https://github.com/ixru/nvim-markdown",
+    profiles: ["markdown"],
+  },
   {
     url: "https://github.com/MeanderingProgrammer/render-markdown.nvim",
     enabled: false,
@@ -103,11 +115,12 @@ export const filetypes: Plug[] = [
   },
   {
     url: "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
-    profiles: ["full"],
+    profiles: ["treesitter", "markdown"],
   },
   {
     url: "https://github.com/tadmccorkle/markdown.nvim",
     enabled: false,
+    profiles: ["markdown"],
     dependencies: [
       "https://github.com/nvim-treesitter/nvim-treesitter",
       "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
@@ -120,9 +133,15 @@ export const filetypes: Plug[] = [
     afterFile: "~/.config/nvim/rc/after/markdown-toggle.lua",
   },
   // vim
-  { url: "https://github.com/machakann/vim-vimhelplint" },
+  {
+    url: "https://github.com/machakann/vim-vimhelplint",
+    enabled: false,
+    profiles: ["core"],
+  },
   {
     url: "https://github.com/4513ECHO/vim-vimhelp-hoptag",
+    enabled: false,
+    profiles: ["core"],
     after: async ({ denops }) => {
       await autocmd.group(denops, "MyVimHelpHopTag", (helper) => {
         helper.remove("*");
@@ -284,10 +303,15 @@ export const filetypes: Plug[] = [
     },
   },
   // cargo-make
-  { url: "https://github.com/nastevens/vim-cargo-make" },
+  {
+    url: "https://github.com/nastevens/vim-cargo-make",
+    profiles: ["rust"],
+  },
   // kdl
   {
     url: "https://github.com/imsnif/kdl.vim",
+    enabled: false,
+    profiles: ["core"],
     before: async ({ denops }) => {
       await autocmd.group(denops, "MyKdl", (helper) => {
         helper.remove("*");
@@ -302,12 +326,13 @@ export const filetypes: Plug[] = [
   // deno
   {
     url: "https://github.com/lambdalisue/vim-deno-cache",
-    profiles: ["full"],
+    profiles: ["core"],
   },
   // nushell
   {
     url: "https://github.com/LhKipp/nvim-nu",
     enabled: false,
+    profiles: ["core"],
     dependencies: [
       "https://github.com/nvim-treesitter/nvim-treesitter",
       "https://github.com/nvimtools/none-ls.nvim",

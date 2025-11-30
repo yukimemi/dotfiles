@@ -9,6 +9,7 @@ import type { Plug } from "@yukimemi/dvpm";
 export const compl: Plug[] = [
   {
     url: "https://github.com/brianaung/compl.nvim",
+    profiles: ["completion"],
     dependencies: ["https://github.com/rafamadriz/friendly-snippets"],
     afterFile: `~/.config/nvim/rc/after/compl.lua`,
   },

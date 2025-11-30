@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/11/29 00:26:09.
+// Last Change : 2025/12/01 00:49:27.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -21,11 +21,13 @@ export const edit: Plug[] = [
     url: "https://github.com/editorconfig/editorconfig-vim",
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim",
+    profiles: ["core"],
     // deno-lint-ignore require-await
     clone: async ({ denops }) => denops.meta.host === "vim",
   },
   {
     url: "https://github.com/monaqa/dial.nvim",
+    profiles: ["core"],
     after: async ({ denops }) => {
       await mapping.map(denops, "<c-a>", `<Plug>(dial-increment)`, {
         mode: "n",
@@ -45,6 +47,7 @@ export const edit: Plug[] = [
   {
     url: "https://github.com/windwp/nvim-autopairs",
     enabled: pluginStatus.autopairs,
+    profiles: ["core"],
     after: async ({ denops }) => {
       await execute(denops, `lua require("nvim-autopairs").setup()`);
     },
@@ -52,7 +55,7 @@ export const edit: Plug[] = [
   {
     url: "https://github.com/hrsh7th/nvim-insx",
     enabled: pluginStatus.insx,
-    profiles: ["minimal"],
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.cmd(`lua require('insx.preset.standard').setup()`);
     },
@@ -60,17 +63,18 @@ export const edit: Plug[] = [
   {
     url: "https://github.com/altermo/ultimate-autopair.nvim",
     enabled: pluginStatus.ultimatepair,
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require('ultimate-autopair').setup()`);
     },
   },
   {
     url: "https://github.com/Shougo/context_filetype.vim",
-    profiles: ["minimal"],
+    profiles: ["core"],
   },
   {
     url: "https://github.com/uga-rosa/contextment.vim",
-    profiles: ["minimal"],
+    profiles: ["core"],
     dependencies: ["https://github.com/Shougo/context_filetype.vim"],
     before: async ({ denops }) => {
       await mapping.map(denops, "gcc", "<Plug>(contextment)", { mode: "x" });
@@ -161,15 +165,15 @@ export const edit: Plug[] = [
   {
     url: "https://github.com/thinca/vim-qfreplace",
     enabled: pluginStatus.qfreplace,
-    profiles: ["minimal"],
+    profiles: ["quickfix"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "qfreplace_no_save", 0);
     },
   },
-  { url: "https://github.com/itchyny/vim-qfedit" },
   {
     url: "https://github.com/tani/vim-typo",
     enabled: false,
+    profiles: ["core"],
     before: async ({ denops }) => {
       await autocmd.group(denops, "MyTypoSettings", (helper) => {
         helper.remove("*");
@@ -194,12 +198,15 @@ export const edit: Plug[] = [
   {
     url: "https://github.com/VidocqH/auto-indent.nvim",
     enabled: false,
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("auto-indent").setup()`);
     },
   },
   {
     url: "https://github.com/andrewferrier/wrapping.nvim",
+    enabled: false,
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("wrapping").setup()`);
     },

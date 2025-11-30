@@ -15,29 +15,35 @@ import * as vars from "@denops/std/variable";
 export const fern: Plug[] = [
   {
     url: "https://github.com/lambdalisue/vim-fern-hijack",
+    profiles: ["filer"],
     dependencies: ["https://github.com/lambdalisue/vim-fern"],
   },
   {
     url: "https://github.com/lambdalisue/vim-fern-git-status",
+    profiles: ["filer"],
     dependencies: ["https://github.com/lambdalisue/vim-fern"],
   },
   {
     url: "https://github.com/lambdalisue/vim-fern-mapping-git",
+    profiles: ["filer"],
     dependencies: ["https://github.com/lambdalisue/vim-fern"],
   },
   {
     url: "https://github.com/lambdalisue/vim-fern-bookmark",
+    profiles: ["filer"],
     dependencies: ["https://github.com/lambdalisue/vim-fern"],
   },
   {
     url: "https://github.com/lambdalisue/vim-fern-comparator-lexical",
+    profiles: ["filer"],
     dependencies: ["https://github.com/lambdalisue/vim-fern"],
   },
-  { url: "https://github.com/lambdalisue/vim-glyph-palette" },
-  { url: "https://github.com/lambdalisue/vim-nerdfont" },
-  { url: "https://github.com/lambdalisue/vim-fern" },
+  { url: "https://github.com/lambdalisue/vim-glyph-palette", profiles: ["filer"] },
+  { url: "https://github.com/lambdalisue/vim-nerdfont", profiles: ["filer"] },
+  { url: "https://github.com/lambdalisue/vim-fern", profiles: ["filer"] },
   {
     url: "https://github.com/lambdalisue/vim-fern-renderer-nerdfont",
+    profiles: ["filer"],
     dependencies: [
       "https://github.com/lambdalisue/vim-glyph-palette",
       "https://github.com/lambdalisue/vim-nerdfont",
@@ -46,10 +52,12 @@ export const fern: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/fern-mapping-collapse-or-leave.vim",
+    profiles: ["filer"],
     dependencies: ["https://github.com/lambdalisue/vim-fern"],
   },
   {
     url: "https://github.com/lambdalisue/vim-fern",
+    profiles: ["filer"],
     dependencies: [
       "https://github.com/lambdalisue/vim-fern-hijack",
       "https://github.com/lambdalisue/vim-fern-git-status",

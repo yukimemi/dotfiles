@@ -21,13 +21,14 @@ export const lsp: Plug[] = [
   {
     url: "https://github.com/zbirenbaum/neodim",
     enabled: false,
+    profiles: ["lsp"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("neodim").setup()`);
     },
   },
   {
     url: "https://github.com/hrsh7th/nvim-linkedit",
-    profiles: ["full"],
+    profiles: ["lsp"],
     after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
@@ -63,6 +64,7 @@ export const lsp: Plug[] = [
   {
     url: "https://github.com/nvimtools/none-ls.nvim",
     enabled: false,
+    profiles: ["lsp"],
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     afterFile: "~/.config/nvim/rc/after/none-ls.lua",
   },
@@ -81,6 +83,7 @@ export const lsp: Plug[] = [
   {
     url: "https://github.com/zapling/mason-conform.nvim",
     enabled: false,
+    profiles: ["lsp"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("mason-conform").setup()`);
     },
@@ -139,7 +142,7 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/folke/trouble.nvim",
-    profiles: ["minimal"],
+    profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("trouble").setup()`);
     },

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:17:30.
+// Last Change : 2025/12/01 00:48:11.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -16,13 +16,18 @@ import * as vars from "@denops/std/variable";
 import { z } from "zod";
 
 export const coc: Plug[] = [
-  { url: "https://github.com/weirongxu/coc-explorer" },
+  {
+    url: "https://github.com/weirongxu/coc-explorer",
+    profiles: ["lsp"],
+  },
   {
     url: "https://github.com/gelguy/wilder.nvim",
+    profiles: ["lsp"],
     afterFile: "~/.config/nvim/rc/after/wilder.lua",
   },
   {
     url: "https://github.com/neoclide/coc.nvim",
+    profiles: ["lsp"],
     dependencies: [
       "https://github.com/weirongxu/coc-explorer",
       "https://github.com/gelguy/wilder.nvim",

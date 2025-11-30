@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : snippet.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:12:13.
+// Last Change : 2025/12/01 00:53:13.
 // =============================================================================
 
 import * as fn from "@denops/std/function";
@@ -19,6 +19,7 @@ export const snippet: Plug[] = [
   {
     url: "https://github.com/microsoft/vscode",
     enabled: false,
+    profiles: ["snippet"],
     clone: true,
     dst: "~/.cache/vscode",
     depth: 1,
@@ -26,6 +27,7 @@ export const snippet: Plug[] = [
   {
     url: "https://github.com/PowerShell/vscode-powershell",
     enabled: false,
+    profiles: ["snippet"],
     clone: true,
     dst: "~/.cache/vscode-powershell",
     depth: 1,
@@ -33,6 +35,7 @@ export const snippet: Plug[] = [
   {
     url: "https://github.com/uga-rosa/ddc-source-vsnip",
     enabled: pluginStatus.vsnip && pluginStatus.ddc,
+    profiles: ["snippet", "completion"],
   },
   {
     url: "https://github.com/hrsh7th/vim-vsnip-integ",

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : textobj.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:11:12.
+// Last Change : 2025/12/01 00:54:32.
 // =============================================================================
 
 import * as mapping from "@denops/std/mapping";
@@ -29,19 +29,25 @@ export const textobj: Plug[] = [
   },
   {
     url: "https://github.com/gilligan/textobj-lastpaste",
+    profiles: ["textobj"],
     dependencies: ["https://github.com/kana/vim-textobj-user"],
   },
   {
     url: "https://github.com/machakann/vim-swap",
     profiles: ["textobj"],
   },
-  { url: "https://github.com/machakann/vim-textobj-functioncall" },
+  {
+    url: "https://github.com/machakann/vim-textobj-functioncall",
+    profiles: ["textobj"],
+  },
   {
     url: "https://github.com/yuki-yano/vim-textobj-generics",
+    profiles: ["textobj"],
     dependencies: ["https://github.com/machakann/vim-textobj-functioncall"],
   },
   {
     url: "https://github.com/terryma/vim-expand-region",
+    profiles: ["textobj"],
     before: async ({ denops }) => {
       await mapping.map(denops, "+", `<Plug>(expand_region_expand)`, {
         mode: "x",

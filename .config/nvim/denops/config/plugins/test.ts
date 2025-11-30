@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : test.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:11:21.
+// Last Change : 2025/11/30 23:32:14.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -11,10 +11,11 @@ import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
 
 export const test: Plug[] = [
-  { url: "https://github.com/skywind3000/asyncrun.vim" },
+  { url: "https://github.com/skywind3000/asyncrun.vim", profiles: ["test"] },
   {
     url: "https://github.com/vim-test/vim-test",
     enabled: pluginStatus.vimtest,
+    profiles: ["test"],
     dependencies: [
       "https://github.com/skywind3000/asyncrun.vim",
     ],
@@ -42,11 +43,20 @@ export const test: Plug[] = [
       });
     },
   },
-  { url: "https://github.com/nvim-neotest/nvim-nio" },
-  { url: "https://github.com/antoinemadec/FixCursorHold.nvim" },
+  {
+    url: "https://github.com/nvim-neotest/nvim-nio",
+    enabled: pluginStatus.neotest,
+    profiles: ["test"],
+  },
+  {
+    url: "https://github.com/antoinemadec/FixCursorHold.nvim",
+    enabled: pluginStatus.neotest,
+    profiles: ["test"],
+  },
   {
     url: "https://github.com/nvim-neotest/neotest",
     enabled: pluginStatus.neotest,
+    profiles: ["test"],
     dependencies: [
       "https://github.com/nvim-neotest/nvim-nio",
       "https://github.com/nvim-lua/plenary.nvim",

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2025/11/29 07:37:23.
+// Last Change : 2025/12/01 00:56:41.
 // =============================================================================
 
 import { dir } from "@cross/dir";
@@ -122,7 +122,9 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
     profiles: [
       "ai",
       "colors",
+      "completion",
       "core",
+      "favaritecolors",
       "ff",
       "filer",
       "git",
@@ -131,14 +133,19 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
       "markdown",
       "memo",
       "mini",
-      "minimal",
+      "motion",
       "operator",
       "quickfix",
-      "ui",
+      "runner",
       "search",
+      "snippet",
+      "statusline",
       "terminal",
+      "test",
       "textobj",
       "treesitter",
+      "twitter",
+      "ui",
       "yank",
     ],
     concurrency: denops.meta.platform === "windows" ? 5 : 13,

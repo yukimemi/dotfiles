@@ -16,6 +16,7 @@ export const memo: Plug[] = [
   {
     url: "https://github.com/vimwiki/vimwiki",
     enabled: pluginStatus.vimwiki,
+    profiles: ["memo"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "vimwiki_list", [
         {
@@ -52,6 +53,7 @@ export const memo: Plug[] = [
   {
     url: "https://github.com/Furkanzmc/zettelkasten.nvim",
     enabled: false,
+    profiles: ["memo"],
     after: async ({ denops }) => {
       const zettelkastenPath = await fn.expand(denops, "~/.zettelkasten");
       await denops.call(`luaeval`, `require("zettelkasten").setup(_A)`, {
@@ -62,10 +64,12 @@ export const memo: Plug[] = [
   {
     url: "https://github.com/renerocksai/calendar-vim",
     enabled: false,
+    profiles: ["memo"],
   },
   {
     url: "https://github.com/renerocksai/telekasten.nvim",
     enabled: false,
+    profiles: ["memo"],
     dependencies: [
       "https://github.com/nvim-telescope/telescope.nvim",
       "https://github.com/renerocksai/calendar-vim",

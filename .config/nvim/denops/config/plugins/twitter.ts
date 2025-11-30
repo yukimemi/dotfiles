@@ -15,6 +15,7 @@ export const twitter: Plug[] = [
   {
     url: "https://github.com/skanehira/denops-twihi.vim",
     enabled: false,
+    profiles: ["twitter"],
     clone: false,
     after: async ({ denops }) => {
       await mapping.map(denops, "<space>Th", "<cmd>TwihiHome<cr>", {

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : treesitter.ts
 // Author      : yukimemi
-// Last Change : 2025/11/29 01:58:36.
+// Last Change : 2025/12/01 00:38:12.
 // =============================================================================
 
 import * as mapping from "@denops/std/mapping";
@@ -17,6 +17,8 @@ export const treesitter: Plug[] = [
   },
   {
     url: "https://github.com/yioneko/nvim-yati",
+    enabled: false,
+    profiles: ["treesitter"],
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/nvim-yati.lua",
   },
@@ -28,11 +30,15 @@ export const treesitter: Plug[] = [
   },
   {
     url: "https://github.com/windwp/nvim-ts-autotag",
+    enabled: false,
+    profiles: ["treesitter"],
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/nvim-ts-autotag.lua",
   },
   {
     url: "https://github.com/monaqa/nvim-treesitter-clipping",
+    enabled: false,
+    profiles: ["treesitter"],
     dependencies: [
       "https://github.com/nvim-treesitter/nvim-treesitter",
       "https://github.com/thinca/vim-partedit",
@@ -54,21 +60,29 @@ export const treesitter: Plug[] = [
   },
   {
     url: "https://github.com/4513ECHO/treesitter-compat-highlights.nvim",
+    enabled: false,
+    profiles: ["treesitter"],
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/treesitter-compat-highlights.lua",
   },
   {
     url: "https://github.com/Wansmer/treesj",
+    enabled: false,
+    profiles: ["treesitter"],
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/treesj.lua",
   },
   {
     url: "https://github.com/razak17/tailwind-fold.nvim",
+    enabled: false,
+    profiles: ["treesitter"],
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/tailwind-fold.lua",
   },
   {
     url: "https://github.com/luckasRanarison/tailwind-tools.nvim",
+    enabled: false,
+    profiles: ["treesitter"],
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/tailwind-tools.lua",
   },

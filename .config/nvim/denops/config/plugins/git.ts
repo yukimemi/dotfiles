@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2025/11/28 17:05:03.
+// Last Change : 2025/11/30 23:54:06.
 // =============================================================================
 
 import * as mapping from "@denops/std/mapping";
@@ -64,9 +64,11 @@ export const git: Plug[] = [
   },
   {
     url: "https://github.com/lambdalisue/vim-askpass",
+    profiles: ["git"],
   },
   {
     url: "https://github.com/lambdalisue/vim-guise",
+    profiles: ["git"],
   },
   {
     url: "https://github.com/lambdalisue/vim-gin",
@@ -77,9 +79,11 @@ export const git: Plug[] = [
   {
     url: "https://github.com/skanehira/denops-gh.vim",
     enabled: false,
+    profiles: ["git"],
   },
   {
     url: "https://github.com/rhysd/committia.vim",
+    profiles: ["git"],
     cache: {
       beforeFile: `~/.config/nvim/rc/before/committia.vim`,
     },
@@ -91,6 +95,8 @@ export const git: Plug[] = [
   },
   {
     url: "https://github.com/linrongbin16/gitlinker.nvim",
+    enabled: false,
+    profiles: ["git"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("gitlinker").setup()`);
     },
@@ -98,6 +104,7 @@ export const git: Plug[] = [
   {
     url: "https://github.com/pwntester/octo.nvim",
     enabled: pluginStatus.telescope,
+    profiles: ["git"],
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/nvim-telescope/telescope.nvim",
@@ -107,6 +114,7 @@ export const git: Plug[] = [
   },
   {
     url: "https://github.com/akinsho/git-conflict.nvim",
+    profiles: ["git"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("git-conflict").setup()`);
     },
@@ -114,11 +122,13 @@ export const git: Plug[] = [
   {
     url: "https://github.com/2KAbhishek/octohub.nvim",
     enabled: false,
+    profiles: ["git"],
     afterFile: `~/.config/nvim/rc/after/octohub.lua`,
   },
   {
     url: "https://github.com/kdheepak/lazygit.nvim",
     enabled: false,
+    profiles: ["git"],
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     build: async ({ denops, info }) => {
       if (info.isUpdate && info.isLoad) {

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : todo.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:10:50.
+// Last Change : 2025/12/01 00:54:57.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -13,6 +13,7 @@ import { z } from "zod";
 export const todo: Plug[] = [
   {
     url: "https://github.com/arnarg/todotxt.nvim",
+    profiles: ["todo"],
     after: async ({ denops }) => {
       const todo_path = z.string().parse(
         await fn.expand(denops, "~/.todo.txt"),
