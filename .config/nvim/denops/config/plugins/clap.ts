@@ -4,8 +4,8 @@
 // Last Change : 2025/09/21 17:18:17.
 // =============================================================================
 
-import type { Plug } from "@yukimemi/dvpm";
 import * as fn from "@denops/std/function";
+import type { Plug } from "@yukimemi/dvpm";
 import { execCommand } from "../util.ts";
 
 export const clap: Plug[] = [

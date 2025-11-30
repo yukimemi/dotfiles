@@ -4,15 +4,15 @@
 // Last Change : 2025/09/21 17:16:19.
 // =============================================================================
 
+import { Denops } from "@denops/std";
 import * as autocmd from "@denops/std/autocmd";
 import * as fn from "@denops/std/function";
 import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
-import type { Plug } from "@yukimemi/dvpm";
-import { Denops } from "@denops/std";
-import { z } from "zod";
 import { exists } from "@std/fs/exists";
+import type { Plug } from "@yukimemi/dvpm";
+import { z } from "zod";
 import { notify } from "../util.ts";
 
 export const ddc: Plug[] = [

@@ -8,11 +8,11 @@ import type { Plug } from "@yukimemi/dvpm";
 
 import * as autocmd from "@denops/std/autocmd";
 import * as fn from "@denops/std/function";
+import { execute } from "@denops/std/helper";
 import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
 import * as op from "@denops/std/option";
 import * as vars from "@denops/std/variable";
-import { execute } from "@denops/std/helper";
 import { z } from "zod";
 
 export const coc: Plug[] = [

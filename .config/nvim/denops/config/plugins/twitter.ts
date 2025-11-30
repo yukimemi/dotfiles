@@ -6,8 +6,8 @@
 
 import type { Plug } from "@yukimemi/dvpm";
 
-import { batch } from "@denops/std/batch";
 import * as autocmd from "@denops/std/autocmd";
+import { batch } from "@denops/std/batch";
 import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
 

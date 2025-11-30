@@ -6,9 +6,9 @@
 
 import type { Denops } from "@denops/std";
 
+import * as fn from "@denops/std/function";
 import * as option from "@denops/std/option";
 import * as vars from "@denops/std/variable";
-import * as fn from "@denops/std/function";
 
 export async function setNeovide(denops: Denops) {
   if (!(await fn.exists(denops, "g:neovide"))) {

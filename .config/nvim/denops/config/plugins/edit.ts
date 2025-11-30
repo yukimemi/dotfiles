@@ -8,13 +8,13 @@ import type { Plug } from "@yukimemi/dvpm";
 
 import * as autocmd from "@denops/std/autocmd";
 import * as fn from "@denops/std/function";
-import * as vars from "@denops/std/variable";
-import * as mapping from "@denops/std/mapping";
 import { execute } from "@denops/std/helper";
+import * as mapping from "@denops/std/mapping";
+import * as vars from "@denops/std/variable";
 
-import { pluginStatus } from "../pluginstatus.ts";
 import { ensureDir } from "@std/fs/ensure-dir";
 import { z } from "zod";
+import { pluginStatus } from "../pluginstatus.ts";
 
 export const edit: Plug[] = [
   {

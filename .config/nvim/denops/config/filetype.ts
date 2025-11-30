@@ -6,8 +6,8 @@
 
 import type { Denops } from "@denops/std";
 
-import { batch } from "@denops/std/batch";
 import * as autocmd from "@denops/std/autocmd";
+import { batch } from "@denops/std/batch";
 import * as vars from "@denops/std/variable";
 
 export async function setFiletype(denops: Denops) {

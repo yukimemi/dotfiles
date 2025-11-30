@@ -4,8 +4,8 @@
 // Last Change : 2025/09/21 17:13:43.
 // =============================================================================
 
-import type { Plug } from "@yukimemi/dvpm";
 import { execute } from "@denops/std/helper";
+import type { Plug } from "@yukimemi/dvpm";
 import { pluginStatus } from "../pluginstatus.ts";
 
 const lspDependencies = [

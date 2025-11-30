@@ -4,19 +4,18 @@
 // Last Change : 2025/11/29 07:37:23.
 // =============================================================================
 
-import * as fn from "@denops/std/function";
-import * as autocmd from "@denops/std/autocmd";
-import * as lambda from "@denops/std/lambda";
-import * as log from "@std/log";
-import type { Denops, Entrypoint } from "@denops/std";
-import { Dvpm } from "@yukimemi/dvpm";
-import { cacheLua, cacheVim } from "./cache.ts";
 import { dir } from "@cross/dir";
-import { ensureFile } from "@std/fs/ensure-file";
+import type { Denops, Entrypoint } from "@denops/std";
+import * as autocmd from "@denops/std/autocmd";
+import * as fn from "@denops/std/function";
 import { execute } from "@denops/std/helper";
+import * as lambda from "@denops/std/lambda";
+import { ensureFile } from "@std/fs/ensure-file";
+import * as log from "@std/log";
 import { join } from "@std/path/join";
-import { notify, openLog } from "./util.ts";
-import { plugins } from "./plugins.ts";
+import { Dvpm } from "@yukimemi/dvpm";
+import { z } from "zod";
+import { cacheLua, cacheVim } from "./cache.ts";
 import { setCommandPost, setCommandPre } from "./command.ts";
 import { setFiletype } from "./filetype.ts";
 import { setFvim } from "./fvim.ts";
@@ -25,7 +24,8 @@ import { setNeovide } from "./neovide.ts";
 import { setNeovimQt } from "./neovimqt.ts";
 import { setNvy } from "./nvy.ts";
 import { setOption } from "./option.ts";
-import { z } from "zod";
+import { plugins } from "./plugins.ts";
+import { notify, openLog } from "./util.ts";
 
 const logPath = join(
   await dir("cache"),

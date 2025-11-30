@@ -5,8 +5,8 @@
 // =============================================================================
 
 import type { Denops } from "@denops/std";
-import { execute } from "@denops/std/helper";
 import * as fn from "@denops/std/function";
+import { execute } from "@denops/std/helper";
 
 export async function setNeovimQt(denops: Denops) {
   if (await fn.exists(denops, ":GuiFont")) {

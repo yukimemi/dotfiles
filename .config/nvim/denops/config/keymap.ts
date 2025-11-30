@@ -4,14 +4,14 @@
 // Last Change : 2025/09/21 17:20:55.
 // =============================================================================
 
+import type { Denops } from "@denops/std";
+import * as autocmd from "@denops/std/autocmd";
+import { batch } from "@denops/std/batch";
 import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
-import type { Denops } from "@denops/std";
-import { batch } from "@denops/std/batch";
 import * as vars from "@denops/std/variable";
-import * as autocmd from "@denops/std/autocmd";
-import { focusFloating, openBufDir, reviewMode } from "./util.ts";
 import { notifyinfo } from "./showinfo.ts";
+import { focusFloating, openBufDir, reviewMode } from "./util.ts";
 
 export async function setKeymapPre(denops: Denops) {
   await batch(denops, async (denops: Denops) => {

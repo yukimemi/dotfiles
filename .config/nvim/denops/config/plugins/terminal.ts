@@ -7,10 +7,10 @@
 import type { Plug } from "@yukimemi/dvpm";
 
 import * as autocmd from "@denops/std/autocmd";
+import { batch } from "@denops/std/batch";
 import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
 import * as op from "@denops/std/option";
-import { batch } from "@denops/std/batch";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const terminal: Plug[] = [

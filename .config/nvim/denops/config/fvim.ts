@@ -6,11 +6,11 @@
 
 import type { Denops } from "@denops/std";
 
+import { batch } from "@denops/std/batch";
 import * as fn from "@denops/std/function";
+import { execute } from "@denops/std/helper";
 import * as mapping from "@denops/std/mapping";
 import * as option from "@denops/std/option";
-import { batch } from "@denops/std/batch";
-import { execute } from "@denops/std/helper";
 
 export async function setFvim(denops: Denops) {
   if (!(await fn.exists(denops, "g:fvim_loaded"))) {

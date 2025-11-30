@@ -7,14 +7,14 @@
 import type { Plug } from "@yukimemi/dvpm";
 
 import * as autocmd from "@denops/std/autocmd";
+import { batch } from "@denops/std/batch";
 import * as fn from "@denops/std/function";
 import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
 import * as op from "@denops/std/option";
-import { batch } from "@denops/std/batch";
 import { z } from "zod";
-import { notify } from "../util.ts";
 import { pluginStatus } from "../pluginstatus.ts";
+import { notify } from "../util.ts";
 
 export const ddu: Plug[] = [
   {

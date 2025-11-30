@@ -7,8 +7,8 @@
 import type { Plug } from "@yukimemi/dvpm";
 
 import * as autocmd from "@denops/std/autocmd";
-import * as lambda from "@denops/std/lambda";
 import * as nvimFn from "@denops/std/function/nvim";
+import * as lambda from "@denops/std/lambda";
 import * as vars from "@denops/std/variable";
 
 export const denops: Plug[] = [

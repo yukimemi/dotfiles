@@ -4,8 +4,8 @@
 // Last Change : 2025/11/29 07:35:51.
 // =============================================================================
 
-import type { Plug } from "@yukimemi/dvpm";
 import * as mapping from "@denops/std/mapping";
+import type { Plug } from "@yukimemi/dvpm";
 import { pluginStatus } from "../pluginstatus.ts";
 
 export const search: Plug[] = [

@@ -4,12 +4,12 @@
 // Last Change : 2025/09/21 17:09:26.
 // =============================================================================
 
+import type { Denops } from "@denops/std";
 import * as fn from "@denops/std/function";
 import * as op from "@denops/std/option";
 import * as vars from "@denops/std/variable";
-import type { Denops } from "@denops/std";
-import { notify } from "./util.ts";
 import { z } from "zod";
+import { notify } from "./util.ts";
 
 type LspClient = {
   id: number;

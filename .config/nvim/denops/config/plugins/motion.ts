@@ -6,9 +6,9 @@
 
 import type { Plug } from "@yukimemi/dvpm";
 
-import { pluginStatus } from "../pluginstatus.ts";
 import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
+import { pluginStatus } from "../pluginstatus.ts";
 
 export const motion: Plug[] = [
   {

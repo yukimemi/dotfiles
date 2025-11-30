@@ -4,16 +4,16 @@
 // Last Change : 2025/11/15 01:17:23.
 // =============================================================================
 
-import * as lambda from "@denops/std/lambda";
 import * as fn from "@denops/std/function";
-import { exists } from "@std/fs";
+import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
-import type { Plug } from "@yukimemi/dvpm";
-import { execCommand } from "../util.ts";
-import { pluginStatus } from "../pluginstatus.ts";
 import { HarmBlockThreshold, HarmCategory, SafetySetting } from "@google/generative-ai";
+import { exists } from "@std/fs";
+import type { Plug } from "@yukimemi/dvpm";
 import { z } from "zod";
+import { pluginStatus } from "../pluginstatus.ts";
+import { execCommand } from "../util.ts";
 
 export const ai: Plug[] = [
   {

@@ -8,8 +8,8 @@ import * as fn from "@denops/std/function";
 import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
 import type { Plug } from "@yukimemi/dvpm";
-import { pluginStatus } from "../pluginstatus.ts";
 import { z } from "zod";
+import { pluginStatus } from "../pluginstatus.ts";
 
 export const snippet: Plug[] = [
   {

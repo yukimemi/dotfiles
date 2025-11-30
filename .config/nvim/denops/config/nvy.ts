@@ -6,8 +6,8 @@
 
 import type { Denops } from "@denops/std";
 
-import * as option from "@denops/std/option";
 import * as fn from "@denops/std/function";
+import * as option from "@denops/std/option";
 
 export async function setNvy(denops: Denops) {
   if (!(await fn.exists(denops, "g:nvy"))) {

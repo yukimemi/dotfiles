@@ -4,9 +4,9 @@
 // Last Change : 2025/11/29 07:34:23.
 // =============================================================================
 
-import type { Plug } from "@yukimemi/dvpm";
-import { join } from "@std/path";
 import { exists } from "@std/fs";
+import { join } from "@std/path";
+import type { Plug } from "@yukimemi/dvpm";
 
 export const blink: Plug[] = [
   {

@@ -7,13 +7,13 @@
 import type { Denops } from "@denops/std";
 
 import * as autocmd from "@denops/std/autocmd";
+import { batch } from "@denops/std/batch";
 import * as fn from "@denops/std/function";
+import { stdpath } from "@denops/std/function/nvim";
 import * as helper from "@denops/std/helper";
 import * as lambda from "@denops/std/lambda";
 import * as option from "@denops/std/option";
-import { batch } from "@denops/std/batch";
 import { ensureDir } from "@std/fs/ensure-dir";
-import { stdpath } from "@denops/std/function/nvim";
 import { z } from "zod";
 
 export async function setOption(denops: Denops) {

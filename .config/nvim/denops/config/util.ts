@@ -4,17 +4,17 @@
 // Last Change : 2025/09/21 17:09:01.
 // =============================================================================
 
+import type { Denops } from "@denops/std";
 import * as buffer from "@denops/std/buffer";
 import * as fn from "@denops/std/function";
-import * as fs from "@std/fs";
-import * as helper from "@denops/std/helper";
 import * as nvimFn from "@denops/std/function/nvim";
+import * as helper from "@denops/std/helper";
 import * as option from "@denops/std/option";
 import * as vars from "@denops/std/variable";
-import type { Denops } from "@denops/std";
-import { format } from "@std/datetime";
-import { join } from "@std/path/join";
 import { systemopen } from "@lambdalisue/systemopen";
+import { format } from "@std/datetime";
+import * as fs from "@std/fs";
+import { join } from "@std/path/join";
 import { z } from "zod";
 
 export async function notify(

@@ -8,9 +8,9 @@ import type { Plug } from "@yukimemi/dvpm";
 
 import * as autocmd from "@denops/std/autocmd";
 import * as fn from "@denops/std/function";
+import * as nvimFn from "@denops/std/function/nvim";
 import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
-import * as nvimFn from "@denops/std/function/nvim";
 import * as vars from "@denops/std/variable";
 
 import { pluginStatus } from "../pluginstatus.ts";

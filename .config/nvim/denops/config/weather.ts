@@ -4,9 +4,9 @@
 // Last Change : 2025/09/21 17:07:25.
 // =============================================================================
 
+import type { Denops } from "@denops/std";
 import * as buffer from "@denops/std/buffer";
 import * as fn from "@denops/std/function";
-import type { Denops } from "@denops/std";
 import { notify } from "./util.ts";
 
 export async function bufOpenWeather(denops: Denops) {
