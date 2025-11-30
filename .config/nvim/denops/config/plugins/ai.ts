@@ -28,8 +28,8 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/sourcegraph/sg.nvim",
-    profiles: ["ai"],
     enabled: pluginStatus.sg,
+    profiles: ["ai"],
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     afterFile: "~/.config/nvim/rc/after/sg.lua",
   },
@@ -41,10 +41,10 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/Exafunction/windsurf.vim",
-    profiles: ["ai"],
     enabled: async ({ denops }) =>
       await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) &&
       denops.meta.host === "vim" && pluginStatus.codeium,
+    profiles: ["ai"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "codeium_disable_bindings", 1);
     },
@@ -73,10 +73,10 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/Exafunction/windsurf.nvim",
-    profiles: ["ai"],
     enabled: async ({ denops }) =>
       await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) &&
       denops.meta.host === "nvim" && pluginStatus.codeium,
+    profiles: ["ai"],
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/hrsh7th/nvim-cmp",
@@ -85,16 +85,16 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/monkoose/neocodeium",
-    profiles: ["ai"],
     enabled: async ({ denops }) =>
       await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))) &&
       pluginStatus.necodeium,
+    profiles: ["ai"],
     afterFile: "~/.config/nvim/rc/after/neocodeium.lua",
   },
   {
     url: "https://github.com/olimorris/codecompanion.nvim",
-    profiles: ["ai"],
     enabled: true,
+    profiles: ["ai"],
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/nvim-treesitter/nvim-treesitter",
@@ -103,8 +103,8 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/yetone/avante.nvim",
-    profiles: ["ai"],
     enabled: false,
+    profiles: ["ai"],
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/MunifTanjim/nui.nvim",
@@ -128,8 +128,8 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/augmentcode/augment.vim",
-    profiles: ["ai"],
     enabled: pluginStatus.augment,
+    profiles: ["ai"],
     beforeFile: "~/.config/nvim/rc/before/augment.lua",
   },
   {
@@ -158,8 +158,8 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/futago.vim",
-    profiles: ["ai", "core"],
     enabled: true,
+    profiles: ["ai", "core"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "futago_debug", false);
       await vars.g.set(denops, "futago_chat_path", `~/.cache/nvim/futago/chat`);

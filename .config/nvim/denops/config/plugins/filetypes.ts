@@ -32,25 +32,9 @@ export const filetypes: Plug[] = [
   { url: "https://github.com/tani/podium" },
   {
     url: "https://github.com/tani/glance-vim",
-    profiles: ["markdown"],
     enabled: true,
+    profiles: ["markdown"],
     dependencies: ["https://github.com/tani/podium"],
-    // before: async ({ denops }) => {
-    // await vars.g.set(denops, "glance#markdown_breaks", true);
-    // await vars.g.set(denops, "glance#markdown_html", true);
-    // await vars.g.set(denops, "glance#plugins", [
-    //   "https://esm.sh/markdown-it-emoji",
-    //   "https://esm.sh/markdown-it-highlightjs",
-    //   "https://esm.sh/markdown-it-mermaid-plugin",
-    //   "https://esm.sh/markdown-it-plantuml",
-    // ]);
-
-    // await vars.g.set(
-    //   denops,
-    //   "glance#config",
-    //   `file:///${await fn.expand(denops, "~/.config/glance/init.ts")}`,
-    // );
-    // },
   },
   {
     url: "https://github.com/iamcco/markdown-preview.nvim",
@@ -68,8 +52,8 @@ export const filetypes: Plug[] = [
   },
   {
     url: "https://github.com/previm/previm",
-    profiles: ["markdown"],
     enabled: false,
+    profiles: ["markdown"],
     dependencies: ["https://github.com/tyru/open-browser.vim"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "previm_enable_realtime", 1);
@@ -90,9 +74,9 @@ export const filetypes: Plug[] = [
   },
   {
     url: "https://github.com/OXY2DEV/markview.nvim",
-    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
-    profiles: ["markdown"],
     enabled: true,
+    profiles: ["markdown"],
+    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require('markview').setup(_A)`, {
         experimental: {
@@ -112,8 +96,8 @@ export const filetypes: Plug[] = [
   { url: "https://github.com/ixru/nvim-markdown" },
   {
     url: "https://github.com/MeanderingProgrammer/render-markdown.nvim",
-    profiles: ["markdown"],
     enabled: false,
+    profiles: ["markdown"],
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/render-markdown.lua",
   },
@@ -324,15 +308,15 @@ export const filetypes: Plug[] = [
   {
     url: "https://github.com/LhKipp/nvim-nu",
     enabled: false,
+    dependencies: [
+      "https://github.com/nvim-treesitter/nvim-treesitter",
+      "https://github.com/nvimtools/none-ls.nvim",
+    ],
     build: async ({ denops, info }) => {
       if (info.isUpdate && info.isLoad) {
         await denops.cmd("TSUpdate nu");
       }
     },
-    dependencies: [
-      "https://github.com/nvim-treesitter/nvim-treesitter",
-      "https://github.com/nvimtools/none-ls.nvim",
-    ],
     beforeFile: "~/.config/nvim/rc/after/nvim-nu.lua",
   },
   // log

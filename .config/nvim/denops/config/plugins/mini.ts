@@ -11,8 +11,8 @@ export const mini: Plug[] = [
   {
     url: "https://github.com/nvim-mini/mini.nvim",
     enabled: pluginStatus.mini,
-    dependencies: ["https://github.com/yukimemi/chronicle.vim"],
     profiles: ["mini", "core"],
+    dependencies: ["https://github.com/yukimemi/chronicle.vim"],
     cache: { afterFile: `~/.config/nvim/rc/after/mini.lua` },
   },
 ];

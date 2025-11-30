@@ -133,8 +133,8 @@ export const memo: Plug[] = [
   },
   {
     url: "https://github.com/walkersumida/fusen.nvim",
-    profiles: ["memo"],
     enabled: pluginStatus.fusen,
+    profiles: ["memo"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("fusen").setup()`);
     },

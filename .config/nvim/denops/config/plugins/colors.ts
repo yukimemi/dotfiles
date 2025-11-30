@@ -84,8 +84,8 @@ export const colors: Plug[] = [
   { url: "https://github.com/daschw/leaf.nvim", profiles: ["colors"] },
   {
     url: "https://github.com/diegoulloao/neofusion.nvim",
-    profiles: ["colors"],
     enabled: false,
+    profiles: ["colors"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("neofusion").setup()`);
     },

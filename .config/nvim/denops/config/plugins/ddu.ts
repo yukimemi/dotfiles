@@ -113,6 +113,13 @@ export const ddu: Plug[] = [
       "https://github.com/yuki-yano/ddu-source-nvim-notify",
       "https://github.com/yukimemi/ddu-source-chronicle",
     ],
+    build: async ({ denops, info }) => {
+      if (!info.isLoad) {
+        return;
+      }
+      await notify(denops, `call ddu#set_static_import_path()`);
+      await denops.call(`ddu#set_static_import_path`);
+    },
     // afterFile: `~/.config/nvim/rc/after/ddu.vim`,
     before: async ({ denops }) => {
       await mapping.map(
@@ -685,13 +692,6 @@ export const ddu: Plug[] = [
       //   "merge",
       // ]);
       // denops.call(`ddu#load`, "kind", ["file"]);
-    },
-    build: async ({ denops, info }) => {
-      if (!info.isLoad) {
-        return;
-      }
-      await notify(denops, `call ddu#set_static_import_path()`);
-      await denops.call(`ddu#set_static_import_path`);
     },
   },
 ];

@@ -26,7 +26,6 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/monaqa/dial.nvim",
-    afterFile: "~/.config/nvim/rc/after/dial.lua",
     after: async ({ denops }) => {
       await mapping.map(denops, "<c-a>", `<Plug>(dial-increment)`, {
         mode: "n",
@@ -41,6 +40,7 @@ export const edit: Plug[] = [
         mode: "n",
       });
     },
+    afterFile: "~/.config/nvim/rc/after/dial.lua",
   },
   {
     url: "https://github.com/windwp/nvim-autopairs",
@@ -51,8 +51,8 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/nvim-insx",
-    profiles: ["minimal"],
     enabled: pluginStatus.insx,
+    profiles: ["minimal"],
     after: async ({ denops }) => {
       await denops.cmd(`lua require('insx.preset.standard').setup()`);
     },
@@ -81,8 +81,8 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/gbprod/yanky.nvim",
-    profiles: ["yank"],
     enabled: pluginStatus.yanky,
+    profiles: ["yank"],
     after: async ({ denops }) => {
       await mapping.map(denops, "p", "<Plug>(YankyPutAfter)", {
         mode: ["n", "x"],
@@ -117,8 +117,8 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/LeafCage/yankround.vim",
-    profiles: ["yank"],
     enabled: pluginStatus.yankround,
+    profiles: ["yank"],
     before: async ({ denops }) => {
       await ensureDir(
         z.string().parse(await fn.expand(denops, `~/.cache/yankround`)),
@@ -154,14 +154,14 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/yuki-yano/haritsuke.vim",
-    profiles: ["core"],
     enabled: pluginStatus.haritsuke,
+    profiles: ["core"],
     afterFile: `~/.config/nvim/rc/after/haritsuke.lua`,
   },
   {
     url: "https://github.com/thinca/vim-qfreplace",
-    profiles: ["minimal"],
     enabled: pluginStatus.qfreplace,
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "qfreplace_no_save", 0);
     },

@@ -20,8 +20,8 @@ export const runner: Plug[] = [
   },
   {
     url: "https://github.com/thinca/vim-quickrun",
-    profiles: ["runner"],
     enabled: pluginStatus.quickrun,
+    profiles: ["runner"],
     dependencies: [
       "https://github.com/lambdalisue/vim-quickrun-neovim-job",
       "https://github.com/statiolake/vim-quickrun-runner-nvimterm",
@@ -39,8 +39,8 @@ export const runner: Plug[] = [
   },
   {
     url: "https://github.com/stevearc/overseer.nvim",
-    profiles: ["runner"],
     enabled: pluginStatus.overseer,
+    profiles: ["runner"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("overseer").setup()`);
       await mapping.map(denops, "<space>t", "<cmd>OverseerToggle<cr>", {

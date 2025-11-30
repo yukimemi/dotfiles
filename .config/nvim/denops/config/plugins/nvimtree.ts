@@ -11,8 +11,8 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const nvimtree: Plug[] = [
   {
     url: "https://github.com/nvim-tree/nvim-tree.lua",
-    profiles: ["filer"],
     enabled: pluginStatus.nvimtree,
+    profiles: ["filer"],
     dependencies: [
       "https://github.com/nvim-tree/nvim-web-devicons",
     ],

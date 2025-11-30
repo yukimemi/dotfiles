@@ -11,7 +11,6 @@ import { execCommand } from "../util.ts";
 export const clap: Plug[] = [
   {
     url: "https://github.com/liuchengxu/vim-clap",
-    afterFile: "~/.config/nvim/rc/after/vim-clap.vim",
     build: async ({ denops, info }) => {
       if (info.isUpdate && info.isLoad) {
         if (!(await fn.executable(denops, `fd`))) {
@@ -24,5 +23,6 @@ export const clap: Plug[] = [
         await denops.call(`clap#installer#download_binary`);
       }
     },
+    afterFile: "~/.config/nvim/rc/after/vim-clap.vim",
   },
 ];

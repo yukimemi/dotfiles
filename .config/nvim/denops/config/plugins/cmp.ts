@@ -41,13 +41,13 @@ export const cmp: Plug[] = [
   },
   {
     url: "https://github.com/KentoOgata/cmp-tsnip",
-    profiles: ["completion"],
     enabled: false,
+    profiles: ["completion"],
   },
   {
     url: "https://github.com/yuki-yano/tsnip.nvim",
-    profiles: ["completion"],
     enabled: false,
+    profiles: ["completion"],
   },
   {
     url: "https://github.com/hrsh7th/nvim-cmp",

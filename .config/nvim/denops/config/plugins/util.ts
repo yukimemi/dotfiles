@@ -82,8 +82,8 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/uga-rosa/ccc.nvim",
-    profiles: ["full"],
     enabled: true,
+    profiles: ["full"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ccc").setup(_A)`, {
         highlighter: {
@@ -293,10 +293,10 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/tenxsoydev/size-matters.nvim",
-    profiles: ["minimal", "core"],
     enabled: async ({ denops }) =>
       (await fn.exists(denops, "g:neovide")) ||
       (await fn.exists(denops, ":GuiFont")),
+    profiles: ["minimal", "core"],
     afterFile: "~/.config/nvim/rc/after/size-matters.lua",
   },
   {
@@ -461,8 +461,8 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/kevinhwang91/nvim-bqf",
-    profiles: ["quickfix"],
     enabled: pluginStatus.bqf,
+    profiles: ["quickfix"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("bqf").setup()`);
     },
@@ -526,18 +526,18 @@ export const util: Plug[] = [
   {
     url: "https://github.com/mistricky/codesnap.nvim",
     clone: Deno.build.os !== "windows",
-    afterFile: "~/.config/nvim/rc/after/codesnap.lua",
     build: async ({ denops, info }) => {
       if (!info.isLoad) {
         return;
       }
       await execCommand(denops, "make", [], info.dst);
     },
+    afterFile: "~/.config/nvim/rc/after/codesnap.lua",
   },
   {
     url: "https://github.com/tani/dmacro.nvim",
-    profiles: ["core"],
     enabled: true,
+    profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/dmacro.lua",
   },
   { url: "https://github.com/tweekmonster/helpful.vim" },
@@ -556,13 +556,13 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/MattesGroeger/vim-bookmarks",
-    profiles: ["mark"],
     enabled: pluginStatus.vimbookmarks,
+    profiles: ["mark"],
   },
   {
     url: "https://github.com/tomasky/bookmarks.nvim",
-    profiles: ["mark"],
     enabled: pluginStatus.bookmarks,
+    profiles: ["mark"],
     afterFile: `~/.config/nvim/rc/after/bookmarks.lua`,
   },
   {
@@ -611,14 +611,14 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/stevearc/quicker.nvim",
-    profiles: ["quickfix"],
     enabled: pluginStatus.quicker,
+    profiles: ["quickfix"],
     afterFile: "~/.config/nvim/rc/after/quicker.lua",
   },
   {
     url: "https://github.com/r0nsha/qfpreview.nvim",
-    profiles: ["quickfix"],
     enabled: pluginStatus.qfpreview,
+    profiles: ["quickfix"],
     afterFile: "~/.config/nvim/rc/after/qfpreview.lua",
   },
   {
@@ -691,8 +691,8 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/lambdalisue/vim-gf-improved",
-    profiles: ["core"],
     enabled: false,
+    profiles: ["core"],
   },
   {
     url: "https://github.com/lambdalisue/vim-file-protocol",

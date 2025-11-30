@@ -15,10 +15,9 @@ export const blink: Plug[] = [
   },
   {
     url: "https://github.com/saghen/blink.cmp",
-    rev: "v1.7.0",
     profiles: ["completion", "core"],
     dependencies: ["https://github.com/rafamadriz/friendly-snippets"],
-    afterFile: `~/.config/nvim/rc/after/blink.cmp.lua`,
+    rev: "v1.7.0",
     build: async ({ denops, info }) => {
       if (info.isLoad && info.isUpdate) {
         if (denops.meta.platform !== "windows") {
@@ -35,17 +34,18 @@ export const blink: Plug[] = [
         }));
       }
     },
+    afterFile: `~/.config/nvim/rc/after/blink.cmp.lua`,
   },
   {
     url: "https://github.com/saghen/blink.pairs",
-    rev: "v0.3.0",
     dependencies: ["https://github.com/saghen/blink.download"],
+    rev: "v0.3.0",
     afterFile: "~/.config/nvim/rc/after/blink.pairs.lua",
   },
   {
     url: "https://github.com/Saghen/blink.indent",
-    profiles: ["core"],
     enabled: false,
+    profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/blink.indent.lua",
   },
 ];

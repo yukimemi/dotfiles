@@ -23,9 +23,9 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/vim-denops/denops-shared-server.vim",
-    dependencies: ["https://github.com/vim-denops/denops.vim"],
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.platform === "windows",
+    dependencies: ["https://github.com/vim-denops/denops.vim"],
     cache: { beforeFile: `~/.config/nvim/rc/before/denops-shared-server.vim` },
     build: async ({ denops, info }) => {
       if (info.isUpdate && info.isLoad) {
@@ -55,7 +55,6 @@ export const libs: Plug[] = [
       enabled: false,
       afterFile: "~/.config/nvim/rc/after/nvim-notify.lua",
     },
-    afterFile: "~/.config/nvim/rc/after/nvim-notify.lua",
     after: async ({ denops }) => {
       await mapping.map(
         denops,
@@ -66,6 +65,7 @@ export const libs: Plug[] = [
         },
       );
     },
+    afterFile: "~/.config/nvim/rc/after/nvim-notify.lua",
   },
   {
     url: "https://github.com/vigoux/notifier.nvim",
@@ -115,8 +115,8 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/folke/noice.nvim",
-    profiles: ["minimal"],
     enabled: pluginStatus.noice,
+    profiles: ["minimal"],
     dependencies: [
       "https://github.com/MunifTanjim/nui.nvim",
     ],
@@ -178,8 +178,8 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/folke/which-key.nvim",
-    profiles: ["minimal"],
     enabled: true,
+    profiles: ["minimal"],
     afterFile: `~/.config/nvim/rc/after/which-key.lua`,
   },
   {

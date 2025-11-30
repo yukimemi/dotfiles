@@ -24,13 +24,13 @@ export const statusline: Plug[] = [
   },
   {
     url: "https://github.com/pnx/lualine-lsp-status",
-    profiles: ["statusline"],
     enabled: pluginStatus.lualine,
+    profiles: ["statusline"],
   },
   {
     url: "https://github.com/nvim-lualine/lualine.nvim",
-    profiles: ["statusline"],
     enabled: pluginStatus.lualine,
+    profiles: ["statusline"],
     dependencies: [
       "https://github.com/pnx/lualine-lsp-status",
     ],
@@ -38,8 +38,8 @@ export const statusline: Plug[] = [
   },
   {
     url: "https://github.com/itchyny/lightline.vim",
-    profiles: ["statusline"],
     enabled: pluginStatus.lightline,
+    profiles: ["statusline"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "lightline", {
         colorscheme: "rosepine",
@@ -75,14 +75,14 @@ export const statusline: Plug[] = [
   },
   {
     url: "https://github.com/tar80/staba.nvim",
-    profiles: ["statusline"],
     enabled: pluginStatus.staba,
+    profiles: ["statusline"],
     afterFile: `~/.config/nvim/rc/after/staba.lua`,
   },
   {
     url: "https://github.com/sschleemilch/slimline.nvim",
-    profiles: ["statusline", "core"],
     enabled: pluginStatus.slimline,
+    profiles: ["statusline", "core"],
     afterFile: `~/.config/nvim/rc/after/slimline.lua`,
   },
 ];

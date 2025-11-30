@@ -62,10 +62,10 @@ export const telescope: Plug[] = [
   {
     url: "https://github.com/nvim-telescope/telescope.nvim",
     profiles: ["minimal"],
-    cache: { afterFile: "~/.config/nvim/rc/after/telescope.lua" },
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/folke/trouble.nvim",
     ],
+    cache: { afterFile: "~/.config/nvim/rc/after/telescope.lua" },
   },
 ];

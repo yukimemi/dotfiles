@@ -120,7 +120,6 @@ export const git: Plug[] = [
     url: "https://github.com/kdheepak/lazygit.nvim",
     enabled: false,
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
-    afterFile: `~/.config/nvim/rc/after/lazygit.lua`,
     build: async ({ denops, info }) => {
       if (info.isUpdate && info.isLoad) {
         await execCommand(
@@ -131,6 +130,7 @@ export const git: Plug[] = [
         );
       }
     },
+    afterFile: `~/.config/nvim/rc/after/lazygit.lua`,
   },
   {
     url: "https://github.com/skanehira/github-actions.nvim",

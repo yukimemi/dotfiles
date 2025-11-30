@@ -11,8 +11,8 @@ import type { Plug } from "@yukimemi/dvpm";
 export const treesitter: Plug[] = [
   {
     url: "https://github.com/nvim-treesitter/nvim-treesitter",
-    rev: "main",
     profiles: ["treesitter"],
+    rev: "main",
     afterFile: "~/.config/nvim/rc/after/nvim-treesitter.lua",
   },
   {
@@ -74,8 +74,8 @@ export const treesitter: Plug[] = [
   },
   {
     url: "https://github.com/VonHeikemen/ts-enable.nvim",
-    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     profiles: ["treesitter"],
+    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "ts_enable", {
         parsers: [

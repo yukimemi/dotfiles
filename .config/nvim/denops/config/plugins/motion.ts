@@ -18,8 +18,8 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/yuki-yano/fuzzy-motion.vim",
-    profiles: ["minimal"],
     enabled: pluginStatus.fuzzymotion,
+    profiles: ["minimal"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "fuzzy_motion_auto_jump", false);
       await vars.g.set(denops, "fuzzy_motion_disable_match_highlight", false);
@@ -29,21 +29,21 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/folke/flash.nvim",
-    profiles: ["core"],
     enabled: pluginStatus.flash,
+    profiles: ["core"],
     cache: { afterFile: `~/.config/nvim/rc/after/flash.lua` },
   },
   {
     url: "https://github.com/atusy/jab.nvim",
-    profiles: ["minimal", "core"],
     enabled: pluginStatus.jab,
+    profiles: ["minimal", "core"],
     dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
     cache: { afterFile: `~/.config/nvim/rc/after/jab.lua` },
   },
   {
     url: "https://github.com/nekowasabi/hellshake-yano.vim",
-    profiles: ["minimal", "core"],
     enabled: pluginStatus.hellshake,
+    profiles: ["minimal", "core"],
     cache: { beforeFile: `~/.config/nvim/rc/before/hellshake-yano.lua` },
   },
   {

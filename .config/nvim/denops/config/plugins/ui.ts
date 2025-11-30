@@ -24,13 +24,13 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/mopp/smartnumber.vim",
-    profiles: ["core"],
     enabled: true,
+    profiles: ["core"],
   },
   {
     url: "https://github.com/sitiom/nvim-numbertoggle",
-    profiles: ["core"],
     enabled: false,
+    profiles: ["core"],
   },
   {
     url: "https://github.com/Isrothy/neominimap.nvim",
@@ -55,16 +55,16 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/lukas-reineke/virt-column.nvim",
-    profiles: ["ui"],
     enabled: pluginStatus.virt_column,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("virt-column").setup()`);
     },
   },
   {
     url: "https://github.com/xiyaowong/virtcolumn.nvim",
-    profiles: ["ui"],
     enabled: pluginStatus.virtcolumn,
+    profiles: ["ui"],
   },
   {
     url: "https://github.com/ecthelionvi/NeoColumn.nvim",
@@ -77,9 +77,9 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/RRethy/vim-illuminate",
-    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
-    profiles: ["ui"],
     enabled: pluginStatus.illuminate,
+    profiles: ["ui"],
+    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
   },
   {
     url: "https://github.com/unblevable/quick-scope",
@@ -90,8 +90,8 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/jinh0/eyeliner.nvim",
-    profiles: ["ui"],
     enabled: pluginStatus.eyeliner,
+    profiles: ["ui"],
     afterFile: `~/.config/nvim/rc/after/eyeliner.lua`,
   },
   { url: "https://github.com/deris/vim-shot-f", enabled: false },
@@ -103,8 +103,8 @@ export const ui: Plug[] = [
   { url: "https://github.com/itchyny/vim-parenmatch", enabled: false },
   {
     url: "https://github.com/ntpeters/vim-better-whitespace",
-    profiles: ["ui"],
     enabled: pluginStatus.betterwhitespace,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await vars.g.set(denops, "better_whitespace_filetypes_blacklist", [
         "diff",
@@ -130,8 +130,8 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/DanilaMihailov/beacon.nvim",
-    profiles: ["ui"],
     enabled: true,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("beacon").setup()`);
     },
@@ -150,8 +150,8 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/gen740/SmoothCursor.nvim",
-    profiles: ["ui"],
     enabled: true,
+    profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("smoothcursor").setup(_A)`, {
         autostart: true,
@@ -267,8 +267,8 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/lukas-reineke/indent-blankline.nvim",
-    profiles: ["ui"],
     enabled: pluginStatus.indentblankline,
+    profiles: ["ui"],
     dependencies: [
       "https://github.com/nvim-treesitter/nvim-treesitter",
       "https://github.com/HiPhish/rainbow-delimiters.nvim",
@@ -277,8 +277,8 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/shellRaining/hlchunk.nvim",
-    profiles: ["ui"],
     enabled: pluginStatus.hlchunk,
+    profiles: ["ui"],
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hlchunk").setup(_A)`, {
@@ -309,8 +309,8 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/b0o/incline.nvim",
-    profiles: ["ui"],
     enabled: pluginStatus.incline,
+    profiles: ["ui"],
     dependencies: [
       "https://github.com/SmiteshP/nvim-navic",
       "https://github.com/nvim-tree/nvim-web-devicons",
@@ -469,8 +469,8 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/folke/drop.nvim",
-    profiles: ["colors"],
     enabled: true,
+    profiles: ["colors"],
     afterFile: "~/.config/nvim/rc/after/drop.lua",
   },
   {
@@ -491,8 +491,8 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/kevinhwang91/nvim-ufo",
     enabled: false,
-    dependencies: ["https://github.com/kevinhwang91/promise-async"],
     profiles: ["lsp"],
+    dependencies: ["https://github.com/kevinhwang91/promise-async"],
     afterFile: "~/.config/nvim/rc/after/nvim-ufo.lua",
   },
   {

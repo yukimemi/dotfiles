@@ -12,14 +12,14 @@ import { pluginStatus } from "../pluginstatus.ts";
 export const neotree: Plug[] = [
   {
     url: "https://github.com/nvim-neo-tree/neo-tree.nvim",
-    profiles: ["filer"],
     enabled: pluginStatus.neotree,
-    cache: { afterFile: `~/.config/nvim/rc/after/neo-tree.lua` },
+    profiles: ["filer"],
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/nvim-tree/nvim-web-devicons",
       "https://github.com/MunifTanjim/nui.nvim",
     ],
+    cache: { afterFile: `~/.config/nvim/rc/after/neo-tree.lua` },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("neo-tree").setup(_A)`, {
         filesystem: {

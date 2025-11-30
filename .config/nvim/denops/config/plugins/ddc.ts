@@ -36,9 +36,9 @@ export const ddc: Plug[] = [
   },
   {
     url: "https://github.com/Shougo/ddc-source-codeium",
-    profiles: ["completion"],
     enabled: async ({ denops }) =>
       await exists(z.string().parse(await fn.expand(denops, "~/.codeium"))),
+    profiles: ["completion"],
   },
   {
     url: "https://github.com/uga-rosa/ddc-source-lsp-setup",
@@ -186,6 +186,13 @@ export const ddc: Plug[] = [
       "https://github.com/uga-rosa/ddc-source-nvim-lua",
       "https://github.com/uga-rosa/ddc-source-lsp-setup",
     ],
+    build: async ({ denops, info }) => {
+      if (!info.isLoad) {
+        return;
+      }
+      await notify(denops, `call ddc#set_static_import_path()`);
+      await denops.call(`ddc#set_static_import_path`);
+    },
     after: async ({ denops }) => {
       // commandline settings.
       const cmdLinePre = async (denops: Denops, mode: string) => {
@@ -446,13 +453,6 @@ export const ddc: Plug[] = [
       );
 
       await denops.call(`ddc#enable`, { context_filetype: "treesiters" });
-    },
-    build: async ({ denops, info }) => {
-      if (!info.isLoad) {
-        return;
-      }
-      await notify(denops, `call ddc#set_static_import_path()`);
-      await denops.call(`ddc#set_static_import_path`);
     },
   },
 ];

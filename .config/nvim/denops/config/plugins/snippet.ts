@@ -18,17 +18,17 @@ export const snippet: Plug[] = [
   },
   {
     url: "https://github.com/microsoft/vscode",
+    enabled: false,
     clone: true,
     dst: "~/.cache/vscode",
     depth: 1,
-    enabled: false,
   },
   {
     url: "https://github.com/PowerShell/vscode-powershell",
+    enabled: false,
     clone: true,
     dst: "~/.cache/vscode-powershell",
     depth: 1,
-    enabled: false,
   },
   {
     url: "https://github.com/uga-rosa/ddc-source-vsnip",
@@ -36,13 +36,13 @@ export const snippet: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/vim-vsnip-integ",
-    profiles: ["snippet"],
     enabled: pluginStatus.vsnip,
+    profiles: ["snippet"],
   },
   {
     url: "https://github.com/hrsh7th/vim-vsnip",
-    profiles: ["snippet"],
     enabled: pluginStatus.vsnip,
+    profiles: ["snippet"],
     dependencies: [
       "https://github.com/hrsh7th/vim-vsnip-integ",
       "https://github.com/uga-rosa/ddc-source-vsnip",
@@ -58,8 +58,8 @@ export const snippet: Plug[] = [
   },
   {
     url: "https://github.com/uga-rosa/denippet.vim",
-    profiles: ["snippet"],
     enabled: pluginStatus.denippet,
+    profiles: ["snippet"],
     after: async ({ denops }) => {
       await mapping.map(denops, "<tab>", "<Plug>(denippet-expand-or-jump)", {
         mode: "i",

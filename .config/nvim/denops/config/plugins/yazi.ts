@@ -13,9 +13,9 @@ import { execCommand } from "../util.ts";
 export const yazi: Plug[] = [
   {
     url: "https://github.com/mikavilpas/yazi.nvim",
+    enabled: pluginStatus.yazi,
     profiles: ["filer"],
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
-    enabled: pluginStatus.yazi,
     cache: { afterFile: `~/.config/nvim/rc/after/yazi.lua` },
     build: async ({ denops, info }) => {
       if (

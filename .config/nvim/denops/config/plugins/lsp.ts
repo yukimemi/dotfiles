@@ -42,8 +42,8 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/SmiteshP/nvim-navic",
-    profiles: ["lsp"],
     enabled: false,
+    profiles: ["lsp"],
   },
   {
     url: "https://github.com/stevearc/aerial.nvim",
@@ -119,11 +119,11 @@ export const lsp: Plug[] = [
   {
     url: "https://github.com/mrcjkb/rustaceanvim",
     profiles: ["rust"],
-    afterFile: "~/.config/nvim/rc/after/rustaceanvim.lua",
     dependencies: [
       "https://github.com/neovim/nvim-lspconfig",
       "https://github.com/SmiteshP/nvim-navic",
     ],
+    afterFile: "~/.config/nvim/rc/after/rustaceanvim.lua",
   },
   {
     url: "https://github.com/rachartier/tiny-inline-diagnostic.nvim",
@@ -152,7 +152,6 @@ export const lsp: Plug[] = [
       : pluginStatus.cmp
       ? [...lspDependencies, "https://github.com/hrsh7th/nvim-cmp"]
       : lspDependencies,
-    afterFile: "~/.config/nvim/rc/after/nvim-lspconfig.lua",
     after: async ({ denops }) => {
       if (pluginStatus.cmp) {
         return await execute(
@@ -191,5 +190,6 @@ EOB
         `,
       );
     },
+    afterFile: "~/.config/nvim/rc/after/nvim-lspconfig.lua",
   },
 ];
