@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2025/09/28 23:16:46.
+; Last Change : 2025/11/30 19:02:53.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -163,11 +163,18 @@ F10::
 ; return
 
 ; for Edge
-F11::
-{
-  Activate("msedge.exe")
-  return
-}
+; F11::
+; {
+;   Activate("msedge.exe")
+;   return
+; }
+
+; for Comet
+ F11::
+ {
+   Activate("comet.exe")
+   return
+ }
 
 ; for Arc
 ; F11::
