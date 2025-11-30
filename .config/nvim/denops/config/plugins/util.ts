@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/12/01 00:39:58.
+// Last Change : 2025/12/01 00:59:25.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -655,6 +655,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/mei28/qfc.nvim",
+    enabled: false,
     profiles: ["quickfix"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("qfc").setup(_A)`, {
