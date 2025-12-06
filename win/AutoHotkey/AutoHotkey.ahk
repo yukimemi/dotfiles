@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2025/11/30 19:02:53.
+; Last Change : 2025/12/07 00:57:34.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -124,8 +124,12 @@ Activate3(app, cmd, title) {
 ; for Excel
 F9::
 {
-  Activate("C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE")
-  return
+  If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\notuseexcel")) {
+    return
+  } else {
+    Activate("C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE")
+    return
+  }
 }
 
 ; for Teams

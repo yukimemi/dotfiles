@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:09:01.
+// Last Change : 2025/12/07 01:10:18.
 // =============================================================================
 
 import type { Denops } from "@denops/std";
@@ -96,6 +96,7 @@ export async function reviewMode(denops: Denops, stop = false) {
     }
     await denops.cmd(`silent! EnableLumiris`);
     await denops.cmd(`silent! EnableAutoCursorColumn`);
+    await denops.cmd(`silent! SNumbersEnable`);
     await denops.cmd(`silent! IlluminateResume`);
     await denops.cmd(`silent! SmoothCursorFancyOn`);
     await denops.cmd(`silent! QuickScopeToggle`);
@@ -111,6 +112,7 @@ export async function reviewMode(denops: Denops, stop = false) {
     }
     await denops.cmd(`silent! DisableLumiris`);
     await denops.cmd(`silent! DisableAutoCursorColumn`);
+    await denops.cmd(`silent! SNumbersDisable`);
     await denops.cmd(`silent! IlluminatePause`);
     await denops.cmd(`silent! SmoothCursorFancyOff`);
     await denops.cmd(`silent! QuickScopeToggle`);
