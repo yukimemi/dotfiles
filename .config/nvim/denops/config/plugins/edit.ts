@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/12/02 13:36:29.
+// Last Change : 2025/12/07 01:29:42.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -224,5 +224,12 @@ export const edit: Plug[] = [
   {
     url: "https://github.com/kana/vim-niceblock",
     profiles: ["core"],
+  },
+  {
+    url: "https://github.com/chrisgrieser/nvim-chainsaw",
+    profiles: ["core"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("chainsaw").setup()`);
+    },
   },
 ];
