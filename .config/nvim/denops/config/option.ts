@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2025/11/22 21:06:30.
+// Last Change : 2025/12/04 10:42:31.
 // =============================================================================
 
 import type { Denops } from "@denops/std";
@@ -50,7 +50,7 @@ export async function setOption(denops: Denops) {
     // await option.mouse.set(denops, "a");
     // await option.number.set(denops, true);
     // await option.pumheight.set(denops, 30);
-    await option.relativenumber.set(denops, true);
+    // await option.relativenumber.set(denops, true);
     await option.scrolloff.set(denops, 3);
     await option.sidescrolloff.set(denops, 3);
     await option.termguicolors.set(denops, true);

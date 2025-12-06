@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : drop.lua
 -- Author      : yukimemi
--- Last Change : 2025/11/29 01:25:18.
+-- Last Change : 2025/12/02 11:19:38.
 -- =============================================================================
 
 require("drop").setup({
@@ -20,4 +20,5 @@ require("drop").setup({
     { theme = "spring",              from = { month = 3, day = 20 },  to = { month = 6, day = 20 } },
     { theme = "summer",              from = { month = 6, day = 21 },  to = { month = 9, day = 21 } },
   },
+  screensaver = 1000 * 60 * 30,
 })

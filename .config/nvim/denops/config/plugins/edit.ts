@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/12/01 00:49:27.
+// Last Change : 2025/12/02 13:36:29.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -213,6 +213,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/qwavies/smart-backspace.nvim",
+    enabled: false,
     profiles: ["core"],
   },
   {

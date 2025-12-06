@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : vim-gin.lua
 -- Author      : yukimemi
--- Last Change : 2025/11/28 14:41:19.
+-- Last Change : 2025/12/03 13:51:14.
 -- =============================================================================
 
 vim.g.gin_log_persistent_args = { '++emojify' }
@@ -23,13 +23,5 @@ vim.api.nvim_create_autocmd("FileType", {
     bufmap("n", "q", "<cmd>q<cr>")
     bufmap({ "n", "x" }, "h", "<Plug>(gin-action-stage)")
     bufmap({ "n", "x" }, "l", "<Plug>(gin-action-unstage)")
-  end,
-})
-
-vim.api.nvim_create_autocmd({ 'BufRead', 'BufNew' }, {
-  group = vim.api.nvim_create_augroup("MyGinCd", { clear = true }),
-  pattern = "*",
-  callback = function()
-    vim.cmd("GinLcd")
   end,
 })

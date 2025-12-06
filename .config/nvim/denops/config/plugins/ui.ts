@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/11/30 22:40:14.
+// Last Change : 2025/12/04 10:41:37.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -30,6 +30,9 @@ export const ui: Plug[] = [
     url: "https://github.com/mopp/smartnumber.vim",
     enabled: true,
     profiles: ["core"],
+    before: async ({ denops }) => {
+      await vars.g.set(denops, "snumber_enable_startup", 1);
+    },
   },
   {
     url: "https://github.com/sitiom/nvim-numbertoggle",
