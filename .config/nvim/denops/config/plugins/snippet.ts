@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : snippet.ts
 // Author      : yukimemi
-// Last Change : 2025/12/01 00:53:13.
+// Last Change : 2025/12/07 21:47:50.
 // =============================================================================
 
 import * as fn from "@denops/std/function";
@@ -113,5 +113,10 @@ export const snippet: Plug[] = [
         );
       }
     },
+  },
+  {
+    url: "https://github.com/chrisgrieser/nvim-scissors",
+    profiles: ["snippet"],
+    afterFile: "~/.config/nvim/rc/after/nvim-scissors.lua",
   },
 ];
