@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2025/11/22 21:05:31.
+// Last Change : 2025/12/07 21:09:37.
 // =============================================================================
 
 export function cacheVim() {
@@ -124,10 +124,10 @@ export function cacheLua() {
       vim.keymap.set("n", "sv", "<cmd>vs<cr>", { silent = true, noremap = true })
       vim.keymap.set("n", "sw", "<c-w>w", { silent = true, noremap = true })
 
-      vim.keymap.set({"n", "x"}, "H", "H<Plug>(H)")
-      vim.keymap.set({"n", "x"}, "L", "L<Plug>(L)")
-      vim.keymap.set({"n", "x"}, "<Plug>(H)H", "<PageUp>H<Plug>(H)")
-      vim.keymap.set({"n", "x"}, "<Plug>(L)L", "<PageDown>Lzb<Plug>(L)")
+      -- vim.keymap.set({"n", "x"}, "H", "H<Plug>(H)")
+      -- vim.keymap.set({"n", "x"}, "L", "L<Plug>(L)")
+      -- vim.keymap.set({"n", "x"}, "<Plug>(H)H", "<PageUp>H<Plug>(H)")
+      -- vim.keymap.set({"n", "x"}, "<Plug>(L)L", "<PageDown>Lzb<Plug>(L)")
 
       --- fold
       -- vim.keymap.set('n', 'l', function()
