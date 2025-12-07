@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/12/07 21:35:57.
+// Last Change : 2025/12/07 22:50:14.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -9,8 +9,8 @@ import type { Plug } from "@yukimemi/dvpm";
 import * as fn from "@denops/std/function";
 import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
+import { execute } from "@denops/std/helper";
 import { pluginStatus } from "../pluginstatus.ts";
-import { execCommand } from "../util.ts";
 
 export const util: Plug[] = [
   {
@@ -576,16 +576,26 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/mistricky/codesnap.nvim",
-    enabled: false,
+    enabled: true,
     profiles: ["core"],
-    clone: Deno.build.os !== "windows",
-    build: async ({ denops, info }) => {
-      if (!info.isLoad) {
-        return;
-      }
-      await execCommand(denops, "make", [], info.dst);
+    before: async ({ denops }) => {
+      await execute(
+        denops,
+        `
+lua << EOB
+local cache = vim.fn.stdpath("cache")
+local plugin_path = cache .. "/dvpm/github.com/mistricky/codesnap.nvim"
+vim.opt.rtp:prepend(plugin_path)
+local ok, path_utils = pcall(require, "codesnap.utils.path")
+if ok then
+  path_utils.dir_name = function()
+    return plugin_path .. "/lua/codesnap/utils/"
+  end
+end
+EOB
+        `,
+      );
     },
-    afterFile: "~/.config/nvim/rc/after/codesnap.lua",
   },
   {
     url: "https://github.com/tani/dmacro.nvim",
@@ -655,7 +665,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/mei28/qfc.nvim",
-    enabled: false,
+    enabled: true,
     profiles: ["quickfix"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("qfc").setup(_A)`, {
