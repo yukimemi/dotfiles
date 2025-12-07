@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/11/16 09:14:35.
+// Last Change : 2025/12/07 21:25:02.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -25,6 +25,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/AlessandroYorba/Alduin", profiles: ["colors"] },
   { url: "https://github.com/Allianaab2m/penumbra.nvim", profiles: ["colors"] },
   { url: "https://github.com/Badacadabra/vim-archery", profiles: ["colors"] },
+  { url: "https://github.com/uhs-robert/oasis.nvim", profiles: ["colors"] },
   { url: "https://github.com/jdsimcoe/abstract.vim", profiles: ["colors"] },
   {
     url: "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim",
@@ -261,7 +262,6 @@ export const colors: Plug[] = [
       "https://github.com/Badacadabra/vim-archery",
       "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim",
       "https://github.com/FrenzyExists/aquarium-vim",
-      "https://github.com/maxmx03/fluoromachine.nvim",
       "https://github.com/KeitaNakamura/neodark.vim",
       "https://github.com/Matsuuu/pinkmare",
       "https://github.com/NLKNguyen/papercolor-theme",
@@ -320,6 +320,7 @@ export const colors: Plug[] = [
       "https://github.com/machakann/vim-colorscheme-tatami",
       "https://github.com/marko-cerovac/material.nvim",
       "https://github.com/masisz/ashikaga.nvim",
+      "https://github.com/maxmx03/fluoromachine.nvim",
       "https://github.com/maxmx03/solarized.nvim",
       "https://github.com/miikanissi/modus-themes.nvim",
       "https://github.com/monaqa/colorimetry.nvim",
@@ -356,6 +357,7 @@ export const colors: Plug[] = [
       "https://github.com/sts10/vim-pink-moon",
       "https://github.com/tiagovla/tokyodark.nvim",
       "https://github.com/tobi-wan-kenobi/zengarden",
+      "https://github.com/uhs-robert/oasis.nvim",
       "https://github.com/wadackel/vim-dogrun",
       "https://github.com/yasukotelin/shirotelin",
       "https://github.com/yazeed1s/oh-lucy.nvim",

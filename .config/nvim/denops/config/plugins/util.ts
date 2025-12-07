@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/12/01 00:59:25.
+// Last Change : 2025/12/07 21:35:57.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -789,5 +789,17 @@ export const util: Plug[] = [
     url: "https://github.com/folke/persistence.nvim",
     profiles: ["core"],
     cache: { afterFile: `~/.config/nvim/rc/after/persistence.lua` },
+  },
+  {
+    url: "https://github.com/chrisgrieser/nvim-rulebook",
+    enabled: false,
+    profiles: ["core"],
+  },
+  {
+    url: "https://github.com/chrisgrieser/nvim-early-retirement",
+    profiles: ["core"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("early-retirement").setup({})`);
+    },
   },
 ];
