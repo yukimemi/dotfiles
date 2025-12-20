@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/12/07 21:25:02.
+// Last Change : 2025/12/21 00:23:05.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -26,6 +26,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/Allianaab2m/penumbra.nvim", profiles: ["colors"] },
   { url: "https://github.com/Badacadabra/vim-archery", profiles: ["colors"] },
   { url: "https://github.com/uhs-robert/oasis.nvim", profiles: ["colors"] },
+  { url: "https://github.com/alexpasmantier/hubbamax.nvim", profiles: ["colors"] },
   { url: "https://github.com/jdsimcoe/abstract.vim", profiles: ["colors"] },
   {
     url: "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim",
@@ -167,6 +168,7 @@ export const colors: Plug[] = [
   { url: "https://github.com/oxfist/night-owl.nvim", profiles: ["colors"] },
   { url: "https://github.com/pbrisbin/vim-colors-off", profiles: ["colors"] },
   { url: "https://github.com/pineapplegiant/spaceduck", profiles: ["colors"] },
+  { url: "https://github.com/loctvl842/monokai-pro.nvim", profiles: ["colors"] },
   {
     url: "https://github.com/polirritmico/monokai-nightasty.nvim",
     profiles: ["colors"],
@@ -272,6 +274,7 @@ export const colors: Plug[] = [
       "https://github.com/adrian5/oceanic-next-vim",
       "https://github.com/aereal/vim-colors-japanesque",
       "https://github.com/ajlende/atlas.vim",
+      "https://github.com/alexpasmantier/hubbamax.nvim",
       "https://github.com/aonemd/quietlight.vim",
       "https://github.com/archseer/colibri.vim",
       "https://github.com/arrow2nd/aqua",
@@ -315,6 +318,7 @@ export const colors: Plug[] = [
       "https://github.com/lifepillar/vim-solarized8",
       "https://github.com/liuchengxu/space-vim-dark",
       "https://github.com/liuchengxu/space-vim-theme",
+      "https://github.com/loctvl842/monokai-pro.nvim",
       "https://github.com/lourenci/github-colors",
       "https://github.com/machakann/vim-colorscheme-kemonofriends",
       "https://github.com/machakann/vim-colorscheme-tatami",

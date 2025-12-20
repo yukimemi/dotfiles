@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/11/15 01:17:23.
+// Last Change : 2025/12/14 20:44:26.
 // =============================================================================
 
 import * as fn from "@denops/std/function";
@@ -93,7 +93,7 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/olimorris/codecompanion.nvim",
-    enabled: true,
+    enabled: false,
     profiles: ["ai"],
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",

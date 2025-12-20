@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/11/23 19:47:41.
+  .Last Change : 2025/12/20 22:48:22.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
@@ -94,6 +94,7 @@ function Install-RequiredModules {
   winget install -q Oven-sh.Bun
   # winget install -q topgrade-rs.topgrade
   winget install -q BurntSushi.ripgrep.MSVC
+  winget install -q ImageMagick.ImageMagick
   winget install -q alexpasmantier.television
   winget install -q junegunn.fzf
   winget install -q sharkdp.fd

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/12/04 10:41:37.
+// Last Change : 2025/12/21 00:53:29.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -560,6 +560,16 @@ export const ui: Plug[] = [
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hlargs").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/TaDaa/vimade",
+    profiles: ["ui"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("vimade").setup(_A)`, {
+        recipe: ["default", { animate: true }],
+        fadelevel: 0.4,
+      });
     },
   },
 ];

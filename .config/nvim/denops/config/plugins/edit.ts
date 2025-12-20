@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/12/07 01:29:42.
+// Last Change : 2025/12/20 17:47:10.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -230,6 +230,18 @@ export const edit: Plug[] = [
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("chainsaw").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/kako-jun/chillout.nvim",
+    profiles: ["core"],
+  },
+  {
+    url: "https://github.com/kako-jun/chunkundo.nvim",
+    profiles: ["core"],
+    dependencies: ["https://github.com/kako-jun/chillout.nvim"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("chunkundo").setup()`);
     },
   },
 ];

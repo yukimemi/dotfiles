@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:13:43.
+// Last Change : 2025/12/20 17:08:12.
 // =============================================================================
 
 import { execute } from "@denops/std/helper";
@@ -9,6 +9,7 @@ import type { Plug } from "@yukimemi/dvpm";
 import { pluginStatus } from "../pluginstatus.ts";
 
 const lspDependencies = [
+  "https://github.com/alexpasmantier/krust.nvim",
   "https://github.com/SmiteshP/nvim-navic",
   "https://github.com/folke/neoconf.nvim",
   "https://github.com/folke/trouble.nvim",
@@ -127,6 +128,10 @@ export const lsp: Plug[] = [
       "https://github.com/SmiteshP/nvim-navic",
     ],
     afterFile: "~/.config/nvim/rc/after/rustaceanvim.lua",
+  },
+  {
+    url: "https://github.com/alexpasmantier/krust.nvim",
+    profiles: ["rust"],
   },
   {
     url: "https://github.com/rachartier/tiny-inline-diagnostic.nvim",

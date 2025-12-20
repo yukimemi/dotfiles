@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/12/07 22:50:14.
+// Last Change : 2025/12/20 20:57:50.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -576,7 +576,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/mistricky/codesnap.nvim",
-    enabled: true,
+    enabled: false,
     profiles: ["core"],
     before: async ({ denops }) => {
       await execute(
@@ -595,6 +595,13 @@ end
 EOB
         `,
       );
+    },
+  },
+  {
+    url: "https://github.com/mistweaverco/snap.nvim",
+    profiles: ["core"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("snap").setup({})`);
     },
   },
   {
@@ -810,6 +817,13 @@ EOB
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("early-retirement").setup({})`);
+    },
+  },
+  {
+    url: "https://github.com/lkzz/golden-ratio.nvim",
+    profiles: ["core"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("golden-ratio").setup()`);
     },
   },
 ];

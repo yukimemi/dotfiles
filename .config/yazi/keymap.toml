@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : keymap.toml
 # Author      : yukimemi
-# Last Change : 2025/08/31 23:58:22.
+# Last Change : 2025/12/16 01:00:10.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -147,6 +147,11 @@ desc = "Goto ~/Downloads"
 on = ["g", "n"]
 run = "cd n:"
 desc = "Goto N drive"
+for = "windows"
+[[mgr.prepend_keymap]]
+on = ["g", "G"]
+run = "cd G:"
+desc = "Goto G drive"
 for = "windows"
 [[mgr.prepend_keymap]]
 on = ["g", "o"]
