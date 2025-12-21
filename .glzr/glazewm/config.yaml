@@ -136,9 +136,13 @@ window_rules:
 
   - commands: ['move --workspace 3', 'focus --workspace 3']
     match:
-      - window_process: { equals: 'olk' }
+      - window_process: { equals: 'excel' }
 
   - commands: ['move --workspace 4', 'focus --workspace 4']
+    match:
+      - window_process: { equals: 'olk' }
+
+  - commands: ['move --workspace 5', 'focus --workspace 5']
     match:
       - window_process: { equals: 'mstsc' }
 
