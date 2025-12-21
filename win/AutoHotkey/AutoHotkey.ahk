@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2025/12/07 00:57:34.
+; Last Change : 2025/12/21 12:30:15.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -269,6 +269,19 @@ F12::
   ; Activate3("slack.exe", "C:\Program Files\slack\slack.exe", "slack")
   ;Activate3("slack.exe", EnvGet("USERPROFILE") . "\AppData\Local\slack\slack.exe", "slack")
   return
+}
+
+; Command Pallet
+#HotIf WinActive("ahk_class WinUIDesktopWin32WindowClass ahk_exe Microsoft.CmdPal.UI.exe")
+
+^n::
+{
+  Send "{Down}"
+}
+
+^p::
+{
+  Send "{Up}"
 }
 
 SC079::IME_SET(1)
