@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : blink.ts
 // Author      : yukimemi
-// Last Change : 2025/12/01 00:42:08.
+// Last Change : 2025/12/27 13:18:17.
 // =============================================================================
 
 import { exists } from "@std/fs";
@@ -16,7 +16,7 @@ export const blink: Plug[] = [
   {
     url: "https://github.com/mikavilpas/blink-ripgrep.nvim",
     profiles: ["completion"],
-    rev: "v2.2.0",
+    rev: "v2.2.2",
   },
   {
     url: "https://github.com/saghen/blink.cmp",
@@ -25,7 +25,7 @@ export const blink: Plug[] = [
       "https://github.com/rafamadriz/friendly-snippets",
       "https://github.com/mikavilpas/blink-ripgrep.nvim",
     ],
-    rev: "v1.7.0",
+    rev: "v1.8.0",
     build: async ({ denops, info }) => {
       if (info.isLoad && info.isUpdate) {
         if (denops.meta.platform !== "windows") {

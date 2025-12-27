@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/12/20 20:57:50.
+// Last Change : 2025/12/27 11:27:37.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -824,6 +824,13 @@ EOB
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("golden-ratio").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/B1tWhys/stacktrace.nvim",
+    profiles: ["core"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("stacktrace").setup(_A)`, {});
     },
   },
 ];
