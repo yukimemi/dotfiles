@@ -1,16 +1,16 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/12/21 14:58:40.
+// Last Change : 2025/12/27 19:52:30.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
 
 import * as autocmd from "@denops/std/autocmd";
 import * as fn from "@denops/std/function";
-import * as nvimFn from "@denops/std/function/nvim";
 import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
+import * as nvimFn from "@denops/std/function/nvim";
 import * as vars from "@denops/std/variable";
 
 import { pluginStatus } from "../pluginstatus.ts";
