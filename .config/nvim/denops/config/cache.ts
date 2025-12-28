@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2025/12/07 21:09:37.
+// Last Change : 2025/12/27 23:52:04.
 // =============================================================================
 
 export function cacheVim() {
@@ -34,6 +34,7 @@ export function cacheVim() {
         endif
         norm! zM
       endfunction
+      colorscheme habamax
     `,
     path: "~/.config/nvim/plugin/dvpm_cache.vim",
   };
@@ -54,6 +55,12 @@ export function cacheLua() {
           vim.notify('🚀  Neovim startup time:' .. time_str, vim.log.levels.INFO, { title = "Startup Timer" })
         end,
       })
+
+      -- Monkeypatch for vim.lsp.util.make_position_params
+      local orig_make_position_params = vim.lsp.util.make_position_params
+      vim.lsp.util.make_position_params = function(win, encoding)
+        return orig_make_position_params(win, encoding or "utf-16")
+      end
 
       -- Disable default plugins
       vim.g.loaded_2html_plugin = 1

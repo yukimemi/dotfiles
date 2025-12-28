@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/12/27 11:27:37.
+// Last Change : 2025/12/27 23:55:59.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -99,15 +99,15 @@ export const util: Plug[] = [
     },
   },
   {
-    url: "https://github.com/NvChad/volt",
+    url: "https://github.com/nvzone/volt",
     enabled: false,
     profiles: ["core"],
   },
   {
-    url: "https://github.com/NvChad/minty",
+    url: "https://github.com/nvzone/minty",
     enabled: false,
     profiles: ["core"],
-    dependencies: ["https://github.com/NvChad/volt"],
+    dependencies: ["https://github.com/nvzone/volt"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("minty").setup()`);
     },

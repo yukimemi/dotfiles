@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/12/01 00:34:39.
+// Last Change : 2025/12/27 23:55:31.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -145,13 +145,23 @@ export const libs: Plug[] = [
         },
         cmdline: {
           enabled: true,
-          // view: "cmdline",
         },
         notify: {
           enabled: true,
         },
       });
     },
+  },
+  {
+    url: "https://github.com/maikel-479/noti.nvim",
+    enabled: false,
+    profiles: ["core"],
+    dependencies: [
+      "https://github.com/nvim-lua/plenary.nvim",
+      "https://github.com/nvzone/volt",
+      "https://github.com/folke/noice.nvim",
+    ],
+    afterFile: `~/.config/nvim/rc/after/noti.lua`,
   },
   {
     url: "https://github.com/kamalsacranie/nvim-mapper",
