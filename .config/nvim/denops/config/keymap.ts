@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : keymap.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:20:55.
+// Last Change : 2025/12/28 17:23:36.
 // =============================================================================
 
 import type { Denops } from "@denops/std";
@@ -21,11 +21,6 @@ export async function setKeymapPre(denops: Denops) {
     // keymaps.
     await mapping.map(denops, "<leader><leader>", "<cmd>update<cr>", {
       mode: "n",
-      silent: true,
-      noremap: true,
-    });
-    await mapping.map(denops, "<esc>", "<C-\\><C-n>", {
-      mode: "t",
       silent: true,
       noremap: true,
     });

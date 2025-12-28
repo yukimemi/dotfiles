@@ -328,6 +328,14 @@ if ($PSVersionTable.PSVersion.Major -ge 7) {
 }
 Set-PSReadLineOption @PSReadLineOptions
 
+# Integration with Neovim Terminal
+if ($env:NVIM) {
+  Set-PSReadLineKeyHandler -Chord Escape -ScriptBlock {
+    # Send <C-\><C-n> to the parent Neovim instance
+    & nvim --server $env:NVIM --remote-send "<C-\><C-n>"
+  } -ViMode Command
+}
+
 # Toggle PredictionViewStyle between InlineView and ListView
 Set-PSReadLineKeyHandler -Chord Ctrl+Shift+G -ScriptBlock {
   $current = (Get-PSReadLineOption).PredictionViewStyle
