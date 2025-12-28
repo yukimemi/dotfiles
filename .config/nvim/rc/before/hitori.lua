@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : hitori.lua
 -- Author      : yukimemi
--- Last Change : 2025/01/02 13:49:31.
+-- Last Change : 2025/12/28 17:07:22.
 -- =============================================================================
 
 vim.g.hitori_debug = false
@@ -13,5 +13,5 @@ vim.g.hitori_ignore_patterns = {
   ".dump$",
   ".jjdescription$",
   "(COMMIT_EDIT|TAG_EDIT|MERGE_|SQUASH_)MSG$",
+  "editprompt.md$",
 }
-

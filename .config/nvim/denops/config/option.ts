@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : option.ts
 // Author      : yukimemi
-// Last Change : 2025/12/27 19:52:16.
+// Last Change : 2025/12/28 16:50:56.
 // =============================================================================
 
 import type { Denops } from "@denops/std";
@@ -66,7 +66,7 @@ export async function setOption(denops: Denops) {
     await option.splitbelow.set(denops, true);
     await option.splitright.set(denops, true);
     await option.tabstop.set(denops, 2);
-    await option.timeoutlen.set(denops, 1000);
+    await option.timeoutlen.set(denops, 3000);
     await option.ttimeoutlen.set(denops, 0);
     await option.undofile.set(denops, true);
     await option.undolevels.set(denops, 10000);

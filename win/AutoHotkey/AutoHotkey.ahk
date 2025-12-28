@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2025/12/21 12:30:15.
+; Last Change : 2025/12/28 17:06:21.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -284,6 +284,30 @@ F12::
   Send "{Up}"
 }
 
+#HotIf
+
+; editprompt
+F7::
+{
+  tempFile := EnvGet("TEMP") . "\editprompt.md"
+  if FileExist(tempFile) {
+    FileDelete(tempFile)
+  }
+
+  ; Run nvim and wait for it to close.
+  RunWait('nvim "' . tempFile . '" -c "startinsert"')
+
+  if FileExist(tempFile) {
+    prompt := FileRead(tempFile, "UTF-8")
+    FileDelete(tempFile)
+
+    A_Clipboard := prompt
+    Send("^v")
+
+    ToolTip("✅ Complete send prompt")
+    SetTimer(() => ToolTip(), -2000)
+  }
+}
 SC079::IME_SET(1)
 SC07B::IME_SET(0)
 
