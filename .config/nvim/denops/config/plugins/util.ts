@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/12/27 23:55:59.
+// Last Change : 2025/12/28 14:06:10.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -428,6 +428,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/bennypowers/nvim-regexplainer",
+    enabled: false,
     profiles: ["core"],
     dependencies: [
       "https://github.com/nvim-treesitter/nvim-treesitter",
@@ -546,6 +547,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/ariel-frischer/bmessages.nvim",
+    enabled: false,
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("bmessages").setup()`);
@@ -624,6 +626,7 @@ EOB
   },
   {
     url: "https://github.com/Diogo-ss/licenser.nvim",
+    enabled: false,
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("licenser").setup()`);
@@ -828,6 +831,7 @@ EOB
   },
   {
     url: "https://github.com/B1tWhys/stacktrace.nvim",
+    enabled: false,
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("stacktrace").setup(_A)`, {});

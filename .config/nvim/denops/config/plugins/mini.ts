@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : mini.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:13:22.
+// Last Change : 2025/12/28 14:14:02.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -11,7 +11,7 @@ export const mini: Plug[] = [
   {
     url: "https://github.com/nvim-mini/mini.nvim",
     enabled: pluginStatus.mini,
-    profiles: ["mini", "core"],
+    profiles: ["mini"],
     dependencies: ["https://github.com/yukimemi/chronicle.vim"],
     cache: { afterFile: `~/.config/nvim/rc/after/mini.lua` },
   },

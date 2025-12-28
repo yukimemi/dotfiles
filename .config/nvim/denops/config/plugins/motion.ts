@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2025/11/29 07:35:25.
+// Last Change : 2025/12/28 14:09:16.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -127,6 +127,7 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/kamecha/bimove",
+    enabled: false,
     profiles: ["core"],
     cache: { beforeFile: `~/.config/nvim/rc/before/bimove.vim` },
   },

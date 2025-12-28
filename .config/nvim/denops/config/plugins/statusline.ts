@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : statusline.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:11:53.
+// Last Change : 2025/12/28 14:12:05.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -83,7 +83,7 @@ export const statusline: Plug[] = [
   {
     url: "https://github.com/sschleemilch/slimline.nvim",
     enabled: pluginStatus.slimline,
-    profiles: ["statusline", "core"],
+    profiles: ["statusline"],
     afterFile: `~/.config/nvim/rc/after/slimline.lua`,
   },
 ];
