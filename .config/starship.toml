@@ -6,8 +6,8 @@
 
 format = """$all"""
 right_format = """$time"""
-scan_timeout = 10
-command_timeout = 10
+scan_timeout = 100
+command_timeout = 1000
 
 [os]
 disabled = true

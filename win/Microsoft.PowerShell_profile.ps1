@@ -1,14 +1,28 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/12/29 19:51:38.
+# Last Change : 2025/12/29 20:20:00.
 # =============================================================================
 
-# Set title.
-$Host.UI.RawUI.WindowTitle = "yukimemi-terminal"
+# --- Environment Setup ---
 
-# Options.
+$Host.UI.RawUI.WindowTitle = "yukimemi-terminal"
 $ErrorActionPreference = "Stop"
+
+function Is-Windows {
+  ($PSVersionTable.PSVersion.Major -eq 5) -or ($PSVersionTable.Platform -eq "Win32NT")
+}
+
+if (Is-Windows) {
+  $OutputEncoding = [System.Text.Encoding]::UTF8
+  [Console]::InputEncoding = [System.Text.Encoding]::UTF8
+  [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+  chcp 65001 | Out-Null
+  $env:LANG = "ja_JP.UTF-8"
+  $env:EDITOR = "hitori"
+}
+
+# --- Package Managers & Tool Init ---
 
 # cargo-binstall
 if (!(Get-Command cargo-binstall -ErrorAction SilentlyContinue)) {
@@ -21,442 +35,24 @@ if (Get-Command mise -ErrorAction SilentlyContinue) {
 } else {
   cargo binstall mise
 }
+
 # rhq
 if (!(Get-Command rhq -ErrorAction SilentlyContinue)) {
   cargo binstall --git https://github.com/ubnt-intrepid/rhq.git
 }
 
-# Utility functions.
-function Is-Windows {
-  ($PSVersionTable.PSVersion.Major -eq 5) -or ($PSVersionTable.Platform -eq "Win32NT")
-}
-
-# Use utf-8
-if (Is-Windows) {
-  $OutputEncoding = [System.Text.Encoding]::UTF8
-  [Console]::InputEncoding = [System.Text.Encoding]::UTF8
-  [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-  chcp 65001 | Out-Null
-  $env:LANG = "ja_JP.UTF-8"
-  $env:EDITOR = "hitori"
-}
-
 # starship
 if (Get-Command starship -ErrorAction SilentlyContinue) {
   Invoke-Expression (&starship init powershell)
-  # Update Starship Vi mode before each prompt redraw
   function Invoke-Starship-PreCommand {
     $mode = (Get-PSReadLineOption).ViMode
-    if ($mode -eq "Command") {
-      $env:STARSHIP_VIM_MODE = "normal"
-    } else {
-      $env:STARSHIP_VIM_MODE = "insert"
-    }
+    $env:STARSHIP_VIM_MODE = if ($mode -eq "Command") { "normal" } else { "insert" }
   }
 }
 
-# OS commands.
-function b {
-  Set-Location ..
-}
-
-# git commands.
-function g {
-  git $args
-}
-function s {
-  git status
-}
-function d {
-  git diff $args
-}
-function a {
-  git add $args
-}
-function gp {
-  git pull --rebase
-}
-function gpu {
-  git push
-}
-function gbr {
-  git browse
-}
-
-# git ignore for PowerShell
-function gig {
-  param(
-    [Parameter(Mandatory = $true)]
-    [string[]]$list
-  )
-  $params = ($list | ForEach-Object { [uri]::EscapeDataString($_) }) -join ","
-  Invoke-WebRequest -Uri "https://www.toptal.com/developers/gitignore/api/$params" | Select-Object -ExpandProperty content | Out-File -FilePath $(Join-Path -Path $pwd -ChildPath ".gitignore") -Encoding ascii
-}
-
-function gr {
-  Set-Location $(git rev-parse --show-toplevel)
-}
-
-# Auto ls on cd.
-function cd-ls {
-  [CmdletBinding()]
-  param(
-    [Parameter(ValueFromPipeline = $true)]
-    [string]$path
-  )
-  trap {
-    $_
-  }
-  Set-Location $path -ea Stop
-  Get-ChildItem
-  # Save location.
-  $funcs = "function Is-Windows { ${Function:Is-Windows} }"
-  Start-Job {
-    param([string]$funcs, [string]$path)
-    Invoke-Expression $funcs
-    $z = & {
-      if (Is-Windows) {
-        (Join-Path $env:USERPROFILE ".cdhistory")
-      } else {
-        (Join-Path $env:HOME ".cdhistory")
-      }
-    }
-    $path | Add-Content -Encoding utf8 $z
-    # $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) } | Where-Object { Test-Path $_ }
-    $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) }
-    [array]::Reverse($c)
-    if (Get-Command uq -ErrorAction SilentlyContinue) {
-      $c | uq | Set-Variable c
-    } else {
-      $c | Sort-Object -Unique | Set-Variable c
-    }
-    [array]::Reverse($c)
-    $c | Set-Content -Encoding utf8 $z
-  } -ArgumentList $funcs, (Get-Location).Path > $null
-}
-
-function cdls {
-  [CmdletBinding()]
-  param(
-    [Parameter(ValueFromPipeline = $true)]
-    [string]$path
-  )
-  trap {
-    $_
-  }
-  Set-Location $path -ea Stop
-  Get-ChildItem
-}
-
-function t {
-  exit
-}
-
-function RemoveTo-Trash {
-  # https://qiita.com/Zuishin/items/1fa77bccd111b55f7bf6
-  [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Path')]
-  param (
-    [SupportsWildCards()]
-    [Parameter(
-      Mandatory = $true,
-      Position = 0,
-      ParameterSetName = 'Path',
-      ValueFromPipeline = $true,
-      ValueFromPipelineByPropertyName = $true
-    )]
-    [string[]]$Path,
-
-    [Alias('LP')]
-    [Alias('PSPath')]
-    [Parameter(
-      Mandatory = $true,
-      Position = 0,
-      ParameterSetName = 'LiteralPath',
-      ValueFromPipeline = $false,
-      ValueFromPipelineByPropertyName = $true
-    )]
-    [string[]]$LiteralPath
-  )
-  begin {
-    $shell = New-Object -ComObject Shell.Application
-    $trash = $shell.NameSpace(10)
-  }
-  process {
-    $Path = $Path.Trim()
-    $Path = $Path -replace '^[^A-Z]+', ""
-    if ($PSBoundParameters.ContainsKey('Path')) {
-      $Path | Where-Object { ![string]::IsNullOrWhiteSpace($_) } | Set-Variable Path
-      $targets = Convert-Path $Path
-    } else {
-      $targets = Convert-Path -LiteralPath $LiteralPath
-    }
-    $targets | ForEach-Object {
-      if ($PSCmdlet.ShouldProcess($_)) {
-        $trash.MoveHere($_)
-      }
-    }
-  }
-}
-
-function Get-DriveInfo {
-  Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Used } | Where-Object { $_.Name -ne "Temp" } | Sort-Object Name
-}
-
-function Get-DriveInfoView {
-  Get-DriveInfo | Format-Table -AutoSize
-}
-
-# rhq.
-function Trim-Cd {
-  [CmdletBinding()]
-  param (
-    [Parameter(
-      Mandatory = $false,
-      Position = 0,
-      ParameterSetName = "Path",
-      ValueFromPipeline = $true,
-      ValueFromPipelineByPropertyName = $true,
-      HelpMessage = "Path to location."
-    )]
-    [ValidateNotNullOrEmpty()]
-    [string]
-    $Path
-  )
-
-  process {
-    $p = $Path.Trim()
-    $p = $p -replace '^[^A-Z]+', ""
-    Write-Host "cd [${p}]"
-    Set-Location $p
-  }
-}
-function rhl {
-  rhq list | __FILTER | Select-Object -First 1 | Trim-Cd
-}
-function ghl {
-  ghr list | __FILTER | Select-Object -First 1 | Trim-Cd
-}
-function gsl {
-  gsr "${env:USERPROFILE}\src" | __FILTER | Select-Object -First 1 | Trim-Cd
-}
-function jd {
-  Get-ChildItem -Force -Directory -Recurse | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | Trim-Cd
-}
-
-# Remove-Alias r
-Remove-Item alias:r
-function r {
-  if (Get-Command trash -ErrorAction SilentlyContinue) {
-    trash $(Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1)
-  } else {
-    Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | RemoveTo-Trash
-  }
-}
-
-function fe {
-  nvim $(fd -H -t f | __FILTER | Select-Object -First 1)
-}
-
-function v {
-  gvim --remote-silent $args
-}
-function VimDeinUpdate {
-  vim -c "silent! call dein#update() | q"
-}
-
-function Install-Pip {
-  [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
-  Invoke-WebRequest -sSL "https://bootstrap.pypa.io/get-pip.py" -o get-pip.py
-  .\python .\get-pip.py
-  Remove-Item .\get-pip.py
-}
-
-function Install-Aider {
-  powershell -ExecutionPolicy ByPass -c "irm https://aider.chat/install.ps1 | iex"
-}
-
-function Install-Neovim {
-  $nvimMsi = Join-Path $env:tmp "nvim-win64.msi"
-  Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
-  & msiexec /i $nvimMsi
-}
-
-# Alias.
-if (Is-Windows) {
-  Remove-Item alias:rm
-}
-Set-Alias rm RemoveTo-Trash
-Set-Alias o Start-Process
-if (Is-Windows) {
-  Set-Alias e nvim
-} else {
-  Set-Alias e neovide
-}
-Set-Alias c Clear-Host
-Set-Alias which Get-Command
-Set-Alias df Get-DriveInfoView
-# Remove-Alias cd
-Remove-Item alias:cd
-# Set-Alias cd cd-ls
-Set-Alias cd cdls
-# filter tool.
-if (Get-Command peco -ErrorAction SilentlyContinue) {
-  Set-Alias __FILTER peco
-}
-if (Get-Command gof -ErrorAction SilentlyContinue) {
-  Set-Alias __FILTER gof
-}
-if (Get-Command tv -ErrorAction SilentlyContinue) {
-  Set-Alias __FILTER tv
-}
-if (Get-Command fzf -ErrorAction SilentlyContinue) {
-  Set-Alias __FILTER fzf
-}
-# Remove-Alias ls
-if (Is-Windows) {
-  Remove-Item alias:ls
-}
-Set-Alias ls Get-ChildItem
-function l {
-  Get-ChildItem $args
-}
-function la {
-  Get-ChildItem -Force $args
-}
-if (Is-Windows) {
-  Remove-Item alias:h
-}
-Set-Alias h hitori
-
-# Readline setting.
-$PSReadLineOptions = @{
-  EditMode = "Vi"
-  ViModeIndicator = "Cursor"
-}
-if ($PSVersionTable.PSVersion.Major -ge 7) {
-  $PSReadLineOptions.PredictionSource = "HistoryAndPlugin"
-  $PSReadLineOptions.PredictionViewStyle = "InlineView"
-}
-Set-PSReadLineOption @PSReadLineOptions
-
-# Refresh prompt on mode changes to update Starship symbol immediately
-Set-PSReadLineKeyHandler -Chord Escape -ViMode Insert -ScriptBlock {
-  [Microsoft.PowerShell.PSConsoleReadLine]::ViCommandMode($null, $null)
-  [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()
-}
-# Bind keys to their respective PSReadLine functions and refresh the prompt
-"i:ViInsertMode", "a:ViInsertWithAppend", "I:ViInsertAtBegining", "A:ViInsertAtEnd", "o:InsertLineBelow", "O:InsertLineAbove", "s:ViInsertWithDelete", "S:ViReplaceLine" | ForEach-Object {
-  $parts = $_ -split ":"
-  $key = $parts[0]
-  $func = $parts[1]
-  Set-PSReadLineKeyHandler -Chord $key -ViMode Command -ScriptBlock {
-    [Microsoft.PowerShell.PSConsoleReadLine]::$func($null, $null)
-    if ($key -match "o|O") { [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null) }
-    [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()
-  }.GetNewClosure()
-}
-
-# Special handling for 'c' related chords if possible, or common ones
-Set-PSReadLineKeyHandler -Chord "C" -ViMode Command -ScriptBlock {
-  [Microsoft.PowerShell.PSConsoleReadLine]::KillLine($null, $null)
-  [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null)
-  [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()
-}
-
-# Integration with Neovim Terminal
-if ($env:NVIM) {
-  Set-PSReadLineKeyHandler -Chord Escape -ScriptBlock {
-    # Send <C-\><C-n> to the parent Neovim instance
-    & nvim --server $env:NVIM --remote-send "<C-\><C-n>"
-  } -ViMode Command
-}
-
-# Toggle PredictionViewStyle between InlineView and ListView
-Set-PSReadLineKeyHandler -Chord Ctrl+Shift+G -ScriptBlock {
-  $current = (Get-PSReadLineOption).PredictionViewStyle
-  if ($current -eq 'InlineView') {
-    Set-PSReadLineOption -PredictionViewStyle ListView
-  } else {
-    Set-PSReadLineOption -PredictionViewStyle InlineView
-  }
-}
-
-Set-PSReadLineKeyHandler -Chord Ctrl+f -Function AcceptNextSuggestionWord -ViMode Insert
-Set-PSReadLineKeyHandler -Chord Ctrl+e -Function AcceptSuggestion -ViMode Insert
-
-Set-PSReadLineKeyHandler -Chord Shift+Spacebar -Function PossibleCompletions -ViMode Insert
-
-Set-PSReadLineKeyHandler -Chord Ctrl+a -Function BeginningOfLine -ViMode Insert
-Set-PSReadLineKeyHandler -Chord Ctrl+b -Function BackwardChar -ViMode Insert
-Set-PSReadLineKeyHandler -Chord Ctrl+d -Function DeleteChar -ViMode Insert
-Set-PSReadLineKeyHandler -Chord Ctrl+h -Function BackwardDeleteChar -ViMode Insert
-Set-PSReadLineKeyHandler -Chord Ctrl+l -Function ClearScreen -ViMode Insert
-Set-PSReadLineKeyHandler -Chord Ctrl+n -Function HistorySearchForward -ViMode Insert
-Set-PSReadLineKeyHandler -Chord Ctrl+p -Function HistorySearchBackward -ViMode Insert
-Set-PSReadLineKeyHandler -Chord Ctrl+u -Function BackwardDeleteLine -ViMode Insert
-Set-PSReadLineKeyHandler -Chord Ctrl+w -Function BackwardDeleteWord -ViMode Insert
-
-# Write-Host -Foreground Green "`n[ZLocation] knows about $((Get-ZLocation).Keys.Count) locations.`n"
-
-# z.
-function _j1 {
-  z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | Select-Object -First 1 | Trim-Cd
-}
-
-function _j2 {
-  $z = & {
-    if (Is-Windows) {
-      (Join-Path $env:USERPROFILE ".cdhistory")
-    } else {
-      (Join-Path $env:HOME ".cdhistory")
-    }
-  }
-  $c = Get-Content $z
-  [array]::Reverse($c)
-  $c | __FILTER | Select-Object -First 1 | Trim-Cd
-  # Get-Content $z | __FILTER | Trim-Cd
-  Get-Job | Stop-Job -PassThru | Remove-Job -Force
-}
-
-function j {
-  zi
-}
-
-# zoxide.
+# zoxide
 if (Get-Command zoxide -ErrorAction SilentlyContinue) {
-  Invoke-Expression (& { (zoxide init powershell | Out-String) })
-}
-
-# yazi
-function y {
-  $tmp = [System.IO.Path]::GetTempFileName()
-  yazi $args --cwd-file="$tmp"
-  $cwd = Get-Content -Path $tmp
-  if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
-    Set-Location -LiteralPath $cwd
-  }
-  Remove-Item -Path $tmp
-}
-
-# molt
-function Update-WithMolt {
-  param([string]$path = $pwd)
-  Get-ChildItem -Force -Recurse -File $path | Where-Object {
-    $_.Extension -eq ".ts"
-  } | ForEach-Object {
-    molt -w $_.FullName
-  }
-}
-
-# hash.
-function Get-FileAndHash {
-  Get-ChildItem . | ForEach-Object { [PSCustomObject]@{ path = $_.Name; hash = (Get-FileHash -a md5 $_.FullName).Hash } }
-}
-
-# Chocolatey profile
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
+  Invoke-Expression (&zoxide init powershell | Out-String)
 }
 
 # fnm
@@ -465,6 +61,277 @@ if (Get-Command fnm -ErrorAction SilentlyContinue) {
 }
 
 # pkgx
-if (-not (Get-Command pkgx -ErrorAction SilentlyContinue)) {
+if (!(Get-Command pkgx -ErrorAction SilentlyContinue)) {
   powershell -Command "irm https://pkgx.sh | iex"
+}
+
+# Chocolatey
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path $ChocolateyProfile) {
+  Import-Module $ChocolateyProfile
+}
+
+# --- Functions ---
+
+# Git
+function b { Set-Location .. }
+function g { git $args }
+function s { git status }
+function d { git diff $args }
+function a { git add $args }
+function gp { git pull --rebase }
+function gpu { git push }
+function gbr { git browse }
+function gr { Set-Location $(git rev-parse --show-toplevel) }
+
+function gig {
+  param([Parameter(Mandatory = $true)][string[]]$list)
+  $params = ($list | ForEach-Object { [uri]::EscapeDataString($_) }) -join ","
+  Invoke-WebRequest -Uri "https://www.toptal.com/developers/gitignore/api/$params" |
+    Select-Object -ExpandProperty content |
+    Out-File -FilePath (Join-Path $pwd ".gitignore") -Encoding ascii
+}
+
+# Navigation & History
+function cdls {
+  [CmdletBinding()]
+  param([Parameter(ValueFromPipeline = $true)][string]$path)
+  Set-Location $path -ErrorAction Stop
+  Get-ChildItem
+}
+
+function cd-ls {
+  [CmdletBinding()]
+  param([Parameter(ValueFromPipeline = $true)][string]$path)
+  Set-Location $path -ErrorAction Stop
+  Get-ChildItem
+  # Save location in background
+  $funcs = "function Is-Windows { ${Function:Is-Windows} }"
+  Start-Job {
+    param([string]$funcs, [string]$path)
+    Invoke-Expression $funcs
+    $z = if (Is-Windows) { Join-Path $env:USERPROFILE ".cdhistory" } else { Join-Path $env:HOME ".cdhistory" }
+    $path | Add-Content -Encoding utf8 $z
+    $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) }
+    [array]::Reverse($c)
+    $c = $c | Select-Object -Unique
+    [array]::Reverse($c)
+    $c | Set-Content -Encoding utf8 $z
+  } -ArgumentList $funcs, (Get-Location).Path > $null
+}
+
+function _j1 {
+  z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | Select-Object -First 1 | Trim-Cd
+}
+
+function _j2 {
+  $z = if (Is-Windows) { Join-Path $env:USERPROFILE ".cdhistory" } else { Join-Path $env:HOME ".cdhistory" }
+  if (Test-Path $z) {
+    $c = Get-Content $z
+    [array]::Reverse($c)
+    $c | __FILTER | Select-Object -First 1 | Trim-Cd
+  }
+  Get-Job | Stop-Job -PassThru | Remove-Job -Force
+}
+
+function j { zi }
+
+function rhl { rhq list | __FILTER | Select-Object -First 1 | Trim-Cd }
+function ghl { ghr list | __FILTER | Select-Object -First 1 | Trim-Cd }
+function gsl { gsr "${env:USERPROFILE}\src" | __FILTER | Select-Object -First 1 | Trim-Cd }
+function jd { Get-ChildItem -Force -Directory -Recurse | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | Trim-Cd }
+
+function t { exit }
+
+# File Utils
+function RemoveTo-Trash {
+  [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Path')]
+  param (
+    [SupportsWildCards()]
+    [Parameter(Mandatory = $true, Position = 0, ParameterSetName = 'Path', ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true)]
+    [string[]]$Path,
+    [Alias('LP', 'PSPath')]
+    [Parameter(Mandatory = $true, Position = 0, ParameterSetName = 'LiteralPath', ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)]
+    [string[]]$LiteralPath
+  )
+  begin {
+    $shell = New-Object -ComObject Shell.Application
+    $trash = $shell.NameSpace(10)
+  }
+  process {
+    $targets = if ($PSBoundParameters.ContainsKey('Path')) {
+      Convert-Path ($Path.Trim() -replace '^[^A-Z]+', "")
+    } else {
+      Convert-Path -LiteralPath $LiteralPath
+    }
+    foreach ($target in $targets) {
+      if ($PSCmdlet.ShouldProcess($target)) {
+        $trash.MoveHere($target)
+      }
+    }
+  }
+}
+
+function r {
+  $target = Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1
+  if (!$target) { return }
+  if (Get-Command trash -ErrorAction SilentlyContinue) {
+    trash $target
+  } else {
+    $target | RemoveTo-Trash
+  }
+}
+
+function Get-DriveInfo {
+  Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Used } | Where-Object { $_.Name -ne "Temp" } | Sort-Object Name
+}
+
+function Get-DriveInfoView { Get-DriveInfo | Format-Table -AutoSize }
+
+function Trim-Cd {
+  param([Parameter(ValueFromPipeline = $true)][string]$Path)
+  process {
+    $p = $Path.Trim() -replace '^[^A-Z]+', ""
+    Write-Host "cd [$p]"
+    Set-Location $p
+  }
+}
+
+function fe { nvim $(fd -H -t f | __FILTER | Select-Object -First 1) }
+function v { gvim --remote-silent $args }
+function VimDeinUpdate { vim -c "silent! call dein#update() | q" }
+
+function Install-Pip {
+  [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+  Invoke-WebRequest -Uri "https://bootstrap.pypa.io/get-pip.py" -OutFile get-pip.py
+  python ./get-pip.py
+  Remove-Item ./get-pip.py
+}
+
+function Install-Aider {
+  Invoke-RestMethod -Uri https://aider.chat/install.ps1 | Invoke-Expression
+}
+
+function Install-Neovim {
+  $nvimMsi = Join-Path $env:TEMP "nvim-win64.msi"
+  Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
+  Start-Process msiexec.exe -ArgumentList "/i `"$nvimMsi`"" -Wait
+}
+
+function y {
+  $tmp = [System.IO.Path]::GetTempFileName()
+  yazi $args --cwd-file="$tmp"
+  if (Test-Path $tmp) {
+    $cwd = Get-Content -Path $tmp
+    if ($cwd -and $cwd -ne $PWD.Path) { Set-Location -LiteralPath $cwd }
+    Remove-Item -Path $tmp
+  }
+}
+
+function Update-WithMolt {
+  param([string]$path = $pwd)
+  Get-ChildItem -Force -Recurse -File $path -Filter *.ts | ForEach-Object { molt -w $_.FullName }
+}
+
+function Get-FileAndHash {
+  Get-ChildItem | ForEach-Object { [PSCustomObject]@{ path = $_.Name; hash = (Get-FileHash -Algorithm MD5 $_.FullName).Hash } }
+}
+
+# --- Aliases ---
+
+# Remove default aliases before setting
+"r", "rm", "cd", "ls", "h" | ForEach-Object { if (Get-Alias $_ -ErrorAction SilentlyContinue) { Remove-Item "alias:$_" -Force } }
+
+$aliases = @{
+  rm    = "RemoveTo-Trash"
+  o     = "Start-Process"
+  c     = "Clear-Host"
+  which = "Get-Command"
+  df    = "Get-DriveInfoView"
+  cd    = "cdls"
+  ls    = "Get-ChildItem"
+  h     = "hitori"
+}
+
+foreach ($alias in $aliases.GetEnumerator()) {
+  Set-Alias -Name $alias.Key -Value $alias.Value -Force
+}
+
+if (Is-Windows) {
+  Set-Alias -Name e -Value nvim -Force
+} else {
+  Set-Alias -Name e -Value neovide -Force
+}
+
+# Filter tool setup
+$filterTools = "gof", "tv", "fzf", "peco"
+foreach ($tool in $filterTools) {
+  if (Get-Command $tool -ErrorAction SilentlyContinue) {
+    Set-Alias -Name __FILTER -Value $tool -Force
+    break
+  }
+}
+
+function l { Get-ChildItem $args }
+function la { Get-ChildItem -Force $args }
+
+# --- PSReadLine & KeyHandlers ---
+
+$PSReadLineOptions = @{
+  EditMode        = "Vi"
+  ViModeIndicator = "Cursor"
+}
+if ($PSVersionTable.PSVersion.Major -ge 7) {
+  $PSReadLineOptions.PredictionSource = "HistoryAndPlugin"
+  $PSReadLineOptions.PredictionViewStyle = "InlineView"
+}
+Set-PSReadLineOption @PSReadLineOptions
+
+# Mode transition handlers
+Set-PSReadLineKeyHandler -Chord Escape -ViMode Insert -ScriptBlock {
+  [Microsoft.PowerShell.PSConsoleReadLine]::ViCommandMode($null, $null)
+  [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()
+}
+
+"i:ViInsertMode", "a:ViInsertWithAppend", "I:ViInsertAtBegining", "A:ViInsertAtEnd", "o:InsertLineBelow", "O:InsertLineAbove", "s:ViInsertWithDelete", "S:ViReplaceLine" | ForEach-Object {
+  $parts = $_ -split ":"
+  $k = $parts[0]
+  $f = $parts[1]
+  Set-PSReadLineKeyHandler -Chord $k -ViMode Command -ScriptBlock {
+    [Microsoft.PowerShell.PSConsoleReadLine]::$f($null, $null)
+    if ($k -match "o|O") { [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null) }
+    [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()
+  }.GetNewClosure()
+}
+
+Set-PSReadLineKeyHandler -Chord "C" -ViMode Command -ScriptBlock {
+  [Microsoft.PowerShell.PSConsoleReadLine]::KillLine($null, $null)
+  [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null)
+  [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()
+}
+
+# Neovim integration
+if ($env:NVIM) {
+  Set-PSReadLineKeyHandler -Chord Escape -ViMode Command -ScriptBlock {
+    & nvim --server $env:NVIM --remote-send "<C-\><C-n>"
+  }
+}
+
+# Predictions & Emacs-like shortcuts
+Set-PSReadLineKeyHandler -Chord Ctrl+Shift+G -ScriptBlock {
+  $current = (Get-PSReadLineOption).PredictionViewStyle
+  Set-PSReadLineOption -PredictionViewStyle (if ($current -eq 'InlineView') { 'ListView' } else { 'InlineView' })
+}
+
+Set-PSReadLineKeyHandler -Chord Ctrl+f -Function AcceptNextSuggestionWord -ViMode Insert
+Set-PSReadLineKeyHandler -Chord Ctrl+e -Function AcceptSuggestion -ViMode Insert
+Set-PSReadLineKeyHandler -Chord Shift+Spacebar -Function PossibleCompletions -ViMode Insert
+
+$emacsKeys = @{
+  "Ctrl+a" = "BeginningOfLine"; "Ctrl+b" = "BackwardChar"; "Ctrl+d" = "DeleteChar";
+  "Ctrl+h" = "BackwardDeleteChar"; "Ctrl+l" = "ClearScreen"; "Ctrl+n" = "HistorySearchForward";
+  "Ctrl+p" = "HistorySearchBackward"; "Ctrl+u" = "BackwardDeleteLine"; "Ctrl+w" = "BackwardDeleteWord"
+}
+foreach ($key in $emacsKeys.GetEnumerator()) {
+  Set-PSReadLineKeyHandler -Chord $key.Key -Function $key.Value -ViMode Insert
 }
