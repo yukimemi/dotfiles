@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/12/29 16:04:27.
+# Last Change : 2025/12/29 19:51:38.
 # =============================================================================
 
 # Set title.
@@ -33,8 +33,10 @@ function Is-Windows {
 
 # Use utf-8
 if (Is-Windows) {
-  chcp 65001
-  $OutputEncoding = [Console]::OutputEncoding
+  $OutputEncoding = [System.Text.Encoding]::UTF8
+  [Console]::InputEncoding = [System.Text.Encoding]::UTF8
+  [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+  chcp 65001 | Out-Null
   $env:LANG = "ja_JP.UTF-8"
   $env:EDITOR = "hitori"
 }
@@ -42,6 +44,15 @@ if (Is-Windows) {
 # starship
 if (Get-Command starship -ErrorAction SilentlyContinue) {
   Invoke-Expression (&starship init powershell)
+  # Update Starship Vi mode before each prompt redraw
+  function Invoke-Starship-PreCommand {
+    $mode = (Get-PSReadLineOption).ViMode
+    if ($mode -eq "Command") {
+      $env:STARSHIP_VIM_MODE = "normal"
+    } else {
+      $env:STARSHIP_VIM_MODE = "insert"
+    }
+  }
 }
 
 # OS commands.
@@ -327,6 +338,30 @@ if ($PSVersionTable.PSVersion.Major -ge 7) {
   $PSReadLineOptions.PredictionViewStyle = "InlineView"
 }
 Set-PSReadLineOption @PSReadLineOptions
+
+# Refresh prompt on mode changes to update Starship symbol immediately
+Set-PSReadLineKeyHandler -Chord Escape -ViMode Insert -ScriptBlock {
+  [Microsoft.PowerShell.PSConsoleReadLine]::ViCommandMode($null, $null)
+  [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()
+}
+# Bind keys to their respective PSReadLine functions and refresh the prompt
+"i:ViInsertMode", "a:ViInsertWithAppend", "I:ViInsertAtBegining", "A:ViInsertAtEnd", "o:InsertLineBelow", "O:InsertLineAbove", "s:ViInsertWithDelete", "S:ViReplaceLine" | ForEach-Object {
+  $parts = $_ -split ":"
+  $key = $parts[0]
+  $func = $parts[1]
+  Set-PSReadLineKeyHandler -Chord $key -ViMode Command -ScriptBlock {
+    [Microsoft.PowerShell.PSConsoleReadLine]::$func($null, $null)
+    if ($key -match "o|O") { [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null) }
+    [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()
+  }.GetNewClosure()
+}
+
+# Special handling for 'c' related chords if possible, or common ones
+Set-PSReadLineKeyHandler -Chord "C" -ViMode Command -ScriptBlock {
+  [Microsoft.PowerShell.PSConsoleReadLine]::KillLine($null, $null)
+  [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null)
+  [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()
+}
 
 # Integration with Neovim Terminal
 if ($env:NVIM) {

@@ -48,3 +48,21 @@ if vim.fn.has('win32') == 1 then
 else
   vim.keymap.set("n", "<c-s>", "<cmd>ToggleTerm<cr>", { noremap = true, silent = true })
 end
+
+-- Highlight the border when in Terminal-Normal mode (Neovim controlling).
+-- This is more efficient than ModeChanged as it only triggers on mode transitions.
+vim.api.nvim_create_autocmd("TermLeave", {
+  callback = function()
+    if vim.bo.buftype == "terminal" then
+      vim.wo.winhighlight = "FloatBorder:ErrorMsg"
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd("TermEnter", {
+  callback = function()
+    if vim.bo.buftype == "terminal" then
+      vim.wo.winhighlight = ""
+    end
+  end,
+})
