@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/12/29 20:20:00.
+# Last Change : 2025/12/30 01:43:18.
 # =============================================================================
 
 # --- Environment Setup ---
@@ -9,11 +9,11 @@
 $Host.UI.RawUI.WindowTitle = "yukimemi-terminal"
 $ErrorActionPreference = "Stop"
 
-function Is-Windows {
+function Test-IsWindows {
   ($PSVersionTable.PSVersion.Major -eq 5) -or ($PSVersionTable.Platform -eq "Win32NT")
 }
 
-if (Is-Windows) {
+if (Test-IsWindows) {
   $OutputEncoding = [System.Text.Encoding]::UTF8
   [Console]::InputEncoding = [System.Text.Encoding]::UTF8
   [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
@@ -46,7 +46,11 @@ if (Get-Command starship -ErrorAction SilentlyContinue) {
   Invoke-Expression (&starship init powershell)
   function Invoke-Starship-PreCommand {
     $mode = (Get-PSReadLineOption).ViMode
-    $env:STARSHIP_VIM_MODE = if ($mode -eq "Command") { "normal" } else { "insert" }
+    $env:STARSHIP_VIM_MODE = if ($mode -eq "Command") {
+      "normal"
+    } else {
+      "insert"
+    }
   }
 }
 
@@ -73,18 +77,35 @@ if (Test-Path $ChocolateyProfile) {
 
 # --- Functions ---
 
-# Git
-function b { Set-Location .. }
-function g { git $args }
-function s { git status }
-function d { git diff $args }
-function a { git add $args }
-function gp { git pull --rebase }
-function gpu { git push }
-function gbr { git browse }
-function gr { Set-Location $(git rev-parse --show-toplevel) }
+function b {
+  Set-Location ..
+}
+function g {
+  git $args
+}
+function s {
+  git status
+}
+function d {
+  git diff $args
+}
+function a {
+  git add $args
+}
+function gp {
+  git pull --rebase
+}
+function gpu {
+  git push
+}
+function gbr {
+  git browse
+}
+function gr {
+  Set-Location $(git rev-parse --show-toplevel)
+}
 
-function gig {
+function Invoke-GitIgnoreGet {
   param([Parameter(Mandatory = $true)][string[]]$list)
   $params = ($list | ForEach-Object { [uri]::EscapeDataString($_) }) -join ","
   Invoke-WebRequest -Uri "https://www.toptal.com/developers/gitignore/api/$params" |
@@ -93,24 +114,28 @@ function gig {
 }
 
 # Navigation & History
-function cdls {
+function Set-LocationWithList {
   [CmdletBinding()]
   param([Parameter(ValueFromPipeline = $true)][string]$path)
   Set-Location $path -ErrorAction Stop
   Get-ChildItem
 }
 
-function cd-ls {
+function Set-LocationWithHistory {
   [CmdletBinding()]
   param([Parameter(ValueFromPipeline = $true)][string]$path)
   Set-Location $path -ErrorAction Stop
   Get-ChildItem
   # Save location in background
-  $funcs = "function Is-Windows { ${Function:Is-Windows} }"
+  $funcs = "function Test-IsWindows { ${Function:Test-IsWindows} }"
   Start-Job {
     param([string]$funcs, [string]$path)
     Invoke-Expression $funcs
-    $z = if (Is-Windows) { Join-Path $env:USERPROFILE ".cdhistory" } else { Join-Path $env:HOME ".cdhistory" }
+    $z = if (Test-IsWindows) {
+      Join-Path $env:USERPROFILE ".cdhistory"
+    } else {
+      Join-Path $env:HOME ".cdhistory"
+    }
     $path | Add-Content -Encoding utf8 $z
     $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) }
     [array]::Reverse($c)
@@ -120,31 +145,47 @@ function cd-ls {
   } -ArgumentList $funcs, (Get-Location).Path > $null
 }
 
-function _j1 {
-  z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | Select-Object -First 1 | Trim-Cd
+function Invoke-ZJump {
+  z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
 }
 
-function _j2 {
-  $z = if (Is-Windows) { Join-Path $env:USERPROFILE ".cdhistory" } else { Join-Path $env:HOME ".cdhistory" }
+function Invoke-HistoryJump {
+  $z = if (Test-IsWindows) {
+    Join-Path $env:USERPROFILE ".cdhistory"
+  } else {
+    Join-Path $env:HOME ".cdhistory"
+  }
   if (Test-Path $z) {
     $c = Get-Content $z
     [array]::Reverse($c)
-    $c | __FILTER | Select-Object -First 1 | Trim-Cd
+    $c | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
   }
   Get-Job | Stop-Job -PassThru | Remove-Job -Force
 }
 
-function j { zi }
+function j {
+  zi
+}
 
-function rhl { rhq list | __FILTER | Select-Object -First 1 | Trim-Cd }
-function ghl { ghr list | __FILTER | Select-Object -First 1 | Trim-Cd }
-function gsl { gsr "${env:USERPROFILE}\src" | __FILTER | Select-Object -First 1 | Trim-Cd }
-function jd { Get-ChildItem -Force -Directory -Recurse | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | Trim-Cd }
+function rhl {
+  rhq list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
+}
+function ghl {
+  ghr list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
+}
+function gsl {
+  gsr "${env:USERPROFILE}\src" | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
+}
+function jd {
+  Get-ChildItem -Force -Directory -Recurse | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
+}
 
-function t { exit }
+function t {
+  exit
+}
 
 # File Utils
-function RemoveTo-Trash {
+function Move-ToTrash {
   [CmdletBinding(SupportsShouldProcess = $true, DefaultParameterSetName = 'Path')]
   param (
     [SupportsWildCards()]
@@ -174,11 +215,13 @@ function RemoveTo-Trash {
 
 function r {
   $target = Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1
-  if (!$target) { return }
+  if (!$target) {
+    return
+  }
   if (Get-Command trash -ErrorAction SilentlyContinue) {
     trash $target
   } else {
-    $target | RemoveTo-Trash
+    $target | Move-ToTrash
   }
 }
 
@@ -186,9 +229,11 @@ function Get-DriveInfo {
   Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Used } | Where-Object { $_.Name -ne "Temp" } | Sort-Object Name
 }
 
-function Get-DriveInfoView { Get-DriveInfo | Format-Table -AutoSize }
+function Get-DriveInfoView {
+  Get-DriveInfo | Format-Table -AutoSize
+}
 
-function Trim-Cd {
+function Invoke-TrimSetLocation {
   param([Parameter(ValueFromPipeline = $true)][string]$Path)
   process {
     $p = $Path.Trim() -replace '^[^A-Z]+', ""
@@ -197,9 +242,15 @@ function Trim-Cd {
   }
 }
 
-function fe { nvim $(fd -H -t f | __FILTER | Select-Object -First 1) }
-function v { gvim --remote-silent $args }
-function VimDeinUpdate { vim -c "silent! call dein#update() | q" }
+function fe {
+  nvim $(fd -H -t f | __FILTER | Select-Object -First 1)
+}
+function v {
+  gvim --remote-silent $args
+}
+function VimDeinUpdate {
+  vim -c "silent! call dein#update() | q"
+}
 
 function Install-Pip {
   [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
@@ -223,7 +274,9 @@ function y {
   yazi $args --cwd-file="$tmp"
   if (Test-Path $tmp) {
     $cwd = Get-Content -Path $tmp
-    if ($cwd -and $cwd -ne $PWD.Path) { Set-Location -LiteralPath $cwd }
+    if ($cwd -and $cwd -ne $PWD.Path) {
+      Set-Location -LiteralPath $cwd
+    }
     Remove-Item -Path $tmp
   }
 }
@@ -240,15 +293,17 @@ function Get-FileAndHash {
 # --- Aliases ---
 
 # Remove default aliases before setting
-"r", "rm", "cd", "ls", "h" | ForEach-Object { if (Get-Alias $_ -ErrorAction SilentlyContinue) { Remove-Item "alias:$_" -Force } }
+"r", "rm", "cd", "ls", "h" | ForEach-Object { if (Get-Alias $_ -ErrorAction SilentlyContinue) {
+    Remove-Item "alias:$_" -Force
+  } }
 
 $aliases = @{
-  rm    = "RemoveTo-Trash"
+  rm    = "Move-ToTrash"
   o     = "Start-Process"
   c     = "Clear-Host"
   which = "Get-Command"
   df    = "Get-DriveInfoView"
-  cd    = "cdls"
+  cd    = "Set-LocationWithList"
   ls    = "Get-ChildItem"
   h     = "hitori"
 }
@@ -257,7 +312,7 @@ foreach ($alias in $aliases.GetEnumerator()) {
   Set-Alias -Name $alias.Key -Value $alias.Value -Force
 }
 
-if (Is-Windows) {
+if (Test-IsWindows) {
   Set-Alias -Name e -Value nvim -Force
 } else {
   Set-Alias -Name e -Value neovide -Force
@@ -272,8 +327,12 @@ foreach ($tool in $filterTools) {
   }
 }
 
-function l { Get-ChildItem $args }
-function la { Get-ChildItem -Force $args }
+function l {
+  Get-ChildItem $args
+}
+function la {
+  Get-ChildItem -Force $args
+}
 
 # --- PSReadLine & KeyHandlers ---
 
@@ -299,7 +358,9 @@ Set-PSReadLineKeyHandler -Chord Escape -ViMode Insert -ScriptBlock {
   $f = $parts[1]
   Set-PSReadLineKeyHandler -Chord $k -ViMode Command -ScriptBlock {
     [Microsoft.PowerShell.PSConsoleReadLine]::$f($null, $null)
-    if ($k -match "o|O") { [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null) }
+    if ($k -match "o|O") {
+      [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null)
+    }
     [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()
   }.GetNewClosure()
 }
