@@ -5,247 +5,205 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/12/20 22:48:22.
+  .Last Change : 2025/12/29 16:53:40.
 #>
 $ErrorActionPreference = "Stop"
-$DebugPreference = "SilentlyContinue" # Continue SilentlyContinue Stop Inquire
-# Enable-RunspaceDebug -BreakAll
+$DebugPreference = "SilentlyContinue"
 
-<#
-  .SYNOPSIS
-    log
-  .DESCRIPTION
-    log message
-  .INPUTS
-    - msg
-    - color
-  .OUTPUTS
-    - None
-#>
+# --- Helper Functions ---
+
 function log {
-  [CmdletBinding()]
-  [OutputType([void])]
-  param([string]$msg, [string]$color)
-  trap {
-    Write-Host "[log] Error $_" "Red"; throw $_
-  }
-
+  param([string]$msg, [string]$color = "Cyan")
   $now = Get-Date -f "yyyy/MM/dd HH:mm:ss.fff"
-  if ($color) {
-    Write-Host -ForegroundColor $color "${now} ${msg}"
-  } else {
-    Write-Host "${now} ${msg}"
-  }
+  Write-Host -ForegroundColor $color "${now} ${msg}"
 }
 
-<#
-  .SYNOPSIS
-    New-Shortcut
-  .DESCRIPTION
-    Create new shortcut.
-#>
 function New-Shortcut {
-  [CmdletBinding()]
-  [OutputType([void])]
   param([string]$link, [string]$target)
-
   if (!(Test-Path $target)) {
-    log "${target} is not found !"
+    log "${target} is not found !" "Red"
     return
+  }
+
+  if (Test-Path $link) {
+    $wsh = New-Object -ComObject WScript.Shell
+    $existing = $wsh.CreateShortcut($link)
+    if ($existing.TargetPath -eq (Get-Item $target).FullName) {
+      log "Shortcut already exists and points to correct target: $link" "Gray"
+      return
+    }
   }
 
   $wsh = New-Object -ComObject WScript.Shell
   $shortcut = $wsh.CreateShortcut($link)
   $shortcut.TargetPath = $target
   $shortcut.WorkingDirectory = Split-Path -Path $target
-  Write-Host "Created shortcut: ${link} -> ${target}"
   $shortcut.Save()
+  log "Created/Updated shortcut: ${link} -> ${target}" "Green"
 }
 
-<#
-  .SYNOPSIS
-    Install-Neovim
-  .DESCRIPTION
-    Install neovim
-#>
-function Install-Neovim {
-  [CmdletBinding()]
-  [OutputType([void])]
-  param()
-  trap {
-    log "[Install-Neovim] Error $_"; throw $_
+function Install-WingetPackages {
+  param([string[]]$Packages)
+  # winget itself handles idempotency well, but we can list installed to be faster if needed.
+  foreach ($pkg in $Packages) {
+    log "Ensuring $pkg is installed via winget..."
+    winget install -q $pkg --accept-source-agreements --accept-package-agreements
   }
-  $nvimMsi = Join-Path $env:tmp "nvim-win64.msi"
-  Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
-  & msiexec /i $nvimMsi /quiet
-  # winget install -q Neovim.Neovim
 }
 
-<#
-  .SYNOPSIS
-    Install-RequiredModules
-  .DESCRIPTION
-    Install require apps.
-#>
-function Install-RequiredModules {
-  winget install -q raycast -s msstore
-  winget install -q glzr-io.glazewm
-  winget install -q glzr-io.zebar
-  winget install -q Oven-sh.Bun
-  # winget install -q topgrade-rs.topgrade
-  winget install -q BurntSushi.ripgrep.MSVC
-  winget install -q ImageMagick.ImageMagick
-  winget install -q alexpasmantier.television
-  winget install -q junegunn.fzf
-  winget install -q sharkdp.fd
-  winget install -q dandavison.delta
-  # winget install -q LGUG2Z.komorebi
-  # winget install -q LGUG2Z.whkd
-  winget install -q gerardog.gsudo
-  winget install -q Slackadays.Clipboard
-  winget install -q Flameshot.Flameshot
-  # winget install -q JesseDuffield.lazygit
-  # winget install -q NuShell.NuShell
-  winget install -q RustLang.Rustup
-  winget install -q Microsoft.WindowsTerminal
-  winget install -q Microsoft.PowerToys
-  winget install -q Git.Git
-  winget install -q GitHub.cli
-  winget install -q AutoHotkey.AutoHotkey
-  winget install -q Espanso.Espanso
-  # winget install -q Starship.Starship
-  # winget install -q Microsoft.VisualStudioCode
-  winget install -q WinMerge.WinMerge
-  # winget install -q SlackTechnologies.Slack
-  winget install -q Chocolatey.Chocolatey
-  winget install -q zig.zig
-  # winget install -q GoLang.Go
-  winget install -q Microsoft.PowerShell
-  winget install -q Neovide.Neovide
-  winget install -q hluk.CopyQ
-  winget install -q Byron.dua-cli
-  # winget install -q dalance.procs
-  sudo choco install -y zig
-}
+# --- Setup Logic ---
 
-<#
-  .SYNOPSIS
-    Set-RequiredEnv
-  .DESCRIPTION
-    setx required env
-#>
 function Set-RequiredEnv {
-  setx CARGO_NET_GIT_FETCH_WITH_CLI "true"
-  setx YAZI_FILE_ONE "C:\Program Files\Git\usr\bin\file.exe"
-  setx PATH "${env:USERPROFILE}\.cargo\bin;${env:USERPROFILE}\.deno\bin;${env:USERPROFILE}\.bun\bin;${env:USERPROFILE}\go\bin;${env:LOCALAPPDATA}\Microsoft\WindowsApps;${env:LOCALAPPDATA}\Programs\Espanso;%APPDATA%\npm;${env:LOCALAPPDATA}\Microsoft\WindowsApps;${env:LOCALAPPDATA}\Microsoft\WinGet\Links;${env:LOCALAPPDATA}\mise\shims;${env:LOCALAPPDATA}\Programs\WinMerge"
-}
-
-<#
-  .SYNOPSIS
-    Install-RequiredCargo
-  .DESCRIPTION
-    Install cargo modules
-#>
-function Install-RequiredCargo {
-  cargo install ouch
-  cargo install yazi-fm
-  cargo install yazi-cli
-  cargo +nightly install dua-cli
-  cargo install du-dust
-  cargo install zoxide
-  cargo install television
-  cargo install git-delta
-  cargo install bat
-  cargo install ripgrep
-  cargo install starship
-}
-
-<#
-  .SYNOPSIS
-    Change-CapsLock2Ctrl
-  .DESCRIPTION
-    Change capslock to ctrl.
-#>
-function Change-CapsLock2Ctrl {
-  [CmdletBinding()]
-  [OutputType([void])]
-  param()
-  trap {
-    log "[Change-CapsLock2Ctrl] Error $_"; throw $_
+  log "Checking environment variables..."
+  $envVars = @{
+    "CARGO_NET_GIT_FETCH_WITH_CLI" = "true"
+    "YAZI_FILE_ONE"                = "C:\Program Files\Git\usr\bin\file.exe"
+  }
+  foreach ($key in $envVars.Keys) {
+    $current = [Environment]::GetEnvironmentVariable($key, "User")
+    if ($current -ne $envVars[$key]) {
+      [Environment]::SetEnvironmentVariable($key, $envVars[$key], "User")
+      log "Set $key = $($envVars[$key])" "Green"
+    }
   }
 
+  $targetPaths = @(
+    "${env:USERPROFILE}\.cargo\bin",
+    "${env:USERPROFILE}\.deno\bin",
+    "${env:USERPROFILE}\.bun\bin",
+    "${env:USERPROFILE}\go\bin",
+    "${env:LOCALAPPDATA}\Microsoft\WindowsApps",
+    "${env:LOCALAPPDATA}\Programs\Espanso",
+    "${env:APPDATA}\npm",
+    "${env:LOCALAPPDATA}\Microsoft\WinGet\Links",
+    "${env:LOCALAPPDATA}\mise\shims",
+    "${env:LOCALAPPDATA}\Programs\WinMerge"
+  )
+
+  $userPath = [Environment]::GetEnvironmentVariable("PATH", "User")
+  $currentPaths = $userPath -split ";" | Where-Object { $_ -ne "" }
+  $newPaths = @()
+
+  foreach ($p in $targetPaths) {
+    if ($currentPaths -notcontains $p) {
+      $newPaths += $p
+    }
+  }
+
+  if ($newPaths.Count -gt 0) {
+    $updatedPath = ($newPaths + $currentPaths) -join ";"
+    [Environment]::SetEnvironmentVariable("PATH", $updatedPath, "User")
+    log "Added new paths to USER PATH: $($newPaths -join ', ')" "Green"
+  } else {
+    log "USER PATH is already up to date." "Gray"
+  }
+}
+
+function Set-CapsLockToCtrl {
+  log "Checking CapsLock mapping..."
   $regPath = "HKLM\SYSTEM\CurrentControlSet\Control\Keyboard Layout"
   $regValueName = "Scancode Map"
-  # To map Caps Lock (0x3A) to Left Control (0x1D)
-  $regValueData = "0000000000000000020000001d003a0000000000"
+  # 00,00,00,00,00,00,00,00,02,00,00,00,1d,00,3a,00,00,00,00,00
+  $expectedData = ([byte[]](0,0,0,0,0,0,0,0,2,0,0,0,0x1d,0,0x3a,0,0,0,0,0))
 
-  log "Setting Scancode Map to change CapsLock to Ctrl"
+  $current = Get-ItemProperty -Path "Registry::$regPath" -Name $regValueName -ErrorAction SilentlyContinue
+  if ($current -and ($null -ne $current."$regValueName") -and ([BitConverter]::ToString($current."$regValueName") -eq [BitConverter]::ToString($expectedData))) {
+    log "CapsLock is already mapped to Ctrl." "Gray"
+    return
+  }
+
+  log "Setting Scancode Map to change CapsLock to Ctrl..." "Yellow"
+  $regValueData = "0000000000000000020000001d003a0000000000"
   try {
-    # Use gsudo to run reg.exe with admin privileges
     $command = "reg add `"$regPath`" /v `"$regValueName`" /t REG_BINARY /d $regValueData /f"
-    gsudo cmd /c $command
-    log "Successfully set Scancode Map. Please reboot your computer to apply the changes." "Yellow"
+    if (Get-Command gsudo -ErrorAction SilentlyContinue) {
+      gsudo cmd /c $command
+    } else {
+      Start-Process reg -ArgumentList "add `"$regPath`" /v `"$regValueName`" /t REG_BINARY /d $regValueData /f" -Verb RunAs
+    }
+    log "Successfully set Scancode Map. Please reboot to apply." "Yellow"
   } catch {
-    log "Failed to set Scancode Map. Please make sure you are running this script as an administrator." "Red"
-    log $_ "Red"
+    log "Failed to set Scancode Map: $_" "Red"
   }
 }
 
-<#
-  .SYNOPSIS
-    Main
-  .DESCRIPTION
-    Execute main
-  .INPUTS
-    - None
-  .OUTPUTS
-    - Result - 0 (SUCCESS), 1 (ERROR)
-#>
-function Start-Main {
-  [CmdletBinding()]
-  [OutputType([int])]
-  param()
+function Install-Neovim {
+  # For Nightly, we might always want to update, but downloading MSI every time is slow.
+  # Here we skip if nvim exists, but you might want to change this to always update.
+  if (Get-Command nvim -ErrorAction SilentlyContinue) {
+    log "Neovim is already installed. Skipping nightly download. (Run manually to update)" "Gray"
+    return
+  }
 
+  log "Installing Neovim Nightly..."
+  $nvimMsi = Join-Path $env:TEMP "nvim-win64.msi"
+  Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
+  Start-Process msiexec.exe -ArgumentList "/i $nvimMsi /quiet" -Wait
+  Remove-Item $nvimMsi
+}
+
+function Install-Tools {
+  $wingetPackages = @(
+    "raycast", "glzr-io.glazewm", "glzr-io.zebar", "Oven-sh.Bun",
+    "BurntSushi.ripgrep.MSVC", "ImageMagick.ImageMagick", "alexpasmantier.television",
+    "junegunn.fzf", "sharkdp.fd", "dandavison.delta", "gerardog.gsudo",
+    "Slackadays.Clipboard", "Flameshot.Flameshot", "RustLang.Rustup",
+    "Microsoft.WindowsTerminal", "Microsoft.PowerToys", "Git.Git",
+    "GitHub.cli", "AutoHotkey.AutoHotkey", "Espanso.Espanso",
+    "WinMerge.WinMerge", "Chocolatey.Chocolatey", "zig.zig",
+    "Microsoft.PowerShell", "Neovide.Neovide", "hluk.CopyQ", "Byron.dua-cli"
+  )
+  Install-WingetPackages $wingetPackages
+
+  # Clnch
+  if (!(Test-Path "${env:USERPROFILE}\app\clnch")) {
+    log "Installing clnch..."
+    $zip = Join-Path $env:TEMP "clnch.zip"
+    curl -L -o $zip https://crftwr.github.io/clnch/download/clnch_340.zip
+    Expand-Archive -Path $zip -DestinationPath "${env:TEMP}\clnch" -Force
+    if (!(Test-Path "${env:USERPROFILE}\app")) {
+      New-Item -ItemType Directory "${env:USERPROFILE}\app"
+    }
+    robocopy /e /r:1 /w:1 "${env:TEMP}\clnch" "${env:USERPROFILE}\app\clnch"
+    Remove-Item $zip, "${env:TEMP}\clnch" -Recurse -Force
+  } else {
+    log "clnch is already installed." "Gray"
+  }
+}
+
+function Start-Main {
   try {
-    log "[Start-Main] Start"
+    log "[Start-Main] Starting setup..."
 
     Set-RequiredEnv
-    Change-CapsLock2Ctrl
-
-    # Invoke-RestMethod https://deno.land/install.ps1 | Invoke-Expression
-    # Invoke-RestMethod https://astral.sh/uv/install.ps1 | Invoke-Expression
-
+    Set-CapsLockToCtrl
     Install-Neovim
-    Install-RequiredModules
-    # Install-RequiredCargo
+    Install-Tools
 
-    # Copy clnch.
-    curl -O https://crftwr.github.io/clnch/download/clnch_340.zip
-    tar zxvf .\clnch_340.zip
-    & robocopy /e /r:1 /w:1 .\clnch ([System.IO.Path]::Combine($env:USERPROFILE, "app\clnch"))
-    Remove-Item -Force .\clnch_340.zip
-    Remove-Item -Force -Recurse .\clnch
+    # Shortcuts
+    $shortcuts = @(
+      @{
+        Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
+        Target = "${env:USERPROFILE}\.dotfiles\win\AutoHotkey\AutoHotkey.ahk"
+      },
+      @{
+        Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\clnch.lnk"
+        Target = "${env:USERPROFILE}\app\clnch\clnch.exe"
+      },
+      @{
+        Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AlterDnD64.lnk"
+        Target = "${env:USERPROFILE}\app\AlterDnD\AlterDnD64.exe"
+      }
+    )
+    foreach ($s in $shortcuts) {
+      New-Shortcut -link $s.Link -target $s.Target
+    }
 
-    $target = Join-Path -Path $env:USERPROFILE -ChildPath ".dotfiles\win\AutoHotkey\AutoHotkey.ahk"
-    $link = Join-Path -Path $env:APPDATA -ChildPath "Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
-    New-Shortcut -link $link -target $target
-
-    $target = Join-Path -Path $env:USERPROFILE -ChildPath "app\clnch\clnch.exe"
-    $link = Join-Path -Path $env:APPDATA -ChildPath "Microsoft\Windows\Start Menu\Programs\Startup\clnch.lnk"
-    New-Shortcut -link $link -target $target
-
-    $target = Join-Path -Path $env:USERPROFILE -ChildPath "app\AlterDnD\AlterDnD64.exe"
-    $link = Join-Path -Path $env:APPDATA -ChildPath "Microsoft\Windows\Start Menu\Programs\Startup\AlterDnD64.lnk"
-    New-Shortcut -link $link -target $target
-
-    exit 0
+    log "[Start-Main] Setup completed successfully!" "Green"
   } catch {
-    log "Error ! $_" "Red"
+    log "Error in Start-Main: $_" "Red"
     exit 1
-  } finally {
-    log "[Start-Main] End"
   }
 }
 
-# Call main.
 Start-Main
