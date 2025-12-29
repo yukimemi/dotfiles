@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2025/12/28 17:06:21.
+; Last Change : 2025/12/29 12:23:23.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -305,7 +305,7 @@ F7::
     Send("^v")
 
     ToolTip("✅ Complete send prompt")
-    SetTimer(() => ToolTip(), -2000)
+    SetTimer(() => ToolTip(), -5000)
   }
 }
 SC079::IME_SET(1)
