@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/12/29 17:05:19.
+  .Last Change : 2025/12/29 17:22:28.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue"
@@ -62,15 +62,15 @@ function Install-BinaryArchive {
   }
   New-Item -ItemType Directory $tempExtract | Out-Null
 
-    # Download
+  # Download
 
-    Invoke-WebRequest -Uri $Url -OutFile $tempZip -UseBasicParsing
+  Invoke-WebRequest -Uri $Url -OutFile $tempZip -UseBasicParsing
 
-    
 
-    # Extract
 
-  
+  # Extract
+
+
   Expand-Archive -Path $tempZip -DestinationPath $tempExtract -Force
 
   # Move to destination
@@ -190,7 +190,7 @@ function Install-Neovim {
 
 function Install-Tools {
   $wingetPackages = @(
-    "raycast", "glzr-io.glazewm", "glzr-io.zebar", "Oven-sh.Bun",
+    "glzr-io.glazewm", "glzr-io.zebar", "Oven-sh.Bun",
     "BurntSushi.ripgrep.MSVC", "ImageMagick.ImageMagick", "alexpasmantier.television",
     "junegunn.fzf", "sharkdp.fd", "dandavison.delta", "gerardog.gsudo",
     "Slackadays.Clipboard", "Flameshot.Flameshot", "RustLang.Rustup",
