@@ -1,11 +1,11 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2025/11/24 11:06:20.
+# Last Change : 2025/12/29 16:04:27.
 # =============================================================================
 
 # Set title.
-$Host.UI.RawUI.WindowTitle = "yukimemi-pwsh"
+$Host.UI.RawUI.WindowTitle = "yukimemi-terminal"
 
 # Options.
 $ErrorActionPreference = "Stop"
