@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/12/29 16:53:40.
+  .Last Change : 2025/12/29 17:05:19.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue"
@@ -42,9 +42,58 @@ function New-Shortcut {
   log "Created/Updated shortcut: ${link} -> ${target}" "Green"
 }
 
+function Install-BinaryArchive {
+  param (
+    [string]$Name,
+    [string]$Url,
+    [string]$DestinationDir
+  )
+  if (Test-Path $DestinationDir) {
+    log "$Name is already installed at $DestinationDir" "Gray"
+    return
+  }
+
+  log "Installing $Name from $Url ..." "Yellow"
+  $tempZip = Join-Path $env:TEMP "$Name.zip"
+  $tempExtract = Join-Path $env:TEMP "$Name-extract"
+
+  if (Test-Path $tempExtract) {
+    Remove-Item $tempExtract -Recurse -Force
+  }
+  New-Item -ItemType Directory $tempExtract | Out-Null
+
+    # Download
+
+    Invoke-WebRequest -Uri $Url -OutFile $tempZip -UseBasicParsing
+
+    
+
+    # Extract
+
+  
+  Expand-Archive -Path $tempZip -DestinationPath $tempExtract -Force
+
+  # Move to destination
+  if (!(Test-Path (Split-Path $DestinationDir -Parent))) {
+    New-Item -ItemType Directory (Split-Path $DestinationDir -Parent) -Force | Out-Null
+  }
+
+  # If there is a single subdirectory inside, move its content instead
+  $subDirs = Get-ChildItem $tempExtract -Directory
+  $files = Get-ChildItem $tempExtract -File
+  if ($subDirs.Count -eq 1 -and $files.Count -eq 0) {
+    robocopy /e /r:1 /w:1 $subDirs[0].FullName $DestinationDir
+  } else {
+    robocopy /e /r:1 /w:1 $tempExtract $DestinationDir
+  }
+
+  # Cleanup
+  Remove-Item $tempZip, $tempExtract -Recurse -Force
+  log "Successfully installed $Name to $DestinationDir" "Green"
+}
+
 function Install-WingetPackages {
   param([string[]]$Packages)
-  # winget itself handles idempotency well, but we can list installed to be faster if needed.
   foreach ($pkg in $Packages) {
     log "Ensuring $pkg is installed via winget..."
     winget install -q $pkg --accept-source-agreements --accept-package-agreements
@@ -103,7 +152,6 @@ function Set-CapsLockToCtrl {
   log "Checking CapsLock mapping..."
   $regPath = "HKLM\SYSTEM\CurrentControlSet\Control\Keyboard Layout"
   $regValueName = "Scancode Map"
-  # 00,00,00,00,00,00,00,00,02,00,00,00,1d,00,3a,00,00,00,00,00
   $expectedData = ([byte[]](0,0,0,0,0,0,0,0,2,0,0,0,0x1d,0,0x3a,0,0,0,0,0))
 
   $current = Get-ItemProperty -Path "Registry::$regPath" -Name $regValueName -ErrorAction SilentlyContinue
@@ -128,10 +176,8 @@ function Set-CapsLockToCtrl {
 }
 
 function Install-Neovim {
-  # For Nightly, we might always want to update, but downloading MSI every time is slow.
-  # Here we skip if nvim exists, but you might want to change this to always update.
   if (Get-Command nvim -ErrorAction SilentlyContinue) {
-    log "Neovim is already installed. Skipping nightly download. (Run manually to update)" "Gray"
+    log "Neovim is already installed. Skipping nightly download." "Gray"
     return
   }
 
@@ -155,19 +201,22 @@ function Install-Tools {
   )
   Install-WingetPackages $wingetPackages
 
-  # Clnch
-  if (!(Test-Path "${env:USERPROFILE}\app\clnch")) {
-    log "Installing clnch..."
-    $zip = Join-Path $env:TEMP "clnch.zip"
-    curl -L -o $zip https://crftwr.github.io/clnch/download/clnch_340.zip
-    Expand-Archive -Path $zip -DestinationPath "${env:TEMP}\clnch" -Force
-    if (!(Test-Path "${env:USERPROFILE}\app")) {
-      New-Item -ItemType Directory "${env:USERPROFILE}\app"
+  # External Binary Tools
+  $binTools = @(
+    @{
+      Name = "clnch"
+      Url = "https://crftwr.github.io/clnch/download/clnch_340.zip"
+      Dest = "${env:USERPROFILE}\app\clnch"
+    },
+    @{
+      Name = "AlterDnD"
+      Url = "https://dl.freesoft-100.com/p/AlterDnD_1.3.0.zip"
+      Dest = "${env:USERPROFILE}\app\AlterDnD"
     }
-    robocopy /e /r:1 /w:1 "${env:TEMP}\clnch" "${env:USERPROFILE}\app\clnch"
-    Remove-Item $zip, "${env:TEMP}\clnch" -Recurse -Force
-  } else {
-    log "clnch is already installed." "Gray"
+  )
+
+  foreach ($tool in $binTools) {
+    Install-BinaryArchive -Name $tool.Name -Url $tool.Url -DestinationDir $tool.Dest
   }
 }
 
