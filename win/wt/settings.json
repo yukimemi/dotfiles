@@ -20,7 +20,7 @@
       },
       "opacity": 90,
       "tabTitle": "yukimemi-pwsh",
-      "suppressApplicationTitle": false
+      "suppressApplicationTitle": true
     },
     "list": [
       {
@@ -36,10 +36,10 @@
       {
         "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
         "hidden": false,
-        "name": "PowerShell",
+        "name": "yukimemi-pwsh",
         "source": "Windows.Terminal.PowershellCore",
         "tabTitle": "yukimemi-pwsh",
-        "suppressApplicationTitle": false
+        "suppressApplicationTitle": true
       },
       {
         "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
