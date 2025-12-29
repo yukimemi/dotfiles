@@ -107,6 +107,9 @@ window_rules:
       - window_process: { equals: 'rapture' }
       - window_process: { equals: 'clnch' }
 
+      - window_process: { equals: 'Appearance' }
+        window_class: { equals: 'Chrome_WidgetWin_1' }
+
       - window_process: { equals: 'cfiler' }
         window_title: { regex: 'cfiler - \[.*\]' }
       - window_process: { equals: 'cfiler' }
