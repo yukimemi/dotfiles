@@ -100,6 +100,99 @@ function Install-WingetPackages {
   }
 }
 
+function Install-BibataCursor {
+  param (
+    [string]$Version = "v2.0.7",
+    [string]$Variant = "Bibata-Modern-Ice",
+    [string]$Size = "Regular"
+  )
+  
+  # Construct expected folder name part e.g. "Bibata-Modern-Ice-Regular"
+  # Note: The actual folder in zip is like "Bibata-Modern-Ice-Regular-Windows"
+  # We will use wildcard match *-$Size-*
+  
+  log "Installing $Variant ($Size) cursor..." "Yellow"
+  $zipName = "${Variant}-Windows.zip"
+  $url = "https://github.com/ful1e5/Bibata_Cursor/releases/download/${Version}/${zipName}"
+  $tempZip = Join-Path $env:TEMP $zipName
+  $tempExtract = Join-Path $env:TEMP "$Variant-extract"
+
+  if (Test-Path $tempExtract) { Remove-Item $tempExtract -Recurse -Force }
+  New-Item -ItemType Directory $tempExtract | Out-Null
+
+  try {
+    Invoke-WebRequest -Uri $url -OutFile $tempZip -UseBasicParsing
+    Expand-Archive -Path $tempZip -DestinationPath $tempExtract -Force
+
+    # Find install.inf matching the size
+    $infFiles = Get-ChildItem -Path $tempExtract -Filter "install.inf" -Recurse
+    $targetInf = $null
+    
+    foreach ($f in $infFiles) {
+        if ($f.DirectoryName -match "-$Size-") {
+            $targetInf = $f
+            break
+        }
+    }
+    
+    # Fallback to first if not found (or if Size is invalid)
+    if (-not $targetInf) { $targetInf = $infFiles | Select-Object -First 1 }
+    $infFile = $targetInf
+
+    # Check if already installed (Check destination dir based on inf content or convention)
+    # Inf usually installs to %SystemRoot%\Cursors\Bibata-Modern-Ice-Regular-Windows
+    # We can check that folder.
+    # Let's read the CUR_DIR from inf to be sure.
+    $curDir = $null
+    Get-Content $infFile.FullName | ForEach-Object {
+        if ($_ -match 'CUR_DIR\s*=\s*"([^"]+)"') { $curDir = $matches[1] -replace "Cursors\\","" }
+    }
+    if ($curDir) {
+        $installedPath = Join-Path "C:\Windows\Cursors" $curDir
+        if (Test-Path $installedPath) {
+             # Even if folder exists, we might want to reinstall/apply scheme if forced, 
+             # but here we follow standard "already installed" logic.
+             # However, we need to APPLY it. The previous logic returned early.
+             # Let's remove the early return check at top of function and check here.
+             # Actually, if we want to SWITCH sizes, we should reinstall or at least re-apply.
+             # Since 'rundll32 ...' does copy and registry set, let's just run it.
+             # It overwrites safely.
+             log "Target cursor folder $installedPath exists. Proceeding to re-install/apply." "Gray"
+        }
+    }
+
+    if ($infFile) {
+      log "Making installation silent by removing RunOnce from install.inf ($($infFile.Directory.Name))..."
+      $content = Get-Content $infFile.FullName
+      $content | Where-Object { $_ -notmatch 'Runonce.*main\.cpl' } | Set-Content $infFile.FullName -Encoding ASCII
+
+      log "Executing modified install.inf..."
+      $command = "rundll32.exe setupapi.dll,InstallHinfSection DefaultInstall 128 $($infFile.FullName)"
+      
+      if (Get-Command gsudo -ErrorAction SilentlyContinue) {
+        gsudo cmd /c $command
+      } else {
+        Start-Process cmd -ArgumentList "/c $command" -Verb RunAs -Wait
+      }
+
+      log "Refreshing system cursors..."
+      $csharp = '[DllImport("user32.dll")] public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, uint pvParam, uint fWinIni);'
+      try { Add-Type -MemberDefinition $csharp -Name WinAPI -Namespace User32 -ErrorAction SilentlyContinue } catch {}
+      # SPI_SETCURSORS = 0x0057, SPIF_UPDATEINIFILE = 0x01, SPIF_SENDCHANGE = 0x02
+      [User32.WinAPI]::SystemParametersInfo(0x0057, 0, 0, 0x03) | Out-Null
+
+      log "$Variant ($Size) installed and applied successfully." "Green"
+    } else {
+      log "install.inf not found in downloaded archive for $Variant." "Red"
+    }
+  } catch {
+    log "Failed to install ${Variant}: $_" "Red"
+  } finally {
+    if (Test-Path $tempZip) { Remove-Item $tempZip -Force }
+    if (Test-Path $tempExtract) { Remove-Item $tempExtract -Recurse -Force }
+  }
+}
+
 # --- Setup Logic ---
 
 function Set-RequiredEnv {
@@ -218,6 +311,8 @@ function Install-Tools {
   foreach ($tool in $binTools) {
     Install-BinaryArchive -Name $tool.Name -Url $tool.Url -DestinationDir $tool.Dest
   }
+
+  Install-BibataCursor
 }
 
 function Start-Main {
