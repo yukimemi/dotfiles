@@ -333,6 +333,7 @@ function Start-Main {
     }
 
     log "[Start-Main] Setup completed successfully!" "Green"
+    exit 0
   } catch {
     log "Error in Start-Main: $_" "Red"
     exit 1
