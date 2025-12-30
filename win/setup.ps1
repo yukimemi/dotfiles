@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/12/29 17:22:28.
+  .Last Change : 2025/12/30 15:10:46.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue"
@@ -106,18 +106,20 @@ function Install-BibataCursor {
     [string]$Variant = "Bibata-Modern-Ice",
     [string]$Size = "Regular"
   )
-  
+
   # Construct expected folder name part e.g. "Bibata-Modern-Ice-Regular"
   # Note: The actual folder in zip is like "Bibata-Modern-Ice-Regular-Windows"
   # We will use wildcard match *-$Size-*
-  
+
   log "Installing $Variant ($Size) cursor..." "Yellow"
   $zipName = "${Variant}-Windows.zip"
   $url = "https://github.com/ful1e5/Bibata_Cursor/releases/download/${Version}/${zipName}"
   $tempZip = Join-Path $env:TEMP $zipName
   $tempExtract = Join-Path $env:TEMP "$Variant-extract"
 
-  if (Test-Path $tempExtract) { Remove-Item $tempExtract -Recurse -Force }
+  if (Test-Path $tempExtract) {
+    Remove-Item $tempExtract -Recurse -Force 
+  }
   New-Item -ItemType Directory $tempExtract | Out-Null
 
   try {
@@ -127,39 +129,19 @@ function Install-BibataCursor {
     # Find install.inf matching the size
     $infFiles = Get-ChildItem -Path $tempExtract -Filter "install.inf" -Recurse
     $targetInf = $null
-    
-    foreach ($f in $infFiles) {
-        if ($f.DirectoryName -match "-$Size-") {
-            $targetInf = $f
-            break
-        }
-    }
-    
-    # Fallback to first if not found (or if Size is invalid)
-    if (-not $targetInf) { $targetInf = $infFiles | Select-Object -First 1 }
-    $infFile = $targetInf
 
-    # Check if already installed (Check destination dir based on inf content or convention)
-    # Inf usually installs to %SystemRoot%\Cursors\Bibata-Modern-Ice-Regular-Windows
-    # We can check that folder.
-    # Let's read the CUR_DIR from inf to be sure.
-    $curDir = $null
-    Get-Content $infFile.FullName | ForEach-Object {
-        if ($_ -match 'CUR_DIR\s*=\s*"([^"]+)"') { $curDir = $matches[1] -replace "Cursors\\","" }
+    foreach ($f in $infFiles) {
+      if ($f.DirectoryName -match "-$Size-") {
+        $targetInf = $f
+        break
+      }
     }
-    if ($curDir) {
-        $installedPath = Join-Path "C:\Windows\Cursors" $curDir
-        if (Test-Path $installedPath) {
-             # Even if folder exists, we might want to reinstall/apply scheme if forced, 
-             # but here we follow standard "already installed" logic.
-             # However, we need to APPLY it. The previous logic returned early.
-             # Let's remove the early return check at top of function and check here.
-             # Actually, if we want to SWITCH sizes, we should reinstall or at least re-apply.
-             # Since 'rundll32 ...' does copy and registry set, let's just run it.
-             # It overwrites safely.
-             log "Target cursor folder $installedPath exists. Proceeding to re-install/apply." "Gray"
-        }
+
+    # Fallback to first if not found (or if Size is invalid)
+    if (-not $targetInf) {
+      $targetInf = $infFiles | Select-Object -First 1 
     }
+    $infFile = $targetInf
 
     if ($infFile) {
       log "Making installation silent by removing RunOnce from install.inf ($($infFile.Directory.Name))..."
@@ -168,7 +150,7 @@ function Install-BibataCursor {
 
       log "Executing modified install.inf..."
       $command = "rundll32.exe setupapi.dll,InstallHinfSection DefaultInstall 128 $($infFile.FullName)"
-      
+
       if (Get-Command gsudo -ErrorAction SilentlyContinue) {
         gsudo cmd /c $command
       } else {
@@ -177,7 +159,10 @@ function Install-BibataCursor {
 
       log "Refreshing system cursors..."
       $csharp = '[DllImport("user32.dll")] public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, uint pvParam, uint fWinIni);'
-      try { Add-Type -MemberDefinition $csharp -Name WinAPI -Namespace User32 -ErrorAction SilentlyContinue } catch {}
+      try {
+        Add-Type -MemberDefinition $csharp -Name WinAPI -Namespace User32 -ErrorAction SilentlyContinue 
+      } catch {
+      }
       # SPI_SETCURSORS = 0x0057, SPIF_UPDATEINIFILE = 0x01, SPIF_SENDCHANGE = 0x02
       [User32.WinAPI]::SystemParametersInfo(0x0057, 0, 0, 0x03) | Out-Null
 
@@ -188,8 +173,12 @@ function Install-BibataCursor {
   } catch {
     log "Failed to install ${Variant}: $_" "Red"
   } finally {
-    if (Test-Path $tempZip) { Remove-Item $tempZip -Force }
-    if (Test-Path $tempExtract) { Remove-Item $tempExtract -Recurse -Force }
+    if (Test-Path $tempZip) {
+      Remove-Item $tempZip -Force 
+    }
+    if (Test-Path $tempExtract) {
+      Remove-Item $tempExtract -Recurse -Force 
+    }
   }
 }
 
