@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2025/12/01 00:56:41.
+// Last Change : 2025/12/31 20:38:33.
 // =============================================================================
 
 import { dir } from "@cross/dir";
@@ -127,6 +127,7 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
       "favaritecolors",
       "ff",
       "filer",
+      "filetype",
       "git",
       "lsp",
       "mark",

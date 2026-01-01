@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2025/12/29 16:03:03.
+; Last Change : 2026/01/01 15:35:08.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -32,34 +32,27 @@ LogError(exception, mode) {
 
 Toggle(app) {
   SplitPath(app, &file)
-  ErrorLevel := ProcessExist(file)
-  if (ErrorLevel != 0)
-    if WinActive("ahk_pid " ErrorLevel)
-      WinMinimize("A")
-    else
-      WinActivate("ahk_pid " ErrorLevel)
-  else
-    Run(app)
-  return
+  if WinActive("ahk_exe " file) {
+    WinMinimize("A")
+  } else {
+    if (!ActivateProcessWindow(file))
+      Run(app)
+  }
 }
 
 ToggleExe(app, exe) {
-  ErrorLevel := ProcessExist(app)
-  if (ErrorLevel != 0)
-    if WinActive("ahk_pid " ErrorLevel)
-      WinMinimize("A")
-    else
-      WinActivate("ahk_pid " ErrorLevel)
-  else
-    Run(exe)
-  return
+  if WinActive("ahk_exe " app) {
+    WinMinimize("A")
+  } else {
+    if (!ActivateProcessWindow(app))
+      Run(exe)
+  }
 }
 
 ToggleTerminalWin(app, cmd, title_parts) {
   if (ProcessExist(app)) {
     for whd in WinGetList("ahk_class CASCADIA_HOSTING_WINDOW_CLASS") {
       this_title := WinGetTitle(whd)
-      log_info(this_title)
       ; Split title_parts by comma and check each part
       for current_part in StrSplit(title_parts, ",") {
         current_part := Trim(current_part)
@@ -67,7 +60,7 @@ ToggleTerminalWin(app, cmd, title_parts) {
           if WinActive(whd) {
             WinMinimize("A")
           } else {
-            WinActivate(whd)
+            ActivateWindowCommon("ahk_id " whd)
           }
           return
         }
@@ -77,38 +70,54 @@ ToggleTerminalWin(app, cmd, title_parts) {
   Run(cmd)
 }
 
+; Helper: Activate window by HWND or Title
+ActivateWindowCommon(winTitle) {
+  if (WinGetMinMax(winTitle) == -1) {
+    WinRestore(winTitle)
+  } else {
+    WinActivate(winTitle)
+  }
+  WinShow(winTitle)
+}
+
+; Helper: Find and activate window by process name (prioritizing windows with titles)
+ActivateProcessWindow(exeName) {
+  DetectHiddenWindows(false)
+  ids := WinGetList("ahk_exe " exeName)
+
+  for this_id in ids {
+    if (StrLen(WinGetTitle("ahk_id " this_id)) > 0) {
+      ActivateWindowCommon("ahk_id " this_id)
+      return true
+    }
+  }
+
+  if (ids.Length > 0) {
+    ActivateWindowCommon("ahk_id " ids[1])
+    return true
+  }
+  return false
+}
+
 Activate(app) {
   SplitPath(app, &file)
-  ErrorLevel := ProcessExist(file)
-  if (ErrorLevel != 0)
-    WinActivate("ahk_pid " ErrorLevel)
-  else
+  if (!ActivateProcessWindow(file))
     Run(app)
-  return
 }
 
 Activate2(app, cmd) {
-  ErrorLevel := ProcessExist(app)
-  if (ErrorLevel != 0)
-    WinActivate("ahk_pid " ErrorLevel)
-  else
+  if (!ActivateProcessWindow(app))
     Run(cmd)
-  return
 }
 
 Activate3(app, cmd, title) {
-  ErrorLevel := ProcessExist(app)
-  if (ErrorLevel != 0) {
-    if WinExist(title) {
-      WinActivate(title)
-    } else {
-      Run(cmd)
-    }
+  if WinExist(title) {
+    ActivateWindowCommon(title)
   } else {
-    Run(cmd)
+    if (!ActivateProcessWindow(app))
+      Run(cmd)
   }
 }
-
 ; for Outlook
 ^F9::
 {
