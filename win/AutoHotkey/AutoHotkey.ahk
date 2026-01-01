@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/01/01 15:35:08.
+; Last Change : 2026/01/01 16:42:40.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -70,6 +70,23 @@ ToggleTerminalWin(app, cmd, title_parts) {
   Run(cmd)
 }
 
+ActivateTerminalWin(app, cmd, title_parts) {
+  if (ProcessExist(app)) {
+    for whd in WinGetList("ahk_class CASCADIA_HOSTING_WINDOW_CLASS") {
+      this_title := WinGetTitle(whd)
+      ; Split title_parts by comma and check each part
+      for current_part in StrSplit(title_parts, ",") {
+        current_part := Trim(current_part)
+        if InStr(this_title, current_part) {
+          ActivateWindowCommon("ahk_id " whd)
+          return
+        }
+      }
+    }
+  }
+  Run(cmd)
+}
+
 ; Helper: Activate window by HWND or Title
 ActivateWindowCommon(winTitle) {
   if (WinGetMinMax(winTitle) == -1) {
@@ -80,26 +97,82 @@ ActivateWindowCommon(winTitle) {
   WinShow(winTitle)
 }
 
+; Helper: Get GlazeWM Container Info (ID and Workspace) by process name
+GetGlazeWmInfo(exeName) {
+  ; Remove .exe extension if present for comparison
+  procName := RegExReplace(exeName, "\.exe$", "")
+  outFile := EnvGet("TEMP") . "\glazewm_info_" . A_TickCount . ".txt"
+  glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
+
+  ; PowerShell command to query GlazeWM and output to file
+  psCmd := "(& '" . glazewmPath . "' query windows | ConvertFrom-Json).data.windows | Where-Object { $_.processName -eq '" . procName . "' } | Select-Object -ExpandProperty id -First 1 | Out-File -FilePath '" . outFile . "' -Encoding ascii"
+
+  fullCmd := 'powershell -NoProfile -Command "' . psCmd . '"'
+
+  try {
+    RunWait(fullCmd, , "Hide")
+  } catch as err {
+    ; Silently fail for clean code
+  }
+
+  id := ""
+  if FileExist(outFile) {
+    id := Trim(FileRead(outFile), " `t`n`r")
+    FileDelete(outFile)
+  }
+
+  return id
+}
+
 ; Helper: Find and activate window by process name (prioritizing windows with titles)
 ActivateProcessWindow(exeName) {
   DetectHiddenWindows(false)
-  ids := WinGetList("ahk_exe " exeName)
 
+  ; Optimization: Try standard activation first.
+  ; If the window is on the current workspace, this is much faster than querying GlazeWM.
+  ids := WinGetList("ahk_exe " exeName)
   for this_id in ids {
     if (StrLen(WinGetTitle("ahk_id " this_id)) > 0) {
       ActivateWindowCommon("ahk_id " this_id)
-      return true
+      if WinActive("ahk_id " this_id) {
+        return true
+      }
+      ; If found but didn't activate, it might be on another workspace, so fall through to GlazeWM logic.
+      break
     }
   }
 
-  if (ids.Length > 0) {
-    ActivateWindowCommon("ahk_id " ids[1])
+  ; Try GlazeWM logic if standard activation failed or no window found (maybe hidden on another workspace?)
+  glazeId := GetGlazeWmInfo(exeName)
+  if (StrLen(glazeId) > 0) {
+    glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
+    runCmd := Format('"{1}" command focus --container-id {2}', glazewmPath, glazeId)
+
+    ; Execute synchronously to ensure focus happens before redraw
+    RunWait(runCmd, , "Hide")
+    Run(Format('"{1}" command wm-redraw', glazewmPath), , "Hide")
+
+    ; Try standard activate immediately
+    if WinExist("ahk_exe " . exeName) {
+        WinActivate()
+    }
     return true
   }
-  return false
-}
 
-Activate(app) {
+  ; Fallback: if GlazeWM didn't help (e.g. not running), try standard logic again purely on what AHK sees
+  if (ids.Length > 0) {
+     for this_id in ids {
+        if (StrLen(WinGetTitle("ahk_id " this_id)) > 0) {
+             ActivateWindowCommon("ahk_id " this_id)
+             return true
+        }
+     }
+     ActivateWindowCommon("ahk_id " ids[1])
+     return true
+  }
+
+  return false
+}Activate(app) {
   SplitPath(app, &file)
   if (!ActivateProcessWindow(file))
     Run(app)
@@ -113,10 +186,13 @@ Activate2(app, cmd) {
 Activate3(app, cmd, title) {
   if WinExist(title) {
     ActivateWindowCommon(title)
-  } else {
-    if (!ActivateProcessWindow(app))
-      Run(cmd)
+    if WinActive(title) {
+      return
+    }
   }
+
+  if (!ActivateProcessWindow(app))
+    Run(cmd)
 }
 ; for Outlook
 ^F9::
@@ -268,7 +344,7 @@ F12::
 ;}
 ^F10::
 {
-  Activate3("yazi.exe", "yazi", "Yazi:")
+  ActivateTerminalWin("WindowsTerminal.exe", "yazi", "Yazi,yazi")
 }
 
 ; for slack
