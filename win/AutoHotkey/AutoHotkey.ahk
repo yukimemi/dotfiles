@@ -49,11 +49,40 @@ ToggleExe(app, exe) {
   }
 }
 
+; Helper: Get GlazeWM Info for Terminal with specific title part
+GetGlazeWmTerminalInfo(exeName, titleParts) {
+  procName := RegExReplace(exeName, "\.exe$", "")
+  outFile := EnvGet("TEMP") . "\glazewm_term_" . A_TickCount . ".txt"
+  glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
+
+  ; PowerShell command: Get all windows for process, then filter by title parts
+  ; Note: titleParts is comma separated string. PowerShell needs to check if any part is in title.
+  ; We construct a regex for title matching: "part1|part2|part3"
+  regexPattern := StrReplace(titleParts, ",", "|")
+  regexPattern := StrReplace(regexPattern, " ", "\s*") ; Handle spaces loosely if needed, but simple pipe is good for InStr logic replacement
+
+  psCmd := "(& '" . glazewmPath . "' query windows | ConvertFrom-Json).data.windows | Where-Object { $_.processName -eq '" . procName . "' -and $_.title -match '" . regexPattern . "' } | Select-Object -First 1 | ForEach-Object { $_.id + '|' + $_.handle } | Out-File -FilePath '" . outFile . "' -Encoding ascii"
+
+  fullCmd := 'powershell -NoProfile -Command "' . psCmd . '"'
+
+  try {
+    RunWait(fullCmd, , "Hide")
+  } catch as err {
+  }
+
+  result := ""
+  if FileExist(outFile) {
+    result := Trim(FileRead(outFile), " `t`n`r")
+    FileDelete(outFile)
+  }
+  return result
+}
+
 ToggleTerminalWin(app, cmd, title_parts) {
+  ; 1. Try finding in current workspace (Fast)
   if (ProcessExist(app)) {
     for whd in WinGetList("ahk_class CASCADIA_HOSTING_WINDOW_CLASS") {
       this_title := WinGetTitle(whd)
-      ; Split title_parts by comma and check each part
       for current_part in StrSplit(title_parts, ",") {
         current_part := Trim(current_part)
         if InStr(this_title, current_part) {
@@ -67,6 +96,25 @@ ToggleTerminalWin(app, cmd, title_parts) {
       }
     }
   }
+
+  ; 2. Try finding in other workspaces via GlazeWM (Slower but necessary)
+  glazeInfo := GetGlazeWmTerminalInfo(app, title_parts)
+  if (StrLen(glazeInfo) > 0) {
+    parts := StrSplit(glazeInfo, "|")
+    glazeId := parts[1]
+    glazeHwnd := parts.Length > 1 ? parts[2] : ""
+
+    glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
+    runCmd := Format('"{1}" command focus --container-id {2}', glazewmPath, glazeId)
+    RunWait(runCmd, , "Hide")
+    Run(Format('"{1}" command wm-redraw', glazewmPath), , "Hide")
+
+    if (glazeHwnd != "") {
+        WinActivate("ahk_id " . glazeHwnd)
+    }
+    return
+  }
+
   Run(cmd)
 }
 
@@ -104,8 +152,8 @@ GetGlazeWmInfo(exeName) {
   outFile := EnvGet("TEMP") . "\glazewm_info_" . A_TickCount . ".txt"
   glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
 
-  ; PowerShell command to query GlazeWM and output to file
-  psCmd := "(& '" . glazewmPath . "' query windows | ConvertFrom-Json).data.windows | Where-Object { $_.processName -eq '" . procName . "' } | Select-Object -ExpandProperty id -First 1 | Out-File -FilePath '" . outFile . "' -Encoding ascii"
+  ; PowerShell command to query GlazeWM and output ID and Handle separated by pipe
+  psCmd := "(& '" . glazewmPath . "' query windows | ConvertFrom-Json).data.windows | Where-Object { $_.processName -eq '" . procName . "' } | Select-Object -First 1 | ForEach-Object { $_.id + '|' + $_.handle } | Out-File -FilePath '" . outFile . "' -Encoding ascii"
 
   fullCmd := 'powershell -NoProfile -Command "' . psCmd . '"'
 
@@ -115,13 +163,13 @@ GetGlazeWmInfo(exeName) {
     ; Silently fail for clean code
   }
 
-  id := ""
+  result := ""
   if FileExist(outFile) {
-    id := Trim(FileRead(outFile), " `t`n`r")
+    result := Trim(FileRead(outFile), " `t`n`r")
     FileDelete(outFile)
   }
 
-  return id
+  return result
 }
 
 ; Helper: Find and activate window by process name (prioritizing windows with titles)
@@ -143,8 +191,12 @@ ActivateProcessWindow(exeName) {
   }
 
   ; Try GlazeWM logic if standard activation failed or no window found (maybe hidden on another workspace?)
-  glazeId := GetGlazeWmInfo(exeName)
-  if (StrLen(glazeId) > 0) {
+  glazeInfo := GetGlazeWmInfo(exeName)
+  if (StrLen(glazeInfo) > 0) {
+    parts := StrSplit(glazeInfo, "|")
+    glazeId := parts[1]
+    glazeHwnd := parts.Length > 1 ? parts[2] : ""
+
     glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
     runCmd := Format('"{1}" command focus --container-id {2}', glazewmPath, glazeId)
 
@@ -152,8 +204,10 @@ ActivateProcessWindow(exeName) {
     RunWait(runCmd, , "Hide")
     Run(Format('"{1}" command wm-redraw', glazewmPath), , "Hide")
 
-    ; Try standard activate immediately
-    if WinExist("ahk_exe " . exeName) {
+    ; Try standard activate immediately using the specific HWND from GlazeWM
+    if (glazeHwnd != "") {
+        WinActivate("ahk_id " . glazeHwnd)
+    } else if WinExist("ahk_exe " . exeName) {
         WinActivate()
     }
     return true
