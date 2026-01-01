@@ -1,15 +1,17 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/01/01 18:05:14.
+; Last Change : 2026/01/01 18:20:42.
 ; =============================================================================
 
 SetTitleMatchMode(2)
 
 #Include "IME.ahk"
 
+; Constants
 LOG_INFO_PATH := "info.log"
 LOG_ERROR_PATH := "error.log"
+GLAZEWM_PATH := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
 
 log_info(msg) {
   global LOG_INFO_PATH
@@ -37,13 +39,15 @@ LogError(exception, mode) {
 ; Run PowerShell command and return output
 RunPs(script) {
   outFile := EnvGet("TEMP") . "\ahk_ps_" . A_TickCount . ".txt"
-  ; Double up quotes for PowerShell command string
-  fullCmd := 'powershell -NoProfile -Command "' . script . ' | Out-File -FilePath ' . outFile . ' -Encoding ascii"'
+  ; Use double quotes for the outer string and escape inner double quotes with backtick
+  fullCmd := "powershell -NoProfile -Command `"" . script . " | Out-File -FilePath '" . outFile . "' -Encoding ascii`""
+
   try {
     RunWait(fullCmd, , "Hide")
   } catch {
     return ""
   }
+
   result := ""
   if FileExist(outFile) {
     result := Trim(FileRead(outFile), " `t`n`r")
@@ -54,14 +58,15 @@ RunPs(script) {
 
 ; Get GlazeWM window info (ID|HWND)
 GetGlazeWindow(exeName, titleRegex := "") {
+  global GLAZEWM_PATH
   procName := RegExReplace(exeName, "\.exe$", "")
-  glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
 
   filter := "$_.processName -eq '" . procName . "' -and $_.title.Length -gt 0"
   if (titleRegex != "") {
     filter .= " -and $_.title -match '" . titleRegex . "'"
   }
-  script := "(& '" . glazewmPath . "' query windows | ConvertFrom-Json).data.windows | Where-Object { " . filter . " } | Select-Object -First 1 | ForEach-Object { $_.id + '|' + $_.handle }"
+
+  script := "(& '" . GLAZEWM_PATH . "' query windows | ConvertFrom-Json).data.windows | Where-Object { " . filter . " } | Select-Object -First 1 | ForEach-Object { $_.id + '|' + $_.handle }"
   return RunPs(script)
 }
 
@@ -76,13 +81,13 @@ FocusGlazeWindow(glazeInfo) {
 
   glazeId := parts[1]
   glazeHwnd := parts.Length > 1 ? parts[2] : ""
-  glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
+  global GLAZEWM_PATH
 
-  RunWait('"' . glazewmPath . '" command focus --container-id ' . glazeId, , "Hide")
-  Run('"' . glazewmPath . '" command wm-redraw', , "Hide")
+  RunWait('"' . GLAZEWM_PATH . '" command focus --container-id ' . glazeId, , "Hide")
+  Run('"' . GLAZEWM_PATH . '" command wm-redraw', , "Hide")
 
   if (glazeHwnd != "") {
-    WinActivate("ahk_id " . glazeHwnd)
+    ActivateWindowCommon("ahk_id " . glazeHwnd)
   }
   return true
 }
@@ -110,6 +115,7 @@ ActivateRobust(exeName, runCmd := "", titleParts := "") {
 
     if (match) {
       ActivateWindowCommon("ahk_id " . id)
+      Sleep(50) ; Small wait to check if activation actually happened
       if WinActive("ahk_id " . id)
         return true
     }
@@ -133,6 +139,11 @@ ActivateWindowCommon(winTitle) {
     WinRestore(winTitle)
   } else {
     WinActivate(winTitle)
+    ; Force restore if activation doesn't bring it up (for tricky apps like Neovide)
+    if (!WinActive(winTitle)) {
+      WinRestore(winTitle)
+      WinActivate(winTitle)
+    }
   }
   WinShow(winTitle)
 }
@@ -185,96 +196,79 @@ Activate(app, cmd := "", titleKeywords := "") {
 ; Keybindings
 ; =============================================================================
 
-; for Outlook
+; Outlook (New or Classic)
 ^F9::
 {
   If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usenewoutlook")) {
     Activate(EnvGet("LOCALAPPDATA") . "\Microsoft\WindowsApps\olk.exe")
-    return
   } else {
-    Activate("C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE")
-    return
+    Activate("C:\ Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE")
   }
 }
 
-; for Excel
+; Excel
 F9::
 {
-  If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\notuseexcel")) {
-    return
-  } else {
-    Activate("C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE")
-    return
+  If (!FileExist(EnvGet("USERPROFILE") . "\.autohotkey\notuseexcel")) {
+    Activate("C:\ Program Files\Microsoft Office\root\Office16\EXCEL.EXE")
   }
 }
 
-; for Teams
+; Teams
 ^F12::
 {
   Activate(EnvGet("LOCALAPPDATA") . "\Microsoft\WindowsApps\ms-teams.exe")
-  return
 }
 
-; for neovim
+; Neovim (Neovide, nvim-qt, or Terminal)
 F10::
 {
   If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\useneovide")) {
-    return Activate("neovide.exe")
+    Activate("neovide.exe")
+  } else if (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\useneovimqt")) {
+    Activate("nvim-qt.exe")
+  } else {
+    Activate("nvim.exe", "wt nvim.cmd", "nvim.cmd")
   }
-  If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\useneovimqt")) {
-    return Activate("nvim-qt.exe")
-  }
-  Activate("nvim.exe", "wt nvim.cmd", "nvim.cmd")
 }
 
-; for Comet
+; Comet
 F11::
 {
   Activate("comet.exe")
 }
 
+; Windows Terminal (Toggle)
 F12::
 {
   if (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usewez")) {
-    Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
-    return
+    Toggle("C:\ Program Files\WezTerm\wezterm-gui.exe")
   } else if (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usenu")) {
     Toggle("WindowsTerminal.exe", "nu", "yukimemi-terminal")
-    return
   } else {
     Toggle("WindowsTerminal.exe", "wt", "yukimemi-terminal")
-    return
   }
 }
 
+; yazi (File Manager)
 ^F10::
 {
   Activate("WindowsTerminal.exe", "yazi", "Yazi,yazi")
 }
 
-; for slack
+; Slack
 ^F11::
 {
   Activate(EnvGet("USERPROFILE") . "\AppData\Local\slack\slack.exe")
-  return
 }
 
-; Command Pallet
+; Command Palette (Microsoft Command Palette)
 #HotIf WinActive("ahk_class WinUIDesktopWin32WindowClass ahk_exe Microsoft.CmdPal.UI.exe")
-
-^n::
-{
-  Send "{Down}"
-}
-
-^p::
-{
-  Send "{Up}"
-}
-
+^n:: Send "{Down}"
+^p:: Send "{Up}"
 #HotIf
 
-; editprompt
+; Edit Prompt (Neovim temporary buffer)
 F7::
 {
   tempFile := EnvGet("TEMP") . "\editprompt.md"
@@ -297,11 +291,13 @@ F7::
   }
 }
 
-SC079::IME_SET(1)
-SC07B::IME_SET(0)
+; IME Settings
+SC079::IME_SET(1) ; conversion key -> IME ON
+SC07B::IME_SET(0) ; non-conversion key -> IME OFF
 
-~Esc::IME_SET(0)
-^[::{
+~Esc::IME_SET(0) ; Esc -> IME OFF
+
+^[::{ ; Ctrl+[ -> Esc and IME OFF
   Send "{Esc}"
   IME_SET(0)
 }
