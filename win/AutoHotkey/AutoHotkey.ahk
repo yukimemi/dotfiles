@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/01/01 17:57:30.
+; Last Change : 2026/01/01 18:05:14.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -141,6 +141,30 @@ ActivateWindowCommon(winTitle) {
 ; Public API
 ; =============================================================================
 
+; Toggle window state (Active -> Minimize, Else -> Activate)
+Toggle(app, cmd := "", titleKeywords := "") {
+  SplitPath(app, &file)
+  exe := (InStr(app, "\") || InStr(app, "/")) ? file : app
+
+  if WinActive("ahk_exe " . exe) {
+    currTitle := WinGetTitle("A")
+    match := (titleKeywords == "")
+    if (!match) {
+      for part in StrSplit(titleKeywords, ",") {
+        if InStr(currTitle, Trim(part)) {
+          match := true
+          break
+        }
+      }
+    }
+    if (match) {
+      WinMinimize("A")
+      return
+    }
+  }
+  Activate(app, cmd, titleKeywords)
+}
+
 ; Activate window robustly (Local -> GlazeWM -> Run)
 Activate(app, cmd := "", titleKeywords := "") {
   SplitPath(app, &file)
@@ -158,43 +182,6 @@ Activate(app, cmd := "", titleKeywords := "") {
 }
 
 ; =============================================================================
-; Public API
-; =============================================================================
-
-Toggle(app) {
-  SplitPath(app, &file)
-  if WinActive("ahk_exe " . file)
-    WinMinimize("A")
-  else
-    Activate(app)
-}
-
-ToggleExe(app, exe) {
-  if WinActive("ahk_exe " . app)
-    WinMinimize("A")
-  else
-    Activate(app, exe)
-}
-
-ToggleTerminalWin(app, cmd, titleKeywords) {
-  if (ProcessExist(app)) {
-    for whd in WinGetList("ahk_class CASCADIA_HOSTING_WINDOW_CLASS") {
-      this_title := WinGetTitle(whd)
-      for current_part in StrSplit(titleKeywords, ",") {
-        if InStr(this_title, Trim(current_part)) {
-          if WinActive(whd)
-            WinMinimize("A")
-          else
-            ActivateWindowCommon("ahk_id " whd)
-          return
-        }
-      }
-    }
-  }
-  Activate(app, cmd, titleKeywords)
-}
-
-; =============================================================================
 ; Keybindings
 ; =============================================================================
 
@@ -202,7 +189,7 @@ ToggleTerminalWin(app, cmd, titleKeywords) {
 ^F9::
 {
   If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usenewoutlook")) {
-    Activate(EnvGet("LOCALAPPDATA") "\Microsoft\WindowsApps\olk.exe")
+    Activate(EnvGet("LOCALAPPDATA") . "\Microsoft\WindowsApps\olk.exe")
     return
   } else {
     Activate("C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE")
@@ -224,7 +211,7 @@ F9::
 ; for Teams
 ^F12::
 {
-  Activate(EnvGet("LOCALAPPDATA") "\Microsoft\WindowsApps\ms-teams.exe")
+  Activate(EnvGet("LOCALAPPDATA") . "\Microsoft\WindowsApps\ms-teams.exe")
   return
 }
 
@@ -252,10 +239,10 @@ F12::
     Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
     return
   } else if (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usenu")) {
-    ToggleTerminalWin("WindowsTerminal.exe", "nu", "yukimemi-terminal")
+    Toggle("WindowsTerminal.exe", "nu", "yukimemi-terminal")
     return
   } else {
-    ToggleTerminalWin("WindowsTerminal.exe", "wt", "yukimemi-terminal")
+    Toggle("WindowsTerminal.exe", "wt", "yukimemi-terminal")
     return
   }
 }
