@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/01/01 16:42:40.
+; Last Change : 2026/01/01 17:57:30.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -30,46 +30,20 @@ LogError(exception, mode) {
   return true
 }
 
-Toggle(app) {
-  SplitPath(app, &file)
-  if WinActive("ahk_exe " file) {
-    WinMinimize("A")
-  } else {
-    if (!ActivateProcessWindow(file))
-      Run(app)
-  }
-}
+; =============================================================================
+; Helpers
+; =============================================================================
 
-ToggleExe(app, exe) {
-  if WinActive("ahk_exe " app) {
-    WinMinimize("A")
-  } else {
-    if (!ActivateProcessWindow(app))
-      Run(exe)
-  }
-}
-
-; Helper: Get GlazeWM Info for Terminal with specific title part
-GetGlazeWmTerminalInfo(exeName, titleParts) {
-  procName := RegExReplace(exeName, "\.exe$", "")
-  outFile := EnvGet("TEMP") . "\glazewm_term_" . A_TickCount . ".txt"
-  glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
-
-  ; PowerShell command: Get all windows for process, then filter by title parts
-  ; Note: titleParts is comma separated string. PowerShell needs to check if any part is in title.
-  ; We construct a regex for title matching: "part1|part2|part3"
-  regexPattern := StrReplace(titleParts, ",", "|")
-  regexPattern := StrReplace(regexPattern, " ", "\s*") ; Handle spaces loosely if needed, but simple pipe is good for InStr logic replacement
-
-  psCmd := "(& '" . glazewmPath . "' query windows | ConvertFrom-Json).data.windows | Where-Object { $_.processName -eq '" . procName . "' -and $_.title -match '" . regexPattern . "' } | Select-Object -First 1 | ForEach-Object { $_.id + '|' + $_.handle } | Out-File -FilePath '" . outFile . "' -Encoding ascii"
-
-  fullCmd := 'powershell -NoProfile -Command "' . psCmd . '"'
-
+; Run PowerShell command and return output
+RunPs(script) {
+  outFile := EnvGet("TEMP") . "\ahk_ps_" . A_TickCount . ".txt"
+  ; Double up quotes for PowerShell command string
+  fullCmd := 'powershell -NoProfile -Command "' . script . ' | Out-File -FilePath ' . outFile . ' -Encoding ascii"'
   try {
     RunWait(fullCmd, , "Hide")
-  } catch as err {
+  } catch {
+    return ""
   }
-
   result := ""
   if FileExist(outFile) {
     result := Trim(FileRead(outFile), " `t`n`r")
@@ -78,64 +52,82 @@ GetGlazeWmTerminalInfo(exeName, titleParts) {
   return result
 }
 
-ToggleTerminalWin(app, cmd, title_parts) {
-  ; 1. Try finding in current workspace (Fast)
-  if (ProcessExist(app)) {
-    for whd in WinGetList("ahk_class CASCADIA_HOSTING_WINDOW_CLASS") {
-      this_title := WinGetTitle(whd)
-      for current_part in StrSplit(title_parts, ",") {
-        current_part := Trim(current_part)
-        if InStr(this_title, current_part) {
-          if WinActive(whd) {
-            WinMinimize("A")
-          } else {
-            ActivateWindowCommon("ahk_id " whd)
-          }
-          return
+; Get GlazeWM window info (ID|HWND)
+GetGlazeWindow(exeName, titleRegex := "") {
+  procName := RegExReplace(exeName, "\.exe$", "")
+  glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
+
+  filter := "$_.processName -eq '" . procName . "' -and $_.title.Length -gt 0"
+  if (titleRegex != "") {
+    filter .= " -and $_.title -match '" . titleRegex . "'"
+  }
+  script := "(& '" . glazewmPath . "' query windows | ConvertFrom-Json).data.windows | Where-Object { " . filter . " } | Select-Object -First 1 | ForEach-Object { $_.id + '|' + $_.handle }"
+  return RunPs(script)
+}
+
+; Focus window via GlazeWM
+FocusGlazeWindow(glazeInfo) {
+  if (glazeInfo == "")
+    return false
+
+  parts := StrSplit(glazeInfo, "|")
+  if (parts.Length < 1 || parts[1] == "")
+    return false
+
+  glazeId := parts[1]
+  glazeHwnd := parts.Length > 1 ? parts[2] : ""
+  glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
+
+  RunWait('"' . glazewmPath . '" command focus --container-id ' . glazeId, , "Hide")
+  Run('"' . glazewmPath . '" command wm-redraw', , "Hide")
+
+  if (glazeHwnd != "") {
+    WinActivate("ahk_id " . glazeHwnd)
+  }
+  return true
+}
+
+; Activate window robustly (Local -> GlazeWM -> Run)
+ActivateRobust(exeName, runCmd := "", titleParts := "") {
+  DetectHiddenWindows(false)
+
+  ; 1. Try local activation
+  ids := WinGetList("ahk_exe " . exeName)
+  for id in ids {
+    title := WinGetTitle("ahk_id " . id)
+    if (StrLen(title) == 0)
+      continue
+
+    match := (titleParts == "")
+    if (!match) {
+      for part in StrSplit(titleParts, ",") {
+        if InStr(title, Trim(part)) {
+          match := true
+          break
         }
       }
     }
-  }
 
-  ; 2. Try finding in other workspaces via GlazeWM (Slower but necessary)
-  glazeInfo := GetGlazeWmTerminalInfo(app, title_parts)
-  if (StrLen(glazeInfo) > 0) {
-    parts := StrSplit(glazeInfo, "|")
-    glazeId := parts[1]
-    glazeHwnd := parts.Length > 1 ? parts[2] : ""
-
-    glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
-    runCmd := Format('"{1}" command focus --container-id {2}', glazewmPath, glazeId)
-    RunWait(runCmd, , "Hide")
-    Run(Format('"{1}" command wm-redraw', glazewmPath), , "Hide")
-
-    if (glazeHwnd != "") {
-        WinActivate("ahk_id " . glazeHwnd)
-    }
-    return
-  }
-
-  Run(cmd)
-}
-
-ActivateTerminalWin(app, cmd, title_parts) {
-  if (ProcessExist(app)) {
-    for whd in WinGetList("ahk_class CASCADIA_HOSTING_WINDOW_CLASS") {
-      this_title := WinGetTitle(whd)
-      ; Split title_parts by comma and check each part
-      for current_part in StrSplit(title_parts, ",") {
-        current_part := Trim(current_part)
-        if InStr(this_title, current_part) {
-          ActivateWindowCommon("ahk_id " whd)
-          return
-        }
-      }
+    if (match) {
+      ActivateWindowCommon("ahk_id " . id)
+      if WinActive("ahk_id " . id)
+        return true
     }
   }
-  Run(cmd)
+
+  ; 2. Try GlazeWM activation
+  titleRegex := (titleParts != "") ? StrReplace(titleParts, ",", "|") : ""
+  if FocusGlazeWindow(GetGlazeWindow(exeName, titleRegex))
+    return true
+
+  ; 3. Run if not found
+  if (runCmd != "") {
+    Run(runCmd)
+    return true
+  }
+  return false
 }
 
-; Helper: Activate window by HWND or Title
 ActivateWindowCommon(winTitle) {
   if (WinGetMinMax(winTitle) == -1) {
     WinRestore(winTitle)
@@ -145,109 +137,67 @@ ActivateWindowCommon(winTitle) {
   WinShow(winTitle)
 }
 
-; Helper: Get GlazeWM Container Info (ID and Workspace) by process name
-GetGlazeWmInfo(exeName) {
-  ; Remove .exe extension if present for comparison
-  procName := RegExReplace(exeName, "\.exe$", "")
-  outFile := EnvGet("TEMP") . "\glazewm_info_" . A_TickCount . ".txt"
-  glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
+; =============================================================================
+; Public API
+; =============================================================================
 
-  ; PowerShell command to query GlazeWM and output ID and Handle separated by pipe
-  psCmd := "(& '" . glazewmPath . "' query windows | ConvertFrom-Json).data.windows | Where-Object { $_.processName -eq '" . procName . "' } | Select-Object -First 1 | ForEach-Object { $_.id + '|' + $_.handle } | Out-File -FilePath '" . outFile . "' -Encoding ascii"
-
-  fullCmd := 'powershell -NoProfile -Command "' . psCmd . '"'
-
-  try {
-    RunWait(fullCmd, , "Hide")
-  } catch as err {
-    ; Silently fail for clean code
-  }
-
-  result := ""
-  if FileExist(outFile) {
-    result := Trim(FileRead(outFile), " `t`n`r")
-    FileDelete(outFile)
-  }
-
-  return result
-}
-
-; Helper: Find and activate window by process name (prioritizing windows with titles)
-ActivateProcessWindow(exeName) {
-  DetectHiddenWindows(false)
-
-  ; Optimization: Try standard activation first.
-  ; If the window is on the current workspace, this is much faster than querying GlazeWM.
-  ids := WinGetList("ahk_exe " exeName)
-  for this_id in ids {
-    if (StrLen(WinGetTitle("ahk_id " this_id)) > 0) {
-      ActivateWindowCommon("ahk_id " this_id)
-      if WinActive("ahk_id " this_id) {
-        return true
-      }
-      ; If found but didn't activate, it might be on another workspace, so fall through to GlazeWM logic.
-      break
-    }
-  }
-
-  ; Try GlazeWM logic if standard activation failed or no window found (maybe hidden on another workspace?)
-  glazeInfo := GetGlazeWmInfo(exeName)
-  if (StrLen(glazeInfo) > 0) {
-    parts := StrSplit(glazeInfo, "|")
-    glazeId := parts[1]
-    glazeHwnd := parts.Length > 1 ? parts[2] : ""
-
-    glazewmPath := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
-    runCmd := Format('"{1}" command focus --container-id {2}', glazewmPath, glazeId)
-
-    ; Execute synchronously to ensure focus happens before redraw
-    RunWait(runCmd, , "Hide")
-    Run(Format('"{1}" command wm-redraw', glazewmPath), , "Hide")
-
-    ; Try standard activate immediately using the specific HWND from GlazeWM
-    if (glazeHwnd != "") {
-        WinActivate("ahk_id " . glazeHwnd)
-    } else if WinExist("ahk_exe " . exeName) {
-        WinActivate()
-    }
-    return true
-  }
-
-  ; Fallback: if GlazeWM didn't help (e.g. not running), try standard logic again purely on what AHK sees
-  if (ids.Length > 0) {
-     for this_id in ids {
-        if (StrLen(WinGetTitle("ahk_id " this_id)) > 0) {
-             ActivateWindowCommon("ahk_id " this_id)
-             return true
-        }
-     }
-     ActivateWindowCommon("ahk_id " ids[1])
-     return true
-  }
-
-  return false
-}Activate(app) {
+; Activate window robustly (Local -> GlazeWM -> Run)
+Activate(app, cmd := "", titleKeywords := "") {
   SplitPath(app, &file)
-  if (!ActivateProcessWindow(file))
-    Run(app)
-}
+  exe := (InStr(app, "\") || InStr(app, "/")) ? file : app
+  runCmd := (cmd == "" ? app : cmd)
 
-Activate2(app, cmd) {
-  if (!ActivateProcessWindow(app))
-    Run(cmd)
-}
-
-Activate3(app, cmd, title) {
-  if WinExist(title) {
-    ActivateWindowCommon(title)
-    if WinActive(title) {
+  ; 1. Try specific title first (if provided)
+  if (titleKeywords != "" && WinExist(titleKeywords)) {
+    ActivateWindowCommon(titleKeywords)
+    if WinActive(titleKeywords)
       return
-    }
   }
 
-  if (!ActivateProcessWindow(app))
-    Run(cmd)
+  ActivateRobust(exe, runCmd, titleKeywords)
 }
+
+; =============================================================================
+; Public API
+; =============================================================================
+
+Toggle(app) {
+  SplitPath(app, &file)
+  if WinActive("ahk_exe " . file)
+    WinMinimize("A")
+  else
+    Activate(app)
+}
+
+ToggleExe(app, exe) {
+  if WinActive("ahk_exe " . app)
+    WinMinimize("A")
+  else
+    Activate(app, exe)
+}
+
+ToggleTerminalWin(app, cmd, titleKeywords) {
+  if (ProcessExist(app)) {
+    for whd in WinGetList("ahk_class CASCADIA_HOSTING_WINDOW_CLASS") {
+      this_title := WinGetTitle(whd)
+      for current_part in StrSplit(titleKeywords, ",") {
+        if InStr(this_title, Trim(current_part)) {
+          if WinActive(whd)
+            WinMinimize("A")
+          else
+            ActivateWindowCommon("ahk_id " whd)
+          return
+        }
+      }
+    }
+  }
+  Activate(app, cmd, titleKeywords)
+}
+
+; =============================================================================
+; Keybindings
+; =============================================================================
+
 ; for Outlook
 ^F9::
 {
@@ -287,80 +237,14 @@ F10::
   If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\useneovimqt")) {
     return Activate("nvim-qt.exe")
   }
-  Activate3("nvim.exe", "wt nvim.cmd", "nvim.cmd")
+  Activate("nvim.exe", "wt nvim.cmd", "nvim.cmd")
 }
 
-; for VSCode
-; F8::
-; {
-; Activate3("Code.exe", "C:\Program Files\Microsoft VS Code\Code.exe", "Visual Studio Code")
-; return
-; }
-
-; for chrome
-; F11::
-; if FileExist("C:\Program Files\Google\Chrome\Application\chrome.exe")
-;   Activate("C:\Program Files\Google\Chrome\Application\chrome.exe")
-; else
-;   Activate("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe")
-; return
-
-; for Edge
-; F11::
-; {
-;   Activate("msedge.exe")
-;   return
-; }
-
 ; for Comet
- F11::
- {
-   Activate("comet.exe")
-   return
- }
-
-; for Arc
-; F11::
-; {
-;   Activate("Arc.exe")
-;   return
-; }
-
-; for vivaldi
-; F11::
-; Activate(EnvGet("USERPROFILE") . "\scoop\apps\vivaldi\current\Application\vivaldi.exe")
-; return
-
-; for firefox
-; F11::
-; Activate("C:\Program Files\Mozilla Firefox\firefox.exe")
-; return
-
-; for Brave
-; F11::
-; Activate(EnvGet("USERPROFILE") . "\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe")
-; return
-
-; for cmd.exe
-; F12::
-; Activate(ComSpec)
-; return
-
-; for PowerShell.exe
-; F12::
-; Activate("C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe")
-; return
-
-; for pwsh.exe
-; F12::
-; Activate(EnvGet("USERPROFILE") . "\scoop\shims\pwsh.exe")
-; return
-
-; for Terminus
-; F12::
-; Toggle(EnvGet("USERPROFILE") . "\scoop\apps\terminus\current\Terminus.exe")
-; ToggleExe("Terminus.exe", EnvGet("USERPROFILE") . "\AppData\Local\Programs\Terminus\Terminus.exe")
-; return
+F11::
+{
+  Activate("comet.exe")
+}
 
 F12::
 {
@@ -376,37 +260,15 @@ F12::
   }
 }
 
-; for Hyper
-; F12::
-; Toggle(EnvGet("USERPROFILE") . "\AppData\Local\Programs\hyper\Hyper.exe")
-; return
-
-; for Fluent Terminal
-; F12::
-; Activate3("FluentTerminal.App.exe", EnvGet("USERPROFILE") . "\AppData\Local\Microsoft\WindowsApps\flute.exe", "Fluent")
-; return
-; for Edge
-; F11::
-; Activate2("MicrosoftEdge.exe", "shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge")
-; return
-
-; for cfiler
-;^F10::
-;{
-;  Activate(EnvGet("USERPROFILE") . "\app\cfiler\cfiler.exe")
-;  return
-;}
 ^F10::
 {
-  ActivateTerminalWin("WindowsTerminal.exe", "yazi", "Yazi,yazi")
+  Activate("WindowsTerminal.exe", "yazi", "Yazi,yazi")
 }
 
 ; for slack
 ^F11::
 {
   Activate(EnvGet("USERPROFILE") . "\AppData\Local\slack\slack.exe")
-  ; Activate3("slack.exe", "C:\Program Files\slack\slack.exe", "slack")
-  ;Activate3("slack.exe", EnvGet("USERPROFILE") . "\AppData\Local\slack\slack.exe", "slack")
   return
 }
 
@@ -447,6 +309,7 @@ F7::
     SetTimer(() => ToolTip(), -5000)
   }
 }
+
 SC079::IME_SET(1)
 SC07B::IME_SET(0)
 
@@ -455,4 +318,3 @@ SC07B::IME_SET(0)
   Send "{Esc}"
   IME_SET(0)
 }
-
