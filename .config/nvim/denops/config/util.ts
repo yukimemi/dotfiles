@@ -215,14 +215,26 @@ export async function restart(denops: Denops) {
     if (neovide === "") {
       neovide = "neovide";
     }
-    const cmd = new Deno.Command(neovide, {
-      args: ["-S", sessionPath],
-      stdin: "null",
-      stdout: "null",
-      stderr: "null",
-    });
-    const child = cmd.spawn();
-    child.unref();
+    if (Deno.build.os === "windows") {
+      const winSessionPath = sessionPath.replaceAll("/", "\\");
+      await denops.call("jobstart", [
+        "powershell",
+        "-NoProfile",
+        "-Command",
+        `Start-Process "${neovide}" -ArgumentList "-S", "${winSessionPath}"`,
+      ], {
+        detach: true,
+      });
+    } else {
+      const cmd = new Deno.Command(neovide, {
+        args: ["-S", sessionPath],
+        stdin: "null",
+        stdout: "null",
+        stderr: "null",
+      });
+      const child = cmd.spawn();
+      child.unref();
+    }
     await denops.cmd("call timer_start(100, { -> execute('qa!') })");
   } else {
     await denops.cmd(`restart source ${escapedSessionPath}`);
