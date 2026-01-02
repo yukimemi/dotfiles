@@ -181,6 +181,37 @@ export async function removeShada(denops: Denops) {
   console.log(`shada dir remove done !`);
 }
 
+export async function restart(denops: Denops) {
+  const bufinfos = await fn.getbufinfo(denops);
+  for (const info of bufinfos) {
+    const buftype = await fn.getbufvar(denops, info.bufnr, "&buftype");
+    if (buftype !== "") {
+      await denops.cmd(`bwipeout! ${info.bufnr}`);
+    }
+  }
+
+  const thisSession = await vars.v.get(denops, "this_session") as string;
+  const hasSession = thisSession !== "";
+
+  let sessionPath: string;
+  if (hasSession) {
+    sessionPath = thisSession;
+  } else {
+    const stateDir = await nvimFn.stdpath(denops, "state") as string;
+    sessionPath = join(stateDir, "restart_session.vim");
+  }
+
+  await Deno.mkdir(join(sessionPath, ".."), { recursive: true });
+  await denops.cmd(`mksession! ${sessionPath}`);
+
+  if (!hasSession) {
+    const sessionX = sessionPath.replace(/\.vim$/, "x.vim");
+    await Deno.writeTextFile(sessionX, 'let v:this_session = ""');
+  }
+
+  await denops.cmd(`restart source ${sessionPath}`);
+}
+
 export async function execCommand(
   denops: Denops,
   command: string,

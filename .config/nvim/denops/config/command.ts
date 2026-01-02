@@ -9,7 +9,7 @@ import { batch } from "@denops/std/batch";
 import * as nvimFn from "@denops/std/function/nvim";
 import * as lambda from "@denops/std/lambda";
 import { z } from "zod";
-import { removeShada, zennCreate, zennPreview } from "./util.ts";
+import { removeShada, restart, zennCreate, zennPreview } from "./util.ts";
 
 export async function setCommandPre(_denops: Denops) {
 }
@@ -23,6 +23,18 @@ export async function setCommandPost(denops: Denops) {
         lambda.register(
           denops,
           async () => await removeShada(denops),
+        )
+      }", [])`,
+      {},
+    );
+
+    await nvimFn.nvim_create_user_command(
+      denops,
+      "Restart",
+      `call denops#notify("${denops.name}", "${
+        lambda.register(
+          denops,
+          async () => await restart(denops),
         )
       }", [])`,
       {},
