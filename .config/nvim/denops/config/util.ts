@@ -210,13 +210,9 @@ export async function restart(denops: Denops) {
   }
 
   if (await fn.exists(denops, "g:neovide")) {
-    const cmd = new Deno.Command("neovide", {
-      args: ["-S", sessionPath],
-      stdout: "null",
-      stderr: "null",
-      stdin: "null",
+    await denops.call("jobstart", ["neovide", "-S", sessionPath], {
+      detach: true,
     });
-    cmd.spawn();
     await denops.cmd("qa!");
   } else {
     await denops.cmd(`restart source ${sessionPath}`);
