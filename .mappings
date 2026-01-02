@@ -18,6 +18,7 @@
 
 [windows]
 ".config/rhq" = "~/AppData/Roaming/rhq"
+".config/copyq" = "~/AppData/Roaming/copyq"
 ".config/helix" = "~/AppData/Roaming/helix"
 ".config/nushell" = "~/AppData/Roaming/nushell"
 ".config/yazi" = "~/AppData/Roaming/yazi/config"
@@ -45,6 +46,7 @@
 [darwin]
 ".config/espanso" = "~/Library/Preferences/espanso"
 ".config/rhq" = "~/Library/Preferences/rhq"
+".config/copyq" = "~/.config/copyq"
 ".vimrc" = "~/.vimrc"
 ".gvimrc" = "~/.gvimrc"
 ".config/nvim" = "~/.vim"
@@ -59,6 +61,7 @@
 ".vimrc" = "~/.vimrc"
 ".gvimrc" = "~/.gvimrc"
 ".config/nvim" = "~/.vim"
+".config/copyq" = "~/.config/copyq"
 ".hyper.js" = "~/.hyper.js"
 ".inputrc" = "~/.inputrc"
 ".tmux.conf" = "~/.tmux.conf"

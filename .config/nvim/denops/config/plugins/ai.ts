@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2025/12/14 20:44:26.
+// Last Change : 2026/01/01 23:09:02.
 // =============================================================================
 
 import * as fn from "@denops/std/function";
@@ -19,7 +19,12 @@ export const ai: Plug[] = [
   {
     url: "https://github.com/lambdalisue/nvim-aibo",
     profiles: ["ai"],
-    afterFile: `~/.config/nvim/rc/after/nvim-aibo.lua`,
+    keys: {
+      lhs: "<space>b",
+      rhs: "<cmd>Aibo gemini<cr>",
+      mode: "n",
+    },
+    // afterFile: `~/.config/nvim/rc/after/nvim-aibo.lua`,
   },
   {
     url: "https://github.com/folke/sidekick.nvim",

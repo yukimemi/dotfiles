@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/01/01 18:20:42.
+; Last Change : 2026/01/02 12:45:00.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -61,13 +61,46 @@ GetGlazeWindow(exeName, titleRegex := "") {
   global GLAZEWM_PATH
   procName := RegExReplace(exeName, "\.exe$", "")
 
-  filter := "$_.processName -eq '" . procName . "' -and $_.title.Length -gt 0"
-  if (titleRegex != "") {
-    filter .= " -and $_.title -match '" . titleRegex . "'"
+  ; Run glazewm query directly and capture output to temp file
+  outFile := EnvGet("TEMP") . "\ahk_glaze_" . A_TickCount . ".json"
+  RunWait('cmd /c ""' . GLAZEWM_PATH . '" query windows > "' . outFile . '""', , "Hide")
+
+  if !FileExist(outFile)
+    return ""
+
+  try {
+    jsonStr := FileRead(outFile)
+    FileDelete(outFile)
+
+    ; Use htmlfile COM object to parse JSON (works on 64-bit AHK)
+    sc := ComObject("htmlfile")
+    sc.write("<meta http-equiv='X-UA-Compatible' content='IE=edge'>")
+    sc.write("<script>var data = " . jsonStr . ";</script>")
+
+    windows := sc.parentWindow.data.data.windows
+    len := windows.length
+
+    Loop len {
+      i := A_Index - 1
+      win := windows.%i%
+
+      ; Check processName (case-insensitive)
+      if (StrCompare(win.processName, procName, true) == 0) {
+
+        ; Check title if regex provided
+        if (titleRegex != "") {
+          if !RegExMatch(win.title, titleRegex)
+            continue
+        }
+
+        return win.id . "|" . win.handle
+      }
+    }
+  } catch as e {
+    log_error("GetGlazeWindow JSON Parse Error: " . e.Message)
   }
 
-  script := "(& '" . GLAZEWM_PATH . "' query windows | ConvertFrom-Json).data.windows | Where-Object { " . filter . " } | Select-Object -First 1 | ForEach-Object { $_.id + '|' + $_.handle }"
-  return RunPs(script)
+  return ""
 }
 
 ; Focus window via GlazeWM
@@ -96,7 +129,7 @@ FocusGlazeWindow(glazeInfo) {
 ActivateRobust(exeName, runCmd := "", titleParts := "") {
   DetectHiddenWindows(false)
 
-  ; 1. Try local activation
+  ; 1. Try local activation first (Fast path for visible windows)
   ids := WinGetList("ahk_exe " . exeName)
   for id in ids {
     title := WinGetTitle("ahk_id " . id)
@@ -121,7 +154,7 @@ ActivateRobust(exeName, runCmd := "", titleParts := "") {
     }
   }
 
-  ; 2. Try GlazeWM activation
+  ; 2. Try GlazeWM activation (Slow path for hidden/other workspace windows)
   titleRegex := (titleParts != "") ? StrReplace(titleParts, ",", "|") : ""
   if FocusGlazeWindow(GetGlazeWindow(exeName, titleRegex))
     return true

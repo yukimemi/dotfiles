@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2025/12/31 20:38:33.
+// Last Change : 2026/01/02 00:30:17.
 // =============================================================================
 
 import { dir } from "@cross/dir";
@@ -54,12 +54,19 @@ log.setup({
 
 export const main: Entrypoint = async (denops: Denops) => {
   const starttime = performance.now();
-  autocmd.define(
-    denops,
-    "User",
-    "DvpmCacheUpdated",
-    `echom "Dvpm cache updated !"`,
-  );
+  await autocmd.group(denops, "MyDvpmGroup", (helper) => {
+    helper.remove("*");
+    helper.define(
+      "User",
+      "Dvpm:CacheUpdated:all",
+      `echom "Dvpm cache updated !"`,
+    );
+    // helper.define(
+    //   "User",
+    //   "Dvpm:PostLoad:*",
+    //   `echo "Loaded plugin: " . substitute(expand("<amatch>"), "^Dvpm:PostLoad:", "", "")`,
+    // );
+  });
   const dvpm = await dvpmCreate(denops);
   await pre(denops);
   await dvpmExec(dvpm);
@@ -138,6 +145,7 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
       "operator",
       "quickfix",
       "runner",
+      "rust",
       "search",
       "snippet",
       "statusline",

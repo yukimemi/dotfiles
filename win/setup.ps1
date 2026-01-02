@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2025/12/30 15:10:46.
+  .Last Change : 2026/01/02 11:30:00.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue"
@@ -270,6 +270,23 @@ function Install-Neovim {
   Remove-Item $nvimMsi
 }
 
+function Install-GoTools {
+  if (!(Get-Command go -ErrorAction SilentlyContinue)) {
+    log "Go is not installed. Skipping Go tools installation." "Yellow"
+    return
+  }
+
+  log "Installing Go tools..."
+  $goTools = @(
+    "github.com/satococoa/wtp/v2/cmd/wtp@latest"
+  )
+
+  foreach ($tool in $goTools) {
+    log "Installing $tool ..."
+    go install $tool
+  }
+}
+
 function Install-Tools {
   $wingetPackages = @(
     "glzr-io.glazewm", "glzr-io.zebar", "Oven-sh.Bun",
@@ -278,7 +295,7 @@ function Install-Tools {
     "Slackadays.Clipboard", "Flameshot.Flameshot", "RustLang.Rustup",
     "Microsoft.WindowsTerminal", "Microsoft.PowerToys", "Git.Git",
     "GitHub.cli", "AutoHotkey.AutoHotkey", "Espanso.Espanso",
-    "WinMerge.WinMerge", "Chocolatey.Chocolatey", "zig.zig",
+    "WinMerge.WinMerge", "Chocolatey.Chocolatey", "zig.zig", "GoLang.Go",
     "Microsoft.PowerShell", "Neovide.Neovide", "hluk.CopyQ", "Byron.dua-cli"
   )
   Install-WingetPackages $wingetPackages
@@ -312,6 +329,7 @@ function Start-Main {
     Set-CapsLockToCtrl
     Install-Neovim
     Install-Tools
+    Install-GoTools
 
     # Shortcuts
     $shortcuts = @(
