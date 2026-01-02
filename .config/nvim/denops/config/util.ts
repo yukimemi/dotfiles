@@ -217,11 +217,13 @@ export async function restart(denops: Denops) {
     }
     if (Deno.build.os === "windows") {
       const winSessionPath = sessionPath.replaceAll("/", "\\");
+      const psCommand =
+        `Start-Job -ScriptBlock { param($exe, $sess) Start-Process $exe -ArgumentList "-S", $sess } -ArgumentList "${neovide}", "${winSessionPath}"`;
       await denops.call("jobstart", [
         "powershell",
         "-NoProfile",
         "-Command",
-        `Start-Process "${neovide}" -ArgumentList "-S", "${winSessionPath}"`,
+        psCommand,
       ], {
         detach: true,
       });
