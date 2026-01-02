@@ -216,9 +216,9 @@ export async function restart(denops: Denops) {
       neovide = "neovide";
     }
     if (Deno.build.os === "windows") {
-      await denops.call("jobstart", ["cmd", "/c", "start", "", neovide, "-S", sessionPath], {
-        detach: true,
-      });
+      const neovideExe = await fn.shellescape(denops, neovide);
+      const session = await fn.shellescape(denops, sessionPath);
+      await denops.cmd(`silent !start "" ${neovideExe} -S ${session}`);
     } else {
       await denops.call("jobstart", [neovide, "-S", sessionPath], {
         detach: true,
