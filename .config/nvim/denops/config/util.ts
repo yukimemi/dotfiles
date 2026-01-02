@@ -210,9 +210,16 @@ export async function restart(denops: Denops) {
   }
 
   if (await fn.exists(denops, "g:neovide")) {
-    await denops.call("jobstart", ["neovide", "-S", sessionPath], {
-      detach: true,
-    });
+    if (Deno.build.os === "windows") {
+      const psCommand = `Start-Process neovide -ArgumentList '-S', '${sessionPath}'`;
+      await denops.call("jobstart", ["powershell", "-NoProfile", "-Command", psCommand], {
+        detach: true,
+      });
+    } else {
+      await denops.call("jobstart", ["neovide", "-S", sessionPath], {
+        detach: true,
+      });
+    }
     await denops.cmd("qa!");
   } else {
     await denops.cmd(`restart source ${sessionPath}`);
