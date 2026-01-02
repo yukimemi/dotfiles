@@ -2,3 +2,4 @@
 *.dat
 copyq_geometry.ini
 copyq/copyq.log*
+copyq.pub
