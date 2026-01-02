@@ -186,7 +186,7 @@ export async function restart(denops: Denops) {
   for (const info of bufinfos) {
     const buftype = await fn.getbufvar(denops, info.bufnr, "&buftype");
     if (buftype !== "") {
-      await denops.cmd(`bwipeout! ${info.bufnr}`);
+      await denops.cmd(`silent! bwipeout! ${info.bufnr}`);
     }
   }
 
@@ -210,9 +210,12 @@ export async function restart(denops: Denops) {
   }
 
   if (await fn.exists(denops, "g:neovide")) {
-    const neovide = await fn.exepath(denops, "neovide") as string;
+    let neovide = await fn.exepath(denops, "neovide") as string;
+    if (neovide === "") {
+      neovide = "neovide";
+    }
     if (Deno.build.os === "windows") {
-      await denops.call("jobstart", ["cmd", "/c", "start", neovide, "-S", sessionPath], {
+      await denops.call("jobstart", ["cmd", "/c", "start", "", neovide, "-S", sessionPath], {
         detach: true,
       });
     } else {
