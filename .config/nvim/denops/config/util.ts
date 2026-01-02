@@ -216,13 +216,14 @@ export async function restart(denops: Denops) {
       neovide = "neovide";
     }
     if (Deno.build.os === "windows") {
-      await denops.call("system", ["cmd", "/c", "start", "", neovide, "-S", sessionPath]);
+      await denops.call("jobstart", ["cmd", "/c", "start", "", neovide, "-S", sessionPath], {
+        detach: true,
+      });
     } else {
       await denops.call("jobstart", [neovide, "-S", sessionPath], {
         detach: true,
       });
     }
-    await new Promise((resolve) => setTimeout(resolve, 500));
     await denops.cmd("qa!");
   } else {
     await denops.cmd(`restart source ${escapedSessionPath}`);
