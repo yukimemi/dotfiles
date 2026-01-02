@@ -209,7 +209,18 @@ export async function restart(denops: Denops) {
     await Deno.writeTextFile(sessionX, 'let v:this_session = ""');
   }
 
-  await denops.cmd(`restart source ${sessionPath}`);
+  if (await fn.exists(denops, "g:neovide")) {
+    const cmd = new Deno.Command("neovide", {
+      args: ["-S", sessionPath],
+      stdout: "null",
+      stderr: "null",
+      stdin: "null",
+    });
+    cmd.spawn();
+    await denops.cmd("qa!");
+  } else {
+    await denops.cmd(`restart source ${sessionPath}`);
+  }
 }
 
 export async function execCommand(
