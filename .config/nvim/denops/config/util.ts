@@ -202,7 +202,8 @@ export async function restart(denops: Denops) {
   }
 
   await Deno.mkdir(join(sessionPath, ".."), { recursive: true });
-  await denops.cmd(`mksession! ${sessionPath}`);
+  const escapedSessionPath = await fn.fnameescape(denops, sessionPath) as string;
+  await denops.cmd(`mksession! ${escapedSessionPath}`);
 
   if (!hasSession) {
     const sessionX = sessionPath.replace(/\.vim$/, "x.vim");
@@ -215,17 +216,16 @@ export async function restart(denops: Denops) {
       neovide = "neovide";
     }
     if (Deno.build.os === "windows") {
-      await denops.call("jobstart", ["cmd", "/c", "start", "", neovide, "-S", sessionPath], {
-        detach: true,
-      });
+      await denops.call("system", ["cmd", "/c", "start", "", neovide, "-S", sessionPath]);
     } else {
       await denops.call("jobstart", [neovide, "-S", sessionPath], {
         detach: true,
       });
     }
+    await new Promise((resolve) => setTimeout(resolve, 500));
     await denops.cmd("qa!");
   } else {
-    await denops.cmd(`restart source ${sessionPath}`);
+    await denops.cmd(`restart source ${escapedSessionPath}`);
   }
 }
 
