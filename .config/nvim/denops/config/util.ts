@@ -215,16 +215,15 @@ export async function restart(denops: Denops) {
     if (neovide === "") {
       neovide = "neovide";
     }
-    if (Deno.build.os === "windows") {
-      const neovideExe = await fn.shellescape(denops, neovide);
-      const session = await fn.shellescape(denops, sessionPath);
-      await denops.cmd(`silent !start "" ${neovideExe} -S ${session}`);
-    } else {
-      await denops.call("jobstart", [neovide, "-S", sessionPath], {
-        detach: true,
-      });
-    }
-    await denops.cmd("qa!");
+    const cmd = new Deno.Command(neovide, {
+      args: ["-S", sessionPath],
+      stdin: "null",
+      stdout: "null",
+      stderr: "null",
+    });
+    const child = cmd.spawn();
+    child.unref();
+    await denops.cmd("call timer_start(100, { -> execute('qa!') })");
   } else {
     await denops.cmd(`restart source ${escapedSessionPath}`);
   }
