@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2026/01/01 23:09:02.
+// Last Change : 2026/01/03 00:27:00.
 // =============================================================================
 
 import * as fn from "@denops/std/function";
@@ -23,8 +23,11 @@ export const ai: Plug[] = [
       lhs: "<space>b",
       rhs: "<cmd>Aibo gemini<cr>",
       mode: "n",
+      desc: "Aibo gemini",
     },
-    // afterFile: `~/.config/nvim/rc/after/nvim-aibo.lua`,
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("aibo").setup(_A)`, {});
+    },
   },
   {
     url: "https://github.com/folke/sidekick.nvim",
