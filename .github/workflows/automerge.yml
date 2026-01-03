@@ -20,6 +20,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: denoland/setup-deno@v2
       - run: deno task ci
-      - uses: "pascalgn/automerge-action@v0.16.3"
+      - uses: "pascalgn/automerge-action@v0.16.4"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
