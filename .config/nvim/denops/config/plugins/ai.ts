@@ -19,11 +19,13 @@ export const ai: Plug[] = [
   {
     url: "https://github.com/lambdalisue/nvim-aibo",
     profiles: ["ai"],
-    keys: {
-      lhs: "<space>b",
-      rhs: "<cmd>Aibo gemini<cr>",
-      mode: "n",
-      desc: "Aibo gemini",
+    lazy: {
+      keys: {
+        lhs: "<space>b",
+        rhs: "<cmd>Aibo gemini<cr>",
+        mode: "n",
+        desc: "Aibo gemini",
+      },
     },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("aibo").setup(_A)`, {});

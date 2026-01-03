@@ -21,7 +21,7 @@ export const filetypes: Plug[] = [
   {
     url: "https://github.com/aklt/plantuml-syntax",
     profiles: ["filetype"],
-    ft: ["uml"],
+    lazy: { ft: ["uml"] },
     before: async ({ denops }) => {
       await autocmd.group(denops, "MyPlantUml", (helper) => {
         helper.remove("*");
@@ -86,7 +86,7 @@ export const filetypes: Plug[] = [
     url: "https://github.com/OXY2DEV/markview.nvim",
     enabled: true,
     profiles: ["markdown"],
-    ft: ["markdown"],
+    lazy: { ft: ["markdown"] },
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require('markview').setup(_A)`, {
@@ -103,25 +103,25 @@ export const filetypes: Plug[] = [
   {
     url: "https://github.com/dhruvasagar/vim-table-mode",
     profiles: ["markdown"],
-    ft: ["markdown"],
+    lazy: { ft: ["markdown"] },
   },
   {
     url: "https://github.com/ixru/nvim-markdown",
     profiles: ["markdown"],
-    ft: ["markdown"],
+    lazy: { ft: ["markdown"] },
   },
   {
     url: "https://github.com/MeanderingProgrammer/render-markdown.nvim",
     enabled: false,
     profiles: ["markdown"],
-    ft: ["markdown"],
+    lazy: { ft: ["markdown"] },
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     afterFile: "~/.config/nvim/rc/after/render-markdown.lua",
   },
   {
     url: "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
     profiles: ["treesitter", "markdown"],
-    ft: ["markdown"],
+    lazy: { ft: ["markdown"] },
   },
   {
     url: "https://github.com/tadmccorkle/markdown.nvim",
@@ -136,7 +136,7 @@ export const filetypes: Plug[] = [
   {
     url: "https://github.com/roodolv/markdown-toggle.nvim",
     profiles: ["markdown"],
-    ft: ["markdown"],
+    lazy: { ft: ["markdown"] },
     afterFile: "~/.config/nvim/rc/after/markdown-toggle.lua",
   },
   // vim
@@ -182,7 +182,7 @@ export const filetypes: Plug[] = [
   {
     url: "https://github.com/Saecki/crates.nvim",
     profiles: ["rust"],
-    ft: ["rust"],
+    lazy: { ft: ["rust"] },
     after: async ({ denops }) => {
       await autocmd.group(denops, "MyRustSettings", (helper) => {
         helper.remove("*");
