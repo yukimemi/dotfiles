@@ -1,7 +1,7 @@
 FROM anatolelucet/neovim:stable-ubuntu AS builder
 LABEL maintainer "yukimemi <yukimemi@gmail.com>"
 
-FROM --platform=linux/amd64 ubuntu:20.04
+FROM --platform=linux/amd64 ubuntu:24.04
 COPY --from=builder /usr/local /usr/local/
 
 RUN apt update && apt upgrade -y && \
