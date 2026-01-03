@@ -17,7 +17,7 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: denoland/setup-deno@v2
       - run: deno task ci
       - uses: "pascalgn/automerge-action@v0.16.3"
