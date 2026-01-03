@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2026/01/03 00:27:00.
+// Last Change : 2026/01/03 23:45:45.
 // =============================================================================
 
 import * as fn from "@denops/std/function";
@@ -168,8 +168,11 @@ export const ai: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/futago.vim",
-    enabled: true,
     profiles: ["ai", "core"],
+    lazy: {
+      keys: ["mf", "<leader>Gs"],
+      cmd: ["FutagoGitCommit", "FutagoHistory"],
+    },
     before: async ({ denops }) => {
       await vars.g.set(denops, "futago_debug", false);
       await vars.g.set(denops, "futago_chat_path", `~/.cache/nvim/futago/chat`);
@@ -283,7 +286,7 @@ lang: ja
 
       await mapping.map(
         denops,
-        "<leader>Gz",
+        "<>Gz",
         `<cmd>call <SID>${denops.name}_notify("${
           lambda.register(
             denops,
