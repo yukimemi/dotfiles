@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : search.ts
 // Author      : yukimemi
-// Last Change : 2025/11/30 23:53:00.
+// Last Change : 2026/01/03 23:07:26.
 // =============================================================================
 
 import * as mapping from "@denops/std/mapping";
@@ -47,7 +47,7 @@ export const search: Plug[] = [
     dependencies: [
       "https://github.com/haya14busa/vim-asterisk",
     ],
-    beforeFile: "~/.config/nvim/rc/before/nvim-hlslens.lua",
+    afterFile: "~/.config/nvim/rc/after/nvim-hlslens.lua",
   },
   {
     url: "https://github.com/nvim-pack/nvim-spectre",

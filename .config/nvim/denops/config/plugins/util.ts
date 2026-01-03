@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2025/12/28 14:06:10.
+// Last Change : 2026/01/03 23:02:33.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -21,6 +21,9 @@ export const util: Plug[] = [
   {
     url: "https://github.com/dstein64/vim-startuptime",
     profiles: ["core"],
+    lazy: {
+      cmd: "StartupTime",
+    },
   },
   {
     url: "https://github.com/thinca/vim-partedit",

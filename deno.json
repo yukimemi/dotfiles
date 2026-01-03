@@ -1,6 +1,7 @@
 {
   "tasks": {
     "check": "deno check .config/nvim/**/*.ts",
+    "bench:pwsh": "pwsh -NoProfile -File win/benchmark.ps1",
     "fmt": "deno fmt",
     "lint": "deno lint",
     "test": "deno test -A",
