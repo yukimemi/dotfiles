@@ -129,7 +129,7 @@ export const ai: Plug[] = [
       "https://github.com/nvim-tree/nvim-web-devicons",
     ],
     build: async ({ denops, info }) => {
-      if (info.isUpdated && info.isLoaded) {
+      if ((info.isInstalled || info.isUpdated) && info.isLoaded) {
         if (denops.meta.platform === "windows") {
           await execCommand(denops, "powershell", [
             "-ExecutionPolicy",
@@ -166,7 +166,7 @@ export const ai: Plug[] = [
     url: "https://github.com/mattn/vim-gemini",
     enabled: false,
     build: async ({ denops, info }) => {
-      if (info.isUpdated && info.isLoaded) {
+      if ((info.isInstalled || info.isUpdated) && info.isLoaded) {
         await execCommand(denops, "go", [
           "install",
           "github.com/mattn/gemini@latest",

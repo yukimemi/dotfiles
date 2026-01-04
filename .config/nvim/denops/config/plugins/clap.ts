@@ -13,7 +13,7 @@ export const clap: Plug[] = [
     url: "https://github.com/liuchengxu/vim-clap",
     profiles: ["ff"],
     build: async ({ denops, info }) => {
-      if (info.isUpdated && info.isLoaded) {
+      if ((info.isInstalled || info.isUpdated) && info.isLoaded) {
         if (!(await fn.executable(denops, `fd`))) {
           await execCommand(denops, "cargo", ["install", "fd-find"]);
         }

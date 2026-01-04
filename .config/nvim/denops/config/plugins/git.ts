@@ -156,7 +156,7 @@ export const git: Plug[] = [
     },
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     build: async ({ denops, info }) => {
-      if (info.isUpdated && info.isLoaded) {
+      if ((info.isInstalled || info.isUpdated) && info.isLoaded) {
         await execCommand(
           denops,
           "go",

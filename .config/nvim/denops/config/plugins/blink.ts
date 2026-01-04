@@ -33,7 +33,7 @@ export const blink: Plug[] = [
     ],
     rev: "v1.8.0",
     build: async ({ denops, info }) => {
-      if (info.isLoaded && info.isUpdated) {
+      if (info.isLoaded && (info.isInstalled || info.isUpdated)) {
         if (denops.meta.platform !== "windows") {
           return;
         }
