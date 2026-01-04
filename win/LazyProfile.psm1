@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/01/04 10:57:00.
+# Last Change : 2026/01/04 11:11:00.
 # =============================================================================
 
 # --- Functions ---
@@ -78,10 +78,6 @@ function Invoke-ZJump {
   zoxide query --list @args | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
 }
 
-function zi {
-  Invoke-ZJump @args
-}
-
 function Invoke-HistoryJump {
   $z = if (Test-IsWindows) {
     Join-Path $env:USERPROFILE ".cdhistory"
@@ -96,7 +92,7 @@ function Invoke-HistoryJump {
 }
 
 function j {
-  zi
+  Invoke-ZJump @args
 }
 function rhl {
   rhq list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
@@ -206,7 +202,7 @@ function Get-FileAndHash {
 }
 
 # --- Aliases ---
-Remove-Item alias:r, alias:rm, alias:cd, alias:ls, alias:h -ErrorAction SilentlyContinue
+Remove-Item alias:r, alias:rm, alias:cd, alias:ls, alias:h, alias:z, alias:zi -ErrorAction SilentlyContinue
 Set-Alias rm Move-ToTrash
 Set-Alias o Start-Process
 Set-Alias c Clear-Host
@@ -216,14 +212,14 @@ Set-Alias cd Set-LocationWithList -Option AllScope
 Set-Alias ls Get-ChildItem
 Set-Alias h hitori
 Set-Alias e nvim
+Set-Alias z Invoke-ZJump -Option AllScope -Force
+Set-Alias zi Invoke-ZJump -Option AllScope -Force
 
 # Filter tool setup
-if (Get-Command gof -ErrorAction SilentlyContinue) {
-  Set-Alias __FILTER gof
-} elseif (Get-Command fzf -ErrorAction SilentlyContinue) {
+if (Get-Command fzf -ErrorAction SilentlyContinue) {
   Set-Alias __FILTER fzf
-} elseif (Get-Command peco -ErrorAction SilentlyContinue) {
-  Set-Alias __FILTER peco
+} elseif (Get-Command tv -ErrorAction SilentlyContinue) {
+  Set-Alias __FILTER tv
 }
 
 # --- PSReadLine & KeyHandlers ---

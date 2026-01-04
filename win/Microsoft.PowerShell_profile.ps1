@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2026/01/04 10:52:00.
+# Last Change : 2026/01/04 11:03:00.
 # =============================================================================
 
 # --- Pre-Environment Setup ---
@@ -23,18 +23,6 @@ if (Test-IsWindows) {
     if (Test-Path $MiseShims) {
         if ($env:PATH -notlike "*$MiseShims*") {
             $env:PATH = "$MiseShims;" + $env:PATH
-        }
-
-        # Fix for zoxide not finding fzf on Windows with mise shims
-        $fzfExe = Get-Command fzf.exe -ErrorAction SilentlyContinue
-        if (!$fzfExe) {
-            $actualFzf = Resolve-Path "$env:LOCALAPPDATA\mise\installs\fzf\*\fzf.exe" -ErrorAction SilentlyContinue | Select-Object -First 1
-            if ($actualFzf) {
-                $fzfBinDir = Split-Path $actualFzf.Path
-                if ($env:PATH -notlike "*$fzfBinDir*") {
-                    $env:PATH = "$fzfBinDir;" + $env:PATH
-                }
-            }
         }
     }
 }
