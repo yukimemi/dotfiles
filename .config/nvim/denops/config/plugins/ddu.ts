@@ -267,7 +267,7 @@ export const ddu: Plug[] = [
       "https://github.com/yukimemi/ddu-source-chronicle",
     ],
     build: async ({ denops, info }) => {
-      if (!info.isLoad) {
+      if (!info.isLoaded) {
         return;
       }
       await notify(denops, `call ddu#set_static_import_path()`);

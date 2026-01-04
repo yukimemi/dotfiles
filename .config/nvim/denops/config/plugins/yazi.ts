@@ -19,12 +19,12 @@ export const yazi: Plug[] = [
     cache: { afterFile: `~/.config/nvim/rc/after/yazi.lua` },
     build: async ({ denops, info }) => {
       if (
-        info.isUpdate && info.isLoad && (await fn.executable(denops, "ya")) < 1
+        info.isUpdated && info.isLoaded && (await fn.executable(denops, "ya")) < 1
       ) {
         await execCommand(denops, "cargo", ["install", "yazi-cli"]);
       }
       if (
-        info.isUpdate && info.isLoad &&
+        info.isUpdated && info.isLoaded &&
         (await fn.executable(denops, "yazi")) < 1
       ) {
         await execCommand(denops, "cargo", ["install", "yazi-fm"]);

@@ -30,7 +30,7 @@ export const libs: Plug[] = [
     dependencies: ["https://github.com/vim-denops/denops.vim"],
     cache: { beforeFile: `~/.config/nvim/rc/before/denops-shared-server.vim` },
     build: async ({ denops, info }) => {
-      if (info.isUpdate && info.isLoad) {
+      if (info.isUpdated && info.isLoaded) {
         await denops.call(`denops_shared_server#install`);
       }
     },

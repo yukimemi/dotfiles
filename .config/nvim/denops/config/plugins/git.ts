@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2025/11/30 23:54:06.
+// Last Change : 2026/01/04 18:34:11.
 // =============================================================================
 
 import * as mapping from "@denops/std/mapping";
@@ -78,9 +78,6 @@ export const git: Plug[] = [
   {
     url: "https://github.com/lambdalisue/vim-gin",
     profiles: ["git"],
-    lazy: {
-      event: ["BufRead", "BufNewFile"],
-    },
     cache: { beforeFile: `~/.config/nvim/rc/before/vim-gin.lua` },
     afterFile: `~/.config/nvim/rc/after/vim-gin.lua`,
   },
@@ -159,7 +156,7 @@ export const git: Plug[] = [
     },
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     build: async ({ denops, info }) => {
-      if (info.isUpdate && info.isLoad) {
+      if (info.isUpdated && info.isLoaded) {
         await execCommand(
           denops,
           "go",

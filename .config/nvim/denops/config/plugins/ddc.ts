@@ -187,7 +187,7 @@ export const ddc: Plug[] = [
       "https://github.com/uga-rosa/ddc-source-lsp-setup",
     ],
     build: async ({ denops, info }) => {
-      if (!info.isLoad) {
+      if (!info.isLoaded) {
         return;
       }
       await notify(denops, `call ddc#set_static_import_path()`);

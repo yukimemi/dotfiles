@@ -394,7 +394,7 @@ export const util: Plug[] = [
       "https://github.com/kevinhwang91/promise-async",
     ],
     build: async ({ denops, info }) => {
-      if (!info.isLoad) {
+      if (!info.isLoaded) {
         return;
       }
       await denops.call(`luaeval`, `require("fundo").install()`);
@@ -441,7 +441,7 @@ export const util: Plug[] = [
       "https://github.com/MunifTanjim/nui.nvim",
     ],
     build: async ({ denops, info }) => {
-      if (!info.isLoad) {
+      if (!info.isLoaded) {
         return;
       }
       await denops.cmd("TSUpdate regex");

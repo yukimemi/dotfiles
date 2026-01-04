@@ -50,7 +50,7 @@ export const filetypes: Plug[] = [
     enabled: false,
     profiles: ["markdown"],
     build: async ({ denops, info }) => {
-      if (info.isUpdate && info.isLoad) {
+      if (info.isUpdated && info.isLoaded) {
         await denops.call("mkdp#util#install");
       }
     },
@@ -346,7 +346,7 @@ export const filetypes: Plug[] = [
       "https://github.com/nvimtools/none-ls.nvim",
     ],
     build: async ({ denops, info }) => {
-      if (info.isUpdate && info.isLoad) {
+      if (info.isUpdated && info.isLoaded) {
         await denops.cmd("TSUpdate nu");
       }
     },
