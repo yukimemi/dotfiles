@@ -13,6 +13,9 @@ export const git: Plug[] = [
   {
     url: "https://github.com/lewis6991/gitsigns.nvim",
     profiles: ["git"],
+    lazy: {
+      event: "BufRead",
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("gitsigns").setup(_A)`, {
         signcolumn: true,
@@ -91,6 +94,17 @@ export const git: Plug[] = [
   {
     url: "https://github.com/sindrets/diffview.nvim",
     profiles: ["git"],
+    lazy: {
+      cmd: [
+        "DiffviewOpen",
+        "DiffviewClose",
+        "DiffviewToggle",
+        "DiffviewFocusFloat",
+        "DiffviewLog",
+        "DiffviewRefresh",
+        "DiffviewFileHistory",
+      ],
+    },
     afterFile: `~/.config/nvim/rc/after/diffview.lua`,
   },
   {
@@ -105,6 +119,9 @@ export const git: Plug[] = [
     url: "https://github.com/pwntester/octo.nvim",
     enabled: pluginStatus.telescope,
     profiles: ["git"],
+    lazy: {
+      cmd: "Octo",
+    },
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/nvim-telescope/telescope.nvim",
@@ -115,6 +132,9 @@ export const git: Plug[] = [
   {
     url: "https://github.com/akinsho/git-conflict.nvim",
     profiles: ["git"],
+    lazy: {
+      event: "BufRead",
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("git-conflict").setup()`);
     },
@@ -129,6 +149,9 @@ export const git: Plug[] = [
     url: "https://github.com/kdheepak/lazygit.nvim",
     enabled: false,
     profiles: ["git"],
+    lazy: {
+      cmd: "LazyGit",
+    },
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     build: async ({ denops, info }) => {
       if (info.isUpdate && info.isLoad) {
@@ -145,6 +168,25 @@ export const git: Plug[] = [
   {
     url: "https://github.com/skanehira/github-actions.nvim",
     profiles: ["git"],
+    lazy: {
+      keys: [
+        {
+          lhs: "<leader>Gd",
+          rhs: "<cmd>lua require('github-actions').dispatch_workflow()<cr>",
+          desc: "Dispatch workflow",
+        },
+        {
+          lhs: "<leader>Gh",
+          rhs: "<cmd>lua require('github-actions').show_history()<cr>",
+          desc: "Show workflow history",
+        },
+        {
+          lhs: "<leader>Gw",
+          rhs: "<cmd>lua require('github-actions').watch_workflow()<cr>",
+          desc: "Watch running workflow",
+        },
+      ],
+    },
     afterFile: `~/.config/nvim/rc/after/github-actions.lua`,
   },
 ];

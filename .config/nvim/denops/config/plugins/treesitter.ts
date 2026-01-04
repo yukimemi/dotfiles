@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : treesitter.ts
 // Author      : yukimemi
-// Last Change : 2025/12/01 00:38:12.
+// Last Change : 2026/01/04 09:55:52.
 // =============================================================================
 
 import * as mapping from "@denops/std/mapping";
@@ -12,6 +12,9 @@ export const treesitter: Plug[] = [
   {
     url: "https://github.com/nvim-treesitter/nvim-treesitter",
     profiles: ["treesitter"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     rev: "main",
     afterFile: "~/.config/nvim/rc/after/nvim-treesitter.lua",
   },
@@ -19,20 +22,35 @@ export const treesitter: Plug[] = [
     url: "https://github.com/yioneko/nvim-yati",
     enabled: false,
     profiles: ["treesitter"],
-    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
+    dependencies: [
+      "https://github.com/nvim-treesitter/nvim-treesitter",
+    ],
     afterFile: "~/.config/nvim/rc/after/nvim-yati.lua",
   },
   {
     url: "https://github.com/nvim-treesitter/nvim-treesitter-context",
     profiles: ["treesitter"],
-    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
+    dependencies: [
+      "https://github.com/nvim-treesitter/nvim-treesitter",
+    ],
     afterFile: "~/.config/nvim/rc/after/nvim-treesitter-context.lua",
   },
   {
     url: "https://github.com/windwp/nvim-ts-autotag",
     enabled: false,
     profiles: ["treesitter"],
-    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
+    dependencies: [
+      "https://github.com/nvim-treesitter/nvim-treesitter",
+    ],
     afterFile: "~/.config/nvim/rc/after/nvim-ts-autotag.lua",
   },
   {
@@ -56,39 +74,65 @@ export const treesitter: Plug[] = [
     url: "https://github.com/HiPhish/rainbow-delimiters.nvim",
     enabled: false,
     profiles: ["treesitter"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
   },
   {
     url: "https://github.com/4513ECHO/treesitter-compat-highlights.nvim",
     enabled: false,
     profiles: ["treesitter"],
-    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
+    dependencies: [
+      "https://github.com/nvim-treesitter/nvim-treesitter",
+    ],
     afterFile: "~/.config/nvim/rc/after/treesitter-compat-highlights.lua",
   },
   {
     url: "https://github.com/Wansmer/treesj",
     enabled: false,
     profiles: ["treesitter"],
-    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
+    dependencies: [
+      "https://github.com/nvim-treesitter/nvim-treesitter",
+    ],
     afterFile: "~/.config/nvim/rc/after/treesj.lua",
   },
   {
     url: "https://github.com/razak17/tailwind-fold.nvim",
     enabled: false,
     profiles: ["treesitter"],
-    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
+    dependencies: [
+      "https://github.com/nvim-treesitter/nvim-treesitter",
+    ],
     afterFile: "~/.config/nvim/rc/after/tailwind-fold.lua",
   },
   {
     url: "https://github.com/luckasRanarison/tailwind-tools.nvim",
     enabled: false,
     profiles: ["treesitter"],
-    dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
+    dependencies: [
+      "https://github.com/nvim-treesitter/nvim-treesitter",
+    ],
     afterFile: "~/.config/nvim/rc/after/tailwind-tools.lua",
   },
   {
     url: "https://github.com/VonHeikemen/ts-enable.nvim",
     profiles: ["treesitter"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "ts_enable", {

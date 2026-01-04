@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cmp.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:18:09.
+// Last Change : 2026/01/04 09:54:08.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -52,6 +52,9 @@ export const cmp: Plug[] = [
   {
     url: "https://github.com/hrsh7th/nvim-cmp",
     profiles: ["completion"],
+    lazy: {
+      event: ["InsertEnter", "CmdlineEnter"],
+    },
     dependencies: [
       "https://github.com/hrsh7th/cmp-nvim-lsp",
       "https://github.com/hrsh7th/cmp-buffer",

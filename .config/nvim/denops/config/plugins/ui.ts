@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2025/12/27 19:52:30.
+// Last Change : 2026/01/04 09:56:33.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -290,6 +290,9 @@ export const ui: Plug[] = [
     url: "https://github.com/lukas-reineke/indent-blankline.nvim",
     enabled: pluginStatus.indentblankline,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     dependencies: [
       "https://github.com/nvim-treesitter/nvim-treesitter",
       "https://github.com/HiPhish/rainbow-delimiters.nvim",
@@ -450,7 +453,11 @@ export const ui: Plug[] = [
       await denops.call(`luaeval`, `require("flirt").setup()`);
     },
   },
-  { url: "https://github.com/gw31415/scrollUptoLastLine.vim", enabled: false, profiles: ["ui"] },
+  {
+    url: "https://github.com/gw31415/scrollUptoLastLine.vim",
+    enabled: false,
+    profiles: ["ui"],
+  },
   {
     url: "https://github.com/moyiz/command-and-cursor.nvim",
     enabled: false,
@@ -485,7 +492,11 @@ export const ui: Plug[] = [
     enabled: false,
     profiles: ["ui"],
   },
-  { url: "https://github.com/haolian9/gary.nvim", enabled: false, profiles: ["ui"] },
+  {
+    url: "https://github.com/haolian9/gary.nvim",
+    enabled: false,
+    profiles: ["ui"],
+  },
   { url: "https://github.com/thinca/vim-zenspace", profiles: ["ui"] },
   {
     url: "https://github.com/Abizrh/beastie.nvim",

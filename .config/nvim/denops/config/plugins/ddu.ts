@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2025/11/08 17:27:59.
+// Last Change : 2026/01/04 09:54:19.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -20,14 +20,13 @@ export const ddu: Plug[] = [
   {
     url: "https://github.com/Shougo/ddu-ui-filer",
     profiles: ["ff"],
-    after: async ({ denops }) => {
-      if (pluginStatus.ddufiler) {
-        await mapping.map(
-          denops,
-          "<space>e",
+    enabled: pluginStatus.ddufiler,
+    lazy: {
+      keys: {
+        lhs: "<space>e",
+        rhs:
           "<Cmd>Ddu -name=filer-`win_getid()` -ui=filer -resume -sync file -source-option-file-path=`t:->get('ddu_ui_filer_path', getcwd())` -source-option-file-columns=filename<CR>",
-        );
-      }
+      },
     },
   },
   {
@@ -35,44 +34,198 @@ export const ddu: Plug[] = [
     profiles: ["ff"],
     dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
   },
-  { url: "https://github.com/4513ECHO/ddu-kind-url", profiles: ["ff"] },
-  { url: "https://github.com/4513ECHO/ddu-source-source", profiles: ["ff"] },
-  { url: "https://github.com/4513ECHO/vim-readme-viewer", profiles: ["ff"] },
-  { url: "https://github.com/Milly/ddu-filter-merge", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-column-filename", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-commands.vim", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-kind-file", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-kind-word", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-source-action", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-source-dummy", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-source-file", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-source-file_old", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-source-file_point", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-source-file_rec", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-source-line", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-source-path_history", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-source-register", profiles: ["ff"] },
-  { url: "https://github.com/Shougo/ddu-ui-ff", profiles: ["ff"] },
-  { url: "https://github.com/kamecha/ddu-source-jumplist", profiles: ["ff"] },
-  { url: "https://github.com/kuuote/ddu-filter-fuse", profiles: ["ff"] },
-  { url: "https://github.com/kuuote/ddu-source-git_status", profiles: ["ff"] },
-  { url: "https://github.com/kyoh86/ddu-filter-converter_hl_dir", profiles: ["ff"] },
-  { url: "https://github.com/kyoh86/ddu-source-git_log", profiles: ["ff"] },
-  { url: "https://github.com/kyoh86/ddu-source-command", profiles: ["ff"] },
-  { url: "https://github.com/matsui54/ddu-source-command_history", profiles: ["ff"] },
-  { url: "https://github.com/matsui54/ddu-source-file_external", profiles: ["ff"] },
-  { url: "https://github.com/matsui54/ddu-source-help", profiles: ["ff"] },
-  { url: "https://github.com/shun/ddu-source-buffer", profiles: ["ff"] },
-  { url: "https://github.com/shun/ddu-source-rg", profiles: ["ff"] },
-  { url: "https://github.com/uga-rosa/ddu-filter-converter_devicon", profiles: ["ff"] },
-  { url: "https://github.com/uga-rosa/ddu-source-lsp", profiles: ["ff"] },
-  { url: "https://github.com/uga-rosa/ddu-source-search_history", profiles: ["ff"] },
-  { url: "https://github.com/yuki-yano/ddu-filter-fzf", profiles: ["ff"] },
-  { url: "https://github.com/yuki-yano/ddu-source-nvim-notify", profiles: ["ff"] },
-  { url: "https://github.com/yukimemi/ddu-source-chronicle", profiles: ["ff"] },
+  {
+    url: "https://github.com/4513ECHO/ddu-kind-url",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/4513ECHO/ddu-source-source",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/4513ECHO/vim-readme-viewer",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Milly/ddu-filter-merge",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-column-filename",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-commands.vim",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-kind-file",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-kind-word",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-source-action",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-source-dummy",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-source-file",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-source-file_old",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-source-file_point",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-source-file_rec",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-source-line",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-source-path_history",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-source-register",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Shougo/ddu-ui-ff",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/kamecha/ddu-source-jumplist",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/kuuote/ddu-filter-fuse",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/kuuote/ddu-source-git_status",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/kyoh86/ddu-filter-converter_hl_dir",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/kyoh86/ddu-source-git_log",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/kyoh86/ddu-source-command",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/matsui54/ddu-source-command_history",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/matsui54/ddu-source-file_external",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/matsui54/ddu-source-help",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/shun/ddu-source-buffer",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/shun/ddu-source-rg",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/uga-rosa/ddu-filter-converter_devicon",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/uga-rosa/ddu-source-lsp",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/uga-rosa/ddu-source-search_history",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/yuki-yano/ddu-filter-fzf",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/yuki-yano/ddu-source-nvim-notify",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/yukimemi/ddu-source-chronicle",
+    profiles: ["ff"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/Shougo/ddu.vim",
     profiles: ["ff"],
+    lazy: {
+      cmd: "Ddu",
+      keys: [
+        "<leader>db",
+        "<leader>dg",
+        "md",
+        "<leader>dS",
+        "<leader>dm",
+        "mw",
+        "mr",
+        "<leader>ds",
+        "<leader>dr",
+      ],
+    },
     dependencies: [
       "https://github.com/4513ECHO/ddu-kind-url",
       "https://github.com/4513ECHO/ddu-source-source",

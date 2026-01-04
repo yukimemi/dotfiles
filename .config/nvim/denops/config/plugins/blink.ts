@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : blink.ts
 // Author      : yukimemi
-// Last Change : 2025/12/27 13:18:17.
+// Last Change : 2026/01/04 09:53:50.
 // =============================================================================
 
 import { exists } from "@std/fs";
@@ -16,11 +16,17 @@ export const blink: Plug[] = [
   {
     url: "https://github.com/mikavilpas/blink-ripgrep.nvim",
     profiles: ["completion"],
+    lazy: {
+      enabled: true,
+    },
     rev: "v2.2.2",
   },
   {
     url: "https://github.com/saghen/blink.cmp",
     profiles: ["completion"],
+    lazy: {
+      event: ["InsertEnter", "CmdlineEnter"],
+    },
     dependencies: [
       "https://github.com/rafamadriz/friendly-snippets",
       "https://github.com/mikavilpas/blink-ripgrep.nvim",
@@ -36,7 +42,10 @@ export const blink: Plug[] = [
           const targetDir = join(info.dst, "target", "release");
           const dllPath = join(targetDir, dll);
           if (await exists(dllPath)) {
-            const oldDllPath = join(targetDir, `${dll}.${(new Date().getTime())}`);
+            const oldDllPath = join(
+              targetDir,
+              `${dll}.${(new Date().getTime())}`,
+            );
             await Deno.rename(dllPath, oldDllPath);
           }
         }));

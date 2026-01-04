@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2025/12/20 17:08:12.
+// Last Change : 2026/01/04 09:55:31.
 // =============================================================================
 
 import { execute } from "@denops/std/helper";
@@ -50,16 +50,25 @@ export const lsp: Plug[] = [
   {
     url: "https://github.com/stevearc/aerial.nvim",
     profiles: ["lsp"],
+    lazy: {
+      cmd: "AerialToggle",
+    },
     afterFile: `~/.config/nvim/rc/after/aerial.lua`,
   },
   {
     url: "https://github.com/stevearc/conform.nvim",
     profiles: ["lsp"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     afterFile: "~/.config/nvim/rc/after/conform.lua",
   },
   {
     url: "https://github.com/mfussenegger/nvim-lint",
     profiles: ["lsp"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     afterFile: "~/.config/nvim/rc/after/nvim-lint.lua",
   },
   {
@@ -72,10 +81,16 @@ export const lsp: Plug[] = [
   {
     url: "https://github.com/williamboman/mason.nvim",
     profiles: ["lsp"],
+    lazy: {
+      cmd: "Mason",
+    },
   },
   {
     url: "https://github.com/williamboman/mason-lspconfig.nvim",
     profiles: ["lsp"],
+    lazy: {
+      enabled: true,
+    },
     dependencies: [
       "https://github.com/williamboman/mason.nvim",
     ],
@@ -148,6 +163,9 @@ export const lsp: Plug[] = [
   {
     url: "https://github.com/folke/trouble.nvim",
     profiles: ["core"],
+    lazy: {
+      cmd: "Trouble",
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("trouble").setup()`);
     },
@@ -155,6 +173,9 @@ export const lsp: Plug[] = [
   {
     url: "https://github.com/neovim/nvim-lspconfig",
     profiles: ["lsp"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     dependencies: pluginStatus.blink
       ? [...lspDependencies, "https://github.com/saghen/blink.cmp"]
       : pluginStatus.cmp
