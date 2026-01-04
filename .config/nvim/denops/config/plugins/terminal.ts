@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : terminal.ts
 // Author      : yukimemi
-// Last Change : 2025/12/01 00:54:16.
+// Last Change : 2026/01/04 16:17:03.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -28,10 +28,6 @@ export const terminal: Plug[] = [
     url: "https://github.com/akinsho/toggleterm.nvim",
     enabled: true,
     profiles: ["terminal"],
-    lazy: {
-      cmd: "ToggleTerm",
-      keys: "<c-s>",
-    },
     cache: { afterFile: `~/.config/nvim/rc/after/toggleterm.lua` },
   },
   {

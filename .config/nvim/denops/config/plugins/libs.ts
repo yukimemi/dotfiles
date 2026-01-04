@@ -212,7 +212,7 @@ export const libs: Plug[] = [
     enabled: true,
     profiles: ["core"],
     lazy: {
-      event: "VeryLazy",
+      event: "CursorHold",
     },
     afterFile: `~/.config/nvim/rc/after/which-key.lua`,
   },

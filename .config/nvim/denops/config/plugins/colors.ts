@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 13:10:00.
+// Last Change : 2026/01/04 16:33:23.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -192,7 +192,7 @@ export const colors: Plug[] = [
   },
   {
     url: "https://github.com/diegoulloao/neofusion.nvim",
-    enabled: false,
+    enabled: true,
     profiles: ["colors"],
     lazy: { enabled: true },
     after: async ({ denops }) => {
@@ -609,6 +609,7 @@ export const colors: Plug[] = [
         "LikeThisColorscheme",
         "HateThisColorscheme",
         "DisableThisColorscheme",
+        "OpenColorschemeSetting",
       ],
       event: "CursorHold",
     },

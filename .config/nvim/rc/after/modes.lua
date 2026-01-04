@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : modes.lua
 -- Author      : yukimemi
--- Last Change : 2024/10/10 11:52:02.
+-- Last Change : 2026/01/04 16:34:53.
 -- =============================================================================
 
 require('modes').setup({
@@ -9,7 +9,11 @@ require('modes').setup({
     bg = "", -- Optional bg param, defaults to Normal hl group
     copy = "#f5c359",
     delete = "#c75c6a",
+    change = "#c75c6a", -- Optional param, defaults to delete
+    format = "#c79585",
     insert = "#78ccc5",
+    replace = "#245361",
+    select = "#9745be", -- Optional param, defaults to visual
     visual = "#9745be",
   },
 
@@ -26,7 +30,11 @@ require('modes').setup({
   -- Enable line number highlights to match cursorline
   set_number = true,
 
-  -- Disable modes highlights in specified filetypes
-  -- Please PR commonly ignored filetypes
-  ignore_filetypes = { 'NvimTree', 'TelescopePrompt' }
+  -- Enable sign column highlights to match cursorline
+  set_signcolumn = true,
+
+  -- Disable modes highlights for specified filetypes
+  -- or enable with prefix "!" if otherwise disabled (please PR common patterns)
+  -- Can also be a function fun():boolean that disables modes highlights when true
+  ignore = { "NvimTree", "TelescopePrompt", "!minifiles" }
 })

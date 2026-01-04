@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 12:15:38.
+// Last Change : 2026/01/04 16:36:07.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -209,7 +209,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/mvllow/modes.nvim",
-    enabled: true,
+    enabled: false,
     profiles: ["ui"],
     lazy: {
       event: ["BufRead", "BufNewFile"],
