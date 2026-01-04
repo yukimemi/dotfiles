@@ -58,13 +58,13 @@ export const main: Entrypoint = async (denops: Denops) => {
     helper.remove("*");
     helper.define(
       "User",
-      "Dvpm:CacheUpdated:all",
+      "DvpmCacheUpdated",
       `echom "Dvpm cache updated !"`,
     );
     // helper.define(
     //   "User",
-    //   "Dvpm:PostLoad:*",
-    //   `echo "Loaded plugin: " . substitute(expand("<amatch>"), "^Dvpm:PostLoad:", "", "")`,
+    //   "DvpmPluginLoadPost:*",
+    //   `echo "Loaded plugin: " . substitute(expand("<amatch>"), "^DvpmPluginLoadPost:", "", "")`,
     // );
   });
   const dvpm = await dvpmCreate(denops);
