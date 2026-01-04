@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/01/04 00:31:43.
+# Last Change : 2026/01/04 10:57:00.
 # =============================================================================
 
 # --- Functions ---
@@ -75,7 +75,11 @@ function Set-LocationWithHistory {
 }
 
 function Invoke-ZJump {
-  z | Sort-Object -Descending Weight | Select-Object -ExpandProperty Path | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
+  zoxide query --list @args | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
+}
+
+function zi {
+  Invoke-ZJump @args
 }
 
 function Invoke-HistoryJump {

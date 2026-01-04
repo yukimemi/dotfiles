@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2026/01/03 23:45:45.
+// Last Change : 2026/01/04 10:36:38.
 // =============================================================================
 
 import * as fn from "@denops/std/function";
@@ -20,12 +20,20 @@ export const ai: Plug[] = [
     url: "https://github.com/lambdalisue/nvim-aibo",
     profiles: ["ai"],
     lazy: {
-      keys: {
-        lhs: "<space>b",
-        rhs: "<cmd>Aibo gemini<cr>",
-        mode: "n",
-        desc: "Aibo gemini",
-      },
+      keys: [
+        {
+          lhs: "<space>b",
+          rhs: "<cmd>Aibo gemini<cr>",
+          mode: "n",
+          desc: "Aibo gemini",
+        },
+        {
+          lhs: "<space>B",
+          rhs: "<cmd>Aibo -focus gemini<cr>",
+          mode: "n",
+          desc: "Aibo gemini focus",
+        },
+      ],
     },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("aibo").setup(_A)`, {});
