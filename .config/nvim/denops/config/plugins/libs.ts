@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2025/12/27 23:55:31.
+// Last Change : 2026/01/04 23:36:20.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -104,7 +104,6 @@ export const libs: Plug[] = [
     url: "https://github.com/nvim-tree/nvim-web-devicons",
     profiles: ["core"],
     lazy: { enabled: true },
-    cache: { enabled: false },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("nvim-web-devicons").setup(_A)`, {
         default: true,
@@ -173,7 +172,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/kana/vim-repeat",
-    enabled: false,
+    enabled: true,
     profiles: ["core"],
   },
   {
