@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2025/12/21 00:23:05.
+// Last Change : 2026/01/04 13:10:00.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -14,6 +14,7 @@ export const colors: Plug[] = [
   {
     url: "https://github.com/0xstepit/flow.nvim",
     profiles: ["colors", "favaritecolors"],
+    lazy: { enabled: true },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("flow").setup()`);
     },
@@ -21,59 +22,152 @@ export const colors: Plug[] = [
   {
     url: "https://github.com/4513ECHO/vim-colors-hatsunemiku",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/AlessandroYorba/Alduin", profiles: ["colors"] },
-  { url: "https://github.com/Allianaab2m/penumbra.nvim", profiles: ["colors"] },
-  { url: "https://github.com/Badacadabra/vim-archery", profiles: ["colors"] },
-  { url: "https://github.com/uhs-robert/oasis.nvim", profiles: ["colors"] },
-  { url: "https://github.com/alexpasmantier/hubbamax.nvim", profiles: ["colors"] },
-  { url: "https://github.com/jdsimcoe/abstract.vim", profiles: ["colors"] },
+  {
+    url: "https://github.com/AlessandroYorba/Alduin",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Allianaab2m/penumbra.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Badacadabra/vim-archery",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/uhs-robert/oasis.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/alexpasmantier/hubbamax.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/jdsimcoe/abstract.vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/FrenzyExists/aquarium-vim", profiles: ["colors"] },
-  { url: "https://github.com/KeitaNakamura/neodark.vim", profiles: ["colors"] },
+  {
+    url: "https://github.com/FrenzyExists/aquarium-vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/KeitaNakamura/neodark.vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/Matsuuu/pinkmare",
     profiles: ["colors", "favaritecolors"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/NLKNguyen/papercolor-theme",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/PHSix/nvim-hybrid", profiles: ["colors"] },
-  { url: "https://github.com/RRethy/nvim-base16", profiles: ["colors"] },
-  { url: "https://github.com/Rigellute/rigel", profiles: ["colors"] },
-  { url: "https://github.com/Styzex/Sonomin.nvim", profiles: ["colors"] },
-  { url: "https://github.com/adrian5/oceanic-next-vim", profiles: ["colors"] },
+  {
+    url: "https://github.com/PHSix/nvim-hybrid",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/RRethy/nvim-base16",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Rigellute/rigel",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/Styzex/Sonomin.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/adrian5/oceanic-next-vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/aereal/vim-colors-japanesque",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/ajlende/atlas.vim", profiles: ["colors"] },
-  { url: "https://github.com/aonemd/quietlight.vim", profiles: ["colors"] },
-  { url: "https://github.com/archseer/colibri.vim", profiles: ["colors"] },
-  { url: "https://github.com/arrow2nd/aqua", profiles: ["colors"] },
-  { url: "https://github.com/atrnh/magical-girl-vim", profiles: ["colors"] },
-  { url: "https://github.com/ayu-theme/ayu-vim", profiles: ["colors"] },
+  {
+    url: "https://github.com/ajlende/atlas.vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/aonemd/quietlight.vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/archseer/colibri.vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/arrow2nd/aqua",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/atrnh/magical-girl-vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/ayu-theme/ayu-vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/bluz71/vim-nightfly-colors",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/bluz71/vim-nightfly-guicolors",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/catppuccin/nvim", profiles: ["colors"] },
-  { url: "https://github.com/cocopon/iceberg.vim", profiles: ["colors"] },
+  {
+    url: "https://github.com/catppuccin/nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/cocopon/iceberg.vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/craftzdog/solarized-osaka.nvim",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/crispybaccoon/evergarden",
     profiles: ["colors"],
+    lazy: { enabled: true },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("evergarden").setup(_A)`, {
         transparent_background: true,
@@ -81,140 +175,337 @@ export const colors: Plug[] = [
       });
     },
   },
-  { url: "https://github.com/cseelus/vim-colors-lucid", profiles: ["colors"] },
-  { url: "https://github.com/daltonmenezes/aura-theme", profiles: ["colors"] },
-  { url: "https://github.com/daschw/leaf.nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/cseelus/vim-colors-lucid",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/daltonmenezes/aura-theme",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/daschw/leaf.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/diegoulloao/neofusion.nvim",
     enabled: false,
     profiles: ["colors"],
+    lazy: { enabled: true },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("neofusion").setup()`);
     },
   },
-  { url: "https://github.com/doums/darcula", profiles: ["colors"] },
-  { url: "https://github.com/dracula/vim", profiles: ["colors"] },
+  {
+    url: "https://github.com/doums/darcula",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/dracula/vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/drewtempelmeyer/palenight.vim",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/echasnovski/mini.base16", profiles: ["colors"] },
+  {
+    url: "https://github.com/echasnovski/mini.base16",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/eddyekofo94/gruvbox-flat.nvim",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/eihigh/vim-aomi-grayscale", profiles: ["colors"] },
-  { url: "https://github.com/ellisonleao/gruvbox.nvim", profiles: ["colors"] },
-  { url: "https://github.com/fenetikm/falcon", profiles: ["colors"] },
+  {
+    url: "https://github.com/eihigh/vim-aomi-grayscale",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/ellisonleao/gruvbox.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/fenetikm/falcon",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/folke/tokyonight.nvim",
     profiles: ["colors", "favaritecolors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/futsuuu/vim-robot", profiles: ["colors"] },
-  { url: "https://github.com/gkapfham/vim-vitamin-onec", profiles: ["colors"] },
-  { url: "https://github.com/gkeep/iceberg-dark", profiles: ["colors"] },
-  { url: "https://github.com/maxmx03/fluoromachine.nvim", profiles: ["colors"] },
-  { url: "https://github.com/gruvbox-community/gruvbox", profiles: ["colors"] },
-  { url: "https://github.com/habamax/vim-gruvbit", profiles: ["colors"] },
-  { url: "https://github.com/ingram1107/vim-zhi", profiles: ["colors"] },
-  { url: "https://github.com/jonathanfilip/vim-lucius", profiles: ["colors"] },
-  { url: "https://github.com/joshdick/onedark.vim", profiles: ["colors"] },
-  { url: "https://github.com/jsit/toast.vim", profiles: ["colors"] },
-  { url: "https://github.com/kihachi2000/yash.nvim", profiles: ["colors"] },
-  { url: "https://github.com/kjssad/quantum.vim", profiles: ["colors"] },
-  { url: "https://github.com/kwsp/halcyon-neovim", profiles: ["colors"] },
-  { url: "https://github.com/kyoh86/momiji", profiles: ["colors"] },
-  { url: "https://github.com/ldelossa/vimdark", profiles: ["colors"] },
+  {
+    url: "https://github.com/futsuuu/vim-robot",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/gkapfham/vim-vitamin-onec",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/gkeep/iceberg-dark",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/maxmx03/fluoromachine.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/gruvbox-community/gruvbox",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/habamax/vim-gruvbit",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/ingram1107/vim-zhi",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/jonathanfilip/vim-lucius",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/joshdick/onedark.vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/jsit/toast.vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/kihachi2000/yash.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/kjssad/quantum.vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/kwsp/halcyon-neovim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/kyoh86/momiji",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/ldelossa/vimdark",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/leviosa42/vim-github-theme",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/lifepillar/vim-solarized8", profiles: ["colors"] },
-  { url: "https://github.com/liuchengxu/space-vim-dark", profiles: ["colors"] },
+  {
+    url: "https://github.com/lifepillar/vim-solarized8",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/liuchengxu/space-vim-dark",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/liuchengxu/space-vim-theme",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/lourenci/github-colors", profiles: ["colors"] },
+  {
+    url: "https://github.com/lourenci/github-colors",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/machakann/vim-colorscheme-kemonofriends",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/machakann/vim-colorscheme-tatami",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/marko-cerovac/material.nvim",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/masisz/ashikaga.nvim", profiles: ["colors"] },
-  { url: "https://github.com/maxmx03/solarized.nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/masisz/ashikaga.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/maxmx03/solarized.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/miikanissi/modus-themes.nvim",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/monaqa/colorimetry.nvim", profiles: ["colors"] },
-  { url: "https://github.com/neko-night/nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/monaqa/colorimetry.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/neko-night/nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/nickburlett/vim-colors-stylus",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/nvimdev/oceanic-material",
     profiles: ["colors", "favaritecolors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/nvimdev/zephyr-nvim", profiles: ["colors"] },
-  { url: "https://github.com/oxfist/night-owl.nvim", profiles: ["colors"] },
-  { url: "https://github.com/pbrisbin/vim-colors-off", profiles: ["colors"] },
-  { url: "https://github.com/pineapplegiant/spaceduck", profiles: ["colors"] },
-  { url: "https://github.com/loctvl842/monokai-pro.nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/nvimdev/zephyr-nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/oxfist/night-owl.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/pbrisbin/vim-colors-off",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/pineapplegiant/spaceduck",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/loctvl842/monokai-pro.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/polirritmico/monokai-nightasty.nvim",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/projekt0n/caret.nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/projekt0n/caret.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/projekt0n/github-nvim-theme",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/rafamadriz/neon", profiles: ["colors"] },
+  {
+    url: "https://github.com/rafamadriz/neon",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/rafi/awesome-vim-colorschemes",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/rainglow/vim", profiles: ["colors"] },
-  { url: "https://github.com/ramojus/mellifluous.nvim", profiles: ["colors"] },
-  { url: "https://github.com/ray-x/aurora", profiles: ["colors"] },
-  { url: "https://github.com/rebelot/kanagawa.nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/rainglow/vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/ramojus/mellifluous.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/ray-x/aurora",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/rebelot/kanagawa.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/rhysd/vim-color-spring-night",
     profiles: ["colors", "favaritecolors"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/rmehri01/onenord.nvim",
     profiles: ["colors"],
+    lazy: { enabled: true },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("onenord").setup()`);
     },
   },
-  { url: "https://github.com/romgrk/github-light.vim", profiles: ["colors"] },
+  {
+    url: "https://github.com/romgrk/github-light.vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/rose-pine/neovim",
     profiles: ["colors", "favaritecolors"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/sainnhe/edge",
     profiles: ["colors", "favaritecolors"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/sainnhe/gruvbox-material",
     profiles: ["colors", "favaritecolors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/savq/melange-nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/savq/melange-nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/scottmckendry/cyberdream.nvim",
     profiles: ["colors"],
+    lazy: { enabled: true },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("cyberdream").setup(_A)`, {
         transparent: true,
@@ -224,38 +515,103 @@ export const colors: Plug[] = [
       });
     },
   },
-  { url: "https://github.com/severij/vadelma", profiles: ["colors"] },
-  { url: "https://github.com/shaunsingh/nord.nvim", profiles: ["colors"] },
+  {
+    url: "https://github.com/severij/vadelma",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/shaunsingh/nord.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/sho-87/kanagawa-paper.nvim",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/sigmavim/kyotonight",
     profiles: ["colors", "favaritecolors"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/sponkurtus2/angelic.nvim",
     profiles: ["colors", "favaritecolors"],
+    lazy: { enabled: true },
   },
-  { url: "https://github.com/srcery-colors/srcery-vim", profiles: ["colors"] },
-  { url: "https://github.com/sts10/vim-pink-moon", profiles: ["colors"] },
-  { url: "https://github.com/tiagovla/tokyodark.nvim", profiles: ["colors"] },
-  { url: "https://github.com/tobi-wan-kenobi/zengarden", profiles: ["colors"] },
-  { url: "https://github.com/wadackel/vim-dogrun", profiles: ["colors"] },
-  { url: "https://github.com/yasukotelin/shirotelin", profiles: ["colors"] },
-  { url: "https://github.com/yazeed1s/oh-lucy.nvim", profiles: ["colors"] },
-  { url: "https://github.com/yorik1984/newpaper.nvim", profiles: ["colors"] },
-  { url: "https://github.com/yuttie/hydrangea-vim", profiles: ["colors"] },
-  { url: "https://github.com/zacanger/angr.vim", profiles: ["colors"] },
-  { url: "https://github.com/zefei/cake16", profiles: ["colors"] },
+  {
+    url: "https://github.com/srcery-colors/srcery-vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/sts10/vim-pink-moon",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/tiagovla/tokyodark.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/tobi-wan-kenobi/zengarden",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/wadackel/vim-dogrun",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/yasukotelin/shirotelin",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/yazeed1s/oh-lucy.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/yorik1984/newpaper.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/yuttie/hydrangea-vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/zacanger/angr.vim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/zefei/cake16",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
   {
     url: "https://github.com/zenbones-theme/zenbones.nvim",
     profiles: ["colors"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/yukimemi/lumiris.vim",
     profiles: ["colors", "favaritecolors", "core"],
+    lazy: {
+      cmd: [
+        "ChangeColorscheme",
+        "LikeThisColorscheme",
+        "HateThisColorscheme",
+        "DisableThisColorscheme",
+      ],
+      event: "CursorHold",
+    },
     dependencies: [
       "https://github.com/0xstepit/flow.nvim",
       "https://github.com/4513ECHO/vim-colors-hatsunemiku",

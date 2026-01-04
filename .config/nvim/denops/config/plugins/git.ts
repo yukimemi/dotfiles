@@ -68,14 +68,19 @@ export const git: Plug[] = [
   {
     url: "https://github.com/lambdalisue/vim-askpass",
     profiles: ["git"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/lambdalisue/vim-guise",
     profiles: ["git"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/lambdalisue/vim-gin",
     profiles: ["git"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     cache: { beforeFile: `~/.config/nvim/rc/before/vim-gin.lua` },
     afterFile: `~/.config/nvim/rc/after/vim-gin.lua`,
   },

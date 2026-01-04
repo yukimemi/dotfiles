@@ -20,6 +20,9 @@ export const ui: Plug[] = [
     url: "https://github.com/lambdalisue/vim-seethrough",
     enabled: true,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
   },
   {
     url: "https://github.com/andymass/vim-matchup",
@@ -467,6 +470,9 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/folke/edgy.nvim",
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     afterFile: `~/.config/nvim/rc/after/edgy.lua`,
   },
   {
@@ -484,6 +490,9 @@ export const ui: Plug[] = [
     url: "https://github.com/4513ECHO/vim-snipewin",
     enabled: pluginStatus.snipewin,
     profiles: ["ui"],
+    lazy: {
+      keys: "sw",
+    },
     before: async ({ denops }) => {
       await mapping.map(denops, "sw", "<Plug>(snipewin)", { mode: "n" });
     },
@@ -509,6 +518,9 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/nvim-zh/colorful-winsep.nvim",
     profiles: ["ui"],
+    lazy: {
+      event: ["WinNew", "WinEnter"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("colorful-winsep").setup()`);
     },
@@ -564,6 +576,9 @@ export const ui: Plug[] = [
     url: "https://github.com/petertriho/nvim-scrollbar",
     enabled: pluginStatus.scrollbar,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("scrollbar").setup()`);
     },
@@ -691,6 +706,9 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/TaDaa/vimade",
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     before: async ({ denops }) => {
       await vars.g.set(denops, "vimade", {
         blocklist: [

@@ -38,7 +38,10 @@ export const fern: Plug[] = [
     profiles: ["filer"],
     dependencies: ["https://github.com/lambdalisue/vim-fern"],
   },
-  { url: "https://github.com/lambdalisue/vim-glyph-palette", profiles: ["filer"] },
+  {
+    url: "https://github.com/lambdalisue/vim-glyph-palette",
+    profiles: ["filer"],
+  },
   { url: "https://github.com/lambdalisue/vim-nerdfont", profiles: ["filer"] },
   { url: "https://github.com/lambdalisue/vim-fern", profiles: ["filer"] },
   {

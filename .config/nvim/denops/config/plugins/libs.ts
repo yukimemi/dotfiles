@@ -93,14 +93,17 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/nvim-lua/plenary.nvim",
     profiles: ["core"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/MunifTanjim/nui.nvim",
     profiles: ["core"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/nvim-tree/nvim-web-devicons",
     profiles: ["core"],
+    lazy: { enabled: true },
     cache: { enabled: false },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("nvim-web-devicons").setup(_A)`, {
@@ -191,6 +194,9 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/lambdalisue/vim-readablefold",
     profiles: ["core"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
   },
   {
     url: "https://github.com/ryanoasis/vim-devicons",
@@ -199,11 +205,15 @@ export const libs: Plug[] = [
     // deno-lint-ignore require-await
     clone: async ({ denops }) => denops.meta.host === "vim",
     profiles: ["ui"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/folke/which-key.nvim",
     enabled: true,
     profiles: ["core"],
+    lazy: {
+      event: "VeryLazy",
+    },
     afterFile: `~/.config/nvim/rc/after/which-key.lua`,
   },
   {
@@ -213,6 +223,9 @@ export const libs: Plug[] = [
     // deno-lint-ignore require-await
     clone: async ({ denops }) => denops.meta.host === "vim",
     profiles: ["core"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     before: async ({ denops }) => {
       await vars.g.set(denops, "findent#enable_warnings", 1);
       await vars.g.set(denops, "findent#enable_messages", 1);
@@ -225,15 +238,20 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/hrsh7th/nvim-dansa",
     profiles: ["core"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     afterFile: "~/.config/nvim/rc/after/nvim-dansa.lua",
   },
   {
     url: "https://github.com/yuki-yano/dedent-yank.vim",
     enabled: false,
     profiles: ["core"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/kevinhwang91/promise-async",
     profiles: ["core"],
+    lazy: { enabled: true },
   },
 ];

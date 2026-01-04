@@ -202,7 +202,10 @@ export async function restart(denops: Denops) {
   }
 
   await Deno.mkdir(join(sessionPath, ".."), { recursive: true });
-  const escapedSessionPath = await fn.fnameescape(denops, sessionPath) as string;
+  const escapedSessionPath = await fn.fnameescape(
+    denops,
+    sessionPath,
+  ) as string;
   await denops.cmd(`mksession! ${escapedSessionPath}`);
 
   if (!hasSession) {
