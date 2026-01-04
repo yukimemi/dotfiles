@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 09:56:33.
+// Last Change : 2026/01/04 12:15:38.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -24,12 +24,18 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/andymass/vim-matchup",
     profiles: ["core"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     afterFile: `~/.config/nvim/rc/after/vim-matchup.lua`,
   },
   {
     url: "https://github.com/mopp/smartnumber.vim",
     enabled: true,
     profiles: ["core"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     before: async ({ denops }) => {
       await vars.g.set(denops, "snumber_enable_startup", 1);
     },
@@ -64,6 +70,9 @@ export const ui: Plug[] = [
     url: "https://github.com/lukas-reineke/virt-column.nvim",
     enabled: pluginStatus.virt_column,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("virt-column").setup()`);
     },
@@ -72,11 +81,17 @@ export const ui: Plug[] = [
     url: "https://github.com/xiyaowong/virtcolumn.nvim",
     enabled: pluginStatus.virtcolumn,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
   },
   {
     url: "https://github.com/ecthelionvi/NeoColumn.nvim",
     enabled: pluginStatus.neocolumn,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("NeoColumn").setup(_A)`, {
         NeoColumn: 100,
@@ -86,12 +101,18 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/RRethy/vim-illuminate",
     enabled: pluginStatus.illuminate,
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     profiles: ["ui"],
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
   },
   {
     url: "https://github.com/unblevable/quick-scope",
     enabled: pluginStatus.quickscope,
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     profiles: ["ui"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "qs_lazy_highlight", 1);
@@ -100,29 +121,44 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/jinh0/eyeliner.nvim",
     enabled: pluginStatus.eyeliner,
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     profiles: ["ui"],
     afterFile: `~/.config/nvim/rc/after/eyeliner.lua`,
   },
   {
     url: "https://github.com/deris/vim-shot-f",
     enabled: false,
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     profiles: ["ui"],
   },
   {
     url: "https://github.com/mei28/luminate.nvim",
     enabled: false,
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     profiles: ["ui"],
     afterFile: `~/.config/nvim/rc/after/luminate.lua`,
   },
   {
     url: "https://github.com/itchyny/vim-parenmatch",
     enabled: false,
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     profiles: ["ui"],
   },
   {
     url: "https://github.com/ntpeters/vim-better-whitespace",
     enabled: pluginStatus.betterwhitespace,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await vars.g.set(denops, "better_whitespace_filetypes_blacklist", [
         "diff",
@@ -142,6 +178,9 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/LumaKernel/nvim-visual-eof.lua",
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("visual-eof").setup()`);
     },
@@ -149,6 +188,9 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/DanilaMihailov/beacon.nvim",
     enabled: true,
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("beacon").setup()`);
@@ -164,14 +206,20 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/mvllow/modes.nvim",
-    enabled: false,
+    enabled: true,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     afterFile: `~/.config/nvim/rc/after/modes.lua`,
   },
   {
     url: "https://github.com/gen740/SmoothCursor.nvim",
     enabled: true,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("smoothcursor").setup(_A)`, {
         autostart: true,
@@ -303,6 +351,9 @@ export const ui: Plug[] = [
     url: "https://github.com/shellRaining/hlchunk.nvim",
     enabled: pluginStatus.hlchunk,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hlchunk").setup(_A)`, {
@@ -329,6 +380,9 @@ export const ui: Plug[] = [
     profiles: ["ui"],
     // deno-lint-ignore require-await
     enabled: async ({ denops }) => denops.meta.host === "vim",
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     // deno-lint-ignore require-await
     clone: async ({ denops }) => denops.meta.host === "vim",
   },
@@ -336,6 +390,9 @@ export const ui: Plug[] = [
     url: "https://github.com/b0o/incline.nvim",
     enabled: pluginStatus.incline,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     dependencies: [
       "https://github.com/SmiteshP/nvim-navic",
       "https://github.com/nvim-tree/nvim-web-devicons",
@@ -346,6 +403,9 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/romgrk/barbar.nvim",
     enabled: pluginStatus.barbar,
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     profiles: ["ui"],
     afterFile: `~/.config/nvim/rc/after/barbar.lua`,
   },
@@ -353,6 +413,9 @@ export const ui: Plug[] = [
     url: "https://github.com/akinsho/bufferline.nvim",
     enabled: pluginStatus.bufferline,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("bufferline").setup()`);
     },
@@ -361,6 +424,9 @@ export const ui: Plug[] = [
     url: "https://github.com/tomiis4/BufferTabs.nvim",
     enabled: pluginStatus.buffertabs,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("buffertabs").setup()`);
     },
@@ -369,6 +435,9 @@ export const ui: Plug[] = [
     url: "https://github.com/utilyre/barbecue.nvim",
     enabled: pluginStatus.barbecue,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     dependencies: [
       "https://github.com/SmiteshP/nvim-navic",
       "https://github.com/nvim-tree/nvim-web-devicons",
@@ -381,6 +450,9 @@ export const ui: Plug[] = [
     url: "https://github.com/tzachar/highlight-undo.nvim",
     enabled: false,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await denops.call(
         `luaeval`,
@@ -401,6 +473,9 @@ export const ui: Plug[] = [
     url: "https://github.com/lewis6991/satellite.nvim",
     enabled: pluginStatus.satellite,
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("satellite").setup()`);
     },
@@ -441,6 +516,9 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/Aasim-A/scrollEOF.nvim",
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("scrollEOF").setup()`);
     },
@@ -475,6 +553,9 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/luukvbaal/statuscol.nvim",
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("statuscol").setup()`);
     },
@@ -497,17 +578,33 @@ export const ui: Plug[] = [
     enabled: false,
     profiles: ["ui"],
   },
-  { url: "https://github.com/thinca/vim-zenspace", profiles: ["ui"] },
+  {
+    url: "https://github.com/thinca/vim-zenspace",
+    profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
+  },
   {
     url: "https://github.com/Abizrh/beastie.nvim",
     profiles: ["ui"],
+    lazy: {
+      cmd: ["BeastieStart", "BeastieStop", "BeastieSwitch"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("beastie").setup()`);
     },
   },
-  { url: "https://github.com/ikouchiha47/games.nvim", profiles: ["ui"] },
+  {
+    url: "https://github.com/ikouchiha47/games.nvim",
+    profiles: ["ui"],
+    lazy: {
+      cmd: ["Hangman", "MineSweeper", "Pacman"],
+    },
+  },
   {
     url: "https://github.com/sethen/line-number-change-mode.nvim",
+    enabled: false,
     profiles: ["ui"],
     dependencies: ["https://github.com/catppuccin/nvim"],
     afterFile: "~/.config/nvim/rc/after/line-number-change-mode.lua",
@@ -524,11 +621,17 @@ export const ui: Plug[] = [
     url: "https://github.com/folke/drop.nvim",
     enabled: true,
     profiles: ["colors"],
+    lazy: {
+      event: "CursorHold",
+    },
     afterFile: "~/.config/nvim/rc/after/drop.lua",
   },
   {
     url: "https://github.com/mawkler/hml.nvim",
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hml").setup()`);
     },
@@ -536,10 +639,16 @@ export const ui: Plug[] = [
   {
     url: "https://github.com/itchyny/vim-highlighturl",
     profiles: ["colors", "favaritecolors"],
+    lazy: {
+      event: "CursorHold",
+    },
   },
   {
     url: "https://github.com/Bekaboo/dropbar.nvim",
     profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     afterFile: "~/.config/nvim/rc/after/dropbar.lua",
   },
   {
@@ -551,7 +660,10 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/chrisgrieser/nvim-origami",
-    profiles: ["core"],
+    profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await vars.options.set(denops, "foldlevel", 99);
       await vars.options.set(denops, "foldlevelstart", 99);
@@ -568,7 +680,10 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/m-demare/hlargs.nvim",
-    profiles: ["core"],
+    profiles: ["ui"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hlargs").setup()`);
     },
