@@ -142,13 +142,6 @@ function r {
   }
 }
 
-function Get-DriveInfo {
-  Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Used -and $_.Name -ne "Temp" } | Sort-Object Name
-}
-function Get-DriveInfoView {
-  Get-DriveInfo | Format-Table -AutoSize
-}
-
 function Invoke-TrimSetLocation {
   param([Parameter(ValueFromPipeline = $true)][string]$Path)
   process {
@@ -207,7 +200,6 @@ Set-Alias rm Move-ToTrash
 Set-Alias o Start-Process
 Set-Alias c Clear-Host
 Set-Alias which Get-Command
-Set-Alias df Get-DriveInfoView
 Set-Alias cd Set-LocationWithList -Option AllScope
 Set-Alias ls Get-ChildItem
 Set-Alias h hitori

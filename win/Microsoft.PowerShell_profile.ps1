@@ -14,6 +14,15 @@ function Test-IsWindows {
     ($PSVersionTable.PSVersion.Major -eq 5) -or ($PSVersionTable.Platform -eq "Win32NT")
 }
 
+function Get-DriveInfo {
+    Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Used -and $_.Name -ne "Temp" } | Sort-Object Name
+}
+
+function Get-DriveInfoView {
+    Get-DriveInfo | Format-Table -AutoSize
+}
+Set-Alias -Name df -Value Get-DriveInfoView -Force
+
 if (Test-IsWindows) {
     [Console]::InputEncoding = [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
     $env:LANG = "ja_JP.UTF-8"
