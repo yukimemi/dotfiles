@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : operator.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:12:46.
+// Last Change : 2026/01/06 00:00:00.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -19,7 +19,7 @@ export const operator: Plug[] = [
     enabled: false,
     profiles: ["operator"],
     lazy: {
-      keys: "y",
+      keys: [{ lhs: "y", mode: ["n", "x"] }],
     },
     dependencies: ["https://github.com/kana/vim-operator-user"],
     after: async ({ denops }) => {
@@ -32,7 +32,11 @@ export const operator: Plug[] = [
     url: "https://github.com/machakann/vim-sandwich",
     profiles: ["operator"],
     lazy: {
-      keys: ["sa", "sd", "sr"],
+      keys: [
+        { lhs: "sa", mode: ["n", "x", "o"] },
+        { lhs: "sd", mode: "n" },
+        { lhs: "sr", mode: "n" },
+      ],
     },
     dependencies: ["https://github.com/kana/vim-operator-user"],
   },
@@ -41,7 +45,10 @@ export const operator: Plug[] = [
     enabled: false,
     profiles: ["operator"],
     lazy: {
-      keys: ["<c-h>", "<c-u>"],
+      keys: [
+        { lhs: "<c-h>", mode: "x" },
+        { lhs: "<c-u>", mode: "x" },
+      ],
     },
     dependencies: ["https://github.com/kana/vim-operator-user"],
     before: async ({ denops }) => {
@@ -57,7 +64,7 @@ export const operator: Plug[] = [
     url: "https://github.com/kana/vim-operator-replace",
     profiles: ["operator"],
     lazy: {
-      keys: "_",
+      keys: [{ lhs: "_", mode: ["n", "x"] }],
     },
     dependencies: ["https://github.com/kana/vim-operator-user"],
     before: async ({ denops }) => {
