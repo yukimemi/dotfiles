@@ -11,26 +11,51 @@ export const textobj: Plug[] = [
   {
     url: "https://github.com/kana/vim-textobj-user",
     profiles: ["textobj"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/kana/vim-textobj-entire",
     profiles: ["textobj"],
     dependencies: ["https://github.com/kana/vim-textobj-user"],
+    lazy: {
+      keys: [
+        { lhs: "ae", mode: ["x", "o"] },
+        { lhs: "ie", mode: ["x", "o"] },
+      ],
+    },
   },
   {
     url: "https://github.com/kana/vim-textobj-indent",
     profiles: ["textobj"],
     dependencies: ["https://github.com/kana/vim-textobj-user"],
+    lazy: {
+      keys: [
+        { lhs: "ai", mode: ["x", "o"] },
+        { lhs: "ii", mode: ["x", "o"] },
+      ],
+    },
   },
   {
     url: "https://github.com/kana/vim-textobj-line",
     profiles: ["textobj"],
     dependencies: ["https://github.com/kana/vim-textobj-user"],
+    lazy: {
+      keys: [
+        { lhs: "al", mode: ["x", "o"] },
+        { lhs: "il", mode: ["x", "o"] },
+      ],
+    },
   },
   {
     url: "https://github.com/gilligan/textobj-lastpaste",
     profiles: ["textobj"],
     dependencies: ["https://github.com/kana/vim-textobj-user"],
+    lazy: {
+      keys: [
+        { lhs: "ay", mode: ["x", "o"] },
+        { lhs: "iy", mode: ["x", "o"] },
+      ],
+    },
   },
   {
     url: "https://github.com/machakann/vim-swap",
@@ -46,11 +71,23 @@ export const textobj: Plug[] = [
   {
     url: "https://github.com/machakann/vim-textobj-functioncall",
     profiles: ["textobj"],
+    lazy: {
+      keys: [
+        { lhs: "af", mode: ["x", "o"] },
+        { lhs: "if", mode: ["x", "o"] },
+      ],
+    },
   },
   {
     url: "https://github.com/yuki-yano/vim-textobj-generics",
     profiles: ["textobj"],
     dependencies: ["https://github.com/machakann/vim-textobj-functioncall"],
+    lazy: {
+      keys: [
+        { lhs: "a<", mode: ["x", "o"] },
+        { lhs: "i<", mode: ["x", "o"] },
+      ],
+    },
   },
   {
     url: "https://github.com/terryma/vim-expand-region",

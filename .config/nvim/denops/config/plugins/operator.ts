@@ -33,7 +33,7 @@ export const operator: Plug[] = [
     profiles: ["operator"],
     lazy: {
       keys: [
-        { lhs: "sa", mode: ["n", "x"] },
+        { lhs: "sa", mode: ["n", "x", "o"] },
         { lhs: "sd", mode: "n" },
         { lhs: "sr", mode: "n" },
       ],
