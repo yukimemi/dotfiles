@@ -6,9 +6,11 @@
 
 import type { Plug } from "@yukimemi/dvpm";
 
+import { exists } from "@std/fs";
 import * as fn from "@denops/std/function";
 import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
+import { z } from "zod";
 
 import { pluginStatus } from "../pluginstatus.ts";
 
@@ -152,6 +154,19 @@ export const memo: Plug[] = [
     ],
     cache: {
       afterFile: "~/.config/nvim/rc/after/obsidian.lua",
+    },
+    build: async ({ denops }) => {
+      const path = z.string().parse(await fn.expand(denops, "~/obsidian"));
+      if (!(await exists(path))) {
+        console.log(`Cloning obsidian vault to ${path} ...`);
+        await new Deno.Command("git", {
+          args: [
+            "clone",
+            "https://github.com/yukimemi/obsidian-vault.git",
+            path,
+          ],
+        }).output();
+      }
     },
   },
 ];
