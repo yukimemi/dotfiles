@@ -143,4 +143,15 @@ export const memo: Plug[] = [
       await denops.call(`luaeval`, `require("fusen").setup()`);
     },
   },
+  {
+    url: "https://github.com/epwalsh/obsidian.nvim",
+    enabled: pluginStatus.obsidian,
+    profiles: ["memo"],
+    dependencies: [
+      "https://github.com/nvim-lua/plenary.nvim",
+    ],
+    cache: {
+      afterFile: "~/.config/nvim/rc/after/obsidian.lua",
+    },
+  },
 ];

@@ -296,7 +296,8 @@ function Install-Tools {
     "Microsoft.WindowsTerminal", "Microsoft.PowerToys", "Git.Git",
     "GitHub.cli", "AutoHotkey.AutoHotkey", "Espanso.Espanso",
     "WinMerge.WinMerge", "Chocolatey.Chocolatey", "zig.zig", "GoLang.Go",
-    "Microsoft.PowerShell", "Neovide.Neovide", "hluk.CopyQ", "Byron.dua-cli"
+    "Microsoft.PowerShell", "Neovide.Neovide", "hluk.CopyQ", "Byron.dua-cli",
+    "Obsidian.Obsidian"
   )
   Install-WingetPackages $wingetPackages
 

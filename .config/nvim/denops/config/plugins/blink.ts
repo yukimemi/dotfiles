@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : blink.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 09:53:50.
+// Last Change : 2026/01/11 16:44:09.
 // =============================================================================
 
 import { exists } from "@std/fs";
@@ -12,14 +12,18 @@ export const blink: Plug[] = [
   {
     url: "https://github.com/saghen/blink.download",
     profiles: ["completion"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/mikavilpas/blink-ripgrep.nvim",
     profiles: ["completion"],
-    lazy: {
-      enabled: true,
-    },
+    lazy: { enabled: true },
     rev: "v2.2.2",
+  },
+  {
+    url: "https://github.com/saghen/blink.compat",
+    profiles: ["completion"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/saghen/blink.cmp",
@@ -28,8 +32,9 @@ export const blink: Plug[] = [
       event: ["InsertEnter", "CmdlineEnter"],
     },
     dependencies: [
-      "https://github.com/rafamadriz/friendly-snippets",
       "https://github.com/mikavilpas/blink-ripgrep.nvim",
+      "https://github.com/rafamadriz/friendly-snippets",
+      "https://github.com/saghen/blink.compat",
     ],
     rev: "v1.8.0",
     build: async ({ denops, info }) => {

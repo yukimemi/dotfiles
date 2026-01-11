@@ -16,8 +16,12 @@ require("blink-cmp").setup({
     ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
   },
   sources = {
-    default = { 'lsp', 'buffer', 'snippets', 'path', 'ripgrep' },
+    default = { 'lsp', 'buffer', 'snippets', 'path', 'ripgrep', 'obsidian' },
     providers = {
+      obsidian = {
+        name = "obsidian",
+        module = "blink.compat.source",
+      },
       ripgrep = {
         module = "blink-ripgrep",
         name = "Ripgrep",

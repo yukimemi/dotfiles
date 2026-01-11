@@ -58,6 +58,7 @@ export const pluginStatus = {
   notifier: false,
   nvimnotify: false,
   nvimtree: false,
+  obsidian: true,
   oil: false,
   overseer: true,
   qfpreview: false,
