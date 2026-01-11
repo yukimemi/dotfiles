@@ -1,13 +1,13 @@
 -- =============================================================================
 -- File        : flash.lua
 -- Author      : yukimemi
--- Last Change : 2025/11/15 18:22:12.
+-- Last Change : 2026/01/11 23:51:48.
 -- =============================================================================
 
 require("flash").setup({
   search = {
     mode = "exact",
-    incremental = true,
+    incremental = false,
   },
   label = {
     rainbow = {
@@ -19,8 +19,14 @@ require("flash").setup({
       enabled = false,
     },
     char = {
-      enabled = false,
+      enabled = true,
       multi_line = false,
+      char_actions = function(motion)
+        return {
+          [motion:lower()] = "next",
+          [motion:upper()] = "prev",
+        }
+      end,
     },
   },
 })
