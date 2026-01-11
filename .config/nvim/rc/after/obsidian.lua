@@ -4,6 +4,8 @@
 -- Last Change : 2026/01/11 17:24:34
 -- =============================================================================
 
+vim.opt.conceallevel = 2
+
 local source = require("obsidian")
 source.setup({
   workspaces = {
@@ -32,14 +34,14 @@ source.setup({
       opts = { noremap = false, expr = true, buffer = true },
     },
     -- Toggle check-boxes.
-    ["<leader>ch"] = {
+    ["<space>ch"] = {
       action = function()
         return require("obsidian").util.toggle_checkbox()
       end,
       opts = { buffer = true },
     },
     -- Create a new link from the visual selection
-    ["<leader>on"] = {
+    ["<space>on"] = {
       action = function()
         return require("obsidian").util.insert_link()
       end,
@@ -51,11 +53,11 @@ source.setup({
 -- Snacks picker support for searching notes
 local obsidian_path = vim.fn.expand("~/obsidian")
 
-vim.keymap.set("n", "<leader>of", function()
+vim.keymap.set("n", "<space>of", function()
   Snacks.picker.files({ cwd = obsidian_path })
 end, { desc = "Find Obsidian notes (Snacks)" })
 
-vim.keymap.set("n", "<leader>og", function()
+vim.keymap.set("n", "<space>og", function()
   Snacks.picker.grep({ cwd = obsidian_path })
 end, { desc = "Grep Obsidian notes (Snacks)" })
 

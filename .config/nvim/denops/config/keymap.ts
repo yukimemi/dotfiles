@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : keymap.ts
 // Author      : yukimemi
-// Last Change : 2025/12/28 17:23:36.
+// Last Change : 2026/01/11 23:02:01.
 // =============================================================================
 
 import type { Denops } from "@denops/std";
@@ -285,7 +285,7 @@ export async function setKeymapPost(denops: Denops) {
   await batch(denops, async (denops: Denops) => {
     await mapping.map(
       denops,
-      "<leader>Rb",
+      "<space>Rb",
       `<cmd>call <SID>${denops.name}_notify("${
         lambda.register(denops, async () => await reviewMode(denops))
       }", [])<cr>`,
@@ -293,7 +293,7 @@ export async function setKeymapPost(denops: Denops) {
     );
     await mapping.map(
       denops,
-      "<leader>Re",
+      "<space>Re",
       `<cmd>call <SID>${denops.name}_notify("${
         lambda.register(denops, async () => await reviewMode(denops, true))
       }", [])<cr>`,
@@ -302,7 +302,7 @@ export async function setKeymapPost(denops: Denops) {
 
     await mapping.map(
       denops,
-      "<leader>o",
+      "go",
       `<cmd>call <SID>${denops.name}_notify("${
         lambda.register(denops, async () => await openBufDir(denops))
       }", [])<cr>`,
