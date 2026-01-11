@@ -69,3 +69,54 @@ end, { force = true })
 vim.api.nvim_create_user_command("ObsidianSearch", function()
   Snacks.picker.grep({ cwd = obsidian_path })
 end, { force = true })
+
+-- Auto sync on save
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "*.md",
+  callback = function(opts)
+    local client = require("obsidian").get_client()
+    if not client then
+      return
+    end
+
+    -- Check if the file is in the vault
+    local path = vim.fs.normalize(vim.api.nvim_buf_get_name(opts.buf))
+    local in_vault = false
+    for _, workspace in ipairs(client.opts.workspaces) do
+      local workspace_path = vim.fs.normalize(vim.fn.expand(workspace.path))
+      if path:find(workspace_path, 1, true) then
+        in_vault = true
+        break
+      end
+    end
+
+    if in_vault then
+      local cwd = vim.fs.dirname(path)
+      local function git_sync()
+        vim.fn.jobstart({ "git", "add", "." }, {
+          cwd = cwd,
+          on_exit = function(_, code1)
+            if code1 == 0 then
+              vim.fn.jobstart({ "git", "commit", "-m", "chore(obsidian): auto save from neovim" }, {
+                cwd = cwd,
+                on_exit = function(_, code2)
+                  if code2 == 0 then
+                    vim.fn.jobstart({ "git", "push" }, {
+                      cwd = cwd,
+                      on_exit = function(_, code3)
+                        if code3 == 0 then
+                          vim.notify("Obsidian synced!", vim.log.levels.INFO)
+                        end
+                      end,
+                    })
+                  end
+                end,
+              })
+            end
+          end,
+        })
+      end
+      git_sync()
+    end
+  end,
+})
