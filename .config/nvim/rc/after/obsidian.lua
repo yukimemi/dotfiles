@@ -130,7 +130,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         { "git", "pull", "--rebase" },
         { "git", "add", "." },
         -- Use gemini CLI to generate commit message
-        "$diff = git diff --staged | Out-String; if (-not [string]::IsNullOrWhiteSpace($diff)) { $msg = $diff | gemini 'Generate a very short, concise git commit message (Conventional Commits). Output ONLY the raw message text, no markdown, no explanations.' | Out-String; $msg = $msg.Trim(); if ($msg) { git commit -m $msg } }",
+        "[Console]::InputEncoding = [Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $OutputEncoding = [System.Text.Encoding]::UTF8; $diff = git diff --staged | Out-String; if (-not [string]::IsNullOrWhiteSpace($diff)) { $msg = $diff | gemini 'Generate a very short, concise git commit message (Conventional Commits). Output ONLY the raw message text, no markdown, no explanations.' | Out-String; $msg = $msg.Trim(); if ($msg) { git commit -m $msg } }",
         { "git", "push" },
       }, function()
         vim.notify("Obsidian synced with AI!", vim.log.levels.INFO)
