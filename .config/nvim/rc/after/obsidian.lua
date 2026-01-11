@@ -126,11 +126,41 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   callback = function(opts)
     local in_vault, cwd = is_in_vault(opts.buf)
     if in_vault then
+      local prompt = [[
+Generate a very short, concise git commit message (Conventional Commits) based ONLY on the provided diff.
+Output ONLY the raw message text.
+Do not use any external tools or run git commands.
+Do not include markdown.
+]]
+
+      -- Build PowerShell script for AI commit
+      local ps_script = [[
+$diff = git diff --staged | Out-String
+if (-not [string]::IsNullOrWhiteSpace($diff)) {
+  $msg = 'chore(obsidian): auto save from neovim'
+  if (Get-Command gemini -ErrorAction SilentlyContinue) {
+    [Console]::InputEncoding = [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+    $OutputEncoding = [System.Text.Encoding]::UTF8
+    $prompt = 'PROMPT_PLACEHOLDER'
+    $ai_msg = $diff | gemini $prompt | Out-String
+    if (-not [string]::IsNullOrWhiteSpace($ai_msg)) {
+      $msg = $ai_msg.Trim()
+    }
+  }
+  if ($msg) {
+    git commit -m $msg
+  }
+}
+]]
+      -- Clean up prompt and script for pwsh
+      local clean_prompt = prompt:gsub("\n", " "):gsub("^%s*(.-)%s*$", "%1"):gsub("'", "''")
+      local clean_script = ps_script:gsub("PROMPT_PLACEHOLDER", clean_prompt):gsub("\n", " ")
+
       run_git_jobs(cwd, {
         { "git", "pull", "--rebase" },
         { "git", "add", "." },
         -- Use gemini CLI to generate commit message if available, otherwise fallback
-        "$diff = git diff --staged | Out-String; if (-not [string]::IsNullOrWhiteSpace($diff)) { if (Get-Command gemini -ErrorAction SilentlyContinue) { [Console]::InputEncoding = [Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $OutputEncoding = [System.Text.Encoding]::UTF8; $msg = $diff | gemini 'Generate a very short, concise git commit message (Conventional Commits) based ONLY on the provided diff. Output ONLY the raw message text. Do not use any external tools or run git commands. Do not include markdown.' | Out-String; $msg = $msg.Trim() } else { $msg = 'chore(obsidian): auto save from neovim' }; if ($msg) { git commit -m $msg } }",
+        clean_script,
         { "git", "push" },
       }, function()
         vim.notify("Obsidian synced with AI!", vim.log.levels.INFO)
