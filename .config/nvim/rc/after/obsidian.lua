@@ -86,46 +86,47 @@ local function is_in_vault(buf)
   return false, nil
 end
 
+-- Helper to run git commands sequentially
+local function run_git_jobs(cwd, cmds, on_success)
+  local function next_step(idx)
+    if idx > #cmds then
+      if on_success then
+        on_success()
+      end
+      return
+    end
+
+    vim.fn.jobstart(cmds[idx], {
+      cwd = cwd,
+      on_exit = function(_, code)
+        if code == 0 then
+          next_step(idx + 1)
+        else
+          vim.notify(
+            "Obsidian sync failed at: " .. table.concat(cmds[idx], " "),
+            vim.log.levels.WARN
+          )
+        end
+      end,
+    })
+  end
+  next_step(1)
+end
+
 -- Auto sync on save (Pull -> Add -> Commit -> Push)
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = "*.md",
   callback = function(opts)
     local in_vault, cwd = is_in_vault(opts.buf)
     if in_vault then
-      local function git_sync()
-        vim.fn.jobstart({ "git", "pull", "--rebase" }, {
-          cwd = cwd,
-          on_exit = function(_, code_pull)
-            if code_pull == 0 then
-              vim.fn.jobstart({ "git", "add", "." }, {
-                cwd = cwd,
-                on_exit = function(_, code_add)
-                  if code_add == 0 then
-                    vim.fn.jobstart({ "git", "commit", "-m", "chore(obsidian): auto save from neovim" }, {
-                      cwd = cwd,
-                      on_exit = function(_, code_commit)
-                        if code_commit == 0 then
-                          vim.fn.jobstart({ "git", "push" }, {
-                            cwd = cwd,
-                            on_exit = function(_, code_push)
-                              if code_push == 0 then
-                                vim.notify("Obsidian synced!", vim.log.levels.INFO)
-                              end
-                            end,
-                          })
-                        end
-                      end,
-                    })
-                  end
-                end,
-              })
-            else
-              vim.notify("Obsidian pull failed! Check for conflicts.", vim.log.levels.WARN)
-            end
-          end,
-        })
-      end
-      git_sync()
+      run_git_jobs(cwd, {
+        { "git", "pull", "--rebase" },
+        { "git", "add", "." },
+        { "git", "commit", "-m", "chore(obsidian): auto save from neovim" },
+        { "git", "push" },
+      }, function()
+        vim.notify("Obsidian synced!", vim.log.levels.INFO)
+      end)
     end
   end,
 })
@@ -136,15 +137,12 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   callback = function(opts)
     local in_vault, cwd = is_in_vault(opts.buf)
     if in_vault then
-      vim.fn.jobstart({ "git", "pull", "--rebase" }, {
-        cwd = cwd,
-        on_exit = function(_, code)
-          if code == 0 then
-            -- Reload buffer if file changed on disk
-            vim.cmd("checktime")
-          end
-        end,
-      })
+      run_git_jobs(cwd, {
+        { "git", "pull", "--rebase" },
+      }, function()
+        -- Reload buffer if file changed on disk
+        vim.cmd("checktime")
+      end)
     end
   end,
 })
