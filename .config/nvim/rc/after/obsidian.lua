@@ -96,14 +96,21 @@ local function run_git_jobs(cwd, cmds, on_success)
       return
     end
 
-    vim.fn.jobstart(cmds[idx], {
+    local cmd = cmds[idx]
+    if type(cmd) == "string" then
+      cmd = { "pwsh", "-NoProfile", "-Command", cmd }
+    end
+
+    vim.fn.jobstart(cmd, {
       cwd = cwd,
       on_exit = function(_, code)
         if code == 0 then
           next_step(idx + 1)
         else
+          local cmd_str = type(cmds[idx]) == "string" and cmds[idx]
+            or table.concat(cmds[idx], " ")
           vim.notify(
-            "Obsidian sync failed at: " .. table.concat(cmds[idx], " "),
+            "Obsidian sync failed at: " .. cmd_str,
             vim.log.levels.WARN
           )
         end
@@ -122,10 +129,11 @@ vim.api.nvim_create_autocmd("BufWritePost", {
       run_git_jobs(cwd, {
         { "git", "pull", "--rebase" },
         { "git", "add", "." },
-        { "git", "commit", "-m", "chore(obsidian): auto save from neovim" },
+        -- Use gemini CLI to generate commit message
+        "$diff = git diff --staged | Out-String; if (-not [string]::IsNullOrWhiteSpace($diff)) { $msg = $diff | gemini 'Generate a very short, concise git commit message (Conventional Commits). Output ONLY the raw message text, no markdown, no explanations.' | Out-String; $msg = $msg.Trim(); if ($msg) { git commit -m $msg } }",
         { "git", "push" },
       }, function()
-        vim.notify("Obsidian synced!", vim.log.levels.INFO)
+        vim.notify("Obsidian synced with AI!", vim.log.levels.INFO)
       end)
     end
   end,
