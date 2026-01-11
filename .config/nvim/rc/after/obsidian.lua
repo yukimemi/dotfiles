@@ -154,7 +154,7 @@ if (-not [string]::IsNullOrWhiteSpace($diff)) {
 ]]
       -- Clean up prompt and script for pwsh
       local clean_prompt = prompt:gsub("\n", " "):gsub("^%s*(.-)%s*$", "%1"):gsub("'", "''")
-      local clean_script = ps_script:gsub("PROMPT_PLACEHOLDER", clean_prompt):gsub("\n", " ")
+      local clean_script = ps_script:gsub("PROMPT_PLACEHOLDER", clean_prompt):gsub("\n", "; ")
 
       run_git_jobs(cwd, {
         { "git", "pull", "--rebase" },
