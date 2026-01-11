@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2025/11/28 21:32:38.
+-- Last Change : 2026/01/11 10:11:14.
 -- =============================================================================
 
 require("snacks").setup({
@@ -126,7 +126,7 @@ if true then
   vim.keymap.set("n", "ms", function() Snacks.picker.files({ cwd = "~/src" }) end,
     { desc = "Find src file" })
   vim.keymap.set("n", "mr", function() Snacks.picker.recent() end, { desc = "Recent files" })
-  vim.keymap.set("n", "mC", function() Snacks.picker.files({ cwd = "~/.cache" }) end,
+  vim.keymap.set("n", "<space>fc", function() Snacks.picker.files({ cwd = "~/.cache" }) end,
     { desc = "Find Cache File" })
   vim.keymap.set("n", "mM", function() Snacks.picker.files({ cwd = "~/.memolist" }) end, { desc = "Find memolist file" })
   vim.keymap.set("n", "mj", function() Snacks.picker.files({ cwd = "~/.cache/junkfile" }) end,

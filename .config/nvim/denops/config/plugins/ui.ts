@@ -9,7 +9,6 @@ import type { Plug } from "@yukimemi/dvpm";
 import * as autocmd from "@denops/std/autocmd";
 import * as fn from "@denops/std/function";
 import * as lambda from "@denops/std/lambda";
-import * as mapping from "@denops/std/mapping";
 import * as nvimFn from "@denops/std/function/nvim";
 import * as vars from "@denops/std/variable";
 
@@ -491,28 +490,28 @@ export const ui: Plug[] = [
     enabled: pluginStatus.snipewin,
     profiles: ["ui"],
     lazy: {
-      keys: "sw",
-    },
-    before: async ({ denops }) => {
-      await mapping.map(denops, "sw", "<Plug>(snipewin)", { mode: "n" });
+      keys: [
+        { lhs: "sw", rhs: "<Plug>(snipewin)", mode: "n" },
+      ],
     },
   },
   {
     url: "https://github.com/s1n7ax/nvim-window-picker",
     enabled: pluginStatus.windowpicker,
     profiles: ["ui"],
+    lazy: {
+      keys: [
+        {
+          lhs: "sw",
+          rhs: "<cmd>lua require('window-picker').pick_window()<cr>",
+          mode: "n",
+        },
+      ],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("window-picker").setup(_A)`, {
         hint: "floating-big-letter",
       });
-      await mapping.map(
-        denops,
-        "sw",
-        "<cmd>lua require('window-picker').pick_window()<cr>",
-        {
-          mode: "n",
-        },
-      );
     },
   },
   {

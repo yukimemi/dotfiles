@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2026/01/02 00:30:17.
+// Last Change : 2026/01/11 10:13:18.
 // =============================================================================
 
 import { dir } from "@cross/dir";
@@ -152,6 +152,7 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
       "terminal",
       "test",
       "textobj",
+      "translate",
       "treesitter",
       "twitter",
       "ui",

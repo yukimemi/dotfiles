@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 09:56:56.
+// Last Change : 2026/01/11 10:15:28.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -365,7 +365,29 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/skanehira/denops-translate.vim",
-    profiles: ["core"],
+    enabled: pluginStatus.denops_translate,
+    profiles: ["translate"],
+    lazy: {
+      cmd: "Translate",
+    },
+  },
+  {
+    url: "https://github.com/mattn/vim-rosetta",
+    enabled: pluginStatus.rosetta,
+    profiles: ["translate"],
+    lazy: {
+      cmd: [
+        "RosettaTranslateComment",
+        "RosettaTranslateAt",
+        "RosettaTranslateBuffer",
+      ],
+      keys: [
+        { lhs: "<Leader>tc", mode: "n" },
+        { lhs: "<Leader>tt", mode: "n" },
+        { lhs: "<Leader>tt", mode: "x" },
+        { lhs: "<C-x><C-t>", mode: "i" },
+      ],
+    },
   },
   {
     url: "https://github.com/mattn/vim-sonictemplate",
@@ -841,6 +863,13 @@ EOB
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("stacktrace").setup(_A)`, {});
+    },
+  },
+  {
+    url: "https://github.com/serhez/bento.nvim",
+    profiles: ["core"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("bento").setup(_A)`, {});
     },
   },
 ];

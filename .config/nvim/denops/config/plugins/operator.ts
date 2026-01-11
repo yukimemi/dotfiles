@@ -6,8 +6,6 @@
 
 import type { Plug } from "@yukimemi/dvpm";
 
-import * as mapping from "@denops/std/mapping";
-
 export const operator: Plug[] = [
   {
     url: "https://github.com/kana/vim-operator-user",
@@ -19,14 +17,15 @@ export const operator: Plug[] = [
     enabled: false,
     profiles: ["operator"],
     lazy: {
-      keys: [{ lhs: "y", mode: ["n", "x"] }],
+      keys: [
+        {
+          lhs: "y",
+          rhs: "<Plug>(operator-stay-cursor-yank)",
+          mode: ["n", "x"],
+        },
+      ],
     },
     dependencies: ["https://github.com/kana/vim-operator-user"],
-    after: async ({ denops }) => {
-      await mapping.map(denops, "y", "<Plug>(operator-stay-cursor-yank)", {
-        mode: ["n", "x", "v"],
-      });
-    },
   },
   {
     url: "https://github.com/machakann/vim-sandwich",
@@ -46,31 +45,18 @@ export const operator: Plug[] = [
     profiles: ["operator"],
     lazy: {
       keys: [
-        { lhs: "<c-h>", mode: "x" },
-        { lhs: "<c-u>", mode: "x" },
+        { lhs: "<c-h>", rhs: "<Plug>(operator-html-escape)", mode: "x" },
+        { lhs: "<c-u>", rhs: "<Plug>(operator-html-unescape)", mode: "x" },
       ],
     },
     dependencies: ["https://github.com/kana/vim-operator-user"],
-    before: async ({ denops }) => {
-      await mapping.map(denops, "<c-h>", "<Plug>(operator-html-escape)", {
-        mode: "x",
-      });
-      await mapping.map(denops, "<c-u>", "<Plug>(operator-html-unescape)", {
-        mode: "x",
-      });
-    },
   },
   {
     url: "https://github.com/kana/vim-operator-replace",
     profiles: ["operator"],
     lazy: {
-      keys: [{ lhs: "_", mode: ["n", "x"] }],
+      keys: [{ lhs: "_", rhs: "<Plug>(operator-replace)", mode: ["n", "x"] }],
     },
     dependencies: ["https://github.com/kana/vim-operator-user"],
-    before: async ({ denops }) => {
-      await mapping.map(denops, "_", "<Plug>(operator-replace)", {
-        mode: ["n", "x"],
-      });
-    },
   },
 ];
