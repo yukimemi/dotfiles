@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 16:33:23.
+// Last Change : 2026/01/11 09:25:39.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -325,6 +325,11 @@ export const colors: Plug[] = [
     lazy: { enabled: true },
   },
   {
+    url: "https://github.com/Pearljak/terracotta.nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
     url: "https://github.com/lifepillar/vim-solarized8",
     profiles: ["colors"],
     lazy: { enabled: true },
@@ -625,6 +630,7 @@ export const colors: Plug[] = [
       "https://github.com/Matsuuu/pinkmare",
       "https://github.com/NLKNguyen/papercolor-theme",
       "https://github.com/PHSix/nvim-hybrid",
+      "https://github.com/Pearljak/terracotta.nvim",
       "https://github.com/RRethy/nvim-base16",
       "https://github.com/Rigellute/rigel",
       "https://github.com/Styzex/Sonomin.nvim",
