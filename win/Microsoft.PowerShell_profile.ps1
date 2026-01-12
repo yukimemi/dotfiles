@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2026/01/04 11:03:00.
+# Last Change : 2026/01/12 16:54:20.
 # =============================================================================
 
 # --- Pre-Environment Setup ---
@@ -87,7 +87,7 @@ if (Test-Path $StarshipInit) {
             $global:LazyProfilePath = $null # Clear to run only once
             Import-Module -Global $path -ErrorAction SilentlyContinue
         }
-        
+
         # Auto jj init
         $currentPath = (Get-Location).Path
         if ($currentPath -ne $global:LastAutoJjPath) {

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/01/04 11:11:00.
+# Last Change : 2026/01/12 16:55:05.
 # =============================================================================
 
 # --- Functions ---
@@ -12,10 +12,10 @@ function g {
   git $args
 }
 function s {
-  git status
+  jj status
 }
 function d {
-  git diff $args
+  jj diff $args
 }
 function a {
   git add $args
