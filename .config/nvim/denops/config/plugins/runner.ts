@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : runner.ts
 // Author      : yukimemi
-// Last Change : 2026/01/11 11:19:59.
+// Last Change : 2026/01/12 21:26:42.
 // =============================================================================
 
 import * as vars from "@denops/std/variable";
@@ -49,9 +49,25 @@ export const runner: Plug[] = [
       keys: [
         { lhs: "<space>O", rhs: "<cmd>OverseerToggle<cr>", mode: ["n", "x"] },
       ],
+      cmd: [
+        "OverseerOpen",
+        "OverseerClose",
+        "OverseerToggle",
+        "OverseerRun",
+        "OverseerShell",
+        "OverseerTaskAction",
+      ],
     },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("overseer").setup()`);
+    },
+  },
+  {
+    url: "https://github.com/valonmulolli/zignite.nvim",
+    enabled: pluginStatus.zignite,
+    profiles: ["runner"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("zignite").setup(_A)`, {});
     },
   },
 ];

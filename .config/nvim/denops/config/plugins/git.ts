@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 18:34:11.
+// Last Change : 2026/01/12 21:48:38.
 // =============================================================================
 
 import * as mapping from "@denops/std/mapping";
@@ -95,6 +95,7 @@ export const git: Plug[] = [
   },
   {
     url: "https://github.com/sindrets/diffview.nvim",
+    enabled: pluginStatus.diffview,
     profiles: ["git"],
     lazy: {
       cmd: [
@@ -108,6 +109,19 @@ export const git: Plug[] = [
       ],
     },
     afterFile: `~/.config/nvim/rc/after/diffview.lua`,
+  },
+  {
+    url: "https://github.com/clabby/difftastic.nvim",
+    enabled: pluginStatus.difftastic,
+    profiles: ["git"],
+    dependencies: [
+      "https://github.com/MunifTanjim/nui.nvim",
+    ],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("difftastic-nvim").setup(_A)`, {
+        download: true,
+      });
+    },
   },
   {
     url: "https://github.com/linrongbin16/gitlinker.nvim",
@@ -190,5 +204,19 @@ export const git: Plug[] = [
       ],
     },
     afterFile: `~/.config/nvim/rc/after/github-actions.lua`,
+  },
+  {
+    url: "https://github.com/yannvanhalewyn/jujutsu.nvim",
+    enabled: false,
+    profiles: ["git"],
+    dependencies: [
+      "https://github.com/clabby/difftastic.nvim",
+    ],
+    lazy: {
+      keys: { lhs: "<space>j", rhs: "<cmd>JJ<cr>", mode: "n", desc: "JJ log" },
+    },
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("jujutsu-nvim").setup(_A)`, {});
+    },
   },
 ];

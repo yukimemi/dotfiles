@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2026/01/11 09:59:21.
+// Last Change : 2026/01/12 21:46:31.
 // =============================================================================
 
 export const pluginStatus = {
@@ -28,6 +28,8 @@ export const pluginStatus = {
   deck: false,
   denippet: false,
   denops_translate: false,
+  difftastic: true,
+  diffview: false,
   eyeliner: false,
   fall: false,
   fern: false,
@@ -89,4 +91,5 @@ export const pluginStatus = {
   yankround: false,
   yanky: true,
   yazi: true,
+  zignite: false,
 };

@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2026/01/11 10:11:14.
+-- Last Change : 2026/01/12 21:40:49.
 -- =============================================================================
 
 require("snacks").setup({
@@ -92,8 +92,8 @@ else
 end
 
 -- Snacks.jump
-vim.keymap.set("n", "<space>jj", function() Snacks.words.jump(1, true) end, { desc = "Jump next" })
-vim.keymap.set("n", "<space>jk", function() Snacks.words.jump(-1, true) end, { desc = "Jump prev" })
+-- vim.keymap.set("n", "<space>jj", function() Snacks.words.jump(1, true) end, { desc = "Jump next" })
+-- vim.keymap.set("n", "<space>jk", function() Snacks.words.jump(-1, true) end, { desc = "Jump prev" })
 
 -- Snacks.lazygit
 vim.keymap.set("n", "<space>gg", function() Snacks.lazygit() end, { desc = "LazyGit" })

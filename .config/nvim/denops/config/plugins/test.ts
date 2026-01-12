@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : test.ts
 // Author      : yukimemi
-// Last Change : 2025/11/30 23:32:14.
+// Last Change : 2026/01/12 00:00:00.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -11,11 +11,31 @@ import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
 
 export const test: Plug[] = [
-  { url: "https://github.com/skywind3000/asyncrun.vim", profiles: ["test"] },
+  {
+    url: "https://github.com/skywind3000/asyncrun.vim",
+    profiles: ["test"],
+    lazy: { cmd: "AsyncRun" },
+  },
   {
     url: "https://github.com/vim-test/vim-test",
     enabled: pluginStatus.vimtest,
     profiles: ["test"],
+    lazy: {
+      keys: [
+        { lhs: "<space>Tn", mode: "n" },
+        { lhs: "<space>Tf", mode: "n" },
+        { lhs: "<space>Ts", mode: "n" },
+        { lhs: "<space>Tl", mode: "n" },
+        { lhs: "<space>Tg", mode: "n" },
+      ],
+      cmd: [
+        "TestNearest",
+        "TestFile",
+        "TestSuite",
+        "TestLast",
+        "TestVisit",
+      ],
+    },
     dependencies: [
       "https://github.com/skywind3000/asyncrun.vim",
     ],
@@ -47,16 +67,21 @@ export const test: Plug[] = [
     url: "https://github.com/nvim-neotest/nvim-nio",
     enabled: pluginStatus.neotest,
     profiles: ["test"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/antoinemadec/FixCursorHold.nvim",
     enabled: pluginStatus.neotest,
     profiles: ["test"],
+    lazy: { enabled: true },
   },
   {
     url: "https://github.com/nvim-neotest/neotest",
     enabled: pluginStatus.neotest,
     profiles: ["test"],
+    lazy: {
+      cmd: "Neotest",
+    },
     dependencies: [
       "https://github.com/nvim-neotest/nvim-nio",
       "https://github.com/nvim-lua/plenary.nvim",
