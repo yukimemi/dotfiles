@@ -1,13 +1,12 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2026/01/11 09:25:39.
+// Last Change : 2026/01/12 09:46:12.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
 
 import * as fn from "@denops/std/function";
-import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
 
 export const colors: Plug[] = [
@@ -616,6 +615,32 @@ export const colors: Plug[] = [
         "DisableThisColorscheme",
         "OpenColorschemeSetting",
       ],
+      keys: [
+        {
+          lhs: "<space>co",
+          rhs: "<cmd>ChangeColorscheme<cr>",
+          mode: "n",
+          desc: "ChangeColorscheme",
+        },
+        {
+          lhs: "<space>Rd",
+          rhs: "<cmd>DisableThisColorscheme<cr>",
+          mode: "n",
+          desc: "DisableThisColorscheme",
+        },
+        {
+          lhs: "mL",
+          rhs: "<cmd>LikeThisColorscheme<cr>",
+          mode: "n",
+          desc: "LikeThisColorscheme",
+        },
+        {
+          lhs: "mh",
+          rhs: "<cmd>HateThisColorscheme<cr>",
+          mode: "n",
+          desc: "HateThisColorscheme",
+        },
+      ],
       event: "CursorHold",
     },
     dependencies: [
@@ -752,22 +777,6 @@ export const colors: Plug[] = [
       );
       await vars.g.set(denops, "lumiris_notmatch", "[Ll]ight");
       await vars.g.set(denops, "lumiris_background", "dark");
-
-      await mapping.map(denops, "<space>co", "<cmd>ChangeColorscheme<cr>", {
-        mode: "n",
-      });
-      await mapping.map(
-        denops,
-        "<space>Rd",
-        "<cmd>DisableThisColorscheme<cr>",
-        { mode: "n" },
-      );
-      await mapping.map(denops, "ml", "<cmd>LikeThisColorscheme<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "mh", "<cmd>HateThisColorscheme<cr>", {
-        mode: "n",
-      });
     },
   },
 ];

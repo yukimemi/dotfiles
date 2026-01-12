@@ -70,6 +70,8 @@ vim.api.nvim_create_user_command("ObsidianSearch", function()
   Snacks.picker.grep({ cwd = obsidian_path })
 end, { force = true })
 
+vim.keymap.set("n", "<space>ot", "<cmd>ObsidianToday<cr>", { desc = "ObsidianToday" })
+
 -- Helper to check if buffer is in vault
 local function is_in_vault(buf)
   local client = require("obsidian").get_client()

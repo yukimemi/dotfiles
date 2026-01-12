@@ -80,12 +80,24 @@ if (Test-Path $StarshipInit) {
     . $StarshipInit
 
     # Hook into Starship pre-command to load heavy profile lazily
+    $global:LastAutoJjPath = ""
     function global:Invoke-Starship-PreCommand {
         if ($null -ne $global:LazyProfilePath) {
             $path = $global:LazyProfilePath
             $global:LazyProfilePath = $null # Clear to run only once
             Import-Module -Global $path -ErrorAction SilentlyContinue
         }
+        
+        # Auto jj init
+        $currentPath = (Get-Location).Path
+        if ($currentPath -ne $global:LastAutoJjPath) {
+            $global:LastAutoJjPath = $currentPath
+            if ((Test-Path -LiteralPath ".git" -PathType Container) -and -not (Test-Path -LiteralPath ".jj" -PathType Container)) {
+                Write-Host "Initializing jujutsu in git repo..." -ForegroundColor Cyan
+                jj git init --colocate
+            }
+        }
+
         $mode = (Get-PSReadLineOption).ViMode
         $env:STARSHIP_VIM_MODE = if ($mode -eq "Command") {
             "normal"

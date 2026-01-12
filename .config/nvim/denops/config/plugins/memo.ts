@@ -1,7 +1,7 @@
 // =============================================================================
-// File        : wiki.ts
+// File        : memo.ts
 // Author      : yukimemi
-// Last Change : 2025/11/28 23:31:32.
+// Last Change : 2026/01/12 11:05:36
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -141,8 +141,16 @@ export const memo: Plug[] = [
     url: "https://github.com/walkersumida/fusen.nvim",
     enabled: pluginStatus.fusen,
     profiles: ["memo"],
+    lazy: {
+      keys: ["ml", "me", "mn", "mp"],
+    },
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("fusen").setup()`);
+      await denops.call(`luaeval`, `require("fusen").setup(_A)`, {
+        save_file: `${await fn.expand(denops, "~/.cache/fusen_marks.json")}`,
+        keymaps: {
+          list_marks: "ml",
+        },
+      });
     },
   },
   {
