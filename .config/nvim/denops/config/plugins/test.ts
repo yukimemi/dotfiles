@@ -7,7 +7,6 @@
 import type { Plug } from "@yukimemi/dvpm";
 import { pluginStatus } from "../pluginstatus.ts";
 
-import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
 
 export const test: Plug[] = [
@@ -22,11 +21,36 @@ export const test: Plug[] = [
     profiles: ["test"],
     lazy: {
       keys: [
-        { lhs: "<space>Tn", mode: "n" },
-        { lhs: "<space>Tf", mode: "n" },
-        { lhs: "<space>Ts", mode: "n" },
-        { lhs: "<space>Tl", mode: "n" },
-        { lhs: "<space>Tg", mode: "n" },
+        {
+          lhs: "<space>Tn",
+          rhs: "<cmd>TestNearest<cr>",
+          mode: "n",
+          desc: "Test nearest",
+        },
+        {
+          lhs: "<space>Tf",
+          rhs: "<cmd>TestFile<cr>",
+          mode: "n",
+          desc: "Test file",
+        },
+        {
+          lhs: "<space>Ts",
+          rhs: "<cmd>TestSuite<cr>",
+          mode: "n",
+          desc: "Test suite",
+        },
+        {
+          lhs: "<space>Tl",
+          rhs: "<cmd>TestLast<cr>",
+          mode: "n",
+          desc: "Test last",
+        },
+        {
+          lhs: "<space>Tg",
+          rhs: "<cmd>TestVisit<cr>",
+          mode: "n",
+          desc: "Test visit",
+        },
       ],
       cmd: [
         "TestNearest",
@@ -43,23 +67,6 @@ export const test: Plug[] = [
       await vars.g.set(denops, "test#strategy", "neovim");
       await vars.g.set(denops, "test#javascript#denotest#options", {
         all: "--no-check --unstable-kv -A",
-      });
-    },
-    after: async ({ denops }) => {
-      await mapping.map(denops, "<space>Tn", "<cmd>TestNearest<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "<space>Tf", "<cmd>TestFile<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "<space>Ts", "<cmd>TestSuite<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "<space>Tl", "<cmd>TestLast<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "<space>Tg", "<cmd>TestVisit<cr>", {
-        mode: "n",
       });
     },
   },
