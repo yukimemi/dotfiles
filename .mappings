@@ -6,6 +6,7 @@
 
 [general]
 ".config" = "~/.config"
+".gemini" = "~/.gemini"
 ".editorconfig" = "~/.editorconfig"
 ".shelp" = "~/.shelp"
 ".stack" = "~/.stack"
