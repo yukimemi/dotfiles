@@ -3,6 +3,13 @@ l = ["log", "-r", "..", "-n", "20"]
 ci = ["commit"]
 lp = ["log", "-p"]
 lc = ["log", "-p", "--color-words"]
+done = ["bookmark", "move", "main", "--to", "@-"]
+track = ["bookmark", "move", "main", "--to", "@"]
+
+[git]
+
+[remotes.origin]
+auto-track-bookmarks = "glob:*"
 
 [user]
 name = "yukimemi"
