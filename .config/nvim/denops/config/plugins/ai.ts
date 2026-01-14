@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 10:36:38.
+// Last Change : 2026/01/13 01:12:19.
 // =============================================================================
 
 import * as fn from "@denops/std/function";
@@ -179,7 +179,7 @@ export const ai: Plug[] = [
     profiles: ["ai", "core"],
     lazy: {
       keys: ["mf", "<leader>Gs"],
-      cmd: ["FutagoGitCommit", "FutagoHistory"],
+      cmd: ["FutagoGitCommit", "FutagoJjCommit", "FutagoHistory"],
     },
     before: async ({ denops }) => {
       await vars.g.set(denops, "futago_debug", false);
