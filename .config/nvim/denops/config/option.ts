@@ -35,7 +35,9 @@ export async function setOption(denops: Denops) {
     await option.backupdir.set(denops, backupdir);
     await option.colorcolumn.set(denops, "100");
     await option.completeopt.set(denops, "menuone,popup,noselect,noinsert");
-    await option.completeslash.set(denops, "slash");
+    if (denops.meta.platform === "windows") {
+      await option.completeslash.set(denops, "slash");
+    }
     await option.confirm.set(denops, true);
     await option.expandtab.set(denops, true);
     await option.grepformat.set(denops, "%f:%l:%c:%m");

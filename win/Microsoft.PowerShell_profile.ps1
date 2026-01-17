@@ -25,19 +25,34 @@ Set-Alias -Name df -Value Get-DriveInfoView -Force
 
 if (Test-IsWindows) {
     [Console]::InputEncoding = [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-    $env:LANG = "ja_JP.UTF-8"
-    $env:EDITOR = "nvim"
+}
+$env:LANG = "ja_JP.UTF-8"
+$env:EDITOR = "nvim"
 
-    $MiseShims = "$env:LOCALAPPDATA\mise\shims"
-    if (Test-Path $MiseShims) {
-        if ($env:PATH -notlike "*$MiseShims*") {
-            $env:PATH = "$MiseShims;" + $env:PATH
-        }
+# --- Path Setup ---
+$PathSeparator = [IO.Path]::PathSeparator
+$UserHome = if (Test-IsWindows) { $env:USERPROFILE } else { $env:HOME }
+
+$AdditionalPaths = @(
+    (Join-Path $UserHome ".local/share/mise/shims"),
+    (Join-Path $UserHome ".cargo/bin"),
+    (Join-Path $UserHome ".bun/bin"),
+    (Join-Path $UserHome ".deno/bin"),
+    (Join-Path $UserHome "go/bin")
+)
+
+if (Test-IsWindows) {
+    $AdditionalPaths += (Join-Path $env:LOCALAPPDATA "mise\shims")
+}
+
+foreach ($p in $AdditionalPaths) {
+    if ((Test-Path $p) -and ($env:PATH -notlike "*$p*")) {
+        $env:PATH = "$p$PathSeparator" + $env:PATH
     }
 }
 
 # --- Cache & Auto-Generation ---
-$CacheDir = Join-Path $HOME ".cache\pwsh"
+$CacheDir = Join-Path $HOME ".cache/pwsh"
 if (!(Test-Path $CacheDir)) {
     New-Item -ItemType Directory -Force -Path $CacheDir | Out-Null
 }
@@ -51,11 +66,13 @@ if (!(Test-Path $StarshipInit) -or !(Test-Path $ZoxideInit)) {
 
     # Temporarily remove shims from PATH to avoid recursion error
     $OldPath = $env:PATH
-    $env:PATH = ($env:PATH -split ';' | Where-Object { $_ -notlike "*mise\shims*" }) -join ';'
+    $env:PATH = ($env:PATH -split $PathSeparator | Where-Object { $_ -notlike "*mise/shims*" -and $_ -notlike "*mise\shims*" }) -join $PathSeparator
 
     try {
-        $starshipExe = (Get-Command starship.exe -ErrorAction SilentlyContinue).Source
-        $zoxideExe = (Get-Command zoxide.exe -ErrorAction SilentlyContinue).Source
+        $starshipName = if (Test-IsWindows) { "starship.exe" } else { "starship" }
+        $zoxideName = if (Test-IsWindows) { "zoxide.exe" } else { "zoxide" }
+        $starshipExe = (Get-Command $starshipName -ErrorAction SilentlyContinue).Source
+        $zoxideExe = (Get-Command $zoxideName -ErrorAction SilentlyContinue).Source
 
         if ($starshipExe) {
             & $starshipExe init powershell --print-full-init | Set-Content $StarshipInit -Encoding utf8
@@ -70,7 +87,7 @@ if (!(Test-Path $StarshipInit) -or !(Test-Path $ZoxideInit)) {
 }
 
 # --- Static Loading (Fastest) ---
-$LazyProfileModule = "$env:USERPROFILE\.dotfiles\win\LazyProfile.psm1"
+$LazyProfileModule = Join-Path $HOME ".dotfiles/win/LazyProfile.psm1"
 
 if (Test-Path $ZoxideInit) {
     . $ZoxideInit

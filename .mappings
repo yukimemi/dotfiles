@@ -47,7 +47,6 @@
 [darwin]
 ".config/espanso" = "~/Library/Preferences/espanso"
 ".config/rhq" = "~/Library/Preferences/rhq"
-".config/copyq" = "~/.config/copyq"
 ".vimrc" = "~/.vimrc"
 ".gvimrc" = "~/.gvimrc"
 ".config/nvim" = "~/.vim"
@@ -62,7 +61,6 @@
 ".vimrc" = "~/.vimrc"
 ".gvimrc" = "~/.gvimrc"
 ".config/nvim" = "~/.vim"
-".config/copyq" = "~/.config/copyq"
 ".hyper.js" = "~/.hyper.js"
 ".inputrc" = "~/.inputrc"
 ".tmux.conf" = "~/.tmux.conf"

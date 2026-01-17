@@ -10,3 +10,6 @@
 .config/raycast-x/
 .gemini/*
 !.gemini/GEMINI.md
+_bk/
+.bk/
+*.bk

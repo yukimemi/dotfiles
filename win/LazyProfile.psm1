@@ -145,7 +145,12 @@ function r {
 function Invoke-TrimSetLocation {
   param([Parameter(ValueFromPipeline = $true)][string]$Path)
   process {
-    $p = $Path.Trim() -replace '^[^A-Z]+', ""; Write-Host "cd [$p]"; Set-Location $p
+    $p = if (Test-IsWindows) {
+      $Path.Trim() -replace '^[^A-Z]+', ""
+    } else {
+      $Path.Trim()
+    }
+    Write-Host "cd [$p]"; Set-Location $p
   }
 }
 
@@ -196,7 +201,9 @@ function Get-FileAndHash {
 
 # --- Aliases ---
 Remove-Item alias:r, alias:rm, alias:cd, alias:ls, alias:h, alias:z, alias:zi -ErrorAction SilentlyContinue
-Set-Alias rm Move-ToTrash
+if (Test-IsWindows) {
+  Set-Alias rm Move-ToTrash
+}
 Set-Alias o Start-Process
 Set-Alias c Clear-Host
 Set-Alias which Get-Command

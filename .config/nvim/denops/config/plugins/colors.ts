@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2026/01/12 09:46:12.
+// Last Change : 2026/01/17 18:41:34.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -364,11 +364,6 @@ export const colors: Plug[] = [
     lazy: { enabled: true },
   },
   {
-    url: "https://github.com/masisz/ashikaga.nvim",
-    profiles: ["colors"],
-    lazy: { enabled: true },
-  },
-  {
     url: "https://github.com/maxmx03/solarized.nvim",
     profiles: ["colors"],
     lazy: { enabled: true },
@@ -711,7 +706,6 @@ export const colors: Plug[] = [
       "https://github.com/machakann/vim-colorscheme-kemonofriends",
       "https://github.com/machakann/vim-colorscheme-tatami",
       "https://github.com/marko-cerovac/material.nvim",
-      "https://github.com/masisz/ashikaga.nvim",
       "https://github.com/maxmx03/fluoromachine.nvim",
       "https://github.com/maxmx03/solarized.nvim",
       "https://github.com/miikanissi/modus-themes.nvim",
