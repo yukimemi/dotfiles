@@ -1,11 +1,11 @@
 // =============================================================================
 // File        : test.ts
 // Author      : yukimemi
-// Last Change : 2026/01/12 00:00:00.
+// Last Change : 2026/01/17 22:53:18.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
-import { pluginStatus } from "../pluginstatus.ts";
+import { selections } from "../pluginstatus.ts";
 
 import * as vars from "@denops/std/variable";
 
@@ -17,7 +17,7 @@ export const test: Plug[] = [
   },
   {
     url: "https://github.com/vim-test/vim-test",
-    enabled: pluginStatus.vimtest,
+    enabled: selections.test === "vimtest",
     profiles: ["test"],
     lazy: {
       keys: [
@@ -72,19 +72,19 @@ export const test: Plug[] = [
   },
   {
     url: "https://github.com/nvim-neotest/nvim-nio",
-    enabled: pluginStatus.neotest,
+    enabled: selections.test === "neotest",
     profiles: ["test"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/antoinemadec/FixCursorHold.nvim",
-    enabled: pluginStatus.neotest,
+    enabled: selections.test === "neotest",
     profiles: ["test"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/nvim-neotest/neotest",
-    enabled: pluginStatus.neotest,
+    enabled: selections.test === "neotest",
     profiles: ["test"],
     lazy: {
       cmd: "Neotest",

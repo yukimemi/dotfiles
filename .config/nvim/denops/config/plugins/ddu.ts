@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ddu.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 09:54:19.
+// Last Change : 2026/01/17 21:48:37.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -13,14 +13,16 @@ import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
 import * as op from "@denops/std/option";
 import { z } from "zod";
-import { pluginStatus } from "../pluginstatus.ts";
+import { selections } from "../pluginstatus.ts";
 import { notify } from "../util.ts";
+
+const enabled = selections.ff === "ddu" || selections.filer === "ddu";
 
 export const ddu: Plug[] = [
   {
     url: "https://github.com/Shougo/ddu-ui-filer",
     profiles: ["ff"],
-    enabled: pluginStatus.ddufiler,
+    enabled: enabled && selections.filer === "ddu",
     lazy: {
       keys: {
         lhs: "<space>e",
@@ -31,186 +33,223 @@ export const ddu: Plug[] = [
   },
   {
     url: "https://github.com/Milly/ddu-filter-kensaku",
+    enabled,
     profiles: ["ff"],
     dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
   },
   {
     url: "https://github.com/4513ECHO/ddu-kind-url",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/4513ECHO/ddu-source-source",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/4513ECHO/vim-readme-viewer",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Milly/ddu-filter-merge",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-column-filename",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-commands.vim",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-kind-file",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-kind-word",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-source-action",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-source-dummy",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-source-file",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-source-file_old",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-source-file_point",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-source-file_rec",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-source-line",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-source-path_history",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-source-register",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu-ui-ff",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/kamecha/ddu-source-jumplist",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/kuuote/ddu-filter-fuse",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/kuuote/ddu-source-git_status",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/kyoh86/ddu-filter-converter_hl_dir",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/kyoh86/ddu-source-git_log",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/kyoh86/ddu-source-command",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/matsui54/ddu-source-command_history",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/matsui54/ddu-source-file_external",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/matsui54/ddu-source-help",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/shun/ddu-source-buffer",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/shun/ddu-source-rg",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/uga-rosa/ddu-filter-converter_devicon",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/uga-rosa/ddu-source-lsp",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/uga-rosa/ddu-source-search_history",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/yuki-yano/ddu-filter-fzf",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/yuki-yano/ddu-source-nvim-notify",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/yukimemi/ddu-source-chronicle",
+    enabled,
     profiles: ["ff"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/Shougo/ddu.vim",
+    enabled,
     profiles: ["ff"],
     lazy: {
       cmd: "Ddu",

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 16:36:07.
+// Last Change : 2026/01/17 23:10:57.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -12,7 +12,7 @@ import * as lambda from "@denops/std/lambda";
 import * as nvimFn from "@denops/std/function/nvim";
 import * as vars from "@denops/std/variable";
 
-import { pluginStatus } from "../pluginstatus.ts";
+import { pluginStatus, selections } from "../pluginstatus.ts";
 
 export const ui: Plug[] = [
   {
@@ -70,7 +70,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/lukas-reineke/virt-column.nvim",
-    enabled: pluginStatus.virt_column,
+    enabled: selections.column === "virt_column",
     profiles: ["ui"],
     lazy: {
       event: ["BufRead", "BufNewFile"],
@@ -81,7 +81,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/xiyaowong/virtcolumn.nvim",
-    enabled: pluginStatus.virtcolumn,
+    enabled: selections.column === "virtcolumn",
     profiles: ["ui"],
     lazy: {
       event: ["BufRead", "BufNewFile"],
@@ -89,7 +89,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/ecthelionvi/NeoColumn.nvim",
-    enabled: pluginStatus.neocolumn,
+    enabled: selections.column === "neocolumn",
     profiles: ["ui"],
     lazy: {
       event: ["BufRead", "BufNewFile"],
@@ -111,22 +111,22 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/unblevable/quick-scope",
-    enabled: pluginStatus.quickscope,
+    enabled: selections.horizontal_motion === "quickscope",
+    profiles: ["ui"],
     lazy: {
       event: ["BufRead", "BufNewFile"],
     },
-    profiles: ["ui"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "qs_lazy_highlight", 1);
     },
   },
   {
     url: "https://github.com/jinh0/eyeliner.nvim",
-    enabled: pluginStatus.eyeliner,
+    enabled: selections.horizontal_motion === "eyeliner",
+    profiles: ["ui"],
     lazy: {
       event: ["BufRead", "BufNewFile"],
     },
-    profiles: ["ui"],
     afterFile: `~/.config/nvim/rc/after/eyeliner.lua`,
   },
   {
@@ -338,7 +338,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/lukas-reineke/indent-blankline.nvim",
-    enabled: pluginStatus.indentblankline,
+    enabled: selections.indent === "indent-blankline",
     profiles: ["ui"],
     lazy: {
       event: ["BufRead", "BufNewFile"],
@@ -351,7 +351,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/shellRaining/hlchunk.nvim",
-    enabled: pluginStatus.hlchunk,
+    enabled: selections.indent === "hlchunk",
     profiles: ["ui"],
     lazy: {
       event: ["BufRead", "BufNewFile"],
@@ -476,7 +476,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/lewis6991/satellite.nvim",
-    enabled: pluginStatus.satellite,
+    enabled: selections.scrollbar === "satellite",
     profiles: ["ui"],
     lazy: {
       event: ["BufRead", "BufNewFile"],
@@ -573,7 +573,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/petertriho/nvim-scrollbar",
-    enabled: pluginStatus.scrollbar,
+    enabled: selections.scrollbar === "scrollbar",
     profiles: ["ui"],
     lazy: {
       event: ["BufRead", "BufNewFile"],

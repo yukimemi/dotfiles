@@ -1,16 +1,18 @@
 // =============================================================================
 // File        : clap.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:18:17.
+// Last Change : 2026/01/17 21:47:20.
 // =============================================================================
 
-import * as fn from "@denops/std/function";
 import type { Plug } from "@yukimemi/dvpm";
+import * as fn from "@denops/std/function";
+import { selections } from "../pluginstatus.ts";
 import { execCommand } from "../util.ts";
 
 export const clap: Plug[] = [
   {
     url: "https://github.com/liuchengxu/vim-clap",
+    enabled: selections.ff === "clap",
     profiles: ["ff"],
     build: async ({ denops, info }) => {
       if ((info.isInstalled || info.isUpdated) && info.isLoaded) {

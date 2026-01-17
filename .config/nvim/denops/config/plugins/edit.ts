@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2025/12/20 17:47:10.
+// Last Change : 2026/01/17 21:49:46.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -14,7 +14,7 @@ import * as vars from "@denops/std/variable";
 
 import { ensureDir } from "@std/fs/ensure-dir";
 import { z } from "zod";
-import { pluginStatus } from "../pluginstatus.ts";
+import { pluginStatus, selections } from "../pluginstatus.ts";
 
 export const edit: Plug[] = [
   {
@@ -46,7 +46,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/windwp/nvim-autopairs",
-    enabled: pluginStatus.autopairs,
+    enabled: selections.pairs === "autopairs",
     profiles: ["core"],
     after: async ({ denops }) => {
       await execute(denops, `lua require("nvim-autopairs").setup()`);
@@ -54,7 +54,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/nvim-insx",
-    enabled: pluginStatus.insx,
+    enabled: selections.pairs === "insx",
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.cmd(`lua require('insx.preset.standard').setup()`);
@@ -62,7 +62,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/altermo/ultimate-autopair.nvim",
-    enabled: pluginStatus.ultimatepair,
+    enabled: selections.pairs === "ultimatepair",
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require('ultimate-autopair').setup()`);

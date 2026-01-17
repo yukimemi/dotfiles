@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : snippet.ts
 // Author      : yukimemi
-// Last Change : 2025/12/07 21:47:50.
+// Last Change : 2026/01/17 22:52:43.
 // =============================================================================
 
 import * as fn from "@denops/std/function";
@@ -9,7 +9,7 @@ import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
 import type { Plug } from "@yukimemi/dvpm";
 import { z } from "zod";
-import { pluginStatus } from "../pluginstatus.ts";
+import { selections } from "../pluginstatus.ts";
 
 export const snippet: Plug[] = [
   {
@@ -34,17 +34,17 @@ export const snippet: Plug[] = [
   },
   {
     url: "https://github.com/uga-rosa/ddc-source-vsnip",
-    enabled: pluginStatus.vsnip && pluginStatus.ddc,
+    enabled: selections.snippet === "vsnip" && selections.completion === "ddc",
     profiles: ["snippet", "completion"],
   },
   {
     url: "https://github.com/hrsh7th/vim-vsnip-integ",
-    enabled: pluginStatus.vsnip,
+    enabled: selections.snippet === "vsnip",
     profiles: ["snippet"],
   },
   {
     url: "https://github.com/hrsh7th/vim-vsnip",
-    enabled: pluginStatus.vsnip,
+    enabled: selections.snippet === "vsnip",
     profiles: ["snippet"],
     dependencies: [
       "https://github.com/hrsh7th/vim-vsnip-integ",
@@ -61,7 +61,7 @@ export const snippet: Plug[] = [
   },
   {
     url: "https://github.com/uga-rosa/denippet.vim",
-    enabled: pluginStatus.denippet,
+    enabled: selections.snippet === "denippet",
     profiles: ["snippet"],
     after: async ({ denops }) => {
       await mapping.map(denops, "<tab>", "<Plug>(denippet-expand-or-jump)", {

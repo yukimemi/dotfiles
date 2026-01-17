@@ -1,11 +1,10 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2025/08/03 13:48:09.
+// Last Change : 2026/01/17 21:47:07.
 // =============================================================================
 
-import { pluginStatus } from "./pluginstatus.ts";
-
+import type { Plug } from "@yukimemi/dvpm";
 import { ai } from "./plugins/ai.ts";
 import { blink } from "./plugins/blink.ts";
 import { bluesky } from "./plugins/bluesky.ts";
@@ -52,19 +51,30 @@ import { ui } from "./plugins/ui.ts";
 import { util } from "./plugins/util.ts";
 import { yazi } from "./plugins/yazi.ts";
 
-const plugins = [
+export const plugins: Plug[] = [
   ...ai,
+  ...blink,
   ...bluesky,
+  ...care,
+  ...clap,
+  ...cmp,
+  ...coc,
   ...colors,
+  ...compl,
+  ...ddc,
+  ...ddu,
+  ...deck,
   ...denops,
   ...edit,
+  ...fall,
+  ...fern,
   ...filetypes,
   ...git,
+  ...ix,
   ...libs,
   ...lsp,
   ...memo,
   ...mini,
-  ...snacks,
   ...motion,
   ...neotree,
   ...nvimtree,
@@ -72,9 +82,11 @@ const plugins = [
   ...operator,
   ...runner,
   ...search,
+  ...snacks,
   ...snippet,
   ...startup,
   ...statusline,
+  ...telescope,
   ...terminal,
   ...test,
   ...textobj,
@@ -86,45 +98,3 @@ const plugins = [
   ...util,
   ...yazi,
 ];
-
-if (pluginStatus.clap) {
-  plugins.push(...clap);
-}
-if (pluginStatus.telescope) {
-  plugins.push(...telescope);
-}
-if (pluginStatus.deck) {
-  plugins.push(...deck);
-}
-if (pluginStatus.fall) {
-  plugins.push(...fall);
-}
-if (pluginStatus.ddc) {
-  plugins.push(...ddc);
-}
-if (pluginStatus.coc) {
-  plugins.push(...coc);
-}
-if (pluginStatus.cmp) {
-  plugins.push(...cmp);
-}
-if (pluginStatus.ix) {
-  plugins.push(...ix);
-}
-if (pluginStatus.compl) {
-  plugins.push(...compl);
-}
-if (pluginStatus.blink) {
-  plugins.push(...blink);
-}
-if (pluginStatus.care) {
-  plugins.push(...care);
-}
-if (pluginStatus.ddu) {
-  plugins.push(...ddu);
-}
-if (pluginStatus.fern) {
-  plugins.push(...fern);
-}
-
-export { plugins };

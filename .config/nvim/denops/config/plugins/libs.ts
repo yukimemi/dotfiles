@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 23:36:20.
+// Last Change : 2026/01/17 21:52:46.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -9,7 +9,8 @@ import type { Plug } from "@yukimemi/dvpm";
 import * as autocmd from "@denops/std/autocmd";
 import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
-import { pluginStatus } from "../pluginstatus.ts";
+
+import { selections } from "../pluginstatus.ts";
 
 export const libs: Plug[] = [
   {
@@ -48,13 +49,13 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/j-hui/fidget.nvim",
-    enabled: pluginStatus.fidget,
+    enabled: selections.notification === "fidget",
     profiles: ["ui"],
     cache: { afterFile: "~/.config/nvim/rc/after/fidget.lua" },
   },
   {
     url: "https://github.com/rcarriga/nvim-notify",
-    enabled: pluginStatus.nvimnotify,
+    enabled: selections.notification === "nvim-notify",
     profiles: ["ui"],
     cache: {
       enabled: false,
@@ -74,7 +75,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/vigoux/notifier.nvim",
-    enabled: pluginStatus.notifier,
+    enabled: selections.notification === "notifier",
     profiles: ["ui"],
     cache: {
       afterFile: "~/.config/nvim/rc/after/notifier.lua",
@@ -124,7 +125,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/folke/noice.nvim",
-    enabled: pluginStatus.noice,
+    enabled: selections.notification === "noice",
     profiles: ["core"],
     dependencies: [
       "https://github.com/MunifTanjim/nui.nvim",
@@ -217,8 +218,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/lambdalisue/vim-findent",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "vim",
+    enabled: selections.detect_indent === "findent",
     // deno-lint-ignore require-await
     clone: async ({ denops }) => denops.meta.host === "vim",
     profiles: ["core"],
@@ -236,6 +236,7 @@ export const libs: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/nvim-dansa",
+    enabled: selections.detect_indent === "dansa",
     profiles: ["core"],
     lazy: {
       event: ["BufRead", "BufNewFile"],

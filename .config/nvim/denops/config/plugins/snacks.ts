@@ -5,12 +5,12 @@
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
-import { pluginStatus } from "../pluginstatus.ts";
+import { pluginStatus, selections } from "../pluginstatus.ts";
 
 export const snacks: Plug[] = [
   {
     url: "https://github.com/folke/snacks.nvim",
-    enabled: pluginStatus.snacks,
+    enabled: selections.ff === "snacks" || pluginStatus.snacks,
     profiles: ["core"],
     cache: { afterFile: `~/.config/nvim/rc/after/snacks.lua` },
   },

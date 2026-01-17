@@ -1,12 +1,12 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 09:55:31.
+// Last Change : 2026/01/17 21:54:16.
 // =============================================================================
 
 import { execute } from "@denops/std/helper";
 import type { Plug } from "@yukimemi/dvpm";
-import { pluginStatus } from "../pluginstatus.ts";
+import { selections } from "../pluginstatus.ts";
 
 const lspDependencies = [
   "https://github.com/alexpasmantier/krust.nvim",
@@ -137,16 +137,22 @@ export const lsp: Plug[] = [
   },
   {
     url: "https://github.com/mrcjkb/rustaceanvim",
-    profiles: ["rust"],
+    profiles: ["lsp"],
     dependencies: [
       "https://github.com/neovim/nvim-lspconfig",
       "https://github.com/SmiteshP/nvim-navic",
     ],
+    lazy: {
+      ft: ["rust", "toml"],
+    },
     afterFile: "~/.config/nvim/rc/after/rustaceanvim.lua",
   },
   {
     url: "https://github.com/alexpasmantier/krust.nvim",
-    profiles: ["rust"],
+    profiles: ["lsp"],
+    lazy: {
+      ft: ["rust", "toml"],
+    },
   },
   {
     url: "https://github.com/rachartier/tiny-inline-diagnostic.nvim",
@@ -176,13 +182,13 @@ export const lsp: Plug[] = [
     lazy: {
       event: ["BufRead", "BufNewFile"],
     },
-    dependencies: pluginStatus.blink
+    dependencies: selections.completion === "blink"
       ? [...lspDependencies, "https://github.com/saghen/blink.cmp"]
-      : pluginStatus.cmp
+      : selections.completion === "cmp"
       ? [...lspDependencies, "https://github.com/hrsh7th/nvim-cmp"]
       : lspDependencies,
     after: async ({ denops }) => {
-      if (pluginStatus.cmp) {
+      if (selections.completion === "cmp") {
         return await execute(
           denops,
           `
@@ -195,7 +201,7 @@ EOB
           `,
         );
       }
-      if (pluginStatus.blink) {
+      if (selections.completion === "blink") {
         return await execute(
           denops,
           `

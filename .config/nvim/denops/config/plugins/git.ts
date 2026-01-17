@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2026/01/12 21:48:38.
+// Last Change : 2026/01/17 21:51:21.
 // =============================================================================
 
 import * as mapping from "@denops/std/mapping";
@@ -133,7 +133,6 @@ export const git: Plug[] = [
   },
   {
     url: "https://github.com/pwntester/octo.nvim",
-    enabled: pluginStatus.telescope,
     profiles: ["git"],
     lazy: {
       cmd: "Octo",

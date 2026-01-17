@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2026/01/11 10:15:28.
+// Last Change : 2026/01/17 23:00:01.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -569,8 +569,10 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/atusy/treemonkey.nvim",
-    enabled: false,
-    profiles: ["filer"],
+    profiles: ["core"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     afterFile: "~/.config/nvim/rc/after/treemonkey.lua",
   },
   {
@@ -587,8 +589,10 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/m00qek/baleia.nvim",
-    enabled: false,
-    profiles: ["filer"],
+    profiles: ["core"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     afterFile: "~/.config/nvim/rc/after/baleia.vim",
   },
   {
@@ -853,8 +857,12 @@ EOB
   {
     url: "https://github.com/lkzz/golden-ratio.nvim",
     profiles: ["core"],
+    lazy: {
+      event: ["WinEnter", "VimResized", "BufWinEnter"],
+    },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("golden-ratio").setup()`);
+      await denops.call(`luaeval`, `require("golden-ratio").enable()`);
     },
   },
   {

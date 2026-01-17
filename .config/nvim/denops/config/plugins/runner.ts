@@ -1,12 +1,12 @@
 // =============================================================================
 // File        : runner.ts
 // Author      : yukimemi
-// Last Change : 2026/01/12 21:26:42.
+// Last Change : 2026/01/17 22:48:48.
 // =============================================================================
 
 import * as vars from "@denops/std/variable";
 import type { Plug } from "@yukimemi/dvpm";
-import { pluginStatus } from "../pluginstatus.ts";
+import { selections } from "../pluginstatus.ts";
 
 export const runner: Plug[] = [
   {
@@ -21,7 +21,7 @@ export const runner: Plug[] = [
   },
   {
     url: "https://github.com/thinca/vim-quickrun",
-    enabled: pluginStatus.quickrun,
+    enabled: selections.runner === "quickrun",
     profiles: ["runner"],
     dependencies: [
       "https://github.com/lambdalisue/vim-quickrun-neovim-job",
@@ -33,7 +33,7 @@ export const runner: Plug[] = [
         { lhs: "<space>qr", rhs: "<Plug>(quickrun)", mode: ["n", "x"] },
       ],
     },
-    after: async ({ denops }) => {
+    before: async ({ denops }) => {
       await vars.g.set(denops, "quickrun_config", {
         _: {
           runner: "nvimterm",
@@ -43,11 +43,12 @@ export const runner: Plug[] = [
   },
   {
     url: "https://github.com/stevearc/overseer.nvim",
-    enabled: pluginStatus.overseer,
+    enabled: selections.runner === "overseer",
     profiles: ["runner"],
     lazy: {
       keys: [
-        { lhs: "<space>O", rhs: "<cmd>OverseerToggle<cr>", mode: ["n", "x"] },
+        { lhs: "<space>Oo", rhs: "<cmd>OverseerToggle<cr>", mode: ["n", "x"] },
+        { lhs: "<space>Or", rhs: "<cmd>OverseerRun<cr>", mode: ["n"] },
       ],
       cmd: [
         "OverseerOpen",
@@ -64,7 +65,7 @@ export const runner: Plug[] = [
   },
   {
     url: "https://github.com/valonmulolli/zignite.nvim",
-    enabled: pluginStatus.zignite,
+    enabled: selections.runner === "zignite",
     profiles: ["runner"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("zignite").setup(_A)`, {});

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : fern.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:14:31.
+// Last Change : 2026/01/17 21:50:09.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -11,41 +11,57 @@ import * as fn from "@denops/std/function";
 import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
+import { selections } from "../pluginstatus.ts";
 
 export const fern: Plug[] = [
   {
     url: "https://github.com/lambdalisue/vim-fern-hijack",
+    enabled: selections.filer === "fern",
     profiles: ["filer"],
     dependencies: ["https://github.com/lambdalisue/vim-fern"],
   },
   {
     url: "https://github.com/lambdalisue/vim-fern-git-status",
+    enabled: selections.filer === "fern",
     profiles: ["filer"],
     dependencies: ["https://github.com/lambdalisue/vim-fern"],
   },
   {
     url: "https://github.com/lambdalisue/vim-fern-mapping-git",
+    enabled: selections.filer === "fern",
     profiles: ["filer"],
     dependencies: ["https://github.com/lambdalisue/vim-fern"],
   },
   {
     url: "https://github.com/lambdalisue/vim-fern-bookmark",
+    enabled: selections.filer === "fern",
     profiles: ["filer"],
     dependencies: ["https://github.com/lambdalisue/vim-fern"],
   },
   {
     url: "https://github.com/lambdalisue/vim-fern-comparator-lexical",
+    enabled: selections.filer === "fern",
     profiles: ["filer"],
     dependencies: ["https://github.com/lambdalisue/vim-fern"],
   },
   {
     url: "https://github.com/lambdalisue/vim-glyph-palette",
+    enabled: selections.filer === "fern",
     profiles: ["filer"],
   },
-  { url: "https://github.com/lambdalisue/vim-nerdfont", profiles: ["filer"] },
-  { url: "https://github.com/lambdalisue/vim-fern", profiles: ["filer"] },
+  {
+    url: "https://github.com/lambdalisue/vim-nerdfont",
+    enabled: selections.filer === "fern",
+    profiles: ["filer"],
+  },
+  {
+    url: "https://github.com/lambdalisue/vim-fern",
+    enabled: selections.filer === "fern",
+    profiles: ["filer"],
+  },
   {
     url: "https://github.com/lambdalisue/vim-fern-renderer-nerdfont",
+    enabled: selections.filer === "fern",
     profiles: ["filer"],
     dependencies: [
       "https://github.com/lambdalisue/vim-glyph-palette",
@@ -55,11 +71,13 @@ export const fern: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/fern-mapping-collapse-or-leave.vim",
+    enabled: selections.filer === "fern",
     profiles: ["filer"],
     dependencies: ["https://github.com/lambdalisue/vim-fern"],
   },
   {
     url: "https://github.com/lambdalisue/vim-fern",
+    enabled: selections.filer === "fern",
     profiles: ["filer"],
     dependencies: [
       "https://github.com/lambdalisue/vim-fern-hijack",

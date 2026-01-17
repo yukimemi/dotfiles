@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : coc.ts
 // Author      : yukimemi
-// Last Change : 2025/12/01 00:48:11.
+// Last Change : 2026/01/17 21:47:33.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -14,19 +14,23 @@ import * as mapping from "@denops/std/mapping";
 import * as op from "@denops/std/option";
 import * as vars from "@denops/std/variable";
 import { z } from "zod";
+import { selections } from "../pluginstatus.ts";
 
 export const coc: Plug[] = [
   {
     url: "https://github.com/weirongxu/coc-explorer",
+    enabled: selections.completion === "coc",
     profiles: ["lsp"],
   },
   {
     url: "https://github.com/gelguy/wilder.nvim",
+    enabled: selections.completion === "coc",
     profiles: ["lsp"],
     afterFile: "~/.config/nvim/rc/after/wilder.lua",
   },
   {
     url: "https://github.com/neoclide/coc.nvim",
+    enabled: selections.completion === "coc",
     profiles: ["lsp"],
     dependencies: [
       "https://github.com/weirongxu/coc-explorer",

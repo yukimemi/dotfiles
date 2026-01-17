@@ -1,42 +1,81 @@
 // =============================================================================
 // File        : cmp.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 09:54:08.
+// Last Change : 2026/01/17 21:47:25.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
+import { selections } from "../pluginstatus.ts";
 
 export const cmp: Plug[] = [
-  { url: "https://github.com/hrsh7th/cmp-nvim-lsp", profiles: ["completion"] },
-  { url: "https://github.com/hrsh7th/cmp-buffer", profiles: ["completion"] },
-  { url: "https://github.com/hrsh7th/cmp-emoji", profiles: ["completion"] },
-  { url: "https://github.com/hrsh7th/cmp-cmdline", profiles: ["completion"] },
   {
-    url: "https://github.com/dmitmel/cmp-cmdline-history",
+    url: "https://github.com/hrsh7th/cmp-nvim-lsp",
+    enabled: selections.completion === "cmp",
     profiles: ["completion"],
   },
-  { url: "https://github.com/hrsh7th/cmp-path", profiles: ["completion"] },
-  { url: "https://github.com/lukas-reineke/cmp-rg", profiles: ["completion"] },
-  { url: "https://github.com/ray-x/cmp-treesitter", profiles: ["completion"] },
+  {
+    url: "https://github.com/hrsh7th/cmp-buffer",
+    enabled: selections.completion === "cmp",
+    profiles: ["completion"],
+  },
+  {
+    url: "https://github.com/hrsh7th/cmp-emoji",
+    enabled: selections.completion === "cmp",
+    profiles: ["completion"],
+  },
+  {
+    url: "https://github.com/hrsh7th/cmp-cmdline",
+    enabled: selections.completion === "cmp",
+    profiles: ["completion"],
+  },
+  {
+    url: "https://github.com/dmitmel/cmp-cmdline-history",
+    enabled: selections.completion === "cmp",
+    profiles: ["completion"],
+  },
+  {
+    url: "https://github.com/hrsh7th/cmp-path",
+    enabled: selections.completion === "cmp",
+    profiles: ["completion"],
+  },
+  {
+    url: "https://github.com/lukas-reineke/cmp-rg",
+    enabled: selections.completion === "cmp",
+    profiles: ["completion"],
+  },
+  {
+    url: "https://github.com/ray-x/cmp-treesitter",
+    enabled: selections.completion === "cmp",
+    profiles: ["completion"],
+  },
   {
     url: "https://github.com/chrisgrieser/cmp-nerdfont",
+    enabled: selections.completion === "cmp",
     profiles: ["completion"],
   },
   {
     url: "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help",
+    enabled: selections.completion === "cmp",
     profiles: ["completion"],
   },
   {
     url: "https://github.com/hrsh7th/cmp-nvim-lsp-document-symbol",
+    enabled: selections.completion === "cmp",
     profiles: ["completion"],
   },
-  { url: "https://github.com/uga-rosa/cmp-denippet", profiles: ["completion"] },
+  {
+    url: "https://github.com/uga-rosa/cmp-denippet",
+    enabled: selections.completion === "cmp",
+    profiles: ["completion"],
+  },
   {
     url: "https://github.com/uga-rosa/denippet.nvim",
+    enabled: selections.completion === "cmp",
     profiles: ["completion"],
   },
   {
     url: "https://github.com/teramako/cmp-cmdline-prompt.nvim",
+    enabled: selections.completion === "cmp",
     profiles: ["completion"],
   },
   {
@@ -51,6 +90,7 @@ export const cmp: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/nvim-cmp",
+    enabled: selections.completion === "cmp",
     profiles: ["completion"],
     lazy: {
       event: ["InsertEnter", "CmdlineEnter"],

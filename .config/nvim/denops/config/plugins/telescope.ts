@@ -1,15 +1,16 @@
 // =============================================================================
 // File        : telescope.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 09:55:41.
+// Last Change : 2026/01/17 22:53:10.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
-import { pluginStatus } from "../pluginstatus.ts";
+import { pluginStatus, selections } from "../pluginstatus.ts";
 
 export const telescope: Plug[] = [
   {
     url: "https://github.com/yukimemi/telescope-chronicle.nvim",
+    enabled: selections.ff === "telescope",
     profiles: ["ff"],
     lazy: {
       cmd: "Telescope",
@@ -24,6 +25,7 @@ export const telescope: Plug[] = [
   },
   {
     url: "https://github.com/nvim-telescope/telescope-frecency.nvim",
+    enabled: selections.ff === "telescope",
     profiles: ["ff"],
     lazy: {
       cmd: "Telescope",
@@ -33,6 +35,7 @@ export const telescope: Plug[] = [
   },
   {
     url: "https://github.com/nvim-telescope/telescope-file-browser.nvim",
+    enabled: selections.ff === "telescope",
     profiles: ["ff"],
     lazy: {
       cmd: "Telescope",
@@ -42,6 +45,7 @@ export const telescope: Plug[] = [
   },
   {
     url: "https://github.com/nvim-telescope/telescope-project.nvim",
+    enabled: selections.ff === "telescope",
     profiles: ["ff"],
     lazy: {
       cmd: "Telescope",
@@ -51,6 +55,7 @@ export const telescope: Plug[] = [
   },
   {
     url: "https://github.com/fdschmidt93/telescope-egrepify.nvim",
+    enabled: selections.ff === "telescope",
     profiles: ["ff"],
     lazy: {
       cmd: "Telescope",
@@ -62,7 +67,7 @@ export const telescope: Plug[] = [
   },
   {
     url: "https://github.com/tom-anders/telescope-vim-bookmarks.nvim",
-    enabled: pluginStatus.vimbookmarks,
+    enabled: selections.ff === "telescope" && pluginStatus.vimbookmarks,
     profiles: ["ff"],
     lazy: {
       cmd: "Telescope",
@@ -80,6 +85,7 @@ export const telescope: Plug[] = [
   },
   {
     url: "https://github.com/nvim-telescope/telescope-symbols.nvim",
+    enabled: selections.ff === "telescope",
     profiles: ["ff"],
     lazy: {
       cmd: "Telescope",
@@ -88,6 +94,7 @@ export const telescope: Plug[] = [
   },
   {
     url: "https://github.com/nvim-telescope/telescope.nvim",
+    enabled: selections.ff === "telescope",
     profiles: ["ff"],
     lazy: {
       cmd: "Telescope",

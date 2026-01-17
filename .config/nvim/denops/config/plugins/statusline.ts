@@ -1,18 +1,18 @@
 // =============================================================================
 // File        : statusline.ts
 // Author      : yukimemi
-// Last Change : 2025/12/28 14:12:05.
+// Last Change : 2026/01/17 22:52:49.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
 
 import * as vars from "@denops/std/variable";
-import { pluginStatus } from "../pluginstatus.ts";
+import { selections } from "../pluginstatus.ts";
 
 export const statusline: Plug[] = [
   {
     url: "https://github.com/rebelot/heirline.nvim",
-    enabled: pluginStatus.heirline,
+    enabled: selections.statusline === "heirline",
     profiles: ["statusline"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("heirline").setup(_A)`, {
@@ -25,12 +25,12 @@ export const statusline: Plug[] = [
   },
   {
     url: "https://github.com/pnx/lualine-lsp-status",
-    enabled: pluginStatus.lualine,
+    enabled: selections.statusline === "lualine",
     profiles: ["statusline"],
   },
   {
     url: "https://github.com/nvim-lualine/lualine.nvim",
-    enabled: pluginStatus.lualine,
+    enabled: selections.statusline === "lualine",
     profiles: ["statusline"],
     dependencies: [
       "https://github.com/pnx/lualine-lsp-status",
@@ -39,7 +39,7 @@ export const statusline: Plug[] = [
   },
   {
     url: "https://github.com/itchyny/lightline.vim",
-    enabled: pluginStatus.lightline,
+    enabled: selections.statusline === "lightline",
     profiles: ["statusline"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "lightline", {
@@ -76,13 +76,13 @@ export const statusline: Plug[] = [
   },
   {
     url: "https://github.com/tar80/staba.nvim",
-    enabled: pluginStatus.staba,
+    enabled: selections.statusline === "staba",
     profiles: ["statusline"],
     afterFile: `~/.config/nvim/rc/after/staba.lua`,
   },
   {
     url: "https://github.com/sschleemilch/slimline.nvim",
-    enabled: pluginStatus.slimline,
+    enabled: selections.statusline === "slimline",
     profiles: ["statusline"],
     afterFile: `~/.config/nvim/rc/after/slimline.lua`,
   },

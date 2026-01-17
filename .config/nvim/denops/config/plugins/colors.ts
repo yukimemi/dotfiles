@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : colors.ts
 // Author      : yukimemi
-// Last Change : 2026/01/17 18:41:34.
+// Last Change : 2026/01/17 21:47:37.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -12,7 +12,7 @@ import * as vars from "@denops/std/variable";
 export const colors: Plug[] = [
   {
     url: "https://github.com/0xstepit/flow.nvim",
-    profiles: ["colors", "favaritecolors"],
+    profiles: ["colors", "favoritecolors"],
     lazy: { enabled: true },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("flow").setup()`);
@@ -70,7 +70,7 @@ export const colors: Plug[] = [
   },
   {
     url: "https://github.com/Matsuuu/pinkmare",
-    profiles: ["colors", "favaritecolors"],
+    profiles: ["colors", "favoritecolors"],
     lazy: { enabled: true },
   },
   {
@@ -240,7 +240,7 @@ export const colors: Plug[] = [
   },
   {
     url: "https://github.com/folke/tokyonight.nvim",
-    profiles: ["colors", "favaritecolors"],
+    profiles: ["colors", "favoritecolors"],
     lazy: { enabled: true },
   },
   {
@@ -390,7 +390,7 @@ export const colors: Plug[] = [
   },
   {
     url: "https://github.com/nvimdev/oceanic-material",
-    profiles: ["colors", "favaritecolors"],
+    profiles: ["colors", "favoritecolors"],
     lazy: { enabled: true },
   },
   {
@@ -465,7 +465,7 @@ export const colors: Plug[] = [
   },
   {
     url: "https://github.com/rhysd/vim-color-spring-night",
-    profiles: ["colors", "favaritecolors"],
+    profiles: ["colors", "favoritecolors"],
     lazy: { enabled: true },
   },
   {
@@ -483,17 +483,17 @@ export const colors: Plug[] = [
   },
   {
     url: "https://github.com/rose-pine/neovim",
-    profiles: ["colors", "favaritecolors"],
+    profiles: ["colors", "favoritecolors"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/sainnhe/edge",
-    profiles: ["colors", "favaritecolors"],
+    profiles: ["colors", "favoritecolors"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/sainnhe/gruvbox-material",
-    profiles: ["colors", "favaritecolors"],
+    profiles: ["colors", "favoritecolors"],
     lazy: { enabled: true },
   },
   {
@@ -531,12 +531,12 @@ export const colors: Plug[] = [
   },
   {
     url: "https://github.com/sigmavim/kyotonight",
-    profiles: ["colors", "favaritecolors"],
+    profiles: ["colors", "favoritecolors"],
     lazy: { enabled: true },
   },
   {
     url: "https://github.com/sponkurtus2/angelic.nvim",
-    profiles: ["colors", "favaritecolors"],
+    profiles: ["colors", "favoritecolors"],
     lazy: { enabled: true },
   },
   {
@@ -601,7 +601,7 @@ export const colors: Plug[] = [
   },
   {
     url: "https://github.com/yukimemi/lumiris.vim",
-    profiles: ["colors", "favaritecolors", "core"],
+    profiles: ["colors", "favoritecolors", "core"],
     lazy: {
       cmd: [
         "ChangeColorscheme",

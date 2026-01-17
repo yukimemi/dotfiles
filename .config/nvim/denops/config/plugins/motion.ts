@@ -1,14 +1,14 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2025/12/28 14:09:16.
+// Last Change : 2026/01/17 21:58:36.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
 
 import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
-import { pluginStatus } from "../pluginstatus.ts";
+import { selections } from "../pluginstatus.ts";
 
 export const motion: Plug[] = [
   {
@@ -18,8 +18,8 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/yuki-yano/fuzzy-motion.vim",
-    enabled: pluginStatus.fuzzymotion,
-    profiles: ["core"],
+    enabled: selections.motion === "fuzzymotion",
+    profiles: ["motion"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "fuzzy_motion_auto_jump", false);
       await vars.g.set(denops, "fuzzy_motion_disable_match_highlight", false);
@@ -29,32 +29,32 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/folke/flash.nvim",
-    enabled: pluginStatus.flash,
-    profiles: ["core"],
+    enabled: selections.motion === "flash",
+    profiles: ["motion"],
     cache: { afterFile: `~/.config/nvim/rc/after/flash.lua` },
   },
   {
     url: "https://github.com/atusy/jab.nvim",
-    enabled: pluginStatus.jab,
-    profiles: ["core"],
+    enabled: selections.motion === "jab",
+    profiles: ["motion"],
     dependencies: ["https://github.com/lambdalisue/vim-kensaku"],
     cache: { afterFile: `~/.config/nvim/rc/after/jab.lua` },
   },
   {
     url: "https://github.com/nekowasabi/hellshake-yano.vim",
-    enabled: pluginStatus.hellshake,
-    profiles: ["core"],
+    enabled: selections.motion === "hellshake",
+    profiles: ["motion"],
     cache: { beforeFile: `~/.config/nvim/rc/before/hellshake-yano.lua` },
   },
   {
     url: "https://github.com/FluxxField/smart-motion.nvim",
-    enabled: pluginStatus.smartmotion,
+    enabled: selections.motion === "smartmotion",
     profiles: ["motion"],
     afterFile: `~/.config/nvim/rc/after/smart-motion.lua`,
   },
   {
     url: "https://github.com/lambdalisue/vim-initial",
-    enabled: pluginStatus.initial,
+    enabled: selections.motion === "initial",
     profiles: ["motion"],
     after: async ({ denops }) => {
       await mapping.map(denops, "ss", "<cmd>Initial<cr>", { mode: "n" });
@@ -105,18 +105,18 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/psliwka/vim-smoothie",
-    enabled: false,
+    enabled: selections.smooth_scroll === "smoothie",
     profiles: ["motion"],
   },
   {
     url: "https://github.com/declancm/cinnamon.nvim",
-    enabled: false,
+    enabled: selections.smooth_scroll === "cinnamon",
     profiles: ["motion"],
     afterFile: "~/.config/nvim/rc/after/cinnamon.lua",
   },
   {
     url: "https://github.com/karb94/neoscroll.nvim",
-    enabled: false,
+    enabled: selections.smooth_scroll === "neoscroll",
     profiles: ["motion"],
     afterFile: "~/.config/nvim/rc/after/neoscroll.lua",
   },

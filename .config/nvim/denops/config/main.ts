@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2026/01/11 10:13:18.
+// Last Change : 2026/01/17 22:48:59.
 // =============================================================================
 
 import { dir } from "@cross/dir";
@@ -25,6 +25,7 @@ import { setNeovimQt } from "./neovimqt.ts";
 import { setNvy } from "./nvy.ts";
 import { setOption } from "./option.ts";
 import { plugins } from "./plugins.ts";
+import { features } from "./pluginstatus.ts";
 import { notify, openLog } from "./util.ts";
 
 const logPath = join(
@@ -116,7 +117,9 @@ async function vimInit(denops: Denops) {
 }
 
 async function dvpmCreate(denops: Denops): Promise<Dvpm> {
-  const basePath = denops.meta.host === "nvim" ? "~/.cache/nvim/dvpm" : "~/.cache/vim/dvpm";
+  const basePath = denops.meta.host === "nvim"
+    ? "~/.cache/nvim/dvpm"
+    : "~/.cache/vim/dvpm";
   const base = z.string().parse(await fn.expand(denops, basePath));
   const cachePath = denops.meta.host === "nvim"
     ? "~/.config/nvim/plugin/dvpm_plugin_cache.vim"
@@ -126,38 +129,9 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
     base,
     cache,
     notify: true,
-    profiles: [
-      "ai",
-      "colors",
-      "completion",
-      "core",
-      "favaritecolors",
-      "ff",
-      "filer",
-      "filetype",
-      "git",
-      "lsp",
-      "mark",
-      "markdown",
-      "memo",
-      "mini",
-      "motion",
-      "operator",
-      "quickfix",
-      "runner",
-      "rust",
-      "search",
-      "snippet",
-      "statusline",
-      "terminal",
-      "test",
-      "textobj",
-      "translate",
-      "treesitter",
-      "twitter",
-      "ui",
-      "yank",
-    ],
+    profiles: Object.entries(features)
+      .filter(([_, enabled]) => enabled)
+      .map(([name]) => name),
     concurrency: denops.meta.platform === "windows" ? 5 : 13,
   });
 

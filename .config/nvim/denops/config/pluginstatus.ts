@@ -1,95 +1,127 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2026/01/12 21:46:31.
+// Last Change : 2026/01/17 21:50:00
 // =============================================================================
+
+export const features = {
+  ai: false,
+  colors: true,
+  completion: true,
+  core: true,
+  favoritecolors: true,
+  ff: true,
+  filer: true,
+  filetype: true,
+  git: true,
+  indent: true,
+  detect_indent: true,
+  notification: true,
+  scroll: true,
+  horizontal_motion: true,
+  lsp: true,
+  mark: true,
+  markdown: true,
+  memo: true,
+  mini: false,
+  motion: true,
+  operator: true,
+  quickfix: true,
+  runner: true,
+  rust: true,
+  search: true,
+  snippet: true,
+  statusline: true,
+  terminal: true,
+  test: true,
+  textobj: true,
+  translate: true,
+  treesitter: true,
+  twitter: false,
+  ui: true,
+  yank: true,
+};
+
+export type Selections = {
+  completion: "blink" | "cmp" | "ddc" | "coc" | "care" | "ix" | "compl";
+  ff: "snacks" | "fall" | "ddu" | "telescope" | "clap" | "deck";
+  filer: "yazi" | "oil" | "nvimtree" | "neotree" | "fern" | "ddu";
+  statusline: "slimline" | "lualine" | "lightline" | "heirline" | "staba";
+  snippet: "denippet" | "vsnip";
+  test: "vimtest" | "neotest";
+  runner: "quickrun" | "overseer" | "zignite";
+  pairs: "insx" | "autopairs" | "ultimatepair" | "blink";
+  column: "virtcolumn" | "virt_column" | "neocolumn" | "none";
+  motion:
+    | "flash"
+    | "fuzzymotion"
+    | "jab"
+    | "hellshake"
+    | "smartmotion"
+    | "initial"
+    | "none";
+  indent: "snacks" | "indent-blankline" | "hlchunk" | "blink" | "none";
+  detect_indent: "findent" | "dansa" | "none";
+  notification: "fidget" | "nvim-notify" | "notifier" | "noice" | "none";
+  smooth_scroll: "neoscroll" | "smoothie" | "cinnamon" | "none";
+  scrollbar: "scrollbar" | "satellite" | "none";
+  horizontal_motion: "flash" | "quickscope" | "eyeliner" | "none";
+};
+
+export const selections: Selections = {
+  completion: "blink",
+  ff: "snacks",
+  filer: "yazi",
+  statusline: "slimline",
+  snippet: "denippet",
+  test: "vimtest",
+  runner: "overseer",
+  pairs: "insx",
+  column: "virtcolumn",
+  motion: "flash",
+  indent: "snacks",
+  detect_indent: "dansa",
+  notification: "noice",
+  smooth_scroll: "none",
+  scrollbar: "satellite",
+  horizontal_motion: "flash",
+};
 
 export const pluginStatus = {
   augment: false,
-  autopairs: false,
   barbar: false,
   barbecue: false,
   betterwhitespace: true,
-  blink: true,
   bookmarks: false,
   bqf: true,
   bufferline: false,
   buffertabs: false,
-  care: false,
-  clap: false,
-  cmp: false,
-  coc: false,
   codeium: false,
-  compl: false,
-  ddc: false,
   ddt: false,
-  ddu: false,
-  ddufiler: false,
-  deck: false,
-  denippet: false,
   denops_translate: false,
   difftastic: true,
   diffview: false,
-  eyeliner: false,
-  fall: false,
-  fern: false,
-  fidget: false,
-  flash: true,
   fusen: true,
-  fuzzymotion: false,
   haritsuke: false,
-  heirline: false,
-  hellshake: false,
-  hlchunk: false,
   illuminate: true,
   incline: false,
-  indentblankline: false,
-  initial: false,
-  insx: true,
-  ix: false,
-  jab: false,
-  lightline: false,
-  lualine: false,
   mini: false,
   modesearch: false,
   necodeium: false,
-  neocolumn: false,
-  neotest: false,
-  neotree: false,
-  noice: true,
-  notifier: false,
-  nvimnotify: false,
-  nvimtree: false,
   obsidian: true,
-  oil: false,
-  overseer: true,
   qfpreview: false,
   qfreplace: true,
   quicker: false,
-  quickrun: true,
-  quickscope: false,
   rosetta: true,
-  satellite: false,
-  scrollbar: false,
   sg: false,
-  slimline: true,
-  smartmotion: false,
   snacks: true,
   snipewin: true,
-  staba: false,
-  telescope: false,
-  ultimatepair: false,
   vimbookmarks: false,
-  vimtest: true,
   vimwiki: false,
-  virt_column: false,
-  virtcolumn: true,
   vscode: false,
-  vsnip: false,
   windowpicker: false,
   windows: false,
   yankround: false,
   yanky: true,
-  yazi: true,
-  zignite: false,
 };
+

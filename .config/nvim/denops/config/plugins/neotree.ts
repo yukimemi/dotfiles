@@ -1,18 +1,18 @@
 // =============================================================================
 // File        : neotree.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:13:02.
+// Last Change : 2026/01/17 21:58:30.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
 
 import * as mapping from "@denops/std/mapping";
-import { pluginStatus } from "../pluginstatus.ts";
+import { selections } from "../pluginstatus.ts";
 
 export const neotree: Plug[] = [
   {
     url: "https://github.com/nvim-neo-tree/neo-tree.nvim",
-    enabled: pluginStatus.neotree,
+    enabled: selections.filer === "neotree",
     profiles: ["filer"],
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
