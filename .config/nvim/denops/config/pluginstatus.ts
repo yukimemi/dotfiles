@@ -5,7 +5,7 @@
 // =============================================================================
 
 export const features = {
-  ai: false,
+  ai: true,
   colors: true,
   completion: true,
   core: true,
@@ -65,7 +65,7 @@ export type Selections = {
   notification: "fidget" | "nvim-notify" | "notifier" | "noice" | "none";
   smooth_scroll: "neoscroll" | "smoothie" | "cinnamon" | "none";
   scrollbar: "scrollbar" | "satellite" | "none";
-  horizontal_motion: "flash" | "quickscope" | "eyeliner" | "none";
+  horizontal_motion: "flash" | "quickscope" | "eyeliner" | "shot-f" | "none";
 };
 
 export const selections: Selections = {

@@ -131,7 +131,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/deris/vim-shot-f",
-    enabled: false,
+    enabled: selections.horizontal_motion === "shot-f",
     lazy: {
       event: ["BufRead", "BufNewFile"],
     },
@@ -554,14 +554,6 @@ export const ui: Plug[] = [
     afterFile: "~/.config/nvim/rc/after/command-and-cursor.lua",
   },
   {
-    url: "https://github.com/adelarsq/snake_cursor.nvim",
-    enabled: false,
-    profiles: ["ui"],
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("snake_cursor").setup()`);
-    },
-  },
-  {
     url: "https://github.com/luukvbaal/statuscol.nvim",
     profiles: ["ui"],
     lazy: {
@@ -600,23 +592,6 @@ export const ui: Plug[] = [
     },
   },
   {
-    url: "https://github.com/Abizrh/beastie.nvim",
-    profiles: ["ui"],
-    lazy: {
-      cmd: ["BeastieStart", "BeastieStop", "BeastieSwitch"],
-    },
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("beastie").setup()`);
-    },
-  },
-  {
-    url: "https://github.com/ikouchiha47/games.nvim",
-    profiles: ["ui"],
-    lazy: {
-      cmd: ["Hangman", "MineSweeper", "Pacman"],
-    },
-  },
-  {
     url: "https://github.com/sethen/line-number-change-mode.nvim",
     enabled: false,
     profiles: ["ui"],
@@ -630,15 +605,6 @@ export const ui: Plug[] = [
     after: async ({ denops }) => {
       await denops.cmd(`RainbowTrails`);
     },
-  },
-  {
-    url: "https://github.com/folke/drop.nvim",
-    enabled: true,
-    profiles: ["colors"],
-    lazy: {
-      event: "CursorHold",
-    },
-    afterFile: "~/.config/nvim/rc/after/drop.lua",
   },
   {
     url: "https://github.com/mawkler/hml.nvim",

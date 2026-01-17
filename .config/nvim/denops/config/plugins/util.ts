@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2026/01/17 23:00:01.
+// Last Change : 2026/01/18 00:26:46.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -219,11 +219,6 @@ export const util: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("stickybuf").setup()`);
     },
-  },
-  {
-    url: "https://github.com/ryoppippi/bad-apple.vim",
-    enabled: false,
-    profiles: ["core"],
   },
   {
     url: "https://github.com/vim-jp/vital.vim",
@@ -506,17 +501,6 @@ export const util: Plug[] = [
         narrative: {
           separator: "\n",
         },
-      });
-    },
-  },
-  {
-    url: "https://github.com/tamton-aquib/zone.nvim",
-    enabled: Deno.build.os !== "windows" && false,
-    profiles: ["ui"],
-    clone: false,
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("zone").setup(_A)`, {
-        after: 180,
       });
     },
   },
@@ -861,7 +845,9 @@ EOB
       event: ["WinEnter", "VimResized", "BufWinEnter"],
     },
     after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("golden-ratio").setup()`);
+      await denops.call(`luaeval`, `require("golden-ratio").setup(_A)`, {
+        exclude_buffer_patterns: ["aiboconsole://*", "aiboprompt://*"],
+      });
       await denops.call(`luaeval`, `require("golden-ratio").enable()`);
     },
   },
