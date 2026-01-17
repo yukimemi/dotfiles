@@ -1,12 +1,12 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/01/18 10:20:00.
+# Last Change : 2026/01/18 02:49:05.
 # =============================================================================
 
 # --- Functions ---
 function gr {
-  Set-Location $(git rev-parse --show-toplevel)
+  Set-LocationWithList $(git rev-parse --show-toplevel)
 }
 
 function Invoke-GitIgnoreGet {
@@ -58,9 +58,6 @@ function Invoke-HistoryJump {
   Get-Job | Stop-Job -PassThru | Remove-Job -Force
 }
 
-function j {
-  Invoke-ZJump @args
-}
 function rhl {
   rhq list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
 }
@@ -117,7 +114,7 @@ function Invoke-TrimSetLocation {
     } else {
       $Path.Trim()
     }
-    Write-Host "cd [$p]"; Set-Location $p
+    Write-Host "cd [$p]"; Set-LocationWithList $p
   }
 }
 
@@ -150,7 +147,7 @@ function y {
   if (Test-Path $tmp) {
     $cwd = Get-Content -Path $tmp
     if ($cwd -and $cwd -ne $PWD.Path) {
-      Set-Location -LiteralPath $cwd
+      Set-LocationWithList -LiteralPath $cwd
     }
     Remove-Item -Path $tmp
   }
@@ -162,15 +159,6 @@ function Update-WithMolt {
 function Get-FileAndHash {
   Get-ChildItem | ForEach-Object { [PSCustomObject]@{ path = $_.Name; hash = (Get-FileHash -Algorithm MD5 $_.FullName).Hash } }
 }
-
-# --- Aliases ---
-Remove-Item alias:r, alias:rm, alias:cd, alias:ls, alias:h, alias:z, alias:zi -ErrorAction SilentlyContinue
-Set-Alias o Start-Process
-Set-Alias which Get-Command
-Set-Alias cd Set-LocationWithList -Option AllScope
-Set-Alias ls Get-ChildItem
-Set-Alias z Invoke-ZJump -Option AllScope -Force
-Set-Alias zi Invoke-ZJump -Option AllScope -Force
 
 # Filter tool setup
 if (Get-Command fzf -ErrorAction SilentlyContinue) {
@@ -189,30 +177,41 @@ if (Get-Module -ListAvailable PSReadLine) {
   $invokePrompt = { [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt() }
 
   # --- Abbreviation Expansion (zeno.zsh style) ---
-  $rmTarget = if (Get-Command trash -ErrorAction SilentlyContinue) { "trash" }
-              elseif (Test-IsWindows) { "Move-ToTrash" }
-              else { "rm" }
+  $rmTarget = if (Get-Command trash -ErrorAction SilentlyContinue) {
+    "trash"
+  } elseif (Test-IsWindows) {
+    "Move-ToTrash"
+  } else {
+    "rm"
+  }
 
   $abbrs = @{
-    "b"   = "cd .."
-    "g"   = "git"
-    "ga"  = "git add"
-    "gc"  = "git commit"
-    "gp"  = "git pull --rebase"
-    "gpu" = "git push"
-    "gbr" = "git browse"
-    "gst" = "git status"
-    "s"   = "jj status"
-    "d"   = "jj diff"
-    "a"   = "git add"
-    "t"   = "exit"
-    "l"   = "ls"
-    "la"  = "ls -Force"
-    "c"   = "Clear-Host"
-    "h"   = "hitori"
-    "e"   = "nvim"
-    "v"   = "gvim --remote-silent"
-    "rm"  = $rmTarget
+    "b"     = "cd .."
+    "g"     = "git"
+    "ga"    = "git add"
+    "gc"    = "git commit"
+    "gp"    = "git pull --rebase"
+    "gpu"   = "git push"
+    "gbr"   = "git browse"
+    "gst"   = "git status"
+    "s"     = "jj status"
+    "d"     = "jj diff"
+    "o"     = "Start-Process"
+    "a"     = "git add"
+    "t"     = "exit"
+    "which" = "Get-Command"
+    "ls"    = "Get-ChildItem"
+    "l"     = "Get-ChildItem"
+    "la"    = "Get-ChildItem -Force"
+    "c"     = "Clear-Host"
+    "cd"    = "Set-LocationWithList"
+    "z"     = "Invoke-ZJump"
+    "j"     = "Invoke-ZJump"
+    "zi"    = "Invoke-ZJump"
+    "h"     = "hitori"
+    "e"     = "nvim"
+    "v"     = "gvim --remote-silent"
+    "rm"    = $rmTarget
   }
 
   $expandAbbrLogic = {
@@ -221,14 +220,14 @@ if (Get-Module -ListAvailable PSReadLine) {
     [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
 
     if ($cursor -gt 0) {
-        $sub = $line.Substring(0, $cursor)
-        if ($sub -match '(?<Word>\S+)$') {
-            $word = $Matches['Word']
-            if ($abbrs.ContainsKey($word)) {
-                [Microsoft.PowerShell.PSConsoleReadLine]::Delete($cursor - $word.Length, $word.Length)
-                [Microsoft.PowerShell.PSConsoleReadLine]::Insert($abbrs[$word])
-            }
+      $sub = $line.Substring(0, $cursor)
+      if ($sub -match '(?<Word>\S+)$') {
+        $word = $Matches['Word']
+        if ($abbrs.ContainsKey($word)) {
+          [Microsoft.PowerShell.PSConsoleReadLine]::Delete($cursor - $word.Length, $word.Length)
+          [Microsoft.PowerShell.PSConsoleReadLine]::Insert($abbrs[$word])
         }
+      }
     }
   }
 

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2026/01/18 01:35:21.
+// Last Change : 2026/01/18 02:44:49.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -246,7 +246,7 @@ export const edit: Plug[] = [
   },
   {
     url: "https://github.com/junegunn/vim-easy-align",
-    enabled: false,
+    enabled: true,
     profiles: ["core"],
     before: async ({ denops }) => {
       await mapping.map(denops, "<enter>", "<Plug>(EasyAlign)", { mode: "v" });
