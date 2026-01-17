@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : git.ts
 // Author      : yukimemi
-// Last Change : 2026/01/17 21:51:21.
+// Last Change : 2026/01/17 23:12:11.
 // =============================================================================
 
 import * as mapping from "@denops/std/mapping";
@@ -216,6 +216,13 @@ export const git: Plug[] = [
     },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("jujutsu-nvim").setup(_A)`, {});
+    },
+  },
+  {
+    url: "https://github.com/dallagi/git-timemachine.nvim",
+    profiles: ["git"],
+    lazy: {
+      cmd: "GitTimeMachine",
     },
   },
 ];

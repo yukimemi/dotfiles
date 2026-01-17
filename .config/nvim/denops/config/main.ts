@@ -117,9 +117,7 @@ async function vimInit(denops: Denops) {
 }
 
 async function dvpmCreate(denops: Denops): Promise<Dvpm> {
-  const basePath = denops.meta.host === "nvim"
-    ? "~/.cache/nvim/dvpm"
-    : "~/.cache/vim/dvpm";
+  const basePath = denops.meta.host === "nvim" ? "~/.cache/nvim/dvpm" : "~/.cache/vim/dvpm";
   const base = z.string().parse(await fn.expand(denops, basePath));
   const cachePath = denops.meta.host === "nvim"
     ? "~/.config/nvim/plugin/dvpm_plugin_cache.vim"

@@ -124,4 +124,3 @@ export const pluginStatus = {
   yankround: false,
   yanky: true,
 };
-

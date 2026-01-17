@@ -312,10 +312,9 @@ export const ddc: Plug[] = [
           "TextChangedT",
         ],
         backspaceCompletion: true,
-        sources:
-          await exists(z.string().parse(await fn.expand(denops, "~/.codeium")))
-            ? ["codeium", "lsp", "denippet", "around", "file", "rg"]
-            : ["lsp", "denippet", "around", "file", "rg"],
+        sources: await exists(z.string().parse(await fn.expand(denops, "~/.codeium")))
+          ? ["codeium", "lsp", "denippet", "around", "file", "rg"]
+          : ["lsp", "denippet", "around", "file", "rg"],
         cmdlineSources: {
           ":": ["cmdline", "cmdline_history", "around"],
           "@": ["input", "cmdline_history", "file", "around"],

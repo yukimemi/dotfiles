@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2026/01/17 21:47:07.
+// Last Change : 2026/01/17 23:13:51.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -22,6 +22,7 @@ import { edit } from "./plugins/edit.ts";
 import { fall } from "./plugins/fall.ts";
 import { fern } from "./plugins/fern.ts";
 import { filetypes } from "./plugins/filetypes.ts";
+import { fun } from "./plugins/fun.ts";
 import { git } from "./plugins/git.ts";
 import { ix } from "./plugins/ix.ts";
 import { libs } from "./plugins/libs.ts";
@@ -69,6 +70,7 @@ export const plugins: Plug[] = [
   ...fall,
   ...fern,
   ...filetypes,
+  ...fun,
   ...git,
   ...ix,
   ...libs,
