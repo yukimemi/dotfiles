@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : starship.toml
 # Author      : yukimemi
-# Last Change : 2024/10/09 21:16:38.
+# Last Change : 2026/01/18 00:31:46.
 # =============================================================================
 
 format = """$all"""
@@ -10,7 +10,7 @@ scan_timeout = 100
 command_timeout = 1000
 
 [os]
-disabled = true
+disabled = false
 format = "$symbol ($style) "
 style = "bold blue"
 
