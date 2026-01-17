@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : edit.ts
 // Author      : yukimemi
-// Last Change : 2026/01/17 21:49:46.
+// Last Change : 2026/01/18 01:35:21.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -243,5 +243,96 @@ export const edit: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("chunkundo").setup()`);
     },
+  },
+  {
+    url: "https://github.com/junegunn/vim-easy-align",
+    enabled: false,
+    profiles: ["core"],
+    before: async ({ denops }) => {
+      await mapping.map(denops, "<enter>", "<Plug>(EasyAlign)", { mode: "v" });
+      await vars.g.set(denops, "easy_align_delimiters", {
+        ">": {
+          "pattern": ">>\|=>\|>.\+",
+          "right_margin": 0,
+          "delimiter_align": "l",
+        },
+        "/": {
+          "pattern": "//\+\|/\*\|\*/",
+          "delimiter_align": "l",
+          "ignore_groups": ["!Comment"],
+        },
+        ".": {
+          "pattern": "/",
+          "left_margin": 1,
+          "right_margin": 1,
+          "stick_to_left": 0,
+          "ignore_groups": [],
+        },
+        "]": {
+          "pattern": "[[\]]",
+          "left_margin": 0,
+          "right_margin": 0,
+          "stick_to_left": 0,
+        },
+        ")": {
+          "pattern": "[()]",
+          "left_margin": 0,
+          "right_margin": 0,
+          "stick_to_left": 0,
+        },
+        "d": {
+          "pattern": " \(\S\+\s*[;=]\)\@=",
+          "left_margin": 0,
+          "right_margin": 0,
+        },
+        "p": {
+          "pattern": "pos=\|size=",
+          "right_margin": 0,
+        },
+        "s": {
+          "pattern": "sys=\|Trns=",
+          "right_margin": 0,
+        },
+        "k": {
+          "pattern": "key=\|cmt=",
+          "right_margin": 0,
+        },
+        "c": {
+          "pattern": "cmt=",
+          "right_margin": 0,
+        },
+        ":": {
+          "pattern": ":",
+          "left_margin": 0,
+          "right_margin": 1,
+          "stick_to_left": 0,
+          "ignore_groups": [],
+        },
+        "t": {
+          "pattern": "\<tab>",
+          "left_margin": 0,
+          "right_margin": 0,
+        },
+        ";": {
+          "pattern": ";",
+          "left_margin": 1,
+          "right_margin": 1,
+          "stick_to_left": 0,
+          "ignore_groups": [],
+        },
+        "|": {
+          "pattern": "|",
+          "left_margin": 1,
+          "right_margin": 1,
+          "stick_to_left": 0,
+          "ignore_groups": [],
+        },
+      });
+    },
+  },
+  {
+    url: "https://github.com/kana/vim-repeat",
+    enabled: true,
+    profiles: ["core"],
   },
 ];

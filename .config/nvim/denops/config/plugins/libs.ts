@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : libs.ts
 // Author      : yukimemi
-// Last Change : 2026/01/17 21:52:46.
+// Last Change : 2026/01/18 01:35:42.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -48,50 +48,6 @@ export const libs: Plug[] = [
     cache: { enabled: true },
   },
   {
-    url: "https://github.com/j-hui/fidget.nvim",
-    enabled: selections.notification === "fidget",
-    profiles: ["ui"],
-    cache: { afterFile: "~/.config/nvim/rc/after/fidget.lua" },
-  },
-  {
-    url: "https://github.com/rcarriga/nvim-notify",
-    enabled: selections.notification === "nvim-notify",
-    profiles: ["ui"],
-    cache: {
-      enabled: false,
-      afterFile: "~/.config/nvim/rc/after/nvim-notify.lua",
-    },
-    after: async ({ denops }) => {
-      await mapping.map(
-        denops,
-        "<leader>nc",
-        `<cmd>lua require("notify").dismiss()<cr>`,
-        {
-          mode: "n",
-        },
-      );
-    },
-    afterFile: "~/.config/nvim/rc/after/nvim-notify.lua",
-  },
-  {
-    url: "https://github.com/vigoux/notifier.nvim",
-    enabled: selections.notification === "notifier",
-    profiles: ["ui"],
-    cache: {
-      afterFile: "~/.config/nvim/rc/after/notifier.lua",
-    },
-    after: async ({ denops }) => {
-      await mapping.map(
-        denops,
-        "<leader>nc",
-        `<cmd>NotifierClear<cr>`,
-        {
-          mode: "n",
-        },
-      );
-    },
-  },
-  {
     url: "https://github.com/nvim-lua/plenary.nvim",
     profiles: ["core"],
     lazy: { enabled: true },
@@ -102,79 +58,9 @@ export const libs: Plug[] = [
     lazy: { enabled: true },
   },
   {
-    url: "https://github.com/nvim-tree/nvim-web-devicons",
-    profiles: ["core"],
-    lazy: { enabled: true },
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("nvim-web-devicons").setup(_A)`, {
-        default: true,
-      });
-    },
-  },
-  {
-    url: "https://github.com/rachartier/tiny-devicons-auto-colors.nvim",
-    enabled: false,
-    profiles: ["ui"],
-    dependencies: ["https://github.com/nvim-tree/nvim-web-devicons"],
-    after: async ({ denops }) => {
-      await denops.call(
-        `luaeval`,
-        `require("tiny-devicons-auto-colors").setup()`,
-      );
-    },
-  },
-  {
-    url: "https://github.com/folke/noice.nvim",
-    enabled: selections.notification === "noice",
-    profiles: ["core"],
-    dependencies: [
-      "https://github.com/MunifTanjim/nui.nvim",
-    ],
-    after: async ({ denops }) => {
-      await vars.o.set(denops, "cmdheight", 0);
-      await denops.call(`luaeval`, `require("noice").setup(_A)`, {
-        lsp: {
-          override: {
-            "vim.lsp.util.convert_input_to_markdown_lines": true,
-            "vim.lsp.util.stylize_markdown": true,
-          },
-        },
-        presets: {
-          bottom_search: true,
-          command_palette: true,
-          long_message_to_split: true,
-          inc_rename: false,
-          lsp_doc_border: false,
-        },
-        cmdline: {
-          enabled: true,
-        },
-        notify: {
-          enabled: true,
-        },
-      });
-    },
-  },
-  {
-    url: "https://github.com/maikel-479/noti.nvim",
-    enabled: false,
-    profiles: ["core"],
-    dependencies: [
-      "https://github.com/nvim-lua/plenary.nvim",
-      "https://github.com/nvzone/volt",
-      "https://github.com/folke/noice.nvim",
-    ],
-    afterFile: `~/.config/nvim/rc/after/noti.lua`,
-  },
-  {
     url: "https://github.com/kamalsacranie/nvim-mapper",
     profiles: ["core"],
     cache: { enabled: true },
-  },
-  {
-    url: "https://github.com/kana/vim-repeat",
-    enabled: true,
-    profiles: ["core"],
   },
   {
     url: "https://github.com/tyru/open-browser.vim",
@@ -197,24 +83,6 @@ export const libs: Plug[] = [
     lazy: {
       event: ["BufRead", "BufNewFile"],
     },
-  },
-  {
-    url: "https://github.com/ryanoasis/vim-devicons",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "vim",
-    // deno-lint-ignore require-await
-    clone: async ({ denops }) => denops.meta.host === "vim",
-    profiles: ["ui"],
-    lazy: { enabled: true },
-  },
-  {
-    url: "https://github.com/folke/which-key.nvim",
-    enabled: true,
-    profiles: ["core"],
-    lazy: {
-      event: "CursorHold",
-    },
-    afterFile: `~/.config/nvim/rc/after/which-key.lua`,
   },
   {
     url: "https://github.com/lambdalisue/vim-findent",

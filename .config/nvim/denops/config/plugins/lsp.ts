@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2026/01/17 21:54:16.
+// Last Change : 2026/01/18 01:36:55.
 // =============================================================================
 
 import { execute } from "@denops/std/helper";
@@ -226,5 +226,10 @@ EOB
       );
     },
     afterFile: "~/.config/nvim/rc/after/nvim-lspconfig.lua",
+  },
+  {
+    url: "https://github.com/ThePrimeagen/refactoring.nvim",
+    profiles: ["lsp"],
+    afterFile: "~/.config/nvim/rc/after/refactoring.lua",
   },
 ];

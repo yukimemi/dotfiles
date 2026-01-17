@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2026/01/17 23:10:57.
+// Last Change : 2026/01/18 01:39:30.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -9,6 +9,7 @@ import type { Plug } from "@yukimemi/dvpm";
 import * as autocmd from "@denops/std/autocmd";
 import * as fn from "@denops/std/function";
 import * as lambda from "@denops/std/lambda";
+import * as mapping from "@denops/std/mapping";
 import * as nvimFn from "@denops/std/function/nvim";
 import * as vars from "@denops/std/variable";
 
@@ -486,45 +487,6 @@ export const ui: Plug[] = [
     },
   },
   {
-    url: "https://github.com/4513ECHO/vim-snipewin",
-    enabled: pluginStatus.snipewin,
-    profiles: ["ui"],
-    lazy: {
-      keys: [
-        { lhs: "sw", rhs: "<Plug>(snipewin)", mode: "n" },
-      ],
-    },
-  },
-  {
-    url: "https://github.com/s1n7ax/nvim-window-picker",
-    enabled: pluginStatus.windowpicker,
-    profiles: ["ui"],
-    lazy: {
-      keys: [
-        {
-          lhs: "sw",
-          rhs: "<cmd>lua require('window-picker').pick_window()<cr>",
-          mode: "n",
-        },
-      ],
-    },
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("window-picker").setup(_A)`, {
-        hint: "floating-big-letter",
-      });
-    },
-  },
-  {
-    url: "https://github.com/nvim-zh/colorful-winsep.nvim",
-    profiles: ["ui"],
-    lazy: {
-      event: ["WinNew", "WinEnter"],
-    },
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("colorful-winsep").setup()`);
-    },
-  },
-  {
     url: "https://github.com/Aasim-A/scrollEOF.nvim",
     profiles: ["ui"],
     lazy: {
@@ -532,14 +494,6 @@ export const ui: Plug[] = [
     },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("scrollEOF").setup()`);
-    },
-  },
-  {
-    url: "https://github.com/tamton-aquib/flirt.nvim",
-    enabled: Deno.build.os !== "windows" && false,
-    profiles: ["ui"],
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("flirt").setup()`);
     },
   },
   {
@@ -687,5 +641,132 @@ export const ui: Plug[] = [
         fadelevel: 0.8,
       });
     },
+  },
+  {
+    url: "https://github.com/j-hui/fidget.nvim",
+    enabled: selections.notification === "fidget",
+    profiles: ["ui"],
+    cache: { afterFile: "~/.config/nvim/rc/after/fidget.lua" },
+  },
+  {
+    url: "https://github.com/rcarriga/nvim-notify",
+    enabled: selections.notification === "nvim-notify",
+    profiles: ["ui"],
+    cache: {
+      enabled: false,
+      afterFile: "~/.config/nvim/rc/after/nvim-notify.lua",
+    },
+    after: async ({ denops }) => {
+      await mapping.map(
+        denops,
+        "<leader>nc",
+        `<cmd>lua require("notify").dismiss()<cr>`,
+        {
+          mode: "n",
+        },
+      );
+    },
+    afterFile: "~/.config/nvim/rc/after/nvim-notify.lua",
+  },
+  {
+    url: "https://github.com/vigoux/notifier.nvim",
+    enabled: selections.notification === "notifier",
+    profiles: ["ui"],
+    cache: {
+      afterFile: "~/.config/nvim/rc/after/notifier.lua",
+    },
+    after: async ({ denops }) => {
+      await mapping.map(
+        denops,
+        "<leader>nc",
+        `<cmd>NotifierClear<cr>`,
+        {
+          mode: "n",
+        },
+      );
+    },
+  },
+  {
+    url: "https://github.com/nvim-tree/nvim-web-devicons",
+    profiles: ["core"],
+    lazy: { enabled: true },
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("nvim-web-devicons").setup(_A)`, {
+        default: true,
+      });
+    },
+  },
+  {
+    url: "https://github.com/rachartier/tiny-devicons-auto-colors.nvim",
+    enabled: false,
+    profiles: ["ui"],
+    dependencies: ["https://github.com/nvim-tree/nvim-web-devicons"],
+    after: async ({ denops }) => {
+      await denops.call(
+        `luaeval`,
+        `require("tiny-devicons-auto-colors").setup()`,
+      );
+    },
+  },
+  {
+    url: "https://github.com/folke/noice.nvim",
+    enabled: selections.notification === "noice",
+    profiles: ["core"],
+    dependencies: [
+      "https://github.com/MunifTanjim/nui.nvim",
+    ],
+    after: async ({ denops }) => {
+      await vars.o.set(denops, "cmdheight", 0);
+      await denops.call(`luaeval`, `require("noice").setup(_A)`, {
+        lsp: {
+          override: {
+            "vim.lsp.util.convert_input_to_markdown_lines": true,
+            "vim.lsp.util.stylize_markdown": true,
+          },
+        },
+        presets: {
+          bottom_search: true,
+          command_palette: true,
+          long_message_to_split: true,
+          inc_rename: false,
+          lsp_doc_border: false,
+        },
+        cmdline: {
+          enabled: true,
+        },
+        notify: {
+          enabled: true,
+        },
+      });
+    },
+  },
+  {
+    url: "https://github.com/maikel-479/noti.nvim",
+    enabled: false,
+    profiles: ["core"],
+    dependencies: [
+      "https://github.com/nvim-lua/plenary.nvim",
+      "https://github.com/nvzone/volt",
+      "https://github.com/folke/noice.nvim",
+    ],
+    afterFile: `~/.config/nvim/rc/after/noti.lua`,
+  },
+  {
+    url: "https://github.com/ryanoasis/vim-devicons",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "vim",
+    // deno-lint-ignore require-await
+    clone: async ({ denops }) => denops.meta.host === "vim",
+    profiles: ["ui"],
+    lazy: { enabled: true },
+  },
+  {
+    url: "https://github.com/folke/which-key.nvim",
+    enabled: true,
+    profiles: ["core"],
+    lazy: {
+      event: "CursorHold",
+    },
+    afterFile: `~/.config/nvim/rc/after/which-key.lua`,
   },
 ];

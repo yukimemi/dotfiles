@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : startup.ts
 // Author      : yukimemi
-// Last Change : 2025/09/21 17:12:00.
+// Last Change : 2026/01/18 01:39:05.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -42,6 +42,24 @@ export const startup: Plug[] = [
     cache: {
       enabled: false,
       afterFile: "~/.config/nvim/rc/after/billboard.lua",
+    },
+  },
+  {
+    url: "https://github.com/dstein64/vim-startuptime",
+    profiles: ["core"],
+    lazy: {
+      cmd: "StartupTime",
+    },
+  },
+  {
+    url: "https://github.com/thinca/vim-singleton",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.host === "vim",
+    // deno-lint-ignore require-await
+    clone: async ({ denops }) => denops.meta.host === "vim",
+    profiles: ["core"],
+    cache: {
+      after: `call singleton#enable()`,
     },
   },
 ];

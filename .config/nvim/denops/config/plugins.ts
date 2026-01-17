@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : plugins.ts
 // Author      : yukimemi
-// Last Change : 2026/01/17 23:13:51.
+// Last Change : 2026/01/18 01:35:07.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -34,6 +34,7 @@ import { neotree } from "./plugins/neotree.ts";
 import { nvimtree } from "./plugins/nvimtree.ts";
 import { oil } from "./plugins/oil.ts";
 import { operator } from "./plugins/operator.ts";
+import { quickfix } from "./plugins/quickfix.ts";
 import { runner } from "./plugins/runner.ts";
 import { search } from "./plugins/search.ts";
 import { snacks } from "./plugins/snacks.ts";
@@ -50,6 +51,7 @@ import { treesitter } from "./plugins/treesitter.ts";
 import { twitter } from "./plugins/twitter.ts";
 import { ui } from "./plugins/ui.ts";
 import { util } from "./plugins/util.ts";
+import { window } from "./plugins/window.ts";
 import { yazi } from "./plugins/yazi.ts";
 
 export const plugins: Plug[] = [
@@ -82,6 +84,7 @@ export const plugins: Plug[] = [
   ...nvimtree,
   ...oil,
   ...operator,
+  ...quickfix,
   ...runner,
   ...search,
   ...snacks,
@@ -98,5 +101,6 @@ export const plugins: Plug[] = [
   ...twitter,
   ...ui,
   ...util,
+  ...window,
   ...yazi,
 ];

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2026/01/18 00:26:46.
+// Last Change : 2026/01/18 01:40:01.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -17,13 +17,6 @@ export const util: Plug[] = [
     url: "https://github.com/tyru/capture.vim",
     enabled: false,
     profiles: ["core"],
-  },
-  {
-    url: "https://github.com/dstein64/vim-startuptime",
-    profiles: ["core"],
-    lazy: {
-      cmd: "StartupTime",
-    },
   },
   {
     url: "https://github.com/thinca/vim-partedit",
@@ -119,92 +112,6 @@ export const util: Plug[] = [
     },
   },
   {
-    url: "https://github.com/junegunn/vim-easy-align",
-    enabled: false,
-    profiles: ["core"],
-    before: async ({ denops }) => {
-      await mapping.map(denops, "<enter>", "<Plug>(EasyAlign)", { mode: "v" });
-      await vars.g.set(denops, "easy_align_delimiters", {
-        ">": {
-          "pattern": ">>\|=>\|>.\+",
-          "right_margin": 0,
-          "delimiter_align": "l",
-        },
-        "/": {
-          "pattern": "//\+\|/\*\|\*/",
-          "delimiter_align": "l",
-          "ignore_groups": ["!Comment"],
-        },
-        ".": {
-          "pattern": "/",
-          "left_margin": 1,
-          "right_margin": 1,
-          "stick_to_left": 0,
-          "ignore_groups": [],
-        },
-        "]": {
-          "pattern": "[[\]]",
-          "left_margin": 0,
-          "right_margin": 0,
-          "stick_to_left": 0,
-        },
-        ")": {
-          "pattern": "[()]",
-          "left_margin": 0,
-          "right_margin": 0,
-          "stick_to_left": 0,
-        },
-        "d": {
-          "pattern": " \(\S\+\s*[;=]\)\@=",
-          "left_margin": 0,
-          "right_margin": 0,
-        },
-        "p": {
-          "pattern": "pos=\|size=",
-          "right_margin": 0,
-        },
-        "s": {
-          "pattern": "sys=\|Trns=",
-          "right_margin": 0,
-        },
-        "k": {
-          "pattern": "key=\|cmt=",
-          "right_margin": 0,
-        },
-        "c": {
-          "pattern": "cmt=",
-          "right_margin": 0,
-        },
-        ":": {
-          "pattern": ":",
-          "left_margin": 0,
-          "right_margin": 1,
-          "stick_to_left": 0,
-          "ignore_groups": [],
-        },
-        "t": {
-          "pattern": "\<tab>",
-          "left_margin": 0,
-          "right_margin": 0,
-        },
-        ";": {
-          "pattern": ";",
-          "left_margin": 1,
-          "right_margin": 1,
-          "stick_to_left": 0,
-          "ignore_groups": [],
-        },
-        "|": {
-          "pattern": "|",
-          "left_margin": 1,
-          "right_margin": 1,
-          "stick_to_left": 0,
-          "ignore_groups": [],
-        },
-      });
-    },
-  },
-  {
     url: "https://github.com/thinca/vim-ambicmd",
     profiles: ["core"],
     cache: {
@@ -236,108 +143,10 @@ export const util: Plug[] = [
     cache: { enabled: true },
   },
   {
-    url: "https://github.com/anuvyklack/middleclass",
-    enabled: pluginStatus.windows,
-    profiles: ["ui"],
-  },
-  {
-    url: "https://github.com/anuvyklack/animation.nvim",
-    enabled: pluginStatus.windows,
-    profiles: ["ui"],
-  },
-  {
-    url: "https://github.com/anuvyklack/windows.nvim",
-    enabled: pluginStatus.windows,
-    profiles: ["ui"],
-    dependencies: [
-      "https://github.com/anuvyklack/middleclass",
-      "https://github.com/anuvyklack/animation.nvim",
-    ],
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("windows").setup(_A)`, {
-        autowidth: {
-          enable: true,
-          winwidth: 5,
-          filetype: {
-            help: 2,
-          },
-        },
-        ignore: {
-          buftype: ["quickfix"],
-          filetype: [
-            "NvimTree",
-            "TelescopePrompt",
-            "aerial",
-            "coc-explorer",
-            "ctrlp",
-            "ddu",
-            "ddu-ff",
-            "ddu-ff-filter",
-            "ddu-filer",
-            "gundo",
-            "list",
-            "neo-tree",
-            "qf",
-            "quickfix",
-            "scanwalker",
-            "scanwalker-filter",
-            "undotree",
-            "fall-input",
-            "fall-list",
-            "fall-help",
-          ],
-        },
-        animation: {
-          enable: true,
-          duration: 300,
-          fps: 30,
-          easing: "in_out_sine",
-        },
-      });
-      await mapping.map(denops, "sz", "<cmd>WindowsMaximize<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "s_", "<cmd>WindowsMaximizeVertically<cr>", {
-        mode: "n",
-      });
-      await mapping.map(
-        denops,
-        "s\\|",
-        "<cmd>WindowsMaximizeHorizontally<cr>",
-        {
-          mode: "n",
-        },
-      );
-      await mapping.map(denops, "s=", "<cmd>WindowsEqualize<cr>", {
-        mode: "n",
-      });
-    },
-  },
-  {
-    url: "https://github.com/simeji/winresizer",
-    profiles: ["core"],
-    before: async ({ denops }) => {
-      await vars.g.set(denops, "winresizer_gui_enable", 0);
-    },
-  },
-  {
-    url: "https://github.com/tenxsoydev/size-matters.nvim",
-    enabled: async ({ denops }) =>
-      (await fn.exists(denops, "g:neovide")) ||
-      (await fn.exists(denops, ":GuiFont")),
-    profiles: ["core"],
-    afterFile: "~/.config/nvim/rc/after/size-matters.lua",
-  },
-  {
     url: "https://github.com/gaoDean/autolist.nvim",
     enabled: false,
     profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/autolist.lua",
-  },
-  {
-    url: "https://github.com/thinca/vim-winenv",
-    enabled: Deno.build.os === "windows",
-    profiles: ["core"],
   },
   {
     url: "https://github.com/folke/todo-comments.nvim",
@@ -345,17 +154,6 @@ export const util: Plug[] = [
     dependencies: ["https://github.com/nvim-lua/plenary.nvim"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("todo-comments").setup()`);
-    },
-  },
-  {
-    url: "https://github.com/thinca/vim-singleton",
-    // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.host === "vim",
-    // deno-lint-ignore require-await
-    clone: async ({ denops }) => denops.meta.host === "vim",
-    profiles: ["core"],
-    cache: {
-      after: `call singleton#enable()`,
     },
   },
   {
@@ -510,14 +308,6 @@ export const util: Plug[] = [
     profiles: ["ui"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("hydrate").setup()`);
-    },
-  },
-  {
-    url: "https://github.com/kevinhwang91/nvim-bqf",
-    enabled: pluginStatus.bqf,
-    profiles: ["quickfix"],
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("bqf").setup()`);
     },
   },
   {
@@ -690,17 +480,6 @@ EOB
     },
   },
   {
-    url: "https://github.com/mei28/qfc.nvim",
-    enabled: true,
-    profiles: ["quickfix"],
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("qfc").setup(_A)`, {
-        enabled: true,
-        timeout: 30000,
-      });
-    },
-  },
-  {
     url: "https://github.com/juliuswaldmann/here.nvim",
     profiles: ["core"],
     cache: {
@@ -714,22 +493,6 @@ EOB
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("img-clip").setup()`);
     },
-  },
-  {
-    url: "https://github.com/itchyny/vim-qfedit",
-    profiles: ["quickfix"],
-  },
-  {
-    url: "https://github.com/stevearc/quicker.nvim",
-    enabled: pluginStatus.quicker,
-    profiles: ["quickfix"],
-    afterFile: "~/.config/nvim/rc/after/quicker.lua",
-  },
-  {
-    url: "https://github.com/r0nsha/qfpreview.nvim",
-    enabled: pluginStatus.qfpreview,
-    profiles: ["quickfix"],
-    afterFile: "~/.config/nvim/rc/after/qfpreview.lua",
   },
   {
     url: "https://github.com/Shougo/junkfile.vim",
@@ -751,25 +514,12 @@ EOB
     },
   },
   {
-    url: "https://github.com/BlankTiger/aqf.nvim",
-    enabled: false,
-    profiles: ["quickfix"],
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("aqf").setup()`);
-    },
-  },
-  {
     url: "https://github.com/smilhey/ed-cmd.nvim",
     enabled: false,
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("ed-cmd").setup({})`);
     },
-  },
-  {
-    url: "https://github.com/ThePrimeagen/refactoring.nvim",
-    profiles: ["lsp"],
-    afterFile: "~/.config/nvim/rc/after/refactoring.lua",
   },
   {
     url: "https://github.com/nil-two/vim-incopen",
@@ -836,19 +586,6 @@ EOB
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("early-retirement").setup({})`);
-    },
-  },
-  {
-    url: "https://github.com/lkzz/golden-ratio.nvim",
-    profiles: ["core"],
-    lazy: {
-      event: ["WinEnter", "VimResized", "BufWinEnter"],
-    },
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("golden-ratio").setup(_A)`, {
-        exclude_buffer_patterns: ["aiboconsole://*", "aiboprompt://*"],
-      });
-      await denops.call(`luaeval`, `require("golden-ratio").enable()`);
     },
   },
   {

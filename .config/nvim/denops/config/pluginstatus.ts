@@ -40,6 +40,7 @@ export const features = {
   twitter: false,
   ui: true,
   yank: true,
+  window: true,
 };
 
 export type Selections = {
