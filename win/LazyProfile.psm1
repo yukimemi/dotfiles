@@ -1,45 +1,12 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/01/12 16:55:05.
+# Last Change : 2026/01/18 10:20:00.
 # =============================================================================
 
 # --- Functions ---
-function b {
-  Set-Location ..
-}
-function g {
-  git $args
-}
-function s {
-  jj status
-}
-function d {
-  jj diff $args
-}
-function a {
-  git add $args
-}
-function gp {
-  git pull --rebase
-}
-function gpu {
-  git push
-}
-function gbr {
-  git browse
-}
 function gr {
   Set-Location $(git rev-parse --show-toplevel)
-}
-function t {
-  exit
-}
-function l {
-  Get-ChildItem $args
-}
-function la {
-  Get-ChildItem -Force $args
 }
 
 function Invoke-GitIgnoreGet {
@@ -157,9 +124,6 @@ function Invoke-TrimSetLocation {
 function fe {
   nvim $(fd -H -t f | __FILTER | Select-Object -First 1)
 }
-function v {
-  gvim --remote-silent $args
-}
 function VimDeinUpdate {
   vim -c "silent! call dein#update() | q"
 }
@@ -201,16 +165,10 @@ function Get-FileAndHash {
 
 # --- Aliases ---
 Remove-Item alias:r, alias:rm, alias:cd, alias:ls, alias:h, alias:z, alias:zi -ErrorAction SilentlyContinue
-if (Test-IsWindows) {
-  Set-Alias rm Move-ToTrash
-}
 Set-Alias o Start-Process
-Set-Alias c Clear-Host
 Set-Alias which Get-Command
 Set-Alias cd Set-LocationWithList -Option AllScope
 Set-Alias ls Get-ChildItem
-Set-Alias h hitori
-Set-Alias e nvim
 Set-Alias z Invoke-ZJump -Option AllScope -Force
 Set-Alias zi Invoke-ZJump -Option AllScope -Force
 
@@ -229,6 +187,60 @@ if (Get-Module -ListAvailable PSReadLine) {
   }
 
   $invokePrompt = { [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt() }
+
+  # --- Abbreviation Expansion (zeno.zsh style) ---
+  $rmTarget = if (Get-Command trash -ErrorAction SilentlyContinue) { "trash" }
+              elseif (Test-IsWindows) { "Move-ToTrash" }
+              else { "rm" }
+
+  $abbrs = @{
+    "b"   = "cd .."
+    "g"   = "git"
+    "ga"  = "git add"
+    "gc"  = "git commit"
+    "gp"  = "git pull --rebase"
+    "gpu" = "git push"
+    "gbr" = "git browse"
+    "gst" = "git status"
+    "s"   = "jj status"
+    "d"   = "jj diff"
+    "a"   = "git add"
+    "t"   = "exit"
+    "l"   = "ls"
+    "la"  = "ls -Force"
+    "c"   = "Clear-Host"
+    "h"   = "hitori"
+    "e"   = "nvim"
+    "v"   = "gvim --remote-silent"
+    "rm"  = $rmTarget
+  }
+
+  $expandAbbrLogic = {
+    $line = $null
+    $cursor = $null
+    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
+
+    if ($cursor -gt 0) {
+        $sub = $line.Substring(0, $cursor)
+        if ($sub -match '(?<Word>\S+)$') {
+            $word = $Matches['Word']
+            if ($abbrs.ContainsKey($word)) {
+                [Microsoft.PowerShell.PSConsoleReadLine]::Delete($cursor - $word.Length, $word.Length)
+                [Microsoft.PowerShell.PSConsoleReadLine]::Insert($abbrs[$word])
+            }
+        }
+    }
+  }
+
+  Set-PSReadLineKeyHandler -Key Spacebar -ViMode Insert -ScriptBlock {
+    . $expandAbbrLogic
+    [Microsoft.PowerShell.PSConsoleReadLine]::Insert(' ')
+  }.GetNewClosure()
+
+  Set-PSReadLineKeyHandler -Key Enter -ViMode Insert -ScriptBlock {
+    . $expandAbbrLogic
+    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+  }.GetNewClosure()
 
   Set-PSReadLineKeyHandler -Chord Escape -ViMode Insert -ScriptBlock {
     [Microsoft.PowerShell.PSConsoleReadLine]::ViCommandMode($null, $null)
