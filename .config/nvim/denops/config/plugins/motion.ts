@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2026/01/17 21:58:36.
+// Last Change : 2026/01/18 00:42:36.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -123,6 +123,9 @@ export const motion: Plug[] = [
   {
     url: "https://github.com/hrsh7th/nvim-swm",
     profiles: ["motion"],
+    lazy: {
+      event: ["BufRead", "BufNewFile"],
+    },
     afterFile: "~/.config/nvim/rc/after/nvim-swim.lua",
   },
   {
