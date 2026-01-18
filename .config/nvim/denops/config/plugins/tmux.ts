@@ -10,7 +10,7 @@ export const tmux: Plug[] = [
   {
     url: "https://github.com/christoomey/vim-tmux-navigator",
     // deno-lint-ignore require-await
-    enabled: async ({ denops }) => denops.meta.platform !== "windows",
+    enabled: false,
     profiles: ["core"],
   },
 ];

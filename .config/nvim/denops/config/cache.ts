@@ -88,10 +88,25 @@ export function cacheLua() {
       vim.g.maplocalleader = "\\\\";
 
       -- Move to window using the <ctrl> movement keys
-      vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true, noremap = true })
-      vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true, noremap = true })
-      vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true, noremap = true })
-      vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true, noremap = true })
+      local function tmux_move(direction)
+        local winnr = vim.api.nvim_get_current_win()
+        vim.cmd("wincmd " .. direction)
+        if winnr == vim.api.nvim_get_current_win() then
+          local tmux_pane_direction = ""
+          if direction == "h" then tmux_pane_direction = "-L" end
+          if direction == "j" then tmux_pane_direction = "-D" end
+          if direction == "k" then tmux_pane_direction = "-U" end
+          if direction == "l" then tmux_pane_direction = "-R" end
+          if tmux_pane_direction ~= "" then
+            vim.fn.system("tmux select-pane " .. tmux_pane_direction)
+          end
+        end
+      end
+
+      vim.keymap.set({"n", "t"}, "<C-h>", function() tmux_move("h") end, { silent = true, noremap = true })
+      vim.keymap.set({"n", "t"}, "<C-j>", function() tmux_move("j") end, { silent = true, noremap = true })
+      vim.keymap.set({"n", "t"}, "<C-k>", function() tmux_move("k") end, { silent = true, noremap = true })
+      vim.keymap.set({"n", "t"}, "<C-l>", function() tmux_move("l") end, { silent = true, noremap = true })
 
       vim.keymap.set("n", "<space><space>", "<cmd>update<cr>", { silent = true, noremap = true })
       vim.keymap.set("n", "<tab>", "%", { silent = true, noremap = true })

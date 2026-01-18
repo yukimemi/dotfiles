@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : keymap.ts
 // Author      : yukimemi
-// Last Change : 2026/01/11 23:02:01.
+// Last Change : 2026/01/18 18:54:02.
 // =============================================================================
 
 import type { Denops } from "@denops/std";
@@ -161,26 +161,26 @@ export async function setKeymapPre(denops: Denops) {
     });
     // await mapping.map(denops, "sw", "<c-w>w", { mode: "n", silent: true });
 
-    await mapping.map(denops, "<c-h>", "<c-w>h", {
-      mode: "n",
-      silent: true,
-      noremap: true,
-    });
-    await mapping.map(denops, "<c-l>", "<c-w>l", {
-      mode: "n",
-      silent: true,
-      noremap: true,
-    });
-    await mapping.map(denops, "<c-j>", "<c-w>j", {
-      mode: "n",
-      silent: true,
-      noremap: true,
-    });
-    await mapping.map(denops, "<c-k>", "<c-w>k", {
-      mode: "n",
-      silent: true,
-      noremap: true,
-    });
+    // await mapping.map(denops, "<c-h>", "<c-w>h", {
+    //   mode: "n",
+    //   silent: true,
+    //   noremap: true,
+    // });
+    // await mapping.map(denops, "<c-l>", "<c-w>l", {
+    //   mode: "n",
+    //   silent: true,
+    //   noremap: true,
+    // });
+    // await mapping.map(denops, "<c-j>", "<c-w>j", {
+    //   mode: "n",
+    //   silent: true,
+    //   noremap: true,
+    // });
+    // await mapping.map(denops, "<c-k>", "<c-w>k", {
+    //   mode: "n",
+    //   silent: true,
+    //   noremap: true,
+    // });
 
     await mapping.map(denops, "<c-p>", "<up>", {
       mode: "c",
