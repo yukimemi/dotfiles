@@ -14,6 +14,11 @@ function Test-IsWindows {
     ($PSVersionTable.PSVersion.Major -eq 5) -or ($PSVersionTable.Platform -eq "Win32NT")
 }
 
+function Test-IsWsl {
+    if (Test-IsWindows) { return $false }
+    return (Test-Path /proc/version) -and (Get-Content /proc/version | Select-String "microsoft" -Quiet)
+}
+
 function Get-DriveInfo {
     Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Used -and $_.Name -ne "Temp" } | Sort-Object Name
 }
@@ -30,7 +35,9 @@ $env:LANG = "ja_JP.UTF-8"
 $env:EDITOR = "nvim"
 
 # Browser
-if (!(Test-IsWindows)) {
+if (Test-IsWsl) {
+    $env:BROWSER = "/mnt/c/Progra~1/Google/Chrome/Application/chrome.exe"
+} elseif (!(Test-IsWindows)) {
     $env:BROWSER = "chromium-browser"
 }
 
