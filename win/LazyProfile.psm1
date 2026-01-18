@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/01/18 02:49:05.
+# Last Change : 2026/01/18 17:20:42.
 # =============================================================================
 
 # --- Functions ---
@@ -186,32 +186,33 @@ if (Get-Module -ListAvailable PSReadLine) {
   }
 
   $abbrs = @{
+    "a"     = "git add"
     "b"     = "cd .."
+    "c"     = "Clear-Host"
+    "cat"   = "bat"
+    "cd"    = "Set-LocationWithList"
+    "d"     = "jj diff"
+    "e"     = "nvim"
     "g"     = "git"
     "ga"    = "git add"
+    "gbr"   = "git browse"
     "gc"    = "git commit"
     "gp"    = "git pull --rebase"
     "gpu"   = "git push"
-    "gbr"   = "git browse"
     "gst"   = "git status"
-    "s"     = "jj status"
-    "d"     = "jj diff"
-    "o"     = "Start-Process"
-    "a"     = "git add"
-    "t"     = "exit"
-    "which" = "Get-Command"
-    "ls"    = "Get-ChildItem"
+    "h"     = "hitori"
+    "j"     = "Invoke-ZJump"
     "l"     = "Get-ChildItem"
     "la"    = "Get-ChildItem -Force"
-    "c"     = "Clear-Host"
-    "cd"    = "Set-LocationWithList"
-    "z"     = "Invoke-ZJump"
-    "j"     = "Invoke-ZJump"
-    "zi"    = "Invoke-ZJump"
-    "h"     = "hitori"
-    "e"     = "nvim"
-    "v"     = "gvim --remote-silent"
+    "ls"    = "Get-ChildItem"
+    "o"     = "Start-Process"
     "rm"    = $rmTarget
+    "s"     = "jj status"
+    "t"     = "exit"
+    "v"     = "gvim --remote-silent"
+    "which" = "Get-Command"
+    "z"     = "Invoke-ZJump"
+    "zi"    = "Invoke-ZJump"
   }
 
   $expandAbbrLogic = {

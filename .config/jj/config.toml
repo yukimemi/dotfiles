@@ -18,3 +18,5 @@ email = "yukimemi@gmail.com"
 [ui]
 default-command = "log"
 editor = "nvim"
+pager = "delta"
+diff-formatter = ":git"
