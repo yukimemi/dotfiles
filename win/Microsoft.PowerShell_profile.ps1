@@ -54,21 +54,20 @@ $PathSeparator = [IO.Path]::PathSeparator
 $UserHome = if (Test-IsWindows) { $env:USERPROFILE } else { $env:HOME }
 
 $AdditionalPaths = @(
-    (Join-Path $UserHome ".local/share/mise/shims"),
     (Join-Path $UserHome ".cargo/bin"),
     (Join-Path $UserHome ".bun/bin"),
     (Join-Path $UserHome ".deno/bin"),
     (Join-Path $UserHome "go/bin")
 )
 
-if (Test-IsWindows) {
-    $AdditionalPaths += (Join-Path $env:LOCALAPPDATA "mise\shims")
-}
-
 foreach ($p in $AdditionalPaths) {
     if ((Test-Path $p) -and ($env:PATH -notlike "*$p*")) {
         $env:PATH = "$p$PathSeparator" + $env:PATH
     }
+}
+
+if (Get-Command mise -ErrorAction SilentlyContinue) {
+    Invoke-Expression (mise activate pwsh | Out-String)
 }
 
 # --- Cache & Auto-Generation ---

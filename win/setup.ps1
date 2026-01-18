@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/01/18 13:46:58.
+  .Last Change : 2026/01/19 01:33:23.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue"
@@ -194,7 +194,6 @@ function Set-RequiredEnv {
   }
 
   $targetPaths = @(
-    "${env:LOCALAPPDATA}\mise\shims",
     "${env:USERPROFILE}\.cargo\bin",
     "${env:USERPROFILE}\.deno\bin",
     "${env:USERPROFILE}\.bun\bin",
