@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/01/02 11:30:00.
+  .Last Change : 2026/01/18 13:46:58.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue"
@@ -63,14 +63,9 @@ function Install-BinaryArchive {
   New-Item -ItemType Directory $tempExtract | Out-Null
 
   # Download
-
   Invoke-WebRequest -Uri $Url -OutFile $tempZip -UseBasicParsing
 
-
-
   # Extract
-
-
   Expand-Archive -Path $tempZip -DestinationPath $tempExtract -Force
 
   # Move to destination
@@ -118,7 +113,7 @@ function Install-BibataCursor {
   $tempExtract = Join-Path $env:TEMP "$Variant-extract"
 
   if (Test-Path $tempExtract) {
-    Remove-Item $tempExtract -Recurse -Force 
+    Remove-Item $tempExtract -Recurse -Force
   }
   New-Item -ItemType Directory $tempExtract | Out-Null
 
@@ -139,7 +134,7 @@ function Install-BibataCursor {
 
     # Fallback to first if not found (or if Size is invalid)
     if (-not $targetInf) {
-      $targetInf = $infFiles | Select-Object -First 1 
+      $targetInf = $infFiles | Select-Object -First 1
     }
     $infFile = $targetInf
 
@@ -160,7 +155,7 @@ function Install-BibataCursor {
       log "Refreshing system cursors..."
       $csharp = '[DllImport("user32.dll")] public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, uint pvParam, uint fWinIni);'
       try {
-        Add-Type -MemberDefinition $csharp -Name WinAPI -Namespace User32 -ErrorAction SilentlyContinue 
+        Add-Type -MemberDefinition $csharp -Name WinAPI -Namespace User32 -ErrorAction SilentlyContinue
       } catch {
       }
       # SPI_SETCURSORS = 0x0057, SPIF_UPDATEINIFILE = 0x01, SPIF_SENDCHANGE = 0x02
@@ -174,10 +169,10 @@ function Install-BibataCursor {
     log "Failed to install ${Variant}: $_" "Red"
   } finally {
     if (Test-Path $tempZip) {
-      Remove-Item $tempZip -Force 
+      Remove-Item $tempZip -Force
     }
     if (Test-Path $tempExtract) {
-      Remove-Item $tempExtract -Recurse -Force 
+      Remove-Item $tempExtract -Recurse -Force
     }
   }
 }
@@ -199,6 +194,7 @@ function Set-RequiredEnv {
   }
 
   $targetPaths = @(
+    "${env:LOCALAPPDATA}\mise\shims",
     "${env:USERPROFILE}\.cargo\bin",
     "${env:USERPROFILE}\.deno\bin",
     "${env:USERPROFILE}\.bun\bin",
@@ -207,26 +203,24 @@ function Set-RequiredEnv {
     "${env:LOCALAPPDATA}\Programs\Espanso",
     "${env:APPDATA}\npm",
     "${env:LOCALAPPDATA}\Microsoft\WinGet\Links",
-    "${env:LOCALAPPDATA}\mise\shims",
     "${env:LOCALAPPDATA}\Programs\WinMerge"
   )
 
   $userPath = [Environment]::GetEnvironmentVariable("PATH", "User")
   $currentPaths = $userPath -split ";" | Where-Object { $_ -ne "" }
-  $newPaths = @()
 
-  foreach ($p in $targetPaths) {
-    if ($currentPaths -notcontains $p) {
-      $newPaths += $p
-    }
-  }
+  # Filter out targetPaths from current paths to avoid duplicates when re-adding
+  $remainingPaths = $currentPaths | Where-Object { $targetPaths -notcontains $_ }
 
-  if ($newPaths.Count -gt 0) {
-    $updatedPath = ($newPaths + $currentPaths) -join ";"
+  # Construct new path list: targetPaths (ordered) + remaining paths
+  $newPathList = $targetPaths + $remainingPaths
+  $updatedPath = $newPathList -join ";"
+
+  if ($userPath -ne $updatedPath) {
     [Environment]::SetEnvironmentVariable("PATH", $updatedPath, "User")
-    log "Added new paths to USER PATH: $($newPaths -join ', ')" "Green"
+    log "Reordered/Updated USER PATH." "Green"
   } else {
-    log "USER PATH is already up to date." "Gray"
+    log "USER PATH is already up to date and correctly ordered." "Gray"
   }
 }
 
@@ -359,4 +353,6 @@ function Start-Main {
   }
 }
 
-Start-Main
+if ($MyInvocation.InvocationName -ne '.') {
+  Start-Main
+}

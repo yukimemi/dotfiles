@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : lsp.ts
 // Author      : yukimemi
-// Last Change : 2026/01/18 01:36:55.
+// Last Change : 2026/01/18 13:49:33.
 // =============================================================================
 
 import { execute } from "@denops/std/helper";
@@ -51,7 +51,13 @@ export const lsp: Plug[] = [
     url: "https://github.com/stevearc/aerial.nvim",
     profiles: ["lsp"],
     lazy: {
-      cmd: "AerialToggle",
+      cmd: ["AerialToggle", "AerialPrev", "AerialNext"],
+      keys: {
+        lhs: "<space>a",
+        rhs: "<cmd>AerialToggle!<cr>",
+        desc: "AerialToggle",
+        mode: "n",
+      },
     },
     afterFile: `~/.config/nvim/rc/after/aerial.lua`,
   },
