@@ -36,7 +36,15 @@ $env:EDITOR = "nvim"
 
 # Browser
 if (Test-IsWsl) {
-    $env:BROWSER = "/mnt/c/Progra~1/Google/Chrome/Application/chrome.exe"
+    $winLocalAppData = (wslpath (/mnt/c/Windows/System32/cmd.exe /c "echo %LOCALAPPDATA%" 2>$null).Trim())
+    $cometPath = "$winLocalAppData/Perplexity/Comet/Application/comet.exe"
+    $chromePath = "/mnt/c/Progra~1/Google/Chrome/Application/chrome.exe"
+
+    if (Test-Path $cometPath) {
+        $env:BROWSER = $cometPath
+    } elseif (Test-Path $chromePath) {
+        $env:BROWSER = $chromePath
+    }
 } elseif (!(Test-IsWindows)) {
     $env:BROWSER = "chromium-browser"
 }
