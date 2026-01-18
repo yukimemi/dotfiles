@@ -224,7 +224,9 @@ if (Get-Module -ListAvailable PSReadLine) {
       $sub = $line.Substring(0, $cursor)
       if ($sub -match '(?<Word>\S+)$') {
         $word = $Matches['Word']
-        if ($abbrs.ContainsKey($word)) {
+        $preContext = $sub.Substring(0, $sub.Length - $word.Length)
+
+        if ($abbrs.ContainsKey($word) -and ($preContext -match '^\s*$|[\;|]\s*$')) {
           [Microsoft.PowerShell.PSConsoleReadLine]::Delete($cursor - $word.Length, $word.Length)
           [Microsoft.PowerShell.PSConsoleReadLine]::Insert($abbrs[$word])
         }
