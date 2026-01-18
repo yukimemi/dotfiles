@@ -29,6 +29,11 @@ if (Test-IsWindows) {
 $env:LANG = "ja_JP.UTF-8"
 $env:EDITOR = "nvim"
 
+# Browser
+if (!(Test-IsWindows)) {
+    $env:BROWSER = "chromium-browser"
+}
+
 # --- Path Setup ---
 $PathSeparator = [IO.Path]::PathSeparator
 $UserHome = if (Test-IsWindows) { $env:USERPROFILE } else { $env:HOME }
