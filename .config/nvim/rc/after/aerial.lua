@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : aerial.lua
 -- Author      : yukimemi
--- Last Change : 2025/05/05 20:02:03.
+-- Last Change : 2026/01/18 13:49:13.
 -- =============================================================================
 
 require("aerial").setup({
@@ -13,4 +13,4 @@ require("aerial").setup({
   end,
 })
 -- You probably also want to set a keymap to toggle aerial
--- vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+vim.keymap.set("n", "<space>a", "<cmd>AerialToggle!<CR>")

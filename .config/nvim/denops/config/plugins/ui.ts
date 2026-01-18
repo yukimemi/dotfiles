@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2026/01/18 17:12:14.
+// Last Change : 2026/01/18 17:36:10.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -558,6 +558,23 @@ export const ui: Plug[] = [
     profiles: ["ui"],
     lazy: {
       cmd: "RainbowTrails",
+    },
+    add: async ({ denops }) => {
+      await autocmd.group(denops, "myRainbowTrails", (helper) => {
+        helper.remove("*");
+        helper.define(
+          ["BufNewFile", "BufRead"],
+          "*",
+          `call <SID>${denops.name}_notify("${
+            lambda.register(
+              denops,
+              async () => {
+                await denops.cmd("RainbowTrails");
+              },
+            )
+          }", [])`,
+        );
+      });
     },
   },
   {

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/01/18 17:20:42.
+# Last Change : 2026/01/18 17:31:04.
 # =============================================================================
 
 # --- Functions ---
@@ -159,6 +159,9 @@ function Update-WithMolt {
 function Get-FileAndHash {
   Get-ChildItem | ForEach-Object { [PSCustomObject]@{ path = $_.Name; hash = (Get-FileHash -Algorithm MD5 $_.FullName).Hash } }
 }
+
+# --- Aliases ---
+Remove-Item alias:r, alias:rm, alias:cd, alias:ls, alias:h, alias:z, alias:zi -ErrorAction SilentlyContinue
 
 # Filter tool setup
 if (Get-Command fzf -ErrorAction SilentlyContinue) {
