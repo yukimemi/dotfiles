@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2026/01/18 00:42:36.
+// Last Change : 2026/01/24 13:22:37.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -122,6 +122,8 @@ export const motion: Plug[] = [
   },
   {
     url: "https://github.com/hrsh7th/nvim-swm",
+    // deno-lint-ignore require-await
+    enabled: async ({ denops }) => denops.meta.platform === "windows",
     profiles: ["motion"],
     lazy: {
       event: ["BufRead", "BufNewFile"],

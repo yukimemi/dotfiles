@@ -1,3 +1,9 @@
+# =============================================================================
+# File        : config.toml
+# Author      : yukimemi
+# Last Change : 2026/01/24 12:29:38
+# =============================================================================
+
 [settings]
 plugin_autoupdate_last_check_duration = '1 week'
 verbose = false
@@ -22,8 +28,6 @@ cargo-binstall = "latest"
 "cargo:spyrun" = "latest"
 "cargo:starship" = "latest"
 "cargo:tokei" = "latest"
-"cargo:yazi-cli" = "latest"
-"cargo:yazi-fm" = "latest"
 "cargo:zoxide" = "latest"
 deno = "latest"
 direnv = "latest"

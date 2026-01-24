@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : keymap.toml
 # Author      : yukimemi
-# Last Change : 2025/12/16 01:00:10.
+# Last Change : 2026/01/24 12:28:55.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -101,11 +101,6 @@ desc = "Merge current tab to other projects"
 on = ["M", "M"]
 run = "plugin projects 'merge all'"
 desc = "Merge current project to other projects"
-[[mgr.prepend_keymap]]
-on = ["q"]
-run = "plugin projects quit"
-desc = "Save last project and exit the process"
-
 # https://github.com/ndtoan96/ouch.yazi
 [[mgr.prepend_keymap]]
 on = ["c", "a"]

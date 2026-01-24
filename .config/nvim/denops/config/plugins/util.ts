@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2026/01/18 01:40:01.
+// Last Change : 2026/01/24 20:52:07.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -451,15 +451,31 @@ EOB
   },
   {
     url: "https://github.com/itchyny/calendar.vim",
+    enabled: true,
+    profiles: ["memo"],
+    lazy: {
+      cmd: "Calendar",
+      keys: {
+        lhs: "mc",
+        rhs:
+          "<cmd>Calendar -view=year -split=vertical -position=right -width=27<cr>",
+        mode: "n",
+        desc: "Calendar",
+      },
+    },
+    before: async ({ denops }) => {
+      await vars.g.set(denops, "calendar_google_calendar", 1);
+      await vars.g.set(denops, "calendar_google_task", 1);
+    },
+  },
+  {
+    url: "https://github.com/wsdjeg/calendar.nvim",
     enabled: false,
     profiles: ["memo"],
     after: async ({ denops }) => {
-      await mapping.map(
-        denops,
-        "mc",
-        "<cmd>Calendar -view=year -split=vertical -position=right -width=27<cr>",
-        { mode: "n" },
-      );
+      await denops.call(`luaeval`, `require("calendar").setup(_A)`, {
+        locale: "ja-JP",
+      });
     },
   },
   {

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : window.ts
 // Author      : yukimemi
-// Last Change : 2026/01/18 01:41:58.
+// Last Change : 2026/01/24 20:37:26.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -61,6 +61,7 @@ export const window: Plug[] = [
             "fall-input",
             "fall-list",
             "fall-help",
+            "deck",
           ],
         },
         animation: {
@@ -111,13 +112,19 @@ export const window: Plug[] = [
   },
   {
     url: "https://github.com/lkzz/golden-ratio.nvim",
+    enabled: false,
     profiles: ["window"],
     lazy: {
       event: ["WinEnter", "VimResized", "BufWinEnter"],
     },
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("golden-ratio").setup(_A)`, {
-        exclude_buffer_patterns: ["aiboconsole://*", "aiboprompt://*"],
+        exclude_buffer_patterns: [
+          "aiboconsole://*",
+          "aiboprompt://*",
+          "deck://*",
+        ],
+        exclude_filetypes: ["deck"],
       });
       await denops.call(`luaeval`, `require("golden-ratio").enable()`);
     },
