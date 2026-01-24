@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2026/01/24 20:52:07.
+// Last Change : 2026/01/25 11:12:20.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -464,8 +464,8 @@ EOB
       },
     },
     before: async ({ denops }) => {
-      await vars.g.set(denops, "calendar_google_calendar", 1);
-      await vars.g.set(denops, "calendar_google_task", 1);
+      await vars.g.set(denops, "calendar_google_calendar", 0);
+      await vars.g.set(denops, "calendar_google_task", 0);
     },
   },
   {
