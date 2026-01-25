@@ -1,0 +1,76 @@
+{{ if eq .chezmoi.os "windows" -}}
+$ErrorActionPreference = "SilentlyContinue"
+
+function New-Junction {
+    param ([string]$link, [string]$target)
+    if (Test-Path $link) {
+        return
+    }
+    $parent = Split-Path $link -Parent
+    if (!(Test-Path $parent)) {
+        New-Item -ItemType Directory -Path $parent -Force | Out-Null
+    }
+    Write-Host "Creating Junction: $link -> $target"
+    cmd /c mklink /j "`"$link`"" "`"$target`""
+}
+
+function New-HardLink {
+    param ([string]$link, [string]$target)
+    if (Test-Path $link) {
+        return
+    }
+    $parent = Split-Path $link -Parent
+    if (!(Test-Path $parent)) {
+        New-Item -ItemType Directory -Path $parent -Force | Out-Null
+    }
+    if (Test-Path $target) {
+        Write-Host "Creating HardLink: $link -> $target"
+        New-Item -ItemType HardLink -Path $link -Target $target
+    }
+}
+
+# --- Directory Junctions ---
+$home = $env:USERPROFILE
+$config = Join-Path $home ".config"
+
+$junctions = @{
+    "AppData\Roaming\rhq"         = "$config\rhq"
+    "AppData\Roaming\copyq"       = "$config\copyq"
+    "AppData\Roaming\helix"       = "$config\helix"
+    "AppData\Roaming\nushell"     = "$config\nushell"
+    "AppData\Roaming\jj"          = "$config\jj"
+    "AppData\Roaming\yazi\config" = "$config\yazi"
+    "AppData\Local\nvim"          = "$config\nvim"
+    "vimfiles"                    = "$config\nvim"
+}
+
+foreach ($rel in $junctions.Keys) {
+    New-Junction -link (Join-Path $home $rel) -target $junctions[$rel]
+}
+
+# --- File Links ---
+$files = @{
+    "_vimrc"  = (Join-Path $home ".vimrc")
+    "_gvimrc" = (Join-Path $home ".gvimrc")
+    "AppData\Roaming\Hyper\.hyper.js" = (Join-Path $home ".hyper.js")
+}
+
+foreach ($rel in $files.Keys) {
+    New-HardLink -link (Join-Path $home $rel) -target $files[$rel]
+}
+
+# --- Special Paths ---
+# PowerShell Profile (Link from Documents to ~/.config/powershell/...)
+$psProfileTarget = "$config\powershell\Microsoft.PowerShell_profile.ps1"
+$psProfilePaths = @(
+    "Documents\PowerShell\Microsoft.PowerShell_profile.ps1",
+    "Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1",
+    "OneDrive\ドキュメント\PowerShell\Microsoft.PowerShell_profile.ps1",
+    "OneDrive\ドキュメント\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+)
+
+foreach ($rel in $psProfilePaths) {
+    New-HardLink -link (Join-Path $home $rel) -target $psProfileTarget
+}
+
+{{ end -}}
