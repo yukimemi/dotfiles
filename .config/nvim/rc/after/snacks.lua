@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2026/01/24 20:45:09.
+-- Last Change : 2026/01/25 13:54:31.
 -- =============================================================================
 
 require("snacks").setup({
@@ -141,9 +141,6 @@ if true then
   vim.keymap.set("n", "mg", function()
     Snacks.picker.git_files()
   end, { desc = "Find git files" })
-  vim.keymap.set("n", "mc", function()
-    Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
-  end, { desc = "Find Config File" })
   vim.keymap.set("n", "md", function()
     Snacks.picker.git_files({ cwd = "~/.dotfiles" })
   end, { desc = "Find dotfiles" })

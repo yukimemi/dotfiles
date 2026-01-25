@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/01/19 01:33:23.
+  .Last Change : 2026/01/25 14:18:37.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue"
@@ -311,8 +311,74 @@ function Install-Tools {
   foreach ($tool in $binTools) {
     Install-BinaryArchive -Name $tool.Name -Url $tool.Url -DestinationDir $tool.Dest
   }
+}
 
-  Install-BibataCursor
+function Install-PlemolJP {
+  log "Checking latest PlemolJP version..."
+  $latestUrl = "https://api.github.com/repos/yuru7/PlemolJP/releases/latest"
+  try {
+    $json = Invoke-RestMethod -Uri $latestUrl
+    $asset = $json.assets | Where-Object { $_.name -match "PlemolJP_NF_v.*\.zip" } | Select-Object -First 1
+
+    if (!$asset) {
+      log "Could not find PlemolJP NF asset." "Red"
+      return
+    }
+
+    $version = $json.tag_name
+    $fontsDir = Join-Path $env:LOCALAPPDATA "Microsoft\Windows\Fonts"
+    if (!(Test-Path $fontsDir)) { New-Item -ItemType Directory -Path $fontsDir | Out-Null }
+
+    # Check if already installed (simple check based on expected file existence, might not be perfect)
+    # Checking for one main file like "PlemolJPConsoleNF-Regular.ttf" if we knew the content,
+    # but since we don't know exact content, we proceed to download if we can't verify easily.
+    # To avoid re-downloading every time, we can check a marker file or registry, but let's just proceed for now
+    # or check if specific registry key exists.
+    $regPath = "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts"
+    $checkName = "PlemolJP Console NF Regular (TrueType)" # Guessing name
+    if (Get-ItemProperty -Path $regPath -Name $checkName -ErrorAction SilentlyContinue) {
+      log "PlemolJP ($version) seems to be installed." "Gray"
+      return
+    }
+
+    log "Installing PlemolJP $version ..." "Yellow"
+
+    $zipName = $asset.name
+    $downloadUrl = $asset.browser_download_url
+    $tempZip = Join-Path $env:TEMP $zipName
+    $tempExtract = Join-Path $env:TEMP "PlemolJP-extract"
+
+    if (Test-Path $tempExtract) { Remove-Item $tempExtract -Recurse -Force }
+    New-Item -ItemType Directory $tempExtract | Out-Null
+
+    Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZip -UseBasicParsing
+    Expand-Archive -Path $tempZip -DestinationPath $tempExtract -Force
+
+    $ttfFiles = Get-ChildItem -Path $tempExtract -Filter "*.ttf" -Recurse
+    foreach ($ttf in $ttfFiles) {
+      $destPath = Join-Path $fontsDir $ttf.Name
+      if (!(Test-Path $destPath)) {
+        Copy-Item $ttf.FullName $destPath -Force
+      }
+
+      # Register in Registry
+      # Key name example: "PlemolJP Console NF Regular (TrueType)"
+      # Value: Path to file
+      $fontName = [System.IO.Path]::GetFileNameWithoutExtension($ttf.Name)
+      # Improve readability of registry key
+      $regName = "$fontName (TrueType)"
+      Set-ItemProperty -Path $regPath -Name $regName -Value $destPath
+    }
+
+    log "PlemolJP installed successfully." "Green"
+
+    # Cleanup
+    Remove-Item $tempZip -Force
+    Remove-Item $tempExtract -Recurse -Force
+
+  } catch {
+    log "Failed to install PlemolJP: $_" "Red"
+  }
 }
 
 function Start-Main {
@@ -321,6 +387,8 @@ function Start-Main {
 
     Set-RequiredEnv
     Set-CapsLockToCtrl
+    Install-PlemolJP
+    Install-BibataCursor
     Install-Neovim
     Install-Tools
     Install-GoTools
