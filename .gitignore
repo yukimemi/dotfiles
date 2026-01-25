@@ -12,4 +12,6 @@
 !.gemini/GEMINI.md
 _bk/
 .bk/
+*.bak/
 *.bk
+bin/

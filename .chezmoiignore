@@ -4,6 +4,7 @@
 .gitmodules
 .gemini
 .jj
+.mappings
 .hooks
 README.md
 deno.json
