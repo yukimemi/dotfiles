@@ -263,6 +263,11 @@ function Install-Neovim {
   Remove-Item $nvimMsi
 }
 
+function Install-BuildTools {
+  log "Installing Visual Studio Build Tools..." "Yellow"
+  winget install Microsoft.VisualStudio.2022.BuildTools --override "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --passive"
+}
+
 function Install-GoTools {
   if (!(Get-Command go -ErrorAction SilentlyContinue)) {
     log "Go is not installed. Skipping Go tools installation." "Yellow"
@@ -389,6 +394,7 @@ function Start-Main {
     Set-CapsLockToCtrl
     Install-PlemolJP
     Install-BibataCursor
+    Install-BuildTools
     Install-Neovim
     Install-Tools
     Install-GoTools
