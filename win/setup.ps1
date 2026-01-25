@@ -184,6 +184,7 @@ function Set-RequiredEnv {
   $envVars = @{
     "CARGO_NET_GIT_FETCH_WITH_CLI" = "true"
     "YAZI_FILE_ONE"                = "C:\Program Files\Git\usr\bin\file.exe"
+    "XDG_CONFIG_HOME"              = "${env:USERPROFILE}\.config"
   }
   foreach ($key in $envVars.Keys) {
     $current = [Environment]::GetEnvironmentVariable($key, "User")
