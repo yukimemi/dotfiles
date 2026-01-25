@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "check": "deno check .config/nvim/**/*.ts",
+    "check": "deno check dot_config/nvim/**/*.ts",
     "bench:pwsh": "pwsh -NoProfile -File win/benchmark.ps1",
     "fmt": "deno fmt",
     "lint": "deno lint",
@@ -15,12 +15,12 @@
     "lineWidth": 100,
     "indentWidth": 2,
     "singleQuote": false,
-    "include": [".config/nvim"],
-    "exclude": [".config/nvim/usage_data.json"]
+    "include": ["dot_config/nvim"],
+    "exclude": ["dot_config/nvim/usage_data.json"]
   },
   "lint": {
-    "include": [".config/nvim"],
-    "exclude": [".config/nvim/usage_data.json"],
+    "include": ["dot_config/nvim"],
+    "exclude": ["dot_config/nvim/usage_data.json"],
     "rules": {
       "exclude": [
         "no-import-prefix"
@@ -28,7 +28,7 @@
     }
   },
   "workspace": [
-    "./.config/nvim/denops/config"
+    "./dot_config/nvim/denops/config"
   ],
   "lock": false
 }

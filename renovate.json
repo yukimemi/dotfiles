@@ -3,9 +3,5 @@
   "extends": [
     "config:recommended"
   ],
-  "automerge": true,
-  "deno": {
-    "enabled": true,
-    "fileMatch": ["(^|/)deno\\.json(c)?$"]
-  }
+  "automerge": true
 }

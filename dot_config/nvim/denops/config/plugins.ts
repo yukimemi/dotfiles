@@ -9,6 +9,7 @@ import { ai } from "./plugins/ai.ts";
 import { blink } from "./plugins/blink.ts";
 import { bluesky } from "./plugins/bluesky.ts";
 import { care } from "./plugins/care.ts";
+import { chezmoi } from "./plugins/chezmoi.ts";
 import { clap } from "./plugins/clap.ts";
 import { cmp } from "./plugins/cmp.ts";
 import { coc } from "./plugins/coc.ts";
@@ -59,6 +60,7 @@ export const plugins: Plug[] = [
   ...blink,
   ...bluesky,
   ...care,
+  ...chezmoi,
   ...clap,
   ...cmp,
   ...coc,

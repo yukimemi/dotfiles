@@ -157,6 +157,7 @@ abbr -a rs 'rsync -av8 --progress'
 abbr -a his "history --show-time='%Y-%m-%d %H:%M:%S '"
 
 # Git. {{{2
+abbr -a ca 'chezmoi apply -v'
 abbr -a g 'git'
 # checkout
 abbr -a gco 'git checkout'

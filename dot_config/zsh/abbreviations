@@ -6,6 +6,7 @@ abbr asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
 abbr b="cd .."
 abbr bi="bit"
 abbr c="files -d | __filter_execute cd"
+abbr ca="chezmoi apply -v"
 abbr cat="bat"
 abbr ci="git commit"
 abbr co="git checkout"
