@@ -37,6 +37,7 @@
 	tool = "nvim -d"
 [branch]
 	autosetuprebase = always
+	autosetupmerge = false
 [fetch]
 	prune = true
 [ghq "https://bitbucket.org"]
@@ -44,10 +45,11 @@
 [hub]
 	protocol = https
 [pull]
-	rebase = true
+	rebase = false
+	rebaseAutoStash = false
 [rebase]
 	autosquash = true
-	autostash = true
+	autostash = false
 [delta]
   navigate = true
   light = false
