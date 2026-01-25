@@ -5,7 +5,7 @@
     Initial windows setup scripts.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/01/25 14:18:37.
+  .Last Change : 2026/01/25 22:14:17.
 #>
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue"
@@ -333,7 +333,9 @@ function Install-PlemolJP {
 
     $version = $json.tag_name
     $fontsDir = Join-Path $env:LOCALAPPDATA "Microsoft\Windows\Fonts"
-    if (!(Test-Path $fontsDir)) { New-Item -ItemType Directory -Path $fontsDir | Out-Null }
+    if (!(Test-Path $fontsDir)) {
+      New-Item -ItemType Directory -Path $fontsDir | Out-Null
+    }
 
     # Check if already installed (simple check based on expected file existence, might not be perfect)
     # Checking for one main file like "PlemolJPConsoleNF-Regular.ttf" if we knew the content,
@@ -354,7 +356,9 @@ function Install-PlemolJP {
     $tempZip = Join-Path $env:TEMP $zipName
     $tempExtract = Join-Path $env:TEMP "PlemolJP-extract"
 
-    if (Test-Path $tempExtract) { Remove-Item $tempExtract -Recurse -Force }
+    if (Test-Path $tempExtract) {
+      Remove-Item $tempExtract -Recurse -Force
+    }
     New-Item -ItemType Directory $tempExtract | Out-Null
 
     Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZip -UseBasicParsing
@@ -404,7 +408,7 @@ function Start-Main {
     $shortcuts = @(
       @{
         Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
-        Target = "${env:USERPROFILE}\.dotfiles\win\AutoHotkey\AutoHotkey.ahk"
+        Target = "${env:USERPROFILE}\.local\share\chezmoi\win\AutoHotkey\AutoHotkey.ahk"
       },
       @{
         Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\clnch.lnk"
