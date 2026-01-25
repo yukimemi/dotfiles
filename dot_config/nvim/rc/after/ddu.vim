@@ -11,7 +11,7 @@ nnoremap <silent> mw <cmd>Ddu chronicle -source-param-chronicle-kind='write'<cr>
 
 nnoremap <silent> m, <cmd>Ddu buffer<cr>
 nnoremap <silent> mb <cmd>Ddu file_rec -source-option-file-path=`substitute(expand('%:p:h'), '\\', '/', 'g')`<cr>
-nnoremap <silent> md <cmd>Ddu file_rec -source-option-file-path=`substitute(expand('~/.dotfiles'), '\\', '/', 'g')`<cr>
+nnoremap <silent> md <cmd>Ddu file_rec -source-option-file-path=`substitute(expand('~/.local/share/chezmoi'), '\\', '/', 'g')`<cr>
 nnoremap <silent> mm <cmd>Ddu file_rec -source-option-file-path=`substitute(expand('~/.memolit'), '\\', '/', 'g')`<cr>
 nnoremap <silent> ms <cmd>Ddu file_rec -source-option-file-path=`substitute(expand('~/src'), '\\', '/', 'g')`<cr>
 nnoremap <silent> mC <cmd>Ddu file_rec -source-option-file-path=`substitute(expand('~/.cache'), '\\', '/', 'g')`<cr>

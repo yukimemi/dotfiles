@@ -7,7 +7,7 @@
 vim.keymap.set("n", "<space>lf", "<cmd>Fall file<cr>", { desc = "Fall file" })
 vim.keymap.set("n", "<space>la", "<cmd>Fall file:all<cr>", { desc = "Fall file:all" })
 
-vim.keymap.set("n", "md", "<cmd>Fall file ~/.dotfiles<cr>", { desc = "Fall dotfiles" })
+vim.keymap.set("n", "md", "<cmd>Fall file ~/.local/share/chezmoi<cr>", { desc = "Fall dotfiles" })
 vim.keymap.set("n", "ms", "<cmd>Fall file ~/src<cr>", { desc = "Fall src" })
 vim.keymap.set("n", "mC", "<cmd>Fall file ~/.cache<cr>", { desc = "Fall cache" })
 vim.keymap.set("n", "mM", "<cmd>Fall file ~/.memolist<cr>", { desc = "Fall memolist" })

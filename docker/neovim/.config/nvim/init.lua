@@ -84,7 +84,7 @@ require("lazy").setup({
       vim.keymap.set("n", "<space>dR", "<cmd>Ddu -buffer-name=register register -ui-param-autoResize<cr>")
       vim.keymap.set("n", "<space>dd", "<cmd>Ddu file_rec -source-option-path=`fnamemodify(bufname(), ':p:h')`<cr>")
       vim.keymap.set("n", "<space>dc", "<cmd>Ddu file_rec -source-option-path=`expand('~/.cache')`<cr>")
-      vim.keymap.set("n", "<space>dD", "<cmd>Ddu file_rec -source-option-path=`expand('~/.dotfiles')`<cr>")
+      vim.keymap.set("n", "<space>dD", "<cmd>Ddu file_rec -source-option-path=`expand('~/.local/share/chezmoi')`<cr>")
       vim.keymap.set("n", "<space>dm", "<cmd>Ddu file_rec -source-option-path=`expand('~/.memolist')`<cr>")
       vim.keymap.set("n", "<space>dS", "<cmd>Ddu file_rec -source-option-path=`expand('~/src')`<cr>")
       vim.keymap.set("n", "<space>dH", "<cmd>Ddu help<cr>")

@@ -64,7 +64,7 @@ vim.keymap.set("n", "mb", function()
 end, { desc = "Find file on buffer dir" })
 
 vim.keymap.set("n", "md", function()
-  require("telescope.builtin").git_files({ cwd = "~/.dotfiles" })
+  require("telescope.builtin").git_files({ cwd = "~/.local/share/chezmoi" })
 end, { desc = "Find Dot File" })
 
 vim.keymap.set("n", "mC", function()

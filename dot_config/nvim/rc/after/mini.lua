@@ -119,7 +119,7 @@ vim.keymap.set("n", "md", function()
     tool = "git",
   }, {
     source = {
-      cwd = "~/.dotfiles"
+      cwd = "~/.local/share/chezmoi"
     }
   })
 end, { desc = "MiniPick dotfiles" })

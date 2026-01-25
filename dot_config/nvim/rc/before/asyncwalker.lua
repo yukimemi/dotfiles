@@ -6,7 +6,7 @@
 
 vim.keymap.set("n", "<space>wa", "<cmd>AsyncWalk<cr>", { noremap = true, desc = "AsyncWalk" })
 vim.keymap.set("n", "<space>ws", "<cmd>AsyncWalk --path=~/src<cr>", { noremap = true, desc = "AsyncWalk src dir" })
-vim.keymap.set("n", "<space>wd", "<cmd>AsyncWalk --path=~/.dotfiles<cr>", { noremap = true, desc = "AsyncWalk dotfiles" })
+vim.keymap.set("n", "<space>wd", "<cmd>AsyncWalk --path=~/.local/share/chezmoi<cr>", { noremap = true, desc = "AsyncWalk dotfiles" })
 vim.keymap.set("n", "<space>wc", "<cmd>AsyncWalk --path=~/.cache<cr>", { noremap = true, desc = "AsyncWalk cache" })
 vim.keymap.set("n", "<space>wm", "<cmd>AsyncWalk --path=~/.memolist<cr>", { noremap = true, desc = "AsyncWalk memolist" })
 vim.keymap.set("n", "<space>wj", "<cmd>AsyncWalk --path=~/.cache/junkfile<cr>",

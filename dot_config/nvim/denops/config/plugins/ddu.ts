@@ -378,7 +378,7 @@ export const ddu: Plug[] = [
                   {
                     name: "file_rec",
                     options: {
-                      path: await fn.expand(denops, "~/.dotfiles"),
+                      path: await fn.expand(denops, "~/.local/share/chezmoi"),
                     },
                   },
                 ],

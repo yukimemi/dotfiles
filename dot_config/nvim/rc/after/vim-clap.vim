@@ -20,7 +20,7 @@ nnoremap scl <cmd>Clap blines<cr>
 nnoremap sco <cmd>Clap recent_files<cr>
 nnoremap scf <cmd>Clap files --hidden<cr>
 nnoremap scr <cmd>Clap files --hidden ~/src<cr>
-nnoremap scd <cmd>execute printf("Clap files --hidden %s", expand("~/.dotfiles"))<cr>
+nnoremap scd <cmd>execute printf("Clap files --hidden %s", expand("~/.local/share/chezmoi"))<cr>
 nnoremap scF <cmd>Clap filetypes<cr>
 nnoremap sch <cmd>Clap command_history<cr>
 nnoremap scH <cmd>Clap help_tags<cr>

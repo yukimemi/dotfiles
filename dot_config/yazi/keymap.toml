@@ -122,7 +122,7 @@ run = '''
 desc = "Goto git root"
 [[mgr.prepend_keymap]]
 on = ["g", "d"]
-run = "cd ~/.dotfiles"
+run = "cd ~/.local/share/chezmoi"
 desc = "Goto dotfiles"
 [[mgr.prepend_keymap]]
 on = ["g", "s"]

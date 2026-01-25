@@ -51,12 +51,12 @@ use = ["{{ name }}.zsh"]
 apply = ["defer"]
 
 [plugins.dotfiles-sync]
-local = "~/.dotfiles/.config/zsh/sync"
+local = "~/.config/zsh/sync"
 use = ["*.zsh"]
 apply = ["source"]
 
 [plugins.dotfiles-defer]
-local = "~/.dotfiles/.config/zsh/defer"
+local = "~/.config/zsh/defer"
 use = ["*.zsh"]
 apply = ["defer"]
 

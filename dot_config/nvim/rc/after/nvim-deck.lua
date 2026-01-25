@@ -121,7 +121,7 @@ end, { desc = "Explorer on buffer dir" })
 
 vim.keymap.set("n", "md", function()
   deck.start(require("deck.builtin.source.files")({
-    root_dir = vim.fn.expand("~/.dotfiles"),
+    root_dir = vim.fn.expand("~/.local/share/chezmoi"),
     ignore_globs = { "**/node_modules/", "**/.git/" },
   }))
 end, { desc = "dotfiles" })
