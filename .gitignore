@@ -8,8 +8,8 @@
 .aider*
 !.aider.conf.yml
 .config/raycast-x/
-.gemini/*
-!.gemini/GEMINI.md
+dot_gemini/*
+!dot_gemini/GEMINI.md
 _bk/
 .bk/
 *.bak/
