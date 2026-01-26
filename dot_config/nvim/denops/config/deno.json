@@ -4,11 +4,11 @@
     "@denops/std": "jsr:@denops/std@^8.2.0",
     "@google/generative-ai": "npm:@google/generative-ai@^0.24.1",
     "@lambdalisue/systemopen": "jsr:@lambdalisue/systemopen@^1.0.0",
-    "@std/datetime": "jsr:@std/datetime@^0.225.6",
-    "@std/fs": "jsr:@std/fs@^1.0.21",
+    "@std/datetime": "jsr:@std/datetime@^0.225.7",
+    "@std/fs": "jsr:@std/fs@^1.0.22",
     "@std/log": "jsr:@std/log@^0.224.14",
     "@std/path": "jsr:@std/path@^1.1.4",
-    "@yukimemi/dvpm": "jsr:@yukimemi/dvpm@^10.2.26",
-    "zod": "npm:zod@^4.3.5"
+    "@yukimemi/dvpm": "jsr:@yukimemi/dvpm@^10.2.27",
+    "zod": "npm:zod@^4.3.6"
   }
 }
