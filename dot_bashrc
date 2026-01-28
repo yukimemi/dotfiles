@@ -16,3 +16,10 @@ fi
 [ -f /Users/yukimemi/.travis/travis.sh ] && source /Users/yukimemi/.travis/travis.sh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+#
+# tmux
+#
+if [ -z "${TMUX}" ] && command -v tmux >/dev/null 2>&1; then
+  tmux attach || tmux -u
+fi
