@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# wsl.conf hash: {{ include "etc/wsl.conf" | sha256sum }}
+sudo cp {{ joinPath .chezmoi.sourceDir "etc/wsl.conf" | quote }} /etc/wsl.conf
