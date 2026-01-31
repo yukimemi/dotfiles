@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2026/01/03 20:44:52.
+# Last Change : 2026/01/31 16:58:52.
 # =============================================================================
 
 general:
@@ -96,6 +96,8 @@ window_rules:
       - window_title: { regex: 'ピクチャ イン ピクチャ' }
         window_class: { regex: 'Chrome_WidgetWin_1|MozillaDialogClass' }
       - window_title: { regex: 'ピクチャー イン ピクチャー' }
+        window_class: { regex: 'Chrome_WidgetWin_1|MozillaDialogClass' }
+      - window_title: { equals: 'YouTube' }
         window_class: { regex: 'Chrome_WidgetWin_1|MozillaDialogClass' }
 
       # Ignore rules for various 3rd-party apps.
