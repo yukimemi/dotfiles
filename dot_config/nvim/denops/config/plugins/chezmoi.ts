@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : chezmoi.ts
 // Author      : yukimemi
-// Last Change : 2026/01/25 21:50:43.
+// Last Change : 2026/02/01 10:44:27.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -13,42 +13,8 @@ export const chezmoi: Plug[] = [
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
     ],
-    lazy: {
-      keys: [
-        {
-          lhs: "md",
-          rhs: '<cmd>lua require("chezmoi.pick").snacks()<cr>',
-          desc: "Chezmoi files",
-          mode: "n",
-        },
-      ],
-      event: ["BufRead", "BufNewFile"],
-    },
-    addFile: "~/.config/nvim/rc/add/chezmoi.lua",
-    after: async ({ denops }) => {
-      await denops.call(`luaeval`, `require("chezmoi").setup(_A)`, {
-        edit: {
-          watch: true,
-          force: false,
-          ignore_patterns: [
-            "run_onchange_.*",
-            "run_once_.*",
-            "%.chezmoiignore",
-            "%.chezmoitemplate",
-          ],
-        },
-        events: {
-          on_open: {
-            notification: { enable: true },
-          },
-          on_watch: {
-            notification: { enable: true },
-          },
-          on_apply: {
-            notification: { enable: true },
-          },
-        },
-      });
+    cache: {
+      afterFile: "~/.config/nvim/rc/add/chezmoi.lua",
     },
   },
   {

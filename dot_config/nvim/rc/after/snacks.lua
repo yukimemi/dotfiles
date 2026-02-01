@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2026/01/25 21:54:45.
+-- Last Change : 2026/02/01 10:39:25.
 -- =============================================================================
 
 require("snacks").setup({
@@ -141,6 +141,9 @@ if true then
   vim.keymap.set("n", "mg", function()
     Snacks.picker.git_files()
   end, { desc = "Find git files" })
+  vim.keymap.set("n", "md", function()
+    Snacks.picker.files({ cwd = "~/.local/share/chezmoi" })
+  end, { desc = "Find chezmoi file" })
   vim.keymap.set("n", "ms", function()
     Snacks.picker.files({ cwd = "~/src" })
   end, { desc = "Find src file" })
