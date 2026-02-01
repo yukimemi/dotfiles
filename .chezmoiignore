@@ -16,3 +16,5 @@ etc
 mac
 tools
 win
+**/openclaw.json
+.openclaw
