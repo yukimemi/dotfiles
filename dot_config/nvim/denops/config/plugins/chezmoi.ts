@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : chezmoi.ts
 // Author      : yukimemi
-// Last Change : 2026/02/01 10:44:27.
+// Last Change : 2026/02/01 11:14:31.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -14,7 +14,7 @@ export const chezmoi: Plug[] = [
       "https://github.com/nvim-lua/plenary.nvim",
     ],
     cache: {
-      afterFile: "~/.config/nvim/rc/add/chezmoi.lua",
+      afterFile: "~/.config/nvim/rc/after/chezmoi.lua",
     },
   },
   {

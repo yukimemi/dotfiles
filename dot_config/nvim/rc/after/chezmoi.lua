@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : chezmoi.lua
 -- Author      : yukimemi
--- Last Change : 2026/01/25 21:47:03.
+-- Last Change : 2026/02/01 11:17:53.
 -- =============================================================================
 
 local group = vim.api.nvim_create_augroup("chezmoi_auto_watch", { clear = true })
@@ -21,3 +21,28 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+vim.keymap.set("n", "md", '<cmd>lua require("chezmoi.pick").snacks()<cr>', { desc = "Chezmoi files" })
+
+require("chezmoi").setup({
+  edit = {
+    watch = true,
+    force = false,
+    ignore_patterns = {
+      "run_onchange_.*",
+      "run_once_.*",
+      "%.chezmoiignore",
+      "%.chezmoitemplate",
+    },
+  },
+  events = {
+    on_open = {
+      notification = { enable = true },
+    },
+    on_watch = {
+      notification = { enable = true },
+    },
+    on_apply = {
+      notification = { enable = true },
+    },
+  },
+})
