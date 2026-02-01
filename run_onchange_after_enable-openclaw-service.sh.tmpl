@@ -1,0 +1,7 @@
+#!/bin/bash
+# OpenClaw service enablement
+if command -v systemctl &> /dev/null && systemctl --user list-units &> /dev/null; then
+    systemctl --user daemon-reload
+    systemctl --user enable openclaw-gateway.service
+    systemctl --user start openclaw-gateway.service
+fi

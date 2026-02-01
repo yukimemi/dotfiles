@@ -1,0 +1,47 @@
+#!/bin/bash
+# OpenClaw setup script
+PRIVATE_REPO_DIR="$HOME/src/github.com/yukimemi/private"
+
+# Config paths
+OPENCLAW_CONFIG_DIR="$HOME/.openclaw"
+OPENCLAW_PRIVATE_DIR="$PRIVATE_REPO_DIR/.openclaw"
+
+# Systemd paths
+SYSTEMD_USER_DIR="$HOME/.config/systemd/user"
+SYSTEMD_UNIT_FILE="$SYSTEMD_USER_DIR/openclaw-gateway.service"
+SYSTEMD_PRIVATE_FILE="$PRIVATE_REPO_DIR/.config/systemd/user/openclaw-gateway.service"
+
+# 1. Ensure private repository exists
+if [ ! -d "$PRIVATE_REPO_DIR" ]; then
+    echo "Cloning private repository..."
+    mkdir -p "$(dirname "$PRIVATE_REPO_DIR")"
+    git clone https://github.com/yukimemi/private.git "$PRIVATE_REPO_DIR"
+fi
+
+# 2. Link the entire .openclaw directory
+if [ -d "$OPENCLAW_PRIVATE_DIR" ]; then
+    if [ -d "$OPENCLAW_CONFIG_DIR" ] && [ ! -L "$OPENCLAW_CONFIG_DIR" ]; then
+        mv "$OPENCLAW_CONFIG_DIR" "${OPENCLAW_CONFIG_DIR}.bak_$(date +%s)"
+    fi
+    if [ ! -L "$OPENCLAW_CONFIG_DIR" ]; then
+        ln -sf "$OPENCLAW_PRIVATE_DIR" "$OPENCLAW_CONFIG_DIR"
+    fi
+fi
+
+# 3. Link systemd unit file
+if [ -f "$SYSTEMD_PRIVATE_FILE" ]; then
+    mkdir -p "$SYSTEMD_USER_DIR"
+    if [ ! -L "$SYSTEMD_UNIT_FILE" ]; then
+        echo "Linking openclaw-gateway.service..."
+        # Backup existing file if not a link
+        if [ -f "$SYSTEMD_UNIT_FILE" ]; then
+             mv "$SYSTEMD_UNIT_FILE" "${SYSTEMD_UNIT_FILE}.bak_$(date +%s)"
+        fi
+        ln -sf "$SYSTEMD_PRIVATE_FILE" "$SYSTEMD_UNIT_FILE"
+
+        # Reload systemd to recognize the new link
+        if command -v systemctl &> /dev/null; then
+            systemctl --user daemon-reload
+        fi
+    fi
+fi
