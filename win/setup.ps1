@@ -251,7 +251,7 @@ function Set-CapsLockToCtrl {
   }
 }
 
-function Install-Neovim {
+function Install-Neovim-Win {
   if (Get-Command nvim -ErrorAction SilentlyContinue) {
     log "Neovim is already installed. Skipping nightly download." "Gray"
     return
@@ -400,7 +400,7 @@ function Start-Main {
     Install-PlemolJP
     Install-BibataCursor
     Install-BuildTools
-    Install-Neovim
+    Install-Neovim-Win
     Install-Tools
     Install-GoTools
 

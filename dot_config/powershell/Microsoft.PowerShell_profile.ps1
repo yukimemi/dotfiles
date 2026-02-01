@@ -10,12 +10,8 @@ $ErrorActionPreference = "Continue"
 # --- Environment Setup ---
 $Host.UI.RawUI.WindowTitle = "yukimemi-terminal"
 
-function Test-IsWindows {
-  ($PSVersionTable.PSVersion.Major -eq 5) -or ($PSVersionTable.Platform -eq "Win32NT")
-}
-
 function Test-IsWsl {
-  if (Test-IsWindows) {
+  if ($IsWindows) {
     return $false
   }
   return (Test-Path /proc/version) -and (Get-Content /proc/version | Select-String "microsoft" -Quiet)
@@ -30,7 +26,7 @@ function Get-DriveInfoView {
 }
 Set-Alias -Name df -Value Get-DriveInfoView -Force
 
-if (Test-IsWindows) {
+if ($IsWindows) {
   [Console]::InputEncoding = [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 }
 $env:LANG = "ja_JP.UTF-8"
@@ -56,13 +52,13 @@ if (Test-IsWsl) {
   } catch {
     $env:BROWSER = "chromium-browser"
   }
-} elseif (!(Test-IsWindows)) {
+} elseif (!($IsWindows)) {
   $env:BROWSER = "chromium-browser"
 }
 
 # --- Path Setup ---
 $PathSeparator = [IO.Path]::PathSeparator
-$UserHome = if (Test-IsWindows) {
+$UserHome = if ($IsWindows) {
   $env:USERPROFILE
 } else {
   $env:HOME
@@ -109,12 +105,12 @@ if (!(Test-Path $StarshipInit) -or !(Test-Path $ZoxideInit)) {
   $env:PATH = ($env:PATH -split $PathSeparator | Where-Object { $_ -notlike "*mise/shims*" -and $_ -notlike "*mise\shims*" }) -join $PathSeparator
 
   try {
-    $starshipName = if (Test-IsWindows) {
+    $starshipName = if ($IsWindows) {
       "starship.exe"
     } else {
       "starship"
     }
-    $zoxideName = if (Test-IsWindows) {
+    $zoxideName = if ($IsWindows) {
       "zoxide.exe"
     } else {
       "zoxide"

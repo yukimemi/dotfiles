@@ -25,11 +25,9 @@ function Set-LocationWithList {
 function Set-LocationWithHistory {
   [CmdletBinding()] param([Parameter(ValueFromPipeline = $true)][string]$path)
   Set-Location $path -ErrorAction Stop; Get-ChildItem
-  $funcs = "function Test-IsWindows { ${Function:Test-IsWindows} }"
   Start-Job {
-    param([string]$funcs, [string]$path)
-    Invoke-Expression $funcs
-    $z = if (Test-IsWindows) {
+    param([string]$path)
+    $z = if ($IsWindows) {
       Join-Path $env:USERPROFILE ".cdhistory"
     } else {
       Join-Path $env:HOME ".cdhistory"
@@ -38,7 +36,7 @@ function Set-LocationWithHistory {
     $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) }
     [array]::Reverse($c); $c = $c | Select-Object -Unique; [array]::Reverse($c)
     $c | Set-Content -Encoding utf8 $z
-  } -ArgumentList $funcs, (Get-Location).Path > $null
+  } -ArgumentList $path > $null
 }
 
 function Invoke-ZJump {
@@ -46,7 +44,7 @@ function Invoke-ZJump {
 }
 
 function Invoke-HistoryJump {
-  $z = if (Test-IsWindows) {
+  $z = if ($IsWindows) {
     Join-Path $env:USERPROFILE ".cdhistory"
   } else {
     Join-Path $env:HOME ".cdhistory"
@@ -78,14 +76,13 @@ function Move-ToTrash {
     [Alias('LP', 'PSPath')][Parameter(Mandatory = $true, Position = 0, ParameterSetName = 'LiteralPath', ValueFromPipeline = $false, ValueFromPipelineByPropertyName = $true)][string[]]$LiteralPath
   )
   begin {
-    $isWindows = Test-IsWindows
-    if ($isWindows) {
+    if ($IsWindows) {
       $shell = New-Object -ComObject Shell.Application; $trash = $shell.NameSpace(10)
     }
   }
   process {
     $targets = if ($PSBoundParameters.ContainsKey('Path')) {
-      if ($isWindows) {
+      if ($IsWindows) {
         Convert-Path ($Path.Trim() -replace '^[^A-Z]+', "")
       } else {
         Convert-Path $Path
@@ -95,7 +92,7 @@ function Move-ToTrash {
     }
     foreach ($target in $targets) {
       if ($PSCmdlet.ShouldProcess($target)) {
-        if ($isWindows) {
+        if ($IsWindows) {
           $trash.MoveHere($target)
         } elseif (Get-Command gio -ErrorAction SilentlyContinue) {
           gio trash $target
@@ -122,7 +119,7 @@ function r {
 function Invoke-TrimSetLocation {
   param([Parameter(ValueFromPipeline = $true)][string]$Path)
   process {
-    $p = if (Test-IsWindows) {
+    $p = if ($IsWindows) {
       $Path.Trim() -replace '^[^A-Z]+', ""
     } else {
       $Path.Trim()
@@ -149,9 +146,21 @@ function Install-Aider {
 }
 
 function Install-Neovim {
-  $nvimMsi = Join-Path $env:TEMP "nvim-win64.msi"
-  Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
-  Start-Process msiexec.exe -ArgumentList "/i `"$nvimMsi`"" -Wait
+  if ($IsWindows) {
+    Write-Host "Installing Neovim Nightly (Windows)..."
+    $nvimMsi = Join-Path $env:TEMP "nvim-win64.msi"
+    Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
+    Start-Process msiexec.exe -ArgumentList "/i `"$nvimMsi`" /quiet" -Wait
+    Remove-Item $nvimMsi -ErrorAction SilentlyContinue
+  } elseif ($IsMacOS) {
+    Write-Host "Building Neovim (MacOS)..."
+    bash -c "brew install ninja cmake gettext curl; rm -rf /tmp/neovim; git clone https://github.com/neovim/neovim /tmp/neovim; cd /tmp/neovim; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install"
+  } elseif ($IsLinux) {
+    Write-Host "Building Neovim (Linux)..."
+    bash -c "sudo apt install -y ninja-build gettext cmake unzip curl; rm -rf /tmp/neovim; git clone https://github.com/neovim/neovim /tmp/neovim; cd /tmp/neovim; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install"
+  } else {
+    Write-Error "Unknown Operating System."
+  }
 }
 
 function y {
