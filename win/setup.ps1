@@ -333,21 +333,8 @@ function Install-Mise {
   }
 }
 
-function Install-Tools {
-  $wingetPackages = @(
-    "glzr-io.glazewm", "glzr-io.zebar", "Oven-sh.Bun",
-    "BurntSushi.ripgrep.MSVC", "ImageMagick.ImageMagick", "alexpasmantier.television",
-    "junegunn.fzf", "sharkdp.fd", "dandavison.delta", "gerardog.gsudo",
-    "Slackadays.Clipboard", "Flameshot.Flameshot", "RustLang.Rustup",
-    "Microsoft.WindowsTerminal", "Microsoft.PowerToys", "Git.Git",
-    "GitHub.cli", "AutoHotkey.AutoHotkey", "Espanso.Espanso",
-    "WinMerge.WinMerge", "Chocolatey.Chocolatey", "zig.zig", "GoLang.Go",
-    "Microsoft.PowerShell", "Neovide.Neovide", "hluk.CopyQ", "Byron.dua-cli",
-    "Obsidian.Obsidian"
-  )
-  Install-WingetPackages $wingetPackages
-
-  # External Binary Tools
+function Install-UserTools {
+  # External Binary Tools (No admin required)
   $binTools = @(
     @{
       Name = "clnch"
@@ -364,6 +351,21 @@ function Install-Tools {
   foreach ($tool in $binTools) {
     Install-BinaryArchive -Name $tool.Name -Url $tool.Url -DestinationDir $tool.Dest
   }
+}
+
+function Install-Tools {
+  $wingetPackages = @(
+    "glzr-io.glazewm", "glzr-io.zebar", "Oven-sh.Bun",
+    "BurntSushi.ripgrep.MSVC", "ImageMagick.ImageMagick", "alexpasmantier.television",
+    "junegunn.fzf", "sharkdp.fd", "dandavison.delta", "gerardog.gsudo",
+    "Slackadays.Clipboard", "Flameshot.Flameshot", "RustLang.Rustup",
+    "Microsoft.WindowsTerminal", "Microsoft.PowerToys", "Git.Git",
+    "GitHub.cli", "AutoHotkey.AutoHotkey", "Espanso.Espanso",
+    "WinMerge.WinMerge", "Chocolatey.Chocolatey", "zig.zig", "GoLang.Go",
+    "Microsoft.PowerShell", "Neovide.Neovide", "hluk.CopyQ", "Byron.dua-cli",
+    "Obsidian.Obsidian"
+  )
+  Install-WingetPackages $wingetPackages
 }
 
 function Install-PlemolJP {
@@ -451,6 +453,7 @@ function Start-Main {
       Install-PlemolJP
       Install-GoTools
       Install-Mise
+      Install-UserTools
 
       # Create Shortcuts (User level)
       $shortcuts = @(
