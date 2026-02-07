@@ -3,14 +3,41 @@
     setup.ps1
   .DESCRIPTION
     Initial windows setup scripts.
+  .PARAMETER AdminOnly
+    Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/01/25 22:14:17.
+  .Last Change : 2026/02/07 19:41:00.
 #>
+param(
+  [switch]$AdminOnly
+)
+
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue"
 
 # --- Helper Functions ---
+
+function Test-IsAdmin {
+  return ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+}
+
+function Test-IsAdminGroup {
+  # Check via whoami (reliable even under UAC restriction)
+  $groups = whoami /groups
+  if ($groups -match "S-1-5-32-544") { return $true }
+
+  # Fallback: Check local group membership directly
+  $isAdmin = $false
+  try {
+    $user = [Security.Principal.WindowsIdentity]::GetCurrent().Name
+    $group = [ADSI]"WinNT://./Administrators,group"
+    $members = $group.psbase.Invoke("Members") | ForEach-Object { $_.GetType().InvokeMember("Name", 'GetProperty', $null, $_, $null) }
+    if ($members -contains ($user -split "\\")[-1]) { $isAdmin = $true }
+  } catch {}
+
+  return $isAdmin
+}
 
 function log {
   param([string]$msg, [string]$color = "Cyan")
@@ -146,7 +173,9 @@ function Install-BibataCursor {
       log "Executing modified install.inf..."
       $command = "rundll32.exe setupapi.dll,InstallHinfSection DefaultInstall 128 $($infFile.FullName)"
 
-      if (Get-Command gsudo -ErrorAction SilentlyContinue) {
+      if (Test-IsAdmin) {
+        cmd /c $command
+      } elseif (Get-Command gsudo -ErrorAction SilentlyContinue) {
         gsudo cmd /c $command
       } else {
         Start-Process cmd -ArgumentList "/c $command" -Verb RunAs -Wait
@@ -240,7 +269,9 @@ function Set-CapsLockToCtrl {
   $regValueData = "0000000000000000020000001d003a0000000000"
   try {
     $command = "reg add `"$regPath`" /v `"$regValueName`" /t REG_BINARY /d $regValueData /f"
-    if (Get-Command gsudo -ErrorAction SilentlyContinue) {
+    if (Test-IsAdmin) {
+      cmd /c $command
+    } elseif (Get-Command gsudo -ErrorAction SilentlyContinue) {
       gsudo cmd /c $command
     } else {
       Start-Process reg -ArgumentList "add `"$regPath`" /v `"$regValueName`" /t REG_BINARY /d $regValueData /f" -Verb RunAs
@@ -283,6 +314,22 @@ function Install-GoTools {
   foreach ($tool in $goTools) {
     log "Installing $tool ..."
     go install $tool
+  }
+}
+
+function Install-Mise {
+  if (Get-Command mise -ErrorAction SilentlyContinue) {
+    log "mise is already installed." "Gray"
+    return
+  }
+
+  log "Installing mise..." "Yellow"
+  try {
+    # Install mise via official ps1 script
+    irm https://mise.jdx.dev/install.ps1 | iex
+    log "mise installed successfully." "Green"
+  } catch {
+    log "Failed to install mise: $_" "Red"
   }
 }
 
@@ -395,35 +442,55 @@ function Start-Main {
   try {
     log "[Start-Main] Starting setup..."
 
-    Set-RequiredEnv
-    Set-CapsLockToCtrl
-    Install-PlemolJP
-    Install-BibataCursor
-    Install-BuildTools
-    Install-Neovim-Win
-    Install-Tools
-    Install-GoTools
+    $isAdmin = Test-IsAdmin
+    $canElevate = Test-IsAdminGroup
 
-    # Shortcuts
-    $shortcuts = @(
-      @{
-        Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
-        Target = "${env:USERPROFILE}\.local\share\chezmoi\win\AutoHotkey\AutoHotkey.ahk"
-      },
-      @{
-        Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\clnch.lnk"
-        Target = "${env:USERPROFILE}\app\clnch\clnch.exe"
-      },
-      @{
-        Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AlterDnD64.lnk"
-        Target = "${env:USERPROFILE}\app\AlterDnD\AlterDnD64.exe"
+    if (-not $AdminOnly) {
+      log "--- User Level Setup ---" "Cyan"
+      Set-RequiredEnv
+      Install-PlemolJP
+      Install-GoTools
+      Install-Mise
+
+      # Create Shortcuts (User level)
+      $shortcuts = @(
+        @{
+          Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
+          Target = "${env:USERPROFILE}\.local\share\chezmoi\win\AutoHotkey\AutoHotkey.ahk"
+        },
+        @{
+          Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\clnch.lnk"
+          Target = "${env:USERPROFILE}\app\clnch\clnch.exe"
+        },
+        @{
+          Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AlterDnD64.lnk"
+          Target = "${env:USERPROFILE}\app\AlterDnD\AlterDnD64.exe"
+        }
+      )
+      foreach ($s in $shortcuts) {
+        New-Shortcut -link $s.Link -target $s.Target
       }
-    )
-    foreach ($s in $shortcuts) {
-      New-Shortcut -link $s.Link -target $s.Target
     }
 
-    log "[Start-Main] Setup completed successfully!" "Green"
+    if ($isAdmin) {
+      log "--- Admin Level Setup ---" "Green"
+      Set-CapsLockToCtrl
+      Install-BibataCursor
+      Install-BuildTools
+      Install-Neovim-Win
+      Install-Tools
+    } elseif ($canElevate) {
+      log "Not elevated, but you are in the Administrators group. Attempting to relaunch for Admin tasks..." "Yellow"
+      try {
+        Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" -AdminOnly" -Verb RunAs -Wait
+      } catch {
+        log "Elevation failed or cancelled. Skipping Admin-only tasks." "Red"
+      }
+    } else {
+      log "Running with User privileges only. Skipping Admin-only tasks." "Yellow"
+    }
+
+    log "[Start-Main] Setup process finished." "Green"
     exit 0
   } catch {
     log "Error in Start-Main: $_" "Red"
