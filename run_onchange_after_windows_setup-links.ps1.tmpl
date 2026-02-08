@@ -1,15 +1,27 @@
 {{ if eq .chezmoi.os "windows" -}}
 $ErrorActionPreference = "SilentlyContinue"
 
+function Move-ToBackup {
+    param ([string]$path)
+    if (Test-Path $path) {
+        $timestamp = Get-Date -Format "yyyyMMddTHHmmssfffffff"
+        $leaf = Split-Path $path -Leaf
+        $backupName = "$leaf.$timestamp.bak"
+        Write-Host "Backing up $path to $backupName"
+        Rename-Item -Path $path -NewName $backupName -Force
+    }
+}
+
 function New-Junction {
     param ([string]$link, [string]$target)
     if (Test-Path $link) {
-        $existingTarget = (Get-Item $link).Target
-        if ($existingTarget -eq $target) {
-            return
+        $item = Get-Item $link
+        if ($item.Attributes -match "ReparsePoint") {
+            if ($item.Target -eq $target) {
+                return
+            }
         }
-        Write-Host "Updating Junction: $link -> $target (was $existingTarget)"
-        Remove-Item $link -Force
+        Move-ToBackup -path $link
     }
     $parent = Split-Path $link -Parent
     if (!(Test-Path $parent)) {
@@ -21,19 +33,25 @@ function New-Junction {
 
 function New-HardLink {
     param ([string]$link, [string]$target)
-    if (Test-Path $link) {
-        # Hardlink target checking is difficult in PowerShell, so we compare with Test-Path
-        # For simplicity, if it exists, we skip, but we could force update if needed.
+    if (!(Test-Path $target)) {
+        Write-Warning "Target not found: $target"
         return
+    }
+    if (Test-Path $link) {
+        # Compare hash to check if it's already the same content
+        $hash1 = Get-FileHash -Path $link -Algorithm MD5
+        $hash2 = Get-FileHash -Path $target -Algorithm MD5
+        if ($hash1.Hash -eq $hash2.Hash) {
+            return
+        }
+        Move-ToBackup -path $link
     }
     $parent = Split-Path $link -Parent
     if (!(Test-Path $parent)) {
         New-Item -ItemType Directory -Path $parent -Force | Out-Null
     }
-    if (Test-Path $target) {
-        Write-Host "Creating HardLink: $link -> $target"
-        New-Item -ItemType HardLink -Path $link -Target $target
-    }
+    Write-Host "Creating HardLink: $link -> $target"
+    New-Item -ItemType HardLink -Path $link -Target $target
 }
 
 # --- Directory Junctions ---
@@ -67,7 +85,6 @@ foreach ($rel in $files.Keys) {
 }
 
 # --- Special Paths ---
-# Force change to trigger run_onchange: 2026-02-08
 # PowerShell Profile (Link from Documents to ~/.config/powershell/...)
 $psProfileTarget = "$config\powershell\Microsoft.PowerShell_profile.ps1"
 $myDocs = [Environment]::GetFolderPath("MyDocuments")
@@ -83,5 +100,3 @@ foreach ($path in $psProfilePaths) {
 }
 
 {{ end -}}
-
-# Last Test: 02/08/2026 16:27:40
