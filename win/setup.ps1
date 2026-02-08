@@ -7,7 +7,7 @@
     Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/02/07 19:41:00.
+  .Last Change : 2026/02/08 13:38:24.
 #>
 param(
   [switch]$AdminOnly
@@ -25,7 +25,9 @@ function Test-IsAdmin {
 function Test-IsAdminGroup {
   # Check via whoami (reliable even under UAC restriction)
   $groups = whoami /groups
-  if ($groups -match "S-1-5-32-544") { return $true }
+  if ($groups -match "S-1-5-32-544") {
+    return $true 
+  }
 
   # Fallback: Check local group membership directly
   $isAdmin = $false
@@ -33,8 +35,11 @@ function Test-IsAdminGroup {
     $user = [Security.Principal.WindowsIdentity]::GetCurrent().Name
     $group = [ADSI]"WinNT://./Administrators,group"
     $members = $group.psbase.Invoke("Members") | ForEach-Object { $_.GetType().InvokeMember("Name", 'GetProperty', $null, $_, $null) }
-    if ($members -contains ($user -split "\\")[-1]) { $isAdmin = $true }
-  } catch {}
+    if ($members -contains ($user -split "\\")[-1]) {
+      $isAdmin = $true 
+    }
+  } catch {
+  }
 
   return $isAdmin
 }
@@ -326,7 +331,7 @@ function Install-Mise {
   log "Installing mise..." "Yellow"
   try {
     # Install mise via official ps1 script
-    irm https://mise.jdx.dev/install.ps1 | iex
+    Invoke-RestMethod https://mise.jdx.dev/install.ps1 | Invoke-Expression
     log "mise installed successfully." "Green"
   } catch {
     log "Failed to install mise: $_" "Red"
@@ -479,7 +484,7 @@ function Start-Main {
       log "--- Admin Level Setup ---" "Green"
       Set-CapsLockToCtrl
       Install-BibataCursor
-      Install-BuildTools
+      # Install-BuildTools
       Install-Neovim-Win
       Install-Tools
     } elseif ($canElevate) {
