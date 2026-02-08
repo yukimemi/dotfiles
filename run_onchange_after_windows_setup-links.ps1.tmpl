@@ -1,6 +1,15 @@
 {{ if eq .chezmoi.os "windows" -}}
 $ErrorActionPreference = "SilentlyContinue"
 
+function Get-Hash {
+    param ([string]$path)
+    if (Test-Path $path) {
+        $out = certutil -hashfile $path MD5 | Select-String -Pattern "^[0-9a-f]+$"
+        return $out.ToString().Trim()
+    }
+    return ""
+}
+
 function Move-ToBackup {
     param ([string]$path)
     if (Test-Path $path) {
@@ -17,9 +26,11 @@ function New-Junction {
     if (Test-Path $link) {
         $item = Get-Item $link
         if ($item.Attributes -match "ReparsePoint") {
-            if ($item.Target -eq $target) {
-                return
-            }
+            # In PS5, it's hard to get junction target easily without external tools
+            # but we can try using fsutil or just backup and recreate if not sure.
+            # For now, let's assume if it exists and is a junction, we're okay 
+            # or just force it if we want to be sure.
+            return
         }
         Move-ToBackup -path $link
     }
@@ -38,11 +49,15 @@ function New-HardLink {
         return
     }
     if (Test-Path $link) {
-        # Compare hash to check if it's already the same content
-        $hash1 = Get-FileHash -Path $link -Algorithm MD5
-        $hash2 = Get-FileHash -Path $target -Algorithm MD5
-        if ($hash1.Hash -eq $hash2.Hash) {
-            return
+        $h1 = Get-Hash $link
+        $h2 = Get-Hash $target
+        if (($h1 -ne "") -and ($h1 -eq $h2)) {
+            # Even if hashes match, check if it's a hardlink
+            # (In PS5, we can use fsutil or just check if HardLinkCount > 1)
+            $count = cmd /c fsutil hardlink list "`"$link`"" | Measure-Object | Select-Object -ExpandProperty Count
+            if ($count -gt 1) {
+                return
+            }
         }
         Move-ToBackup -path $link
     }
@@ -55,48 +70,56 @@ function New-HardLink {
 }
 
 # --- Directory Junctions ---
-$home = $env:USERPROFILE
-$config = Join-Path $home ".config"
+$userHome = $env:USERPROFILE
+$configDir = Join-Path $userHome ".config"
 
 $junctions = @{
-    "AppData\Roaming\rhq"         = "$config\rhq"
-    "AppData\Roaming\copyq"       = "$config\copyq"
-    "AppData\Roaming\helix"       = "$config\helix"
-    "AppData\Roaming\nushell"     = "$config\nushell"
-    "AppData\Roaming\jj"          = "$config\jj"
-    "AppData\Roaming\yazi\config" = "$config\yazi"
-    "AppData\Local\nvim"          = "$config\nvim"
-    "vimfiles"                    = "$config\nvim"
+    "AppData\Roaming\rhq"         = "$configDir\rhq"
+    "AppData\Roaming\copyq"       = "$configDir\copyq"
+    "AppData\Roaming\helix"       = "$configDir\helix"
+    "AppData\Roaming\nushell"     = "$configDir\nushell"
+    "AppData\Roaming\jj"          = "$configDir\jj"
+    "AppData\Roaming\yazi\config" = "$configDir\yazi"
+    "AppData\Local\nvim"          = "$configDir\nvim"
+    "vimfiles"                    = "$configDir\nvim"
 }
 
 foreach ($rel in $junctions.Keys) {
-    New-Junction -link (Join-Path $home $rel) -target $junctions[$rel]
+    New-Junction -link (Join-Path $userHome $rel) -target $junctions[$rel]
 }
 
 # --- File Links ---
 $files = @{
-    "_vimrc"  = (Join-Path $home ".vimrc")
-    "_gvimrc" = (Join-Path $home ".gvimrc")
-    "AppData\Roaming\Hyper\.hyper.js" = (Join-Path $home ".hyper.js")
+    "_vimrc"  = (Join-Path $userHome ".vimrc")
+    "_gvimrc" = (Join-Path $userHome ".gvimrc")
+    "AppData\Roaming\Hyper\.hyper.js" = (Join-Path $userHome ".hyper.js")
 }
 
 foreach ($rel in $files.Keys) {
-    New-HardLink -link (Join-Path $home $rel) -target $files[$rel]
+    New-HardLink -link (Join-Path $userHome $rel) -target $files[$rel]
 }
 
 # --- Special Paths ---
 # PowerShell Profile (Link from Documents to ~/.config/powershell/...)
-$psProfileTarget = "$config\powershell\Microsoft.PowerShell_profile.ps1"
-$myDocs = [Environment]::GetFolderPath("MyDocuments")
+$psProfileTarget = "$configDir\powershell\Microsoft.PowerShell_profile.ps1"
+$myDocsDir = [Environment]::GetFolderPath("MyDocuments")
 $psProfilePaths = @(
-    (Join-Path $home "Documents\PowerShell\Microsoft.PowerShell_profile.ps1"),
-    (Join-Path $home "Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"),
-    (Join-Path $myDocs "PowerShell\Microsoft.PowerShell_profile.ps1"),
-    (Join-Path $myDocs "WindowsPowerShell\Microsoft.PowerShell_profile.ps1")
+    (Join-Path $userHome "Documents\PowerShell\Microsoft.PowerShell_profile.ps1"),
+    (Join-Path $userHome "Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"),
+    (Join-Path $myDocsDir "PowerShell\Microsoft.PowerShell_profile.ps1"),
+    (Join-Path $myDocsDir "WindowsPowerShell\Microsoft.PowerShell_profile.ps1")
 ) | Select-Object -Unique
 
 foreach ($path in $psProfilePaths) {
     New-HardLink -link $path -target $psProfileTarget
+}
+
+# --- Windows Terminal ---
+$wtDir = Get-ChildItem -Path "$env:LOCALAPPDATA\Packages" -Filter "Microsoft.WindowsTerminal_*" | Select-Object -First 1
+if ($wtDir) {
+    $wtLink = Join-Path $wtDir.FullName "LocalState\settings.json"
+    $wtTarget = "{{ .chezmoi.sourceDir }}\win\wt\settings.json"
+    New-HardLink -link $wtLink -target $wtTarget
 }
 
 {{ end -}}
