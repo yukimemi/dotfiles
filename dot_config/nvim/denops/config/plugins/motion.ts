@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : motion.ts
 // Author      : yukimemi
-// Last Change : 2026/02/08 17:05:51.
+// Last Change : 2026/02/08 17:47:04.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -59,6 +59,12 @@ export const motion: Plug[] = [
     after: async ({ denops }) => {
       await mapping.map(denops, "ss", "<cmd>Initial<cr>", { mode: "n" });
     },
+  },
+  {
+    url: "https://github.com/rhysd/clever-f.vim",
+    enabled: selections.horizontal_motion === "clever-f",
+    profiles: ["motion"],
+    cache: { afterFile: "~/.config/nvim/rc/after/clever-f.vim" },
   },
   {
     url: "https://github.com/yuki-yano/zero.nvim",

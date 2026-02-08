@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2026/01/18 17:36:10.
+// Last Change : 2026/02/08 17:25:55.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -125,10 +125,7 @@ export const ui: Plug[] = [
     url: "https://github.com/jinh0/eyeliner.nvim",
     enabled: selections.horizontal_motion === "eyeliner",
     profiles: ["ui"],
-    lazy: {
-      event: ["BufRead", "BufNewFile"],
-    },
-    afterFile: `~/.config/nvim/rc/after/eyeliner.lua`,
+    cache: { afterFile: `~/.config/nvim/rc/after/eyeliner.lua` },
   },
   {
     url: "https://github.com/deris/vim-shot-f",

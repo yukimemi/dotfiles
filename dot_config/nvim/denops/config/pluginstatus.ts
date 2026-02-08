@@ -66,7 +66,13 @@ export type Selections = {
   notification: "fidget" | "nvim-notify" | "notifier" | "noice" | "none";
   smooth_scroll: "neoscroll" | "smoothie" | "cinnamon" | "none";
   scrollbar: "scrollbar" | "satellite" | "none";
-  horizontal_motion: "flash" | "quickscope" | "eyeliner" | "shot-f" | "none";
+  horizontal_motion:
+    | "flash"
+    | "quickscope"
+    | "eyeliner"
+    | "shot-f"
+    | "clever-f"
+    | "none";
 };
 
 export const selections: Selections = {
@@ -85,7 +91,7 @@ export const selections: Selections = {
   notification: "noice",
   smooth_scroll: "none",
   scrollbar: "satellite",
-  horizontal_motion: "eyeliner",
+  horizontal_motion: "clever-f",
 };
 
 export const pluginStatus = {

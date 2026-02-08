@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : eyeliner.lua
 -- Author      : yukimemi
--- Last Change : 2024/10/14 21:31:41.
+-- Last Change : 2026/02/08 17:42:01.
 -- =============================================================================
 
 require 'eyeliner'.setup({
@@ -37,3 +37,4 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, 'EyelinerPrimary', { bold = true, underline = true })
   end,
 })
+
