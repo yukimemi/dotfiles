@@ -85,7 +85,7 @@ export const selections: Selections = {
   notification: "noice",
   smooth_scroll: "none",
   scrollbar: "satellite",
-  horizontal_motion: "none",
+  horizontal_motion: "eyeliner",
 };
 
 export const pluginStatus = {
