@@ -4,7 +4,12 @@ $ErrorActionPreference = "SilentlyContinue"
 function New-Junction {
     param ([string]$link, [string]$target)
     if (Test-Path $link) {
-        return
+        $existingTarget = (Get-Item $link).Target
+        if ($existingTarget -eq $target) {
+            return
+        }
+        Write-Host "Updating Junction: $link -> $target (was $existingTarget)"
+        Remove-Item $link -Force
     }
     $parent = Split-Path $link -Parent
     if (!(Test-Path $parent)) {
@@ -17,6 +22,8 @@ function New-Junction {
 function New-HardLink {
     param ([string]$link, [string]$target)
     if (Test-Path $link) {
+        # Hardlink target checking is difficult in PowerShell, so we compare with Test-Path
+        # For simplicity, if it exists, we skip, but we could force update if needed.
         return
     }
     $parent = Split-Path $link -Parent

@@ -2,7 +2,7 @@
 l = ["log", "-r", "..", "-n", "20"]
 ci = ["commit"]
 lp = ["log", "-p"]
-lc = ["log", "-p", "--color-words"]
+lc = ["log", "-p", "--color-words", "-r", ".."]
 done = ["bookmark", "move", "main", "--to", "@-"]
 track = ["bookmark", "move", "main", "--to", "@"]
 
@@ -18,5 +18,5 @@ email = "yukimemi@gmail.com"
 [ui]
 default-command = "log"
 editor = "nvim"
-pager = "delta"
+pager = "delta --paging always --pager C:/PROGRA~1/Git/usr/bin/less.exe"
 diff-formatter = ":git"
