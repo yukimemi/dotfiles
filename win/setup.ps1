@@ -329,13 +329,7 @@ function Install-Mise {
   }
 
   log "Installing mise..." "Yellow"
-  try {
-    # Install mise via official ps1 script
-    Invoke-RestMethod https://mise.jdx.dev/install.ps1 | Invoke-Expression
-    log "mise installed successfully." "Green"
-  } catch {
-    log "Failed to install mise: $_" "Red"
-  }
+  Install-WingetPackages @("jdx.mise")
 }
 
 function Install-UserTools {
