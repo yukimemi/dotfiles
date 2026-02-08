@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2026/01/17 21:50:00
+// Last Change : 2026/02/08 17:03:13
 // =============================================================================
 
 export const features = {
@@ -79,13 +79,13 @@ export const selections: Selections = {
   runner: "overseer",
   pairs: "insx",
   column: "virtcolumn",
-  motion: "flash",
+  motion: "smartmotion",
   indent: "snacks",
   detect_indent: "dansa",
   notification: "noice",
   smooth_scroll: "none",
   scrollbar: "satellite",
-  horizontal_motion: "flash",
+  horizontal_motion: "none",
 };
 
 export const pluginStatus = {

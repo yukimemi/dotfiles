@@ -1,7 +1,23 @@
 -- =============================================================================
 -- File        : smart-motion.lua
 -- Author      : yukimemi
--- Last Change : 2025/03/02 15:23:51.
+-- Last Change : 2026/02/08 17:03:13.
 -- =============================================================================
 
-require("smart-motion").setup()
+require("smart-motion").setup({
+  presets = {
+    words = true,
+    lines = true,
+    search = true,
+    delete = true,
+    yank = true,
+    change = true,
+    paste = true,
+    treesitter = true,
+    diagnostics = true,
+    git = true,
+    quickfix = true,
+    marks = true,
+    misc = true,
+  },
+})
