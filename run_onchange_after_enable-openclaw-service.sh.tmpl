@@ -1,3 +1,4 @@
+{{ if ne .chezmoi.os "windows" -}}
 #!/bin/bash
 # OpenClaw service enablement
 if command -v systemctl &> /dev/null && systemctl --user list-units &> /dev/null; then
@@ -5,3 +6,4 @@ if command -v systemctl &> /dev/null && systemctl --user list-units &> /dev/null
     systemctl --user enable openclaw-gateway.service
     systemctl --user start openclaw-gateway.service
 fi
+{{ end -}}

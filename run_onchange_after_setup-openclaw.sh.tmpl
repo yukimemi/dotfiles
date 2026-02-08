@@ -1,3 +1,4 @@
+{{ if ne .chezmoi.os "windows" -}}
 #!/bin/bash
 # OpenClaw setup script
 PRIVATE_REPO_DIR="$HOME/src/github.com/yukimemi/private"
@@ -45,3 +46,4 @@ if [ -f "$SYSTEMD_PRIVATE_FILE" ]; then
         fi
     fi
 fi
+{{ end -}}
