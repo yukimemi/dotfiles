@@ -69,15 +69,16 @@ foreach ($rel in $files.Keys) {
 # --- Special Paths ---
 # PowerShell Profile (Link from Documents to ~/.config/powershell/...)
 $psProfileTarget = "$config\powershell\Microsoft.PowerShell_profile.ps1"
+$myDocs = [Environment]::GetFolderPath("MyDocuments")
 $psProfilePaths = @(
-    "Documents\PowerShell\Microsoft.PowerShell_profile.ps1",
-    "Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1",
-    "OneDrive\ドキュメント\PowerShell\Microsoft.PowerShell_profile.ps1",
-    "OneDrive\ドキュメント\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
-)
+    (Join-Path $home "Documents\PowerShell\Microsoft.PowerShell_profile.ps1"),
+    (Join-Path $home "Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"),
+    (Join-Path $myDocs "PowerShell\Microsoft.PowerShell_profile.ps1"),
+    (Join-Path $myDocs "WindowsPowerShell\Microsoft.PowerShell_profile.ps1")
+) | Select-Object -Unique
 
-foreach ($rel in $psProfilePaths) {
-    New-HardLink -link (Join-Path $home $rel) -target $psProfileTarget
+foreach ($path in $psProfilePaths) {
+    New-HardLink -link $path -target $psProfileTarget
 }
 
 {{ end -}}

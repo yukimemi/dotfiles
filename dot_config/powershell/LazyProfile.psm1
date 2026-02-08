@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/01/28 18:58:26.
+# Last Change : 2026/02/08 15:12:38.
 # =============================================================================
 
 # --- Functions ---
@@ -226,7 +226,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "ls"    = "Get-ChildItem"
     "o"     = "Start-Process"
     "rm"    = $rmTarget
-    "s"     = "jj status"
+    "s"     = "jj status --no-pager"
     "t"     = "exit"
     "v"     = "gvim --remote-silent"
     "which" = "Get-Command"
