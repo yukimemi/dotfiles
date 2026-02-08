@@ -138,10 +138,6 @@ $ConfigHome = if ($env:XDG_CONFIG_HOME) {
 }
 $LazyProfileModule = Join-Path $ConfigHome "powershell/LazyProfile.psm1"
 
-if (Test-Path $ZoxideInit) {
-  . $ZoxideInit
-}
-
 if (Test-Path $StarshipInit) {
   . $StarshipInit
 
@@ -174,4 +170,8 @@ if (Test-Path $StarshipInit) {
   $global:LazyProfilePath = $LazyProfileModule
 } elseif (Test-Path $LazyProfileModule) {
   Import-Module -Global $LazyProfileModule -ErrorAction SilentlyContinue
+}
+
+if (Test-Path $ZoxideInit) {
+  . $ZoxideInit
 }
