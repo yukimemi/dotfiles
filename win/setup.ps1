@@ -7,7 +7,7 @@
     Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/02/08 13:38:24.
+  .Last Change : 2026/02/12 02:01:20.
 #>
 param(
   [switch]$AdminOnly
@@ -26,7 +26,7 @@ function Test-IsAdminGroup {
   # Check via whoami (reliable even under UAC restriction)
   $groups = whoami /groups
   if ($groups -match "S-1-5-32-544") {
-    return $true 
+    return $true
   }
 
   # Fallback: Check local group membership directly
@@ -36,7 +36,7 @@ function Test-IsAdminGroup {
     $group = [ADSI]"WinNT://./Administrators,group"
     $members = $group.psbase.Invoke("Members") | ForEach-Object { $_.GetType().InvokeMember("Name", 'GetProperty', $null, $_, $null) }
     if ($members -contains ($user -split "\\")[-1]) {
-      $isAdmin = $true 
+      $isAdmin = $true
     }
   } catch {
   }
@@ -229,6 +229,7 @@ function Set-RequiredEnv {
   }
 
   $targetPaths = @(
+    "${env:USERPROFILE}\scoop\shims",
     "${env:USERPROFILE}\.cargo\bin",
     "${env:USERPROFILE}\.deno\bin",
     "${env:USERPROFILE}\.bun\bin",
@@ -293,11 +294,16 @@ function Install-Neovim-Win {
     return
   }
 
-  log "Installing Neovim Nightly..."
-  $nvimMsi = Join-Path $env:TEMP "nvim-win64.msi"
-  Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
-  Start-Process msiexec.exe -ArgumentList "/i $nvimMsi /quiet" -Wait
-  Remove-Item $nvimMsi
+  if (Test-IsAdmin) {
+    log "Installing Neovim Nightly via MSI..."
+    $nvimMsi = Join-Path $env:TEMP "nvim-win64.msi"
+    Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
+    Start-Process msiexec.exe -ArgumentList "/i $nvimMsi /quiet" -Wait
+    Remove-Item $nvimMsi
+  } else {
+    log "Installing Neovim Nightly via scoop..."
+    Install-ScoopPackages @("neovim-nightly")
+  }
 }
 
 function Install-BuildTools {
@@ -353,20 +359,93 @@ function Install-UserTools {
 }
 
 function Install-Tools {
-  $wingetPackages = @(
-    "glzr-io.glazewm", "glzr-io.zebar", "Oven-sh.Bun",
-    "BurntSushi.ripgrep.MSVC", "ImageMagick.ImageMagick", "alexpasmantier.television",
+  # Packages that work well with winget --scope user
+  $wingetUserPackages = @(
+    "glzr-io.glazewm", "Oven-sh.Bun",
+    "BurntSushi.ripgrep.MSVC", "alexpasmantier.television",
     "junegunn.fzf", "sharkdp.fd", "dandavison.delta", "gerardog.gsudo",
     "Slackadays.Clipboard", "Flameshot.Flameshot", "RustLang.Rustup",
-    "Microsoft.WindowsTerminal", "Microsoft.PowerToys", "Git.Git",
-    "GitHub.cli", "AutoHotkey.AutoHotkey", "Espanso.Espanso",
-    "WinMerge.WinMerge", "Chocolatey.Chocolatey", "zig.zig", "GoLang.Go",
-    "Microsoft.PowerShell", "Neovide.Neovide", "hluk.CopyQ", "Byron.dua-cli",
+    "Microsoft.WindowsTerminal", "Microsoft.PowerToys",
+    "AutoHotkey.AutoHotkey", "Espanso.Espanso",
+    "WinMerge.WinMerge", "zig.zig",
+    "Microsoft.PowerShell", "Byron.dua-cli",
     "Obsidian.Obsidian"
   )
-  Install-WingetPackages $wingetPackages
+
+  $isAdmin = Test-IsAdmin
+  if ($isAdmin) {
+    log "Installing tools via winget (Admin)..." "Yellow"
+    # In Admin mode, we can install everything via winget
+    $adminPackages = $wingetUserPackages + @(
+      "glzr-io.zebar", "ImageMagick.ImageMagick", "GitHub.cli",
+      "GoLang.Go", "Neovide.Neovide", "hluk.CopyQ", "Git.Git",
+      "Chocolatey.Chocolatey"
+    )
+    Install-WingetPackages $adminPackages
+  } else {
+    log "Attempting to install compatible tools via winget --scope user (User)..." "Yellow"
+    foreach ($pkg in $wingetUserPackages) {
+      log "Ensuring $pkg is installed via winget --scope user..."
+      winget install -q $pkg --scope user --accept-source-agreements --accept-package-agreements --no-upgrade
+    }
+
+    # Use scoop for tools that require admin in winget or are better managed by scoop
+    log "Installing remaining tools via scoop..." "Yellow"
+    Install-Scoop
+    $scoopPackages = @(
+      "neovim-nightly", "zebar", "imagemagick", "gh", "go", "neovide", "copyq", "git",
+      "fzf", "ripgrep", "fd", "delta", "dua"
+    )
+    Install-ScoopPackages $scoopPackages
+  }
+}
+function Install-Scoop {
+  if (Get-Command scoop -ErrorAction SilentlyContinue) {
+    return
+  }
+  log "Installing scoop..." "Yellow"
+  try {
+    Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+    
+    # Refresh PATH for the current session
+    $scoopShimPath = Join-Path $env:USERPROFILE "scoop\shims"
+    if ($env:PATH -notmatch [regex]::Escape($scoopShimPath)) {
+      $env:PATH = "$scoopShimPath;$env:PATH"
+    }
+  } catch {
+    log "Failed to install scoop: $_" "Red"
+  }
 }
 
+function Install-ScoopPackages {
+  param([string[]]$Packages)
+  
+  if (!(Get-Command scoop -ErrorAction SilentlyContinue)) {
+    log "scoop is not available. Skipping scoop packages." "Red"
+    return
+  }
+  
+  $buckets = scoop bucket list
+  if (!($buckets -match "extras")) {
+    log "Adding extras bucket..."
+    scoop bucket add extras
+  }
+  if (!($buckets -match "versions")) {
+    log "Adding versions bucket..."
+    scoop bucket add versions
+  }
+
+  foreach ($pkg in $Packages) {
+    # Check if installed (scoop list returns non-zero if not found or empty)
+    $installed = scoop list $pkg | Select-String "\b$pkg\b"
+    if (!$installed) {
+      log "Installing $pkg via scoop..."
+      scoop install $pkg
+    } else {
+      log "$pkg is already installed via scoop." "Gray"
+    }
+  }
+}
 function Install-PlemolJP {
   log "Checking latest PlemolJP version..."
   $latestUrl = "https://api.github.com/repos/yuru7/PlemolJP/releases/latest"
@@ -453,6 +532,8 @@ function Start-Main {
       Install-GoTools
       Install-Mise
       Install-UserTools
+      Install-Neovim-Win
+      Install-Tools
 
       # Create Shortcuts (User level)
       $shortcuts = @(
@@ -479,8 +560,6 @@ function Start-Main {
       Set-CapsLockToCtrl
       Install-BibataCursor
       # Install-BuildTools
-      Install-Neovim-Win
-      Install-Tools
     } elseif ($canElevate) {
       log "Not elevated, but you are in the Administrators group. Attempting to relaunch for Admin tasks..." "Yellow"
       try {
