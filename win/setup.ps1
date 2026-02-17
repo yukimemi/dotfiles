@@ -61,7 +61,7 @@ function New-Shortcut {
     $wsh = New-Object -ComObject WScript.Shell
     $existing = $wsh.CreateShortcut($link)
     if ($existing.TargetPath -eq (Get-Item $target).FullName) {
-      log "Shortcut already exists and points to correct target: $link" "Gray"
+      log "Shortcut already exists: $link" "Gray"
       return
     }
   }
@@ -109,9 +109,9 @@ function Install-BinaryArchive {
   $subDirs = Get-ChildItem $tempExtract -Directory
   $files = Get-ChildItem $tempExtract -File
   if ($subDirs.Count -eq 1 -and $files.Count -eq 0) {
-    robocopy /e /r:1 /w:1 $subDirs[0].FullName $DestinationDir
+    robocopy /e /r:1 /w:1 $subDirs[0].FullName $DestinationDir | Out-Null
   } else {
-    robocopy /e /r:1 /w:1 $tempExtract $DestinationDir
+    robocopy /e /r:1 /w:1 $tempExtract $DestinationDir | Out-Null
   }
 
   # Cleanup
@@ -122,8 +122,39 @@ function Install-BinaryArchive {
 function Install-WingetPackages {
   param([string[]]$Packages)
   foreach ($pkg in $Packages) {
-    log "Ensuring $pkg is installed via winget..."
-    winget install -q $pkg --accept-source-agreements --accept-package-agreements
+    log "Checking $pkg via winget..." "Cyan"
+    $isInstalled = winget list --id $pkg --accept-source-agreements 2>$null | Select-String "\b$pkg\b"
+    if (!$isInstalled) {
+      log "Installing $pkg via winget..." "Yellow"
+      winget install -q $pkg --accept-source-agreements --accept-package-agreements --no-upgrade
+    } else {
+      log "$pkg is already installed via winget." "Gray"
+    }
+  }
+}
+
+function Uninstall-WingetMigratedPackages {
+  $migratedIds = @(
+    "glzr-io.glazewm", "glzr-io.zebar", "Oven-sh.Bun", "BurntSushi.ripgrep.MSVC",
+    "junegunn.fzf", "sharkdp.fd", "dandavison.delta", "gerardog.gsudo",
+    "Flameshot.Flameshot", "RustLang.Rustup", "Microsoft.WindowsTerminal",
+    "Microsoft.PowerToys", "AutoHotkey.AutoHotkey", "Espanso.Espanso",
+    "WinMerge.WinMerge", "zig.zig", "Microsoft.PowerShell", "Byron.dua-cli",
+    "Obsidian.Obsidian", "ImageMagick.ImageMagick", "GitHub.cli", "GoLang.Go",
+    "Neovide.Neovide", "hluk.CopyQ", "Git.Git", "jdx.mise"
+  )
+
+  log "Checking for migrated packages to uninstall from winget..." "Cyan"
+  $wingetList = winget list --accept-source-agreements 2>$null
+  if (!$wingetList) { return }
+
+  foreach ($id in $migratedIds) {
+    # Thoroughly clean the ID of any possible hidden characters
+    $cleanId = $id.Trim().Replace("`r", "").Replace("`n", "")
+    if ($wingetList -match "\b$([regex]::Escape($cleanId))\b") {
+      log "Uninstalling $cleanId from winget..." "Yellow"
+      winget uninstall $cleanId --exact --all-versions -q --accept-source-agreements 2>$null
+    }
   }
 }
 
@@ -134,9 +165,11 @@ function Install-BibataCursor {
     [string]$Size = "Regular"
   )
 
-  # Construct expected folder name part e.g. "Bibata-Modern-Ice-Regular"
-  # Note: The actual folder in zip is like "Bibata-Modern-Ice-Regular-Windows"
-  # We will use wildcard match *-$Size-*
+  # Check if probably already installed (by folder name in C:\Windows\Cursors)
+  if (Test-Path "C:\Windows\Cursors\$Variant-$Size") {
+    log "$Variant cursor is already installed." "Gray"
+    return
+  }
 
   log "Installing $Variant ($Size) cursor..." "Yellow"
   $zipName = "${Variant}-Windows.zip"
@@ -164,7 +197,6 @@ function Install-BibataCursor {
       }
     }
 
-    # Fallback to first if not found (or if Size is invalid)
     if (-not $targetInf) {
       $targetInf = $infFiles | Select-Object -First 1
     }
@@ -192,12 +224,9 @@ function Install-BibataCursor {
         Add-Type -MemberDefinition $csharp -Name WinAPI -Namespace User32 -ErrorAction SilentlyContinue
       } catch {
       }
-      # SPI_SETCURSORS = 0x0057, SPIF_UPDATEINIFILE = 0x01, SPIF_SENDCHANGE = 0x02
       [User32.WinAPI]::SystemParametersInfo(0x0057, 0, 0, 0x03) | Out-Null
 
       log "$Variant ($Size) installed and applied successfully." "Green"
-    } else {
-      log "install.inf not found in downloaded archive for $Variant." "Red"
     }
   } catch {
     log "Failed to install ${Variant}: $_" "Red"
@@ -214,10 +243,10 @@ function Install-BibataCursor {
 # --- Setup Logic ---
 
 function Set-RequiredEnv {
-  log "Checking environment variables..."
+  log "Checking environment variables..." "Cyan"
   $envVars = @{
     "CARGO_NET_GIT_FETCH_WITH_CLI" = "true"
-    "YAZI_FILE_ONE"                = "C:\Program Files\Git\usr\bin\file.exe"
+    "YAZI_FILE_ONE"                = "${env:USERPROFILE}\scoop\shims\file.exe"
     "XDG_CONFIG_HOME"              = "${env:USERPROFILE}\.config"
   }
   foreach ($key in $envVars.Keys) {
@@ -225,6 +254,8 @@ function Set-RequiredEnv {
     if ($current -ne $envVars[$key]) {
       [Environment]::SetEnvironmentVariable($key, $envVars[$key], "User")
       log "Set $key = $($envVars[$key])" "Green"
+    } else {
+      log "$key is already set." "Gray"
     }
   }
 
@@ -243,24 +274,20 @@ function Set-RequiredEnv {
 
   $userPath = [Environment]::GetEnvironmentVariable("PATH", "User")
   $currentPaths = $userPath -split ";" | Where-Object { $_ -ne "" }
-
-  # Filter out targetPaths from current paths to avoid duplicates when re-adding
   $remainingPaths = $currentPaths | Where-Object { $targetPaths -notcontains $_ }
-
-  # Construct new path list: targetPaths (ordered) + remaining paths
   $newPathList = $targetPaths + $remainingPaths
   $updatedPath = $newPathList -join ";"
 
   if ($userPath -ne $updatedPath) {
     [Environment]::SetEnvironmentVariable("PATH", $updatedPath, "User")
-    log "Reordered/Updated USER PATH." "Green"
+    log "Updated USER PATH." "Green"
   } else {
-    log "USER PATH is already up to date and correctly ordered." "Gray"
+    log "USER PATH is already up to date." "Gray"
   }
 }
 
 function Set-CapsLockToCtrl {
-  log "Checking CapsLock mapping..."
+  log "Checking CapsLock mapping..." "Cyan"
   $regPath = "HKLM\SYSTEM\CurrentControlSet\Control\Keyboard Layout"
   $regValueName = "Scancode Map"
   $expectedData = ([byte[]](0,0,0,0,0,0,0,0,2,0,0,0,0x1d,0,0x3a,0,0,0,0,0))
@@ -289,57 +316,64 @@ function Set-CapsLockToCtrl {
 }
 
 function Install-Neovim-Win {
+  log "Checking Neovim..." "Cyan"
   if (Get-Command nvim -ErrorAction SilentlyContinue) {
-    log "Neovim is already installed. Skipping nightly download." "Gray"
+    log "Neovim is already installed." "Gray"
     return
   }
 
-  if (Test-IsAdmin) {
-    log "Installing Neovim Nightly via MSI..."
-    $nvimMsi = Join-Path $env:TEMP "nvim-win64.msi"
-    Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
-    Start-Process msiexec.exe -ArgumentList "/i $nvimMsi /quiet" -Wait
-    Remove-Item $nvimMsi
-  } else {
-    log "Installing Neovim Nightly via scoop..."
-    Install-ScoopPackages @("neovim-nightly")
-  }
+  log "Installing Neovim Nightly via scoop..." "Yellow"
+  Install-ScoopPackages @("neovim-nightly")
 }
 
 function Install-BuildTools {
+  log "Checking Visual Studio Build Tools..." "Cyan"
+  if (Test-Path "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe") {
+    $vs = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Workload.VCTools
+    if ($vs) {
+      log "Visual Studio Build Tools already installed." "Gray"
+      return
+    }
+  }
   log "Installing Visual Studio Build Tools..." "Yellow"
   winget install Microsoft.VisualStudio.2022.BuildTools --override "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --passive"
 }
 
 function Install-GoTools {
+  log "Checking Go tools..." "Cyan"
   if (!(Get-Command go -ErrorAction SilentlyContinue)) {
-    log "Go is not installed. Skipping Go tools installation." "Yellow"
+    log "Go is not installed." "Gray"
     return
   }
 
-  log "Installing Go tools..."
   $goTools = @(
     "github.com/satococoa/wtp/v2/cmd/wtp@latest"
   )
 
   foreach ($tool in $goTools) {
-    log "Installing $tool ..."
-    go install $tool
+    $binName = ($tool -split "/")[-1].Split("@")[0]
+    if (!(Get-Command $binName -ErrorAction SilentlyContinue)) {
+      log "Installing $tool ..." "Yellow"
+      go install $tool
+    } else {
+      log "$tool is already installed." "Gray"
+    }
   }
 }
 
 function Install-Mise {
+  log "Checking mise..." "Cyan"
   if (Get-Command mise -ErrorAction SilentlyContinue) {
     log "mise is already installed." "Gray"
     return
   }
 
-  log "Installing mise..." "Yellow"
-  Install-WingetPackages @("jdx.mise")
+  log "Installing mise via scoop..." "Yellow"
+  Install-ScoopPackages @("mise")
 }
 
 function Install-UserTools {
-  # External Binary Tools (No admin required)
+  log "Checking user binary tools..." "Cyan"
   $binTools = @(
     @{
       Name = "clnch"
@@ -359,59 +393,53 @@ function Install-UserTools {
 }
 
 function Install-Tools {
-  # Packages that work well with winget --scope user
-  $wingetUserPackages = @(
-    "glzr-io.glazewm", "Oven-sh.Bun",
-    "BurntSushi.ripgrep.MSVC", "alexpasmantier.television",
-    "junegunn.fzf", "sharkdp.fd", "dandavison.delta", "gerardog.gsudo",
-    "Slackadays.Clipboard", "Flameshot.Flameshot", "RustLang.Rustup",
-    "Microsoft.WindowsTerminal", "Microsoft.PowerToys",
-    "AutoHotkey.AutoHotkey", "Espanso.Espanso",
-    "WinMerge.WinMerge", "zig.zig",
-    "Microsoft.PowerShell", "Byron.dua-cli",
-    "Obsidian.Obsidian"
+  Install-Scoop
+
+  $scoopPackages = @(
+    "glazewm", "zebar", "bun", "ripgrep", "fzf", "fd", "delta", "gsudo",
+    "flameshot", "rustup-msvc", "windows-terminal", "powertoys",
+    "autohotkey", "espanso", "winmerge", "zig", "powershell", "dua",
+    "obsidian", "imagemagick", "gh", "go", "neovide", "copyq", "git",
+    "neovim-nightly", "mise", "starship", "topgrade", "yazi", "ffmpeg",
+    "7zip", "jq", "file"
   )
 
-  $isAdmin = Test-IsAdmin
-  if ($isAdmin) {
-    log "Installing tools via winget (Admin)..." "Yellow"
-    # In Admin mode, we can install everything via winget
-    $adminPackages = $wingetUserPackages + @(
-      "glzr-io.zebar", "ImageMagick.ImageMagick", "GitHub.cli",
-      "GoLang.Go", "Neovide.Neovide", "hluk.CopyQ", "Git.Git",
-      "Chocolatey.Chocolatey"
-    )
-    Install-WingetPackages $adminPackages
-  } else {
-    log "Attempting to install compatible tools via winget --scope user (User)..." "Yellow"
-    foreach ($pkg in $wingetUserPackages) {
-      log "Ensuring $pkg is installed via winget --scope user..."
-      winget install -q $pkg --scope user --accept-source-agreements --accept-package-agreements --no-upgrade
-    }
+  log "Ensuring tools via scoop..." "Cyan"
+  Install-ScoopPackages $scoopPackages
 
-    # Use scoop for tools that require admin in winget or are better managed by scoop
-    log "Installing remaining tools via scoop..." "Yellow"
-    Install-Scoop
-    $scoopPackages = @(
-      "neovim-nightly", "zebar", "imagemagick", "gh", "go", "neovide", "copyq", "git",
-      "fzf", "ripgrep", "fd", "delta", "dua"
-    )
-    Install-ScoopPackages $scoopPackages
-  }
+  $wingetPackages = @(
+    "alexpasmantier.television",
+    "Slackadays.Clipboard"
+  )
+  log "Ensuring remaining tools via winget..." "Cyan"
+  Install-WingetPackages $wingetPackages
 }
+
 function Install-Scoop {
-  if (Get-Command scoop -ErrorAction SilentlyContinue) {
+  $scoopRoot = Join-Path $env:USERPROFILE "scoop"
+  $scoopBin = Join-Path $scoopRoot "apps\scoop\current\bin\scoop.ps1"
+
+  if (Test-Path $scoopBin) {
+    log "Scoop is already installed." "Gray"
     return
   }
-  log "Installing scoop..." "Yellow"
+
+  log "Installing scoop via git clone..." "Yellow"
   try {
-    Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+    $scoopRepo = "https://github.com/ScoopInstaller/Scoop"
+    $scoopDest = Join-Path $scoopRoot "apps\scoop\current"
+    if (!(Test-Path $scoopDest)) {
+      git clone $scoopRepo $scoopDest
+    }
     
-    # Refresh PATH for the current session
-    $scoopShimPath = Join-Path $env:USERPROFILE "scoop\shims"
+    New-Item -ItemType Directory -Path (Join-Path $scoopRoot "shims"), (Join-Path $scoopRoot "buckets") -Force | Out-Null
+    
+    $scoopShimPath = Join-Path $scoopRoot "shims"
     if ($env:PATH -notmatch [regex]::Escape($scoopShimPath)) {
       $env:PATH = "$scoopShimPath;$env:PATH"
     }
+
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -File $scoopBin "bucket", "add", "main"
   } catch {
     log "Failed to install scoop: $_" "Red"
   }
@@ -419,35 +447,59 @@ function Install-Scoop {
 
 function Install-ScoopPackages {
   param([string[]]$Packages)
-  
-  if (!(Get-Command scoop -ErrorAction SilentlyContinue)) {
-    log "scoop is not available. Skipping scoop packages." "Red"
+
+  $scoopRoot = Join-Path $env:USERPROFILE "scoop"
+  $scoopBin = Join-Path $scoopRoot "apps\scoop\current\bin\scoop.ps1"
+
+  if (!(Test-Path $scoopBin)) {
+    log "Scoop bin not found!" "Red"
     return
   }
-  
-  $buckets = scoop bucket list
-  if (!($buckets -match "extras")) {
-    log "Adding extras bucket..."
-    scoop bucket add extras
+
+  function Invoke-Scoop {
+    param([string[]]$ScoopArgs)
+    $argStr = $ScoopArgs -join ' '
+    # Use pwsh.exe (PowerShell 7) if available, as it is more robust than powershell.exe
+    if (Get-Command pwsh -ErrorAction SilentlyContinue) {
+      pwsh.exe -NoProfile -ExecutionPolicy Bypass -Command "& '$scoopBin' $argStr" 2>$null
+    } else {
+      powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "& '$scoopBin' $argStr" 2>$null
+    }
   }
-  if (!($buckets -match "versions")) {
-    log "Adding versions bucket..."
-    scoop bucket add versions
+
+  $buckets = Invoke-Scoop "bucket", "list"
+  $requiredBuckets = @("main", "extras", "versions", "nerd-fonts")
+  foreach ($bucket in $requiredBuckets) {
+    if (!($buckets -match "\b$bucket\b")) {
+      log "Adding $bucket bucket..." "Yellow"
+      Invoke-Scoop "bucket", "add", $bucket
+    } else {
+      log "Bucket $bucket is already added." "Gray"
+    }
   }
 
   foreach ($pkg in $Packages) {
-    # Check if installed (scoop list returns non-zero if not found or empty)
-    $installed = scoop list $pkg | Select-String "\b$pkg\b"
-    if (!$installed) {
-      log "Installing $pkg via scoop..."
-      scoop install $pkg
+    # Match the package directory specifically
+    $pkgPath = Join-Path $scoopRoot "apps\$pkg"
+    if (!(Test-Path $pkgPath)) {
+      log "Installing $pkg via scoop..." "Yellow"
+      Invoke-Scoop "install", $pkg
     } else {
       log "$pkg is already installed via scoop." "Gray"
     }
   }
 }
+
 function Install-PlemolJP {
-  log "Checking latest PlemolJP version..."
+  log "Checking PlemolJP-NF..." "Cyan"
+  $regPath = "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts"
+  $checkName = "PlemolJP Console NF Regular (TrueType)"
+  if (Get-ItemProperty -Path $regPath -Name $checkName -ErrorAction SilentlyContinue) {
+    log "PlemolJP seems to be installed." "Gray"
+    return
+  }
+
+  log "Checking latest PlemolJP version..." "Yellow"
   $latestUrl = "https://api.github.com/repos/yuru7/PlemolJP/releases/latest"
   try {
     $json = Invoke-RestMethod -Uri $latestUrl
@@ -459,23 +511,6 @@ function Install-PlemolJP {
     }
 
     $version = $json.tag_name
-    $fontsDir = Join-Path $env:LOCALAPPDATA "Microsoft\Windows\Fonts"
-    if (!(Test-Path $fontsDir)) {
-      New-Item -ItemType Directory -Path $fontsDir | Out-Null
-    }
-
-    # Check if already installed (simple check based on expected file existence, might not be perfect)
-    # Checking for one main file like "PlemolJPConsoleNF-Regular.ttf" if we knew the content,
-    # but since we don't know exact content, we proceed to download if we can't verify easily.
-    # To avoid re-downloading every time, we can check a marker file or registry, but let's just proceed for now
-    # or check if specific registry key exists.
-    $regPath = "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts"
-    $checkName = "PlemolJP Console NF Regular (TrueType)" # Guessing name
-    if (Get-ItemProperty -Path $regPath -Name $checkName -ErrorAction SilentlyContinue) {
-      log "PlemolJP ($version) seems to be installed." "Gray"
-      return
-    }
-
     log "Installing PlemolJP $version ..." "Yellow"
 
     $zipName = $asset.name
@@ -491,28 +526,24 @@ function Install-PlemolJP {
     Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZip -UseBasicParsing
     Expand-Archive -Path $tempZip -DestinationPath $tempExtract -Force
 
+    $fontsDir = Join-Path $env:LOCALAPPDATA "Microsoft\Windows\Fonts"
+    if (!(Test-Path $fontsDir)) {
+      New-Item -ItemType Directory -Path $fontsDir | Out-Null
+    }
+
     $ttfFiles = Get-ChildItem -Path $tempExtract -Filter "*.ttf" -Recurse
     foreach ($ttf in $ttfFiles) {
       $destPath = Join-Path $fontsDir $ttf.Name
       if (!(Test-Path $destPath)) {
         Copy-Item $ttf.FullName $destPath -Force
       }
-
-      # Register in Registry
-      # Key name example: "PlemolJP Console NF Regular (TrueType)"
-      # Value: Path to file
       $fontName = [System.IO.Path]::GetFileNameWithoutExtension($ttf.Name)
-      # Improve readability of registry key
       $regName = "$fontName (TrueType)"
       Set-ItemProperty -Path $regPath -Name $regName -Value $destPath
     }
 
     log "PlemolJP installed successfully." "Green"
-
-    # Cleanup
-    Remove-Item $tempZip -Force
-    Remove-Item $tempExtract -Recurse -Force
-
+    Remove-Item $tempZip, $tempExtract -Recurse -Force
   } catch {
     log "Failed to install PlemolJP: $_" "Red"
   }
@@ -528,6 +559,7 @@ function Start-Main {
     if (-not $AdminOnly) {
       log "--- User Level Setup ---" "Cyan"
       Set-RequiredEnv
+      Uninstall-WingetMigratedPackages
       Install-PlemolJP
       Install-GoTools
       Install-Mise
@@ -535,7 +567,7 @@ function Start-Main {
       Install-Neovim-Win
       Install-Tools
 
-      # Create Shortcuts (User level)
+      log "Checking shortcuts..." "Cyan"
       $shortcuts = @(
         @{
           Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
