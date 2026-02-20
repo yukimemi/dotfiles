@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2026/02/08 17:25:55.
+// Last Change : 2026/02/19 11:22:14.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -551,7 +551,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/sedm0784/vim-rainbow-trails",
-    enabled: true,
+    enabled: false,
     profiles: ["ui"],
     lazy: {
       cmd: "RainbowTrails",

@@ -7,7 +7,7 @@
     Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/02/12 02:01:20.
+  .Last Change : 2026/02/19 13:40:59.
 #>
 param(
   [switch]$AdminOnly
@@ -146,7 +146,9 @@ function Uninstall-WingetMigratedPackages {
 
   log "Checking for migrated packages to uninstall from winget..." "Cyan"
   $wingetList = winget list --accept-source-agreements 2>$null
-  if (!$wingetList) { return }
+  if (!$wingetList) {
+    return
+  }
 
   foreach ($id in $migratedIds) {
     # Thoroughly clean the ID of any possible hidden characters
@@ -269,7 +271,9 @@ function Set-RequiredEnv {
     "${env:LOCALAPPDATA}\Programs\Espanso",
     "${env:APPDATA}\npm",
     "${env:LOCALAPPDATA}\Microsoft\WinGet\Links",
-    "${env:LOCALAPPDATA}\Programs\WinMerge"
+    "${env:LOCALAPPDATA}\Programs\WinMerge",
+    "${env:USERPROFILE}\.local\share\chezmoi\win\scripts",
+    "${env:USERPROFILE}\src\github.com\yukimemi\ps1\cmd"
   )
 
   $userPath = [Environment]::GetEnvironmentVariable("PATH", "User")
@@ -397,7 +401,7 @@ function Install-Tools {
 
   $scoopPackages = @(
     "glazewm", "zebar", "bun", "ripgrep", "fzf", "fd", "delta", "gsudo",
-    "flameshot", "rustup-msvc", "windows-terminal", "powertoys",
+    "ksnip", "rustup-msvc", "windows-terminal", "powertoys",
     "autohotkey", "espanso", "winmerge", "zig", "powershell", "dua",
     "obsidian", "imagemagick", "gh", "go", "neovide", "copyq", "git",
     "neovim-nightly", "mise", "starship", "topgrade", "yazi", "ffmpeg",
@@ -431,9 +435,9 @@ function Install-Scoop {
     if (!(Test-Path $scoopDest)) {
       git clone $scoopRepo $scoopDest
     }
-    
+
     New-Item -ItemType Directory -Path (Join-Path $scoopRoot "shims"), (Join-Path $scoopRoot "buckets") -Force | Out-Null
-    
+
     $scoopShimPath = Join-Path $scoopRoot "shims"
     if ($env:PATH -notmatch [regex]::Escape($scoopShimPath)) {
       $env:PATH = "$scoopShimPath;$env:PATH"

@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/01/02 12:45:00.
+; Last Change : 2026/02/19 17:47:32.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -11,7 +11,7 @@ SetTitleMatchMode(2)
 ; Constants
 LOG_INFO_PATH := "info.log"
 LOG_ERROR_PATH := "error.log"
-GLAZEWM_PATH := "C:\Program Files\glzr.io\GlazeWM\cli\glazewm.exe"
+GLAZEWM_PATH := EnvGet("USERPROFILE") . "\scoop\shims\glazewm.exe"
 
 log_info(msg) {
   global LOG_INFO_PATH
@@ -323,6 +323,41 @@ F7::
     SetTimer(() => ToolTip(), -5000)
   }
 }
+
+; ===== CapsLock → Ctrl コンボ方式（AHK v2） =====
+#UseHook true
+SendMode "Input"
+SetCapsLockState "AlwaysOff"   ; 物理CapsLockのトグルを殺す（IME切替の芽を潰す）
+
+; --- CapsLock 単押しは完全に飲み込む（IMEに渡さない） ---
+$*CapsLock::return
+$*CapsLock up::return
+$*SC03A::return
+$*SC03A up::return
+$*vk14::return
+$*vk14 up::return
+
+; --- 必要なコンボだけ Ctrl+? を送る（張り付かない） ---
+; ご要望の j / k
+CapsLock & j::Send "^j"
+CapsLock & k::Send "^k"
+
+; よく使うならここに追加（例：Vim っぽく h/l、編集系など）
+CapsLock & h::Send "^h"
+CapsLock & l::Send "^l"
+CapsLock & u::Send "^u"
+CapsLock & i::Send "^i"
+CapsLock & w::Send "^w"
+CapsLock & s::Send "^s"
+CapsLock & t::Send "^t"
+CapsLock & n::Send "^n"
+CapsLock & Space::Send "^ "
+CapsLock & Enter::Send "^{Enter}"
+CapsLock & Left::Send "^{Left}"
+CapsLock & Right::Send "^{Right}"
+CapsLock & Up::Send "^{Up}"
+CapsLock & Down::Send "^{Down}"
+CapsLock & Backspace::Send "^{Backspace}"
 
 ; IME Settings
 SC079::IME_SET(1) ; conversion key -> IME ON
