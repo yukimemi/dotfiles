@@ -251,6 +251,7 @@ function Set-RequiredEnv {
     "YAZI_CONFIG_HOME"             = "${env:USERPROFILE}\.config\yazi"
     "YAZI_FILE_ONE"                = "${env:USERPROFILE}\scoop\apps\git\current\usr\bin\file.exe"
     "XDG_CONFIG_HOME"              = "${env:USERPROFILE}\.config"
+    "PNPM_HOME"                    = "${env:LOCALAPPDATA}\pnpm"
   }
   foreach ($key in $envVars.Keys) {
     $current = [Environment]::GetEnvironmentVariable($key, "User")
@@ -268,6 +269,7 @@ function Set-RequiredEnv {
     "${env:USERPROFILE}\.deno\bin",
     "${env:USERPROFILE}\.bun\bin",
     "${env:USERPROFILE}\go\bin",
+    "${env:LOCALAPPDATA}\pnpm",
     "${env:LOCALAPPDATA}\Microsoft\WindowsApps",
     "${env:LOCALAPPDATA}\Programs\Espanso",
     "${env:APPDATA}\npm",
@@ -554,6 +556,23 @@ function Install-PlemolJP {
   }
 }
 
+function Install-PnpmConfig {
+  log "Checking pnpm config..." "Cyan"
+  if (!(Get-Command pnpm -ErrorAction SilentlyContinue)) {
+    log "pnpm is not installed." "Gray"
+    return
+  }
+
+  $pnpmHome = "${env:LOCALAPPDATA}\pnpm"
+  $currentBinDir = pnpm config get global-bin-dir
+  if ($currentBinDir -ne $pnpmHome) {
+    log "Setting pnpm global-bin-dir to $pnpmHome ..." "Yellow"
+    pnpm config set global-bin-dir "$pnpmHome"
+  } else {
+    log "pnpm global-bin-dir is already set to $pnpmHome." "Gray"
+  }
+}
+
 function Start-Main {
   try {
     log "[Start-Main] Starting setup..."
@@ -564,6 +583,7 @@ function Start-Main {
     if (-not $AdminOnly) {
       log "--- User Level Setup ---" "Cyan"
       Set-RequiredEnv
+      Install-PnpmConfig
       Uninstall-WingetMigratedPackages
       Install-PlemolJP
       Install-GoTools
