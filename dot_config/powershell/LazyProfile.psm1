@@ -4,6 +4,11 @@
 # Last Change : 2026/02/08 15:12:38.
 # =============================================================================
 
+# --- Environment Setup ---
+if ($null -eq $IsWindows) { $IsWindows = $true }
+if ($null -eq $IsMacOS) { $IsMacOS = $false }
+if ($null -eq $IsLinux) { $IsLinux = $false }
+
 # --- Functions ---
 function gr {
   Set-LocationWithList $(git rev-parse --show-toplevel)

@@ -248,7 +248,8 @@ function Set-RequiredEnv {
   log "Checking environment variables..." "Cyan"
   $envVars = @{
     "CARGO_NET_GIT_FETCH_WITH_CLI" = "true"
-    "YAZI_FILE_ONE"                = "${env:USERPROFILE}\scoop\shims\file.exe"
+    "YAZI_CONFIG_HOME"             = "${env:USERPROFILE}\.config\yazi"
+    "YAZI_FILE_ONE"                = "${env:USERPROFILE}\scoop\apps\git\current\usr\bin\file.exe"
     "XDG_CONFIG_HOME"              = "${env:USERPROFILE}\.config"
   }
   foreach ($key in $envVars.Keys) {

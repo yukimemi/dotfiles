@@ -85,7 +85,7 @@ export const selections: Selections = {
   runner: "overseer",
   pairs: "insx",
   column: "virtcolumn",
-  motion: "smartmotion",
+  motion: "flash",
   indent: "snacks",
   detect_indent: "dansa",
   notification: "noice",

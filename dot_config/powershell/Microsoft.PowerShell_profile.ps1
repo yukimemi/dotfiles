@@ -5,6 +5,9 @@
 # =============================================================================
 
 # --- Pre-Environment Setup ---
+if ($null -eq $IsWindows) { $IsWindows = $true }
+if ($null -eq $IsMacOS) { $IsMacOS = $false }
+if ($null -eq $IsLinux) { $IsLinux = $false }
 $ErrorActionPreference = "Continue"
 
 # --- Environment Setup ---
