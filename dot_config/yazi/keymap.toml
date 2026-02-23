@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : keymap.toml
 # Author      : yukimemi
-# Last Change : 2026/01/24 12:28:55.
+# Last Change : 2026/02/23 15:22:25.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -157,19 +157,19 @@ for = "windows"
 # https://github.com/hankertrix/augment-command.yazi
 [[mgr.prepend_keymap]]
 on = ["k"]
-run = "plugin augment-command 'arrow -1'"
+run = "plugin augment-command -- arrow -1"
 desc = "Move cursor up"
 [[mgr.prepend_keymap]]
 on = ["j"]
-run = "plugin augment-command 'arrow 1'"
+run = "plugin augment-command -- arrow 1"
 desc = "Move cursor down"
 [[mgr.prepend_keymap]]
 on = ["K"]
-run = "plugin augment-command 'parent-arrow -1'"
+run = "plugin augment-command -- parent_arrow -1"
 desc = "Move cursor up in the parent directory"
 [[mgr.prepend_keymap]]
 on = ["J"]
-run = "plugin augment-command 'parent-arrow 1'"
+run = "plugin augment-command -- parent_arrow 1"
 desc = "Move cursor down in the parent directory"
 [[mgr.prepend_keymap]]
 on = ["<C-k>"]
@@ -181,73 +181,73 @@ run = "seek 5"
 desc = "Seek down 5 units in the preview pane"
 [[mgr.prepend_keymap]]
 on = ["l"]
-run = "plugin augment-command 'enter'"
+run = "plugin augment-command -- enter"
 desc = "Enter the child directory, or open the file"
 [[mgr.prepend_keymap]]
 on = ["<Enter>"]
-run = "plugin augment-command 'enter'"
+run = "plugin augment-command -- enter"
 desc = "Enter the child directory, or open the file"
 [[mgr.prepend_keymap]]
 on = ["<S-Enter>"]
-run = "plugin augment-command 'enter --interactive'"
+run = "plugin augment-command -- enter --interactive"
 desc = "Enter the child directory, or open the file interactively"
 [[mgr.prepend_keymap]]
 on = ["<Right>"]
-run = "plugin augment-command 'enter --no-skip'"
+run = "plugin augment-command -- enter --no-skip"
 desc = "Enter the child directory, or open the file"
 [[mgr.prepend_keymap]]
 on = ["h"]
-run = "plugin augment-command 'leave'"
+run = "plugin augment-command -- leave"
 desc = "Go back to the parent directory"
 [[mgr.prepend_keymap]]
 on = ["<Left>"]
-run = "plugin augment-command 'leave --no-skip'"
+run = "plugin augment-command -- leave --no-skip"
 desc = "Go back to the parent directory"
 [[mgr.prepend_keymap]]
 on = ["p"]
-run = "plugin augment-command 'paste'"
+run = "plugin augment-command -- paste"
 desc = "Paste the files"
 [[mgr.prepend_keymap]]
 on = ["P"]
-run = "plugin augment-command 'paste --force'"
+run = "plugin augment-command -- paste --force"
 desc = "Paste the files (overwrite if the destination exists)"
 [[mgr.prepend_keymap]]
 on = ["d"]
-run = "plugin augment-command 'remove'"
+run = "plugin augment-command -- remove"
 desc = "Move the files to the trash"
 [[mgr.prepend_keymap]]
 on = ["D"]
-run = "plugin augment-command 'remove --permanently'"
+run = "plugin augment-command -- remove --permanently"
 desc = "Permanently delete the files"
 [[mgr.prepend_keymap]]
 on = ["o"]
-run = "plugin augment-command 'open'"
+run = "plugin augment-command -- open"
 desc = "Open files"
 # [[manager.prepend_keymap]]
 # on = ["O"]
-# run = "plugin augment-command 'open --interactive'"
+# run = "plugin augment-command -- open --interactive"
 # desc = "Open selected files interactively"
 [[mgr.prepend_keymap]]
 on = ["i"]
-run = "plugin augment-command 'pager'"
+run = "plugin augment-command -- shell --block -- '$PAGER %s'"
 desc = "Open files with the default pager"
 [[mgr.prepend_keymap]]
 on = ["r"]
-run = "plugin augment-command 'rename --cursor=before_ext'"
+run = "plugin augment-command -- rename --cursor=before_ext"
 desc = "Rename a file or directory"
 [[mgr.prepend_keymap]]
 on = ["R"]
-run = "plugin augment-command 'rename --empty=all'"
+run = "plugin augment-command -- rename --empty=all"
 desc = "Rename file and remove the whole file name"
 [[mgr.prepend_keymap]]
 on = ["I"]
-run = "plugin augment-command 'rename --cursor=start'"
+run = "plugin augment-command -- rename --cursor=start"
 desc = "Rename file at the start of the file name"
 [[mgr.prepend_keymap]]
 on = ["A"]
-run = "plugin augment-command 'rename --cursor=end'"
+run = "plugin augment-command -- rename --cursor=end"
 desc = "Rename file with the cursor at the end of the file name"
 [[mgr.prepend_keymap]]
 on = ["C"]
-run = "plugin augment-command 'rename --empty=all'"
+run = "plugin augment-command -- rename --empty=all"
 desc = "Rename file and remove the whole file name"

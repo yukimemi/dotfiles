@@ -7,6 +7,9 @@
 -- https://github.com/hankertrix/augment-command.yazi
 require("augment-command"):setup({
   prompt = true,
+  smart_enter = true,
+  enter_archives = true,
+  wraparound_file_navigation = true,
 })
 -- https://github.com/MasouShizuka/projects.yazi
 require("projects"):setup({
