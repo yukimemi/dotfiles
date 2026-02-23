@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/01/24 12:29:38
+# Last Change : 2026/02/23 19:39:02.
 # =============================================================================
 
 [settings]
@@ -50,5 +50,4 @@ zoxide = "latest"
 yazi = "latest"
 node = "latest"
 jujutsu = "latest"
-gemini-cli = "latest"
 chezmoi = "latest"
