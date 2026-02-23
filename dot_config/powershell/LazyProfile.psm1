@@ -1,13 +1,19 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/02/08 15:12:38.
+# Last Change : 2026/02/23 22:41:54.
 # =============================================================================
 
 # --- Environment Setup ---
-if ($null -eq $IsWindows) { $IsWindows = $true }
-if ($null -eq $IsMacOS) { $IsMacOS = $false }
-if ($null -eq $IsLinux) { $IsLinux = $false }
+if ($null -eq $IsWindows) {
+  $IsWindows = $true
+}
+if ($null -eq $IsMacOS) {
+  $IsMacOS = $false
+}
+if ($null -eq $IsLinux) {
+  $IsLinux = $false
+}
 
 # --- Functions ---
 function gr {
@@ -187,6 +193,36 @@ function Get-FileAndHash {
   Get-ChildItem | ForEach-Object { [PSCustomObject]@{ path = $_.Name; hash = (Get-FileHash -Algorithm MD5 $_.FullName).Hash } }
 }
 
+function Select-ChezmoiAdd {
+  Invoke-ChezmoiFuzzy "add" -MultiSelect
+}
+function Select-ChezmoiDiff {
+  Invoke-ChezmoiFuzzy "diff" -MultiSelect
+}
+function Select-ChezmoiMerge {
+  Invoke-ChezmoiFuzzy "merge"
+}
+
+function Invoke-ChezmoiFuzzy {
+  param(
+    [Parameter(Mandatory = $true)][string]$Action,
+    [switch]$MultiSelect
+  )
+  $uHome = $UserHome.Replace("\", "/")
+  $filterArgs = if ($MultiSelect) { @("-m") } else { @() }
+  $nullDev = if ($IsWindows) { "NUL" } else { "/dev/null" }
+
+  $selected = chezmoi status |
+    Out-String -Stream |
+    Where-Object { $_ -match '^[ MAD?]' } |
+    __FILTER $filterArgs --preview "chezmoi diff $uHome/{2..} 2>$nullDev || bat --color=always $uHome/{2..} 2>$nullDev || cat $uHome/{2..} 2>$nullDev || type $uHome/{2..}" --header "Select files to 'chezmoi $Action'" |
+    ForEach-Object { $_.Substring(3).Trim() }
+
+  if ($selected) {
+    $selected | ForEach-Object { chezmoi $Action "$uHome/$_" }
+  }
+}
+
 # --- Aliases ---
 Remove-Item alias:r, alias:rm, alias:cd, alias:ls, alias:h, alias:z, alias:zi -ErrorAction SilentlyContinue
 
@@ -215,6 +251,10 @@ if (Get-Module -ListAvailable PSReadLine) {
     "c"     = "Clear-Host"
     "cat"   = "bat"
     "cd"    = "Set-LocationWithList"
+    "ca"    = "Select-ChezmoiAdd"
+    "cdiff" = "Select-ChezmoiDiff"
+    "cm"    = "Select-ChezmoiMerge"
+    "cs"    = "chezmoi status"
     "d"     = "jj diff"
     "e"     = "nvim"
     "g"     = "git"

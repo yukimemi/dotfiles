@@ -1,2 +1,5 @@
 [diff]
     pager = "bat"
+[merge]
+    command = "nvim"
+    args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}"]
