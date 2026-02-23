@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : fern.ts
 // Author      : yukimemi
-// Last Change : 2026/01/17 21:50:09.
+// Last Change : 2026/02/23 11:13:39.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -51,11 +51,6 @@ export const fern: Plug[] = [
   },
   {
     url: "https://github.com/lambdalisue/vim-nerdfont",
-    enabled: selections.filer === "fern",
-    profiles: ["filer"],
-  },
-  {
-    url: "https://github.com/lambdalisue/vim-fern",
     enabled: selections.filer === "fern",
     profiles: ["filer"],
   },
