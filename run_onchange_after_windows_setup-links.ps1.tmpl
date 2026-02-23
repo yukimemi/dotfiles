@@ -83,6 +83,8 @@ $junctions = @{
     "AppData\Local\nvim"          = "$configDir\nvim"
     "vimfiles"                    = "$configDir\nvim"
     "scoop\persist\espanso\.espanso" = "$configDir\espanso"
+    "scoop\persist\copyq\config\copyq" = "$configDir\copyq"
+    "scoop\persist\windows-terminal\settings" = "$configDir\windows-terminal"
 }
 
 foreach ($rel in $junctions.Keys) {
@@ -119,7 +121,7 @@ foreach ($path in $psProfilePaths) {
 $wtDir = Get-ChildItem -Path "$env:LOCALAPPDATA\Packages" -Filter "Microsoft.WindowsTerminal_*" | Select-Object -First 1
 if ($wtDir) {
     $wtLink = Join-Path $wtDir.FullName "LocalState\settings.json"
-    $wtTarget = "{{ .chezmoi.sourceDir }}\win\wt\settings.json"
+    $wtTarget = "$configDir\windows-terminal\settings.json"
     New-HardLink -link $wtLink -target $wtTarget
 }
 
