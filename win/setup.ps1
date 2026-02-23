@@ -7,7 +7,7 @@
     Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/02/19 13:40:59.
+  .Last Change : 2026/02/23 18:38:46.
 #>
 param(
   [switch]$AdminOnly
@@ -271,7 +271,6 @@ function Set-RequiredEnv {
     "${env:USERPROFILE}\go\bin",
     "${env:LOCALAPPDATA}\pnpm",
     "${env:LOCALAPPDATA}\Microsoft\WindowsApps",
-    "${env:LOCALAPPDATA}\Programs\Espanso",
     "${env:APPDATA}\npm",
     "${env:LOCALAPPDATA}\Microsoft\WinGet\Links",
     "${env:LOCALAPPDATA}\Programs\WinMerge",
