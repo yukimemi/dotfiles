@@ -618,4 +618,14 @@ EOB
       await denops.call(`luaeval`, `require("bento").setup(_A)`, {});
     },
   },
+  {
+    url: "https://github.com/glyccogen/imprint.nvim",
+    profiles: ["core"],
+    lazy: {
+      cmd: "Imprint",
+    },
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("imprint").setup()`);
+    },
+  },
 ];
