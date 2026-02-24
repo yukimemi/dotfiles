@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2026/02/19 11:22:14.
+// Last Change : 2026/02/24 23:40:13.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -782,5 +782,12 @@ export const ui: Plug[] = [
       event: "CursorHold",
     },
     afterFile: `~/.config/nvim/rc/after/which-key.lua`,
+  },
+  {
+    url: "https://github.com/y3owk1n/undo-glow.nvim",
+    profiles: ["ui"],
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("undo-glow").setup()`);
+    },
   },
 ];
