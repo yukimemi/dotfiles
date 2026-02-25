@@ -5,8 +5,8 @@ hash = "f7e6d377e4efee567ec6d1c2355f2ca3"
 
 [[plugin.deps]]
 use = "orhnk/system-clipboard"
-rev = "888026c"
-hash = "9f82a544335a53d79e87ea315746caaa"
+rev = "75a5330"
+hash = "2eca70f99d25c661e0a92000843d001e"
 
 [[plugin.deps]]
 use = "Lil-Dank/lazygit"
@@ -15,8 +15,8 @@ hash = "ab2e66065a94cca4886b303518e44bd8"
 
 [[plugin.deps]]
 use = "MasouShizuka/projects"
-rev = "eed0657"
-hash = "ca79de2b3bb2247906e01b2261e5d2bb"
+rev = "198c2ba"
+hash = "5eeb4f0919ce6be5d941a9290c131d7d"
 
 [[plugin.deps]]
 use = "h-hg/yamb"
@@ -30,7 +30,7 @@ hash = "c9e628fc0312d198db22ae2fa74883b"
 
 [[plugin.deps]]
 use = "mikavilpas/easyjump.yazi:easyjump"
-rev = "97af8d6"
+rev = "dcfb8ae"
 hash = "dee6991cbf5f04f879be03218856d65"
 
 [flavor]
