@@ -1,13 +1,19 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2026/01/28 19:01:42.
+# Last Change : 2026/02/28 10:49:34.
 # =============================================================================
 
 # --- Pre-Environment Setup ---
-if ($null -eq $IsWindows) { $IsWindows = $true }
-if ($null -eq $IsMacOS) { $IsMacOS = $false }
-if ($null -eq $IsLinux) { $IsLinux = $false }
+if ($null -eq $IsWindows) {
+  $IsWindows = $true
+}
+if ($null -eq $IsMacOS) {
+  $IsMacOS = $false
+}
+if ($null -eq $IsLinux) {
+  $IsLinux = $false
+}
 $ErrorActionPreference = "Continue"
 
 # --- Environment Setup ---

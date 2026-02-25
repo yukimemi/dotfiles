@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : snacks.lua
 -- Author      : yukimemi
--- Last Change : 2026/02/01 10:39:25.
+-- Last Change : 2026/02/26 00:00:35.
 -- =============================================================================
 
 require("snacks").setup({
@@ -252,3 +252,6 @@ if true then
     Snacks.picker.gh_pr({ state = "all" })
   end, { desc = "GitHub Pull Requests (all)" })
 end
+
+-- terminal
+-- vim.keymap.set("n", "<c-/>", function() Snacks.terminal() end, { desc = "Toggle Terminal" })

@@ -1,19 +1,8 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/02/23 22:41:54.
+# Last Change : 2026/02/28 10:49:46.
 # =============================================================================
-
-# --- Environment Setup ---
-if ($null -eq $IsWindows) {
-  $IsWindows = $true
-}
-if ($null -eq $IsMacOS) {
-  $IsMacOS = $false
-}
-if ($null -eq $IsLinux) {
-  $IsLinux = $false
-}
 
 # --- Functions ---
 function gr {
@@ -209,8 +198,16 @@ function Invoke-ChezmoiFuzzy {
     [switch]$MultiSelect
   )
   $uHome = $UserHome.Replace("\", "/")
-  $filterArgs = if ($MultiSelect) { @("-m") } else { @() }
-  $nullDev = if ($IsWindows) { "NUL" } else { "/dev/null" }
+  $filterArgs = if ($MultiSelect) {
+    @("-m")
+  } else {
+    @()
+  }
+  $nullDev = if ($IsWindows) {
+    "NUL"
+  } else {
+    "/dev/null"
+  }
 
   $selected = chezmoi status |
     Out-String -Stream |
@@ -251,7 +248,8 @@ if (Get-Module -ListAvailable PSReadLine) {
     "c"     = "Clear-Host"
     "cat"   = "bat"
     "cd"    = "Set-LocationWithList"
-    "ca"    = "Select-ChezmoiAdd"
+    "ca"    = "chezmoi apply -v"
+    "cza"   = "Select-ChezmoiAdd"
     "cdiff" = "Select-ChezmoiDiff"
     "cm"    = "Select-ChezmoiMerge"
     "cs"    = "chezmoi status"

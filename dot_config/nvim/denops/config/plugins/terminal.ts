@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : terminal.ts
 // Author      : yukimemi
-// Last Change : 2026/01/04 16:17:03.
+// Last Change : 2026/02/25 23:53:54.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -11,7 +11,7 @@ import { batch } from "@denops/std/batch";
 import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
 import * as op from "@denops/std/option";
-import { pluginStatus } from "../pluginstatus.ts";
+import { pluginStatus, selections } from "../pluginstatus.ts";
 
 export const terminal: Plug[] = [
   {
@@ -26,7 +26,7 @@ export const terminal: Plug[] = [
   },
   {
     url: "https://github.com/akinsho/toggleterm.nvim",
-    enabled: true,
+    enabled: selections.terminal === "toggleterm",
     profiles: ["terminal"],
     cache: { afterFile: `~/.config/nvim/rc/after/toggleterm.lua` },
   },
@@ -45,6 +45,12 @@ export const terminal: Plug[] = [
     enabled: false,
     profiles: ["terminal"],
     cache: { afterFile: `~/.config/nvim/rc/after/editable-term.lua` },
+  },
+  {
+    url: "https://github.com/jellydn/tiny-term.nvim",
+    enabled: selections.terminal === "tiny-term",
+    profiles: ["terminal"],
+    cache: { afterFile: `~/.config/nvim/rc/after/tiny-term.lua` },
   },
   {
     url: "https://github.com/Shougo/ddt.vim",

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : pluginstatus.ts
 // Author      : yukimemi
-// Last Change : 2026/02/08 17:03:13
+// Last Change : 2026/02/25 21:50:00
 // =============================================================================
 
 export const features = {
@@ -73,6 +73,7 @@ export type Selections = {
     | "shot-f"
     | "clever-f"
     | "none";
+  terminal: "toggleterm" | "tiny-term" | "none";
 };
 
 export const selections: Selections = {
@@ -92,6 +93,7 @@ export const selections: Selections = {
   smooth_scroll: "none",
   scrollbar: "satellite",
   horizontal_motion: "clever-f",
+  terminal: "tiny-term",
 };
 
 export const pluginStatus = {

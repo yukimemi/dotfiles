@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2025/12/27 23:52:04.
+// Last Change : 2026/02/26 00:08:23.
 // =============================================================================
 
 export function cacheVim() {
@@ -83,6 +83,7 @@ export function cacheLua() {
       vim.o.clipboard = "unnamedplus";
       vim.o.ignorecase = true
       vim.o.smartcase = true
+      vim.o.shell = "pwsh"
 
       vim.g.mapleader = " ";
       vim.g.maplocalleader = "\\\\";
