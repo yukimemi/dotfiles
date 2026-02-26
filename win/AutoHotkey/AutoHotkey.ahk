@@ -9,20 +9,24 @@ SetTitleMatchMode(2)
 #Include "IME.ahk"
 
 ; Constants
-LOG_INFO_PATH := "info.log"
-LOG_ERROR_PATH := "error.log"
+LOG_INFO_PATH := EnvGet("TEMP") . "\ahk_info.log"
+LOG_ERROR_PATH := EnvGet("TEMP") . "\ahk_error.log"
 GLAZEWM_PATH := EnvGet("USERPROFILE") . "\scoop\shims\glazewm.exe"
 
 log_info(msg) {
   global LOG_INFO_PATH
   currentDateTime := FormatTime(, "yyyy/MM/dd(ddd) HH:mm:ss")
-  FileAppend(currentDateTime " - " msg "`n", LOG_INFO_PATH)
+  try {
+    FileAppend(currentDateTime " - " msg "`n", LOG_INFO_PATH, "UTF-8")
+  }
   return
 }
 log_error(msg) {
   global LOG_ERROR_PATH
   currentDateTime := FormatTime(, "yyyy/MM/dd(ddd) HH:mm:ss")
-  FileAppend(currentDateTime " - " msg "`n", LOG_ERROR_PATH)
+  try {
+    FileAppend(currentDateTime " - " msg "`n", LOG_ERROR_PATH, "UTF-8")
+  }
   return
 }
 
@@ -40,7 +44,7 @@ LogError(exception, mode) {
 RunPs(script) {
   outFile := EnvGet("TEMP") . "\ahk_ps_" . A_TickCount . ".txt"
   ; Use double quotes for the outer string and escape inner double quotes with backtick
-  fullCmd := "powershell -NoProfile -Command `"" . script . " | Out-File -FilePath '" . outFile . "' -Encoding ascii`""
+  fullCmd := "powershell -NoProfile -Command `"" . script . " | Out-File -FilePath '" . outFile . "' -Encoding utf8`""
 
   try {
     RunWait(fullCmd, , "Hide")
@@ -50,7 +54,7 @@ RunPs(script) {
 
   result := ""
   if FileExist(outFile) {
-    result := Trim(FileRead(outFile), " `t`n`r")
+    result := Trim(FileRead(outFile, "UTF-8"), " `t`n`r")
     FileDelete(outFile)
   }
   return result
@@ -59,45 +63,52 @@ RunPs(script) {
 ; Get GlazeWM window info (ID|HWND)
 GetGlazeWindow(exeName, titleRegex := "") {
   global GLAZEWM_PATH
-  procName := RegExReplace(exeName, "\.exe$", "")
+  ; Normalize procName (e.g., C:\...\EXCEL.EXE -> EXCEL)
+  SplitPath(exeName, &fileName)
+  procName := RegExReplace(fileName, "i)\.exe$", "")
 
-  ; Run glazewm query directly and capture output to temp file
+  ; Use cmd /c with chcp 65001 for high-speed UTF-8 output
   outFile := EnvGet("TEMP") . "\ahk_glaze_" . A_TickCount . ".json"
-  RunWait('cmd /c ""' . GLAZEWM_PATH . '" query windows > "' . outFile . '""', , "Hide")
+  RunWait('cmd /c "chcp 65001 > nul && "' . GLAZEWM_PATH . '" query windows > "' . outFile . '" "', , "Hide")
 
   if !FileExist(outFile)
     return ""
 
   try {
-    jsonStr := FileRead(outFile)
+    jsonStr := FileRead(outFile, "UTF-8")
     FileDelete(outFile)
 
-    ; Use htmlfile COM object to parse JSON (works on 64-bit AHK)
+    if (jsonStr == "")
+      return ""
+
+    ; Use htmlfile COM object to parse JSON (safe and built-in)
     sc := ComObject("htmlfile")
     sc.write("<meta http-equiv='X-UA-Compatible' content='IE=edge'>")
-    sc.write("<script>var data = " . jsonStr . ";</script>")
+    data := sc.parentWindow.JSON.parse(jsonStr)
+    windows := data.data.windows
+    
+    Loop windows.length {
+      win := windows.%(A_Index - 1)%
 
-    windows := sc.parentWindow.data.data.windows
-    len := windows.length
+      ; Flexible matching: check processName or specific class for common apps
+      isMatch := (StrCompare(win.processName, procName, true) == 0)
+      if (!isMatch && StrCompare(procName, "EXCEL", true) == 0)
+        isMatch := (win.className == "XLMAIN")
 
-    Loop len {
-      i := A_Index - 1
-      win := windows.%i%
+      if (isMatch) {
+        ; Skip background/ghost windows
+        if (titleRegex == "" && win.title == "")
+          continue
 
-      ; Check processName (case-insensitive)
-      if (StrCompare(win.processName, procName, true) == 0) {
+        if (titleRegex != "" && !RegExMatch(win.title, titleRegex))
+          continue
 
-        ; Check title if regex provided
-        if (titleRegex != "") {
-          if !RegExMatch(win.title, titleRegex)
-            continue
-        }
-
+        log_info("GetGlazeWindow: Found " . win.processName . " [" . win.title . "] (ID: " . win.id . ")")
         return win.id . "|" . win.handle
       }
     }
   } catch as e {
-    log_error("GetGlazeWindow JSON Parse Error: " . e.Message)
+    log_error("GetGlazeWindow Error: " . e.Message)
   }
 
   return ""
@@ -109,16 +120,15 @@ FocusGlazeWindow(glazeInfo) {
     return false
 
   parts := StrSplit(glazeInfo, "|")
-  if (parts.Length < 1 || parts[1] == "")
-    return false
-
   glazeId := parts[1]
   glazeHwnd := parts.Length > 1 ? parts[2] : ""
   global GLAZEWM_PATH
 
+  ; 1. Tell GlazeWM to focus the container (switches workspace)
   RunWait('"' . GLAZEWM_PATH . '" command focus --container-id ' . glazeId, , "Hide")
   Run('"' . GLAZEWM_PATH . '" command wm-redraw', , "Hide")
 
+  ; 2. Ensure the window is actually active via AHK
   if (glazeHwnd != "") {
     ActivateWindowCommon("ahk_id " . glazeHwnd)
   }
@@ -126,14 +136,15 @@ FocusGlazeWindow(glazeInfo) {
 }
 
 ; Activate window robustly (Local -> GlazeWM -> Run)
-ActivateRobust(exeName, runCmd := "", titleParts := "") {
+ActivateRobust(exePath, runCmd := "", titleParts := "") {
   DetectHiddenWindows(false)
+  SplitPath(exePath, &exeName)
 
-  ; 1. Try local activation first (Fast path for visible windows)
+  ; 1. Try local activation (Current workspace)
   ids := WinGetList("ahk_exe " . exeName)
   for id in ids {
     title := WinGetTitle("ahk_id " . id)
-    if (StrLen(title) == 0)
+    if (title == "")
       continue
 
     match := (titleParts == "")
@@ -148,19 +159,21 @@ ActivateRobust(exeName, runCmd := "", titleParts := "") {
 
     if (match) {
       ActivateWindowCommon("ahk_id " . id)
-      Sleep(50) ; Small wait to check if activation actually happened
       if WinActive("ahk_id " . id)
         return true
     }
   }
 
-  ; 2. Try GlazeWM activation (Slow path for hidden/other workspace windows)
+  ; 2. Try GlazeWM activation (Other workspaces)
   titleRegex := (titleParts != "") ? StrReplace(titleParts, ",", "|") : ""
-  if FocusGlazeWindow(GetGlazeWindow(exeName, titleRegex))
+  if (FocusGlazeWindow(GetGlazeWindow(exeName, titleRegex))) {
+    log_info("ActivateRobust: Activated " . exeName . " via GlazeWM")
     return true
+  }
 
-  ; 3. Run if not found
+  ; 3. Launch application if not found
   if (runCmd != "") {
+    log_info("ActivateRobust: Launching " . exeName)
     Run(runCmd)
     return true
   }
@@ -235,7 +248,7 @@ Activate(app, cmd := "", titleKeywords := "") {
   If (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usenewoutlook")) {
     Activate(EnvGet("LOCALAPPDATA") . "\Microsoft\WindowsApps\olk.exe")
   } else {
-    Activate("C:\ Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE")
+    Activate("C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE")
   }
 }
 
@@ -275,7 +288,7 @@ F11::
 F12::
 {
   if (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usewez")) {
-    Toggle("C:\ Program Files\WezTerm\wezterm-gui.exe")
+    Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
   } else if (FileExist(EnvGet("USERPROFILE") . "\.autohotkey\usenu")) {
     Toggle("WindowsTerminal.exe", "nu", "yukimemi-terminal")
   } else {
