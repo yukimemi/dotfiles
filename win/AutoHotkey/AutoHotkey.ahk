@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/02/19 17:47:32.
+; Last Change : 2026/02/26 09:24:19.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -243,7 +243,7 @@ Activate(app, cmd := "", titleKeywords := "") {
 F9::
 {
   If (!FileExist(EnvGet("USERPROFILE") . "\.autohotkey\notuseexcel")) {
-    Activate("C:\ Program Files\Microsoft Office\root\Office16\EXCEL.EXE")
+    Activate("C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE")
   }
 }
 
