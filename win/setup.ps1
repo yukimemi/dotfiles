@@ -7,7 +7,7 @@
     Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/03/01 14:57:09.
+  .Last Change : 2026/03/01 16:12:36.
 #>
 param(
   [switch]$AdminOnly
@@ -221,6 +221,7 @@ function Set-RequiredEnv {
   log "Checking environment variables..." "Cyan"
   $envVars = @{
     "CARGO_NET_GIT_FETCH_WITH_CLI" = "true"
+    "CARGO_HTTP_CHECK_REVOKE"      = "false"
     "YAZI_CONFIG_HOME"             = "${env:USERPROFILE}\.config\yazi"
     "YAZI_FILE_ONE"                = "${env:USERPROFILE}\scoop\apps\git\current\usr\bin\file.exe"
     "XDG_CONFIG_HOME"              = "${env:USERPROFILE}\.config"
@@ -230,8 +231,13 @@ function Set-RequiredEnv {
     $current = [Environment]::GetEnvironmentVariable($key, "User")
     if ($current -ne $envVars[$key]) {
       [Environment]::SetEnvironmentVariable($key, $envVars[$key], "User")
+      Set-Item -Path "env:$key" -Value $envVars[$key]
       log "Set $key = $($envVars[$key])" "Green"
     } else {
+      # Ensure current process also has the variable
+      if ((Get-Item -Path "env:$key" -ErrorAction SilentlyContinue).Value -ne $envVars[$key]) {
+        Set-Item -Path "env:$key" -Value $envVars[$key]
+      }
       log "$key is already set." "Gray"
     }
   }
@@ -375,12 +381,45 @@ function Install-Tools {
   Install-Scoop
 
   $scoopPackages = @(
-    "glazewm", "zebar", "bun", "pnpm", "ripgrep", "fzf", "fd", "delta", "gsudo",
-    "ksnip", "rustup-msvc", "windows-terminal", "powertoys",
-    "autohotkey", "espanso", "winmerge", "zig", "pwsh", "dua",
-    "obsidian", "imagemagick", "gh", "go", "neovide", "copyq", "git",
-    "neovim", "neovim-qt", "mise", "starship", "topgrade", "yazi", "ffmpeg",
-    "7zip", "jq", "file", "bat", "less"
+    "7zip",
+    "autohotkey",
+    "bat",
+    "bun",
+    "copyq",
+    "delta",
+    "dua",
+    "espanso",
+    "fd",
+    "ffmpeg",
+    "file",
+    "fzf",
+    "gh",
+    "git",
+    "glazewm",
+    "go",
+    "gsudo",
+    "imagemagick",
+    "jq",
+    "ksnip",
+    "less",
+    "mingw",
+    "mise",
+    "neovide",
+    "neovim",
+    "neovim-qt",
+    "obsidian",
+    "pnpm",
+    "powertoys",
+    "pwsh",
+    "ripgrep",
+    "rustup-msvc",
+    "starship",
+    "topgrade",
+    "windows-terminal",
+    "winmerge",
+    "yazi",
+    "zebar",
+    "zig"
   )
 
   log "Ensuring tools via scoop..." "Cyan"
@@ -545,6 +584,31 @@ function Install-PnpmConfig {
   }
 }
 
+function Install-Rhq {
+  log "Checking rhq..." "Cyan"
+  if (Get-Command rhq -ErrorAction SilentlyContinue) {
+    log "rhq is already installed." "Gray"
+    return
+  }
+
+  log "Installing rhq via cargo (GNU target)..." "Yellow"
+  if (!(Get-Command g++ -ErrorAction SilentlyContinue)) {
+    log "Installing mingw for rhq build..." "Yellow"
+    Install-ScoopPackages @("mingw")
+  }
+  # Ensure mingw's bin is in PATH for current process
+  $mingwBin = "${env:USERPROFILE}\scoop\apps\mingw\current\bin"
+  if (Test-Path $mingwBin) {
+    $env:PATH = "${mingwBin};${env:PATH}"
+  }
+
+  log "Adding GNU toolchain for rustup..." "Yellow"
+  rustup toolchain install stable-x86_64-pc-windows-gnu
+
+  log "Compiling rhq using GNU toolchain..." "Yellow"
+  cargo +stable-x86_64-pc-windows-gnu install --git https://github.com/ubnt-intrepid/rhq.git
+}
+
 function Start-Main {
   try {
     log "[Start-Main] Starting setup..."
@@ -560,6 +624,7 @@ function Start-Main {
       Install-PnpmConfig
       Install-GoTools
       Install-UserTools
+      Install-Rhq
 
       log "Checking shortcuts..." "Cyan"
       $shortcuts = @(
