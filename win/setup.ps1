@@ -7,7 +7,7 @@
     Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/03/01 06:47:41.
+  .Last Change : 2026/03/01 06:57:36.
 #>
 param(
   [switch]$AdminOnly
@@ -407,7 +407,7 @@ function Install-Tools {
     "autohotkey", "espanso", "winmerge", "zig", "powershell", "dua",
     "obsidian", "imagemagick", "gh", "go", "neovide", "copyq", "git",
     "neovim", "neovim-qt", "mise", "starship", "topgrade", "yazi", "ffmpeg",
-    "7zip", "jq", "file", "bat"
+    "7zip", "jq", "file", "bat", "less"
   )
 
   log "Ensuring tools via scoop..." "Cyan"

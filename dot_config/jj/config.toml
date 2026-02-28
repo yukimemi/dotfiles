@@ -19,5 +19,5 @@ email = "yukimemi@gmail.com"
 [ui]
 default-command = "log"
 editor = "nvim"
-pager = "delta --paging always --pager C:/PROGRA~1/Git/usr/bin/less.exe"
+pager = "delta"
 diff-formatter = ":git"
