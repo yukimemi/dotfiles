@@ -7,7 +7,7 @@
     Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/02/25 09:50:17.
+  .Last Change : 2026/03/01 06:47:41.
 #>
 param(
   [switch]$AdminOnly
@@ -402,11 +402,11 @@ function Install-Tools {
   Install-Scoop
 
   $scoopPackages = @(
-    "glazewm", "zebar", "bun", "ripgrep", "fzf", "fd", "delta", "gsudo",
+    "glazewm", "zebar", "bun", "pnpm", "ripgrep", "fzf", "fd", "delta", "gsudo",
     "ksnip", "rustup-msvc", "windows-terminal", "powertoys",
     "autohotkey", "espanso", "winmerge", "zig", "powershell", "dua",
     "obsidian", "imagemagick", "gh", "go", "neovide", "copyq", "git",
-    "neovim-nightly", "mise", "starship", "topgrade", "yazi", "ffmpeg",
+    "neovim", "neovim-qt", "mise", "starship", "topgrade", "yazi", "ffmpeg",
     "7zip", "jq", "file", "bat"
   )
 
@@ -582,14 +582,12 @@ function Start-Main {
     if (-not $AdminOnly) {
       log "--- User Level Setup ---" "Cyan"
       Set-RequiredEnv
-      Install-PnpmConfig
+      Install-Tools
       Uninstall-WingetMigratedPackages
       Install-PlemolJP
+      Install-PnpmConfig
       Install-GoTools
-      Install-Mise
       Install-UserTools
-      Install-Neovim-Win
-      Install-Tools
 
       log "Checking shortcuts..." "Cyan"
       $shortcuts = @(
