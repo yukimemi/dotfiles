@@ -145,6 +145,15 @@ function Install-Aider {
   Invoke-RestMethod -Uri https://aider.chat/install.ps1 | Invoke-Expression
 }
 
+function Install-Gut {
+  if (Get-Command bun -ErrorAction SilentlyContinue) {
+    Write-Host "Installing gut-cli via bun..."
+    bun install -g gut-cli
+  } else {
+    Write-Error "bun is not installed. Please install bun first."
+  }
+}
+
 function Install-Neovim {
   if ($IsWindows) {
     Write-Host "Installing Neovim Nightly (Windows)..."
@@ -256,6 +265,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "d"     = "jj diff"
     "e"     = "nvim"
     "g"     = "git"
+    "gt"    = "gut"
     "ga"    = "git add"
     "gbr"   = "git browse"
     "gc"    = "git commit"
@@ -349,6 +359,10 @@ if (Get-Module -ListAvailable PSReadLine) {
   Set-PSReadLineKeyHandler -Chord "Ctrl+p" -Function HistorySearchBackward -ViMode Insert
   Set-PSReadLineKeyHandler -Chord "Ctrl+u" -Function BackwardDeleteLine -ViMode Insert
   Set-PSReadLineKeyHandler -Chord "Ctrl+w" -Function BackwardDeleteWord -ViMode Insert
+}
+
+if (!(Get-Command gut -ErrorAction SilentlyContinue)) {
+  Install-Gut
 }
 
 Export-ModuleMember -Function * -Alias *
