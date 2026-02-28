@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2026/02/24 23:40:13.
+// Last Change : 2026/02/28 21:21:44.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -115,7 +115,7 @@ export const ui: Plug[] = [
     enabled: selections.horizontal_motion === "quickscope",
     profiles: ["ui"],
     lazy: {
-      event: ["BufRead", "BufNewFile"],
+      event: ["CursorHold"],
     },
     before: async ({ denops }) => {
       await vars.g.set(denops, "qs_lazy_highlight", 1);

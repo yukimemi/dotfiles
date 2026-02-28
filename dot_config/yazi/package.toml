@@ -1,7 +1,7 @@
 [[plugin.deps]]
 use = "hankertrix/augment-command"
-rev = "7c12bdf"
-hash = "f7e6d377e4efee567ec6d1c2355f2ca3"
+rev = "681158d"
+hash = "63ed5325016895306781d13690b246bf"
 
 [[plugin.deps]]
 use = "orhnk/system-clipboard"
@@ -30,7 +30,7 @@ hash = "c9e628fc0312d198db22ae2fa74883b"
 
 [[plugin.deps]]
 use = "mikavilpas/easyjump.yazi:easyjump"
-rev = "dcfb8ae"
+rev = "40851c2"
 hash = "dee6991cbf5f04f879be03218856d65"
 
 [flavor]

@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2026/01/25 11:12:20.
+// Last Change : 2026/02/28 21:22:12.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -10,7 +10,7 @@ import * as fn from "@denops/std/function";
 import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
 import { execute } from "@denops/std/helper";
-import { pluginStatus } from "../pluginstatus.ts";
+import { pluginStatus, selections } from "../pluginstatus.ts";
 
 export const util: Plug[] = [
   {
@@ -384,7 +384,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/mistricky/codesnap.nvim",
-    enabled: false,
+    enabled: selections.codesnap === "codesnap",
     profiles: ["core"],
     before: async ({ denops }) => {
       await execute(
@@ -407,9 +407,21 @@ EOB
   },
   {
     url: "https://github.com/mistweaverco/snap.nvim",
+    enabled: selections.codesnap === "snap",
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("snap").setup({})`);
+    },
+  },
+  {
+    url: "https://github.com/smit4k/snapshot.nvim",
+    enabled: selections.codesnap === "snapshot",
+    profiles: ["core"],
+    lazy: {
+      cmd: "Snapshot",
+    },
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("snapshot").setup({})`);
     },
   },
   {
@@ -457,7 +469,8 @@ EOB
       cmd: "Calendar",
       keys: {
         lhs: "mc",
-        rhs: "<cmd>Calendar -view=year -split=vertical -position=right -width=27<cr>",
+        rhs:
+          "<cmd>Calendar -view=year -split=vertical -position=right -width=27<cr>",
         mode: "n",
         desc: "Calendar",
       },
@@ -613,6 +626,7 @@ EOB
   },
   {
     url: "https://github.com/serhez/bento.nvim",
+    enabled: false,
     profiles: ["core"],
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("bento").setup(_A)`, {});

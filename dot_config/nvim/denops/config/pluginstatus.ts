@@ -73,7 +73,8 @@ export type Selections = {
     | "shot-f"
     | "clever-f"
     | "none";
-  terminal: "toggleterm" | "tiny-term" | "none";
+  terminal: "toggleterm" | "tiny-term" | "floaterm" | "none";
+  codesnap: "snapshot" | "codesnap" | "snap" | "none";
 };
 
 export const selections: Selections = {
@@ -92,8 +93,9 @@ export const selections: Selections = {
   notification: "noice",
   smooth_scroll: "none",
   scrollbar: "satellite",
-  horizontal_motion: "clever-f",
-  terminal: "tiny-term",
+  horizontal_motion: "quickscope",
+  terminal: "toggleterm",
+  codesnap: "snapshot",
 };
 
 export const pluginStatus = {

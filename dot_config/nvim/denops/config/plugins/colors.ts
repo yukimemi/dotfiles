@@ -399,6 +399,14 @@ export const colors: Plug[] = [
     lazy: { enabled: true },
   },
   {
+    url: "https://github.com/oxidescheme/nvim",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+    after: async ({ denops }) => {
+      await denops.call(`luaeval`, `require("oxide").setup()`);
+    },
+  },
+  {
     url: "https://github.com/oxfist/night-owl.nvim",
     profiles: ["colors"],
     lazy: { enabled: true },
@@ -714,6 +722,7 @@ export const colors: Plug[] = [
       "https://github.com/nickburlett/vim-colors-stylus",
       "https://github.com/nvimdev/oceanic-material",
       "https://github.com/nvimdev/zephyr-nvim",
+      "https://github.com/oxidescheme/nvim",
       "https://github.com/oxfist/night-owl.nvim",
       "https://github.com/pbrisbin/vim-colors-off",
       "https://github.com/pineapplegiant/spaceduck",

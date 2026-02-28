@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : terminal.ts
 // Author      : yukimemi
-// Last Change : 2026/02/25 23:53:54.
+// Last Change : 2026/02/28 21:25:45.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -16,7 +16,7 @@ import { pluginStatus, selections } from "../pluginstatus.ts";
 export const terminal: Plug[] = [
   {
     url: "https://github.com/voldikss/vim-floaterm",
-    enabled: false,
+    enabled: selections.terminal === "floaterm",
     profiles: ["terminal"],
     after: async ({ denops }) => {
       await mapping.map(denops, `<c-s>`, `<cmd>FloatermToggle<cr>`, {
@@ -69,7 +69,9 @@ export const terminal: Plug[] = [
             promptPattern: "\\w*» \\?",
           },
           terminal: {
-            command: denops.meta.platform === "windows" ? ["powershell"] : ["zsh"],
+            command: denops.meta.platform === "windows"
+              ? ["powershell"]
+              : ["zsh"],
             prompt: "»",
             promptPattern: "\\w*» \\?",
           },
