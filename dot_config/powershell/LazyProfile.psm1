@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/02/28 10:49:46.
+# Last Change : 2026/03/01 21:23:11.
 # =============================================================================
 
 # --- Functions ---
@@ -258,6 +258,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "cat"   = "bat"
     "cd"    = "Set-LocationWithList"
     "ca"    = "chezmoi apply -v"
+    "ce"    = "chezmoi edit-config"
     "cza"   = "Select-ChezmoiAdd"
     "cdiff" = "Select-ChezmoiDiff"
     "cm"    = "Select-ChezmoiMerge"
