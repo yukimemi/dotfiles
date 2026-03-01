@@ -269,7 +269,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "gt"    = "gut"
     "ga"    = "git add"
     "gbr"   = "git browse"
-    "gc"    = "git commit"
+    "gc"    = "gut commit"
     "gp"    = "git pull --rebase"
     "gpu"   = "git push"
     "gst"   = "git status"
