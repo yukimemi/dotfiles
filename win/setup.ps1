@@ -7,7 +7,7 @@
     Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/03/01 06:57:36.
+  .Last Change : 2026/03/01 14:57:09.
 #>
 param(
   [switch]$AdminOnly
@@ -123,39 +123,12 @@ function Install-WingetPackages {
   param([string[]]$Packages)
   foreach ($pkg in $Packages) {
     log "Checking $pkg via winget..." "Cyan"
-    $isInstalled = winget list --id $pkg --accept-source-agreements 2>$null | Select-String "\b$pkg\b"
-    if (!$isInstalled) {
+    & winget list --id $pkg --exact --accept-source-agreements >$null 2>&1
+    if ($LASTEXITCODE -ne 0) {
       log "Installing $pkg via winget..." "Yellow"
-      winget install -q $pkg --accept-source-agreements --accept-package-agreements --no-upgrade
+      & winget install --id $pkg --exact --silent --accept-source-agreements --accept-package-agreements --no-upgrade 2>$null
     } else {
       log "$pkg is already installed via winget." "Gray"
-    }
-  }
-}
-
-function Uninstall-WingetMigratedPackages {
-  $migratedIds = @(
-    "glzr-io.glazewm", "glzr-io.zebar", "Oven-sh.Bun", "BurntSushi.ripgrep.MSVC",
-    "junegunn.fzf", "sharkdp.fd", "dandavison.delta", "gerardog.gsudo",
-    "Flameshot.Flameshot", "RustLang.Rustup", "Microsoft.WindowsTerminal",
-    "Microsoft.PowerToys", "AutoHotkey.AutoHotkey", "Espanso.Espanso",
-    "WinMerge.WinMerge", "zig.zig", "Microsoft.PowerShell", "Byron.dua-cli",
-    "Obsidian.Obsidian", "ImageMagick.ImageMagick", "GitHub.cli", "GoLang.Go",
-    "Neovide.Neovide", "hluk.CopyQ", "Git.Git", "jdx.mise"
-  )
-
-  log "Checking for migrated packages to uninstall from winget..." "Cyan"
-  $wingetList = winget list --accept-source-agreements 2>$null
-  if (!$wingetList) {
-    return
-  }
-
-  foreach ($id in $migratedIds) {
-    # Thoroughly clean the ID of any possible hidden characters
-    $cleanId = $id.Trim().Replace("`r", "").Replace("`n", "")
-    if ($wingetList -match "\b$([regex]::Escape($cleanId))\b") {
-      log "Uninstalling $cleanId from winget..." "Yellow"
-      winget uninstall $cleanId --exact --all-versions -q --accept-source-agreements 2>$null
     }
   }
 }
@@ -404,7 +377,7 @@ function Install-Tools {
   $scoopPackages = @(
     "glazewm", "zebar", "bun", "pnpm", "ripgrep", "fzf", "fd", "delta", "gsudo",
     "ksnip", "rustup-msvc", "windows-terminal", "powertoys",
-    "autohotkey", "espanso", "winmerge", "zig", "powershell", "dua",
+    "autohotkey", "espanso", "winmerge", "zig", "pwsh", "dua",
     "obsidian", "imagemagick", "gh", "go", "neovide", "copyq", "git",
     "neovim", "neovim-qt", "mise", "starship", "topgrade", "yazi", "ffmpeg",
     "7zip", "jq", "file", "bat", "less"
@@ -467,9 +440,9 @@ function Install-ScoopPackages {
     $argStr = $ScoopArgs -join ' '
     # Use pwsh.exe (PowerShell 7) if available, as it is more robust than powershell.exe
     if (Get-Command pwsh -ErrorAction SilentlyContinue) {
-      pwsh.exe -NoProfile -ExecutionPolicy Bypass -Command "& '$scoopBin' $argStr" 2>$null
+      pwsh.exe -NoProfile -ExecutionPolicy Bypass -Command "& '$scoopBin' $argStr"
     } else {
-      powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "& '$scoopBin' $argStr" 2>$null
+      powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "& '$scoopBin' $argStr"
     }
   }
 
@@ -583,7 +556,6 @@ function Start-Main {
       log "--- User Level Setup ---" "Cyan"
       Set-RequiredEnv
       Install-Tools
-      Uninstall-WingetMigratedPackages
       Install-PlemolJP
       Install-PnpmConfig
       Install-GoTools
@@ -594,10 +566,6 @@ function Start-Main {
         @{
           Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
           Target = "${env:USERPROFILE}\.local\share\chezmoi\win\AutoHotkey\AutoHotkey.ahk"
-        },
-        @{
-          Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\clnch.lnk"
-          Target = "${env:USERPROFILE}\app\clnch\clnch.exe"
         },
         @{
           Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AlterDnD64.lnk"

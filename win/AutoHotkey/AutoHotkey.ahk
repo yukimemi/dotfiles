@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/02/26 09:24:19.
+; Last Change : 2026/03/01 14:57:09.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -21,6 +21,8 @@ log_info(msg) {
   }
   return
 }
+
+log_info("AutoHotkey script started.")
 log_error(msg) {
   global LOG_ERROR_PATH
   currentDateTime := FormatTime(, "yyyy/MM/dd(ddd) HH:mm:ss")
