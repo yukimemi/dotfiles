@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/03/02 02:28:26.
+# Last Change : 2026/03/02 03:31:54.
 # =============================================================================
 
 # --- Functions ---
@@ -187,6 +187,47 @@ function y {
 function Update-WithMolt {
   param([string]$path = $pwd); Get-ChildItem -Force -Recurse -File $path -Filter *.ts | ForEach-Object { molt -w $_.FullName }
 }
+
+function Invoke-ZenoSnippet {
+  if ($null -eq $global:ZenoSnippets) {
+    $configPath = Join-Path $ConfigHome "zeno/config.yml"
+    if (!(Test-Path $configPath)) {
+      return
+    }
+
+    # YAML to JSON using Deno with JSR
+    $uPath = $configPath.Replace("\", "/")
+    $denoScript = "import { parse } from 'jsr:@std/yaml'; console.log(JSON.stringify(parse(Deno.readTextFileSync('$uPath'))))"
+    $snippetsJson = $denoScript | deno run --allow-read - 2>$null
+
+    if ($null -eq $snippetsJson -or $snippetsJson -eq "") {
+      return
+    }
+    $global:ZenoSnippets = ($snippetsJson | ConvertFrom-Json).snippets
+  }
+
+  # Select snippet with fzf (__FILTER)
+  $selected = $global:ZenoSnippets | ForEach-Object { "$($_.keyword)`t$($_.name)`t$($_.snippet)" } | __FILTER --header "Select Zeno Snippet" --tabstop 10
+  if (!$selected) {
+    return
+  }
+
+  $snippetText = ($selected -split "`t")[2]
+
+  # Handle simple placeholders (e.g. {{commit_message}})
+  while ($snippetText -match '\{\{(?<Param>[^}]+)\}\}') {
+    $param = $Matches['Param']
+    $val = Read-Host "Enter $param"
+    if ($null -eq $val) {
+      $val = ""
+    }
+    $snippetText = $snippetText -replace "\{\{$param\}\}", $val
+  }
+
+  [Microsoft.PowerShell.PSConsoleReadLine]::Insert($snippetText)
+}
+
+
 function Get-FileAndHash {
   Get-ChildItem | ForEach-Object { [PSCustomObject]@{ path = $_.Name; hash = (Get-FileHash -Algorithm MD5 $_.FullName).Hash } }
 }
@@ -251,28 +292,23 @@ if (Get-Module -ListAvailable PSReadLine) {
   # --- Abbreviation Expansion (zeno.zsh style) ---
   $rmTarget = "Move-ToTrash"
 
+  # Initial hardcoded abbrs (can be overridden by config.yml)
   $abbrs = @{
     "a"     = "git add"
     "b"     = "cd .."
     "c"     = "Clear-Host"
-    "cat"   = "bat"
-    "cd"    = "Set-LocationWithList"
     "ca"    = "chezmoi apply -v"
-    "ce"    = "chezmoi edit-config"
-    "cza"   = "Select-ChezmoiAdd"
+    "cd"    = "Set-LocationWithList"
     "cdiff" = "Select-ChezmoiDiff"
+    "ce"    = "chezmoi edit-config"
     "cm"    = "Select-ChezmoiMerge"
     "cs"    = "chezmoi status"
+    "cza"   = "Select-ChezmoiAdd"
     "d"     = "jj diff"
     "e"     = "nvim"
     "g"     = "git"
-    "gt"    = "gut"
-    "ga"    = "git add"
-    "gbr"   = "git browse"
     "gc"    = "gut commit"
-    "gp"    = "git pull --rebase"
-    "gpu"   = "git push"
-    "gst"   = "git status"
+    "gt"    = "gut"
     "h"     = "hitori"
     "j"     = "Invoke-ZJump"
     "jp"    = "jj done; jj git push"
@@ -282,11 +318,33 @@ if (Get-Module -ListAvailable PSReadLine) {
     "o"     = "Start-Process"
     "rm"    = $rmTarget
     "s"     = "jj status --no-pager"
-    "t"     = "exit"
     "v"     = "gvim --remote-silent"
     "which" = "Get-Command"
     "z"     = "Invoke-ZJump"
     "zi"    = "Invoke-ZJump"
+  }
+
+  # Load from config.yml
+  $configPath = Join-Path $ConfigHome "zeno/config.yml"
+  if (Test-Path $configPath) {
+    if ($null -eq $global:ZenoSnippets) {
+      $uPath = $configPath.Replace("\", "/")
+      $denoScript = "import { parse } from 'jsr:@std/yaml'; console.log(JSON.stringify(parse(Deno.readTextFileSync('$uPath'))))"
+      $snippetsJson = $denoScript | deno run --allow-read - 2>$null
+      if ($null -ne $snippetsJson -and $snippetsJson -ne "") {
+        $global:ZenoSnippets = ($snippetsJson | ConvertFrom-Json).snippets
+      }
+    }
+    if ($null -ne $global:ZenoSnippets) {
+      foreach ($s in $global:ZenoSnippets) {
+        if ($s.keyword -and $s.snippet -and -not $s.snippet.Contains("{{")) {
+          # Only add if not already defined in $abbrs (LazyProfile prioritizes local definitions)
+          if (-not $abbrs.ContainsKey($s.keyword)) {
+            $abbrs[$s.keyword] = $s.snippet
+          }
+        }
+      }
+    }
   }
 
   $expandAbbrLogic = {
@@ -346,6 +404,8 @@ if (Get-Module -ListAvailable PSReadLine) {
     $current = (Get-PSReadLineOption).PredictionViewStyle
     Set-PSReadLineOption -PredictionViewStyle (if ($current -eq 'InlineView') { 'ListView' } else { 'InlineView' })
   }
+
+  Set-PSReadLineKeyHandler -Chord Ctrl+s -ViMode Insert -ScriptBlock { Invoke-ZenoSnippet }.GetNewClosure()
 
   Set-PSReadLineKeyHandler -Chord Ctrl+f -Function AcceptNextSuggestionWord -ViMode Insert
   Set-PSReadLineKeyHandler -Chord Ctrl+e -Function AcceptSuggestion -ViMode Insert
