@@ -36,7 +36,7 @@ end
 vim.keymap.set("n", "<space>gg", "<cmd>lua _lazygit_toggle()<cr>", { noremap = true, silent = true })
 
 local pwsh = Terminal:new({
-  cmd = "pwsh",
+  cmd = "pwsh.exe",
 })
 
 function _pwsh_toggle()

@@ -83,7 +83,16 @@ export function cacheLua() {
       vim.o.clipboard = "unnamedplus";
       vim.o.ignorecase = true
       vim.o.smartcase = true
-      vim.o.shell = "pwsh"
+      if vim.fn.has("win32") == 1 then
+        vim.o.shell = "pwsh.exe"
+        vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+        vim.o.shellredir = "2>&1 | Out-File -Encoding UTF8 %s; if ($?) { exit 0 } else { exit 1 }"
+        vim.o.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; if ($?) { exit 0 } else { exit 1 }"
+        vim.o.shellquote = ""
+        vim.o.shellxquote = ""
+      else
+        vim.o.shell = "pwsh"
+      end
 
       vim.g.mapleader = " ";
       vim.g.maplocalleader = "\\\\";
