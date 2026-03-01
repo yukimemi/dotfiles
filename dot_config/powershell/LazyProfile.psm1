@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/03/02 02:27:09.
+# Last Change : 2026/03/02 02:28:26.
 # =============================================================================
 
 # --- Functions ---
@@ -275,7 +275,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "gst"   = "git status"
     "h"     = "hitori"
     "j"     = "Invoke-ZJump"
-    "jp"    = "jj git push"
+    "jp"    = "jj done; jj git push"
     "l"     = "Get-ChildItem"
     "la"    = "Get-ChildItem -Force"
     "ls"    = "Get-ChildItem"
