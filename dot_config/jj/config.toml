@@ -6,6 +6,8 @@ lp = ["log", "-p"]
 lc = ["log", "-p", "--color-words", "-r", ".."]
 done = ["bookmark", "move", "main", "--to", "@-"]
 track = ["bookmark", "move", "main", "--to", "@"]
+pull = ["git", "fetch"]
+up = ["rebase", "-d", "trunk()"]
 
 [git]
 
