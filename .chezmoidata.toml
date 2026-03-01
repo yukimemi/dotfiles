@@ -1,0 +1,8 @@
+[autohotkey]
+purpose = "home"
+usenewoutlook = true
+notuseexcel = true
+useneovide = true
+useneovimqt = false
+usewez = false
+usenu = false

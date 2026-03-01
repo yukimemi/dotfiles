@@ -630,7 +630,7 @@ function Start-Main {
       $shortcuts = @(
         @{
           Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
-          Target = "${env:USERPROFILE}\.local\share\chezmoi\win\AutoHotkey\AutoHotkey.ahk"
+          Target = "${env:USERPROFILE}\.config\autohotkey\AutoHotkey.ahk"
         },
         @{
           Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AlterDnD64.lnk"

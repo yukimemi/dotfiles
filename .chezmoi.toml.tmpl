@@ -1,0 +1,16 @@
+{{- $purpose := "home" -}}
+{{- if (hasKey . "autohotkey") -}}
+{{-   $purpose = promptStringOnce .autohotkey "purpose" "Enter purpose (home/work)" "home" -}}
+{{- else -}}
+{{-   $purpose = promptString "Enter purpose (home/work)" "home" -}}
+{{- end -}}
+
+[diff]
+    pager = "bat"
+
+[merge]
+    command = "nvim"
+    args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}"]
+
+[data.autohotkey]
+    purpose = {{ $purpose | quote }}
