@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/03/02 03:31:54.
+# Last Change : 2026/03/03 09:59:37.
 # =============================================================================
 
 # --- Functions ---
@@ -54,19 +54,6 @@ function Invoke-HistoryJump {
     $c | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
   }
   Get-Job | Stop-Job -PassThru | Remove-Job -Force
-}
-
-function rhl {
-  rhq list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
-}
-function ghl {
-  ghr list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
-}
-function gsl {
-  gsr "${env:USERPROFILE}\src" | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
-}
-function jd {
-  Get-ChildItem -Force -Directory -Recurse | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
 }
 
 function Move-ToTrash {
@@ -322,6 +309,10 @@ if (Get-Module -ListAvailable PSReadLine) {
     "which" = "Get-Command"
     "z"     = "Invoke-ZJump"
     "zi"    = "Invoke-ZJump"
+    "rhl"   = "rhq list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
+    "ghl"   = "ghr list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
+    "gsl"   = "gsr `"${env:USERPROFILE}\src`" | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
+    "jd"    = "Get-ChildItem -Force -Directory -Recurse | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
   }
 
   # Load from config.yml
