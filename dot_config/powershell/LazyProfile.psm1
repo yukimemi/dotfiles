@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/03/03 10:01:43.
+# Last Change : 2026/03/05 11:07:09.
 # =============================================================================
 
 # --- Functions ---
@@ -95,7 +95,7 @@ function Move-ToTrash {
   }
 }
 
-function r {
+function Remove-Fzf {
   $target = Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1
   if (!$target) {
     return
@@ -295,25 +295,26 @@ if (Get-Module -ListAvailable PSReadLine) {
     "e"     = "nvim"
     "g"     = "git"
     "gc"    = "gut commit"
+    "ghl"   = "ghr list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
+    "gsl"   = "gsr `"${env:USERPROFILE}\src`" | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
     "gt"    = "gut"
     "h"     = "hitori"
     "j"     = "Invoke-ZJump"
+    "jd"    = "Get-ChildItem -Force -Directory -Recurse | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
     "jp"    = "jj done; jj git push"
     "ju"    = "jj pull; jj up"
     "l"     = "Get-ChildItem"
     "la"    = "Get-ChildItem -Force"
     "ls"    = "Get-ChildItem"
     "o"     = "Start-Process"
+    "r"     = "Remove-Fzf"
+    "rhl"   = "rhq list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
     "rm"    = $rmTarget
     "s"     = "jj status --no-pager"
     "v"     = "gvim --remote-silent"
     "which" = "Get-Command"
     "z"     = "Invoke-ZJump"
     "zi"    = "Invoke-ZJump"
-    "rhl"   = "rhq list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
-    "ghl"   = "ghr list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
-    "gsl"   = "gsr `"${env:USERPROFILE}\src`" | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
-    "jd"    = "Get-ChildItem -Force -Directory -Recurse | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
   }
 
   # Load from config.yml

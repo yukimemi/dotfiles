@@ -1,14 +1,18 @@
 // =============================================================================
 // File        : ai.ts
 // Author      : yukimemi
-// Last Change : 2026/02/28 10:55:19.
+// Last Change : 2026/03/03 14:41:30.
 // =============================================================================
 
 import * as fn from "@denops/std/function";
 import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
-import { HarmBlockThreshold, HarmCategory, SafetySetting } from "@google/generative-ai";
+import {
+  HarmBlockThreshold,
+  HarmCategory,
+  SafetySetting,
+} from "@google/generative-ai";
 import { exists } from "@std/fs";
 import type { Plug } from "@yukimemi/dvpm";
 import { z } from "zod";
@@ -194,8 +198,8 @@ export const ai: Plug[] = [
         "futago_history_db",
         `~/.cache/nvim/futago/db/history.db`,
       );
-      await vars.g.set(denops, "futago_model", "gemini-flash-latest");
-      await vars.g.set(denops, "futago_git_model", "gemini-flash-latest");
+      await vars.g.set(denops, "futago_model", "gemini-3-flash-preview");
+      await vars.g.set(denops, "futago_git_model", "gemini-3-flash-preview");
       const safetySettings: SafetySetting[] = [
         {
           category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
