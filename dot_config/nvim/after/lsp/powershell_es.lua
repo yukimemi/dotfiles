@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : powershell_es.lua
 -- Author      : yukimemi
--- Last Change : 2025/05/05 20:43:00.
+-- Last Change : 2026/03/05 17:26:29.
 -- =============================================================================
 
 ---@type vim.lsp.Config
@@ -12,7 +12,7 @@ return {
       codeLens = true,
       codeFormatting = {
         preset = "OTBS",
-        ignoreOneLineBlock = false,
+        ignoreOneLineBlock = true,
         useCorrectCasing = true,
         autoCorrectAliases = true,
       },
