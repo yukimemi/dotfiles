@@ -93,7 +93,16 @@ foreach ($p in $AdditionalPaths) {
 }
 
 if (Get-Command mise -ErrorAction SilentlyContinue) {
-  Invoke-Expression (mise activate pwsh | Out-String)
+  $miseInit = if ($env:PSMUX -or $env:TMUX) {
+    # Use shims in psmux/tmux to avoid CommandNotFound hook errors (GetHistoryItems NullReference)
+    mise activate pwsh --shims | Out-String
+  } else {
+    mise activate pwsh | Out-String
+  }
+
+  if (![string]::IsNullOrWhiteSpace($miseInit)) {
+    Invoke-Expression $miseInit
+  }
 }
 
 # --- Cache & Auto-Generation ---
@@ -183,4 +192,15 @@ if (Test-Path $StarshipInit) {
 
 if (Test-Path $ZoxideInit) {
   . $ZoxideInit
+}
+
+# --- Auto psmux ---
+if ($IsWindows -and (Get-Command psmux -ErrorAction SilentlyContinue)) {
+  if ($null -eq $env:PSMUX -and $null -eq $env:VSCODE_GIT_ASKPASS_NODE -and $null -eq $env:TERM_PROGRAM) {
+    # Try to attach, if it fails, start new session
+    psmux attach 2>$null
+    if ($LASTEXITCODE -ne 0) {
+      psmux
+    }
+  }
 }

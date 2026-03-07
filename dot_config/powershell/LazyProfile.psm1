@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/03/05 11:07:09.
+# Last Change : 2026/03/07 15:57:33.
 # =============================================================================
 
 # --- Functions ---
@@ -138,6 +138,24 @@ function Install-Gut {
     bun install -g gut-cli
   } else {
     Write-Error "bun is not installed. Please install bun first."
+  }
+}
+
+function Install-PsmuxPpm {
+  $ppmPath = Join-Path $env:USERPROFILE ".psmux/plugins/ppm"
+  if (!(Test-Path $ppmPath)) {
+    Write-Host "Installing psmux plugin manager (ppm)..."
+    $tempDir = Join-Path $env:TEMP "psmux-plugins"
+    if (Test-Path $tempDir) {
+      Remove-Item $tempDir -Recurse -Force
+    }
+    git clone https://github.com/marlocarlo/psmux-plugins.git $tempDir
+    if (!(Test-Path (Split-Path $ppmPath -Parent))) {
+      New-Item -ItemType Directory (Split-Path $ppmPath -Parent) -Force | Out-Null
+    }
+    Copy-Item (Join-Path $tempDir "ppm") $ppmPath -Recurse -Force
+    Remove-Item $tempDir -Recurse -Force
+    Write-Host "Successfully installed ppm. Please run 'Prefix + I' in psmux to install plugins."
   }
 }
 
@@ -307,6 +325,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "la"    = "Get-ChildItem -Force"
     "ls"    = "Get-ChildItem"
     "o"     = "Start-Process"
+    "pm"    = "psmux"
     "r"     = "Remove-Fzf"
     "rhl"   = "rhq list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
     "rm"    = $rmTarget
@@ -418,6 +437,10 @@ if (Get-Module -ListAvailable PSReadLine) {
 
 if (!(Get-Command gut -ErrorAction SilentlyContinue)) {
   Install-Gut
+}
+
+if (Get-Command psmux -ErrorAction SilentlyContinue) {
+  Install-PsmuxPpm
 }
 
 Export-ModuleMember -Function * -Alias *

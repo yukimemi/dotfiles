@@ -26,10 +26,6 @@ function New-Junction {
     if (Test-Path $link) {
         $item = Get-Item $link
         if ($item.Attributes -match "ReparsePoint") {
-            # In PS5, it's hard to get junction target easily without external tools
-            # but we can try using fsutil or just backup and recreate if not sure.
-            # For now, let's assume if it exists and is a junction, we're okay 
-            # or just force it if we want to be sure.
             return
         }
         Move-ToBackup -path $link
@@ -52,8 +48,6 @@ function New-HardLink {
         $h1 = Get-Hash $link
         $h2 = Get-Hash $target
         if (($h1 -ne "") -and ($h1 -eq $h2)) {
-            # Even if hashes match, check if it's a hardlink
-            # (In PS5, we can use fsutil or just check if HardLinkCount > 1)
             $count = cmd /c fsutil hardlink list "`"$link`"" | Measure-Object | Select-Object -ExpandProperty Count
             if ($count -gt 1) {
                 return
@@ -111,7 +105,17 @@ $psProfilePaths = @(
     (Join-Path $userHome "Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"),
     (Join-Path $myDocsDir "PowerShell\Microsoft.PowerShell_profile.ps1"),
     (Join-Path $myDocsDir "WindowsPowerShell\Microsoft.PowerShell_profile.ps1")
-) | Select-Object -Unique
+)
+
+# OneDrive support via environment variable
+if ($env:OneDrive) {
+    $psProfilePaths += (Join-Path $env:OneDrive "Documents\PowerShell\Microsoft.PowerShell_profile.ps1")
+    $psProfilePaths += (Join-Path $env:OneDrive "ドキュメント\PowerShell\Microsoft.PowerShell_profile.ps1")
+    $psProfilePaths += (Join-Path $env:OneDrive "Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1")
+    $psProfilePaths += (Join-Path $env:OneDrive "ドキュメント\WindowsPowerShell\Microsoft.PowerShell_profile.ps1")
+}
+
+$psProfilePaths = $psProfilePaths | Select-Object -Unique
 
 foreach ($path in $psProfilePaths) {
     New-HardLink -link $path -target $psProfileTarget

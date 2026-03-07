@@ -609,6 +609,21 @@ function Install-Rhq {
   cargo +stable-x86_64-pc-windows-gnu install --git https://github.com/ubnt-intrepid/rhq.git
 }
 
+function Install-Psmux {
+  log "Checking psmux..." "Cyan"
+  if (Get-Command psmux -ErrorAction SilentlyContinue) {
+    # Check version to ensure it is at least 0.4.10
+    $version = (psmux -V | Select-String "\d+\.\d+\.\d+").Matches.Value
+    if ([version]$version -ge [version]"0.4.10") {
+      log "psmux $version is already installed." "Gray"
+      return
+    }
+  }
+
+  log "Installing/Updating psmux via cargo..." "Yellow"
+  cargo install psmux
+}
+
 function Start-Main {
   try {
     log "[Start-Main] Starting setup..."
@@ -625,6 +640,7 @@ function Start-Main {
       Install-GoTools
       Install-UserTools
       Install-Rhq
+      Install-Psmux
 
       log "Checking shortcuts..." "Cyan"
       $shortcuts = @(
