@@ -469,8 +469,7 @@ EOB
       cmd: "Calendar",
       keys: {
         lhs: "mc",
-        rhs:
-          "<cmd>Calendar -view=year -split=vertical -position=right -width=27<cr>",
+        rhs: "<cmd>Calendar -view=year -split=vertical -position=right -width=27<cr>",
         mode: "n",
         desc: "Calendar",
       },

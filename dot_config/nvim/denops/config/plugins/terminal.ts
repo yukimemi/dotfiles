@@ -69,9 +69,7 @@ export const terminal: Plug[] = [
             promptPattern: "\\w*» \\?",
           },
           terminal: {
-            command: denops.meta.platform === "windows"
-              ? ["powershell"]
-              : ["zsh"],
+            command: denops.meta.platform === "windows" ? ["powershell"] : ["zsh"],
             prompt: "»",
             promptPattern: "\\w*» \\?",
           },

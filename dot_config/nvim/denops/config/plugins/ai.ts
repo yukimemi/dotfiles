@@ -8,11 +8,7 @@ import * as fn from "@denops/std/function";
 import * as lambda from "@denops/std/lambda";
 import * as mapping from "@denops/std/mapping";
 import * as vars from "@denops/std/variable";
-import {
-  HarmBlockThreshold,
-  HarmCategory,
-  SafetySetting,
-} from "@google/generative-ai";
+import { HarmBlockThreshold, HarmCategory, SafetySetting } from "@google/generative-ai";
 import { exists } from "@std/fs";
 import type { Plug } from "@yukimemi/dvpm";
 import { z } from "zod";
