@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : cache.ts
 // Author      : yukimemi
-// Last Change : 2026/02/26 00:08:23.
+// Last Change : 2026/03/07 23:59:15.
 // =============================================================================
 
 export function cacheVim() {
@@ -81,6 +81,20 @@ export function cacheLua() {
       vim.o.fileencodings = "ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1"
       vim.o.fileformats = "unix,dos,mac"
       vim.o.clipboard = "unnamedplus";
+      if vim.fn.has("win32") == 1 then
+        vim.g.clipboard = {
+          name = 'win32yank',
+          copy = {
+            ['+'] = 'win32yank.exe -i --crlf',
+            ['*'] = 'win32yank.exe -i --crlf',
+          },
+          paste = {
+            ['+'] = 'win32yank.exe -o --lf',
+            ['*'] = 'win32yank.exe -o --lf',
+          },
+          cache_enabled = 0,
+        }
+      end
       vim.o.ignorecase = true
       vim.o.smartcase = true
       if vim.fn.has("win32") == 1 then
@@ -108,7 +122,11 @@ export function cacheLua() {
           if direction == "k" then tmux_pane_direction = "-U" end
           if direction == "l" then tmux_pane_direction = "-R" end
           if tmux_pane_direction ~= "" then
-            vim.fn.system("tmux select-pane " .. tmux_pane_direction)
+            local cmd = "tmux"
+            if vim.env.PSMUX or vim.env.TMUX then
+              cmd = "psmux"
+            end
+            vim.fn.system(cmd .. " select-pane " .. tmux_pane_direction)
           end
         end
       end
