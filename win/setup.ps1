@@ -584,16 +584,10 @@ function Install-PnpmConfig {
   }
 }
 
-function Install-Rhq {
-  log "Checking rhq..." "Cyan"
-  if (Get-Command rhq -ErrorAction SilentlyContinue) {
-    log "rhq is already installed." "Gray"
-    return
-  }
-
-  log "Installing rhq via cargo (GNU target)..." "Yellow"
+function Set-GnuToolchain {
+  log "Setting up GNU toolchain..." "Yellow"
   if (!(Get-Command g++ -ErrorAction SilentlyContinue)) {
-    log "Installing mingw for rhq build..." "Yellow"
+    log "Installing mingw..." "Yellow"
     Install-ScoopPackages @("mingw")
   }
   # Ensure mingw's bin is in PATH for current process
@@ -604,7 +598,16 @@ function Install-Rhq {
 
   log "Adding GNU toolchain for rustup..." "Yellow"
   rustup toolchain install stable-x86_64-pc-windows-gnu
+}
 
+function Install-Rhq {
+  log "Checking rhq..." "Cyan"
+  if (Get-Command rhq -ErrorAction SilentlyContinue) {
+    log "rhq is already installed." "Gray"
+    return
+  }
+
+  Set-GnuToolchain
   log "Compiling rhq using GNU toolchain..." "Yellow"
   cargo +stable-x86_64-pc-windows-gnu install --git https://github.com/ubnt-intrepid/rhq.git
 }
@@ -612,16 +615,13 @@ function Install-Rhq {
 function Install-Psmux {
   log "Checking psmux..." "Cyan"
   if (Get-Command psmux -ErrorAction SilentlyContinue) {
-    # Check version to ensure it is at least 0.4.10
-    $version = (psmux -V | Select-String "\d+\.\d+\.\d+").Matches.Value
-    if ([version]$version -ge [version]"0.4.10") {
-      log "psmux $version is already installed." "Gray"
-      return
-    }
+    log "psmux is already installed." "Gray"
+    return
   }
 
-  log "Installing/Updating psmux via cargo..." "Yellow"
-  cargo install psmux
+  Set-GnuToolchain
+  log "Compiling psmux using GNU toolchain..." "Yellow"
+  cargo +stable-x86_64-pc-windows-gnu install psmux
 }
 
 function Start-Main {
