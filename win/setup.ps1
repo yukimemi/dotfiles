@@ -624,6 +624,18 @@ function Install-Psmux {
   cargo +stable-x86_64-pc-windows-gnu install psmux
 }
 
+function Install-TmuxPanel {
+  log "Checking tmuxpanel..." "Cyan"
+  if (Get-Command tmuxpanel -ErrorAction SilentlyContinue) {
+    log "tmuxpanel is already installed." "Gray"
+    return
+  }
+
+  Set-GnuToolchain
+  log "Compiling tmuxpanel using GNU toolchain..." "Yellow"
+  cargo +stable-x86_64-pc-windows-gnu install tmuxpanel
+}
+
 function Start-Main {
   try {
     log "[Start-Main] Starting setup..."
@@ -641,6 +653,7 @@ function Start-Main {
       Install-UserTools
       Install-Rhq
       Install-Psmux
+      Install-TmuxPanel
 
       log "Checking shortcuts..." "Cyan"
       $shortcuts = @(
