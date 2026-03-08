@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/03/07 15:57:33.
+# Last Change : 2026/03/08 16:33:48.
 # =============================================================================
 
 # --- Functions ---
@@ -252,7 +252,8 @@ function Invoke-ChezmoiFuzzy {
     [Parameter(Mandatory = $true)][string]$Action,
     [switch]$MultiSelect
   )
-  $uHome = $UserHome.Replace("\", "/")
+  $userHomeLocal = if ($IsWindows) { $env:USERPROFILE } else { $env:HOME }
+  $uHome = $userHomeLocal.Replace("\", "/")
   $filterArgs = if ($MultiSelect) {
     @("-m")
   } else {
@@ -337,8 +338,13 @@ if (Get-Module -ListAvailable PSReadLine) {
   }
 
   # Load from config.yml
-  $configPath = Join-Path $ConfigHome "zeno/config.yml"
-  if (Test-Path $configPath) {
+  $configHomeLocal = if ($env:XDG_CONFIG_HOME) {
+    $env:XDG_CONFIG_HOME
+  } else {
+    Join-Path (if ($IsWindows) { $env:USERPROFILE } else { $env:HOME }) ".config"
+  }
+  $configPath = Join-Path $configHomeLocal "zeno/config.yml"
+  if ($configPath -and (Test-Path $configPath)) {
     if ($null -eq $global:ZenoSnippets) {
       $uPath = $configPath.Replace("\", "/")
       $denoScript = "import { parse } from 'jsr:@std/yaml'; console.log(JSON.stringify(parse(Deno.readTextFileSync('$uPath'))))"
@@ -427,12 +433,32 @@ if (Get-Module -ListAvailable PSReadLine) {
   Set-PSReadLineKeyHandler -Chord "Ctrl+a" -Function BeginningOfLine -ViMode Insert
   Set-PSReadLineKeyHandler -Chord "Ctrl+b" -Function BackwardChar -ViMode Insert
   Set-PSReadLineKeyHandler -Chord "Ctrl+d" -Function DeleteChar -ViMode Insert
-  Set-PSReadLineKeyHandler -Chord "Ctrl+h" -Function BackwardDeleteChar -ViMode Insert
-  Set-PSReadLineKeyHandler -Chord "Ctrl+l" -Function ClearScreen -ViMode Insert
+  # Set-PSReadLineKeyHandler -Chord "Ctrl+h" -Function BackwardDeleteChar -ViMode Insert
+  # Set-PSReadLineKeyHandler -Chord "Ctrl+l" -Function ClearScreen -ViMode Insert
   Set-PSReadLineKeyHandler -Chord "Ctrl+n" -Function HistorySearchForward -ViMode Insert
   Set-PSReadLineKeyHandler -Chord "Ctrl+p" -Function HistorySearchBackward -ViMode Insert
   Set-PSReadLineKeyHandler -Chord "Ctrl+u" -Function BackwardDeleteLine -ViMode Insert
   Set-PSReadLineKeyHandler -Chord "Ctrl+w" -Function BackwardDeleteWord -ViMode Insert
+
+  # High-performance Psmux navigation (Direct background execution)
+  $invokePsmux = {
+    param([string]$direction)
+    $si = [System.Diagnostics.ProcessStartInfo]@{
+      FileName = "psmux.exe"
+      Arguments = "select-pane $direction"
+      CreateNoWindow = $true
+      UseShellExecute = $false
+    }
+    [System.Diagnostics.Process]::Start($si) | Out-Null
+  }
+
+  $psmuxModes = @('Insert', 'Command')
+  foreach ($mode in $psmuxModes) {
+    Set-PSReadLineKeyHandler -Chord "Ctrl+h", "Ctrl+Backspace" -BriefDescription 'Psmux Left'  -ScriptBlock { & $invokePsmux "-L" } -ViMode $mode
+    Set-PSReadLineKeyHandler -Chord "Ctrl+j", "Ctrl+Enter" -BriefDescription 'Psmux Down'  -ScriptBlock { & $invokePsmux "-D" } -ViMode $mode
+    Set-PSReadLineKeyHandler -Chord "Ctrl+k" -BriefDescription 'Psmux Up'    -ScriptBlock { & $invokePsmux "-U" } -ViMode $mode
+    Set-PSReadLineKeyHandler -Chord "Ctrl+l" -BriefDescription 'Psmux Right' -ScriptBlock { & $invokePsmux "-R" } -ViMode $mode
+  }
 }
 
 if (!(Get-Command gut -ErrorAction SilentlyContinue)) {
