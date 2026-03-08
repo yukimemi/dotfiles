@@ -7,7 +7,7 @@
     Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/03/01 16:30:31.
+  .Last Change : 2026/03/08 23:24:27.
 #>
 param(
   [switch]$AdminOnly
@@ -403,7 +403,6 @@ function Install-Tools {
     "ksnip",
     "less",
     "mingw",
-    "mise",
     "neovide",
     "neovim",
     "neovim-qt",
