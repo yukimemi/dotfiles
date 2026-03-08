@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/03/08 16:33:48.
+# Last Change : 2026/03/08 18:24:45.
 # =============================================================================
 
 # --- Functions ---
@@ -341,7 +341,7 @@ if (Get-Module -ListAvailable PSReadLine) {
   $configHomeLocal = if ($env:XDG_CONFIG_HOME) {
     $env:XDG_CONFIG_HOME
   } else {
-    Join-Path (if ($IsWindows) { $env:USERPROFILE } else { $env:HOME }) ".config"
+    Join-Path $(if ($IsWindows) { $env:USERPROFILE } else { $env:HOME }) ".config"
   }
   $configPath = Join-Path $configHomeLocal "zeno/config.yml"
   if ($configPath -and (Test-Path $configPath)) {
@@ -420,7 +420,7 @@ if (Get-Module -ListAvailable PSReadLine) {
 
   Set-PSReadLineKeyHandler -Chord Ctrl+Shift+G -ScriptBlock {
     $current = (Get-PSReadLineOption).PredictionViewStyle
-    Set-PSReadLineOption -PredictionViewStyle (if ($current -eq 'InlineView') { 'ListView' } else { 'InlineView' })
+    Set-PSReadLineOption -PredictionViewStyle $(if ($current -eq 'InlineView') { 'ListView' } else { 'InlineView' })
   }
 
   Set-PSReadLineKeyHandler -Chord Ctrl+s -ViMode Insert -ScriptBlock { Invoke-ZenoSnippet }.GetNewClosure()
