@@ -101,7 +101,7 @@ if (Get-Command mise -ErrorAction SilentlyContinue) {
   }
 
   if (![string]::IsNullOrWhiteSpace($miseInit)) {
-    Invoke-Expression $miseInit
+    & ([scriptblock]::Create($miseInit))
   }
 }
 

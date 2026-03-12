@@ -18,4 +18,3 @@ $cmdFile = & {
 $cmdDir = [System.IO.Path]::GetDirectoryName($cmdFile)
 $cmdName = [System.IO.Path]::GetFileNameWithoutExtension($cmdFile)
 $cmdFileName = [System.IO.Path]::GetFileName($cmdFile)
-

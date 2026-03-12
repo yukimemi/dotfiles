@@ -343,7 +343,7 @@ snippets:
   - name: Install gptcommit
     snippet: cargo install gptcommit
   - name: Install pnpm on Windows.
-    snippet: iwr https://get.pnpm.io/install.ps1 -useb | iex
+    snippet: "& ([scriptblock]::Create((iwr https://get.pnpm.io/install.ps1 -useb).Content))"
   - name: Install pnpm on POSIX.
     snippet: curl -fsSL https://get.pnpm.io/install.sh | sh -
   - name: Install xc

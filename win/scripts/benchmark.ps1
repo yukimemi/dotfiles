@@ -8,8 +8,8 @@ $ErrorActionPreference = "Stop"
 $ProfilePath = pwsh -NoProfile -Command 'Write-Host $PROFILE'
 
 if (-not (Test-Path $ProfilePath)) {
-    Write-Warning "Profile not found at: $ProfilePath"
-    exit 1
+  Write-Warning "Profile not found at: $ProfilePath"
+  exit 1
 }
 
 Write-Host "Starting Benchmark for PowerShell Profile..." -ForegroundColor Cyan
@@ -35,15 +35,15 @@ Write-Host "$FullTime ms" -ForegroundColor Yellow
 # 3. Measure Profile Load Only (Internal)
 Write-Host "Measuring Profile Load Only (Internal)...   " -NoNewline
 $cmd = {
-    param($p)
-    $sw = [System.Diagnostics.Stopwatch]::StartNew()
-    try {
-        . $p
-    } catch {
-        # Ignore non-critical load errors during benchmark
-    }
-    $sw.Stop()
-    return $sw.ElapsedMilliseconds
+  param($p)
+  $sw = [System.Diagnostics.Stopwatch]::StartNew()
+  try {
+    . $p
+  } catch {
+    # Ignore non-critical load errors during benchmark
+  }
+  $sw.Stop()
+  return $sw.ElapsedMilliseconds
 }
 
 # Run in a separate process to simulate fresh start
@@ -58,9 +58,9 @@ Write-Host "  Profile Load:    $LoadTime ms"
 Write-Host "  Total (approx):  $FullTime ms"
 
 if ($LoadTime -gt 1000) {
-    Write-Host "`n[WARN] Profile loading is slow (>1s)!" -ForegroundColor Red
+  Write-Host "`n[WARN] Profile loading is slow (>1s)!" -ForegroundColor Red
 } elseif ($LoadTime -gt 500) {
-    Write-Host "`n[INFO] Profile loading is moderate (500ms - 1s)." -ForegroundColor Yellow
+  Write-Host "`n[INFO] Profile loading is moderate (500ms - 1s)." -ForegroundColor Yellow
 } else {
-    Write-Host "`n[OK] Profile loading is fast (<500ms)." -ForegroundColor Green
+  Write-Host "`n[OK] Profile loading is fast (<500ms)." -ForegroundColor Green
 }

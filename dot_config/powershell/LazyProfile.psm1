@@ -1,42 +1,57 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/03/08 23:40:57.
+# Last Change : 2026/03/13 03:00:00.
 # =============================================================================
 
 # --- Functions ---
+function log {
+  param([string]$msg, [string]$color = "Cyan")
+  $now = Get-Date -f "yyyy/MM/dd HH:mm:ss.fff"
+  Write-Host -ForegroundColor $color "${now} ${msg}"
+}
+
 function gr {
   Set-LocationWithList $(git rev-parse --show-toplevel)
 }
 
 function Invoke-GitIgnoreGet {
+  [CmdletBinding(SupportsShouldProcess)]
   param([Parameter(Mandatory = $true)][string[]]$list)
   $params = ($list | ForEach-Object { [uri]::EscapeDataString($_) }) -join ","
-  Invoke-WebRequest -Uri "https://www.toptal.com/developers/gitignore/api/$params" |
-    Select-Object -ExpandProperty content |
-    Out-File -FilePath (Join-Path $pwd ".gitignore") -Encoding ascii
+  if ($PSCmdlet.ShouldProcess(".gitignore", "Fetch and write gitignore from toptal.com")) {
+    Invoke-WebRequest -Uri "https://www.toptal.com/developers/gitignore/api/$params" |
+      Select-Object -ExpandProperty content |
+      Out-File -FilePath (Join-Path $pwd ".gitignore") -Encoding ascii
+  }
 }
 
 function Set-LocationWithList {
-  [CmdletBinding()] param([Parameter(ValueFromPipeline = $true)][string]$path)
-  Set-Location $path -ErrorAction Stop; Get-ChildItem
+  [CmdletBinding(SupportsShouldProcess)]
+  param([Parameter(ValueFromPipeline = $true)][string]$path)
+  if ($PSCmdlet.ShouldProcess($path, "Set-Location and Get-ChildItem")) {
+    Set-Location $path -ErrorAction Stop; Get-ChildItem
+  }
 }
 
 function Set-LocationWithHistory {
-  [CmdletBinding()] param([Parameter(ValueFromPipeline = $true)][string]$path)
-  Set-Location $path -ErrorAction Stop; Get-ChildItem
-  Start-Job {
-    param([string]$path)
-    $z = if ($IsWindows) {
-      Join-Path $env:USERPROFILE ".cdhistory"
-    } else {
-      Join-Path $env:HOME ".cdhistory"
-    }
-    $path | Add-Content -Encoding utf8 $z
-    $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) }
-    [array]::Reverse($c); $c = $c | Select-Object -Unique; [array]::Reverse($c)
-    $c | Set-Content -Encoding utf8 $z
-  } -ArgumentList $path > $null
+  [CmdletBinding(SupportsShouldProcess)]
+  param([Parameter(ValueFromPipeline = $true)][string]$path)
+  if ($PSCmdlet.ShouldProcess($path, "Set-Location, Get-ChildItem and Add to history")) {
+    Set-Location $path -ErrorAction Stop; Get-ChildItem
+    Start-Job {
+      param([string]$path)
+      $z = if ($IsWindows) {
+        Join-Path $env:USERPROFILE ".cdhistory"
+      } else {
+        Join-Path $env:HOME ".cdhistory"
+      }
+      $path | Add-Content -Encoding utf8 $z
+      $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) }
+      [array]::Reverse($c); $c = $c | Select-Object -Unique; [array]::Reverse($c)
+      $c | Set-Content -Encoding utf8 $z
+    } -ArgumentList $path > $null
+  }
 }
 
 function Invoke-ZJump {
@@ -52,8 +67,9 @@ function Invoke-HistoryJump {
   if (Test-Path $z) {
     $c = Get-Content $z; [array]::Reverse($c)
     $c | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
+  } else {
+    Get-Job | Stop-Job -PassThru | Remove-Job -Force
   }
-  Get-Job | Stop-Job -PassThru | Remove-Job -Force
 }
 
 function Move-ToTrash {
@@ -96,11 +112,15 @@ function Move-ToTrash {
 }
 
 function Remove-Fzf {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   $target = Get-ChildItem -Force | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1
   if (!$target) {
     return
   }
-  $target | Move-ToTrash
+  if ($PSCmdlet.ShouldProcess($target, "Move to trash")) {
+    $target | Move-ToTrash
+  }
 }
 
 function Invoke-TrimSetLocation {
@@ -119,61 +139,207 @@ function fe {
   nvim $(fd -H -t f | __FILTER | Select-Object -First 1)
 }
 function VimDeinUpdate {
-  vim -c "silent! call dein#update() | q"
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
+  if ($PSCmdlet.ShouldProcess("Vim", "Update dein plugins")) {
+    vim -c "silent! call dein#update() | q"
+  }
 }
 
 function Install-Pip {
-  [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
-  Invoke-WebRequest -Uri "https://bootstrap.pypa.io/get-pip.py" -OutFile get-pip.py
-  python ./get-pip.py; Remove-Item ./get-pip.py
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
+  if ($PSCmdlet.ShouldProcess("Pip", "Install pip")) {
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+    Invoke-WebRequest -Uri "https://bootstrap.pypa.io/get-pip.py" -OutFile get-pip.py
+    python ./get-pip.py; Remove-Item ./get-pip.py
+  }
 }
 
 function Install-Aider {
-  Invoke-RestMethod -Uri https://aider.chat/install.ps1 | Invoke-Expression
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
+  if ($PSCmdlet.ShouldProcess("Aider", "Install aider")) {
+    & ([scriptblock]::Create((Invoke-RestMethod -Uri https://aider.chat/install.ps1)))
+  }
 }
 
 function Install-Gut {
-  if (Get-Command bun -ErrorAction SilentlyContinue) {
-    Write-Host "Installing gut-cli via bun..."
-    bun install -g gut-cli
-  } else {
-    Write-Error "bun is not installed. Please install bun first."
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
+  if ($PSCmdlet.ShouldProcess("gut-cli", "Install gut-cli via bun")) {
+    if (Get-Command bun -ErrorAction SilentlyContinue) {
+      Write-Host "Installing gut-cli via bun..."
+      bun install -g gut-cli
+    } else {
+      Write-Error "bun is not installed. Please install bun first."
+    }
   }
 }
 
 function Install-PsmuxPpm {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   $ppmPath = Join-Path $env:USERPROFILE ".psmux/plugins/ppm"
   if (!(Test-Path $ppmPath)) {
-    Write-Host "Installing psmux plugin manager (ppm)..."
-    $tempDir = Join-Path $env:TEMP "psmux-plugins"
-    if (Test-Path $tempDir) {
+    if ($PSCmdlet.ShouldProcess($ppmPath, "Install psmux plugin manager (ppm)")) {
+      Write-Host "Installing psmux plugin manager (ppm)..."
+      $tempDir = Join-Path $env:TEMP "psmux-plugins"
+      if (Test-Path $tempDir) {
+        Remove-Item $tempDir -Recurse -Force
+      }
+      git clone https://github.com/marlocarlo/psmux-plugins.git $tempDir
+      if (!(Test-Path (Split-Path $ppmPath -Parent))) {
+        New-Item -ItemType Directory (Split-Path $ppmPath -Parent) -Force | Out-Null
+      }
+      Copy-Item (Join-Path $tempDir "ppm") $ppmPath -Recurse -Force
       Remove-Item $tempDir -Recurse -Force
+      Write-Host "Successfully installed ppm. Please run 'Prefix + I' in psmux to install plugins."
     }
-    git clone https://github.com/marlocarlo/psmux-plugins.git $tempDir
-    if (!(Test-Path (Split-Path $ppmPath -Parent))) {
-      New-Item -ItemType Directory (Split-Path $ppmPath -Parent) -Force | Out-Null
-    }
-    Copy-Item (Join-Path $tempDir "ppm") $ppmPath -Recurse -Force
-    Remove-Item $tempDir -Recurse -Force
-    Write-Host "Successfully installed ppm. Please run 'Prefix + I' in psmux to install plugins."
   }
 }
 
 function Install-Neovim {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   if ($IsWindows) {
-    Write-Host "Installing Neovim Nightly (Windows)..."
-    $nvimMsi = Join-Path $env:TEMP "nvim-win64.msi"
-    Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
-    Start-Process msiexec.exe -ArgumentList "/i `"$nvimMsi`" /quiet" -Wait
-    Remove-Item $nvimMsi -ErrorAction SilentlyContinue
+    if ($PSCmdlet.ShouldProcess("Neovim", "Install Neovim Nightly (Windows)")) {
+      Write-Host "Installing Neovim Nightly (Windows)..."
+      $nvimMsi = Join-Path $env:TEMP "nvim-win64.msi"
+      Invoke-WebRequest -Uri "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.msi" -OutFile $nvimMsi
+      Start-Process msiexec.exe -ArgumentList "/i `"$nvimMsi`" /quiet" -Wait
+      Remove-Item $nvimMsi -ErrorAction SilentlyContinue
+    }
   } elseif ($IsMacOS) {
-    Write-Host "Building Neovim (MacOS)..."
-    bash -c "brew install ninja cmake gettext curl; rm -rf /tmp/neovim; git clone https://github.com/neovim/neovim /tmp/neovim; cd /tmp/neovim; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install"
+    if ($PSCmdlet.ShouldProcess("Neovim", "Build and install Neovim (MacOS)")) {
+      Write-Host "Building Neovim (MacOS)..."
+      bash -c "brew install ninja cmake gettext curl; rm -rf /tmp/neovim; git clone https://github.com/neovim/neovim /tmp/neovim; cd /tmp/neovim; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install"
+    }
   } elseif ($IsLinux) {
-    Write-Host "Building Neovim (Linux)..."
-    bash -c "sudo apt install -y ninja-build gettext cmake unzip curl; rm -rf /tmp/neovim; git clone https://github.com/neovim/neovim /tmp/neovim; cd /tmp/neovim; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install"
+    if ($PSCmdlet.ShouldProcess("Neovim", "Build and install Neovim (Linux)")) {
+      Write-Host "Building Neovim (Linux)..."
+      bash -c "sudo apt install -y ninja-build gettext cmake unzip curl; rm -rf /tmp/neovim; git clone https://github.com/neovim/neovim /tmp/neovim; cd /tmp/neovim; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install"
+    }
   } else {
     Write-Error "Unknown Operating System."
+  }
+}
+
+function Invoke-PSFmt {
+  [CmdletBinding(SupportsShouldProcess)]
+  param(
+    [Parameter(ValueFromPipeline = $true)]
+    [string[]]$Path = @(".")
+  )
+  process {
+    if (!(Get-Module -ListAvailable PSScriptAnalyzer)) {
+      log "PSScriptAnalyzer is required. Installing..." "Yellow"
+      Install-Module -Name PSScriptAnalyzer -Scope CurrentUser -Force
+    }
+
+    $fmtSettings = @{
+      IncludeRules = @(
+        "PSPlaceOpenBrace",
+        "PSPlaceCloseBrace",
+        "PSUseConsistentIndentation",
+        "PSUseCorrectCasing"
+      )
+      Rules = @{
+        PSPlaceOpenBrace = @{
+          Enable = $true
+          OnSameLine = $true
+          NewLineAfter = $true
+          IgnoreOneLineBlock = $true
+        }
+        PSPlaceCloseBrace = @{
+          Enable = $true
+          NewLineAfter = $false
+          IgnoreOneLineBlock = $true
+          NoEmptyLineBefore = $false
+        }
+        PSUseConsistentIndentation = @{
+          Enable = $true
+          IndentationSize = 2
+        }
+        PSUseCorrectCasing = @{ Enable = $true }
+      }
+    }
+
+    foreach ($p in $Path) {
+      $files = if (Test-Path $p -PathType Leaf) { @(Get-Item $p) } else { Get-ChildItem -Path $p -Include "*.ps1", "*.psm1" -Recurse }
+      foreach ($file in $files) {
+        log "Formatting $($file.FullName) ..." "Cyan"
+        $content = Get-Content $file.FullName -Raw
+        if ([string]::IsNullOrWhiteSpace($content)) { continue }
+
+        $formatted = Invoke-Formatter -ScriptDefinition $content -Settings $fmtSettings
+        
+        # Ensure exactly one newline at the end of the file (EditorConfig style)
+        $formatted = $formatted.TrimEnd() + "`r`n"
+
+        # Ensure no BOM and consistent content
+        $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+        if ($content -ne $formatted) {
+          [System.IO.File]::WriteAllText($file.FullName, $formatted, $utf8NoBom)
+          log "Updated $($file.Name)" "Green"
+        } else {
+          # Even if no formatting changes, re-save to strip BOM if it exists
+          $bytes = [System.IO.File]::ReadAllBytes($file.FullName)
+          if ($bytes.Count -ge 3 -and $bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF) {
+            [System.IO.File]::WriteAllText($file.FullName, $content, $utf8NoBom)
+            log "Stripped BOM from $($file.Name)" "Yellow"
+          } else {
+            log "No changes for $($file.Name)" "Gray"
+          }
+        }
+      }
+    }
+  }
+}
+
+function Invoke-PSLint {
+  [CmdletBinding()]
+  param(
+    [Parameter(ValueFromPipeline = $true)]
+    [string[]]$Path = @("."),
+    [switch]$CI
+  )
+  process {
+    if (!(Get-Module -ListAvailable PSScriptAnalyzer)) {
+      Write-Host "PSScriptAnalyzer is required. Installing..." -ForegroundColor Yellow
+      Install-Module -Name PSScriptAnalyzer -Scope CurrentUser -Force
+    }
+    $results = @()
+    foreach ($p in $Path) {
+      log "Linting $p ..." "Cyan"
+      $results += Invoke-ScriptAnalyzer -Path $p -Recurse
+    }
+
+    if ($results) {
+      $results | Format-Table -AutoSize
+      if ($CI) {
+        throw "PSScriptAnalyzer found issues."
+      }
+    } else {
+      log "No issues found." "Green"
+    }
+  }
+}
+
+function Update-CargoTool {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
+  if ($PSCmdlet.ShouldProcess("Cargo tools", "Update all cargo tools")) {
+    Write-Host "Updating all cargo tools..." -ForegroundColor Cyan
+    if (!(Get-Command cargo-install-update -ErrorAction SilentlyContinue)) {
+      if (!(Get-Command cargo-binstall -ErrorAction SilentlyContinue)) {
+        Write-Host "Installing cargo-binstall..." -ForegroundColor Yellow
+        cargo +stable-x86_64-pc-windows-gnu install cargo-binstall
+      }
+      Write-Host "Installing cargo-update via cargo-binstall..." -ForegroundColor Yellow
+      cargo binstall --no-confirm --target x86_64-pc-windows-gnu cargo-update
+    }
+    cargo install-update -a
   }
 }
 
@@ -190,7 +356,11 @@ function y {
 }
 
 function Update-WithMolt {
-  param([string]$path = $pwd); Get-ChildItem -Force -Recurse -File $path -Filter *.ts | ForEach-Object { molt -w $_.FullName }
+  [CmdletBinding(SupportsShouldProcess)]
+  param([string]$path = $pwd)
+  if ($PSCmdlet.ShouldProcess($path, "Update with molt")) {
+    Get-ChildItem -Force -Recurse -File $path -Filter *.ts | ForEach-Object { molt -w $_.FullName }
+  }
 }
 
 function Invoke-ZenoSnippet {
@@ -212,7 +382,7 @@ function Invoke-ZenoSnippet {
   }
 
   # Select snippet with fzf (__FILTER)
-  $selected = $global:ZenoSnippets | ForEach-Object { "$($_.keyword)`t$($_.name)`t$($_.snippet)" } | __FILTER --header "Select Zeno Snippet" --tabstop 10
+  $selected = $global:ZenoSnippets | ForEach-Object { "$($_.keyword)`t$($_.name)`t$($_.snippet)" } | fzf --header "Select Zeno Snippet" --tabstop 10
   if (!$selected) {
     return
   }
@@ -268,7 +438,7 @@ function Invoke-ChezmoiFuzzy {
   $selected = chezmoi status |
     Out-String -Stream |
     Where-Object { $_ -match '^[ MAD?]' } |
-    __FILTER $filterArgs --preview "chezmoi diff $uHome/{2..} 2>$nullDev || bat --color=always $uHome/{2..} 2>$nullDev || cat $uHome/{2..} 2>$nullDev || type $uHome/{2..}" --header "Select files to 'chezmoi $Action'" |
+    fzf $filterArgs --preview "chezmoi diff $uHome/{2..} 2>$nullDev || bat --color=always $uHome/{2..} 2>$nullDev || cat $uHome/{2..} 2>$nullDev || type $uHome/{2..}" --header "Select files to 'chezmoi $Action'" |
     ForEach-Object { $_.Substring(3).Trim() }
 
   if ($selected) {
@@ -309,6 +479,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "ce"    = "chezmoi edit-config"
     "cm"    = "Select-ChezmoiMerge"
     "cs"    = "chezmoi status"
+    "cup"   = "Update-CargoTool"
     "cza"   = "Select-ChezmoiAdd"
     "d"     = "jj diff"
     "e"     = "nvim"

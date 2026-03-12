@@ -7,7 +7,7 @@
     Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/03/08 23:24:27.
+  .Last Change : 2026/03/13 03:00:00.
 #>
 param(
   [switch]$AdminOnly
@@ -39,6 +39,7 @@ function Test-IsAdminGroup {
       $isAdmin = $true
     }
   } catch {
+    log "Error checking admin group membership: $_" "Yellow"
   }
 
   return $isAdmin
@@ -51,6 +52,7 @@ function log {
 }
 
 function New-Shortcut {
+  [CmdletBinding(SupportsShouldProcess)]
   param([string]$link, [string]$target)
   if (!(Test-Path $target)) {
     log "${target} is not found !" "Red"
@@ -66,15 +68,18 @@ function New-Shortcut {
     }
   }
 
-  $wsh = New-Object -ComObject WScript.Shell
-  $shortcut = $wsh.CreateShortcut($link)
-  $shortcut.TargetPath = $target
-  $shortcut.WorkingDirectory = Split-Path -Path $target
-  $shortcut.Save()
-  log "Created/Updated shortcut: ${link} -> ${target}" "Green"
+  if ($PSCmdlet.ShouldProcess($link, "Create/Update shortcut to $target")) {
+    $wsh = New-Object -ComObject WScript.Shell
+    $shortcut = $wsh.CreateShortcut($link)
+    $shortcut.TargetPath = $target
+    $shortcut.WorkingDirectory = Split-Path -Path $target
+    $shortcut.Save()
+    log "Created/Updated shortcut: ${link} -> ${target}" "Green"
+  }
 }
 
 function Install-BinaryArchive {
+  [CmdletBinding(SupportsShouldProcess)]
   param (
     [string]$Name,
     [string]$Url,
@@ -85,48 +90,53 @@ function Install-BinaryArchive {
     return
   }
 
-  log "Installing $Name from $Url ..." "Yellow"
-  $tempZip = Join-Path $env:TEMP "$Name.zip"
-  $tempExtract = Join-Path $env:TEMP "$Name-extract"
+  if ($PSCmdlet.ShouldProcess($DestinationDir, "Install $Name from $Url")) {
+    log "Installing $Name from $Url ..." "Yellow"
+    $tempZip = Join-Path $env:TEMP "$Name.zip"
+    $tempExtract = Join-Path $env:TEMP "$Name-extract"
 
-  if (Test-Path $tempExtract) {
-    Remove-Item $tempExtract -Recurse -Force
+    if (Test-Path $tempExtract) {
+      Remove-Item $tempExtract -Recurse -Force
+    }
+    New-Item -ItemType Directory $tempExtract | Out-Null
+
+    # Download
+    Invoke-WebRequest -Uri $Url -OutFile $tempZip -UseBasicParsing
+
+    # Extract
+    Expand-Archive -Path $tempZip -DestinationPath $tempExtract -Force
+
+    # Move to destination
+    if (!(Test-Path (Split-Path $DestinationDir -Parent))) {
+      New-Item -ItemType Directory (Split-Path $DestinationDir -Parent) -Force | Out-Null
+    }
+
+    # If there is a single subdirectory inside, move its content instead
+    $subDirs = Get-ChildItem $tempExtract -Directory
+    $files = Get-ChildItem $tempExtract -File
+    if ($subDirs.Count -eq 1 -and $files.Count -eq 0) {
+      robocopy /e /r:1 /w:1 $subDirs[0].FullName $DestinationDir | Out-Null
+    } else {
+      robocopy /e /r:1 /w:1 $tempExtract $DestinationDir | Out-Null
+    }
+
+    # Cleanup
+    Remove-Item $tempZip, $tempExtract -Recurse -Force
+    log "Successfully installed $Name to $DestinationDir" "Green"
   }
-  New-Item -ItemType Directory $tempExtract | Out-Null
-
-  # Download
-  Invoke-WebRequest -Uri $Url -OutFile $tempZip -UseBasicParsing
-
-  # Extract
-  Expand-Archive -Path $tempZip -DestinationPath $tempExtract -Force
-
-  # Move to destination
-  if (!(Test-Path (Split-Path $DestinationDir -Parent))) {
-    New-Item -ItemType Directory (Split-Path $DestinationDir -Parent) -Force | Out-Null
-  }
-
-  # If there is a single subdirectory inside, move its content instead
-  $subDirs = Get-ChildItem $tempExtract -Directory
-  $files = Get-ChildItem $tempExtract -File
-  if ($subDirs.Count -eq 1 -and $files.Count -eq 0) {
-    robocopy /e /r:1 /w:1 $subDirs[0].FullName $DestinationDir | Out-Null
-  } else {
-    robocopy /e /r:1 /w:1 $tempExtract $DestinationDir | Out-Null
-  }
-
-  # Cleanup
-  Remove-Item $tempZip, $tempExtract -Recurse -Force
-  log "Successfully installed $Name to $DestinationDir" "Green"
 }
 
-function Install-WingetPackages {
+function Install-WingetPackage {
+  [CmdletBinding(SupportsShouldProcess)]
   param([string[]]$Packages)
   foreach ($pkg in $Packages) {
     log "Checking $pkg via winget..." "Cyan"
     & winget list --id $pkg --exact --accept-source-agreements >$null 2>&1
     if ($LASTEXITCODE -ne 0) {
-      log "Installing $pkg via winget..." "Yellow"
-      & winget install --id $pkg --exact --silent --accept-source-agreements --accept-package-agreements --no-upgrade 2>$null
+      if ($PSCmdlet.ShouldProcess($pkg, "Install via winget")) {
+        log "Installing $pkg via winget..." "Yellow"
+        & winget install --id $pkg --exact --silent --accept-source-agreements --accept-package-agreements --no-upgrade 2>$null
+      }
     } else {
       log "$pkg is already installed via winget." "Gray"
     }
@@ -134,6 +144,7 @@ function Install-WingetPackages {
 }
 
 function Install-BibataCursor {
+  [CmdletBinding(SupportsShouldProcess)]
   param (
     [string]$Version = "v2.0.7",
     [string]$Variant = "Bibata-Modern-Ice",
@@ -146,71 +157,73 @@ function Install-BibataCursor {
     return
   }
 
-  log "Installing $Variant ($Size) cursor..." "Yellow"
-  $zipName = "${Variant}-Windows.zip"
-  $url = "https://github.com/ful1e5/Bibata_Cursor/releases/download/${Version}/${zipName}"
-  $tempZip = Join-Path $env:TEMP $zipName
-  $tempExtract = Join-Path $env:TEMP "$Variant-extract"
+  if ($PSCmdlet.ShouldProcess($Variant, "Install Bibata cursor")) {
+    log "Installing $Variant ($Size) cursor..." "Yellow"
+    $zipName = "${Variant}-Windows.zip"
+    $url = "https://github.com/ful1e5/Bibata_Cursor/releases/download/${Version}/${zipName}"
+    $tempZip = Join-Path $env:TEMP $zipName
+    $tempExtract = Join-Path $env:TEMP "$Variant-extract"
 
-  if (Test-Path $tempExtract) {
-    Remove-Item $tempExtract -Recurse -Force
-  }
-  New-Item -ItemType Directory $tempExtract | Out-Null
-
-  try {
-    Invoke-WebRequest -Uri $url -OutFile $tempZip -UseBasicParsing
-    Expand-Archive -Path $tempZip -DestinationPath $tempExtract -Force
-
-    # Find install.inf matching the size
-    $infFiles = Get-ChildItem -Path $tempExtract -Filter "install.inf" -Recurse
-    $targetInf = $null
-
-    foreach ($f in $infFiles) {
-      if ($f.DirectoryName -match "-$Size-") {
-        $targetInf = $f
-        break
-      }
-    }
-
-    if (-not $targetInf) {
-      $targetInf = $infFiles | Select-Object -First 1
-    }
-    $infFile = $targetInf
-
-    if ($infFile) {
-      log "Making installation silent by removing RunOnce from install.inf ($($infFile.Directory.Name))..."
-      $content = Get-Content $infFile.FullName
-      $content | Where-Object { $_ -notmatch 'Runonce.*main\.cpl' } | Set-Content $infFile.FullName -Encoding ASCII
-
-      log "Executing modified install.inf..."
-      $command = "rundll32.exe setupapi.dll,InstallHinfSection DefaultInstall 128 $($infFile.FullName)"
-
-      if (Test-IsAdmin) {
-        cmd /c $command
-      } elseif (Get-Command gsudo -ErrorAction SilentlyContinue) {
-        gsudo cmd /c $command
-      } else {
-        Start-Process cmd -ArgumentList "/c $command" -Verb RunAs -Wait
-      }
-
-      log "Refreshing system cursors..."
-      $csharp = '[DllImport("user32.dll")] public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, uint pvParam, uint fWinIni);'
-      try {
-        Add-Type -MemberDefinition $csharp -Name WinAPI -Namespace User32 -ErrorAction SilentlyContinue
-      } catch {
-      }
-      [User32.WinAPI]::SystemParametersInfo(0x0057, 0, 0, 0x03) | Out-Null
-
-      log "$Variant ($Size) installed and applied successfully." "Green"
-    }
-  } catch {
-    log "Failed to install ${Variant}: $_" "Red"
-  } finally {
-    if (Test-Path $tempZip) {
-      Remove-Item $tempZip -Force
-    }
     if (Test-Path $tempExtract) {
       Remove-Item $tempExtract -Recurse -Force
+    }
+    New-Item -ItemType Directory $tempExtract | Out-Null
+
+    try {
+      Invoke-WebRequest -Uri $url -OutFile $tempZip -UseBasicParsing
+      Expand-Archive -Path $tempZip -DestinationPath $tempExtract -Force
+
+      # Find install.inf matching the size
+      $infFiles = Get-ChildItem -Path $tempExtract -Filter "install.inf" -Recurse
+      $targetInf = $null
+
+      foreach ($f in $infFiles) {
+        if ($f.DirectoryName -match "-$Size-") {
+          $targetInf = $f
+          break
+        }
+      }
+
+      if (-not $targetInf) {
+        $targetInf = $infFiles | Select-Object -First 1
+      }
+      $infFile = $targetInf
+
+      if ($infFile) {
+        log "Making installation silent by removing RunOnce from install.inf ($($infFile.Directory.Name))..."
+        $content = Get-Content $infFile.FullName
+        $content | Where-Object { $_ -notmatch 'Runonce.*main\.cpl' } | Set-Content $infFile.FullName -Encoding ASCII
+
+        log "Executing modified install.inf..."
+        $command = "rundll32.exe setupapi.dll,InstallHinfSection DefaultInstall 128 $($infFile.FullName)"
+
+        if (Test-IsAdmin) {
+          cmd /c $command
+        } elseif (Get-Command gsudo -ErrorAction SilentlyContinue) {
+          gsudo cmd /c $command
+        } else {
+          Start-Process cmd -ArgumentList "/c $command" -Verb RunAs -Wait
+        }
+
+        log "Refreshing system cursors..."
+        $csharp = '[DllImport("user32.dll")] public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, uint pvParam, uint fWinIni);'
+        try {
+          Add-Type -MemberDefinition $csharp -Name WinAPI -Namespace User32 -ErrorAction SilentlyContinue
+        } catch {
+        }
+        [User32.WinAPI]::SystemParametersInfo(0x0057, 0, 0, 0x03) | Out-Null
+
+        log "$Variant ($Size) installed and applied successfully." "Green"
+      }
+    } catch {
+      log "Failed to install ${Variant}: $_" "Red"
+    } finally {
+      if (Test-Path $tempZip) {
+        Remove-Item $tempZip -Force
+      }
+      if (Test-Path $tempExtract) {
+        Remove-Item $tempExtract -Recurse -Force
+      }
     }
   }
 }
@@ -218,6 +231,8 @@ function Install-BibataCursor {
 # --- Setup Logic ---
 
 function Set-RequiredEnv {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   log "Checking environment variables..." "Cyan"
   $envVars = @{
     "CARGO_NET_GIT_FETCH_WITH_CLI" = "true"
@@ -230,9 +245,11 @@ function Set-RequiredEnv {
   foreach ($key in $envVars.Keys) {
     $current = [Environment]::GetEnvironmentVariable($key, "User")
     if ($current -ne $envVars[$key]) {
-      [Environment]::SetEnvironmentVariable($key, $envVars[$key], "User")
-      Set-Item -Path "env:$key" -Value $envVars[$key]
-      log "Set $key = $($envVars[$key])" "Green"
+      if ($PSCmdlet.ShouldProcess("$key=$($envVars[$key])", "Set environment variable")) {
+        [Environment]::SetEnvironmentVariable($key, $envVars[$key], "User")
+        Set-Item -Path "env:$key" -Value $envVars[$key]
+        log "Set $key = $($envVars[$key])" "Green"
+      }
     } else {
       # Ensure current process also has the variable
       if ((Get-Item -Path "env:$key" -ErrorAction SilentlyContinue).Value -ne $envVars[$key]) {
@@ -264,14 +281,18 @@ function Set-RequiredEnv {
   $updatedPath = $newPathList -join ";"
 
   if ($userPath -ne $updatedPath) {
-    [Environment]::SetEnvironmentVariable("PATH", $updatedPath, "User")
-    log "Updated USER PATH." "Green"
+    if ($PSCmdlet.ShouldProcess("PATH", "Update USER PATH")) {
+      [Environment]::SetEnvironmentVariable("PATH", $updatedPath, "User")
+      log "Updated USER PATH." "Green"
+    }
   } else {
     log "USER PATH is already up to date." "Gray"
   }
 }
 
 function Set-CapsLockToCtrl {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   log "Checking CapsLock mapping..." "Cyan"
   $regPath = "HKLM\SYSTEM\CurrentControlSet\Control\Keyboard Layout"
   $regValueName = "Scancode Map"
@@ -285,33 +306,41 @@ function Set-CapsLockToCtrl {
 
   log "Setting Scancode Map to change CapsLock to Ctrl..." "Yellow"
   $regValueData = "0000000000000000020000001d003a0000000000"
-  try {
-    $command = "reg add `"$regPath`" /v `"$regValueName`" /t REG_BINARY /d $regValueData /f"
-    if (Test-IsAdmin) {
-      cmd /c $command
-    } elseif (Get-Command gsudo -ErrorAction SilentlyContinue) {
-      gsudo cmd /c $command
-    } else {
-      Start-Process reg -ArgumentList "add `"$regPath`" /v `"$regValueName`" /t REG_BINARY /d $regValueData /f" -Verb RunAs
+  if ($PSCmdlet.ShouldProcess($regPath, "Set Scancode Map (CapsLock to Ctrl)")) {
+    try {
+      $command = "reg add `"$regPath`" /v `"$regValueName`" /t REG_BINARY /d $regValueData /f"
+      if (Test-IsAdmin) {
+        cmd /c $command
+      } elseif (Get-Command gsudo -ErrorAction SilentlyContinue) {
+        gsudo cmd /c $command
+      } else {
+        Start-Process reg -ArgumentList "add `"$regPath`" /v `"$regValueName`" /t REG_BINARY /d $regValueData /f" -Verb RunAs
+      }
+      log "Successfully set Scancode Map. Please reboot to apply." "Yellow"
+    } catch {
+      log "Failed to set Scancode Map: $_" "Red"
     }
-    log "Successfully set Scancode Map. Please reboot to apply." "Yellow"
-  } catch {
-    log "Failed to set Scancode Map: $_" "Red"
   }
 }
 
 function Install-Neovim-Win {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   log "Checking Neovim..." "Cyan"
   if (Get-Command nvim -ErrorAction SilentlyContinue) {
     log "Neovim is already installed." "Gray"
     return
   }
 
-  log "Installing Neovim Nightly via scoop..." "Yellow"
-  Install-ScoopPackages @("neovim-nightly")
+  if ($PSCmdlet.ShouldProcess("Neovim", "Install via scoop")) {
+    log "Installing Neovim Nightly via scoop..." "Yellow"
+    Install-ScoopPackage @("neovim-nightly")
+  }
 }
 
-function Install-BuildTools {
+function Install-BuildTool {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   log "Checking Visual Studio Build Tools..." "Cyan"
   if (Test-Path "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe") {
     $vs = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Workload.VCTools
@@ -320,11 +349,15 @@ function Install-BuildTools {
       return
     }
   }
-  log "Installing Visual Studio Build Tools..." "Yellow"
-  winget install Microsoft.VisualStudio.2022.BuildTools --override "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --passive"
+  if ($PSCmdlet.ShouldProcess("Visual Studio Build Tools", "Install via winget")) {
+    log "Installing Visual Studio Build Tools..." "Yellow"
+    winget install Microsoft.VisualStudio.2022.BuildTools --override "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --passive"
+  }
 }
 
-function Install-GoTools {
+function Install-GoTool {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   log "Checking Go tools..." "Cyan"
   if (!(Get-Command go -ErrorAction SilentlyContinue)) {
     log "Go is not installed." "Gray"
@@ -338,8 +371,10 @@ function Install-GoTools {
   foreach ($tool in $goTools) {
     $binName = ($tool -split "/")[-1].Split("@")[0]
     if (!(Get-Command $binName -ErrorAction SilentlyContinue)) {
-      log "Installing $tool ..." "Yellow"
-      go install $tool
+      if ($PSCmdlet.ShouldProcess($tool, "Install via go install")) {
+        log "Installing $tool ..." "Yellow"
+        go install $tool
+      }
     } else {
       log "$tool is already installed." "Gray"
     }
@@ -347,17 +382,23 @@ function Install-GoTools {
 }
 
 function Install-Mise {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   log "Checking mise..." "Cyan"
   if (Get-Command mise -ErrorAction SilentlyContinue) {
     log "mise is already installed." "Gray"
     return
   }
 
-  log "Installing mise via scoop..." "Yellow"
-  Install-ScoopPackages @("mise")
+  if ($PSCmdlet.ShouldProcess("mise", "Install via scoop")) {
+    log "Installing mise via scoop..." "Yellow"
+    Install-ScoopPackage @("mise")
+  }
 }
 
-function Install-UserTools {
+function Install-UserTool {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   log "Checking user binary tools..." "Cyan"
   $binTools = @(
     @{
@@ -377,62 +418,68 @@ function Install-UserTools {
   }
 }
 
-function Install-Tools {
-  Install-Scoop
+function Install-Tool {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
+  if ($PSCmdlet.ShouldProcess("Tools", "Install all tools via scoop and winget")) {
+    Install-Scoop
 
-  $scoopPackages = @(
-    "7zip",
-    "autohotkey",
-    "bat",
-    "bun",
-    "copyq",
-    "delta",
-    "dua",
-    "espanso",
-    "fd",
-    "ffmpeg",
-    "file",
-    "fzf",
-    "gh",
-    "git",
-    "glazewm",
-    "go",
-    "gsudo",
-    "imagemagick",
-    "jq",
-    "ksnip",
-    "less",
-    "mingw",
-    "neovide",
-    "neovim",
-    "neovim-qt",
-    "obsidian",
-    "pnpm",
-    "powertoys",
-    "pwsh",
-    "ripgrep",
-    "rustup-msvc",
-    "starship",
-    "topgrade",
-    "windows-terminal",
-    "winmerge",
-    "yazi",
-    "zebar",
-    "zig"
-  )
+    $scoopPackages = @(
+      "7zip",
+      "autohotkey",
+      "bat",
+      "bun",
+      "copyq",
+      "delta",
+      "dua",
+      "espanso",
+      "fd",
+      "ffmpeg",
+      "file",
+      "fzf",
+      "gh",
+      "git",
+      "glazewm",
+      "go",
+      "gsudo",
+      "imagemagick",
+      "jq",
+      "ksnip",
+      "less",
+      "mingw",
+      "neovide",
+      "neovim",
+      "neovim-qt",
+      "obsidian",
+      "pnpm",
+      "powertoys",
+      "pwsh",
+      "ripgrep",
+      "rustup-msvc",
+      "starship",
+      "topgrade",
+      "windows-terminal",
+      "winmerge",
+      "yazi",
+      "zebar",
+      "zig"
+    )
 
-  log "Ensuring tools via scoop..." "Cyan"
-  Install-ScoopPackages $scoopPackages
+    log "Ensuring tools via scoop..." "Cyan"
+    Install-ScoopPackage $scoopPackages
 
-  $wingetPackages = @(
-    "alexpasmantier.television",
-    "Slackadays.Clipboard"
-  )
-  log "Ensuring remaining tools via winget..." "Cyan"
-  Install-WingetPackages $wingetPackages
+    $wingetPackages = @(
+      "alexpasmantier.television",
+      "Slackadays.Clipboard"
+    )
+    log "Ensuring remaining tools via winget..." "Cyan"
+    Install-WingetPackage $wingetPackages
+  }
 }
 
 function Install-Scoop {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   $scoopRoot = Join-Path $env:USERPROFILE "scoop"
   $scoopBin = Join-Path $scoopRoot "apps\scoop\current\bin\scoop.ps1"
 
@@ -441,28 +488,31 @@ function Install-Scoop {
     return
   }
 
-  log "Installing scoop via git clone..." "Yellow"
-  try {
-    $scoopRepo = "https://github.com/ScoopInstaller/Scoop"
-    $scoopDest = Join-Path $scoopRoot "apps\scoop\current"
-    if (!(Test-Path $scoopDest)) {
-      git clone $scoopRepo $scoopDest
+  if ($PSCmdlet.ShouldProcess($scoopRoot, "Install scoop via git clone")) {
+    log "Installing scoop via git clone..." "Yellow"
+    try {
+      $scoopRepo = "https://github.com/ScoopInstaller/Scoop"
+      $scoopDest = Join-Path $scoopRoot "apps\scoop\current"
+      if (!(Test-Path $scoopDest)) {
+        git clone $scoopRepo $scoopDest
+      }
+
+      New-Item -ItemType Directory -Path (Join-Path $scoopRoot "shims"), (Join-Path $scoopRoot "buckets") -Force | Out-Null
+
+      $scoopShimPath = Join-Path $scoopRoot "shims"
+      if ($env:PATH -notmatch [regex]::Escape($scoopShimPath)) {
+        $env:PATH = "$scoopShimPath;$env:PATH"
+      }
+
+      powershell.exe -NoProfile -ExecutionPolicy Bypass -File $scoopBin "bucket", "add", "main"
+    } catch {
+      log "Failed to install scoop: $_" "Red"
     }
-
-    New-Item -ItemType Directory -Path (Join-Path $scoopRoot "shims"), (Join-Path $scoopRoot "buckets") -Force | Out-Null
-
-    $scoopShimPath = Join-Path $scoopRoot "shims"
-    if ($env:PATH -notmatch [regex]::Escape($scoopShimPath)) {
-      $env:PATH = "$scoopShimPath;$env:PATH"
-    }
-
-    powershell.exe -NoProfile -ExecutionPolicy Bypass -File $scoopBin "bucket", "add", "main"
-  } catch {
-    log "Failed to install scoop: $_" "Red"
   }
 }
 
-function Install-ScoopPackages {
+function Install-ScoopPackage {
+  [CmdletBinding(SupportsShouldProcess)]
   param([string[]]$Packages)
 
   $scoopRoot = Join-Path $env:USERPROFILE "scoop"
@@ -488,8 +538,10 @@ function Install-ScoopPackages {
   $requiredBuckets = @("main", "extras", "versions", "nerd-fonts")
   foreach ($bucket in $requiredBuckets) {
     if (!($buckets -match "\b$bucket\b")) {
-      log "Adding $bucket bucket..." "Yellow"
-      Invoke-Scoop "bucket", "add", $bucket
+      if ($PSCmdlet.ShouldProcess($bucket, "Add scoop bucket")) {
+        log "Adding $bucket bucket..." "Yellow"
+        Invoke-Scoop "bucket", "add", $bucket
+      }
     } else {
       log "Bucket $bucket is already added." "Gray"
     }
@@ -499,8 +551,10 @@ function Install-ScoopPackages {
     # Match the package directory specifically
     $pkgPath = Join-Path $scoopRoot "apps\$pkg"
     if (!(Test-Path $pkgPath)) {
-      log "Installing $pkg via scoop..." "Yellow"
-      Invoke-Scoop "install", $pkg
+      if ($PSCmdlet.ShouldProcess($pkg, "Install via scoop")) {
+        log "Installing $pkg via scoop..." "Yellow"
+        Invoke-Scoop "install", $pkg
+      }
     } else {
       log "$pkg is already installed via scoop." "Gray"
     }
@@ -508,6 +562,8 @@ function Install-ScoopPackages {
 }
 
 function Install-PlemolJP {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   log "Checking PlemolJP-NF..." "Cyan"
   $regPath = "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts"
   $checkName = "PlemolJP Console NF Regular (TrueType)"
@@ -516,57 +572,61 @@ function Install-PlemolJP {
     return
   }
 
-  log "Checking latest PlemolJP version..." "Yellow"
-  $latestUrl = "https://api.github.com/repos/yuru7/PlemolJP/releases/latest"
-  try {
-    $json = Invoke-RestMethod -Uri $latestUrl
-    $asset = $json.assets | Where-Object { $_.name -match "PlemolJP_NF_v.*\.zip" } | Select-Object -First 1
+  if ($PSCmdlet.ShouldProcess("PlemolJP", "Install PlemolJP NF fonts")) {
+    log "Checking latest PlemolJP version..." "Yellow"
+    $latestUrl = "https://api.github.com/repos/yuru7/PlemolJP/releases/latest"
+    try {
+      $json = Invoke-RestMethod -Uri $latestUrl
+      $asset = $json.assets | Where-Object { $_.name -match "PlemolJP_NF_v.*\.zip" } | Select-Object -First 1
 
-    if (!$asset) {
-      log "Could not find PlemolJP NF asset." "Red"
-      return
-    }
-
-    $version = $json.tag_name
-    log "Installing PlemolJP $version ..." "Yellow"
-
-    $zipName = $asset.name
-    $downloadUrl = $asset.browser_download_url
-    $tempZip = Join-Path $env:TEMP $zipName
-    $tempExtract = Join-Path $env:TEMP "PlemolJP-extract"
-
-    if (Test-Path $tempExtract) {
-      Remove-Item $tempExtract -Recurse -Force
-    }
-    New-Item -ItemType Directory $tempExtract | Out-Null
-
-    Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZip -UseBasicParsing
-    Expand-Archive -Path $tempZip -DestinationPath $tempExtract -Force
-
-    $fontsDir = Join-Path $env:LOCALAPPDATA "Microsoft\Windows\Fonts"
-    if (!(Test-Path $fontsDir)) {
-      New-Item -ItemType Directory -Path $fontsDir | Out-Null
-    }
-
-    $ttfFiles = Get-ChildItem -Path $tempExtract -Filter "*.ttf" -Recurse
-    foreach ($ttf in $ttfFiles) {
-      $destPath = Join-Path $fontsDir $ttf.Name
-      if (!(Test-Path $destPath)) {
-        Copy-Item $ttf.FullName $destPath -Force
+      if (!$asset) {
+        log "Could not find PlemolJP NF asset." "Red"
+        return
       }
-      $fontName = [System.IO.Path]::GetFileNameWithoutExtension($ttf.Name)
-      $regName = "$fontName (TrueType)"
-      Set-ItemProperty -Path $regPath -Name $regName -Value $destPath
-    }
 
-    log "PlemolJP installed successfully." "Green"
-    Remove-Item $tempZip, $tempExtract -Recurse -Force
-  } catch {
-    log "Failed to install PlemolJP: $_" "Red"
+      $version = $json.tag_name
+      log "Installing PlemolJP $version ..." "Yellow"
+
+      $zipName = $asset.name
+      $downloadUrl = $asset.browser_download_url
+      $tempZip = Join-Path $env:TEMP $zipName
+      $tempExtract = Join-Path $env:TEMP "PlemolJP-extract"
+
+      if (Test-Path $tempExtract) {
+        Remove-Item $tempExtract -Recurse -Force
+      }
+      New-Item -ItemType Directory $tempExtract | Out-Null
+
+      Invoke-WebRequest -Uri $downloadUrl -OutFile $tempZip -UseBasicParsing
+      Expand-Archive -Path $tempZip -DestinationPath $tempExtract -Force
+
+      $fontsDir = Join-Path $env:LOCALAPPDATA "Microsoft\Windows\Fonts"
+      if (!(Test-Path $fontsDir)) {
+        New-Item -ItemType Directory -Path $fontsDir | Out-Null
+      }
+
+      $ttfFiles = Get-ChildItem -Path $tempExtract -Filter "*.ttf" -Recurse
+      foreach ($ttf in $ttfFiles) {
+        $destPath = Join-Path $fontsDir $ttf.Name
+        if (!(Test-Path $destPath)) {
+          Copy-Item $ttf.FullName $destPath -Force
+        }
+        $fontName = [System.IO.Path]::GetFileNameWithoutExtension($ttf.Name)
+        $regName = "$fontName (TrueType)"
+        Set-ItemProperty -Path $regPath -Name $regName -Value $destPath
+      }
+
+      log "PlemolJP installed successfully." "Green"
+      Remove-Item $tempZip, $tempExtract -Recurse -Force
+    } catch {
+      log "Failed to install PlemolJP: $_" "Red"
+    }
   }
 }
 
 function Install-PnpmConfig {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   log "Checking pnpm config..." "Cyan"
   if (!(Get-Command pnpm -ErrorAction SilentlyContinue)) {
     log "pnpm is not installed." "Gray"
@@ -576,18 +636,22 @@ function Install-PnpmConfig {
   $pnpmHome = "${env:LOCALAPPDATA}\pnpm"
   $currentBinDir = pnpm config get global-bin-dir
   if ($currentBinDir -ne $pnpmHome) {
-    log "Setting pnpm global-bin-dir to $pnpmHome ..." "Yellow"
-    pnpm config set global-bin-dir "$pnpmHome"
+    if ($PSCmdlet.ShouldProcess($pnpmHome, "Set pnpm global-bin-dir")) {
+      log "Setting pnpm global-bin-dir to $pnpmHome ..." "Yellow"
+      pnpm config set global-bin-dir "$pnpmHome"
+    }
   } else {
     log "pnpm global-bin-dir is already set to $pnpmHome." "Gray"
   }
 }
 
 function Set-GnuToolchain {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   log "Setting up GNU toolchain..." "Yellow"
   if (!(Get-Command g++ -ErrorAction SilentlyContinue)) {
     log "Installing mingw..." "Yellow"
-    Install-ScoopPackages @("mingw")
+    Install-ScoopPackage @("mingw")
   }
   # Ensure mingw's bin is in PATH for current process
   $mingwBin = "${env:USERPROFILE}\scoop\apps\mingw\current\bin"
@@ -596,97 +660,116 @@ function Set-GnuToolchain {
   }
 
   log "Adding GNU toolchain for rustup..." "Yellow"
-  rustup toolchain install stable-x86_64-pc-windows-gnu
+  if ($PSCmdlet.ShouldProcess("stable-x86_64-pc-windows-gnu", "rustup toolchain install")) {
+    rustup toolchain install stable-x86_64-pc-windows-gnu
+  }
 }
 
-function Install-Rhq {
-  log "Checking rhq..." "Cyan"
-  if (Get-Command rhq -ErrorAction SilentlyContinue) {
-    log "rhq is already installed." "Gray"
-    return
+function Install-CargoTool {
+  [CmdletBinding(SupportsShouldProcess)]
+  param([PSCustomObject[]]$Tools)
+
+  # Ensure cargo-binstall is available first
+  if (!(Get-Command cargo-binstall -ErrorAction SilentlyContinue)) {
+    if ($PSCmdlet.ShouldProcess("cargo-binstall", "Install cargo-binstall")) {
+      log "Installing cargo-binstall..." "Yellow"
+      Set-GnuToolchain
+      cargo +stable-x86_64-pc-windows-gnu install cargo-binstall
+    }
   }
 
-  Set-GnuToolchain
-  log "Compiling rhq using GNU toolchain..." "Yellow"
-  cargo +stable-x86_64-pc-windows-gnu install --git https://github.com/ubnt-intrepid/rhq.git
-}
+  foreach ($tool in $Tools) {
+    log "Checking $($tool.Name)..." "Cyan"
+    if (Get-Command $tool.Name -ErrorAction SilentlyContinue) {
+      log "$($tool.Name) is already installed." "Gray"
+      continue
+    }
 
-function Install-Psmux {
-  log "Checking psmux..." "Cyan"
-  if (Get-Command psmux -ErrorAction SilentlyContinue) {
-    log "psmux is already installed." "Gray"
-    return
+    if ($PSCmdlet.ShouldProcess($tool.Name, "Install via cargo-binstall/cargo install")) {
+      Set-GnuToolchain
+      log "Installing $($tool.Name) via cargo-binstall..." "Yellow"
+      $binstallArgs = @("binstall", "--no-confirm", "--target", "x86_64-pc-windows-gnu")
+      if ($tool.Git) {
+        # cargo-binstall doesn't support --git directly as well as install, 
+        # but we can try install if binstall fails or just use binstall if it's a known crate
+        $binstallArgs += $tool.Name
+      } else {
+        $binstallArgs += $tool.Name
+      }
+
+      & cargo $binstallArgs
+      if ($LASTEXITCODE -ne 0) {
+        log "Binstall failed for $($tool.Name), falling back to cargo install..." "Yellow"
+        if ($tool.Git) {
+          cargo +stable-x86_64-pc-windows-gnu install --git $tool.Git
+        } else {
+          cargo +stable-x86_64-pc-windows-gnu install $tool.Name
+        }
+      }
+    }
   }
-
-  Set-GnuToolchain
-  log "Compiling psmux using GNU toolchain..." "Yellow"
-  cargo +stable-x86_64-pc-windows-gnu install psmux
-}
-
-function Install-TmuxPanel {
-  log "Checking tmuxpanel..." "Cyan"
-  if (Get-Command tmuxpanel -ErrorAction SilentlyContinue) {
-    log "tmuxpanel is already installed." "Gray"
-    return
-  }
-
-  Set-GnuToolchain
-  log "Compiling tmuxpanel using GNU toolchain..." "Yellow"
-  cargo +stable-x86_64-pc-windows-gnu install tmuxpanel
 }
 
 function Start-Main {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
   try {
-    log "[Start-Main] Starting setup..."
+    if ($PSCmdlet.ShouldProcess("System", "Run full setup")) {
+      log "[Start-Main] Starting setup..."
 
-    $isAdmin = Test-IsAdmin
-    $canElevate = Test-IsAdminGroup
+      $isAdmin = Test-IsAdmin
+      $canElevate = Test-IsAdminGroup
 
-    if (-not $AdminOnly) {
-      log "--- User Level Setup ---" "Cyan"
-      Set-RequiredEnv
-      Install-Tools
-      Install-PlemolJP
-      Install-PnpmConfig
-      Install-GoTools
-      Install-UserTools
-      Install-Rhq
-      Install-Psmux
-      Install-TmuxPanel
+      if (-not $AdminOnly) {
+        log "--- User Level Setup ---" "Cyan"
+        Set-RequiredEnv
+        Install-Tool
+        Install-PlemolJP
+        Install-PnpmConfig
+        Install-GoTool
+        Install-UserTool
 
-      log "Checking shortcuts..." "Cyan"
-      $shortcuts = @(
-        @{
-          Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
-          Target = "${env:USERPROFILE}\.config\autohotkey\AutoHotkey.ahk"
-        },
-        @{
-          Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AlterDnD64.lnk"
-          Target = "${env:USERPROFILE}\app\AlterDnD\AlterDnD64.exe"
+        $cargoTools = @(
+          @{ Name = "rhq"; Git = "https://github.com/ubnt-intrepid/rhq.git" }
+          @{ Name = "psmux" }
+          @{ Name = "tmuxpanel" }
+        )
+        Install-CargoTool $cargoTools
+
+        log "Checking shortcuts..." "Cyan"
+        $shortcuts = @(
+          @{
+            Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
+            Target = "${env:USERPROFILE}\.config\autohotkey\AutoHotkey.ahk"
+          }
+          @{
+            Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AlterDnD64.lnk"
+            Target = "${env:USERPROFILE}\app\AlterDnD\AlterDnD64.exe"
+          }
+        )
+        foreach ($s in $shortcuts) {
+          New-Shortcut -link $s.Link -target $s.Target
         }
-      )
-      foreach ($s in $shortcuts) {
-        New-Shortcut -link $s.Link -target $s.Target
       }
-    }
 
-    if ($isAdmin) {
-      log "--- Admin Level Setup ---" "Green"
-      Set-CapsLockToCtrl
-      Install-BibataCursor
-      # Install-BuildTools
-    } elseif ($canElevate) {
-      log "Not elevated, but you are in the Administrators group. Attempting to relaunch for Admin tasks..." "Yellow"
-      try {
-        Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" -AdminOnly" -Verb RunAs -Wait
-      } catch {
-        log "Elevation failed or cancelled. Skipping Admin-only tasks." "Red"
+      if ($isAdmin) {
+        log "--- Admin Level Setup ---" "Green"
+        Set-CapsLockToCtrl
+        Install-BibataCursor
+        # Install-BuildTool
+      } elseif ($canElevate) {
+        log "Not elevated, but you are in the Administrators group. Attempting to relaunch for Admin tasks..." "Yellow"
+        try {
+          Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" -AdminOnly" -Verb RunAs -Wait
+        } catch {
+          log "Elevation failed or cancelled. Skipping Admin-only tasks." "Red"
+        }
+      } else {
+        log "Running with User privileges only. Skipping Admin-only tasks." "Yellow"
       }
-    } else {
-      log "Running with User privileges only. Skipping Admin-only tasks." "Yellow"
-    }
 
-    log "[Start-Main] Setup process finished." "Green"
+      log "[Start-Main] Setup process finished." "Green"
+    }
     exit 0
   } catch {
     log "Error in Start-Main: $_" "Red"
