@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2026/03/08 18:228:54
+# Last Change : 2026/03/13 11:15:00
 # =============================================================================
 
 # --- Pre-Environment Setup ---
@@ -196,7 +196,7 @@ if (Test-Path $ZoxideInit) {
 
 # --- Auto psmux ---
 if ($IsWindows -and (Get-Command psmux -ErrorAction SilentlyContinue)) {
-  if ($null -eq $env:PSMUX -and $null -eq $env:VSCODE_GIT_ASKPASS_NODE -and $null -eq $env:TERM_PROGRAM) {
+  if ([Environment]::UserInteractive -and $null -eq $env:PSMUX -and $null -eq $env:VSCODE_GIT_ASKPASS_NODE -and $null -eq $env:TERM_PROGRAM) {
     # Try to attach, if it fails, start new session
     psmux attach 2>$null
     if ($LASTEXITCODE -ne 0) {
