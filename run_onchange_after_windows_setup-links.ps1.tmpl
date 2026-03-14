@@ -79,6 +79,7 @@ $junctions = @{
     "scoop\persist\espanso\.espanso" = "$configDir\espanso"
     "scoop\persist\copyq\config\copyq" = "$configDir\copyq"
     "scoop\persist\windows-terminal\settings" = "$configDir\windows-terminal"
+    "scoop\persist\windows-terminal-preview\settings" = "$configDir\windows-terminal-preview"
 }
 
 foreach ($rel in $junctions.Keys) {
@@ -127,6 +128,14 @@ if ($wtDir) {
     $wtLink = Join-Path $wtDir.FullName "LocalState\settings.json"
     $wtTarget = "$configDir\windows-terminal\settings.json"
     New-HardLink -link $wtLink -target $wtTarget
+}
+
+# --- Windows Terminal Preview ---
+$wtpDir = Get-ChildItem -Path "$env:LOCALAPPDATA\Packages" -Filter "Microsoft.WindowsTerminalPreview_*" | Select-Object -First 1
+if ($wtpDir) {
+    $wtpLink = Join-Path $wtpDir.FullName "LocalState\settings.json"
+    $wtpTarget = "$configDir\windows-terminal-preview\settings.json"
+    New-HardLink -link $wtpLink -target $wtpTarget
 }
 
 {{ end -}}

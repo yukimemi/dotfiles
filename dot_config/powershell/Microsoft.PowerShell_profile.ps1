@@ -197,12 +197,12 @@ if (Test-Path $ZoxideInit) {
 }
 
 # --- Auto psmux ---
-if ($IsWindows -and (Get-Command psmux -ErrorAction SilentlyContinue)) {
-  if ([Environment]::UserInteractive -and $null -eq $env:PSMUX -and $null -eq $env:VSCODE_GIT_ASKPASS_NODE -and $null -eq $env:TERM_PROGRAM) {
-    # Try to attach, if it fails, start new session
-    psmux attach 2>$null
-    if ($LASTEXITCODE -ne 0) {
-      psmux
-    }
-  }
-}
+# if ($IsWindows -and (Get-Command psmux -ErrorAction SilentlyContinue)) {
+#   if ([Environment]::UserInteractive -and $null -eq $env:PSMUX -and $null -eq $env:VSCODE_GIT_ASKPASS_NODE -and $null -eq $env:TERM_PROGRAM) {
+#     # Try to attach, if it fails, start new session
+#     psmux attach 2>$null
+#     if ($LASTEXITCODE -ne 0) {
+#       psmux
+#     }
+#   }
+# }
