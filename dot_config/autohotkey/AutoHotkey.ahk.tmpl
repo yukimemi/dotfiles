@@ -288,6 +288,8 @@ F10::
   Activate("nvim-qt.exe")
 {{- else if eq .autohotkey.purpose "home" }}
   Activate("neovide.exe")
+{{- else if .autohotkey.usewtp }}
+  Activate("nvim.exe", "wtp nvim.cmd", "nvim.cmd")
 {{- else }}
   Activate("nvim.exe", "wt nvim.cmd", "nvim.cmd")
 {{- end }}
@@ -306,6 +308,8 @@ F12::
   Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
 {{- else if .autohotkey.usenu }}
   Toggle("WindowsTerminal.exe", "nu", "yukimemi-terminal")
+{{- else if .autohotkey.usewtp }}
+  Toggle("WindowsTerminal.exe", "wtp", "yukimemi-terminal")
 {{- else }}
   Toggle("WindowsTerminal.exe", "wt", "yukimemi-terminal")
 {{- end }}
@@ -314,7 +318,11 @@ F12::
 ; yazi (File Manager)
 ^F10::
 {
-  Activate("WindowsTerminal.exe", "yazi", "Yazi,yazi")
+{{- if .autohotkey.usewtp }}
+  Activate("WindowsTerminal.exe", "wtp new-tab yazi", "Yazi,yazi")
+{{- else }}
+  Activate("WindowsTerminal.exe", "wt new-tab yazi", "Yazi,yazi")
+{{- end }}
 }
 
 ; Slack
