@@ -80,6 +80,8 @@ if (Test-Path $PrivateConfig) {
 }
 
 $AdditionalPaths = @(
+  (Join-Path $UserHome ".local/bin"),
+  (Join-Path $UserHome "bin"),
   (Join-Path $UserHome ".cargo/bin"),
   (Join-Path $UserHome ".bun/bin"),
   (Join-Path $UserHome ".deno/bin"),
