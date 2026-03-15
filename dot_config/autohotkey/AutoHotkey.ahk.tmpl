@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/03/01 21:05:00.
+; Last Change : 2026/03/15 12:12:09.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -88,7 +88,7 @@ GetGlazeWindow(exeName, titleRegex := "") {
     sc.write("<meta http-equiv='X-UA-Compatible' content='IE=edge'>")
     data := sc.parentWindow.JSON.parse(jsonStr)
     windows := data.data.windows
-    
+
     Loop windows.length {
       win := windows.%(A_Index - 1)%
 
@@ -298,7 +298,11 @@ F10::
 ; Comet
 F11::
 {
+{{- if .autohotkey.usecomet }}
   Activate("comet.exe")
+{{- else }}
+  Activate("msedge.exe")
+{{- end }}
 }
 
 ; Windows Terminal (Toggle)
