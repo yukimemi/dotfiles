@@ -7,7 +7,7 @@
     Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/03/13 03:00:00.
+  .Last Change : 2026/03/15 11:51:44.
 #>
 param(
   [switch]$AdminOnly
@@ -239,6 +239,7 @@ function Set-RequiredEnv {
     "CARGO_HTTP_CHECK_REVOKE"      = "false"
     "YAZI_CONFIG_HOME"             = "${env:USERPROFILE}\.config\yazi"
     "YAZI_FILE_ONE"                = "${env:USERPROFILE}\scoop\apps\git\current\usr\bin\file.exe"
+    "CLAUDE_CODE_GIT_BASH_PATH"    = "${env:USERPROFILE}\scoop\apps\git\current\bin\bash.exe"
     "XDG_CONFIG_HOME"              = "${env:USERPROFILE}\.config"
     "PNPM_HOME"                    = "${env:LOCALAPPDATA}\pnpm"
   }
@@ -429,6 +430,7 @@ function Install-Tool {
       "autohotkey",
       "bat",
       "bun",
+      "clipboard",
       "copyq",
       "delta",
       "dua",
@@ -457,6 +459,7 @@ function Install-Tool {
       "ripgrep",
       "rustup-msvc",
       "starship",
+      "television",
       "topgrade",
       "windows-terminal",
       "winmerge",
@@ -468,10 +471,7 @@ function Install-Tool {
     log "Ensuring tools via scoop..." "Cyan"
     Install-ScoopPackage $scoopPackages
 
-    $wingetPackages = @(
-      "alexpasmantier.television",
-      "Slackadays.Clipboard"
-    )
+    $wingetPackages = @()
     log "Ensuring remaining tools via winget..." "Cyan"
     Install-WingetPackage $wingetPackages
   }
@@ -690,7 +690,7 @@ function Install-CargoTool {
       log "Installing $($tool.Name) via cargo-binstall..." "Yellow"
       $binstallArgs = @("binstall", "--no-confirm", "--target", "x86_64-pc-windows-gnu")
       if ($tool.Git) {
-        # cargo-binstall doesn't support --git directly as well as install, 
+        # cargo-binstall doesn't support --git directly as well as install,
         # but we can try install if binstall fails or just use binstall if it's a known crate
         $binstallArgs += $tool.Name
       } else {
