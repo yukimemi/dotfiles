@@ -16,3 +16,5 @@ tags.temp
 
 # jujutsu
 .jj/
+
+**/.claude/settings.local.json
