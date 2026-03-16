@@ -419,6 +419,21 @@ function Install-UserTool {
   }
 }
 
+function Install-ClaudeCode {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
+  log "Checking Claude Code..." "Cyan"
+  if (Get-Command claude -ErrorAction SilentlyContinue) {
+    log "Claude Code is already installed." "Gray"
+    return
+  }
+
+  if ($PSCmdlet.ShouldProcess("Claude Code", "Install via official script")) {
+    log "Installing Claude Code..." "Yellow"
+    irm https://claude.ai/install.ps1 | iex
+  }
+}
+
 function Install-Tool {
   [CmdletBinding(SupportsShouldProcess)]
   param()
@@ -729,6 +744,7 @@ function Start-Main {
         Install-PnpmConfig
         Install-GoTool
         Install-UserTool
+        Install-ClaudeCode
 
         $cargoTools = @(
           @{ Name = "rhq"; Git = "https://github.com/ubnt-intrepid/rhq.git" }
