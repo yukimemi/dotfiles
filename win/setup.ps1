@@ -7,7 +7,7 @@
     Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/03/15 11:51:44.
+  .Last Change : 2026/03/16 20:49:18.
 #>
 param(
   [switch]$AdminOnly
@@ -462,6 +462,7 @@ function Install-Tool {
       "television",
       "topgrade",
       "windows-terminal",
+      "windows-terminal-preview",
       "winmerge",
       "yazi",
       "zebar",
