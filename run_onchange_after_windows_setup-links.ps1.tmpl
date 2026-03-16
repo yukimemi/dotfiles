@@ -68,6 +68,7 @@ $userHome = $env:USERPROFILE
 $configDir = Join-Path $userHome ".config"
 
 $junctions = @{
+    "AppData\Roaming\shun"         = "$configDir\shun"
     "AppData\Roaming\rhq"         = "$configDir\rhq"
     "AppData\Roaming\copyq"       = "$configDir\copyq"
     "AppData\Roaming\helix"       = "$configDir\helix"

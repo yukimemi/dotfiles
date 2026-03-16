@@ -1,0 +1,53 @@
+# 履歴のソート順: "count_first" (回数＞直近＞名前) / "recent_first" (直近＞回数＞名前)
+# 検索モード: "fuzzy" (ファジー検索) / "exact" (部分一致)
+search_mode = "fuzzy"
+
+sort_order = "recent_first"
+
+[keybindings]
+launch      = "Ctrl+Enter"
+next        = "Ctrl+n"
+prev        = "Ctrl+p"
+confirm     = "Enter"
+arg_mode    = "Tab"
+word_accept = "Ctrl+f"
+line_accept = "Ctrl+e"
+close       = "Escape"
+
+# アプリ・スクリプトの個別登録
+[[apps]]
+name             = "Neovide"
+path             = "neovide"
+allow_extra_args = true
+completion       = "path"
+
+[[apps]]
+name             = "Scoop"
+path             = "scoop"
+allow_extra_args = true
+completion       = "list"
+completion_list  = ["install", "uninstall", "update", "search", "list", "info", "status", "cleanup", "bucket", "cache", "checkup", "config", "hold", "unhold", "reset", "shim", "which"]
+
+[[apps]]
+name             = "Git"
+path             = "git"
+allow_extra_args = true
+completion       = "command"
+completion_command = "git branch --format='%(refname:short)'"
+workdir          = "~/src/github.com/yukimemi/shun"
+
+# ディレクトリスキャンで自動登録
+[[scan_dirs]]
+path       = "~/src/github.com/yukimemi/ps1/cmd"
+recursive  = false
+extensions = ["cmd"]
+
+[[scan_dirs]]
+path       = "~/src/github.com/yukimemi/ps1/src"
+recursive  = false
+extensions = ["ps1"]
+
+[[scan_dirs]]
+path       = "~/.local/share/chezmoi/win/scripts"
+recursive  = false
+extensions = ["ps1"]
