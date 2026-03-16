@@ -108,6 +108,7 @@ window_rules:
       - window_process: { equals: 'copyq' }
       - window_process: { equals: 'rapture' }
       - window_process: { equals: 'clnch' }
+      - window_process: { equals: 'shun' }
 
       - window_process: { equals: 'WindowsTerminal' }
         window_title: { equals: 'C:\Program Files\Neovim\bin\nvim.exe' }
