@@ -1,7 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(jj:*)"
+      "Bash(jj:*)",
+      "Bash(cd:*)",
+      "Bash(touch:*)",
+      "Bash(git add:*)",
+      "Bash(npm run:*)",
+      "Bash(for tag:*)",
+      "Bash(grep:*)",
+      "Bash(npm test:*)"
     ]
   }
 }
