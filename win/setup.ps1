@@ -419,6 +419,61 @@ function Install-UserTool {
   }
 }
 
+function Install-Shun {
+  [CmdletBinding(SupportsShouldProcess)]
+  param(
+    [string]$InstallDir = "${env:USERPROFILE}\app\shun"
+  )
+  log "Checking shun..." "Cyan"
+
+  $exePath = Join-Path $InstallDir "shun.exe"
+
+  # Get latest release info
+  try {
+    $release = Invoke-RestMethod -Uri "https://api.github.com/repos/yukimemi/shun/releases/latest"
+  } catch {
+    log "Failed to fetch shun release info: $_" "Red"
+    return
+  }
+
+  $latestVersion = $release.tag_name
+  $asset = $release.assets | Where-Object { $_.name -eq "shun-windows-x64.zip" } | Select-Object -First 1
+
+  if (-not $asset) {
+    log "Could not find shun-windows-x64.zip in latest release." "Red"
+    return
+  }
+
+  # Skip if already up to date (use FileVersionInfo to avoid launching the GUI)
+  if (Test-Path $exePath) {
+    $fileVer = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($exePath).FileVersion
+    if ($fileVer -and $fileVer -eq $latestVersion.TrimStart("v")) {
+      log "shun $latestVersion is already installed." "Gray"
+      return
+    }
+  }
+
+  if ($PSCmdlet.ShouldProcess($InstallDir, "Install shun $latestVersion")) {
+    log "Installing shun $latestVersion ..." "Yellow"
+    $tempZip = Join-Path $env:TEMP "shun-windows-x64.zip"
+
+    try {
+      Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $tempZip -UseBasicParsing
+
+      if (!(Test-Path $InstallDir)) {
+        New-Item -ItemType Directory $InstallDir -Force | Out-Null
+      }
+      Expand-Archive -Path $tempZip -DestinationPath $InstallDir -Force
+
+      log "shun $latestVersion installed to $InstallDir" "Green"
+    } catch {
+      log "Failed to install shun: $_" "Red"
+    } finally {
+      if (Test-Path $tempZip) { Remove-Item $tempZip -Force }
+    }
+  }
+}
+
 function Install-ClaudeCode {
   [CmdletBinding(SupportsShouldProcess)]
   param()
@@ -744,6 +799,7 @@ function Start-Main {
         Install-PnpmConfig
         Install-GoTool
         Install-UserTool
+        Install-Shun
         Install-ClaudeCode
 
         $cargoTools = @(
@@ -762,6 +818,10 @@ function Start-Main {
           @{
             Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AlterDnD64.lnk"
             Target = "${env:USERPROFILE}\app\AlterDnD\AlterDnD64.exe"
+          }
+          @{
+            Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\shun.lnk"
+            Target = "${env:USERPROFILE}\app\shun\shun.exe"
           }
         )
         foreach ($s in $shortcuts) {
