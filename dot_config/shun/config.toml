@@ -43,11 +43,11 @@ recursive  = false
 extensions = ["cmd"]
 
 [[scan_dirs]]
-path       = "~/src/github.com/yukimemi/ps1/src"
+path       = "~/.local/share/chezmoi/win/scripts"
 recursive  = false
 extensions = ["ps1"]
 
 [[scan_dirs]]
-path       = "~/.local/share/chezmoi/win/scripts"
+path       = "C:/Windows/System32"
 recursive  = false
-extensions = ["ps1"]
+extensions = ["exe"]
