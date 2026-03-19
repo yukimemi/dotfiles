@@ -223,10 +223,10 @@ desc = "Permanently delete the files"
 on = ["o"]
 run = "plugin augment-command -- open"
 desc = "Open files"
-# [[manager.prepend_keymap]]
-# on = ["O"]
-# run = "plugin augment-command -- open --interactive"
-# desc = "Open selected files interactively"
+[[mgr.prepend_keymap]]
+on = ["O"]
+run = "plugin augment-command -- open --interactive"
+desc = "Open selected files interactively"
 [[mgr.prepend_keymap]]
 on = ["i"]
 run = "plugin augment-command -- shell --block -- '$PAGER %s'"
