@@ -6,4 +6,7 @@ brew "powershell"
 cask "caffeine"
 cask "google-chrome"
 cask "slack"
+cask "font-plemol-jp"
+cask "font-plemol-jp-nf"
+cask "wezterm"
 
