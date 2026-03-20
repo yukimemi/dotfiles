@@ -142,7 +142,7 @@ return {
   use_fancy_tab_bar = false,
   use_ime = true,
   window_background_opacity = 0.90,
-  default_prog = os.is_win and { "pwsh.exe" } or { "pwsh" },
+  default_prog = os.is_win and { "pwsh.exe" } or { "/opt/homebrew/bin/pwsh" },
   font_size = os.is_mac and 12.0 or 10.0,
   font = wezterm.font_with_fallback({
     "PlemolJP Console NF",
