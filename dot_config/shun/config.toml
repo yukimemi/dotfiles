@@ -3,6 +3,9 @@
 search_mode = "fuzzy"
 sort_order = "recent_first"
 hide_on_blur = true
+window_width = 700
+max_items = 10
+max_completions = 8
 
 [keybindings]
 launch = "Ctrl+Enter"
