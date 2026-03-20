@@ -5,6 +5,10 @@
 # =============================================================================
 
 # --- Pre-Environment Setup ---
+if ($IsMacOS -and -not ($env:PATH -like "*/opt/homebrew/bin*")) {
+  $env:PATH = "/opt/homebrew/bin" + [IO.Path]::PathSeparator + $env:PATH
+}
+
 if ($null -eq $IsWindows) {
   $IsWindows = $true
 }
