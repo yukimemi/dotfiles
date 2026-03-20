@@ -4,9 +4,14 @@
 
 ### Linux / Mac
 
-```sh
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply yukimemi
-```
+1.  (macOS only) Install Xcode Command Line Tools:
+    ```sh
+    xcode-select --install
+    ```
+2.  Install dotfiles:
+    ```sh
+    sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply yukimemi
+    ```
 
 ### Windows
 
