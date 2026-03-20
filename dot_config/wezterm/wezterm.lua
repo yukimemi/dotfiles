@@ -122,6 +122,28 @@ end
 
 local os = platform()
 
+local function find_pwsh()
+  if os.is_win then
+    return { "pwsh.exe" }
+  end
+
+  local candidates = {
+    "/opt/homebrew/bin/pwsh",
+    "/usr/local/bin/pwsh",
+    "/usr/bin/pwsh",
+  }
+
+  for _, path in ipairs(candidates) do
+    local f = io.open(path, "r")
+    if f then
+      f:close()
+      return { path }
+    end
+  end
+
+  return nil
+end
+
 wezterm.on("gui-startup", function(cmd)
   local tab, pane, window = mux.spawn_window(cmd or {})
   -- window:gui_window():maximize()
@@ -142,7 +164,7 @@ return {
   use_fancy_tab_bar = false,
   use_ime = true,
   window_background_opacity = 0.90,
-  default_prog = os.is_win and { "pwsh.exe" } or { "/opt/homebrew/bin/pwsh" },
+  default_prog = find_pwsh(),
   font_size = os.is_mac and 12.0 or 10.0,
   font = wezterm.font_with_fallback({
     "PlemolJP Console NF",
