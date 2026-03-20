@@ -73,6 +73,15 @@ $UserHome = if ($IsWindows) {
   $env:HOME
 }
 
+# pnpm
+if ($IsMacOS) {
+  $env:PNPM_HOME = Join-Path $UserHome "Library/pnpm"
+} elseif ($IsWindows) {
+  $env:PNPM_HOME = Join-Path $env:LOCALAPPDATA "pnpm"
+} else {
+  $env:PNPM_HOME = Join-Path $UserHome ".local/share/pnpm"
+}
+
 # Private Config
 $PrivateConfig = Join-Path $UserHome "src/github.com/yukimemi/private/.config_private.ps1"
 if (Test-Path $PrivateConfig) {
@@ -80,6 +89,7 @@ if (Test-Path $PrivateConfig) {
 }
 
 $AdditionalPaths = @(
+  $env:PNPM_HOME,
   (Join-Path $UserHome ".local/bin"),
   (Join-Path $UserHome "bin"),
   (Join-Path $UserHome ".cargo/bin"),

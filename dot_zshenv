@@ -38,8 +38,17 @@ export GOPATH=$HOME/.go
 # deno.
 export DENO_INSTALL=$HOME/.deno
 
+# pnpm.
+if is_mac; then
+  export PNPM_HOME="${HOME}/Library/pnpm"
+elif is_linux; then
+  export PNPM_HOME="${HOME}/.local/share/pnpm"
+fi
+
 # Path.
 path=(
+  # pnpm
+  $PNPM_HOME(N-/)
   # cargo
   $HOME/.cargo/bin(N-/)
   # deno
