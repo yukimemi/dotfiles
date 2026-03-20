@@ -6,7 +6,11 @@
 {{- end -}}
 
 [diff]
+    {{- if lookPath "bat" }}
     pager = "bat"
+    {{- else }}
+    pager = "less"
+    {{- end }}
 
 [merge]
     command = "nvim"

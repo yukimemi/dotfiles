@@ -1,15 +1,9 @@
+# packages
+brew "mise"
+brew "powershell"
 
-# tap repositories and their packages
-
-tap homebrew/core
-tap homebrew/cask-fonts
-tap homebrew/cask-versions
-tap homebrew/cask
-
-brew mise
-brew powershell
-
-cask caffeine
-cask google-chrome
-cask slack
+# casks
+cask "caffeine"
+cask "google-chrome"
+cask "slack"
 
