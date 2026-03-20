@@ -2,16 +2,25 @@
 
 ## Setup
 
-### Linux / Mac
+### macOS
 
-1.  (macOS only) Install Xcode Command Line Tools:
+1.  **Install Xcode Command Line Tools** (Required for `git` and `brew`):
     ```sh
     xcode-select --install
     ```
-2.  Install dotfiles:
+    *Wait for the installation to complete.*
+
+2.  **Initialize Dotfiles**:
     ```sh
     sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply yukimemi
     ```
+    *This will automatically install Homebrew, mise, and all CLI tools (gh, nvim, etc.).*
+
+### Linux
+
+```sh
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply yukimemi
+```
 
 ### Windows
 
