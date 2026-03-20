@@ -1,8 +1,8 @@
 # 履歴のソート順: "count_first" (回数＞直近＞名前) / "recent_first" (直近＞回数＞名前)
+sort_order = "recent_first"
 # 検索モード: "fuzzy" (ファジー検索) / "exact" (部分一致)
 search_mode = "fuzzy"
-sort_order = "recent_first"
-hide_on_blur = true
+hide_on_blur = false
 window_width = 700
 max_items = 10
 max_completions = 8
@@ -23,6 +23,12 @@ close = "Escape"
 [[apps]]
 name = "Neovide"
 path = "neovide"
+completion = "path"
+
+[[apps]]
+name = "Open Project"
+path = "neovide"
+args = ["{{ env.USERPROFILE }}/src/{{ args }}"]
 completion = "path"
 
 [[apps]]
@@ -56,7 +62,22 @@ completion = "command"
 completion_command = "git branch --format='%(refname:short)'"
 workdir = "~/src/github.com/yukimemi/shun"
 
-# ディレクトリスキャンで自動登録
+[[apps]]
+name = "Google"
+path = "https://www.google.com/search?q={{ args | urlencode }}"
+
+[[apps]]
+name = "GitHub Search"
+path = "https://github.com/search?q={{ args | urlencode }}"
+
+[[apps]]
+name = "Perplexity"
+path = "https://www.perplexity.ai/search?q={{ args | urlencode }}"
+
+[[apps]]
+name = "Phind"
+path = "https://www.phind.com/search?q={{ args | urlencode }}"
+
 [[scan_dirs]]
 path = "~/src/github.com/yukimemi/ps1/cmd"
 recursive = false

@@ -7,7 +7,7 @@
     Internal use only. Skips user-level tasks and only runs admin tasks.
   .OUTPUTS
     - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/03/16 20:49:18.
+  .Last Change : 2026/03/21 07:17:08.
 #>
 param(
   [switch]$AdminOnly
@@ -126,7 +126,7 @@ function Install-BinaryArchive {
   }
 }
 
-function Install-WingetPackage {
+function Install-WinGetPackage {
   [CmdletBinding(SupportsShouldProcess)]
   param([string[]]$Packages)
   foreach ($pkg in $Packages) {
@@ -430,7 +430,7 @@ function Install-Shun {
   }
 
   # Use one-liner from https://github.com/yukimemi/shun
-  irm https://raw.githubusercontent.com/yukimemi/shun/main/install.ps1 | iex
+  Invoke-RestMethod https://raw.githubusercontent.com/yukimemi/shun/main/install.ps1 | Invoke-Expression
 }
 
 function Install-ClaudeCode {
@@ -444,7 +444,7 @@ function Install-ClaudeCode {
 
   if ($PSCmdlet.ShouldProcess("Claude Code", "Install via official script")) {
     log "Installing Claude Code..." "Yellow"
-    irm https://claude.ai/install.ps1 | iex
+    Invoke-RestMethod https://claude.ai/install.ps1 | Invoke-Expression
   }
 }
 
@@ -503,7 +503,7 @@ function Install-Tool {
 
     $wingetPackages = @()
     log "Ensuring remaining tools via winget..." "Cyan"
-    Install-WingetPackage $wingetPackages
+    Install-WinGetPackage $wingetPackages
   }
 }
 
