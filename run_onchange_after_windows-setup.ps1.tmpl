@@ -1,17 +1,10 @@
 <#
   .SYNOPSIS
-    setup.ps1
+    run_onchange_after_windows-setup.ps1.tmpl
   .DESCRIPTION
-    Initial windows setup scripts.
-  .PARAMETER AdminOnly
-    Internal use only. Skips user-level tasks and only runs admin tasks.
-  .OUTPUTS
-    - 0: SUCCESS / 1: ERROR
-  .Last Change : 2026/03/21 07:17:08.
+    Initial windows setup scripts for chezmoi.
+  .Last Change : 2026/03/21 10:15:00.
 #>
-param(
-  [switch]$AdminOnly
-)
 
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue"
@@ -324,21 +317,6 @@ function Set-CapsLockToCtrl {
   }
 }
 
-function Install-Neovim-Win {
-  [CmdletBinding(SupportsShouldProcess)]
-  param()
-  log "Checking Neovim..." "Cyan"
-  if (Get-Command nvim -ErrorAction SilentlyContinue) {
-    log "Neovim is already installed." "Gray"
-    return
-  }
-
-  if ($PSCmdlet.ShouldProcess("Neovim", "Install via scoop")) {
-    log "Installing Neovim Nightly via scoop..." "Yellow"
-    Install-ScoopPackage @("neovim-nightly")
-  }
-}
-
 function Install-BuildTool {
   [CmdletBinding(SupportsShouldProcess)]
   param()
@@ -379,21 +357,6 @@ function Install-GoTool {
     } else {
       log "$tool is already installed." "Gray"
     }
-  }
-}
-
-function Install-Mise {
-  [CmdletBinding(SupportsShouldProcess)]
-  param()
-  log "Checking mise..." "Cyan"
-  if (Get-Command mise -ErrorAction SilentlyContinue) {
-    log "mise is already installed." "Gray"
-    return
-  }
-
-  if ($PSCmdlet.ShouldProcess("mise", "Install via scoop")) {
-    log "Installing mise via scoop..." "Yellow"
-    Install-ScoopPackage @("mise")
   }
 }
 
@@ -750,38 +713,36 @@ function Start-Main {
       $isAdmin = Test-IsAdmin
       $canElevate = Test-IsAdminGroup
 
-      if (-not $AdminOnly) {
-        log "--- User Level Setup ---" "Cyan"
-        Set-RequiredEnv
-        Install-Tool
-        Install-PlemolJP
-        Install-PnpmConfig
-        Install-GoTool
-        Install-UserTool
-        Install-Shun
-        Install-ClaudeCode
+      log "--- User Level Setup ---" "Cyan"
+      Set-RequiredEnv
+      Install-Tool
+      Install-PlemolJP
+      Install-PnpmConfig
+      Install-GoTool
+      Install-UserTool
+      Install-Shun
+      Install-ClaudeCode
 
-        $cargoTools = @(
-          @{ Name = "rhq"; Git = "https://github.com/ubnt-intrepid/rhq.git" }
-          @{ Name = "psmux" }
-          @{ Name = "tmuxpanel" }
-        )
-        Install-CargoTool $cargoTools
+      $cargoTools = @(
+        @{ Name = "rhq"; Git = "https://github.com/ubnt-intrepid/rhq.git" }
+        @{ Name = "psmux" }
+        @{ Name = "tmuxpanel" }
+      )
+      Install-CargoTool $cargoTools
 
-        log "Checking shortcuts..." "Cyan"
-        $shortcuts = @(
-          @{
-            Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
-            Target = "${env:USERPROFILE}\.config\autohotkey\AutoHotkey.ahk"
-          }
-          @{
-            Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AlterDnD64.lnk"
-            Target = "${env:USERPROFILE}\app\AlterDnD\AlterDnD64.exe"
-          }
-        )
-        foreach ($s in $shortcuts) {
-          New-Shortcut -link $s.Link -target $s.Target
+      log "Checking shortcuts..." "Cyan"
+      $shortcuts = @(
+        @{
+          Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
+          Target = "${env:USERPROFILE}\.config\autohotkey\AutoHotkey.ahk"
         }
+        @{
+          Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AlterDnD64.lnk"
+          Target = "${env:USERPROFILE}\app\AlterDnD\AlterDnD64.exe"
+        }
+      )
+      foreach ($s in $shortcuts) {
+        New-Shortcut -link $s.Link -target $s.Target
       }
 
       if ($isAdmin) {
@@ -792,7 +753,11 @@ function Start-Main {
       } elseif ($canElevate) {
         log "Not elevated, but you are in the Administrators group. Attempting to relaunch for Admin tasks..." "Yellow"
         try {
-          Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" -AdminOnly" -Verb RunAs -Wait
+          $currentScript = "{{ .chezmoi.sourceDir }}/run_onchange_after_windows-setup.ps1.tmpl"
+          # In chezmoi, the actual script being executed is a temporary one.
+          # We'll just skip auto-elevation for now to avoid complexity in chezmoi context,
+          # or assume the user runs chezmoi in an elevated prompt if they want admin tasks.
+          log "Please run chezmoi apply in an elevated prompt to perform Admin tasks." "Yellow"
         } catch {
           log "Elevation failed or cancelled. Skipping Admin-only tasks." "Red"
         }
@@ -809,6 +774,4 @@ function Start-Main {
   }
 }
 
-if ($MyInvocation.InvocationName -ne '.') {
-  Start-Main
-}
+Start-Main
