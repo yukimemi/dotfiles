@@ -19,6 +19,9 @@ delete_word = "Ctrl+w"
 delete_line = "Ctrl+u"
 close = "Escape"
 
+[theme]
+preset = "tokyo-night"
+
 # アプリ・スクリプトの個別登録
 [[apps]]
 name = "Neovide"

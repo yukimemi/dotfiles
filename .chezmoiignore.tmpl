@@ -1,0 +1,39 @@
+.git
+.github
+.gitignore
+.gitmodules
+.jj
+.mappings
+.hooks
+README.md
+deno.json
+Makefile.toml
+Dockerfile
+renovate.json
+app
+docker
+etc
+mac
+tools
+win
+**/openclaw.json
+.openclaw
+
+{{ if ne .chezmoi.os "darwin" -}}
+00-mac-init.sh
+20-brew-bundle.sh
+{{ end -}}
+
+{{ if ne .chezmoi.os "linux" -}}
+setup-wsl.sh
+setup-openclaw.sh
+enable-openclaw-service.sh
+{{ end -}}
+
+{{ if ne .chezmoi.os "windows" -}}
+windows_setup-links.ps1
+{{ end -}}
+
+{{ if and (ne .chezmoi.os "darwin") (ne .chezmoi.os "linux") -}}
+10-mise-install.sh
+{{ end -}}
