@@ -1,11 +1,14 @@
-# 履歴のソート順: "count_first" (回数＞直近＞名前) / "recent_first" (直近＞回数＞名前)
 sort_order = "recent_first"
-# 検索モード: "fuzzy" (ファジー検索) / "exact" (部分一致)
-search_mode = "fuzzy"
-hide_on_blur = false
+search_mode = "migemo"
+hide_on_blur = true
 window_width = 700
 max_items = 10
 max_completions = 8
+opacity = 0.9
+icon_style = "svg"
+
+[log]
+level = "debug"
 
 [keybindings]
 launch = "Ctrl+Enter"
@@ -33,6 +36,21 @@ name = "Open Project"
 path = "neovide"
 args = ["{{ env.USERPROFILE }}/src/{{ args }}"]
 completion = "path"
+
+# MemoNew: Tab → タイトル入力 → Enter で "20260321-タイトル.md" を作成して開く
+[[apps]]
+name = "MemoNew"
+path = "nvim"
+args = ['~/memo/{{ now() | date(format="%Y%m%d") }}-{{ args }}.md']
+completion = "none"
+
+# MemoList: Tab → ~/memo/ 以下のファイルをパス補完で選択 → Enter
+[[apps]]
+name = "MemoList"
+path = "nvim"
+args = ["~/memo/{{ args }}"]
+completion = "path"
+completion_search_mode = "migemo"
 
 [[apps]]
 name = "Scoop"
