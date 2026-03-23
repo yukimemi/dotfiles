@@ -25,11 +25,15 @@ close = "Escape"
 [theme]
 preset = "tokyo-night"
 
-# アプリ・スクリプトの個別登録
 [[apps]]
 name = "Neovide"
 path = "neovide"
 completion = "path"
+
+[[apps]]
+name = "Todo"
+path = "hitori.cmd"
+args = ["{{ env.USERPROFILE }}/.memolist/todo.md"]
 
 [[apps]]
 name = "Open Project"
@@ -37,18 +41,16 @@ path = "neovide"
 args = ["{{ env.USERPROFILE }}/src/{{ args }}"]
 completion = "path"
 
-# MemoNew: Tab → タイトル入力 → Enter で "20260321-タイトル.md" を作成して開く
 [[apps]]
 name = "MemoNew"
 path = "nvim"
-args = ['~/memo/{{ now() | date(format="%Y%m%d") }}-{{ args }}.md']
+args = ['~/.memolist/{{ now() | date(format="%Y%m%d") }}-{{ args }}.md']
 completion = "none"
 
-# MemoList: Tab → ~/memo/ 以下のファイルをパス補完で選択 → Enter
 [[apps]]
 name = "MemoList"
 path = "nvim"
-args = ["~/memo/{{ args }}"]
+args = ["~/.memolist/{{ args }}"]
 completion = "path"
 completion_search_mode = "migemo"
 
