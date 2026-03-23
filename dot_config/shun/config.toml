@@ -1,11 +1,15 @@
 sort_order = "recent_first"
-search_mode = "migemo"
+search_mode = "fuzzy_migemo"
 hide_on_blur = true
 window_width = 700
 max_items = 10
 max_completions = 8
 opacity = 0.9
 icon_style = "svg"
+
+[vars]
+memo_path = "~/.memolist"
+src_path = "~/src"
 
 [log]
 level = "debug"
@@ -33,24 +37,26 @@ completion = "path"
 [[apps]]
 name = "Todo"
 path = "hitori.cmd"
-args = ["{{ env.USERPROFILE }}/.memolist/todo.md"]
+args = ["{{ vars.memo_path }}/todo.md"]
 
 [[apps]]
 name = "Open Project"
 path = "neovide"
-args = ["{{ env.USERPROFILE }}/src/{{ args }}"]
+args = ["{{ vars.src_path }}/{{ args }}"]
 completion = "path"
 
 [[apps]]
 name = "MemoNew"
 path = "nvim"
-args = ['~/.memolist/{{ now() | date(format="%Y%m%d") }}-{{ args }}.md']
+args = [
+  '{{ vars.memo_path }}/{{ now() | date(format="%Y%m%d") }}-{{ args }}.md',
+]
 completion = "none"
 
 [[apps]]
 name = "MemoList"
 path = "nvim"
-args = ["~/.memolist/{{ args }}"]
+args = ["{{ vars.memo_path }}/{{ args }}"]
 completion = "path"
 completion_search_mode = "migemo"
 
@@ -83,7 +89,7 @@ name = "Git"
 path = "git"
 completion = "command"
 completion_command = "git branch --format='%(refname:short)'"
-workdir = "~/src/github.com/yukimemi/shun"
+workdir = "{{ vars.src_path }}/github.com/yukimemi/shun"
 
 [[apps]]
 name = "Google"
@@ -102,7 +108,7 @@ name = "Phind"
 path = "https://www.phind.com/search?q={{ args | urlencode }}"
 
 [[scan_dirs]]
-path = "~/src/github.com/yukimemi/ps1/cmd"
+path = "{{ vars.src_path }}/github.com/yukimemi/ps1/cmd"
 recursive = false
 extensions = ["cmd"]
 
