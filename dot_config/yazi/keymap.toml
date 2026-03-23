@@ -225,7 +225,7 @@ run = "plugin augment-command -- open"
 desc = "Open files"
 [[mgr.prepend_keymap]]
 on = ["O"]
-run = "plugin augment-command -- open --interactive"
+run = "open --interactive"
 desc = "Open selected files interactively"
 [[mgr.prepend_keymap]]
 on = ["i"]
