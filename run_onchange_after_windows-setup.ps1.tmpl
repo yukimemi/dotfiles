@@ -3,7 +3,7 @@
     run_onchange_after_windows-setup.ps1.tmpl
   .DESCRIPTION
     Initial windows setup scripts for chezmoi.
-  .Last Change : 2026/03/21 10:15:00.
+  .Last Change : 2026/03/23 09:20:30.
 #>
 
 $ErrorActionPreference = "Stop"
@@ -393,7 +393,7 @@ function Install-Shun {
   }
 
   # Use one-liner from https://github.com/yukimemi/shun
-  Invoke-RestMethod https://raw.githubusercontent.com/yukimemi/shun/main/install.ps1 | Invoke-Expression
+  Invoke-RestMethod https://yukimemi.github.io/shun/install.ps1 | Invoke-Expression
 }
 
 function Install-ClaudeCode {
