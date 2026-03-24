@@ -62,7 +62,7 @@ export const filetypes: Plug[] = [
   },
   {
     url: "https://github.com/previm/previm",
-    enabled: false,
+    enabled: true,
     profiles: ["markdown"],
     dependencies: ["https://github.com/tyru/open-browser.vim"],
     before: async ({ denops }) => {
@@ -84,7 +84,7 @@ export const filetypes: Plug[] = [
   },
   {
     url: "https://github.com/OXY2DEV/markview.nvim",
-    enabled: true,
+    enabled: false,
     profiles: ["markdown"],
     lazy: { ft: ["markdown"] },
     dependencies: ["https://github.com/nvim-treesitter/nvim-treesitter"],

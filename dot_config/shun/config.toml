@@ -49,7 +49,7 @@ completion = "path"
 name = "MemoNew"
 path = "nvim"
 args = [
-  '{{ vars.memo_path }}/{{ now() | date(format="%Y%m%d") }}-{{ args }}.md',
+  '{{ vars.memo_path }}/{{ now() | date(format="%Y-%m-%d") }}-{{ args }}.md',
 ]
 completion = "none"
 
@@ -104,8 +104,8 @@ name = "Perplexity"
 path = "https://www.perplexity.ai/search?q={{ args | urlencode }}"
 
 [[apps]]
-name = "Phind"
-path = "https://www.phind.com/search?q={{ args | urlencode }}"
+name = "Amazon"
+path = "https://www.amazon.co.jp/s?k={{ args | urlencode }}&sort=salesrank&s=review-rank"
 
 [[scan_dirs]]
 path = "{{ vars.src_path }}/github.com/yukimemi/ps1/cmd"
