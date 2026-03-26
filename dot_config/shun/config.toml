@@ -9,6 +9,7 @@ icon_style = "svg"
 
 [vars]
 memo_path = "~/.memolist"
+junk_path = "~/.cache/junkfile"
 src_path = "~/src"
 
 [log]
@@ -59,6 +60,14 @@ path = "nvim"
 args = ["{{ vars.memo_path }}/{{ args }}"]
 completion = "path"
 completion_search_mode = "migemo"
+
+[[apps]]
+name = "JunkNew"
+path = "nvim-qt"
+args = [
+  '{{ vars.junk_path }}/{{ now() | date(format="%Y") }}/{{ now() | date(format="%m") }}/{{ now() | date(format="%Y-%m-%d") }}-{{ now() | date(format="%H%M%S") }}.{{ args }}',
+]
+completion = "none"
 
 [[apps]]
 name = "Scoop"
