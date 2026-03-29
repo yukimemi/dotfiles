@@ -6,6 +6,8 @@ max_items = 10
 max_completions = 8
 opacity = 0.9
 icon_style = "svg"
+preview_args = true
+preview_search = true
 
 [vars]
 memo_path = "~/.memolist"
