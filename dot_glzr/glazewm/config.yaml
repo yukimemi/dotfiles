@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2026/03/27 15:55:43.
+# Last Change : 2026/03/30 10:30:55.
 # =============================================================================
 
 general:
@@ -147,6 +147,9 @@ window_rules:
 
       - window_process: { equals: 'POWERPNT' }
         window_title: { regex: 'Microsoft PowerPoint' }
+
+      - window_process: { equals: 'EXCEL' }
+        window_class: { equals: 'NUIDialog' }
 
   - commands: ['move --workspace 1', 'focus --workspace 1']
     match:
