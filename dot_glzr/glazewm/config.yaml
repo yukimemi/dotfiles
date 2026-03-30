@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2026/03/30 10:30:55.
+# Last Change : 2026/03/30 16:28:54.
 # =============================================================================
 
 general:
@@ -150,6 +150,12 @@ window_rules:
 
       - window_process: { equals: 'EXCEL' }
         window_class: { equals: 'NUIDialog' }
+
+      - window_process: { equals: 'EXCEL' }
+        window_title: { equals: 'Microsoft Excel' }
+
+      - window_process: { equals: 'EXCEL' }
+        window_title: { equals: 'Microsoft Visual Basic' }
 
   - commands: ['move --workspace 1', 'focus --workspace 1']
     match:
