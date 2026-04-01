@@ -39,6 +39,11 @@ export const colors: Plug[] = [
     lazy: { enabled: true },
   },
   {
+    url: "https://github.com/b0o/Lavi",
+    profiles: ["colors"],
+    lazy: { enabled: true },
+  },
+  {
     url: "https://github.com/uhs-robert/oasis.nvim",
     profiles: ["colors"],
     lazy: { enabled: true },
@@ -652,6 +657,7 @@ export const colors: Plug[] = [
       "https://github.com/AlessandroYorba/Alduin",
       "https://github.com/Allianaab2m/penumbra.nvim",
       "https://github.com/Badacadabra/vim-archery",
+      "https://github.com/b0o/Lavi",
       "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim",
       "https://github.com/FrenzyExists/aquarium-vim",
       "https://github.com/KeitaNakamura/neodark.vim",
