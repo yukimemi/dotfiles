@@ -295,11 +295,13 @@ F10::
 {{- end }}
 }
 
-; Comet
+; Comet / Chrome
 F11::
 {
 {{- if .autohotkey.usecomet }}
   Activate("comet.exe")
+{{- else if .autohotkey.usechrome }}
+  Activate("chrome.exe")
 {{- else }}
   Activate("msedge.exe")
 {{- end }}
