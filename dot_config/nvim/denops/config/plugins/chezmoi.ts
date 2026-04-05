@@ -9,7 +9,7 @@ import type { Plug } from "@yukimemi/dvpm";
 export const chezmoi: Plug[] = [
   {
     url: "https://github.com/xvzc/chezmoi.nvim",
-    enabled: false,
+    enabled: true,
     profiles: ["core"],
     dependencies: [
       "https://github.com/nvim-lua/plenary.nvim",
@@ -20,6 +20,7 @@ export const chezmoi: Plug[] = [
   },
   {
     url: "https://github.com/alker0/chezmoi.vim",
+    enabled: false,
     profiles: ["core"],
     lazy: {
       event: "BufRead",

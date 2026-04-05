@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2025/12/31 20:40:37.
+// Last Change : 2026/04/05 23:13:27.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -318,9 +318,9 @@ export const filetypes: Plug[] = [
   // kdl
   {
     url: "https://github.com/imsnif/kdl.vim",
-    enabled: false,
     profiles: ["core"],
-    before: async ({ denops }) => {
+    lazy: { ft: "kdl" },
+    add: async ({ denops }) => {
       await autocmd.group(denops, "MyKdl", (helper) => {
         helper.remove("*");
         helper.define(
