@@ -54,6 +54,7 @@ import { ui } from "./plugins/ui.ts";
 import { util } from "./plugins/util.ts";
 import { window } from "./plugins/window.ts";
 import { yazi } from "./plugins/yazi.ts";
+import { zellij } from "./plugins/zellij.ts";
 
 export const plugins: Plug[] = [
   ...ai,
@@ -105,4 +106,5 @@ export const plugins: Plug[] = [
   ...util,
   ...window,
   ...yazi,
+  ...zellij,
 ];
