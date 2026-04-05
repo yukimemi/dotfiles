@@ -116,13 +116,20 @@ export function cacheLua() {
         local winnr = vim.api.nvim_get_current_win()
         vim.cmd("wincmd " .. direction)
         if winnr == vim.api.nvim_get_current_win() then
-          if vim.env.ZELLIJ then
+          if vim.env.ZELLIJ or vim.env.ZELLIJ_PANE_ID then
             local zellij_direction = ""
             if direction == "h" then zellij_direction = "left" end
             if direction == "j" then zellij_direction = "down" end
             if direction == "k" then zellij_direction = "up" end
             if direction == "l" then zellij_direction = "right" end
-            vim.fn.system("zellij action move-focus " .. zellij_direction)
+            local cmd = "zellij"
+            if vim.fn.executable(cmd) == 0 and vim.fn.executable(cmd .. ".exe") == 1 then
+              cmd = cmd .. ".exe"
+            end
+            local output = vim.fn.system(cmd .. " action move-focus " .. zellij_direction)
+            if vim.v.shell_error ~= 0 then
+              vim.notify("Zellij move failed: " .. output, vim.log.levels.ERROR)
+            end
           else
             local tmux_pane_direction = ""
             if direction == "h" then tmux_pane_direction = "-L" end
@@ -130,8 +137,11 @@ export function cacheLua() {
             if direction == "k" then tmux_pane_direction = "-U" end
             if direction == "l" then tmux_pane_direction = "-R" end
             if tmux_pane_direction ~= "" then
-              local cmd = vim.env.PSMUX and "psmux" or "tmux"
-              vim.fn.system(cmd .. " select-pane " .. tmux_pane_direction)
+              local cmd = vim.env.PSMUX or vim.env.TMUX
+              if cmd then
+                local tmux_cmd = vim.env.PSMUX and "psmux" or "tmux"
+                vim.fn.system(tmux_cmd .. " select-pane " .. tmux_pane_direction)
+              end
             end
           end
         end
