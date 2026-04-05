@@ -1,3 +1,7 @@
+{{- $prefix := "Ctrl b" -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{-   $prefix = "Ctrl t" -}}
+{{- end -}}
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds {
     normal {
@@ -6,7 +10,7 @@ keybinds {
     }
     locked {
         unbind "Ctrl g"
-        bind "Ctrl b" { SwitchToMode "Tmux"; }
+        bind "{{ $prefix }}" { SwitchToMode "Tmux"; }
         bind "Ctrl \\" { SwitchToMode "Normal"; }
         bind "Ctrl h" {
             MessagePlugin "https://github.com/yukimemi/vim-zellij-navigator/releases/download/v0.3.1-yukimemi-v3/vim-zellij-navigator.wasm" {
@@ -194,7 +198,7 @@ keybinds {
     }
     tmux {
         bind "[" { SwitchToMode "Scroll"; }
-        bind "Ctrl b" { Write 2; SwitchToMode "Locked"; }
+        bind "{{ $prefix }}" { Write 2; SwitchToMode "Locked"; }
         bind "\"" { NewPane "Down"; SwitchToMode "Locked"; }
         bind "v" { NewPane "Right"; SwitchToMode "Locked"; }
         bind "s" { NewPane "Down"; SwitchToMode "Locked"; }
@@ -247,7 +251,7 @@ keybinds {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
     shared_except "tmux" "locked" {
-        bind "Ctrl b" { SwitchToMode "Tmux"; }
+        bind "{{ $prefix }}" { SwitchToMode "Tmux"; }
     }
 }
 
