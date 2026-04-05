@@ -14,23 +14,23 @@ export const zellij: Plug[] = [
     after: async ({ denops }) => {
       await denops.call(`luaeval`, `require("smart-splits").setup()`);
       // Zellij Auto-lock integration via Denops API
-      await autocmd.group(denops, "MyZellij", (helper) => {
-        helper.remove("*");
-        helper.define(
-          ["VimEnter", "FocusGained"],
-          "*",
-          `silent! !zellij action switch-mode locked`,
-        );
-        helper.define(
-          ["VimLeave", "FocusLost"],
-          "*",
-          `silent! !zellij action switch-mode normal`,
-        );
-      });
+      // await autocmd.group(denops, "MyZellij", (helper) => {
+      //   helper.remove("*");
+      //   helper.define(
+      //     ["VimEnter", "FocusGained"],
+      //     "*",
+      //     `silent! !zellij action switch-mode locked`,
+      //   );
+      //   helper.define(
+      //     ["VimLeave", "FocusLost"],
+      //     "*",
+      //     `silent! !zellij action switch-mode normal`,
+      //   );
+      // });
       // Lock immediately if already inside Zellij
-      if (await fn.exists(denops, "$ZELLIJ")) {
-        await denops.cmd(`silent! !zellij action switch-mode locked`);
-      }
+      // if (await fn.exists(denops, "$ZELLIJ")) {
+      //   await denops.cmd(`silent! !zellij action switch-mode locked`);
+      // }
       // Mappings for smart-splits (integrated with Zellij via its own API)
       for (const dir of ["left", "down", "up", "right"]) {
         const key = dir === "left"

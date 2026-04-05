@@ -8,7 +8,9 @@
       "Bash(npm run:*)",
       "Bash(for tag:*)",
       "Bash(grep:*)",
-      "Bash(npm test:*)"
+      "Bash(npm test:*)",
+      "WebFetch(domain:zenn.dev)",
+      "WebFetch(domain:zellij.dev)"
     ]
   }
 }

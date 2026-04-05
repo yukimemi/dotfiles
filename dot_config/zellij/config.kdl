@@ -5,7 +5,9 @@ keybinds {
         // bind "Alt c" { Copy; }
     }
     locked {
-        bind "Ctrl g" { SwitchToMode "Normal"; }
+        unbind "Ctrl g"
+        bind "Ctrl b" { SwitchToMode "Tmux"; }
+        bind "Ctrl \\" { SwitchToMode "Normal"; }
     }
     resize {
         bind "Ctrl n" { SwitchToMode "Normal"; }
@@ -160,33 +162,37 @@ keybinds {
     }
     tmux {
         bind "[" { SwitchToMode "Scroll"; }
-        bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
-        bind "\"" { NewPane "Down"; SwitchToMode "Normal"; }
-        bind "%" { NewPane "Right"; SwitchToMode "Normal"; }
-        bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
-        bind "c" { NewTab; SwitchToMode "Normal"; }
+        bind "Ctrl b" { Write 2; SwitchToMode "Locked"; }
+        bind "\"" { NewPane "Down"; SwitchToMode "Locked"; }
+        bind "v" { NewPane "Right"; SwitchToMode "Locked"; }
+        bind "s" { NewPane "Down"; SwitchToMode "Locked"; }
+        bind "z" { ToggleFocusFullscreen; SwitchToMode "Locked"; }
+        bind "c" { NewTab; SwitchToMode "Locked"; }
         bind "," { SwitchToMode "RenameTab"; }
-        bind "p" { GoToPreviousTab; SwitchToMode "Normal"; }
-        bind "n" { GoToNextTab; SwitchToMode "Normal"; }
-        bind "Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
-        bind "Right" { MoveFocus "Right"; SwitchToMode "Normal"; }
-        bind "Down" { MoveFocus "Down"; SwitchToMode "Normal"; }
-        bind "Up" { MoveFocus "Up"; SwitchToMode "Normal"; }
-        bind "h" { MoveFocus "Left"; SwitchToMode "Normal"; }
-        bind "l" { MoveFocus "Right"; SwitchToMode "Normal"; }
-        bind "j" { MoveFocus "Down"; SwitchToMode "Normal"; }
-        bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; }
-        bind "o" { FocusNextPane; }
+        bind "p" { GoToPreviousTab; SwitchToMode "Locked"; }
+        bind "n" { GoToNextTab; SwitchToMode "Locked"; }
+        bind "Left" { MoveFocus "Left"; SwitchToMode "Locked"; }
+        bind "Right" { MoveFocus "Right"; SwitchToMode "Locked"; }
+        bind "Down" { MoveFocus "Down"; SwitchToMode "Locked"; }
+        bind "Up" { MoveFocus "Up"; SwitchToMode "Locked"; }
+        bind "h" { MoveFocus "Left"; SwitchToMode "Locked"; }
+        bind "l" { MoveFocus "Right"; SwitchToMode "Locked"; }
+        bind "j" { MoveFocus "Down"; SwitchToMode "Locked"; }
+        bind "k" { MoveFocus "Up"; SwitchToMode "Locked"; }
+        bind "o" { FocusNextPane; SwitchToMode "Locked"; }
         bind "d" { Detach; }
-        bind "Space" { NextSwapLayout; }
-        bind "x" { CloseFocus; SwitchToMode "Normal"; }
+        bind "Space" { NextSwapLayout; SwitchToMode "Locked"; }
+        bind "x" { CloseFocus; SwitchToMode "Locked"; }
+        bind "P" { SwitchToMode "Pane"; }
+        bind "r" { SwitchToMode "Resize"; }
+        // bind "s" { SwitchToMode "Session"; }
+        bind "t" { SwitchToMode "Tab"; }
+        bind "m" { SwitchToMode "Move"; }
     }
     shared_except "locked" {
-        bind "Ctrl h" { MoveFocus "Left"; }
-        bind "Ctrl j" { MoveFocus "Down"; }
-        bind "Ctrl k" { MoveFocus "Up"; }
-        bind "Ctrl l" { MoveFocus "Right"; }
-        bind "Ctrl g" { SwitchToMode "Locked"; }
+        unbind "Ctrl g" "Ctrl p" "Ctrl n" "Ctrl s" "Ctrl o" "Ctrl t" "Ctrl m"
+        unbind "Ctrl h" "Ctrl j" "Ctrl k" "Ctrl l"
+        bind "Ctrl \\" { SwitchToMode "Locked"; }
         bind "Ctrl q" { Quit; }
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Alt n" { NewPane; }
@@ -205,24 +211,6 @@ keybinds {
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
-    }
-    shared_except "pane" "locked" {
-        bind "Ctrl p" { SwitchToMode "Pane"; }
-    }
-    shared_except "resize" "locked" {
-        bind "Ctrl n" { SwitchToMode "Resize"; }
-    }
-    shared_except "scroll" "locked" {
-        bind "Ctrl s" { SwitchToMode "Scroll"; }
-    }
-    shared_except "session" "locked" {
-        bind "Ctrl o" { SwitchToMode "Session"; }
-    }
-    shared_except "tab" "locked" {
-        bind "Ctrl t" { SwitchToMode "Tab"; }
-    }
-    shared_except "move" "locked" {
-        bind "Ctrl m" { SwitchToMode "Move"; }
     }
     shared_except "tmux" "locked" {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
@@ -352,7 +340,7 @@ attach_to_session true
 // Choose the mode that zellij uses when starting up.
 // Default: normal
 //
-// default_mode "locked"
+default_mode "locked"
 
 // Toggle enabling the mouse mode.
 // On certain configurations, or terminals this could
