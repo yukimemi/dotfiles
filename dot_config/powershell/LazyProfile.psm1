@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/04/05 18:43:50.
+# Last Change : 2026/04/05 20:51:23.
 # =============================================================================
 
 # --- Functions ---
@@ -612,24 +612,24 @@ if (Get-Module -ListAvailable PSReadLine) {
   Set-PSReadLineKeyHandler -Chord "Ctrl+w" -Function BackwardDeleteWord -ViMode Insert
 
   # High-performance Psmux navigation (Direct background execution)
-  $invokePsmux = {
-    param([string]$direction)
-    $si = [System.Diagnostics.ProcessStartInfo]@{
-      FileName = "psmux.exe"
-      Arguments = "select-pane $direction"
-      CreateNoWindow = $true
-      UseShellExecute = $false
-    }
-    [System.Diagnostics.Process]::Start($si) | Out-Null
-  }
+  # $invokePsmux = {
+  #   param([string]$direction)
+  #   $si = [System.Diagnostics.ProcessStartInfo]@{
+  #     FileName = "psmux.exe"
+  #     Arguments = "select-pane $direction"
+  #     CreateNoWindow = $true
+  #     UseShellExecute = $false
+  #   }
+  #   [System.Diagnostics.Process]::Start($si) | Out-Null
+  # }
 
-  $psmuxModes = @('Insert', 'Command')
-  foreach ($mode in $psmuxModes) {
-    Set-PSReadLineKeyHandler -Chord "Ctrl+h", "Ctrl+Backspace" -BriefDescription 'Psmux Left'  -ScriptBlock { & $invokePsmux "-L" } -ViMode $mode
-    Set-PSReadLineKeyHandler -Chord "Ctrl+j", "Ctrl+Enter" -BriefDescription 'Psmux Down'  -ScriptBlock { & $invokePsmux "-D" } -ViMode $mode
-    Set-PSReadLineKeyHandler -Chord "Ctrl+k" -BriefDescription 'Psmux Up'    -ScriptBlock { & $invokePsmux "-U" } -ViMode $mode
-    Set-PSReadLineKeyHandler -Chord "Ctrl+l" -BriefDescription 'Psmux Right' -ScriptBlock { & $invokePsmux "-R" } -ViMode $mode
-  }
+  # $psmuxModes = @('Insert', 'Command')
+  # foreach ($mode in $psmuxModes) {
+  #   Set-PSReadLineKeyHandler -Chord "Ctrl+h", "Ctrl+Backspace" -BriefDescription 'Psmux Left'  -ScriptBlock { & $invokePsmux "-L" } -ViMode $mode
+  #   Set-PSReadLineKeyHandler -Chord "Ctrl+j", "Ctrl+Enter" -BriefDescription 'Psmux Down'  -ScriptBlock { & $invokePsmux "-D" } -ViMode $mode
+  #   Set-PSReadLineKeyHandler -Chord "Ctrl+k" -BriefDescription 'Psmux Up'    -ScriptBlock { & $invokePsmux "-U" } -ViMode $mode
+  #   Set-PSReadLineKeyHandler -Chord "Ctrl+l" -BriefDescription 'Psmux Right' -ScriptBlock { & $invokePsmux "-R" } -ViMode $mode
+  # }
 }
 
 if (!(Get-Command gut -ErrorAction SilentlyContinue)) {
