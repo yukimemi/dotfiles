@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/03/13 03:00:00.
+# Last Change : 2026/04/05 18:43:50.
 # =============================================================================
 
 # --- Functions ---
@@ -273,7 +273,7 @@ function Invoke-PSFmt {
         if ([string]::IsNullOrWhiteSpace($content)) { continue }
 
         $formatted = Invoke-Formatter -ScriptDefinition $content -Settings $fmtSettings
-        
+
         # Ensure exactly one newline at the end of the file (EditorConfig style)
         $formatted = $formatted.TrimEnd() + "`r`n"
 

@@ -8,6 +8,38 @@ keybinds {
         unbind "Ctrl g"
         bind "Ctrl b" { SwitchToMode "Tmux"; }
         bind "Ctrl \\" { SwitchToMode "Normal"; }
+        bind "Ctrl h" {
+            MessagePlugin "https://github.com/yukimemi/vim-zellij-navigator/releases/download/v0.3.1-yukimemi-v3/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "left";
+                move_mod "ctrl";
+                vims "nvim.exe;nvim;vim.exe;vim";
+            };
+        }
+        bind "Ctrl j" {
+            MessagePlugin "https://github.com/yukimemi/vim-zellij-navigator/releases/download/v0.3.1-yukimemi-v3/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "down";
+                move_mod "ctrl";
+                vims "nvim.exe;nvim;vim.exe;vim";
+            };
+        }
+        bind "Ctrl k" {
+            MessagePlugin "https://github.com/yukimemi/vim-zellij-navigator/releases/download/v0.3.1-yukimemi-v3/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "up";
+                move_mod "ctrl";
+                vims "nvim.exe;nvim;vim.exe;vim";
+            };
+        }
+        bind "Ctrl l" {
+            MessagePlugin "https://github.com/yukimemi/vim-zellij-navigator/releases/download/v0.3.1-yukimemi-v3/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "right";
+                move_mod "ctrl";
+                vims "nvim.exe;nvim;vim.exe;vim";
+            };
+        }
     }
     resize {
         bind "Ctrl n" { SwitchToMode "Normal"; }
@@ -192,6 +224,8 @@ keybinds {
     shared_except "locked" {
         unbind "Ctrl g" "Ctrl p" "Ctrl n" "Ctrl s" "Ctrl o" "Ctrl t" "Ctrl m"
         unbind "Ctrl h" "Ctrl j" "Ctrl k" "Ctrl l"
+        // Note: ctrl-h/j/k/l are unbound here (for non-locked modes),
+        // and explicitly bound in locked mode via vim-zellij-navigator wasm plugin.
         bind "Ctrl \\" { SwitchToMode "Locked"; }
         bind "Ctrl q" { Quit; }
         bind "Alt f" { ToggleFloatingPanes; }

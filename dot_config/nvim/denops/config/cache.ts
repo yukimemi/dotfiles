@@ -116,17 +116,23 @@ export function cacheLua() {
         local winnr = vim.api.nvim_get_current_win()
         vim.cmd("wincmd " .. direction)
         if winnr == vim.api.nvim_get_current_win() then
-          local tmux_pane_direction = ""
-          if direction == "h" then tmux_pane_direction = "-L" end
-          if direction == "j" then tmux_pane_direction = "-D" end
-          if direction == "k" then tmux_pane_direction = "-U" end
-          if direction == "l" then tmux_pane_direction = "-R" end
-          if tmux_pane_direction ~= "" then
-            local cmd = "tmux"
-            if vim.env.PSMUX or vim.env.TMUX then
-              cmd = "psmux"
+          if vim.env.ZELLIJ then
+            local zellij_direction = ""
+            if direction == "h" then zellij_direction = "left" end
+            if direction == "j" then zellij_direction = "down" end
+            if direction == "k" then zellij_direction = "up" end
+            if direction == "l" then zellij_direction = "right" end
+            vim.fn.system("zellij action move-focus " .. zellij_direction)
+          else
+            local tmux_pane_direction = ""
+            if direction == "h" then tmux_pane_direction = "-L" end
+            if direction == "j" then tmux_pane_direction = "-D" end
+            if direction == "k" then tmux_pane_direction = "-U" end
+            if direction == "l" then tmux_pane_direction = "-R" end
+            if tmux_pane_direction ~= "" then
+              local cmd = vim.env.PSMUX and "psmux" or "tmux"
+              vim.fn.system(cmd .. " select-pane " .. tmux_pane_direction)
             end
-            vim.fn.system(cmd .. " select-pane " .. tmux_pane_direction)
           end
         end
       end
