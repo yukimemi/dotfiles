@@ -1,3 +1,4 @@
+auto_start = true
 sort_order = "recent_first"
 search_mode = "fuzzy_migemo"
 hide_on_blur = true

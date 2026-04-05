@@ -41,6 +41,7 @@
 ]
 ".glzr/glazewm/config.yaml" = "~/.glzr/glazewm/config.yaml"
 ".config/jj" = "~/AppData/Roaming/jj"
+".config/zellij/config.kdl" = "~/AppData/Roaming/Zellij/config/config.kdl"
 ".config/komorebi/komorebi.json" = "~/komorebi.json"
 ".config/komorebi/komorebi.bar.json" = "~/komorebi.bar.json"
 
