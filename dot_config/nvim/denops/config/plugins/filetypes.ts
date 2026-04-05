@@ -15,7 +15,11 @@ export const filetypes: Plug[] = [
   // all filetypes
   {
     url: "https://github.com/sheerun/vim-polyglot",
+    enabled: true,
     profiles: ["core"],
+    before: async ({ denops }) => {
+      await vars.g.set(denops, "polyglot_disabled", ["template", "gotexttmpl"]);
+    },
   },
   // plantuml
   {
