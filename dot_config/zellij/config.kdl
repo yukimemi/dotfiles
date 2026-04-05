@@ -271,6 +271,7 @@ load_plugins {
 // Default: $SHELL
 //
 default_shell "pwsh"
+attach_to_session true
 
 // Choose the path to override cwd that zellij will use for opening new panes
 //
