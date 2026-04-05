@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : flash.lua
 -- Author      : yukimemi
--- Last Change : 2026/01/11 23:51:48.
+-- Last Change : 2026/04/05 22:38:11.
 -- =============================================================================
 
 require("flash").setup({
@@ -19,7 +19,7 @@ require("flash").setup({
       enabled = false,
     },
     char = {
-      enabled = true,
+      enabled = false,
       multi_line = false,
       char_actions = function(motion)
         return {

@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/03/15 12:12:09.
+; Last Change : 2026/04/05 22:37:23.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -313,11 +313,11 @@ F12::
 {{- if .autohotkey.usewez }}
   Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
 {{- else if .autohotkey.usenu }}
-  Toggle("WindowsTerminal.exe", "nu", "yukimemi-terminal")
+  Toggle("WindowsTerminal.exe", "nu")
 {{- else if .autohotkey.usewtp }}
-  Toggle("WindowsTerminal.exe", "wtp", "yukimemi-terminal")
+  Toggle("WindowsTerminal.exe", "wtp")
 {{- else }}
-  Toggle("WindowsTerminal.exe", "wt", "yukimemi-terminal")
+  Toggle("WindowsTerminal.exe", "wt")
 {{- end }}
 }
 
