@@ -6,11 +6,12 @@
 
 import type { Denops } from "@denops/std";
 import * as fn from "@denops/std/function";
+import * as option from "@denops/std/option";
 import { execute } from "@denops/std/helper";
 
 export async function setNeovimQt(denops: Denops) {
   if (await fn.exists(denops, ":GuiFont")) {
-    // await execute(denops, "GuiFont! HackGen Console NF:h10");
+    await option.guifont.set(denops, "PlemolJP Console NF:h10");
     await execute(denops, "GuiFont! PlemolJP Console NF:h10");
   }
   if (await fn.exists(denops, ":GuiTabline")) {

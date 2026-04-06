@@ -63,7 +63,7 @@ RunPs(script) {
 }
 
 ; Get GlazeWM window info (ID|HWND)
-GetGlazeWindow(exeName, titleRegex := "") {
+GetGlazeWindow(exeName, titleRegex := "", excludeTitle := "") {
   global GLAZEWM_PATH
   ; Normalize procName (e.g., C:\...\EXCEL.EXE -> EXCEL)
   SplitPath(exeName, &fileName)
@@ -105,6 +105,10 @@ GetGlazeWindow(exeName, titleRegex := "") {
         if (titleRegex != "" && !RegExMatch(win.title, titleRegex))
           continue
 
+        ; Skip excluded title
+        if (excludeTitle != "" && RegExMatch(win.title, excludeTitle))
+          continue
+
         log_info("GetGlazeWindow: Found " . win.processName . " [" . win.title . "] (ID: " . win.id . ")")
         return win.id . "|" . win.handle
       }
@@ -138,7 +142,7 @@ FocusGlazeWindow(glazeInfo) {
 }
 
 ; Activate window robustly (Local -> GlazeWM -> Run)
-ActivateRobust(exePath, runCmd := "", titleParts := "") {
+ActivateRobust(exePath, runCmd := "", titleParts := "", excludeTitle := "") {
   DetectHiddenWindows(false)
   SplitPath(exePath, &exeName)
 
@@ -148,6 +152,19 @@ ActivateRobust(exePath, runCmd := "", titleParts := "") {
     title := WinGetTitle("ahk_id " . id)
     if (title == "")
       continue
+
+    ; Skip excluded title
+    if (excludeTitle != "") {
+      excluded := false
+      for part in StrSplit(excludeTitle, ",") {
+        if InStr(title, Trim(part)) {
+          excluded := true
+          break
+        }
+      }
+      if (excluded)
+        continue
+    }
 
     match := (titleParts == "")
     if (!match) {
@@ -168,7 +185,8 @@ ActivateRobust(exePath, runCmd := "", titleParts := "") {
 
   ; 2. Try GlazeWM activation (Other workspaces)
   titleRegex := (titleParts != "") ? StrReplace(titleParts, ",", "|") : ""
-  if (FocusGlazeWindow(GetGlazeWindow(exeName, titleRegex))) {
+  excludeRegex := (excludeTitle != "") ? StrReplace(excludeTitle, ",", "|") : ""
+  if (FocusGlazeWindow(GetGlazeWindow(exeName, titleRegex, excludeRegex))) {
     log_info("ActivateRobust: Activated " . exeName . " via GlazeWM")
     return true
   }
@@ -201,31 +219,45 @@ ActivateWindowCommon(winTitle) {
 ; =============================================================================
 
 ; Toggle window state (Active -> Minimize, Else -> Activate)
-Toggle(app, cmd := "", titleKeywords := "") {
+Toggle(app, cmd := "", titleKeywords := "", excludeTitle := "") {
   SplitPath(app, &file)
   exe := (InStr(app, "\") || InStr(app, "/")) ? file : app
 
   if WinActive("ahk_exe " . exe) {
     currTitle := WinGetTitle("A")
-    match := (titleKeywords == "")
-    if (!match) {
-      for part in StrSplit(titleKeywords, ",") {
+
+    ; If excluded title is active, skip minimize and find another window
+    excluded := false
+    if (excludeTitle != "") {
+      for part in StrSplit(excludeTitle, ",") {
         if InStr(currTitle, Trim(part)) {
-          match := true
+          excluded := true
           break
         }
       }
     }
-    if (match) {
-      WinMinimize("A")
-      return
+
+    if (!excluded) {
+      match := (titleKeywords == "")
+      if (!match) {
+        for part in StrSplit(titleKeywords, ",") {
+          if InStr(currTitle, Trim(part)) {
+            match := true
+            break
+          }
+        }
+      }
+      if (match) {
+        WinMinimize("A")
+        return
+      }
     }
   }
-  Activate(app, cmd, titleKeywords)
+  Activate(app, cmd, titleKeywords, excludeTitle)
 }
 
 ; Activate window robustly (Local -> GlazeWM -> Run)
-Activate(app, cmd := "", titleKeywords := "") {
+Activate(app, cmd := "", titleKeywords := "", excludeTitle := "") {
   SplitPath(app, &file)
   exe := (InStr(app, "\") || InStr(app, "/")) ? file : app
   runCmd := (cmd == "" ? app : cmd)
@@ -237,7 +269,7 @@ Activate(app, cmd := "", titleKeywords := "") {
       return
   }
 
-  ActivateRobust(exe, runCmd, titleKeywords)
+  ActivateRobust(exe, runCmd, titleKeywords, excludeTitle)
 }
 
 ; =============================================================================
@@ -307,17 +339,17 @@ F11::
 {{- end }}
 }
 
-; Windows Terminal (Toggle)
+; Windows Terminal (Toggle) - Exclude yazi windows
 F12::
 {
 {{- if .autohotkey.usewez }}
   Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
 {{- else if .autohotkey.usenu }}
-  Toggle("WindowsTerminal.exe", "nu")
+  Toggle("WindowsTerminal.exe", "nu", "", "Yazi,yazi")
 {{- else if .autohotkey.usewtp }}
-  Toggle("WindowsTerminal.exe", "wtp")
+  Toggle("WindowsTerminal.exe", "wtp", "", "Yazi,yazi")
 {{- else }}
-  Toggle("WindowsTerminal.exe", "wt")
+  Toggle("WindowsTerminal.exe", "wt", "", "Yazi,yazi")
 {{- end }}
 }
 

@@ -5,7 +5,8 @@ vim.api.nvim_create_autocmd("UIEnter", {
   callback = function()
     vim.opt.mouse = "a"
     if vim.fn.exists(":GuiFont") > 0 then
-      vim.cmd([[GuiFont! HackGen Console NF:h10]])
+      vim.opt.guifont = "PlemolJP Console NF:h10"
+      vim.cmd([[GuiFont! PlemolJP Console NF:h10]])
     end
     if vim.fn.exists(":GuiTabline") > 0 then
       vim.cmd([[GuiTabline 0]])

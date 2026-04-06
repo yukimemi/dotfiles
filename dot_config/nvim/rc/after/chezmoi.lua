@@ -5,7 +5,7 @@
 -- =============================================================================
 
 local group = vim.api.nvim_create_augroup("chezmoi_auto_watch", { clear = true })
-local pattern = vim.fn.expand("~") .. "/.local/share/chezmoi/*"
+local pattern = vim.fs.normalize(vim.fn.expand("~") .. "/.local/share/chezmoi/*")
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = group,
   pattern = { pattern },
