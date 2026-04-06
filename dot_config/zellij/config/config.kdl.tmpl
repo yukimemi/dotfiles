@@ -2,6 +2,7 @@
 {{- if eq .chezmoi.os "linux" -}}
 {{-   $prefix = "Ctrl t" -}}
 {{- end -}}
+{{- $wasmPath := "file:vim-zellij-navigator.wasm" -}}
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds {
     normal {
@@ -13,7 +14,7 @@ keybinds {
         bind "{{ $prefix }}" { SwitchToMode "Tmux"; }
         bind "Ctrl \\" { SwitchToMode "Normal"; }
         bind "Ctrl h" {
-            MessagePlugin "https://github.com/yukimemi/vim-zellij-navigator/releases/download/v0.3.1-yukimemi-v3/vim-zellij-navigator.wasm" {
+            MessagePlugin "{{ $wasmPath }}" {
                 name "move_focus";
                 payload "left";
                 move_mod "ctrl";
@@ -21,7 +22,7 @@ keybinds {
             };
         }
         bind "Ctrl j" {
-            MessagePlugin "https://github.com/yukimemi/vim-zellij-navigator/releases/download/v0.3.1-yukimemi-v3/vim-zellij-navigator.wasm" {
+            MessagePlugin "{{ $wasmPath }}" {
                 name "move_focus";
                 payload "down";
                 move_mod "ctrl";
@@ -29,7 +30,7 @@ keybinds {
             };
         }
         bind "Ctrl k" {
-            MessagePlugin "https://github.com/yukimemi/vim-zellij-navigator/releases/download/v0.3.1-yukimemi-v3/vim-zellij-navigator.wasm" {
+            MessagePlugin "{{ $wasmPath }}" {
                 name "move_focus";
                 payload "up";
                 move_mod "ctrl";
@@ -37,7 +38,7 @@ keybinds {
             };
         }
         bind "Ctrl l" {
-            MessagePlugin "https://github.com/yukimemi/vim-zellij-navigator/releases/download/v0.3.1-yukimemi-v3/vim-zellij-navigator.wasm" {
+            MessagePlugin "{{ $wasmPath }}" {
                 name "move_focus";
                 payload "right";
                 move_mod "ctrl";

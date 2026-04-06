@@ -74,6 +74,7 @@ $junctions = @{
     "AppData\Roaming\nushell"     = "$configDir\nushell"
     "AppData\Roaming\jj"          = "$configDir\jj"
     "AppData\Roaming\yazi\config" = "$configDir\yazi"
+    "AppData\Roaming\zellij"      = "$configDir\zellij"
     "AppData\Local\nvim"          = "$configDir\nvim"
     "vimfiles"                    = "$configDir\nvim"
     "scoop\persist\espanso\.espanso" = "$configDir\espanso"
@@ -91,7 +92,6 @@ $files = @{
     "_vimrc"  = (Join-Path $userHome ".vimrc")
     "_gvimrc" = (Join-Path $userHome ".gvimrc")
     "AppData\Roaming\Hyper\.hyper.js" = (Join-Path $userHome ".hyper.js")
-    "AppData\Roaming\Zellij\config\config.kdl" = (Join-Path $userHome ".config\zellij\config.kdl")
 }
 
 foreach ($rel in $files.Keys) {
