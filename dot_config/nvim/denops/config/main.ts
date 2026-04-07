@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : main.ts
 // Author      : yukimemi
-// Last Change : 2026/02/23 13:24:27.
+// Last Change : 2026/04/07 12:30:00.
 // =============================================================================
 
 import { dir } from "@cross/dir";
@@ -128,6 +128,7 @@ async function dvpmCreate(denops: Denops): Promise<Dvpm> {
     cache,
     notify: true,
     clean: true,
+    profile: true,
     profiles: Object.entries(features)
       .filter(([_, enabled]) => enabled)
       .map(([name]) => name),
