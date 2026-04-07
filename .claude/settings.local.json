@@ -11,6 +11,9 @@
       "Bash(npm test:*)",
       "WebFetch(domain:zenn.dev)",
       "WebFetch(domain:zellij.dev)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\yukimemi\\src\\github.com\\yukimemi\\shun"
     ]
   }
 }

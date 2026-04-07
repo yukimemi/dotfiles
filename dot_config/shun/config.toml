@@ -119,6 +119,54 @@ path = "https://www.perplexity.ai/search?q={{ args | urlencode }}"
 name = "Amazon"
 path = "https://www.amazon.co.jp/s?k={{ args | urlencode }}&sort=salesrank&s=review-rank"
 
+[[apps]]
+name = "YouTube"
+path = "https://www.youtube.com/results?search_query={{ args | urlencode }}"
+
+[[apps]]
+name = "Zenn"
+path = "https://zenn.dev/search?q={{ args | urlencode }}"
+
+[[apps]]
+name = "Qiita"
+path = "https://qiita.com/search?q={{ args | urlencode }}"
+
+[[apps]]
+name = "Stack Overflow"
+path = "https://stackoverflow.com/search?q={{ args | urlencode }}"
+
+[[apps]]
+name = "crates.io"
+path = "https://crates.io/search?q={{ args | urlencode }}"
+
+[[apps]]
+name = "npm"
+path = "https://www.npmjs.com/search?q={{ args | urlencode }}"
+
+[[apps]]
+name = "JSR"
+path = "https://jsr.io/?search={{ args | urlencode }}"
+
+[[apps]]
+name = "DeepL ja->en"
+path = "https://www.deepl.com/translator#ja/en/{{ args | urlencode }}"
+
+[[apps]]
+name = "DeepL en->ja"
+path = "https://www.deepl.com/translator#en/ja/{{ args | urlencode }}"
+
+[[apps]]
+name = "Wikipedia"
+path = "https://ja.wikipedia.org/wiki/Special:Search?search={{ args | urlencode }}"
+
+[[apps]]
+name = "Docker Hub"
+path = "https://hub.docker.com/search?q={{ args | urlencode }}"
+
+[[apps]]
+name = "X"
+path = "https://x.com/search?q={{ args | urlencode }}"
+
 [[scan_dirs]]
 path = "{{ vars.src_path }}/github.com/yukimemi/ps1/cmd"
 recursive = false
