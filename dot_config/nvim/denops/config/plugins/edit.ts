@@ -28,19 +28,13 @@ export const edit: Plug[] = [
   {
     url: "https://github.com/monaqa/dial.nvim",
     profiles: ["core"],
-    after: async ({ denops }) => {
-      await mapping.map(denops, "<c-a>", `<Plug>(dial-increment)`, {
-        mode: "n",
-      });
-      await mapping.map(denops, "<c-x>", `<Plug>(dial-decrement)`, {
-        mode: "n",
-      });
-      await mapping.map(denops, "g<c-a>", `g<Plug>(dial-increment)`, {
-        mode: "n",
-      });
-      await mapping.map(denops, "g<c-x>", `g<Plug>(dial-decrement)`, {
-        mode: "n",
-      });
+    lazy: {
+      keys: [
+        { lhs: "<c-a>", rhs: "<Plug>(dial-increment)", mode: "n" },
+        { lhs: "<c-x>", rhs: "<Plug>(dial-decrement)", mode: "n" },
+        { lhs: "g<c-a>", rhs: "g<Plug>(dial-increment)", mode: "n" },
+        { lhs: "g<c-x>", rhs: "g<Plug>(dial-decrement)", mode: "n" },
+      ],
     },
     afterFile: "~/.config/nvim/rc/after/dial.lua",
   },
@@ -76,11 +70,11 @@ export const edit: Plug[] = [
     url: "https://github.com/uga-rosa/contextment.vim",
     profiles: ["core"],
     dependencies: ["https://github.com/Shougo/context_filetype.vim"],
-    before: async ({ denops }) => {
-      await mapping.map(denops, "gcc", "<Plug>(contextment)", { mode: "x" });
-      await mapping.map(denops, "gcc", "<Plug>(contextment-line)", {
-        mode: "n",
-      });
+    lazy: {
+      keys: [
+        { lhs: "gcc", rhs: "<Plug>(contextment-line)", mode: "n" },
+        { lhs: "gcc", rhs: "<Plug>(contextment)", mode: "x" },
+      ],
     },
   },
   {
@@ -248,8 +242,8 @@ export const edit: Plug[] = [
     url: "https://github.com/junegunn/vim-easy-align",
     enabled: true,
     profiles: ["core"],
+    lazy: { keys: [{ lhs: "<enter>", rhs: "<Plug>(EasyAlign)", mode: "v" }] },
     before: async ({ denops }) => {
-      await mapping.map(denops, "<enter>", "<Plug>(EasyAlign)", { mode: "v" });
       await vars.g.set(denops, "easy_align_delimiters", {
         ">": {
           "pattern": ">>\|=>\|>.\+",

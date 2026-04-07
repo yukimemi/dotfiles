@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : util.ts
 // Author      : yukimemi
-// Last Change : 2026/02/28 21:22:12.
+// Last Change : 2026/04/07 19:03:24.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -240,11 +240,13 @@ export const util: Plug[] = [
   {
     url: "https://github.com/kuuote/jsonyaml.vim",
     profiles: ["core"],
+    lazy: { cmd: ["JY", "YJ"] },
     afterFile: "~/.config/nvim/rc/after/jsonyaml.vim",
   },
   {
     url: "https://github.com/yukimemi/jsontoml.vim",
     profiles: ["core"],
+    lazy: { cmd: ["JT", "TJ"] },
     afterFile: "~/.config/nvim/rc/after/jsontoml.vim",
   },
   {
@@ -313,6 +315,7 @@ export const util: Plug[] = [
   {
     url: "https://github.com/thinca/vim-prettyprint",
     profiles: ["core"],
+    lazy: { cmd: ["PP"] },
   },
   {
     url: "https://github.com/skanehira/denops-silicon.vim",
@@ -321,6 +324,7 @@ export const util: Plug[] = [
   },
   {
     url: "https://github.com/michaelrommel/nvim-silicon",
+    enabled: false,
     profiles: ["core"],
     afterFile: "~/.config/nvim/rc/after/nvim-silicon.lua",
   },
@@ -378,6 +382,7 @@ export const util: Plug[] = [
   {
     url: "https://github.com/lambdalisue/vim-suda",
     profiles: ["core"],
+    lazy: { cmd: ["SudaRead", "SudaWrite"] },
     before: async ({ denops }) => {
       await vars.g.set(denops, "suda#noninteractive", 1);
     },
@@ -469,7 +474,8 @@ EOB
       cmd: "Calendar",
       keys: {
         lhs: "mc",
-        rhs: "<cmd>Calendar -view=year -split=vertical -position=right -width=27<cr>",
+        rhs:
+          "<cmd>Calendar -view=year -split=vertical -position=right -width=27<cr>",
         mode: "n",
         desc: "Calendar",
       },

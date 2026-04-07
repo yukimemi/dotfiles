@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : filetypes.ts
 // Author      : yukimemi
-// Last Change : 2026/04/05 23:13:27.
+// Last Change : 2026/04/07 18:10:35.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -15,7 +15,7 @@ export const filetypes: Plug[] = [
   // all filetypes
   {
     url: "https://github.com/sheerun/vim-polyglot",
-    enabled: true,
+    enabled: false,
     profiles: ["core"],
     before: async ({ denops }) => {
       await vars.g.set(denops, "polyglot_disabled", ["template", "gotexttmpl"]);
@@ -324,7 +324,7 @@ export const filetypes: Plug[] = [
     url: "https://github.com/imsnif/kdl.vim",
     profiles: ["core"],
     lazy: { ft: "kdl" },
-    add: async ({ denops }) => {
+    init: async ({ denops }) => {
       await autocmd.group(denops, "MyKdl", (helper) => {
         helper.remove("*");
         helper.define(

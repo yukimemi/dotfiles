@@ -10,7 +10,11 @@
       "Bash(grep:*)",
       "Bash(npm test:*)",
       "WebFetch(domain:zenn.dev)",
-      "WebFetch(domain:zellij.dev)"
+      "WebFetch(domain:zellij.dev)",
+      "WebSearch",
+      "WebFetch(domain:deno.land)",
+      "WebFetch(domain:jsr.io)",
+      "Bash(cygpath:*)"
     ],
     "additionalDirectories": [
       "C:\\Users\\yukimemi\\src\\github.com\\yukimemi\\shun"

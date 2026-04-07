@@ -1,7 +1,7 @@
 // =============================================================================
 // File        : ui.ts
 // Author      : yukimemi
-// Last Change : 2026/03/01 16:29:17.
+// Last Change : 2026/04/07 18:10:00.
 // =============================================================================
 
 import type { Plug } from "@yukimemi/dvpm";
@@ -556,7 +556,7 @@ export const ui: Plug[] = [
     lazy: {
       cmd: "RainbowTrails",
     },
-    add: async ({ denops }) => {
+    init: async ({ denops }) => {
       await autocmd.group(denops, "myRainbowTrails", (helper) => {
         helper.remove("*");
         helper.define(
@@ -638,6 +638,7 @@ export const ui: Plug[] = [
   },
   {
     url: "https://github.com/TaDaa/vimade",
+    enabled: false,
     profiles: ["ui"],
     lazy: {
       event: ["BufRead", "BufNewFile"],

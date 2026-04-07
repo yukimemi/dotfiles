@@ -25,6 +25,15 @@ export const window: Plug[] = [
     url: "https://github.com/anuvyklack/windows.nvim",
     enabled: pluginStatus.windows,
     profiles: ["window"],
+    lazy: {
+      event: ["WinNew", "WinEnter"],
+      keys: [
+        { lhs: "sz", rhs: "<cmd>WindowsMaximize<cr>", mode: "n" },
+        { lhs: "s_", rhs: "<cmd>WindowsMaximizeVertically<cr>", mode: "n" },
+        { lhs: "s\\|", rhs: "<cmd>WindowsMaximizeHorizontally<cr>", mode: "n" },
+        { lhs: "s=", rhs: "<cmd>WindowsEqualize<cr>", mode: "n" },
+      ],
+    },
     dependencies: [
       "https://github.com/anuvyklack/middleclass",
       "https://github.com/anuvyklack/animation.nvim",
@@ -71,28 +80,12 @@ export const window: Plug[] = [
           easing: "in_out_sine",
         },
       });
-      await mapping.map(denops, "sz", "<cmd>WindowsMaximize<cr>", {
-        mode: "n",
-      });
-      await mapping.map(denops, "s_", "<cmd>WindowsMaximizeVertically<cr>", {
-        mode: "n",
-      });
-      await mapping.map(
-        denops,
-        "s\\|",
-        "<cmd>WindowsMaximizeHorizontally<cr>",
-        {
-          mode: "n",
-        },
-      );
-      await mapping.map(denops, "s=", "<cmd>WindowsEqualize<cr>", {
-        mode: "n",
-      });
     },
   },
   {
     url: "https://github.com/simeji/winresizer",
     profiles: ["window"],
+    lazy: { cmd: "WinResizerStartFocus" },
     before: async ({ denops }) => {
       await vars.g.set(denops, "winresizer_gui_enable", 0);
     },

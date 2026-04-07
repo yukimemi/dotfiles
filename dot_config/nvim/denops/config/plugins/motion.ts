@@ -20,11 +20,11 @@ export const motion: Plug[] = [
     url: "https://github.com/yuki-yano/fuzzy-motion.vim",
     enabled: selections.motion === "fuzzymotion",
     profiles: ["motion"],
+    lazy: { keys: [{ lhs: "ss", rhs: "<cmd>FuzzyMotion<cr>", mode: "n" }] },
     before: async ({ denops }) => {
       await vars.g.set(denops, "fuzzy_motion_auto_jump", false);
       await vars.g.set(denops, "fuzzy_motion_disable_match_highlight", false);
       await vars.g.set(denops, "fuzzy_motion_matchers", ["fzf", "kensaku"]);
-      await mapping.map(denops, "ss", "<cmd>FuzzyMotion<cr>", { mode: "n" });
     },
   },
   {
