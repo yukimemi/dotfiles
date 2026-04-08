@@ -354,7 +354,7 @@ export const filetypes: Plug[] = [
         await denops.cmd("TSUpdate nu");
       }
     },
-    beforeFile: "~/.config/nvim/rc/after/nvim-nu.lua",
+    afterFile: "~/.config/nvim/rc/after/nvim-nu.lua",
   },
   // log
   {

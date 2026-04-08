@@ -16,7 +16,7 @@ export const libs: Plug[] = [
   {
     url: "https://github.com/vim-denops/denops.vim",
     profiles: ["core"],
-    cache: { beforeFile: `~/.config/nvim/rc/before/denops.vim` },
+    cache: { initFile: `~/.config/nvim/rc/before/denops.vim` },
   },
   {
     url: "https://github.com/thinca/vim-localrc",
@@ -29,7 +29,7 @@ export const libs: Plug[] = [
     enabled: async ({ denops }) => denops.meta.platform === "windows" && false,
     profiles: ["core"],
     dependencies: ["https://github.com/vim-denops/denops.vim"],
-    cache: { beforeFile: `~/.config/nvim/rc/before/denops-shared-server.vim` },
+    cache: { initFile: `~/.config/nvim/rc/before/denops-shared-server.vim` },
     build: async ({ denops, info }) => {
       if ((info.isInstalled || info.isUpdated) && info.isLoaded) {
         await denops.call(`denops_shared_server#install`);

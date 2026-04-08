@@ -90,7 +90,7 @@ export const git: Plug[] = [
     url: "https://github.com/rhysd/committia.vim",
     profiles: ["git"],
     cache: {
-      beforeFile: `~/.config/nvim/rc/before/committia.vim`,
+      initFile: `~/.config/nvim/rc/before/committia.vim`,
     },
   },
   {

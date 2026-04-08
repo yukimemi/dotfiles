@@ -33,7 +33,7 @@ export const memo: Plug[] = [
     url: "https://github.com/glidenote/memolist.vim",
     profiles: ["memo"],
     cache: {
-      beforeFile: ` ~/.config/nvim/rc/before/memolist.vim`,
+      initFile: ` ~/.config/nvim/rc/before/memolist.vim`,
     },
     before: async ({ denops }) => {
       await vars.g.set(

@@ -148,7 +148,7 @@ export const ai: Plug[] = [
     url: "https://github.com/augmentcode/augment.vim",
     enabled: pluginStatus.augment,
     profiles: ["ai"],
-    beforeFile: "~/.config/nvim/rc/before/augment.lua",
+    initFile: "~/.config/nvim/rc/before/augment.lua",
   },
   {
     url: "https://github.com/nomnivore/ollama.nvim",

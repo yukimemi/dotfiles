@@ -115,7 +115,7 @@ export const util: Plug[] = [
     url: "https://github.com/thinca/vim-ambicmd",
     profiles: ["core"],
     cache: {
-      beforeFile: "~/.config/nvim/rc/before/vim-ambicmd.vim",
+      initFile: "~/.config/nvim/rc/before/vim-ambicmd.vim",
       afterFile: "~/.config/nvim/rc/after/vim-ambicmd.vim",
     },
   },
