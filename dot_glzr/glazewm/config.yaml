@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2026/03/30 16:28:54.
+# Last Change : 2026/04/08 09:47:34.
 # =============================================================================
 
 general:
@@ -140,6 +140,9 @@ window_rules:
       - window_process: { equals: 'EXCEL' }
         window_title: { regex: '検索と置換' }
 
+      - window_process: { equals: 'EXCEL' }
+        window_title: { equals: '連続データ' }
+
       - window_title: { equals: 'Windows セキュリティ' }
       - window_title: { equals: 'ファイル名を指定して実行' }
 
@@ -147,6 +150,9 @@ window_rules:
 
       - window_process: { equals: 'POWERPNT' }
         window_title: { regex: 'Microsoft PowerPoint' }
+
+      - window_process: { equals: 'EXCEL' }
+        window_class: { equals: 'bosa_sdm_XL9' }
 
       - window_process: { equals: 'EXCEL' }
         window_class: { equals: 'NUIDialog' }

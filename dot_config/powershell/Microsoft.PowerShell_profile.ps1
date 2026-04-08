@@ -211,7 +211,7 @@ if (Test-Path $ZoxideInit) {
 }
 
 # --- Zellij Auto-Start ---
-if ($null -eq $env:ZELLIJ -and (Get-Command zellij -ErrorAction SilentlyContinue)) {
-  zellij attach -c
-}
+# if ($null -eq $env:ZELLIJ -and (Get-Command zellij -ErrorAction SilentlyContinue)) {
+#   zellij attach -c
+# }
 
