@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2026/04/08 09:47:34.
+# Last Change : 2026/04/09 13:11:43.
 # =============================================================================
 
 general:
@@ -150,6 +150,9 @@ window_rules:
 
       - window_process: { equals: 'POWERPNT' }
         window_title: { regex: 'Microsoft PowerPoint' }
+
+      - window_process: { equals: 'POWERPNT' }
+        window_title: { regex: '図の挿入' }
 
       - window_process: { equals: 'EXCEL' }
         window_class: { equals: 'bosa_sdm_XL9' }

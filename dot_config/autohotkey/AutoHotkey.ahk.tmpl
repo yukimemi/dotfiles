@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/04/05 22:37:23.
+; Last Change : 2026/04/09 15:06:39.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -157,7 +157,8 @@ ActivateRobust(exePath, runCmd := "", titleParts := "", excludeTitle := "") {
     if (excludeTitle != "") {
       excluded := false
       for part in StrSplit(excludeTitle, ",") {
-        if InStr(title, Trim(part)) {
+        trimmedPart := Trim(part)
+        if (trimmedPart != "" && (RegExMatch(title, trimmedPart) || InStr(title, trimmedPart))) {
           excluded := true
           break
         }
@@ -169,7 +170,8 @@ ActivateRobust(exePath, runCmd := "", titleParts := "", excludeTitle := "") {
     match := (titleParts == "")
     if (!match) {
       for part in StrSplit(titleParts, ",") {
-        if InStr(title, Trim(part)) {
+        trimmedPart := Trim(part)
+        if (trimmedPart != "" && (RegExMatch(title, trimmedPart) || InStr(title, trimmedPart))) {
           match := true
           break
         }
@@ -182,6 +184,7 @@ ActivateRobust(exePath, runCmd := "", titleParts := "", excludeTitle := "") {
         return true
     }
   }
+  ; ... (GlazeWM part follows)
 
   ; 2. Try GlazeWM activation (Other workspaces)
   titleRegex := (titleParts != "") ? StrReplace(titleParts, ",", "|") : ""
@@ -263,10 +266,14 @@ Activate(app, cmd := "", titleKeywords := "", excludeTitle := "") {
   runCmd := (cmd == "" ? app : cmd)
 
   ; 1. Try specific title first (if provided)
-  if (titleKeywords != "" && WinExist(titleKeywords)) {
-    ActivateWindowCommon(titleKeywords)
-    if WinActive(titleKeywords)
-      return
+  ; Ensure it's the right process too
+  if (titleKeywords != "") {
+    fullCriteria := titleKeywords . " ahk_exe " . exe
+    if (WinExist(fullCriteria)) {
+      ActivateWindowCommon(fullCriteria)
+      if WinActive(fullCriteria)
+        return
+    }
   }
 
   ActivateRobust(exe, runCmd, titleKeywords, excludeTitle)
@@ -335,7 +342,7 @@ F11::
 {{- else if .autohotkey.usechrome }}
   Activate("chrome.exe")
 {{- else }}
-  Activate("msedge.exe")
+  Activate("msedge.exe", , "Microsoft.*Edge", "PWA")
 {{- end }}
 }
 
