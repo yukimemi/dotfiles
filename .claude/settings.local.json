@@ -14,7 +14,18 @@
       "WebSearch",
       "WebFetch(domain:deno.land)",
       "WebFetch(domain:jsr.io)",
-      "Bash(cygpath:*)"
+      "Bash(cygpath:*)",
+      "WebFetch(domain:neovim.io)",
+      "Bash(deno check:*)",
+      "Bash(deno test:*)",
+      "Bash(deno task:*)",
+      "Bash(gh run:*)",
+      "Bash(deno lint:*)",
+      "Bash(python3 -c \"import sys,json; jobs=json.load\\(sys.stdin\\)['jobs']; [print\\(j['name'], j['conclusion'], j['html_url']\\) for j in jobs]\")",
+      "Bash(deno eval:*)",
+      "Bash(deno info:*)",
+      "Bash(DENOPS_TEST_VIM_EXECUTABLE=\"\" deno test:*)",
+      "Bash(deno run:*)"
     ],
     "additionalDirectories": [
       "C:\\Users\\yukimemi\\src\\github.com\\yukimemi\\shun"
