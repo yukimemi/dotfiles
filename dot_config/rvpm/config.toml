@@ -1,22 +1,82 @@
+# rvpm config — https://github.com/yukimemi/rvpm#configuration
 [options]
 
-# ---- util ----
+# ── util ──────────────────────────────────────────
+
 [[plugins]]
 url = "https://github.com/folke/noice.nvim"
 
 [[plugins]]
+url = "https://github.com/yukimemi/chronicle.vim"
+
+[[plugins]]
 url = "https://github.com/folke/snacks.nvim"
 
-# ---- denops ----
+[[plugins]]
+url = "https://github.com/thinca/vim-ambicmd"
+
+[[plugins]]
+url = "https://github.com/hrsh7th/nvim-dansa"
+on_event = ["BufReadPre", "BufNew"]
+
+# ── denops ────────────────────────────────────────
+
 [[plugins]]
 url = "https://github.com/vim-denops/denops.vim"
 merge = false
+
+# ── completion ────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/saghen/blink.cmp"
+on_event = "InsertEnter"
+depends = ["blink-ripgrep.nvim", "blink.compat", "friendly-snippets"]
+build = "cargo build --release"
+
+[[plugins]]
+url = "https://github.com/mikavilpas/blink-ripgrep.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/saghen/blink.compat"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/rafamadriz/friendly-snippets"
+lazy = true
+
+# ── lsp ───────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/neovim/nvim-lspconfig"
+depends = ["blink.cmp"]
+on_event = "BufReadPre"
+
+[[plugins]]
+url = "https://github.com/williamboman/mason.nvim"
+on_cmd = "Mason"
+
+[[plugins]]
+url = "https://github.com/williamboman/mason-lspconfig.nvim"
+depends = ["mason.nvim", "nvim-lspconfig"]
+on_source = ["nvim-lspconfig"]
+
+[[plugins]]
+url = "https://github.com/stevearc/conform.nvim"
+on_event = "BufReadPre"
+
+# ── statusline ────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/nvim-lualine/lualine.nvim"
+on_event = "CursorHold"
+
+# ── colorscheme ───────────────────────────────────
 
 [[plugins]]
 url = "https://github.com/yukimemi/lumiris.vim"
 merge = false
 
-# ---- colorscheme ----
 [[plugins]]
 url = "https://github.com/0x-ximon/acario.nvim"
 lazy = true
@@ -29,14 +89,4 @@ lazy = true
 [[plugins]]
 url = "https://github.com/folke/tokyonight.nvim"
 lazy = true
-
-[[plugins]]
-url = "https://github.com/yukimemi/chronicle.vim"
-
-[[plugins]]
-url = "https://github.com/nvim-lualine/lualine.nvim"
-on_event = ["CursorHold"]
-
-[[plugins]]
-url = "https://github.com/thinca/vim-ambicmd"
 
