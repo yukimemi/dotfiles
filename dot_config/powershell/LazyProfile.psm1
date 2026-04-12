@@ -11,6 +11,27 @@ function log {
   Write-Host -ForegroundColor $color "${now} ${msg}"
 }
 
+function script:Get-ZenoSnippets {
+  param([string]$configPath)
+  if (!(Test-Path $configPath)) { return $null }
+
+  $cacheFile = Join-Path (Join-Path $HOME ".cache/pwsh") "zeno_snippets.json"
+
+  if ((Test-Path $cacheFile) -and
+    ((Get-Item $cacheFile).LastWriteTime -gt (Get-Item $configPath).LastWriteTime)) {
+    return (Get-Content $cacheFile -Raw | ConvertFrom-Json).snippets
+  }
+
+  $uPath = $configPath.Replace("\", "/")
+  $denoScript = "import { parse } from 'jsr:@std/yaml'; console.log(JSON.stringify(parse(Deno.readTextFileSync('$uPath'))))"
+  $snippetsJson = $denoScript | deno run --allow-read - 2>$null
+  if ($snippetsJson) {
+    $snippetsJson | Set-Content $cacheFile -Encoding utf8
+    return ($snippetsJson | ConvertFrom-Json).snippets
+  }
+  return $null
+}
+
 function gr {
   Set-LocationWithList $(git rev-parse --show-toplevel)
 }
@@ -365,20 +386,10 @@ function Update-WithMolt {
 
 function Invoke-ZenoSnippet {
   if ($null -eq $global:ZenoSnippets) {
-    $configPath = Join-Path $ConfigHome "zeno/config.yml"
-    if (!(Test-Path $configPath)) {
-      return
-    }
-
-    # YAML to JSON using Deno with JSR
-    $uPath = $configPath.Replace("\", "/")
-    $denoScript = "import { parse } from 'jsr:@std/yaml'; console.log(JSON.stringify(parse(Deno.readTextFileSync('$uPath'))))"
-    $snippetsJson = $denoScript | deno run --allow-read - 2>$null
-
-    if ($null -eq $snippetsJson -or $snippetsJson -eq "") {
-      return
-    }
-    $global:ZenoSnippets = ($snippetsJson | ConvertFrom-Json).snippets
+    $configHome = if ($env:XDG_CONFIG_HOME) { $env:XDG_CONFIG_HOME } else { Join-Path $HOME ".config" }
+    $configPath = Join-Path $configHome "zeno/config.yml"
+    $global:ZenoSnippets = Get-ZenoSnippets $configPath
+    if ($null -eq $global:ZenoSnippets) { return }
   }
 
   # Select snippet with fzf (__FILTER)
@@ -517,12 +528,7 @@ if (Get-Module -ListAvailable PSReadLine) {
   $configPath = Join-Path $configHomeLocal "zeno/config.yml"
   if ($configPath -and (Test-Path $configPath)) {
     if ($null -eq $global:ZenoSnippets) {
-      $uPath = $configPath.Replace("\", "/")
-      $denoScript = "import { parse } from 'jsr:@std/yaml'; console.log(JSON.stringify(parse(Deno.readTextFileSync('$uPath'))))"
-      $snippetsJson = $denoScript | deno run --allow-read - 2>$null
-      if ($null -ne $snippetsJson -and $snippetsJson -ne "") {
-        $global:ZenoSnippets = ($snippetsJson | ConvertFrom-Json).snippets
-      }
+      $global:ZenoSnippets = Get-ZenoSnippets $configPath
     }
     if ($null -ne $global:ZenoSnippets) {
       foreach ($s in $global:ZenoSnippets) {

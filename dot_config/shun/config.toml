@@ -104,6 +104,10 @@ completion_command = "git branch --format='%(refname:short)'"
 workdir = "{{ vars.src_path }}/github.com/yukimemi/shun"
 
 [[apps]]
+name = "ccusage"
+path = "https://claude.ai/settings/usage"
+
+[[apps]]
 name = "Google"
 path = "https://www.google.com/search?q={{ args | urlencode }}"
 

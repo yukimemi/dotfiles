@@ -108,23 +108,43 @@ foreach ($p in $AdditionalPaths) {
   }
 }
 
-if (Get-Command mise -ErrorAction SilentlyContinue) {
-  $miseInit = if ($env:PSMUX -or $env:TMUX) {
-    # Use shims in psmux/tmux to avoid CommandNotFound hook errors (GetHistoryItems NullReference)
-    mise activate pwsh --shims | Out-String
-  } else {
-    mise activate pwsh | Out-String
-  }
-
-  if (![string]::IsNullOrWhiteSpace($miseInit)) {
-    & ([scriptblock]::Create($miseInit))
-  }
-}
-
 # --- Cache & Auto-Generation ---
 $CacheDir = Join-Path $HOME ".cache/pwsh"
 if (!(Test-Path $CacheDir)) {
   New-Item -ItemType Directory -Force -Path $CacheDir | Out-Null
+}
+
+if (Get-Command mise -ErrorAction SilentlyContinue) {
+  $miseMode = if ($env:PSMUX -or $env:TMUX) { "shims" } else { "full" }
+  $MiseInit = Join-Path $CacheDir "mise_init_${miseMode}.ps1"
+  $miseVersionFile = Join-Path $CacheDir "mise_version_${miseMode}.txt"
+  $currentMiseVersion = (mise version 2>$null)
+
+  $needsMiseRegen = $true
+  if ((Test-Path $MiseInit) -and (Test-Path $miseVersionFile)) {
+    $cachedMiseVersion = Get-Content $miseVersionFile -Raw -ErrorAction SilentlyContinue
+    if ($cachedMiseVersion -and $cachedMiseVersion.Trim() -eq $currentMiseVersion) {
+      $needsMiseRegen = $false
+    }
+  }
+
+  if ($needsMiseRegen) {
+    Write-Host "Regenerating mise init cache..." -ForegroundColor Cyan
+    $miseContent = if ($miseMode -eq "shims") {
+      # Use shims in psmux/tmux to avoid CommandNotFound hook errors (GetHistoryItems NullReference)
+      mise activate pwsh --shims | Out-String
+    } else {
+      mise activate pwsh | Out-String
+    }
+    if (![string]::IsNullOrWhiteSpace($miseContent)) {
+      $miseContent | Set-Content $MiseInit -Encoding utf8
+      $currentMiseVersion | Set-Content $miseVersionFile -Encoding utf8
+    }
+  }
+
+  if (Test-Path $MiseInit) {
+    & ([scriptblock]::Create((Get-Content $MiseInit -Raw)))
+  }
 }
 
 $StarshipInit = Join-Path $CacheDir "starship_init.ps1"
@@ -164,7 +184,7 @@ if (!(Test-Path $StarshipInit) -or !(Test-Path $ZoxideInit)) {
   }
 }
 
-# --- Static Loading (Fastest) ---
+# --- Deferred Loading (Starship pre-command hook) ---
 $ConfigHome = if ($env:XDG_CONFIG_HOME) {
   $env:XDG_CONFIG_HOME
 } else {
