@@ -1,0 +1,42 @@
+[options]
+
+# ---- util ----
+[[plugins]]
+url = "https://github.com/folke/noice.nvim"
+
+[[plugins]]
+url = "https://github.com/folke/snacks.nvim"
+
+# ---- denops ----
+[[plugins]]
+url = "https://github.com/vim-denops/denops.vim"
+merge = false
+
+[[plugins]]
+url = "https://github.com/yukimemi/lumiris.vim"
+merge = false
+
+# ---- colorscheme ----
+[[plugins]]
+url = "https://github.com/0x-ximon/acario.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/catppuccin/nvim"
+name = "catppuccin"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/folke/tokyonight.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/yukimemi/chronicle.vim"
+
+[[plugins]]
+url = "https://github.com/nvim-lualine/lualine.nvim"
+on_event = ["CursorHold"]
+
+[[plugins]]
+url = "https://github.com/thinca/vim-ambicmd"
+
