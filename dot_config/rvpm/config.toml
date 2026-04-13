@@ -1,317 +1,45 @@
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
 
 [vars]
-# features
-use_ai = true
-use_treesitter = true
-use_lsp = true
-use_git = true
-use_mini = false
-use_twitter = false
-# selections
-use_blink = true
-use_snacks = true
-use_yazi = true
-use_slimline = true
-use_denippet = true
-use_overseer = true
-use_flash = true
-use_noice = true
-use_quickscope = true
-use_toggleterm = true
-use_satellite = true
-use_insx = true
-use_dansa = true
-use_snapshot = true
-# individual
-use_illuminate = true
-use_yanky = true
-use_difftastic = true
-use_denops_translate = true
-use_fusen = true
-use_bqf = true
-use_qfreplace = true
-use_snipewin = true
+operator_stay_cursor = false
+operator_html_escape = false
 
 [options]
 
-# ── libs ─────────────────────────────────────────────
+# ── util ────────────────────────────────────────
+[[plugins]]
+url = "https://github.com/hrsh7th/nvim-dansa"
+on_event = ["BufReadPre", "BufNew"]
+ 
+[[plugins]]
+url = "https://github.com/manuuurino/autoread.nvim"
+on_cmd = ["Autoread"]
 
 [[plugins]]
-url = "https://github.com/vim-denops/denops.vim"
-merge = false
-
-[[plugins]]
-url = "https://github.com/thinca/vim-localrc"
-
-[[plugins]]
-url = "https://github.com/tani/vim-artemis"
-
-[[plugins]]
-url = "https://github.com/nvim-lua/plenary.nvim"
-lazy = true
+url = "https://github.com/juliuswaldmann/here.nvim"
+on_cmd = ["Here"]
 
 [[plugins]]
 url = "https://github.com/MunifTanjim/nui.nvim"
 lazy = true
 
-[[plugins]]
-url = "https://github.com/kamalsacranie/nvim-mapper"
+# ── denops ────────────────────────────────────────
 
 [[plugins]]
-url = "https://github.com/tyru/open-browser.vim"
-
-[[plugins]]
-url = "https://github.com/tyru/open-browser-github.vim"
-depends = ["open-browser.vim"]
-
-[[plugins]]
-url = "https://github.com/lambdalisue/vim-readablefold"
-on_event = ["BufRead", "BufNewFile"]
-
-[[plugins]]
-url = "https://github.com/hrsh7th/nvim-dansa"
-on_event = ["BufRead", "BufNewFile"]
-cond = "{{ vars.use_dansa }}"
-
-[[plugins]]
-url = "https://github.com/kevinhwang91/promise-async"
+url = "https://github.com/vim-denops/denops.vim"
 merge = false
 
-[[plugins]]
-url = "https://github.com/nvim-tree/nvim-web-devicons"
-lazy = true
-
-# ── denops ───────────────────────────────────────────
+# ── completion ────────────────────────────────────
 
 [[plugins]]
-url = "https://github.com/yukimemi/autocursor.vim"
-
-[[plugins]]
-url = "https://github.com/yukimemi/silentsaver.vim"
-
-[[plugins]]
-url = "https://github.com/yukimemi/asyncsearcher.vim"
-
-[[plugins]]
-url = "https://github.com/yukimemi/chronicle.vim"
-
-[[plugins]]
-url = "https://github.com/yukimemi/autoreplacer.vim"
-
-[[plugins]]
-url = "https://github.com/yukimemi/asyncwalker.vim"
-
-[[plugins]]
-url = "https://github.com/yukimemi/hitori.vim"
-
-[[plugins]]
-url = "https://github.com/yukimemi/ahdr.vim"
-
-# ── util ─────────────────────────────────────────────
-
-[[plugins]]
-url = "https://github.com/thinca/vim-partedit"
-
-[[plugins]]
-url = "https://github.com/uga-rosa/ccc.nvim"
-on_cmd = ["CccPick", "CccConvert", "CccHighlighterToggle"]
-
-[[plugins]]
-url = "https://github.com/thinca/vim-ambicmd"
-
-[[plugins]]
-url = "https://github.com/chrisbra/Recover.vim"
-
-[[plugins]]
-url = "https://github.com/folke/todo-comments.nvim"
-depends = ["plenary.nvim"]
-
-[[plugins]]
-url = "https://github.com/skanehira/denops-translate.vim"
-on_cmd = "Translate"
-cond = "{{ vars.use_denops_translate }}"
-
-[[plugins]]
-url = "https://github.com/mattn/vim-sonictemplate"
-
-[[plugins]]
-url = "https://github.com/kevinhwang91/nvim-fundo"
-merge = false
-depends = ["promise-async"]
-
-[[plugins]]
-url = "https://github.com/kuuote/jsonyaml.vim"
-on_cmd = ["JY", "YJ"]
-
-[[plugins]]
-url = "https://github.com/yukimemi/jsontoml.vim"
-on_cmd = ["JT", "TJ"]
-
-[[plugins]]
-url = "https://github.com/thinca/vim-prettyprint"
-on_cmd = "PP"
-
-[[plugins]]
-url = "https://github.com/atusy/treemonkey.nvim"
-on_event = ["BufRead", "BufNewFile"]
-
-[[plugins]]
-url = "https://github.com/m00qek/baleia.nvim"
-on_event = ["BufRead", "BufNewFile"]
-
-[[plugins]]
-url = "https://github.com/lambdalisue/vim-suda"
-on_cmd = ["SudaRead", "SudaWrite"]
-
-[[plugins]]
-url = "https://github.com/smit4k/snapshot.nvim"
-on_cmd = "Snapshot"
-cond = "{{ vars.use_snapshot }}"
-
-[[plugins]]
-url = "https://github.com/tani/dmacro.nvim"
-
-[[plugins]]
-url = "https://github.com/tweekmonster/helpful.vim"
-
-[[plugins]]
-url = "https://github.com/itchyny/calendar.vim"
-on_cmd = "Calendar"
-on_map = [{ lhs = "mc", mode = "n", desc = "Calendar" }]
-
-[[plugins]]
-url = "https://github.com/Milly/deno-protocol.vim"
-
-[[plugins]]
-url = "https://github.com/juliuswaldmann/here.nvim"
-
-[[plugins]]
-url = "https://github.com/Shougo/junkfile.vim"
-
-[[plugins]]
-url = "https://github.com/Zeioth/hot-reload.nvim"
-depends = ["plenary.nvim"]
-
-[[plugins]]
-url = "https://github.com/manuuurino/autoread.nvim"
-
-[[plugins]]
-url = "https://github.com/chrishrb/gx.nvim"
-
-[[plugins]]
-url = "https://github.com/lambdalisue/vim-file-protocol"
-
-[[plugins]]
-url = "https://github.com/mihaifm/MegaToggler"
-
-[[plugins]]
-url = "https://github.com/folke/persistence.nvim"
-
-[[plugins]]
-url = "https://github.com/chrisgrieser/nvim-early-retirement"
-
-[[plugins]]
-url = "https://github.com/glyccogen/imprint.nvim"
-on_cmd = "Imprint"
-
-[[plugins]]
-url = "https://github.com/xvzc/chezmoi.nvim"
-depends = ["plenary.nvim"]
-
-# ── lsp ──────────────────────────────────────────────
-
-[[plugins]]
-url = "https://github.com/hrsh7th/nvim-linkedit"
-
-[[plugins]]
-url = "https://github.com/stevearc/aerial.nvim"
-on_cmd = ["AerialToggle", "AerialPrev", "AerialNext"]
-on_map = [{ lhs = "<space>a", mode = "n", desc = "AerialToggle" }]
-
-[[plugins]]
-url = "https://github.com/stevearc/conform.nvim"
-on_event = ["BufRead", "BufNewFile"]
-
-[[plugins]]
-url = "https://github.com/mfussenegger/nvim-lint"
-on_event = ["BufRead", "BufNewFile"]
-
-[[plugins]]
-url = "https://github.com/williamboman/mason.nvim"
-on_cmd = "Mason"
-merge = false
-
-[[plugins]]
-url = "https://github.com/williamboman/mason-lspconfig.nvim"
-lazy = true
-merge = false
-depends = ["mason.nvim"]
-
-[[plugins]]
-url = "https://github.com/folke/lazydev.nvim"
-depends = ["nvim-lspconfig"]
-
-[[plugins]]
-url = "https://github.com/folke/neoconf.nvim"
-
-[[plugins]]
-url = "https://github.com/onsails/lspkind.nvim"
-
-[[plugins]]
-url = "https://github.com/mrcjkb/rustaceanvim"
-on_ft = ["rust", "toml"]
-depends = ["nvim-lspconfig"]
-
-[[plugins]]
-url = "https://github.com/alexpasmantier/krust.nvim"
-on_ft = ["rust", "toml"]
-
-[[plugins]]
-url = "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
-
-[[plugins]]
-url = "https://github.com/chrisgrieser/nvim-lsp-endhints"
-
-[[plugins]]
-url = "https://github.com/folke/trouble.nvim"
-on_cmd = "Trouble"
-
-[[plugins]]
-url = "https://github.com/neovim/nvim-lspconfig"
-on_event = ["BufRead", "BufNewFile"]
-depends = [
-  "krust.nvim",
-  "neoconf.nvim",
-  "trouble.nvim",
-  "lspkind.nvim",
-  "mason-lspconfig.nvim",
-  "mason.nvim",
-  "blink.cmp",
-]
-
-[[plugins]]
-url = "https://github.com/ThePrimeagen/refactoring.nvim"
-
-# ── completion (blink) ───────────────────────────────
-
-[[plugins]]
-url = "https://github.com/saghen/blink.download"
-lazy = true
+url = "https://github.com/saghen/blink.cmp"
+on_event = "InsertEnter"
+depends = ["blink-ripgrep.nvim", "friendly-snippets"]
+build = "cargo build --release"
 
 [[plugins]]
 url = "https://github.com/mikavilpas/blink-ripgrep.nvim"
 lazy = true
-
-[[plugins]]
-url = "https://github.com/saghen/blink.compat"
-lazy = true
-merge = false  # blink.cmp と lua/blink/ 名前空間が衝突するため
-
-[[plugins]]
-url = "https://github.com/saghen/blink.cmp"
-on_event = ["InsertEnter", "CmdlineEnter"]
-depends = ["blink-ripgrep.nvim", "friendly-snippets", "blink.compat"]
 
 # ── snippet (denippet) ───────────────────────────────
 
@@ -322,31 +50,11 @@ lazy = true
 [[plugins]]
 url = "https://github.com/uga-rosa/denippet.vim"
 
-[[plugins]]
-url = "https://github.com/chrisgrieser/nvim-scissors"
-
-# ── treesitter ───────────────────────────────────────
-
-[[plugins]]
-url = "https://github.com/nvim-treesitter/nvim-treesitter"
-on_event = ["BufRead", "BufNewFile"]
-rev = "main"
-
-[[plugins]]
-url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
-on_event = ["BufRead", "BufNewFile"]
-depends = ["nvim-treesitter"]
-
-[[plugins]]
-url = "https://github.com/VonHeikemen/ts-enable.nvim"
-on_event = ["BufRead", "BufNewFile"]
-depends = ["nvim-treesitter"]
-
 # ── ui ───────────────────────────────────────────────
 
 [[plugins]]
 url = "https://github.com/lambdalisue/vim-seethrough"
-on_event = ["BufRead", "BufNewFile"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/andymass/vim-matchup"
@@ -358,80 +66,43 @@ on_event = ["BufRead", "BufNewFile"]
 
 [[plugins]]
 url = "https://github.com/xiyaowong/virtcolumn.nvim"
-on_event = ["BufRead", "BufNewFile"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/RRethy/vim-illuminate"
-on_event = ["BufRead", "BufNewFile"]
-depends = ["nvim-treesitter"]
-cond = "{{ vars.use_illuminate }}"
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/unblevable/quick-scope"
 on_event = "CursorHold"
-cond = "{{ vars.use_quickscope }}"
 
 [[plugins]]
 url = "https://github.com/ntpeters/vim-better-whitespace"
-on_event = ["BufRead", "BufNewFile"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/LumaKernel/nvim-visual-eof.lua"
-on_event = ["BufRead", "BufNewFile"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/DanilaMihailov/beacon.nvim"
-on_event = ["BufRead", "BufNewFile"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/gen740/SmoothCursor.nvim"
-on_event = ["BufRead", "BufNewFile"]
-
-[[plugins]]
-url = "https://github.com/folke/edgy.nvim"
-on_event = ["BufRead", "BufNewFile"]
-
-[[plugins]]
-url = "https://github.com/lewis6991/satellite.nvim"
-on_event = ["BufRead", "BufNewFile"]
-cond = "{{ vars.use_satellite }}"
-
-[[plugins]]
-url = "https://github.com/Aasim-A/scrollEOF.nvim"
-on_event = ["BufRead", "BufNewFile"]
-
-[[plugins]]
-url = "https://github.com/luukvbaal/statuscol.nvim"
-on_event = ["BufRead", "BufNewFile"]
-
-[[plugins]]
-url = "https://github.com/thinca/vim-zenspace"
-on_event = ["BufRead", "BufNewFile"]
-
-[[plugins]]
-url = "https://github.com/mawkler/hml.nvim"
-on_event = ["BufRead", "BufNewFile"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/itchyny/vim-highlighturl"
 on_event = "CursorHold"
 
 [[plugins]]
-url = "https://github.com/Bekaboo/dropbar.nvim"
-on_event = ["BufRead", "BufNewFile"]
-
-[[plugins]]
 url = "https://github.com/chrisgrieser/nvim-origami"
-on_event = ["BufRead", "BufNewFile"]
-
-[[plugins]]
-url = "https://github.com/m-demare/hlargs.nvim"
-on_event = ["BufRead", "BufNewFile"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/folke/noice.nvim"
 depends = ["nui.nvim"]
-cond = "{{ vars.use_noice }}"
 
 [[plugins]]
 url = "https://github.com/folke/which-key.nvim"
@@ -444,7 +115,6 @@ url = "https://github.com/y3owk1n/undo-glow.nvim"
 
 [[plugins]]
 url = "https://github.com/folke/snacks.nvim"
-cond = "{{ vars.use_snacks }}"
 
 # ── edit ─────────────────────────────────────────────
 
@@ -459,7 +129,6 @@ on_map = [
 
 [[plugins]]
 url = "https://github.com/hrsh7th/nvim-insx"
-cond = "{{ vars.use_insx }}"
 
 [[plugins]]
 url = "https://github.com/Shougo/context_filetype.vim"
@@ -474,27 +143,6 @@ on_map = [
 
 [[plugins]]
 url = "https://github.com/gbprod/yanky.nvim"
-cond = "{{ vars.use_yanky }}"
-
-[[plugins]]
-url = "https://github.com/thinca/vim-qfreplace"
-cond = "{{ vars.use_qfreplace }}"
-
-[[plugins]]
-url = "https://github.com/ysmb-wtsg/in-and-out.nvim"
-
-[[plugins]]
-url = "https://github.com/kana/vim-niceblock"
-
-[[plugins]]
-url = "https://github.com/chrisgrieser/nvim-chainsaw"
-
-[[plugins]]
-url = "https://github.com/kako-jun/chillout.nvim"
-
-[[plugins]]
-url = "https://github.com/kako-jun/chunkundo.nvim"
-depends = ["chillout.nvim"]
 
 [[plugins]]
 url = "https://github.com/junegunn/vim-easy-align"
@@ -510,7 +158,6 @@ url = "https://github.com/haya14busa/vim-edgemotion"
 
 [[plugins]]
 url = "https://github.com/folke/flash.nvim"
-cond = "{{ vars.use_flash }}"
 
 [[plugins]]
 url = "https://github.com/yuki-yano/zero.nvim"
@@ -554,49 +201,19 @@ url = "https://github.com/lambdalisue/vim-gin"
 url = "https://github.com/rhysd/committia.vim"
 
 [[plugins]]
-url = "https://github.com/clabby/difftastic.nvim"
-depends = ["nui.nvim"]
-cond = "{{ vars.use_difftastic }}"
-
-[[plugins]]
-url = "https://github.com/pwntester/octo.nvim"
-on_cmd = "Octo"
-depends = ["plenary.nvim", "nvim-web-devicons"]
-
-[[plugins]]
-url = "https://github.com/akinsho/git-conflict.nvim"
-on_event = "BufRead"
-
-[[plugins]]
-url = "https://github.com/skanehira/github-actions.nvim"
-on_map = [
-  { lhs = "<leader>Gd", mode = "n", desc = "Dispatch workflow" },
-  { lhs = "<leader>Gh", mode = "n", desc = "Show workflow history" },
-  { lhs = "<leader>Gw", mode = "n", desc = "Watch running workflow" },
-]
-
-[[plugins]]
 url = "https://github.com/dallagi/git-timemachine.nvim"
 on_cmd = "GitTimeMachine"
 
-# ── statusline (slimline) ────────────────────────────
-
-[[plugins]]
-url = "https://github.com/sschleemilch/slimline.nvim"
-cond = "{{ vars.use_slimline }}"
 
 # ── terminal (toggleterm) ────────────────────────────
 
 [[plugins]]
 url = "https://github.com/akinsho/toggleterm.nvim"
-cond = "{{ vars.use_toggleterm }}"
 
 # ── filer (yazi) ─────────────────────────────────────
 
 [[plugins]]
 url = "https://github.com/mikavilpas/yazi.nvim"
-depends = ["plenary.nvim"]
-cond = "{{ vars.use_yazi }}"
 
 # ── window ───────────────────────────────────────────
 
@@ -609,13 +226,8 @@ url = "https://github.com/tenxsoydev/size-matters.nvim"
 cond = "vim.fn.exists('g:neovide') == 1 or vim.fn.exists(':GuiFont') == 2"
 
 [[plugins]]
-url = "https://github.com/thinca/vim-winenv"
-cond = "vim.fn.has('win32') == 1"
-
-[[plugins]]
 url = "https://github.com/4513ECHO/vim-snipewin"
 on_map = [{ lhs = "sw", mode = "n" }]
-cond = "{{ vars.use_snipewin }}"
 
 [[plugins]]
 url = "https://github.com/nvim-zh/colorful-winsep.nvim"
@@ -628,7 +240,6 @@ url = "https://github.com/mrjones2014/smart-splits.nvim"
 
 [[plugins]]
 url = "https://github.com/kevinhwang91/nvim-bqf"
-cond = "{{ vars.use_bqf }}"
 
 [[plugins]]
 url = "https://github.com/mei28/qfc.nvim"
@@ -732,34 +343,22 @@ on_map = [
   { lhs = "<space>b", mode = "n", desc = "Aibo gemini" },
   { lhs = "<space>B", mode = "n", desc = "Aibo gemini focus" },
 ]
-cond = "{{ vars.use_ai }}"
-
-[[plugins]]
-url = "https://github.com/folke/sidekick.nvim"
-cond = "{{ vars.use_ai }}"
 
 [[plugins]]
 url = "https://github.com/yukimemi/futago.vim"
 on_map = ["mf"]
 on_cmd = ["FutagoGitCommit", "FutagoJjCommit", "FutagoHistory"]
-cond = "{{ vars.use_ai }}"
 
 # ── memo ─────────────────────────────────────────────
 
 [[plugins]]
 url = "https://github.com/glidenote/memolist.vim"
 
-[[plugins]]
-url = "https://github.com/walkersumida/fusen.nvim"
-on_map = ["ml", "me", "mn", "mp"]
-cond = "{{ vars.use_fusen }}"
-
 # ── runner (overseer) ────────────────────────────────
 
 [[plugins]]
 url = "https://github.com/stevearc/overseer.nvim"
 on_cmd = ["OverseerOpen", "OverseerClose", "OverseerToggle", "OverseerRun", "OverseerShell", "OverseerTaskAction"]
-cond = "{{ vars.use_overseer }}"
 
 # ── test (vimtest) ───────────────────────────────────
 
@@ -777,38 +376,11 @@ on_cmd = ["TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit"]
 [[plugins]]
 url = "https://github.com/arnarg/todotxt.nvim"
 
-# ── fun ──────────────────────────────────────────────
-
-[[plugins]]
-url = "https://github.com/frostzt/bongo-cat.nvim"
-on_cmd = ["BongoCat", "BongoCatShow", "BongoCatHide", "BongoCatStats"]
-
-[[plugins]]
-url = "https://github.com/Abizrh/beastie.nvim"
-on_cmd = ["BeastieStart", "BeastieStop", "BeastieSwitch"]
-
-[[plugins]]
-url = "https://github.com/ikouchiha47/games.nvim"
-on_cmd = ["Hangman", "MineSweeper", "Pacman"]
-
-[[plugins]]
-url = "https://github.com/folke/drop.nvim"
-on_event = "CursorHold"
-
 # ── startup ──────────────────────────────────────────
 
 [[plugins]]
 url = "https://github.com/dstein64/vim-startuptime"
 on_cmd = "StartupTime"
-
-# ── bluesky ──────────────────────────────────────────
-
-[[plugins]]
-url = "https://github.com/basyura/dsky.vim"
-
-# ── zellij ───────────────────────────────────────────
-
-# (smart-splits already listed under window)
 
 # ── filetypes ────────────────────────────────────────
 
@@ -817,19 +389,11 @@ url = "https://github.com/aklt/plantuml-syntax"
 on_ft = "plantuml"
 
 [[plugins]]
-url = "https://github.com/previm/previm"
-depends = ["open-browser.vim"]
-
-[[plugins]]
 url = "https://github.com/dhruvasagar/vim-table-mode"
 on_ft = "markdown"
 
 [[plugins]]
 url = "https://github.com/ixru/nvim-markdown"
-on_ft = "markdown"
-
-[[plugins]]
-url = "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
 on_ft = "markdown"
 
 [[plugins]]
@@ -848,10 +412,8 @@ url = "https://github.com/imsnif/kdl.vim"
 on_ft = "kdl"
 
 [[plugins]]
-url = "https://github.com/lambdalisue/vim-deno-cache"
-
-[[plugins]]
 url = "https://github.com/fei6409/log-highlight.nvim"
+on_ft = "log"
 
 # ── colorscheme ──────────────────────────────────────
 
@@ -1329,3 +891,4 @@ lazy = true
 [[plugins]]
 url = "https://github.com/0x-ximon/acario.nvim"
 lazy = true
+

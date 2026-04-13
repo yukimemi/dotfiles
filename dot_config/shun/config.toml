@@ -172,9 +172,9 @@ name = "X"
 path = "https://x.com/search?q={{ args | urlencode }}"
 
 [[scan_dirs]]
-path = "{{ vars.src_path }}/github.com/yukimemi/ps1/cmd"
+path = "{{ vars.src_path }}/github.com/yukimemi/ps1/src"
 recursive = false
-extensions = ["cmd"]
+extensions = ["ps1"]
 
 [[scan_dirs]]
 path = "~/.local/share/chezmoi/win/scripts"
