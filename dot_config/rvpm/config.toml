@@ -1,37 +1,303 @@
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
+
+[vars]
+# features
+use_ai = true
+use_treesitter = true
+use_lsp = true
+use_git = true
+use_mini = false
+use_twitter = false
+# selections
+use_blink = true
+use_snacks = true
+use_yazi = true
+use_slimline = true
+use_denippet = true
+use_overseer = true
+use_flash = true
+use_noice = true
+use_quickscope = true
+use_toggleterm = true
+use_satellite = true
+use_insx = true
+use_dansa = true
+use_snapshot = true
+# individual
+use_illuminate = true
+use_yanky = true
+use_difftastic = true
+use_denops_translate = true
+use_fusen = true
+use_bqf = true
+use_qfreplace = true
+use_snipewin = true
+
 [options]
 
-# ── util ──────────────────────────────────────────
-
-[[plugins]]
-url = "https://github.com/folke/noice.nvim"
-
-[[plugins]]
-url = "https://github.com/yukimemi/chronicle.vim"
-
-[[plugins]]
-url = "https://github.com/folke/snacks.nvim"
-
-[[plugins]]
-url = "https://github.com/thinca/vim-ambicmd"
-
-[[plugins]]
-url = "https://github.com/hrsh7th/nvim-dansa"
-on_event = ["BufReadPre", "BufNew"]
-
-# ── denops ────────────────────────────────────────
+# ── libs ─────────────────────────────────────────────
 
 [[plugins]]
 url = "https://github.com/vim-denops/denops.vim"
 merge = false
 
-# ── completion ────────────────────────────────────
+[[plugins]]
+url = "https://github.com/thinca/vim-localrc"
 
 [[plugins]]
-url = "https://github.com/saghen/blink.cmp"
-on_event = "InsertEnter"
-depends = ["blink-ripgrep.nvim", "blink.compat", "friendly-snippets"]
-build = "cargo build --release"
+url = "https://github.com/tani/vim-artemis"
+
+[[plugins]]
+url = "https://github.com/nvim-lua/plenary.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/MunifTanjim/nui.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/kamalsacranie/nvim-mapper"
+
+[[plugins]]
+url = "https://github.com/tyru/open-browser.vim"
+
+[[plugins]]
+url = "https://github.com/tyru/open-browser-github.vim"
+depends = ["open-browser.vim"]
+
+[[plugins]]
+url = "https://github.com/lambdalisue/vim-readablefold"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/hrsh7th/nvim-dansa"
+on_event = ["BufRead", "BufNewFile"]
+cond = "{{ vars.use_dansa }}"
+
+[[plugins]]
+url = "https://github.com/kevinhwang91/promise-async"
+merge = false
+
+[[plugins]]
+url = "https://github.com/nvim-tree/nvim-web-devicons"
+lazy = true
+
+# ── denops ───────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/yukimemi/autocursor.vim"
+
+[[plugins]]
+url = "https://github.com/yukimemi/silentsaver.vim"
+
+[[plugins]]
+url = "https://github.com/yukimemi/asyncsearcher.vim"
+
+[[plugins]]
+url = "https://github.com/yukimemi/chronicle.vim"
+
+[[plugins]]
+url = "https://github.com/yukimemi/autoreplacer.vim"
+
+[[plugins]]
+url = "https://github.com/yukimemi/asyncwalker.vim"
+
+[[plugins]]
+url = "https://github.com/yukimemi/hitori.vim"
+
+[[plugins]]
+url = "https://github.com/yukimemi/ahdr.vim"
+
+# ── util ─────────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/thinca/vim-partedit"
+
+[[plugins]]
+url = "https://github.com/uga-rosa/ccc.nvim"
+on_cmd = ["CccPick", "CccConvert", "CccHighlighterToggle"]
+
+[[plugins]]
+url = "https://github.com/thinca/vim-ambicmd"
+
+[[plugins]]
+url = "https://github.com/chrisbra/Recover.vim"
+
+[[plugins]]
+url = "https://github.com/folke/todo-comments.nvim"
+depends = ["plenary.nvim"]
+
+[[plugins]]
+url = "https://github.com/skanehira/denops-translate.vim"
+on_cmd = "Translate"
+cond = "{{ vars.use_denops_translate }}"
+
+[[plugins]]
+url = "https://github.com/mattn/vim-sonictemplate"
+
+[[plugins]]
+url = "https://github.com/kevinhwang91/nvim-fundo"
+merge = false
+depends = ["promise-async"]
+
+[[plugins]]
+url = "https://github.com/kuuote/jsonyaml.vim"
+on_cmd = ["JY", "YJ"]
+
+[[plugins]]
+url = "https://github.com/yukimemi/jsontoml.vim"
+on_cmd = ["JT", "TJ"]
+
+[[plugins]]
+url = "https://github.com/thinca/vim-prettyprint"
+on_cmd = "PP"
+
+[[plugins]]
+url = "https://github.com/atusy/treemonkey.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/m00qek/baleia.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/lambdalisue/vim-suda"
+on_cmd = ["SudaRead", "SudaWrite"]
+
+[[plugins]]
+url = "https://github.com/smit4k/snapshot.nvim"
+on_cmd = "Snapshot"
+cond = "{{ vars.use_snapshot }}"
+
+[[plugins]]
+url = "https://github.com/tani/dmacro.nvim"
+
+[[plugins]]
+url = "https://github.com/tweekmonster/helpful.vim"
+
+[[plugins]]
+url = "https://github.com/itchyny/calendar.vim"
+on_cmd = "Calendar"
+on_map = [{ lhs = "mc", mode = "n", desc = "Calendar" }]
+
+[[plugins]]
+url = "https://github.com/Milly/deno-protocol.vim"
+
+[[plugins]]
+url = "https://github.com/juliuswaldmann/here.nvim"
+
+[[plugins]]
+url = "https://github.com/Shougo/junkfile.vim"
+
+[[plugins]]
+url = "https://github.com/Zeioth/hot-reload.nvim"
+depends = ["plenary.nvim"]
+
+[[plugins]]
+url = "https://github.com/manuuurino/autoread.nvim"
+
+[[plugins]]
+url = "https://github.com/chrishrb/gx.nvim"
+
+[[plugins]]
+url = "https://github.com/lambdalisue/vim-file-protocol"
+
+[[plugins]]
+url = "https://github.com/mihaifm/MegaToggler"
+
+[[plugins]]
+url = "https://github.com/folke/persistence.nvim"
+
+[[plugins]]
+url = "https://github.com/chrisgrieser/nvim-early-retirement"
+
+[[plugins]]
+url = "https://github.com/glyccogen/imprint.nvim"
+on_cmd = "Imprint"
+
+[[plugins]]
+url = "https://github.com/xvzc/chezmoi.nvim"
+depends = ["plenary.nvim"]
+
+# ── lsp ──────────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/hrsh7th/nvim-linkedit"
+
+[[plugins]]
+url = "https://github.com/stevearc/aerial.nvim"
+on_cmd = ["AerialToggle", "AerialPrev", "AerialNext"]
+on_map = [{ lhs = "<space>a", mode = "n", desc = "AerialToggle" }]
+
+[[plugins]]
+url = "https://github.com/stevearc/conform.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/mfussenegger/nvim-lint"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/williamboman/mason.nvim"
+on_cmd = "Mason"
+merge = false
+
+[[plugins]]
+url = "https://github.com/williamboman/mason-lspconfig.nvim"
+lazy = true
+merge = false
+depends = ["mason.nvim"]
+
+[[plugins]]
+url = "https://github.com/folke/lazydev.nvim"
+depends = ["nvim-lspconfig"]
+
+[[plugins]]
+url = "https://github.com/folke/neoconf.nvim"
+
+[[plugins]]
+url = "https://github.com/onsails/lspkind.nvim"
+
+[[plugins]]
+url = "https://github.com/mrcjkb/rustaceanvim"
+on_ft = ["rust", "toml"]
+depends = ["nvim-lspconfig"]
+
+[[plugins]]
+url = "https://github.com/alexpasmantier/krust.nvim"
+on_ft = ["rust", "toml"]
+
+[[plugins]]
+url = "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
+
+[[plugins]]
+url = "https://github.com/chrisgrieser/nvim-lsp-endhints"
+
+[[plugins]]
+url = "https://github.com/folke/trouble.nvim"
+on_cmd = "Trouble"
+
+[[plugins]]
+url = "https://github.com/neovim/nvim-lspconfig"
+on_event = ["BufRead", "BufNewFile"]
+depends = [
+  "krust.nvim",
+  "neoconf.nvim",
+  "trouble.nvim",
+  "lspkind.nvim",
+  "mason-lspconfig.nvim",
+  "mason.nvim",
+  "blink.cmp",
+]
+
+[[plugins]]
+url = "https://github.com/ThePrimeagen/refactoring.nvim"
+
+# ── completion (blink) ───────────────────────────────
+
+[[plugins]]
+url = "https://github.com/saghen/blink.download"
+lazy = true
 
 [[plugins]]
 url = "https://github.com/mikavilpas/blink-ripgrep.nvim"
@@ -40,45 +306,669 @@ lazy = true
 [[plugins]]
 url = "https://github.com/saghen/blink.compat"
 lazy = true
+merge = false  # blink.cmp と lua/blink/ 名前空間が衝突するため
+
+[[plugins]]
+url = "https://github.com/saghen/blink.cmp"
+on_event = ["InsertEnter", "CmdlineEnter"]
+depends = ["blink-ripgrep.nvim", "friendly-snippets", "blink.compat"]
+
+# ── snippet (denippet) ───────────────────────────────
 
 [[plugins]]
 url = "https://github.com/rafamadriz/friendly-snippets"
 lazy = true
 
-# ── lsp ───────────────────────────────────────────
+[[plugins]]
+url = "https://github.com/uga-rosa/denippet.vim"
 
 [[plugins]]
-url = "https://github.com/neovim/nvim-lspconfig"
-depends = ["blink.cmp"]
-on_event = "BufReadPre"
+url = "https://github.com/chrisgrieser/nvim-scissors"
+
+# ── treesitter ───────────────────────────────────────
 
 [[plugins]]
-url = "https://github.com/williamboman/mason.nvim"
-on_cmd = "Mason"
+url = "https://github.com/nvim-treesitter/nvim-treesitter"
+on_event = ["BufRead", "BufNewFile"]
+rev = "main"
 
 [[plugins]]
-url = "https://github.com/williamboman/mason-lspconfig.nvim"
-depends = ["mason.nvim", "nvim-lspconfig"]
-on_source = ["nvim-lspconfig"]
+url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
+on_event = ["BufRead", "BufNewFile"]
+depends = ["nvim-treesitter"]
 
 [[plugins]]
-url = "https://github.com/stevearc/conform.nvim"
-on_event = "BufReadPre"
+url = "https://github.com/VonHeikemen/ts-enable.nvim"
+on_event = ["BufRead", "BufNewFile"]
+depends = ["nvim-treesitter"]
 
-# ── statusline ────────────────────────────────────
+# ── ui ───────────────────────────────────────────────
 
 [[plugins]]
-url = "https://github.com/nvim-lualine/lualine.nvim"
+url = "https://github.com/lambdalisue/vim-seethrough"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/andymass/vim-matchup"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/mopp/smartnumber.vim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/xiyaowong/virtcolumn.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/RRethy/vim-illuminate"
+on_event = ["BufRead", "BufNewFile"]
+depends = ["nvim-treesitter"]
+cond = "{{ vars.use_illuminate }}"
+
+[[plugins]]
+url = "https://github.com/unblevable/quick-scope"
+on_event = "CursorHold"
+cond = "{{ vars.use_quickscope }}"
+
+[[plugins]]
+url = "https://github.com/ntpeters/vim-better-whitespace"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/LumaKernel/nvim-visual-eof.lua"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/DanilaMihailov/beacon.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/gen740/SmoothCursor.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/folke/edgy.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/lewis6991/satellite.nvim"
+on_event = ["BufRead", "BufNewFile"]
+cond = "{{ vars.use_satellite }}"
+
+[[plugins]]
+url = "https://github.com/Aasim-A/scrollEOF.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/luukvbaal/statuscol.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/thinca/vim-zenspace"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/mawkler/hml.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/itchyny/vim-highlighturl"
 on_event = "CursorHold"
 
-# ── colorscheme ───────────────────────────────────
+[[plugins]]
+url = "https://github.com/Bekaboo/dropbar.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/chrisgrieser/nvim-origami"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/m-demare/hlargs.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/folke/noice.nvim"
+depends = ["nui.nvim"]
+cond = "{{ vars.use_noice }}"
+
+[[plugins]]
+url = "https://github.com/folke/which-key.nvim"
+on_event = "CursorHold"
+
+[[plugins]]
+url = "https://github.com/y3owk1n/undo-glow.nvim"
+
+# ── snacks ───────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/folke/snacks.nvim"
+cond = "{{ vars.use_snacks }}"
+
+# ── edit ─────────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/monaqa/dial.nvim"
+on_map = [
+  { lhs = "<c-a>", mode = "n" },
+  { lhs = "<c-x>", mode = "n" },
+  { lhs = "g<c-a>", mode = "n" },
+  { lhs = "g<c-x>", mode = "n" },
+]
+
+[[plugins]]
+url = "https://github.com/hrsh7th/nvim-insx"
+cond = "{{ vars.use_insx }}"
+
+[[plugins]]
+url = "https://github.com/Shougo/context_filetype.vim"
+
+[[plugins]]
+url = "https://github.com/uga-rosa/contextment.vim"
+depends = ["context_filetype.vim"]
+on_map = [
+  { lhs = "gcc", mode = "n" },
+  { lhs = "gcc", mode = "x" },
+]
+
+[[plugins]]
+url = "https://github.com/gbprod/yanky.nvim"
+cond = "{{ vars.use_yanky }}"
+
+[[plugins]]
+url = "https://github.com/thinca/vim-qfreplace"
+cond = "{{ vars.use_qfreplace }}"
+
+[[plugins]]
+url = "https://github.com/ysmb-wtsg/in-and-out.nvim"
+
+[[plugins]]
+url = "https://github.com/kana/vim-niceblock"
+
+[[plugins]]
+url = "https://github.com/chrisgrieser/nvim-chainsaw"
+
+[[plugins]]
+url = "https://github.com/kako-jun/chillout.nvim"
+
+[[plugins]]
+url = "https://github.com/kako-jun/chunkundo.nvim"
+depends = ["chillout.nvim"]
+
+[[plugins]]
+url = "https://github.com/junegunn/vim-easy-align"
+on_map = [{ lhs = "<enter>", mode = "v" }]
+
+[[plugins]]
+url = "https://github.com/kana/vim-repeat"
+
+# ── motion ───────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/haya14busa/vim-edgemotion"
+
+[[plugins]]
+url = "https://github.com/folke/flash.nvim"
+cond = "{{ vars.use_flash }}"
+
+[[plugins]]
+url = "https://github.com/yuki-yano/zero.nvim"
+
+[[plugins]]
+url = "https://github.com/Bakudankun/BackAndForward.vim"
+
+# ── search ───────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/haya14busa/vim-asterisk"
+
+[[plugins]]
+url = "https://github.com/lambdalisue/vim-kensaku"
+
+[[plugins]]
+url = "https://github.com/kevinhwang91/nvim-hlslens"
+depends = ["vim-asterisk"]
+
+[[plugins]]
+url = "https://github.com/MagicDuck/grug-far.nvim"
+
+# ── git ──────────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/lewis6991/gitsigns.nvim"
+on_event = "BufRead"
+
+[[plugins]]
+url = "https://github.com/lambdalisue/vim-askpass"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/lambdalisue/vim-guise"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/lambdalisue/vim-gin"
+
+[[plugins]]
+url = "https://github.com/rhysd/committia.vim"
+
+[[plugins]]
+url = "https://github.com/clabby/difftastic.nvim"
+depends = ["nui.nvim"]
+cond = "{{ vars.use_difftastic }}"
+
+[[plugins]]
+url = "https://github.com/pwntester/octo.nvim"
+on_cmd = "Octo"
+depends = ["plenary.nvim", "nvim-web-devicons"]
+
+[[plugins]]
+url = "https://github.com/akinsho/git-conflict.nvim"
+on_event = "BufRead"
+
+[[plugins]]
+url = "https://github.com/skanehira/github-actions.nvim"
+on_map = [
+  { lhs = "<leader>Gd", mode = "n", desc = "Dispatch workflow" },
+  { lhs = "<leader>Gh", mode = "n", desc = "Show workflow history" },
+  { lhs = "<leader>Gw", mode = "n", desc = "Watch running workflow" },
+]
+
+[[plugins]]
+url = "https://github.com/dallagi/git-timemachine.nvim"
+on_cmd = "GitTimeMachine"
+
+# ── statusline (slimline) ────────────────────────────
+
+[[plugins]]
+url = "https://github.com/sschleemilch/slimline.nvim"
+cond = "{{ vars.use_slimline }}"
+
+# ── terminal (toggleterm) ────────────────────────────
+
+[[plugins]]
+url = "https://github.com/akinsho/toggleterm.nvim"
+cond = "{{ vars.use_toggleterm }}"
+
+# ── filer (yazi) ─────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/mikavilpas/yazi.nvim"
+depends = ["plenary.nvim"]
+cond = "{{ vars.use_yazi }}"
+
+# ── window ───────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/simeji/winresizer"
+on_cmd = "WinResizerStartFocus"
+
+[[plugins]]
+url = "https://github.com/tenxsoydev/size-matters.nvim"
+cond = "vim.fn.exists('g:neovide') == 1 or vim.fn.exists(':GuiFont') == 2"
+
+[[plugins]]
+url = "https://github.com/thinca/vim-winenv"
+cond = "vim.fn.has('win32') == 1"
+
+[[plugins]]
+url = "https://github.com/4513ECHO/vim-snipewin"
+on_map = [{ lhs = "sw", mode = "n" }]
+cond = "{{ vars.use_snipewin }}"
+
+[[plugins]]
+url = "https://github.com/nvim-zh/colorful-winsep.nvim"
+on_event = ["WinNew", "WinEnter"]
+
+[[plugins]]
+url = "https://github.com/mrjones2014/smart-splits.nvim"
+
+# ── quickfix ─────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/kevinhwang91/nvim-bqf"
+cond = "{{ vars.use_bqf }}"
+
+[[plugins]]
+url = "https://github.com/mei28/qfc.nvim"
+
+[[plugins]]
+url = "https://github.com/itchyny/vim-qfedit"
+
+# ── operator ─────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/kana/vim-operator-user"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/machakann/vim-sandwich"
+depends = ["vim-operator-user"]
+on_map = [
+  { lhs = "sa", mode = ["n", "x", "o"] },
+  { lhs = "sd", mode = "n" },
+  { lhs = "sr", mode = "n" },
+]
+
+[[plugins]]
+url = "https://github.com/kana/vim-operator-replace"
+depends = ["vim-operator-user"]
+on_map = [{ lhs = "_", mode = ["n", "x"] }]
+
+# ── textobj ──────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/kana/vim-textobj-user"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/kana/vim-textobj-entire"
+depends = ["vim-textobj-user"]
+on_map = [
+  { lhs = "ae", mode = ["x", "o"] },
+  { lhs = "ie", mode = ["x", "o"] },
+]
+
+[[plugins]]
+url = "https://github.com/kana/vim-textobj-indent"
+depends = ["vim-textobj-user"]
+on_map = [
+  { lhs = "ai", mode = ["x", "o"] },
+  { lhs = "ii", mode = ["x", "o"] },
+]
+
+[[plugins]]
+url = "https://github.com/kana/vim-textobj-line"
+depends = ["vim-textobj-user"]
+on_map = [
+  { lhs = "al", mode = ["x", "o"] },
+  { lhs = "il", mode = ["x", "o"] },
+]
+
+[[plugins]]
+url = "https://github.com/gilligan/textobj-lastpaste"
+depends = ["vim-textobj-user"]
+on_map = [
+  { lhs = "ay", mode = ["x", "o"] },
+  { lhs = "iy", mode = ["x", "o"] },
+]
+
+[[plugins]]
+url = "https://github.com/machakann/vim-swap"
+on_map = [
+  { lhs = "g<", mode = ["n", "x"] },
+  { lhs = "g>", mode = ["n", "x"] },
+  { lhs = "gs", mode = ["n", "x"] },
+]
+
+[[plugins]]
+url = "https://github.com/machakann/vim-textobj-functioncall"
+on_map = [
+  { lhs = "af", mode = ["x", "o"] },
+  { lhs = "if", mode = ["x", "o"] },
+]
+
+[[plugins]]
+url = "https://github.com/yuki-yano/vim-textobj-generics"
+depends = ["vim-textobj-functioncall"]
+on_map = [
+  { lhs = "a<", mode = ["x", "o"] },
+  { lhs = "i<", mode = ["x", "o"] },
+]
+
+[[plugins]]
+url = "https://github.com/terryma/vim-expand-region"
+on_map = [
+  { lhs = "+", mode = "x" },
+  { lhs = "-", mode = "x" },
+]
+
+# ── ai ───────────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/lambdalisue/nvim-aibo"
+on_map = [
+  { lhs = "<space>b", mode = "n", desc = "Aibo gemini" },
+  { lhs = "<space>B", mode = "n", desc = "Aibo gemini focus" },
+]
+cond = "{{ vars.use_ai }}"
+
+[[plugins]]
+url = "https://github.com/folke/sidekick.nvim"
+cond = "{{ vars.use_ai }}"
+
+[[plugins]]
+url = "https://github.com/yukimemi/futago.vim"
+on_map = ["mf"]
+on_cmd = ["FutagoGitCommit", "FutagoJjCommit", "FutagoHistory"]
+cond = "{{ vars.use_ai }}"
+
+# ── memo ─────────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/glidenote/memolist.vim"
+
+[[plugins]]
+url = "https://github.com/walkersumida/fusen.nvim"
+on_map = ["ml", "me", "mn", "mp"]
+cond = "{{ vars.use_fusen }}"
+
+# ── runner (overseer) ────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/stevearc/overseer.nvim"
+on_cmd = ["OverseerOpen", "OverseerClose", "OverseerToggle", "OverseerRun", "OverseerShell", "OverseerTaskAction"]
+cond = "{{ vars.use_overseer }}"
+
+# ── test (vimtest) ───────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/skywind3000/asyncrun.vim"
+on_cmd = "AsyncRun"
+
+[[plugins]]
+url = "https://github.com/vim-test/vim-test"
+depends = ["asyncrun.vim"]
+on_cmd = ["TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit"]
+
+# ── todo ─────────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/arnarg/todotxt.nvim"
+
+# ── fun ──────────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/frostzt/bongo-cat.nvim"
+on_cmd = ["BongoCat", "BongoCatShow", "BongoCatHide", "BongoCatStats"]
+
+[[plugins]]
+url = "https://github.com/Abizrh/beastie.nvim"
+on_cmd = ["BeastieStart", "BeastieStop", "BeastieSwitch"]
+
+[[plugins]]
+url = "https://github.com/ikouchiha47/games.nvim"
+on_cmd = ["Hangman", "MineSweeper", "Pacman"]
+
+[[plugins]]
+url = "https://github.com/folke/drop.nvim"
+on_event = "CursorHold"
+
+# ── startup ──────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/dstein64/vim-startuptime"
+on_cmd = "StartupTime"
+
+# ── bluesky ──────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/basyura/dsky.vim"
+
+# ── zellij ───────────────────────────────────────────
+
+# (smart-splits already listed under window)
+
+# ── filetypes ────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/aklt/plantuml-syntax"
+on_ft = "plantuml"
+
+[[plugins]]
+url = "https://github.com/previm/previm"
+depends = ["open-browser.vim"]
+
+[[plugins]]
+url = "https://github.com/dhruvasagar/vim-table-mode"
+on_ft = "markdown"
+
+[[plugins]]
+url = "https://github.com/ixru/nvim-markdown"
+on_ft = "markdown"
+
+[[plugins]]
+url = "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
+on_ft = "markdown"
+
+[[plugins]]
+url = "https://github.com/roodolv/markdown-toggle.nvim"
+on_ft = "markdown"
+
+[[plugins]]
+url = "https://github.com/Saecki/crates.nvim"
+on_ft = "rust"
+
+[[plugins]]
+url = "https://github.com/nastevens/vim-cargo-make"
+
+[[plugins]]
+url = "https://github.com/imsnif/kdl.vim"
+on_ft = "kdl"
+
+[[plugins]]
+url = "https://github.com/lambdalisue/vim-deno-cache"
+
+[[plugins]]
+url = "https://github.com/fei6409/log-highlight.nvim"
+
+# ── colorscheme ──────────────────────────────────────
 
 [[plugins]]
 url = "https://github.com/yukimemi/lumiris.vim"
 merge = false
 
 [[plugins]]
-url = "https://github.com/0x-ximon/acario.nvim"
+url = "https://github.com/0xstepit/flow.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/4513ECHO/vim-colors-hatsunemiku"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/AlessandroYorba/Alduin"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/Allianaab2m/penumbra.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/Badacadabra/vim-archery"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/b0o/Lavi"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/uhs-robert/oasis.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/alexpasmantier/hubbamax.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/jdsimcoe/abstract.vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/FrenzyExists/aquarium-vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/KeitaNakamura/neodark.vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/Matsuuu/pinkmare"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/NLKNguyen/papercolor-theme"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/PHSix/nvim-hybrid"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/RRethy/nvim-base16"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/Rigellute/rigel"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/Styzex/Sonomin.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/adrian5/oceanic-next-vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/aereal/vim-colors-japanesque"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/ajlende/atlas.vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/aonemd/quietlight.vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/archseer/colibri.vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/arrow2nd/aqua"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/atrnh/magical-girl-vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/ayu-theme/ayu-vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/bluz71/vim-nightfly-colors"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/bluz71/vim-nightfly-guicolors"
 lazy = true
 
 [[plugins]]
@@ -87,6 +977,355 @@ name = "catppuccin"
 lazy = true
 
 [[plugins]]
+url = "https://github.com/cocopon/iceberg.vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/craftzdog/solarized-osaka.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/crispybaccoon/evergarden"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/cseelus/vim-colors-lucid"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/daltonmenezes/aura-theme"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/daschw/leaf.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/diegoulloao/neofusion.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/doums/darcula"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/dracula/vim"
+name = "dracula"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/drewtempelmeyer/palenight.vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/echasnovski/mini.base16"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/eddyekofo94/gruvbox-flat.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/eihigh/vim-aomi-grayscale"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/ellisonleao/gruvbox.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/fenetikm/falcon"
+lazy = true
+
+[[plugins]]
 url = "https://github.com/folke/tokyonight.nvim"
 lazy = true
 
+[[plugins]]
+url = "https://github.com/futsuuu/vim-robot"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/gkapfham/vim-vitamin-onec"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/gkeep/iceberg-dark"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/maxmx03/fluoromachine.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/gruvbox-community/gruvbox"
+name = "gruvbox-community"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/habamax/vim-gruvbit"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/ingram1107/vim-zhi"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/jonathanfilip/vim-lucius"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/joshdick/onedark.vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/jsit/toast.vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/kihachi2000/yash.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/kjssad/quantum.vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/kwsp/halcyon-neovim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/kyoh86/momiji"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/ldelossa/vimdark"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/leviosa42/vim-github-theme"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/Pearljak/terracotta.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/lifepillar/vim-solarized8"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/liuchengxu/space-vim-dark"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/liuchengxu/space-vim-theme"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/lourenci/github-colors"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/machakann/vim-colorscheme-kemonofriends"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/machakann/vim-colorscheme-tatami"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/marko-cerovac/material.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/maxmx03/solarized.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/miikanissi/modus-themes.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/monaqa/colorimetry.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/neko-night/nvim"
+name = "nekonight"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/nickburlett/vim-colors-stylus"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/nvimdev/oceanic-material"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/nvimdev/zephyr-nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/oxidescheme/nvim"
+name = "oxide"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/oxfist/night-owl.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/pbrisbin/vim-colors-off"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/pineapplegiant/spaceduck"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/loctvl842/monokai-pro.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/polirritmico/monokai-nightasty.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/projekt0n/caret.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/projekt0n/github-nvim-theme"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/rafamadriz/neon"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/rafi/awesome-vim-colorschemes"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/rainglow/vim"
+name = "rainglow"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/ramojus/mellifluous.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/ray-x/aurora"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/rebelot/kanagawa.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/rhysd/vim-color-spring-night"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/rmehri01/onenord.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/romgrk/github-light.vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/rose-pine/neovim"
+name = "rose-pine"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/sainnhe/edge"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/sainnhe/gruvbox-material"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/savq/melange-nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/scottmckendry/cyberdream.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/severij/vadelma"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/shaunsingh/nord.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/sho-87/kanagawa-paper.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/sigmavim/kyotonight"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/sponkurtus2/angelic.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/srcery-colors/srcery-vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/sts10/vim-pink-moon"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/tiagovla/tokyodark.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/tobi-wan-kenobi/zengarden"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/wadackel/vim-dogrun"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/yasukotelin/shirotelin"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/yazeed1s/oh-lucy.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/yorik1984/newpaper.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/yuttie/hydrangea-vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/zacanger/angr.vim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/zefei/cake16"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/zenbones-theme/zenbones.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/0x-ximon/acario.nvim"
+lazy = true

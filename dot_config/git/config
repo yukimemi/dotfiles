@@ -30,7 +30,7 @@
 	quotepath = false
 	editor = nvim
 [ghq]
-	root = ~/.cache/nvim/dvpm
+	root = ~/.cache/rvpm/repos
 	root = ~/go/src
 	root = ~/src
 [merge]

@@ -7,7 +7,7 @@ root = "~/src"
 includes = [
   "~/src",
   "~/.local/share/chezmoi",
-  "~/.cache/nvim/dvpm",
+  "~/.cache/rvpm/repos",
   "~/Documents/src",
   "~/AppData/Local/nvim-data/lazy",
 ]

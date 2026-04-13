@@ -214,3 +214,6 @@ if ok and extui then
 	-- Disable extui. use noice.nvim
 	-- pcall(extui.enable, {})
 end
+
+-- Fallback colorscheme
+vim.cmd("colorscheme habamax")

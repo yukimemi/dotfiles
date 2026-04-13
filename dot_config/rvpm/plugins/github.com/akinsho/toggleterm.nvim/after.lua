@@ -1,0 +1,68 @@
+-- =============================================================================
+-- File        : toggleterm.lua
+-- Author      : yukimemi
+-- Last Change : 2026/02/28 10:50:55.
+-- =============================================================================
+
+local toggleterm = require("toggleterm")
+local Terminal   = require('toggleterm.terminal').Terminal
+
+toggleterm.setup({
+  direction = "float"
+})
+
+local lazygit = Terminal:new({
+  cmd = "lazygit",
+  dir = "git_dir",
+  direction = "float",
+  float_opts = {
+    border = "double",
+  },
+  -- function to run on opening the terminal
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+  end,
+  -- function to run on closing the terminal
+  on_close = function(term)
+    vim.cmd("startinsert!")
+  end,
+})
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+
+vim.keymap.set("n", "<space>gg", "<cmd>lua _lazygit_toggle()<cr>", { noremap = true, silent = true })
+
+local pwsh = Terminal:new({
+  cmd = "pwsh.exe",
+})
+
+function _pwsh_toggle()
+  pwsh:toggle()
+end
+
+if vim.fn.has('win32') == 1 then
+  vim.keymap.set("n", "<c-s>", "<cmd>lua _pwsh_toggle()<cr>", { noremap = true, silent = true })
+else
+  vim.keymap.set("n", "<c-s>", "<cmd>ToggleTerm<cr>", { noremap = true, silent = true })
+end
+
+-- Highlight the border when in Terminal-Normal mode (Neovim controlling).
+-- This is more efficient than ModeChanged as it only triggers on mode transitions.
+vim.api.nvim_create_autocmd("TermLeave", {
+  callback = function()
+    if vim.bo.buftype == "terminal" then
+      vim.wo.winhighlight = "FloatBorder:ErrorMsg"
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd("TermEnter", {
+  callback = function()
+    if vim.bo.buftype == "terminal" then
+      vim.wo.winhighlight = ""
+    end
+  end,
+})

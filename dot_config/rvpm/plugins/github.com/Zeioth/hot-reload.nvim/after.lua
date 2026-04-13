@@ -1,0 +1,1 @@
+require("hot-reload").setup({})
