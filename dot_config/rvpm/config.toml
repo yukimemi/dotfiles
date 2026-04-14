@@ -10,7 +10,7 @@ operator_html_escape = false
 [[plugins]]
 url = "https://github.com/hrsh7th/nvim-dansa"
 on_event = ["BufReadPre", "BufNew"]
- 
+
 [[plugins]]
 url = "https://github.com/manuuurino/autoread.nvim"
 on_cmd = ["Autoread"]
@@ -35,7 +35,6 @@ merge = false
 
 [[plugins]]
 url = "https://github.com/yukimemi/chronicle.vim"
-
 
 # ── lsp ───────────────────────────────────────────
 
@@ -142,6 +141,7 @@ on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/folke/noice.nvim"
+on_event = "VimEnter"
 depends = ["nui.nvim"]
 
 [[plugins]]
@@ -209,13 +209,16 @@ url = "https://github.com/Bakudankun/BackAndForward.vim"
 
 [[plugins]]
 url = "https://github.com/haya14busa/vim-asterisk"
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/lambdalisue/vim-kensaku"
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/kevinhwang91/nvim-hlslens"
 depends = ["vim-asterisk"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/MagicDuck/grug-far.nvim"
@@ -263,6 +266,7 @@ on_cmd = "WinResizerStartFocus"
 
 [[plugins]]
 url = "https://github.com/tenxsoydev/size-matters.nvim"
+merge = false
 cond = "vim.fn.exists('g:neovide') == 1 or vim.fn.exists(':GuiFont') == 2"
 
 [[plugins]]
@@ -931,4 +935,7 @@ lazy = true
 [[plugins]]
 url = "https://github.com/0x-ximon/acario.nvim"
 lazy = true
+
+[[plugins]]
+url = "https://github.com/yukimemi/hitori.vim"
 
