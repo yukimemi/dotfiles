@@ -23,22 +23,55 @@ on_cmd = ["Here"]
 url = "https://github.com/MunifTanjim/nui.nvim"
 lazy = true
 
+[[plugins]]
+url = "https://github.com/thinca/vim-ambicmd"
+
 # ── denops ────────────────────────────────────────
 
 [[plugins]]
 url = "https://github.com/vim-denops/denops.vim"
 merge = false
 
+
+[[plugins]]
+url = "https://github.com/yukimemi/chronicle.vim"
+
+
+# ── lsp ───────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/neovim/nvim-lspconfig"
+depends = ["blink.cmp"]
+on_event = "BufReadPre"
+
+[[plugins]]
+url = "https://github.com/williamboman/mason.nvim"
+on_cmd = "Mason"
+
+[[plugins]]
+url = "https://github.com/williamboman/mason-lspconfig.nvim"
+depends = ["mason.nvim", "nvim-lspconfig"]
+on_source = ["nvim-lspconfig"]
+
+[[plugins]]
+url = "https://github.com/stevearc/conform.nvim"
+on_event = "BufReadPre"
+
+
 # ── completion ────────────────────────────────────
 
 [[plugins]]
 url = "https://github.com/saghen/blink.cmp"
 on_event = "InsertEnter"
-depends = ["blink-ripgrep.nvim", "friendly-snippets"]
+depends = ["blink-ripgrep.nvim", "blink.compat", "friendly-snippets"]
 build = "cargo build --release"
 
 [[plugins]]
 url = "https://github.com/mikavilpas/blink-ripgrep.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/saghen/blink.compat"
 lazy = true
 
 # ── snippet (denippet) ───────────────────────────────
@@ -49,6 +82,13 @@ lazy = true
 
 [[plugins]]
 url = "https://github.com/uga-rosa/denippet.vim"
+
+# ── statusline ────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/nvim-lualine/lualine.nvim"
+on_event = "CursorHold"
+
 
 # ── ui ───────────────────────────────────────────────
 

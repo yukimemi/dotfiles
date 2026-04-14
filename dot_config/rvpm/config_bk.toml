@@ -1,0 +1,214 @@
+# rvpm config — https://github.com/yukimemi/rvpm#configuration
+[vars]
+operator_stay_cursor = false
+operator_html_escape = false
+
+[options]
+
+# ── util ──────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/folke/noice.nvim"
+
+[[plugins]]
+url = "https://github.com/yukimemi/chronicle.vim"
+
+[[plugins]]
+url = "https://github.com/folke/snacks.nvim"
+
+[[plugins]]
+url = "https://github.com/thinca/vim-ambicmd"
+
+[[plugins]]
+url = "https://github.com/hrsh7th/nvim-dansa"
+on_event = ["BufReadPre", "BufNew"]
+
+[[plugins]]
+url = "https://github.com/manuuurino/autoread.nvim"
+on_cmd = ["Autoread"]
+
+[[plugins]]
+url = "https://github.com/juliuswaldmann/here.nvim"
+on_cmd = ["Here"]
+
+# ── denops ────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/vim-denops/denops.vim"
+merge = false
+
+# ── completion ────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/saghen/blink.cmp"
+on_event = "InsertEnter"
+depends = ["blink-ripgrep.nvim", "blink.compat", "friendly-snippets"]
+build = "cargo build --release"
+
+[[plugins]]
+url = "https://github.com/mikavilpas/blink-ripgrep.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/saghen/blink.compat"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/rafamadriz/friendly-snippets"
+lazy = true
+
+# ── lsp ───────────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/neovim/nvim-lspconfig"
+depends = ["blink.cmp"]
+on_event = "BufReadPre"
+
+[[plugins]]
+url = "https://github.com/williamboman/mason.nvim"
+on_cmd = "Mason"
+
+[[plugins]]
+url = "https://github.com/williamboman/mason-lspconfig.nvim"
+depends = ["mason.nvim", "nvim-lspconfig"]
+on_source = ["nvim-lspconfig"]
+
+[[plugins]]
+url = "https://github.com/stevearc/conform.nvim"
+on_event = "BufReadPre"
+
+# ── statusline ────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/nvim-lualine/lualine.nvim"
+on_event = "CursorHold"
+
+# ── colorscheme ───────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/yukimemi/lumiris.vim"
+merge = false
+
+[[plugins]]
+url = "https://github.com/0x-ximon/acario.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/catppuccin/nvim"
+name = "catppuccin"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/folke/tokyonight.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/yukimemi/hitori.vim"
+
+# ── textobj ──────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/kana/vim-textobj-user"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/kana/vim-textobj-entire"
+depends = ["vim-textobj-user"]
+on_map = [
+  { lhs = "ae", mode = ["x", "o"] },
+  { lhs = "ie", mode = ["x", "o"] },
+]
+
+[[plugins]]
+url = "https://github.com/kana/vim-textobj-indent"
+depends = ["vim-textobj-user"]
+on_map = [
+  { lhs = "ai", mode = ["x", "o"] },
+  { lhs = "ii", mode = ["x", "o"] },
+]
+
+[[plugins]]
+url = "https://github.com/kana/vim-textobj-line"
+depends = ["vim-textobj-user"]
+on_map = [
+  { lhs = "al", mode = ["x", "o"] },
+  { lhs = "il", mode = ["x", "o"] },
+]
+
+[[plugins]]
+url = "https://github.com/gilligan/textobj-lastpaste"
+depends = ["vim-textobj-user"]
+on_map = [
+  { lhs = "ay", mode = ["x", "o"] },
+  { lhs = "iy", mode = ["x", "o"] },
+]
+
+[[plugins]]
+url = "https://github.com/machakann/vim-swap"
+on_map = [
+  { lhs = "g<", mode = ["n", "x"] },
+  { lhs = "g>", mode = ["n", "x"] },
+  { lhs = "gs", mode = ["n", "x"] },
+]
+
+[[plugins]]
+url = "https://github.com/machakann/vim-textobj-functioncall"
+on_map = [
+  { lhs = "af", mode = ["x", "o"] },
+  { lhs = "if", mode = ["x", "o"] },
+]
+
+[[plugins]]
+url = "https://github.com/yuki-yano/vim-textobj-generics"
+depends = ["vim-textobj-functioncall"]
+on_map = [
+  { lhs = "a<", mode = ["x", "o"] },
+  { lhs = "i<", mode = ["x", "o"] },
+]
+
+[[plugins]]
+url = "https://github.com/terryma/vim-expand-region"
+on_map = [
+  { lhs = "+", mode = "x" },
+  { lhs = "-", mode = "x" },
+]
+
+# ── operator ─────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/kana/vim-operator-user"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/osyo-manga/vim-operator-stay-cursor"
+cond = "{{ vars.operator_stay_cursor }}"
+depends = ["vim-operator-user"]
+on_map = [
+  { lhs = "y", mode = ["n", "x"] },
+]
+
+[[plugins]]
+url = "https://github.com/machakann/vim-sandwich"
+depends = ["vim-operator-user"]
+on_map = [
+  { lhs = "sa", mode = ["n", "x", "o"] },
+  { lhs = "sd", mode = "n" },
+  { lhs = "sr", mode = "n" },
+]
+
+[[plugins]]
+url = "https://github.com/tyru/operator-html-escape.vim"
+cond = "{{ vars.operator_html_escape }}"
+depends = ["vim-operator-user"]
+on_map = [
+  { lhs = "<c-h>", mode = "x" },
+  { lhs = "<c-u>", mode = "x" },
+]
+
+[[plugins]]
+url = "https://github.com/kana/vim-operator-replace"
+depends = ["vim-operator-user"]
+on_map = [
+  { lhs = "_", mode = ["n", "x"] },
+]
+
