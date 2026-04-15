@@ -1,3 +1,11 @@
+-- Workaround for Neovim editorconfig.lua bug:
+-- When `trim_trailing_whitespace = false` is set for a buffer that has never
+-- registered an autocmd in the `nvim.editorconfig` augroup, the runtime calls
+-- `nvim_clear_autocmds({ group = 'nvim.editorconfig', ... })` which errors with
+-- `Invalid 'group'`. Pre-creating the group with clear=false makes the clear a
+-- no-op instead of a crash, without touching any real editorconfig behavior.
+vim.api.nvim_create_augroup("nvim.editorconfig", { clear = false })
+
 -- Startup time
 local startup_start_time = vim.fn.reltime()
 local startup_timer_augroup = vim.api.nvim_create_augroup("MyStartupTime", { clear = true })

@@ -8,6 +8,7 @@
 *.zwc
 .aider*
 .bk/
+.claude/scheduled_tasks.lock
 .claude/settings.local.json
 .config/nvim/plugin/packer_compiled.lua
 .config/raycast-x/

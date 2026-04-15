@@ -5,7 +5,7 @@
 -- =============================================================================
 
 vim.loader.enable()
-local loader = vim.fn.expand("~/.cache/rvpm/loader.lua")
+local loader = vim.fn.expand("~/.cache/rvpm/nvim/plugins/loader.lua")
 if vim.uv.fs_stat(loader) then
   dofile(loader)
 end

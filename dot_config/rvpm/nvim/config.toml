@@ -26,6 +26,9 @@ lazy = true
 [[plugins]]
 url = "https://github.com/thinca/vim-ambicmd"
 
+[[plugins]]
+url = "https://github.com/yukimemi/hitori.vim"
+
 # ── denops ────────────────────────────────────────
 
 [[plugins]]
@@ -935,7 +938,4 @@ lazy = true
 [[plugins]]
 url = "https://github.com/0x-ximon/acario.nvim"
 lazy = true
-
-[[plugins]]
-url = "https://github.com/yukimemi/hitori.vim"
 
