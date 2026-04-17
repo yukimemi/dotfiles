@@ -39,12 +39,14 @@ url = "https://github.com/sindrets/diffview.nvim"
 url = "https://github.com/folke/trouble.nvim"
 on_cmd = "Trouble"
 
+[[plugins]]
+url = "https://github.com/yukimemi/silentsaver.vim"
+
 # ── denops ────────────────────────────────────────
 
 [[plugins]]
 url = "https://github.com/vim-denops/denops.vim"
 merge = false
-
 
 [[plugins]]
 url = "https://github.com/yukimemi/chronicle.vim"
