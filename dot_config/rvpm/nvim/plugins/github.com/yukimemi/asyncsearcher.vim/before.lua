@@ -1,9 +1,3 @@
--- =============================================================================
--- File        : asyncsearcher.lua
--- Author      : yukimemi
--- Last Change : 2025/01/19 18:06:50.
--- =============================================================================
-
 vim.g.asyncsearcher_debug = false
 vim.g.asyncsearcher_cfg_path = vim.fn.expand("~/.config/asyncsearcher/asyncsearcher.toml")
 vim.o.grepformat = "%f:%l:%c:%m"

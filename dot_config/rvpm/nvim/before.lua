@@ -126,7 +126,8 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 if vim.fn.has("win32") == 1 then
 	vim.o.shell = "pwsh.exe"
-	vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+	vim.o.shellcmdflag =
+	"-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
 	vim.o.shellredir = "2>&1 | Out-File -Encoding UTF8 %s; if ($?) { exit 0 } else { exit 1 }"
 	vim.o.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; if ($?) { exit 0 } else { exit 1 }"
 	vim.o.shellquote = ""
@@ -174,10 +175,10 @@ local function tmux_move(direction)
 	end
 end
 
-vim.keymap.set({"n", "t"}, "<C-h>", function() tmux_move("h") end, { silent = true, noremap = true })
-vim.keymap.set({"n", "t"}, "<C-j>", function() tmux_move("j") end, { silent = true, noremap = true })
-vim.keymap.set({"n", "t"}, "<C-k>", function() tmux_move("k") end, { silent = true, noremap = true })
-vim.keymap.set({"n", "t"}, "<C-l>", function() tmux_move("l") end, { silent = true, noremap = true })
+vim.keymap.set({ "n", "t" }, "<C-h>", function() tmux_move("h") end, { silent = true, noremap = true })
+vim.keymap.set({ "n", "t" }, "<C-j>", function() tmux_move("j") end, { silent = true, noremap = true })
+vim.keymap.set({ "n", "t" }, "<C-k>", function() tmux_move("k") end, { silent = true, noremap = true })
+vim.keymap.set({ "n", "t" }, "<C-l>", function() tmux_move("l") end, { silent = true, noremap = true })
 
 vim.keymap.set("n", "<space><space>", "<cmd>update<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "<tab>", "%", { silent = true, noremap = true })
@@ -217,10 +218,9 @@ vim.keymap.set("n", "st", "<cmd>tabnew<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "sv", "<cmd>vs<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "sw", "<c-w>w", { silent = true, noremap = true })
 
-local ok, extui = pcall(require, 'vim._extui')
-if ok and extui then
-	-- Disable extui. use noice.nvim
-	-- pcall(extui.enable, {})
+local ok, ui2 = pcall(require, 'vim._core.ui2')
+if ok and ui2 then
+	pcall(ui2.enable, {})
 end
 
 -- Fallback colorscheme

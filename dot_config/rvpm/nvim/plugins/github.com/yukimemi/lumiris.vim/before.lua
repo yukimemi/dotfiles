@@ -1,4 +1,4 @@
-vim.g["lumiris_colors_path"] = { vim.fn.expand("~/.cache/rvpm/repos") }
+vim.g["lumiris_colors_path"] = { vim.fn.expand("~/.cache/rvpm/nvim/plugins/repos") }
 vim.g["lumiris_notify"] = true
 vim.g["lumiris_interval"] = 600
 
