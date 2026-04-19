@@ -1,9 +1,8 @@
 -- =============================================================================
 -- File        : after.lua
 -- Author      : yukimemi
--- Last Change : 2026/04/20 01:10:06.
+-- Last Change : 2026/04/19 23:51:19
 -- =============================================================================
 
-require("autoread").setup({
-  cursor_behavior = "scroll_down"
-})
+vim.keymap.set("n", "gcc", "<Plug>(contextment-line)")
+vim.keymap.set("x", "gcc", "<Plug>(contextment)")

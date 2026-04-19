@@ -239,6 +239,11 @@ url = "https://github.com/fenetikm/falcon"
 commit = "276cd483c73f5389f0bd99b18e2452bd57b77bf6"
 
 [[plugins]]
+name = "fidget.nvim"
+url = "https://github.com/j-hui/fidget.nvim"
+commit = "889e2e96edef4e144965571d46f7a77bcc4d0ddf"
+
+[[plugins]]
 name = "flash.nvim"
 url = "https://github.com/folke/flash.nvim"
 commit = "fcea7ff883235d9024dc41e638f164a450c14ca2"
@@ -327,6 +332,11 @@ commit = "c0964ca41219ddd38fac83b46e3dadf46f06266c"
 name = "hitori.vim"
 url = "https://github.com/yukimemi/hitori.vim"
 commit = "028153992cc7071c498aa38fac68ac36e7ff9c48"
+
+[[plugins]]
+name = "hover.nvim"
+url = "https://github.com/lewis6991/hover.nvim"
+commit = "e73c00da3a9c87a21d2a8ddf7ab4a39824bd5d56"
 
 [[plugins]]
 name = "hubbamax.nvim"

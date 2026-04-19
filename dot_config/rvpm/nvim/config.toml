@@ -1,3 +1,9 @@
+# =============================================================================
+# File        : config.toml
+# Author      : yukimemi
+# Last Change : 2026/04/20 01:10:06.
+# =============================================================================
+
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
 
 [vars]
@@ -46,6 +52,10 @@ on_cmd = "Trouble"
 [[plugins]]
 url = "https://github.com/xvzc/chezmoi.nvim"
 
+[[plugins]]
+url = "https://github.com/j-hui/fidget.nvim"
+on_event = "CursorHold"
+
 # ── denops ────────────────────────────────────────
 
 [[plugins]]
@@ -54,6 +64,14 @@ merge = false
 
 [[plugins]]
 url = "https://github.com/yukimemi/chronicle.vim"
+
+[[plugins]]
+url = "https://github.com/yukimemi/snacks-source-chronicle"
+depends = ["snacks.nvim", "chronicle.vim"]
+on_map = [
+  { lhs = "mr", mode = "n", desc = "Chronicle Read" },
+  { lhs = "mw", mode = "n", desc = "Chronicle Write" },
+]
 
 [[plugins]]
 url = "https://github.com/yukimemi/asyncsearcher.vim"
@@ -80,6 +98,10 @@ on_source = ["nvim-lspconfig"]
 
 [[plugins]]
 url = "https://github.com/stevearc/conform.nvim"
+on_event = "BufReadPre"
+
+[[plugins]]
+url = "https://github.com/lewis6991/hover.nvim"
 on_event = "BufReadPre"
 
 

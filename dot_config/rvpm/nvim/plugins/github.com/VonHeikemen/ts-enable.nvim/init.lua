@@ -1,3 +1,9 @@
+-- =============================================================================
+-- File        : init.lua
+-- Author      : yukimemi
+-- Last Change : 2026/04/20 01:10:06.
+-- =============================================================================
+
 vim.g.ts_enable = {
   parsers = {
     "bash", "editorconfig", "fish", "git_config", "gitcommit", "gitignore",

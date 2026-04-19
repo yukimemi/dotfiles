@@ -1,9 +1,15 @@
+-- =============================================================================
+-- File        : after.lua
+-- Author      : yukimemi
+-- Last Change : 2026/04/20 01:10:06.
+-- =============================================================================
+
 
 local conform = require("conform")
 
 conform.setup({
   default_format_opts = {
-	    lsp_format = "fallback",
+    lsp_format = "fallback",
   },
   format_on_save = {
     lsp_format = "fallback",

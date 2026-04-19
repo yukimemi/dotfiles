@@ -1,3 +1,9 @@
+-- =============================================================================
+-- File        : init.lua
+-- Author      : yukimemi
+-- Last Change : 2026/04/20 01:10:06.
+-- =============================================================================
+
 vim.g.autocursor_debug = false
 vim.g.autocursor_notify = false
 vim.g.autocursor_cursorline = {

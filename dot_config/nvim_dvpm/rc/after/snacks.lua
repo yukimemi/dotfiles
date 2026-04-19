@@ -40,11 +40,11 @@ require("snacks").setup({
     enabled = true,
   },
   notifier = {
-    enabled = true,
+    enabled = false,
     width = { min = 40, max = 0.9 },
   },
   notify = {
-    enabled = true,
+    enabled = false,
   },
   picker = {
     enabled = true,

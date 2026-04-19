@@ -1,3 +1,9 @@
+-- =============================================================================
+-- File        : init.lua
+-- Author      : yukimemi
+-- Last Change : 2026/04/20 01:10:06.
+-- =============================================================================
+
 vim.g.silentsaver_debug = false
 vim.g.silentsaver_enable = true
 vim.g.silentsaver_echo = false

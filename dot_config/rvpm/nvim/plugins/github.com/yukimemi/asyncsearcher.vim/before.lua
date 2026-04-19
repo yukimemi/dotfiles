@@ -1,3 +1,9 @@
+-- =============================================================================
+-- File        : before.lua
+-- Author      : yukimemi
+-- Last Change : 2026/04/20 01:10:06.
+-- =============================================================================
+
 vim.g.asyncsearcher_debug = false
 vim.g.asyncsearcher_cfg_path = vim.fn.expand("~/.config/asyncsearcher/asyncsearcher.toml")
 vim.o.grepformat = "%f:%l:%c:%m"

@@ -1,12 +1,18 @@
+-- =============================================================================
+-- File        : init.lua
+-- Author      : yukimemi
+-- Last Change : 2026/04/20 01:10:06.
+-- =============================================================================
+
 vim.g.autoreplacer_debug = false
 vim.g.autoreplacer_notify = true
 vim.g.autoreplacer_config = {
   xml = {
     replace = {
-      { '/^(.*key="version">)[^<]*(<.*)/i', '$1${format(now, "yyyyMMdd_HHmmss")}$2' },
+      { '/^(.*key="version">)[^<]*(<.*)/i',               '$1${format(now, "yyyyMMdd_HHmmss")}$2' },
       { '/^(.*key="%{task_file}%_version">)[^<]*(<.*)/i', '$1${format(now, "yyyyMMdd_HHmmss")}$2' },
       { '/^(.*key="%{task_name}%_version">)[^<]*(<.*)/i', '$1${format(now, "yyyyMMdd_HHmmss")}$2' },
-      { '/^(.*key="autobot_version">)[^<]*(<.*)/i', '$1${format(now, "yyyyMMdd_HHmmss")}$2' },
+      { '/^(.*key="autobot_version">)[^<]*(<.*)/i',       '$1${format(now, "yyyyMMdd_HHmmss")}$2' },
     },
     event = "BufWritePre",
     pat = { "*.xml", "*.xaml" },
@@ -15,8 +21,8 @@ vim.g.autoreplacer_config = {
   },
   ps1 = {
     replace = {
-      { '/^(\\s*.Last Change\\s*: ).*\\./i', '$1${format(now, "yyyy/MM/dd HH:mm:ss")}.' },
-      { '/^(.*"version", ")[0-9_]+(".*)/i', '$1${format(now, "yyyyMMdd_HHmmss")}$2' },
+      { '/^(\\s*.Last Change\\s*: ).*\\./i',  '$1${format(now, "yyyy/MM/dd HH:mm:ss")}.' },
+      { '/^(.*"version", ")[0-9_]+(".*)/i',   '$1${format(now, "yyyyMMdd_HHmmss")}$2' },
       { '/^(.*\\$version = ")[0-9_]+(".*)/i', '$1${format(now, "yyyyMMdd_HHmmss")}$2' },
     },
     event = "BufWritePre",

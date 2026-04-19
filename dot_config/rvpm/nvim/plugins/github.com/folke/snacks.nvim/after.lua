@@ -1,3 +1,9 @@
+-- =============================================================================
+-- File        : after.lua
+-- Author      : yukimemi
+-- Last Change : 2026/04/20 01:10:06.
+-- =============================================================================
+
 require("snacks").setup({
   animate = {
     enabled = false,
@@ -34,11 +40,11 @@ require("snacks").setup({
     enabled = true,
   },
   notifier = {
-    enabled = true,
+    enabled = false,
     width = { min = 40, max = 0.9 },
   },
   notify = {
-    enabled = true,
+    enabled = false,
   },
   picker = {
     enabled = true,
@@ -141,9 +147,9 @@ if true then
   vim.keymap.set("n", "ms", function()
     Snacks.picker.files({ cwd = "~/src" })
   end, { desc = "Find src file" })
-  vim.keymap.set("n", "mr", function()
-    Snacks.picker.recent()
-  end, { desc = "Recent files" })
+  -- vim.keymap.set("n", "mr", function()
+  --   Snacks.picker.recent()
+  -- end, { desc = "Recent files" })
   vim.keymap.set("n", "<space>fc", function()
     Snacks.picker.files({ cwd = "~/.cache" })
   end, { desc = "Find Cache File" })
