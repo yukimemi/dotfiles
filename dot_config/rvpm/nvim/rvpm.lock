@@ -704,6 +704,11 @@ url = "https://github.com/mopp/smartnumber.vim"
 commit = "16b6dedca81f5f9d49cc82492df71dc41cac6f76"
 
 [[plugins]]
+name = "snacks-source-chronicle"
+url = "https://github.com/yukimemi/snacks-source-chronicle"
+commit = "77cbf7b618baa8088695d6cf66ccdc098101232d"
+
+[[plugins]]
 name = "snacks.nvim"
 url = "https://github.com/folke/snacks.nvim"
 commit = "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e"
