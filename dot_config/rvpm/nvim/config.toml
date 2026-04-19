@@ -1,8 +1,6 @@
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
 
 [vars]
-operator_stay_cursor = false
-operator_html_escape = false
 
 [options]
 chezmoi = true
@@ -35,20 +33,14 @@ url = "https://github.com/yukimemi/hitori.vim"
 
 [[plugins]]
 url = "https://github.com/sindrets/diffview.nvim"
+on_event = ["BufReadPre", "BufNew"]
 
 [[plugins]]
 url = "https://github.com/folke/trouble.nvim"
 on_cmd = "Trouble"
 
 [[plugins]]
-url = "https://github.com/yukimemi/silentsaver.vim"
-
-[[plugins]]
 url = "https://github.com/xvzc/chezmoi.nvim"
-
-[[plugins]]
-url = "https://github.com/yukimemi/asyncsearcher.vim"
-
 
 # ── denops ────────────────────────────────────────
 
@@ -58,6 +50,13 @@ merge = false
 
 [[plugins]]
 url = "https://github.com/yukimemi/chronicle.vim"
+
+[[plugins]]
+url = "https://github.com/yukimemi/asyncsearcher.vim"
+on_cmd = ["AsyncSearch"]
+
+[[plugins]]
+url = "https://github.com/yukimemi/silentsaver.vim"
 
 # ── lsp ───────────────────────────────────────────
 
@@ -85,7 +84,12 @@ on_event = "BufReadPre"
 [[plugins]]
 url = "https://github.com/saghen/blink.cmp"
 on_event = "InsertEnter"
-depends = ["blink-ripgrep.nvim", "blink.compat", "friendly-snippets"]
+depends = [
+  "blink-ripgrep.nvim",
+  "blink.compat",
+  "friendly-snippets",
+  "denippet.vim",
+]
 build = "cargo build --release"
 
 [[plugins]]
@@ -104,6 +108,7 @@ lazy = true
 
 [[plugins]]
 url = "https://github.com/uga-rosa/denippet.vim"
+lazy = true
 
 # ── statusline ────────────────────────────────────
 
@@ -193,6 +198,7 @@ on_map = [
 
 [[plugins]]
 url = "https://github.com/hrsh7th/nvim-insx"
+on_event = ["InsertEnter"]
 
 [[plugins]]
 url = "https://github.com/Shougo/context_filetype.vim"
@@ -216,10 +222,7 @@ url = "https://github.com/kana/vim-repeat"
 
 [[plugins]]
 url = "https://github.com/haya14busa/vim-edgemotion"
-on_map = [
-  { lhs = "sj", mode = [ "n", "x" ] },
-  { lhs = "sk", mode = [ "n", "x" ] },
-]
+on_map = [{ lhs = "sj", mode = ["n", "x"] }, { lhs = "sk", mode = ["n", "x"] }]
 
 [[plugins]]
 url = "https://github.com/folke/flash.nvim"
@@ -292,10 +295,7 @@ on_cmd = "WinResizerStartFocus"
 [[plugins]]
 url = "https://github.com/tenxsoydev/size-matters.nvim"
 on_cmd = "FontReset"
-on_map = [
-  { lhs = "+", mode = "n" },
-  { lhs = "<c-_>", mode = "n" }
-]
+on_map = [{ lhs = "+", mode = "n" }, { lhs = "<c-_>", mode = "n" }]
 
 [[plugins]]
 url = "https://github.com/4513ECHO/vim-snipewin"
@@ -307,6 +307,7 @@ on_event = ["WinNew", "WinEnter"]
 
 [[plugins]]
 url = "https://github.com/mrjones2014/smart-splits.nvim"
+merge = false
 
 # ── quickfix ─────────────────────────────────────────
 
@@ -979,4 +980,3 @@ lazy = true
 [[plugins]]
 url = "https://github.com/0x-ximon/acario.nvim"
 lazy = true
-

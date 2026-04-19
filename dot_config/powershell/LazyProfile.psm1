@@ -513,6 +513,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "r"     = "Remove-Fzf"
     "rhl"   = "rhq list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
     "rm"    = $rmTarget
+    "rp"    = "rvpm"
     "s"     = "jj status --no-pager"
     "v"     = "gvim --remote-silent"
     "which" = "Get-Command"

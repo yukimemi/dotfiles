@@ -49,6 +49,27 @@ else
   vim.keymap.set("n", "<c-s>", "<cmd>ToggleTerm<cr>", { noremap = true, silent = true })
 end
 
+local rvpm = Terminal:new({
+  cmd = "rvpm list",
+  direction = "float",
+  float_opts = {
+    border = "double",
+  },
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+  end,
+  on_close = function(term)
+    vim.cmd("startinsert!")
+  end,
+})
+
+function _rvpm_toggle()
+  rvpm:toggle()
+end
+
+-- vim.keymap.set("n", "<space>rp", "<cmd>lua _rvpm_toggle()<cr>", { noremap = true, silent = true })
+
 -- Highlight the border when in Terminal-Normal mode (Neovim controlling).
 -- This is more efficient than ModeChanged as it only triggers on mode transitions.
 vim.api.nvim_create_autocmd("TermLeave", {
