@@ -494,6 +494,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "cza"   = "Select-ChezmoiAdd"
     "d"     = "jj diff"
     "e"     = "nvim"
+    "fe"    = "nvim `$(fd -H -t f | __FILTER | Select-Object -First 1)"
     "g"     = "git"
     "gc"    = "gut commit"
     "ghl"   = "ghr list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
@@ -616,26 +617,6 @@ if (Get-Module -ListAvailable PSReadLine) {
   Set-PSReadLineKeyHandler -Chord "Ctrl+p" -Function HistorySearchBackward -ViMode Insert
   Set-PSReadLineKeyHandler -Chord "Ctrl+u" -Function BackwardDeleteLine -ViMode Insert
   Set-PSReadLineKeyHandler -Chord "Ctrl+w" -Function BackwardDeleteWord -ViMode Insert
-
-  # High-performance Psmux navigation (Direct background execution)
-  # $invokePsmux = {
-  #   param([string]$direction)
-  #   $si = [System.Diagnostics.ProcessStartInfo]@{
-  #     FileName = "psmux.exe"
-  #     Arguments = "select-pane $direction"
-  #     CreateNoWindow = $true
-  #     UseShellExecute = $false
-  #   }
-  #   [System.Diagnostics.Process]::Start($si) | Out-Null
-  # }
-
-  # $psmuxModes = @('Insert', 'Command')
-  # foreach ($mode in $psmuxModes) {
-  #   Set-PSReadLineKeyHandler -Chord "Ctrl+h", "Ctrl+Backspace" -BriefDescription 'Psmux Left'  -ScriptBlock { & $invokePsmux "-L" } -ViMode $mode
-  #   Set-PSReadLineKeyHandler -Chord "Ctrl+j", "Ctrl+Enter" -BriefDescription 'Psmux Down'  -ScriptBlock { & $invokePsmux "-D" } -ViMode $mode
-  #   Set-PSReadLineKeyHandler -Chord "Ctrl+k" -BriefDescription 'Psmux Up'    -ScriptBlock { & $invokePsmux "-U" } -ViMode $mode
-  #   Set-PSReadLineKeyHandler -Chord "Ctrl+l" -BriefDescription 'Psmux Right' -ScriptBlock { & $invokePsmux "-R" } -ViMode $mode
-  # }
 }
 
 if (!(Get-Command gut -ErrorAction SilentlyContinue)) {

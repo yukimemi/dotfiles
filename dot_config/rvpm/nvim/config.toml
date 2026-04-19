@@ -8,6 +8,7 @@ operator_html_escape = false
 chezmoi = true
 auto_clean = true
 url_style = "full"
+concurrency = 16
 
 # ── util ────────────────────────────────────────
 [[plugins]]
