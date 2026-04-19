@@ -106,7 +106,7 @@ commit = "098ff96c33874339d5e61656f3050dbd587d6bd5"
 [[plugins]]
 name = "blink-ripgrep.nvim"
 url = "https://github.com/mikavilpas/blink-ripgrep.nvim"
-commit = "6b6193facc180ad818bd0f7bdea80b7d63de2717"
+commit = "e727aa6ad753a8cc33f64e8e46a1145ea709eb41"
 
 [[plugins]]
 name = "blink.cmp"
@@ -506,7 +506,7 @@ commit = "80c1e5321505aeb22b7a9f23eb82f1e193c12470"
 [[plugins]]
 name = "nordic.nvim"
 url = "https://github.com/AlexvZyl/nordic.nvim"
-commit = "9f757428264ef1fcd1703e17702d3a28f307a2f7"
+commit = "c38a210bdaf79e74823d88c741029cac7f6b4481"
 
 [[plugins]]
 name = "nui.nvim"
@@ -677,6 +677,11 @@ commit = "d5b881432f5f243d3880e659437030930781f9a4"
 name = "rose-pine"
 url = "https://github.com/rose-pine/neovim"
 commit = "9504524e5ed0e326534698f637f9d038ba4cd0ee"
+
+[[plugins]]
+name = "rvpm.nvim"
+url = "https://github.com/yukimemi/rvpm.nvim"
+commit = "b8077bb20f497d479c59c1e4564d77650ca12fac"
 
 [[plugins]]
 name = "shirotelin"
@@ -1096,7 +1101,7 @@ commit = "5e206e87fc3451748702fed5bccb4289cb992b09"
 [[plugins]]
 name = "yazi.nvim"
 url = "https://github.com/mikavilpas/yazi.nvim"
-commit = "e7094dcfd897600e02a23e8334cdfeb9ee07dc17"
+commit = "bb69f7fc634a9566edba5fc0da3a2025d7ffbae0"
 
 [[plugins]]
 name = "zenbones.nvim"

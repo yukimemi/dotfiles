@@ -16,6 +16,9 @@ concurrency = 16
 
 # ── util ────────────────────────────────────────
 [[plugins]]
+url = "https://github.com/yukimemi/rvpm.nvim"
+
+[[plugins]]
 url = "https://github.com/nvim-lua/plenary.nvim"
 lazy = true
 
