@@ -47,6 +47,7 @@ url = "https://github.com/yukimemi/hitori.vim"
 [[plugins]]
 url = "https://github.com/sindrets/diffview.nvim"
 on_event = ["BufReadPre", "BufNew"]
+on_cmd = ["DiffviewOpen", "DiffviewFileHistory"]
 
 [[plugins]]
 url = "https://github.com/folke/trouble.nvim"

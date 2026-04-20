@@ -10,4 +10,4 @@ require("rvpm").setup({
   },
 })
 
-vim.keymap.set("n", "<space>rv", "<cmd>Rvpm<cr>", { desc = "Rvpm" })
+vim.keymap.set("n", "<F3>", "<cmd>Rvpm<cr>", { desc = "Rvpm" })

@@ -111,7 +111,7 @@ commit = "e727aa6ad753a8cc33f64e8e46a1145ea709eb41"
 [[plugins]]
 name = "blink.cmp"
 url = "https://github.com/saghen/blink.cmp"
-commit = "c573a15a62bd0bfd4006ee0849b24f5404395500"
+commit = "90d14caca4ae557665ab105080c27d5f289a2e30"
 
 [[plugins]]
 name = "blink.compat"
@@ -681,7 +681,7 @@ commit = "9504524e5ed0e326534698f637f9d038ba4cd0ee"
 [[plugins]]
 name = "rvpm.nvim"
 url = "https://github.com/yukimemi/rvpm.nvim"
-commit = "b8077bb20f497d479c59c1e4564d77650ca12fac"
+commit = "da6db8630943f4e6482c9df14631c62442fe15ce"
 
 [[plugins]]
 name = "shirotelin"
@@ -1101,7 +1101,7 @@ commit = "5e206e87fc3451748702fed5bccb4289cb992b09"
 [[plugins]]
 name = "yazi.nvim"
 url = "https://github.com/mikavilpas/yazi.nvim"
-commit = "bb69f7fc634a9566edba5fc0da3a2025d7ffbae0"
+commit = "23ed41675daf019573b748c4e801a6f73b6eebae"
 
 [[plugins]]
 name = "zenbones.nvim"
