@@ -16,7 +16,7 @@ extract = [
   { run = 'ya pub augmented-extract --list %*', desc = "Extract here" },
 ]
 edit = [
-  { run = '${EDITOR:-hitori} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+  { run = '${EDITOR:-edtr} "$@"', desc = "$EDITOR", block = true, for = "unix" },
   { run = 'nvim-qt %*', orphan = true, block = false, desc = "edit", for = "windows" },
 ]
 diff = [

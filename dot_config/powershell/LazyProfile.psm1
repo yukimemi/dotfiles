@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/04/05 20:51:23.
+# Last Change : 2026/04/21 02:22:57.
 # =============================================================================
 
 # --- Functions ---
@@ -493,8 +493,8 @@ if (Get-Module -ListAvailable PSReadLine) {
     "cup"   = "Update-CargoTool"
     "cza"   = "Select-ChezmoiAdd"
     "d"     = "jj diff"
-    "e"     = "nvim"
-    "fe"    = "nvim `$(fd -H -t f | __FILTER | Select-Object -First 1)"
+    "e"     = "edtr"
+    "fe"    = "edtr `$(fd -H -t f | __FILTER | Select-Object -First 1)"
     "g"     = "git"
     "gc"    = "gut commit"
     "ghl"   = "ghr list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"

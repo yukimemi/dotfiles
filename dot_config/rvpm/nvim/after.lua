@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : after.lua
 -- Author      : yukimemi
--- Last Change : 2026/04/20 01:10:06.
+-- Last Change : 2026/04/20 21:35:53.
 -- =============================================================================
 
 -- rvpm: open in terminal buffer, reuse if already running
@@ -74,3 +74,7 @@ end
 if vim.fn.exists(":GuiWindowOpacity") == 2 then
   vim.cmd("GuiWindowOpacity 0.9")
 end
+--
+-- Fallback colorscheme
+vim.o.background = "dark"
+vim.cmd("colorscheme habamax")

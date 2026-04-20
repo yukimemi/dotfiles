@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : before.lua
 -- Author      : yukimemi
--- Last Change : 2026/04/20 01:10:06.
+-- Last Change : 2026/04/20 21:34:36.
 -- =============================================================================
 
 -- Workaround for Neovim editorconfig.lua bug:
@@ -228,6 +228,3 @@ local ok, ui2 = pcall(require, 'vim._core.ui2')
 if ok and ui2 then
   pcall(ui2.enable, {})
 end
-
--- Fallback colorscheme
-vim.cmd("colorscheme habamax")

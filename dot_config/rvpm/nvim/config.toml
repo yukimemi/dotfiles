@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/04/20 01:10:06.
+# Last Change : 2026/04/20 21:33:06.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -24,7 +24,7 @@ lazy = true
 
 [[plugins]]
 url = "https://github.com/hrsh7th/nvim-dansa"
-on_event = ["BufReadPre", "BufNew"]
+on_event = ["BufRead", "BufNewFile"]
 
 [[plugins]]
 url = "https://github.com/manuuurino/autoread.nvim"
@@ -46,7 +46,7 @@ url = "https://github.com/yukimemi/hitori.vim"
 
 [[plugins]]
 url = "https://github.com/sindrets/diffview.nvim"
-on_event = ["BufReadPre", "BufNew"]
+on_event = ["BufRead", "BufNewFile"]
 on_cmd = ["DiffviewOpen", "DiffviewFileHistory"]
 
 [[plugins]]
@@ -83,6 +83,10 @@ on_cmd = ["AsyncSearch"]
 
 [[plugins]]
 url = "https://github.com/yukimemi/silentsaver.vim"
+
+[[plugins]]
+url = "https://github.com/yukimemi/autoreplacer.vim"
+on_event = ["BufRead", "BufNewFile"]
 
 # ── lsp ───────────────────────────────────────────
 
@@ -317,6 +321,7 @@ url = "https://github.com/akinsho/toggleterm.nvim"
 url = "https://github.com/mikavilpas/yazi.nvim"
 depends = ["plenary.nvim"]
 on_cmd = "Yazi"
+on_map = [{ lhs = "<up>", mode = "n" }, { lhs = "<c-up>", mode = "n" }]
 
 # ── window ───────────────────────────────────────────
 

@@ -89,6 +89,11 @@ url = "https://github.com/manuuurino/autoread.nvim"
 commit = "1e076c467feec1cb4294b739c78bbf8c35995179"
 
 [[plugins]]
+name = "autoreplacer.vim"
+url = "https://github.com/yukimemi/autoreplacer.vim"
+commit = "bbce339be38eeda0851dbfb7d457d485db7f96d2"
+
+[[plugins]]
 name = "awesome-vim-colorschemes"
 url = "https://github.com/rafi/awesome-vim-colorschemes"
 commit = "ae5e02298c8de6a5aa98fe4d29a21874cfcc3619"
@@ -106,7 +111,7 @@ commit = "098ff96c33874339d5e61656f3050dbd587d6bd5"
 [[plugins]]
 name = "blink-ripgrep.nvim"
 url = "https://github.com/mikavilpas/blink-ripgrep.nvim"
-commit = "e727aa6ad753a8cc33f64e8e46a1145ea709eb41"
+commit = "85ecfb9a81176951e543d9ae66b2ef496bcb3589"
 
 [[plugins]]
 name = "blink.cmp"
@@ -291,7 +296,7 @@ commit = "c106c9472154d6b2c74b74565616b877ae8ed31d"
 [[plugins]]
 name = "gitsigns.nvim"
 url = "https://github.com/lewis6991/gitsigns.nvim"
-commit = "8d82c240f190fc33723d48c308ccc1ed8baad69d"
+commit = "6d808f99bd63303646794406e270bd553ad7792e"
 
 [[plugins]]
 name = "grug-far.nvim"
@@ -366,7 +371,7 @@ commit = "3a024e8fd7105ee9416aafcdb0a7787be1795d68"
 [[plugins]]
 name = "kanagawa.nvim"
 url = "https://github.com/rebelot/kanagawa.nvim"
-commit = "aef7f5cec0a40dbe7f3304214850c472e2264b10"
+commit = "8ad3b4cdcc804b332c32db8f9743667e1bb82b99"
 
 [[plugins]]
 name = "kdl.vim"
@@ -431,7 +436,7 @@ commit = "ce42f6b629beeaa00591ba73a77d3eeac4cf28ce"
 [[plugins]]
 name = "mellifluous.nvim"
 url = "https://github.com/ramojus/mellifluous.nvim"
-commit = "9948359e1536b4171615f7280e61e17620e3fd45"
+commit = "ec0575bdb63594c5e7fba6eb9607b009aa1fb74e"
 
 [[plugins]]
 name = "memolist.vim"
@@ -556,7 +561,7 @@ commit = "fbba86031f3927ecbc11556217b4976a149c29c6"
 [[plugins]]
 name = "nvim-lspconfig"
 url = "https://github.com/neovim/nvim-lspconfig"
-commit = "4b7fbaa239c5db6b36f424a4521ca9f1a401be33"
+commit = "e05fb8c3bd61d909dacff24f77f23beb644daf54"
 
 [[plugins]]
 name = "nvim-markdown"
@@ -681,7 +686,7 @@ commit = "9504524e5ed0e326534698f637f9d038ba4cd0ee"
 [[plugins]]
 name = "rvpm.nvim"
 url = "https://github.com/yukimemi/rvpm.nvim"
-commit = "da6db8630943f4e6482c9df14631c62442fe15ce"
+commit = "f4d1dd7530e02d92ce34de54bb5a88866bdf8a45"
 
 [[plugins]]
 name = "shirotelin"
@@ -711,7 +716,7 @@ commit = "16b6dedca81f5f9d49cc82492df71dc41cac6f76"
 [[plugins]]
 name = "snacks-source-chronicle"
 url = "https://github.com/yukimemi/snacks-source-chronicle"
-commit = "77cbf7b618baa8088695d6cf66ccdc098101232d"
+commit = "0d093c2296c5f61d79c3be25be084ba0eb830af7"
 
 [[plugins]]
 name = "snacks.nvim"
@@ -951,12 +956,12 @@ commit = "dccb2d12ef2a703d2f076b3cda36a3339449d1eb"
 [[plugins]]
 name = "vim-nightfly-colors"
 url = "https://github.com/bluz71/vim-nightfly-colors"
-commit = "250ee0eb4975e59a277f50cc03c980eef27fb483"
+commit = "caaba387a4a50cf08791395acc4a5b7363367cff"
 
 [[plugins]]
 name = "vim-nightfly-guicolors"
 url = "https://github.com/bluz71/vim-nightfly-guicolors"
-commit = "250ee0eb4975e59a277f50cc03c980eef27fb483"
+commit = "caaba387a4a50cf08791395acc4a5b7363367cff"
 
 [[plugins]]
 name = "vim-operator-replace"
@@ -1101,7 +1106,7 @@ commit = "5e206e87fc3451748702fed5bccb4289cb992b09"
 [[plugins]]
 name = "yazi.nvim"
 url = "https://github.com/mikavilpas/yazi.nvim"
-commit = "23ed41675daf019573b748c4e801a6f73b6eebae"
+commit = "982781518274c723202f73064e93beda7f0468fe"
 
 [[plugins]]
 name = "zenbones.nvim"
