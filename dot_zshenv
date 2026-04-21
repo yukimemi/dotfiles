@@ -24,9 +24,9 @@ function is_wsl() {
 export LANG=ja_JP.UTF-8
 export LC_CTYPE="ja_JP.UTF-8"
 export SHELL=zsh
-export EDITOR=edtr
-export VISUAL=edtr
-export GIT_EDITOR=edtr
+export EDITOR=todoke
+export VISUAL=todoke
+export GIT_EDITOR=todoke
 export PAGER=bat
 
 # Unique path.

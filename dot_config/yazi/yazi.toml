@@ -16,8 +16,8 @@ extract = [
   { run = 'ya pub augmented-extract --list %*', desc = "Extract here" },
 ]
 edit = [
-  { run = '${EDITOR:-edtr} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-  { run = 'edtr %*', orphan = true, block = false, desc = "edit", for = "windows" },
+  { run = '${EDITOR:-todoke} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+  { run = 'todoke %*', orphan = true, block = false, desc = "edit", for = "windows" },
 ]
 diff = [
   { run = '%USERPROFILE%\scoop\apps\winmerge\current\WinMergeU.exe %*', orphan = true, block = false, desc = "WinMerge", for = "windows" },

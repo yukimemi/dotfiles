@@ -43,7 +43,7 @@ if ($IsWindows) {
   [Console]::InputEncoding = [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 }
 $env:LANG = "ja_JP.UTF-8"
-$env:EDITOR = "edtr"
+$env:EDITOR = "todoke"
 
 # Browser
 if (Test-IsWsl) {

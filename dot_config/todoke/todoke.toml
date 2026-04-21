@@ -1,0 +1,69 @@
+# todoke config. Managed by chezmoi.
+# Deploys to ~/.config/todoke/todoke.toml on every platform.
+#
+# The whole file is pre-rendered through Tera before TOML parsing, so if/elif
+# /else/endif blocks can conditionally include entire target or rule
+# sections. Dispatch-time tokens like {{ group }} / {{ file_path }} pass
+# through pre-render intact and get rendered per-input by todoke at dispatch
+# time.
+
+[vars]
+# Which Neovim front-end to use for main editing.
+# "neovide" | "nvim-qt" | "nvim"   (swap this one line to switch)
+gui = "nvim-qt"
+
+# ─── Targets ────────────────────────────────────────────────────────────────
+# todoke.<name> is a delivery target. `kind` defaults to "exec" (just spawn
+# the command). Set `kind = "neovim"` to opt into msgpack-RPC reuse.
+
+# Primary editor, selected by vars.gui above.
+{% if vars.gui == "neovide" %}
+[todoke.gui]
+kind = "neovim"
+command = "neovide"
+# neovide forwards everything after `--` to the embedded nvim, so we use
+# args.remote = ["--"] to let --listen reach nvim.
+listen = '{% if is_windows() %}\\.\pipe\nvim-todoke-{{ group }}{% else %}/tmp/nvim-todoke-{{ group }}.sock{% endif %}'
+[todoke.gui.args]
+remote = ["--"]
+{% elif vars.gui == "nvim-qt" %}
+[todoke.gui]
+kind = "neovim"
+command = "nvim-qt"
+listen = '{% if is_windows() %}\\.\pipe\nvim-todoke-{{ group }}{% else %}/tmp/nvim-todoke-{{ group }}.sock{% endif %}'
+[todoke.gui.args]
+remote = ["--"]
+{% else %}
+[todoke.gui]
+kind = "neovim"
+command = "nvim"
+listen = '{% if is_windows() %}\\.\pipe\nvim-todoke-{{ group }}{% else %}/tmp/nvim-todoke-{{ group }}.sock{% endif %}'
+{% endif %}
+
+# Terminal nvim, always available for $EDITOR-callback files (commit
+# messages, rebase todos, …). Independent of vars.gui so short blocking
+# edits stay in the calling terminal even when the GUI is in use.
+[todoke.nvim-term]
+kind = "neovim"
+command = "nvim"
+listen = '{% if is_windows() %}\\.\pipe\nvim-todoke-{{ group }}-term{% else %}/tmp/nvim-todoke-{{ group }}-term.sock{% endif %}'
+
+# ─── Rules ──────────────────────────────────────────────────────────────────
+
+# git commit, rebase-todo, merge messages etc. — always terminal nvim,
+# fresh instance, block until it exits.
+[[rules]]
+name = "editor-callback"
+match = '(?i)/(COMMIT_EDITMSG|MERGE_MSG|TAG_EDITMSG|EDIT_DESCRIPTION|git-rebase-todo|\.gitmessage|NOTES_EDITMSG|svn-commit\.tmp)$'
+to = "nvim-term"
+mode = "new"
+sync = true
+
+# Everything else: route to whichever target vars.gui resolved above.
+[[rules]]
+name = "default"
+match = '.*'
+to = "gui"
+group = "default"
+mode = "remote"
+sync = false
