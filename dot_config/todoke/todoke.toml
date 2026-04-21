@@ -44,11 +44,19 @@ listen = '{% if is_windows() %}\\.\pipe\nvim-todoke-{{ group }}-term{% else %}/t
 
 # ─── Rules ──────────────────────────────────────────────────────────────────
 
-# git commit, rebase-todo, merge messages etc. — always terminal nvim,
-# fresh instance, block until it exits.
+# $EDITOR-callback files — always terminal nvim, fresh instance, block
+# until it exits. Pattern list is OR-ed; grouped by origin so the intent
+# is readable and easy to extend.
 [[rules]]
 name = "editor-callback"
-match = '(?i)/(COMMIT_EDITMSG|MERGE_MSG|TAG_EDITMSG|EDIT_DESCRIPTION|git-rebase-todo|\.gitmessage|claude-prompt-.*|NOTES_EDITMSG|svn-commit\.tmp)$'
+match = [
+  # git
+  '(?i)/(COMMIT_EDITMSG|MERGE_MSG|TAG_EDITMSG|EDIT_DESCRIPTION|git-rebase-todo|NOTES_EDITMSG|\.gitmessage)$',
+  # svn / hg
+  '(?i)/svn-commit\.tmp$',
+  # Claude Code prompt temp files
+  '(?i)/claude-prompt-.*$',
+]
 to = "nvim-term"
 mode = "new"
 sync = true
