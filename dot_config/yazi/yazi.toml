@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : yazi.toml
 # Author      : yukimemi
-# Last Change : 2025/07/13 17:00:14.
+# Last Change : 2026/04/21 15:23:56.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
@@ -17,7 +17,7 @@ extract = [
 ]
 edit = [
   { run = '${EDITOR:-edtr} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-  { run = 'nvim-qt %*', orphan = true, block = false, desc = "edit", for = "windows" },
+  { run = 'edtr %*', orphan = true, block = false, desc = "edit", for = "windows" },
 ]
 diff = [
   { run = '%USERPROFILE%\scoop\apps\winmerge\current\WinMergeU.exe %*', orphan = true, block = false, desc = "WinMerge", for = "windows" },

@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/04/20 21:33:06.
+# Last Change : 2026/04/21 14:47:24.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -43,6 +43,7 @@ url = "https://github.com/thinca/vim-ambicmd"
 
 [[plugins]]
 url = "https://github.com/yukimemi/hitori.vim"
+cond = "false"
 
 [[plugins]]
 url = "https://github.com/sindrets/diffview.nvim"

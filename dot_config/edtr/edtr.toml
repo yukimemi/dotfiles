@@ -49,7 +49,7 @@ listen = '{% if is_windows() %}\\.\pipe\nvim-edtr-{{ group }}-term{% else %}/tmp
 # instance, block until it exits.
 [[rules]]
 name = "editor-callback"
-match = '(?i)/(COMMIT_EDITMSG|MERGE_MSG|TAG_EDITMSG|EDIT_DESCRIPTION|git-rebase-todo|\.gitmessage|NOTES_EDITMSG|svn-commit\.tmp)$'
+match = '(?i)/(COMMIT_EDITMSG|MERGE_MSG|TAG_EDITMSG|EDIT_DESCRIPTION|git-rebase-todo|\.gitmessage|NOTES_EDITMSG|claude-prompt.*|svn-commit\.tmp)$'
 editor = "nvim-term"
 mode = "new"
 sync = true

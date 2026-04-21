@@ -40,7 +40,7 @@ completion = "path"
 
 [[apps]]
 name = "Todo"
-path = "hitori.cmd"
+path = "edtr"
 args = ["{{ vars.memo_path }}/todo.md"]
 
 [[apps]]
