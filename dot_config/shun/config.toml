@@ -40,7 +40,7 @@ completion = "path"
 
 [[apps]]
 name = "Todo"
-path = "edtr"
+path = "todoke"
 args = ["{{ vars.memo_path }}/todo.md"]
 
 [[apps]]
@@ -51,7 +51,7 @@ completion = "path"
 
 [[apps]]
 name = "MemoNew"
-path = "nvim"
+path = "todoke"
 args = [
   '{{ vars.memo_path }}/{{ now() | date(format="%Y-%m-%d") }}-{{ args }}.md',
 ]
@@ -59,14 +59,14 @@ completion = "none"
 
 [[apps]]
 name = "MemoList"
-path = "nvim"
+path = "todoke"
 args = ["{{ vars.memo_path }}/{{ args }}"]
 completion = "path"
 completion_search_mode = "migemo"
 
 [[apps]]
 name = "JunkNew"
-path = "nvim-qt"
+path = "todoke"
 args = [
   '{{ vars.junk_path }}/{{ now() | date(format="%Y") }}/{{ now() | date(format="%m") }}/{{ now() | date(format="%Y-%m-%d") }}-{{ now() | date(format="%H%M%S") }}.{{ args }}',
 ]

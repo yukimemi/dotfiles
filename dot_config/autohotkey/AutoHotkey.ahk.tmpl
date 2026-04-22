@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/04/09 15:06:39.
+; Last Change : 2026/04/22 18:08:53.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -324,7 +324,7 @@ F10::
 {{- if .autohotkey.useneovide }}
   Activate("neovide.exe")
 {{- else if .autohotkey.useneovimqt }}
-  Activate("nvim-qt.exe")
+  Activate("nvim-qt.exe", "todoke")
 {{- else if eq .autohotkey.purpose "home" }}
   Activate("neovide.exe")
 {{- else if .autohotkey.usewtp }}

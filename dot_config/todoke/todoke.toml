@@ -10,7 +10,7 @@
 [vars]
 # Which Neovim front-end to use for main editing. Swap this one line to
 # switch between GUI and terminal variants.
-gui = "neovide"
+gui = "nvim-qt"
 # nvim front-ends that are "wrappers" — they run an embedded nvim and
 # forward CLI args after `--` to it. Raw `nvim` doesn't want `--` since it
 # treats everything after as filenames. Listing wrappers here lets the
@@ -54,10 +54,18 @@ match = [
   '(?i)/(COMMIT_EDITMSG|MERGE_MSG|TAG_EDITMSG|EDIT_DESCRIPTION|git-rebase-todo|NOTES_EDITMSG|\.gitmessage)$',
   # svn / hg
   '(?i)/svn-commit\.tmp$',
+]
+to = "nvim-term"
+mode = "new"
+sync = true
+
+[[rules]]
+name = "editor-callback-gui"
+match = [
   # Claude Code prompt temp files
   '(?i)/claude-prompt-.*$',
 ]
-to = "nvim-term"
+to = "gui"
 mode = "new"
 sync = true
 
