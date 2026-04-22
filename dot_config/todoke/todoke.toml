@@ -28,6 +28,10 @@ wrapper_guis = ["neovide", "nvim-qt"]
 kind = "neovim"
 command = "{{ vars.gui }}"
 listen = '{% if is_windows() %}\\.\pipe\nvim-todoke-{{ group }}{% else %}/tmp/nvim-todoke-{{ group }}.sock{% endif %}'
+# Suppress the transient cmd window on Windows when the chosen front-end
+# is a GUI wrapper (neovide / nvim-qt). Raw `nvim` stays on the console
+# path so it keeps getting a properly wired fresh terminal.
+gui = {{ vars.gui in vars.wrapper_guis }}
 
 {% if vars.gui in vars.wrapper_guis %}
 [todoke.gui.args]

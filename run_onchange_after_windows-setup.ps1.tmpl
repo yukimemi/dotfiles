@@ -235,6 +235,7 @@ function Set-RequiredEnv {
     "CLAUDE_CODE_GIT_BASH_PATH"    = "${env:USERPROFILE}\scoop\apps\git\current\bin\bash.exe"
     "XDG_CONFIG_HOME"              = "${env:USERPROFILE}\.config"
     "PNPM_HOME"                    = "${env:LOCALAPPDATA}\pnpm"
+    "EDITOR"                       = "todoke"
   }
   foreach ($key in $envVars.Keys) {
     $current = [Environment]::GetEnvironmentVariable($key, "User")
@@ -727,6 +728,7 @@ function Start-Main {
         @{ Name = "rhq"; Git = "https://github.com/ubnt-intrepid/rhq.git" }
         @{ Name = "psmux" }
         @{ Name = "tmuxpanel" }
+        @{ Name = "todoke" }
       )
       Install-CargoTool $cargoTools
 
