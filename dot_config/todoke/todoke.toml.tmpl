@@ -1,5 +1,11 @@
+# chezmoi:template:left-delimiter="<%" right-delimiter="%>"
 # todoke config. Managed by chezmoi.
 # Deploys to ~/.config/todoke/todoke.toml on every platform.
+#
+# Chezmoi uses custom delimiters above so Tera's native double-brace
+# expressions and percent-tag blocks, plus TOML's array-of-tables
+# headers, all pass through chezmoi untouched. Todoke pre-renders the
+# Tera bits at dispatch time.
 #
 # The whole file is pre-rendered through Tera before TOML parsing, so if/elif
 # /else/endif blocks can conditionally include entire target or rule
@@ -8,9 +14,18 @@
 # time.
 
 [vars]
-# Which Neovim front-end to use for main editing. Swap this one line to
-# switch between GUI and terminal variants.
+# Which Neovim front-end to use for main editing. Selected by chezmoi
+# from the same .autohotkey.use* flags that drive the AutoHotkey F10
+# hotkey, so both stay in sync.
+<%- if .autohotkey.useneovide %>
+gui = "neovide"
+<%- else if .autohotkey.useneovimqt %>
 gui = "nvim-qt"
+<%- else if eq .autohotkey.purpose "home" %>
+gui = "neovide"
+<%- else %>
+gui = "nvim"
+<%- end %>
 # nvim front-ends that are "wrappers" — they run an embedded nvim and
 # forward CLI args after `--` to it. Raw `nvim` doesn't want `--` since it
 # treats everything after as filenames. Listing wrappers here lets the
