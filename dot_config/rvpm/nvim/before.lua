@@ -130,6 +130,7 @@ if vim.fn.has("win32") == 1 then
 end
 vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.o.smoothscroll = true
 if vim.fn.has("win32") == 1 then
   vim.o.shell = "pwsh.exe"
   vim.o.shellcmdflag =
@@ -192,6 +193,10 @@ vim.keymap.set("i", "<c-l>", "<C-g>U<Right>", { silent = true, noremap = true })
 
 vim.keymap.set({ "n", "x" }, "gh", "^", { silent = true, noremap = true })
 vim.keymap.set({ "n", "x" }, "gl", "$", { silent = true, noremap = true })
+
+-- Remap for dealing with word wrap (count-aware)
+vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 vim.keymap.set("c", "<c-b>", "<Left>", { silent = true, noremap = true })
 vim.keymap.set("c", "<c-f>", "<Right>", { silent = true, noremap = true })

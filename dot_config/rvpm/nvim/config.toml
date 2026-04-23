@@ -343,10 +343,6 @@ on_map = [{ lhs = "sw", mode = "n" }]
 url = "https://github.com/nvim-zh/colorful-winsep.nvim"
 on_event = ["WinNew", "WinEnter"]
 
-[[plugins]]
-url = "https://github.com/mrjones2014/smart-splits.nvim"
-merge = false
-
 # ── quickfix ─────────────────────────────────────────
 
 [[plugins]]

@@ -32,6 +32,19 @@ gui = "nvim"
 # single [todoke.gui] definition below handle all three variants.
 wrapper_guis = ["neovide", "nvim-qt"]
 
+# Generic GNU/POSIX flag-shaped argv. Anything starting with `-` or `+`
+# — short, long, bundled, concatenated, `--key=value`, ex-editor `+42`.
+# Used by the catch-all passthrough rule so flags flow through to
+# whichever target handles the file / URL / raw input.
+flag = '^[-+]'
+
+# Neovim-family (nvim / neovide / nvim-qt) flags that take a spaced
+# value as the next argv. `consumes = 1` pulls the value along so
+# `-c :set ft=md` stays a pair. Specific to the neovim family; if a
+# different editor gets added with different value-taking flags, define
+# its own regex here rather than trying to union them.
+nvim_value_flag = '^(?:-[cSuUitwW]|--cmd|--startuptime|--listen|--server)$'
+
 # ─── Targets ────────────────────────────────────────────────────────────────
 # todoke.<name> is a delivery target. `kind` defaults to "exec" (just spawn
 # the command). Set `kind = "neovim"` to opt into msgpack-RPC reuse.
@@ -87,6 +100,26 @@ match = [
 to = "gui"
 mode = "new"
 sync = true
+
+# Neovim-family flags that take a spaced value on the next argv
+# (`-c :set ft=md`, `-S session.vim`, `--listen /tmp/sock`, …). Must
+# come before any-flag or the bare `-c` would be caught first. `to`
+# is omitted: todoke merges the two-argv pair into whatever batch
+# gets created by the input-facing rule in the same group.
+[[rules]]
+name = "nvim-value-flag"
+match = '{{ vars.nvim_value_flag }}'
+passthrough = true
+consumes = 1
+
+# Catch-all for flag-shaped argv. Just collects them; the target is
+# decided by whichever input rule (default / editor-callback / …)
+# produced a batch in the same group. If no such batch exists (flag
+# arrived without any input), todoke drops with a warning.
+[[rules]]
+name = "any-flag"
+match = '{{ vars.flag }}'
+passthrough = true
 
 # Everything else: route to whichever target vars.gui resolved above.
 [[rules]]
