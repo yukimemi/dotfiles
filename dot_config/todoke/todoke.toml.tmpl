@@ -86,18 +86,10 @@ match = [
   '(?i)/(COMMIT_EDITMSG|MERGE_MSG|TAG_EDITMSG|EDIT_DESCRIPTION|git-rebase-todo|NOTES_EDITMSG|\.gitmessage)$',
   # svn / hg
   '(?i)/svn-commit\.tmp$',
-]
-to = "nvim-term"
-mode = "new"
-sync = true
-
-[[rules]]
-name = "editor-callback-gui"
-match = [
   # Claude Code prompt temp files
   '(?i)/claude-prompt-.*$',
 ]
-to = "gui"
+to = "nvim-term"
 mode = "new"
 sync = true
 

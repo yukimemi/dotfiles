@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/04/21 14:47:24.
+# Last Change : 2026/04/24 10:48:18.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -88,6 +88,11 @@ url = "https://github.com/yukimemi/silentsaver.vim"
 [[plugins]]
 url = "https://github.com/yukimemi/autoreplacer.vim"
 on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/yukimemi/ahdr.vim"
+on_cmd = ["DenopsAhdr"]
+lazy = false
 
 # ── lsp ───────────────────────────────────────────
 
@@ -1014,3 +1019,4 @@ lazy = true
 [[plugins]]
 url = "https://github.com/0x-ximon/acario.nvim"
 lazy = true
+

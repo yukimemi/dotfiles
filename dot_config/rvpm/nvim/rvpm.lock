@@ -39,6 +39,11 @@ url = "https://github.com/0x-ximon/acario.nvim"
 commit = "e08337a4bad97fb9cb8b8da68c10c01891f7d39f"
 
 [[plugins]]
+name = "ahdr.vim"
+url = "https://github.com/yukimemi/ahdr.vim"
+commit = "90e3036f7250885ac3a6c3c2dfbd3507ccd5d11e"
+
+[[plugins]]
 name = "angelic.nvim"
 url = "https://github.com/sponkurtus2/angelic.nvim"
 commit = "15b009fcac3308554bb417b67def6be27811fa2d"
@@ -702,11 +707,6 @@ commit = "cbdae0576c64973453a414d9bd4a9fb52008f098"
 name = "size-matters.nvim"
 url = "https://github.com/tenxsoydev/size-matters.nvim"
 commit = "0aabfeb5eba72f013ed91bdd388c6ad666f7c78a"
-
-[[plugins]]
-name = "smart-splits.nvim"
-url = "https://github.com/mrjones2014/smart-splits.nvim"
-commit = "78b9d3bd21fe479690ae5e08a1bf3602698466d8"
 
 [[plugins]]
 name = "smartnumber.vim"
