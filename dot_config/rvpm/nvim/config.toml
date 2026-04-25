@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/04/25 15:51:46.
+# Last Change : 2026/04/25 20:44:22.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -13,7 +13,7 @@ chezmoi = true
 auto_clean = true
 url_style = "full"
 concurrency = 16
-ai = "claude"
+ai = "gemini"
 ai_language = "ja"
 
 # ── util ────────────────────────────────────────
@@ -89,10 +89,6 @@ on_cmd = ["ZenMode"]
 [[plugins]]
 url = "https://github.com/karb94/neoscroll.nvim"
 on_event = ["BufRead", "BufNewFile"]
-
-[[plugins]]
-url = "https://github.com/rmagatti/auto-session"
-on_cmd = ["/^Auto/", "/^Session/"]
 
 [[plugins]]
 url = "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
@@ -178,7 +174,10 @@ depends = ["nvim-lspconfig"]
 on_cmd = ["/^Lspsaga/"]
 on_map = [
   { lhs = "<space>k", mode = "n", desc = "Lspsaga hover_doc" },
-  { lhs = "<space>ca", mode = ["n", "x"], desc = "Lspsaga code_action" },
+  { lhs = "<space>ca", mode = [
+    "n",
+    "x",
+  ], desc = "Lspsaga code_action" },
   { lhs = "<space>rn", mode = "n", desc = "Lspsaga rename" },
   { lhs = "<space>o", mode = "n", desc = "Lspsaga outline" },
   { lhs = "<space>dl", mode = "n", desc = "Lspsaga line diagnostics" },
@@ -192,6 +191,7 @@ on_map = [
 
 [[plugins]]
 url = "https://github.com/saghen/blink.lib"
+lazy = true
 
 [[plugins]]
 url = "https://github.com/saghen/blink.cmp"
@@ -204,6 +204,21 @@ depends = [
   "denippet.vim",
 ]
 build = "cargo build --release"
+# build_lua = """
+# function()
+#   -- pre-build cargo & rename for Windows MSVC (upstream blink.cmp bug)
+#   vim.fn.system({ 'cargo', 'build', '--release' })
+#   if vim.fn.has('win32') == 1 then
+#     local src = 'target/release/blink_cmp_fuzzy.dll'
+#     local dst = 'target/release/libblink_cmp_fuzzy.dll'
+#     if vim.fn.filereadable(src) == 1 and vim.fn.filereadable(dst) == 0 then
+#       vim.fn.rename(src, dst)
+#     end
+#   end
+#   require('blink.cmp').build():wait(60000)
+# end
+# """
+rev = "v1"
 
 [[plugins]]
 url = "https://github.com/mikavilpas/blink-ripgrep.nvim"
@@ -1093,3 +1108,6 @@ lazy = true
 [[plugins]]
 url = "https://github.com/0x-ximon/acario.nvim"
 lazy = true
+
+[[plugins]]
+url = "https://github.com/rmagatti/auto-session"

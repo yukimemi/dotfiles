@@ -131,7 +131,7 @@ commit = "df761b14162c00baded1583581e0d4de5b228997"
 [[plugins]]
 name = "blink.cmp"
 url = "https://github.com/saghen/blink.cmp"
-commit = "e1dbca9ea1d8dc7a83e27a52bbd990bd717e54a6"
+commit = "78336bc89ee5365633bcf754d93df01678b5c08f"
 
 [[plugins]]
 name = "blink.compat"
@@ -246,7 +246,7 @@ commit = "e7b91facff94bdf3a248df9b683119b84672256a"
 [[plugins]]
 name = "dropbar.nvim"
 url = "https://github.com/Bekaboo/dropbar.nvim"
-commit = "ce202248134e3949aac375fd66c28e5207785b10"
+commit = "f0a42bd92aa647e44221397723453403f5e20f16"
 
 [[plugins]]
 name = "edge"
@@ -576,12 +576,12 @@ commit = "3a0e624a67ecd2c7f990bc3c25a1044e85782b10"
 [[plugins]]
 name = "nvim-aibo"
 url = "https://github.com/lambdalisue/nvim-aibo"
-commit = "bcbeab88c27cf831a08661eace7a928b2bba5694"
+commit = "09bdb7c9549e2af76eb695986a5e6d4ede9a30b7"
 
 [[plugins]]
 name = "nvim-base16"
 url = "https://github.com/RRethy/nvim-base16"
-commit = "17781884af64e4205f84dde41d6030a61d0eb0dc"
+commit = "6b4f4a07b8b0c23a5cd3740631d96a97d7ccec09"
 
 [[plugins]]
 name = "nvim-bqf"
