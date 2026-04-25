@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/04/25 20:44:22.
+# Last Change : 2026/04/26 23:31:44.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -34,7 +34,7 @@ on_cmd = ["Autoread"]
 
 [[plugins]]
 url = "https://github.com/juliuswaldmann/here.nvim"
-on_cmd = ["Here"]
+on_cmd = ["/^.*Here$/"]
 
 [[plugins]]
 url = "https://github.com/MunifTanjim/nui.nvim"
@@ -42,6 +42,7 @@ lazy = true
 
 [[plugins]]
 url = "https://github.com/thinca/vim-ambicmd"
+on_event = ["CmdlineEnter", "CmdwinEnter"]
 
 [[plugins]]
 url = "https://github.com/yukimemi/hitori.vim"
@@ -50,18 +51,27 @@ cond = "false"
 [[plugins]]
 url = "https://github.com/sindrets/diffview.nvim"
 on_event = ["BufRead", "BufNewFile"]
-on_cmd = ["DiffviewOpen", "DiffviewFileHistory"]
 
 [[plugins]]
 url = "https://github.com/folke/trouble.nvim"
-on_cmd = "Trouble"
+on_cmd = ["Trouble"]
+on_map = [
+  { lhs = "<leader>xx", desc = "Diagnostics (Trouble)" },
+  { lhs = "<leader>xX", desc = "Buffer Diagnostics (Trouble)" },
+  { lhs = "<leader>cs", desc = "Symbols (Trouble)" },
+  { lhs = "<leader>cl", desc = "LSP (Trouble)" },
+  { lhs = "<leader>xL", desc = "Location List (Trouble)" },
+  { lhs = "<leader>xQ", desc = "Quickfix List (Trouble)" },
+]
 
 [[plugins]]
 url = "https://github.com/xvzc/chezmoi.nvim"
+depends = ["plenary.nvim"]
+on_cmd = ["/^Chezmoi/"]
+on_event = ["BufRead", "BufNewFile"]
 
 [[plugins]]
 url = "https://github.com/j-hui/fidget.nvim"
-on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/nvim-neorg/neorg"
@@ -103,9 +113,35 @@ url = "https://github.com/folke/twilight.nvim"
 on_cmd = ["/^Twilight/"]
 
 [[plugins]]
-url = "https://github.com/delphinus/md-render.nvim"
-on_cmd = ["/^MdRender/"]
+url = "https://github.com/rmagatti/auto-session"
+cond = "false"
 
+[[plugins]]
+url = "https://github.com/epwalsh/obsidian.nvim"
+depends = ["plenary.nvim"]
+on_ft = ["markdown"]
+
+[[plugins]]
+url = "https://github.com/delphinus/md-render.nvim"
+depends = ["snacks.nvim"]
+on_ft = ["markdown"]
+on_cmd = ["/^MdRender/"]
+on_map = [{ lhs = '/^<Plug>\(md-render-/', mode = ["n"] }]
+
+[[plugins]]
+url = "https://github.com/NeogitOrg/neogit"
+depends = ["plenary.nvim", "diffview.nvim", "snacks.nvim"]
+on_cmd = ["Neogit"]
+on_map = [{ lhs = "<leader>gg", desc = "Open Neogit UI" }]
+
+[[plugins]]
+url = "https://github.com/takeshid/whyis.nvim"
+on_cmd = ["WhyisOpen"]
+on_map = [
+  { lhs = "<leader>wf", desc = "Whyis (float)" },
+  { lhs = "<leader>wl", desc = "Whyis (right)" },
+]
+on_source = ["hover.nvim"]
 
 # ── denops ────────────────────────────────────────
 
@@ -162,7 +198,12 @@ on_event = "BufReadPre"
 
 [[plugins]]
 url = "https://github.com/lewis6991/hover.nvim"
-on_event = "BufReadPre"
+on_map = [
+  { lhs = "K", desc = "hover.nvim (open)" },
+  { lhs = "gK", desc = "hover.nvim (enter)" },
+  { lhs = "<C-p>", desc = "hover.nvim (previous source)" },
+  { lhs = "<C-n>", desc = "hover.nvim (next source)" },
+]
 
 [[plugins]]
 url = "https://github.com/mfussenegger/nvim-lint"
@@ -236,7 +277,8 @@ lazy = true
 
 [[plugins]]
 url = "https://github.com/uga-rosa/denippet.vim"
-lazy = true
+depends = ["denops.vim"]
+on_map = [{ lhs = '/^<Plug>\(denippet-/', mode = ["i", "s"] }]
 
 # ── statusline ────────────────────────────────────
 
@@ -338,6 +380,39 @@ on_map = [{ lhs = "gcc", mode = "n" }, { lhs = "gcc", mode = "x" }]
 
 [[plugins]]
 url = "https://github.com/gbprod/yanky.nvim"
+on_cmd = ["YankyRingHistory", "YankyClearHistory"]
+on_map = [
+  { lhs = "y", mode = [
+    "n",
+    "x",
+  ] },
+  { lhs = "p", mode = [
+    "n",
+    "x",
+  ] },
+  { lhs = "P", mode = [
+    "n",
+    "x",
+  ] },
+  { lhs = "gp", mode = [
+    "n",
+    "x",
+  ] },
+  { lhs = "gP", mode = [
+    "n",
+    "x",
+  ] },
+  { lhs = "<c-p>", mode = "n" },
+  { lhs = "<c-n>", mode = "n" },
+  { lhs = "iy", mode = [
+    "o",
+    "x",
+  ] },
+  { lhs = "<leader>p", mode = [
+    "n",
+    "x",
+  ], desc = "Yank History" },
+]
 
 [[plugins]]
 url = "https://github.com/junegunn/vim-easy-align"
@@ -360,6 +435,14 @@ url = "https://github.com/yuki-yano/zero.nvim"
 
 [[plugins]]
 url = "https://github.com/Bakudankun/BackAndForward.vim"
+on_cmd = ["Back", "Forward"]
+on_map = [
+  "<A-Left>",
+  "<A-Right>",
+  { lhs = "/^<Plug>\\(backandforward-/", mode = [
+    "n",
+  ] },
+]
 
 # ── search ───────────────────────────────────────────
 
@@ -378,6 +461,7 @@ on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/MagicDuck/grug-far.nvim"
+on_cmd = ["/^GrugFar/"]
 
 # ── git ──────────────────────────────────────────────
 
@@ -399,6 +483,7 @@ cond = "false"
 
 [[plugins]]
 url = "https://github.com/rhysd/committia.vim"
+on_path = ["COMMIT_EDITMSG", "MERGE_MSG", "TAG_EDITMSG", "NOTES_EDITMSG"]
 
 [[plugins]]
 url = "https://github.com/dallagi/git-timemachine.nvim"
@@ -546,6 +631,12 @@ on_cmd = ["FutagoGitCommit", "FutagoJjCommit", "FutagoHistory"]
 
 [[plugins]]
 url = "https://github.com/glidenote/memolist.vim"
+on_cmd = ["/^Memo/"]
+on_map = [
+  { lhs = "<leader>mn", desc = "Memo: New" },
+  { lhs = "<leader>ml", desc = "Memo: List" },
+  { lhs = "<leader>mg", desc = "Memo: Grep" },
+]
 
 # ── runner (overseer) ────────────────────────────────
 
@@ -1108,6 +1199,3 @@ lazy = true
 [[plugins]]
 url = "https://github.com/0x-ximon/acario.nvim"
 lazy = true
-
-[[plugins]]
-url = "https://github.com/rmagatti/auto-session"

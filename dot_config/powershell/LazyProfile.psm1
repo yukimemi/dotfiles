@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/04/21 02:22:57.
+# Last Change : 2026/04/26 17:40:31.
 # =============================================================================
 
 # --- Functions ---
@@ -9,6 +9,11 @@ function log {
   param([string]$msg, [string]$color = "Cyan")
   $now = Get-Date -f "yyyy/MM/dd HH:mm:ss.fff"
   Write-Host -ForegroundColor $color "${now} ${msg}"
+}
+
+function docker {
+  $wslPath = (wsl -- wslpath -u "$($PWD.Path -replace '\\','/')").Trim()
+  wsl --cd "$wslPath" -- docker @args
 }
 
 function script:Get-ZenoSnippets {

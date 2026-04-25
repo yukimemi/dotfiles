@@ -524,6 +524,11 @@ url = "https://github.com/diegoulloao/neofusion.nvim"
 commit = "c8ef24be527be37254bf8981fa3e6216dee4f8d8"
 
 [[plugins]]
+name = "neogit"
+url = "https://github.com/NeogitOrg/neogit"
+commit = "792c139da736230855e8341ebe6175bb6eb8268b"
+
+[[plugins]]
 name = "neon"
 url = "https://github.com/rafamadriz/neon"
 commit = "7765aaa7d1cd3804176140644640766e4411c766"
@@ -644,6 +649,11 @@ url = "https://github.com/uhs-robert/oasis.nvim"
 commit = "40e7e7535c894286dc1445babaf031f11d3de4a0"
 
 [[plugins]]
+name = "obsidian.nvim"
+url = "https://github.com/epwalsh/obsidian.nvim"
+commit = "726b60c89f4bafef267a714ea1faa1335bdd414a"
+
+[[plugins]]
 name = "oceanic-material"
 url = "https://github.com/nvimdev/oceanic-material"
 commit = "d0bb88707f4f9e6918a958c5a80aeddf6db5c652"
@@ -746,7 +756,7 @@ commit = "9504524e5ed0e326534698f637f9d038ba4cd0ee"
 [[plugins]]
 name = "rvpm.nvim"
 url = "https://github.com/yukimemi/rvpm.nvim"
-commit = "714b04c6d6678da9a9c55f0c260c28d33eca5643"
+commit = "894f2a8cc6f6907339b1fbcba4daac89a382e454"
 
 [[plugins]]
 name = "shirotelin"
@@ -1157,6 +1167,11 @@ commit = "4d385b4aa42aa3af6fa2cb8527462fa4badbd163"
 name = "which-key.nvim"
 url = "https://github.com/folke/which-key.nvim"
 commit = "3aab2147e74890957785941f0c1ad87d0a44c15a"
+
+[[plugins]]
+name = "whyis.nvim"
+url = "https://github.com/takeshid/whyis.nvim"
+commit = "77274276e077acc776d649be2e0e11f1e9084d60"
 
 [[plugins]]
 name = "winresizer"

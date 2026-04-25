@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/02/23 19:39:02.
+# Last Change : 2026/04/26 13:34:02.
 # =============================================================================
 
 [settings]
@@ -52,3 +52,4 @@ node = "latest"
 jujutsu = "latest"
 chezmoi = "latest"
 pnpm = "latest"
+vale = "latest"
