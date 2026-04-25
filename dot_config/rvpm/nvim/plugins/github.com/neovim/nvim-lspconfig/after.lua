@@ -29,5 +29,3 @@ vim.diagnostic.config({
 -- blink.cmp の capabilities を全 LSP サーバーに適用
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 vim.lsp.config('*', { capabilities = capabilities })
-
-vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { desc = "Code Action" })

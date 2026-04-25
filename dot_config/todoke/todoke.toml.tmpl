@@ -74,6 +74,9 @@ kind = "neovim"
 command = "nvim"
 listen = '{% if is_windows() %}\\.\pipe\nvim-todoke-{{ group }}-term{% else %}/tmp/nvim-todoke-{{ group }}-term.sock{% endif %}'
 
+[todoke.msedge]
+command = "msedge"
+
 # ─── Rules ──────────────────────────────────────────────────────────────────
 
 # $EDITOR-callback files — always terminal nvim, fresh instance, block
@@ -88,6 +91,8 @@ match = [
   '(?i)/svn-commit\.tmp$',
   # Claude Code prompt temp files
   '(?i)/claude-prompt-.*$',
+  # Gemini prompt temp files
+  '(?i)/gemini-edit.*$',
 ]
 to = "nvim-term"
 mode = "new"
@@ -112,6 +117,16 @@ consumes = 1
 name = "any-flag"
 match = '{{ vars.flag }}'
 passthrough = true
+
+# URL fallback: any other URL → browser. Without this, non-GitHub URLs
+# would fall through to the file default (nvim) and get dropped by the
+# neovim backend (which only accepts files).
+[[rules]]
+name = "url-default"
+match = '^https?://'
+input_type = "url"
+to = "msedge"
+group = "default"
 
 # Everything else: route to whichever target vars.gui resolved above.
 [[rules]]

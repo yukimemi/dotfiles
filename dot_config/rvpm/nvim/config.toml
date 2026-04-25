@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/04/24 10:48:18.
+# Last Change : 2026/04/25 15:51:46.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -13,6 +13,8 @@ chezmoi = true
 auto_clean = true
 url_style = "full"
 concurrency = 16
+ai = "claude"
+ai_language = "ja"
 
 # ── util ────────────────────────────────────────
 [[plugins]]
@@ -60,6 +62,54 @@ url = "https://github.com/xvzc/chezmoi.nvim"
 [[plugins]]
 url = "https://github.com/j-hui/fidget.nvim"
 on_event = "CursorHold"
+
+[[plugins]]
+url = "https://github.com/nvim-neorg/neorg"
+on_cmd = ["/^Neorg/"]
+
+[[plugins]]
+url = "https://github.com/m4xshen/hardtime.nvim"
+on_cmd = ["Hardtime"]
+
+[[plugins]]
+url = "https://github.com/kevinhwang91/nvim-ufo"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/folke/sidekick.nvim"
+on_cmd = ["Sidekick"]
+
+[[plugins]]
+url = "https://github.com/stevearc/aerial.nvim"
+
+[[plugins]]
+url = "https://github.com/folke/zen-mode.nvim"
+on_cmd = ["ZenMode"]
+
+[[plugins]]
+url = "https://github.com/karb94/neoscroll.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/rmagatti/auto-session"
+on_cmd = ["/^Auto/", "/^Session/"]
+
+[[plugins]]
+url = "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
+on_cmd = ["TinyInlineDiag"]
+
+[[plugins]]
+url = "https://github.com/Bekaboo/dropbar.nvim"
+on_event = ["BufRead", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/folke/twilight.nvim"
+on_cmd = ["/^Twilight/"]
+
+[[plugins]]
+url = "https://github.com/delphinus/md-render.nvim"
+on_cmd = ["/^MdRender/"]
+
 
 # ── denops ────────────────────────────────────────
 
@@ -118,13 +168,36 @@ on_event = "BufReadPre"
 url = "https://github.com/lewis6991/hover.nvim"
 on_event = "BufReadPre"
 
+[[plugins]]
+url = "https://github.com/mfussenegger/nvim-lint"
+on_event = ["BufReadPre", "BufNewFile"]
+
+[[plugins]]
+url = "https://github.com/nvimdev/lspsaga.nvim"
+depends = ["nvim-lspconfig"]
+on_cmd = ["/^Lspsaga/"]
+on_map = [
+  { lhs = "<space>k", mode = "n", desc = "Lspsaga hover_doc" },
+  { lhs = "<space>ca", mode = ["n", "x"], desc = "Lspsaga code_action" },
+  { lhs = "<space>rn", mode = "n", desc = "Lspsaga rename" },
+  { lhs = "<space>o", mode = "n", desc = "Lspsaga outline" },
+  { lhs = "<space>dl", mode = "n", desc = "Lspsaga line diagnostics" },
+  { lhs = "<space>dc", mode = "n", desc = "Lspsaga cursor diagnostics" },
+  { lhs = "<space>db", mode = "n", desc = "Lspsaga buf diagnostics" },
+  { lhs = "]d", mode = "n", desc = "Lspsaga diagnostic next" },
+  { lhs = "[d", mode = "n", desc = "Lspsaga diagnostic prev" },
+]
 
 # ── completion ────────────────────────────────────
+
+[[plugins]]
+url = "https://github.com/saghen/blink.lib"
 
 [[plugins]]
 url = "https://github.com/saghen/blink.cmp"
 on_event = "InsertEnter"
 depends = [
+  "blink.lib",
   "blink-ripgrep.nvim",
   "blink.compat",
   "friendly-snippets",
@@ -307,6 +380,7 @@ lazy = true
 
 [[plugins]]
 url = "https://github.com/lambdalisue/vim-gin"
+cond = "false"
 
 [[plugins]]
 url = "https://github.com/rhysd/committia.vim"
@@ -1019,4 +1093,3 @@ lazy = true
 [[plugins]]
 url = "https://github.com/0x-ximon/acario.nvim"
 lazy = true
-

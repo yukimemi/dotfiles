@@ -39,6 +39,11 @@ url = "https://github.com/0x-ximon/acario.nvim"
 commit = "e08337a4bad97fb9cb8b8da68c10c01891f7d39f"
 
 [[plugins]]
+name = "aerial.nvim"
+url = "https://github.com/stevearc/aerial.nvim"
+commit = "645d108a5242ec7b378cbe643eb6d04d4223f034"
+
+[[plugins]]
 name = "ahdr.vim"
 url = "https://github.com/yukimemi/ahdr.vim"
 commit = "90e3036f7250885ac3a6c3c2dfbd3507ccd5d11e"
@@ -71,7 +76,7 @@ commit = "98d3c0fdeb983f0ef62fe3a49da440f6d2c045ce"
 [[plugins]]
 name = "asyncsearcher.vim"
 url = "https://github.com/yukimemi/asyncsearcher.vim"
-commit = "6b631e54bba5424f7c1be00aa0074ec1f5632d7e"
+commit = "7ab498644e1ab9e2fc78a87fc792f8dcee6921c8"
 
 [[plugins]]
 name = "atlas.vim"
@@ -89,6 +94,11 @@ url = "https://github.com/ray-x/aurora"
 commit = "a7b2199d4463e4998dae4f4fcd6f811f4acd7769"
 
 [[plugins]]
+name = "auto-session"
+url = "https://github.com/rmagatti/auto-session"
+commit = "62437532b38495551410b3f377bcf4aaac574ebe"
+
+[[plugins]]
 name = "autoread.nvim"
 url = "https://github.com/manuuurino/autoread.nvim"
 commit = "1e076c467feec1cb4294b739c78bbf8c35995179"
@@ -96,7 +106,7 @@ commit = "1e076c467feec1cb4294b739c78bbf8c35995179"
 [[plugins]]
 name = "autoreplacer.vim"
 url = "https://github.com/yukimemi/autoreplacer.vim"
-commit = "bbce339be38eeda0851dbfb7d457d485db7f96d2"
+commit = "4bf00f0bf92fe74f32759605e7c7501a52f23d28"
 
 [[plugins]]
 name = "awesome-vim-colorschemes"
@@ -116,17 +126,22 @@ commit = "098ff96c33874339d5e61656f3050dbd587d6bd5"
 [[plugins]]
 name = "blink-ripgrep.nvim"
 url = "https://github.com/mikavilpas/blink-ripgrep.nvim"
-commit = "85ecfb9a81176951e543d9ae66b2ef496bcb3589"
+commit = "df761b14162c00baded1583581e0d4de5b228997"
 
 [[plugins]]
 name = "blink.cmp"
 url = "https://github.com/saghen/blink.cmp"
-commit = "90d14caca4ae557665ab105080c27d5f289a2e30"
+commit = "e1dbca9ea1d8dc7a83e27a52bbd990bd717e54a6"
 
 [[plugins]]
 name = "blink.compat"
 url = "https://github.com/saghen/blink.compat"
 commit = "1454f14a8d855a578ceeba77c62538fa1459a67c"
+
+[[plugins]]
+name = "blink.lib"
+url = "https://github.com/saghen/blink.lib"
+commit = "dda2666685a5ac3598166577d2e34f1fff6b1637"
 
 [[plugins]]
 name = "cake16"
@@ -176,7 +191,7 @@ commit = "c8c0f255e8090ed90dd9d5dd2e8672994f8e3671"
 [[plugins]]
 name = "conform.nvim"
 url = "https://github.com/stevearc/conform.nvim"
-commit = "086a40dc7ed8242c03be9f47fbcee68699cc2395"
+commit = "dca1a190aa85f9065979ef35802fb77131911106"
 
 [[plugins]]
 name = "context_filetype.vim"
@@ -226,7 +241,12 @@ commit = "4516612fe98ff56ae0415a259ff6361a89419b0a"
 [[plugins]]
 name = "dracula"
 url = "https://github.com/dracula/vim"
-commit = "07b144414730cc4cf4405ab840bf46c5fa12704b"
+commit = "e7b91facff94bdf3a248df9b683119b84672256a"
+
+[[plugins]]
+name = "dropbar.nvim"
+url = "https://github.com/Bekaboo/dropbar.nvim"
+commit = "ce202248134e3949aac375fd66c28e5207785b10"
 
 [[plugins]]
 name = "edge"
@@ -236,12 +256,12 @@ commit = "7ec78c21bd8f0b2b0b47043bb1e730c561647c72"
 [[plugins]]
 name = "evergarden"
 url = "https://github.com/crispybaccoon/evergarden"
-commit = "f74fc61a5345818caf7c56bd4c6dcd16f17a1fdd"
+commit = "a44318bb8ef2f21a93b5cf3bb1968802294a951b"
 
 [[plugins]]
 name = "everviolet"
 url = "https://github.com/everviolet/nvim"
-commit = "f74fc61a5345818caf7c56bd4c6dcd16f17a1fdd"
+commit = "a44318bb8ef2f21a93b5cf3bb1968802294a951b"
 
 [[plugins]]
 name = "falcon"
@@ -276,7 +296,7 @@ commit = "6cd7280adead7f586db6fccbd15d2cac7e2188b9"
 [[plugins]]
 name = "futago.vim"
 url = "https://github.com/yukimemi/futago.vim"
-commit = "b0d5e13f2e5ffbaed0309b4bba3fdf0d86218859"
+commit = "470b1c85062b5a6807ed432545ea296b2045622f"
 
 [[plugins]]
 name = "git-timemachine.nvim"
@@ -332,6 +352,11 @@ commit = "154eb5ff5b96d0641307113fa385eaf0d36d9796"
 name = "halcyon-neovim"
 url = "https://github.com/kwsp/halcyon-neovim"
 commit = "77350014854d19e2005b6942f74d175f57e49127"
+
+[[plugins]]
+name = "hardtime.nvim"
+url = "https://github.com/m4xshen/hardtime.nvim"
+commit = "b4e431934af1fe224a3a801f632c008278cb7628"
 
 [[plugins]]
 name = "here.nvim"
@@ -399,6 +424,11 @@ url = "https://github.com/fei6409/log-highlight.nvim"
 commit = "ca88628f6dd3b9bb46f9a7401669e24cf7de47a4"
 
 [[plugins]]
+name = "lspsaga.nvim"
+url = "https://github.com/nvimdev/lspsaga.nvim"
+commit = "c532fb86c3d211c5829ad58d2a0783012739bb65"
+
+[[plugins]]
 name = "lualine.nvim"
 url = "https://github.com/nvim-lualine/lualine.nvim"
 commit = "a905eeebc4e63fdc48b5135d3bf8aea5618fb21c"
@@ -406,7 +436,7 @@ commit = "a905eeebc4e63fdc48b5135d3bf8aea5618fb21c"
 [[plugins]]
 name = "lumiris.vim"
 url = "https://github.com/yukimemi/lumiris.vim"
-commit = "ac19cb942871306b3c6bcd78fb2fdc1ed8273189"
+commit = "c7dcb8910c6f6859d13817aec7ae3f1dd6bce90b"
 
 [[plugins]]
 name = "magical-girl-vim"
@@ -421,17 +451,22 @@ commit = "86235e1c5f7ff12174dbb33bdeb091040a8cbe63"
 [[plugins]]
 name = "mason-lspconfig.nvim"
 url = "https://github.com/mason-org/mason-lspconfig.nvim"
-commit = "0a3b42c3e503df87aef6d6513e13148381495c3a"
+commit = "0c2823e0418f3d9230ff8b201c976e84de1cb401"
 
 [[plugins]]
 name = "mason.nvim"
 url = "https://github.com/mason-org/mason.nvim"
-commit = "b03fb0f20bc1d43daf558cda981a2be22e73ac42"
+commit = "12ddd182d9efbdc848b540f16484a583d52da0fb"
 
 [[plugins]]
 name = "material.nvim"
 url = "https://github.com/marko-cerovac/material.nvim"
 commit = "92f7366a9315cd386bc4fa4d716fde375dda210f"
+
+[[plugins]]
+name = "md-render.nvim"
+url = "https://github.com/delphinus/md-render.nvim"
+commit = "75d976d89edc4b9457447ba83201ec5805600f79"
 
 [[plugins]]
 name = "melange-nvim"
@@ -494,9 +529,19 @@ url = "https://github.com/rafamadriz/neon"
 commit = "7765aaa7d1cd3804176140644640766e4411c766"
 
 [[plugins]]
+name = "neorg"
+url = "https://github.com/nvim-neorg/neorg"
+commit = "1f14d72aad7165eac307a2a2f6be0fb97a04b3c2"
+
+[[plugins]]
+name = "neoscroll.nvim"
+url = "https://github.com/karb94/neoscroll.nvim"
+commit = "c8d29979cb0cb3a2437a8e0ae683fd82f340d3b8"
+
+[[plugins]]
 name = "newpaper.nvim"
 url = "https://github.com/yorik1984/newpaper.nvim"
-commit = "660457cf82643976c9c53061081552f99523e967"
+commit = "d52c778691bfd3fb9a038df05e922443f58d61fb"
 
 [[plugins]]
 name = "night-owl.nvim"
@@ -564,9 +609,14 @@ url = "https://github.com/hrsh7th/nvim-insx"
 commit = "fbba86031f3927ecbc11556217b4976a149c29c6"
 
 [[plugins]]
+name = "nvim-lint"
+url = "https://github.com/mfussenegger/nvim-lint"
+commit = "eab58b48eb11d7745c11c505e0f3057165902461"
+
+[[plugins]]
 name = "nvim-lspconfig"
 url = "https://github.com/neovim/nvim-lspconfig"
-commit = "e05fb8c3bd61d909dacff24f77f23beb644daf54"
+commit = "8fde495949782bb61c2605174e231d145a048d8c"
 
 [[plugins]]
 name = "nvim-markdown"
@@ -577,6 +627,11 @@ commit = "37850581fdaec153ce84af677d43bf8fce60813a"
 name = "nvim-origami"
 url = "https://github.com/chrisgrieser/nvim-origami"
 commit = "67c15fd14037778644371487fc68855b530ccd7d"
+
+[[plugins]]
+name = "nvim-ufo"
+url = "https://github.com/kevinhwang91/nvim-ufo"
+commit = "ab3eb124062422d276fae49e0dd63b3ad1062cfc"
 
 [[plugins]]
 name = "nvim-visual-eof.lua"
@@ -691,12 +746,17 @@ commit = "9504524e5ed0e326534698f637f9d038ba4cd0ee"
 [[plugins]]
 name = "rvpm.nvim"
 url = "https://github.com/yukimemi/rvpm.nvim"
-commit = "f4d1dd7530e02d92ce34de54bb5a88866bdf8a45"
+commit = "714b04c6d6678da9a9c55f0c260c28d33eca5643"
 
 [[plugins]]
 name = "shirotelin"
 url = "https://github.com/yasukotelin/shirotelin"
 commit = "c486f6f1c88acb585859b8d96dd68eafeb14bbd3"
+
+[[plugins]]
+name = "sidekick.nvim"
+url = "https://github.com/folke/sidekick.nvim"
+commit = "208e1c5b8170c01fd1d07df0139322a76479b235"
 
 [[plugins]]
 name = "silentsaver.vim"
@@ -716,7 +776,7 @@ commit = "16b6dedca81f5f9d49cc82492df71dc41cac6f76"
 [[plugins]]
 name = "snacks-source-chronicle"
 url = "https://github.com/yukimemi/snacks-source-chronicle"
-commit = "0d093c2296c5f61d79c3be25be084ba0eb830af7"
+commit = "08f79eb378290b7b42f9e1660a4afa87bc12eb00"
 
 [[plugins]]
 name = "snacks.nvim"
@@ -726,7 +786,7 @@ commit = "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e"
 [[plugins]]
 name = "solarized-osaka.nvim"
 url = "https://github.com/craftzdog/solarized-osaka.nvim"
-commit = "f0c2f0ba0bd56108d53c9bfae4bb28ff6c67bbdb"
+commit = "a261ee90fb3e5e82660567e4874d384e996afa4f"
 
 [[plugins]]
 name = "solarized.nvim"
@@ -769,6 +829,11 @@ url = "https://github.com/gilligan/textobj-lastpaste"
 commit = "29fe0fed7e70b6153ca272ecfd10b54490e46327"
 
 [[plugins]]
+name = "tiny-inline-diagnostic.nvim"
+url = "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
+commit = "147af4e49f51dd48f41972de26552872b8ba7b25"
+
+[[plugins]]
 name = "toast.vim"
 url = "https://github.com/jsit/toast.vim"
 commit = "6ef5cea8298e64a555cfaf7541bb94781d06dc69"
@@ -799,6 +864,11 @@ url = "https://github.com/folke/trouble.nvim"
 commit = "bd67efe408d4816e25e8491cc5ad4088e708a69a"
 
 [[plugins]]
+name = "twilight.nvim"
+url = "https://github.com/folke/twilight.nvim"
+commit = "664e752f4a219801265cc3fc18782b457b58c1e1"
+
+[[plugins]]
 name = "undo-glow.nvim"
 url = "https://github.com/y3owk1n/undo-glow.nvim"
 commit = "25314a94cdfd84a3ca62bada1f88ed00982659ac"
@@ -811,7 +881,7 @@ commit = "c4d2222d11d98028f0f454a1eec99f18c6a175a7"
 [[plugins]]
 name = "vague.nvim"
 url = "https://github.com/vague-theme/vague.nvim"
-commit = "8751181a1aa431b4e8983b0a183afef5cbc08381"
+commit = "fd58046b9d64259d9785e4aeb6d6f494c6943cad"
 
 [[plugins]]
 name = "vim-ambicmd"
@@ -1106,7 +1176,12 @@ commit = "5e206e87fc3451748702fed5bccb4289cb992b09"
 [[plugins]]
 name = "yazi.nvim"
 url = "https://github.com/mikavilpas/yazi.nvim"
-commit = "982781518274c723202f73064e93beda7f0468fe"
+commit = "3ef2cd509e8b44bb4436e78834007f6342c7aaa5"
+
+[[plugins]]
+name = "zen-mode.nvim"
+url = "https://github.com/folke/zen-mode.nvim"
+commit = "8564ce6d29ec7554eb9df578efa882d33b3c23a7"
 
 [[plugins]]
 name = "zenbones.nvim"

@@ -5,11 +5,6 @@
 -- =============================================================================
 
 require("blink-cmp").setup({
-  fuzzy = {
-    prebuilt_binaries = {
-      ignore_version_mismatch = true
-    }
-  },
   keymap = {
     preset = "default",
     ['<C-f>'] = { 'hide', 'fallback' },

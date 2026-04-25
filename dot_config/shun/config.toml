@@ -177,6 +177,11 @@ recursive = false
 extensions = ["ps1"]
 
 [[scan_dirs]]
+path = "~/scoop/apps/rustup-msvc/current/.cargo/bin"
+recursive = false
+extensions = ["exe"]
+
+[[scan_dirs]]
 path = "~/.local/share/chezmoi/win/scripts"
 recursive = false
 extensions = ["ps1"]
