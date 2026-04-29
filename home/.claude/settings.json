@@ -1,0 +1,56 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -n \"replace\\\\|separator\\\\|unc\\\\|backslash\\\\|forward\\\\|\\\\\\\\\" C:/Users/yukimemi/src/github.com/yukimemi/shun/src/routes/+page.svelte)",
+      "Bash(grep -n \"isPathQuery\\\\|unc\\\\|minipc\\\\|\\\\\\\\\" C:/Users/yukimemi/src/github.com/yukimemi/shun/src/lib/utils.js)",
+      "Bash(cargo fmt:*)",
+      "Bash(cargo test:*)",
+      "Bash(npm test:*)",
+      "Bash(perl -i -pe 's/\"\"version\"\": \"\"4\\\\.4\\\\.2\"\"/\"\"version\"\": \"\"4.4.3\"\"/' package.json src-tauri/tauri.conf.json)",
+      "Bash(perl -i -pe 's/^version = \"\"4\\\\.4\\\\.2\"\"/version = \"\"4.4.3\"\"/' src-tauri/Cargo.toml)",
+      "Bash(grep '\"\"version\"\"' package.json)",
+      "Skill(commit-commands:commit-push-pr)",
+      "Bash(git checkout:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh api:*)",
+      "Bash(python3 -c \"import sys,json; reviews=json.load\\(sys.stdin\\); [print\\(r[''''body''''][:2000]\\) for r in reviews if r[''''body'''']]\")",
+      "Bash(git push:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git stash:*)",
+      "Bash(git pull:*)",
+      "Bash(git tag:*)",
+      "Bash(cargo check:*)",
+      "Bash(perl -i -pe 's/\"\"version\"\": \"\"4\\\\.4\\\\.3\"\"/\"\"version\"\": \"\"4.5.0\"\"/' C:/Users/yukimemi/src/github.com/yukimemi/shun/package.json C:/Users/yukimemi/src/github.com/yukimemi/shun/src-tauri/tauri.conf.json)",
+      "Bash(perl -i -pe 's/^version = \"\"4\\\\.4\\\\.3\"\"/version = \"\"4.5.0\"\"/' C:/Users/yukimemi/src/github.com/yukimemi/shun/src-tauri/Cargo.toml)",
+      "Bash(grep '\"\"version\"\"' C:/Users/yukimemi/src/github.com/yukimemi/shun/package.json)",
+      "Bash(grep '\"\"version\"\"' C:/Users/yukimemi/src/github.com/yukimemi/shun/src-tauri/tauri.conf.json)",
+      "Bash(perl -i -pe 's/\"\"version\"\": \"\"4\\\\.4\\\\.4\"\"/\"\"version\"\": \"\"4.5.0\"\"/' C:/Users/yukimemi/src/github.com/yukimemi/shun/package.json C:/Users/yukimemi/src/github.com/yukimemi/shun/src-tauri/tauri.conf.json)",
+      "Bash(perl -i -pe 's/^version = \"\"4\\\\.4\\\\.4\"\"/version = \"\"4.5.0\"\"/' C:/Users/yukimemi/src/github.com/yukimemi/shun/src-tauri/Cargo.toml)",
+      "Bash(grep '\"\"version\"\"' package.json src-tauri/tauri.conf.json)",
+      "WebFetch(domain:github.com)",
+      "Bash(curl -s \"https://api.github.com/repos/microsoft/winget-pkgs/pulls/353923\")",
+      "Bash(curl -s \"https://api.github.com/repos/microsoft/winget-pkgs/pulls/353923/comments\")",
+      "Bash(curl -s \"https://api.github.com/repos/microsoft/winget-pkgs/issues/353923/comments\")",
+      "Bash(curl -s \"https://api.github.com/repos/microsoft/winget-pkgs/pulls/353923/files\")",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:api.github.com)"
+    ],
+    "defaultMode": "auto",
+    "additionalDirectories": [
+      "C:\\Users\\yukimemi\\.config\\rvpm"
+    ]
+  },
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true
+  },
+  "language": "Japanese",
+  "autoUpdatesChannel": "latest",
+  "skipAutoPermissionPrompt": true,
+  "editorMode": "vim",
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true
+}

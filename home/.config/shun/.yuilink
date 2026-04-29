@@ -1,0 +1,5 @@
+# Windows-only alternate location (shun reads from %APPDATA%$app).
+# Parent ~/.config/shun is already covered by the home/.config marker.
+[[link]]
+dst = "{{ env(name='APPDATA') }}/shun"
+when = "yui.os == 'windows' and vars.production"

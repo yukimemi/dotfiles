@@ -1,0 +1,3 @@
+[[link]]
+dst = "{{ env(name='LOCALAPPDATA') }}/nvim"
+when = "yui.os == 'windows' and vars.production"

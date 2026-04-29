@@ -1,0 +1,3 @@
+[[link]]
+dst = "{{ env(name='APPDATA') }}/yazi/config"
+when = "yui.os == 'windows' and vars.production"

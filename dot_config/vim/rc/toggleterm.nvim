@@ -1,9 +1,0 @@
-if !g:plugin_use_toggleterm
-  finish
-endif
-
-nnoremap <space>e <cmd>ToggleTerm direction=float<cr>
-
-au MyAutoCmd TermEnter * nnoremap <silent><buffer><nowait> <space>l <cmd>q<cr>
-
-" vim: ft=vim

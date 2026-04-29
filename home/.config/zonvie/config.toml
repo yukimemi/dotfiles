@@ -1,0 +1,79 @@
+[neovim]
+path = "nvim"
+
+[font]
+family = "PlemolJP Console NF"
+size = 14
+linespace = 2
+
+[window]
+blur = true
+opacity = 0.85
+blur_radius = 20
+
+[scrollbar]
+enabled = true
+show_mode = "scroll"
+opacity = 0.7
+delay = 1.0
+
+[cmdline]
+external = false
+
+[popup]
+external = false
+
+[messages]
+external = false
+msg_pos = { ext-float = "window", mini = "grid" }
+
+# Message routing rules (processed in order, first match wins)
+[[messages.routes]]
+event = "msg_show"
+kind = ["emsg", "echoerr", "lua_error", "rpc_error"]
+view = "ext-float"
+timeout = 0
+
+[[messages.routes]]
+event = "msg_show"
+kind = ["wmsg"]
+view = "ext-float"
+timeout = 4.0
+
+[[messages.routes]]
+event = "msg_show"
+kind = ["search_count"]
+view = "mini"
+timeout = 2.0
+
+[[messages.routes]]
+event = "msg_show"
+view = "ext-float"
+
+[[messages.routes]]
+event = "msg_showmode"
+view = "mini"
+
+[[messages.routes]]
+event = "msg_showcmd"
+view = "mini"
+
+[[messages.routes]]
+event = "msg_ruler"
+view = "mini"
+
+[[messages.routes]]
+event = "msg_history_show"
+view = "split"
+
+[tabline]
+external = false
+
+[performance]
+glyph_cache_ascii_size = 512
+glyph_cache_non_ascii_size = 256
+
+[ime]
+disable_on_activate = false
+disable_on_modechange = false
+

@@ -1,0 +1,5 @@
+# Windows-only alternate location (nushell reads from %APPDATA%$app).
+# Parent ~/.config/nushell is already covered by the home/.config marker.
+[[link]]
+dst = "{{ env(name='APPDATA') }}/nushell"
+when = "yui.os == 'windows' and vars.production"

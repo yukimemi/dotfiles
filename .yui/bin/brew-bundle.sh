@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+if command -v brew &>/dev/null; then
+  echo "Applying Homebrew bundle..."
+  brew bundle --file="$HOME/.config/brewfile/Brewfile"
+else
+  echo "Homebrew is not installed. Skipping brew bundle."
+fi

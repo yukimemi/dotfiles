@@ -1,0 +1,3 @@
+[[link]]
+dst = "{{ env(name='USERPROFILE') }}/scoop/persist/windows-terminal-preview/settings"
+when = "yui.os == 'windows' and vars.production"

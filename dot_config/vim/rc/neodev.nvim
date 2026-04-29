@@ -1,8 +1,0 @@
-lua << EOF
--- IMPORTANT: make sure to setup neodev BEFORE lspconfig
-require("neodev").setup({
-  -- add any options here, or leave empty to use the default settings
-})
-EOF
-
-" vim: ft=vim ts=2 sw=2 sts=2:

@@ -1,0 +1,73 @@
+# yui config — see https://github.com/yukimemi/yui
+
+[vars]
+# Migration toggles:
+#   - home_root: where the parent mount + parameterized .yuilink dsts
+#                land. Set to "~" once the trial passes.
+#   - production: when false, OS-extras (`%APPDATA%/<app>` etc.) are
+#                 skipped so a test apply doesn't clobber real app data.
+home_root = "~"
+production = true
+
+[vars.autohotkey]
+purpose = "home"
+usenewoutlook = true
+notuseexcel = true
+use_excel = false
+useneovide = true
+useneovimqt = false
+usewez = false
+usenu = false
+usewtp = true
+usecomet = false
+usechrome = false
+
+[[mount.entry]]
+src = "home"
+dst = "{{ vars.home_root }}"
+
+# --- hooks ---
+
+[[hook]]
+name = "mac-init"
+script = ".yui/bin/mac-init.sh"
+when_run = "once"
+phase = "pre"
+when = "yui.os == 'macos'"
+
+[[hook]]
+name = "brew-bundle"
+script = ".yui/bin/brew-bundle.sh"
+when_run = "every"
+phase = "post"
+when = "yui.os == 'macos'"
+
+[[hook]]
+name = "setup-wsl"
+script = ".yui/bin/setup-wsl.sh"
+when_run = "onchange"
+phase = "post"
+when = "yui.os == 'linux'"
+
+[[hook]]
+name = "setup-openclaw"
+script = ".yui/bin/setup-openclaw.sh"
+when_run = "onchange"
+phase = "post"
+when = "yui.os == 'linux'"
+
+[[hook]]
+name = "enable-openclaw"
+script = ".yui/bin/enable-openclaw.sh"
+when_run = "onchange"
+phase = "post"
+when = "yui.os == 'linux'"
+
+[[hook]]
+name = "windows-setup"
+script = ".yui/bin/windows-setup.ps1"
+command = "pwsh"
+args = ["-NoProfile", "-File", "{% raw %}{{ script_path }}{% endraw %}"]
+when_run = "onchange"
+phase = "post"
+when = "yui.os == 'windows' and vars.production"

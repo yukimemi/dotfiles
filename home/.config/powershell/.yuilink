@@ -1,0 +1,8 @@
+# PowerShell looks for its profile under Documents/PowerShell, NOT
+# $HOME/.config/powershell. File-level link lets us keep the profile
+# script next to its module sibling (LazyProfile.psm1) in source while
+# still landing at the location pwsh actually loads from.
+[[link]]
+src = "Microsoft.PowerShell_profile.ps1"
+dst = "{{ env(name='USERPROFILE') }}/Documents/PowerShell/Microsoft.PowerShell_profile.ps1"
+when = "yui.os == 'windows' and vars.production"

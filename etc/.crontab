@@ -1,6 +1,0 @@
-0 * * * * command rm -rf ~/Dropbox/.dropbox.cache/* > /dev/null
-0 * * * * nvim -c "silent! call dein#update() | q"
-30 * * * * vim -c "silent! call dein#update() | q"
-# */30 * * * * rsync -av8 --progress ~/Pictures/写真ライブラリ.photoslibrary /Volumes/backup/Photos/
-# */10 * * * * cd ~/bin/scripts && ~/bin/scripts/ddns-update.pl
-

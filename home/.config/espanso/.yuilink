@@ -1,0 +1,3 @@
+[[link]]
+dst = "{{ env(name='USERPROFILE') }}/scoop/persist/espanso/.espanso"
+when = "yui.os == 'windows' and vars.production"

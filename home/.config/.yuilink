@@ -1,0 +1,2 @@
+[[link]]
+dst = "{{ vars.home_root }}/.config"

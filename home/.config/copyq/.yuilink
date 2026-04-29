@@ -1,0 +1,7 @@
+[[link]]
+dst = "{{ env(name='APPDATA') }}/copyq"
+when = "yui.os == 'windows' and vars.production"
+
+[[link]]
+dst = "{{ env(name='USERPROFILE') }}/scoop/persist/copyq/config/copyq"
+when = "yui.os == 'windows' and vars.production"

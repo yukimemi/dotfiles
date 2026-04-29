@@ -1,19 +1,38 @@
-!.aider.conf.yml
-!dot_gemini/GEMINI.md
-*.bak/
-*.bk
-*.dat
-*.log
-*.swp
-*.zwc
-.aider*
-.bk/
-.claude/scheduled_tasks.lock
-.claude/settings.local.json
-.config/nvim/plugin/packer_compiled.lua
-.config/raycast-x/
-.luarc.json
-.vim/
-_bk/
-bin/
-dot_gemini/*
+# yui per-machine state and backups (regenerable, do not commit)
+# .yui/bin/ contains hook scripts and IS committed.
+/.yui/state.json
+/.yui/state.json.tmp
+/.yui/backup/
+
+# >>> yui rendered (auto-managed, do not edit) >>>
+home/.config/autohotkey/AutoHotkey.ahk
+home/.config/todoke/todoke.toml
+home/.config/zellij/config/config.kdl
+# <<< yui rendered (auto-managed) <<<
+
+# config.local.toml is per-machine; commit a config.local.example.toml instead.
+config.local.toml
+
+# Runtime state apps drop into ~/.config/<app>/ via the junction. We want
+# them on disk (so the apps work) but not in git.
+home/.config/**/*.log
+home/.config/**/*.lock
+home/.config/**/*.db
+home/.config/**/*-shm
+home/.config/**/*-wal
+home/.config/copyq/copyq/
+home/.config/windows-terminal/state.json
+home/.config/windows-terminal-preview/state.json
+home/.config/atuin/history*
+home/.config/zellij/cache/
+home/.config/zellij/sessions/
+# opencode auto-installs deps via bun — node_modules is regenerable.
+home/.config/opencode/node_modules/
+# gh stores its OAuth token here on Linux/macOS / newer Windows installs.
+# config.yml is fine; hosts.yml has the credential.
+home/.config/gh/hosts.yml
+# shun keeps per-machine runtime state (last update check, command history).
+home/.config/shun/history.json
+home/.config/shun/last_update_check
+# chezmoi db
+home/.config/chezmoi/chezmoistate.boltdb

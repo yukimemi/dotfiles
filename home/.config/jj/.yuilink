@@ -1,0 +1,5 @@
+# Windows-only alternate location (jj reads from %APPDATA%$app).
+# Parent ~/.config/jj is already covered by the home/.config marker.
+[[link]]
+dst = "{{ env(name='APPDATA') }}/jj"
+when = "yui.os == 'windows' and vars.production"

@@ -1,0 +1,131 @@
+{%- if vars.autohotkey.useneovide -%}
+{%- set gui = "neovide" -%}
+{%- elif vars.autohotkey.useneovimqt -%}
+{%- set gui = "nvim-qt" -%}
+{%- elif vars.autohotkey.purpose == "home" -%}
+{%- set gui = "neovide" -%}
+{%- else -%}
+{%- set gui = "nvim" -%}
+{%- endif -%}
+# todoke config. Managed by yui (rendered from todoke.toml.tera).
+# Deploys to ~/.config/todoke/todoke.toml on every platform.
+#
+# yui resolves the build-time GUI selector at the very top, then wraps
+# the rest of the file in a Tera raw block so todoke's own runtime
+# tokens (group / file_path / vars.* references below) pass through
+# build-time render unchanged.
+
+[vars]
+gui = "{{ gui }}"
+{% raw %}
+# nvim front-ends that are "wrappers" — they run an embedded nvim and
+# forward CLI args after `--` to it. Raw `nvim` doesn't want `--` since it
+# treats everything after as filenames. Listing wrappers here lets the
+# single [todoke.gui] definition below handle all three variants.
+wrapper_guis = ["neovide", "nvim-qt"]
+
+# Generic GNU/POSIX flag-shaped argv. Anything starting with `-` or `+`
+# — short, long, bundled, concatenated, `--key=value`, ex-editor `+42`.
+# Used by the catch-all passthrough rule so flags flow through to
+# whichever target handles the file / URL / raw input.
+flag = '^[-+]'
+
+# Neovim-family (nvim / neovide / nvim-qt) flags that take a spaced
+# value as the next argv. `consumes = 1` pulls the value along so
+# `-c :set ft=md` stays a pair. Specific to the neovim family; if a
+# different editor gets added with different value-taking flags, define
+# its own regex here rather than trying to union them.
+nvim_value_flag = '^(?:-[cSuUitwW]|--cmd|--startuptime|--listen|--server)$'
+
+# ─── Targets ────────────────────────────────────────────────────────────────
+# todoke.<name> is a delivery target. `kind` defaults to "exec" (just spawn
+# the command). Set `kind = "neovim"` to opt into msgpack-RPC reuse.
+
+# Primary editor, selected by vars.gui. A single definition covers nvim,
+# neovide, and nvim-qt — the `--` passthrough separator is only injected
+# when the chosen command is a wrapper.
+[todoke.gui]
+kind = "neovim"
+command = "{{ vars.gui }}"
+listen = '{% if is_windows() %}\\.\pipe\nvim-todoke-{{ group }}{% else %}/tmp/nvim-todoke-{{ group }}.sock{% endif %}'
+# Suppress the transient cmd window on Windows when the chosen front-end
+# is a GUI wrapper (neovide / nvim-qt). Raw `nvim` stays on the console
+# path so it keeps getting a properly wired fresh terminal.
+gui = {{ vars.gui in vars.wrapper_guis }}
+
+{% if vars.gui in vars.wrapper_guis %}
+[todoke.gui.args]
+remote = ["--"]
+{% endif %}
+
+# Terminal nvim, always available for $EDITOR-callback files (commit
+# messages, rebase todos, …). Independent of vars.gui so short blocking
+# edits stay in the calling terminal even when the GUI is in use.
+[todoke.nvim-term]
+kind = "neovim"
+command = "nvim"
+listen = '{% if is_windows() %}\\.\pipe\nvim-todoke-{{ group }}-term{% else %}/tmp/nvim-todoke-{{ group }}-term.sock{% endif %}'
+
+[todoke.msedge]
+command = "msedge"
+
+# ─── Rules ──────────────────────────────────────────────────────────────────
+
+# $EDITOR-callback files — always terminal nvim, fresh instance, block
+# until it exits. Pattern list is OR-ed; grouped by origin so the intent
+# is readable and easy to extend.
+[[rules]]
+name = "editor-callback"
+match = [
+  # git
+  '(?i)/(COMMIT_EDITMSG|MERGE_MSG|TAG_EDITMSG|EDIT_DESCRIPTION|git-rebase-todo|NOTES_EDITMSG|\.gitmessage)$',
+  # svn / hg
+  '(?i)/svn-commit\.tmp$',
+  # Claude Code prompt temp files
+  '(?i)/claude-prompt-.*$',
+  # Gemini prompt temp files
+  '(?i)/gemini-edit.*$',
+]
+to = "nvim-term"
+mode = "new"
+sync = true
+
+# Neovim-family flags that take a spaced value on the next argv
+# (`-c :set ft=md`, `-S session.vim`, `--listen /tmp/sock`, …). Must
+# come before any-flag or the bare `-c` would be caught first. `to`
+# is omitted: todoke merges the two-argv pair into whatever batch
+# gets created by the input-facing rule in the same group.
+[[rules]]
+name = "nvim-value-flag"
+match = '{{ vars.nvim_value_flag }}'
+passthrough = true
+consumes = 1
+
+# Catch-all for flag-shaped argv. Just collects them; the target is
+# decided by whichever input rule (default / editor-callback / …)
+# produced a batch in the same group. If no such batch exists (flag
+# arrived without any input), todoke drops with a warning.
+[[rules]]
+name = "any-flag"
+match = '{{ vars.flag }}'
+passthrough = true
+
+# URL fallback: any other URL → browser. Without this, non-GitHub URLs
+# would fall through to the file default (nvim) and get dropped by the
+# neovim backend (which only accepts files).
+[[rules]]
+name = "url-default"
+match = '^https?://'
+input_type = "url"
+to = "msedge"
+group = "default"
+
+# Everything else: route to whichever target vars.gui resolved above.
+[[rules]]
+name = "default"
+match = '.*'
+to = "gui"
+group = "default"
+mode = "remote"
+sync = false
+{% endraw %}
