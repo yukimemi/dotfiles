@@ -1,8 +1,16 @@
-# PowerShell looks for its profile under Documents/PowerShell, NOT
-# $HOME/.config/powershell. File-level link lets us keep the profile
+# PowerShell looks for its profile under Documents/PowerShell (NOT
+# $HOME/.config/powershell). File-level link lets us keep the profile
 # script next to its module sibling (LazyProfile.psm1) in source while
 # still landing at the location pwsh actually loads from.
+#
+# OneDrive redirects Documents into the user's OneDrive root, and the
+# Japanese system locale localises the folder name to "ドキュメント".
+# `$PROFILE` resolves through `[Environment]::GetFolderPath("MyDocuments")`
+# which honours both the redirect and the localisation, but yui doesn't
+# have that lookup — the OneDrive / ドキュメント path is hard-coded.
+# Edit this dst on machines without OneDrive (or with a non-Japanese
+# locale).
 [[link]]
 src = "Microsoft.PowerShell_profile.ps1"
-dst = "{{ env(name='USERPROFILE') }}/Documents/PowerShell/Microsoft.PowerShell_profile.ps1"
+dst = "{{ env(name='OneDrive') }}/ドキュメント/PowerShell/Microsoft.PowerShell_profile.ps1"
 when = "yui.os == 'windows' and vars.production"
