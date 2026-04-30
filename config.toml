@@ -67,7 +67,7 @@ when = "yui.os == 'linux'"
 name = "windows-setup"
 script = ".yui/bin/windows-setup.ps1"
 command = "pwsh"
-args = ["-NoProfile", "-File", "{% raw %}{{ script_path }}{% endraw %}"]
+args = ["-NoProfile", "-File", "{{ script_path }}"]
 when_run = "onchange"
 phase = "post"
 when = "yui.os == 'windows' and vars.production"
