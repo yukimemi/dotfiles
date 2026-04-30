@@ -36,3 +36,5 @@ home/.config/shun/history.json
 home/.config/shun/last_update_check
 # chezmoi db
 home/.config/chezmoi/chezmoistate.boltdb
+# jj per-repo runtime metadata (regenerated per machine).
+home/.config/jj/repos/
