@@ -38,3 +38,7 @@ home/.config/shun/last_update_check
 home/.config/chezmoi/chezmoistate.boltdb
 # jj per-repo runtime metadata (regenerated per machine).
 home/.config/jj/repos/
+# age file
+home/.config/yui/age.txt
+# scoop
+home/.config/scoop/config.json

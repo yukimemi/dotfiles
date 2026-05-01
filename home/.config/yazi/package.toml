@@ -10,8 +10,8 @@ hash = "2eca70f99d25c661e0a92000843d001e"
 
 [[plugin.deps]]
 use = "Lil-Dank/lazygit"
-rev = "8c4086c"
-hash = "85316b5e9abeae2531d3e5d02a094381"
+rev = "e73fd74"
+hash = "6ea5f37c7f219671ec504cb8311f889d"
 
 [[plugin.deps]]
 use = "MasouShizuka/projects"
@@ -30,7 +30,7 @@ hash = "f5afc904d5106ee368c8aa2ded43bd74"
 
 [[plugin.deps]]
 use = "mikavilpas/easyjump.yazi:easyjump"
-rev = "272feaa"
+rev = "9eea255"
 hash = "dee6991cbf5f04f879be03218856d65"
 
 [flavor]

@@ -49,8 +49,8 @@
   },
   "language": "Japanese",
   "autoUpdatesChannel": "latest",
-  "skipAutoPermissionPrompt": true,
   "editorMode": "vim",
   "remoteControlAtStartup": true,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true
 }
