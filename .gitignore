@@ -6,6 +6,7 @@
 
 # >>> yui rendered (auto-managed, do not edit) >>>
 home/.config/autohotkey/AutoHotkey.ahk
+home/.config/powershell/private.ps1
 home/.config/todoke/todoke.toml
 home/.config/zellij/config/config.kdl
 # <<< yui rendered (auto-managed) <<<

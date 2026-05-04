@@ -71,3 +71,13 @@ args = ["-NoProfile", "-File", "{{ script_path }}"]
 when_run = "onchange"
 phase = "post"
 when = "yui.os == 'windows' and vars.production"
+
+[secrets]
+recipients = [
+  # minipc yukimemi — added by `yui secret init` on 2026-05-04T18:12:46.1357251+09:00[Asia/Tokyo]
+  "age1ppzlfad0p3ljak6hzxl7vwffqg9v8v2kmlrpgtxf3dy5stltd30qael4uz",
+]
+
+[secrets.vault]
+provider = "bitwarden"
+

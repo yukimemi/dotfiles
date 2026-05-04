@@ -1,12 +1,13 @@
 -- =============================================================================
 -- File        : before.lua
 -- Author      : yukimemi
--- Last Change : 2026/04/20 01:10:06.
+-- Last Change : 2026/05/04 19:06:01.
 -- =============================================================================
 
 vim.g["lumiris_colors_path"] = { vim.fn.expand("~/.cache/rvpm/nvim/plugins/repos") }
 vim.g["lumiris_notify"] = true
 vim.g["lumiris_interval"] = 600
+vim.g["lumiris_background"] = "dark"
 
 vim.keymap.set("n", "<space>co", "<cmd>ChangeColorscheme<cr>", { desc = "ChangeColorscheme" })
 vim.keymap.set("n", "<space>Rd", "<cmd>DisableThisColorscheme<cr>", { desc = "DisableThisColorscheme" })

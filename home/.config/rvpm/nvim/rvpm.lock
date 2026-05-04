@@ -724,6 +724,11 @@ url = "https://github.com/nvim-lua/plenary.nvim"
 commit = "74b06c6c75e4eeb3108ec01852001636d85a932b"
 
 [[plugins]]
+name = "project.nvim"
+url = "https://github.com/DrKJeff16/project.nvim"
+commit = "1a1947486aabeaa05174e997b41fbb215ab44a62"
+
+[[plugins]]
 name = "qfc.nvim"
 url = "https://github.com/mei28/qfc.nvim"
 commit = "5bf19cf22b51d415bf369ab9b0c35185a9d7eaec"

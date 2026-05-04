@@ -85,6 +85,8 @@ match = [
   '(?i)/claude-prompt-.*$',
   # Gemini prompt temp files
   '(?i)/gemini-edit.*$',
+  # OpenCode prompt temp files (e.g. /Temp/1777881471659.md)
+  '(?i)[/\\]\d{13,}\.md$',
 ]
 to = "nvim-term"
 mode = "new"
