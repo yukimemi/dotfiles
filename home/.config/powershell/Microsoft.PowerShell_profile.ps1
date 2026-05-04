@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : Microsoft.PowerShell_profile.ps1
 # Author      : yukimemi
-# Last Change : 2026/03/13 11:15:00
+# Last Change : 2026/03/13 11:15:03
 # =============================================================================
 
 # --- Pre-Environment Setup ---
@@ -43,7 +43,7 @@ if ($IsWindows) {
   [Console]::InputEncoding = [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 }
 $env:LANG = "ja_JP.UTF-8"
-$env:EDITOR = "todoke"
+$env:EDITOR = "todoke-vim"
 
 # Browser
 if (Test-IsWsl) {

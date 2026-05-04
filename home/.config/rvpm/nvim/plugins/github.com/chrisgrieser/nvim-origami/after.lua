@@ -1,9 +1,1 @@
--- =============================================================================
--- File        : after.lua
--- Author      : yukimemi
--- Last Change : 2026/04/20 01:10:06.
--- =============================================================================
-
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 99
-require("origami").setup()
+require("origami").setup({})

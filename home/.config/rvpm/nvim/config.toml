@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/04/30 20:55:02.
+# Last Change : 2026/05/04 20:44:01.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -54,16 +54,7 @@ url = "https://github.com/kana/vim-repeat"
 url = "https://github.com/dstein64/vim-startuptime"
 on_cmd = "StartupTime"
 
-# ── chezmoi ─────────────────────────────────────
-
-[[plugins]]
-url = "https://github.com/xvzc/chezmoi.nvim"
-depends = ["plenary.nvim"]
-on_cmd = ["/^Chezmoi/"]
-on_event = ["BufRead", "BufNewFile"]
-
 # ── session ─────────────────────────────────────
-
 [[plugins]]
 url = "https://github.com/rmagatti/auto-session"
 cond = "false"
@@ -162,7 +153,7 @@ on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/chrisgrieser/nvim-origami"
-on_event = "CursorHold"
+on_event = ["BufReadPost", "BufNewFile"]
 
 [[plugins]]
 url = "https://github.com/folke/noice.nvim"
@@ -202,8 +193,7 @@ url = "https://github.com/Amansingh-afk/milli.nvim"
 url = "https://github.com/nvim-lualine/lualine.nvim"
 on_event = "CursorHold"
 
-# ── lsp ─────────────────────────────────────────
-
+# ── lsp ───────────────────────────────────────────
 [[plugins]]
 url = "https://github.com/neovim/nvim-lspconfig"
 depends = ["blink.cmp"]
