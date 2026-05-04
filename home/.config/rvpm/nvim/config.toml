@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/05/04 20:44:01.
+# Last Change : 2026/05/04 23:35:11.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -12,7 +12,7 @@
 auto_clean = true
 url_style = "full"
 concurrency = 16
-ai = "claude"
+ai = "opencode"
 ai_language = "ja"
 
 # ── core ────────────────────────────────────────

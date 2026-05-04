@@ -49,6 +49,12 @@ require("snacks").setup({
   picker = {
     enabled = true,
     ui_select = true,
+    sources = {
+      grep = {
+        hidden = true,
+        exclude = { "node_modules", ".git" },
+      },
+    },
   },
   quickfile = {
     enabled = true,
