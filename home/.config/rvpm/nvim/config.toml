@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/05/04 23:35:11.
+# Last Change : 2026/05/05 08:52:07.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -551,7 +551,7 @@ url = "https://github.com/NeogitOrg/neogit"
 depends = ["plenary.nvim", "diffview.nvim", "snacks.nvim"]
 on_cmd = ["Neogit"]
 on_map = [{ lhs = "<leader>gg", desc = "Open Neogit UI" }]
-cond = "true"
+cond = "false"
 
 [[plugins]]
 url = "https://github.com/NicholasZolton/neojj"

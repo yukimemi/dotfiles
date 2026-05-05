@@ -238,20 +238,30 @@ if (Test-Path $ZoxideInit) {
 # wslenv
 $env:WSLENV += ":GEMINI_API_KEY/u:ANTHROPIC_API_KEY/u:OPENAI_API_KEY/u"
 
+
+
 # renri shell wrapper — paste into $PROFILE
 function renri {
-  if ($args.Count -ge 1 -and $args[0] -eq 'cd') {
-    $rest = if ($args.Count -gt 1) { $args[1..($args.Count - 1)] } else { @() }
-    $env:RENRI_SHELL_WRAPPER = '1'
-    try {
-      $target = & renri.exe cd @rest
-      if ($LASTEXITCODE -eq 0 -and $target) {
-        Set-Location -LiteralPath $target
-      }
-    } finally {
-      Remove-Item Env:RENRI_SHELL_WRAPPER -ErrorAction SilentlyContinue
+    if ($args.Count -ge 1 -and $args[0] -eq 'cd') {
+        $rest = if ($args.Count -gt 1) { $args[1..($args.Count - 1)] } else { @() }
+        $env:RENRI_SHELL_WRAPPER = '1'
+        try {
+            $target = & renri.exe cd @rest
+            if ($LASTEXITCODE -eq 0 -and $target) {
+                Set-Location -LiteralPath $target
+                if ($?) {
+                    $repo = & renri.exe gh-repo 2>$null
+                    if ($repo) {
+                        $env:GH_REPO = $repo.Trim()
+                    } else {
+                        Remove-Item Env:GH_REPO -ErrorAction SilentlyContinue
+                    }
+                }
+            }
+        } finally {
+            Remove-Item Env:RENRI_SHELL_WRAPPER -ErrorAction SilentlyContinue
+        }
+    } else {
+        & renri.exe @args
     }
-  } else {
-    & renri.exe @args
-  }
 }
