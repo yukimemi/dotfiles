@@ -43,3 +43,5 @@ home/.config/jj/repos/
 home/.config/yui/age.txt
 # scoop
 home/.config/scoop/config.json
+# configstore
+home/.config/configstore/
