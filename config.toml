@@ -11,16 +11,15 @@ production = true
 
 [vars.autohotkey]
 purpose = "home"
-usenewoutlook = true
-notuseexcel = true
+use_new_outlook = true
 use_excel = false
-useneovide = true
-useneovimqt = false
-usewez = false
-usenu = false
-usewtp = true
-usecomet = false
-usechrome = false
+use_neovide = true
+use_neovim_qt = false
+use_wez = false
+use_nu = false
+use_wtp = true
+use_comet = false
+use_chrome = false
 
 [[mount.entry]]
 src = "home"

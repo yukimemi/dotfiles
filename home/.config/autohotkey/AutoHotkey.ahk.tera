@@ -286,7 +286,7 @@ Activate(app, cmd := "", titleKeywords := "", excludeTitle := "") {
 ; Outlook (New or Classic)
 ^F9::
 {
-{%- if vars.autohotkey.usenewoutlook %}
+{%- if vars.autohotkey.use_new_outlook %}
   Activate(EnvGet("LOCALAPPDATA") . "\Microsoft\WindowsApps\olk.exe")
 {%- elif vars.autohotkey.purpose == "home" %}
   Activate(EnvGet("LOCALAPPDATA") . "\Microsoft\WindowsApps\olk.exe")
@@ -321,13 +321,13 @@ F9::
 ; Neovim (Neovide, nvim-qt, or Terminal)
 F10::
 {
-{%- if vars.autohotkey.useneovide %}
+{%- if vars.autohotkey.use_neovide %}
   Activate("neovide.exe", "todoke")
-{%- elif vars.autohotkey.useneovimqt %}
+{%- elif vars.autohotkey.use_neovim_qt %}
   Activate("nvim-qt.exe", "todoke")
 {%- elif vars.autohotkey.purpose == "home" %}
   Activate("neovide.exe", "todoke")
-{%- elif vars.autohotkey.usewtp %}
+{%- elif vars.autohotkey.use_wtp %}
   Activate("nvim.exe", "todoke")
 {%- else %}
   Activate("nvim.exe", "todoke")
@@ -337,9 +337,9 @@ F10::
 ; Comet / Chrome
 F11::
 {
-{%- if vars.autohotkey.usecomet %}
+{%- if vars.autohotkey.use_comet %}
   Activate("comet.exe")
-{%- elif vars.autohotkey.usechrome %}
+{%- elif vars.autohotkey.use_chrome %}
   Activate("chrome.exe")
 {%- else %}
   Activate("msedge.exe", , "Microsoft.*Edge", "PWA")
@@ -349,11 +349,11 @@ F11::
 ; Windows Terminal (Toggle) - Exclude yazi windows
 F12::
 {
-{%- if vars.autohotkey.usewez %}
+{%- if vars.autohotkey.use_wez %}
   Toggle("C:\Program Files\WezTerm\wezterm-gui.exe")
-{%- elif vars.autohotkey.usenu %}
+{%- elif vars.autohotkey.use_nu %}
   Toggle("WindowsTerminal.exe", "nu", "", "Yazi,yazi")
-{%- elif vars.autohotkey.usewtp %}
+{%- elif vars.autohotkey.use_wtp %}
   Toggle("WindowsTerminal.exe", "wtp", "", "Yazi,yazi")
 {%- else %}
   Toggle("WindowsTerminal.exe", "wt", "", "Yazi,yazi")
@@ -363,7 +363,7 @@ F12::
 ; yazi (File Manager)
 ^F10::
 {
-{%- if vars.autohotkey.usewtp %}
+{%- if vars.autohotkey.use_wtp %}
   Activate("WindowsTerminal.exe", "wtp new-tab yazi", "Yazi,yazi")
 {%- else %}
   Activate("WindowsTerminal.exe", "wt new-tab yazi", "Yazi,yazi")
