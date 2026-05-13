@@ -12,7 +12,7 @@
 auto_clean = true
 url_style = "full"
 concurrency = 16
-ai = "opencode"
+ai = "gemini"
 ai_language = "ja"
 
 # ── core ────────────────────────────────────────
@@ -1200,4 +1200,8 @@ lazy = true
 
 [[plugins]]
 url = "https://github.com/0x-ximon/acario.nvim"
+lazy = true
+
+[[plugins]]
+url = "https://github.com/54L1M/Oshen.nvim"
 lazy = true

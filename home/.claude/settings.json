@@ -2,13 +2,14 @@
   "permissions": {
     "defaultMode": "auto"
   },
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
   "language": "Japanese",
   "autoUpdatesChannel": "latest",
   "editorMode": "vim",
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
   "useAutoModeDuringPlan": true,
-  "enabledPlugins": {
-    "rust-analyzer-lsp@claude-plugins-official": true
-  }
+  "skipAutoPermissionPrompt": true
 }
