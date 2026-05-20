@@ -1,12 +1,12 @@
 # =============================================================================
 # File        : yazi.toml
 # Author      : yukimemi
-# Last Change : 2026/04/21 15:23:56.
+# Last Change : 2026/05/18 21:53:55.
 # =============================================================================
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+#:schema https://yazi-rs.github.io/schemas/yazi.json
 
 [mgr]
 linemode = "size_and_mtime"
@@ -28,7 +28,7 @@ backup = [
 
 [open]
 prepend_rules = [
-  { name = "*/", use = [
+  { url = "*/", use = [
     "reveal",
     "open",
     "edit",
@@ -41,7 +41,7 @@ prepend_rules = [
     "backup",
     "diff",
   ] },
-  { name = "*", use = [
+  { url = "*", use = [
     "open",
     "reveal",
     "edit",
@@ -53,7 +53,7 @@ prepend_rules = [
 [plugin]
 prepend_preloaders = [{ mime = "application/pdf", run = "noop" }]
 prepend_previewers = [
-  { name = "*.md", run = "mdcat" },
-  { name = "*.zip", run = "ouch" },
+  { url = "*.md", run = "mdcat" },
+  { url = "*.zip", run = "ouch" },
   { mime = "application/pdf", run = "noop" },
 ]

@@ -14,6 +14,7 @@ url_style = "full"
 concurrency = 16
 ai = "gemini"
 ai_language = "ja"
+merge_doc = true
 
 # ── core ────────────────────────────────────────
 [[plugins]]
@@ -1205,3 +1206,9 @@ lazy = true
 [[plugins]]
 url = "https://github.com/54L1M/Oshen.nvim"
 lazy = true
+
+[[plugins]]
+url = "https://github.com/JohnnyJumper/theme-peeper.nvim"
+depends = ["snacks.nvim"]
+on_map = [{ lhs = "<leader>tp", mode = "n", desc = "Theme Peeper" }]
+on_cmd = ["ThemePeep", "ThemePeepPreview"]
