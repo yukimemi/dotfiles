@@ -412,6 +412,33 @@ function Install-ClaudeCode {
   }
 }
 
+function Install-Bun {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
+  log "Checking bun..." "Cyan"
+  $bunExe = Join-Path $env:USERPROFILE ".bun\bin\bun.exe"
+  if (Test-Path $bunExe) {
+    log "bun is already installed at $bunExe" "Gray"
+    return
+  }
+
+  if ($PSCmdlet.ShouldProcess("bun", "Install via official script")) {
+    log "Installing bun via official script..." "Yellow"
+    # BUN_INSTALL を必ずクリアしてから走らせる。過去に scoop の bun が
+    # User env にセットした BUN_INSTALL=scoop\persist\bun が残ってると、
+    # 公式インストーラがそれを尊重して scoop\persist\bun\bin に入れてしまい、
+    # その後 scoop 更新しても persist 配下のバイナリは置き換わらないので
+    # PATH で古い版が勝ち続ける (bun 1.2.x の Windows run-hang を踏む)。
+    $prevBunInstall = $env:BUN_INSTALL
+    Remove-Item Env:BUN_INSTALL -ErrorAction SilentlyContinue
+    try {
+      Invoke-RestMethod https://bun.sh/install.ps1 | Invoke-Expression
+    } finally {
+      if ($prevBunInstall) { $env:BUN_INSTALL = $prevBunInstall }
+    }
+  }
+}
+
 function Install-Tool {
   [CmdletBinding(SupportsShouldProcess)]
   param()
@@ -422,7 +449,6 @@ function Install-Tool {
       "7zip",
       "autohotkey",
       "bat",
-      "bun",
       "clipboard",
       "copyq",
       "delta",
@@ -723,6 +749,7 @@ function Start-Main {
       Install-UserTool
       Install-Shun
       Install-ClaudeCode
+      Install-Bun
 
       $cargoTools = @(
         @{ Name = "rhq"; Git = "https://github.com/ubnt-intrepid/rhq.git" }
