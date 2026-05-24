@@ -3,7 +3,7 @@
     run_onchange_after_windows-setup.ps1.tmpl
   .DESCRIPTION
     Initial windows setup scripts for chezmoi.
-  .Last Change : 2026/03/23 09:20:30.
+  .Last Change : 2026/05/24 10:20:07.
 #>
 
 $ErrorActionPreference = "Stop"
@@ -419,22 +419,45 @@ function Install-Bun {
   $bunExe = Join-Path $env:USERPROFILE ".bun\bin\bun.exe"
   if (Test-Path $bunExe) {
     log "bun is already installed at $bunExe" "Gray"
+  } else {
+    if ($PSCmdlet.ShouldProcess("bun", "Install via official script")) {
+      log "Installing bun via official script..." "Yellow"
+      # BUN_INSTALL を必ずクリアしてから走らせる。過去に scoop の bun が
+      # User env にセットした BUN_INSTALL=scoop\persist\bun が残ってると、
+      # 公式インストーラがそれを尊重して scoop\persist\bun\bin に入れてしまい、
+      # その後 scoop 更新しても persist 配下のバイナリは置き換わらないので
+      # PATH で古い版が勝ち続ける (bun 1.2.x の Windows run-hang を踏む)。
+      $prevBunInstall = $env:BUN_INSTALL
+      Remove-Item Env:BUN_INSTALL -ErrorAction SilentlyContinue
+      try {
+        Invoke-RestMethod https://bun.sh/install.ps1 | Invoke-Expression
+      } finally {
+        if ($prevBunInstall) { $env:BUN_INSTALL = $prevBunInstall }
+      }
+    }
+  }
+
+  if (!(Test-Path $bunExe)) {
+    log "bun.exe not found after install attempt; skipping global packages." "Yellow"
     return
   }
 
-  if ($PSCmdlet.ShouldProcess("bun", "Install via official script")) {
-    log "Installing bun via official script..." "Yellow"
-    # BUN_INSTALL を必ずクリアしてから走らせる。過去に scoop の bun が
-    # User env にセットした BUN_INSTALL=scoop\persist\bun が残ってると、
-    # 公式インストーラがそれを尊重して scoop\persist\bun\bin に入れてしまい、
-    # その後 scoop 更新しても persist 配下のバイナリは置き換わらないので
-    # PATH で古い版が勝ち続ける (bun 1.2.x の Windows run-hang を踏む)。
-    $prevBunInstall = $env:BUN_INSTALL
-    Remove-Item Env:BUN_INSTALL -ErrorAction SilentlyContinue
-    try {
-      Invoke-RestMethod https://bun.sh/install.ps1 | Invoke-Expression
-    } finally {
-      if ($prevBunInstall) { $env:BUN_INSTALL = $prevBunInstall }
+  # pnpm は scoop 側で入れているのでここには含めない (PATH 競合回避)。
+  $bunPackages = @(
+    "@google/gemini-cli",
+    "gut-cli",
+    "opencode-ai"
+  )
+
+  $installed = (& $bunExe pm ls -g 2>$null) -join "`n"
+  foreach ($pkg in $bunPackages) {
+    if ($installed -match ([regex]::Escape($pkg) + "@")) {
+      log "$pkg is already installed via bun." "Gray"
+    } else {
+      if ($PSCmdlet.ShouldProcess($pkg, "Install via bun add -g")) {
+        log "Installing $pkg via bun add -g ..." "Yellow"
+        & $bunExe add -g $pkg
+      }
     }
   }
 }
