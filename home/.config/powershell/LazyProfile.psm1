@@ -60,41 +60,42 @@ function Set-LocationWithList {
   }
 }
 
+$script:CdHistoryPath = if ($IsWindows) {
+  Join-Path $env:USERPROFILE ".cdhistory"
+} else {
+  Join-Path $env:HOME ".cdhistory"
+}
+$script:CdHistoryUtf8 = [System.Text.UTF8Encoding]::new($false)
+$script:CdHistoryCompactThreshold = 10000
+
 function Set-LocationWithHistory {
   [CmdletBinding(SupportsShouldProcess)]
   param([Parameter(ValueFromPipeline = $true)][string]$path)
   if ($PSCmdlet.ShouldProcess($path, "Set-Location, Get-ChildItem and Add to history")) {
     Set-Location $path -ErrorAction Stop; Get-ChildItem
-    Start-Job {
-      param([string]$path)
-      $z = if ($IsWindows) {
-        Join-Path $env:USERPROFILE ".cdhistory"
-      } else {
-        Join-Path $env:HOME ".cdhistory"
-      }
-      $path | Add-Content -Encoding utf8 $z
-      $c = Get-Content -Encoding utf8 $z | Where-Object { ![string]::IsNullOrEmpty($_) }
-      [array]::Reverse($c); $c = $c | Select-Object -Unique; [array]::Reverse($c)
-      $c | Set-Content -Encoding utf8 $z
-    } -ArgumentList $path > $null
+    [System.IO.File]::AppendAllText($script:CdHistoryPath, (Get-Location).Path + "`n", $script:CdHistoryUtf8)
   }
-}
-
-function Invoke-ZJump {
-  zoxide query --list @args | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
 }
 
 function Invoke-HistoryJump {
-  $z = if ($IsWindows) {
-    Join-Path $env:USERPROFILE ".cdhistory"
-  } else {
-    Join-Path $env:HOME ".cdhistory"
+  if (!(Test-Path -LiteralPath $script:CdHistoryPath)) { return }
+  $lines = [System.IO.File]::ReadAllLines($script:CdHistoryPath)
+  $seen = [System.Collections.Generic.HashSet[string]]::new()
+  $result = [System.Collections.Generic.List[string]]::new($lines.Length)
+  for ($i = $lines.Length - 1; $i -ge 0; $i--) {
+    $l = $lines[$i]
+    if ($l -and $seen.Add($l)) { $result.Add($l) }
   }
-  if (Test-Path $z) {
-    $c = Get-Content $z; [array]::Reverse($c)
-    $c | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation
-  } else {
-    Get-Job | Stop-Job -PassThru | Remove-Job -Force
+  $sel = $result | fzf --no-sort --tiebreak=index | Select-Object -First 1
+  if ($sel) { $sel | Invoke-TrimSetLocation }
+
+  if ($lines.Length -gt $script:CdHistoryCompactThreshold) {
+    $compact = $result.ToArray()
+    [Array]::Reverse($compact)
+    Start-ThreadJob -ScriptBlock {
+      param($zPath, $data, $enc)
+      [System.IO.File]::WriteAllLines($zPath, $data, $enc)
+    } -ArgumentList $script:CdHistoryPath, $compact, $script:CdHistoryUtf8 | Out-Null
   }
 }
 
@@ -157,7 +158,7 @@ function Invoke-TrimSetLocation {
     } else {
       $Path.Trim()
     }
-    Write-Host "cd [$p]"; Set-LocationWithList $p
+    Write-Host "cd [$p]"; Set-LocationWithHistory $p
   }
 }
 
@@ -463,7 +464,7 @@ function Invoke-ChezmoiFuzzy {
 }
 
 # --- Aliases ---
-Remove-Item alias:r, alias:rm, alias:cd, alias:ls, alias:h, alias:z, alias:zi -ErrorAction SilentlyContinue
+Remove-Item alias:r, alias:rm, alias:cd, alias:ls, alias:h -ErrorAction SilentlyContinue
 
 # Filter tool setup
 if (Get-Command fzf -ErrorAction SilentlyContinue) {
@@ -490,7 +491,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "b"     = "cd .."
     "c"     = "Clear-Host"
     "ca"    = "chezmoi apply -v"
-    "cd"    = "Set-LocationWithList"
+    "cd"    = "Set-LocationWithHistory"
     "cdiff" = "Select-ChezmoiDiff"
     "ce"    = "chezmoi edit-config"
     "cm"    = "Select-ChezmoiMerge"
@@ -506,7 +507,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "gsl"   = "gsr `"${env:USERPROFILE}\src`" | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
     "gt"    = "gut"
     "h"     = "hitori"
-    "j"     = "Invoke-ZJump"
+    "j"     = "Invoke-HistoryJump"
     "jd"    = "Get-ChildItem -Force -Directory -Recurse | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
     "jp"    = "jj done; jj git push"
     "ju"    = "jj pull; jj up"
@@ -522,8 +523,6 @@ if (Get-Module -ListAvailable PSReadLine) {
     "s"     = "jj status --no-pager"
     "v"     = "gvim --remote-silent"
     "which" = "Get-Command"
-    "z"     = "Invoke-ZJump"
-    "zi"    = "Invoke-ZJump"
   }
 
   # Load from config.yml

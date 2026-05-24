@@ -44,6 +44,9 @@ if ($IsWindows) {
 }
 $env:LANG = "ja_JP.UTF-8"
 $env:EDITOR = "todoke-vim"
+$env:KANADE_DEV_NATS_TOKEN = "dev"
+$env:KANADE_DEV_STATIC_TOKEN = "dev"
+$env:KANADE_AUTH_TOKEN = "dev"
 
 # Browser
 if (Test-IsWsl) {
@@ -148,10 +151,9 @@ if (Get-Command mise -ErrorAction SilentlyContinue) {
 }
 
 $StarshipInit = Join-Path $CacheDir "starship_init.ps1"
-$ZoxideInit = Join-Path $CacheDir "zoxide_init.ps1"
 
 # Generate cache if missing
-if (!(Test-Path $StarshipInit) -or !(Test-Path $ZoxideInit)) {
+if (!(Test-Path $StarshipInit)) {
   Write-Host "Generating initialization cache..." -ForegroundColor Cyan
 
   # Temporarily remove shims from PATH to avoid recursion error
@@ -164,19 +166,10 @@ if (!(Test-Path $StarshipInit) -or !(Test-Path $ZoxideInit)) {
     } else {
       "starship"
     }
-    $zoxideName = if ($IsWindows) {
-      "zoxide.exe"
-    } else {
-      "zoxide"
-    }
     $starshipExe = (Get-Command $starshipName -ErrorAction SilentlyContinue).Source
-    $zoxideExe = (Get-Command $zoxideName -ErrorAction SilentlyContinue).Source
 
     if ($starshipExe) {
       & $starshipExe init powershell --print-full-init | Set-Content $StarshipInit -Encoding utf8
-    }
-    if ($zoxideExe) {
-      & $zoxideExe init powershell | Set-Content $ZoxideInit -Encoding utf8
     }
   } finally {
     # Restore PATH
@@ -226,10 +219,6 @@ if (Test-Path $StarshipInit) {
   Import-Module -Global $LazyProfileModule -ErrorAction SilentlyContinue
 }
 
-if (Test-Path $ZoxideInit) {
-  . $ZoxideInit
-}
-
 # --- Zellij Auto-Start ---
 # if ($null -eq $env:ZELLIJ -and (Get-Command zellij -ErrorAction SilentlyContinue)) {
 #   zellij attach -c
@@ -242,26 +231,26 @@ $env:WSLENV += ":GEMINI_API_KEY/u:ANTHROPIC_API_KEY/u:OPENAI_API_KEY/u"
 
 # renri shell wrapper — paste into $PROFILE
 function renri {
-    if ($args.Count -ge 1 -and $args[0] -eq 'cd') {
-        $rest = if ($args.Count -gt 1) { $args[1..($args.Count - 1)] } else { @() }
-        $env:RENRI_SHELL_WRAPPER = '1'
-        try {
-            $target = & renri.exe cd @rest
-            if ($LASTEXITCODE -eq 0 -and $target) {
-                Set-Location -LiteralPath $target
-                if ($?) {
-                    $repo = & renri.exe gh-repo 2>$null
-                    if ($repo) {
-                        $env:GH_REPO = $repo.Trim()
-                    } else {
-                        Remove-Item Env:GH_REPO -ErrorAction SilentlyContinue
-                    }
-                }
-            }
-        } finally {
-            Remove-Item Env:RENRI_SHELL_WRAPPER -ErrorAction SilentlyContinue
+  if ($args.Count -ge 1 -and $args[0] -eq 'cd') {
+    $rest = if ($args.Count -gt 1) { $args[1..($args.Count - 1)] } else { @() }
+    $env:RENRI_SHELL_WRAPPER = '1'
+    try {
+      $target = & renri.exe cd @rest
+      if ($LASTEXITCODE -eq 0 -and $target) {
+        Set-Location -LiteralPath $target
+        if ($?) {
+          $repo = & renri.exe gh-repo 2>$null
+          if ($repo) {
+            $env:GH_REPO = $repo.Trim()
+          } else {
+            Remove-Item Env:GH_REPO -ErrorAction SilentlyContinue
+          }
         }
-    } else {
-        & renri.exe @args
+      }
+    } finally {
+      Remove-Item Env:RENRI_SHELL_WRAPPER -ErrorAction SilentlyContinue
     }
+  } else {
+    & renri.exe @args
+  }
 }
