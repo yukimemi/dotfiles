@@ -24,7 +24,7 @@ function Set-LocationWithShoka {
     $code = $LASTEXITCODE
     if ($code -eq 0) {
       $dest = Get-Content -LiteralPath $tmp.FullName -Raw
-      if ($dest) { Set-Location -LiteralPath $dest.TrimEnd() }
+      if ($dest) { Set-LocationWithHistory $dest.TrimEnd() }
     }
     $global:LASTEXITCODE = $code
   } finally {
