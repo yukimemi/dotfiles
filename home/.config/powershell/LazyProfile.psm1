@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/04/26 17:40:31.
+# Last Change : 2026/05/26 02:04:19.
 # =============================================================================
 
 # --- Functions ---
@@ -14,6 +14,23 @@ function log {
 function docker {
   $wslPath = (wsl -- wslpath -u "$($PWD.Path -replace '\\','/')").Trim()
   wsl --cd "$wslPath" -- docker @args
+}
+
+function Set-LocationWithShoka {
+  $tmp = New-TemporaryFile
+  try {
+    $env:SHOKA_CD_OUT = $tmp.FullName
+    shoka cd @args
+    $code = $LASTEXITCODE
+    if ($code -eq 0) {
+      $dest = Get-Content -LiteralPath $tmp.FullName -Raw
+      if ($dest) { Set-Location -LiteralPath $dest.TrimEnd() }
+    }
+    $global:LASTEXITCODE = $code
+  } finally {
+    Remove-Item -LiteralPath $tmp.FullName -Force -ErrorAction SilentlyContinue
+    Remove-Item Env:SHOKA_CD_OUT -ErrorAction SilentlyContinue
+  }
 }
 
 function script:Get-ZenoSnippets {
@@ -517,7 +534,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "o"     = "Start-Process"
     "pm"    = "psmux"
     "r"     = "Remove-Fzf"
-    "rhl"   = "rhq list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
+    "sl"    = "Set-LocationWithShoka"
     "rm"    = $rmTarget
     "rp"    = "rvpm"
     "s"     = "jj status --no-pager"

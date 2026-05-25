@@ -8,6 +8,7 @@
   },
   "language": "Japanese",
   "autoUpdatesChannel": "latest",
+  "theme": "dark-daltonized",
   "editorMode": "vim",
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,

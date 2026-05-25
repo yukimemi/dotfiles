@@ -1,0 +1,52 @@
+# shoka config — see https://github.com/yukimemi/shoka for the full schema.
+#
+# Files are layered: this `config.toml` is the base, `config.*.toml`
+# siblings merge on top in alphabetical order, and `config.local.toml`
+# always wins. Use `--config PATH` or $SHOKA_CONFIG to point at a
+# specific file.
+
+# [vars]
+# # User-defined variables. Standard helpers home() / env(name=...) /
+# # is_windows() etc. are pre-registered. Reference vars in later TOML
+# # values via Tera (see docs above for syntax); the example below
+# # uses home().
+# work_root = "{{ home() }}/work"
+
+[global]
+# Filesystem root under which repositories are cloned. Required.
+root = "~/src"
+
+# Path layout template. Variables injected at clone time:
+# root, host, owner, name, profile, vcs, protocol. Default produces
+# a flat <root>/<host>/<owner>/<name> tree.
+# (To set, write a Tera template string here — see the project docs.)
+
+# default_vcs = "auto"          # "auto" | "git" | "jj"
+# default_protocol = "https"    # "https" | "ssh"
+# default_host = "github.com"
+# default_profile = "personal"
+# exec_concurrency = 8
+
+# [global.ui]
+# status_cache_ttl_secs = 60
+# tui_refresh_ms = 250
+
+# [global.shell]
+# cd_command_name = "s"
+
+# Per-host overrides — merge over the global values.
+# [hosts."github.com"]
+# protocol = "ssh"
+
+# Profiles — `--profile NAME` / $SHOKA_PROFILE / global.default_profile
+# selects one. Profile fields override [global] when set; absent fields
+# fall through to the global value.
+# [profiles.personal]
+# root = "~/src"
+#
+# [profiles.work]
+# root = "~/work"
+# default_host = "github.com"
+#
+# [profiles.work.git_config]
+# "user.email" = "work@example.com"

@@ -1,0 +1,3 @@
+[[link]]
+dst = "{{ env(name='APPDATA') }}/yukimemi/shoka/config"
+when = "yui.os == 'windows' and vars.production"

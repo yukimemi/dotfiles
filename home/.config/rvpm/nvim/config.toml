@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/05/25 09:20:01.
+# Last Change : 2026/05/26 02:03:43.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -1214,4 +1214,3 @@ lazy = true
 [[plugins]]
 url = "https://github.com/54L1M/Oshen.nvim"
 lazy = true
-
