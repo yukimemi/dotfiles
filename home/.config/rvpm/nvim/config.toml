@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/05/05 08:52:07.
+# Last Change : 2026/05/25 09:20:01.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -100,6 +100,12 @@ on_event = ["BufRead", "BufNewFile"]
 url = "https://github.com/yukimemi/ahdr.vim"
 depends = ["denops.vim"]
 on_cmd = ["DenopsAhdr"]
+
+[[plugins]]
+url = "https://github.com/uga-rosa/ccc.nvim"
+on_cmd = ["/^Ccc/"]
+on_event = ["BufRead", "BufNewFile"]
+lazy = false
 
 # ── snacks ──────────────────────────────────────
 
@@ -615,6 +621,7 @@ on_map = [
 
 [[plugins]]
 url = "https://github.com/yukimemi/futago.vim"
+lazy = false
 on_map = ["mf"]
 on_cmd = ["FutagoGitCommit", "FutagoJjCommit", "FutagoHistory"]
 
@@ -730,7 +737,8 @@ lazy = true
 
 [[plugins]]
 url = "https://github.com/yukimemi/lumiris.vim"
-merge = false
+depends = ["denops.vim"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/0xstepit/flow.nvim"
@@ -1207,8 +1215,3 @@ lazy = true
 url = "https://github.com/54L1M/Oshen.nvim"
 lazy = true
 
-[[plugins]]
-url = "https://github.com/JohnnyJumper/theme-peeper.nvim"
-depends = ["snacks.nvim"]
-on_map = [{ lhs = "<leader>tp", mode = "n", desc = "Theme Peeper" }]
-on_cmd = ["ThemePeep", "ThemePeepPreview"]
