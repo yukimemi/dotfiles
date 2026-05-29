@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/05/26 02:04:19.
+# Last Change : 2026/05/29 08:30:00.
 # =============================================================================
 
 # --- Functions ---
@@ -16,20 +16,57 @@ function docker {
   wsl --cd "$wslPath" -- docker @args
 }
 
-function Set-LocationWithShoka {
-  $tmp = New-TemporaryFile
-  try {
-    $env:SHOKA_CD_OUT = $tmp.FullName
-    shoka cd @args
-    $code = $LASTEXITCODE
-    if ($code -eq 0) {
-      $dest = Get-Content -LiteralPath $tmp.FullName -Raw
-      if ($dest) { Set-LocationWithHistory $dest.TrimEnd() }
+# shoka 0.14+ ships its own `shoka()` shell function via
+# `shoka init-shell powershell` — but the canned wrapper calls
+# `Set-Location` for cd/tui, which would skip our `.cdhistory`
+# tracking. Override the function locally instead so we keep
+# history while still getting the binary pass-through for every
+# non-cd/tui subcommand (clone, list, exec, …).
+#
+# `$script:ShokaExe` caches the binary path so `Get-Command`'s
+# 50-200 ms PATH walk only runs once per session (matches the
+# upstream pattern from `shoka init-shell powershell`).
+function shoka {
+  if (-not $script:ShokaExe) {
+    $script:ShokaExe = (Get-Command -Name shoka -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1).Source
+  }
+  if (-not $script:ShokaExe) {
+    Write-Error 'shoka binary not found on PATH'
+    return
+  }
+  # Bare `shoka` defaults to `tui` so dropping into the dashboard
+  # is the single-keystroke action users reach for most. Anything
+  # explicit still works untouched.
+  #
+  # Note we avoid a `$effectiveArgs` array variable here: PowerShell
+  # silently unwraps a single-element array on scalar assignment, so
+  # `$effectiveArgs = @('tui')` becomes the string `'tui'`, and
+  # splatting a string iterates *characters* — `& $exe @effectiveArgs`
+  # would invoke `shoka.exe t u i` (binary errors with
+  # "unrecognized subcommand 't'"). The branch below sidesteps that
+  # by passing the literal subcommand directly.
+  $first = if ($args.Count -gt 0) { $args[0] } else { 'tui' }
+  if ($first -eq 'cd' -or $first -eq 'tui') {
+    $tmp = New-TemporaryFile
+    try {
+      $env:SHOKA_CD_OUT = $tmp.FullName
+      if ($args.Count -eq 0) {
+        & $script:ShokaExe tui
+      } else {
+        & $script:ShokaExe @args
+      }
+      $code = $LASTEXITCODE
+      if ($code -eq 0) {
+        $dest = Get-Content -LiteralPath $tmp.FullName -Raw
+        if ($dest) { Set-LocationWithHistory $dest.TrimEnd() }
+      }
+      $global:LASTEXITCODE = $code
+    } finally {
+      Remove-Item -LiteralPath $tmp.FullName -Force -ErrorAction SilentlyContinue
+      Remove-Item Env:SHOKA_CD_OUT -ErrorAction SilentlyContinue
     }
-    $global:LASTEXITCODE = $code
-  } finally {
-    Remove-Item -LiteralPath $tmp.FullName -Force -ErrorAction SilentlyContinue
-    Remove-Item Env:SHOKA_CD_OUT -ErrorAction SilentlyContinue
+  } else {
+    & $script:ShokaExe @args
   }
 }
 
@@ -534,7 +571,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "o"     = "Start-Process"
     "pm"    = "psmux"
     "r"     = "Remove-Fzf"
-    "sl"    = "Set-LocationWithShoka"
+    "sk"    = "shoka cd"
     "rm"    = $rmTarget
     "rp"    = "rvpm"
     "s"     = "jj status --no-pager"

@@ -14,7 +14,7 @@ url_style = "full"
 concurrency = 16
 ai = "gemini"
 ai_language = "ja"
-merge_doc = true
+merge_doc = false
 
 # ── core ────────────────────────────────────────
 [[plugins]]
