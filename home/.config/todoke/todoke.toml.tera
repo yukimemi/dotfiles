@@ -2,6 +2,8 @@
 {%- set gui = "neovide" -%}
 {%- elif vars.autohotkey.use_neovim_qt -%}
 {%- set gui = "nvim-qt" -%}
+{%- elif vars.autohotkey.purpose == "home" -%}
+{%- set gui = "neovide" -%}
 {%- else -%}
 {%- set gui = "nvim" -%}
 {%- endif -%}

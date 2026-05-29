@@ -7,8 +7,8 @@
 # >>> yui rendered (auto-managed, do not edit) >>>
 home/.config/autohotkey/AutoHotkey.ahk
 home/.config/gogcli/credentials.json
-home/.config/gogcli/keyring/token:default:yukimemi@gmail.com
-home/.config/gogcli/keyring/token:yukimemi@gmail.com
+home/.config/gogcli/keyring/token%3Adefault%3Ayukimemi@gmail.com
+home/.config/gogcli/keyring/token%3Ayukimemi@gmail.com
 home/.config/powershell/private.ps1
 home/.config/todoke/todoke.toml
 home/.config/zellij/config/config.kdl

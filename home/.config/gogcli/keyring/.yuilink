@@ -1,0 +1,9 @@
+[[link]]
+src = "token%3Adefault%3Ayukimemi@gmail.com"
+dst = "~/.config/gogcli/keyring/token:default:yukimemi@gmail.com"
+when = "yui.os == 'linux' or yui.os == 'macos'"
+
+[[link]]
+src = "token%3Ayukimemi@gmail.com"
+dst = "~/.config/gogcli/keyring/token:yukimemi@gmail.com"
+when = "yui.os == 'linux' or yui.os == 'macos'"
