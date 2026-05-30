@@ -1,0 +1,7 @@
+{
+  "autoupdate:channel": "latest",
+  "window:opacity": 0.8,
+  "window:transparent": true,
+  "term:fontfamily": "PlemolJP Console NF",
+  "term:fontsize": 15
+}

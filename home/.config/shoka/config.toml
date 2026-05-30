@@ -27,9 +27,12 @@ root = "~/src"
 # default_profile = "personal"
 # exec_concurrency = 8
 
-# [global.ui]
+[global.ui]
 # status_cache_ttl_secs = 60
 # tui_refresh_ms = 250
+# Owners treated as "yours" in the TUI. When non-empty the dashboard
+# launches in mine-only mode and `m` toggles between mine and all.
+own_owners = ["yukimemi"]
 
 # [global.shell]
 # cd_command_name = "s"
