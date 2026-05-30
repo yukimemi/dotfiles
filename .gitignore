@@ -51,3 +51,7 @@ home/.config/yui/age.txt
 home/.config/scoop/config.json
 # configstore
 home/.config/configstore/
+# gogcli
+home/.config/gogcli/keyring/token:default:yukimemi@gmail.com
+home/.config/gogcli/keyring/token:yukimemi@gmail.com
+home/.config/gogcli/oauth-manual-state-*.json
