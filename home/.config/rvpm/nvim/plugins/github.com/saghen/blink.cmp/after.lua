@@ -15,6 +15,7 @@ require("blink-cmp").setup({
     ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
     ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
   },
+  snippets = { preset = "luasnip" },
   sources = {
     default = { 'lsp', 'buffer', 'snippets', 'path', 'ripgrep', 'obsidian' },
     providers = {

@@ -1,0 +1,38 @@
+{
+  "bg@catppuccin-latte": {
+    "display:name": "Catppuccin Latte",
+    "display:order": 4.1,
+    "bg:*": true,
+    "bg": "linear-gradient(135deg, #eff1f5 0%, #e6e9ef 50%, #dce0e8 100%)",
+    "bg:opacity": 0.95,
+    "bg:activebordercolor": "#1e66f5",
+    "bg:text": "#4c4f69"
+  },
+  "bg@catppuccin-frappe": {
+    "display:name": "Catppuccin Frappé",
+    "display:order": 4.2,
+    "bg:*": true,
+    "bg": "linear-gradient(135deg, #303446 0%, #292c3c 50%, #232634 100%)",
+    "bg:opacity": 0.95,
+    "bg:activebordercolor": "#8caaee",
+    "bg:text": "#c6d0f5"
+  },
+  "bg@catppuccin-macchiato": {
+    "display:name": "Catppuccin Macchiato",
+    "display:order": 4.3,
+    "bg:*": true,
+    "bg": "linear-gradient(135deg, #24273a 0%, #1e2030 50%, #181926 100%)",
+    "bg:opacity": 0.95,
+    "bg:activebordercolor": "#8aadf4",
+    "bg:text": "#cad3f5"
+  },
+  "bg@catppuccin-mocha": {
+    "display:name": "Catppuccin Mocha",
+    "display:order": 4.4,
+    "bg:*": true,
+    "bg": "linear-gradient(135deg, #1e1e2e 0%, #181825 50%, #11111b 100%)",
+    "bg:opacity": 0.95,
+    "bg:activebordercolor": "#89b4fa",
+    "bg:text": "#cdd6f4"
+  }
+}

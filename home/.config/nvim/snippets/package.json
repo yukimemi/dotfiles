@@ -1,0 +1,55 @@
+{
+  "name": "yukimemi-snippets",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "dosbatch",
+        "path": "./dosbatch.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./javascript.json"
+      },
+      {
+        "language": "lua",
+        "path": "./lua.json"
+      },
+      {
+        "language": "ps1",
+        "path": "./ps1.json"
+      },
+      {
+        "language": "python",
+        "path": "./python.json"
+      },
+      {
+        "language": "rust",
+        "path": "./rust.json"
+      },
+      {
+        "language": "toml",
+        "path": "./toml.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./typescript.json"
+      },
+      {
+        "language": "vim",
+        "path": "./vim.json"
+      },
+      {
+        "language": "yaml",
+        "path": "./yaml.json"
+      },
+      {
+        "language": "zsh",
+        "path": "./zsh.json"
+      }
+    ]
+  }
+}

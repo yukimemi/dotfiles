@@ -3,5 +3,7 @@
   "window:opacity": 0.8,
   "window:transparent": true,
   "term:fontfamily": "PlemolJP Console NF",
-  "term:fontsize": 15
+  "term:fontsize": 15,
+  "term:theme": "catppuccin-mocha",
+  "term:transparency": 0.5
 }

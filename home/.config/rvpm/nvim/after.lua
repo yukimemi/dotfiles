@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : after.lua
 -- Author      : yukimemi
--- Last Change : 2026/04/20 21:35:53.
+-- Last Change : 2026/05/31 17:07:56.
 -- =============================================================================
 
 -- rvpm: open in terminal buffer, reuse if already running
@@ -78,3 +78,30 @@ end
 -- Fallback colorscheme
 vim.o.background = "dark"
 vim.cmd("colorscheme habamax")
+
+-- Auto create directory on save
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  group = vim.api.nvim_create_augroup("auto_create_dir", { clear = true }),
+  callback = function(event)
+    if event.match:match("^%w+://") then
+      return
+    end
+    local dir = vim.fn.fnamemodify(event.match, ":p:h")
+    if vim.fn.isdirectory(dir) == 0 then
+      vim.fn.mkdir(dir, "p")
+    end
+  end,
+})
+
+-- Open current directory
+local function open_directory()
+  local file = vim.api.nvim_buf_get_name(0)
+  if file == "" or file:match("^%w+://") then
+    return
+  end
+  local dir = vim.fn.fnamemodify(file, ":p:h")
+  if vim.fn.isdirectory(dir) == 1 then
+    vim.ui.open(dir)
+  end
+end
+vim.keymap.set("n", "go", open_directory, { silent = true, noremap = true, desc = "Open current directory" })

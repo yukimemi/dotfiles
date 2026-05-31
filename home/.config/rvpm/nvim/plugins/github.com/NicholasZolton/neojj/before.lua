@@ -1,10 +1,8 @@
-[new]
-prefix = ["header"]
-body = """
 -- =============================================================================
--- File        : ${TM_FILENAME}
+-- File        : before.lua
 -- Author      : yukimemi
--- Last Change : 2023/12/24 00:08:55.
+-- Last Change : 2026/05/31 19:46:05.
 -- =============================================================================
-"""
+
+vim.keymap.set("n", "<leader>gg", "<cmd>Neojj<cr>", { desc = "Open Neojj UI" })
 
