@@ -182,8 +182,8 @@ recursive = false
 extensions = ["exe"]
 
 [[scan_dirs]]
-path = "~/.local/share/chezmoi/win/scripts"
-recursive = false
+path = "~/dotfiles/.yui/bin"
+recursive = true
 extensions = ["ps1"]
 
 [[scan_dirs]]
