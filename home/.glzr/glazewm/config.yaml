@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2026/04/24 11:43:02.
+# Last Change : 2026/06/05 13:27:16.
 # =============================================================================
 
 general:
@@ -169,6 +169,17 @@ window_rules:
 
       - window_process: { equals: 'EXCEL' }
         window_title: { equals: '名前を付けて保存' }
+
+      - window_process: { equals: 'powershell' }
+        window_class: { regex: 'HwndWrapper' }
+
+      - window_process: { equals: 'powershell' }
+        window_title: { regex: 'パスワードリセット' }
+
+      - window_process: { equals: 'powershell' }
+        window_title: { equals: '完了' }
+      - window_process: { equals: 'powershell' }
+        window_title: { equals: '初期パスワード設定' }
 
   - commands: ['move --workspace 1', 'focus --workspace 1']
     match:
