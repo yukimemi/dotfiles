@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2026/06/13 11:56:55.
+# Last Change : 2026/06/15 09:34:53.
 # =============================================================================
 
 general:
@@ -182,6 +182,7 @@ window_rules:
         window_title: { equals: '初期パスワード設定' }
 
       - window_process: { equals: 'kanade-client' }
+      - window_class: { equals: 'OneDriveReactNativeWin32WindowClass' }
 
   - commands: ['move --workspace 1', 'focus --workspace 1']
     match:

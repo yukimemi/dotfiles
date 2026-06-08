@@ -190,3 +190,23 @@ extensions = ["ps1"]
 path = "C:/Windows/System32"
 recursive = false
 extensions = ["exe"]
+
+[[apps]]
+name = "Get-DriveInfoView"
+path = "powershell"
+args = ["-NoProfile", "-Command", '''
+try {
+function Get-DriveInfo {
+  Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Used -and $_.Name -ne "Temp" } | Sort-Object Name
+}
+
+function Get-DriveInfoView {
+  Get-DriveInfo | Format-Table -AutoSize
+}
+Get-DriveInfoView
+} catch {
+  Write-Host "$_ | Out-String"
+} finally {
+  Read-Host "Press any key ..."
+}
+''']

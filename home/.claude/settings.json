@@ -15,5 +15,6 @@
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "useAutoModeDuringPlan": true
+  "useAutoModeDuringPlan": true,
+  "inputNeededNotifEnabled": true
 }

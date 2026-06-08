@@ -46,7 +46,6 @@ $env:LANG = "ja_JP.UTF-8"
 $env:EDITOR = "todoke-vim"
 $env:KANADE_DEV_NATS_TOKEN = "dev"
 $env:KANADE_DEV_STATIC_TOKEN = "dev"
-$env:KANADE_AUTH_TOKEN = "dev"
 
 # Browser
 if (Test-IsWsl) {
