@@ -23,3 +23,19 @@ default-command = "log"
 editor = "nvim"
 pager = "delta"
 diff-formatter = ":git"
+# コンフリクトマーカーを見慣れた git 形式 (diff3) にする
+conflict-marker-style = "git"
+# `jj resolve` で起動するマージツール
+merge-editor = "nvim"
+
+# nvim を 3-way マージツールとして使う（組み込み vimdiff の program を nvim にしたもの）
+# $output(マーカー入り) を編集しつつ left/base/right を diff ペインで参照する
+[merge-tools.nvim]
+program = "nvim"
+merge-args = [
+  "-f", "-d", "$output", "-M", "$left", "$base", "$right",
+  "-c", "wincmd J", "-c", "set modifiable", "-c", "set write",
+  "-c", "/<<<<<<</+2",
+]
+merge-tool-edits-conflict-markers = true
+edit-args = ["-f", "-d", "$left", "$right"]
