@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2026/06/05 13:27:16.
+# Last Change : 2026/06/13 11:56:55.
 # =============================================================================
 
 general:
@@ -180,6 +180,8 @@ window_rules:
         window_title: { equals: '完了' }
       - window_process: { equals: 'powershell' }
         window_title: { equals: '初期パスワード設定' }
+
+      - window_process: { equals: 'kanade-client' }
 
   - commands: ['move --workspace 1', 'focus --workspace 1']
     match:
