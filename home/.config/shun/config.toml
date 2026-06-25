@@ -210,3 +210,9 @@ Get-DriveInfoView
   Read-Host "Press any key ..."
 }
 ''']
+
+[[apps]]
+name = "Edge - Insecure origins treated as secure"
+path = "msedge"
+args = ['edge://flags/#unsafely-treat-insecure-origin-as-secure']
+
