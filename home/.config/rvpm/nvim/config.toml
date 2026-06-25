@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/06/02 00:32:55.
+# Last Change : 2026/06/25 09:24:59.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -146,11 +146,11 @@ on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/andymass/vim-matchup"
-on_event = ["BufRead", "BufNewFile"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/mopp/smartnumber.vim"
-on_event = ["BufRead", "BufNewFile"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/xiyaowong/virtcolumn.nvim"
@@ -186,7 +186,7 @@ on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/chrisgrieser/nvim-origami"
-on_event = ["BufReadPost", "BufNewFile"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/folke/noice.nvim"
@@ -211,11 +211,11 @@ on_cmd = ["ZenMode"]
 
 [[plugins]]
 url = "https://github.com/karb94/neoscroll.nvim"
-on_event = ["BufRead", "BufNewFile"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/Bekaboo/dropbar.nvim"
-on_event = ["BufRead", "BufNewFile"]
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/Amansingh-afk/milli.nvim"
@@ -558,7 +558,7 @@ on_cmd = ["/^GrugFar/"]
 
 [[plugins]]
 url = "https://github.com/lewis6991/gitsigns.nvim"
-on_event = "BufRead"
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/sindrets/diffview.nvim"
