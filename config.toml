@@ -20,6 +20,7 @@ use_nu = false
 use_wtp = true
 use_comet = false
 use_chrome = false
+use_brave = false
 
 [[mount.entry]]
 src = "home"
@@ -79,4 +80,3 @@ recipients = [
 
 [secrets.vault]
 provider = "bitwarden"
-

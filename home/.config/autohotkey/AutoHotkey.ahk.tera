@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/04/24 00:31:24.
+; Last Change : 2026/06/28 07:19:28.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -334,10 +334,12 @@ F10::
 {%- endif %}
 }
 
-; Comet / Chrome
+; Browser
 F11::
 {
-{%- if vars.autohotkey.use_comet %}
+{%- if vars.autohotkey.use_brave %}
+  Activate("brave.exe")
+{%- elif vars.autohotkey.use_comet %}
   Activate("comet.exe")
 {%- elif vars.autohotkey.use_chrome %}
   Activate("chrome.exe")
