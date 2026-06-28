@@ -73,6 +73,41 @@ matches:
         params:
           shell: powershell
           cmd: "switch ((Get-Date).DayOfWeek) { Sunday { '日' } Monday { '月' } Tuesday { '火' } Wednesday { '水' } Thursday { '木' } Friday { '金' } Saturday { '土' } Default { '' } }"
+  - trigger: ";guid"
+    replace: "{{a}}{{b}}{{c}}{{d}}{{e}}{{f}}{{g}}{{h}}-{{i}}{{j}}{{k}}{{l}}-4{{m}}{{n}}{{o}}-{{v}}{{p}}{{q}}{{r}}-{{s}}{{t}}{{u}}{{w}}{{x}}{{y}}{{z}}{{A}}{{B}}{{C}}{{D}}{{E}}"
+    vars:
+      - { name: a, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: b, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: c, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: d, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: e, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: f, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: g, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: h, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: i, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: j, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: k, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: l, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: m, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: n, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: o, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: v, type: random, params: { choices: ["8","9","a","b"] } }
+      - { name: p, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: q, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: r, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: s, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: t, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: u, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: w, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: x, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: y, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: z, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: A, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: B, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: C, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: D, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+      - { name: E, type: random, params: { choices: ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"] } }
+
   - trigger: ";tomorrow"
     replace: "{{mytime}}"
     vars:
