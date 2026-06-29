@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/06/27 16:18:59.
+# Last Change : 2026/06/29 09:31:00.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -190,7 +190,7 @@ on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/folke/noice.nvim"
-cond = "false"
+when = "false"
 on_event = "VimEnter"
 depends = ["nui.nvim"]
 
@@ -200,6 +200,7 @@ on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/y3owk1n/undo-glow.nvim"
+on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/folke/twilight.nvim"
@@ -219,6 +220,7 @@ on_event = "CursorHold"
 
 [[plugins]]
 url = "https://github.com/Amansingh-afk/milli.nvim"
+when = "false"
 
 # ── statusline ──────────────────────────────────
 
@@ -382,6 +384,7 @@ on_event = ["InsertEnter"]
 
 [[plugins]]
 url = "https://github.com/Shougo/context_filetype.vim"
+lazy = true
 
 [[plugins]]
 url = "https://github.com/uga-rosa/contextment.vim"
