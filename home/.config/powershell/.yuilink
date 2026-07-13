@@ -10,7 +10,15 @@
 # have that lookup — the OneDrive / ドキュメント path is hard-coded.
 # Edit this dst on machines without OneDrive (or with a non-Japanese
 # locale).
+# pwsh (PowerShell 7) loads from Documents/PowerShell.
 [[link]]
 src = "Microsoft.PowerShell_profile.ps1"
 dst = "{{ env(name='OneDrive') }}/ドキュメント/PowerShell/Microsoft.PowerShell_profile.ps1"
+when = "yui.os == 'windows' and vars.production"
+
+# Windows PowerShell 5.1 loads from Documents/WindowsPowerShell (a separate
+# location). Link the same profile there so both shells stay in sync.
+[[link]]
+src = "Microsoft.PowerShell_profile.ps1"
+dst = "{{ env(name='OneDrive') }}/ドキュメント/WindowsPowerShell/Microsoft.PowerShell_profile.ps1"
 when = "yui.os == 'windows' and vars.production"

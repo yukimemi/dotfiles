@@ -116,6 +116,10 @@ name = "Google"
 path = "https://www.google.com/search?q={{ args | urlencode }}"
 
 [[apps]]
+name = "M365 Copilot"
+path = "https://m365.cloud.microsoft"
+
+[[apps]]
 name = "GitHub Search"
 path = "https://github.com/search?q={{ args | urlencode }}"
 
