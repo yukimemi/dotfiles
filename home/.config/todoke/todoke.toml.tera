@@ -89,6 +89,8 @@ match = [
   '(?i)/jetski-prompt-.*$',
   # OpenCode prompt temp files (e.g. /Temp/1777881471659.md)
   '(?i)[/\\]\d{13,}\.md$',
+  # Kimi Code
+  '(?i)kimi-edit.*$',
 ]
 to = "nvim-term"
 mode = "new"

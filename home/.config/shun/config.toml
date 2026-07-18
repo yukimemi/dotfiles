@@ -108,6 +108,10 @@ name = "ccusage"
 path = "https://claude.ai/settings/usage"
 
 [[apps]]
+name = "kimiusage"
+path = "https://www.kimi.com/code/console"
+
+[[apps]]
 name = "Google"
 path = "https://www.google.com/search?q={{ args | urlencode }}"
 
@@ -194,7 +198,10 @@ extensions = ["exe"]
 [[apps]]
 name = "Get-DriveInfoView"
 path = "powershell"
-args = ["-NoProfile", "-Command", '''
+args = [
+  "-NoProfile",
+  "-Command",
+  '''
 try {
 function Get-DriveInfo {
   Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Used -and $_.Name -ne "Temp" } | Sort-Object Name
@@ -209,10 +216,10 @@ Get-DriveInfoView
 } finally {
   Read-Host "Press any key ..."
 }
-''']
+''',
+]
 
 [[apps]]
 name = "Edge - Insecure origins treated as secure"
 path = "msedge"
 args = ['edge://flags/#unsafely-treat-insecure-origin-as-secure']
-
