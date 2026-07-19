@@ -1,4 +1,5 @@
 default_model = "kimi-code/k3"
+default_permission_mode = "auto"
 
 [thinking]
 enabled = true
