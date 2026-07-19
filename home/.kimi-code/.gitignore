@@ -1,0 +1,9 @@
+bin/
+sessions/
+credentials/
+device_id
+session_index.jsonl
+updates/
+user-history/
+workspaces.json
+logs/
