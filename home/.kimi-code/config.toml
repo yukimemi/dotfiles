@@ -1,9 +1,9 @@
-default_model = "kimi-code/k3"
 default_permission_mode = "auto"
+default_model = "kimi-code/k3"
 
 [thinking]
 enabled = true
-effort = "max"
+effort = "high"
 
 [services.moonshot_search]
 base_url = "https://api.kimi.com/coding/v1/search"
@@ -51,5 +51,5 @@ max_context_size = 1048576
 capabilities = [ "thinking", "always_thinking", "image_in", "video_in", "tool_use" ]
 display_name = "K3"
 support_efforts = [ "low", "high", "max" ]
-default_effort = "max"
+default_effort = "high"
 
