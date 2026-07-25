@@ -228,12 +228,15 @@ taker_after_secs = 0             # 在庫がこの秒数残ったら taker で�
 #                                 # ライブでも有効: armed 時はアグレッシブ側タッチに post_only=false の
 #                                 # 指値を打って全在庫を切る(resting している reduce quote は先にキャンセル)。
 #                                 # fill は通常の venue fill ポーリングで帰ってくるので二重計上なし。
-taker_early_bps = 14              # v2 fee-aware 早期カット(#247): reduce-only 中、arm 時点からの逆行幅が
+taker_early_bps = 20              # v2 fee-aware 早期カット(#247): reduce-only 中、arm 時点からの逆行幅が
 #                                 # この bp を超え、かつ直近10秒の最悪値を更新中(=まだ走ってる)なら、deadline を
 #                                 # 待たず taker で切る。14 = taker fee 12bp + リベート放棄 2bp の break-even。
 #                                 # 戻り途中(最悪値更新していない)の建玉は跨がない = 平均回帰の回復を殺さない。
 #                                 # 0=無効(既定)。hot-reload 対応。v1(taker_after_secs)は方向を見ず誤爆した
 #                                 # 実績があるため 0 のまま、こちらを本線とする。
+#                                 # 2026-07-24: 14 で運用したところ break-even ちょうどでの発火がチョップで
+#                                 # fee 負けした(5発中3発が微差)。fee 固定12bp を回収するにはもう一段深い
+#                                 # run だけを切るべき、として 20 に引き上げ。
 exit_patience_secs = 60           # エグジット床: reduce-only 開始からこの秒数の間、エグジット quote を
 #                                 # avg_cost に床張りする(long なら max(best_ask, cost)、short なら
 #                                 # min(best_bid, cost))。タッチ追従のままだと bounce 直前で拾われる
@@ -274,7 +277,7 @@ cooldown_secs = 20                # ゲートF: 自己約定後、その側の�
 #                                 # なおエントリー側スタンプでは hold_secs 超の値は reduce-only に覆われて
 #                                 # ほぼ効かないが、エグジット側スタンプによるフラット後の再エントリ抑制には
 #                                 # 効くので、>15s も無意味ではない。
-min_front_qty = 1000              # ゲートG: 最良bid/askの板厚がこれ未満ならその側を引く。薄い板の先頭に
+min_front_qty = 500               # ゲートG: 最良bid/askの板厚がこれ未満ならその側を引く。薄い板の先頭に
 #                                 # 並ぶと有毒バーストの最初のprintで拾われる。厚い壁が先にバーストを吸収する。0=無効(既定)
 #                                 # ゲートFと違い grow-only ではない: 通常モードでは「減らす側」のquoteも
 #                                 # 薄い板なら引く(エグジットこそ最も逆選択されるfill、実測−7.2bp @60s。

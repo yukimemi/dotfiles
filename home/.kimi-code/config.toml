@@ -53,3 +53,12 @@ display_name = "K3"
 support_efforts = [ "low", "high", "max" ]
 default_effort = "high"
 
+[models."kimi-code/k3-256k"]
+provider = "managed:kimi-code"
+model = "k3-256k"
+max_context_size = 262144
+capabilities = [ "thinking", "always_thinking", "image_in", "tool_use" ]
+display_name = "K3-256k"
+support_efforts = [ "low", "high", "max" ]
+default_effort = "high"
+

@@ -53,7 +53,7 @@ completion = "path"
 name = "MemoNew"
 path = "todoke"
 args = [
-  '{{ vars.memo_path }}/{{ now() | date(format="%Y-%m-%d") }}-{{ args }}.md',
+        '{{ vars.memo_path }}/{{ now() | date(format="%Y-%m-%d") }}-{{ args }}.md',
 ]
 completion = "none"
 
@@ -68,7 +68,7 @@ completion_search_mode = "migemo"
 name = "JunkNew"
 path = "todoke"
 args = [
-  '{{ vars.junk_path }}/{{ now() | date(format="%Y") }}/{{ now() | date(format="%m") }}/{{ now() | date(format="%Y-%m-%d") }}-{{ now() | date(format="%H%M%S") }}.{{ args }}',
+        '{{ vars.junk_path }}/{{ now() | date(format="%Y") }}/{{ now() | date(format="%m") }}/{{ now() | date(format="%Y-%m-%d") }}-{{ now() | date(format="%H%M%S") }}.{{ args }}',
 ]
 completion = "none"
 
@@ -77,23 +77,23 @@ name = "Scoop"
 path = "scoop"
 completion = "list"
 completion_list = [
-  "install",
-  "uninstall",
-  "update",
-  "search",
-  "list",
-  "info",
-  "status",
-  "cleanup",
-  "bucket",
-  "cache",
-  "checkup",
-  "config",
-  "hold",
-  "unhold",
-  "reset",
-  "shim",
-  "which",
+        "install",
+        "uninstall",
+        "update",
+        "search",
+        "list",
+        "info",
+        "status",
+        "cleanup",
+        "bucket",
+        "cache",
+        "checkup",
+        "config",
+        "hold",
+        "unhold",
+        "reset",
+        "shim",
+        "which",
 ]
 
 [[apps]]
@@ -102,6 +102,10 @@ path = "git"
 completion = "command"
 completion_command = "git branch --format='%(refname:short)'"
 workdir = "{{ vars.src_path }}/github.com/yukimemi/shun"
+
+[[apps]]
+name = "Rakuten Affiliate report"
+path = "https://affiliate.rakuten.co.jp/report"
 
 [[apps]]
 name = "ccusage"
@@ -208,9 +212,9 @@ extensions = ["exe"]
 name = "Get-DriveInfoView"
 path = "powershell"
 args = [
-  "-NoProfile",
-  "-Command",
-  '''
+        "-NoProfile",
+        "-Command",
+        '''
 try {
 function Get-DriveInfo {
   Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Used -and $_.Name -ne "Temp" } | Sort-Object Name
