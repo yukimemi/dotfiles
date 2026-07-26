@@ -219,6 +219,12 @@ pair          = "xrp_jpy"
 paper         = false             # LIVE 実弾運用用（~/.config/nagi/ 配下＝repo 外。Claude/git の checkout 操作で飛ばないようにここに置く）
 lot           = 1            # 片側あたりの発注数量
 max_inventory = 10             # 在庫上限（±これを超える側は引く）= lot 10本ぶん。
+exit_full_size = true              # #260: 減らす側は保有数まるごとで出す。|在庫| <= lot では
+#                                  # 完全な no-op なので、ナンピンが起きる時間帯だけ効く。
+#                                  # A/B の因子ではなく常時ON: 「手加減したナンピン」を
+#                                  # 測らないため(ユーザー判断 2026-07-28)。
+reduce_only_keeps_entries = false # #260: A/B 因子2。nagi-mm-gate が毎時ハッシュで切替。
+#                                  # 手で変えても5分で戻る。実験停止は schedule を disable。
 hold_secs       = 15              # この秒数保有したら reduce-only(減る側だけ passive)へ。両レグ maker=リベート両取り
 taker_after_secs = 0             # 在庫がこの秒数残ったら taker で強制フラット(リスク非常口)。0=永久にtakerしない(maker-only, 既定)
 #                                 # 2026-07-23 に 120 で運用したが中止: 時間だけを見て方向を見ないため、
@@ -228,7 +234,7 @@ taker_after_secs = 0             # 在庫がこの秒数残ったら taker で�
 #                                 # ライブでも有効: armed 時はアグレッシブ側タッチに post_only=false の
 #                                 # 指値を打って全在庫を切る(resting している reduce quote は先にキャンセル)。
 #                                 # fill は通常の venue fill ポーリングで帰ってくるので二重計上なし。
-taker_early_bps = 20              # v2 fee-aware 早期カット(#247): reduce-only 中、arm 時点からの逆行幅が
+taker_early_bps = 40              # v2 fee-aware 早期カット(#247): reduce-only 中、arm 時点からの逆行幅が
 #                                 # この bp を超え、かつ直近10秒の最悪値を更新中(=まだ走ってる)なら、deadline を
 #                                 # 待たず taker で切る。14 = taker fee 12bp + リベート放棄 2bp の break-even。
 #                                 # 戻り途中(最悪値更新していない)の建玉は跨がない = 平均回帰の回復を殺さない。
@@ -253,7 +259,14 @@ lot_shadow = true                 # #243 シャドウモード: 「vol比例lot�
 # lot_target_risk = 0.01           # lot ≈ target_risk / (mid · vol_bps/1e4)。凪で大、荒れで小。
 # lot_shadow_min  = 0.25           # hard 下限
 # lot_shadow_max  = 4.0            # hard 上限(#233)。可視レベルサイズより十分下に保つこと。
-jst_hours     = []                         # ゲートA: 全時間（実質無効。空=毎時クオート）
+lot_shadow_score = true           # #259 スコアシャドウ: prints10s×フロー方向セルの would-be 倍率をstatusログに出すだけ。
+#                                 # 実発注は現行 lot のまま（口座リスクゼロ）。shadow_lot(vol版)と併記され、1週間で両モデルの検証セットにする。
+# lot_shadow_score_counter     = 2.0  # counter-flow(逆フロー streak>=2)セルの倍率
+# lot_shadow_score_counter_hot = 3.0  # counter-flow + prints>=10 の倍率。tox_window_secs=10 前提
+# lot_shadow_score_none_hot    = 2.0  # フローなし + prints>=10 の倍率。with-flow は常に 1x
+jst_hours     = [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22] # ゲートA: 深夜帯(JST 23,0-5)は引用しない。
+#                                 # 2026-07-30 実fill検証(1,620 fills): JST 0-5/23 は 15s/60s/900s 全ホライズンで
+#                                 # リベート込みでもマイナス(28d per-print markout でも 0,2,3,4,23時 が <-2.2bp)。
 imb_gate      = 0.1               # ゲートB: 逆風インバランス時は該当サイドを引く
 trend_slow_secs = 300             # ゲートC: 遅EMA秒(0=ゲート無効)。トレンドに逆らって在庫を増やさない
 trend_fast_secs = 30              # ゲートC: 速EMA秒(< trend_slow_secs)
@@ -277,7 +290,7 @@ cooldown_secs = 20                # ゲートF: 自己約定後、その側の�
 #                                 # なおエントリー側スタンプでは hold_secs 超の値は reduce-only に覆われて
 #                                 # ほぼ効かないが、エグジット側スタンプによるフラット後の再エントリ抑制には
 #                                 # 効くので、>15s も無意味ではない。
-min_front_qty = 500               # ゲートG: 最良bid/askの板厚がこれ未満ならその側を引く。薄い板の先頭に
+min_front_qty = 0                 # ゲートG: 最良bid/askの板厚がこれ未満ならその側を引く。薄い板の先頭に
 #                                 # 並ぶと有毒バーストの最初のprintで拾われる。厚い壁が先にバーストを吸収する。0=無効(既定)
 #                                 # ゲートFと違い grow-only ではない: 通常モードでは「減らす側」のquoteも
 #                                 # 薄い板なら引く(エグジットこそ最も逆選択されるfill、実測−7.2bp @60s。
@@ -287,6 +300,14 @@ min_front_qty = 500               # ゲートG: 最良bid/askの板厚がこれ�
 #                                 # 再参加しない(閾値またぎの Cancel→Place 往復でキュー位置を失うのを防ぐ)。固定1.5倍。
 #                                 # 評価する板厚からはタッチに置いた自前の resting lot を差し引く
 #                                 # (公開板には自分の注文が含まれるため)。
+drift_gate_bps = 5                # ゲートH: 30分 mid ドリフトが <-TH なら bid を、>+TH なら ask を引く
+#                                 # (方向性ドリフトゲート。grow-only・片側のみ・エグジット免除・cold start は引かない)。
+#                                 # 有効化 2026-07-28。根拠: (1) 22.5d markout 由来(逆ドリフト entry は 60s で負転、
+#                                 # TH=5 で edge15 +1.33→+1.37, fills −4.5%)、(2) mm-tune shadow 4/4 サイクルで
+#                                 # winner が drift_gate_bps=5 を選択、(3) ライブ fill 9日分のエピソード分析で
+#                                 # 損失の本体が下落中ロングの含み損切り(−25.6/−18.4 JPY)と判明、
+#                                 # drift proxy で −18.4→−11.8 に改善。OOS-suspect 扱い: 後続窓で再測定して
+#                                 # 効いていなければ 0 に戻す。
 levels        = 20                # imbalance 算出に使う板の段数
 status_port   = 8788              # ステータスページ http://127.0.0.1:8788/ (0=無効)
 # db_path = ""                    # ダッシュボード履歴(fills + equity)の SQLite。

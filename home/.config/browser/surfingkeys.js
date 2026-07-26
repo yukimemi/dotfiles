@@ -31,6 +31,16 @@ settings.prevLinkRegex = /((back|<<|prev(ious)?|前[のへ]|←)+)/i;
 settings.newTabPosition = "right";
 settings.omnibarMaxResults = 12;
 
+// Sites that own their own keyboard. Surfingkeys grabs keydown in the
+// capture phase, so on a modal/vim-style web app every j/k/x is
+// swallowed before the page ever sees it — the page still gets
+// `defaultPrevented`, which makes it look like the app's own handler is
+// broken. Local dev servers are all such apps often enough that the
+// whole loopback origin is easier to exclude than each port.
+// Add more origins with `|`.
+settings.blocklistPattern =
+  /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(:\d+)?(\/|$)/i;
+
 // mappings.
 // History
 map("H", "S");
