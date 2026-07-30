@@ -185,7 +185,12 @@ recursive = false
 extensions = ["ps1"]
 
 [[scan_dirs]]
-path = "~/scoop/apps/rustup-msvc/current/.cargo/bin"
+path = "~/scoop/persist/rustup-msvc/.cargo/bin"
+recursive = false
+extensions = ["exe"]
+
+[[scan_dirs]]
+path = "~/scoop/persist/rustup-gnu/.cargo/bin"
 recursive = false
 extensions = ["exe"]
 
