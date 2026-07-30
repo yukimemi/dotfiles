@@ -229,6 +229,18 @@ Get-DriveInfoView
 ]
 
 [[apps]]
+name = "YaibaLaunch"
+path = "powershell"
+args = [
+  "-NoProfile",
+  "-Command",
+  '''
+Start-Process yaiba
+Start-Process "http://localhost:8188"
+''',
+]
+
+[[apps]]
 name = "Edge - Insecure origins treated as secure"
 path = "msedge"
 args = ['edge://flags/#unsafely-treat-insecure-origin-as-secure']
