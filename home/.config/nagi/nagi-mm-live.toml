@@ -85,7 +85,6 @@ port = 8787
 # ≤5s ラグに合わせてスロットルされ、未確定約定の二重発注を防ぐ（#62/#66）。
 # 配管確認 CLI: testnet-check(REST) / testnet-trade(adapter) / testnet-reset(口座フラット化)。
 # シークレットは env 参照のみ。default='' でキー無しでも backtest/paper run は可。
-[execution]
 {% if vars.profile == "bitbank" %}
 mode = "paper"        # bitbank はまだ paper のみ（実板に対する擬似約定。執行配線は #101 Phase 3b）
 venue = "bitbank-spot"
@@ -217,13 +216,13 @@ halt_liquidate = true    # 停止時にポジションを成行クローズ（�
 [mm]
 pair          = "xrp_jpy"
 paper         = false             # LIVE 実弾運用用（~/.config/nagi/ 配下＝repo 外。Claude/git の checkout 操作で飛ばないようにここに置く）
-lot           = 1            # 片側あたりの発注数量
-max_inventory = 10             # 在庫上限（±これを超える側は引く）= lot 10本ぶん。
+lot           = 1.0              # 片側あたりの発注数量
+max_inventory = 50              # 在庫上限（±これを超える側は引く）= lot 10本ぶん。
 exit_full_size = true              # #260: 減らす側は保有数まるごとで出す。|在庫| <= lot では
 #                                  # 完全な no-op なので、ナンピンが起きる時間帯だけ効く。
 #                                  # A/B の因子ではなく常時ON: 「手加減したナンピン」を
 #                                  # 測らないため(ユーザー判断 2026-07-28)。
-reduce_only_keeps_entries = false # #260: A/B 因子2。nagi-mm-gate が毎時ハッシュで切替。
+reduce_only_keeps_entries = true # #260: A/B 因子2。nagi-mm-gate が毎時ハッシュで切替。
 #                                  # 手で変えても5分で戻る。実験停止は schedule を disable。
 hold_secs       = 15              # この秒数保有したら reduce-only(減る側だけ passive)へ。両レグ maker=リベート両取り
 taker_after_secs = 0             # 在庫がこの秒数残ったら taker で強制フラット(リスク非常口)。0=永久にtakerしない(maker-only, 既定)
@@ -234,7 +233,7 @@ taker_after_secs = 0             # 在庫がこの秒数残ったら taker で�
 #                                 # ライブでも有効: armed 時はアグレッシブ側タッチに post_only=false の
 #                                 # 指値を打って全在庫を切る(resting している reduce quote は先にキャンセル)。
 #                                 # fill は通常の venue fill ポーリングで帰ってくるので二重計上なし。
-taker_early_bps = 40              # v2 fee-aware 早期カット(#247): reduce-only 中、arm 時点からの逆行幅が
+taker_early_bps = 0              # v2 fee-aware 早期カット(#247): reduce-only 中、arm 時点からの逆行幅が
 #                                 # この bp を超え、かつ直近10秒の最悪値を更新中(=まだ走ってる)なら、deadline を
 #                                 # 待たず taker で切る。14 = taker fee 12bp + リベート放棄 2bp の break-even。
 #                                 # 戻り途中(最悪値更新していない)の建玉は跨がない = 平均回帰の回復を殺さない。
@@ -243,7 +242,7 @@ taker_early_bps = 40              # v2 fee-aware 早期カット(#247): reduce-o
 #                                 # 2026-07-24: 14 で運用したところ break-even ちょうどでの発火がチョップで
 #                                 # fee 負けした(5発中3発が微差)。fee 固定12bp を回収するにはもう一段深い
 #                                 # run だけを切るべき、として 20 に引き上げ。
-exit_patience_secs = 60           # エグジット床: reduce-only 開始からこの秒数の間、エグジット quote を
+exit_patience_secs = 36000        # エグジット床: reduce-only 開始からこの秒数の間、エグジット quote を
 #                                 # avg_cost に床張りする(long なら max(best_ask, cost)、short なら
 #                                 # min(best_bid, cost))。タッチ追従のままだと bounce 直前で拾われる
 #                                 # (エグジットは最も逆選択される fill、実測−5〜−7bp @30-60s)。
@@ -258,13 +257,20 @@ lot_shadow = true                 # #243 シャドウモード: 「vol比例lot�
 #                                 # 実発注は現行 lot のまま（口座リスクゼロ）。1週間ログを貯めて検証セットにする。
 # lot_target_risk = 0.01           # lot ≈ target_risk / (mid · vol_bps/1e4)。凪で大、荒れで小。
 # lot_shadow_min  = 0.25           # hard 下限
-# lot_shadow_max  = 4.0            # hard 上限(#233)。可視レベルサイズより十分下に保つこと。
+lot_shadow_max  = 16.0            # hard 上限(#233)。可視レベルサイズより十分下に保つこと。
+#                                 # 2026-08-01 引き上げ(4.0→16.0)。既定4.0では 3,378/5,855 tick が上限張り付きで、
+#                                 # shadow_lot 加重 markout の差が -0.034bp CI[-0.206,+0.160]＝精密なゼロ
+#                                 # ＝検証セットが構造的に判別不能だった(178 fills, #233 にコメント)。
+#                                 # 16.0 で vol>0 域の張り付きは 21.8%→6.5% に落ち、ルールが変数として動く。
+#                                 # ⚠これは shadow のみ＝実発注は不変。実lot は別の固定キャップが守る。
+#                                 # ⚠張り付き 3,378 のうち 2,687 は vol_bps==0(lot が発散)で、上限では直らない。
+#                                 # gate-E の 1s log-mid std が tick幅(≈0.06bp)に対し飽和している別問題。
 lot_shadow_score = true           # #259 スコアシャドウ: prints10s×フロー方向セルの would-be 倍率をstatusログに出すだけ。
 #                                 # 実発注は現行 lot のまま（口座リスクゼロ）。shadow_lot(vol版)と併記され、1週間で両モデルの検証セットにする。
 # lot_shadow_score_counter     = 2.0  # counter-flow(逆フロー streak>=2)セルの倍率
 # lot_shadow_score_counter_hot = 3.0  # counter-flow + prints>=10 の倍率。tox_window_secs=10 前提
 # lot_shadow_score_none_hot    = 2.0  # フローなし + prints>=10 の倍率。with-flow は常に 1x
-jst_hours     = [6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22] # ゲートA: 深夜帯(JST 23,0-5)は引用しない。
+jst_hours     = []  # ゲートA: 深夜帯(JST 23,0-5)は引用しない。
 #                                 # 2026-07-30 実fill検証(1,620 fills): JST 0-5/23 は 15s/60s/900s 全ホライズンで
 #                                 # リベート込みでもマイナス(28d per-print markout でも 0,2,3,4,23時 が <-2.2bp)。
 imb_gate      = 0.1               # ゲートB: 逆風インバランス時は該当サイドを引く
@@ -279,7 +285,7 @@ vol_max_bps     = 0.5             # ゲートE: 1s mid リターンの実現ボ�
 #                                 # 往復NET約-1.6bpの毒(<0.5は+0.7bp marginal)。fillの23%を捨て静かなregimeに絞る。
 #                                 # 効果は1週間後に mm-regime で before/after 検証すること（実験として計測）。
 vol_window_secs = 60              # ゲートE: ボラ計測窓(秒)。ウォームアップ中はブロックしない
-cooldown_secs = 20                # ゲートF: 自己約定後、その側の新規(ポジションを増やす)quoteをこの秒数止める。
+cooldown_secs = 0                 # ゲートF: 自己約定後、その側の新規(ポジションを増やす)quoteをこの秒数止める。
 #                                 # buy約定→bid側、sell約定→ask側。ライブ初回で有毒fillの8秒後に再エントリして
 #                                 # 連敗したのが動機。減らす側(エグジット)は全ゲート同様に免除。0=無効(既定)
 #                                 # ライブ注意: 起点はvenueの約定時刻だが、fillの検知はRESTポーリング(約3s+遅延)で
