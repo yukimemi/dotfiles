@@ -216,7 +216,7 @@ halt_liquidate = true    # 停止時にポジションを成行クローズ（�
 [mm]
 pair          = "xrp_jpy"
 paper         = false             # LIVE 実弾運用用（~/.config/nagi/ 配下＝repo 外。Claude/git の checkout 操作で飛ばないようにここに置く）
-lot           = 1.0              # 片側あたりの発注数量
+lot           = 1.5              # 片側あたりの発注数量
 max_inventory = 50              # 在庫上限（±これを超える側は引く）= lot 10本ぶん。
 exit_full_size = true              # #260: 減らす側は保有数まるごとで出す。|在庫| <= lot では
 #                                  # 完全な no-op なので、ナンピンが起きる時間帯だけ効く。
@@ -224,6 +224,16 @@ exit_full_size = true              # #260: 減らす側は保有数まるごと�
 #                                  # 測らないため(ユーザー判断 2026-07-28)。
 reduce_only_keeps_entries = true # #260: A/B 因子2。nagi-mm-gate が毎時ハッシュで切替。
 #                                  # 手で変えても5分で戻る。実験停止は schedule を disable。
+venue_legs = true                 # #275: position_side を「自分のネット在庫」ではなく
+#                                  # venue の実建玉から選ぶ。off だとネットflat時に
+#                                  # bid=新規ロング / ask=新規ショートを出すため、両方
+#                                  # 約定すると両建てが積み上がる(2026-08-07 実測:
+#                                  # long 1.1028 vs short 1.0028、内部 inv は 0.1)。
+#                                  # on では「閉じられる脚がある側は必ず閉じる」ので
+#                                  # 新規の両建てを作らず、既存分も約定のたびに減る。
+#                                  # スナップショットの肯定的情報だけ信頼(空脚はネットに
+#                                  # フォールバック)。60秒古い建玉情報は使わない。
+#                                  # hot-reload 可 = 再起動なしのキルスイッチ。
 hold_secs       = 15              # この秒数保有したら reduce-only(減る側だけ passive)へ。両レグ maker=リベート両取り
 taker_after_secs = 0             # 在庫がこの秒数残ったら taker で強制フラット(リスク非常口)。0=永久にtakerしない(maker-only, 既定)
 #                                 # 2026-07-23 に 120 で運用したが中止: 時間だけを見て方向を見ないため、
