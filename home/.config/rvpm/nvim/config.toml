@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/07/25 23:38:42.
+# Last Change : 2026/08/08 20:56:12.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -78,15 +78,15 @@ depends = ["denops.vim"]
 # Local dev plugin: dev = true skips sync/update and loads from dst directly.
 [[plugins]]
 url = "https://github.com/yukimemi/chronicle.nvim"
-on_event = ["BufReadPre", "BufNewFile"]
+on_event = ["BufReadPre", "BufNewFile", "BufWritePost"]
 on_cmd = ["/^Chronicle.*$/"]
 
 [[plugins]]
 url = "https://github.com/yukimemi/snacks-source-chronicle"
 depends = ["snacks.nvim", "chronicle.nvim"]
 on_map = [
-	{ lhs = "mr", mode = "n", desc = "Chronicle Read" },
-	{ lhs = "mw", mode = "n", desc = "Chronicle Write" },
+  { lhs = "mr", mode = "n", desc = "Chronicle Read" },
+  { lhs = "mw", mode = "n", desc = "Chronicle Write" },
 ]
 
 [[plugins]]
@@ -250,10 +250,10 @@ on_event = "BufReadPre"
 [[plugins]]
 url = "https://github.com/lewis6991/hover.nvim"
 on_map = [
-	{ lhs = "K", desc = "hover.nvim (open)" },
-	{ lhs = "gK", desc = "hover.nvim (enter)" },
-	{ lhs = "<C-p>", desc = "hover.nvim (previous source)" },
-	{ lhs = "<C-n>", desc = "hover.nvim (next source)" },
+  { lhs = "K", desc = "hover.nvim (open)" },
+  { lhs = "gK", desc = "hover.nvim (enter)" },
+  { lhs = "<C-p>", desc = "hover.nvim (previous source)" },
+  { lhs = "<C-n>", desc = "hover.nvim (next source)" },
 ]
 
 [[plugins]]
@@ -265,18 +265,18 @@ url = "https://github.com/nvimdev/lspsaga.nvim"
 depends = ["nvim-lspconfig"]
 on_cmd = ["/^Lspsaga/"]
 on_map = [
-	{ lhs = "<space>k", mode = "n", desc = "Lspsaga hover_doc" },
-	{ lhs = "<space>ca", mode = [
-		"n",
-		"x",
-	], desc = "Lspsaga code_action" },
-	{ lhs = "<space>rn", mode = "n", desc = "Lspsaga rename" },
-	{ lhs = "<space>o", mode = "n", desc = "Lspsaga outline" },
-	{ lhs = "<space>dl", mode = "n", desc = "Lspsaga line diagnostics" },
-	{ lhs = "<space>dc", mode = "n", desc = "Lspsaga cursor diagnostics" },
-	{ lhs = "<space>db", mode = "n", desc = "Lspsaga buf diagnostics" },
-	{ lhs = "]d", mode = "n", desc = "Lspsaga diagnostic next" },
-	{ lhs = "[d", mode = "n", desc = "Lspsaga diagnostic prev" },
+  { lhs = "<space>k", mode = "n", desc = "Lspsaga hover_doc" },
+  { lhs = "<space>ca", mode = [
+    "n",
+    "x",
+  ], desc = "Lspsaga code_action" },
+  { lhs = "<space>rn", mode = "n", desc = "Lspsaga rename" },
+  { lhs = "<space>o", mode = "n", desc = "Lspsaga outline" },
+  { lhs = "<space>dl", mode = "n", desc = "Lspsaga line diagnostics" },
+  { lhs = "<space>dc", mode = "n", desc = "Lspsaga cursor diagnostics" },
+  { lhs = "<space>db", mode = "n", desc = "Lspsaga buf diagnostics" },
+  { lhs = "]d", mode = "n", desc = "Lspsaga diagnostic next" },
+  { lhs = "[d", mode = "n", desc = "Lspsaga diagnostic prev" },
 ]
 
 [[plugins]]
@@ -291,12 +291,12 @@ url = "https://github.com/j-hui/fidget.nvim"
 url = "https://github.com/folke/trouble.nvim"
 on_cmd = ["Trouble"]
 on_map = [
-	{ lhs = "<leader>xx", desc = "Diagnostics (Trouble)" },
-	{ lhs = "<leader>xX", desc = "Buffer Diagnostics (Trouble)" },
-	{ lhs = "<leader>cs", desc = "Symbols (Trouble)" },
-	{ lhs = "<leader>cl", desc = "LSP (Trouble)" },
-	{ lhs = "<leader>xL", desc = "Location List (Trouble)" },
-	{ lhs = "<leader>xQ", desc = "Quickfix List (Trouble)" },
+  { lhs = "<leader>xx", desc = "Diagnostics (Trouble)" },
+  { lhs = "<leader>xX", desc = "Buffer Diagnostics (Trouble)" },
+  { lhs = "<leader>cs", desc = "Symbols (Trouble)" },
+  { lhs = "<leader>cl", desc = "LSP (Trouble)" },
+  { lhs = "<leader>xL", desc = "Location List (Trouble)" },
+  { lhs = "<leader>xQ", desc = "Quickfix List (Trouble)" },
 ]
 
 [[plugins]]
@@ -307,8 +307,8 @@ on_cmd = ["TinyInlineDiag"]
 url = "https://github.com/takeshid/whyis.nvim"
 on_cmd = ["WhyisOpen"]
 on_map = [
-	{ lhs = "<leader>wf", desc = "Whyis (float)" },
-	{ lhs = "<leader>wl", desc = "Whyis (right)" },
+  { lhs = "<leader>wf", desc = "Whyis (float)" },
+  { lhs = "<leader>wl", desc = "Whyis (right)" },
 ]
 on_source = ["hover.nvim"]
 
@@ -322,11 +322,11 @@ lazy = true
 url = "https://github.com/saghen/blink.cmp"
 on_event = "InsertEnter"
 depends = [
-	"blink.lib",
-	"blink-ripgrep.nvim",
-	"blink.compat",
-	"friendly-snippets",
-	"LuaSnip",
+  "blink.lib",
+  "blink-ripgrep.nvim",
+  "blink.compat",
+  "friendly-snippets",
+  "LuaSnip",
 ]
 build = "cargo build --release"
 # build_lua = """
@@ -372,10 +372,10 @@ on_map = [{ lhs = '/^<Plug>\(denippet-/', mode = ["i", "s"] }]
 [[plugins]]
 url = "https://github.com/monaqa/dial.nvim"
 on_map = [
-	{ lhs = "<c-a>", mode = "n" },
-	{ lhs = "<c-x>", mode = "n" },
-	{ lhs = "g<c-a>", mode = "n" },
-	{ lhs = "g<c-x>", mode = "n" },
+  { lhs = "<c-a>", mode = "n" },
+  { lhs = "<c-x>", mode = "n" },
+  { lhs = "g<c-a>", mode = "n" },
+  { lhs = "g<c-x>", mode = "n" },
 ]
 
 [[plugins]]
@@ -395,36 +395,36 @@ on_map = [{ lhs = "gcc", mode = "n" }, { lhs = "gcc", mode = "x" }]
 url = "https://github.com/gbprod/yanky.nvim"
 on_cmd = ["YankyRingHistory", "YankyClearHistory"]
 on_map = [
-	{ lhs = "y", mode = [
-		"n",
-		"x",
-	] },
-	{ lhs = "p", mode = [
-		"n",
-		"x",
-	] },
-	{ lhs = "P", mode = [
-		"n",
-		"x",
-	] },
-	{ lhs = "gp", mode = [
-		"n",
-		"x",
-	] },
-	{ lhs = "gP", mode = [
-		"n",
-		"x",
-	] },
-	{ lhs = "<c-p>", mode = "n" },
-	{ lhs = "<c-n>", mode = "n" },
-	{ lhs = "iy", mode = [
-		"o",
-		"x",
-	] },
-	{ lhs = "<leader>p", mode = [
-		"n",
-		"x",
-	], desc = "Yank History" },
+  { lhs = "y", mode = [
+    "n",
+    "x",
+  ] },
+  { lhs = "p", mode = [
+    "n",
+    "x",
+  ] },
+  { lhs = "P", mode = [
+    "n",
+    "x",
+  ] },
+  { lhs = "gp", mode = [
+    "n",
+    "x",
+  ] },
+  { lhs = "gP", mode = [
+    "n",
+    "x",
+  ] },
+  { lhs = "<c-p>", mode = "n" },
+  { lhs = "<c-n>", mode = "n" },
+  { lhs = "iy", mode = [
+    "o",
+    "x",
+  ] },
+  { lhs = "<leader>p", mode = [
+    "n",
+    "x",
+  ], desc = "Yank History" },
 ]
 
 [[plugins]]
@@ -441,13 +441,13 @@ lazy = true
 url = "https://github.com/machakann/vim-sandwich"
 depends = ["vim-operator-user"]
 on_map = [
-	{ lhs = "sa", mode = [
-		"n",
-		"x",
-		"o",
-	] },
-	{ lhs = "sd", mode = "n" },
-	{ lhs = "sr", mode = "n" },
+  { lhs = "sa", mode = [
+    "n",
+    "x",
+    "o",
+  ] },
+  { lhs = "sd", mode = "n" },
+  { lhs = "sr", mode = "n" },
 ]
 
 [[plugins]]
@@ -484,18 +484,18 @@ on_map = [{ lhs = "ay", mode = ["x", "o"] }, { lhs = "iy", mode = ["x", "o"] }]
 [[plugins]]
 url = "https://github.com/machakann/vim-swap"
 on_map = [
-	{ lhs = "g<", mode = [
-		"n",
-		"x",
-	] },
-	{ lhs = "g>", mode = [
-		"n",
-		"x",
-	] },
-	{ lhs = "gs", mode = [
-		"n",
-		"x",
-	] },
+  { lhs = "g<", mode = [
+    "n",
+    "x",
+  ] },
+  { lhs = "g>", mode = [
+    "n",
+    "x",
+  ] },
+  { lhs = "gs", mode = [
+    "n",
+    "x",
+  ] },
 ]
 
 [[plugins]]
@@ -527,11 +527,11 @@ url = "https://github.com/yuki-yano/zero.nvim"
 url = "https://github.com/Bakudankun/BackAndForward.vim"
 on_cmd = ["Back", "Forward"]
 on_map = [
-	"<A-Left>",
-	"<A-Right>",
-	{ lhs = "/^<Plug>\\(backandforward-/", mode = [
-		"n",
-	] },
+  "<A-Left>",
+  "<A-Right>",
+  { lhs = "/^<Plug>\\(backandforward-/", mode = [
+    "n",
+  ] },
 ]
 
 [[plugins]]
@@ -652,8 +652,8 @@ url = "https://github.com/itchyny/vim-qfedit"
 url = "https://github.com/lambdalisue/nvim-aibo"
 when = "{{ vars.denops }}"
 on_map = [
-	{ lhs = "<space>b", mode = "n", desc = "Aibo gemini" },
-	{ lhs = "<space>B", mode = "n", desc = "Aibo gemini focus" },
+  { lhs = "<space>b", mode = "n", desc = "Aibo gemini" },
+  { lhs = "<space>B", mode = "n", desc = "Aibo gemini focus" },
 ]
 
 [[plugins]]
@@ -673,9 +673,9 @@ on_cmd = ["Sidekick"]
 url = "https://github.com/glidenote/memolist.vim"
 on_cmd = ["/^Memo/"]
 on_map = [
-	{ lhs = "<leader>mn", desc = "Memo: New" },
-	{ lhs = "<leader>ml", desc = "Memo: List" },
-	{ lhs = "<leader>mg", desc = "Memo: Grep" },
+  { lhs = "<leader>mn", desc = "Memo: New" },
+  { lhs = "<leader>ml", desc = "Memo: List" },
+  { lhs = "<leader>mg", desc = "Memo: Grep" },
 ]
 
 [[plugins]]
@@ -716,12 +716,12 @@ on_ft = "markdown"
 [[plugins]]
 url = "https://github.com/stevearc/overseer.nvim"
 on_cmd = [
-	"OverseerOpen",
-	"OverseerClose",
-	"OverseerToggle",
-	"OverseerRun",
-	"OverseerShell",
-	"OverseerTaskAction",
+  "OverseerOpen",
+  "OverseerClose",
+  "OverseerToggle",
+  "OverseerRun",
+  "OverseerShell",
+  "OverseerTaskAction",
 ]
 
 [[plugins]]

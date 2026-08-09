@@ -85,6 +85,7 @@ port = 8787
 # ≤5s ラグに合わせてスロットルされ、未確定約定の二重発注を防ぐ（#62/#66）。
 # 配管確認 CLI: testnet-check(REST) / testnet-trade(adapter) / testnet-reset(口座フラット化)。
 # シークレットは env 参照のみ。default='' でキー無しでも backtest/paper run は可。
+[execution]
 {% if vars.profile == "bitbank" %}
 mode = "paper"        # bitbank はまだ paper のみ（実板に対する擬似約定。執行配線は #101 Phase 3b）
 venue = "bitbank-spot"
@@ -213,67 +214,46 @@ halt_liquidate = true    # 停止時にポジションを成行クローズ（�
 # ⚠ 応急: persist_config の書き戻し(rewrite_templated_config)は [[sleeve]] 以降を捨てる。
 #    そのため [mm] は [[sleeve]] より前に置いて autotune persist で消えないようにする。
 #    本修正は tail 保全PR で対応予定（それ後はこの順序制約は不要になる）。
+# --- [mm] ホットリロード (#234) ---------------------------------------------------
+# 稼働中のボットがこのファイルの mtime を約5秒ごとに見て、変更があれば同じローダで
+# 読み直し、ホワイトリストのノブだけをその場で適用する（もう再起動は不要）。
+# 適用されるのは係数系のみ: lot / max_inventory / hold_secs / taker_after_secs /
+# exit_patience_secs / taker_early_bps / cooldown_secs / min_front_qty / imb_gate /
+# trend_* / tox_* / vol_* / jst_hours / lot_target_risk / lot_shadow_min /
+# lot_shadow_max / lot_shadow。
+# それ以外（pair, paper, levels, status_port, db_path, control_token）を変えても
+# 無視され warn が出る（反映には従来どおり再起動が必要）。
+# ガードレール: 負/NaN 値は旧値を維持。読み込み失敗時は last-good を維持
+# （既定値には決して戻らない）。
+# lot と max_inventory には打ち間違い用のハード上限がある（固定 10 XRP /
+# 250 XRP、設定不可）。上限を超える値は**適用されず、旧値のまま warn が出る**
+# — 上限にクランプはしない。1000 と書いた人は 10 を望んでもいないし、ファイルに
+# 書いてあるのと違うサイズで黙って発注するのが、この上限が防ぎたい事故そのもの
+# だから。lot_shadow_max はシャドウ観測専用で、実発注の lot には効かない。
+# 一方 venue のステップ/最小数量と *_secs の30日上限は「妥当性」の制約なので
+# 従来どおり値を調整する（ステップ丸めは必ず小さくなる方向。最小数量を下回る
+# lot は、切り上げると書いた値より大きくなるので拒否）。
+# 注意1: これらの上限はホットリロード経路にしか無い。起動時はファイルの値を
+# そのまま使う（起動を拒否すると、建玉を抱えたまま quote もエグジットも無い
+# 状態で放置されることになり、そちらの方が危険）。
+# 注意2: 上限は証拠金を見ていない。小さな証拠金口座に対して過大な在庫を許可
+# しうる。本当の最終防衛線は margin ステータスのリスクハルト（ホットリロードと
+# は独立に常時有効）。
 [mm]
 pair          = "xrp_jpy"
-paper         = false             # LIVE 実弾運用用（~/.config/nagi/ 配下＝repo 外。Claude/git の checkout 操作で飛ばないようにここに置く）
-lot           = 2.0              # 片側あたりの発注数量
-max_inventory = 120             # 在庫上限（±これを超える側は引く）= lot 60本ぶん。
-#                                 # 2026-08-10 に 60 → 120。理由: 60 では上限張り付きが
-#                                 # 5日に1回・全時間の14.5%発生し、その間は両側とも出せず
-#                                 # リベートがゼロになる（実際 08-10 19:41 に到達し29分停止）。
-#                                 # 120 なら張り付きは19日に1回・3%程度に落ちる（38日リプレイ）。
-#                                 # リスク: 建玉 19,620円、証拠金5万に対し委託保証金率255%
-#                                 # ＝追証(50%)まで -205%、ロスカット(25%)まで -230% で到達不能。
-#                                 # 実測の最悪含み損は 08-10 の -23円、8/8-09 通期でも -9.9円。
-#                                 # 上げても収入は+12%程度しか増えない。買っているのは
-#                                 # 「張り付いて何もできない時間」の削減であって収入ではない。
-#                                 # 深さ側のブレーキ(max_open_loss_quote)は #292 で作業中。
-#                                 # マージ前に書いてはいけない（建玉があると即 taker で投げる）。
-exit_full_size = true              # #260: 減らす側は保有数まるごとで出す。|在庫| <= lot では
-#                                  # 完全な no-op なので、ナンピンが起きる時間帯だけ効く。
-#                                  # A/B の因子ではなく常時ON: 「手加減したナンピン」を
-#                                  # 測らないため(ユーザー判断 2026-07-28)。
-reduce_only_keeps_entries = true # #260: A/B 因子2。nagi-mm-gate が毎時ハッシュで切替。
-#                                  # 手で変えても5分で戻る。実験停止は schedule を disable。
-venue_legs = false                # 2026-08-08 一時的に OFF(根本修正まで)。true にすると
-#                                  # 決済サイズが「脚まるごと」= 20秒前の positions poll 由来に
-#                                  # なる(false なら inventory=3秒鮮度)。在庫が減った後も古い
-#                                  # サイズを出すため bitbank 50062 で拒否され、実測4時間で
-#                                  # 270件。うち98%は両建てと無関係(sell 3.0 vs 在庫 1.5)。
-#                                  # 拒否中はその側の quote が消えるので出口も塞がる。
-#                                  # 8/8 の両建て(long/short 各1.0028)は true の間に解消済み。
-#                                  # 再発リスクは戻るが、恒常的な拒否より軽いと判断。
-#                                  # 修正案は3回とも別の穴を開けた → Issue で設計し直し。
-#                                  # ※ 以下は #275 の本来の意図:
-#                                  # position_side を「自分のネット在庫」ではなく
-#                                  # venue の実建玉から選ぶ。off だとネットflat時に
-#                                  # bid=新規ロング / ask=新規ショートを出すため、両方
-#                                  # 約定すると両建てが積み上がる(2026-08-07 実測:
-#                                  # long 1.1028 vs short 1.0028、内部 inv は 0.1)。
-#                                  # on では「閉じられる脚がある側は必ず閉じる」ので
-#                                  # 新規の両建てを作らず、既存分も約定のたびに減る。
-#                                  # スナップショットの肯定的情報だけ信頼(空脚はネットに
-#                                  # フォールバック)。60秒古い建玉情報は使わない。
-#                                  # hot-reload 可 = 再起動なしのキルスイッチ。
+paper         = true              # true=fill-sim のみ。false(live post-only)は Phase 1 で配線予定
+lot           = 2.0               # live と同一（nagi-mm-live.toml）
+max_inventory = 120               # live と同一
+exit_full_size = true             # live と同一（#260）
+reduce_only_keeps_entries = true  # live と同一（#260）
+venue_legs    = false             # live と同一
+add_band_pct  = 1                 # 反実仮想スイープ対象: {0, 1, 2, 3}
 hold_secs       = 15              # この秒数保有したら reduce-only(減る側だけ passive)へ。両レグ maker=リベート両取り
 taker_after_secs = 0             # 在庫がこの秒数残ったら taker で強制フラット(リスク非常口)。0=永久にtakerしない(maker-only, 既定)
-#                                 # 2026-07-23 に 120 で運用したが中止: 時間だけを見て方向を見ないため、
-#                                 # 利益側の建玉(+0.018)や 0.7bp しか逆行してない建玉に 12bp の taker fee を
-#                                 # 払ってしまった(fee が損失の17倍)。時間デッドラインは fee デルタ 14bp の
-#                                 # break-even を満たさない。方向チェック付きの taker_early_bps(#247)が本筋。
 #                                 # ライブでも有効: armed 時はアグレッシブ側タッチに post_only=false の
 #                                 # 指値を打って全在庫を切る(resting している reduce quote は先にキャンセル)。
 #                                 # fill は通常の venue fill ポーリングで帰ってくるので二重計上なし。
-taker_early_bps = 0              # v2 fee-aware 早期カット(#247): reduce-only 中、arm 時点からの逆行幅が
-#                                 # この bp を超え、かつ直近10秒の最悪値を更新中(=まだ走ってる)なら、deadline を
-#                                 # 待たず taker で切る。14 = taker fee 12bp + リベート放棄 2bp の break-even。
-#                                 # 戻り途中(最悪値更新していない)の建玉は跨がない = 平均回帰の回復を殺さない。
-#                                 # 0=無効(既定)。hot-reload 対応。v1(taker_after_secs)は方向を見ず誤爆した
-#                                 # 実績があるため 0 のまま、こちらを本線とする。
-#                                 # 2026-07-24: 14 で運用したところ break-even ちょうどでの発火がチョップで
-#                                 # fee 負けした(5発中3発が微差)。fee 固定12bp を回収するにはもう一段深い
-#                                 # run だけを切るべき、として 20 に引き上げ。
-exit_patience_secs = 360000       # エグジット床: reduce-only 開始からこの秒数の間、エグジット quote を
+exit_patience_secs = 360000       # エグジット床（live と同一）: reduce-only 開始からこの秒数の間、エグジット quote を
 #                                 # avg_cost に床張りする(long なら max(best_ask, cost)、short なら
 #                                 # min(best_bid, cost))。タッチ追従のままだと bounce 直前で拾われる
 #                                 # (エグジットは最も逆選択される fill、実測−5〜−7bp @30-60s)。
@@ -284,26 +264,18 @@ exit_patience_secs = 360000       # エグジット床: reduce-only 開始から
 #                                 # post-only 拒否ループは起きない。トレードオフ: 床張り中に価格が
 #                                 # 走ると塩漬けになる → それを縛るのがこの窓と taker_after_secs。
 #                                 # 0=無効(既定)
-lot_shadow = true                 # #243 シャドウモード: 「vol比例lotならいくつだったか」をstatusログに出すだけ。
-#                                 # 実発注は現行 lot のまま（口座リスクゼロ）。1週間ログを貯めて検証セットにする。
-# lot_target_risk = 0.01           # lot ≈ target_risk / (mid · vol_bps/1e4)。凪で大、荒れで小。
-# lot_shadow_min  = 0.25           # hard 下限
-lot_shadow_max  = 16.0            # hard 上限(#233)。可視レベルサイズより十分下に保つこと。
-#                                 # 2026-08-01 引き上げ(4.0→16.0)。既定4.0では 3,378/5,855 tick が上限張り付きで、
-#                                 # shadow_lot 加重 markout の差が -0.034bp CI[-0.206,+0.160]＝精密なゼロ
-#                                 # ＝検証セットが構造的に判別不能だった(178 fills, #233 にコメント)。
-#                                 # 16.0 で vol>0 域の張り付きは 21.8%→6.5% に落ち、ルールが変数として動く。
-#                                 # ⚠これは shadow のみ＝実発注は不変。実lot は別の固定キャップが守る。
-#                                 # ⚠張り付き 3,378 のうち 2,687 は vol_bps==0(lot が発散)で、上限では直らない。
-#                                 # gate-E の 1s log-mid std が tick幅(≈0.06bp)に対し飽和している別問題。
-lot_shadow_score = true           # #259 スコアシャドウ: prints10s×フロー方向セルの would-be 倍率をstatusログに出すだけ。
-#                                 # 実発注は現行 lot のまま（口座リスクゼロ）。shadow_lot(vol版)と併記され、1週間で両モデルの検証セットにする。
-# lot_shadow_score_counter     = 2.0  # counter-flow(逆フロー streak>=2)セルの倍率
-# lot_shadow_score_counter_hot = 3.0  # counter-flow + prints>=10 の倍率。tox_window_secs=10 前提
-# lot_shadow_score_none_hot    = 2.0  # フローなし + prints>=10 の倍率。with-flow は常に 1x
-jst_hours     = []  # ゲートA: 深夜帯(JST 23,0-5)は引用しない。
-#                                 # 2026-07-30 実fill検証(1,620 fills): JST 0-5/23 は 15s/60s/900s 全ホライズンで
-#                                 # リベート込みでもマイナス(28d per-print markout でも 0,2,3,4,23時 が <-2.2bp)。
+# taker_early_bps = 0             # v2 早期 taker エスカレーション: reduce-only 中、mid がアンカー
+#                                 # (reduce-only 移行時点の mid。avg_cost ではないので venue シードの
+#                                 # cost 不明ポジションでも効く) から逆方向にこの bp 超動き、かつ
+#                                 # 直近約10秒の最悪値を更新中(=まだ走っている)なら、taker_after_secs を
+#                                 # 待たずに即 taker で切る。手数料の算術: taker 12bp + 逸する maker
+#                                 # リベート約2bp ≈ 14bp → 受動的に待つのは「これ以上のドリフト < 14bp」
+#                                 # の間だけ得。目安は 14〜20。コストへ戻りつつある mid (床が効いている
+#                                 # 平均回帰) は、閾値超過でも切らないのがモメンタムガードの役目。
+#                                 # v1 (期限) との関係: v2 は期限内の速い有毒ランを捕らえ、v1 は
+#                                 # じわじわ流血の上限を縛る。先に発火した方が効く(複合)。
+#                                 # 0=無効(既定)。ホットリロード対象。
+jst_hours     = []                         # ゲートA: 全時間（実質無効。空=毎時クオート）
 imb_gate      = 0.1               # ゲートB: 逆風インバランス時は該当サイドを引く
 trend_slow_secs = 300             # ゲートC: 遅EMA秒(0=ゲート無効)。トレンドに逆らって在庫を増やさない
 trend_fast_secs = 30              # ゲートC: 速EMA秒(< trend_slow_secs)
@@ -311,12 +283,9 @@ trend_band      = 0.0005          # ゲートC: |速-遅|/遅 がこれ超でト
 tox_max_prints  = 10              # ゲートD: 直近 tox_window_secs 秒の約定がこれ以上でバースト判定。売り優位(≥2:1)ならbidのみ、買い優位ならaskのみ、混在なら両側を引く(逆フロー側の優良fillを殺さない)。0=無効
 tox_max_streak  = 3               # ゲートD: 同側連続プリントがこれ以上で、その側が埋まる quote を引く(sell連続→bid引く)。0=無効
 tox_window_secs = 10              # ゲートD: 上記2つの計測窓(秒)
-vol_max_bps     = 0.5             # ゲートE: 1s mid リターンの実現ボラ(bp)がこれ超で両側を引く(vol≈markout)。0=無効
-#                                 # 0.5に引き締め(#240): mm-regime の実fill volバケット分析で 0.5-1.0bp は
-#                                 # 往復NET約-1.6bpの毒(<0.5は+0.7bp marginal)。fillの23%を捨て静かなregimeに絞る。
-#                                 # 効果は1週間後に mm-regime で before/after 検証すること（実験として計測）。
+vol_max_bps     = 0.5             # ゲートE: 1s mid リターンの実現ボラ(bp)がこれ超で両側を引く(vol≈markout)。0=無効。live と同一（#240 の 0.5）
 vol_window_secs = 60              # ゲートE: ボラ計測窓(秒)。ウォームアップ中はブロックしない
-cooldown_secs = 0                 # ゲートF: 自己約定後、その側の新規(ポジションを増やす)quoteをこの秒数止める。
+# cooldown_secs = 0               # ゲートF: 自己約定後、その側の新規(ポジションを増やす)quoteをこの秒数止める。
 #                                 # buy約定→bid側、sell約定→ask側。ライブ初回で有毒fillの8秒後に再エントリして
 #                                 # 連敗したのが動機。減らす側(エグジット)は全ゲート同様に免除。0=無効(既定)
 #                                 # ライブ注意: 起点はvenueの約定時刻だが、fillの検知はRESTポーリング(約3s+遅延)で
@@ -327,7 +296,7 @@ cooldown_secs = 0                 # ゲートF: 自己約定後、その側の�
 #                                 # なおエントリー側スタンプでは hold_secs 超の値は reduce-only に覆われて
 #                                 # ほぼ効かないが、エグジット側スタンプによるフラット後の再エントリ抑制には
 #                                 # 効くので、>15s も無意味ではない。
-min_front_qty = 0                 # ゲートG: 最良bid/askの板厚がこれ未満ならその側を引く。薄い板の先頭に
+# min_front_qty = 0               # ゲートG: 最良bid/askの板厚がこれ未満ならその側を引く。薄い板の先頭に
 #                                 # 並ぶと有毒バーストの最初のprintで拾われる。厚い壁が先にバーストを吸収する。0=無効(既定)
 #                                 # ゲートFと違い grow-only ではない: 通常モードでは「減らす側」のquoteも
 #                                 # 薄い板なら引く(エグジットこそ最も逆選択されるfill、実測−7.2bp @60s。
@@ -337,14 +306,13 @@ min_front_qty = 0                 # ゲートG: 最良bid/askの板厚がこれ�
 #                                 # 再参加しない(閾値またぎの Cancel→Place 往復でキュー位置を失うのを防ぐ)。固定1.5倍。
 #                                 # 評価する板厚からはタッチに置いた自前の resting lot を差し引く
 #                                 # (公開板には自分の注文が含まれるため)。
-drift_gate_bps = 5                # ゲートH: 30分 mid ドリフトが <-TH なら bid を、>+TH なら ask を引く
-#                                 # (方向性ドリフトゲート。grow-only・片側のみ・エグジット免除・cold start は引かない)。
-#                                 # 有効化 2026-07-28。根拠: (1) 22.5d markout 由来(逆ドリフト entry は 60s で負転、
-#                                 # TH=5 で edge15 +1.33→+1.37, fills −4.5%)、(2) mm-tune shadow 4/4 サイクルで
-#                                 # winner が drift_gate_bps=5 を選択、(3) ライブ fill 9日分のエピソード分析で
-#                                 # 損失の本体が下落中ロングの含み損切り(−25.6/−18.4 JPY)と判明、
-#                                 # drift proxy で −18.4→−11.8 に改善。OOS-suspect 扱い: 後続窓で再測定して
-#                                 # 効いていなければ 0 に戻す。
+drift_gate_bps = 5                # ゲートH: 30分ドリフトに逆らう新規エントリを引く（live と同一、2026-07-28 有効化済み）。mid が30分で
+#                                 # これ(bp)超下落→bid引く(新規ロング禁止)、これ超上昇→ask引く(新規ショート禁止)。
+#                                 # 22.5d xrp_jpy 実測(scripts/mm_markout.py): 逆ドリフトのエントリは
+#                                 # 15sでは+0.3bpに見えるが60sホールドでは−0.4bpに朽ち、裾も2倍太い
+#                                 # (= taker エスカレーション行きのポジションの製造機)。grow-only で
+#                                 # 減らす側は免除(ゲートC/Fと同じ)。0=無効(既定)。計測は TH=5 で
+#                                 # edge15 +1.33→+1.37 / edge60 +1.12→+1.19、手数は−4.5%。
 levels        = 20                # imbalance 算出に使う板の段数
 status_port   = 8788              # ステータスページ http://127.0.0.1:8788/ (0=無効)
 # db_path = ""                    # ダッシュボード履歴(fills + equity)の SQLite。
