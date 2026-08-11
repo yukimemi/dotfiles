@@ -93,6 +93,11 @@ $PrivateConfig = Join-Path $UserHome ".config/powershell/private.ps1"
 if (Test-Path $PrivateConfig) {
   . $PrivateConfig
 }
+# Local Config
+$LocalConfig = Join-Path $UserHome ".local/share/powershell/local.ps1"
+if (Test-Path $LocalConfig) {
+  . $LocalConfig
+}
 
 $AdditionalPaths = @(
   $env:PNPM_HOME,
