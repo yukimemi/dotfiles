@@ -35,6 +35,30 @@ end
 
 vim.keymap.set("n", "<space>gg", "<cmd>lua _lazygit_toggle()<cr>", { noremap = true, silent = true })
 
+local jjui = Terminal:new({
+  cmd = "jjui",
+  dir = "git_dir",
+  direction = "float",
+  float_opts = {
+    border = "double",
+  },
+  -- function to run on opening the terminal
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+  end,
+  -- function to run on closing the terminal
+  on_close = function(term)
+    vim.cmd("startinsert!")
+  end,
+})
+
+function _jjui_toggle()
+  jjui:toggle()
+end
+
+vim.keymap.set("n", "<space>jj", "<cmd>lua _jjui_toggle()<cr>", { noremap = true, silent = true })
+
 local pwsh = Terminal:new({
   cmd = "pwsh.exe",
 })
