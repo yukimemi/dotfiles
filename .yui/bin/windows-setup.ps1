@@ -488,6 +488,7 @@ function Install-Tool {
       "gsudo",
       "imagemagick",
       "jq",
+      "jjui",
       "ksnip",
       "less",
       "mingw",
