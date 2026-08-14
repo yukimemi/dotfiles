@@ -1,4 +1,3 @@
-# omp config
 providers: 
   webSearchOrder: 
     []
@@ -12,7 +11,10 @@ modelRoles:
   smol: openrouter/~deepseek/deepseek-v4-flash-latest
   slow: anthropic/claude-opus-5
   plan: kimi-code/k3
-  default: google/gemini-3.7-flash
+  default: openrouter/~deepseek/deepseek-v4-flash-latest
+  designer: anthropic/claude-opus-5
+  tiny: openrouter/~deepseek/deepseek-v4-flash-latest
+  advisor: kimi-code/k3
 defaultThinkingLevel: auto
 memory: 
   backend: local
