@@ -1,0 +1,18 @@
+# omp config
+providers: 
+  webSearchOrder: 
+    []
+symbolPreset: nerd
+theme: 
+  dark: dark-tokyo-night
+setupVersion: 1
+autolearn: 
+  enabled: true
+modelRoles: 
+  smol: openrouter/~deepseek/deepseek-v4-flash-latest
+  slow: anthropic/claude-opus-5
+  plan: kimi-code/k3
+  default: google/gemini-3.7-flash
+defaultThinkingLevel: auto
+memory: 
+  backend: local

@@ -21,7 +21,8 @@ config.local.toml
 
 # Runtime state apps drop into ~/.config/<app>/ via the junction. We want
 # them on disk (so the apps work) but not in git.
-home/.config/**/*.log
+home/.config/**/*.log*
+home/.config/**/*.bak*
 home/.config/**/*.lock
 home/.config/**/*.db
 home/.config/**/*-shm
