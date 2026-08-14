@@ -1,19 +1,33 @@
 {
+  "agentPushNotifEnabled": true,
+  "autoUpdatesChannel": "latest",
+  "editorMode": "vim",
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\yukimemi\\.claude\\hooks\\herdr-agent-state.ps1\" session",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "*"
+      }
+    ]
+  },
+  "inputNeededNotifEnabled": true,
+  "language": "Japanese",
   "permissions": {
     "defaultMode": "auto"
   },
-  "enabledPlugins": {
-    "rust-analyzer-lsp@claude-plugins-official": true,
-    "frontend-design@claude-plugins-official": true
-  },
-  "language": "Japanese",
-  "autoUpdatesChannel": "latest",
+  "remoteControlAtStartup": true,
+  "skipAutoPermissionPrompt": true,
   "skipWorkflowUsageWarning": true,
   "theme": "dark-daltonized",
-  "editorMode": "vim",
-  "remoteControlAtStartup": true,
-  "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true,
   "useAutoModeDuringPlan": true
 }

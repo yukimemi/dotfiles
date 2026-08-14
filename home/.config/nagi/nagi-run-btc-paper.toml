@@ -1,0 +1,215 @@
+# nagi run — bitbank btc_jpy ペーパー運用（micro-MM のバックアップ検証系）。
+#
+# なぜ別ファイルなのか:
+#   repo の nagi.toml は「作業コピー」で、checkout / rebase / 手元の実験で中身が
+#   変わる。この config は kanade が 24/7 で回す常駐プロセスの入力なので、repo 外
+#   （~/.config/nagi/）に置いて git 操作から切り離す。nagi-mm-live.toml と同じ方針。
+#
+#   ★ persist_config = true なので autotune がこのファイルの [[sleeve]] と
+#     regime.trend_threshold_pct を書き戻す。repo 内に置くと git status が常に
+#     汚れ、checkout で autotune の学習結果が消える。
+#
+# なぜ btc_jpy なのか:
+#   micro-MM（nagi mm）は xrp_jpy の maker リベート(-0.02%)に依存した戦略で、
+#   在庫リスクを取る。こちらは別ペア・別戦略（grid/DCA/trend）・paper で走らせて、
+#   「mm が止まっても何か回っている」状態を作るのが目的。相関を落とすため
+#   意図的に別ペアにしてある。
+#
+# なぜ paper なのか:
+#   bitbank の執行配線（#101 Phase 3b）が未完で、[execution] mode は paper のみ。
+#   実板に対する擬似約定なので、フィード・レジーム判定・autotune・配管は本番と
+#   同じ経路を通る。約定だけがローカル擬似。
+#
+# 起動:  nagi run -c ~/.config/nagi/nagi-run-btc-paper.toml
+# 常駐:  kanade_config/job/nagi-run.yaml（5分ごとの冪等ランチャー）
+
+exchange = "bitbank"
+symbol = "btc_jpy"
+
+# 50万円。btc_jpy の最小ロットは 0.0001 BTC ≒ 1,000円（現値 約996万円）で、
+# autotune の order_quote 候補は「資本の bps」で決まる（optimize.rs: grid/DCA は
+# 100/150/300bps、trend は 200/400bps）。資本が小さいと候補の下半分が最小ロットに
+# 切り上げられ、探索が潰れて全部同じサイズで発注される。
+#   pool = 500,000 × 0.70 = 350,000 → alloc 0.5 の sleeve で 100bps = 1,750円
+#   → 最小ロット(≒1,000円)を上回るので、autotune のサイズ探索が意味を持つ。
+# 10万円だと 100bps = 350円 で最小ロット未満になり、この探索軸が死ぬ。
+initial_cash = 500000
+
+# 相対パス = cwd（kanade ジョブは ~/.config/nagi を cwd にする）。repo の nagi.db
+# とは別ファイル。手で `nagi run -c nagi.toml` を叩いても衝突しない。
+db_path = "nagi-run-btc-paper.db"
+
+# 全コンポーネント共通の足。1h が実測スイートスポット（AGENTS.md / nagi.toml 参照）。
+# autotune は触らない固定ノブ。
+bar_secs = 3600
+
+# --- 取引コスト（btc_jpy 固有） ---------------------------------------
+# ★ bitbank は BTC/JPY だけ手数料体系が違う。アルト(xrp 等)は maker -0.02%
+#   のリベートだが、BTC/JPY は maker 0% / taker 0.10%。
+#   （リベートが無いのが、micro-MM が btc_jpy を狙わない理由でもある:
+#     scripts/mm_markout.py の maker_rebate_bps() が同じ区別をしている）
+#   → ここでリベートを付けると存在しない収入で OOS が水増しされる。
+fee_rate = 0.001
+maker_fee = 0.0     # BTC/JPY: リベート無し。アルトの -0.0002 を流用しないこと
+taker_fee = 0.001   # BTC/JPY: 0.10%（アルトは 0.12%）
+maker_adverse_bps = 2.0 # 逆選択(bp)。btc_jpy は板が厚いぶん xrp より小さい可能性が
+#                       # あるが、実測前に楽観側へ倒すと maker 戦略へ過剰配分される。
+#                       # 保守側の 2.0 で据え置き、live 実測が出たら下げる。
+slippage_bps = 1.0
+
+market = "spot" # JP 現物（funding なし・ロング志向）
+
+# --- 起動・永続化 -----------------------------------------------------
+# ★ true = 起動即トレード。false(STANDBY) だとダッシュボードで「▶ 取引開始」を
+#   押すまで注文を出さないので、無人の常駐ジョブでは永久に何もしないまま
+#   「動いているつもり」になる。バックアップ系としての意味が消えるので true。
+#   paper なので実資金リスクは無い。
+autostart_trading = true
+persist_config = true # autotune が [[sleeve]] と trend_threshold_pct を書き戻す
+
+[server]
+# mm live のステータスページが 8788。repo の nagi.toml 既定が 8787 なので、手で
+# `nagi run -c nagi.toml` を叩いたときに衝突しないよう 8789 を取る。
+# host 0.0.0.0 は Tailscale/LAN から見るため（mm 側と同じ運用）。paper なので
+# ダッシュボードの操作を晒しても実資金は動かない。
+host = "0.0.0.0"
+port = 8789
+
+[execution]
+# bitbank は paper のみ（実約定の配線は #101 Phase 3b）。キーは不要 —— paper は
+# 実板フィードに対するローカル擬似約定で、REST 発注を一切しない。
+mode = "paper"
+venue = "bitbank-spot"
+pool_pct = 0.70 # 管理プール = pool_pct × 残高。残りは per-slice バッファ
+api_key = ""
+api_secret = ""
+
+[[account]]
+# co-located: 全 sleeve がこの単一口座を共有する。paper ではキー不参照。
+id = "main"
+api_key = ""
+api_secret = ""
+
+# === 運用アラート ====================================================
+# ★ fills / on_flat は false。mm live が同じ webhook に実弾の約定通知を流して
+#   いるので、paper の擬似約定を混ぜると「実弾の通知」の判別が付かなくなる。
+#   ここが拾うのは risk halt のような異常だけ —— 無人運用で「気づいたら止まって
+#   いた」を防ぐのが目的で、成績報告はダッシュボード(:8789)で見る。
+[notify]
+enabled = true
+discord_webhook_url = "{{ env(name='NAGI_DISCORD_WEBHOOK', default='') }}"
+#                     # default='' は必須。teravars は TOML パース前にファイル
+#                     # 全体を描画するので、未設定 env を default 無しで書くと
+#                     # 設定読込ごと落ちる（#212 で実際に踏んだ）。
+#                     # 空文字なら通知は無効に倒れる（起動は通る）。
+fills = false
+on_flat = false
+
+# === 市場レジーム・フィルタ ==========================================
+[regime]
+enabled = true
+fast = 20
+slow = 50
+trend_threshold_pct = 1.5 # ← autotune が上書きする
+threshold_vol_mult = 0.0
+trend_exit_pct = 0.25 # ヒステリシス(#167)。境界張り付き時の whipsaw 防止
+downtrend_flatten = true    # 自分自身が confirmed downtrend の間 grid/DCA を現金退避
+downtrend_reclaim_pct = 3.0 # 安値からの戻り% で再エントリー
+# ★ btc_filter は false。「BTC が崩れている間 alt を退避」の仕組みなので、
+#   trade symbol が BTC 自身だと自己参照で無意味（かつ bitbank は単一フィード
+#   なので BTCUSDT を別途張れない）。
+btc_filter = false
+
+[faststop]
+enabled = false # backtest で不発 or whipsaw と判定済み（nagi.toml の記録参照）
+
+# === 最適化（autotune）の挙動ノブ ===================================
+[optimize]
+robust_folds = 1
+# ★ 空にしてある。repo の nagi.toml は ["ETHUSDT","SOLUSDT"] だが、これは
+#   binance のシンボル表記で、exchange = "bitbank" では kline を引けない。
+#   横断学習をやるなら bitbank 表記（"eth_jpy" 等）に直してから入れること。
+train_symbols = []
+symbol_agg = "worst"
+plateau_k = 5 # 孤立ピーク(過学習)でなく近傍平均が高い「台地」を選抜
+
+# === ポートフォリオ DD 連動の縮小ラダー ==============================
+[derisk]
+enabled = true
+start_dd_pct = 5
+full_dd_pct = 20
+min_scale = 0.34
+
+# === ボラ・ターゲティング ============================================
+[voltarget]
+enabled = true
+target_vol_pct = 1.0
+period = 20
+min_scale = 0.5
+max_scale = 1.0 # 1.0 = 縮小のみ（レバレッジ無し）
+
+# === リスク制限（各 sleeve の自己 equity に適用） ====================
+[risk]
+max_drawdown_pct = 15
+daily_loss_limit = 0
+halt_outside_band = true
+halt_liquidate = true
+
+# ⚠ [[sleeve]] は必ずファイル末尾に置く。persist_config の書き戻しは
+#   [[sleeve]] 領域をテキスト置換する経路を通るので、後ろに手書きの設定を
+#   置くと autotune のたびに巻き込まれるリスクがある（#198 で tail 保全は
+#   入ったが、頭に寄せておけば依存しない）。
+#
+# 以下の値は「autotune が最初の最適化を終えるまでの暫定」でしかない。
+# order_quote だけは意図して 3,000円以上にしてある —— 最適化前の数ティックで
+# 最小ロット未満の注文を出すと、min_qty への切り上げで書いた値の3倍が飛ぶため。
+
+[[sleeve]]
+strategy = "grid"
+alloc = 0.0
+label = "grid"
+regime = "range"
+account = "main"
+
+[sleeve.grid]
+band_pct = 12.0
+grids = 20
+order_quote = 3500.0
+recenter = true
+recenter_trigger = 0.7
+vol_adapt = false
+vol_bars = 20
+vol_k = 2.0
+
+[[sleeve]]
+strategy = "dca"
+alloc = 0.9
+label = "dca"
+regime = "any"
+account = "main"
+
+[sleeve.dca]
+order_quote = 3000.0
+drop_pct = 1.0
+take_profit_pct = 2.0
+max_buys = 40
+rsi_period = 14
+rsi_buy = 25.0
+
+[[sleeve]]
+strategy = "trend"
+alloc = 0.1
+label = "trend"
+regime = "trend"
+account = "main"
+
+[sleeve.trend]
+fast = 8
+slow = 34
+atr_period = 10
+atr_mult = 2.0
+order_quote = 3000.0
+target_vol_pct = 2.0
+short_enabled = false # spot なのでショート不可
+trend_filter = 0
+slope_min_pct = 0.0

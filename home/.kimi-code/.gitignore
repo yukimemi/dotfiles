@@ -1,7 +1,9 @@
 bin/
 cache/
+config.toml
 credentials/
 device_id
+hooks/
 logs/
 migrations-effort.json
 search-index/

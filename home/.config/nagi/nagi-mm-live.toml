@@ -114,6 +114,7 @@ api_secret = "{{ vars.binance_secret }}"
 enabled = true
 discord_webhook_url = "{{ env(name='NAGI_DISCORD_WEBHOOK', default='') }}"
 fills = true   # 約定（fill）ごとに通知。1ティック分はまとめ、バーストはシンクで coalesce。
+on_flat = true
 
 # === 市場レジーム・フィルタ ==========================================
 # fast/slow EMA の乖離でトレンド/レンジ判定。sleeve を誤ったレジームで退避。

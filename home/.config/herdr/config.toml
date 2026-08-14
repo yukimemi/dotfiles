@@ -1,2 +1,3 @@
+onboarding = false
 [terminal]
 default_shell = "pwsh"
