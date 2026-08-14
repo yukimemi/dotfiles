@@ -91,6 +91,8 @@ match = [
   '(?i)[/\\]\d{13,}\.md$',
   # Kimi Code
   '(?i)kimi-edit.*$',
+  # omp editor temp files (e.g. /Temp/omp-editor-<hash>.omp.md)
+  '(?i)[/\\]omp-editor-.*\.omp\.md$',
 ]
 to = "nvim-term"
 mode = "new"
