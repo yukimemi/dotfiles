@@ -16,3 +16,4 @@ modelRoles:
 defaultThinkingLevel: auto
 memory: 
   backend: local
+hideThinkingBlock: true
