@@ -19,3 +19,5 @@ defaultThinkingLevel: auto
 memory: 
   backend: local
 hideThinkingBlock: true
+tui: 
+  scrollbackRebuild: true
