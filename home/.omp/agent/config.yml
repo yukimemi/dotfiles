@@ -1,7 +1,7 @@
 providers: 
   webSearchOrder: 
     []
-symbolPreset: nerd
+symbolPreset: unicode
 theme: 
   dark: dark-tokyo-night
 setupVersion: 1
@@ -20,4 +20,11 @@ memory:
   backend: local
 hideThinkingBlock: true
 tui: 
-  scrollbackRebuild: true
+  scrollbackRebuild: false
+statusLine: 
+  separator: powerline-thin
+  transparent: false
+colorBlindMode: false
+display: 
+  showTokenUsage: true
+  shimmer: kitt
