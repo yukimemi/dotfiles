@@ -1,0 +1,54 @@
+# herdr auto-generated hooks
+hooks/
+
+# credentials
+.credentials.json
+
+# runtime state
+.last-cleanup
+.last-update-result.json
+
+# backups — regenerable
+backups/
+
+# cache
+cache/
+chrome/
+paste-cache/
+
+# daemon state
+daemon/
+
+# downloads — user data
+downloads/
+
+# file history — runtime
+file-history/
+
+# conversation history — runtime
+history.jsonl
+
+# agent plans — runtime artifacts
+plans/
+
+# project configs — auto-created by Claude
+projects/
+
+# session artifacts
+session-env/
+sessions/
+shell-snapshots/
+
+# tasks — runtime
+tasks/
+
+# uploads — user data
+uploads/
+
+# plugin cache & marketplace metadata (runtime, regenerable)
+plugins/.last_inuse_sweep
+plugins/cache/
+plugins/data/
+plugins/install-counts-cache.json
+plugins/known_marketplaces.json
+plugins/marketplaces/
