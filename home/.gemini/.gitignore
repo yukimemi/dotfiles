@@ -1,0 +1,22 @@
+# ~/.gemini is junction'd here as a whole (see [[link]] in config.toml),
+# so every runtime artifact the Gemini CLI writes lands in this tree.
+# Deny-list on purpose: anything not listed shows up as untracked, so a
+# new config file gets noticed and judged instead of silently ignored.
+#
+# (keep GEMINI.md)
+
+# credentials — never commit
+/oauth_creds.json
+/google_accounts.json
+
+# antigravity IDE / CLI payload (~230MB, redownloadable)
+/antigravity/
+/antigravity-cli/
+
+# runtime state
+/history/
+/installation_id
+/projects.json
+/state.json
+/trustedFolders.json
+/tmp/

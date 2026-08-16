@@ -26,6 +26,55 @@ use_brave = false
 src = "home"
 dst = "{{ vars.home_root }}"
 
+# --- links ---
+#
+# Whole-dir junctions for the directories directly under `home/`. These
+# used to be `.yuilink` markers; declaring them here keeps the marker
+# files out of the target side (a junctioned dir exposes its own marker
+# to the app, e.g. `~/.omp/.yuilink`). Per-app alternates under
+# `home/.config/` stay as markers — they belong next to the app they
+# describe.
+#
+# A dir-level link means the app's own writes land in source directly:
+# no per-file hardlink to break on an atomic save, and no untracked
+# runtime file left behind on the target side. Each of these dirs
+# carries a deny-list `.gitignore` so the runtime bulk stays out of git
+# while anything new still surfaces as untracked.
+
+# Claude Code rewrites settings.json with an atomic tmp+rename save,
+# which breaks per-file hardlinks (drift on every settings change). A
+# dir junction can't be broken that way.
+[[link]]
+src = "home/.claude"
+dst = "{{ vars.home_root }}/.claude"
+
+# Same story for omp and agent/config.yml.
+[[link]]
+src = "home/.omp"
+dst = "{{ vars.home_root }}/.omp"
+
+[[link]]
+src = "home/.config"
+dst = "{{ vars.home_root }}/.config"
+
+# kimi-code: same atomic-save story. `~/.kimi-code` was already a
+# junction, but nothing in the config asked for one — the per-file links
+# only looked in-sync because they resolved through it.
+[[link]]
+src = "home/.kimi-code"
+dst = "{{ vars.home_root }}/.kimi-code"
+
+# Gemini CLI writes credentials, history and a ~230MB antigravity
+# payload here; only GEMINI.md is tracked.
+[[link]]
+src = "home/.gemini"
+dst = "{{ vars.home_root }}/.gemini"
+
+# VS Code: settings.json is the point, extensions/ (~370MB) is ignored.
+[[link]]
+src = "home/.vscode"
+dst = "{{ vars.home_root }}/.vscode"
+
 # --- hooks ---
 
 [[hook]]

@@ -1,0 +1,11 @@
+# ~/.vscode is junction'd here as a whole (see [[link]] in config.toml).
+# Deny-list on purpose: anything not listed shows up as untracked, so a
+# new config file gets noticed and judged instead of silently ignored.
+#
+# (keep settings.json)
+
+# installed extensions (~370MB, reinstallable from the marketplace)
+/extensions/
+
+# VS Code CLI runtime
+/cli/

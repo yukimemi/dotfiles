@@ -1,5 +1,0 @@
-# Whole-dir junction: omp rewrites agent/config.yml with an atomic
-# tmp+rename save, which breaks per-file hardlinks (drift on every
-# settings change). A dir junction can't be broken that way.
-[[link]]
-dst = "{{ vars.home_root }}/.omp"
