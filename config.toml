@@ -75,6 +75,14 @@ dst = "{{ vars.home_root }}/.gemini"
 src = "home/.vscode"
 dst = "{{ vars.home_root }}/.vscode"
 
+# glazewm + zebar. Only glazewm/config.yaml was tracked before; the
+# junction brings zebar's config along too. Note glazewm / zebar hold
+# their errors.log open, so this one needs them stopped before `apply`
+# can replace the target directory.
+[[link]]
+src = "home/.glzr"
+dst = "{{ vars.home_root }}/.glzr"
+
 # --- hooks ---
 
 [[hook]]

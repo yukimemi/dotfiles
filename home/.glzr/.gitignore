@@ -1,0 +1,12 @@
+# ~/.glzr is junction'd here as a whole (see [[link]] in config.toml).
+# Deny-list on purpose: anything not listed shows up as untracked, so a
+# new config file gets noticed and judged instead of silently ignored.
+#
+# (keep glazewm/config.yaml and the zebar configs)
+
+# runtime logs
+/glazewm/errors.log
+/zebar/errors.log
+
+# marketplace cache — redownloadable
+/zebar/.marketplace/
