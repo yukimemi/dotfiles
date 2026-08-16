@@ -1,13 +1,13 @@
-providers: 
-  webSearchOrder: 
+providers:
+  webSearchOrder:
     []
-symbolPreset: unicode
-theme: 
+symbolPreset: nerd
+theme:
   dark: dark-tokyo-night
 setupVersion: 1
-autolearn: 
+autolearn:
   enabled: true
-modelRoles: 
+modelRoles:
   smol: openrouter/~deepseek/deepseek-v4-flash-latest
   slow: anthropic/claude-opus-5
   plan: kimi-code/k3
@@ -15,16 +15,20 @@ modelRoles:
   designer: anthropic/claude-opus-5
   tiny: openrouter/~deepseek/deepseek-v4-flash-latest
   advisor: kimi-code/k3
+  vision: anthropic/claude-opus-5
 defaultThinkingLevel: auto
-memory: 
+memory:
   backend: local
 hideThinkingBlock: true
-tui: 
+tui:
   scrollbackRebuild: false
-statusLine: 
-  separator: powerline-thin
+statusLine:
+  separator: slash
   transparent: false
-colorBlindMode: false
-display: 
+colorBlindMode: true
+display:
   showTokenUsage: true
   shimmer: kitt
+browser:
+  headless: false
+  relay: false
