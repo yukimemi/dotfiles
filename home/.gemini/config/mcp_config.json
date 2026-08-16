@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "yaiba": {
+      "command": "yaiba",
+      "args": [
+        "mcp"
+      ]
+    },
+    "google-calendar": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@cocal/google-calendar-mcp"
+      ],
+      "env": {
+        "GOOGLE_OAUTH_CREDENTIALS": "C:\\Users\\yukimemi\\.config\\gcal\\credentials.json"
+      }
+    }
+  }
+}

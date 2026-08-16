@@ -20,3 +20,7 @@
 /state.json
 /trustedFolders.json
 /tmp/
+
+# per-project session state — regenerated per workspace
+/config/projects/
+/config/.migrated

@@ -1,0 +1,25 @@
+{
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "general": {
+    "previewFeatures": true,
+    "sessionRetention": {
+      "warningAcknowledged": true,
+      "enabled": true,
+      "maxAge": "30d"
+    },
+    "vimMode": true,
+    "defaultApprovalMode": "default",
+    "enableNotifications": true
+  },
+  "ui": {
+    "showMemoryUsage": true,
+    "showModelInfoInChat": true
+  },
+  "model": {
+    "name": ""
+  }
+}
