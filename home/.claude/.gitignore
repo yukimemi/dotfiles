@@ -52,3 +52,5 @@ plugins/data/
 plugins/install-counts-cache.json
 plugins/known_marketplaces.json
 plugins/marketplaces/
+plugins/blocklist.json
+plugins/installed_plugins.json
