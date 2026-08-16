@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/08/08 20:56:12.
+# Last Change : 2026/08/22 10:22:55.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -221,6 +221,11 @@ on_event = "CursorHold"
 [[plugins]]
 url = "https://github.com/Amansingh-afk/milli.nvim"
 when = "false"
+
+[[plugins]]
+url = "https://github.com/yukimemi/autocursor.nvim"
+on_event = "CursorHold"
+on_cmd = ["/^EnableAutoCursor/", "/^DisableAutoCursor/"]
 
 # ── statusline ──────────────────────────────────
 

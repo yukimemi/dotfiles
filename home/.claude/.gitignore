@@ -45,6 +45,12 @@ tasks/
 # uploads — user data
 uploads/
 
+# image cache
+image-cache/
+
+# mcp cache
+mcp-needs-auth-cache.json
+
 # plugin cache & marketplace metadata (runtime, regenerable)
 plugins/.last_inuse_sweep
 plugins/cache/

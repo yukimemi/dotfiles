@@ -5,7 +5,7 @@
 #   変わる。この config は kanade が 24/7 で回す常駐プロセスの入力なので、repo 外
 #   （~/.config/nagi/）に置いて git 操作から切り離す。nagi-mm-live.toml と同じ方針。
 #
-#   ★ persist_config = true なので autotune がこのファイルの [[sleeve]] と
+#   ★ persist_config = false なので autotune がこのファイルの [[sleeve]] と
 #     regime.trend_threshold_pct を書き戻す。repo 内に置くと git status が常に
 #     汚れ、checkout で autotune の学習結果が消える。
 #
@@ -37,7 +37,7 @@ initial_cash = 500000
 
 # 相対パス = cwd（kanade ジョブは ~/.config/nagi を cwd にする）。repo の nagi.db
 # とは別ファイル。手で `nagi run -c nagi.toml` を叩いても衝突しない。
-db_path = "nagi-run-btc-paper.db"
+db_path = "C:/Users/yukimemi/.config/nagi/exp/dca-shallow.db"
 
 # 全コンポーネント共通の足。1h が実測スイートスポット（AGENTS.md / nagi.toml 参照）。
 # autotune は触らない固定ノブ。
@@ -64,8 +64,8 @@ market = "spot" # JP 現物（funding なし・ロング志向）
 #   押すまで注文を出さないので、無人の常駐ジョブでは永久に何もしないまま
 #   「動いているつもり」になる。バックアップ系としての意味が消えるので true。
 #   paper なので実資金リスクは無い。
-autostart_trading = true
-persist_config = true # autotune が [[sleeve]] と trend_threshold_pct を書き戻す
+autostart_trading = false
+persist_config = false # autotune が [[sleeve]] と trend_threshold_pct を書き戻す
 
 [server]
 # mm live のステータスページが 8788。repo の nagi.toml 既定が 8787 なので、手で
@@ -110,7 +110,7 @@ on_flat = false
 enabled = true
 fast = 20
 slow = 50
-trend_threshold_pct = 0.8 # ← autotune が上書きする
+trend_threshold_pct = 1.5 # ← autotune が上書きする
 threshold_vol_mult = 0.0
 trend_exit_pct = 0.25 # ヒステリシス(#167)。境界張り付き時の whipsaw 防止
 downtrend_flatten = true    # 自分自身が confirmed downtrend の間 grid/DCA を現金退避
@@ -155,6 +155,15 @@ daily_loss_limit = 0
 halt_outside_band = true
 halt_liquidate = true
 
+# ⚠ [[sleeve]] は必ずファイル末尾に置く。persist_config の書き戻しは
+#   [[sleeve]] 領域をテキスト置換する経路を通るので、後ろに手書きの設定を
+#   置くと autotune のたびに巻き込まれるリスクがある（#198 で tail 保全は
+#   入ったが、頭に寄せておけば依存しない）。
+#
+# 以下の値は「autotune が最初の最適化を終えるまでの暫定」でしかない。
+# order_quote だけは意図して 3,000円以上にしてある —— 最適化前の数ティックで
+# 最小ロット未満の注文を出すと、min_qty への切り上げで書いた値の3倍が飛ぶため。
+
 [[sleeve]]
 strategy = "grid"
 alloc = 0.0
@@ -174,14 +183,14 @@ vol_k = 2.0
 
 [[sleeve]]
 strategy = "dca"
-alloc = 0.0
+alloc = 0.9
 label = "dca"
 regime = "any"
 account = "main"
 
 [sleeve.dca]
 order_quote = 3000.0
-drop_pct = 1.0
+drop_pct = 0.5
 take_profit_pct = 2.0
 max_buys = 40
 rsi_period = 14
@@ -189,7 +198,7 @@ rsi_buy = 25.0
 
 [[sleeve]]
 strategy = "trend"
-alloc = 1.0
+alloc = 0.1
 label = "trend"
 regime = "trend"
 account = "main"
@@ -199,9 +208,8 @@ fast = 8
 slow = 34
 atr_period = 10
 atr_mult = 2.0
-order_quote = 20000.0
+order_quote = 3000.0
 target_vol_pct = 2.0
-short_enabled = false
+short_enabled = false # spot なのでショート不可
 trend_filter = 0
 slope_min_pct = 0.0
-hold_mode = false

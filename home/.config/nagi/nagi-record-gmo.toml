@@ -1,0 +1,56 @@
+# nagi record — GMO コイン 取引所（現物）板・約定の 24/7 収集。
+#
+# なぜ2本目の取引所なのか:
+#   bitbank の板は 1 ティックに張り付いている。自前の book_snap で実測した
+#   spread_bps は p25 = p50 = p75 で、btc 0.00 / eth 0.03 / xrp 0.06 /
+#   sol 0.08 / doge 0.90 bp。つまり「取れるスプレッドが存在しない」ので、
+#   live mm の損益がリベート(+1.93bp/leg)ちょうどで、trading 成分が
+#   -1.33bp/leg なのは戦略の失敗ではなく板の天井。
+#   GMO の -0.03% メイカーティア（メジャー BTC/ETH/XRP/DAI は -0.01%/0.05%、
+#   それ以外 -0.03%/0.09%）は逆の形で、記録済み spread_bps の p25/p50 が
+#   3.5〜8.6 / 6〜14 bp、板一段目が 23〜300k JPY、プリントは 57〜245/h ある。
+#
+#   ★ これは「エッジが見つかった」ではない。広いまま実フローが来ているのは
+#     (a) 誰も詰めていない (b) 有毒だから広い のどちらかで、板とプリント頻度
+#     では判別できない。判別するのは forward markout だけ。だからこの config は
+#     記録専用 —— 発注もしないし口座も使わない（Public API は認証不要）。
+#     順序は record → scripts/mm_markout.py → shadow → arm で、bitbank の
+#     ゲート D/E を導出したのと同じ手順。
+#
+# なぜ repo 外なのか:
+#   repo 内の config は agent / git の checkout 操作で飛ぶ（nagi-mm-live.toml で
+#   実際に踏んだ）。24/7 で回すジョブの入力なので ~/.config/nagi/ に置く。
+#   market DB も同じ理由でここに置き、bitbank の repo/market.db とは別ファイル。
+#   （同じファイルに2プロセスで書くと 18GB 側で無駄な競合を買うだけ。分析時に
+#     ATTACH すれば1クエリで両方読める。）
+#
+# 起動: kanade job nagi-record-gmo（5分ごとの冪等ランチャー）
+
+# [record] しか使わないが Config は上位フィールドを要求するので、無害な値を置く。
+# この config で bot が動くことはない（`nagi record` は [record] だけを読む）。
+exchange = "bitbank"
+symbol = "xrp_jpy"
+initial_cash = 100000
+
+[record]
+venue = "gmo"
+
+# -0.03% ティアのうち、実測でスプレッドが広くかつプリントがあるもの。
+# メジャー（BTC/ETH/XRP）は -0.01% でスプレッドも詰まっているので入れない。
+pairs = ["SUI", "ADA", "XLM", "LINK", "DOGE"]
+
+# 絶対パス。cwd に依存させない（ジョブの cwd が変わっても DB が迷子にならない）。
+db_path = "C:/Users/yukimemi/.config/nagi/market-gmo.db"
+
+levels = 25
+snap_secs = 1
+
+# ★ false で開始する。GMO の orderbooks は差分ではなく毎回フルスナップショット
+#   なので、raw_events = true は実測 ~400MB/日/ペア = 5ペアで 2GB/日。C: の空きは
+#   165GB で bitbank 側も食っているため、それでは 2 ヶ月で埋まる。
+#
+#   いま答えを出したい問い（毒性）は trades + book_snap の forward markout で
+#   足りるので、まずは軽量で回す（実測 ~45MB/日、5ペア合計）。markout が
+#   「行ける」と言ったら、選んだ 1〜2 ペアだけ raw_events を立ててキュー
+#   レベルの分析（mm_ahead.py 系）に進む。
+raw_events = false
