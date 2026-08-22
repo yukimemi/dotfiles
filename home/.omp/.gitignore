@@ -23,6 +23,7 @@
 /agent/blobs/
 /agent/memories/
 /agent/sessions/
+/agent/cache/
 /agent/terminal-sessions/
 
 /browser-relay/

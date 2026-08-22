@@ -8,10 +8,10 @@ setupVersion: 2
 autolearn: 
   enabled: true
 modelRoles: 
-  smol: openrouter/~deepseek/deepseek-v4-flash-latest
+  smol: anthropic/claude-sonnet-5
   slow: anthropic/claude-opus-5
   plan: kimi-code/k3
-  default: openrouter/~deepseek/deepseek-v4-flash-latest
+  default: anthropic/claude-sonnet-5
   designer: anthropic/claude-opus-5
   tiny: openrouter/~deepseek/deepseek-v4-flash-latest
   advisor: kimi-code/k3
