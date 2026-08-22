@@ -8,6 +8,7 @@
 # credentials — never commit
 /oauth_creds.json
 /google_accounts.json
+/gemini-credentials.json
 
 # antigravity IDE / CLI payload (~230MB, redownloadable)
 /antigravity/
