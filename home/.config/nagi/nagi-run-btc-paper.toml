@@ -126,6 +126,13 @@ enabled = false # backtest で不発 or whipsaw と判定済み（nagi.toml の�
 # === 最適化（autotune）の挙動ノブ ===================================
 [optimize]
 robust_folds = 1
+# 時間一般化の選抜ハードニング (#29)。autosim 0 vs 3 (2026-08-23 測定):
+#   30d  +0.30% → +1.87%   90d  -0.72% → +1.98%   180d  +1.65% → +1.45%
+#   worst DD  0.51/0.64/1.74% → 0.61/0.61/0.72%
+#   リターンは 2/3 スパンで勝ち、worst-case で読むと 3 の最小リターン +1.45% >
+#   0 の最小 -0.72% かつ最大 DD も半分以下 (maximin では 3 が支配)。
+#   直近窓でたまたま勝った grid/dca への切替を弾き rally 前に trend を維持できた。
+wf_windows = 3
 # ★ 空にしてある。repo の nagi.toml は ["ETHUSDT","SOLUSDT"] だが、これは
 #   binance のシンボル表記で、exchange = "bitbank" では kline を引けない。
 #   横断学習をやるなら bitbank 表記（"eth_jpy" 等）に直してから入れること。
@@ -196,12 +203,12 @@ account = "main"
 
 [sleeve.trend]
 fast = 8
-slow = 34
-atr_period = 10
-atr_mult = 2.0
-order_quote = 20000.0
-target_vol_pct = 2.0
+slow = 21
+atr_period = 14
+atr_mult = 3.0
+order_quote = 40.0
+target_vol_pct = 1.0
 short_enabled = false
 trend_filter = 0
 slope_min_pct = 0.0
-hold_mode = false
+hold_mode = true
