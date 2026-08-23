@@ -9,6 +9,11 @@
 [vars]
 denops = false
 
+# on_event categories — reused across many plugins, see Tera template docs
+# https://github.com/yukimemi/rvpm#configuration (Tera templates section)
+on_ev_idle = '["CursorHold", "CursorHoldI"]'
+on_ev_buf_open = '["BufReadPre", "BufNewFile"]'
+
 [options]
 auto_clean = true
 url_style = "full"
@@ -31,7 +36,7 @@ lazy = true
 
 [[plugins]]
 url = "https://github.com/hrsh7th/nvim-dansa"
-on_event = ["BufRead", "BufNewFile"]
+on_event = {{ vars.on_ev_buf_open }}
 
 [[plugins]]
 url = "https://github.com/manuuurino/autoread.nvim"
@@ -102,18 +107,18 @@ when = "{{ vars.denops }}"
 
 [[plugins]]
 url = "https://github.com/yukimemi/silentsaver.nvim"
-on_event = ["BufReadPre", "BufNewFile"]
+on_event = {{ vars.on_ev_buf_open }}
 on_cmd = ["/^SilentSaver.*$/"]
 
 [[plugins]]
 url = "https://github.com/yukimemi/autoreplacer.vim"
 depends = ["denops.vim"]
-on_event = ["BufRead", "BufNewFile"]
+on_event = {{ vars.on_ev_buf_open }}
 when = "{{ vars.denops }}"
 
 [[plugins]]
 url = "https://github.com/yukimemi/autoreplacer.nvim"
-on_event = ["BufReadPre", "BufNewFile"]
+on_event = {{ vars.on_ev_buf_open }}
 on_cmd = ["/^AutoReplacer.*$/"]
 
 [[plugins]]
@@ -130,7 +135,7 @@ on_cmd = ["/^Ahdr.*$/"]
 url = "https://github.com/uga-rosa/ccc.nvim"
 when = "{{ vars.denops }}"
 on_cmd = ["/^Ccc/"]
-on_event = ["BufRead", "BufNewFile"]
+on_event = {{ vars.on_ev_buf_open }}
 lazy = false
 
 # ── snacks ──────────────────────────────────────
@@ -142,51 +147,51 @@ url = "https://github.com/folke/snacks.nvim"
 
 [[plugins]]
 url = "https://github.com/lambdalisue/vim-seethrough"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/andymass/vim-matchup"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/mopp/smartnumber.vim"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/xiyaowong/virtcolumn.nvim"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/RRethy/vim-illuminate"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/unblevable/quick-scope"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/ntpeters/vim-better-whitespace"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/LumaKernel/nvim-visual-eof.lua"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/DanilaMihailov/beacon.nvim"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/gen740/SmoothCursor.nvim"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/itchyny/vim-highlighturl"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/chrisgrieser/nvim-origami"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/folke/noice.nvim"
@@ -196,11 +201,11 @@ depends = ["nui.nvim"]
 
 [[plugins]]
 url = "https://github.com/folke/which-key.nvim"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/y3owk1n/undo-glow.nvim"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/folke/twilight.nvim"
@@ -212,11 +217,11 @@ on_cmd = ["ZenMode"]
 
 [[plugins]]
 url = "https://github.com/karb94/neoscroll.nvim"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/Bekaboo/dropbar.nvim"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/Amansingh-afk/milli.nvim"
@@ -224,7 +229,7 @@ when = "false"
 
 [[plugins]]
 url = "https://github.com/yukimemi/autocursor.nvim"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 on_cmd = ["/^EnableAutoCursor/", "/^DisableAutoCursor/"]
 setup = {}
 
@@ -232,13 +237,13 @@ setup = {}
 
 [[plugins]]
 url = "https://github.com/nvim-lualine/lualine.nvim"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 # ── lsp ───────────────────────────────────────────
 [[plugins]]
 url = "https://github.com/neovim/nvim-lspconfig"
 depends = ["blink.cmp"]
-on_event = "BufReadPre"
+on_event = {{ vars.on_ev_buf_open }}
 
 [[plugins]]
 url = "https://github.com/mason-org/mason.nvim"
@@ -251,7 +256,7 @@ on_source = ["nvim-lspconfig"]
 
 [[plugins]]
 url = "https://github.com/stevearc/conform.nvim"
-on_event = "BufReadPre"
+on_event = {{ vars.on_ev_buf_open }}
 
 [[plugins]]
 url = "https://github.com/lewis6991/hover.nvim"
@@ -264,7 +269,7 @@ on_map = [
 
 [[plugins]]
 url = "https://github.com/mfussenegger/nvim-lint"
-on_event = ["BufReadPre", "BufNewFile"]
+on_event = {{ vars.on_ev_buf_open }}
 
 [[plugins]]
 url = "https://github.com/nvimdev/lspsaga.nvim"
@@ -548,16 +553,16 @@ on_cmd = ["Hardtime"]
 
 [[plugins]]
 url = "https://github.com/haya14busa/vim-asterisk"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/lambdalisue/vim-kensaku"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/kevinhwang91/nvim-hlslens"
 depends = ["vim-asterisk"]
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/MagicDuck/grug-far.nvim"
@@ -567,11 +572,11 @@ on_cmd = ["/^GrugFar/"]
 
 [[plugins]]
 url = "https://github.com/lewis6991/gitsigns.nvim"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 
 [[plugins]]
 url = "https://github.com/sindrets/diffview.nvim"
-on_event = ["BufRead", "BufNewFile"]
+on_event = {{ vars.on_ev_buf_open }}
 
 [[plugins]]
 url = "https://github.com/lambdalisue/vim-askpass"
@@ -782,12 +787,12 @@ lazy = true
 [[plugins]]
 url = "https://github.com/yukimemi/lumiris.vim"
 depends = ["denops.vim"]
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 when = "{{ vars.denops }}"
 
 [[plugins]]
 url = "https://github.com/yukimemi/lumiris.nvim"
-on_event = "CursorHold"
+on_event = {{ vars.on_ev_idle }}
 on_cmd = ["/^Lumiris.*$/"]
 
 [[plugins]]
