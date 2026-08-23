@@ -28,6 +28,7 @@
 
 /browser-relay/
 /cache/
+/webcache/
 /logs/
 /natives/
 /puppeteer/
