@@ -51,6 +51,9 @@ image-cache/
 # mcp cache
 mcp-needs-auth-cache.json
 
+# telemetry
+telemetry/
+
 # plugin cache & marketplace metadata (runtime, regenerable)
 plugins/.last_inuse_sweep
 plugins/cache/
