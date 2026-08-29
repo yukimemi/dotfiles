@@ -1,0 +1,342 @@
+# nagi — grid/DCA/trend backtest & paper/testnet 取引ボットの設定（作業コピー；自由に編集可）。
+# 既定はペーパー（実価格・ローカル擬似約定、キー不要）。下の [execution] で Binance Spot
+# testnet の実約定に opt-in できる（フェイク資金、キーは env 参照のみ）。実マネーは扱わない。
+#
+# === autotune が書き換える範囲 =====================================
+# persist_config = true のとき、apply / auto-tune が書き戻すのは:
+#   1) [[sleeve]] ブロック全部（戦略パラメータ・alloc・regime・label）
+#   2) regime.trend_threshold_pct
+# それ以外（このファイルの他のキーとコメント）は一切触りません。
+#   → 機能トグル・コスト・方針ノブ = あなたが決める固定値
+#   → 戦略の細かい数値・配分・トレンド閾値 = autotune が探索して上書き
+# ===================================================================
+
+# exchange / symbol / market / 手数料 / 鍵 は下の [vars] profile 1 箇所で切り替わる（teravars）
+exchange = "{{ vars.profile }}"
+{% if vars.profile == "bitbank" %}
+symbol = "xrp_jpy" # bitbank: 現物アルト（リベート対象）
+# symbol = "btc_jpy" # bitbank: 現物アルト（リベート対象）
+initial_cash = 10000
+{% else %}
+symbol = "BTCUSDT" # binance: 1 インスタンス = 1 銘柄
+initial_cash = 1000
+{% endif %}
+db_path = "nagi.db"
+
+# --- インジケータの足（ボット唯一のタイムフレーム） -------------------
+# regime / voltarget / 全 strategy（EMA・ATR・RSI）が共有する単一の足。
+# autotune は触らない固定ノブ（optimize メタノブと同じ "あなたが決める" 層）。
+# 短くすると noise/whipsaw、長くすると応答ラグで悪化 → 1h が実測スイートスポット。
+# 変えるなら walkforward/autosim で複数窓を測って固定。per-sleeve には書かない
+# （旧 config に残っていても無視され、この値が全コンポーネントへ伝播する）。
+bar_secs = 3600 # 3600 = 1h
+
+# --- 取引コスト（OOS を正直な数字にするため現実寄りに） -----------------
+fee_rate = 0.001 # 既定の片道手数料（0.001 = 0.1%）。maker/taker のフォールバック
+{% if vars.profile == "bitbank" %}
+maker_fee = -0.0002     # bitbank 現物アルト(BTC以外)の maker リベート(-0.02%)。負値=入金。2026/2 以降も継続
+taker_fee = 0.0012      # bitbank 現物アルト(BTC以外)の taker(0.12%)。※BTC/JPY だけ maker 0%/taker 0.10%
+maker_adverse_bps = 2.0 # 逆選択(bp)。リベートを正直に評価するため必須（0だと幻想に過剰配分）
+{% else %}
+maker_fee = 0.001       # binance: 通常 0.1%（fee_rate と同値）
+taker_fee = 0.001
+maker_adverse_bps = 0.0
+{% endif %}
+slippage_bps = 1.0 # taker の不利スリッページ(bp, 1bp=0.01%)。1.0 ≈ 小口の現実値
+# slippage_impact_bps_per_1k = 0.0  # taker の数量依存インパクト(bp/$1,000)。0=数量非依存
+# maker_fill_penetration_bps = 0.0  # 指値の約定確率: この深さ(bp)貫通で100%約定、浅いと比例で部分約定し残りは継続。touch=不約定。0=貫通すれば全約定（従来通り）
+
+# --- 市場タイプ -------------------------------------------------------
+{% if vars.profile == "bitbank" %}
+market = "spot" # JP 現物（funding なし・ロング志向）
+{% else %}
+market = "perp" # binance testnet（funding 計上・ショート可）
+{% endif %}
+funding_rate_8h = 0.0001 # perp 時のみ: 0.0001 = 0.01%/8h ≈ 11%/年（Binance 標準）。正=ロングが払う
+# maint_margin_rate = 0.004 # perp 時のみ: 維持証拠金率。equity が |notional|*率 を割ると強制清算（Binance BTCUSDT ≈0.4%）。0=清算なし（従来通り）。spot は無関係だが残高超過の買い/保有超過の売りは常に拒否
+
+# --- 起動・永続化 -----------------------------------------------------
+autostart_trading = false # false=STANDBY 起動（監視+最適化のみ、注文は "▶ 取引開始" まで出さない）
+# 下の [vars] profile スイッチ（teravars テンプレート）と併用可。persist は template-aware:
+#   テンプレートを含む生ファイルは toml_edit で解析できないため、[[sleeve]] 領域と
+#   trend_threshold_pct だけをテキスト書き換えし、Tera の制御ブロック/変数展開行は保全する。
+persist_config = true     # apply/auto-tune が [[sleeve]] と trend_threshold_pct を書き戻す
+
+# ===== 取引所プロファイル（teravars）: ここ 1 箇所で全部切り替わる ==========
+# profile を変えるだけで exchange / symbol / market / 手数料 / venue / 鍵 が
+# まとめて切り替わる。鍵は env 参照（リテラルは書かない）。
+# ※ "bitbank" はフィード(#102)+REST(#103)実装済みだが、kline/執行配線（#101 Phase
+#   1b/3b）が入るまで end-to-end 実行は不可（それまでは "binance" のまま運用）。
+[vars]
+profile = "bitbank" # ★ "binance"（Binance Spot testnet）| "bitbank"（JP 現物リベート）
+binance_key = "{{ env(name='BINANCE_TESTNET_KEY', default='') }}"
+binance_secret = "{{ env(name='BINANCE_TESTNET_SECRET', default='') }}"
+bitbank_key = "{{ env(name='BITBANK_API_KEY', default='') }}"
+bitbank_secret = "{{ env(name='BITBANK_API_SECRET', default='') }}"
+
+[server]
+host = "0.0.0.0"
+port = 8787
+
+# === ライブ/testnet 執行（M2 完了：`nagi run` が testnet で実約定） ======
+# mode="testnet" かつキーありで `nagi run` が Binance Spot testnet に実発注する。
+# 約定は REST myTrades ポーリング(≤5s)で取り込む（listenKey WS は廃止 #72。即時 WS
+# 約定は Ed25519 session.logon が必要 → 残課題 #75）。エンジンの reconcile はこの
+# ≤5s ラグに合わせてスロットルされ、未確定約定の二重発注を防ぐ（#62/#66）。
+# 配管確認 CLI: testnet-check(REST) / testnet-trade(adapter) / testnet-reset(口座フラット化)。
+# シークレットは env 参照のみ。default='' でキー無しでも backtest/paper run は可。
+{% if vars.profile == "bitbank" %}
+mode = "paper"        # bitbank はまだ paper のみ（実板に対する擬似約定。執行配線は #101 Phase 3b）
+venue = "bitbank-spot"
+{% else %}
+mode = "testnet"      # "paper"（既定）| "testnet"。testnet+キーで `nagi run` が実約定
+venue = "binance-spot"
+{% endif %}
+pool_pct = 0.70        # co-located: 管理プール = pool_pct × 口座残高、残りは per-slice バッファ（<1 必須）
+# co-located（案2）: 全 sleeve が下の単一 [[account]] "main" を共有。単一キー欄は空にし、口座は [[account]] から。
+api_key = ""
+api_secret = ""
+
+[[account]]
+id = "main"
+{% if vars.profile == "bitbank" %}
+api_key = "{{ vars.bitbank_key }}"
+api_secret = "{{ vars.bitbank_secret }}"
+{% else %}
+api_key = "{{ vars.binance_key }}"
+api_secret = "{{ vars.binance_secret }}"
+{% endif %}
+
+# === 運用アラート（任意・既定オフ） ==================================
+# 主要な状態遷移（いまは risk halt）を Discord webhook に push。無人運用で
+# 「気づいたら halt していた」を防ぐ。URL は env 参照のみ（リテラル禁止）。
+[notify]
+enabled = false  # ★ paper インスタンス: live xrp の Discord を汚さないため OFF
+discord_webhook_url = "{{ env(name='NAGI_DISCORD_WEBHOOK', default='') }}"
+fills = true   # 約定（fill）ごとに通知。1ティック分はまとめ、バーストはシンクで coalesce。
+on_flat = true
+
+# === 市場レジーム・フィルタ ==========================================
+# fast/slow EMA の乖離でトレンド/レンジ判定。sleeve を誤ったレジームで退避。
+[regime]
+enabled = true
+fast = 20
+slow = 50
+trend_threshold_pct = 1.5 # |emaFast-emaSlow|/emaSlow*100 がこれ以上でトレンド ← autotune が上書き
+threshold_vol_mult = 0.0
+trend_exit_pct = 0.25 # #167 ヒステリシス: 一度 trend 入りしたら乖離が 0.25% を割るまで range に落とさない。境界(0.5%)張り付き時に1円の下げで trend sleeve がフラット化する whipsaw を防ぐ。0=off。autotune は触らないユーザーノブ
+# --- 暴落退避（#28 / #40。低リスク方針なので有効化） ---
+downtrend_flatten = true    # #28 自分自身が confirmed downtrend の間、grid/DCA を現金退避（ナンピン停止）
+downtrend_reclaim_pct = 3.0 # 安値からの戻り% で再エントリー（時間ベースでなく回復確認で再武装）
+{% if vars.profile == "bitbank" %}
+btc_filter = false          # bitbank は単一フィードで BTC 参照を別途張れないため当面 off（要 #101 でクロス銘柄フィード）
+{% else %}
+btc_filter = true           # #40 BTC が崩れてる間 alt を退避。※ symbol=BTCUSDT 中は自己参照で inert、alt にすると発動
+{% endif %}
+btc_symbol = "BTCUSDT"      # 参照シンボル。live は起動時に bind（変更は restart 必要）
+
+# === 高速プライスストップ（実装・検証済み → off のまま） ==============
+# 毎ティックの価格ベース退避。grid/DCA を急落で即フラット化し、equity DD 15%
+# の risk halt より手前・時間足ラグ無しで反応する穴を埋める狙い。
+# 検証結果（BTCUSDT 15m/1h backtest + 90d autosim）: realistic 閾値では現データを
+# 改善せず ＝ 不発（捕まえる急落が無い）か、緩下げで whipsaw（押し目を底で売る）。
+# autotune が下落時に DCA→trend へ配分回転して既に代替しているのも一因。
+# → 既定 off。flash crash(2020-03 級)を特に防ぎたい時だけ on にし、必ず再計測。
+[faststop]
+enabled = false
+mode = "trailing" # "trailing"=直近高値からの下落 / "velocity"=window_min 内の下落（急落検知・緩下げ無視）
+#   ※ velocity は「足 < window_min」でないと構造的に不発
+drop_pct = 8.0    # 参照高値からこの% 下落で退避
+window_min = 30   # velocity の参照窓（分）。trailing では無視
+reclaim_pct = 3.0 # 安値からこの% 戻りで再武装（時間ベースでなく回復確認）
+
+# === 最適化（autotune）の挙動ノブ ===================================
+# 探索された候補を「どう選抜するか」。値そのものでなく選抜の頑健性を決める。
+[optimize]
+robust_folds = 1 # #29 訓練窓を 3 分割し最悪 fold スコアで選抜（過学習除去）。1=従来。大きいほど厳しく遅い
+train_symbols = [
+  "ETHUSDT",
+  "SOLUSDT",
+] # #30 複数銘柄で頑健性検証。OOS 報告は trade symbol のまま。空=単一銘柄
+symbol_agg = "worst" # #39 銘柄間集約: "worst"=全銘柄で持つ（資本保全）/ "mean"=平均（リターン寄り）
+plateau_k = 5 # #29 単一ピークでなく近傍 k 個の平均スコアが高い「台地」を選抜（孤立スパイク=過学習を回避）。1=従来 argmax
+# breadth_penalty = 0.0     # #29 探索幅ペナルティ: 候補が多いほど勝者の OOS スコアを scale×σ×E[max of N] で割引（switch のバーを上げる）。0=無効（既定）。train/test 分割が主防御なので副次 prior、有効化時は小さめ(0.1〜0.3)から
+# wf_windows = 0            # #29 walk-forward 選抜: 各候補を w 個のローリング 50%重複前方窓で評価し最悪窓で選抜（時系列汎化を要求）。>=2 で robust_folds の分割を置換、0/1=無効（既定→robust_folds のまま）
+# sweep_slope = false       # #31 trend の trend-strength スロープゲート(slope_min_pct)を最適化器で探索。OOS 改善時のみ採用。false=ゲート常時off（既定→byte-for-byte）
+
+# === ポートフォリオ DD 連動の縮小ラダー（有効化） ====================
+# 全体が drawdown したら新規注文サイズを段階的に縮小（暴落での出血を抑える）。
+[derisk]
+enabled = true
+start_dd_pct = 5 # この DD% から縮小開始
+full_dd_pct = 20 # この DD% で min_scale に固定
+min_scale = 0.34 # 最大縮小時の注文サイズ倍率（≈ 1/3）
+
+# === ボラ・ターゲティング（有効化） ==================================
+# 実現ボラが上がると露出を下げる（チョップ/暴落帯から自動で身を引く）。derisk と乗算合成。
+[voltarget]
+enabled = true
+target_vol_pct = 1.0 # 目標の 1 バールあたり実現ボラ%。露出 ≈ target/realized
+period = 20          # 実現ボラ推定のバー数
+min_scale = 0.5      # 高ボラ時の下限倍率
+max_scale = 1.0      # 1.0=縮小のみ（レバレッジ無し）。>1 は低ボラ時に増し玉（現金マイナス注意）
+
+# === ファンディング・ティルト（#31 perp 専用。既定 off） ==============
+# 8h funding の絶対値が極端＝ポジション混雑＝平均回帰リスク高。混雑側へ増し玉せず
+# 新規エクスポージャを縮小する（derisk/voltarget と乗算合成）。spot は funding=0 で不発、
+# 既定 off なので byte-for-byte。perp で検証して OOS 改善時のみ有効化。
+# ※適用範囲: backtest / optimize / autosim のみ。live(`nagi run`)は funding feed 未配線
+#   （現状 spot testnet）なので live では不発。perp live 配線は今後の課題。
+[funding_tilt]
+enabled = false  # true で有効化（perp のみ作動）
+start_pct = 0.05 # |8h funding率%| がこれ以上で縮小開始（Binance 中立は ~0.01%）
+full_pct = 0.2   # この |率%| で min_scale に固定
+min_scale = 0.5  # 最大縮小時の注文サイズ倍率
+
+# === リスク制限（各 sleeve の自己 equity に適用） ====================
+[risk]
+max_drawdown_pct = 15    # この DD% で取引停止
+daily_loss_limit = 0     # 1 日損失上限（0=無効）
+halt_outside_band = true # グリッド帯を外れたら停止
+halt_liquidate = true    # 停止時にポジションを成行クローズ（低リスク推奨。トレードオフ: 急落停止で底値売り）
+
+# === アカウント級キルスイッチ（任意・既定オフ） ======================
+# per-sleeve risk は各 sleeve 自身の equity しか見ない。複数 sleeve が各自の
+# 上限内でも口座全体が出血するケースの最終バックストップ（集約で判定）。
+# トリップ＝全 sleeve を停止（flatten 任意）。sticky で、解除は reload のみ
+# （autotune が現状況に再最適化してから再武装。time-based 自動再開はしない）。
+# [killswitch]
+# enabled = true
+# max_loss_pct = 25            # 開始時 equity から -25% で発火（0=無効）
+# max_gross_exposure_pct = 0   # Σ|建玉notional| が開始 equity の n% 超で発火（0=無効。主に perp）
+# flatten = true               # 発火時に全 sleeve 成行クローズ（false=新規停止のみ）
+
+# ⚠ 応急: persist_config の書き戻し(rewrite_templated_config)は [[sleeve]] 以降を捨てる。
+#    そのため [mm] は [[sleeve]] より前に置いて autotune persist で消えないようにする。
+#    本修正は tail 保全PR で対応予定（それ後はこの順序制約は不要になる）。
+[mm]
+# ============================================================================
+# eth_jpy PAPER インスタンス（2026-08-27 作成）。live xrp とは別プロセス・別 DB。
+#
+# ■ なぜ eth か
+#   market.db 39.5日（2026-07-19..08-27、全ペア同一窓）の mm_markout スクリーン、
+#   shipped gates 下の per-fill edge15 / gated prints/day:
+#     xrp +0.74 / 1537   eth +0.46 / 1044   sol -0.06 / 497   doge -0.35 / 514
+#     btc は maker リベート 0 ＝ 構造的に不可
+#   ⇒ 横展開の候補は eth だけ。同 notional で xrp の約4割の稼ぎが期待値。
+#   ⇒ ただし print ベース markout は「叩かれた事による条件付き」を過小評価する
+#     楽観バイアスがあり、主張できるのは順位だけ。だからまず paper で実測する。
+#
+# ■ このインスタンスで見る指標（メモリの A/B 分解）
+#   fills/h は 1.8日、bp/fill は数日、net は 33日。まず fills/h と bp/fill。
+#   比較対象は live xrp の /state（:8788）と mm-xrp_jpy-live.db。
+#
+# ■ ゲート値は xrp の live 実効値をそのまま複製している（tox 10/3、imb 0.1、
+#   drift 5、vol off、jst_hours off）。ただし eth の print 密度は xrp の約1/3
+#   （336 vs 1012 prints/h）なので tox_max_prints=10 は eth では実質ほぼ発火しない。
+#   閾値の再導出は「まず素で測ってから」——ここで先に弄ると何を測ったか分からなくなる。
+#
+# ■ 単位系: lot / max_inventory / lot_shadow_max / min_front_qty はベース通貨建て。
+#   xrp の数字をそのまま持ってくると桁が3〜4桁ずれる。下で eth 換算済み。
+#
+# ■ 起動:  nagi mm -c ~/.config/nagi/nagi-mm-eth-paper.toml   （--live-arm は付けない）
+#   状態:  curl -s http://127.0.0.1:8790/state
+#   履歴:  mm-eth_jpy-paper.db（リポジトリ root、cwd 依存）
+# ============================================================================
+
+pair                  = "eth_jpy"  # xrp に次いで唯一 gated edge がプラスだったペア（2026-08-27 スクリーン）
+paper                 = true  # ★ 実弾ではない。口座・証拠金に一切触れない（信用は口座共有なので live 2本立ては予算を割るまで不可）
+lot                   = 0.0063  # xrp lot 10.0 @227.88 = 2,279円 と同 notional（eth @361,640 で 2,278円）。step 0.0001
+max_inventory         = 0.756  # 0.0063 x 120クリップ = live xrp（1200/10）と同じクリップ数
+exit_full_size        = true
+reduce_only_keeps_entries= true
+venue_legs_auto       = true
+venue_legs            = false
+flat_entry_ungated    = false
+hold_secs             = 0
+taker_after_secs      = 0
+taker_early_bps       = 0
+max_open_loss_pct     = 5
+exit_patience_secs    = 360000
+lot_shadow            = true
+lot_shadow_max        = 0.0101  # xrp 16.0 と同比率（lot の 1.6 倍）
+lot_shadow_score      = true
+jst_hours             = []
+imb_gate              = 0.1
+trend_slow_secs       = 300
+trend_fast_secs       = 30
+trend_band            = 0.0005
+tox_max_prints        = 10
+tox_max_streak        = 3
+tox_window_secs       = 10
+vol_max_bps           = 0
+vol_window_secs       = 60
+cooldown_secs         = 0
+min_front_qty         = 0
+drift_gate_bps        = 5
+lead_venue            = "binance"
+lead_symbol           = "ETHUSDT"  # binance の先行フィード。lead_gate_bps=0 なので現状 inert だがペアは合わせる
+lead_window_secs      = 3
+lead_gate_bps         = 0
+touch_stable_secs     = 0
+levels                = 20
+status_port           = 8790  # live xrp(8788) / nagi run(8787) と衝突しない番号。http://127.0.0.1:8790/
+control_token         = "{{ env(name='NAGI_MM_TOKEN', default='') }}"
+
+[record]
+pairs = ["xrp_jpy", "btc_jpy", "eth_jpy", "sol_jpy", "doge_jpy"] # xrp=既存+横断OOS用にメジャー/準メジャー/速アルト/リテール毒を追加
+raw_events = true   # depth_events も保存（queue-ahead リプレイ用）。false なら trades+book_snap のみ ~8MB/日/ペア
+# db_path = "market.db"  # 既定（ボットの nagi.db とは別ファイル）
+# levels = 25            # book_snap の板段数（既定）
+# snap_secs = 1          # book_snap 間隔（既定）
+
+[[sleeve]]
+strategy = "grid"
+alloc = 0.0
+label = "grid"
+regime = "range"
+account = "main"
+
+[sleeve.grid]
+band_pct = 12.0
+grids = 20
+order_quote = 150.0
+recenter = true
+recenter_trigger = 0.7
+vol_adapt = false
+vol_bars = 20
+vol_k = 2.0
+
+[[sleeve]]
+strategy = "dca"
+alloc = 0.9
+label = "dca"
+regime = "any"
+account = "main"
+
+[sleeve.dca]
+order_quote = 150.0
+drop_pct = 1.0
+take_profit_pct = 2.0
+max_buys = 40
+rsi_period = 14
+rsi_buy = 25.0
+
+[[sleeve]]
+strategy = "trend"
+alloc = 0.1
+label = "trend"
+regime = "trend"
+account = "main"
+
+[sleeve.trend]
+fast = 8
+slow = 34
+atr_period = 10
+atr_mult = 2.0
+order_quote = 400.0
+target_vol_pct = 2.0
+short_enabled = false
+trend_filter = 0
+slope_min_pct = 0.0
+
