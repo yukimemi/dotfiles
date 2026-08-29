@@ -110,8 +110,8 @@ on_flat = false
 enabled = true
 fast = 20
 slow = 50
-trend_threshold_pct = 2.0 # ← autotune が上書きする
-threshold_vol_mult = 3.0
+trend_threshold_pct = 1.5 # ← autotune が上書きする
+threshold_vol_mult = 0.0
 trend_exit_pct = 0.25 # ヒステリシス(#167)。境界張り付き時の whipsaw 防止
 downtrend_flatten = true    # 自分自身が confirmed downtrend の間 grid/DCA を現金退避
 downtrend_reclaim_pct = 3.0 # 安値からの戻り% で再エントリー
@@ -181,7 +181,7 @@ vol_k = 2.5
 
 [[sleeve]]
 strategy = "dca"
-alloc = 0.2
+alloc = 1.0
 label = "dca"
 regime = "any"
 account = "main"
@@ -196,7 +196,7 @@ rsi_buy = 30.0
 
 [[sleeve]]
 strategy = "trend"
-alloc = 0.8
+alloc = 0.0
 label = "trend"
 regime = "trend"
 account = "main"
