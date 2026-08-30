@@ -217,7 +217,45 @@ halt_liquidate = true    # 停止時にポジションを成行クローズ（�
 [mm]
 pair          = "xrp_jpy"
 paper         = false             # LIVE 実弾運用用（~/.config/nagi/ 配下＝repo 外。Claude/git の checkout 操作で飛ばないようにここに置く）
-lot           = 10.0              # 片側あたりの発注数量。**2026-08-25 11:4x JST: 6.0 → 10.0**。
+lot           = 7.0               # ★ 2026-09-04 6.0 -> 7.0 に戻す（6.0 への引き下げは却下：P&L は lot に線形なので通常時の収益が -14%）。
+#                                 # long/short 各 100 clips は per-book 700 で表現。gross 1400 は
+#                                 # MM_RELOAD_MAX_INV=1200 に refuse されるため、定数を上げるまで gross は 1200 (=171clips)。
+#                                 # ★ 2026-09-03 5.0 -> 7.0。max_inventory は 1200 据え置き（= clips 240 -> 171）。
+#                                 # 根拠: lot 5.0 世代(09-02 20:29〜)の実測ピーク建玉は 85 units = 17 clips /240、
+#                                 #   認可 ¥257k に対し実使用 ¥18k。cap は全く binding していないので
+#                                 #   clips を削る側に余裕を使う（stack_room の承認も max_inventory 据え置きなら不要、
+#                                 #   lot 単独 raise は inv_raise_refused=false なので pair coupling も無害）。
+#                                 # 収支: 09-03 net +1.82bp / rebate ¥102.8 / realized -¥9.1。lot に線形なので +40%。
+#                                 # 円の再導出: max_open_loss_pct 5 × 1200 × mid 213.3 = ¥12,796（max_inventory 不変なので据え置き。
+#                                 #   ポジションだけ 1.4 倍になるぶん相対的に近くなる＝安全側）。
+#                                 # ★ 2026-09-02 0.18 -> 5.0。#354 stage 2 (PR #406) 完了で min-lot 退避の理由が消滅。
+#                                 # 1clip ≈ ¥1,054(mid 210.7)。de-risk 前は lot 10/1200=120clips で
+#                                 # 満玉 ¥252,840 だったので、同notional で clip 数だけ2倍(=240)。
+#                                 # AGENTS.md「cap 到達 = nanpin の exit 機構が枯渇」(lot 10 世代で 118.5/120
+#                                 # clips に到達)への構造的対処。P&L は lot に線形(t=+0.82 vs 5倍null)なので
+#                                 # 期待値もテールも比例。リロード上限 MM_RELOAD_LOT_CAP=10。
+#                                 # ★ 目的は収益ではなく「移行の器」。#354 の per-book 会計分割と
+#                                 #   [mm.long]/[mm.short] の設定分割を入れる際、xrp を現行の
+#                                 #   片側構成のまま維持するのが難しい。バイナリ固定も検討したが
+#                                 #   却下（後述）。額面を落として eth と同じ土俵に乗せる方が安全。
+#                                 # ★ 基準は venue 最小ではなく eth と同じ額面。venue 最小は
+#                                 #   min qty 0.0001（起動ログ）＝ 226円で 0.02円 なので無意味。
+#                                 #   eth は lot 0.0001 × 401,000 ≒ 40.1円/clip。
+#                                 #   xrp は 0.18 × 227 ≒ 40.9円/clip で一致させた。
+#                                 # ★ clip 数 120 は据え置き（対で max_inventory も 1/55.6）。
+#                                 #   clip 数は xrp 自身の実測（最深 29 clips、60/60 でキャップ
+#                                 #   接触）から選ばれた戦略形なので、変えるのは額面だけ。
+#                                 # ★ バイナリ固定を却下した理由: job/nagi-mm.yaml と
+#                                 #   scripts/mm-common.ps1 / mm-start.ps1 はいずれも
+#                                 #   Name = 'nagi.exe' で絞る。別名 exe は三者から見えず、
+#                                 #   単一インスタンス判定が空振りして同じ建玉・同じ DB に
+#                                 #   2 本目の実弾 bot が 5 分後に起動する。同名別ディレクトリ
+#                                 #   なら回避できるが、stale バイナリの保守と安全修正の
+#                                 #   取りこぼしが残る（AGENTS.md の ~/bin/nagi-record.exe
+#                                 #   6 週間 stale 事故）。額面を落とす方が副作用が無い。
+#                                 # ★ 旧値 10.0 は MM_RELOAD_LOT_CAP ちょうどだった。戻す時は
+#                                 #   max_inventory と対で戻す（RAISE は stack_room の
+#                                 #   マージンゲートを通る。CUT は素通り）。
 #                                 # ★ MM_RELOAD_LOT_CAP = 10.0 ちょうど。これ以上はコード変更が要る。
 #                                 # 対で max_inventory 400 → 1000（クリップ 66.7 → 100）。
 #                                 # 根拠は #346: クリップ数を固定すれば P&L は lot に線形（lot2/cap120 vs
@@ -300,7 +338,34 @@ lot           = 10.0              # 片側あたりの発注数量。**2026-08-2
 #      「損切条件を足す」ではなく cap 引き上げ（下記 360 → 400）。
 #      監視は既に足りている（kanade nagi-mm-pnl が 5分毎に inv と mxi を obs_events
 #      に記録）ので、機構を足すなら切る機構ではなく閾値アラート。
-max_inventory = 1200                # 在庫上限 = lot 10 で 120 クリップ。**2026-08-25 14:3x JST: 1000 → 1200**。
+max_inventory = 1200                # ★ 2026-09-02 43.2 -> 1200。240クリップ、満玉 ¥252,840(mid 210.7)。
+#                                 # = 口座 GROSS 上限 = max_open_loss_pct の分母。円ストップ = 5% × 1200 × mid
+#                                 # = ¥12,643(実機 /state protect.ceiling = 12642.93 で一致)。
+#                                 # MM_RELOAD_MAX_INV=1200 ちょうど(`> cap` 判定なので通過)。stack_room は
+#                                 # (371,425/0.5)/210.7×0.5 = 1,763 units 許容 -> 1.47倍の余裕でゲート通過。
+#                                 # ★ lot / max_inventory / 価格が動いたら円と 追証/ロスカット 列を引き直すこと。
+                                    # ユーザー判断: xrp も long/short(primary/income)とも 120 クリップ
+                                    # ずつで良い、と明示指示（eth の 2026-08-30 判断と同一パターン）。
+                                    # income_max_inventory も対で 10.8 -> 21.6（120クリップ）に上げる。
+                                    # primary_room = max_inventory - income_max_inventory = 21.6 = 定理により
+                                    # parked 脚は常に120クリップ保証される（income budgetでは縛られない）。
+                                    # ★ 承知の上のコスト（eth と同じ2点）:
+                                    #   - 円ストップが倍増する。max_open_loss_pct=5 なので認可notional経由で
+                                    #     245円 -> 約479円（mid 221.69 時点）。RE-DERIVE routine 通り都度引き直すこと。
+                                    #   - carry の分岐点(fills/日 = 満玉クリップ数)が 120 -> 240 に上がる。
+                                    #     積んだ玉が回らなければ carry 負が深くなる（eth と同じ注意点）。
+#                                 # **2026-08-31 03:xx JST: 1200 → 21.6（lot と対で 1/55.6）**。
+#                                 # ★ 承認額面 21.6 × 227 ≒ 4,900円（旧 271,200円）。
+#                                 #   max_open_loss_pct 5 なので円建て停止は 13,560円 → 245円。
+#                                 # ★ これは「停止が初めて到達可能になる」変更。開いている
+#                                 #   10 XRP @227.142 に対し 245円 は -10.8% の水準で発火する。
+#                                 #   旧 13,560円 は 10 XRP では価格が負にならないと届かない＝
+#                                 #   実質ノーガードだったので、リスクは減っている。
+#                                 #   AGENTS.md の「有効化/引き下げは今開いている建玉を即座に
+#                                 #   拘束する。フラットな時に設定せよ」に該当する既知の副作用。
+#                                 # ★ 現在の建玉 10 XRP は新 cap 21.6 の 46%。cap は ENTRY 側
+#                                 #   だけを縛るので強制決済は起きない。exit_full_size = true
+#                                 #   なので既存建玉は 1 約定で出られる。
 #                                 # ★ 在庫 939/1000（残り6.1クリップ）まで来たので余裕だけ足した。
 #                                 #   8/23 に初 cap 到達した時と同じ判断（「容量で切ると損で切っていない」）。
 #                                 # ★ MM_RELOAD_MAX_INV = 1200 ちょうど。これ以上はコード変更が要る。
@@ -393,7 +458,24 @@ reduce_only_keeps_entries = true  # 2026-08-15: false → **true に復帰**。�
 #                                 # live 8.0日の実測: 売買コスト -2.72bp → +0.03bp、日次 -1.93 → +11.71円。
 #                                 # ★ martingale 型の分布（勝率高・左テール太、テールは未サンプル）。
 #                                 #   停止規則は kanade job 側に事前固定してある。
-venue_legs_auto = true            # #350 (2026-08-24 マージ)。両建てを検知している間だけ venue_legs を自動 ON にする。
+
+# ============================================================================
+# #354 脚別会計 — 2026-09-01 arm。eth で検証済みの構成を xrp にも適用。
+# ----------------------------------------------------------------------------
+                                    # #401（net-vs-legファントム修正）・#402（単一脚の決済床が
+                                    # net avg_costに落ちるバグ修正）を経て、eth と同じ土台で安全に
+                                    # 有効化できる状態。lot 0.18 は据え置き。max_inventory は下記の
+                                    # とおり leg_income 導入と同時に 21.6->43.2 へ対で倍化（据え置きではない）。
+                                    # 「long/short(primary/income)とも120クリップ」に統一。
+                                    # max_inventory を 21.6->43.2 に対で倍化済み（上記参照）ので
+                                    # primary_room = 43.2 - 21.6 = 21.6 = 120クリップが常に保証される。
+# ----------------------------------------------------------------------------
+venue_legs_auto = false           # ★ 2026-09-01 true -> false。`leg_income` と両立しない
+                                    # （auto ratchet は「事故の」ヘッジ解消用だが、leg_income は
+                                    # 2本目の脚を意図的に開くため、同時 arm すると ratchet が
+                                    # income 脚を冗長露出と誤認して unwind を発火する。eth で
+                                    # 2026-08-30 に実際に発生し同じ対処をした。以下は#350自体の
+                                    # 説明として残す（現在は上記理由でOFF固定）:
 #                                 # 手動 venue_legs とは OR。デッドライン10分(unwinding 実時間で計測、HALT や
 #                                 # positions ポール停止中は課金しない)→失敗時は1時間クールダウン→ラチェット(redundant が
 #                                 # 増えたら即停止)。停止方向は常に安全側(net 規則に戻るだけ)。キルスイッチ=この行を
@@ -404,7 +486,11 @@ venue_legs_auto = true            # #350 (2026-08-24 マージ)。両建てを�
 #                                 #   (3) average_price=0 の脚は hedged と読まれず arm しない(手動 venue_legs なら解消可)。
 #                                 # ★ sim では検証不可。次に両建てが出たときが初の live 検証: `unwinding=` が
 #                                 #   ステータス行/タイルに出るか、`grep -c 50062 mm.log` がどう動くかを見ること。
-venue_legs = false                # 2026-08-24 07:35:28→07:37:09 JST に一時 ON し両建て(L6/S78,重複6)を解消、直後に OFF へ復帰。
+venue_legs = true                 # ★ 2026-09-01 false -> true。`leg_income` を有効化したため
+                                    # venue_legs_auto を off にした（上記参照）ので、脚別保護層
+                                    # （決済床・円ストップ・escape）が新鮮な venue スナップショットを
+                                    # 得る手段がこれしか残っていない。eth と同じ「手動・常時ON」構成。
+                                    # 以下は #280 の経緯として残す（venue_legs_auto=true 時の話）:
 #                                 # 所要1分41秒。その間 bitbank 50062 が 7 件、全部 `sell 6.0`(=ロング脚を閉じる
 #                                 # 注文が在庫とズレて拒否) ＝ #283/#285 入りのバイナリでも #280 の症状は健在。常時 ON にはしない。
 #                                 # 2026-08-08 一時的に OFF(根本修正まで)。true にすると
@@ -427,6 +513,11 @@ venue_legs = false                # 2026-08-24 07:35:28→07:37:09 JST に一時
 #                                  # スナップショットの肯定的情報だけ信頼(空脚はネットに
 #                                  # フォールバック)。60秒古い建玉情報は使わない。
 #                                  # hot-reload 可 = 再起動なしのキルスイッチ。
+leg_poll_secs = 5                 # ★ 2026-09-01 arm。venue_legs を常時ON にしたことで #280
+                                    # （20秒古い建玉サイズで決済し bitbank 50062 で拒否される）の
+                                    # 再発条件が揃うため、eth と同じ緩和策を先に入れる。3秒鮮度の
+                                    # 建玉スナップショットに近づける。eth 側の導入理由（leg欠損0%）は
+                                    # xrpも現行0%（歴史的には32.5%）なので同じ条件を満たす。
 flat_entry_ungated = false        # #310 実験。2026-08-15 00:50 武装 → 12:10 中止(11.3h)。仮説は棄却。
 #                                 # 2手目以降のナンピンは通常どおり全ゲート。max_inventory は免除対象外。
 #                                 # 当初の根拠: 収入は出来高に線形。直近7日 net/notional = 2.03bp ± 0.11
@@ -710,6 +801,30 @@ status_port   = 8788              # ステータスページ http://127.0.0.1:87
 #                                 #   従来どおり fill ストリーム + venue の一度きり seed が権威。
 #                                 #   equity 曲線は display_offset で再起動をまたいで連続に見せる。
 control_token = "{{ env(name='NAGI_MM_TOKEN', default='') }}"
+
+# === 脚別ブック #354 stage 2 (PR #406) ==================================
+# ★ 2026-09-02: income_max_inventory / leg_income / leg_protect を削除し、
+#   per-book セクションへ移行。前2つは #405 で無条件化されたので削除は挙動不変。
+#   income_max_inventory は #405 で構造体から消えており、serde が黙って捨てていた
+#   ＝ 設定したはずの脚別枠が効いていなかった（PR #406 がこれを error! で鳴らす）。
+#
+# クリップ換算: lot 0.18 → 1clip ≈ ¥37.9（mid 210.7）
+#   [mm].max_inventory 43.2 = 240clips = 口座 GROSS 上限（円ストップの分母）
+#   各脚 18 = 100clips
+#   → 両脚合計 200clips < 240clips なので shares_fit=true（余裕あり）。
+#
+# なぜ 100: 検閲されていない最深の片脚 excursion は 29clips（lot 2 世代）。
+#   lot 10 世代は 118.5clips に達したが cap 120 で検閲された観測なので真の深さは不明。
+#   100clips は uncensored record の 3.4倍。
+#   ★ lot / max_inventory / 価格が動いたら円を引き直すこと（AGENTS.md の規則）。
+[mm.long]
+max_inventory = 700   # ★ 2026-09-04 600 -> 700。lot 7.0 で 100 clips。
+
+[mm.short]
+max_inventory = 700   # ★ 2026-09-04 600 -> 700。lot 7.0 で 100 clips（long と対称）。
+#                     #   share は gross cap [mm].max_inventory=1200 の下での「narrow」なので、
+#                     #   実エクスポージャ上限は不変（840+500=1340 > 1200 でも gross が先に binding）。
+#                     #   #364: xrp は short 脚が income 側。stack_room の承認は不要（gross 不変）。
 #                                 # ↑ default='' は必須。teravars は TOML パース前に
 #                                 #   ファイル全体を描画するので、# コメント内のテンプレートも
 #                                 #   評価される。default 無しだと未設定の env で設定読込ごと落ちる。

@@ -7,6 +7,7 @@
 
 /install-id
 /gpu_cache.json
+/autoqa.db
 
 /agent/agent.db
 /agent/agent.db-shm
@@ -25,6 +26,7 @@
 /agent/sessions/
 /agent/cache/
 /agent/terminal-sessions/
+/agent/managed-skills/
 
 /browser-relay/
 /cache/

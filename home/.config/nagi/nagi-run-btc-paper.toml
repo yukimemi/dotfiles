@@ -110,8 +110,8 @@ on_flat = false
 enabled = true
 fast = 20
 slow = 50
-trend_threshold_pct = 1.5 # ← autotune が上書きする
-threshold_vol_mult = 0.0
+trend_threshold_pct = 2.0 # ← autotune が上書きする
+threshold_vol_mult = 2.0
 trend_exit_pct = 0.25 # ヒステリシス(#167)。境界張り付き時の whipsaw 防止
 downtrend_flatten = true    # 自分自身が confirmed downtrend の間 grid/DCA を現金退避
 downtrend_reclaim_pct = 3.0 # 安値からの戻り% で再エントリー
@@ -170,44 +170,44 @@ regime = "range"
 account = "main"
 
 [sleeve.grid]
-band_pct = 8.0
-grids = 20
-order_quote = 5000.0
+band_pct = 10.0
+grids = 40
+order_quote = 15000.0
 recenter = true
 recenter_trigger = 0.7
-vol_adapt = true
+vol_adapt = false
 vol_bars = 20
-vol_k = 2.5
+vol_k = 2.0
 
 [[sleeve]]
 strategy = "dca"
-alloc = 1.0
+alloc = 0.9
 label = "dca"
 regime = "any"
 account = "main"
 
 [sleeve.dca]
-order_quote = 15000.0
-drop_pct = 3.0
+order_quote = 5000.0
+drop_pct = 1.0
 take_profit_pct = 2.0
-max_buys = 5
-rsi_period = 21
-rsi_buy = 30.0
+max_buys = 20
+rsi_period = 0
+rsi_buy = 35.0
 
 [[sleeve]]
 strategy = "trend"
-alloc = 0.0
+alloc = 0.1
 label = "trend"
 regime = "trend"
 account = "main"
 
 [sleeve.trend]
 fast = 12
-slow = 21
-atr_period = 10
-atr_mult = 2.0
-order_quote = 10000.0
-target_vol_pct = 0.5
+slow = 34
+atr_period = 14
+atr_mult = 3.0
+order_quote = 20000.0
+target_vol_pct = 1.0
 short_enabled = false
 trend_filter = 0
 slope_min_pct = 0.0

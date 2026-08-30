@@ -216,6 +216,44 @@ halt_liquidate = true    # 停止時にポジションを成行クローズ（�
 #    本修正は tail 保全PR で対応予定（それ後はこの順序制約は不要になる）。
 [mm]
 # ============================================================================
+# #354 脚別会計 live PoC — 2026-08-30 arm。**eth 最小 lot のみ。xrp は全部 off。**
+# ----------------------------------------------------------------------------
+# なぜ今 eth か: 単脚のあいだ脚別帳簿はネット帳簿と一致する（実測: realized 0.0 ==
+#   net_realized、unreal == net_unreal）ので、2本目の脚が無いと PoC の中身がゼロ。
+#   そして今 eth は short 71 clips を駐車中 = 駐車しているのが #364 実測で「悪い脚」
+#   （eth short は上げ regime で -19.269bp）、income quote が回すのが long =「良い脚」
+#   （全 regime で約 +2bp）。ペアと方向が測定上いちばん有利な組み合わせ。
+#
+# 上限リスク ≈ ¥240:
+#   円ストップ = max_open_loss_pct 5% x cap 0.012 x mid 393,000 ≈ ¥236
+#     （leg_protect 下では「脚ごとの逆行の合計」に対して効く。片脚が益なら 0 寄与）
+#   + taker 12bp x gross 名目 ¥3,183 ≈ ¥3.8 / 建玉金利 0.04%/day ≈ ¥1.3/day
+#
+# income_max_inventory = 0.001 の意味（10 clips）:
+#   gross = 現 short 0.0071 + income 0.001 = 0.0081 < cap 0.012。
+#   ★ これで「gross が cap に張り付き、かつ両側が OPEN と読まれて何も置けない」
+#     凍結状態（`refuses BOTH sides`）が**到達不能**になる。PoC の安全弁はこれ。
+#   駐車脚に残る枠は cap - income_max = 0.011（110 clips）= 定理、検査不要。
+#
+# venue_legs = true の理由:
+#   venue_legs_auto は「両建てを検出してから」arm するので、それ以前は
+#   leg_for が net sign にフォールバックし、net-flat で両側が OPEN と読まれる。
+#   venue の建玉を権威にしてこの経路を塞ぐ。bitbank が eth_jpy で両脚の行を返すことは
+#   tick record の seeded=true（#371 のガードが両脚を見た証拠、2,169 tick）で確認済み。
+#
+# 撤退方法: leg_protect = false の1行（hot-reload ~5s、常に narrow 方向）。
+#   income_max_inventory / income_lot は narrow のみなので単独では戻せない
+#   （leg_income = false でも止まる）。
+# ============================================================================
+                                    # 運用者判断: long も short と同じ 120 クリップ。
+                                    # 10 クリップのときは budget 自体が張り付きの原因だった
+                                    # (long が income_max にぴったり一致して停止していた)。
+                                    # `primary_room = cap - income_max` = 240-120 = 120 クリップなので
+                                    # 駐車脚(ナンピン側)の保証は 120 クリップのまま生きている。
+                                    # ここを cap と同値(240)にすると primary_room が 0 になり
+                                    # AGENTS.md の「averaging down IS the exit mechanism」を壊す。
+
+# ============================================================================
 # eth_jpy LIVE インスタンス（2026-08-27 作成）— **最小 lot の実弾計測**。
 # live xrp（:8788, nagi-mm-live.toml）とは別プロセス・別 DB・別ポート。
 #
@@ -257,11 +295,45 @@ halt_liquidate = true    # 停止時にポジションを成行クローズ（�
 pair                  = "eth_jpy"  # xrp に次いで唯一 gated edge がプラスだったペア（2026-08-27 スクリーン）
 paper                 = false  # ★ 実弾。--live-arm を付けたときだけ実際に発注する
 lot                   = 0.0001  # venue 最小 = ステップ。約40円。部分約定が起きない
-max_inventory         = 0.012  # 120クリップ（= live xrp と同じ形）。満玉 4,800円
-exit_full_size        = true
+max_inventory         = 0.024  # ★ 2026-08-30 0.012 -> 0.024。240クリップ、満玉 ¥9,444。
+                              # 運用者判断: long / short ともに 120 クリップ与える。
+                              # 経緯: long(income)脚が income_max=10 クリップに張り付いていた。
+                              # 張り付きの内訳は実測(24h, 1s サンプル 84,938行)で2つに分かれる —
+                              #   ① budget が 10 クリップ  -> income_max を上げれば解ける
+                              #   ② **床が市場より上**     -> touch ask >= long basis は 25.5% だけ。
+                              #      gate B(78.2% 許可)は二次要因。②を解くのはナンピンで basis を
+                              #      下げること (basis 393,573 -> 393,300 で可能率 ~60%、約 24 クリップ)。
+                              # ★ 承知の上のコスト2つ:
+                              #   - 円ストップが倍増する。cap は認可 notional なので
+                              #     `max_open_loss_pct`(5%) 経由で ¥236 -> ¥472。
+                              #     実測の脚別超過は ¥2〜7 なので依然「記録上の全超過より上」。
+                              #   - carry の分岐が上がる。1クリップ1日 carry ¥0.0157 =
+                              #     1クリップ往復 rebate ¥0.0157(4bp) なので、
+                              #     分岐 fills/日 = 満玉クリップ数。実測 121 fills/日 に対し
+                              #     gross 89 クリップで既に carry 負 (¥1.40/日 vs rebate ¥0.95/日)。
+                              #     240 クリップまで積むと分岐は 480 fills/日。
+                              #     つまり **積んだ玉が回らなければ carry 負は深くなる**。
+                              #     監視すべき数字: 脚別 OPEN:CLOSE 比 (2026-08-30 直近24h は
+                              #     long 15:5 / short 94:7 = どちらも回っていない)。
+exit_full_size        = true  # #260: 減らす側は保有数まるごとで出す。1ロットずつでは駐車脚を降ろせない。
+                              # 2026-08-30 復旧: 上の cap 撤回編集で範囲置換に巻き込まれて消え、
+                              # default(false) に落ちていた (hot-reload ログの
+                              # `exit_full_size: true → false` が証拠)。
+                              # 教訓: live config を「行範囲」で置換しない - 間の行が見えていない。
+
 reduce_only_keeps_entries= true
-venue_legs_auto       = true
-venue_legs            = false
+venue_legs_auto       = false  # ★ 2026-08-30 true -> false。`leg_income` と両立しない。
+                              # auto ratchet は「事故の」ヘッジを解消するために存在するが、
+                              # `leg_income` は2本目の脚を意図的に開く。同時に arm すると
+                              # ratchet が income 脚を冗長露出と見なして unwind を arm し、
+                              # income fill でそれが増えた瞬間に `grew` 判定が発火して
+                              # **`venue_legs` ごと1時間 stand down** する(脚を固定する規則が
+                              # 落ちて net fallback に戻る)。実測 2026-08-30 07:39 JST:
+                              # `redundant exposure GREW while unwinding it - the rule is
+                              #  opening legs, not closing them. Standing down` および
+                              # 19:04 JST 再発(unwinding=339s、ポジション不変)。
+                              # コード側にガードを入れるまでは設定で外す。
+venue_legs = true   # ← #354 PoC で false から変更（下のブロック参照）
 # --- 建玉レグの高速ポーリング (#368 / #280) --------------------------------
 leg_poll_secs         = 5  # ★ 2026-08-29 arm。eth 先行の理由: 最小 lot（満玉 4,800円）で、
 #                          # かつ leg 欠損 0%（xrp は歴史的に 32.5%、現行 0%）。
@@ -314,6 +386,27 @@ touch_stable_secs     = 0
 levels                = 20
 status_port           = 8791  # paper(8790)/live xrp(8788)/nagi run(8787) と非衝突
 control_token         = "{{ env(name='NAGI_MM_TOKEN', default='') }}"
+
+# === 脚別ブック #354 stage 2 (PR #406) ==================================
+# ★ 2026-09-02: income_max_inventory / leg_income / leg_protect を削除し、
+#   per-book セクションへ移行。前2つは #405 で無条件化されたので削除は挙動不変。
+#   income_max_inventory は #405 で構造体から消えており、serde が黙って捨てていた
+#   ＝ 設定したはずの脚別枠が効いていなかった（PR #406 がこれを error! で鳴らす）。
+#
+# クリップ換算: lot 0.0001 → 1clip ≈ ¥37.9（mid 379200）
+#   [mm].max_inventory 0.024 = 240clips = 口座 GROSS 上限（円ストップの分母）
+#   long 0.012 = 120clips / short 0.01 = 100clips
+#   → 両脚合計 220clips < 240clips なので shares_fit=true（余裕あり）。
+#
+# なぜ long=120: 検閲されていない最深の片脚 excursion は 29clips（lot 2 世代）。
+#   lot 10 世代は 118.5clips に達したが cap 120 で検閲された観測なので真の深さは不明。
+#   ★ 2026-09-05: long を 100→120clips に引き上げ（ユーザー指示）。
+#   ★ lot / max_inventory / 価格が動いたら円を引き直すこと（AGENTS.md の規則）。
+[mm.long]
+max_inventory = 0.012
+
+[mm.short]
+max_inventory = 0.01
 
 [record]
 pairs = ["xrp_jpy", "btc_jpy", "eth_jpy", "sol_jpy", "doge_jpy"] # xrp=既存+横断OOS用にメジャー/準メジャー/速アルト/リテール毒を追加

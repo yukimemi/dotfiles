@@ -34,3 +34,5 @@ browser:
   relay: true
 composer:
   shape: rail
+dev:
+  autoqaConsent: granted

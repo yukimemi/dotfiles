@@ -1,0 +1,25 @@
+# magi, machine-wide.
+#
+# This is the lowest-precedence config layer that magi reads. Everything here
+# applies to every repository on this machine, and any repository's own
+# `magi.toml` overrides it — which is the point: state a preference once here,
+# and let each project state only what is peculiar to it.
+#
+# Layers, in increasing precedence:
+#   1. built-in defaults (roster derived from the agent CLIs on PATH)
+#   2. this file
+#   3. <repo>/.magi/config.toml
+#   4. <repo>/magi.toml
+#   5. --config <path>
+
+[roles]
+# Who runs the `magi plan` interview and the browser conversation.
+#
+# `opus` is the roster's Claude seat, and `model = "opus"` resolves to the
+# latest Opus. Pinned because the interview is the one node a human sits
+# through: the model that asks the sharpest questions is not necessarily the
+# one that writes the best patch, and from a phone there is no `--agent` flag
+# to reach for.
+#
+# `--agent <id>` and the web UI's own agent field still override this per call.
+planner = "opus"
