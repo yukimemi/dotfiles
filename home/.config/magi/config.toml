@@ -12,14 +12,107 @@
 #   4. <repo>/magi.toml
 #   5. --config <path>
 
+# The roster is the agent CLIs installed on this machine, so it belongs here
+# rather than in any one repository.
+#
+# Gemini CLI is absent on purpose: Google retired the standalone client for
+# individual accounts, so the roster is claude (two models), opencode and
+# Antigravity.
+
+[[agents]]
+id = "opus"
+kind = "claude"
+model = "opus"
+
+[[agents]]
+id = "sonnet"
+kind = "claude"
+model = "sonnet"
+
+[[agents]]
+id = "oc"
+kind = "opencode"
+
+[[agents]]
+id = "agy"
+kind = "antigravity"
+
+# Seat assignment is a cost decision, and the numbers are measured, not guessed.
+# One implement seat cost $12.09 on opus against $6.95 on sonnet for the same
+# task - 1.7x - while `oc` reported $0.00. The driver is internal tool-loop
+# iterations (111 and 134 turns respectively): every turn re-reads the cached
+# context, so cache_read ends up ~= turns * context size, and the implement node
+# is where the turns are.
+#
+# Hence: the expensive model never implements. opus judges instead, which is a
+# handful of turns, and the free CLIs carry the implementation load.
 [roles]
+# Order matters now that one seat is the default: `resolve_roles` takes the
+# first `candidates` entries, so entry one writes every solo patch. On the
+# workload measured so far sonnet won 5 of 8 entries (62%), oc 3 of 7 (43%).
+#
+# `agy` stays in the roster. Its 0 of 4 is a reporting defect and not a verdict
+# on its patches - it does the work in child processes and its CLI hangs up on
+# its own stream before delivering, which is what `dropped_stream` now detects
+# and resumes. But a solo task has no second candidate to fall back on, so the
+# seat that reports reliably goes first.
+implementers = ["sonnet", "oc", "agy"]
+# Rotated so no judge sits on its own candidate: opus/agy/oc against
+# sonnet/oc/agy. Only matters when a task asks for more than one candidate.
+judges = ["opus", "agy", "oc"]
+reviewers = ["sonnet", "agy"]
+# Not the winner's own author by default: the fixer would inherit the
+# implementer's 100-turn session, and with it the whole accumulated cache-read
+# bill.
+#
+# That no longer holds for a solo task, where sonnet implements and sonnet
+# fixes. Left as it is on purpose: the reason above is cost, not correctness,
+# and the seat that just wrote the patch is the one that knows why.
+fixer = "sonnet"
 # Who runs the `magi plan` interview and the browser conversation.
 #
-# `opus` is the roster's Claude seat, and `model = "opus"` resolves to the
-# latest Opus. Pinned because the interview is the one node a human sits
-# through: the model that asks the sharpest questions is not necessarily the
-# one that writes the best patch, and from a phone there is no `--agent` flag
-# to reach for.
+# Pinned because the interview is the one node a human sits through: the model
+# that asks the sharpest questions is not necessarily the one that writes the
+# best patch, and from a phone there is no `--agent` flag to reach for.
 #
 # `--agent <id>` and the web UI's own agent field still override this per call.
 planner = "opus"
+
+# The shape of a run is a preference about time and money, not about any one
+# repository. A repo that genuinely needs a different shape says so in its own
+# magi.toml.
+[graph]
+# One implementation by default. Competition is still here and still wins work
+# worth having - it is simply no longer what every task buys without being
+# asked. See `Graph::candidates` for the numbers behind this.
+candidates = 1
+judges = 3
+deliberate_rounds = 1
+reviewers = 2
+# Three, against the built-in six: a fourth round has never turned a blocked
+# run into a clean one here, and every round is two reviewers plus a fixer.
+review_rounds = 3
+max_parallel = 3
+# What the agents write in. The operator reads Japanese; the code and its
+# comments stay English, which the prompts say separately.
+language = "ja"
+sessions = true
+
+[update]
+mode = "notify"
+
+# Every checkout on this machine is jj-colocated, and jj keeps git's HEAD
+# detached at the working-copy commit - so magi can never infer the base branch
+# from `git symbolic-ref HEAD` here. It is the same answer for all of them, so
+# it is stated once. A repository whose default branch is not `main` overrides
+# it in its own magi.toml.
+[merge]
+base = "main"
+
+# The one thing every repository in this fleet has to tell a magi node, for the
+# same reason. Repository-specific conventions stay in each repo's own
+# [prompts], which override nothing here - they are separate keys.
+[prompts]
+all = """
+This repository uses jj (Jujutsu) with a colocated git repo. `git commit` works in a candidate worktree and is what magi expects, but never run `jj` commands and never touch the main working copy.
+"""
