@@ -40,6 +40,7 @@ kind = "antigravity"
 [[agents]]
 id = "cx"
 kind = "codex"
+model = "gpt-5.6-terra"
 
 # Seat assignment is a cost decision, and the numbers are measured, not guessed.
 # One implement seat cost $12.09 on opus against $6.95 on sonnet for the same
