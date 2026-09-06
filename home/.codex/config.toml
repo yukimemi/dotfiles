@@ -2,7 +2,7 @@ approvals_reviewer = "auto_review"
 
 notify = [ "C:\\Users\\yukimemi\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\440c4f095d41ea30\\bin\\node_modules\\@oai\\sky\\bin\\windows\\codex-computer-use.exe", "turn-ended" ]
 model = "gpt-6-astra"
-model_reasoning_effort = "high"
+model_reasoning_effort = "medium"
 
 [marketplaces.openai-bundled]
 source_type = "local"
