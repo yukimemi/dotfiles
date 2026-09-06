@@ -76,7 +76,9 @@ reviewers = ["cx", "sonnet"]
 # fixes. Left as it is on purpose: the reason above is cost, not correctness,
 # and the seat that just wrote the patch is the one that knows why.
 fixer = "sonnet"
-# Who runs the `magi plan` interview and the browser conversation.
+# Who runs the `magi plan` CLI interview. Also the fallback for `chatter`
+# below when that is unset, so Planning and Talk land here too if nobody
+# picked a chatter.
 #
 # Pinned because the interview is the one node a human sits through: the model
 # that asks the sharpest questions is not necessarily the one that writes the
@@ -84,10 +86,11 @@ fixer = "sonnet"
 #
 # `--agent <id>` and the web UI's own agent field still override this per call.
 planner = "opus"
-# The resident chat's own default, separate from planner on purpose: it opens
-# far more often than `magi plan`, and opus is also a judge seat above - the
-# two together caused a chat turn to time out (`agent opus did not answer
-# within 300s`) while a competition's judge wave was running concurrently.
+# Default for the Planning interview (web UI) and the resident Talk
+# conversation, separate from planner on purpose: these open far more often
+# than `magi plan`, and opus is also a judge seat above - the two together
+# caused a chat turn to time out (`agent opus did not answer within 300s`)
+# while a competition's judge wave was running concurrently.
 chatter = "sonnet"
 
 # The shape of a run is a preference about time and money, not about any one
