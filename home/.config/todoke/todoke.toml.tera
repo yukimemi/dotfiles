@@ -83,6 +83,8 @@ match = [
   '(?i)/svn-commit\.tmp$',
   # Claude Code prompt temp files
   '(?i)/claude-prompt-.*$',
+  # Codex prompt temp files (~/.codex/editor/<temp>.md)
+  '(?i)[/\\]\.codex[/\\]editor[/\\][^/\\]+\.md$',
   # Gemini prompt temp files
   '(?i)/gemini-edit.*$',
   # Antigravity prompt temp files
