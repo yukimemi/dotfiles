@@ -48,6 +48,11 @@ dst = "{{ vars.home_root }}"
 src = "home/.claude"
 dst = "{{ vars.home_root }}/.claude"
 
+# Codex settings and custom skills; runtime data is excluded by .gitignore.
+[[link]]
+src = "home/.codex"
+dst = "{{ vars.home_root }}/.codex"
+
 # Same story for omp and agent/config.yml.
 [[link]]
 src = "home/.omp"

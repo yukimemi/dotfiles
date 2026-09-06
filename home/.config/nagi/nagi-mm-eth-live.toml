@@ -295,7 +295,7 @@ halt_liquidate = true    # 停止時にポジションを成行クローズ（�
 pair                  = "eth_jpy"  # xrp に次いで唯一 gated edge がプラスだったペア（2026-08-27 スクリーン）
 paper                 = false  # ★ 実弾。--live-arm を付けたときだけ実際に発注する
 lot                   = 0.0001  # venue 最小 = ステップ。約40円。部分約定が起きない
-max_inventory         = 0.024  # ★ 2026-08-30 0.012 -> 0.024。240クリップ、満玉 ¥9,444。
+max_inventory         = 0.03  # ★ 2026-09-05 0.024 -> 0.03。300クリップ、満玉 ¥11,536(mid 384,525)。
                               # 運用者判断: long / short ともに 120 クリップ与える。
                               # 経緯: long(income)脚が income_max=10 クリップに張り付いていた。
                               # 張り付きの内訳は実測(24h, 1s サンプル 84,938行)で2つに分かれる —
@@ -393,17 +393,19 @@ control_token         = "{{ env(name='NAGI_MM_TOKEN', default='') }}"
 #   income_max_inventory は #405 で構造体から消えており、serde が黙って捨てていた
 #   ＝ 設定したはずの脚別枠が効いていなかった（PR #406 がこれを error! で鳴らす）。
 #
-# クリップ換算: lot 0.0001 → 1clip ≈ ¥37.9（mid 379200）
-#   [mm].max_inventory 0.024 = 240clips = 口座 GROSS 上限（円ストップの分母）
-#   long 0.012 = 120clips / short 0.01 = 100clips
-#   → 両脚合計 220clips < 240clips なので shares_fit=true（余裕あり）。
+# クリップ換算: lot 0.0001 → 1clip ≈ ¥38.5（mid 384,525）
+#   [mm].max_inventory 0.03 = 300clips = 口座 GROSS 上限（円ストップの分母）
+#   long 0.018 = 180clips / short 0.01 = 100clips
+#   → 両脚合計 280clips < 300clips なので shares_fit=true（20clips 余裕）。
 #
-# なぜ long=120: 検閲されていない最深の片脚 excursion は 29clips（lot 2 世代）。
+# なぜ long=180: 検閲されていない最深の片脚 excursion は 29clips（lot 2 世代）。
 #   lot 10 世代は 118.5clips に達したが cap 120 で検閲された観測なので真の深さは不明。
-#   ★ 2026-09-05: long を 100→120clips に引き上げ（ユーザー指示）。
+#   ★ 2026-09-05: long を 120→180clips に引き上げ（ユーザー指示）。
+#   円ストップ = max_open_loss_pct 5% x cap 0.03 x mid 384,525 ≈ ¥576.8
+#     （2026-09-02 の ¥455 相当から増加。cap を上げた分だけ上限リスクも上がる）。
 #   ★ lot / max_inventory / 価格が動いたら円を引き直すこと（AGENTS.md の規則）。
 [mm.long]
-max_inventory = 0.012
+max_inventory = 0.018
 
 [mm.short]
 max_inventory = 0.01

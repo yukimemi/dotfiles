@@ -1,0 +1,122 @@
+approvals_reviewer = "auto_review"
+
+notify = [ "C:\\Users\\yukimemi\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\440c4f095d41ea30\\bin\\node_modules\\@oai\\sky\\bin\\windows\\codex-computer-use.exe", "turn-ended" ]
+model = "gpt-6-astra"
+model_reasoning_effort = "high"
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = '\\?\C:\Users\yukimemi\.codex\.tmp\bundled-marketplaces\openai-bundled'
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = '\\?\C:\Users\yukimemi\.cache\codex-runtimes\codex-primary-runtime\plugins\openai-primary-runtime'
+
+[marketplaces.claude-plugins-official]
+last_updated = "2026-07-25T08:25:40Z"
+last_revision = "f6a8253850e4db2ab62c8fb2c53ad73c6843e32c"
+source_type = "git"
+source = "https://github.com/anthropics/claude-plugins-official.git"
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."frontend-design@claude-plugins-official"]
+enabled = true
+
+[plugins."rust-analyzer-lsp@claude-plugins-official"]
+enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."sites@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[features]
+js_repl = false
+
+[mcp_servers.node_repl]
+args = []
+command = 'C:\Users\yukimemi\AppData\Local\OpenAI\Codex\runtimes\cua_node\440c4f095d41ea30\bin\node_repl.exe'
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = 'C:\Users\yukimemi\AppData\Local\OpenAI\Codex\runtimes\cua_node\440c4f095d41ea30\bin\node_modules'
+NODE_REPL_NODE_PATH = 'C:\Users\yukimemi\AppData\Local\OpenAI\Codex\runtimes\cua_node\440c4f095d41ea30\bin\node.exe'
+NODE_REPL_TRUSTED_CODE_PATHS = 'C:\Users\yukimemi\.codex;C:\Users\yukimemi\AppData\Local\OpenAI\Codex\runtimes\cua_node\440c4f095d41ea30\bin\node_modules'
+CODEX_HOME = 'C:\Users\yukimemi\.codex'
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.901.41600"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"C:/Users/yukimemi/.codex/plugins/cache/openai-bundled/browser/26.901.41600/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_NATIVE_PIPE = "1"
+SKY_CUA_NATIVE_PIPE_DIRECTORY = '\\.\pipe\codex-computer-use-9157616a-04fb-42d7-b643-54337d10d192'
+CODEX_CLI_PATH = 'C:\Users\yukimemi\AppData\Local\OpenAI\Codex\bin\27d6a192e9c98618\codex.exe'
+
+[shell_environment_policy.set]
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "7ed52dae165c3bc22b6d24f282e2c1fbc87f6949fbbe037767a7418d8f517f01,e13fd947e846d3d306e9249dd3c73d14931b6494803dbafb16cef85e6add9506"
+
+[projects.'c:\users\yukimemi\documents\codex\2026-07-25\use-the-available-slack-integration-to']
+trust_level = "trusted"
+
+[projects.'c:\users\yukimemi\documents\codex\2026-07-25\realtime-voice-chat']
+trust_level = "trusted"
+
+[projects.'c:\users\yukimemi\documents\codex\2026-07-26\realtime-voice-chat']
+trust_level = "trusted"
+
+[projects.'c:\users\yukimemi\src\github.com\yukimemi\magi']
+trust_level = "trusted"
+
+[projects.'c:\users\yukimemi\dotfiles']
+trust_level = "trusted"
+
+[projects.'c:\users\yukimemi\appdata\local\temp\codex-smoke']
+trust_level = "trusted"
+
+[projects.'c:\users\yukimemi\documents\codex\2026-09-06\realtime-voice-chat']
+trust_level = "trusted"
+
+[projects.'c:\users\yukimemi\src\github.com\kanadehq\kanade']
+trust_level = "trusted"
+
+[desktop]
+conversationDetailMode = "STEPS_PROSE"
+ambient-suggestions-enabled = true
+show-context-window-usage = true
+followUpQueueMode = "queue"
+
+[windows]
+sandbox = "elevated"
+
+[tui.model_availability_nux]
+gpt-6-astra = 4

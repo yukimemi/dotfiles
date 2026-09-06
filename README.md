@@ -16,6 +16,7 @@ full layout shift.
 │   │   └── <app>/
 │   │       └── .yuilink         # per-app marker (Windows extras, OS filters, …)
 │   ├── .claude/                 # global Claude Code settings
+│   ├── .codex/                  # global Codex settings and custom skills
 │   ├── .gemini/                 # global Gemini config
 │   ├── .vscode/                 # global VSCode user settings
 │   ├── .glzr/                   # GlazeWM config
