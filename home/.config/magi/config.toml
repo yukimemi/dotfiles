@@ -65,6 +65,17 @@ implementers = ["sonnet", "cx", "oc", "agy"]
 # Rotated so no judge sits on its own candidate. Only matters when a task asks
 # for more than one candidate.
 judges = ["opus", "agy", "cx"]
+# `Config::advisors()` falls back to `judges` when this is unset, and that
+# roster still carries `agy`. A judge wave runs inside an unattended
+# implementation run, so a dropped stream just costs the run some wall-clock;
+# `magi plan`'s advise stage sits right after the interview, with a human
+# waiting on the other end, so the same defect there means someone stares at
+# a screen for up to `timeout_judge` (1200s, unset here). Dropping `agy` from
+# `judges` leaves only `opus` and `cx`, one short of the three candidates
+# `graph.advisors` asks for by default, so `sonnet` fills the seat: it is
+# already trusted with `chatter` and the top `implementers` slot, with none
+# of `agy`'s reporting defect above.
+advisors = ["cx", "sonnet", "opus"]
 # `cx` is the only seat whose read-only-ness the CLI enforces (`--sandbox
 # read-only`), which is exactly what a reviewer is: it cannot touch the tree it
 # is reviewing even if it decides to.
