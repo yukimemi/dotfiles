@@ -120,6 +120,26 @@ mode = "notify"
 # it in its own magi.toml.
 [merge]
 base = "main"
+# `mode` は既定の `"none"` から離れ、`"pr"` にする。`"none"` はブランチを残して
+# 手でマージするコマンドを表示するだけで、その「手で」を誰もやらないと直った
+# はずのものが直っていないまま止まる。run `20260907-075524-520f`
+# （クォータ切れの run がタスクの attempt を食い潰す問題の修正）がまさにそれで、
+# レビューもゲートも通って `ready` になったのに放置され、人手で PR #98 に
+# されるまでマージされなかった。
+#
+# `"local"` にしないのは、このマシンの checkout が全て jj-colocated だから
+# （上の `base` のコメントと同じ事情）。`"local"` は主ワークツリーで
+# `git merge --no-ff` する経路で、jj が detach させている working-copy の HEAD に
+# 触らせたくない。`"pr"` ならブランチを push して `gh pr create` するだけで
+# working copy に触らず、CI も回り、最後のマージ承認は magi web の Questions
+# 画面に出るのでスマホから完結できる。
+#
+# 代償もある: `land()` は承認が来るまで `attempt()` の中でブロックし、その間
+# キューは1件も進まない。夜中に1件が承認待ちになれば backlog 全体が朝まで
+# 止まる。これはキュー済みタスク `20260907-...-4063`
+# 「働いていない run にキューのスロットを占有させない」で直る予定の既知の
+# 欠陥で、それまでは承認をためないという運用で凌ぐ。
+mode = "pr"
 
 # The one thing every repository in this fleet has to tell a magi node, for the
 # same reason. Repository-specific conventions stay in each repo's own
