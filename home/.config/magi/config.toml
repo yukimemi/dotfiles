@@ -69,8 +69,11 @@ judges = ["opus", "agy", "cx"]
 # implementation run, so a dropped stream just costs the run some wall-clock;
 # `magi plan`'s advise stage sits right after the interview, with a human
 # waiting on the other end, so the same defect there means someone stares at
-# a screen for up to `timeout_judge` (1200s, unset here). Stated explicitly as
-# `judges` minus `agy`.
+# a screen for up to `timeout_judge` (1200s, unset here). Dropping `agy` from
+# `judges` leaves only `opus` and `cx`, one short of the three candidates
+# `graph.advisors` asks for by default, so `sonnet` fills the seat: it is
+# already trusted with `chatter` and the top `implementers` slot, with none
+# of `agy`'s reporting defect above.
 advisors = ["cx", "sonnet", "opus"]
 # `cx` is the only seat whose read-only-ness the CLI enforces (`--sandbox
 # read-only`), which is exactly what a reviewer is: it cannot touch the tree it
