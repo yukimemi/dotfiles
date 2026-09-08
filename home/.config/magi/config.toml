@@ -181,3 +181,17 @@ mode = "pr"
 all = """
 This repository uses jj (Jujutsu) with a colocated git repo. `git commit` works in a candidate worktree and is what magi expects, but never run `jj` commands and never touch the main working copy.
 """
+
+# Which checkouts exist on disk is a fact about this machine, same reasoning
+# as the agent roster above. `roots` is an array key too, so it can only be
+# declared in one config layer, and this machine layer is the only place that
+# can hold it - a repository's own magi.toml can't add to it.
+[repos]
+# Every checkout here follows the ghq layout, so one root covers all of them.
+# The path is resolved through `home()` rather than hardcoded, so this file
+# still works unchanged if it ever runs on another machine.
+#
+# Single-quoted on purpose: `home()` returns a backslash-separated path on
+# Windows, and a TOML basic (double-quoted) string would try to interpret
+# those backslashes as escapes and fail to parse.
+roots = ['{{ home() }}/src']
