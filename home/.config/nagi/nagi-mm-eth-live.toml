@@ -395,17 +395,20 @@ control_token         = "{{ env(name='NAGI_MM_TOKEN', default='') }}"
 #
 # クリップ換算: lot 0.0001 → 1clip ≈ ¥38.5（mid 384,525）
 #   [mm].max_inventory 0.03 = 300clips = 口座 GROSS 上限（円ストップの分母）
-#   long 0.018 = 180clips / short 0.01 = 100clips
-#   → 両脚合計 280clips < 300clips なので shares_fit=true（20clips 余裕）。
+#   long 0.02 = 200clips / short 0.01 = 100clips
+#   → 両脚合計 300clips = 300clips ちょうど。shares_fit の判定は
+#     long + short <= cap なので等号でも true のまま。ただし余裕は 20clips → 0clips。
 #
-# なぜ long=180: 検閲されていない最深の片脚 excursion は 29clips（lot 2 世代）。
+# なぜ long=200: 検閲されていない最深の片脚 excursion は 29clips（lot 2 世代）。
 #   lot 10 世代は 118.5clips に達したが cap 120 で検閲された観測なので真の深さは不明。
 #   ★ 2026-09-05: long を 120→180clips に引き上げ（ユーザー指示）。
+#   ★ 2026-09-08: long を 180→200clips に引き上げ（ユーザー指示）。long 脚が 180clips の cap に
+#     張り付いていた（inv=0.0179 / leg_basis L=0.0180@386,043）。
 #   円ストップ = max_open_loss_pct 5% x cap 0.03 x mid 384,525 ≈ ¥576.8
 #     （2026-09-02 の ¥455 相当から増加。cap を上げた分だけ上限リスクも上がる）。
 #   ★ lot / max_inventory / 価格が動いたら円を引き直すこと（AGENTS.md の規則）。
 [mm.long]
-max_inventory = 0.018
+max_inventory = 0.02
 
 [mm.short]
 max_inventory = 0.01
