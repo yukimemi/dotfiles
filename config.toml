@@ -88,6 +88,30 @@ dst = "{{ vars.home_root }}/.vscode"
 src = "home/.glzr"
 dst = "{{ vars.home_root }}/.glzr"
 
+# --- merges ---
+#
+# Semantic TOML merge for apps that mix baseline settings with machine-local
+# runtime state (e.g. OpenAI Codex auto-saving trusted project paths).
+[[merge]]
+src = "home/.codex/config.base.toml"
+dst = "{{ vars.home_root }}/.codex/config.toml"
+ignore_keys = [
+  "projects",
+  "notify",
+  "marketplaces.*",
+  "mcp_servers.*",
+  "shell_environment_policy.*",
+  "tui.model_availability_nux",
+]
+
+[[merge]]
+src = "home/.kimi-code/config.base.toml"
+dst = "{{ vars.home_root }}/.kimi-code/config.toml"
+ignore_keys = [
+  "services.*",
+  "providers.*",
+]
+
 # --- hooks ---
 
 [[hook]]
