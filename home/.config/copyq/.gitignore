@@ -1,9 +1,11 @@
-*.lock
 *.dat
-copyq_geometry.ini
-copyq/copyq.log*
-copyq.pub
-copyq-monitor.ini*
-copyq_tabs.ini
+*.lock
 copyq-commands.ini
+copyq-monitor.ini*
+copyq.pub
+copyq/copyq.log*
+copyq_geometry.ini
+copyq_geometry.ini.*
 copyq_tab_*
+copyq_tabs.ini
+copyq_tabs.ini.*

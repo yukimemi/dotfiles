@@ -41,7 +41,13 @@ completion = "path"
 [[apps]]
 name = "YaibaStart"
 path = "conhost"
-args = ["--headless", "yaiba"]
+args = [
+  "--headless",
+  "yaiba",
+  "--update",
+  "off",
+  "--relay-only"
+]
 
 [[apps]]
 name = "YaibaStop"
