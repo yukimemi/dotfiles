@@ -145,6 +145,11 @@ land_approval = false
 
 [update]
 mode = "notify"
+# 常駐する magi web はこの間隔で新しいリリースを確認する。既定の1日では、
+# v0.10.0 の公開直後にも更新に気づかず、手動で再起動することになった。
+# 60秒の下限は GitHub の未認証レート制限（毎時60回）に合わせたものなので、
+# 下限ぎりぎりにはせず10分にする。毎時6回なら他の用途の余地も残せる。
+interval = "10m"
 
 # Every checkout on this machine is jj-colocated, and jj keeps git's HEAD
 # detached at the working-copy commit - so magi can never infer the base branch
