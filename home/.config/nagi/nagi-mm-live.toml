@@ -817,8 +817,10 @@ control_token = "{{ env(name='NAGI_MM_TOKEN', default='') }}"
 #   lot 10 世代は 118.5clips に達したが cap 120 で検閲された観測なので真の深さは不明。
 #   100clips は uncensored record の 3.4倍。
 #   ★ lot / max_inventory / 価格が動いたら円を引き直すこと（AGENTS.md の規則）。
+#   ★ 2026-09-10: long を 100→140clips（700→980 XRP）に引き上げ（ユーザー指示）。
+#   ★ 2026-09-11: long を 140→160clips（980→1120 XRP）に引き上げ（ユーザー指示）。
 [mm.long]
-max_inventory = 700   # ★ 2026-09-04 600 -> 700。lot 7.0 で 100 clips。
+max_inventory = 1120   # ★ 2026-09-11 980 -> 1120。lot 7.0 で 160 clips。
 
 [mm.short]
 max_inventory = 700   # ★ 2026-09-04 600 -> 700。lot 7.0 で 100 clips（long と対称）。
