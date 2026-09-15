@@ -236,6 +236,17 @@ function Set-RequiredEnv {
     "XDG_CONFIG_HOME"              = "${env:USERPROFILE}\.config"
     "PNPM_HOME"                    = "${env:LOCALAPPDATA}\pnpm"
     "EDITOR"                       = "todoke"
+    # shikigami (jj TUI) Ctrl-g: fills describe/new with an AI-generated
+    # message. Measured alternatives: opencode's default free model
+    # (nemotron-3-ultra-free) hangs >120s per call; agy -p never picks
+    # up the piped diff at all; claude -p --model haiku answers but is
+    # unreliable about touching the real repo (tried to create files,
+    # once wrote a plan under ~/.claude/plans/) unless every tool is
+    # denied, and even then is inconsistent. --model sonnet
+    # --allowedTools "" (deny every tool, so it can only answer text)
+    # was reliable across repeated runs (~13-15s, correct one-line
+    # summary every time) and never attempted a write.
+    "SHIKIGAMI_AI_CMD"             = 'claude -p "Output ONLY a single short git commit summary line for this diff. No prefix, no quotes, no trailing signature or Co-Authored-By line, no explanation, one line only:" --model sonnet --allowedTools ""'
   }
   foreach ($key in $envVars.Keys) {
     $current = [Environment]::GetEnvironmentVariable($key, "User")
