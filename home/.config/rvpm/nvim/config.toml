@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/08/23 11:53:06.
+# Last Change : 2026/09/20 19:47:20.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -21,6 +21,23 @@ concurrency = 16
 ai = "agy"
 ai_language = "ja"
 merge_doc = true
+theme_preset = "catppuccin-mocha"
+
+[options.theme]
+foreground = "#CDD6F4"
+terminal_foreground = "#CDD6F4"
+background = "#1E1E2E"
+secondary = "#BAC2DE"
+muted = "#6C7086"
+success = "#A6E3A1"
+warning = "#F9E2AF"
+error = "#F38BA8"
+info = "#89DCEB"
+accent = "#CBA6F7"
+browse_accent = "#F9E2AF"
+selection_background = "#313244"
+inverse = "#1E1E2E"
+header_background = "#1E1E2E"
 
 # ── core ────────────────────────────────────────
 [[plugins]]
@@ -35,9 +52,9 @@ url = "https://github.com/MunifTanjim/nui.nvim"
 lazy = true
 
 [[plugins]]
-url = "https://github.com/hrsh7th/nvim-dansa"
 on_event = {{ vars.on_ev_buf_open }}
 
+url = "https://github.com/hrsh7th/nvim-dansa"
 [[plugins]]
 url = "https://github.com/manuuurino/autoread.nvim"
 on_cmd = ["Autoread"]
@@ -106,19 +123,19 @@ depends = ["denops.vim"]
 when = "{{ vars.denops }}"
 
 [[plugins]]
-url = "https://github.com/yukimemi/silentsaver.nvim"
 on_event = {{ vars.on_ev_buf_open }}
+url = "https://github.com/yukimemi/silentsaver.nvim"
 on_cmd = ["/^SilentSaver.*$/"]
 
 [[plugins]]
+on_event = {{ vars.on_ev_buf_open }}
 url = "https://github.com/yukimemi/autoreplacer.vim"
 depends = ["denops.vim"]
-on_event = {{ vars.on_ev_buf_open }}
 when = "{{ vars.denops }}"
 
 [[plugins]]
-url = "https://github.com/yukimemi/autoreplacer.nvim"
 on_event = {{ vars.on_ev_buf_open }}
+url = "https://github.com/yukimemi/autoreplacer.nvim"
 on_cmd = ["/^AutoReplacer.*$/"]
 
 [[plugins]]
@@ -132,10 +149,10 @@ url = "https://github.com/yukimemi/ahdr.nvim"
 on_cmd = ["/^Ahdr.*$/"]
 
 [[plugins]]
+on_event = {{ vars.on_ev_buf_open }}
 url = "https://github.com/uga-rosa/ccc.nvim"
 when = "{{ vars.denops }}"
 on_cmd = ["/^Ccc/"]
-on_event = {{ vars.on_ev_buf_open }}
 lazy = false
 
 # ── snacks ──────────────────────────────────────
@@ -146,53 +163,53 @@ url = "https://github.com/folke/snacks.nvim"
 # ── ui ──────────────────────────────────────────
 
 [[plugins]]
+on_event = {{ vars.on_ev_idle }}
+
 url = "https://github.com/lambdalisue/vim-seethrough"
+[[plugins]]
 on_event = {{ vars.on_ev_idle }}
 
-[[plugins]]
 url = "https://github.com/andymass/vim-matchup"
+[[plugins]]
 on_event = {{ vars.on_ev_idle }}
 
-[[plugins]]
 url = "https://github.com/mopp/smartnumber.vim"
+[[plugins]]
 on_event = {{ vars.on_ev_idle }}
 
-[[plugins]]
 url = "https://github.com/xiyaowong/virtcolumn.nvim"
+[[plugins]]
 on_event = {{ vars.on_ev_idle }}
 
-[[plugins]]
 url = "https://github.com/RRethy/vim-illuminate"
+[[plugins]]
 on_event = {{ vars.on_ev_idle }}
 
-[[plugins]]
 url = "https://github.com/unblevable/quick-scope"
+[[plugins]]
 on_event = {{ vars.on_ev_idle }}
 
-[[plugins]]
 url = "https://github.com/ntpeters/vim-better-whitespace"
+[[plugins]]
 on_event = {{ vars.on_ev_idle }}
 
-[[plugins]]
 url = "https://github.com/LumaKernel/nvim-visual-eof.lua"
+[[plugins]]
 on_event = {{ vars.on_ev_idle }}
 
-[[plugins]]
 url = "https://github.com/DanilaMihailov/beacon.nvim"
+[[plugins]]
 on_event = {{ vars.on_ev_idle }}
 
-[[plugins]]
 url = "https://github.com/gen740/SmoothCursor.nvim"
+[[plugins]]
 on_event = {{ vars.on_ev_idle }}
 
-[[plugins]]
 url = "https://github.com/itchyny/vim-highlighturl"
-on_event = {{ vars.on_ev_idle }}
-
 [[plugins]]
-url = "https://github.com/chrisgrieser/nvim-origami"
 on_event = {{ vars.on_ev_idle }}
 
+url = "https://github.com/chrisgrieser/nvim-origami"
 [[plugins]]
 url = "https://github.com/folke/noice.nvim"
 when = "false"
@@ -200,13 +217,13 @@ on_event = "VimEnter"
 depends = ["nui.nvim"]
 
 [[plugins]]
+on_event = {{ vars.on_ev_idle }}
+
 url = "https://github.com/folke/which-key.nvim"
-on_event = {{ vars.on_ev_idle }}
-
 [[plugins]]
-url = "https://github.com/y3owk1n/undo-glow.nvim"
 on_event = {{ vars.on_ev_idle }}
 
+url = "https://github.com/y3owk1n/undo-glow.nvim"
 [[plugins]]
 url = "https://github.com/folke/twilight.nvim"
 on_cmd = ["/^Twilight/"]
@@ -216,35 +233,35 @@ url = "https://github.com/folke/zen-mode.nvim"
 on_cmd = ["ZenMode"]
 
 [[plugins]]
+on_event = {{ vars.on_ev_idle }}
+
 url = "https://github.com/karb94/neoscroll.nvim"
-on_event = {{ vars.on_ev_idle }}
-
 [[plugins]]
-url = "https://github.com/Bekaboo/dropbar.nvim"
 on_event = {{ vars.on_ev_idle }}
 
+url = "https://github.com/Bekaboo/dropbar.nvim"
 [[plugins]]
 url = "https://github.com/Amansingh-afk/milli.nvim"
 when = "false"
 
 [[plugins]]
-url = "https://github.com/yukimemi/autocursor.nvim"
 on_event = {{ vars.on_ev_idle }}
+url = "https://github.com/yukimemi/autocursor.nvim"
 on_cmd = ["/^EnableAutoCursor/", "/^DisableAutoCursor/"]
 setup = {}
 
 # ── statusline ──────────────────────────────────
 
 [[plugins]]
-url = "https://github.com/nvim-lualine/lualine.nvim"
 on_event = {{ vars.on_ev_idle }}
 
+url = "https://github.com/nvim-lualine/lualine.nvim"
 # ── lsp ───────────────────────────────────────────
 [[plugins]]
-url = "https://github.com/neovim/nvim-lspconfig"
-depends = ["blink.cmp"]
 on_event = {{ vars.on_ev_buf_open }}
 
+url = "https://github.com/neovim/nvim-lspconfig"
+depends = ["blink.cmp"]
 [[plugins]]
 url = "https://github.com/mason-org/mason.nvim"
 on_cmd = "Mason"
@@ -255,9 +272,9 @@ depends = ["mason.nvim", "nvim-lspconfig"]
 on_source = ["nvim-lspconfig"]
 
 [[plugins]]
-url = "https://github.com/stevearc/conform.nvim"
 on_event = {{ vars.on_ev_buf_open }}
 
+url = "https://github.com/stevearc/conform.nvim"
 [[plugins]]
 url = "https://github.com/lewis6991/hover.nvim"
 on_map = [
@@ -268,9 +285,9 @@ on_map = [
 ]
 
 [[plugins]]
-url = "https://github.com/mfussenegger/nvim-lint"
 on_event = {{ vars.on_ev_buf_open }}
 
+url = "https://github.com/mfussenegger/nvim-lint"
 [[plugins]]
 url = "https://github.com/nvimdev/lspsaga.nvim"
 depends = ["nvim-lspconfig"]
@@ -552,18 +569,18 @@ on_cmd = ["Hardtime"]
 # ── search ──────────────────────────────────────
 
 [[plugins]]
+on_event = {{ vars.on_ev_idle }}
+
 url = "https://github.com/haya14busa/vim-asterisk"
+[[plugins]]
 on_event = {{ vars.on_ev_idle }}
 
-[[plugins]]
 url = "https://github.com/lambdalisue/vim-kensaku"
+[[plugins]]
 on_event = {{ vars.on_ev_idle }}
 
-[[plugins]]
 url = "https://github.com/kevinhwang91/nvim-hlslens"
 depends = ["vim-asterisk"]
-on_event = {{ vars.on_ev_idle }}
-
 [[plugins]]
 url = "https://github.com/MagicDuck/grug-far.nvim"
 on_cmd = ["/^GrugFar/"]
@@ -571,13 +588,13 @@ on_cmd = ["/^GrugFar/"]
 # ── git ─────────────────────────────────────────
 
 [[plugins]]
-url = "https://github.com/lewis6991/gitsigns.nvim"
 on_event = {{ vars.on_ev_idle }}
 
+url = "https://github.com/lewis6991/gitsigns.nvim"
 [[plugins]]
-url = "https://github.com/sindrets/diffview.nvim"
 on_event = {{ vars.on_ev_buf_open }}
 
+url = "https://github.com/sindrets/diffview.nvim"
 [[plugins]]
 url = "https://github.com/lambdalisue/vim-askpass"
 when = "{{ vars.denops }}"
@@ -612,7 +629,11 @@ url = "https://github.com/NicholasZolton/neojj"
 depends = ["plenary.nvim", "diffview.nvim", "snacks.nvim"]
 on_cmd = ["Neojj"]
 on_map = [{ lhs = "<leader>gg", desc = "Open Neojj UI" }]
-when = "true"
+when = "false"
+
+[[plugins]]
+url = "https://github.com/yukimemi/shikigami.nvim"
+on_cmd = ["Shikigami"]
 
 # ── terminal ────────────────────────────────────
 
@@ -785,14 +806,14 @@ name = "everviolet"
 lazy = true
 
 [[plugins]]
+on_event = {{ vars.on_ev_idle }}
 url = "https://github.com/yukimemi/lumiris.vim"
 depends = ["denops.vim"]
-on_event = {{ vars.on_ev_idle }}
 when = "{{ vars.denops }}"
 
 [[plugins]]
-url = "https://github.com/yukimemi/lumiris.nvim"
 on_event = {{ vars.on_ev_idle }}
+url = "https://github.com/yukimemi/lumiris.nvim"
 on_cmd = ["/^Lumiris.*$/"]
 
 [[plugins]]

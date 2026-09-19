@@ -149,6 +149,10 @@ name = "kimiusage"
 path = "https://www.kimi.com/code/console"
 
 [[apps]]
+name = "deepseekusage"
+path = "https://platform.deepseek.com/usage"
+
+[[apps]]
 name = "Google"
 path = "https://www.google.com/search?q={{ args | urlencode }}"
 

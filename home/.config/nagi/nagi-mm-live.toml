@@ -217,7 +217,15 @@ halt_liquidate = true    # 停止時にポジションを成行クローズ（�
 [mm]
 pair          = "xrp_jpy"
 paper         = false             # LIVE 実弾運用用（~/.config/nagi/ 配下＝repo 外。Claude/git の checkout 操作で飛ばないようにここに置く）
-lot           = 7.0               # ★ 2026-09-04 6.0 -> 7.0 に戻す（6.0 への引き下げは却下：P&L は lot に線形なので通常時の収益が -14%）。
+lot           = 8.0               # ★ 2026-09-19 7.0 -> 8.0（好調・高回転を受け引き上げ：収益・リベート +14%）。
+#                                 # clips 171 -> 150。max_inventory は 1200 据置。
+#                                 # 根拠: lot 7.0 世代(09-04〜09-19)の実測 Net PnL +1,651円 (5,996 fills)。
+#                                 #   最深 open loss ¥8,729 (1,131 XRP = 161.6 clips)。
+#                                 #   lot 8 推定最深 open loss は ¥8,729 x (8/7) ≈ ¥9,976。
+#                                 #   円ストップ 5% x 1200 x mid 217.02 = ¥13,021 に対し 1.31倍の余裕で
+#                                 #   「シーリングが最深エクスカーションの上」ルールを満たす。
+#                                 #   維持率: 満玉 1200 XRP (約 260k円) で 143.6% (受入保証金 374k円)。
+#                                 # ★ 2026-09-04 6.0 -> 7.0 に戻す（6.0 への引き下げは却下：P&L は lot に線形なので通常時の収益が -14%）。
 #                                 # long/short 各 100 clips は per-book 700 で表現。gross 1400 は
 #                                 # MM_RELOAD_MAX_INV=1200 に refuse されるため、定数を上げるまで gross は 1200 (=171clips)。
 #                                 # ★ 2026-09-03 5.0 -> 7.0。max_inventory は 1200 据え置き（= clips 240 -> 171）。
@@ -820,10 +828,12 @@ control_token = "{{ env(name='NAGI_MM_TOKEN', default='') }}"
 #   ★ 2026-09-10: long を 100→140clips（700→980 XRP）に引き上げ（ユーザー指示）。
 #   ★ 2026-09-11: long を 140→160clips（980→1120 XRP）に引き上げ（ユーザー指示）。
 [mm.long]
-max_inventory = 1120   # ★ 2026-09-11 980 -> 1120。lot 7.0 で 160 clips。
+max_inventory = 1200   # ★ 2026-09-19 1120 -> 1200。lot 8.0 で 150 clips（gross cap 1200 満額開放）。
+#                      #   ★ 2026-09-11 980 -> 1120。lot 7.0 で 160 clips。
 
 [mm.short]
-max_inventory = 700   # ★ 2026-09-04 600 -> 700。lot 7.0 で 100 clips（long と対称）。
+max_inventory = 800   # ★ 2026-09-19 700 -> 800。lot 8.0 で 100 clips を維持。
+#                     #   ★ 2026-09-04 600 -> 700。lot 7.0 で 100 clips（long と対称）。
 #                     #   share は gross cap [mm].max_inventory=1200 の下での「narrow」なので、
 #                     #   実エクスポージャ上限は不変（840+500=1340 > 1200 でも gross が先に binding）。
 #                     #   #364: xrp は short 脚が income 側。stack_room の承認は不要（gross 不変）。

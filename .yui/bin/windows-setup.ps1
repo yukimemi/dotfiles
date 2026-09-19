@@ -247,6 +247,14 @@ function Set-RequiredEnv {
     # was reliable across repeated runs (~13-15s, correct one-line
     # summary every time) and never attempted a write.
     "SHIKIGAMI_AI_CMD"             = 'claude -p "Output ONLY a single short git commit summary line for this diff. No prefix, no quotes, no trailing signature or Co-Authored-By line, no explanation, one line only:" --model sonnet --allowedTools ""'
+    # shikigami diff pane: pipes jj's raw ANSI diff through delta so it
+    # gets delta's syntax highlighting / word-level diff / side-by-side
+    # layout instead of jj's own git-format coloring. shikigami sets the
+    # COLUMNS env var to the diff pane's actual rendered width before
+    # spawning this command (via `cmd /C`), so --width %COLUMNS% sizes
+    # side-by-side output to the pane instead of wrapping at a fixed
+    # column count.
+    "SHIKIGAMI_DIFF_FILTER"        = 'delta --paging=never --side-by-side --width %COLUMNS%'
   }
   foreach ($key in $envVars.Keys) {
     $current = [Environment]::GetEnvironmentVariable($key, "User")

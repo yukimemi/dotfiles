@@ -39,3 +39,8 @@ merge-args = [
 ]
 merge-tool-edits-conflict-markers = true
 edit-args = ["-f", "-d", "$left", "$right"]
+
+[colors]
+"diff added" = { fg = "green" }
+"diff removed" = { fg = "red" }
+"diff token" = { underline = false }

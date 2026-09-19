@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/04/26 13:34:02.
+# Last Change : 2026/09/19 12:29:38.
 # =============================================================================
 
 [settings]
@@ -19,7 +19,6 @@ cargo-binstall = "latest"
 "cargo:du-dust" = "latest"
 "cargo:fd-find" = "latest"
 "cargo:git-delta" = "latest"
-"cargo:jj-cli" = "latest"
 "cargo:lsd" = "latest"
 "cargo:mdbook" = "latest"
 "cargo:nu" = "latest"

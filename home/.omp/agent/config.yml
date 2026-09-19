@@ -36,3 +36,4 @@ composer:
   shape: rail
 dev:
   autoqaConsent: granted
+extendedContext: true

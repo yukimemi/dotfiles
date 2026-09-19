@@ -32,6 +32,7 @@ model = "sonnet"
 [[agents]]
 id = "oc"
 kind = "opencode"
+model = "openrouter/deepseek/deepseek-v4-flash-0731:free"
 
 [[agents]]
 id = "agy"
@@ -61,17 +62,16 @@ model = "gpt-5.6-terra"
 # its own stream before delivering, which is what `dropped_stream` now detects
 # and resumes. But a solo task has no second candidate to fall back on, so the
 # seat that reports reliably goes first.
-# implementers = ["sonnet", "cx", "oc", "agy"]
-implementers = ["sonnet", "oc", "agy"]
+implementers = ["sonnet", "cx", "oc", "agy"]
 # Rotated so no judge sits on its own candidate. Only matters when a task asks
 # for more than one candidate.
-# judges = ["opus", "agy", "cx"]
-judges = ["opus", "agy"]
+judges = ["sonnet", "agy", "cx"]
+# judges = ["opus", "agy", "oc"]
 # `cx` is the only seat whose read-only-ness the CLI enforces (`--sandbox
 # read-only`), which is exactly what a reviewer is: it cannot touch the tree it
 # is reviewing even if it decides to.
-# reviewers = ["cx", "sonnet"]
-reviewers = ["agy", "sonnet"]
+reviewers = ["cx", "sonnet"]
+# reviewers = ["oc", "sonnet"]
 # Not the winner's own author by default: the fixer would inherit the
 # implementer's 100-turn session, and with it the whole accumulated cache-read
 # bill.
@@ -92,7 +92,7 @@ fixer = "sonnet"
 chatter = "sonnet"
 # Arranges the queue between polls (`crate::conduct`). Pinned to opus so it
 # doesn't fall back to sharing a seat with the judge/reviewer roster above.
-conductor = "opus"
+conductor = "cx"
 
 # The shape of a run is a preference about time and money, not about any one
 # repository. A repo that genuinely needs a different shape says so in its own
@@ -109,6 +109,12 @@ reviewers = 2
 # run into a clean one here, and every round is two reviewers plus a fixer.
 review_rounds = 3
 max_parallel = 3
+# e2e/gate 用の別枠。既定の 1200s は `timeout_review` と共有だったが、
+# graph_*.rs 系の統合テストが実サブプロセスを起動するため1本30〜340秒かかり、
+# テスト数の増加でスイート合計が自然に 1200s の壁へ近づいていた
+# (run 20260913-233608-4760, 20260913-...-1e5e の検証コメント参照、
+# 共有キャッシュボリュームの逼迫も一因)。倍にして様子を見る。
+timeout_verify = 2400
 # What the agents write in. The operator reads Japanese; the code and its
 # comments stay English, which the prompts say separately.
 language = "ja"
@@ -191,4 +197,3 @@ allow_write = true
 all = """
 This repository uses jj (Jujutsu) with a colocated git repo. `git commit` works in a candidate worktree and is what magi expects, but never run `jj` commands and never touch the main working copy.
 """
-

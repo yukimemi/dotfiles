@@ -12,6 +12,7 @@
 /agent/agent.db
 /agent/agent.db-shm
 /agent/agent.db-wal
+/agent/custom-session-files/
 /agent/history.db
 /agent/history.db-shm
 /agent/history.db-wal

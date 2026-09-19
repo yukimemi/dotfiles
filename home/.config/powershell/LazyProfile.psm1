@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/05/29 08:30:00.
+# Last Change : 2026/09/19 12:27:08.
 # =============================================================================
 
 # --- Functions ---
@@ -574,7 +574,7 @@ if (Get-Module -ListAvailable PSReadLine) {
     "sk"    = "shoka cd"
     "rm"    = $rmTarget
     "rp"    = "rvpm"
-    "s"     = "jj status --no-pager"
+    "s"     = "shikigami"
     "v"     = "gvim --remote-silent"
     "which" = "Get-Command"
   }
