@@ -3,7 +3,7 @@
     run_onchange_after_windows-setup.ps1.tmpl
   .DESCRIPTION
     Initial windows setup scripts for chezmoi.
-  .Last Change : 2026/05/24 10:20:07.
+  .Last Change : 2026/09/22 01:07:25.
 #>
 
 $ErrorActionPreference = "Stop"
@@ -507,8 +507,8 @@ function Install-Tool {
       "gsudo",
       "imagemagick",
       "jq",
-      "jjui",
       "ksnip",
+      "leopardwm",
       "less",
       "mingw",
       "neovide",
