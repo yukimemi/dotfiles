@@ -21,23 +21,23 @@ concurrency = 16
 ai = "agy"
 ai_language = "ja"
 merge_doc = true
-theme_preset = "catppuccin-mocha"
+theme_preset = "nord"
 
 [options.theme]
-foreground = "#CDD6F4"
-terminal_foreground = "#CDD6F4"
-background = "#1E1E2E"
-secondary = "#BAC2DE"
-muted = "#6C7086"
-success = "#A6E3A1"
-warning = "#F9E2AF"
-error = "#F38BA8"
-info = "#89DCEB"
-accent = "#CBA6F7"
-browse_accent = "#F9E2AF"
-selection_background = "#313244"
-inverse = "#1E1E2E"
-header_background = "#1E1E2E"
+foreground = "#D8DEE9"
+terminal_foreground = "#D8DEE9"
+background = "#2E3440"
+secondary = "#E5E9F0"
+muted = "#4C566A"
+success = "#A3BE8C"
+warning = "#EBCB8B"
+error = "#BF616A"
+info = "#88C0D0"
+accent = "#B48EAD"
+browse_accent = "#EBCB8B"
+selection_background = "#434C5E"
+inverse = "#2E3440"
+header_background = "#2E3440"
 
 # ── core ────────────────────────────────────────
 [[plugins]]

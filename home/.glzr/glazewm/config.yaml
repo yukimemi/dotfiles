@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.yaml
 # Author      : yukimemi
-# Last Change : 2026/06/15 09:36:32.
+# Last Change : 2026/09/21 14:14:43.
 # =============================================================================
 
 general:
@@ -183,6 +183,8 @@ window_rules:
 
       - window_process: { equals: 'kanade-client' }
       - window_class: { equals: 'OneDriveReactNativeWin32WindowClass' }
+
+      - window_process: { equals: 'Ares' }
 
   - commands: ['move --workspace 1', 'focus --workspace 1']
     match:

@@ -832,7 +832,8 @@ max_inventory = 1200   # ★ 2026-09-19 1120 -> 1200。lot 8.0 で 150 clips（g
 #                      #   ★ 2026-09-11 980 -> 1120。lot 7.0 で 160 clips。
 
 [mm.short]
-max_inventory = 800   # ★ 2026-09-19 700 -> 800。lot 8.0 で 100 clips を維持。
+max_inventory = 1200  # ★ 2026-09-21 800 -> 1200。lot 8.0 で 150 clips（gross cap 1200 満額開放）。
+#                     #   ★ 2026-09-19 700 -> 800。lot 8.0 で 100 clips を維持。
 #                     #   ★ 2026-09-04 600 -> 700。lot 7.0 で 100 clips（long と対称）。
 #                     #   share は gross cap [mm].max_inventory=1200 の下での「narrow」なので、
 #                     #   実エクスポージャ上限は不変（840+500=1340 > 1200 でも gross が先に binding）。

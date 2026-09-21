@@ -1,0 +1,154 @@
+[layout]
+gap = 10
+outer_gap_left = 10
+outer_gap_right = 10
+outer_gap_top = 10
+outer_gap_bottom = 10
+centering_mode = "just_in_view"
+center_past_edges = false
+width_presets = [
+    0.333,
+    0.5,
+    0.667,
+]
+default_width_preset = 1
+height_presets = [
+    0.333,
+    0.5,
+    0.667,
+]
+
+[appearance]
+active_border = true
+active_border_color = "4285F4"
+active_border_width = 2
+active_border_position = "outside"
+tab_strip_height = 28
+tab_strip_bg = "1F1F1F"
+tab_strip_active_bg = "303030"
+tab_strip_active_text = "FFFFFF"
+tab_strip_inactive_text = "A0A0A0"
+tab_strip_opacity = 230
+
+[behavior]
+focus_new_windows = true
+track_focus_changes = true
+log_level = "info"
+focus_follows_mouse = false
+focus_follows_mouse_delay_ms = 100
+disable_snap_layouts = true
+check_for_updates = true
+tab_close_action = "close_window"
+swap_chain_ghost_animation = true
+new_window_placement = "new_column"
+hide_offscreen_taskbar_buttons = true
+workspace_edge_wrap = false
+mouse_follows_focus = false
+fullscreen_follows_focus = true
+
+[hotkeys]
+scroll_modifier = "Ctrl+Alt"
+disabled = []
+"Ctrl+Alt+Win+Shift+Up" = "move_to_monitor_up"
+"Ctrl+Alt+F" = "toggle_floating"
+"Ctrl+Alt+Shift+3" = "move_to_workspace_3"
+"Ctrl+Alt+Shift+S" = "scratchpad_stash"
+"Ctrl+Alt+Shift+8" = "move_to_workspace_8"
+"Ctrl+Alt+Shift+PageUp" = "move_to_workspace_prev"
+"Ctrl+Alt+." = "consume_from_right"
+"Ctrl+Alt+H" = "focus_left"
+"Ctrl+Alt+Shift+Home" = "move_column_to_start"
+"Ctrl+Alt+Shift+6" = "move_to_workspace_6"
+"Ctrl+Alt+5" = "switch_workspace_5"
+"Ctrl+Alt+Shift+H" = "move_column_left"
+"Ctrl+Alt+J" = "focus_down"
+"Ctrl+Alt+2" = "switch_workspace_2"
+"Ctrl+Alt+Home" = "focus_start"
+"Ctrl+Alt+Shift+7" = "move_to_workspace_7"
+"Ctrl+Alt+Shift+4" = "move_to_workspace_4"
+"Ctrl+Alt+Shift+Left" = "workspace_prev"
+"Ctrl+Alt+Shift+PageDown" = "move_to_workspace_next"
+"Ctrl+Alt+[" = "move_window_left"
+"Ctrl+Alt+7" = "switch_workspace_7"
+"Ctrl+Alt+Shift+1" = "move_to_workspace_1"
+"Ctrl+Alt+Shift+5" = "move_to_workspace_5"
+"Ctrl+Alt+Shift+L" = "move_column_right"
+"Ctrl+Alt+9" = "switch_workspace_9"
+"Ctrl+Alt+Shift+K" = "move_window_up"
+"Ctrl+Alt+S" = "scratchpad_toggle"
+"Ctrl+Alt+Win+Shift+," = "move_to_monitor_left"
+"Ctrl+Alt+Shift+9" = "move_to_workspace_9"
+"Ctrl+Alt+P" = "toggle_pause"
+"Ctrl+Alt+6" = "switch_workspace_6"
+"Ctrl+Alt+Win+," = "focus_monitor_left"
+"Ctrl+Alt+M" = "maximize_column"
+"Ctrl+Alt+1" = "switch_workspace_1"
+"Ctrl+Alt+Shift+Right" = "workspace_next"
+"Ctrl+Alt+Shift+J" = "move_window_down"
+"Ctrl+Alt+Win+Shift+." = "move_to_monitor_right"
+"Ctrl+Alt+L" = "focus_right"
+"Ctrl+Alt+]" = "move_window_right"
+"Ctrl+Alt+3" = "switch_workspace_3"
+"Ctrl+Alt+0" = "equalize_widths"
+"Ctrl+Alt+4" = "switch_workspace_4"
+"Ctrl+Alt+Space" = "toggle_overview"
+"Ctrl+Alt+8" = "switch_workspace_8"
+"Ctrl+Alt+C" = "center_column"
+"Ctrl+Alt+W" = "close_window"
+"Ctrl+Alt+," = "consume_from_left"
+"Ctrl+Alt+R" = "refresh"
+"Ctrl+Alt+Shift+-" = "cycle_height_down"
+"Ctrl+Alt+End" = "focus_end"
+"Ctrl+Alt+=" = "cycle_width_up"
+"Ctrl+Alt+Shift+=" = "cycle_height_up"
+"Ctrl+Alt+Shift+R" = "reload"
+"Ctrl+Alt+Win+Down" = "focus_monitor_down"
+"Ctrl+Alt+Y" = "toggle_sticky"
+"Ctrl+Alt+Shift+F" = "toggle_fullscreen"
+"Ctrl+Alt+Shift+[" = "expel_to_left"
+"Ctrl+Alt+K" = "focus_up"
+"Ctrl+Alt+T" = "toggle_tabbed"
+"Ctrl+Alt+Shift+End" = "move_column_to_end"
+"Ctrl+Alt+Win+Shift+Down" = "move_to_monitor_down"
+"Ctrl+Alt+Shift+]" = "expel_to_right"
+"Ctrl+Alt+Win+." = "focus_monitor_right"
+"Ctrl+Alt+Shift+0" = "equalize_heights"
+"Ctrl+Alt+Win+Up" = "focus_monitor_up"
+"Win+Ctrl+Escape" = "panic_revert"
+"Ctrl+Alt+-" = "cycle_width_down"
+"Ctrl+Alt+Shift+2" = "move_to_workspace_2"
+
+[[window_rules]]
+match_class = "MozillaDialogClass"
+action = "tile"
+corner_style = "square"
+open_maximized = false
+sticky = false
+
+[gestures]
+enabled = true
+swipe_left = "focus_left"
+swipe_right = "focus_right"
+swipe_up = "focus_up"
+swipe_down = "focus_down"
+scroll_up = "focus_next"
+scroll_down = "focus_prev"
+
+[snap_hints]
+enabled = true
+duration_ms = 200
+opacity = 128
+
+[animation]
+layout_duration_ms = 150
+workspace_switch_duration_ms = 200
+scroll_duration_ms = 200
+overview_duration_ms = 150
+easing = "ease_out"
+reduce_motion_on_battery = true
+
+[workspaces]
+names = []
+
+[overview]
+render = "live"
