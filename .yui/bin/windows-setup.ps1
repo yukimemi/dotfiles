@@ -3,7 +3,7 @@
     run_onchange_after_windows-setup.ps1.tmpl
   .DESCRIPTION
     Initial windows setup scripts for chezmoi.
-  .Last Change : 2026/09/22 01:07:25.
+  .Last Change : 2026/09/22 01:48:14.
 #>
 
 $ErrorActionPreference = "Stop"
@@ -246,7 +246,7 @@ function Set-RequiredEnv {
     # --allowedTools "" (deny every tool, so it can only answer text)
     # was reliable across repeated runs (~13-15s, correct one-line
     # summary every time) and never attempted a write.
-    "SHIKIGAMI_AI_CMD"             = 'claude -p "Output ONLY a single short git commit summary line for this diff. No prefix, no quotes, no trailing signature or Co-Authored-By line, no explanation, one line only:" --model sonnet --allowedTools ""'
+    "SHIKIGAMI_AI_CMD"             = 'claude -p "Output ONLY a single short git commit summary line for this diff, written in English. No prefix, no quotes, no trailing signature or Co-Authored-By line, no explanation, one line only:" --model sonnet --allowedTools ""'
     # shikigami diff pane: pipes jj's raw ANSI diff through delta so it
     # gets delta's syntax highlighting / word-level diff / side-by-side
     # layout instead of jj's own git-format coloring. shikigami sets the
@@ -502,7 +502,6 @@ function Install-Tool {
       "fzf",
       "gh",
       "git",
-      "glazewm",
       "go",
       "gsudo",
       "imagemagick",
@@ -527,7 +526,6 @@ function Install-Tool {
       "windows-terminal-preview",
       "winmerge",
       "yazi",
-      "zebar",
       "zig"
     )
 
