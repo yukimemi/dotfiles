@@ -1,3 +1,10 @@
+# Windows-only alternate location (shoka reads from %APPDATA%\yukimemi\shoka\config).
+# Parent ~/.config/shoka is already covered by the home/.config marker.
 [[link]]
 dst = "{{ env(name='APPDATA') }}/yukimemi/shoka/config"
 when = "yui.os == 'windows' and vars.production"
+
+# macOS alternate location (shoka reads from ~/Library/Application Support/yukimemi.shoka).
+[[link]]
+dst = "{{ vars.home_root }}/Library/Application Support/yukimemi.shoka"
+when = "yui.os == 'macos' and vars.production"
