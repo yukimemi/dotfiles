@@ -1,0 +1,24 @@
+# Paneru configuration
+
+[options]
+animation_speed = 20
+
+[padding]
+top = 5.0
+bottom = 5.0
+left = 5.0
+right = 5.0
+
+[decorations.active.border]
+enabled = true
+color = "#89b4fa"
+width = 2.0
+radius = 12.0
+
+[bindings]
+window_focus_west = "ctrl + cmd - h"
+window_focus_east = "ctrl + cmd - l"
+
+window_swap_west = "ctrl + cmd + shift - h"
+window_swap_east = "ctrl + cmd + shift - l"
+
