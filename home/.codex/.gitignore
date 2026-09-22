@@ -49,3 +49,4 @@
 /plugins/.plugin-appserver*
 /plugins/.remote-plugin-*
 /skills/.system/
+/packages/

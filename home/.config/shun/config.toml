@@ -37,6 +37,70 @@ preset = "tokyo-night"
 name = "Neovide"
 path = "neovide"
 completion = "path"
+hotkey = "F10"
+hotkey_mode = "activate"
+
+# Mirrors ~/dotfiles/home/.config/autohotkey/AutoHotkey.ahk.tera (vars.autohotkey)
+[[apps]]
+name = "Outlook"
+path = "olk"
+hotkey = "Ctrl+F9"
+hotkey_mode = "activate"
+
+[[apps]]
+name = "Teams"
+path = "ms-teams"
+hotkey = "Ctrl+F12"
+hotkey_mode = "activate"
+
+[[apps]]
+name = "Brave"
+path = "brave"
+hotkey = "F11"
+hotkey_mode = "activate"
+
+# OS-conditional: Windows Terminal (Windows) / WezTerm (macOS) share the F12 toggle
+# and Ctrl+F10 "open yazi" hotkeys. `os` is resolved from `std::env::consts::OS` at
+# config-load time, so only the matching OS's hotkey is valid; the other renders to
+# an empty string and is silently skipped as an invalid shortcut (logged as a warning).
+#
+# NOTE: on Windows the running process is WindowsTerminal.exe but only "wt"/"wtp" are
+# on PATH as execution aliases, so window-match-by-exe-stem can't find it once running;
+# toggle falls back to launching a new window each time (README caveat, not a bug).
+[[apps]]
+name = "Windows Terminal"
+path = "wtp"
+hotkey = "{% if os == \"windows\" %}F12{% endif %}"
+hotkey_mode = "toggle"
+
+# macOS: `name` must be the exact .app bundle name for the AppleScript-based
+# activate/toggle match (see README "Per-app global hotkeys" macOS row).
+[[apps]]
+name = "WezTerm"
+path = "wezterm-gui"
+hotkey = "{% if os == \"macos\" %}F12{% endif %}"
+hotkey_mode = "toggle"
+
+# yazi: always spawns a new tab/window rather than activate/toggle — macOS's
+# "activate" always succeeds (app launches or foregrounds) without ever running
+# the path/args, so hotkey_mode must stay "launch" here.
+[[apps]]
+name = "yazi (Windows Terminal)"
+path = "wtp"
+args = ["new-tab", "yazi"]
+hotkey = "{% if os == \"windows\" %}Ctrl+F10{% endif %}"
+
+[[apps]]
+name = "yazi (WezTerm)"
+path = "wezterm-gui"
+args = ["start", "--", "yazi"]
+hotkey = "{% if os == \"macos\" %}Ctrl+F10{% endif %}"
+
+[[apps]]
+name = "Slack"
+path = "slack"
+hotkey = "Ctrl+F11"
+hotkey_mode = "activate"
 
 [[apps]]
 name = "YaibaStart"

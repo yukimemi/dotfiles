@@ -20,8 +20,8 @@
 #   cmd:<shell command>
 
 [[rule]]
-desc = "Ctrl+[ -> Esc, and close the IME"
-from = "ctrl-["
+desc = "Ctrl+[ -> Esc, and close the IME (JIS keyboard: the physical [ key sits where kagi names RightBracket)"
+from = "ctrl-]"
 to = ["esc", "ime:off"]
 
 [[rule]]
