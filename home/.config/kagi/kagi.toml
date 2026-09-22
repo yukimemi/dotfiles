@@ -19,10 +19,19 @@
 #   source:<input source id>  macOS TIS id / Linux IME engine name
 #   cmd:<shell command>
 
+# JIS keyboard, physical [ key: macOS keycodes are positional (US `]` slot),
+# Windows virtual-key codes follow the JIS layout (VK_OEM_4 = `[`).
 [[rule]]
-desc = "Ctrl+[ -> Esc, and close the IME (JIS keyboard: the physical [ key sits where kagi names RightBracket)"
+desc = "Ctrl+[ -> Esc, and close the IME (macOS: JIS [ reports as RightBracket)"
 from = "ctrl-]"
 to = ["esc", "ime:off"]
+os = ["macos"]
+
+[[rule]]
+desc = "Ctrl+[ -> Esc, and close the IME (Windows/Linux)"
+from = "ctrl-["
+to = ["esc", "ime:off"]
+os = ["windows", "linux"]
 
 [[rule]]
 desc = "Esc also closes the IME"

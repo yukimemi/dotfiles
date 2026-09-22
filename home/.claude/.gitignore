@@ -19,6 +19,9 @@ paste-cache/
 # daemon state
 daemon/
 
+# state
+state/
+
 # downloads — user data
 downloads/
 

@@ -1,6 +1,3 @@
-providers:
-  webSearchOrder:
-    []
 symbolPreset: nerd
 theme:
   dark: dark-tokyo-night
@@ -9,13 +6,13 @@ autolearn:
   enabled: true
 modelRoles:
   smol: openrouter/~deepseek/deepseek-v4-flash-latest
-  slow: anthropic/claude-opus-5
-  plan: kimi-code/k3
+  slow: anthropic/claude-opus-5-5
+  plan: openai/gpt-6-astra
   default: anthropic/claude-sonnet-5
-  designer: anthropic/claude-opus-5
+  designer: anthropic/claude-opus-5-5
   tiny: openrouter/~deepseek/deepseek-v4-flash-latest
-  advisor: kimi-code/k3
-  vision: anthropic/claude-opus-5
+  advisor: openai/gpt-6-astra
+  vision: anthropic/claude-opus-5-5
 defaultThinkingLevel: auto
 memory:
   backend: local

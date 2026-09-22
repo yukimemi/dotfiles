@@ -64,12 +64,13 @@ hotkey_mode = "activate"
 # config-load time, so only the matching OS's hotkey is valid; the other renders to
 # an empty string and is silently skipped as an invalid shortcut (logged as a warning).
 #
-# NOTE: on Windows the running process is WindowsTerminal.exe but only "wt"/"wtp" are
-# on PATH as execution aliases, so window-match-by-exe-stem can't find it once running;
-# toggle falls back to launching a new window each time (README caveat, not a bug).
+# NOTE: on Windows the window belongs to WindowsTerminal.exe while "wtp" is only a
+# launcher, so `window_exe` tells activate/toggle which process to match.
 [[apps]]
 name = "Windows Terminal"
 path = "wtp"
+window_exe = "WindowsTerminal"
+window_title_exclude = "Yazi"
 hotkey = "{% if os == \"windows\" %}F12{% endif %}"
 hotkey_mode = "toggle"
 
@@ -81,14 +82,16 @@ path = "wezterm-gui"
 hotkey = "{% if os == \"macos\" %}F12{% endif %}"
 hotkey_mode = "toggle"
 
-# yazi: always spawns a new tab/window rather than activate/toggle — macOS's
-# "activate" always succeeds (app launches or foregrounds) without ever running
-# the path/args, so hotkey_mode must stay "launch" here.
+# yazi: its own named Windows Terminal window ("-w yazi") with a fixed title, so
+# window_exe + window_title find it and Ctrl+F10 activates it instead of stacking tabs.
 [[apps]]
 name = "yazi (Windows Terminal)"
 path = "wtp"
-args = ["new-tab", "yazi"]
+args = ["-w", "yazi", "new-tab", "--title", "Yazi", "--suppressApplicationTitle", "yazi"]
+window_exe = "WindowsTerminal"
+window_title = "Yazi"
 hotkey = "{% if os == \"windows\" %}Ctrl+F10{% endif %}"
+hotkey_mode = "activate"
 
 [[apps]]
 name = "yazi (WezTerm)"
@@ -105,13 +108,7 @@ hotkey_mode = "activate"
 [[apps]]
 name = "YaibaStart"
 path = "conhost"
-args = [
-  "--headless",
-  "yaiba",
-  "--update",
-  "off",
-  "--relay-only"
-]
+args = ["--headless", "yaiba", "--update", "off", "--relay-only"]
 
 [[apps]]
 name = "YaibaStop"
