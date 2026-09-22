@@ -1,0 +1,61 @@
+# kagi — cross-platform key mapper
+# https://github.com/yukimemi/kagi
+#
+# Replaces the IME section of ~/.config/autohotkey/AutoHotkey.ahk on Windows,
+# and the "Ctrl+[を押したときに、英数キーも送信する（vim用）" rule in
+# ~/.config/karabiner/karabiner.json on macOS.
+#
+# NOTE: on macOS, drop that Karabiner rule before running kagi, or Ctrl+[ is
+# handled twice — Karabiner sits below the event tap, so kagi would see the
+# 英数 Karabiner already sent.
+#
+# `from` prefixes (AutoHotkey style):
+#   ~  the original key still reaches the focused app
+#   *  extra modifiers beyond the listed ones are tolerated
+#
+# `to` entries:
+#   esc, ctrl-a, …            synthesize that key
+#   ime:on | ime:off | ime:toggle
+#   source:<input source id>  macOS TIS id / Linux IME engine name
+#   cmd:<shell command>
+
+[[rule]]
+desc = "Ctrl+[ -> Esc, and close the IME"
+from = "ctrl-["
+to = ["esc", "ime:off"]
+
+[[rule]]
+desc = "Esc also closes the IME"
+from = "~esc"
+to = ["ime:off"]
+
+# 変換 / 無変換 only exist on Windows and Linux. A JIS Mac keyboard sends
+# 英数 / かな instead, which already drive the IME directly.
+[[rule]]
+desc = "変換 -> IME ON"
+from = "~henkan"
+to = ["ime:on"]
+os = ["windows", "linux"]
+
+[[rule]]
+desc = "無変換 -> IME OFF"
+from = "~muhenkan"
+to = ["ime:off"]
+os = ["windows", "linux"]
+
+[macos]
+# "eisu"   post the JIS 英数/かな keycodes — works with any Japanese IME and
+#          keeps the selected input method. The analogue of AutoHotkey's
+#          ImmSetOpenStatus.
+# "source" switch input source outright via Text Input Services.
+ime = "eisu"
+ascii_source = "com.apple.keylayout.ABC"
+japanese_source = "com.apple.inputmethod.Kotoeri.RomajiTyping.Japanese"
+
+[linux]
+# Empty = every keyboard. Entries starting with `/` match a device path,
+# anything else is a case-insensitive substring of the device name.
+devices = []
+# Unset = probe fcitx5-remote, then ibus.
+# ime_on = "fcitx5-remote -o"
+# ime_off = "fcitx5-remote -c"
