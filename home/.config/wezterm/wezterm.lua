@@ -1,7 +1,7 @@
 -- =============================================================================
 -- File        : wezterm.lua
 -- Author      : yukimemi
--- Last Change : 2025/11/28 21:22:04.
+-- Last Change : 2026/09/22 15:06:45.
 -- =============================================================================
 
 -- https://karukichi-blog.netlify.app/blogs/wezterm
@@ -165,7 +165,7 @@ return {
   use_ime = true,
   window_background_opacity = 0.90,
   default_prog = find_pwsh(),
-  font_size = os.is_mac and 12.0 or 10.0,
+  font_size = os.is_mac and 18.0 or 10.0,
   font = wezterm.font_with_fallback({
     "PlemolJP Console NF",
     "UDEV Gothic NF",

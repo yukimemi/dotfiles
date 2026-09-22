@@ -43,9 +43,33 @@ if ($IsWindows) {
   [Console]::InputEncoding = [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 }
 $env:LANG = "ja_JP.UTF-8"
-$env:EDITOR = "todoke-vim"
+$env:EDITOR = "todoke"
 $env:KANADE_DEV_NATS_TOKEN = "dev"
 $env:KANADE_DEV_STATIC_TOKEN = "dev"
+
+# shikigami (jj TUI) Ctrl-g: fills describe/new with an AI-generated
+# message. Measured alternatives: opencode's default free model
+# (nemotron-3-ultra-free) hangs >120s per call; agy -p never picks
+# up the piped diff at all; claude -p --model haiku answers but is
+# unreliable about touching the real repo (tried to create files,
+# once wrote a plan under ~/.claude/plans/) unless every tool is
+# denied, and even then is inconsistent. --model sonnet
+# --allowedTools "" (deny every tool, so it can only answer text)
+# was reliable across repeated runs (~13-15s, correct one-line
+# summary every time) and never attempted a write.
+$env:SHIKIGAMI_AI_CMD = 'claude -p "Output ONLY a single short git commit summary line for this diff, written in English. No prefix, no quotes, no trailing signature or Co-Authored-By line, no explanation, one line only:" --model sonnet --allowedTools ""'
+# shikigami diff pane: pipes jj's raw ANSI diff through delta so it
+# gets delta's syntax highlighting / word-level diff / side-by-side
+# layout instead of jj's own git-format coloring. shikigami sets the
+# COLUMNS env var to the diff pane's actual rendered width before
+# spawning this command, so --width sizes side-by-side output to the
+# pane instead of wrapping at a fixed column count. Windows spawns
+# via cmd /C (%COLUMNS%); macOS/Linux spawn via a POSIX shell ($COLUMNS).
+$env:SHIKIGAMI_DIFF_FILTER = if ($IsWindows) {
+  'delta --paging=never --side-by-side --width %COLUMNS%'
+} else {
+  'delta --paging=never --side-by-side --width $COLUMNS'
+}
 
 # Browser
 if (Test-IsWsl) {

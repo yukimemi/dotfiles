@@ -3,3 +3,8 @@
 [[link]]
 dst = "{{ env(name='APPDATA') }}/shun"
 when = "yui.os == 'windows' and vars.production"
+
+# macOS alternate location (shun reads from ~/Library/Application Support/shun).
+[[link]]
+dst = "{{ vars.home_root }}/Library/Application Support/shun"
+when = "yui.os == 'macos' and vars.production"

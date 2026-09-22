@@ -58,8 +58,12 @@ telemetry/
 plugins/.last_inuse_sweep
 plugins/cache/
 plugins/data/
+plugins/synced/
 plugins/install-counts-cache.json
 plugins/known_marketplaces.json
 plugins/marketplaces/
 plugins/blocklist.json
 plugins/installed_plugins.json
+
+# skills
+skills/synced/

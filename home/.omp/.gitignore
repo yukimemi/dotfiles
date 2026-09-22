@@ -36,3 +36,5 @@
 /natives/
 /puppeteer/
 /run/
+
+/agent/config.yml.lock
