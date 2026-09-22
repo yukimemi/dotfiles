@@ -215,10 +215,9 @@ halt_liquidate = true    # 停止時にポジションを成行クローズ（�
 #    そのため [mm] は [[sleeve]] より前に置いて autotune persist で消えないようにする。
 #    本修正は tail 保全PR で対応予定（それ後はこの順序制約は不要になる）。
 [mm]
-private_stream = true
 pair          = "xrp_jpy"
 paper         = false             # LIVE 実弾運用用（~/.config/nagi/ 配下＝repo 外。Claude/git の checkout 操作で飛ばないようにここに置く）
-lot           = 0.2               # ★ 2026-09-19 7.0 -> 8.0（好調・高回転を受け引き上げ：収益・リベート +14%）。
+lot = 0.0001
 #                                 # clips 171 -> 150。max_inventory は 1200 据置。
 #                                 # 根拠: lot 7.0 世代(09-04〜09-19)の実測 Net PnL +1,651円 (5,996 fills)。
 #                                 #   最深 open loss ¥8,729 (1,131 XRP = 161.6 clips)。
@@ -347,7 +346,7 @@ lot           = 0.2               # ★ 2026-09-19 7.0 -> 8.0（好調・高回�
 #      「損切条件を足す」ではなく cap 引き上げ（下記 360 → 400）。
 #      監視は既に足りている（kanade nagi-mm-pnl が 5分毎に inv と mxi を obs_events
 #      に記録）ので、機構を足すなら切る機構ではなく閾値アラート。
-max_inventory = 10                # ★ 2026-09-02 43.2 -> 1200。240クリップ、満玉 ¥252,840(mid 210.7)。
+max_inventory = 0.0002
 #                                 # = 口座 GROSS 上限 = max_open_loss_pct の分母。円ストップ = 5% × 1200 × mid
 #                                 # = ¥12,643(実機 /state protect.ceiling = 12642.93 で一致)。
 #                                 # MM_RELOAD_MAX_INV=1200 ちょうど(`> cap` 判定なので通過)。stack_room は
@@ -452,11 +451,11 @@ max_inventory = 10                # ★ 2026-09-02 43.2 -> 1200。240クリッ�
 #                                 #   clamp ではなく拒否され、稼働中の値が残る。
 #                                 # 深さ側のブレーキ(max_open_loss_quote)は #292 で未マージ。
 #                                 # マージ前に書いてはいけない（建玉があると即 taker で投げる）。
-exit_full_size = true              # #260: 減らす側は保有数まるごとで出す。|在庫| <= lot では
+exit_full_size = true
 #                                  # 完全な no-op なので、ナンピンが起きる時間帯だけ効く。
 #                                  # A/B の因子ではなく常時ON: 「手加減したナンピン」を
 #                                  # 測らないため(ユーザー判断 2026-07-28)。
-reduce_only_keeps_entries = false  # 2026-08-15: false → **true に復帰**。詳細と実測は kanade job
+reduce_only_keeps_entries = false
 #                                 # nagi-mm-gate.yaml の「■ 復帰」ブロック（desired-state の権威）。
 #                                 # 要点: このノブと エグジット床 は **交互作用でしか効かない**。
 #                                 # 過去の A/B は keeps を 床=60s の下で測り、床の A/B は実データ 0 件で
@@ -527,7 +526,7 @@ leg_poll_secs = 5                 # ★ 2026-09-01 arm。venue_legs を常時ON 
                                     # 再発条件が揃うため、eth と同じ緩和策を先に入れる。3秒鮮度の
                                     # 建玉スナップショットに近づける。eth 側の導入理由（leg欠損0%）は
                                     # xrpも現行0%（歴史的には32.5%）なので同じ条件を満たす。
-flat_entry_ungated = false        # #310 実験。2026-08-15 00:50 武装 → 12:10 中止(11.3h)。仮説は棄却。
+flat_entry_ungated = false
 #                                 # 2手目以降のナンピンは通常どおり全ゲート。max_inventory は免除対象外。
 #                                 # 当初の根拠: 収入は出来高に線形。直近7日 net/notional = 2.03bp ± 0.11
 #                                 # = maker リベートそのもの(realized は +1.36円 = ゼロ)。回転数が効く。
@@ -553,7 +552,7 @@ flat_entry_ungated = false        # #310 実験。2026-08-15 00:50 武装 → 12
 #                                 # コストは在庫リスクのみ。再挑戦するなら (a) exit_patience_secs を有限にして
 #                                 # 出口を回してから、または (b) 判定指標を fills/h でなく entries/h にする。
 #                                 # hot-reload 可 = キルスイッチ。false に書けば ~5s で戻る(再起動不要)。
-hold_secs       = 0               # この秒数保有したら reduce-only(減る側だけ passive)へ。両レグ maker=リベート両取り。
+hold_secs = 0
 #                                 # 2026-08-22: 15 → **0**。ナンピン+床(exit_patience_secs=360000)+keeps=true の
 #                                 # 下では 15 は「エグジット床が効かない唯一の穴」でしかない。
 #                                 # 機構: 床は `if reduce_only(now)` ブロックの中だけで適用される
@@ -591,7 +590,7 @@ hold_secs       = 0               # この秒数保有したら reduce-only(減�
 #                                 #   「建玉がある間は増やす側を常に引く」= 実質クローズ専用ボットになる。
 #                                 # 注: kanade job/nagi-mm-gate.yaml は hold_secs を desired-state に持たない
 #                                 #   (監視は nagi-mm-pnl.yaml の knobs のみ)ので、この編集は巻き戻されない。
-taker_after_secs = 0             # 在庫がこの秒数残ったら taker で強制フラット(リスク非常口)。0=永久にtakerしない(maker-only, 既定)
+taker_after_secs = 60
 #                                 # 2026-07-23 に 120 で運用したが中止: 時間だけを見て方向を見ないため、
 #                                 # 利益側の建玉(+0.018)や 0.7bp しか逆行してない建玉に 12bp の taker fee を
 #                                 # 払ってしまった(fee が損失の17倍)。時間デッドラインは fee デルタ 14bp の
@@ -599,7 +598,7 @@ taker_after_secs = 0             # 在庫がこの秒数残ったら taker で�
 #                                 # ライブでも有効: armed 時はアグレッシブ側タッチに post_only=false の
 #                                 # 指値を打って全在庫を切る(resting している reduce quote は先にキャンセル)。
 #                                 # fill は通常の venue fill ポーリングで帰ってくるので二重計上なし。
-taker_early_bps = 0              # v2 fee-aware 早期カット(#247): reduce-only 中、arm 時点からの逆行幅が
+taker_early_bps = 0
 max_open_loss_pct = 5              # v3 含み損上限(#291): 認可notional(max_inventory×mid)のこの%を超えたら taker で全量クロス。
 #                                 # 0=無効。1.0未満は単位取り違えとして拒否。値は kanade job/nagi-mm-gate.yaml が所有。
 #                                 # この bp を超え、かつ直近10秒の最悪値を更新中(=まだ走ってる)なら、deadline を
@@ -627,7 +626,7 @@ max_open_loss_pct = 5              # v3 含み損上限(#291): 認可notional(ma
 #                                 # 代償: 非常口が max_inventory だけになる（#292 max_open_loss_quote が
 #                                 # 本来の受け皿、未マージ）。なお 0 なので上の「flatten 中の entry quote が
 #                                 # resting」問題は keeps=true でも構造的に起きない（taker が出ないため）。
-exit_patience_secs = 0            # エグジット床（0=無効。2026-08-15 に 360000 → 0 → **360000 に復帰**）。1 以上だと
+exit_patience_secs = 0
 #                                 # reduce-only 開始からその秒数、エグジット quote を avg_cost に
 #                                 # 床張りする(long なら max(best_ask, cost))。360000 は「逆行した建玉を
 #                                 # 実現させずに在庫として抱える」設定で、#310 の実測でスループットを
@@ -704,7 +703,7 @@ trend_band      = 0.0005          # ゲートC: |速-遅|/遅 がこれ超でト
 tox_max_prints  = 10              # ゲートD: 直近 tox_window_secs 秒の約定がこれ以上でバースト判定。売り優位(≥2:1)ならbidのみ、買い優位ならaskのみ、混在なら両側を引く(逆フロー側の優良fillを殺さない)。0=無効
 tox_max_streak  = 3               # ゲートD: 同側連続プリントがこれ以上で、その側が埋まる quote を引く(sell連続→bid引く)。0=無効
 tox_window_secs = 10              # ゲートD: 上記2つの計測窓(秒)
-vol_max_bps     = 0               # ゲートE: 実現ボラ上限。**0 = 無効（2026-08-21 に 0.5 から）**。
+vol_max_bps = 0
 #                                 # ナンピン+床の下では 0.5 が総額と約定の両方を削っていた。
 #                                 # シム掃引(6独立ピン留め3日窓, 現ライブ構成のまま vol_max_bps のみ可変):
 #                                 #   0.0 → +151.50 / 0.5 → +92.21 / 1.0 → −39.70 / 2.0 → −71.01 / 5.0 → +151.91
@@ -744,7 +743,7 @@ cooldown_secs = 0                 # ゲートF: 自己約定後、その側の�
 #                                 # なおエントリー側スタンプでは hold_secs 超の値は reduce-only に覆われて
 #                                 # ほぼ効かないが、エグジット側スタンプによるフラット後の再エントリ抑制には
 #                                 # 効くので、>15s も無意味ではない。
-min_front_qty = 1500              # ゲートG: 最良bid/askの板厚がこれ未満ならその側を引く。薄い板の先頭に
+min_front_qty = 1500
 #                                 # 並ぶと有毒バーストの最初のprintで拾われる。厚い壁が先にバーストを吸収する。0=無効(既定)
 #                                 # ゲートFと違い grow-only ではない: 通常モードでは「減らす側」のquoteも
 #                                 # 薄い板なら引く(エグジットこそ最も逆選択されるfill、実測−7.2bp @60s。
@@ -754,7 +753,6 @@ min_front_qty = 1500              # ゲートG: 最良bid/askの板厚がこれ�
 #                                 # 再参加しない(閾値またぎの Cancel→Place 往復でキュー位置を失うのを防ぐ)。固定1.5倍。
 #                                 # 評価する板厚からはタッチに置いた自前の resting lot を差し引く
 #                                 # (公開板には自分の注文が含まれるため)。
-min_front_qty_exit = 0
 drift_gate_bps = 5                # ゲートH: 30分 mid ドリフトが <-TH なら bid を、>+TH なら ask を引く
 #                                 # (方向性ドリフトゲート。grow-only・片側のみ・エグジット免除・cold start は引かない)。
 #                                 # 有効化 2026-07-28。根拠: (1) 22.5d markout 由来(逆ドリフト entry は 60s で負転、
@@ -829,12 +827,13 @@ control_token = "{{ env(name='NAGI_MM_TOKEN', default='') }}"
 #   ★ lot / max_inventory / 価格が動いたら円を引き直すこと（AGENTS.md の規則）。
 #   ★ 2026-09-10: long を 100→140clips（700→980 XRP）に引き上げ（ユーザー指示）。
 #   ★ 2026-09-11: long を 140→160clips（980→1120 XRP）に引き上げ（ユーザー指示）。
+min_front_qty_exit = 0
 [mm.long]
-max_inventory = 5      # ★ 2026-09-19 1120 -> 1200。lot 8.0 で 150 clips（gross cap 1200 満額開放）。
+max_inventory = 0.0001
 #                      #   ★ 2026-09-11 980 -> 1120。lot 7.0 で 160 clips。
 
 [mm.short]
-max_inventory = 5     # ★ 2026-09-21 800 -> 1200。lot 8.0 で 150 clips（gross cap 1200 満額開放）。
+max_inventory = 0.0001
 #                     #   ★ 2026-09-19 700 -> 800。lot 8.0 で 100 clips を維持。
 #                     #   ★ 2026-09-04 600 -> 700。lot 7.0 で 100 clips（long と対称）。
 #                     #   share は gross cap [mm].max_inventory=1200 の下での「narrow」なので、

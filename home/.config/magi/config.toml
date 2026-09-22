@@ -135,6 +135,13 @@ sessions = true
 # だけで、機械的なゲートは無人でも変わらない。
 land_approval = false
 
+[daemon]
+# Off by default because it bends `magi serve`'s "one run at a time"
+# principle. Turned on here on operator request: urgent tasks (e.g. a
+# release-blocking fix) should be able to cut ahead of whatever is already in
+# flight via `magi task interrupt <id>`, rather than wait for it to finish.
+pause_for_interrupts = true
+
 [update]
 mode = "notify"
 # 常駐する magi web はこの間隔で新しいリリースを確認する。既定の1日では、

@@ -215,8 +215,6 @@ halt_liquidate = true    # 停止時にポジションを成行クローズ（�
 #    そのため [mm] は [[sleeve]] より前に置いて autotune persist で消えないようにする。
 #    本修正は tail 保全PR で対応予定（それ後はこの順序制約は不要になる）。
 [mm]
-private_stream = true
-min_front_qty_exit = 0
 # ============================================================================
 # #354 脚別会計 live PoC — 2026-08-30 arm。**eth 最小 lot のみ。xrp は全部 off。**
 # ----------------------------------------------------------------------------
@@ -296,8 +294,8 @@ min_front_qty_exit = 0
 # ============================================================================
 pair                  = "eth_jpy"  # xrp に次いで唯一 gated edge がプラスだったペア（2026-08-27 スクリーン）
 paper                 = false  # ★ 実弾。--live-arm を付けたときだけ実際に発注する
-lot                   = 0.0001  # venue 最小 = ステップ。約40円。部分約定が起きない
-max_inventory         = 0.0010  # ★ 2026-09-09 0.032 -> 0.035。350クリップ、満玉 ¥13,405(mid 382,992)。
+lot = 0.0001
+max_inventory = 0.0002
                               # 運用者判断: long / short ともに 120 クリップ与える。
                               # 経緯: long(income)脚が income_max=10 クリップに張り付いていた。
                               # 張り付きの内訳は実測(24h, 1s サンプル 84,938行)で2つに分かれる —
@@ -317,13 +315,13 @@ max_inventory         = 0.0010  # ★ 2026-09-09 0.032 -> 0.035。350クリッ�
                               #     つまり **積んだ玉が回らなければ carry 負は深くなる**。
                               #     監視すべき数字: 脚別 OPEN:CLOSE 比 (2026-08-30 直近24h は
                               #     long 15:5 / short 94:7 = どちらも回っていない)。
-exit_full_size        = true  # #260: 減らす側は保有数まるごとで出す。1ロットずつでは駐車脚を降ろせない。
+exit_full_size = true
                               # 2026-08-30 復旧: 上の cap 撤回編集で範囲置換に巻き込まれて消え、
                               # default(false) に落ちていた (hot-reload ログの
                               # `exit_full_size: true → false` が証拠)。
                               # 教訓: live config を「行範囲」で置換しない - 間の行が見えていない。
 
-reduce_only_keeps_entries= false
+reduce_only_keeps_entries = false
 venue_legs_auto       = false  # ★ 2026-08-30 true -> false。`leg_income` と両立しない。
                               # auto ratchet は「事故の」ヘッジを解消するために存在するが、
                               # `leg_income` は2本目の脚を意図的に開く。同時に arm すると
@@ -358,12 +356,12 @@ leg_basis_shadow      = true  # ops ログ行 `mm leg_basis L=…S=… du= dr= d
 #                          # 関係なく毎 tick 書かれる（ops ログは再起動で消えるため）。
 #                          # 期待値: drift=0/0 のまま推移すること。それが #354 step 2
 #                          # （脚別 floor / gross cap を fill 由来の帳簿に載せる）の合格判定。
-flat_entry_ungated    = false
-hold_secs             = 0
-taker_after_secs      = 0
-taker_early_bps       = 0
+flat_entry_ungated = false
+hold_secs = 0
+taker_after_secs = 60
+taker_early_bps = 0
 max_open_loss_pct     = 5
-exit_patience_secs    = 0
+exit_patience_secs = 0
 lot_shadow            = true
 lot_shadow_max        = 0.00016  # lot の 1.6倍（xrp の 16.0/10.0 と同比率）
 lot_shadow_score      = true
@@ -375,10 +373,10 @@ trend_band            = 0.0005
 tox_max_prints        = 10
 tox_max_streak        = 3
 tox_window_secs       = 10
-vol_max_bps           = 0
+vol_max_bps = 0
 vol_window_secs       = 60
 cooldown_secs         = 0
-min_front_qty         = 1
+min_front_qty = 1
 drift_gate_bps        = 5
 lead_venue            = "binance"
 lead_symbol           = "ETHUSDT"  # binance の先行フィード。lead_gate_bps=0 なので現状 inert だがペアは合わせる
@@ -413,11 +411,12 @@ control_token         = "{{ env(name='NAGI_MM_TOKEN', default='') }}"
 #   円ストップ = max_open_loss_pct 5% x cap 0.035 x mid 382,992 ≈ ¥670.2
 #     （cap を上げた分だけ上限リスクも上がる）。
 #   ★ lot / max_inventory / 価格が動いたら円を引き直すこと（AGENTS.md の規則）。
+min_front_qty_exit = 0
 [mm.long]
-max_inventory = 0.0005
+max_inventory = 0.0001
 
 [mm.short]
-max_inventory = 0.0005
+max_inventory = 0.0001
 
 [record]
 pairs = ["xrp_jpy", "btc_jpy", "eth_jpy", "sol_jpy", "doge_jpy"] # xrp=既存+横断OOS用にメジャー/準メジャー/速アルト/リテール毒を追加
