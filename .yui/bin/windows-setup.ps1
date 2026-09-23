@@ -3,7 +3,7 @@
     run_onchange_after_windows-setup.ps1.tmpl
   .DESCRIPTION
     Initial windows setup scripts for chezmoi.
-  .Last Change : 2026/09/22 01:48:14.
+  .Last Change : 2026/09/23 22:10:22.
 #>
 
 $ErrorActionPreference = "Stop"
@@ -488,7 +488,6 @@ function Install-Tool {
 
     $scoopPackages = @(
       "7zip",
-      "autohotkey",
       "bat",
       "clipboard",
       "copyq",
@@ -739,34 +738,48 @@ function Install-CargoTool {
   }
 
   foreach ($tool in $Tools) {
+    # Crate name defaults to the binary name (kagi ships as crate `kagikey`).
+    $crate = if ($tool.Crate) { $tool.Crate } else { $tool.Name }
     log "Checking $($tool.Name)..." "Cyan"
     if (Get-Command $tool.Name -ErrorAction SilentlyContinue) {
       log "$($tool.Name) is already installed." "Gray"
       continue
     }
 
-    if ($PSCmdlet.ShouldProcess($tool.Name, "Install via cargo-binstall/cargo install")) {
+    if ($PSCmdlet.ShouldProcess($crate, "Install via cargo-binstall/cargo install")) {
       Set-GnuToolchain
-      log "Installing $($tool.Name) via cargo-binstall..." "Yellow"
-      $binstallArgs = @("binstall", "--no-confirm", "--target", "x86_64-pc-windows-gnu")
-      if ($tool.Git) {
-        # cargo-binstall doesn't support --git directly as well as install,
-        # but we can try install if binstall fails or just use binstall if it's a known crate
-        $binstallArgs += $tool.Name
-      } else {
-        $binstallArgs += $tool.Name
-      }
-
-      & cargo $binstallArgs
+      log "Installing $crate via cargo-binstall..." "Yellow"
+      & cargo binstall --no-confirm --target x86_64-pc-windows-gnu $crate
       if ($LASTEXITCODE -ne 0) {
-        log "Binstall failed for $($tool.Name), falling back to cargo install..." "Yellow"
+        log "Binstall failed for $crate, falling back to cargo install..." "Yellow"
         if ($tool.Git) {
           cargo +stable-x86_64-pc-windows-gnu install --git $tool.Git
         } else {
-          cargo +stable-x86_64-pc-windows-gnu install $tool.Name
+          cargo +stable-x86_64-pc-windows-gnu install $crate
         }
       }
     }
+  }
+}
+
+function Register-KagiService {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
+  log "Checking kagi service..." "Cyan"
+  if (!(Get-Command kagi -ErrorAction SilentlyContinue)) {
+    log "kagi is not installed; skipping service registration." "Yellow"
+    return
+  }
+
+  # `kagi service install` registers a logon scheduled task named `kagi`.
+  if (Get-ScheduledTask -TaskName "kagi" -ErrorAction SilentlyContinue) {
+    log "kagi service is already registered." "Gray"
+    return
+  }
+
+  if ($PSCmdlet.ShouldProcess("kagi", "Register logon service")) {
+    log "Registering kagi service..." "Yellow"
+    kagi service install
   }
 }
 
@@ -792,19 +805,24 @@ function Start-Main {
       Install-Bun
 
       $cargoTools = @(
-        @{ Name = "rhq"; Git = "https://github.com/ubnt-intrepid/rhq.git" }
-        @{ Name = "psmux" }
-        @{ Name = "tmuxpanel" }
         @{ Name = "todoke" }
+        @{ Name = "shikigami" }
+        @{ Name = "renri" }
+        @{ Name = "shoka" }
+        @{ Name = "kagi"; Crate = "kagikey" }
       )
       Install-CargoTool $cargoTools
+      Register-KagiService
+
+      # AutoHotkey was replaced by kagi (key remaps) + shun (app hotkeys).
+      $staleAhkLink = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
+      if (Test-Path $staleAhkLink) {
+        log "Removing stale AutoHotkey startup shortcut..." "Yellow"
+        Remove-Item $staleAhkLink -Force
+      }
 
       log "Checking shortcuts..." "Cyan"
       $shortcuts = @(
-        @{
-          Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AutoHotkey.lnk"
-          Target = "${env:USERPROFILE}\.config\autohotkey\AutoHotkey.ahk"
-        }
         @{
           Link = "${env:APPDATA}\Microsoft\Windows\Start Menu\Programs\Startup\AlterDnD64.lnk"
           Target = "${env:USERPROFILE}\app\AlterDnD\AlterDnD64.exe"

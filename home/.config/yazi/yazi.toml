@@ -13,17 +13,17 @@ linemode = "size_and_mtime"
 
 [opener]
 extract = [
-  { run = 'ya pub augmented-extract --list %*', desc = "Extract here" },
+  { run = 'ya pub augmented-extract --list %s', desc = "Extract here" },
 ]
 edit = [
-  { run = '${EDITOR:-todoke} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-  { run = 'todoke %*', orphan = true, block = false, desc = "edit", for = "windows" },
+  { run = '${EDITOR:-todoke} %s', desc = "$EDITOR", block = true, for = "unix" },
+  { run = 'todoke %s', orphan = true, block = false, desc = "edit", for = "windows" },
 ]
 diff = [
-  { run = '%USERPROFILE%\scoop\apps\winmerge\current\WinMergeU.exe %*', orphan = true, block = false, desc = "WinMerge", for = "windows" },
+  { run = '%USERPROFILE%\scoop\apps\winmerge\current\WinMergeU.exe %s', orphan = true, block = false, desc = "WinMerge", for = "windows" },
 ]
 backup = [
-  { run = '%USERPROFILE%\src\github.com\yukimemi\bat\backup-old.bat %*', orphan = true, block = false, desc = "Backup", for = "windows" },
+  { run = '%USERPROFILE%\src\github.com\yukimemi\bat\backup-old.bat %s', orphan = true, block = false, desc = "Backup", for = "windows" },
 ]
 
 [open]

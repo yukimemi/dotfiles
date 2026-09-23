@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/09/19 12:27:08.
+# Last Change : 2026/09/23 22:11:54.
 # =============================================================================
 
 # --- Functions ---
@@ -242,28 +242,6 @@ function Install-Aider {
   param()
   if ($PSCmdlet.ShouldProcess("Aider", "Install aider")) {
     & ([scriptblock]::Create((Invoke-RestMethod -Uri https://aider.chat/install.ps1)))
-  }
-}
-
-function Install-PsmuxPpm {
-  [CmdletBinding(SupportsShouldProcess)]
-  param()
-  $ppmPath = Join-Path $env:USERPROFILE ".psmux/plugins/ppm"
-  if (!(Test-Path $ppmPath)) {
-    if ($PSCmdlet.ShouldProcess($ppmPath, "Install psmux plugin manager (ppm)")) {
-      Write-Host "Installing psmux plugin manager (ppm)..."
-      $tempDir = Join-Path $env:TEMP "psmux-plugins"
-      if (Test-Path $tempDir) {
-        Remove-Item $tempDir -Recurse -Force
-      }
-      git clone https://github.com/marlocarlo/psmux-plugins.git $tempDir
-      if (!(Test-Path (Split-Path $ppmPath -Parent))) {
-        New-Item -ItemType Directory (Split-Path $ppmPath -Parent) -Force | Out-Null
-      }
-      Copy-Item (Join-Path $tempDir "ppm") $ppmPath -Recurse -Force
-      Remove-Item $tempDir -Recurse -Force
-      Write-Host "Successfully installed ppm. Please run 'Prefix + I' in psmux to install plugins."
-    }
   }
 }
 
@@ -554,7 +532,6 @@ if (Get-Module -ListAvailable PSReadLine) {
     "la"    = "Get-ChildItem -Force"
     "ls"    = "Get-ChildItem"
     "o"     = "Start-Process"
-    "pm"    = "psmux"
     "r"     = "Remove-Fzf"
     "sk"    = "shoka cd"
     "rm"    = $rmTarget
@@ -663,8 +640,37 @@ if (Get-Module -ListAvailable PSReadLine) {
   Set-PSReadLineKeyHandler -Chord "Ctrl+w" -Function BackwardDeleteWord -ViMode Insert
 }
 
-if (Get-Command psmux -ErrorAction SilentlyContinue) {
-  Install-PsmuxPpm
+# Lazy native completion for clap-based CLIs (`<cmd> completion powershell`).
+# Spawning every binary at load would cost a process each, so register a stub
+# that builds the real completer on the first <Tab> instead. The generated
+# script is cached and regenerated when the exe is newer (e.g. after an
+# update / `self-update`).
+function Register-LazyCompletion {
+  param([Parameter(Mandatory)][string[]]$Name)
+  foreach ($n in $Name) {
+    Register-ArgumentCompleter -Native -CommandName $n -ScriptBlock {
+      param($wordToComplete, $commandAst, $cursorPosition)
+      $exe = (Get-Command -Name $n -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1).Source
+      if (-not $exe) { return }
+      $cache = Join-Path $HOME ".cache/pwsh/${n}_completion.ps1"
+      if (-not (Test-Path $cache) -or (Get-Item $cache).LastWriteTime -lt (Get-Item $exe).LastWriteTime) {
+        & $exe completion powershell | Set-Content $cache -Encoding utf8
+      }
+      # Capture the generated completer instead of letting it register itself,
+      # so this first <Tab> is answered by it too.
+      $real = $null
+      function Register-ArgumentCompleter {
+        param([switch]$Native, [string[]]$CommandName, [scriptblock]$ScriptBlock)
+        Set-Variable -Name real -Value $ScriptBlock -Scope 1
+      }
+      . $cache
+      if (-not $real) { return }
+      Microsoft.PowerShell.Core\Register-ArgumentCompleter -Native -CommandName $n -ScriptBlock $real
+      & $real $wordToComplete $commandAst $cursorPosition
+    }.GetNewClosure()
+  }
 }
+
+Register-LazyCompletion yui, rvpm, todoke, shikigami, shoka, magi, kata, renri
 
 Export-ModuleMember -Function * -Alias *

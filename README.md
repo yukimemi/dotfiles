@@ -19,7 +19,6 @@ full layout shift.
 │   ├── .codex/                  # global Codex settings and custom skills
 │   ├── .gemini/                 # global Gemini config
 │   ├── .vscode/                 # global VSCode user settings
-│   ├── .glzr/                   # GlazeWM config
 │   ├── .zshrc / .zshenv / …     # individual top-level dotfiles
 │   └── …
 └── .yui/
@@ -68,17 +67,21 @@ For a fresh-machine bootstrap or a risky reorg, flip both
 (`home_root = "~/yui-test"`, `production = false`), `yui apply`,
 inspect the result, then flip back.
 
+Per-machine app choices (`browser`, `editor`, `use_excel`) also live in
+`[vars]`; override them in the untracked `config.local.toml`.
+
 ## Templates
 
-Three files use Tera (`*.tera` → `*.<ext>` rendered as a sibling):
+These files use Tera (`*.tera` → `*.<ext>` rendered as a sibling):
 
-- `home/.config/autohotkey/AutoHotkey.ahk.tera` — gates Excel /
-  Outlook / Neovim shortcuts on `vars.autohotkey.*` flags.
+- `home/.config/shun/config.toml.tera` — binds the F11 browser hotkey
+  to `vars.browser` (edge / brave / chrome / comet) and adds the F9
+  Excel hotkey when `vars.use_excel` is true.
 - `home/.config/zellij/config/config.kdl.tera` — Linux uses `Ctrl-t`,
   others use `Ctrl-b`.
 - `home/.config/todoke/todoke.toml.tera` — selects the GUI editor
-  (neovide / nvim-qt / nvim) at build time, lets todoke render the
-  rest at dispatch.
+  (`vars.editor`: neovide / nvim-qt / nvim) at build time, lets todoke
+  render the rest at dispatch.
 
 Rendered files are written next to the `.tera` source and added to a
 managed section of `.gitignore` automatically.

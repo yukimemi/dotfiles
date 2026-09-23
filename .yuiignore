@@ -1,0 +1,5 @@
+# Retired configs kept in the repo for reference but no longer deployed.
+# AutoHotkey -> kagi (key remaps) + shun (app hotkeys).
+home/.config/autohotkey/
+# GlazeWM / Zebar -> leopardWM.
+home/.glzr/

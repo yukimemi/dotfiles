@@ -1,3 +1,10 @@
+# shun config. Managed by yui (rendered from config.toml.tera).
+#
+# yui renders the per-machine parts — F11 browser from yui `vars.browser`,
+# F9 Excel from `vars.excel`; set them in ~/dotfiles/config.local.toml.
+# Everything after the `raw` marker passes through untouched, so shun's own
+# template tokens (os, vars.*, args) resolve at shun load time.
+
 auto_start = true
 sort_order = "recent_first"
 search_mode = "fuzzy_migemo"
@@ -40,7 +47,6 @@ completion = "path"
 hotkey = "F10"
 hotkey_mode = "activate"
 
-# Mirrors ~/dotfiles/home/.config/autohotkey/AutoHotkey.ahk.tera (vars.autohotkey)
 [[apps]]
 name = "Outlook"
 path = "olk"
@@ -53,12 +59,38 @@ path = "ms-teams"
 hotkey = "Ctrl+F12"
 hotkey_mode = "activate"
 
+# F11 browser, picked per machine by yui `vars.browser`.
 [[apps]]
+{%- if vars.browser == "brave" %}
 name = "Brave"
 path = "brave"
+{%- elif vars.browser == "chrome" %}
+name = "Google Chrome"
+path = "chrome"
+{%- elif vars.browser == "comet" %}
+name = "Comet"
+path = "comet"
+{%- elif vars.browser == "edge" %}
+name = "Microsoft Edge"
+path = "msedge"
+# Installed PWAs run as msedge.exe too; only real browser windows carry "Edge".
+window_title = "Edge"
+{%- else %}
+{{ throw(message="vars.browser must be edge | brave | chrome | comet, got: " ~ vars.browser) }}
+{%- endif %}
 hotkey = "F11"
 hotkey_mode = "activate"
 
+{%- if vars.excel %}
+# F9 Excel, only on machines with yui `vars.excel = true`.
+[[apps]]
+name = "Excel"
+path = "C:/Program Files/Microsoft Office/root/Office16/EXCEL.EXE"
+hotkey = "F9"
+hotkey_mode = "activate"
+
+{% endif -%}
+{% raw -%}
 # OS-conditional: Windows Terminal (Windows) / WezTerm (macOS) share the F12 toggle
 # and Ctrl+F10 "open yazi" hotkeys. `os` is resolved from `std::env::consts::OS` at
 # config-load time, so only the matching OS's hotkey is valid; the other renders to
@@ -334,3 +366,4 @@ args = [
 name = "Edge - Insecure origins treated as secure"
 path = "msedge"
 args = ['edge://flags/#unsafely-treat-insecure-origin-as-secure']
+{% endraw -%}

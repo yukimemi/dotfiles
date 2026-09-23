@@ -1,22 +1,13 @@
-{%- if vars.autohotkey.use_neovide -%}
-{%- set gui = "neovide" -%}
-{%- elif vars.autohotkey.use_neovim_qt -%}
-{%- set gui = "nvim-qt" -%}
-{%- elif vars.autohotkey.purpose == "home" -%}
-{%- set gui = "neovide" -%}
-{%- else -%}
-{%- set gui = "nvim" -%}
-{%- endif -%}
 # todoke config. Managed by yui (rendered from todoke.toml.tera).
 # Deploys to ~/.config/todoke/todoke.toml on every platform.
 #
-# yui resolves the build-time GUI selector at the very top, then wraps
+# yui fills in the GUI editor (yui `vars.editor`) below, then wraps
 # the rest of the file in a Tera raw block so todoke's own runtime
 # tokens (group / file_path / vars.* references below) pass through
 # build-time render unchanged.
 
 [vars]
-gui = "{{ gui }}"
+gui = "{{ vars.editor }}"
 {% raw %}
 # nvim front-ends that are "wrappers" — they run an embedded nvim and
 # forward CLI args after `--` to it. Raw `nvim` doesn't want `--` since it

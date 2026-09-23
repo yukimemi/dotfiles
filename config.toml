@@ -9,18 +9,13 @@
 home_root = "~"
 production = true
 
-[vars.autohotkey]
-purpose = "home"
-use_new_outlook = true
-use_excel = false
-use_neovide = true
-use_neovim_qt = false
-use_wez = false
-use_nu = false
-use_wtp = true
-use_comet = false
-use_chrome = false
-use_brave = false
+# Per-machine app choices; override in config.local.toml.
+#   - browser: shun's F11 hotkey target — "edge" | "brave" | "chrome" | "comet"
+#   - editor:  todoke's GUI editor — "neovide" | "nvim-qt" | "nvim"
+#   - excel: bind F9 to Excel in shun
+browser = "edge"
+editor = "neovide"
+excel = false
 
 [[mount.entry]]
 src = "home"
@@ -80,14 +75,6 @@ dst = "{{ vars.home_root }}/.gemini"
 src = "home/.vscode"
 dst = "{{ vars.home_root }}/.vscode"
 
-# glazewm + zebar. Only glazewm/config.yaml was tracked before; the
-# junction brings zebar's config along too. Note glazewm / zebar hold
-# their errors.log open, so this one needs them stopped before `apply`
-# can replace the target directory.
-[[link]]
-src = "home/.glzr"
-dst = "{{ vars.home_root }}/.glzr"
-
 # --- merges ---
 #
 # Semantic TOML merge for apps that mix baseline settings with machine-local
@@ -107,10 +94,7 @@ ignore_keys = [
 [[merge]]
 src = "home/.kimi-code/config.base.toml"
 dst = "{{ vars.home_root }}/.kimi-code/config.toml"
-ignore_keys = [
-  "services.*",
-  "providers.*",
-]
+ignore_keys = ["services.*", "providers.*"]
 
 # --- hooks ---
 

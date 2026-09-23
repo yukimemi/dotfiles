@@ -1,7 +1,7 @@
 ; =============================================================================
 ; File        : AutoHotkey.ahk
 ; Author      : yukimemi
-; Last Change : 2026/06/28 07:19:28.
+; Last Change : 2026/09/23 22:17:53.
 ; =============================================================================
 
 SetTitleMatchMode(2)
@@ -304,7 +304,7 @@ Activate(app, cmd := "", titleKeywords := "", excludeTitle := "") {
   
 
 
-{%- if vars.autohotkey.use_excel %}
+{%- if vars.autohotkey.excel %}
 ; Excel
 F9::
 {
