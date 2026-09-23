@@ -21,23 +21,23 @@ concurrency = 16
 ai = "agy"
 ai_language = "ja"
 merge_doc = true
-theme_preset = "nord"
+theme_preset = "tokyo-night-storm"
 
 [options.theme]
-foreground = "#D8DEE9"
-terminal_foreground = "#D8DEE9"
-background = "#2E3440"
-secondary = "#E5E9F0"
-muted = "#4C566A"
-success = "#A3BE8C"
-warning = "#EBCB8B"
-error = "#BF616A"
-info = "#88C0D0"
-accent = "#B48EAD"
-browse_accent = "#EBCB8B"
-selection_background = "#434C5E"
-inverse = "#2E3440"
-header_background = "#2E3440"
+foreground = "#C0CAF5"
+terminal_foreground = "#C0CAF5"
+background = "#1A1B26"
+secondary = "#A9B1D6"
+muted = "#565F89"
+success = "#9ECE6A"
+warning = "#E0AF68"
+error = "#F7768E"
+info = "#7DCFFF"
+accent = "#BB9AF7"
+browse_accent = "#E0AF68"
+selection_background = "#283457"
+inverse = "#1A1B26"
+header_background = "#1A1B26"
 
 # ── core ────────────────────────────────────────
 [[plugins]]
