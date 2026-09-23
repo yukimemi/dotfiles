@@ -245,19 +245,6 @@ function Install-Aider {
   }
 }
 
-function Install-Gut {
-  [CmdletBinding(SupportsShouldProcess)]
-  param()
-  if ($PSCmdlet.ShouldProcess("gut-cli", "Install gut-cli via bun")) {
-    if (Get-Command bun -ErrorAction SilentlyContinue) {
-      Write-Host "Installing gut-cli via bun..."
-      bun install -g gut-cli
-    } else {
-      Write-Error "bun is not installed. Please install bun first."
-    }
-  }
-}
-
 function Install-PsmuxPpm {
   [CmdletBinding(SupportsShouldProcess)]
   param()
@@ -556,10 +543,8 @@ if (Get-Module -ListAvailable PSReadLine) {
     "e"     = "todoke"
     "fe"    = "todoke `$(fd -H -t f | __FILTER | Select-Object -First 1)"
     "g"     = "git"
-    "gc"    = "gut commit"
     "ghl"   = "ghr list | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
     "gsl"   = "gsr `"${env:USERPROFILE}\src`" | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
-    "gt"    = "gut"
     "h"     = "hitori"
     "j"     = "Invoke-HistoryJump"
     "jd"    = "Get-ChildItem -Force -Directory -Recurse | Select-Object -ExpandProperty FullName | __FILTER | Select-Object -First 1 | Invoke-TrimSetLocation"
@@ -676,10 +661,6 @@ if (Get-Module -ListAvailable PSReadLine) {
   Set-PSReadLineKeyHandler -Chord "Ctrl+p" -Function HistorySearchBackward -ViMode Insert
   Set-PSReadLineKeyHandler -Chord "Ctrl+u" -Function BackwardDeleteLine -ViMode Insert
   Set-PSReadLineKeyHandler -Chord "Ctrl+w" -Function BackwardDeleteWord -ViMode Insert
-}
-
-if (!(Get-Command gut -ErrorAction SilentlyContinue)) {
-  Install-Gut
 }
 
 if (Get-Command psmux -ErrorAction SilentlyContinue) {

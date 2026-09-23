@@ -464,7 +464,6 @@ function Install-Bun {
   # pnpm は scoop 側で入れているのでここには含めない (PATH 競合回避)。
   $bunPackages = @(
     "@google/gemini-cli",
-    "gut-cli",
     "opencode-ai"
   )
 
