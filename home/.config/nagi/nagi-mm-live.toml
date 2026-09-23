@@ -347,7 +347,9 @@ lot           = 0.2               # ★ 2026-09-19 7.0 -> 8.0（好調・高回�
 #      「損切条件を足す」ではなく cap 引き上げ（下記 360 → 400）。
 #      監視は既に足りている（kanade nagi-mm-pnl が 5分毎に inv と mxi を obs_events
 #      に記録）ので、機構を足すなら切る機構ではなく閾値アラート。
-max_inventory = 10                # ★ 2026-09-02 43.2 -> 1200。240クリップ、満玉 ¥252,840(mid 210.7)。
+max_inventory = 0.6               # ★ 2026-09-23 10 -> 0.6（lot 0.2 x 3 クリップ）。3クリップ上限ナンピン+床・損切り無し。
+#                                 #   根拠は kanade job/nagi-mm-gate.yaml v0.17.0 のコメント（3日x6窓 掃引）。
+#                                 # ★ 2026-09-02 43.2 -> 1200。240クリップ、満玉 ¥252,840(mid 210.7)。
 #                                 # = 口座 GROSS 上限 = max_open_loss_pct の分母。円ストップ = 5% × 1200 × mid
 #                                 # = ¥12,643(実機 /state protect.ceiling = 12642.93 で一致)。
 #                                 # MM_RELOAD_MAX_INV=1200 ちょうど(`> cap` 判定なので通過)。stack_room は
@@ -456,7 +458,7 @@ exit_full_size = true              # #260: 減らす側は保有数まるごと�
 #                                  # 完全な no-op なので、ナンピンが起きる時間帯だけ効く。
 #                                  # A/B の因子ではなく常時ON: 「手加減したナンピン」を
 #                                  # 測らないため(ユーザー判断 2026-07-28)。
-reduce_only_keeps_entries = false  # 2026-08-15: false → **true に復帰**。詳細と実測は kanade job
+reduce_only_keeps_entries = true   # 2026-08-15: false → **true に復帰**。詳細と実測は kanade job
 #                                 # nagi-mm-gate.yaml の「■ 復帰」ブロック（desired-state の権威）。
 #                                 # 要点: このノブと エグジット床 は **交互作用でしか効かない**。
 #                                 # 過去の A/B は keeps を 床=60s の下で測り、床の A/B は実データ 0 件で
@@ -600,7 +602,7 @@ taker_after_secs = 0             # 在庫がこの秒数残ったら taker で�
 #                                 # 指値を打って全在庫を切る(resting している reduce quote は先にキャンセル)。
 #                                 # fill は通常の venue fill ポーリングで帰ってくるので二重計上なし。
 taker_early_bps = 0              # v2 fee-aware 早期カット(#247): reduce-only 中、arm 時点からの逆行幅が
-max_open_loss_pct = 5              # v3 含み損上限(#291): 認可notional(max_inventory×mid)のこの%を超えたら taker で全量クロス。
+max_open_loss_pct = 0              # v3 含み損上限(#291): 認可notional(max_inventory×mid)のこの%を超えたら taker で全量クロス。
 #                                 # 0=無効。1.0未満は単位取り違えとして拒否。値は kanade job/nagi-mm-gate.yaml が所有。
 #                                 # この bp を超え、かつ直近10秒の最悪値を更新中(=まだ走ってる)なら、deadline を
 #                                 # 待たず taker で切る。14 = taker fee 12bp + リベート放棄 2bp の break-even。
@@ -627,7 +629,7 @@ max_open_loss_pct = 5              # v3 含み損上限(#291): 認可notional(ma
 #                                 # 代償: 非常口が max_inventory だけになる（#292 max_open_loss_quote が
 #                                 # 本来の受け皿、未マージ）。なお 0 なので上の「flatten 中の entry quote が
 #                                 # resting」問題は keeps=true でも構造的に起きない（taker が出ないため）。
-exit_patience_secs = 0            # エグジット床（0=無効。2026-08-15 に 360000 → 0 → **360000 に復帰**）。1 以上だと
+exit_patience_secs = 360000       # エグジット床（0=無効。2026-08-15 に 360000 → 0 → **360000 に復帰**）。1 以上だと
 #                                 # reduce-only 開始からその秒数、エグジット quote を avg_cost に
 #                                 # 床張りする(long なら max(best_ask, cost))。360000 は「逆行した建玉を
 #                                 # 実現させずに在庫として抱える」設定で、#310 の実測でスループットを
@@ -830,11 +832,13 @@ control_token = "{{ env(name='NAGI_MM_TOKEN', default='') }}"
 #   ★ 2026-09-10: long を 100→140clips（700→980 XRP）に引き上げ（ユーザー指示）。
 #   ★ 2026-09-11: long を 140→160clips（980→1120 XRP）に引き上げ（ユーザー指示）。
 [mm.long]
-max_inventory = 5      # ★ 2026-09-19 1120 -> 1200。lot 8.0 で 150 clips（gross cap 1200 満額開放）。
+max_inventory = 0.6    # ★ 2026-09-23 5 -> 0.6（3 クリップ。gross と同値＝合計3クリップ）。
+#                      #   ★ 2026-09-19 1120 -> 1200。lot 8.0 で 150 clips（gross cap 1200 満額開放）。
 #                      #   ★ 2026-09-11 980 -> 1120。lot 7.0 で 160 clips。
 
 [mm.short]
-max_inventory = 5     # ★ 2026-09-21 800 -> 1200。lot 8.0 で 150 clips（gross cap 1200 満額開放）。
+max_inventory = 0.6   # ★ 2026-09-23 5 -> 0.6（3 クリップ。gross と同値＝合計3クリップ）。
+#                     #   ★ 2026-09-21 800 -> 1200。lot 8.0 で 150 clips（gross cap 1200 満額開放）。
 #                     #   ★ 2026-09-19 700 -> 800。lot 8.0 で 100 clips を維持。
 #                     #   ★ 2026-09-04 600 -> 700。lot 7.0 で 100 clips（long と対称）。
 #                     #   share は gross cap [mm].max_inventory=1200 の下での「narrow」なので、
