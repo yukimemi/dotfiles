@@ -48,7 +48,7 @@ extra_args = ["--effort", "medium"]
 [[agents]]
 id = "cx"
 kind = "codex"
-model = "gpt-6-sol"
+model = "gpt-6-sol"  # switched from astra (cost); the 400 on gpt-6-sol was the stale .bun\bin codex-cli 0.153.4 resolved via kanade_config's job PATH, not the model itself - fixed 2026-09-23, confirmed working on codex-cli 0.156.1
 extra_args = ["-c", "model_reasoning_effort=\"medium\""]
 
 # Seat assignment is a cost decision, and the numbers are measured, not guessed.

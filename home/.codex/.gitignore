@@ -50,3 +50,4 @@
 /plugins/.remote-plugin-*
 /skills/.system/
 /packages/
+/app-server-daemon/
