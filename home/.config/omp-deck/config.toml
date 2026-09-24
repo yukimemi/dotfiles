@@ -1,0 +1,16 @@
+[repos]
+# ghq-layout root: scanned as <root>/<host>/<owner>/<repo> for checkouts
+# holding a .git directory.
+roots = ["C:/Users/yukimemi/src"]
+
+[models]
+# Candidates passed verbatim to `omp --model` in the "new session" picker.
+list = [
+  "claude-sonnet-5",
+  "claude-opus-5-5",
+  "claude-haiku-4-5",
+  "gpt-5.6-luna",
+  "gpt-5.6-sol",
+  "gemini-3-pro-preview",
+  "gemini-3.5-flash",
+]

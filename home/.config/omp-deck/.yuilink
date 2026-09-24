@@ -1,0 +1,5 @@
+# Windows-only alternate location (omp-deck reads from %APPDATA%$app).
+# Parent ~/.config/omp-deck is already covered by the home/.config marker.
+[[link]]
+dst = "{{ env(name='APPDATA') }}/omp-deck"
+when = "yui.os == 'windows' and vars.production"
