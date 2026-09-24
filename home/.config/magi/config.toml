@@ -34,7 +34,7 @@ extra_args = ["--effort", "medium"]
 [[agents]]
 id = "oc"
 kind = "opencode"
-model = "openrouter/deepseek/deepseek-v4-flash-0731:free"
+model = "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free"
 # provider-specific; opencode's own --help only lists high/max/minimal as
 # examples, so "medium" may not be a valid variant for this model - unlike
 # the other four below, which confirmed the vocabulary by hand.
