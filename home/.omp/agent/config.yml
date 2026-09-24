@@ -34,3 +34,5 @@ composer:
 dev:
   autoqaConsent: granted
 extendedContext: true
+collab:
+  autoStart: control

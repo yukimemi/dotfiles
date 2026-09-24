@@ -70,16 +70,16 @@ extra_args = ["-c", "model_reasoning_effort=\"medium\""]
 # its own stream before delivering, which is what `dropped_stream` now detects
 # and resumes. But a solo task has no second candidate to fall back on, so the
 # seat that reports reliably goes first.
-implementers = ["sonnet", "cx", "oc", "agy"]
+# TEMP (2026-09-24): cx swapped out until magi task fee4 lands (codex.cmd can't be spawned). Restore the `# was:` lines.
+implementers = ["sonnet", "oc", "agy"]  # was: ["sonnet", "cx", "oc", "agy"]
 # Rotated so no judge sits on its own candidate. Only matters when a task asks
 # for more than one candidate.
-judges = ["sonnet", "agy", "cx"]
+judges = ["sonnet", "agy", "oc"]  # was: ["sonnet", "agy", "cx"]
 # judges = ["opus", "agy", "oc"]
 # `cx` is the only seat whose read-only-ness the CLI enforces (`--sandbox
 # read-only`), which is exactly what a reviewer is: it cannot touch the tree it
 # is reviewing even if it decides to.
-reviewers = ["cx", "sonnet"]
-# reviewers = ["oc", "sonnet"]
+reviewers = ["agy", "sonnet"]
 # Not the winner's own author by default: the fixer would inherit the
 # implementer's 100-turn session, and with it the whole accumulated cache-read
 # bill.
@@ -100,11 +100,11 @@ fixer = "sonnet"
 chatter = "sonnet"
 # Arranges the queue between polls (`crate::conduct`). Pinned to opus so it
 # doesn't fall back to sharing a seat with the judge/reviewer roster above.
-conductor = "cx"
+conductor = "agy"
 # Design-deliberation seats (`graph::Runner::advise`), independent of judges:
 # a design sketch is worth spending the strong models on, unlike the judge
 # panel above which only has to rank.
-advisors = ["opus", "cx", "agy"]
+advisors = ["opus", "oc", "agy"]  # was: ["opus", "cx", "agy"]
 # Blends the advisors' proposals into one brief. Just synthesis, not judgment,
 # so sonnet rather than opus.
 synthesizer = "sonnet"

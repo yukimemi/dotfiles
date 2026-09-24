@@ -2,6 +2,7 @@
 # .yui/bin/ contains hook scripts and IS committed.
 /.yui/state.json
 /.yui/state.json.tmp
+/.gitignore.tmp
 /.yui/backup/
 
 # >>> yui rendered (auto-managed, do not edit) >>>

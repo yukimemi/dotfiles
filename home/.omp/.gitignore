@@ -19,6 +19,7 @@
 /agent/models.db
 /agent/models.db-shm
 /agent/models.db-wal
+/agent/skill-descriptions.db
 /agent/kimi-device-id
 /agent/last-changelog-version
 /agent/settings.json.bak
