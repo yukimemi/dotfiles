@@ -10,6 +10,7 @@ width_presets = [
     0.333,
     0.5,
     0.667,
+    0.8,
 ]
 default_width_preset = 2
 height_presets = [
