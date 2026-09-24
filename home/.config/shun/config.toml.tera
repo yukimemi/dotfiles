@@ -42,7 +42,8 @@ preset = "tokyo-night"
 
 [[apps]]
 name = "Neovide"
-path = "neovide"
+path = "todoke"
+window_exe = "Neovide"
 completion = "path"
 hotkey = "F10"
 hotkey_mode = "activate"
