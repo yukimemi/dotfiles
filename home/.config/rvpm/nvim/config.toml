@@ -714,6 +714,14 @@ on_map = [
 url = "https://github.com/epwalsh/obsidian.nvim"
 depends = ["plenary.nvim"]
 on_ft = ["markdown"]
+build_lua = """
+function()
+  local path = vim.fn.expand("~/obsidian")
+  if vim.fn.isdirectory(path) == 0 then
+    vim.fn.system({ "git", "clone", "https://github.com/yukimemi/obsidian-vault.git", path })
+  end
+end
+"""
 
 [[plugins]]
 url = "https://github.com/nvim-neorg/neorg"
