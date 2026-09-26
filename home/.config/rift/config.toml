@@ -1,0 +1,187 @@
+# rift config tuned to behave like niri (https://github.com/YaLTeR/niri).
+# "Alt" plays the role of niri's "Mod" key.
+
+[settings]
+# niri manages every output/workspace from the start; no per-Space activation step.
+default_disable = false
+# niri's defaults: no focus-follows-mouse, no mouse warping.
+focus_follows_mouse = false
+mouse_follows_focus = false
+mouse_hides_on_focus = false
+# niri animates layout changes (column slides, workspace switches) by default.
+animate = true
+hot_reload = true
+
+[settings.layout]
+# "scrolling" is rift's niri-like layout: an infinite horizontally scrolling strip of columns.
+mode = "scrolling"
+window_insertion_point = "next_to_selection"
+
+[settings.layout.scrolling]
+# niri's default-column-width is 50% of the output.
+column_width_ratio = 0.5
+preserve_window_sizes = true
+min_column_width_ratio = 0.3
+max_column_width_ratio = 0.9
+alignment = "center"
+# "niri": scroll only as far as needed to reveal the focused column (niri's center-focused-column "never").
+focus_navigation_style = "niri"
+
+[settings.layout.scrolling.gestures]
+# Continuous horizontal scrolling between columns, like niri's touchpad column scroll.
+enabled = true
+invert_horizontal = false
+fingers = 3
+propagate_to_workspace_swipe = true
+
+[settings.gestures]
+# Continuous swipe between workspaces, like niri's touchpad workspace scroll.
+enabled = true
+fingers = 3
+skip_empty = true
+
+[settings.ui.mission_control]
+# Needed for the Alt+O / Alt+Shift+O overview keybinds to do anything.
+enabled = true
+
+[settings.layout.gaps.outer]
+top = 8.0
+left = 8.0
+bottom = 8.0
+right = 8.0
+
+[settings.layout.gaps.inner]
+horizontal = 8.0
+vertical = 8.0
+
+[virtual_workspaces]
+default_workspace_count = 9
+workspace_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+default_workspace = 0
+# niri never wraps past the first/last workspace.
+prevent_wrapping = true
+workspace_auto_back_and_forth = false
+
+# niri opens Firefox's picture-in-picture player floating by default.
+[[virtual_workspaces.app_rules]]
+app_name = "Firefox"
+title_regex = "^Picture-in-Picture$"
+floating = true
+
+[modifier_combinations]
+# niri: Mod+Ctrl moves columns/windows.
+move = "Alt + Ctrl"
+# niri: Mod+Shift focuses a monitor.
+mon = "Alt + Shift"
+# niri: Mod+Shift+Ctrl moves a column to a monitor.
+movemon = "Alt + Shift + Ctrl"
+
+[keys]
+"Alt + Z" = "toggle_space_activated"
+
+# --- Focus a column / window (niri: Mod+HJKL, Mod+arrows) ---
+"Alt + H" = { move_focus = "left" }
+"Alt + J" = { move_focus = "down" }
+"Alt + K" = { move_focus = "up" }
+"Alt + L" = { move_focus = "right" }
+"Alt + Left" = { move_focus = "left" }
+"Alt + Down" = { move_focus = "down" }
+"Alt + Up" = { move_focus = "up" }
+"Alt + Right" = { move_focus = "right" }
+
+# --- Move a column / window (niri: Mod+Ctrl+HJKL, Mod+Ctrl+arrows) ---
+"move + H" = { move_node = "left" }
+"move + J" = { move_node = "down" }
+"move + K" = { move_node = "up" }
+"move + L" = { move_node = "right" }
+"move + Left" = { move_node = "left" }
+"move + Down" = { move_node = "down" }
+"move + Up" = { move_node = "up" }
+"move + Right" = { move_node = "right" }
+
+# --- Focus / move a column to another monitor (niri: Mod+Shift[+Ctrl]+HJKL) ---
+"mon + H" = { focus_display = "left" }
+"mon + J" = { focus_display = "down" }
+"mon + K" = { focus_display = "up" }
+"mon + L" = { focus_display = "right" }
+"mon + Left" = { focus_display = "left" }
+"mon + Down" = { focus_display = "down" }
+"mon + Up" = { focus_display = "up" }
+"mon + Right" = { focus_display = "right" }
+
+"movemon + H" = { move_window_to_display = { selector = "left" } }
+"movemon + J" = { move_window_to_display = { selector = "down" } }
+"movemon + K" = { move_window_to_display = { selector = "up" } }
+"movemon + L" = { move_window_to_display = { selector = "right" } }
+"movemon + Left" = { move_window_to_display = { selector = "left" } }
+"movemon + Down" = { move_window_to_display = { selector = "down" } }
+"movemon + Up" = { move_window_to_display = { selector = "up" } }
+"movemon + Right" = { move_window_to_display = { selector = "right" } }
+
+# --- Switch / move a window to a workspace (niri: Mod+1..9, Mod+Ctrl+1..9) ---
+"Alt + 1" = { switch_to_workspace = 0 }
+"Alt + 2" = { switch_to_workspace = 1 }
+"Alt + 3" = { switch_to_workspace = 2 }
+"Alt + 4" = { switch_to_workspace = 3 }
+"Alt + 5" = { switch_to_workspace = 4 }
+"Alt + 6" = { switch_to_workspace = 5 }
+"Alt + 7" = { switch_to_workspace = 6 }
+"Alt + 8" = { switch_to_workspace = 7 }
+"Alt + 9" = { switch_to_workspace = 8 }
+
+"move + 1" = { move_window_to_workspace = 0 }
+"move + 2" = { move_window_to_workspace = 1 }
+"move + 3" = { move_window_to_workspace = 2 }
+"move + 4" = { move_window_to_workspace = 3 }
+"move + 5" = { move_window_to_workspace = 4 }
+"move + 6" = { move_window_to_workspace = 5 }
+"move + 7" = { move_window_to_workspace = 6 }
+"move + 8" = { move_window_to_workspace = 7 }
+"move + 9" = { move_window_to_workspace = 8 }
+
+# --- Step through workspaces (niri: Mod+PageDown/Up, Mod+U/I) ---
+"Alt + PageDown" = "next_workspace"
+"Alt + PageUp" = "prev_workspace"
+"Alt + U" = "next_workspace"
+"Alt + I" = "prev_workspace"
+"move + PageDown" = { move_window_to_workspace = "next" }
+"move + PageUp" = { move_window_to_workspace = "prev" }
+"move + U" = { move_window_to_workspace = "next" }
+"move + I" = { move_window_to_workspace = "prev" }
+
+"Alt + Tab" = "switch_to_last_workspace"
+
+# --- Consume/expel a window into/out of a column (niri: Mod+BracketLeft/Right) ---
+"Alt + BracketLeft" = { consume_or_expel_window = "left" }
+"Alt + BracketRight" = { consume_or_expel_window = "right" }
+
+# --- Consume/expel within the current column's stack (niri: Mod+Comma/Period) ---
+"Alt + Comma" = { join_window = "right" }
+"Alt + Period" = "unjoin_windows"
+"Alt + Slash" = "toggle_orientation"
+"Alt + W" = "toggle_stack"
+
+# --- Column width (niri: Mod+Minus/Equal) ---
+# "Equal" is the JIS Hat key; rift never receives it (with or without Shift),
+# so grow reuses the working Minus key with Shift instead of Equal.
+"Alt + Minus" = { resize_window_shrink = "horizontal" }
+"Alt + Shift + Minus" = { resize_window_grow = "horizontal" }
+
+# --- Fullscreen / center column (niri: Mod+F, Mod+Shift+F, Mod+C) ---
+"Alt + F" = "toggle_fullscreen_within_gaps"
+"Alt + Shift + F" = "toggle_fullscreen"
+"Alt + C" = "center_selection"
+
+# --- Floating (niri: Mod+V, Mod+Shift+V) ---
+"Alt + V" = "toggle_window_floating"
+"Alt + Shift + V" = "toggle_focus_floating"
+
+# --- Overview (niri: Mod+O) ---
+"Alt + O" = "show_mission_control_all"
+"Alt + Shift + O" = "dismiss_mission_control"
+
+# --- Spawn / close / quit (niri: Mod+T, Mod+Q, Mod+Shift+E) ---
+"Alt + Return" = { "exec" = ["/bin/bash", "-c", "open -a \"/System/Applications/Utilities/Terminal.app\""] }
+"Alt + T" = { "exec" = ["/bin/bash", "-c", "open -a \"/System/Applications/Utilities/Terminal.app\""] }
+"Alt + Q" = "close_window"
+"Alt + Shift + E" = "save_and_exit"
