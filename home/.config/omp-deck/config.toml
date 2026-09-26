@@ -19,8 +19,9 @@ list = [
   "claude-sonnet-5",
   "claude-opus-5-5",
   "claude-haiku-4-5",
-  "gpt-5.6-luna",
-  "gpt-5.6-sol",
-  "gemini-3-pro-preview",
-  "gemini-3.5-flash",
+  "gpt-6-luna",
+  "gpt-6-sol",
+  "gpt-6-astra",
+  "gemini-3.1-pro-preview",
+  "gemini-3.8-flash",
 ]
