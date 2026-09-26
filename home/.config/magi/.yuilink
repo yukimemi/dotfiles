@@ -1,3 +1,13 @@
 [[link]]
 dst = "{{ env(name='APPDATA') }}/magi"
 when = "yui.os == 'windows' and vars.production"
+
+# macOS alternate location (magi's `dirs::config_dir()` resolves here, not
+# ~/.config, on macOS). File-level link, NOT dir-level: `~/Library/Application
+# Support/magi` already holds magi's own runtime data (runs/, questions/,
+# daemon.json, cache-leases/) written directly by magi itself, not by yui —
+# a dir-level link would replace that directory and orphan/hide all of it.
+[[link]]
+src = "config.toml"
+dst = "{{ vars.home_root }}/Library/Application Support/magi/config.toml"
+when = "yui.os == 'macos' and vars.production"

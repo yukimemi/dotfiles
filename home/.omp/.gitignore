@@ -29,8 +29,10 @@
 /agent/cache/
 /agent/terminal-sessions/
 /agent/managed-skills/
+/agent/skill-descriptions.*
 
 /browser-relay/
+/browser-profiles/
 /cache/
 /webcache/
 /logs/

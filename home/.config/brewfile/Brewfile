@@ -9,4 +9,5 @@ cask "slack"
 cask "font-plemol-jp"
 cask "font-plemol-jp-nf"
 cask "wezterm"
+cask "linearmouse"
 

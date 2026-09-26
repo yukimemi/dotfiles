@@ -70,11 +70,11 @@ extra_args = ["-c", "model_reasoning_effort=\"medium\""]
 # its own stream before delivering, which is what `dropped_stream` now detects
 # and resumes. But a solo task has no second candidate to fall back on, so the
 # seat that reports reliably goes first.
-# TEMP (2026-09-24): cx swapped out until magi task fee4 lands (codex.cmd can't be spawned). Restore the `# was:` lines.
-implementers = ["sonnet", "oc", "agy"]  # was: ["sonnet", "cx", "oc", "agy"]
+# TEMP (2026-09-26): oc swapped out for cx (opencode CLI fails to start on this machine).
+implementers = ["sonnet", "cx", "agy"]  # was: ["sonnet", "oc", "agy"]
 # Rotated so no judge sits on its own candidate. Only matters when a task asks
 # for more than one candidate.
-judges = ["sonnet", "agy", "oc"]  # was: ["sonnet", "agy", "cx"]
+judges = ["sonnet", "agy", "cx"]  # was: ["sonnet", "agy", "oc"]
 # judges = ["opus", "agy", "oc"]
 # `cx` is the only seat whose read-only-ness the CLI enforces (`--sandbox
 # read-only`), which is exactly what a reviewer is: it cannot touch the tree it
@@ -104,7 +104,7 @@ conductor = "agy"
 # Design-deliberation seats (`graph::Runner::advise`), independent of judges:
 # a design sketch is worth spending the strong models on, unlike the judge
 # panel above which only has to rank.
-advisors = ["opus", "oc", "agy"]  # was: ["opus", "cx", "agy"]
+advisors = ["opus", "cx", "agy"]  # was: ["opus", "oc", "agy"]
 # Blends the advisors' proposals into one brief. Just synthesis, not judgment,
 # so sonnet rather than opus.
 synthesizer = "sonnet"

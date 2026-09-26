@@ -17,6 +17,10 @@ icon_style = "svg"
 preview_args = true
 preview_search = true
 
+# /config and /history open through todoke instead of the OS file
+# association (which needs `.toml` etc. registered via duti/LaunchServices).
+editor_command = "todoke"
+
 [vars]
 memo_path = "~/.memolist"
 junk_path = "~/.cache/junkfile"
