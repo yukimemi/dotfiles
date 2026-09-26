@@ -1,7 +1,17 @@
 [repos]
 # ghq-layout root: scanned as <root>/<host>/<owner>/<repo> for checkouts
-# holding a .git directory.
-roots = ["C:/Users/yukimemi/src"]
+# holding a .git directory. `home()` is teravars' own helper
+# (`dirs::home_dir` - `$HOME` on Unix, `%USERPROFILE%` on Windows), resolved
+# by omp-deck itself when it loads this file, so this line resolves the same
+# way on any machine; `~` is a shell feature that omp-deck does not expand,
+# so it cannot be used here.
+#
+# The quotes must be single (TOML's literal string), not double. `home()`
+# returns a raw Windows path with backslashes, and teravars renders it
+# before TOML parses the result - a double-quoted (basic) string would
+# then see `C:\Users\...` and choke on `\U` as an invalid escape (see
+# magi/config.toml for the same fix).
+roots = ['{{ home() }}/src']
 
 [models]
 # Candidates passed verbatim to `omp --model` in the "new session" picker.

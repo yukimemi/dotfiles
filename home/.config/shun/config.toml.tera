@@ -47,7 +47,7 @@ preset = "tokyo-night"
 [[apps]]
 name = "Neovide"
 path = "todoke"
-window_exe = "Neovide"
+window_app = "Neovide"
 completion = "path"
 hotkey = "F10"
 hotkey_mode = "activate"
@@ -102,11 +102,11 @@ hotkey_mode = "activate"
 # an empty string and is silently skipped as an invalid shortcut (logged as a warning).
 #
 # NOTE: on Windows the window belongs to WindowsTerminal.exe while "wtp" is only a
-# launcher, so `window_exe` tells activate/toggle which process to match.
+# launcher, so `window_app` tells activate/toggle which process to match.
 [[apps]]
 name = "Windows Terminal"
 path = "wtp"
-window_exe = "WindowsTerminal"
+window_app = "WindowsTerminal"
 window_title_exclude = "Yazi"
 hotkey = "{% if os == \"windows\" %}F12{% endif %}"
 hotkey_mode = "toggle"
@@ -116,16 +116,17 @@ hotkey_mode = "toggle"
 [[apps]]
 name = "WezTerm"
 path = "wezterm-gui"
+window_app = "WezTerm"
 hotkey = "{% if os == \"macos\" %}F12{% endif %}"
 hotkey_mode = "toggle"
 
 # yazi: its own named Windows Terminal window ("-w yazi") with a fixed title, so
-# window_exe + window_title find it and Ctrl+F10 activates it instead of stacking tabs.
+# window_app + window_title find it and Ctrl+F10 activates it instead of stacking tabs.
 [[apps]]
 name = "yazi (Windows Terminal)"
 path = "wtp"
 args = ["-w", "yazi", "new-tab", "--title", "Yazi", "--suppressApplicationTitle", "yazi"]
-window_exe = "WindowsTerminal"
+window_app = "WindowsTerminal"
 window_title = "Yazi"
 hotkey = "{% if os == \"windows\" %}Ctrl+F10{% endif %}"
 hotkey_mode = "activate"

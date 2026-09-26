@@ -3,3 +3,14 @@
 [[link]]
 dst = "{{ env(name='APPDATA') }}/omp-deck"
 when = "yui.os == 'windows' and vars.production"
+
+# macOS alternate location (omp-deck's `dirs::config_dir()` resolves here,
+# not ~/.config, on macOS). File-level link, NOT dir-level:
+# `~/Library/Application Support/omp-deck` already holds omp-deck's own
+# runtime data (last_update_check.json) written directly by omp-deck
+# itself, not by yui — a dir-level link would replace that directory and
+# orphan/hide it.
+[[link]]
+src = "config.toml"
+dst = "{{ vars.home_root }}/Library/Application Support/omp-deck/config.toml"
+when = "yui.os == 'macos' and vars.production"
