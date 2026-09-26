@@ -64,8 +64,8 @@ dst = "{{ vars.home_root }}/.config"
 src = "home/.kimi-code"
 dst = "{{ vars.home_root }}/.kimi-code"
 
-# Gemini CLI writes credentials, history and a ~230MB antigravity
-# payload here; only GEMINI.md is tracked.
+# Gemini CLI & Antigravity write credentials, history and large payloads
+# here; user configuration (settings.json, GEMINI.md, skills/) is tracked.
 [[link]]
 src = "home/.gemini"
 dst = "{{ vars.home_root }}/.gemini"

@@ -12,7 +12,26 @@
 
 # antigravity IDE / CLI payload (~230MB, redownloadable)
 /antigravity/
-/antigravity-cli/
+/antigravity-cli/bin/
+/antigravity-cli/builtin/
+/antigravity-cli/updater/
+
+# antigravity-cli runtime state & history
+/antigravity-cli/annotations/
+/antigravity-cli/brain/
+/antigravity-cli/cache/
+/antigravity-cli/conversations/
+/antigravity-cli/crashes/
+/antigravity-cli/implicit/
+/antigravity-cli/log/
+/antigravity-cli/presence/
+/antigravity-cli/cli.log
+/antigravity-cli/history.jsonl
+/antigravity-cli/installation_id
+/antigravity-cli/last_check.timestamp
+/antigravity-cli/conversation_summaries.db*
+/antigravity-cli/jetbox_summaries_proto.pb
+/antigravity-cli/jetski_state.pbtxt
 
 # runtime state
 /history/

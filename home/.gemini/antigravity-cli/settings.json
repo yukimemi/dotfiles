@@ -1,0 +1,12 @@
+{
+  "agentMode": "accept-edits",
+  "allowNonWorkspaceAccess": true,
+  "colorScheme": "tokyo night",
+  "notifications": true,
+  "runningLightSpeed": "fast",
+  "showFeedbackSurvey": false,
+  "toolPermission": "always-proceed",
+  "trustedWorkspaces": [
+    "/Users/yukimemi/dotfiles"
+  ]
+}
