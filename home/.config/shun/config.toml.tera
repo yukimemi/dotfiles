@@ -69,6 +69,7 @@ hotkey_mode = "activate"
 {%- if vars.browser == "brave" %}
 name = "Brave"
 path = "brave"
+window_app = "{% if os == \"macos\" %}Brave Browser{% endif %}"
 {%- elif vars.browser == "chrome" %}
 name = "Google Chrome"
 path = "chrome"
@@ -117,6 +118,7 @@ hotkey_mode = "toggle"
 name = "WezTerm"
 path = "wezterm-gui"
 window_app = "WezTerm"
+window_title_exclude = "yazi"
 hotkey = "{% if os == \"macos\" %}F12{% endif %}"
 hotkey_mode = "toggle"
 
@@ -135,7 +137,10 @@ hotkey_mode = "activate"
 name = "yazi (WezTerm)"
 path = "wezterm-gui"
 args = ["start", "--", "yazi"]
+window_app = "WezTerm"
+window_title = "yazi"
 hotkey = "{% if os == \"macos\" %}Ctrl+F10{% endif %}"
+hotkey_mode = "activate"
 
 [[apps]]
 name = "Slack"

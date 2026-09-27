@@ -15,6 +15,7 @@
 /antigravity-cli/bin/
 /antigravity-cli/builtin/
 /antigravity-cli/updater/
+/antigravity-cli/mcp/
 
 # antigravity-cli runtime state & history
 /antigravity-cli/annotations/

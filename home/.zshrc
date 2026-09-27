@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshrc
 # Author      : yukimemi
-# Last Change : 2024/07/06 20:40:21.
+# Last Change : 2026/09/28 01:23:05.
 # =============================================================================
 
 #
@@ -47,7 +47,7 @@ unset sheldon_cache sheldon_toml
 #
 # tmux
 #
-[ -z "${TMUX}" ] && { tmux attach || tmux -u; }
+# [ -z "${TMUX}" ] && { tmux attach || tmux -u; }
 
 # Release source
 zsh-defer unfunction source
