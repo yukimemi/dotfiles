@@ -106,7 +106,9 @@ disabled = []
 "Ctrl+Alt+S" = "scratchpad_toggle"
 "Ctrl+Alt+Shift+9" = "move_to_workspace_9"
 "Ctrl+Alt+Space" = "toggle_overview"
-"Ctrl+Alt+F" = "toggle_floating"
+# niri/rift: Mod+F is fullscreen (Mod+Shift+F for the strict variant); floating lives on Mod+V.
+"Ctrl+Alt+F" = "toggle_fullscreen"
+"Ctrl+Alt+V" = "toggle_floating"
 "Ctrl+Alt+Shift+-" = "cycle_height_down"
 "Ctrl+Alt+W" = "close_window"
 "Ctrl+Alt+Shift+3" = "move_to_workspace_3"

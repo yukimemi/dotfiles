@@ -45,3 +45,6 @@
 # per-project session state — regenerated per workspace
 /config/projects/
 /config/.migrated
+
+/antigravity-cli/keybindings.json
+/antigravity-cli/settings.json

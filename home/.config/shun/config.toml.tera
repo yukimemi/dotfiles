@@ -102,14 +102,14 @@ hotkey_mode = "activate"
 # config-load time, so only the matching OS's hotkey is valid; the other renders to
 # an empty string and is silently skipped as an invalid shortcut (logged as a warning).
 #
-# NOTE: on Windows the window belongs to WindowsTerminal.exe while "wtp" is only a
+# NOTE: on Windows the window belongs to WindowsTerminal.exe while "wt" is only a
 # launcher, so `window_app` tells activate/toggle which process to match.
 [[apps]]
 name = "Windows Terminal"
-path = "wtp"
+path = "wt"
 window_app = "WindowsTerminal"
 window_title_exclude = "Yazi"
-hotkey = "{% if os == \"windows\" %}F12{% endif %}"
+hotkey = '{% if os == "windows" %}F12{% endif %}'
 hotkey_mode = "toggle"
 
 # macOS: `name` must be the exact .app bundle name for the AppleScript-based
@@ -119,18 +119,18 @@ name = "WezTerm"
 path = "wezterm-gui"
 window_app = "WezTerm"
 window_title_exclude = "yazi"
-hotkey = "{% if os == \"macos\" %}F12{% endif %}"
+hotkey = '{% if os == "macos" %}F12{% endif %}'
 hotkey_mode = "toggle"
 
 # yazi: its own named Windows Terminal window ("-w yazi") with a fixed title, so
 # window_app + window_title find it and Ctrl+F10 activates it instead of stacking tabs.
 [[apps]]
 name = "yazi (Windows Terminal)"
-path = "wtp"
+path = "wt"
 args = ["-w", "yazi", "new-tab", "--title", "Yazi", "--suppressApplicationTitle", "yazi"]
 window_app = "WindowsTerminal"
 window_title = "Yazi"
-hotkey = "{% if os == \"windows\" %}Ctrl+F10{% endif %}"
+hotkey = '{% if os == "windows" %}Ctrl+F10{% endif %}'
 hotkey_mode = "activate"
 
 [[apps]]
@@ -139,7 +139,7 @@ path = "wezterm-gui"
 args = ["start", "--", "yazi"]
 window_app = "WezTerm"
 window_title = "yazi"
-hotkey = "{% if os == \"macos\" %}Ctrl+F10{% endif %}"
+hotkey = '{% if os == "macos" %}Ctrl+F10{% endif %}'
 hotkey_mode = "activate"
 
 [[apps]]
