@@ -51,3 +51,5 @@
 /skills/.system/
 /packages/
 /app-server-daemon/
+/app-server-control/
+/tui-thread-reference-capabilities/

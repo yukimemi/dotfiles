@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : zshenv
 # Author      : yukimemi
-# Last Change : 2025/01/01 20:17:03.
+# Last Change : 2026/10/04 17:18:09.
 # =============================================================================
 
 # For time.
@@ -58,6 +58,8 @@ path=(
   # Home.
   $HOME/.local/bin(N-/)
   $HOME/.local/bin/scripts(N-/)
+  # mise
+  $HOME/.local/share/mise/shims(N-/)
   # aqua
   $HOME/.local/share/aquaproj-aqua/bin(N-/)
   # coreutils.

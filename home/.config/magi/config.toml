@@ -28,11 +28,11 @@ extra_args = ["--effort", "medium"]
 [[agents]]
 id = "sonnet"
 kind = "claude"
-model = "claude-sonnet-5"
+model = "claude-sonnet-5-5"
 extra_args = ["--effort", "medium"]
 
 [[agents]]
-id = "oc"
+id = "opencode"
 kind = "opencode"
 model = "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free"
 # provider-specific; opencode's own --help only lists high/max/minimal as
@@ -46,14 +46,20 @@ kind = "antigravity"
 extra_args = ["--effort", "medium"]
 
 [[agents]]
-id = "cx"
+id = "sol"
 kind = "codex"
-model = "gpt-6-sol"  # switched from astra (cost); the 400 on gpt-6-sol was the stale .bun\bin codex-cli 0.153.4 resolved via kanade_config's job PATH, not the model itself - fixed 2026-09-23, confirmed working on codex-cli 0.156.1
+model = "gpt-6.1-sol"
+extra_args = ["-c", "model_reasoning_effort=\"medium\""]
+
+[[agents]]
+id = "astra"
+kind = "codex"
+model = "gpt-6-astra"
 extra_args = ["-c", "model_reasoning_effort=\"medium\""]
 
 # Seat assignment is a cost decision, and the numbers are measured, not guessed.
 # One implement seat cost $12.09 on opus against $6.95 on sonnet for the same
-# task - 1.7x - while `oc` reported $0.00. The driver is internal tool-loop
+# task - 1.7x - while `opencode` reported $0.00. The driver is internal tool-loop
 # iterations (111 and 134 turns respectively): every turn re-reads the cached
 # context, so cache_read ends up ~= turns * context size, and the implement node
 # is where the turns are.
@@ -63,23 +69,22 @@ extra_args = ["-c", "model_reasoning_effort=\"medium\""]
 [roles]
 # Order matters now that one seat is the default: `resolve_roles` takes the
 # first `candidates` entries, so entry one writes every solo patch. On the
-# workload measured so far sonnet won 5 of 8 entries (62%), oc 3 of 7 (43%).
+# workload measured so far sonnet won 5 of 8 entries (62%), opencode 3 of 7 (43%).
 #
 # `agy` stays in the roster. Its 0 of 4 is a reporting defect and not a verdict
 # on its patches - it does the work in child processes and its CLI hangs up on
 # its own stream before delivering, which is what `dropped_stream` now detects
 # and resumes. But a solo task has no second candidate to fall back on, so the
 # seat that reports reliably goes first.
-# TEMP (2026-09-26): oc swapped out for cx (opencode CLI fails to start on this machine).
-implementers = ["sonnet", "cx", "agy"]  # was: ["sonnet", "oc", "agy"]
+# TEMP (2026-09-26): opencode swapped out for sol (opencode CLI fails to start on this machine).
+implementers = ["sonnet", "sol", "agy"]
 # Rotated so no judge sits on its own candidate. Only matters when a task asks
 # for more than one candidate.
-judges = ["sonnet", "oc", "cx"]  # was: ["sonnet", "agy", "oc"]
-# judges = ["opus", "agy", "oc"]
-# `cx` is the only seat whose read-only-ness the CLI enforces (`--sandbox
+judges = ["sonnet", "opencode", "sol"]
+# `sol` is the only seat whose read-only-ness the CLI enforces (`--sandbox
 # read-only`), which is exactly what a reviewer is: it cannot touch the tree it
 # is reviewing even if it decides to.
-reviewers = ["cx", "sonnet"]
+reviewers = ["sol", "sonnet"]
 # Not the winner's own author by default: the fixer would inherit the
 # implementer's 100-turn session, and with it the whole accumulated cache-read
 # bill.
@@ -104,7 +109,7 @@ conductor = "sonnet"
 # Design-deliberation seats (`graph::Runner::advise`), independent of judges:
 # a design sketch is worth spending the strong models on, unlike the judge
 # panel above which only has to rank.
-advisors = ["opus", "cx", "oc"]  # was: ["opus", "oc", "agy"]
+advisors = ["opus", "sol", "opencode"]  # was: ["opus", "opencode", "agy"]
 # Blends the advisors' proposals into one brief. Just synthesis, not judgment,
 # so sonnet rather than opus.
 synthesizer = "sonnet"
@@ -156,6 +161,8 @@ land_approval = false
 # release-blocking fix) should be able to cut ahead of whatever is already in
 # flight via `magi task interrupt <id>`, rather than wait for it to finish.
 pause_for_interrupts = true
+# Runs driven concurrently by `magi serve` / `magi web`.
+max_concurrent_runs = 3
 
 [update]
 mode = "notify"

@@ -30,6 +30,7 @@
 /agent/terminal-sessions/
 /agent/managed-skills/
 /agent/skill-descriptions.*
+/agent/predict/ngram/
 
 /browser-relay/
 /browser-profiles/
