@@ -57,7 +57,7 @@ $env:KANADE_DEV_STATIC_TOKEN = "dev"
 # --allowedTools "" (deny every tool, so it can only answer text)
 # was reliable across repeated runs (~13-15s, correct one-line
 # summary every time) and never attempted a write.
-$env:SHIKIGAMI_AI_CMD = 'claude -p "Output ONLY a single short git commit summary line for this diff, written in English. No prefix, no quotes, no trailing signature or Co-Authored-By line, no explanation, one line only:" --model sonnet --allowedTools ""'
+$env:SHIKIGAMI_AI_CMD = 'claude -p "Output ONLY a single short git commit summary line for this diff, written in English even if the diff or your instructions are in Japanese. No prefix, no quotes, no trailing signature or Co-Authored-By line, no explanation, one line only:" --model sonnet --allowedTools ""'
 # shikigami diff pane: pipes jj's raw ANSI diff through delta so it
 # gets delta's syntax highlighting / word-level diff / side-by-side
 # layout instead of jj's own git-format coloring. shikigami sets the

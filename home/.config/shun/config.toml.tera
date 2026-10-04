@@ -69,7 +69,7 @@ hotkey_mode = "activate"
 {%- if vars.browser == "brave" %}
 name = "Brave"
 path = "brave"
-window_app = "{% if os == \"macos\" %}Brave Browser{% endif %}"
+window_app = '{% if os == "macos" %}Brave Browser{% endif %}'
 {%- elif vars.browser == "chrome" %}
 name = "Google Chrome"
 path = "chrome"
