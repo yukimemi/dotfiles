@@ -30,6 +30,5 @@
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "useAutoModeDuringPlan": true,
-  "model": "sonnet"
+  "useAutoModeDuringPlan": true
 }
