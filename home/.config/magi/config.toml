@@ -67,6 +67,9 @@ extra_args = ["-c", "model_reasoning_effort=\"medium\""]
 # Hence: the expensive model never implements. opus judges instead, which is a
 # handful of turns, and the free CLIs carry the implementation load.
 [roles]
+# 配列は先頭から席に座り、graph.* の人数を超えた分は quota 切れ・失敗時の
+# バックアップ順になる（implementers/judges/reviewers は roster を左から順に、
+# fixer/chatter/conductor/synthesizer はチェーンとして各1回ずつ試す）。
 # Order matters now that one seat is the default: `resolve_roles` takes the
 # first `candidates` entries, so entry one writes every solo patch. On the
 # workload measured so far sonnet won 5 of 8 entries (62%), opencode 3 of 7 (43%).
@@ -77,14 +80,14 @@ extra_args = ["-c", "model_reasoning_effort=\"medium\""]
 # and resumes. But a solo task has no second candidate to fall back on, so the
 # seat that reports reliably goes first.
 # TEMP (2026-09-26): opencode swapped out for sol (opencode CLI fails to start on this machine).
-implementers = ["sonnet", "sol", "agy"]
+implementers = ["sonnet", "sol", "agy", "astra", "opus"]
 # Rotated so no judge sits on its own candidate. Only matters when a task asks
 # for more than one candidate.
-judges = ["sonnet", "opencode", "sol"]
+judges = ["sonnet", "opencode", "sol", "astra", "agy", "opus"]
 # `sol` is the only seat whose read-only-ness the CLI enforces (`--sandbox
 # read-only`), which is exactly what a reviewer is: it cannot touch the tree it
 # is reviewing even if it decides to.
-reviewers = ["sol", "sonnet"]
+reviewers = ["sol", "sonnet", "astra", "agy", "opus"]
 # Not the winner's own author by default: the fixer would inherit the
 # implementer's 100-turn session, and with it the whole accumulated cache-read
 # bill.
@@ -92,7 +95,7 @@ reviewers = ["sol", "sonnet"]
 # That no longer holds for a solo task, where sonnet implements and sonnet
 # fixes. Left as it is on purpose: the reason above is cost, not correctness,
 # and the seat that just wrote the patch is the one that knows why.
-fixer = "sonnet"
+fixer = ["sonnet", "sol", "astra", "opus"]
 # Who runs the `magi plan` CLI interview. Also the fallback for `chatter`
 # below when that is unset, so Planning and Talk land here too if nobody
 # picked a chatter.
@@ -102,17 +105,17 @@ fixer = "sonnet"
 # than `magi plan`, and opus is also a judge seat above - the two together
 # caused a chat turn to time out (`agent opus did not answer within 300s`)
 # while a competition's judge wave was running concurrently.
-chatter = "sonnet"
+chatter = ["sonnet", "sol", "opus"]
 # Arranges the queue between polls (`crate::conduct`). Pinned to opus so it
 # doesn't fall back to sharing a seat with the judge/reviewer roster above.
-conductor = "sonnet"
+conductor = ["sonnet", "sol", "opus"]
 # Design-deliberation seats (`graph::Runner::advise`), independent of judges:
 # a design sketch is worth spending the strong models on, unlike the judge
 # panel above which only has to rank.
-advisors = ["opus", "sol", "opencode"]  # was: ["opus", "opencode", "agy"]
+advisors = ["opus", "sol", "agy", "sonnet", "astra", "opencode"]  # was: ["opus", "opencode", "agy"]
 # Blends the advisors' proposals into one brief. Just synthesis, not judgment,
 # so sonnet rather than opus.
-synthesizer = "sonnet"
+synthesizer = ["sonnet", "sol", "opus"]
 
 # The shape of a run is a preference about time and money, not about any one
 # repository. A repo that genuinely needs a different shape says so in its own
