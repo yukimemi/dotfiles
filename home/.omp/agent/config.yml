@@ -8,7 +8,7 @@ modelRoles:
   smol: openrouter/~deepseek/deepseek-v4-flash-latest
   slow: anthropic/claude-opus-5-5
   plan: openai/gpt-6-astra
-  default: anthropic/claude-sonnet-5-5
+  default: openai-codex/gpt-6.1-sol
   designer: anthropic/claude-opus-5-5
   tiny: openrouter/~deepseek/deepseek-v4-flash-latest
   advisor: openai/gpt-6-astra
@@ -36,3 +36,7 @@ dev:
 extendedContext: true
 collab:
   autoStart: control
+completion:
+  notify: "off"
+ask:
+  notify: "off"
