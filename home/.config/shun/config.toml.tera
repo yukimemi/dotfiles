@@ -68,11 +68,23 @@ hotkey_mode = "activate"
 [[apps]]
 {%- if vars.browser == "brave" %}
 name = "Brave"
+{%- if yui.os == "macos" %}
+# No `brave` binary on macOS; launch the bundle via `open -a`.
+path = "open"
+args = ["-a", "Brave Browser"]
+window_app = "Brave Browser"
+{%- else %}
 path = "brave"
-window_app = '{% if os == "macos" %}Brave Browser{% endif %}'
+{%- endif %}
 {%- elif vars.browser == "chrome" %}
 name = "Google Chrome"
+{%- if yui.os == "macos" %}
+path = "open"
+args = ["-a", "Google Chrome"]
+window_app = "Google Chrome"
+{%- else %}
 path = "chrome"
+{%- endif %}
 {%- elif vars.browser == "comet" %}
 name = "Comet"
 path = "comet"

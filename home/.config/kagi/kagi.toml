@@ -1,14 +1,6 @@
 # kagi — cross-platform key mapper
 # https://github.com/yukimemi/kagi
 #
-# Replaces the IME section of ~/.config/autohotkey/AutoHotkey.ahk (retired) on
-# Windows, and the "Ctrl+[を押したときに、英数キーも送信する（vim用）" rule in
-# ~/.config/karabiner/karabiner.json on macOS.
-#
-# NOTE: on macOS, drop that Karabiner rule before running kagi, or Ctrl+[ is
-# handled twice — Karabiner sits below the event tap, so kagi would see the
-# 英数 Karabiner already sent.
-#
 # `from` prefixes (AutoHotkey style):
 #   ~  the original key still reaches the focused app
 #   *  extra modifiers beyond the listed ones are tolerated

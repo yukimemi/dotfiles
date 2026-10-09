@@ -80,14 +80,14 @@ extra_args = ["-c", "model_reasoning_effort=\"medium\""]
 # and resumes. But a solo task has no second candidate to fall back on, so the
 # seat that reports reliably goes first.
 # TEMP (2026-09-26): opencode swapped out for sol (opencode CLI fails to start on this machine).
-implementers = ["sonnet", "sol", "agy", "astra", "opus"]
+implementers = ["sonnet", "agy", "sol", "astra", "opus"]
 # Rotated so no judge sits on its own candidate. Only matters when a task asks
 # for more than one candidate.
 judges = ["sonnet", "opencode", "sol", "astra", "agy", "opus"]
 # `sol` is the only seat whose read-only-ness the CLI enforces (`--sandbox
 # read-only`), which is exactly what a reviewer is: it cannot touch the tree it
 # is reviewing even if it decides to.
-reviewers = ["sol", "sonnet", "astra", "agy", "opus"]
+reviewers = ["sol", "opus", "agy", "sonnet", "astra"]
 # Not the winner's own author by default: the fixer would inherit the
 # implementer's 100-turn session, and with it the whole accumulated cache-read
 # bill.
@@ -124,7 +124,7 @@ synthesizer = ["sonnet", "sol", "opus"]
 # One implementation by default. Competition is still here and still wins work
 # worth having - it is simply no longer what every task buys without being
 # asked. See `Graph::candidates` for the numbers behind this.
-candidates = 1
+candidates = 2
 judges = 3
 deliberate_rounds = 1
 reviewers = 2
@@ -221,6 +221,8 @@ roots = ['{{ home() }}/src']
 
 [talk]
 allow_write = true
+operator_name = "yukimemi"
+
 
 # The one thing every repository in this fleet has to tell a magi node, for the
 # same reason. Repository-specific conventions stay in each repo's own
