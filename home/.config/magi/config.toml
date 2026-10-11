@@ -86,14 +86,14 @@ extra_args = ["-c", "model_reasoning_effort=\"medium\""]
 # and resumes. But a solo task has no second candidate to fall back on, so the
 # seat that reports reliably goes first.
 # TEMP (2026-09-26): opencode swapped out for sol (opencode CLI fails to start on this machine).
-implementers = ["sonnet", "agy", "sol", "astra", "opus"]
+implementers = ["sol", "agy", "sonnet", "opencode", "astra", "opus"]
 # Rotated so no judge sits on its own candidate. Only matters when a task asks
 # for more than one candidate.
-judges = ["opus", "sol", "agy", "sonnet", "opencode", "astra"]
+judges = ["sol", "agy", "sonnet", "opus", "opencode", "astra"]
 # `sol` is the only seat whose read-only-ness the CLI enforces (`--sandbox
 # read-only`), which is exactly what a reviewer is: it cannot touch the tree it
 # is reviewing even if it decides to.
-reviewers = ["sol", "opus", "agy", "sonnet", "astra"]
+reviewers = ["sol", "sonnet", "agy", "opus", "astra"]
 # Not the winner's own author by default: the fixer would inherit the
 # implementer's 100-turn session, and with it the whole accumulated cache-read
 # bill.
@@ -101,7 +101,7 @@ reviewers = ["sol", "opus", "agy", "sonnet", "astra"]
 # That no longer holds for a solo task, where sonnet implements and sonnet
 # fixes. Left as it is on purpose: the reason above is cost, not correctness,
 # and the seat that just wrote the patch is the one that knows why.
-fixer = ["sonnet", "sol", "astra", "opus"]
+fixer = ["sol", "sonnet", "astra", "opus"]
 # Who runs the `magi plan` CLI interview. Also the fallback for `chatter`
 # below when that is unset, so Planning and Talk land here too if nobody
 # picked a chatter.
@@ -114,7 +114,7 @@ fixer = ["sonnet", "sol", "astra", "opus"]
 chatter = ["sonnet", "sol", "opus"]
 # Small yes/no judgement: is the PR title/body English? Cheap and fast, so
 # haiku. On any failure magi keeps its built-in heuristics.
-language_judge = ["haiku", "sonnet"]
+language_judge = ["haiku", "sol", "sonnet"]
 # Arranges the queue between polls (`crate::conduct`). Pinned to opus so it
 # doesn't fall back to sharing a seat with the judge/reviewer roster above.
 conductor = ["sonnet", "sol", "opus"]
@@ -124,7 +124,7 @@ conductor = ["sonnet", "sol", "opus"]
 advisors = ["opus", "sol", "agy", "sonnet", "astra", "opencode"]  # was: ["opus", "opencode", "agy"]
 # Blends the advisors' proposals into one brief. Just synthesis, not judgment,
 # so sonnet rather than opus.
-synthesizer = ["sonnet", "sol", "opus"]
+synthesizer = ["sol", "sonnet", "opus"]
 
 # The shape of a run is a preference about time and money, not about any one
 # repository. A repo that genuinely needs a different shape says so in its own

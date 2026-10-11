@@ -5,7 +5,7 @@ setupVersion: 2
 autolearn:
   enabled: true
 modelRoles:
-  smol: openrouter/~deepseek/deepseek-v4-flash-latest
+  smol: openai-codex/gpt-6.1-sol
   slow: anthropic/claude-opus-5-5
   plan: openai/gpt-6-astra
   default: anthropic/claude-sonnet-5-5
