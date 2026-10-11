@@ -32,6 +32,12 @@ model = "claude-sonnet-5-5"
 extra_args = ["--effort", "medium"]
 
 [[agents]]
+id = "haiku"
+kind = "claude"
+model = "claude-haiku-5-5"
+extra_args = ["--effort", "medium"]
+
+[[agents]]
 id = "opencode"
 kind = "opencode"
 model = "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free"
@@ -83,7 +89,7 @@ extra_args = ["-c", "model_reasoning_effort=\"medium\""]
 implementers = ["sonnet", "agy", "sol", "astra", "opus"]
 # Rotated so no judge sits on its own candidate. Only matters when a task asks
 # for more than one candidate.
-judges = ["sonnet", "opencode", "sol", "astra", "agy", "opus"]
+judges = ["opus", "sol", "agy", "sonnet", "opencode", "astra"]
 # `sol` is the only seat whose read-only-ness the CLI enforces (`--sandbox
 # read-only`), which is exactly what a reviewer is: it cannot touch the tree it
 # is reviewing even if it decides to.
@@ -106,6 +112,9 @@ fixer = ["sonnet", "sol", "astra", "opus"]
 # caused a chat turn to time out (`agent opus did not answer within 300s`)
 # while a competition's judge wave was running concurrently.
 chatter = ["sonnet", "sol", "opus"]
+# Small yes/no judgement: is the PR title/body English? Cheap and fast, so
+# haiku. On any failure magi keeps its built-in heuristics.
+language_judge = ["haiku", "sonnet"]
 # Arranges the queue between polls (`crate::conduct`). Pinned to opus so it
 # doesn't fall back to sharing a seat with the judge/reviewer roster above.
 conductor = ["sonnet", "sol", "opus"]
