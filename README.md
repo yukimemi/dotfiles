@@ -1,9 +1,6 @@
 # yukimemi's dotfiles
 
-[yui]-managed dotfiles repository. Migrated from
-[chezmoi](https://chezmoi.io) in April 2026 — see commit
-[0fe1121c](https://github.com/yukimemi/dotfiles/commit/0fe1121c) for the
-full layout shift.
+[yui]-managed dotfiles repository.
 
 ## Layout
 
@@ -22,7 +19,7 @@ full layout shift.
 │   ├── .zshrc / .zshenv / …     # individual top-level dotfiles
 │   └── …
 └── .yui/
-    └── bin/                     # hook scripts (was: chezmoi run_*.tmpl)
+    └── bin/                     # hook scripts
         ├── mac-init.sh          # once / pre  / yui.os == 'macos'
         ├── brew-bundle.sh       # every / post / yui.os == 'macos'
         ├── setup-wsl.sh         # onchange / post / yui.os == 'linux'
@@ -98,10 +95,9 @@ On Windows, also install PowerShell 7 (`pwsh`) before applying: the
 Use an explicit source path for the first apply; this works before
 the dotfiles have configured your shell:
 
-To redirect managed targets for a trial, use the
-[migration toggles](#migration-toggles) below. They are not a sandbox:
-review or disable hooks before applying, because hooks can change the host
-outside the trial directory.
+Review the `[[hook]]` entries in `config.toml` before applying. Hooks can
+install software or change system configuration in addition to linking
+your dotfiles.
 
 ```sh
 yui list --source "$HOME/dotfiles"
@@ -118,27 +114,6 @@ yui apply               # render templates + link targets + auto-absorb
 yui status              # report drift
 yui doctor              # environment sanity check
 ```
-
-## Migration toggles
-
-Top of `config.toml`:
-
-```toml
-[vars]
-home_root = "~"        # set to "~/yui-test" to redirect managed targets
-production = true      # set to false to disable Windows-extras + the
-                       # windows-setup hook (Windows-only gating)
-```
-
-For a target-only trial, set `home_root = "~/yui-test"` and
-`production = false`. **These toggles do not disable macOS or Linux
-hooks.** Pre- and post-hooks can still install software or change system
-configuration outside `~/yui-test`.
-
-Review the `[[hook]]` entries in `config.toml` before applying. For a
-target-only trial, temporarily set `when = "false"` on every hook, run
-`yui apply --dry-run`, then apply and inspect the result. Restore the
-original hook conditions and both migration toggles before the real apply.
 
 Per-machine app choices (`browser`, `editor`, `use_excel`) also live in
 `[vars]`; override them in the untracked `config.local.toml`.
