@@ -34,15 +34,82 @@ full layout shift.
 `home/<X>` files / dirs link to `~/<X>`. Every `[[mount.entry]]` and
 `[[hook]]` lives in `config.toml`.
 
-## Apply
+## Initial bootstrap
 
-Install [yui]:
+### 1. Install yui first
+
+No Rust, Homebrew, Scoop, or administrator privileges are needed to
+install [yui]. The installers download the latest pre-built release.
+
+**macOS (Apple Silicon) / Linux (x86_64)**
 
 ```sh
-cargo install yui-cli
+curl -fsSL https://raw.githubusercontent.com/yukimemi/yui/main/install.sh | sh
+export PATH="$HOME/.local/bin:$PATH"
+yui --version
 ```
 
-Then from this repo:
+The executable is installed to `~/.local/bin/yui`. The `export` above
+applies to the current sh/bash/zsh session; add it to your shell's startup
+file if needed. For fish, use `fish_add_path "$HOME/.local/bin"` instead.
+Intel Mac is not supported by the installer.
+
+**Windows (x86_64, PowerShell 5.1+)**
+
+```powershell
+irm https://raw.githubusercontent.com/yukimemi/yui/main/install.ps1 | iex
+yui --version
+```
+
+The executable is installed to `%LOCALAPPDATA%\yui\bin\yui.exe`.
+The installer updates the current PowerShell session and the user `PATH`;
+reopen other terminals to pick up the change. For legacy Windows/.NET
+TLS troubleshooting, see [yui's installation instructions](https://github.com/yukimemi/yui#install).
+
+### 2. Get the dotfiles repository
+
+Install Git, then clone this repository. Skip the clone if `~/dotfiles`
+already exists. These commands work in sh/bash/zsh and PowerShell:
+
+```sh
+git clone https://github.com/yukimemi/dotfiles.git "$HOME/dotfiles"
+```
+
+### 3. Restore the existing secrets identity
+
+This repository contains encrypted `*.age` files and uses Bitwarden
+(`[secrets.vault]` in `config.toml`). Before the first apply, install the
+[Bitwarden CLI](https://bitwarden.com/help/cli/), sign in, unlock the vault,
+and set `BW_SESSION` as described in its documentation. Then:
+
+```sh
+yui secret unlock --source "$HOME/dotfiles"
+```
+
+Alternatively, securely restore the existing age identity to
+`~/.config/yui/age.txt`. A new identity generated with `yui secret init`
+cannot decrypt the existing secrets.
+
+On Windows, also install PowerShell 7 (`pwsh`) before applying: the
+`windows-setup` hook uses it.
+
+## Apply
+
+Use an explicit source path for the first apply; this works before
+the dotfiles have configured your shell:
+
+To redirect managed targets for a trial, use the
+[migration toggles](#migration-toggles) below. They are not a sandbox:
+review or disable hooks before applying, because hooks can change the host
+outside the trial directory.
+
+```sh
+yui list --source "$HOME/dotfiles"
+yui apply --source "$HOME/dotfiles" --dry-run
+yui apply --source "$HOME/dotfiles"
+```
+
+Once your shell is configured, from this repo:
 
 ```sh
 yui list                # show every src→dst mapping
@@ -58,14 +125,20 @@ Top of `config.toml`:
 
 ```toml
 [vars]
-home_root = "~"        # set to "~/yui-test" for a safe trial run
+home_root = "~"        # set to "~/yui-test" to redirect managed targets
 production = true      # set to false to disable Windows-extras + the
-                       # windows-setup hook (test mode)
+                       # windows-setup hook (Windows-only gating)
 ```
 
-For a fresh-machine bootstrap or a risky reorg, flip both
-(`home_root = "~/yui-test"`, `production = false`), `yui apply`,
-inspect the result, then flip back.
+For a target-only trial, set `home_root = "~/yui-test"` and
+`production = false`. **These toggles do not disable macOS or Linux
+hooks.** Pre- and post-hooks can still install software or change system
+configuration outside `~/yui-test`.
+
+Review the `[[hook]]` entries in `config.toml` before applying. For a
+target-only trial, temporarily set `when = "false"` on every hook, run
+`yui apply --dry-run`, then apply and inspect the result. Restore the
+original hook conditions and both migration toggles before the real apply.
 
 Per-machine app choices (`browser`, `editor`, `use_excel`) also live in
 `[vars]`; override them in the untracked `config.local.toml`.
