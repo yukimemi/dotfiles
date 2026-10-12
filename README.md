@@ -134,6 +134,19 @@ These files use Tera (`*.tera` → `*.<ext>` rendered as a sibling):
 Rendered files are written next to the `.tera` source and added to a
 managed section of `.gitignore` automatically.
 
+## Magi persona icons
+
+`home/.config/magi/config.toml` sets display-only icons for all eight built-in
+personas; their names and voice prompts remain unchanged. The images are
+192×192 face crops from Bandai's Niformation Evangelion artwork; sources and
+private-use terms are recorded beside the settings.
+
+Only `home/.config/magi/icons/*.png.age` belongs in version control.
+`yui apply` decrypts the ignored `.png` siblings, which magi reads from
+`~/.config/magi/icons/` on every OS. To replace one, update its PNG and run
+`yui secret encrypt --force home/.config/magi/icons/<id>.png`.
+Encryption does not grant permission to redistribute the artwork or key.
+
 ## Runtime state
 
 Apps that write into `~/.config/<app>/` write into this repo through

@@ -231,6 +231,48 @@ roots = ['{{ home() }}/src']
 [talk]
 allow_write = true
 operator_name = "yukimemi"
+# Display-only overrides: keep the built-in names and voice prompts.
+# Face crops, 192x192 PNG (<256 KiB), from Bandai's "Niformation" EVA2 set:
+# https://www.bandai.co.jp/catalog/item.php?jan_cd=4570117925542000
+# Sheet 2: Shinji / Rei / Asuka / Kaworu (EVA2-01..04).
+# Sheet 3: Misato / Ritsuko / Maya (EVA2-06, 07, 11); sheet 5: Pen Pen (22).
+# Images: https://bandai-a.akamaihd.net/bc/img/model/b/1000233839_{2,3,5}.jpg
+# Copyright: ©カラー／Project Eva. ©カラー／EVA製作委員会
+# Private use only; encryption is not permission to redistribute the artwork.
+# Terms: https://www.bandai.co.jp/site/notice/
+# Track icons/*.png.age only. `yui apply` restores the ignored PNG siblings.
+# `~/` is expanded by magi on macOS, Linux and Windows, not by a shell.
+[[talk.personas]]
+id = "default"
+icon = "~/.config/magi/icons/default.png" # Pen Pen: neutral mascot.
+
+[[talk.personas]]
+id = "magi"
+icon = "~/.config/magi/icons/magi.png" # Maya Ibuki: NERV console operator.
+
+[[talk.personas]]
+id = "rei"
+icon = "~/.config/magi/icons/rei.png"
+
+[[talk.personas]]
+id = "misato"
+icon = "~/.config/magi/icons/misato.png"
+
+[[talk.personas]]
+id = "ritsuko"
+icon = "~/.config/magi/icons/ritsuko.png"
+
+[[talk.personas]]
+id = "shinji"
+icon = "~/.config/magi/icons/shinji.png"
+
+[[talk.personas]]
+id = "asuka"
+icon = "~/.config/magi/icons/asuka.png"
+
+[[talk.personas]]
+id = "kaworu"
+icon = "~/.config/magi/icons/kaworu.png"
 
 
 # The one thing every repository in this fleet has to tell a magi node, for the
