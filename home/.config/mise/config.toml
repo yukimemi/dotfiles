@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/10/04 17:16:33.
+# Last Change : 2026/10/18 01:19:58.
 # =============================================================================
 
 [settings]
@@ -14,44 +14,14 @@ binstall = true
 
 [tools]
 cargo-binstall = "latest"
-"cargo:cargo-make" = "latest"
-"cargo:bat" = "latest"
-"cargo:du-dust" = "latest"
-"cargo:fd-find" = "latest"
-"cargo:git-delta" = "latest"
-"cargo:lsd" = "latest"
-"cargo:mdbook" = "latest"
-"cargo:nu" = "latest"
-"cargo:ripgrep" = "latest"
-"cargo:ripgrep_all" = "latest"
-"cargo:spyrun" = "latest"
-"cargo:starship" = "latest"
-"cargo:tokei" = "latest"
-"cargo:zoxide" = "latest"
+bat = "latest"
+bitwarden = "latest"
+delta = "latest"
 deno = "latest"
-direnv = "latest"
-fzf = "latest"
-github-cli = "latest"
-go = "latest"
-gojq = "latest"
-lua-language-server = "latest"
-mask = "latest"
-python = "latest"
-rust-analyzer = "latest"
-uv = "latest"
-vhs = "latest"
-yt-dlp = "latest"
-bun = "latest"
-bottom = "latest"
+jj = "latest"
+neovim = "latest"
+powershell-core = "latest"
+rust = "latest"
 starship = "latest"
 zoxide = "latest"
 yazi = "latest"
-node = "latest"
-jujutsu = "latest"
-chezmoi = "latest"
-vale = "latest"
-herdr = "latest"
-claude = "latest"
-opencode = "latest"
-antigravity-cli = "latest"
-pnpm = "latest"

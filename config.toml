@@ -113,6 +113,14 @@ phase = "post"
 when = "yui.os == 'macos'"
 
 [[hook]]
+name = "setup-arch"
+script = ".yui/bin/setup-arch.sh"
+when_run = "onchange"
+phase = "post"
+# The script checks ID=arch; yui.os intentionally groups all Linux distros.
+when = "yui.os == 'linux' and vars.production"
+
+[[hook]]
 name = "setup-wsl"
 script = ".yui/bin/setup-wsl.sh"
 when_run = "onchange"

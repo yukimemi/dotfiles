@@ -1,0 +1,8 @@
+[Hotkey]
+ConsumeRedundantActivateKeys=True
+
+[Hotkey/ActivateKeys]
+0=Henkan_Mode
+
+[Hotkey/DeactivateKeys]
+0=Muhenkan

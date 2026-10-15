@@ -1,0 +1,20 @@
+
+[cursor.style]
+shape = "Block"
+
+[font]
+size = 13.0
+
+[font.normal]
+family = "PlemolJP Console NF"
+
+[window]
+dynamic_padding = true
+opacity = 0.9
+
+[window.padding]
+x = 5
+y = 5
+
+[general]
+live_config_reload = true

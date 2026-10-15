@@ -22,6 +22,7 @@
     └── bin/                     # hook scripts
         ├── mac-init.sh          # once / pre  / yui.os == 'macos'
         ├── brew-bundle.sh       # every / post / yui.os == 'macos'
+        ├── setup-arch.sh        # onchange / post / installed Arch only
         ├── setup-wsl.sh         # onchange / post / yui.os == 'linux'
         ├── setup-openclaw.sh    # onchange / post / yui.os == 'linux'
         ├── enable-openclaw.sh   # onchange / post / yui.os == 'linux'
@@ -118,6 +119,86 @@ yui doctor              # environment sanity check
 Per-machine app choices (`browser`, `editor`, `use_excel`) also live in
 `[vars]`; override them in the untracked `config.local.toml`.
 
+## Arch desktop initialization
+
+`.yui/bin/setup-arch.sh` installs the niri/Noctalia desktop packages, Japanese
+input modules, Brave (`brave-bin`), and PlemolJP (`ttf-plemoljp-bin`). It runs
+as the normal user through yay, with a full `-Syu` and normal package/AUR
+review prompts. A missing yay is bootstrapped with `makepkg -si` after an
+interactive review of the `yay-bin` recipe; an existing sudo-capable account
+and working network on installed Arch are required. It does not install Arch
+itself, partition disks, change passwords, or reboot.
+
+The hook is `post` + `onchange`, gated by Linux and `vars.production`.
+Because yui has no distro predicate, the script checks `/etc/os-release`
+for exactly `ID=arch` before doing work; other distributions skip it.
+The WSL hook separately checks the kernel and skips native Arch/Linux.
+On Arch under WSL, the Arch hook preserves WSL-managed login/networking
+instead of enabling native desktop system services.
+
+Initialization is deliberately separate from yui-owned application settings:
+
+- **greetd + tuigreet:** installed/configured only when no other installed,
+  enabled or running display manager is found. Existing display-manager
+  selections are preserved. A differing `/etc/greetd/config.toml` requires
+  an explicit `yes` before a backup and atomic replacement. Changing an
+  existing boot default to `graphical.target` needs its own confirmation.
+  Login remains password-protected; no autologin is configured.
+- **NetworkManager:** installed/enabled only when no enabled/running alternative
+  manager/component (`systemd-networkd`, ConnMan, dhcpcd, netctl or iwd) is
+  found. Existing networking is never disabled. System services are enabled
+  for the next normal boot, never started or restarted by this script.
+- **OMP:** when absent, the official `https://omp.sh/install` runs as the
+  normal user. Existing working OMP installations are retained, not updated
+  merely because this hook changed. Bash/Zsh PATH setup preserves existing
+  settings and yui symlinks; edits to existing login files require `yes`
+  and a backup. Bash's existing login-file precedence is respected.
+- **Fcitx/Mozc:** a missing profile is atomically initialized with `keyboard-jp`
+  and Mozc. Any existing profile is preserved, including a per-file symlink;
+  concurrent first-run initialization cannot replace it. The mutable profile
+  stays out of git. A new screenshot directory is private (0700); existing
+  directories keep their permissions.
+
+Normal package upgrade hooks still apply. User application settings remain in
+`home/.config` and are not reset by this initializer. New session settings
+take effect at the next login; the script does not interrupt the desktop.
+Provider credentials are neither copied nor automatically authenticated.
+The standalone `arch-niri-setup` installer is not called or required for this
+installed-system desktop initialization; it must not overwrite yui's settings.
+
+Run just this hook without applying unrelated hooks or decrypting secrets:
+
+```sh
+yui --source "$HOME/dotfiles" hooks run setup-arch
+```
+
+An unchanged successful script is skipped on subsequent applies. To deliberately
+check for package updates again, use `hooks run setup-arch --force`.
+
+Local preservation/policy regressions require no sudo, downloads or service
+starts:
+
+```sh
+bash .yui/tests/setup-arch.sh
+```
+
+Real initialization smoke checks also exercised a private system root with
+the real `install`/`systemctl`, explicit configuration/boot-target consent,
+backups and manager conflicts, plus the actual official OMP installer in an
+empty temporary HOME. These checks do not replace a new-machine boot,
+greetd/PAM login or network-connection test.
+
+On Arch/niri, `Super+B` and the XDG web associations use Brave.
+`home/.config/brave-flags.conf` enables Wayland IME/text-input-v3 while keeping
+the browser sandbox enabled. Chromium's existing profile and installation
+are retained. The separate shun/F11 choice in `vars.browser` is left unchanged;
+override it per machine in `config.local.toml` if needed.
+Brave's own Sync is not Google Chrome Sync.
+
+`home/.config/BraveSoftware/` contains browser profiles, cookies, passwords,
+and Sync keys and is ignored by git. Never commit or copy those credentials
+into setup storage; configure Sync yourself in the browser.
+
 ## Templates
 
 These files use Tera (`*.tera` → `*.<ext>` rendered as a sibling):
@@ -146,6 +227,37 @@ Only `home/.config/magi/icons/*.png.age` belongs in version control.
 `~/.config/magi/icons/` on every OS. To replace one, update its PNG and run
 `yui secret encrypt --force home/.config/magi/icons/<id>.png`.
 Encryption does not grant permission to redistribute the artwork or key.
+
+## Alacritty font
+
+`home/.config/alacritty/alacritty.toml` uses **PlemolJP Console NF**.
+Install that font family on each machine separately; on Arch it is included in
+the AUR package `ttf-plemoljp-bin`. Font binaries are not stored in this repo.
+
+The legacy YAML was migrated with `alacritty migrate`; the existing 13pt size,
+padding, opacity, and cursor settings were retained. Live reload now uses
+`[general].live_config_reload`. With the `.config` directory link already
+applied, new Alacritty processes read the TOML directly without another
+`yui apply`.
+
+## Shikigami AI messages
+
+The PowerShell profile and Windows setup's user environment both set
+`SHIKIGAMI_AI_CMD` to OMP with `anthropic/claude-haiku-5-5` and thinking off.
+Shikigami pipes the selected change's diff to stdin; `Ctrl-g` in a description
+prompt requests one short English commit summary. Built-in tools, discovered
+extensions/rules/skills and session saving are disabled for this command.
+The model is explicit: missing Anthropic access fails instead of selecting
+another model. Interactive OMP's normal model setting is not changed.
+
+OMP must be on PATH and Anthropic access configured separately on each machine,
+for example with `omp login anthropic` or an `ANTHROPIC_API_KEY` supplied by
+your credential manager. Claude CLI credentials are not migrated by this
+configuration. Never store provider credentials in the repository.
+
+Restart PowerShell and shikigami after applying: shikigami reads the command
+once at startup. The Windows setup also updates the persisted user environment;
+other existing terminals need to be reopened to see that update.
 
 ## Runtime state
 

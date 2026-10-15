@@ -1,0 +1,30 @@
+[shell]
+lang = "ja"
+setup_wizard_enabled = false
+polkit_agent = true
+clipboard_enabled = true
+clipboard_history_max_entries = 100
+
+[shell.screenshot]
+directory = "~/Pictures/Screenshots"
+filename_pattern = "Screenshot from %Y-%m-%d %H-%M-%S"
+save_to_file = true
+copy_to_clipboard = true
+annotate = false
+
+[brightness]
+minimum_brightness = 0.05
+
+[brightness.monitor.eDP-1]
+backend = "backlight"
+backlight_device = "intel_backlight"
+
+[notification]
+enable_daemon = true
+filter_order = ["screenshots"]
+
+[notification.filter.screenshots]
+enabled = true
+match = "Noctalia"
+match_content = "^Screenshot saved$"
+override_duration = 5000

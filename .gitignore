@@ -71,6 +71,23 @@ home/.config/configstore/
 home/.config/gogcli/keyring/token:default:yukimemi@gmail.com
 home/.config/gogcli/keyring/token:yukimemi@gmail.com
 home/.config/gogcli/oauth-manual-state-*.json
-/home/.gemini/antigravity-cli/antigravity-oauth-token
-/home/.config/herdr/herdr.sock.agent
-/home/.config/homebrew/trust.json
+
+# others
+home/.config/BraveSoftware/
+home/.config/chromium-flags.conf
+home/.config/chromium/
+home/.config/fcitx/dbus/
+home/.config/fcitx5/conf/cached_layouts
+home/.config/herdr/herdr.sock.agent
+home/.config/homebrew/trust.json
+home/.config/ibus/bus/
+home/.config/mozc/.session.ipc
+home/.gemini/antigravity-cli/antigravity-oauth-token
+home/.config/niri/config.kdl.before-brightness
+home/.config/niri/config.kdl.before-caps-control
+home/.config/niri/config.kdl.before-japanese-input
+home/.config/niri/config.kdl.before-noctalia
+home/.config/niri/config.kdl.before-noctalia-capture-clipboard
+home/.config/niri/config.kdl.before-screenshots
+home/.config/niri/config.kdl.before-standard-bindings
+home/.config/noctalia/config.toml.before-noctalia-capture-clipboard
