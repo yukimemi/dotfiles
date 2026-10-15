@@ -16,12 +16,12 @@ roots = ['{{ home() }}/src']
 [models]
 # Candidates passed verbatim to `omp --model` in the "new session" picker.
 list = [
-  "claude-sonnet-5",
+  "claude-sonnet-5-5",
   "claude-opus-5-5",
-  "claude-haiku-4-5",
+  "claude-haiku-5-5",
+  "openai-codex/gpt-6.1-sol",
   "openai-codex/gpt-6-luna",
-  "openai-codex/gpt-6-sol",
   "openai-codex/gpt-6-astra",
-  "gemini-3.1-pro-preview",
+  "gemini-4-argon",
   "gemini-3.8-flash",
 ]
