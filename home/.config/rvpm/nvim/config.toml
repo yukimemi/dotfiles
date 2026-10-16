@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/09/20 19:47:20.
+# Last Change : 2026/10/21 10:26:21.
 # =============================================================================
 
 # rvpm config — https://github.com/yukimemi/rvpm#configuration
@@ -18,7 +18,7 @@ on_ev_buf_open = '["BufReadPre", "BufNewFile"]'
 auto_clean = true
 url_style = "full"
 concurrency = 16
-ai = "agy"
+ai = "claude"
 ai_language = "ja"
 merge_doc = true
 theme_preset = "tokyo-night-storm"
@@ -53,8 +53,8 @@ lazy = true
 
 [[plugins]]
 on_event = {{ vars.on_ev_buf_open }}
-
 url = "https://github.com/hrsh7th/nvim-dansa"
+
 [[plugins]]
 url = "https://github.com/manuuurino/autoread.nvim"
 on_cmd = ["Autoread"]
@@ -87,10 +87,6 @@ when = "{{ vars.denops }}"
 [[plugins]]
 url = "https://github.com/rmagatti/auto-session"
 when = "false"
-
-[[plugins]]
-url = "https://github.com/DrKJeff16/project.nvim"
-depends = ["snacks.nvim"]
 
 [[plugins]]
 url = "https://github.com/yukimemi/chronicle.vim"
@@ -164,16 +160,16 @@ url = "https://github.com/folke/snacks.nvim"
 
 [[plugins]]
 on_event = {{ vars.on_ev_idle }}
-
 url = "https://github.com/lambdalisue/vim-seethrough"
+
 [[plugins]]
 on_event = {{ vars.on_ev_idle }}
-
 url = "https://github.com/andymass/vim-matchup"
+
 [[plugins]]
 on_event = {{ vars.on_ev_idle }}
-
 url = "https://github.com/mopp/smartnumber.vim"
+
 [[plugins]]
 on_event = {{ vars.on_ev_idle }}
 
@@ -254,8 +250,8 @@ setup = {}
 
 [[plugins]]
 on_event = {{ vars.on_ev_idle }}
-
 url = "https://github.com/nvim-lualine/lualine.nvim"
+
 # ── lsp ───────────────────────────────────────────
 [[plugins]]
 on_event = {{ vars.on_ev_buf_open }}
@@ -1293,3 +1289,8 @@ lazy = true
 [[plugins]]
 url = "https://github.com/54L1M/Oshen.nvim"
 lazy = true
+
+[[plugins]]
+url = "https://github.com/lambdalisue/vim-suda"
+on_cmd = ["/^Suda/"]
+
