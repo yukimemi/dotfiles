@@ -253,6 +253,11 @@ $env:WSLENV += ":GEMINI_API_KEY/u:ANTHROPIC_API_KEY/u:OPENAI_API_KEY/u"
 function renri {
   $renriExe = (Get-Command renri -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1).Source
   if (-not $renriExe) {
+    # This wrapper hides renri from the command-not-found handler in
+    # LazyProfile.psm1, so offer the install from here.
+    $renriExe = Request-YukimemiTool -Name renri
+  }
+  if (-not $renriExe) {
     Write-Error "renri: executable not found on PATH"
     return
   }
