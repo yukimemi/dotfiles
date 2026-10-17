@@ -1,0 +1,18 @@
+#!/bin/sh
+# focus-or-spawn APP_ID COMMAND [ARGS...]
+# Focus the first window whose app-id is APP_ID (switching workspace if
+# needed); spawn COMMAND when there is none.
+set -eu
+
+app_id=$1
+shift
+
+id=$(niri msg windows | awk -v want="App ID: \"$app_id\"" '
+  /^Window ID / { id = $3; sub(":", "", id) }
+  index($0, want) { print id; exit }
+')
+
+if [ -n "$id" ]; then
+  exec niri msg action focus-window --id "$id"
+fi
+exec "$@"

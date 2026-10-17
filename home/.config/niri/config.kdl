@@ -25,7 +25,7 @@ binds {
     Mod+D hotkey-overlay-title="Noctalia launcher" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     Mod+S hotkey-overlay-title="Noctalia control center" { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
     Mod+Ctrl+Comma hotkey-overlay-title="Noctalia settings" { spawn "noctalia" "msg" "settings-toggle"; }
-    Mod+B hotkey-overlay-title="Brave" { spawn "brave"; }
+    Mod+B hotkey-overlay-title="Brave" { spawn "sh" "-c" "exec \"$HOME/.config/niri/focus-or-spawn\" brave-browser brave"; }
     Mod+Space hotkey-overlay-title="Japanese input on/off" { spawn "fcitx5-remote" "-t"; }
     Mod+Ctrl+V repeat=false hotkey-overlay-title="Noctalia clipboard history" { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
     XF86MonBrightnessDown hotkey-overlay-title="Brightness down" { spawn "noctalia" "msg" "brightness-down" "eDP-1" "10%"; }
