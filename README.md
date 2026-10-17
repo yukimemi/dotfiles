@@ -24,8 +24,8 @@
         ├── brew-bundle.sh       # every / post / yui.os == 'macos'
         ├── setup-arch.sh        # onchange / post / installed Arch only
         ├── setup-wsl.sh         # onchange / post / yui.os == 'linux'
-        ├── setup-openclaw.sh    # onchange / post / yui.os == 'linux'
-        ├── enable-openclaw.sh   # onchange / post / yui.os == 'linux'
+        ├── setup-openclaw.sh    # onchange / post / Linux + vars.openclaw
+        ├── enable-openclaw.sh   # onchange / post / Linux + vars.openclaw
         └── windows-setup.ps1    # onchange / post / yui.os == 'windows'
 ```
 
@@ -116,8 +116,8 @@ yui status              # report drift
 yui doctor              # environment sanity check
 ```
 
-Per-machine app choices (`browser`, `editor`, `use_excel`) also live in
-`[vars]`; override them in the untracked `config.local.toml`.
+Per-machine app choices (`browser`, `editor`, `use_excel`, `openclaw`) also live
+in `[vars]`; override them in the untracked `config.local.toml`.
 
 ## Arch desktop initialization
 
@@ -135,6 +135,8 @@ for exactly `ID=arch` before doing work; other distributions skip it.
 The WSL hook separately checks the kernel and skips native Arch/Linux.
 On Arch under WSL, the Arch hook preserves WSL-managed login/networking
 instead of enabling native desktop system services.
+Service inspection, including the chroot check, uses sudo: the latter may need
+permission to inspect PID 1's root even though it is read-only.
 
 Initialization is deliberately separate from yui-owned application settings:
 
@@ -198,6 +200,23 @@ Brave's own Sync is not Google Chrome Sync.
 `home/.config/BraveSoftware/` contains browser profiles, cookies, passwords,
 and Sync keys and is ignored by git. Never commit or copy those credentials
 into setup storage; configure Sync yourself in the browser.
+
+## OpenClaw on Linux
+
+The `setup-openclaw` and `enable-openclaw` hooks additionally require
+`vars.openclaw`. It defaults to `true` to retain other machines' existing
+behavior. On a machine that does not use OpenClaw, set this in the git-ignored
+`config.local.toml`:
+
+```toml
+[vars]
+openclaw = false
+```
+
+Both hooks then skip, including with `hooks run --force`; no private checkout,
+configuration links or service activation are attempted. This does not stop
+or remove an already installed service. Keep the setting machine-local so
+other Linux deployments are not disabled.
 
 ## Templates
 

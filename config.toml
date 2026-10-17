@@ -13,9 +13,11 @@ production = true
 #   - browser: shun's F11 hotkey target — "edge" | "brave" | "chrome" | "comet"
 #   - editor:  todoke's GUI editor — "neovide" | "nvim-qt" | "nvim"
 #   - excel: bind F9 to Excel in shun
+#   - openclaw: run the Linux private-config/service hooks on this machine
 browser = "edge"
 editor = "neovide"
 excel = false
+openclaw = false
 
 [[mount.entry]]
 src = "home"
@@ -132,14 +134,14 @@ name = "setup-openclaw"
 script = ".yui/bin/setup-openclaw.sh"
 when_run = "onchange"
 phase = "post"
-when = "yui.os == 'linux'"
+when = "yui.os == 'linux' and vars.openclaw"
 
 [[hook]]
 name = "enable-openclaw"
 script = ".yui/bin/enable-openclaw.sh"
 when_run = "onchange"
 phase = "post"
-when = "yui.os == 'linux'"
+when = "yui.os == 'linux' and vars.openclaw"
 
 [[hook]]
 name = "windows-setup"

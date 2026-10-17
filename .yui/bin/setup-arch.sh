@@ -55,7 +55,7 @@ inspect_service_managers() {
         || fail 'Cannot inspect service unit files.'
     classify_service_units "$units"
     if [[ $root == / && -d /run/systemd/system ]] \
-        && ! systemd-detect-virt --chroot --quiet; then
+        && ! as_root systemd-detect-virt --chroot --quiet; then
         units=$(as_root systemctl list-units --type=service --state=active,activating --no-legend --no-pager --plain) \
             || fail 'Cannot inspect running services.'
         classify_service_units "$units"
