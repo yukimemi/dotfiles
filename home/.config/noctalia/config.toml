@@ -28,3 +28,6 @@ enabled = true
 match = "Noctalia"
 match_content = "^Screenshot saved$"
 override_duration = 5000
+
+[widget.media]
+hide_when_no_media = true
