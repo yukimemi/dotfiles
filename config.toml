@@ -98,6 +98,15 @@ src = "home/.kimi-code/config.base.toml"
 dst = "{{ vars.home_root }}/.kimi-code/config.toml"
 ignore_keys = ["services.*", "providers.*"]
 
+# Antigravity CLI: settings.json is JSON and agy appends machine-local
+# absolute paths to `trustedWorkspaces`. Needs yui >= 0.18 (JSON merge).
+# The live file is gitignored (see home/.gemini/.gitignore); only the base
+# is tracked.
+[[merge]]
+src = "home/.gemini/antigravity-cli/settings.base.json"
+dst = "{{ vars.home_root }}/.gemini/antigravity-cli/settings.json"
+ignore_keys = ["trustedWorkspaces"]
+
 # --- hooks ---
 
 [[hook]]
