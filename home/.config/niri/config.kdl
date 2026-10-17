@@ -14,6 +14,8 @@ environment {
     QT_IM_MODULE "fcitx"
 }
 spawn-at-startup "noctalia"
+// Wait for Noctalia's StatusNotifierWatcher so the Tailscale tray icon registers.
+spawn-at-startup "sh" "-c" "until busctl --user status org.kde.StatusNotifierWatcher >/dev/null 2>&1; do sleep 1; done; exec tailscale systray"
 window-rule {
     match app-id="dev.noctalia.Noctalia"
     open-floating true

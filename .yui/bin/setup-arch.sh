@@ -164,6 +164,28 @@ enable_networkmanager() {
     printf 'setup-arch: NetworkManager is enabled for the next boot; not restarted.\n'
 }
 
+enable_tailscale() {
+    local root=${1:-/}
+    if [[ $root == / ]]; then
+        case "$(uname -r)" in
+            *[Mm]icrosoft*|*[Ww][Ss][Ll]*)
+                printf 'setup-arch: preserving WSL-managed networking; tailscaled is not enabled.\n'
+                return
+                ;;
+        esac
+    fi
+    if ! as_root systemctl --root="$root" is-enabled tailscaled.service >/dev/null 2>&1; then
+        as_root systemctl --root="$root" enable tailscaled.service
+    fi
+    if [[ $root == / ]] && systemctl is-active --quiet tailscaled.service; then
+        # Lets the tray (tailscale systray) and CLI manage Tailscale without sudo.
+        as_root tailscale set --operator="$USER"
+        printf 'setup-arch: tailscale operator set to %s.\n' "$USER"
+    else
+        printf 'setup-arch: tailscaled is enabled for the next boot; not started. Then run: sudo tailscale up --operator=$USER\n'
+    fi
+}
+
 init_fcitx_profile() (
     (( EUID != 0 )) || fail 'Fcitx profiles must be initialized as the normal user.'
     local directory="${XDG_CONFIG_HOME:-$HOME/.config}/fcitx5" profile temporary
@@ -296,7 +318,7 @@ main() (
         base-devel git github-cli sudo curl diffutils
         niri noctalia upower alacritty
         xdg-utils xdg-desktop-portal-gnome xdg-desktop-portal-gtk xwayland-satellite
-        noto-fonts noto-fonts-cjk ttf-dejavu
+        noto-fonts noto-fonts-cjk ttf-dejavu tailscale
         fcitx5 fcitx5-mozc fcitx5-configtool fcitx5-gtk fcitx5-qt
     )
     if "$greetd_selected"; then repo_packages+=(greetd greetd-tuigreet); fi
@@ -317,6 +339,7 @@ main() (
         configure_greetd / "$stage/greetd.toml"
     fi
     if "$networkmanager_selected"; then enable_networkmanager /; fi
+    enable_tailscale /
     printf 'setup-arch: initialization complete. No explicit service start/restart or reboot was requested; package hooks are separate.\n'
     printf 'setup-arch: yui-managed settings and existing IME profiles were preserved; log in afresh for new session settings.\n'
 )

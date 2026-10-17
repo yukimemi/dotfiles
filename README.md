@@ -122,7 +122,11 @@ in `[vars]`; override them in the untracked `config.local.toml`.
 ## Arch desktop initialization
 
 `.yui/bin/setup-arch.sh` installs the niri/Noctalia desktop packages, Japanese
-input modules, Brave (`brave-bin`), and PlemolJP (`ttf-plemoljp-bin`). It runs
+input modules, Tailscale (`tailscale`, with `tailscaled.service` enabled for the
+next boot but not started; once running, the operator is set to the current user and
+niri autostarts `tailscale systray` into Noctalia's tray; authenticate with
+`sudo tailscale up`; skipped on
+WSL), Brave (`brave-bin`), and PlemolJP (`ttf-plemoljp-bin`). It runs
 as the normal user through yay, with a full `-Syu` and normal package/AUR
 review prompts. A missing yay is bootstrapped with `makepkg -si` after an
 interactive review of the `yay-bin` recipe; an existing sudo-capable account
