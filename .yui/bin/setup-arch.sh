@@ -315,9 +315,9 @@ main() (
         (cd -- "$stage/yay-bin" && makepkg -si)
     fi
     local repo_packages=(
-        base-devel git github-cli sudo curl diffutils
+        base-devel git github-cli sudo curl diffutils less
         niri noctalia upower alacritty
-        xdg-utils xdg-desktop-portal-gnome xdg-desktop-portal-gtk xwayland-satellite
+        xdg-utils wl-clipboard xdg-desktop-portal-gnome xdg-desktop-portal-gtk xwayland-satellite
         noto-fonts noto-fonts-cjk ttf-dejavu tailscale
         fcitx5 fcitx5-mozc fcitx5-configtool fcitx5-gtk fcitx5-qt
     )
