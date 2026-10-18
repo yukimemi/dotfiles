@@ -24,3 +24,8 @@ live_config_reload = true
 # .zshenv adds it), so add it here before exec'ing pwsh.
 program = "bash"
 args = ["-c", "PATH=\"$HOME/.local/share/mise/shims:$PATH\" exec pwsh"]
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
