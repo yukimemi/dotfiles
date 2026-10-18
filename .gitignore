@@ -91,3 +91,4 @@ home/.config/niri/config.kdl.before-noctalia-capture-clipboard
 home/.config/niri/config.kdl.before-screenshots
 home/.config/niri/config.kdl.before-standard-bindings
 home/.config/noctalia/config.toml.before-noctalia-capture-clipboard
+/home/.config/dconf/user
