@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/09/29 09:56:41.
+# Last Change : 2026/10/18 03:49:05.
 # =============================================================================
 
 # --- Functions ---
@@ -649,7 +649,7 @@ if (Get-Module -ListAvailable PSReadLine) {
 # --- Auto-install yukimemi's Rust tools on command-not-found ---
 # Typing one of these at the prompt when it isn't on PATH offers to download
 # the latest GitHub release binary into ~/.local/bin, then runs the command.
-$script:YukimemiTools = @("yui", "rvpm", "todoke", "shikigami", "shoka", "magi", "kata", "renri")
+$script:YukimemiTools = @("yui", "rvpm", "todoke", "shikigami", "shoka", "magi", "kata", "renri", "kagi", "hari")
 
 function Install-YukimemiTool {
   param([Parameter(Mandatory)][string]$Name)
@@ -755,6 +755,7 @@ function Register-LazyCompletion {
   }
 }
 
-Register-LazyCompletion $script:YukimemiTools
+# kagi has no `completion` subcommand.
+Register-LazyCompletion ($script:YukimemiTools | Where-Object { $_ -ne "kagi" })
 
 Export-ModuleMember -Function * -Alias *

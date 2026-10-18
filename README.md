@@ -288,9 +288,8 @@ other existing terminals need to be reopened to see that update.
 ## PowerShell tool auto-install
 
 The lazily loaded PowerShell profile (`LazyProfile.psm1`, active from the first
-prompt) registers a command-not-found handler for `yui`, `rvpm`, `todoke`,
-`shikigami`, `shoka`, `magi`, `kata` and `renri` — the same list that gets lazy
-shell completion. Typing one of them at the prompt when it is
+prompt) registers a command-not-found handler for my own Rust tools (the list
+is `$script:YukimemiTools` in that file). Typing one of them at the prompt when it is
 missing asks `[Y/n]`, downloads the latest GitHub release binary for the
 current platform (Windows x64, Linux x64, macOS arm64) into `~/.local/bin`,
 and runs the command. Scripts and `Get-Command` calls from scripts never
