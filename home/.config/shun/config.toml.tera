@@ -53,8 +53,8 @@ hotkey = "F10"
 hotkey_mode = "activate"
 
 # On Linux (niri) shun turns every hotkey into a compositor-wide bind, so the keys of apps
-# that only exist on Windows/macOS (Outlook, Teams, the F11 browser, Slack) stay unbound there
-# instead of stealing F9-F12 from every window. Neovide's F10 is kept.
+# that only exist on Windows/macOS (Outlook, Teams, Slack) stay unbound there instead of
+# stealing Ctrl+F9/F11/F12 from every window. Neovide's F10 and the F11 browser are kept.
 [[apps]]
 name = "Outlook"
 path = "olk"
@@ -103,10 +103,8 @@ window_title = "Edge"
 {%- else %}
 {{ throw(message="vars.browser must be edge | brave | chrome | comet, got: " ~ vars.browser) }}
 {%- endif %}
-{%- if yui.os != "linux" %}
 hotkey = "F11"
 hotkey_mode = "activate"
-{%- endif %}
 
 {%- if vars.excel %}
 # F9 Excel, only on machines with yui `vars.excel = true`.
