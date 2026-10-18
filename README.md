@@ -131,7 +131,10 @@ as the normal user through yay, with a full `-Syu` and normal package/AUR
 review prompts. A missing yay is bootstrapped with `makepkg -si` after an
 interactive review of the `yay-bin` recipe; an existing sudo-capable account
 and working network on installed Arch are required. It does not install Arch
-itself, partition disks, change passwords, or reboot.
+itself, partition disks, change passwords, or reboot. It also sets up the
+uinput access key remappers need: a udev rule, loading the `uinput` module at
+boot, and (only after you type `yes`) `input` group membership, which takes
+effect after you log out and back in. Existing files are never overwritten.
 
 The hook is `post` + `onchange`, gated by Linux and `vars.production`.
 Because yui has no distro predicate, the script checks `/etc/os-release`

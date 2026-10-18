@@ -15,6 +15,13 @@ consent() {
     fi
 }
 
+# Like consent, but declining is not fatal: returns non-zero so the caller can skip.
+confirm() {
+    local answer
+    printf 'setup-arch: %s\nType yes to continue; anything else skips this step: ' "$1" >&2
+    [[ -r /dev/tty ]] && read -r answer </dev/tty && [[ $answer == yes ]]
+}
+
 classify_service_units() {
     local unit state activity rest
     while read -r unit state activity rest; do
@@ -186,6 +193,63 @@ enable_tailscale() {
     fi
 }
 
+# Installs CANDIDATE at TARGET when TARGET is absent. Returns 0 only when it
+# installed; an existing file is never replaced, and a differing one is reported.
+ensure_root_file() {
+    local candidate=$1 target=$2
+    if [[ -e $target || -L $target ]]; then
+        if ! cmp -s -- "$candidate" "$target"; then
+            printf 'setup-arch: %s differs from the managed content; leaving it unchanged.\n' "$target" >&2
+        fi
+        return 1
+    fi
+    as_root install -D -m 644 -o 0 -g 0 -- "$candidate" "$target"
+}
+
+# `id -nG USER` reads the group database, so it sees membership before re-login.
+user_in_input_group() {
+    [[ " $(id -nG "$USER" 2>/dev/null) " == *" input "* ]]
+}
+
+# Key remappers (kagi) read /dev/input/event* and write /dev/uinput. uinput is a
+# module and its device node is root-only until udev applies the rule, so the
+# module must be loaded at boot (modules-load.d), not left to autoload.
+configure_kagi_input_access() {
+    local stage=$1 etc=${2:-/etc} changed=false
+    if [[ $etc == /etc ]]; then
+        case "$(uname -r)" in
+            *[Mm]icrosoft*|*[Ww][Ss][Ll]*)
+                printf 'setup-arch: WSL has no input devices; skipping uinput access.\n'
+                return
+                ;;
+        esac
+    fi
+    printf '%s\n' 'KERNEL=="uinput", GROUP="input", MODE="0660"' > "$stage/99-kagi-uinput.rules"
+    printf 'uinput\n' > "$stage/uinput.conf"
+    if ensure_root_file "$stage/99-kagi-uinput.rules" "$etc/udev/rules.d/99-kagi-uinput.rules"; then
+        changed=true
+    fi
+    if ensure_root_file "$stage/uinput.conf" "$etc/modules-load.d/uinput.conf"; then
+        changed=true
+    fi
+    if "$changed" && [[ $etc == /etc ]]; then
+        as_root udevadm control --reload
+        if as_root modprobe uinput; then
+            as_root udevadm trigger --action=add --subsystem-match=misc --sysname-match=uinput
+            printf 'setup-arch: uinput is loaded now and at every boot, group-writable by input.\n'
+        else
+            printf 'setup-arch: cannot load uinput now (reboot into the updated kernel); it loads at boot.\n' >&2
+        fi
+    fi
+    if user_in_input_group; then return; fi
+    if confirm "Add $USER to the input group? Any process of this account can then read raw keyboard events (needed by key remappers such as kagi)."; then
+        as_root usermod -aG input "$USER"
+        printf 'setup-arch: %s added to input; log out and back in for it to apply.\n' "$USER"
+    else
+        printf 'setup-arch: skipped. Later run: sudo usermod -aG input %s\n' "$USER"
+    fi
+}
+
 init_fcitx_profile() (
     (( EUID != 0 )) || fail 'Fcitx profiles must be initialized as the normal user.'
     local directory="${XDG_CONFIG_HOME:-$HOME/.config}/fcitx5" profile temporary
@@ -340,6 +404,7 @@ main() (
     fi
     if "$networkmanager_selected"; then enable_networkmanager /; fi
     enable_tailscale /
+    configure_kagi_input_access "$stage"
     printf 'setup-arch: initialization complete. No explicit service start/restart or reboot was requested; package hooks are separate.\n'
     printf 'setup-arch: yui-managed settings and existing IME profiles were preserved; log in afresh for new session settings.\n'
 )

@@ -111,3 +111,54 @@ fi
 [[ $(sha256sum "$HOME/.profile") == "$before" ]]
 [[ ! -e $HOME/.bash_profile && ! -e $HOME/.bash_login ]]
 printf 'PASS: PATH initialization respects Bash login precedence and refuses unapproved existing-profile edits.\n'
+
+# Root-file/group policy: as_root, the group lookup and the prompt are stubbed,
+# so nothing here touches the system.
+etc="$work/etc"
+stage="$work/stage"
+mkdir -p "$stage"
+asroot_log="$work/asroot.log"
+: > "$asroot_log"
+as_root() {
+    if [[ $1 == install ]]; then
+        shift
+        local args=()
+        while (( $# )); do
+            case $1 in -o|-g) shift 2 ;; *) args+=("$1"); shift ;; esac
+        done
+        install "${args[@]}"
+    else
+        printf '%s\n' "$*" >> "$asroot_log"
+    fi
+}
+rule=$etc/udev/rules.d/99-kagi-uinput.rules
+modules=$etc/modules-load.d/uinput.conf
+user_in_input_group() { return 1; }
+confirm() { return 0; }
+
+configure_kagi_input_access "$stage" "$etc" >/dev/null
+[[ $(<"$rule") == 'KERNEL=="uinput", GROUP="input", MODE="0660"' ]]
+[[ $(<"$modules") == uinput ]]
+grep -Fxq "usermod -aG input $USER" "$asroot_log"
+! grep -q -E 'udevadm|modprobe' "$asroot_log"
+printf 'PASS: uinput rule, boot-time module load and input group are set up; live udev/modprobe only touch the real /etc.\n'
+
+: > "$asroot_log"
+before=$(stat -c '%i:%Y' "$rule" "$modules")
+user_in_input_group() { return 0; }
+configure_kagi_input_access "$stage" "$etc" >/dev/null
+[[ $(stat -c '%i:%Y' "$rule" "$modules") == "$before" ]]
+[[ ! -s $asroot_log ]]
+printf 'PASS: rerun with everything in place is a no-op and does not call sudo.\n'
+
+printf '# hand-edited\n' > "$rule"
+configure_kagi_input_access "$stage" "$etc" >/dev/null 2>&1
+[[ $(<"$rule") == '# hand-edited' ]]
+printf 'PASS: an existing, different rule file is preserved.\n'
+
+: > "$asroot_log"
+user_in_input_group() { return 1; }
+confirm() { return 1; }
+configure_kagi_input_access "$stage" "$etc" >/dev/null
+[[ ! -s $asroot_log ]]
+printf 'PASS: declining the prompt skips the input group change without failing.\n'
