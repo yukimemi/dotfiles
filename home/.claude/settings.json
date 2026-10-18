@@ -24,7 +24,7 @@
   "language": "Japanese",
   "autoUpdatesChannel": "latest",
   "skipWorkflowUsageWarning": true,
-  "theme": "dark-daltonized",
+  "theme": "auto",
   "editorMode": "vim",
   "remoteControlAtStartup": true,
   "inputNeededNotifEnabled": true,
