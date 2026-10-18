@@ -11,19 +11,30 @@
 #   source:<input source id>  macOS TIS id / Linux IME engine name
 #   cmd:<shell command>
 
-# JIS keyboard, physical [ key: macOS keycodes are positional (US `]` slot),
+# Caps Lock acts as Ctrl. kagi reads raw evdev codes, below niri's xkb
+# `ctrl:nocaps`, so without this it sees `capslock` and `ctrl-…` rules never
+# match. macOS does this in System Settings (kagi cannot remap modifiers there);
+# Windows is left to its own setup.
+[[remap]]
+desc = "Caps Lock acts as Left Ctrl"
+from = "capslock"
+to = "lctrl"
+os = ["linux"]
+
+# JIS keyboard, physical [ key: macOS keycodes and Linux evdev codes are both
+# positional (US `]` slot), so kagi reports JIS [ as RightBracket there.
 # Windows virtual-key codes follow the JIS layout (VK_OEM_4 = `[`).
 [[rule]]
-desc = "Ctrl+[ -> Esc, and close the IME (macOS: JIS [ reports as RightBracket)"
+desc = "Ctrl+[ -> Esc, and close the IME (macOS/Linux: JIS [ reports as RightBracket)"
 from = "ctrl-]"
 to = ["esc", "ime:off"]
-os = ["macos"]
+os = ["macos", "linux"]
 
 [[rule]]
-desc = "Ctrl+[ -> Esc, and close the IME (Windows/Linux)"
+desc = "Ctrl+[ -> Esc, and close the IME (Windows)"
 from = "ctrl-["
 to = ["esc", "ime:off"]
-os = ["windows", "linux"]
+os = ["windows"]
 
 [[rule]]
 desc = "Esc also closes the IME"
