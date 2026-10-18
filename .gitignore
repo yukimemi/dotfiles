@@ -58,6 +58,12 @@ home/.config/zellij/config/config.kdl
 # shun keeps per-machine runtime state (last update check, command history).
 /home/.config/shun/history.json
 /home/.config/shun/last_update_check
+# shun writes these itself on Linux (niri binds generated from its config, a one-time
+# backup of config.kdl, and its autostart entry); regenerated per machine.
+/home/.config/niri/shun-binds.kdl
+/home/.config/niri/config.kdl.before-shun
+/home/.config/autostart/shun.desktop
+
 # chezmoi db
 /home/.config/chezmoi/chezmoistate.boltdb
 # jj per-repo runtime metadata (regenerated per machine).
@@ -93,3 +99,4 @@ home/.config/zellij/config/config.kdl
 /home/.config/niri/config.kdl.before-standard-bindings
 /home/.config/noctalia/config.toml.before-noctalia-capture-clipboard
 /home/.config/dconf/user
+/home/.codex/shell_snapshots/

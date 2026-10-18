@@ -52,17 +52,24 @@ completion = "path"
 hotkey = "F10"
 hotkey_mode = "activate"
 
+# On Linux (niri) shun turns every hotkey into a compositor-wide bind, so the keys of apps
+# that only exist on Windows/macOS (Outlook, Teams, the F11 browser, Slack) stay unbound there
+# instead of stealing F9-F12 from every window. Neovide's F10 is kept.
 [[apps]]
 name = "Outlook"
 path = "olk"
+{%- if yui.os != "linux" %}
 hotkey = "Ctrl+F9"
 hotkey_mode = "activate"
+{%- endif %}
 
 [[apps]]
 name = "Teams"
 path = "ms-teams"
+{%- if yui.os != "linux" %}
 hotkey = "Ctrl+F12"
 hotkey_mode = "activate"
+{%- endif %}
 
 # F11 browser, picked per machine by yui `vars.browser`.
 [[apps]]
@@ -96,8 +103,10 @@ window_title = "Edge"
 {%- else %}
 {{ throw(message="vars.browser must be edge | brave | chrome | comet, got: " ~ vars.browser) }}
 {%- endif %}
+{%- if yui.os != "linux" %}
 hotkey = "F11"
 hotkey_mode = "activate"
+{%- endif %}
 
 {%- if vars.excel %}
 # F9 Excel, only on machines with yui `vars.excel = true`.
@@ -134,6 +143,15 @@ window_title_exclude = "yazi"
 hotkey = '{% if os == "macos" %}F12{% endif %}'
 hotkey_mode = "toggle"
 
+# Linux (niri): F12 toggles Alacritty — focuses it, and focus returns to the previous window if
+# it already has focus. `window_app` is matched against the niri app_id ("Alacritty").
+[[apps]]
+name = "Alacritty"
+path = "alacritty"
+window_app = "Alacritty"
+hotkey = '{% if os == "linux" %}F12{% endif %}'
+hotkey_mode = "toggle"
+
 # yazi: its own named Windows Terminal window ("-w yazi") with a fixed title, so
 # window_app + window_title find it and Ctrl+F10 activates it instead of stacking tabs.
 [[apps]]
@@ -157,7 +175,7 @@ hotkey_mode = "activate"
 [[apps]]
 name = "Slack"
 path = "slack"
-hotkey = "Ctrl+F11"
+hotkey = '{% if os != "linux" %}Ctrl+F11{% endif %}'
 hotkey_mode = "activate"
 
 [[apps]]

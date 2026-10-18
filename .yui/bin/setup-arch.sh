@@ -347,6 +347,34 @@ install_omp() {
     ensure_omp_path
 }
 
+install_shun() {
+    local stage=$1
+    (( EUID != 0 )) || fail 'shun must be installed as the normal user.'
+    export PATH="$HOME/.local/bin:$PATH"
+    # The Linux build is an AppImage; it self-updates via /update, so never overwrite it.
+    # From v5.6 shun writes its own .desktop entry, niri binds and autostart on start-up
+    # (desktop_integration), so an existing installation needs nothing from this script.
+    if command -v shun >/dev/null 2>&1; then
+        printf 'setup-arch: preserving existing shun installation.\n'
+    else
+        # Upstream install.sh calls the unauthenticated GitHub API (60 req/h per IP, 403 when
+        # exhausted). Resolve the tag from the /releases/latest redirect instead; no API quota.
+        local url tag
+        url=$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/yukimemi/shun/releases/latest)
+        tag=${url##*/}
+        [[ $tag =~ ^v[0-9][0-9A-Za-z.+-]*$ ]] || fail "Cannot determine the latest shun release from $url"
+        curl -fsSL -o "$stage/shun.AppImage" \
+            "https://github.com/yukimemi/shun/releases/download/$tag/shun_${tag#v}_amd64.AppImage"
+        mkdir -p -- "$HOME/.local/bin"
+        install -m 755 -- "$stage/shun.AppImage" "$HOME/.local/bin/shun"
+        printf 'setup-arch: installed shun %s to ~/.local/bin/shun.\n' "$tag"
+        # Noctalia's launcher lists .desktop entries only. shun only writes its own when it
+        # runs, and nothing has started it yet, so ask for the entry now (no GUI, exits).
+        timeout 60 "$HOME/.local/bin/shun" install-desktop \
+            || printf 'setup-arch: shun install-desktop failed; the entry appears when shun first runs.\n' >&2
+    fi
+}
+
 main() (
     # yui exposes linux/macos/windows; distinguish Arch before doing any work.
     if [[ ! -r /etc/os-release ]]; then
@@ -382,7 +410,7 @@ main() (
         base-devel git github-cli sudo curl diffutils less
         niri noctalia upower alacritty
         xdg-utils wl-clipboard xdg-desktop-portal-gnome xdg-desktop-portal-gtk xwayland-satellite
-        noto-fonts noto-fonts-cjk ttf-dejavu tailscale
+        noto-fonts noto-fonts-cjk ttf-dejavu tailscale fuse2
         fcitx5 fcitx5-mozc fcitx5-configtool fcitx5-gtk fcitx5-qt
     )
     if "$greetd_selected"; then repo_packages+=(greetd greetd-tuigreet); fi
@@ -390,6 +418,7 @@ main() (
     printf 'setup-arch: updating Arch and installing desktop packages; review yay prompts.\n'
     yay -Syu --needed "${repo_packages[@]}" brave-bin ttf-plemoljp-bin
     install_omp "$stage"
+    install_shun "$stage"
     init_fcitx_profile
     mkdir -p -m 700 -- "$HOME/Pictures" "$HOME/Pictures/Screenshots"
 
