@@ -105,3 +105,20 @@ local function open_directory()
   end
 end
 vim.keymap.set("n", "go", open_directory, { silent = true, noremap = true, desc = "Open current directory" })
+
+-- Resolve root-anchored ignore entries relative to their .gitignore for gf.
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = vim.api.nvim_create_augroup("gitignore_gf", { clear = true }),
+  pattern = ".gitignore",
+  callback = function(event)
+    vim.keymap.set("n", "gf", function()
+      local path = vim.fn.expand("<cfile>")
+      if path:sub(1, 1) == "/" then
+        local dir = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
+        vim.cmd.edit(vim.fn.fnameescape(dir .. path))
+      else
+        vim.cmd.normal({ "gf", bang = true })
+      end
+    end, { buffer = event.buf, desc = "Open ignore entry relative to .gitignore" })
+  end,
+})

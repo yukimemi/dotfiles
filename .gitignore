@@ -34,62 +34,62 @@ home/.config/zellij/config/config.kdl
 # <<< yui rendered (auto-managed) <<<
 
 # config.local.toml is per-machine; commit a config.local.example.toml instead.
-config.local.toml
+/config.local.toml
 
 # Runtime state apps drop into ~/.config/<app>/ via the junction. We want
 # them on disk (so the apps work) but not in git.
-home/.config/**/*.log*
-home/.config/**/*.bak*
-home/.config/**/*.lock
-home/.config/**/*.db
-home/.config/**/*-shm
-home/.config/**/*-wal
-home/.config/copyq/copyq/
-home/.config/windows-terminal/state.json
-home/.config/windows-terminal-preview/state.json
-home/.config/atuin/history*
-home/.config/zellij/cache/
-home/.config/zellij/sessions/
+/home/.config/**/*.log*
+/home/.config/**/*.bak*
+/home/.config/**/*.lock
+/home/.config/**/*.db
+/home/.config/**/*-shm
+/home/.config/**/*-wal
+/home/.config/copyq/copyq/
+/home/.config/windows-terminal/state.json
+/home/.config/windows-terminal-preview/state.json
+/home/.config/atuin/history*
+/home/.config/zellij/cache/
+/home/.config/zellij/sessions/
 # opencode auto-installs deps via bun — node_modules is regenerable.
-home/.config/opencode/node_modules/
+/home/.config/opencode/node_modules/
 # gh stores its OAuth token here on Linux/macOS / newer Windows installs.
 # config.yml is fine; hosts.yml has the credential.
-home/.config/gh/hosts.yml
+/home/.config/gh/hosts.yml
 # shun keeps per-machine runtime state (last update check, command history).
-home/.config/shun/history.json
-home/.config/shun/last_update_check
+/home/.config/shun/history.json
+/home/.config/shun/last_update_check
 # chezmoi db
-home/.config/chezmoi/chezmoistate.boltdb
+/home/.config/chezmoi/chezmoistate.boltdb
 # jj per-repo runtime metadata (regenerated per machine).
-home/.config/jj/repos/
+/home/.config/jj/repos/
 # age file
-home/.config/yui/age.txt
+/home/.config/yui/age.txt
 # scoop
-home/.config/scoop/config.json
+/home/.config/scoop/config.json
 # configstore
-home/.config/configstore/
+/home/.config/configstore/
 # gogcli
-home/.config/gogcli/keyring/token:default:yukimemi@gmail.com
-home/.config/gogcli/keyring/token:yukimemi@gmail.com
-home/.config/gogcli/oauth-manual-state-*.json
+/home/.config/gogcli/keyring/token:default:yukimemi@gmail.com
+/home/.config/gogcli/keyring/token:yukimemi@gmail.com
+/home/.config/gogcli/oauth-manual-state-*.json
 
 # others
-home/.config/BraveSoftware/
-home/.config/chromium-flags.conf
-home/.config/chromium/
-home/.config/fcitx/dbus/
-home/.config/fcitx5/conf/cached_layouts
-home/.config/herdr/herdr.sock.agent
-home/.config/homebrew/trust.json
-home/.config/ibus/bus/
-home/.config/mozc/.session.ipc
-home/.gemini/antigravity-cli/antigravity-oauth-token
-home/.config/niri/config.kdl.before-brightness
-home/.config/niri/config.kdl.before-caps-control
-home/.config/niri/config.kdl.before-japanese-input
-home/.config/niri/config.kdl.before-noctalia
-home/.config/niri/config.kdl.before-noctalia-capture-clipboard
-home/.config/niri/config.kdl.before-screenshots
-home/.config/niri/config.kdl.before-standard-bindings
-home/.config/noctalia/config.toml.before-noctalia-capture-clipboard
+/home/.config/BraveSoftware/
+/home/.config/chromium-flags.conf
+/home/.config/chromium/
+/home/.config/fcitx/dbus/
+/home/.config/fcitx5/conf/cached_layouts
+/home/.config/herdr/herdr.sock.agent
+/home/.config/homebrew/trust.json
+/home/.config/ibus/bus/
+/home/.config/mozc/.session.ipc
+/home/.gemini/antigravity-cli/antigravity-oauth-token
+/home/.config/niri/config.kdl.before-brightness
+/home/.config/niri/config.kdl.before-caps-control
+/home/.config/niri/config.kdl.before-japanese-input
+/home/.config/niri/config.kdl.before-noctalia
+/home/.config/niri/config.kdl.before-noctalia-capture-clipboard
+/home/.config/niri/config.kdl.before-screenshots
+/home/.config/niri/config.kdl.before-standard-bindings
+/home/.config/noctalia/config.toml.before-noctalia-capture-clipboard
 /home/.config/dconf/user

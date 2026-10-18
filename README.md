@@ -268,8 +268,12 @@ applied, new Alacritty processes read the TOML directly without another
 
 ## Shikigami AI messages
 
-The PowerShell profile and Windows setup's user environment both set
+The PowerShell profile, `home/.zshenv` and Windows setup's user environment all set
 `SHIKIGAMI_AI_CMD` to OMP with `anthropic/claude-haiku-5-5` and thinking off.
+On macOS/Linux GUI launches (Neovide via shun/todoke) do not run PowerShell and
+inherit only launchd's minimal environment, but Neovide starts nvim through a
+login zsh that reads `.zshenv`, so the variables are defined there (not in
+`.zshrc`). `SHIKIGAMI_DIFF_FILTER` is set the same way.
 Shikigami pipes the selected change's diff to stdin; `Ctrl-g` in a description
 prompt requests one short English commit summary. Built-in tools, discovered
 extensions/rules/skills and session saving are disabled for this command.
