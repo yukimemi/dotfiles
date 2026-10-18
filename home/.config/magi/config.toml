@@ -184,6 +184,14 @@ mode = "notify"
 # 下限ぎりぎりにはせず10分にする。毎時6回なら他の用途の余地も残せる。
 interval = "10m"
 
+# The 8 GiB default is sized for a 1 TB disk (see `Disk` in magi's config.rs):
+# it is headroom for one fresh compile, and a roomy disk is nowhere near it. On
+# a small disk it blocks every run - the Arch laptop is 23 GB and sits at
+# ~5 GB free - so the floor is 3 GiB here. That still covers a debug build of
+# a small Rust crate; it is not an opt-out (`0` would be).
+[disk]
+min_free_bytes = 3221225472
+
 # Every checkout on this machine is jj-colocated, and jj keeps git's HEAD
 # detached at the working-copy commit - so magi can never infer the base branch
 # from `git symbolic-ref HEAD` here. It is the same answer for all of them, so
