@@ -109,6 +109,12 @@ $PrivateConfig = Join-Path $UserHome ".config/powershell/private.ps1"
 if (Test-Path $PrivateConfig) {
   . $PrivateConfig
 }
+# mise (vfox/aqua/github backends) hits the GitHub API unauthenticated (60/h)
+# and fails with HTTP 403 on `mise up`. Reuse the token from private.ps1,
+# scoped to mise only so gh/git keep their own credentials.
+if ($env:Z_GITHUB_TOKEN -and -not $env:MISE_GITHUB_TOKEN) {
+  $env:MISE_GITHUB_TOKEN = $env:Z_GITHUB_TOKEN
+}
 # Local Config
 $LocalConfig = Join-Path $UserHome ".local/share/powershell/local.ps1"
 if (Test-Path $LocalConfig) {

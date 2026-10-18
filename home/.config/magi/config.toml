@@ -130,6 +130,8 @@ synthesizer = ["sol", "sonnet", "opus"]
 # repository. A repo that genuinely needs a different shape says so in its own
 # magi.toml.
 [graph]
+timeout_talk = 7200
+timeout_resource_wait = 3600
 # One implementation by default. Competition is still here and still wins work
 # worth having - it is simply no longer what every task buys without being
 # asked. See `Graph::candidates` for the numbers behind this.

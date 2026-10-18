@@ -1,0 +1,20 @@
+onboarding = false
+[terminal]
+# herdr spawns the shell as a login shell (argv0 "-pwsh"). A bare `pwsh` resolves
+# to the mise shim when herdr is launched from a GUI/launchd PATH, and the shim
+# rejects "-pwsh" as an invalid shim -> pane exits with code 1 immediately.
+# Use the real binary on macOS.
+{%- if yui.os == "macos" %}
+default_shell = "/opt/homebrew/bin/pwsh"
+{%- else %}
+default_shell = "pwsh"
+{%- endif %}
+
+[keys]
+focus_pane_left = ["prefix+h", "ctrl+h"]
+focus_pane_down = ["prefix+j", "ctrl+j"]
+focus_pane_up = ["prefix+k", "ctrl+k"]
+focus_pane_right = ["prefix+l", "ctrl+l"]
+
+[update]
+channel = "stable"

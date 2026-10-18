@@ -11,6 +11,7 @@ home/.config/gogcli/credentials.json
 home/.config/gogcli/keyring/token%3Adefault%3Ayukimemi@gmail.com
 home/.config/gogcli/keyring/token%3Ayukimemi@gmail.com
 home/.config/google-calendar-mcp/tokens.json
+home/.config/herdr/config.toml
 home/.config/kanade/nats-users/agent.hash
 home/.config/kanade/nats-users/agent.pw
 home/.config/kanade/nats-users/backend.hash

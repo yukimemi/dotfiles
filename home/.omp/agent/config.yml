@@ -10,7 +10,7 @@ modelRoles:
   plan: openai/gpt-6-astra
   default: anthropic/claude-sonnet-5-5
   designer: anthropic/claude-opus-5-5
-  tiny: openrouter/~deepseek/deepseek-v4-flash-latest
+  tiny: deepseek/deepseek-v4-flash
   advisor: openai/gpt-6-astra
   vision: anthropic/claude-opus-5-5
 defaultThinkingLevel: auto
