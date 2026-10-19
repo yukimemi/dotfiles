@@ -216,6 +216,7 @@ if (Test-Path $StarshipInit) {
 
   # Hook into Starship pre-command to load heavy profile lazily
   $global:LastAutoJjPath = ""
+  $global:HariCheckedPaths = @{}
   function global:Invoke-Starship-PreCommand {
     if ($null -ne $global:LazyProfilePath) {
       $path = $global:LazyProfilePath
@@ -230,6 +231,19 @@ if (Test-Path $StarshipInit) {
       if ((Test-Path -LiteralPath ".git" -PathType Container) -and -not (Test-Path -LiteralPath ".jj" -PathType Container)) {
         Write-Host "Initializing jujutsu in git repo..." -ForegroundColor Cyan
         jj git init --colocate
+      }
+
+      # Auto hari install (jj git push -> native Git pre-push hooks)
+      # Checked once per directory per session to avoid spawning jj on every cd.
+      if (-not $global:HariCheckedPaths.ContainsKey($currentPath) -and (Test-Path -LiteralPath ".jj" -PathType Container)) {
+        $global:HariCheckedPaths[$currentPath] = $true
+        if (Get-Command hari -CommandType Application -ErrorAction SilentlyContinue) {
+          $hariGit = & jj config get git.executable-path 2>$null
+          if ($LASTEXITCODE -ne 0 -or "$hariGit" -notmatch 'hari-git') {
+            Write-Host "Installing hari in jj repo..." -ForegroundColor Cyan
+            hari install
+          }
+        }
       }
     }
 
