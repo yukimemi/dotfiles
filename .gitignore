@@ -63,6 +63,11 @@
 /home/.config/niri/shun-binds.kdl
 /home/.config/niri/config.kdl.before-shun
 /home/.config/autostart/shun.desktop
+# Noctalia regenerates these from the active wallpaper; keep only the imports.
+/home/.config/niri/noctalia.kdl
+/home/.config/alacritty/themes/noctalia.toml
+/home/.config/gtk-3.0/noctalia.css
+/home/.config/gtk-4.0/noctalia.css
 
 # chezmoi db
 /home/.config/chezmoi/chezmoistate.boltdb

@@ -254,6 +254,64 @@ Only `home/.config/magi/icons/*.png.age` belongs in version control.
 `yui secret encrypt --force home/.config/magi/icons/<id>.png`.
 Encryption does not grant permission to redistribute the artwork or key.
 
+## Wallpaper-driven desktop colors
+
+Noctalia uses the active wallpaper to generate an **M3 Content** palette in
+dark mode. Built-in templates apply it to niri, Alacritty, GTK 3 and GTK 4.
+Noctalia and niri reload their colors live, as does Alacritty; GTK applications
+may need to be restarted to pick up regenerated CSS. Browser content and
+editor colorschemes are not changed. Brave's separate community theme is not
+enabled because it requires extension setup and a manual update or restart.
+
+- **Super+Ctrl+W:** open the wallpaper picker.
+- **Super+Ctrl+Shift+W:** choose a random wallpaper from the configured folder.
+- Put images in `~/Pictures/Wallpapers/noctalia-demo`, or change
+  `[wallpaper].directory` in `home/.config/noctalia/config.toml`.
+  Random wallpaper rotation runs every 30 minutes. Change
+  `[wallpaper.automation].interval_seconds` in the same config to adjust the
+  interval (`1800` = 30 minutes); set `enabled = false` there to stop rotation.
+
+You can also select a wallpaper from the terminal:
+
+```sh
+noctalia msg wallpaper-set "$HOME/Pictures/Wallpapers/noctalia-demo/01-green-forest-path.jpg"
+```
+
+Settings selected in the GUI/IPC override the source config. If a previously
+selected fixed palette is still active, switch it back with
+`noctalia msg color-scheme-set wallpaper m3-content`.
+
+The generated `niri/noctalia.kdl`, `alacritty/themes/noctalia.toml`, and
+`gtk-{3,4}.0/noctalia.css` stay out of git; their imports remain managed here.
+The niri include is optional until Noctalia generates its first palette.
+Wallpapers are local assets, not committed to this repository. The initial
+six-image selection comes from
+[KDE's wallpaper collection](https://github.com/KDE/plasma-workspace-wallpapers);
+author, license, and source links accompany the downloaded images in
+`~/Pictures/Wallpapers/noctalia-demo/SOURCES.txt`.
+
+## Desktop animations
+
+`home/.config/niri/config.kdl` uses underdamped springs for window opening,
+movement, resizing, workspace switching and Overview. Windows pop in with a
+small overshoot; closing windows tilt, fall and fade over 260 ms. The closing
+shader is adapted from
+[niri's official falling-window example](https://niri-wm.github.io/niri/examples/close_custom_shader.frag).
+Custom shader interfaces are not guaranteed across niri versions.
+
+`home/.config/noctalia/config.toml` keeps shell animations enabled at 1.1×
+normal speed. Wallpaper changes randomly use `disc`, `wipe` or `zoom`, each
+lasting 1000 ms. Automatic wallpaper rotation uses these same transitions.
+
+Try a new terminal with **Super+T**, close that new terminal with **Super+Q**,
+switch workspaces with **Super+PageUp/PageDown**, and toggle Overview with
+**Super+O**. **Super+Ctrl+Shift+W** demonstrates a random wallpaper transition.
+These settings reload without logging out.
+
+For less bounce, move the niri springs' `damping-ratio` toward `1.0`.
+Remove the `window-close` override to restore niri's normal close animation;
+set Noctalia's wallpaper `transition = ["fade"]` for a quieter transition.
+
 ## Alacritty font
 
 `home/.config/alacritty/alacritty.toml` uses **PlemolJP Console NF**.

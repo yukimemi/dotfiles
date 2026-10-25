@@ -5,6 +5,10 @@ polkit_agent = true
 clipboard_enabled = true
 clipboard_history_max_entries = 100
 
+[shell.animation]
+enabled = true
+speed = 1.1
+
 [shell.screenshot]
 directory = "~/Pictures/Screenshots"
 filename_pattern = "Screenshot from %Y-%m-%d %H-%M-%S"
@@ -31,3 +35,25 @@ override_duration = 5000
 
 [widget.media]
 hide_when_no_media = true
+
+[theme]
+mode = "dark"
+source = "wallpaper"
+wallpaper_scheme = "m3-content"
+sync_color_scheme = true
+
+[theme.templates]
+enable_builtin_templates = true
+builtin_ids = ["niri", "alacritty", "gtk3", "gtk4"]
+
+[wallpaper]
+enabled = true
+directory = "~/Pictures/Wallpapers/noctalia-demo"
+transition = ["disc", "wipe", "zoom"]
+transition_duration = 1000
+
+[wallpaper.automation]
+enabled = true
+interval_seconds = 1800
+order = "random"
+recursive = false

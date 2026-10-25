@@ -17,6 +17,7 @@ x = 5
 y = 5
 
 [general]
+import = ["~/.config/alacritty/themes/noctalia.toml"]
 live_config_reload = true
 
 [terminal.shell]
