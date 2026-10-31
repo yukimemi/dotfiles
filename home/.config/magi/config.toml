@@ -179,6 +179,7 @@ pause_for_interrupts = true
 max_concurrent_runs = 3
 
 [update]
+auto_restart = true
 mode = "notify"
 # 常駐する magi web はこの間隔で新しいリリースを確認する。既定の1日では、
 # v0.10.0 の公開直後にも更新に気づかず、手動で再起動することになった。
