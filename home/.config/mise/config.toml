@@ -39,3 +39,4 @@ node = "latest"
 pnpm = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 vercel = { version = "latest", allow_builds = ["esbuild"], trust_policy_excludes = ["undici"] }
+"github:yukimemi/omp-deck" = "latest"

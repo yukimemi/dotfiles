@@ -6,6 +6,7 @@
 # template tokens (os, vars.*, args) resolve at shun load time.
 
 auto_start = true
+niri = true
 sort_order = "recent_first"
 search_mode = "fuzzy_migemo"
 hide_on_blur = true
