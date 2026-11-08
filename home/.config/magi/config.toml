@@ -93,7 +93,7 @@ judges = ["sol", "agy", "sonnet", "opus", "opencode", "astra"]
 # `sol` is the only seat whose read-only-ness the CLI enforces (`--sandbox
 # read-only`), which is exactly what a reviewer is: it cannot touch the tree it
 # is reviewing even if it decides to.
-reviewers = ["sol", "sonnet", "agy", "opus", "astra"]
+reviewers = ["sonnet", "sol", "agy", "opus", "astra"]
 # Not the winner's own author by default: the fixer would inherit the
 # implementer's 100-turn session, and with it the whole accumulated cache-read
 # bill.
@@ -111,13 +111,13 @@ fixer = ["sol", "sonnet", "astra", "opus"]
 # than `magi plan`, and opus is also a judge seat above - the two together
 # caused a chat turn to time out (`agent opus did not answer within 300s`)
 # while a competition's judge wave was running concurrently.
-chatter = ["sonnet", "sol", "opus"]
+chatter = ["sol", "sonnet", "opus"]
 # Small yes/no judgement: is the PR title/body English? Cheap and fast, so
 # haiku. On any failure magi keeps its built-in heuristics.
 language_judge = ["haiku", "sol", "sonnet"]
 # Arranges the queue between polls (`crate::conduct`). Pinned to opus so it
 # doesn't fall back to sharing a seat with the judge/reviewer roster above.
-conductor = ["sonnet", "sol", "opus"]
+conductor = ["sol", "sonnet", "opus"]
 # Design-deliberation seats (`graph::Runner::advise`), independent of judges:
 # a design sketch is worth spending the strong models on, unlike the judge
 # panel above which only has to rank.
@@ -179,7 +179,6 @@ pause_for_interrupts = true
 max_concurrent_runs = 3
 
 [update]
-auto_restart = true
 mode = "notify"
 # 常駐する magi web はこの間隔で新しいリリースを確認する。既定の1日では、
 # v0.10.0 の公開直後にも更新に気づかず、手動で再起動することになった。
@@ -238,6 +237,8 @@ mode = "pr"
 # the path fine on Windows.
 [repos]
 roots = ['{{ home() }}/src']
+auto_clone = true
+clone_command = ["shoka", "clone", "{repo}"]
 
 [talk]
 allow_write = true

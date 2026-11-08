@@ -40,3 +40,9 @@ completion:
   notify: "off"
 ask:
   notify: "off"
+startup:
+  quiet: true
+marketplace:
+  autoUpdate: auto
+codexResets:
+  autoRedeem: "no"
