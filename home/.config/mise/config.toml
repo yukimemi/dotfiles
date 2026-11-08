@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/10/19 02:42:55.
+# Last Change : 2026/11/08 21:15:05.
 # =============================================================================
 
 [settings]
@@ -12,31 +12,32 @@ experimental = true
 binstall = true
 
 [tools]
-cargo-binstall = "latest"
+"github:yukimemi/omp-deck" = "latest"
+antigravity-cli = "latest"
 bat = "latest"
 bitwarden = "latest"
+bun = "latest"
+cargo-binstall = "latest"
+cargo-make = "latest"
+claude = "latest"
+codex = "latest"
 delta = "latest"
 deno = "latest"
+dua = "latest"
+dust = "latest"
+fd = "latest"
+fzf = "latest"
+github-cli = "latest"
+herdr = "latest"
 jj = "latest"
 neovim = "latest"
-powershell-core = "latest"
-rust = "latest"
-starship = "latest"
-zoxide = "latest"
-yazi = "latest"
-fzf = "latest"
-herdr = "latest"
-ripgrep = "latest"
-claude = "latest"
-antigravity-cli = "latest"
-codex = "latest"
-dust = "latest"
-cargo-make = "latest"
-github-cli = "latest"
-bun = "latest"
-dua = "latest"
 node = "latest"
 pnpm = "latest"
-yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
+powershell-core = "latest"
+ripgrep = "latest"
+rust = "latest"
+starship = "latest"
 vercel = { version = "latest", allow_builds = ["esbuild"], trust_policy_excludes = ["undici"] }
-"github:yukimemi/omp-deck" = "latest"
+yazi = "latest"
+yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
+zoxide = "latest"

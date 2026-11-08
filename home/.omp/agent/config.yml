@@ -1,7 +1,7 @@
 symbolPreset: nerd
 theme:
   dark: dark-tokyo-night
-setupVersion: 2
+setupVersion: 3
 autolearn:
   enabled: true
 modelRoles:
@@ -46,3 +46,5 @@ marketplace:
   autoUpdate: auto
 codexResets:
   autoRedeem: "no"
+update:
+  auto: true
