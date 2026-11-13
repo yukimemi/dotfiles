@@ -46,8 +46,8 @@ model = "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free"
 # the other four below, which confirmed the vocabulary by hand.
 extra_args = ["--variant", "medium"]
 
-# Argon High is operator-approved; keep effort high to match the model tier.
-# Medium effort would conflict with that selection.
+# Argon High is operator-approved; effort is aligned to high so a lower
+# effort cannot contradict the selected model tier.
 [[agents]]
 id = "agy"
 kind = "antigravity"
