@@ -12,91 +12,58 @@
 #   4. <repo>/magi.toml
 #   5. --config <path>
 
-# The roster is the agent CLIs installed on this machine, so it belongs here
-# rather than in any one repository.
-#
-# Gemini CLI is absent on purpose: Google retired the standalone client for
-# individual accounts, so the roster is claude (two models), opencode,
-# Antigravity and Codex.
+# All seats use omp; ids name the model rather than the launcher CLI.
+# Provider-qualified selectors retain the existing models and subscriptions.
+# omp has no enforced read-only sandbox: read-only seats rely on the prompt
+# and magi's isolated worktrees, including sol and astra.
 
 [[agents]]
 id = "opus"
-kind = "claude"
-model = "claude-opus-5-5"
-extra_args = ["--effort", "medium"]
+kind = "omp"
+model = "anthropic/claude-opus-5-5"
+extra_args = ["--thinking", "medium"]
 
 [[agents]]
 id = "sonnet"
-kind = "claude"
-model = "claude-sonnet-5-5"
-extra_args = ["--effort", "medium"]
+kind = "omp"
+model = "anthropic/claude-sonnet-5-5"
+extra_args = ["--thinking", "medium"]
 
 [[agents]]
 id = "haiku"
-kind = "claude"
-model = "claude-haiku-5-5"
-extra_args = ["--effort", "medium"]
-
-[[agents]]
-id = "opencode"
-kind = "opencode"
-model = "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free"
-# provider-specific; opencode's own --help only lists high/max/minimal as
-# examples, so "medium" may not be a valid variant for this model - unlike
-# the other four below, which confirmed the vocabulary by hand.
-extra_args = ["--variant", "medium"]
+kind = "omp"
+model = "anthropic/claude-haiku-5-5"
+extra_args = ["--thinking", "medium"]
 
 # Argon High is operator-approved; effort is aligned to high so a lower
 # effort cannot contradict the selected model tier.
 [[agents]]
-id = "agy"
-kind = "antigravity"
-model = "gemini-4-argon-high"
-extra_args = ["--effort", "high"]
+id = "argon"
+kind = "omp"
+model = "google-antigravity/gemini-4-argon"
+extra_args = ["--thinking", "high"]
 
 [[agents]]
 id = "sol"
-kind = "codex"
-model = "gpt-6.1-sol"
-extra_args = ["-c", "model_reasoning_effort=\"medium\""]
+kind = "omp"
+model = "openai-codex/gpt-6.1-sol"
+extra_args = ["--thinking", "medium"]
 
 [[agents]]
 id = "astra"
-kind = "codex"
-model = "gpt-6-astra"
-extra_args = ["-c", "model_reasoning_effort=\"medium\""]
+kind = "omp"
+model = "openai-codex/gpt-6-astra"
+extra_args = ["--thinking", "medium"]
 
-# Seat assignment is a cost decision, and the numbers are measured, not guessed.
-# One implement seat cost $12.09 on opus against $6.95 on sonnet for the same
-# task - 1.7x - while `opencode` reported $0.00. The driver is internal tool-loop
-# iterations (111 and 134 turns respectively): every turn re-reads the cached
-# context, so cache_read ends up ~= turns * context size, and the implement node
-# is where the turns are.
-#
-# Hence: the expensive model never implements. opus judges instead, which is a
-# handful of turns, and the free CLIs carry the implementation load.
 [roles]
 # 配列は先頭から席に座り、graph.* の人数を超えた分は quota 切れ・失敗時の
 # バックアップ順になる（implementers/judges/reviewers は roster を左から順に、
 # fixer/chatter/conductor/synthesizer はチェーンとして各1回ずつ試す）。
-# Order matters now that one seat is the default: `resolve_roles` takes the
-# first `candidates` entries, so entry one writes every solo patch. On the
-# workload measured so far sonnet won 5 of 8 entries (62%), opencode 3 of 7 (43%).
-#
-# `agy` stays in the roster. Its 0 of 4 is a reporting defect and not a verdict
-# on its patches - it does the work in child processes and its CLI hangs up on
-# its own stream before delivering, which is what `dropped_stream` now detects
-# and resumes. But a solo task has no second candidate to fall back on, so the
-# seat that reports reliably goes first.
-# TEMP (2026-09-26): opencode swapped out for sol (opencode CLI fails to start on this machine).
-implementers = ["sol", "agy", "sonnet", "opencode", "astra", "opus"]
+implementers = ["sol", "argon", "sonnet", "astra", "opus"]
 # Rotated so no judge sits on its own candidate. Only matters when a task asks
 # for more than one candidate.
-judges = ["sol", "agy", "sonnet", "opus", "opencode", "astra"]
-# `sol` is the only seat whose read-only-ness the CLI enforces (`--sandbox
-# read-only`), which is exactly what a reviewer is: it cannot touch the tree it
-# is reviewing even if it decides to.
-reviewers = ["sonnet", "sol", "agy", "opus", "astra"]
+judges = ["sol", "argon", "sonnet", "opus", "astra"]
+reviewers = ["sonnet", "sol", "argon", "opus", "astra"]
 # Not the winner's own author by default: the fixer would inherit the
 # implementer's 100-turn session, and with it the whole accumulated cache-read
 # bill.
@@ -124,7 +91,7 @@ conductor = ["sol", "sonnet", "opus"]
 # Design-deliberation seats (`graph::Runner::advise`), independent of judges:
 # a design sketch is worth spending the strong models on, unlike the judge
 # panel above which only has to rank.
-advisors = ["opus", "sol", "agy", "sonnet", "astra", "opencode"]  # was: ["opus", "opencode", "agy"]
+advisors = ["opus", "sol", "argon", "sonnet", "astra"]
 # Blends the advisors' proposals into one brief. Just synthesis, not judgment,
 # so sonnet rather than opus.
 synthesizer = ["sol", "sonnet", "opus"]
