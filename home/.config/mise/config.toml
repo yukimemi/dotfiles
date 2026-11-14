@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : config.toml
 # Author      : yukimemi
-# Last Change : 2026/11/08 21:15:05.
+# Last Change : 2026/11/14 20:31:46.
 # =============================================================================
 
 [settings]
@@ -33,11 +33,14 @@ jj = "latest"
 neovim = "latest"
 node = "latest"
 pnpm = "latest"
-powershell-core = "latest"
 ripgrep = "latest"
 rust = "latest"
 starship = "latest"
-vercel = { version = "latest", allow_builds = ["esbuild"], trust_policy_excludes = ["undici"] }
+vercel = { version = "latest", allow_builds = [
+  "esbuild",
+], trust_policy_excludes = [
+  "undici",
+] }
 yazi = "latest"
 yt-dlp = { version = "latest", rename_exe = "yt-dlp" }
 zoxide = "latest"

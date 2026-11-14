@@ -109,3 +109,15 @@
 /home/.codex/auth.lock
 /home/.omp/update/install.lock
 /home/.claude/plugins/store/cc-plugin-agents-md_builtin-b049b47b3618.json
+/home/.codex/herdr-agent-state.ps1
+/home/.codex/hooks.json
+/home/.config/opencode/herdr-opencode/tui.js
+/home/.config/opencode/herdr-tui-session.js
+/home/.config/opencode/plugins/herdr-agent-state.js
+/home/.config/opencode/tui.jsonc
+/home/.config/shun/config.local.toml
+/home/.gemini/antigravity-cli/knowledge/knowledge.lock
+/home/.gemini/antigravity-cli/settings.json
+/home/.gemini/config/hooks/herdr-agent-state.ps1
+/home/.gemini/config/hooks.json
+/home/.omp/agent/extensions/herdr-omp-agent-state.ts

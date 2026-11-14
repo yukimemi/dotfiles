@@ -11,6 +11,7 @@ keepRemoteControlAwakeWhilePluggedIn = true
 show-context-window-usage = true
 
 [features]
+hooks = true
 js_repl = false
 
 [plugins."browser@openai-bundled"]
