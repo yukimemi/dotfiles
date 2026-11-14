@@ -11,10 +11,12 @@ production = true
 
 # Per-machine app choices; override in config.local.toml.
 #   - browser: shun's F11 hotkey target — "edge" | "brave" | "chrome" | "comet"
+#   - chat: shun's Ctrl+F12 hotkey target — "teams" | "discord"
 #   - editor:  todoke's GUI editor — "neovide" | "nvim-qt" | "nvim"
 #   - excel: bind F9 to Excel in shun
 #   - openclaw: run the Linux private-config/service hooks on this machine
 browser = "edge"
+chat = "teams"
 editor = "neovide"
 excel = false
 openclaw = false

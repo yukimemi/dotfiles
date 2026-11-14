@@ -1,7 +1,8 @@
 # shun config. Managed by yui (rendered from config.toml.tera).
 #
 # yui renders the per-machine parts — F11 browser from yui `vars.browser`,
-# F9 Excel from `vars.excel`; set them in ~/dotfiles/config.local.toml.
+# Ctrl+F12 chat from `vars.chat`, F9 Excel from `vars.excel`;
+# set them in ~/dotfiles/config.local.toml.
 # Everything after the `raw` marker passes through untouched, so shun's own
 # template tokens (os, vars.*, args) resolve at shun load time.
 
@@ -55,7 +56,7 @@ hotkey_mode = "activate"
 
 # On Linux (niri) shun turns every hotkey into a compositor-wide bind, so the keys of apps
 # that only exist on Windows/macOS (Outlook, Teams, Slack) stay unbound there instead of
-# stealing Ctrl+F9/F11/F12 from every window. Neovide's F10 and the F11 browser are kept.
+# stealing their shortcuts from every window. Discord's Ctrl+F12 stays available on Linux.
 [[apps]]
 name = "Outlook"
 path = "olk"
@@ -64,12 +65,31 @@ hotkey = "Ctrl+F9"
 hotkey_mode = "activate"
 {%- endif %}
 
+# Ctrl+F12 chat, picked per machine by yui `vars.chat`.
 [[apps]]
+{%- if vars.chat == "teams" %}
 name = "Teams"
 path = "ms-teams"
 {%- if yui.os != "linux" %}
 hotkey = "Ctrl+F12"
 hotkey_mode = "activate"
+{%- endif %}
+{%- elif vars.chat == "discord" %}
+name = "Discord"
+{%- if yui.os == "windows" %}
+path = '{{ env(name="LOCALAPPDATA") }}/Discord/Discord.exe'
+window_app = "Discord"
+{%- elif yui.os == "macos" %}
+path = "open"
+args = ["-a", "Discord"]
+window_app = "Discord"
+{%- else %}
+path = "discord"
+{%- endif %}
+hotkey = "Ctrl+F12"
+hotkey_mode = "activate"
+{%- else %}
+{{ throw(message="vars.chat must be teams | discord, got: " ~ vars.chat) }}
 {%- endif %}
 
 # F11 browser, picked per machine by yui `vars.browser`.

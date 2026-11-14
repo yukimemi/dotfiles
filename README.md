@@ -230,13 +230,24 @@ other Linux deployments are not disabled.
 These files use Tera (`*.tera` → `*.<ext>` rendered as a sibling):
 
 - `home/.config/shun/config.toml.tera` — binds the F11 browser hotkey
-  to `vars.browser` (edge / brave / chrome / comet) and adds the F9
-  Excel hotkey when `vars.use_excel` is true.
+  to `vars.browser` (edge / brave / chrome / comet), Ctrl+F12 to
+  `vars.chat` (teams / discord; default: teams), and adds the F9
+  Excel hotkey when `vars.excel` is true. Teams remains unbound on Linux;
+  Discord's shortcut works on all three platforms.
 - `home/.config/zellij/config/config.kdl.tera` — Linux uses `Ctrl-t`,
   others use `Ctrl-b`.
 - `home/.config/todoke/todoke.toml.tera` — selects the GUI editor
   (`vars.editor`: neovide / nvim-qt / nvim) at build time, lets todoke
   render the rest at dispatch.
+
+Select the Ctrl+F12 app in the git-ignored `config.local.toml`:
+
+```toml
+[vars]
+chat = "discord" # or "teams"
+```
+
+Run `yui apply` to regenerate the config.
 
 Rendered files are written next to the `.tera` source and added to a
 managed section of `.gitignore` automatically.
