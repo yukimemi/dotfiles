@@ -241,6 +241,20 @@ These files use Tera (`*.tera` → `*.<ext>` rendered as a sibling):
 Rendered files are written next to the `.tera` source and added to a
 managed section of `.gitignore` automatically.
 
+### Git push hook output
+
+If `yui init --git-hooks` installs a `.git/hooks/pre-push` hook, keep its
+render check but send all diagnostics to stderr:
+
+```sh
+exec yui render --check >&2
+```
+
+This leaves stdout clean for `jj git push` to parse Git's porcelain output.
+Without the redirect, yui's render log can cause `Git push output unfamiliar`
+even after the remote was updated successfully. Recheck the redirect after
+reinstalling the generated hooks; `.git/hooks` is not tracked.
+
 ## Magi persona icons
 
 `home/.config/magi/config.toml` sets display-only icons for all eight built-in
