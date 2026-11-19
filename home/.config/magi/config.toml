@@ -264,3 +264,11 @@ icon = "~/.config/magi/icons/kaworu.png"
 all = """
 This repository uses jj (Jujutsu) with a colocated git repo. `git commit` works in a candidate worktree and is what magi expects, but never run `jj` commands and never touch the main working copy.
 """
+implement = """
+Read skill://poteto-mode and use the implementation and verification steps relevant to the task.
+Inspect your own diff, run focused checks, and report the commands, results, and anything unverified.
+For bug fixes, use the same reproduction before and after the fix when feasible.
+Magi owns candidate comparison, independent review, full verification, and landing.
+Do not run arena, interrogate, or babysit, or open, monitor, or merge a PR.
+If the skill conflicts with these boundaries or the repository's magi instructions, follow those boundaries and instructions.
+"""
