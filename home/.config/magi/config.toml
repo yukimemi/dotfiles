@@ -12,7 +12,7 @@
 #   4. <repo>/magi.toml
 #   5. --config <path>
 
-# Neon uses native agy with the existing argon seat ID.
+# Agent IDs name the model, not the launcher. Neon uses native agy.
 # The other seats use provider-qualified omp selectors.
 # omp has no enforced read-only sandbox: read-only seats rely on the prompt
 # and magi's isolated worktrees, including sol and astra.
@@ -35,10 +35,9 @@ kind = "omp"
 model = "anthropic/claude-haiku-5-5"
 extra_args = ["--thinking", "medium"]
 
-# Keep the argon ID for existing role and run references.
 # Match --effort to the model's High tier.
 [[agents]]
-id = "argon"
+id = "neon"
 kind = "antigravity"
 model = "gemini-4-neon-high"
 extra_args = ["--effort", "high"]
@@ -59,11 +58,11 @@ extra_args = ["--thinking", "medium"]
 # 配列は先頭から席に座り、graph.* の人数を超えた分は quota 切れ・失敗時の
 # バックアップ順になる（implementers/judges/reviewers は roster を左から順に、
 # fixer/chatter/conductor/synthesizer はチェーンとして各1回ずつ試す）。
-implementers = ["sol", "argon", "sonnet", "astra", "opus"]
+implementers = ["sol", "neon", "sonnet", "astra", "opus"]
 # Rotated so no judge sits on its own candidate. Only matters when a task asks
 # for more than one candidate.
-judges = ["sol", "argon", "sonnet", "opus", "astra"]
-reviewers = ["sonnet", "sol", "argon", "opus", "astra"]
+judges = ["sol", "neon", "sonnet", "opus", "astra"]
+reviewers = ["sonnet", "sol", "neon", "opus", "astra"]
 # Not the winner's own author by default: the fixer would inherit the
 # implementer's 100-turn session, and with it the whole accumulated cache-read
 # bill.
@@ -91,7 +90,7 @@ conductor = ["sol", "sonnet", "opus"]
 # Design-deliberation seats (`graph::Runner::advise`), independent of judges:
 # a design sketch is worth spending the strong models on, unlike the judge
 # panel above which only has to rank.
-advisors = ["opus", "sol", "argon", "sonnet", "astra"]
+advisors = ["opus", "sol", "neon", "sonnet", "astra"]
 # Blends the advisors' proposals into one brief. Just synthesis, not judgment,
 # so sonnet rather than opus.
 synthesizer = ["sol", "sonnet", "opus"]
