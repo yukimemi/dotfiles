@@ -12,8 +12,8 @@
 #   4. <repo>/magi.toml
 #   5. --config <path>
 
-# All seats use omp; ids name the model rather than the launcher CLI.
-# Provider-qualified selectors retain the existing models and subscriptions.
+# Agent IDs name the model rather than the launcher CLI. Argon uses native agy;
+# the other seats use provider-qualified omp selectors.
 # omp has no enforced read-only sandbox: read-only seats rely on the prompt
 # and magi's isolated worktrees, including sol and astra.
 
@@ -39,9 +39,9 @@ extra_args = ["--thinking", "medium"]
 # effort cannot contradict the selected model tier.
 [[agents]]
 id = "argon"
-kind = "omp"
-model = "google-antigravity/gemini-4-argon"
-extra_args = ["--thinking", "high"]
+kind = "antigravity"
+model = "gemini-4-argon-high"
+extra_args = ["--effort", "high"]
 
 [[agents]]
 id = "sol"
