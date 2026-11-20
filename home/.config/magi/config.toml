@@ -12,8 +12,8 @@
 #   4. <repo>/magi.toml
 #   5. --config <path>
 
-# Agent IDs name the model rather than the launcher CLI. Argon uses native agy;
-# the other seats use provider-qualified omp selectors.
+# Neon uses native agy with the existing argon seat ID.
+# The other seats use provider-qualified omp selectors.
 # omp has no enforced read-only sandbox: read-only seats rely on the prompt
 # and magi's isolated worktrees, including sol and astra.
 
@@ -35,12 +35,12 @@ kind = "omp"
 model = "anthropic/claude-haiku-5-5"
 extra_args = ["--thinking", "medium"]
 
-# Argon High is operator-approved; effort is aligned to high so a lower
-# effort cannot contradict the selected model tier.
+# Keep the argon ID for existing role and run references.
+# Match --effort to the model's High tier.
 [[agents]]
 id = "argon"
 kind = "antigravity"
-model = "gemini-4-argon-high"
+model = "gemini-4-neon-high"
 extra_args = ["--effort", "high"]
 
 [[agents]]
