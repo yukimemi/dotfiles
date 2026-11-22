@@ -1,0 +1,84 @@
+# Managed by yui (rendered from config.yui.toml.tera); edit the template, not
+# the rendered file. shun loads config.*.toml after config.toml and appends
+# these `[[apps]]` to the ones there.
+#
+# Every Tera tag in this file is yui's and is resolved when yui renders it
+# (`vars.*` are yui's vars); shun only sees the result. shun's own template
+# tokens belong in config.toml, never here. (No literal Tera braces in these
+# comments: yui renders comments too.)
+#
+# The per-machine apps: F11 browser from yui `vars.browser`, Ctrl+F12 chat
+# from `vars.chat`, F9 Excel from `vars.excel`; set them in
+# ~/dotfiles/config.local.toml.
+
+# Ctrl+F12 chat. On Linux (niri) every hotkey becomes a compositor-wide bind,
+# so Teams, which only exists on Windows/macOS, stays unbound there.
+[[apps]]
+{%- if vars.chat == "teams" %}
+name = "Teams"
+path = "ms-teams"
+{%- if yui.os != "linux" %}
+hotkey = "Ctrl+F12"
+hotkey_mode = "activate"
+{%- endif %}
+{%- elif vars.chat == "discord" %}
+name = "Discord"
+{%- if yui.os == "windows" %}
+path = '{{ env(name="LOCALAPPDATA") }}/Discord/Discord.exe'
+window_app = "Discord"
+{%- elif yui.os == "macos" %}
+path = "open"
+args = ["-a", "Discord"]
+window_app = "Discord"
+{%- else %}
+path = "discord"
+{%- endif %}
+hotkey = "Ctrl+F12"
+hotkey_mode = "activate"
+{%- else %}
+{{ throw(message="vars.chat must be teams | discord, got: " ~ vars.chat) }}
+{%- endif %}
+
+# F11 browser.
+[[apps]]
+{%- if vars.browser == "brave" %}
+name = "Brave"
+{%- if yui.os == "macos" %}
+# No `brave` binary on macOS; launch the bundle via `open -a`.
+path = "open"
+args = ["-a", "Brave Browser"]
+window_app = "Brave Browser"
+{%- else %}
+path = "brave"
+{%- endif %}
+{%- elif vars.browser == "chrome" %}
+name = "Google Chrome"
+{%- if yui.os == "macos" %}
+path = "open"
+args = ["-a", "Google Chrome"]
+window_app = "Google Chrome"
+{%- else %}
+path = "chrome"
+{%- endif %}
+{%- elif vars.browser == "comet" %}
+name = "Comet"
+path = "comet"
+{%- elif vars.browser == "edge" %}
+name = "Microsoft Edge"
+path = "msedge"
+# Installed PWAs run as msedge.exe too; only real browser windows carry "Edge".
+window_title = "Edge"
+{%- else %}
+{{ throw(message="vars.browser must be edge | brave | chrome | comet, got: " ~ vars.browser) }}
+{%- endif %}
+hotkey = "F11"
+hotkey_mode = "activate"
+{%- if vars.excel %}
+
+# F9 Excel, only on machines with yui `vars.excel = true`.
+[[apps]]
+name = "Excel"
+path = "C:/Program Files/Microsoft Office/root/Office16/EXCEL.EXE"
+hotkey = "F9"
+hotkey_mode = "activate"
+{%- endif %}

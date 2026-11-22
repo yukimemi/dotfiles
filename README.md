@@ -229,11 +229,13 @@ other Linux deployments are not disabled.
 
 These files use Tera (`*.tera` → `*.<ext>` rendered as a sibling):
 
-- `home/.config/shun/config.toml.tera` — binds the F11 browser hotkey
-  to `vars.browser` (edge / brave / chrome / comet), Ctrl+F12 to
-  `vars.chat` (teams / discord; default: teams), and adds the F9
+- `home/.config/shun/config.yui.toml.tera` — the per-machine shun apps: the
+  F11 browser hotkey from `vars.browser` (edge / brave / chrome / comet),
+  Ctrl+F12 from `vars.chat` (teams / discord; default: teams), and the F9
   Excel hotkey when `vars.excel` is true. Teams remains unbound on Linux;
-  Discord's shortcut works on all three platforms.
+  Discord's shortcut works on all three platforms. shun merges every
+  `config.*.toml` after `config.toml`, so `config.toml` itself is a plain
+  linked file: `/config` in shun edits the tracked source directly.
 - `home/.config/zellij/config/config.kdl.tera` — Linux uses `Ctrl-t`,
   others use `Ctrl-b`.
 - `home/.config/todoke/todoke.toml.tera` — selects the GUI editor
