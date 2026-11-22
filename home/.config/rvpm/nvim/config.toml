@@ -286,6 +286,7 @@ on_event = {{ vars.on_ev_buf_open }}
 url = "https://github.com/mfussenegger/nvim-lint"
 [[plugins]]
 url = "https://github.com/nvimdev/lspsaga.nvim"
+when = "false"
 depends = ["nvim-lspconfig"]
 on_cmd = ["/^Lspsaga/"]
 on_map = [
@@ -325,10 +326,12 @@ on_map = [
 
 [[plugins]]
 url = "https://github.com/rachartier/tiny-inline-diagnostic.nvim"
+when = "false"
 on_cmd = ["TinyInlineDiag"]
 
 [[plugins]]
 url = "https://github.com/takeshid/whyis.nvim"
+when = "false"
 on_cmd = ["WhyisOpen"]
 on_map = [
   { lhs = "<leader>wf", desc = "Whyis (float)" },
@@ -349,24 +352,8 @@ depends = [
   "blink.lib",
   "blink-ripgrep.nvim",
   "blink.compat",
-  "friendly-snippets",
-  "LuaSnip",
 ]
 build = "cargo build --release"
-# build_lua = """
-# function()
-#   -- pre-build cargo & rename for Windows MSVC (upstream blink.cmp bug)
-#   vim.fn.system({ 'cargo', 'build', '--release' })
-#   if vim.fn.has('win32') == 1 then
-#     local src = 'target/release/blink_cmp_fuzzy.dll'
-#     local dst = 'target/release/libblink_cmp_fuzzy.dll'
-#     if vim.fn.filereadable(src) == 1 and vim.fn.filereadable(dst) == 0 then
-#       vim.fn.rename(src, dst)
-#     end
-#   end
-#   require('blink.cmp').build():wait(60000)
-# end
-# """
 rev = "v1"
 
 [[plugins]]
@@ -379,10 +366,12 @@ lazy = true
 
 [[plugins]]
 url = "https://github.com/rafamadriz/friendly-snippets"
+when = "false"
 lazy = true
 
 [[plugins]]
 url = "https://github.com/L3MON4D3/LuaSnip"
+when = "false"
 lazy = true
 
 [[plugins]]
@@ -524,10 +513,12 @@ on_map = [
 
 [[plugins]]
 url = "https://github.com/machakann/vim-textobj-functioncall"
+when = "false"
 on_map = [{ lhs = "af", mode = ["x", "o"] }, { lhs = "if", mode = ["x", "o"] }]
 
 [[plugins]]
 url = "https://github.com/yuki-yano/vim-textobj-generics"
+when = "false"
 depends = ["vim-textobj-functioncall"]
 on_map = [{ lhs = "a<", mode = ["x", "o"] }, { lhs = "i<", mode = ["x", "o"] }]
 
@@ -708,7 +699,7 @@ on_map = [
 
 [[plugins]]
 url = "https://github.com/epwalsh/obsidian.nvim"
-depends = ["plenary.nvim"]
+depends = ["plenary.nvim", "blink.compat"]
 on_ft = ["markdown"]
 build_lua = """
 function()
@@ -766,6 +757,7 @@ on_cmd = "AsyncRun"
 
 [[plugins]]
 url = "https://github.com/vim-test/vim-test"
+when = "false"
 depends = ["asyncrun.vim"]
 on_cmd = ["TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit"]
 
@@ -777,10 +769,12 @@ on_ft = "plantuml"
 
 [[plugins]]
 url = "https://github.com/Saecki/crates.nvim"
+when = "false"
 on_ft = "rust"
 
 [[plugins]]
 url = "https://github.com/nastevens/vim-cargo-make"
+when = "false"
 
 [[plugins]]
 url = "https://github.com/imsnif/kdl.vim"

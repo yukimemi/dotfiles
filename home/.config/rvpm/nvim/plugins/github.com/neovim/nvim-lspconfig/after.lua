@@ -27,5 +27,7 @@ vim.diagnostic.config({
 })
 
 -- blink.cmp の capabilities を全 LSP サーバーに適用
-local capabilities = require('blink.cmp').get_lsp_capabilities()
+local capabilities = require('blink.cmp').get_lsp_capabilities({
+  textDocument = { completion = { completionItem = { snippetSupport = false } } },
+})
 vim.lsp.config('*', { capabilities = capabilities })
