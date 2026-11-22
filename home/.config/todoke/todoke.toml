@@ -46,22 +46,18 @@ gui = {{ vars.gui in vars.wrapper_guis }}
 remote = ["--"]
 {% endif %}
 
-# Terminal nvim, always available for $EDITOR-callback files (commit
-# messages, rebase todos, …). Independent of vars.gui so short blocking
-# edits stay in the calling terminal even when the GUI is in use.
-[todoke.nvim-term]
-kind = "neovim"
+# Lightweight terminal nvim for blocking $EDITOR callbacks.
+[todoke.nvim-editor]
+kind = "exec"
 command = "nvim"
-listen = '{% if is_windows() %}\\.\pipe\nvim-todoke-{{ group }}-term{% else %}/tmp/nvim-todoke-{{ group }}-term.sock{% endif %}'
+env = { NVIM_APPNAME = "nvim-editor" }
 
 [todoke.msedge]
 command = "msedge"
 
 # ─── Rules ──────────────────────────────────────────────────────────────────
 
-# $EDITOR-callback files — always terminal nvim, fresh instance, block
-# until it exits. Pattern list is OR-ed; grouped by origin so the intent
-# is readable and easy to extend.
+# $EDITOR callbacks need a fresh terminal editor and wait for it to exit.
 [[rules]]
 name = "editor-callback"
 match = [
@@ -81,10 +77,11 @@ match = [
   '(?i)[/\\]\d{13,}\.md$',
   # Kimi Code
   '(?i)kimi-edit.*$',
-  # omp editor temp files (e.g. /Temp/omp-editor-<hash>.omp.md)
+  # omp prompt temp files
   '(?i)[/\\]omp-editor-.*\.omp\.md$',
 ]
-to = "nvim-term"
+input_type = "file"
+to = "nvim-editor"
 mode = "new"
 sync = true
 

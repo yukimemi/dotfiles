@@ -1,0 +1,4 @@
+[options]
+
+[[plugins]]
+url = "https://github.com/roodolv/markdown-toggle.nvim"

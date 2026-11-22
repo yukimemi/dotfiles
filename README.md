@@ -225,6 +225,26 @@ configuration links or service activation are attempted. This does not stop
 or remove an already installed service. Keep the setting machine-local so
 other Linux deployments are not disabled.
 
+## Blocking editor callbacks
+
+With `EDITOR=todoke`, supported agent prompt files (Claude Code, Codex, Gemini,
+Antigravity, OpenCode, Kimi Code and omp) and Git/SVN/Hg editor callbacks open
+in the lightweight `nvim-editor` app. The caller waits until Neovim exits;
+ordinary files still use todoke's GUI route.
+
+After `yui apply`, sync the dedicated rvpm profile once:
+
+```powershell
+$env:NVIM_APPNAME = "nvim-editor"
+rvpm sync
+Remove-Item Env:NVIM_APPNAME
+```
+
+On POSIX shells, use `NVIM_APPNAME=nvim-editor rvpm sync`. The profile loads
+only `markdown-toggle.nvim` and reuses `rvpm/nvim/before.lua`,
+`rvpm/nvim/after.lua` and the existing Markdown mappings. Plugin caches and
+Neovim state stay separate from the normal app.
+
 ## Templates
 
 These files use Tera (`*.tera` → `*.<ext>` rendered as a sibling):
