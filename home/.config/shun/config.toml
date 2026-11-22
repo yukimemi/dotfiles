@@ -58,6 +58,10 @@ hotkey_mode = "activate"
 # On Linux (niri) shun turns every hotkey into a compositor-wide bind, so the keys of apps
 # that only exist on Windows/macOS (Outlook, Teams, Slack) stay unbound there instead of
 # stealing their shortcuts from every window. Discord's Ctrl+F12 stays available on Linux.
+
+# 旧 AutoHotkey の Ctrl+F9 は、purpose が "home" ではなく use_new_outlook も
+# 無効な Windows 環境でクラシック Outlook (OUTLOOK.EXE) を起動していた。
+# shun の起動先は olk（新しい Outlook）のみで、この条件でのクラシック版起動は未移行。
 [[apps]]
 name = "Outlook"
 path = "olk"
