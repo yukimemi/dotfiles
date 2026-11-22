@@ -238,9 +238,10 @@ These files use Tera (`*.tera` → `*.<ext>` rendered as a sibling):
   linked file: `/config` in shun edits the tracked source directly.
 - `home/.config/zellij/config/config.kdl.tera` — Linux uses `Ctrl-t`,
   others use `Ctrl-b`.
-- `home/.config/todoke/todoke.toml.tera` — selects the GUI editor
-  (`vars.editor`: neovide / nvim-qt / nvim) at build time, lets todoke
-  render the rest at dispatch.
+- `home/.config/todoke/todoke.yui.toml.tera` — the GUI editor
+  (`vars.editor`: neovide / nvim-qt / nvim) as todoke's `vars.gui`.
+  `todoke.toml` pulls it in with `include`, so it is a plain linked file and
+  every template token in it is todoke's own.
 - `home/.config/powershell/prompt.ps1.tera` — tells the pwsh profile which
   prompt engine to start (`vars.prompt`: starship / oh-my-posh; default:
   starship). Oh My Posh uses `home/.config/oh-my-posh/config.omp.toml` and its

@@ -1,0 +1,10 @@
+# Managed by yui (rendered from todoke.yui.toml.tera); edit the template, not
+# the rendered file. todoke.toml includes this file, so these vars are in
+# scope there.
+#
+# The Tera tag below is yui's (`vars.editor`: neovide / nvim-qt / nvim; set it
+# in ~/dotfiles/config.local.toml). todoke's own template tokens belong in
+# todoke.toml, never here.
+
+[vars]
+gui = "{{ vars.editor }}"

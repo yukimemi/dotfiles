@@ -1,14 +1,11 @@
-# todoke config. Managed by yui (rendered from todoke.toml.tera).
-# Deploys to ~/.config/todoke/todoke.toml on every platform.
+# todoke config. Deploys to ~/.config/todoke/todoke.toml on every platform.
 #
-# yui fills in the GUI editor (yui `vars.editor`) below, then wraps
-# the rest of the file in a Tera raw block so todoke's own runtime
-# tokens (group / file_path / vars.* references below) pass through
-# build-time render unchanged.
+# A plain linked file: every template token in it is todoke's own. The one
+# per-machine value, `vars.gui`, comes from todoke.yui.toml, which yui
+# renders from todoke.yui.toml.tera (yui `vars.editor`).
+include = ["todoke.yui.toml"]
 
 [vars]
-gui = "{{ vars.editor }}"
-{% raw %}
 # nvim front-ends that are "wrappers" — they run an embedded nvim and
 # forward CLI args after `--` to it. Raw `nvim` doesn't want `--` since it
 # treats everything after as filenames. Listing wrappers here lets the
@@ -129,4 +126,3 @@ to = "gui"
 group = "default"
 mode = "remote"
 sync = false
-{% endraw %}
