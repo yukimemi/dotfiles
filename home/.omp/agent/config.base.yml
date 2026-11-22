@@ -5,13 +5,13 @@ setupVersion: 3
 autolearn:
   enabled: true
 modelRoles:
-  smol: openai-codex/gpt-6.1-sol
+  smol: openai-codex/gpt-6.2-sol
   slow: anthropic/claude-opus-5-5
-  plan: openai/gpt-6-astra
-  default: anthropic/claude-sonnet-5-5
+  plan: openai-codex/gpt-6.2-astra
+  default: anthropic/claude-fable-5-2
   designer: anthropic/claude-opus-5-5
   tiny: deepseek/deepseek-v4-flash
-  advisor: openai/gpt-6-astra
+  advisor: openai-codex/gpt-6.2-astra
   vision: anthropic/claude-opus-5-5
 defaultThinkingLevel: auto
 memory:
@@ -45,6 +45,7 @@ startup:
 marketplace:
   autoUpdate: auto
 codexResets:
-  autoRedeem: "no"
+  autoRedeem5h: "no"
+  autoRedeemWeekly: "no"
 update:
   auto: true

@@ -111,6 +111,14 @@ src = "home/.gemini/antigravity-cli/settings.base.json"
 dst = "{{ vars.home_root }}/.gemini/antigravity-cli/settings.json"
 ignore_keys = ["trustedWorkspaces"]
 
+# omp: config.yml is YAML and plugins append machine-local absolute paths to
+# `skills.customDirectories`. Needs yui >= 0.19 (YAML merge). The live file
+# is gitignored (see home/.omp/.gitignore); only the base is tracked.
+[[merge]]
+src = "home/.omp/agent/config.base.yml"
+dst = "{{ vars.home_root }}/.omp/agent/config.yml"
+ignore_keys = ["skills.customDirectories"]
+
 # --- hooks ---
 
 [[hook]]

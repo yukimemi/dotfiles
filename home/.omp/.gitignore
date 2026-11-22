@@ -3,7 +3,8 @@
 # omp starts writing that isn't listed shows up as untracked, so a new
 # config file gets noticed and judged instead of silently ignored.
 #
-# (keep agent/config.yml)
+# (keep agent/config.base.yml: the base of the `[[merge]]` in config.toml;
+# agent/config.yml is the live file omp rewrites)
 
 /install-id
 /gpu_cache.json
@@ -41,4 +42,5 @@
 /puppeteer/
 /run/
 
+/agent/config.yml
 /agent/config.yml.lock
