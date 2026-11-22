@@ -649,7 +649,7 @@ if (Get-Module PSReadLine) {
 # --- Auto-install yukimemi's Rust tools on command-not-found ---
 # Typing one of these at the prompt when it isn't on PATH offers to download
 # the latest GitHub release binary into ~/.local/bin, then runs the command.
-$script:YukimemiTools = @("yui", "rvpm", "todoke", "shikigami", "shoka", "magi", "kata", "renri", "kagi", "hari")
+$script:YukimemiTools = @("yui", "rvpm", "todoke", "shikigami", "shoka", "magi", "kata", "renri", "kagi", "hari", "omp-deck")
 
 function Install-YukimemiTool {
   param([Parameter(Mandatory)][string]$Name)
@@ -755,7 +755,7 @@ function Register-LazyCompletion {
   }
 }
 
-# kagi has no `completion` subcommand.
-Register-LazyCompletion ($script:YukimemiTools | Where-Object { $_ -ne "kagi" })
+# kagi and omp-deck have no `completion` subcommand.
+Register-LazyCompletion ($script:YukimemiTools | Where-Object { $_ -notin "kagi", "omp-deck" })
 
 Export-ModuleMember -Function * -Alias *

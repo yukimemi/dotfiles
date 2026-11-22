@@ -456,7 +456,8 @@ function Install-Bun {
   # pnpm は scoop 側で入れているのでここには含めない (PATH 競合回避)。
   $bunPackages = @(
     "@google/gemini-cli",
-    "opencode-ai"
+    "opencode-ai",
+    "vercel"
   )
 
   $installed = (& $bunExe pm ls -g 2>$null) -join "`n"
@@ -481,10 +482,15 @@ function Install-Tool {
     $scoopPackages = @(
       "7zip",
       "bat",
+      "bitwarden-cli",
+      "cargo-binstall",
       "clipboard",
+      "codex",
       "copyq",
       "delta",
+      "deno",
       "dua",
+      "dust",
       "espanso",
       "fd",
       "ffmpeg",
@@ -494,7 +500,9 @@ function Install-Tool {
       "git",
       "go",
       "gsudo",
+      "herdr",
       "imagemagick",
+      "jj",
       "jq",
       "ksnip",
       "leopardwm",
@@ -503,6 +511,7 @@ function Install-Tool {
       "neovide",
       "neovim",
       "neovim-qt",
+      "nodejs",
       "obsidian",
       "pnpm",
       "powertoys",
@@ -516,7 +525,9 @@ function Install-Tool {
       "windows-terminal-preview",
       "winmerge",
       "yazi",
-      "zig"
+      "yt-dlp",
+      "zig",
+      "zoxide"
     )
 
     log "Ensuring tools via scoop..." "Cyan"
@@ -802,6 +813,8 @@ function Start-Main {
         @{ Name = "renri" }
         @{ Name = "shoka" }
         @{ Name = "kagi"; Crate = "kagikey" }
+        @{ Name = "omp-deck" }
+        @{ Name = "cargo-make" }
       )
       Install-CargoTool $cargoTools
       Register-KagiService
