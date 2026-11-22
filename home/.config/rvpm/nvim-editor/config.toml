@@ -1,4 +1,7 @@
 [options]
 
 [[plugins]]
+url = "https://github.com/yukimemi/rvpm.nvim"
+
+[[plugins]]
 url = "https://github.com/roodolv/markdown-toggle.nvim"

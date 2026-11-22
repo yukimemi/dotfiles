@@ -241,9 +241,9 @@ Remove-Item Env:NVIM_APPNAME
 ```
 
 On POSIX shells, use `NVIM_APPNAME=nvim-editor rvpm sync`. The profile loads
-only `markdown-toggle.nvim` and reuses `rvpm/nvim/before.lua`,
-`rvpm/nvim/after.lua` and the existing Markdown mappings. Plugin caches and
-Neovim state stay separate from the normal app.
+`rvpm.nvim` and `markdown-toggle.nvim`. It reuses the normal profile's
+`before.lua`, `after.lua`, and both plugins' `after.lua` hooks via `dofile`.
+The rvpm plugin list, plugin caches, and Neovim state stay separate.
 
 ## Templates
 
