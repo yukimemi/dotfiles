@@ -116,8 +116,8 @@ yui status              # report drift
 yui doctor              # environment sanity check
 ```
 
-Per-machine app choices (`browser`, `editor`, `use_excel`, `openclaw`) also live
-in `[vars]`; override them in the untracked `config.local.toml`.
+Per-machine app choices (`browser`, `editor`, `use_excel`, `openclaw`, `prompt`)
+also live in `[vars]`; override them in the untracked `config.local.toml`.
 
 ## Arch desktop initialization
 
@@ -239,6 +239,19 @@ These files use Tera (`*.tera` → `*.<ext>` rendered as a sibling):
 - `home/.config/todoke/todoke.toml.tera` — selects the GUI editor
   (`vars.editor`: neovide / nvim-qt / nvim) at build time, lets todoke
   render the rest at dispatch.
+- `home/.config/powershell/prompt.ps1.tera` — tells the pwsh profile which
+  prompt engine to start (`vars.prompt`: starship / oh-my-posh; default:
+  starship). Oh My Posh uses `home/.config/oh-my-posh/config.omp.toml` and its
+  beta streaming mode, which paints the prompt first and fills in jj/git
+  afterwards. zsh and nushell always use starship.
+
+Switch the prompt engine in the git-ignored `config.local.toml`, run
+`yui apply` and answer `o` at the `prompt.ps1` diff; new shells use it:
+
+```toml
+[vars]
+prompt = "oh-my-posh" # or "starship"
+```
 
 Select the Ctrl+F12 app in the git-ignored `config.local.toml`:
 

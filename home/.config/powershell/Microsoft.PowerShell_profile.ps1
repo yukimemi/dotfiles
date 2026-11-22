@@ -162,67 +162,20 @@ if (!(Test-Path $CacheDir)) {
   New-Item -ItemType Directory -Force -Path $CacheDir | Out-Null
 }
 
-if (Get-Command mise -ErrorAction SilentlyContinue) {
-  $miseMode = if ($env:PSMUX -or $env:TMUX) { "shims" } else { "full" }
-  $MiseInit = Join-Path $CacheDir "mise_init_${miseMode}.ps1"
-  $miseVersionFile = Join-Path $CacheDir "mise_version_${miseMode}.txt"
-  $currentMiseVersion = (mise version 2>$null)
-
-  $needsMiseRegen = $true
-  if ((Test-Path $MiseInit) -and (Test-Path $miseVersionFile)) {
-    $cachedMiseVersion = Get-Content $miseVersionFile -Raw -ErrorAction SilentlyContinue
-    if ($cachedMiseVersion -and $cachedMiseVersion.Trim() -eq $currentMiseVersion) {
-      $needsMiseRegen = $false
-    }
-  }
-
-  if ($needsMiseRegen) {
-    Write-Host "Regenerating mise init cache..." -ForegroundColor Cyan
-    $miseContent = if ($miseMode -eq "shims") {
-      # Use shims in psmux/tmux to avoid CommandNotFound hook errors (GetHistoryItems NullReference)
-      mise activate pwsh --shims | Out-String
-    } else {
-      mise activate pwsh | Out-String
-    }
-    if (![string]::IsNullOrWhiteSpace($miseContent)) {
-      $miseContent | Set-Content $MiseInit -Encoding utf8
-      $currentMiseVersion | Set-Content $miseVersionFile -Encoding utf8
-    }
-  }
-
-  if (Test-Path $MiseInit) {
-    & ([scriptblock]::Create((Get-Content $MiseInit -Raw)))
+# Windows gets its tools from scoop (.yui/bin/windows-setup.ps1): activating
+# mise there cost ~450 ms per shell.
+# Not cached: `mise activate` embeds the entire current PATH in its output, so
+# a cached copy replaced every new shell's PATH with the one from cache time.
+if (-not $IsWindows -and (Get-Command mise -ErrorAction SilentlyContinue)) {
+  if ($env:PSMUX -or $env:TMUX) {
+    # Use shims in psmux/tmux to avoid CommandNotFound hook errors (GetHistoryItems NullReference)
+    mise activate pwsh --shims | Out-String | Invoke-Expression
+  } else {
+    mise activate pwsh | Out-String | Invoke-Expression
   }
 }
 
-$StarshipInit = Join-Path $CacheDir "starship_init.ps1"
-
-# Generate cache if missing
-if (!(Test-Path $StarshipInit)) {
-  Write-Host "Generating initialization cache..." -ForegroundColor Cyan
-
-  # Temporarily remove shims from PATH to avoid recursion error
-  $OldPath = $env:PATH
-  $env:PATH = ($env:PATH -split $PathSeparator | Where-Object { $_ -notlike "*mise/shims*" -and $_ -notlike "*mise\shims*" }) -join $PathSeparator
-
-  try {
-    $starshipName = if ($IsWindows) {
-      "starship.exe"
-    } else {
-      "starship"
-    }
-    $starshipExe = (Get-Command $starshipName -ErrorAction SilentlyContinue).Source
-
-    if ($starshipExe) {
-      & $starshipExe init powershell --print-full-init | Set-Content $StarshipInit -Encoding utf8
-    }
-  } finally {
-    # Restore PATH
-    $env:PATH = $OldPath
-  }
-}
-
-# --- Deferred Loading (Starship pre-command hook) ---
+# --- Prompt Engine ---
 $ConfigHome = if ($env:XDG_CONFIG_HOME) {
   $env:XDG_CONFIG_HOME
 } else {
@@ -230,49 +183,111 @@ $ConfigHome = if ($env:XDG_CONFIG_HOME) {
 }
 $LazyProfileModule = Join-Path $ConfigHome "powershell/LazyProfile.psm1"
 
-if (Test-Path $StarshipInit) {
-  . $StarshipInit
+# yui renders `vars.prompt` ("starship" | "oh-my-posh") into prompt.ps1;
+# override it per machine in ~/dotfiles/config.local.toml.
+$PromptEngine = "starship"
+$PromptEngineFile = Join-Path $ConfigHome "powershell/prompt.ps1"
+if (Test-Path $PromptEngineFile) {
+  . $PromptEngineFile
+}
+if ($PromptEngine -eq "oh-my-posh" -and -not (Get-Command oh-my-posh -CommandType Application -ErrorAction SilentlyContinue)) {
+  Write-Warning "vars.prompt is oh-my-posh but it is not installed; using starship."
+  $PromptEngine = "starship"
+}
 
-  # Hook into Starship pre-command to load heavy profile lazily
-  $global:LastAutoJjPath = ""
-  $global:HariCheckedPaths = @{}
-  function global:Invoke-Starship-PreCommand {
-    if ($null -ne $global:LazyProfilePath) {
-      $path = $global:LazyProfilePath
-      $global:LazyProfilePath = $null # Clear to run only once
-      Import-Module -Global $path -ErrorAction SilentlyContinue
+# Runs before each new prompt, whichever engine draws it: loads the heavy
+# profile lazily on the first prompt, then the per-directory jj/hari setup.
+$global:LastAutoJjPath = ""
+$global:HariCheckedPaths = @{}
+function global:Invoke-PromptPreCommand {
+  if ($null -ne $global:LazyProfilePath) {
+    $path = $global:LazyProfilePath
+    $global:LazyProfilePath = $null # Clear to run only once
+    Import-Module -Global $path -ErrorAction SilentlyContinue
+  }
+
+  # Auto jj init
+  $currentPath = (Get-Location).Path
+  if ($currentPath -ne $global:LastAutoJjPath) {
+    $global:LastAutoJjPath = $currentPath
+    if ((Test-Path -LiteralPath ".git" -PathType Container) -and -not (Test-Path -LiteralPath ".jj" -PathType Container)) {
+      Write-Host "Initializing jujutsu in git repo..." -ForegroundColor Cyan
+      jj git init --colocate
     }
 
-    # Auto jj init
-    $currentPath = (Get-Location).Path
-    if ($currentPath -ne $global:LastAutoJjPath) {
-      $global:LastAutoJjPath = $currentPath
-      if ((Test-Path -LiteralPath ".git" -PathType Container) -and -not (Test-Path -LiteralPath ".jj" -PathType Container)) {
-        Write-Host "Initializing jujutsu in git repo..." -ForegroundColor Cyan
-        jj git init --colocate
-      }
-
-      # Auto hari install (jj git push -> native Git pre-push hooks)
-      # Checked once per directory per session to avoid spawning jj on every cd.
-      if (-not $global:HariCheckedPaths.ContainsKey($currentPath) -and (Test-Path -LiteralPath ".jj" -PathType Container)) {
-        $global:HariCheckedPaths[$currentPath] = $true
-        if (Get-Command hari -CommandType Application -ErrorAction SilentlyContinue) {
-          $hariGit = & jj config get git.executable-path 2>$null
-          if ($LASTEXITCODE -ne 0 -or "$hariGit" -notmatch 'hari-git') {
-            Write-Host "Installing hari in jj repo..." -ForegroundColor Cyan
-            hari install
-          }
+    # Auto hari install (jj git push -> native Git pre-push hooks)
+    # Checked once per directory per session to avoid spawning jj on every cd.
+    if (-not $global:HariCheckedPaths.ContainsKey($currentPath) -and (Test-Path -LiteralPath ".jj" -PathType Container)) {
+      $global:HariCheckedPaths[$currentPath] = $true
+      if (Get-Command hari -CommandType Application -ErrorAction SilentlyContinue) {
+        $hariGit = & jj config get git.executable-path 2>$null
+        if ($LASTEXITCODE -ne 0 -or "$hariGit" -notmatch 'hari-git') {
+          Write-Host "Installing hari in jj repo..." -ForegroundColor Cyan
+          hari install
         }
       }
     }
+  }
+}
 
-    $mode = (Get-PSReadLineOption).ViMode
-    $env:STARSHIP_VIM_MODE = if ($mode -eq "Command") {
-      "normal"
-    } else {
-      "insert"
+$PromptReady = $false
+if ($PromptEngine -eq "oh-my-posh") {
+  # Oh My Posh binds its vi-mode handler and its Enter/Ctrl+C handlers for the
+  # edit mode active at init, and a later -EditMode resets every key binding:
+  # switch to vi first (LazyProfile leaves the mode alone when it is already vi).
+  Set-PSReadLineOption -EditMode Vi
+  oh-my-posh init pwsh --config (Join-Path $ConfigHome "oh-my-posh/config.omp.toml") | Out-String | Invoke-Expression
+  # Oh My Posh's documented pre-prompt hook is an alias: its module defines a
+  # function of this name, which would shadow a function defined here.
+  Set-Alias -Name Set-PoshContext -Value Invoke-PromptPreCommand -Scope Global -Force
+  $PromptReady = $true
+} else {
+  $StarshipInit = Join-Path $CacheDir "starship_init.ps1"
+
+  # Generate cache if missing
+  if (!(Test-Path $StarshipInit)) {
+    Write-Host "Generating initialization cache..." -ForegroundColor Cyan
+
+    # Temporarily remove shims from PATH to avoid recursion error
+    $OldPath = $env:PATH
+    $env:PATH = ($env:PATH -split $PathSeparator | Where-Object { $_ -notlike "*mise/shims*" -and $_ -notlike "*mise\shims*" }) -join $PathSeparator
+
+    try {
+      $starshipName = if ($IsWindows) {
+        "starship.exe"
+      } else {
+        "starship"
+      }
+      $starshipExe = (Get-Command $starshipName -ErrorAction SilentlyContinue).Source
+
+      if ($starshipExe) {
+        & $starshipExe init powershell --print-full-init | Set-Content $StarshipInit -Encoding utf8
+      }
+    } finally {
+      # Restore PATH
+      $env:PATH = $OldPath
     }
   }
+
+  if (Test-Path $StarshipInit) {
+    . $StarshipInit
+
+    function global:Invoke-Starship-PreCommand {
+      Invoke-PromptPreCommand
+
+      $mode = (Get-PSReadLineOption).ViMode
+      $env:STARSHIP_VIM_MODE = if ($mode -eq "Command") {
+        "normal"
+      } else {
+        "insert"
+      }
+    }
+    $PromptReady = $true
+  }
+}
+
+# --- Deferred Loading (first prompt) ---
+if ($PromptReady) {
   $global:LazyProfilePath = $LazyProfileModule
 } elseif (Test-Path $LazyProfileModule) {
   Import-Module -Global $LazyProfileModule -ErrorAction SilentlyContinue

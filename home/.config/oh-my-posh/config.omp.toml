@@ -1,0 +1,124 @@
+# Oh My Posh theme, kept close to starship.toml. Used by the pwsh profile when
+# yui `vars.prompt` is "oh-my-posh".
+version = 4
+final_space = true
+# Same cursor shapes as PSReadLine's `-ViModeIndicator Cursor`, which the
+# vimode segment below replaces.
+cursor_style = '{{ if eq .Env.POSH_VI_MODE "vicmd" }}steady_block{{ else }}blinking_bar{{ end }}'
+
+# Paint the prompt after at most this many ms; segments still running (jj,
+# git, language versions) show their placeholder and are repainted in place.
+streaming = 100
+
+[upgrade]
+  auto = false
+  notice = false
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    foreground = 'blue'
+    template = '{{ .Path }} '
+    [blocks.segments.options]
+      style = 'full'
+
+  [[blocks.segments]]
+    type = 'jujutsu'
+    style = 'plain'
+    foreground = 'magenta'
+    template = 'jj {{ .ChangeID }}{{ if .Working.Changed }} [{{ .Working.String }}]{{ end }} '
+    placeholder = 'jj … '
+    [blocks.segments.options]
+      change_id_min_len = 4
+
+  # Colocated jj repos keep HEAD detached, so git only speaks where jj is absent.
+  [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
+    foreground = 'magenta'
+    template = 'on {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} [{{ .Working.String }}]{{ end }}{{ if .Staging.Changed }} [+{{ .Staging.String }}]{{ end }} '
+    placeholder = 'on … '
+    [blocks.segments.options]
+      disable_with_jj = true
+
+  [[blocks.segments]]
+    type = 'rust'
+    style = 'plain'
+    foreground = 'red'
+    template = 'via 🦀 v{{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'node'
+    style = 'plain'
+    foreground = 'green'
+    template = 'via node v{{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'deno'
+    style = 'plain'
+    foreground = 'green'
+    template = 'via 🦕 v{{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'bun'
+    style = 'plain'
+    foreground = 'red'
+    template = 'via 🥟 v{{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'go'
+    style = 'plain'
+    foreground = 'cyan'
+    template = 'via go v{{ .Full }} '
+
+  [[blocks.segments]]
+    type = 'sysinfo'
+    style = 'plain'
+    foreground = 'darkGray'
+    template = 'via {{ round .PhysicalPercentUsed 0 }}% '
+
+  [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
+    foreground = 'yellow'
+    template = 'took {{ .FormattedMs }} '
+    [blocks.segments.options]
+      threshold = 2000
+      style = 'round'
+
+[[blocks]]
+  type = 'rprompt'
+
+  [[blocks.segments]]
+    type = 'time'
+    style = 'plain'
+    foreground = 'yellow'
+    template = 'at {{ .CurrentDate | date .Format }}'
+    [blocks.segments.options]
+      time_format = '2006-01-02 15:04:05'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'os'
+    style = 'plain'
+    foreground = 'blue'
+    template = '{{ .Icon }} '
+
+  # The vimode segment makes Oh My Posh repaint on every vi mode change.
+  [[blocks.segments]]
+    type = 'vimode'
+    style = 'plain'
+    foreground = '#F05F8D'
+    foreground_templates = [
+      '{{ if eq .Mode "normal" }}green{{ end }}',
+      '{{ if gt .Code 0 }}red{{ end }}',
+    ]
+    template = '{{ if eq .Mode "normal" }}◀◀{{ else }}➤{{ end }}'

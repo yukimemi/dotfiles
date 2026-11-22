@@ -1,0 +1,8 @@
+# Managed by yui (rendered from prompt.ps1.tera). The pwsh profile dot-sources
+# this to pick its prompt engine from yui `vars.prompt`; set it per machine in
+# ~/dotfiles/config.local.toml.
+{%- if vars.prompt == "starship" or vars.prompt == "oh-my-posh" %}
+$PromptEngine = "{{ vars.prompt }}"
+{%- else %}
+{{ throw(message="vars.prompt must be starship | oh-my-posh, got: " ~ vars.prompt) }}
+{%- endif %}

@@ -499,7 +499,11 @@ if (Get-Command fzf -ErrorAction SilentlyContinue) {
 
 # --- PSReadLine & KeyHandlers ---
 if (Get-Module PSReadLine) {
-  Set-PSReadLineOption -EditMode Vi -ViModeIndicator Cursor
+  # With Oh My Posh the profile already switched to vi before its init bound the
+  # vi-mode and Enter/Ctrl+C handlers; setting -EditMode again would reset them.
+  if ((Get-PSReadLineOption).EditMode -ne "Vi") {
+    Set-PSReadLineOption -EditMode Vi -ViModeIndicator Cursor
+  }
   if ($PSVersionTable.PSVersion.Major -ge 7) {
     Set-PSReadLineOption -PredictionSource HistoryAndPlugin -PredictionViewStyle InlineView
   }
@@ -596,6 +600,11 @@ if (Get-Module PSReadLine) {
 
   Set-PSReadLineKeyHandler -Key Enter -ViMode Insert -ScriptBlock {
     . $expandAbbrLogic
+    # This replaces Oh My Posh's insert-mode Enter handler, whose job is to mark
+    # the streaming cycle finished; without it the next prompt is the cached one.
+    if ($global:_ompStreamingState) {
+      $global:_ompStreamingState.State = 'NEW'
+    }
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
   }.GetNewClosure()
 

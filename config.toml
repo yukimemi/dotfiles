@@ -15,11 +15,13 @@ production = true
 #   - editor:  todoke's GUI editor — "neovide" | "nvim-qt" | "nvim"
 #   - excel: bind F9 to Excel in shun
 #   - openclaw: run the Linux private-config/service hooks on this machine
+#   - prompt: pwsh prompt engine — "starship" | "oh-my-posh"
 browser = "edge"
 chat = "teams"
 editor = "neovide"
 excel = false
 openclaw = false
+prompt = "starship"
 
 [[mount.entry]]
 src = "home"
