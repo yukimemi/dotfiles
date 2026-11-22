@@ -119,6 +119,19 @@ src = "home/.omp/agent/config.base.yml"
 dst = "{{ vars.home_root }}/.omp/agent/config.yml"
 ignore_keys = ["skills.customDirectories"]
 
+# herdr rewrites its own config.toml (onboarding, `herdr channel set`,
+# `herdr config reset-keys`), so it is merged instead of rendered. The one
+# per-machine key is `terminal.default_shell`: a new target starts with the
+# base's "pwsh", which is right on Windows and Linux. On macOS set it once to
+# "/opt/homebrew/bin/pwsh" in the live file — herdr starts a login shell
+# (argv0 "-pwsh"), a bare `pwsh` resolves to the mise shim under a
+# GUI/launchd PATH, and the shim rejects that argv0 so the pane exits at
+# once. The key is ignored, so yui never overwrites or absorbs it.
+[[merge]]
+src = "home/.config/herdr/config.base.toml"
+dst = "{{ vars.home_root }}/.config/herdr/config.toml"
+ignore_keys = ["terminal.default_shell"]
+
 # --- hooks ---
 
 [[hook]]
