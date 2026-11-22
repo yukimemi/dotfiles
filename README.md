@@ -395,6 +395,12 @@ current platform (Windows x64, Linux x64, macOS arm64) into `~/.local/bin`,
 and runs the command. Scripts and `Get-Command` calls from scripts never
 trigger it. On other platforms it points to `cargo install <tool>`.
 
+## Yazi rename shortcuts
+
+`r`, `R`, `I`, `A`, and `C` delegate to Yazi's `rename` action through
+`augment-command.augment`. The current pinned plugin no longer ships
+`augment-command.rename`. Restart Yazi after changing `keymap.toml`.
+
 ## Runtime state
 
 Apps that write into `~/.config/<app>/` write into this repo through

@@ -233,21 +233,21 @@ run = "plugin augment-command.shell -- --block -- '$PAGER %s'"
 desc = "Open files with the default pager"
 [[mgr.prepend_keymap]]
 on = ["r"]
-run = "plugin augment-command.rename -- --cursor=before_ext"
+run = "plugin augment-command.augment -- rename --cursor=before_ext"
 desc = "Rename a file or directory"
 [[mgr.prepend_keymap]]
 on = ["R"]
-run = "plugin augment-command.rename -- --empty=all"
+run = "plugin augment-command.augment -- rename --empty=all"
 desc = "Rename file and remove the whole file name"
 [[mgr.prepend_keymap]]
 on = ["I"]
-run = "plugin augment-command.rename -- --cursor=start"
+run = "plugin augment-command.augment -- rename --cursor=start"
 desc = "Rename file at the start of the file name"
 [[mgr.prepend_keymap]]
 on = ["A"]
-run = "plugin augment-command.rename -- --cursor=end"
+run = "plugin augment-command.augment -- rename --cursor=end"
 desc = "Rename file with the cursor at the end of the file name"
 [[mgr.prepend_keymap]]
 on = ["C"]
-run = "plugin augment-command.rename -- --empty=all"
+run = "plugin augment-command.augment -- rename --empty=all"
 desc = "Rename file and remove the whole file name"
