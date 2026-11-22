@@ -145,6 +145,12 @@ action = "ignore"
 open_maximized = false
 sticky = false
 
+[[window_rules]]
+match_executable = "mimageviewer-core.exe"
+action = "ignore"
+open_maximized = false
+sticky = false
+
 [gestures]
 enabled = true
 swipe_left = "focus_left"
