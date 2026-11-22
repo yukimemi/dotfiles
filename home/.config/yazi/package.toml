@@ -1,7 +1,7 @@
 [[plugin.deps]]
 use = "hankertrix/augment-command"
-rev = "561f6ec"
-hash = "38b093d444efe1386e0e959aa5be11f8"
+rev = "23e5acd"
+hash = "cea661fbed8d6fba5b4225f8bedf6065"
 
 [[plugin.deps]]
 use = "orhnk/system-clipboard"
@@ -10,8 +10,8 @@ hash = "43fff18b85896a499105f621de458ea1"
 
 [[plugin.deps]]
 use = "MasouShizuka/projects"
-rev = "181ebaf"
-hash = "ae9710a3a76e48c1db50f5ed6fe6dc23"
+rev = "991501f"
+hash = "6124e6e367675c4e7f0125e509bea41"
 
 [[plugin.deps]]
 use = "h-hg/yamb"
@@ -25,8 +25,8 @@ hash = "c2f4f4aca257dcceafa9e3b828dbf1c9"
 
 [[plugin.deps]]
 use = "mikavilpas/easyjump.yazi:easyjump"
-rev = "4528e7a"
-hash = "49625b69287597c3b8093c9f1a2f7241"
+rev = "8e7f647"
+hash = "e19be8be472a25e08c18c2bea938f400"
 
 [flavor]
 deps = []

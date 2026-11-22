@@ -45,13 +45,13 @@ extra_args = ["--effort", "high"]
 [[agents]]
 id = "sol"
 kind = "omp"
-model = "openai-codex/gpt-6.1-sol"
+model = "openai-codex/gpt-6.2-sol"
 extra_args = ["--thinking", "medium"]
 
 [[agents]]
 id = "astra"
 kind = "omp"
-model = "openai-codex/gpt-6-astra"
+model = "openai-codex/gpt-6.2-astra"
 extra_args = ["--thinking", "medium"]
 
 [roles]
@@ -149,6 +149,7 @@ max_concurrent_runs = 3
 
 [update]
 mode = "notify"
+auto_restart = true
 # 常駐する magi web はこの間隔で新しいリリースを確認する。既定の1日では、
 # v0.10.0 の公開直後にも更新に気づかず、手動で再起動することになった。
 # 60秒の下限は GitHub の未認証レート制限（毎時60回）に合わせたものなので、
@@ -212,6 +213,10 @@ clone_command = ["shoka", "clone", "{repo}"]
 [talk]
 allow_write = true
 operator_name = "yukimemi"
+# Bounded chat recovery on automatic reports (magi >= 0.247.0): the task's
+# chat may resume, retry, release a machine hold, rerun checks, grant one
+# repair round or file a fix task without asking. Never merges or abandons.
+standing_authorization = true
 # Display-only overrides: keep the built-in names and voice prompts.
 # Face crops, 192x192 PNG (<256 KiB), from Bandai's "Niformation" EVA2 set:
 # https://www.bandai.co.jp/catalog/item.php?jan_cd=4570117925542000

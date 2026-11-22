@@ -382,9 +382,17 @@ cooldown_secs         = 0
 min_front_qty         = 1
 drift_gate_bps        = 5
 lead_venue            = "binance"
-lead_symbol           = "ETHUSDT"  # binance の先行フィード。lead_gate_bps=0 なので現状 inert だがペアは合わせる
+lead_symbol           = "ETHUSDT"  # binance の先行フィード（ゲートI の参照）
 lead_window_secs      = 3
-lead_gate_bps         = 0
+lead_gate_bps         = 2          # ★ 2026-11-21 0 -> 2 で武装（xrp と同値。kanade nagi-mm-eth-gate の管理外＝手動管理）。
+#                                  # 「eth では検証できない」は旧ツールの突き合わせ条件のせいだった（#470 で解消）。
+#                                  # 全エントリー約定・読み値 3 秒以内・リベート込み e60:
+#                                  #   窓            逆方向 / 同方向     無ゲート合計   T=5 合計   T=2 合計
+#                                  #   08-27→09-05   −3.70 / +0.47       −4,160         −2,686     −1,143
+#                                  #   09-05→09-15   −2.27 / +2.01       −1,552         −1,532       −760
+#                                  #   09-15→09-23   −4.42 / +0.17       −1,522           −982       −444
+#                                  # 3 窓とも 2 が 5 より上。xrp と同じ 3 か月なので別時期での確認ではない。
+#                                  # 止めた注文は後で別の値段で入るので上限値。戻すなら 0（再起動不要）。
 touch_stable_secs     = 0
 levels                = 20
 status_port           = 8791  # paper(8790)/live xrp(8788)/nagi run(8787) と非衝突
