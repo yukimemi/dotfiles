@@ -4,6 +4,15 @@
 # Last Change : 2026/03/13 11:15:03
 # =============================================================================
 
+# --- Core Module Preload ---
+# Command auto-discovery scans the PSModulePath dirs ahead of $PSHOME before it
+# finds these built-in modules: ~100 ms on the first cmdlet of a session, and
+# ~400 ms when the user module dir was full of Az modules. Importing by path
+# skips the scan. PSReadLine goes by name so a user-installed newer version
+# wins. Keep this above the first cmdlet call.
+Import-Module "$PSHOME/Modules/Microsoft.PowerShell.Management", "$PSHOME/Modules/Microsoft.PowerShell.Utility"
+Import-Module PSReadLine -ErrorAction SilentlyContinue
+
 # --- Pre-Environment Setup ---
 if ($IsMacOS -and -not ($env:PATH -like "*/opt/homebrew/bin*")) {
   $env:PATH = "/opt/homebrew/bin" + [IO.Path]::PathSeparator + $env:PATH
@@ -134,6 +143,16 @@ $AdditionalPaths = @(
 foreach ($p in $AdditionalPaths) {
   if ((Test-Path $p) -and ($env:PATH -notlike "*$p*")) {
     $env:PATH = "$p$PathSeparator" + $env:PATH
+  }
+}
+
+# scoop's git manifest shims bin\git.exe (Git for Windows' redirector, ~460 ms
+# per spawn) and scoop\shims precedes ...\git\current\cmd (~65 ms) on PATH.
+# starship spawns git twice per prompt inside a repo, so move cmd\ to the front.
+if ($IsWindows) {
+  $ScoopGitCmd = "$UserHome\scoop\apps\git\current\cmd"
+  if (Test-Path $ScoopGitCmd) {
+    $env:PATH = (@($ScoopGitCmd) + (($env:PATH -split $PathSeparator) -ne $ScoopGitCmd)) -join $PathSeparator
   }
 }
 

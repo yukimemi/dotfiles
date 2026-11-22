@@ -498,7 +498,7 @@ if (Get-Command fzf -ErrorAction SilentlyContinue) {
 }
 
 # --- PSReadLine & KeyHandlers ---
-if (Get-Module -ListAvailable PSReadLine) {
+if (Get-Module PSReadLine) {
   Set-PSReadLineOption -EditMode Vi -ViModeIndicator Cursor
   if ($PSVersionTable.PSVersion.Major -ge 7) {
     Set-PSReadLineOption -PredictionSource HistoryAndPlugin -PredictionViewStyle InlineView
