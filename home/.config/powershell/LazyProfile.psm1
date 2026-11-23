@@ -1,7 +1,7 @@
 # =============================================================================
 # File        : lazy_profile.ps1
 # Description : Functions, Aliases, PSReadLine (Optimized)
-# Last Change : 2026/10/18 03:49:05.
+# Last Change : 2026/11/23 09:09:51.
 # =============================================================================
 
 # --- Functions ---
@@ -658,7 +658,7 @@ if (Get-Module PSReadLine) {
 # --- Auto-install yukimemi's Rust tools on command-not-found ---
 # Typing one of these at the prompt when it isn't on PATH offers to download
 # the latest GitHub release binary into ~/.local/bin, then runs the command.
-$script:YukimemiTools = @("yui", "rvpm", "todoke", "shikigami", "shoka", "magi", "kata", "renri", "kagi", "hari", "omp-deck")
+$script:YukimemiTools = @("yui", "rvpm", "todoke", "shikigami", "shoka", "magi", "kata", "renri", "kagi", "hari", "omp-deck", "mihari")
 
 function Install-YukimemiTool {
   param([Parameter(Mandatory)][string]$Name)
