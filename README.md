@@ -262,19 +262,6 @@ These files use Tera (`*.tera` → `*.<ext>` rendered as a sibling):
   (`vars.editor`: neovide / nvim-qt / nvim) as todoke's `vars.gui`.
   `todoke.toml` pulls it in with `include`, so it is a plain linked file and
   every template token in it is todoke's own.
-- `home/.config/powershell/prompt.ps1.tera` — tells the pwsh profile which
-  prompt engine to start (`vars.prompt`: starship / oh-my-posh; default:
-  starship). Oh My Posh uses `home/.config/oh-my-posh/config.omp.toml` and its
-  beta streaming mode, which paints the prompt first and fills in jj/git
-  afterwards. zsh and nushell always use starship.
-
-Switch the prompt engine in the git-ignored `config.local.toml`, run
-`yui apply` and answer `o` at the `prompt.ps1` diff; new shells use it:
-
-```toml
-[vars]
-prompt = "oh-my-posh" # or "starship"
-```
 
 Select the Ctrl+F12 app in the git-ignored `config.local.toml`:
 
@@ -407,6 +394,17 @@ configuration. Never store provider credentials in the repository.
 Restart PowerShell and shikigami after applying: shikigami reads the command
 once at startup. The Windows setup also updates the persisted user environment;
 other existing terminals need to be reopened to see that update.
+
+## PowerShell prompt
+
+The first line shows the current directory (`$HOME` is abbreviated to `~`)
+and, in a jj workspace, the change ID and status. PSReadLine fills in the
+status when idle, without delaying the prompt. Long paths are shortened on
+the left so input stays on the second line, where the hostname replaces
+the OS icon. The path is blue, jj status is magenta, and the hostname is
+cyan. Pink `➤` means vi insert mode; green `◀◀` means normal mode.
+
+PowerShell no longer uses `vars.prompt`; zsh and nushell still use Starship.
 
 ## PowerShell tool auto-install
 

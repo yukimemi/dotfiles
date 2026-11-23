@@ -146,20 +146,12 @@ foreach ($p in $AdditionalPaths) {
   }
 }
 
-# scoop's git manifest shims bin\git.exe (Git for Windows' redirector, ~460 ms
-# per spawn) and scoop\shims precedes ...\git\current\cmd (~65 ms) on PATH.
-# starship spawns git twice per prompt inside a repo, so move cmd\ to the front.
+# Prefer Git for Windows' real cmd\git.exe over Scoop's slower bin\ redirector.
 if ($IsWindows) {
   $ScoopGitCmd = "$UserHome\scoop\apps\git\current\cmd"
   if (Test-Path $ScoopGitCmd) {
     $env:PATH = (@($ScoopGitCmd) + (($env:PATH -split $PathSeparator) -ne $ScoopGitCmd)) -join $PathSeparator
   }
-}
-
-# --- Cache & Auto-Generation ---
-$CacheDir = Join-Path $HOME ".cache/pwsh"
-if (!(Test-Path $CacheDir)) {
-  New-Item -ItemType Directory -Force -Path $CacheDir | Out-Null
 }
 
 # Windows gets its tools from scoop (.yui/bin/windows-setup.ps1): activating
@@ -175,34 +167,21 @@ if (-not $IsWindows -and (Get-Command mise -ErrorAction SilentlyContinue)) {
   }
 }
 
-# --- Prompt Engine ---
+# --- Interactive prompt ---
 $ConfigHome = if ($env:XDG_CONFIG_HOME) {
   $env:XDG_CONFIG_HOME
 } else {
   Join-Path $HOME ".config"
 }
-$LazyProfileModule = Join-Path $ConfigHome "powershell/LazyProfile.psm1"
+$script:LazyProfilePath = Join-Path $ConfigHome "powershell/LazyProfile.psm1"
 
-# yui renders `vars.prompt` ("starship" | "oh-my-posh") into prompt.ps1;
-# override it per machine in ~/dotfiles/config.local.toml.
-$PromptEngine = "starship"
-$PromptEngineFile = Join-Path $ConfigHome "powershell/prompt.ps1"
-if (Test-Path $PromptEngineFile) {
-  . $PromptEngineFile
-}
-if ($PromptEngine -eq "oh-my-posh" -and -not (Get-Command oh-my-posh -CommandType Application -ErrorAction SilentlyContinue)) {
-  Write-Warning "vars.prompt is oh-my-posh but it is not installed; using starship."
-  $PromptEngine = "starship"
-}
-
-# Runs before each new prompt, whichever engine draws it: loads the heavy
-# profile lazily on the first prompt, then the per-directory jj/hari setup.
+# Preserve the first-prompt module load and per-directory jj/hari setup.
 $global:LastAutoJjPath = ""
 $global:HariCheckedPaths = @{}
 function global:Invoke-PromptPreCommand {
-  if ($null -ne $global:LazyProfilePath) {
-    $path = $global:LazyProfilePath
-    $global:LazyProfilePath = $null # Clear to run only once
+  if ($null -ne $script:LazyProfilePath) {
+    $path = $script:LazyProfilePath
+    $script:LazyProfilePath = $null
     Import-Module -Global $path -ErrorAction SilentlyContinue
   }
 
@@ -230,67 +209,170 @@ function global:Invoke-PromptPreCommand {
   }
 }
 
-$PromptReady = $false
-if ($PromptEngine -eq "oh-my-posh") {
-  # Oh My Posh binds its vi-mode handler and its Enter/Ctrl+C handlers for the
-  # edit mode active at init, and a later -EditMode resets every key binding:
-  # switch to vi first (LazyProfile leaves the mode alone when it is already vi).
-  Set-PSReadLineOption -EditMode Vi
-  oh-my-posh init pwsh --config (Join-Path $ConfigHome "oh-my-posh/config.omp.toml") | Out-String | Invoke-Expression
-  # Oh My Posh's documented pre-prompt hook is an alias: its module defines a
-  # function of this name, which would shadow a function defined here.
-  Set-Alias -Name Set-PoshContext -Value Invoke-PromptPreCommand -Scope Global -Force
-  $PromptReady = $true
-} else {
-  $StarshipInit = Join-Path $CacheDir "starship_init.ps1"
+# Keep the shared profile ASCII-compatible with Windows PowerShell 5.1.
+$script:PromptInsert = [string][char]0x27A4
+$script:PromptNormal = ([string][char]0x25C0) * 2
+$script:PromptMode = $script:PromptInsert
+$script:PromptHost = [Environment]::MachineName
+$script:PromptRedrawing = $false
+$script:PromptJj = @{ Path = $null; Text = ""; Process = $null; Pending = $false; Idle = $null }
 
-  # Generate cache if missing
-  if (!(Test-Path $StarshipInit)) {
-    Write-Host "Generating initialization cache..." -ForegroundColor Cyan
-
-    # Temporarily remove shims from PATH to avoid recursion error
-    $OldPath = $env:PATH
-    $env:PATH = ($env:PATH -split $PathSeparator | Where-Object { $_ -notlike "*mise/shims*" -and $_ -notlike "*mise\shims*" }) -join $PathSeparator
-
-    try {
-      $starshipName = if ($IsWindows) {
-        "starship.exe"
-      } else {
-        "starship"
-      }
-      $starshipExe = (Get-Command $starshipName -ErrorAction SilentlyContinue).Source
-
-      if ($starshipExe) {
-        & $starshipExe init powershell --print-full-init | Set-Content $StarshipInit -Encoding utf8
-      }
-    } finally {
-      # Restore PATH
-      $env:PATH = $OldPath
-    }
-  }
-
-  if (Test-Path $StarshipInit) {
-    . $StarshipInit
-
-    function global:Invoke-Starship-PreCommand {
-      Invoke-PromptPreCommand
-
-      $mode = (Get-PSReadLineOption).ViMode
-      $env:STARSHIP_VIM_MODE = if ($mode -eq "Command") {
-        "normal"
-      } else {
-        "insert"
-      }
-    }
-    $PromptReady = $true
+function Update-PromptDisplay {
+  $script:PromptRedrawing = $true
+  try {
+    [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()
+  } finally {
+    $script:PromptRedrawing = $false
   }
 }
 
-# --- Deferred Loading (first prompt) ---
-if ($PromptReady) {
-  $global:LazyProfilePath = $LazyProfileModule
-} elseif (Test-Path $LazyProfileModule) {
-  Import-Module -Global $LazyProfileModule -ErrorAction SilentlyContinue
+function Start-PromptJjStatus {
+  $state = $script:PromptJj
+  $state.Pending = $false
+  if (-not $state.Path -or -not (Get-Module PSReadLine) -or [Console]::IsInputRedirected) { return }
+
+  $dir = $state.Path
+  while ($dir -and -not [IO.Directory]::Exists([IO.Path]::Combine($dir, ".jj"))) {
+    $dir = [IO.Path]::GetDirectoryName($dir)
+  }
+  if (-not $dir) {
+    $state.Text = ""
+    return
+  }
+
+  $jj = Get-Command jj -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+  if (-not $jj) { return }
+
+  # jj log snapshots like jj status, but its template gives us a single line
+  # without parsing human-readable status output or rendering commit descriptions.
+  $start = [Diagnostics.ProcessStartInfo]::new($jj.Source)
+  $start.Arguments = '--quiet --no-pager --color=never log -r @ --no-graph -T "change_id.shortest(4) ++ if(conflict, '' conflict'') ++ if(empty, '' clean'', '' '' ++ diff.files().len() ++ '' changed'')"'
+  $start.WorkingDirectory = $state.Path
+  $start.UseShellExecute = $false
+  $start.CreateNoWindow = $true
+  $start.RedirectStandardInput = $true
+  $start.RedirectStandardOutput = $true
+  $start.RedirectStandardError = $true
+
+  # Older gitoxide spawns Git to locate its system config. Use the preferred
+  # Scoop installation's same config directly, without changing the shell.
+  if ($ScoopGitCmd -and -not $env:GIT_CONFIG_SYSTEM -and -not $env:GIT_CONFIG_NOSYSTEM -and
+      -not [IO.File]::Exists("$env:ProgramData/Git/config")) {
+    $gitConfig = [IO.Path]::GetFullPath("$ScoopGitCmd/../etc/gitconfig")
+    if ([IO.File]::Exists($gitConfig)) {
+      $start.EnvironmentVariables["GIT_CONFIG_SYSTEM"] = $gitConfig
+    }
+  }
+
+  try {
+    $state.Process = [Diagnostics.Process]::Start($start)
+    $state.Process.StandardInput.Close()
+    $state.Output = $state.Process.StandardOutput.ReadToEndAsync()
+    $state.Errors = $state.Process.StandardError.ReadToEndAsync()
+  } catch [System.ComponentModel.Win32Exception] {
+    $state.Text = ""
+    return
+  }
+
+  # Let PSReadLine repaint on its own runspace rather than from the worker.
+  if (-not $state.Idle) {
+    $state.Idle = Register-EngineEvent PowerShell.OnIdle -SupportEvent -Action {
+      if (Receive-PromptJjStatus) { Update-PromptDisplay }
+    }
+  }
+}
+
+function Receive-PromptJjStatus {
+  $state = $script:PromptJj
+  $process = $state.Process
+  if (-not $process -or -not $process.HasExited -or -not $state.Output.IsCompleted -or -not $state.Errors.IsCompleted) {
+    return $false
+  }
+
+  $text = if ($process.ExitCode -eq 0 -and $state.Output.Status -eq "RanToCompletion") {
+    $status = $state.Output.Result.Trim()
+    if ($status) { "  jj $status" } else { "" }
+  } else { "" }
+  $process.Dispose()
+  $state.Process = $state.Output = $state.Errors = $null
+
+  # Coalesce rapid prompts into one refresh and never paint an old directory.
+  if ($state.Pending) {
+    Start-PromptJjStatus
+    return $false
+  }
+  if ($state.Text -ceq $text) { return $false }
+  $state.Text = $text
+  return $true
+}
+
+function global:prompt {
+  if (-not $script:PromptRedrawing) {
+    Invoke-PromptPreCommand
+    $script:PromptMode = $script:PromptInsert
+
+    $state = $script:PromptJj
+    $path = if ($PWD.Provider.Name -eq "FileSystem") { $PWD.ProviderPath }
+    if ($state.Path -cne $path) {
+      $state.Path = $path
+      $state.Text = ""
+    }
+    if ($state.Process) {
+      $state.Pending = $true
+      $null = Receive-PromptJjStatus
+    } else {
+      Start-PromptJjStatus
+    }
+  }
+
+  $location = $PWD.Path
+  if ($PWD.Provider.Name -eq "FileSystem") {
+    $comparison = if ($IsWindows) { [StringComparison]::OrdinalIgnoreCase } else { [StringComparison]::Ordinal }
+    $separator = [IO.Path]::DirectorySeparatorChar
+    $homePath = $HOME.TrimEnd($separator)
+    if ($location.Equals($HOME, $comparison)) {
+      $location = "~"
+    } elseif ($location.StartsWith("$homePath$separator", $comparison)) {
+      $location = "~" + $location.Substring($homePath.Length)
+    }
+  }
+  $status = $script:PromptJj.Text
+  $ui = $Host.UI.RawUI
+  $width = $ui.BufferSize.Width
+  # PSReadLine repaints one row above the input; keep long paths on that row.
+  if ($width -gt 4 -and $ui.LengthInBufferCells("$location$status") -ge $width) {
+    $room = $width - 4 - $ui.LengthInBufferCells($status)
+    if ($room -lt 1) {
+      $status = ""
+      $room = $width - 4
+    }
+    if ($ui.LengthInBufferCells($location) -gt $room) {
+      $start = [Math]::Max(0, $location.Length - $room)
+      while ([char]::IsLowSurrogate($location[$start]) -or $ui.LengthInBufferCells($location.Substring($start)) -gt $room) {
+        $start++
+      }
+      $location = "..." + $location.Substring($start)
+    }
+  }
+  if ($Host.UI.SupportsVirtualTerminal) {
+    $esc = [char]0x1b
+    $reset = "${esc}[0m"
+    $modeColor = if ($script:PromptMode -eq $script:PromptNormal) { "92" } else { "38;2;240;95;141" }
+    if ($status) { $status = "${esc}[95m$status$reset" }
+    return "${esc}[94m$location$reset$status`n${esc}[36m$script:PromptHost$reset ${esc}[${modeColor}m$script:PromptMode$reset  "
+  }
+  "$location$status`n$script:PromptHost $script:PromptMode  "
+}
+
+if (Get-Module PSReadLine) {
+  Set-PSReadLineOption -EditMode Vi -ExtraPromptLineCount 1 -ViModeIndicator Script -ViModeChangeHandler {
+    param($mode)
+    $label = if ($mode -eq "Command") { $script:PromptNormal } else { $script:PromptInsert }
+    if ($script:PromptMode -ne $label) {
+      $script:PromptMode = $label
+      Update-PromptDisplay
+    }
+  }
 }
 
 # --- Zellij Auto-Start ---

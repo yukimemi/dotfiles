@@ -499,16 +499,9 @@ if (Get-Command fzf -ErrorAction SilentlyContinue) {
 
 # --- PSReadLine & KeyHandlers ---
 if (Get-Module PSReadLine) {
-  # With Oh My Posh the profile already switched to vi before its init bound the
-  # vi-mode and Enter/Ctrl+C handlers; setting -EditMode again would reset them.
-  if ((Get-PSReadLineOption).EditMode -ne "Vi") {
-    Set-PSReadLineOption -EditMode Vi -ViModeIndicator Cursor
-  }
   if ($PSVersionTable.PSVersion.Major -ge 7) {
     Set-PSReadLineOption -PredictionSource HistoryAndPlugin -PredictionViewStyle InlineView
   }
-
-  $invokePrompt = { [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt() }
 
   # --- Abbreviation Expansion (zeno.zsh style) ---
   $rmTarget = "Move-ToTrash"
@@ -600,32 +593,15 @@ if (Get-Module PSReadLine) {
 
   Set-PSReadLineKeyHandler -Key Enter -ViMode Insert -ScriptBlock {
     . $expandAbbrLogic
-    # This replaces Oh My Posh's insert-mode Enter handler, whose job is to mark
-    # the streaming cycle finished; without it the next prompt is the cached one.
-    if ($global:_ompStreamingState) {
-      $global:_ompStreamingState.State = 'NEW'
-    }
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
   }.GetNewClosure()
 
-  Set-PSReadLineKeyHandler -Chord Escape -ViMode Insert -ScriptBlock {
-    [Microsoft.PowerShell.PSConsoleReadLine]::ViCommandMode($null, $null)
-    & $invokePrompt
-  }
-
-  Set-PSReadLineKeyHandler -Chord i -ViMode Command -ScriptBlock { [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null); & $invokePrompt }
-  Set-PSReadLineKeyHandler -Chord a -ViMode Command -ScriptBlock { [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertWithAppend($null, $null); & $invokePrompt }
-  Set-PSReadLineKeyHandler -Chord I -ViMode Command -ScriptBlock { [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertAtBegining($null, $null); & $invokePrompt }
-  Set-PSReadLineKeyHandler -Chord A -ViMode Command -ScriptBlock { [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertAtEnd($null, $null); & $invokePrompt }
-  Set-PSReadLineKeyHandler -Chord o -ViMode Command -ScriptBlock { [Microsoft.PowerShell.PSConsoleReadLine]::InsertLineBelow($null, $null); [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null); & $invokePrompt }
-  Set-PSReadLineKeyHandler -Chord O -ViMode Command -ScriptBlock { [Microsoft.PowerShell.PSConsoleReadLine]::InsertLineAbove($null, $null); [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null); & $invokePrompt }
-  Set-PSReadLineKeyHandler -Chord s -ViMode Command -ScriptBlock { [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertWithDelete($null, $null); & $invokePrompt }
-  Set-PSReadLineKeyHandler -Chord S -ViMode Command -ScriptBlock { [Microsoft.PowerShell.PSConsoleReadLine]::ViReplaceLine($null, $null); & $invokePrompt }
+  Set-PSReadLineKeyHandler -Chord o -ViMode Command -ScriptBlock { [Microsoft.PowerShell.PSConsoleReadLine]::InsertLineBelow($null, $null); [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null) }
+  Set-PSReadLineKeyHandler -Chord O -ViMode Command -ScriptBlock { [Microsoft.PowerShell.PSConsoleReadLine]::InsertLineAbove($null, $null); [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null) }
 
   Set-PSReadLineKeyHandler -Chord "C" -ViMode Command -ScriptBlock {
     [Microsoft.PowerShell.PSConsoleReadLine]::KillLine($null, $null)
     [Microsoft.PowerShell.PSConsoleReadLine]::ViInsertMode($null, $null)
-    & $invokePrompt
   }
 
   if ($env:NVIM) {

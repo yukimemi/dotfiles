@@ -513,7 +513,6 @@ function Install-Tool {
       "neovim-qt",
       "nodejs",
       "obsidian",
-      "oh-my-posh",
       "pnpm",
       "powertoys",
       "pwsh",
