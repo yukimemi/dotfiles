@@ -9,6 +9,8 @@
 $ErrorActionPreference = "Stop"
 $DebugPreference = "SilentlyContinue"
 
+. (Join-Path $PSScriptRoot "../../home/.config/powershell/Install-YukimemiTool.ps1")
+
 # --- Helper Functions ---
 
 function Test-IsAdmin {
@@ -265,6 +267,7 @@ function Set-RequiredEnv {
     }
   }
 
+  $localBin = Join-Path $HOME ".local/bin"
   $targetPaths = @(
     "${env:USERPROFILE}\scoop\shims",
     "${env:USERPROFILE}\.cargo\bin",
@@ -278,6 +281,7 @@ function Set-RequiredEnv {
     "${env:LOCALAPPDATA}\Programs\WinMerge",
     "${env:USERPROFILE}\dotfiles\.yui\bin",
     "${env:USERPROFILE}\src\github.com\yukimemi\ps1\cmd"
+    $localBin
   )
 
   $userPath = [Environment]::GetEnvironmentVariable("PATH", "User")
@@ -293,6 +297,11 @@ function Set-RequiredEnv {
     }
   } else {
     log "USER PATH is already up to date." "Gray"
+  }
+
+  if (($env:PATH -split ";") -notcontains $localBin -and
+      $PSCmdlet.ShouldProcess("PATH", "Add $localBin to current process PATH")) {
+    $env:PATH += ";$localBin"
   }
 }
 
@@ -727,39 +736,43 @@ function Set-GnuToolchain {
   }
 }
 
-function Install-CargoTool {
+function Install-CargoMake {
   [CmdletBinding(SupportsShouldProcess)]
-  param([PSCustomObject[]]$Tools)
+  param()
 
-  # Ensure cargo-binstall is available first
-  if (!(Get-Command cargo-binstall -ErrorAction SilentlyContinue)) {
-    if ($PSCmdlet.ShouldProcess("cargo-binstall", "Install cargo-binstall")) {
-      log "Installing cargo-binstall..." "Yellow"
-      Set-GnuToolchain
-      cargo +stable-x86_64-pc-windows-gnu install cargo-binstall
-    }
+  log "Checking cargo-make..." "Cyan"
+  if (Get-Command cargo-make -CommandType Application -ErrorAction SilentlyContinue) {
+    log "cargo-make is already installed." "Gray"
+    return
   }
 
-  foreach ($tool in $Tools) {
-    # Crate name defaults to the binary name (kagi ships as crate `kagikey`).
-    $crate = if ($tool.Crate) { $tool.Crate } else { $tool.Name }
-    log "Checking $($tool.Name)..." "Cyan"
-    if (Get-Command $tool.Name -ErrorAction SilentlyContinue) {
-      log "$($tool.Name) is already installed." "Gray"
+  if ($PSCmdlet.ShouldProcess("cargo-make", "Install via cargo-binstall/cargo install")) {
+    Set-GnuToolchain
+    if (!(Get-Command cargo-binstall -CommandType Application -ErrorAction SilentlyContinue)) {
+      log "Installing cargo-binstall..." "Yellow"
+      cargo +stable-x86_64-pc-windows-gnu install cargo-binstall
+    }
+    log "Installing cargo-make via cargo-binstall..." "Yellow"
+    cargo binstall --no-confirm --target x86_64-pc-windows-gnu cargo-make
+    if ($LASTEXITCODE -ne 0) {
+      log "Binstall failed for cargo-make, falling back to cargo install..." "Yellow"
+      cargo +stable-x86_64-pc-windows-gnu install cargo-make
+    }
+  }
+}
+
+function Install-RequiredYukimemiTools {
+  [CmdletBinding(SupportsShouldProcess)]
+  param()
+
+  foreach ($name in "todoke", "shikigami", "shoka", "kagi") {
+    if (Get-Command $name -CommandType Application -ErrorAction SilentlyContinue) {
+      log "$name is already installed." "Gray"
       continue
     }
-
-    if ($PSCmdlet.ShouldProcess($crate, "Install via cargo-binstall/cargo install")) {
-      Set-GnuToolchain
-      log "Installing $crate via cargo-binstall..." "Yellow"
-      & cargo binstall --no-confirm --target x86_64-pc-windows-gnu $crate
-      if ($LASTEXITCODE -ne 0) {
-        log "Binstall failed for $crate, falling back to cargo install..." "Yellow"
-        if ($tool.Git) {
-          cargo +stable-x86_64-pc-windows-gnu install --git $tool.Git
-        } else {
-          cargo +stable-x86_64-pc-windows-gnu install $crate
-        }
+    if ($PSCmdlet.ShouldProcess($name, "Install latest GitHub release")) {
+      if (-not (Install-YukimemiTool -Name $name)) {
+        throw "Could not install the GitHub release of $name."
       }
     }
   }
@@ -807,16 +820,8 @@ function Start-Main {
       Install-ClaudeCode
       Install-Bun
 
-      $cargoTools = @(
-        @{ Name = "todoke" }
-        @{ Name = "shikigami" }
-        @{ Name = "renri" }
-        @{ Name = "shoka" }
-        @{ Name = "kagi"; Crate = "kagikey" }
-        @{ Name = "omp-deck" }
-        @{ Name = "cargo-make" }
-      )
-      Install-CargoTool $cargoTools
+      Install-RequiredYukimemiTools
+      Install-CargoMake
       Register-KagiService
 
       # AutoHotkey was replaced by kagi (key remaps) + shun (app hotkeys).

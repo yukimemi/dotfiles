@@ -416,6 +416,12 @@ current platform (Windows x64, Linux x64, macOS arm64) into `~/.local/bin`,
 and runs the command. Scripts and `Get-Command` calls from scripts never
 trigger it. On other platforms it points to `cargo install <tool>`.
 
+Windows setup leaves `renri` and `omp-deck` to this first-use installer. It
+uses the same GitHub release installer without prompting for missing
+`todoke` (`EDITOR` and Shun), `shikigami` (Neovim), `shoka` (Magi's
+auto-clone), and `kagi` (the logon task). Setup adds `~/.local/bin` to the
+Windows user `PATH` so these callers can find the binaries without PowerShell.
+
 ## Yazi rename shortcuts
 
 `r`, `R`, `I`, `A`, and `C` delegate to Yazi's `rename` action through
