@@ -1,5 +1,0 @@
-# Windows-only alternate location (zellij reads from %APPDATA%$app).
-# Parent ~/.config/zellij is already covered by the home/.config marker.
-[[link]]
-dst = "{{ env(name='APPDATA') }}/zellij"
-when = "yui.os == 'windows' and vars.production"

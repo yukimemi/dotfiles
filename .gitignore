@@ -47,8 +47,6 @@
 /home/.config/windows-terminal/state.json
 /home/.config/windows-terminal-preview/state.json
 /home/.config/atuin/history*
-/home/.config/zellij/cache/
-/home/.config/zellij/sessions/
 # opencode auto-installs deps via bun — node_modules is regenerable.
 /home/.config/opencode/node_modules/
 # gh stores its OAuth token here on Linux/macOS / newer Windows installs.

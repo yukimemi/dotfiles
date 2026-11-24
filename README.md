@@ -256,8 +256,6 @@ These files use Tera (`*.tera` → `*.<ext>` rendered as a sibling):
   Discord's shortcut works on all three platforms. shun merges every
   `config.*.toml` after `config.toml`, so `config.toml` itself is a plain
   linked file: `/config` in shun edits the tracked source directly.
-- `home/.config/zellij/config/config.kdl.tera` — Linux uses `Ctrl-t`,
-  others use `Ctrl-b`.
 - `home/.config/todoke/todoke.yui.toml.tera` — the GUI editor
   (`vars.editor`: neovide / nvim-qt / nvim) as todoke's `vars.gui`.
   `todoke.toml` pulls it in with `include`, so it is a plain linked file and
