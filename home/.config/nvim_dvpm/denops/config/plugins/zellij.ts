@@ -11,7 +11,6 @@ export const zellij: Plug[] = [
     after: async ({ denops }) => {
       // Initialize smart-splits (for resize and other features)
       // ctrl-h/j/k/l navigation is handled by tmux_move in cache.ts
-      // which supports neovim windows, zellij panes, and tmux panes.
       await denops.call(`luaeval`, `require("smart-splits").setup()`);
     },
   },
