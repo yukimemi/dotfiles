@@ -91,6 +91,30 @@ cannot decrypt the existing secrets.
 On Windows, also install PowerShell 7 (`pwsh`) before applying: the
 `windows-setup` hook uses it.
 
+## 既存環境: Zellij 設定の廃止（更新前）
+
+旧版を適用済みの場合は、この変更を取り込む前に以下を実施してください。
+テンプレートを削除して `yui render` を実行しても、生成済みの `config.kdl`
+は消えません。削除される WASM プラグインを参照し続け、除外設定も外れるため、
+設定やセッションを誤ってコミットするおそれがあります。
+
+1. Zellij を終了します。旧チェックアウトで `yui list` を実行して配置先の候補を
+   確認し、実際にリンクかどうか、どこを指しているかをファイルシステム上で
+   確認します。既定は `~/.config/zellij`（`home_root` を変更した場合はその配下の
+   `.config/zellij`）、Windows で `production = true` の場合は旧 `.yuilink`
+   による `%APPDATA%/zellij` も対象です。
+2. 親の `.config` リンク経由で見える旧ソース `home/.config/zellij/` を確認し、
+   生成済みの `config/config.kdl` と、`sessions/`・`cache/` などの未追跡の
+   ローカルデータ（無視対象も含む）を、チェックアウトおよび管理対象の配置先の
+   外へ移します。旧ソース内の追跡ファイルに変更がある場合は、ステージ済みの
+   変更も含めて管理外にバックアップし、内容を確認してから、該当ファイルだけを
+   旧チェックアウトの `HEAD` の状態に戻します。変更を残したままだと更新時の
+   削除が拒否されることがあります。復元したファイルは更新で削除されます。
+3. Windows の追加配置先が旧ソースを指すジャンクションだと確認できた場合のみ、
+   旧 `.yuilink` とソースが残っているうちに、そのジャンクションだけを解除します。
+   親の `.config` リンクや、旧ソースとは独立した通常のディレクトリには触れません。
+   退避と必要なリンク解除が済んでから更新してください。
+
 ## Apply
 
 Use an explicit source path for the first apply; this works before
@@ -256,8 +280,6 @@ These files use Tera (`*.tera` → `*.<ext>` rendered as a sibling):
   Discord's shortcut works on all three platforms. shun merges every
   `config.*.toml` after `config.toml`, so `config.toml` itself is a plain
   linked file: `/config` in shun edits the tracked source directly.
-- `home/.config/zellij/config/config.kdl.tera` — Linux uses `Ctrl-t`,
-  others use `Ctrl-b`.
 - `home/.config/todoke/todoke.yui.toml.tera` — the GUI editor
   (`vars.editor`: neovide / nvim-qt / nvim) as todoke's `vars.gui`.
   `todoke.toml` pulls it in with `include`, so it is a plain linked file and

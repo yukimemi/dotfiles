@@ -375,11 +375,6 @@ if (Get-Module PSReadLine) {
   }
 }
 
-# --- Zellij Auto-Start ---
-# if ($null -eq $env:ZELLIJ -and (Get-Command zellij -ErrorAction SilentlyContinue)) {
-#   zellij attach -c
-# }
-
 # wslenv
 $env:WSLENV += ":GEMINI_API_KEY/u:ANTHROPIC_API_KEY/u:OPENAI_API_KEY/u"
 
